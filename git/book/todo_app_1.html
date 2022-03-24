@@ -161,7 +161,10 @@ Something like this:</p>
         &lt;property name=&quot;margin-end&quot;&gt;12&lt;/property&gt;
         &lt;property name=&quot;spacing&quot;&gt;6&lt;/property&gt;
         &lt;child&gt;
-          &lt;object class=&quot;GtkEntry&quot; id=&quot;entry&quot;/&gt;
+          &lt;object class=&quot;GtkEntry&quot; id=&quot;entry&quot;&gt;
+            &lt;property name=&quot;placeholder-text&quot; translatable=&quot;yes&quot;&gt;Enter a Task…&lt;/property&gt;
+            &lt;property name=&quot;secondary-icon-name&quot;&gt;list-add-symbolic&lt;/property&gt;
+          &lt;/object&gt;
         &lt;/child&gt;
         &lt;child&gt;
           &lt;object class=&quot;GtkScrolledWindow&quot;&gt;
@@ -169,7 +172,7 @@ Something like this:</p>
             &lt;property name=&quot;min-content-height&quot;&gt;360&lt;/property&gt;
             &lt;property name=&quot;vexpand&quot;&gt;true&lt;/property&gt;
             &lt;child&gt;
-              &lt;object class=&quot;GtkListView&quot; id=&quot;list_view&quot;/&gt;
+              &lt;object class=&quot;GtkListView&quot; id=&quot;list_view&quot; /&gt;
             &lt;/child&gt;
           &lt;/object&gt;
         &lt;/child&gt;
@@ -223,20 +226,30 @@ As usual, we have to list all <a href="https://docs.gtk.org/gtk4/class.Applicati
 </span><span class="boring">    }
 </span><span class="boring">
 </span><span class="boring">    fn setup_callbacks(&amp;self) {
-</span><span class="boring">        // Get state
-</span><span class="boring">        let model = self.model();
-</span><span class="boring">
-</span><span class="boring">        // Setup callback so that activation
-</span><span class="boring">        // creates a new todo object and clears the entry
+</span><span class="boring">        // Setup callback for activation of the entry
 </span><span class="boring">        self.imp()
 </span><span class="boring">            .entry
-</span><span class="boring">            .connect_activate(clone!(@weak model =&gt; move |entry| {
-</span><span class="boring">                let buffer = entry.buffer();
-</span><span class="boring">                let content = buffer.text();
-</span><span class="boring">                let todo_object = TodoObject::new(false, content);
-</span><span class="boring">                model.append(&amp;todo_object);
-</span><span class="boring">                buffer.set_text(&quot;&quot;);
+</span><span class="boring">            .connect_activate(clone!(@weak self as window =&gt; move |_| {
+</span><span class="boring">                window.new_task();
 </span><span class="boring">            }));
+</span><span class="boring">
+</span><span class="boring">        // Setup callback for clicking (and the releasing) the icon of the entry
+</span><span class="boring">        self.imp().entry.connect_icon_release(
+</span><span class="boring">            clone!(@weak self as window =&gt; move |_,_| {
+</span><span class="boring">                window.new_task();
+</span><span class="boring">            }),
+</span><span class="boring">        );
+</span><span class="boring">    }
+</span><span class="boring">
+</span><span class="boring">    fn new_task(&amp;self) {
+</span><span class="boring">        // Get content from entry and clear it
+</span><span class="boring">        let buffer = self.imp().entry.buffer();
+</span><span class="boring">        let content = buffer.text();
+</span><span class="boring">        buffer.set_text(&quot;&quot;);
+</span><span class="boring">
+</span><span class="boring">        // Add new task to model
+</span><span class="boring">        let task = TodoObject::new(false, content);
+</span><span class="boring">        self.model().append(&amp;task);
 </span><span class="boring">    }
 </span><span class="boring">
 </span><span class="boring">    fn setup_factory(&amp;self) {
@@ -301,7 +314,7 @@ We only have to assure that the <code>class</code> attribute of the template in 
 </span><span class="boring">
 </span>// Object holding the state
 #[derive(CompositeTemplate, Default)]
-#[template(resource = &quot;/org/gtk-rs/Todo/window.ui&quot;)]
+#[template(resource = &quot;/org/gtk-rs/Todo1/window.ui&quot;)]
 pub struct Window {
     #[template_child]
     pub entry: TemplateChild&lt;Entry&gt;,
@@ -368,7 +381,7 @@ impl ObjectSubclass for Window {
 
     // Create a new application
     let app = Application::builder()
-        .application_id(&quot;org.gtk-rs.Todo&quot;)
+        .application_id(&quot;org.gtk-rs.Todo1&quot;)
         .build();
 
     // Connect to &quot;activate&quot; signal of `app`
@@ -389,10 +402,10 @@ Here, they already include <code>todo_row.ui</code> which we will handle later i
 <p><span class="filename">Filename: listings/todo_app/1/resources/resources.gresource.xml</span></p>
 <pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
 &lt;gresources&gt;
-    &lt;gresource prefix=&quot;/org/gtk-rs/Todo/&quot;&gt;
-        &lt;file compressed=&quot;true&quot; preprocess=&quot;xml-stripblanks&quot;&gt;todo_row.ui&lt;/file&gt;
-        &lt;file compressed=&quot;true&quot; preprocess=&quot;xml-stripblanks&quot;&gt;window.ui&lt;/file&gt;
-    &lt;/gresource&gt;
+  &lt;gresource prefix=&quot;/org/gtk-rs/Todo1/&quot;&gt;
+    &lt;file compressed=&quot;true&quot; preprocess=&quot;xml-stripblanks&quot;&gt;todo_row.ui&lt;/file&gt;
+    &lt;file compressed=&quot;true&quot; preprocess=&quot;xml-stripblanks&quot;&gt;window.ui&lt;/file&gt;
+  &lt;/gresource&gt;
 &lt;/gresources&gt;
 </code></pre>
 <h2 id="to-do-object"><a class="header" href="#to-do-object">To-Do Object</a></h2>
@@ -518,10 +531,17 @@ impl ObjectSubclass for TodoObject {
 </span><span class="boring">        PROPERTIES.as_ref()
 </span><span class="boring">    }
 </span><span class="boring">
-</span><span class="boring">    fn set_property(&amp;self, _obj: &amp;Self::Type, _id: usize, value: &amp;Value, pspec: &amp;ParamSpec) {
+</span><span class="boring">    fn set_property(
+</span><span class="boring">        &amp;self,
+</span><span class="boring">        _obj: &amp;Self::Type,
+</span><span class="boring">        _id: usize,
+</span><span class="boring">        value: &amp;Value,
+</span><span class="boring">        pspec: &amp;ParamSpec,
+</span><span class="boring">    ) {
 </span><span class="boring">        match pspec.name() {
 </span><span class="boring">            &quot;completed&quot; =&gt; {
-</span><span class="boring">                let input_value = value.get().expect(&quot;The value needs to be of type `bool`.&quot;);
+</span><span class="boring">                let input_value =
+</span><span class="boring">                    value.get().expect(&quot;The value needs to be of type `bool`.&quot;);
 </span><span class="boring">                self.data.borrow_mut().completed = input_value;
 </span><span class="boring">            }
 </span><span class="boring">            &quot;content&quot; =&gt; {
@@ -662,7 +682,7 @@ Why we need that will become clear as soon as we get to bind the state of <code>
 </span><span class="boring">
 </span>// Object holding the state
 #[derive(Default, CompositeTemplate)]
-#[template(resource = &quot;/org/gtk-rs/Todo/todo_row.ui&quot;)]
+#[template(resource = &quot;/org/gtk-rs/Todo1/todo_row.ui&quot;)]
 pub struct TodoRow {
     #[template_child]
     pub completed_button: TemplateChild&lt;CheckButton&gt;,
@@ -710,7 +730,7 @@ We override the <code>imp::Window::constructed</code> in order to set up window 
 </span><span class="boring">
 </span><span class="boring">// Object holding the state
 </span><span class="boring">#[derive(CompositeTemplate, Default)]
-</span><span class="boring">#[template(resource = &quot;/org/gtk-rs/Todo/window.ui&quot;)]
+</span><span class="boring">#[template(resource = &quot;/org/gtk-rs/Todo1/window.ui&quot;)]
 </span><span class="boring">pub struct Window {
 </span><span class="boring">    #[template_child]
 </span><span class="boring">    pub entry: TemplateChild&lt;Entry&gt;,
@@ -803,20 +823,30 @@ Then we store a reference to the model in <code>imp::Window</code> as well as in
     }
 <span class="boring">
 </span><span class="boring">    fn setup_callbacks(&amp;self) {
-</span><span class="boring">        // Get state
-</span><span class="boring">        let model = self.model();
-</span><span class="boring">
-</span><span class="boring">        // Setup callback so that activation
-</span><span class="boring">        // creates a new todo object and clears the entry
+</span><span class="boring">        // Setup callback for activation of the entry
 </span><span class="boring">        self.imp()
 </span><span class="boring">            .entry
-</span><span class="boring">            .connect_activate(clone!(@weak model =&gt; move |entry| {
-</span><span class="boring">                let buffer = entry.buffer();
-</span><span class="boring">                let content = buffer.text();
-</span><span class="boring">                let todo_object = TodoObject::new(false, content);
-</span><span class="boring">                model.append(&amp;todo_object);
-</span><span class="boring">                buffer.set_text(&quot;&quot;);
+</span><span class="boring">            .connect_activate(clone!(@weak self as window =&gt; move |_| {
+</span><span class="boring">                window.new_task();
 </span><span class="boring">            }));
+</span><span class="boring">
+</span><span class="boring">        // Setup callback for clicking (and the releasing) the icon of the entry
+</span><span class="boring">        self.imp().entry.connect_icon_release(
+</span><span class="boring">            clone!(@weak self as window =&gt; move |_,_| {
+</span><span class="boring">                window.new_task();
+</span><span class="boring">            }),
+</span><span class="boring">        );
+</span><span class="boring">    }
+</span><span class="boring">
+</span><span class="boring">    fn new_task(&amp;self) {
+</span><span class="boring">        // Get content from entry and clear it
+</span><span class="boring">        let buffer = self.imp().entry.buffer();
+</span><span class="boring">        let content = buffer.text();
+</span><span class="boring">        buffer.set_text(&quot;&quot;);
+</span><span class="boring">
+</span><span class="boring">        // Add new task to model
+</span><span class="boring">        let task = TodoObject::new(false, content);
+</span><span class="boring">        self.model().append(&amp;task);
 </span><span class="boring">    }
 </span><span class="boring">
 </span><span class="boring">    fn setup_factory(&amp;self) {
@@ -912,22 +942,32 @@ Finally, the entry will be cleared.</p>
 </span><span class="boring">    }
 </span><span class="boring">
 </span>    fn setup_callbacks(&amp;self) {
-        // Get state
-        let model = self.model();
-
-        // Setup callback so that activation
-        // creates a new todo object and clears the entry
+        // Setup callback for activation of the entry
         self.imp()
             .entry
-            .connect_activate(clone!(@weak model =&gt; move |entry| {
-                let buffer = entry.buffer();
-                let content = buffer.text();
-                let todo_object = TodoObject::new(false, content);
-                model.append(&amp;todo_object);
-                buffer.set_text(&quot;&quot;);
+            .connect_activate(clone!(@weak self as window =&gt; move |_| {
+                window.new_task();
             }));
+
+        // Setup callback for clicking (and the releasing) the icon of the entry
+        self.imp().entry.connect_icon_release(
+            clone!(@weak self as window =&gt; move |_,_| {
+                window.new_task();
+            }),
+        );
     }
 <span class="boring">
+</span><span class="boring">    fn new_task(&amp;self) {
+</span><span class="boring">        // Get content from entry and clear it
+</span><span class="boring">        let buffer = self.imp().entry.buffer();
+</span><span class="boring">        let content = buffer.text();
+</span><span class="boring">        buffer.set_text(&quot;&quot;);
+</span><span class="boring">
+</span><span class="boring">        // Add new task to model
+</span><span class="boring">        let task = TodoObject::new(false, content);
+</span><span class="boring">        self.model().append(&amp;task);
+</span><span class="boring">    }
+</span><span class="boring">
 </span><span class="boring">    fn setup_factory(&amp;self) {
 </span><span class="boring">        // Create a new factory
 </span><span class="boring">        let factory = SignalListItemFactory::new();
@@ -1027,20 +1067,30 @@ We will need to unbind them manually when they are no longer needed.</p>
 </span><span class="boring">    }
 </span><span class="boring">
 </span><span class="boring">    fn setup_callbacks(&amp;self) {
-</span><span class="boring">        // Get state
-</span><span class="boring">        let model = self.model();
-</span><span class="boring">
-</span><span class="boring">        // Setup callback so that activation
-</span><span class="boring">        // creates a new todo object and clears the entry
+</span><span class="boring">        // Setup callback for activation of the entry
 </span><span class="boring">        self.imp()
 </span><span class="boring">            .entry
-</span><span class="boring">            .connect_activate(clone!(@weak model =&gt; move |entry| {
-</span><span class="boring">                let buffer = entry.buffer();
-</span><span class="boring">                let content = buffer.text();
-</span><span class="boring">                let todo_object = TodoObject::new(false, content);
-</span><span class="boring">                model.append(&amp;todo_object);
-</span><span class="boring">                buffer.set_text(&quot;&quot;);
+</span><span class="boring">            .connect_activate(clone!(@weak self as window =&gt; move |_| {
+</span><span class="boring">                window.new_task();
 </span><span class="boring">            }));
+</span><span class="boring">
+</span><span class="boring">        // Setup callback for clicking (and the releasing) the icon of the entry
+</span><span class="boring">        self.imp().entry.connect_icon_release(
+</span><span class="boring">            clone!(@weak self as window =&gt; move |_,_| {
+</span><span class="boring">                window.new_task();
+</span><span class="boring">            }),
+</span><span class="boring">        );
+</span><span class="boring">    }
+</span><span class="boring">
+</span><span class="boring">    fn new_task(&amp;self) {
+</span><span class="boring">        // Get content from entry and clear it
+</span><span class="boring">        let buffer = self.imp().entry.buffer();
+</span><span class="boring">        let content = buffer.text();
+</span><span class="boring">        buffer.set_text(&quot;&quot;);
+</span><span class="boring">
+</span><span class="boring">        // Add new task to model
+</span><span class="boring">        let task = TodoObject::new(false, content);
+</span><span class="boring">        self.model().append(&amp;task);
 </span><span class="boring">    }
 </span><span class="boring">
 </span>    fn setup_factory(&amp;self) {

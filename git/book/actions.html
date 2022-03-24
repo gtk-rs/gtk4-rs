@@ -529,7 +529,7 @@ Within the template we can then set the &quot;action-name&quot; and &quot;action
   &lt;/template&gt;
 &lt;/interface&gt;
 </code></pre>
-<p>We will connect the actions and add them to the window in the <code>Window::add_actions</code> method.</p>
+<p>We will connect the actions and add them to the window in the <code>Window::setup_actions</code> method.</p>
 <p><span class="filename">Filename: listings/actions/5/window/mod.rs</span></p>
 <pre><code class="language-rust  no_run noplayground"><span class="boring">mod imp;
 </span><span class="boring">
@@ -553,7 +553,7 @@ Within the template we can then set the &quot;action-name&quot; and &quot;action
         Object::new(&amp;[(&quot;application&quot;, app)]).expect(&quot;Failed to create Window&quot;)
     }
 
-    fn add_actions(&amp;self) {
+    fn setup_actions(&amp;self) {
         let label = self.imp().label.get();
 
         // Add stateful action &quot;count&quot; to `window` taking an integer as parameter
@@ -589,7 +589,7 @@ Within the template we can then set the &quot;action-name&quot; and &quot;action
     }
 }
 </code></pre>
-<p>Finally, <code>add_actions</code> will be called within <code>constructed</code>.</p>
+<p>Finally, <code>setup_actions</code> will be called within <code>constructed</code>.</p>
 <p><span class="filename">Filename: listings/actions/5/window/imp.rs</span></p>
 <pre><code class="language-rust  no_run noplayground"><span class="boring">use glib::subclass::InitializingObject;
 </span><span class="boring">use gtk::prelude::*;
@@ -630,7 +630,7 @@ impl ObjectImpl for Window {
         self.parent_constructed(obj);
 
         // Add actions
-        obj.add_actions();
+        obj.setup_actions();
     }
 }
 <span class="boring">
@@ -653,7 +653,7 @@ Typically, a menu entry has an action fitting one of these three descriptions:</
 <li>string parameter and string state.</li>
 </ul>
 <p>Let's modify our small app to demonstrate these cases.
-First we extend <code>add_actions</code>.
+First we extend <code>setup_actions</code>.
 For the action without parameter or state, we can use the pre-defined &quot;window.close&quot; action.
 Therefore we don't have to add anything here.</p>
 <p>With the action &quot;sensitive-button&quot;, we manipulate the &quot;sensitive&quot; property of <code>button</code>.
@@ -682,7 +682,7 @@ This means that the caller can expect the boolean state to toggle after activati
 </span><span class="boring">        Object::new(&amp;[(&quot;application&quot;, app)]).expect(&quot;Failed to create Window&quot;)
 </span><span class="boring">    }
 </span><span class="boring">
-</span><span class="boring">    fn add_actions(&amp;self) {
+</span><span class="boring">    fn setup_actions(&amp;self) {
 </span><span class="boring">        // Get state
 </span><span class="boring">        let label = self.imp().label.get();
 </span><span class="boring">
@@ -719,7 +719,8 @@ This means that the caller can expect the boolean state to toggle after activati
 </span><span class="boring">
 </span>        // Add property action &quot;sensitive-button&quot; to `window`
         let button = self.imp().button.get();
-        let action_sensitive_button = PropertyAction::new(&quot;sensitive-button&quot;, &amp;button, &quot;sensitive&quot;);
+        let action_sensitive_button =
+            PropertyAction::new(&quot;sensitive-button&quot;, &amp;button, &quot;sensitive&quot;);
         self.add_action(&amp;action_sensitive_button);
 <span class="boring">
 </span><span class="boring">
@@ -787,7 +788,7 @@ We don't need the action state to implement orientation switching, however it is
 </span><span class="boring">        Object::new(&amp;[(&quot;application&quot;, app)]).expect(&quot;Failed to create Window&quot;)
 </span><span class="boring">    }
 </span><span class="boring">
-</span><span class="boring">    fn add_actions(&amp;self) {
+</span><span class="boring">    fn setup_actions(&amp;self) {
 </span><span class="boring">        // Get state
 </span><span class="boring">        let label = self.imp().label.get();
 </span><span class="boring">
@@ -824,7 +825,8 @@ We don't need the action state to implement orientation switching, however it is
 </span><span class="boring">
 </span><span class="boring">        // Add property action &quot;sensitive-button&quot; to `window`
 </span><span class="boring">        let button = self.imp().button.get();
-</span><span class="boring">        let action_sensitive_button = PropertyAction::new(&quot;sensitive-button&quot;, &amp;button, &quot;sensitive&quot;);
+</span><span class="boring">        let action_sensitive_button =
+</span><span class="boring">            PropertyAction::new(&quot;sensitive-button&quot;, &amp;button, &quot;sensitive&quot;);
 </span><span class="boring">        self.add_action(&amp;action_sensitive_button);
 </span><span class="boring">
 </span>
@@ -1007,7 +1009,7 @@ impl Default for Window {
 </span><span class="boring">        self.parent_constructed(obj);
 </span><span class="boring">
 </span><span class="boring">        // Setup
-</span><span class="boring">        obj.add_actions();
+</span><span class="boring">        obj.setup_actions();
 </span><span class="boring">        obj.bind_settings();
 </span><span class="boring">    }
 </span><span class="boring">}
@@ -1046,7 +1048,7 @@ We create actions with the<a href="https://gtk-rs.org/gtk-rs-core/stable/latest/
 </span><span class="boring">        Object::new(&amp;[(&quot;application&quot;, app)]).expect(&quot;Failed to create Window&quot;)
 </span><span class="boring">    }
 </span><span class="boring">
-</span><span class="boring">    fn add_actions(&amp;self) {
+</span><span class="boring">    fn setup_actions(&amp;self) {
 </span><span class="boring">        // Get state
 </span><span class="boring">        let label = self.imp().label.get();
 </span><span class="boring">
@@ -1090,7 +1092,8 @@ We create actions with the<a href="https://gtk-rs.org/gtk-rs-core/stable/latest/
 </span><span class="boring">        self.add_action(&amp;action_close);
 </span><span class="boring">
 </span>        // Create action from key &quot;sensitive-button&quot; and add to action group &quot;win&quot;
-        let action_sensitive_button = self.imp().settings.create_action(&quot;sensitive-button&quot;);
+        let action_sensitive_button =
+            self.imp().settings.create_action(&quot;sensitive-button&quot;);
         self.add_action(&amp;action_sensitive_button);
 
         // Create action from key &quot;orientation&quot; and add to action group &quot;win&quot;
@@ -1157,7 +1160,7 @@ For the stateful actions, instead of adding callbacks to their &quot;activate&qu
 </span><span class="boring">        Object::new(&amp;[(&quot;application&quot;, app)]).expect(&quot;Failed to create Window&quot;)
 </span><span class="boring">    }
 </span><span class="boring">
-</span><span class="boring">    fn add_actions(&amp;self) {
+</span><span class="boring">    fn setup_actions(&amp;self) {
 </span><span class="boring">        // Get state
 </span><span class="boring">        let label = self.imp().label.get();
 </span><span class="boring">
@@ -1201,7 +1204,8 @@ For the stateful actions, instead of adding callbacks to their &quot;activate&qu
 </span><span class="boring">        self.add_action(&amp;action_close);
 </span><span class="boring">
 </span><span class="boring">        // Create action from key &quot;sensitive-button&quot; and add to action group &quot;win&quot;
-</span><span class="boring">        let action_sensitive_button = self.imp().settings.create_action(&quot;sensitive-button&quot;);
+</span><span class="boring">        let action_sensitive_button =
+</span><span class="boring">            self.imp().settings.create_action(&quot;sensitive-button&quot;);
 </span><span class="boring">        self.add_action(&amp;action_sensitive_button);
 </span><span class="boring">
 </span><span class="boring">        // Create action from key &quot;orientation&quot; and add to action group &quot;win&quot;
@@ -1298,7 +1302,7 @@ impl ObjectImpl for Window {
         self.parent_constructed(obj);
 
         // Setup
-        obj.add_actions();
+        obj.setup_actions();
         obj.bind_settings();
     }
 }

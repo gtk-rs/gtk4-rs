@@ -438,10 +438,17 @@ impl ObjectImpl for CustomButton {
         PROPERTIES.as_ref()
     }
 
-    fn set_property(&amp;self, _obj: &amp;Self::Type, _id: usize, value: &amp;Value, pspec: &amp;ParamSpec) {
+    fn set_property(
+        &amp;self,
+        _obj: &amp;Self::Type,
+        _id: usize,
+        value: &amp;Value,
+        pspec: &amp;ParamSpec,
+    ) {
         match pspec.name() {
             &quot;number&quot; =&gt; {
-                let input_number = value.get().expect(&quot;The value needs to be of type `i32`.&quot;);
+                let input_number =
+                    value.get().expect(&quot;The value needs to be of type `i32`.&quot;);
                 self.number.replace(input_number);
             }
             _ =&gt; unimplemented!(),
@@ -529,10 +536,17 @@ This way the &quot;notify&quot; signal will be emitted which bindings work as ex
 </span><span class="boring">        PROPERTIES.as_ref()
 </span><span class="boring">    }
 </span><span class="boring">
-</span><span class="boring">    fn set_property(&amp;self, _obj: &amp;Self::Type, _id: usize, value: &amp;Value, pspec: &amp;ParamSpec) {
+</span><span class="boring">    fn set_property(
+</span><span class="boring">        &amp;self,
+</span><span class="boring">        _obj: &amp;Self::Type,
+</span><span class="boring">        _id: usize,
+</span><span class="boring">        value: &amp;Value,
+</span><span class="boring">        pspec: &amp;ParamSpec,
+</span><span class="boring">    ) {
 </span><span class="boring">        match pspec.name() {
 </span><span class="boring">            &quot;number&quot; =&gt; {
-</span><span class="boring">                let input_number = value.get().expect(&quot;The value needs to be of type `i32`.&quot;);
+</span><span class="boring">                let input_number =
+</span><span class="boring">                    value.get().expect(&quot;The value needs to be of type `i32`.&quot;);
 </span><span class="boring">                self.number.replace(input_number);
 </span><span class="boring">            }
 </span><span class="boring">            _ =&gt; unimplemented!(),

@@ -224,9 +224,9 @@ For our template file we also add the <code>compressed</code> and <code>preproce
 <p><span class="filename">Filename: listings/composite_templates/1/resources/resources.gresource.xml</span></p>
 <pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
 &lt;gresources&gt;
-    &lt;gresource prefix=&quot;/org/gtk-rs/example/&quot;&gt;
-        &lt;file compressed=&quot;true&quot; preprocess=&quot;xml-stripblanks&quot;&gt;window.ui&lt;/file&gt;
-    &lt;/gresource&gt;
+  &lt;gresource prefix=&quot;/org/gtk-rs/example/&quot;&gt;
+    &lt;file compressed=&quot;true&quot; preprocess=&quot;xml-stripblanks&quot;&gt;window.ui&lt;/file&gt;
+  &lt;/gresource&gt;
 &lt;/gresources&gt;
 </code></pre>
 <p>Now we have to compile the resources and link it to our application.

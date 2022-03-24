@@ -154,12 +154,12 @@ Your browser does not support the video tag.
 This will come in handy when we later make the app preserve the tasks between sessions.</p>
 <p>Let's start by adding a menu and a header bar to <code>window.ui</code>.
 After reading the <a href="actions.html">actions</a> chapter the added code should feel familiar.</p>
-<p><span class="filename">Filename: listings/todo_app/2/window/window.ui</span></p>
+<p><span class="filename">Filename: listings/todo_app/2/resources/window.ui</span></p>
 <pre><code class="language-diff"> &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
  &lt;interface&gt;
 +  &lt;menu id=&quot;main-menu&quot;&gt;
 +    &lt;submenu&gt;
-+      &lt;attribute name=&quot;label&quot; translatable=&quot;yes&quot;&gt;_Filtering&lt;/attribute&gt;
++      &lt;attribute name=&quot;label&quot; translatable=&quot;yes&quot;&gt;_Filter&lt;/attribute&gt;
 +      &lt;item&gt;
 +        &lt;attribute name=&quot;label&quot; translatable=&quot;yes&quot;&gt;_All&lt;/attribute&gt;
 +        &lt;attribute name=&quot;action&quot;&gt;win.filter&lt;/attribute&gt;
@@ -177,6 +177,10 @@ After reading the <a href="actions.html">actions</a> chapter the added code shou
 +      &lt;/item&gt;
 +    &lt;/submenu&gt;
 +    &lt;item&gt;
++      &lt;attribute name=&quot;label&quot; translatable=&quot;yes&quot;&gt;_Remove Done Tasks&lt;/attribute&gt;
++      &lt;attribute name=&quot;action&quot;&gt;win.remove-done-tasks&lt;/attribute&gt;
++    &lt;/item&gt;
++    &lt;item&gt;
 +      &lt;attribute name=&quot;label&quot; translatable=&quot;yes&quot;&gt;_Keyboard Shortcuts&lt;/attribute&gt;
 +      &lt;attribute name=&quot;action&quot;&gt;win.show-help-overlay&lt;/attribute&gt;
 +    &lt;/item&gt;
@@ -186,12 +190,7 @@ After reading the <a href="actions.html">actions</a> chapter the added code shou
      &lt;property name=&quot;title&quot; translatable=&quot;yes&quot;&gt;To-Do&lt;/property&gt;
 +    &lt;child type=&quot;titlebar&quot;&gt;
 +      &lt;object class=&quot;GtkHeaderBar&quot;&gt;
-+        &lt;child type=&quot;start&quot;&gt;
-+          &lt;object class=&quot;GtkButton&quot; id=&quot;clear_button&quot;&gt;
-+            &lt;property name=&quot;label&quot;&gt;Clear&lt;/property&gt;
-+          &lt;/object&gt;
-+        &lt;/child&gt;
-+        &lt;child type =&quot;end&quot;&gt;
++        &lt;child type=&quot;end&quot;&gt;
 +          &lt;object class=&quot;GtkMenuButton&quot; id=&quot;menu_button&quot;&gt;
 +            &lt;property name=&quot;icon-name&quot;&gt;open-menu-symbolic&lt;/property&gt;
 +            &lt;property name=&quot;menu-model&quot;&gt;main-menu&lt;/property&gt;
@@ -199,18 +198,15 @@ After reading the <a href="actions.html">actions</a> chapter the added code shou
 +        &lt;/child&gt;
 +      &lt;/object&gt;
 +    &lt;/child&gt;
-     &lt;child&gt;
-       &lt;object class=&quot;GtkBox&quot;&gt;
-         &lt;property name=&quot;orientation&quot;&gt;vertical&lt;/property&gt;
 </code></pre>
 <p>Then, we create a settings schema.
 Again, the &quot;filter&quot; setting correspond to the stateful actions called by the menu.
 We also add the &quot;tasks&quot; setting which is an array <code>a</code> of structs with a boolean <code>b</code> and string <code>s</code> as members (see <a href="https://docs.gtk.org/glib/gvariant-format-strings.html">GVariant format string</a>).
 We set the default to an empty array <code>[]</code> (see <a href="https://docs.gtk.org/glib/gvariant-text.html">GVariant Text Format</a>).</p>
-<p><span class="filename">Filename: listings/todo_app/2/org.gtk-rs.Todo.gschema.xml</span></p>
+<p><span class="filename">Filename: listings/todo_app/2/org.gtk-rs.Todo2.gschema.xml</span></p>
 <pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
 &lt;schemalist&gt;
-  &lt;schema id=&quot;org.gtk-rs.Todo&quot; path=&quot;/org/gtk-rs/Todo/&quot;&gt;
+  &lt;schema id=&quot;org.gtk-rs.Todo2&quot; path=&quot;/org/gtk-rs/Todo2/&quot;&gt;
     &lt;key name=&quot;filter&quot; type=&quot;s&quot;&gt;
       &lt;choices&gt;
         &lt;choice value='All'/&gt;
@@ -237,14 +233,14 @@ We stop deriving <code>Default</code> for <code>imp::Window</code> and implement
 </span><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::subclass::prelude::*;
 </span><span class="boring">use gtk::{gio, glib};
-</span><span class="boring">use gtk::{Button, CompositeTemplate, Entry, ListView, MenuButton};
+</span><span class="boring">use gtk::{CompositeTemplate, Entry, ListView, MenuButton};
 </span><span class="boring">use once_cell::sync::OnceCell;
 </span><span class="boring">
 </span><span class="boring">use crate::todo_object::TodoObject;
 </span><span class="boring">
 </span>// Object holding the state
 #[derive(CompositeTemplate)]
-#[template(resource = &quot;/org/gtk-rs/Todo/window.ui&quot;)]
+#[template(resource = &quot;/org/gtk-rs/Todo2/window.ui&quot;)]
 pub struct Window {
     #[template_child]
     pub entry: TemplateChild&lt;Entry&gt;,
@@ -252,8 +248,6 @@ pub struct Window {
     pub menu_button: TemplateChild&lt;MenuButton&gt;,
     #[template_child]
     pub list_view: TemplateChild&lt;ListView&gt;,
-    #[template_child]
-    pub clear_button: TemplateChild&lt;Button&gt;,
     pub model: OnceCell&lt;gio::ListStore&gt;,
     pub settings: Settings,
 }
@@ -264,9 +258,8 @@ impl Default for Window {
             entry: TemplateChild::default(),
             menu_button: TemplateChild::default(),
             list_view: TemplateChild::default(),
-            clear_button: TemplateChild::default(),
             model: OnceCell::default(),
-            settings: Settings::new(&quot;org.gtk-rs.Todo&quot;),
+            settings: Settings::new(&quot;org.gtk-rs.Todo2&quot;),
         }
     }
 }
@@ -299,7 +292,7 @@ impl Default for Window {
 </span><span class="boring">        obj.restore_data();
 </span><span class="boring">        obj.setup_callbacks();
 </span><span class="boring">        obj.setup_factory();
-</span><span class="boring">        obj.setup_filter_action();
+</span><span class="boring">        obj.setup_actions();
 </span><span class="boring">    }
 </span><span class="boring">}
 </span><span class="boring">
@@ -370,7 +363,8 @@ We will make use of them in the following snippets.</p>
 </span><span class="boring">}
 </span></code></pre>
 <p>Similar to the previous chapter, we let <code>settings</code> create the action.
-Then we add the newly created action &quot;filter&quot; to our window.</p>
+Then we add the newly created action &quot;filter&quot; to our window.
+We also add an action which allows us to remove done tasks. </p>
 <p><span class="filename">Filename: listings/todo_app/2/window/mod.rs</span></p>
 <pre><code class="language-rust  no_run noplayground"><span class="boring">mod imp;
 </span><span class="boring">
@@ -380,7 +374,9 @@ Then we add the newly created action &quot;filter&quot; to our window.</p>
 </span><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::subclass::prelude::*;
 </span><span class="boring">use gtk::{gio, glib};
-</span><span class="boring">use gtk::{Application, CustomFilter, FilterListModel, NoSelection, SignalListItemFactory};
+</span><span class="boring">use gtk::{
+</span><span class="boring">    Application, CustomFilter, FilterListModel, NoSelection, SignalListItemFactory,
+</span><span class="boring">};
 </span><span class="boring">
 </span><span class="boring">glib::wrapper! {
 </span><span class="boring">    pub struct Window(ObjectSubclass&lt;imp::Window&gt;)
@@ -443,7 +439,8 @@ Then we add the newly created action &quot;filter&quot; to our window.</p>
 </span><span class="boring">        self.imp().model.set(model).expect(&quot;Could not set model&quot;);
 </span><span class="boring">
 </span><span class="boring">        // Wrap model with filter and selection and pass it to the list view
-</span><span class="boring">        let filter_model = FilterListModel::new(Some(self.model()), self.filter().as_ref());
+</span><span class="boring">        let filter_model =
+</span><span class="boring">            FilterListModel::new(Some(self.model()), self.filter().as_ref());
 </span><span class="boring">        let selection_model = NoSelection::new(Some(&amp;filter_model));
 </span><span class="boring">        self.imp().list_view.set_model(Some(&amp;selection_model));
 </span><span class="boring">
@@ -471,40 +468,30 @@ Then we add the newly created action &quot;filter&quot; to our window.</p>
 </span><span class="boring">    }
 </span><span class="boring">
 </span><span class="boring">    fn setup_callbacks(&amp;self) {
-</span><span class="boring">        // Get state
-</span><span class="boring">        let model = self.model();
-</span><span class="boring">
-</span><span class="boring">        // Setup callback so that activation
-</span><span class="boring">        // creates a new todo object and clears the entry
+</span><span class="boring">        // Setup callback for activation of the entry
 </span><span class="boring">        self.imp()
 </span><span class="boring">            .entry
-</span><span class="boring">            .connect_activate(clone!(@weak model =&gt; move |entry| {
-</span><span class="boring">                let buffer = entry.buffer();
-</span><span class="boring">                let content = buffer.text();
-</span><span class="boring">                let todo_object = TodoObject::new(false, content);
-</span><span class="boring">                model.append(&amp;todo_object);
-</span><span class="boring">                buffer.set_text(&quot;&quot;);
+</span><span class="boring">            .connect_activate(clone!(@weak self as window =&gt; move |_| {
+</span><span class="boring">                window.new_task();
 </span><span class="boring">            }));
 </span><span class="boring">
-</span><span class="boring">        // Setup callback so that click on the clear_button
-</span><span class="boring">        // removes all done tasks
-</span><span class="boring">        self.imp()
-</span><span class="boring">            .clear_button
-</span><span class="boring">            .connect_clicked(clone!(@weak model =&gt; move |_| {
-</span><span class="boring">                let mut position = 0;
-</span><span class="boring">                while let Some(item) = model.item(position) {
-</span><span class="boring">                    // Get `TodoObject` from `glib::Object`
-</span><span class="boring">                    let todo_object = item
-</span><span class="boring">                        .downcast_ref::&lt;TodoObject&gt;()
-</span><span class="boring">                        .expect(&quot;The object needs to be of type `TodoObject`.&quot;);
+</span><span class="boring">        // Setup callback for clicking (and the releasing) the icon of the entry
+</span><span class="boring">        self.imp().entry.connect_icon_release(
+</span><span class="boring">            clone!(@weak self as window =&gt; move |_,_| {
+</span><span class="boring">                window.new_task();
+</span><span class="boring">            }),
+</span><span class="boring">        );
+</span><span class="boring">    }
 </span><span class="boring">
-</span><span class="boring">                    if todo_object.is_completed() {
-</span><span class="boring">                        model.remove(position);
-</span><span class="boring">                    } else {
-</span><span class="boring">                        position += 1;
-</span><span class="boring">                    }
-</span><span class="boring">                }
-</span><span class="boring">            }));
+</span><span class="boring">    fn new_task(&amp;self) {
+</span><span class="boring">        // Get content from entry and clear it
+</span><span class="boring">        let buffer = self.imp().entry.buffer();
+</span><span class="boring">        let content = buffer.text();
+</span><span class="boring">        buffer.set_text(&quot;&quot;);
+</span><span class="boring">
+</span><span class="boring">        // Add new task to model
+</span><span class="boring">        let task = TodoObject::new(false, content);
+</span><span class="boring">        self.model().append(&amp;task);
 </span><span class="boring">    }
 </span><span class="boring">
 </span><span class="boring">    fn setup_factory(&amp;self) {
@@ -553,14 +540,33 @@ Then we add the newly created action &quot;filter&quot; to our window.</p>
 </span><span class="boring">        self.imp().list_view.set_factory(Some(&amp;factory));
 </span><span class="boring">    }
 </span><span class="boring">
-</span>    fn setup_filter_action(&amp;self) {
-        // Get state
+</span>    fn setup_actions(&amp;self) {
+        // Create action from key &quot;filter&quot; and add to action group &quot;win&quot;
+        let action_filter = self.imp().settings.create_action(&quot;filter&quot;);
+        self.add_action(&amp;action_filter);
 
-        // Create action from key &quot;filter&quot;
-        let filter_action = self.imp().settings.create_action(&quot;filter&quot;);
+        // Get model
+        let model = self.model();
 
-        // Add action &quot;filter&quot; to action group &quot;win&quot;
-        self.add_action(&amp;filter_action);
+        // Create action to remove done tasks and add to action group &quot;win&quot;
+        let action_remove_done_tasks =
+            gio::SimpleAction::new(&quot;remove-done-tasks&quot;, None);
+        action_remove_done_tasks.connect_activate(clone!(@weak model =&gt; move |_, _| {
+            let mut position = 0;
+            while let Some(item) = model.item(position) {
+                // Get `TodoObject` from `glib::Object`
+                let todo_object = item
+                    .downcast_ref::&lt;TodoObject&gt;()
+                    .expect(&quot;The object needs to be of type `TodoObject`.&quot;);
+
+                if todo_object.is_completed() {
+                    model.remove(position);
+                } else {
+                    position += 1;
+                }
+            }
+        }));
+        self.add_action(&amp;action_remove_done_tasks);
     }
 <span class="boring">}
 </span></code></pre>
@@ -578,7 +584,9 @@ If the state is &quot;All&quot; nothing has to be filtered out, so we return <co
 </span><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::subclass::prelude::*;
 </span><span class="boring">use gtk::{gio, glib};
-</span><span class="boring">use gtk::{Application, CustomFilter, FilterListModel, NoSelection, SignalListItemFactory};
+</span><span class="boring">use gtk::{
+</span><span class="boring">    Application, CustomFilter, FilterListModel, NoSelection, SignalListItemFactory,
+</span><span class="boring">};
 </span><span class="boring">
 </span><span class="boring">glib::wrapper! {
 </span><span class="boring">    pub struct Window(ObjectSubclass&lt;imp::Window&gt;)
@@ -641,7 +649,8 @@ If the state is &quot;All&quot; nothing has to be filtered out, so we return <co
 </span><span class="boring">        self.imp().model.set(model).expect(&quot;Could not set model&quot;);
 </span><span class="boring">
 </span><span class="boring">        // Wrap model with filter and selection and pass it to the list view
-</span><span class="boring">        let filter_model = FilterListModel::new(Some(self.model()), self.filter().as_ref());
+</span><span class="boring">        let filter_model =
+</span><span class="boring">            FilterListModel::new(Some(self.model()), self.filter().as_ref());
 </span><span class="boring">        let selection_model = NoSelection::new(Some(&amp;filter_model));
 </span><span class="boring">        self.imp().list_view.set_model(Some(&amp;selection_model));
 </span><span class="boring">
@@ -669,40 +678,30 @@ If the state is &quot;All&quot; nothing has to be filtered out, so we return <co
 </span><span class="boring">    }
 </span><span class="boring">
 </span><span class="boring">    fn setup_callbacks(&amp;self) {
-</span><span class="boring">        // Get state
-</span><span class="boring">        let model = self.model();
-</span><span class="boring">
-</span><span class="boring">        // Setup callback so that activation
-</span><span class="boring">        // creates a new todo object and clears the entry
+</span><span class="boring">        // Setup callback for activation of the entry
 </span><span class="boring">        self.imp()
 </span><span class="boring">            .entry
-</span><span class="boring">            .connect_activate(clone!(@weak model =&gt; move |entry| {
-</span><span class="boring">                let buffer = entry.buffer();
-</span><span class="boring">                let content = buffer.text();
-</span><span class="boring">                let todo_object = TodoObject::new(false, content);
-</span><span class="boring">                model.append(&amp;todo_object);
-</span><span class="boring">                buffer.set_text(&quot;&quot;);
+</span><span class="boring">            .connect_activate(clone!(@weak self as window =&gt; move |_| {
+</span><span class="boring">                window.new_task();
 </span><span class="boring">            }));
 </span><span class="boring">
-</span><span class="boring">        // Setup callback so that click on the clear_button
-</span><span class="boring">        // removes all done tasks
-</span><span class="boring">        self.imp()
-</span><span class="boring">            .clear_button
-</span><span class="boring">            .connect_clicked(clone!(@weak model =&gt; move |_| {
-</span><span class="boring">                let mut position = 0;
-</span><span class="boring">                while let Some(item) = model.item(position) {
-</span><span class="boring">                    // Get `TodoObject` from `glib::Object`
-</span><span class="boring">                    let todo_object = item
-</span><span class="boring">                        .downcast_ref::&lt;TodoObject&gt;()
-</span><span class="boring">                        .expect(&quot;The object needs to be of type `TodoObject`.&quot;);
+</span><span class="boring">        // Setup callback for clicking (and the releasing) the icon of the entry
+</span><span class="boring">        self.imp().entry.connect_icon_release(
+</span><span class="boring">            clone!(@weak self as window =&gt; move |_,_| {
+</span><span class="boring">                window.new_task();
+</span><span class="boring">            }),
+</span><span class="boring">        );
+</span><span class="boring">    }
 </span><span class="boring">
-</span><span class="boring">                    if todo_object.is_completed() {
-</span><span class="boring">                        model.remove(position);
-</span><span class="boring">                    } else {
-</span><span class="boring">                        position += 1;
-</span><span class="boring">                    }
-</span><span class="boring">                }
-</span><span class="boring">            }));
+</span><span class="boring">    fn new_task(&amp;self) {
+</span><span class="boring">        // Get content from entry and clear it
+</span><span class="boring">        let buffer = self.imp().entry.buffer();
+</span><span class="boring">        let content = buffer.text();
+</span><span class="boring">        buffer.set_text(&quot;&quot;);
+</span><span class="boring">
+</span><span class="boring">        // Add new task to model
+</span><span class="boring">        let task = TodoObject::new(false, content);
+</span><span class="boring">        self.model().append(&amp;task);
 </span><span class="boring">    }
 </span><span class="boring">
 </span><span class="boring">    fn setup_factory(&amp;self) {
@@ -751,14 +750,33 @@ If the state is &quot;All&quot; nothing has to be filtered out, so we return <co
 </span><span class="boring">        self.imp().list_view.set_factory(Some(&amp;factory));
 </span><span class="boring">    }
 </span><span class="boring">
-</span><span class="boring">    fn setup_filter_action(&amp;self) {
-</span><span class="boring">        // Get state
+</span><span class="boring">    fn setup_actions(&amp;self) {
+</span><span class="boring">        // Create action from key &quot;filter&quot; and add to action group &quot;win&quot;
+</span><span class="boring">        let action_filter = self.imp().settings.create_action(&quot;filter&quot;);
+</span><span class="boring">        self.add_action(&amp;action_filter);
 </span><span class="boring">
-</span><span class="boring">        // Create action from key &quot;filter&quot;
-</span><span class="boring">        let filter_action = self.imp().settings.create_action(&quot;filter&quot;);
+</span><span class="boring">        // Get model
+</span><span class="boring">        let model = self.model();
 </span><span class="boring">
-</span><span class="boring">        // Add action &quot;filter&quot; to action group &quot;win&quot;
-</span><span class="boring">        self.add_action(&amp;filter_action);
+</span><span class="boring">        // Create action to remove done tasks and add to action group &quot;win&quot;
+</span><span class="boring">        let action_remove_done_tasks =
+</span><span class="boring">            gio::SimpleAction::new(&quot;remove-done-tasks&quot;, None);
+</span><span class="boring">        action_remove_done_tasks.connect_activate(clone!(@weak model =&gt; move |_, _| {
+</span><span class="boring">            let mut position = 0;
+</span><span class="boring">            while let Some(item) = model.item(position) {
+</span><span class="boring">                // Get `TodoObject` from `glib::Object`
+</span><span class="boring">                let todo_object = item
+</span><span class="boring">                    .downcast_ref::&lt;TodoObject&gt;()
+</span><span class="boring">                    .expect(&quot;The object needs to be of type `TodoObject`.&quot;);
+</span><span class="boring">
+</span><span class="boring">                if todo_object.is_completed() {
+</span><span class="boring">                    model.remove(position);
+</span><span class="boring">                } else {
+</span><span class="boring">                    position += 1;
+</span><span class="boring">                }
+</span><span class="boring">            }
+</span><span class="boring">        }));
+</span><span class="boring">        self.add_action(&amp;action_remove_done_tasks);
 </span><span class="boring">    }
 </span><span class="boring">}
 </span></code></pre>
@@ -774,7 +792,9 @@ Whenever the state of the key &quot;filter&quot; changes, we call the method <co
 </span><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::subclass::prelude::*;
 </span><span class="boring">use gtk::{gio, glib};
-</span><span class="boring">use gtk::{Application, CustomFilter, FilterListModel, NoSelection, SignalListItemFactory};
+</span><span class="boring">use gtk::{
+</span><span class="boring">    Application, CustomFilter, FilterListModel, NoSelection, SignalListItemFactory,
+</span><span class="boring">};
 </span><span class="boring">
 </span><span class="boring">glib::wrapper! {
 </span><span class="boring">    pub struct Window(ObjectSubclass&lt;imp::Window&gt;)
@@ -837,7 +857,8 @@ Whenever the state of the key &quot;filter&quot; changes, we call the method <co
         self.imp().model.set(model).expect(&quot;Could not set model&quot;);
 
         // Wrap model with filter and selection and pass it to the list view
-        let filter_model = FilterListModel::new(Some(self.model()), self.filter().as_ref());
+        let filter_model =
+            FilterListModel::new(Some(self.model()), self.filter().as_ref());
         let selection_model = NoSelection::new(Some(&amp;filter_model));
         self.imp().list_view.set_model(Some(&amp;selection_model));
 
@@ -865,236 +886,32 @@ Whenever the state of the key &quot;filter&quot; changes, we call the method <co
 </span><span class="boring">    }
 </span><span class="boring">
 </span><span class="boring">    fn setup_callbacks(&amp;self) {
-</span><span class="boring">        // Get state
-</span><span class="boring">        let model = self.model();
-</span><span class="boring">
-</span><span class="boring">        // Setup callback so that activation
-</span><span class="boring">        // creates a new todo object and clears the entry
+</span><span class="boring">        // Setup callback for activation of the entry
 </span><span class="boring">        self.imp()
 </span><span class="boring">            .entry
-</span><span class="boring">            .connect_activate(clone!(@weak model =&gt; move |entry| {
-</span><span class="boring">                let buffer = entry.buffer();
-</span><span class="boring">                let content = buffer.text();
-</span><span class="boring">                let todo_object = TodoObject::new(false, content);
-</span><span class="boring">                model.append(&amp;todo_object);
-</span><span class="boring">                buffer.set_text(&quot;&quot;);
+</span><span class="boring">            .connect_activate(clone!(@weak self as window =&gt; move |_| {
+</span><span class="boring">                window.new_task();
 </span><span class="boring">            }));
 </span><span class="boring">
-</span><span class="boring">        // Setup callback so that click on the clear_button
-</span><span class="boring">        // removes all done tasks
-</span><span class="boring">        self.imp()
-</span><span class="boring">            .clear_button
-</span><span class="boring">            .connect_clicked(clone!(@weak model =&gt; move |_| {
-</span><span class="boring">                let mut position = 0;
-</span><span class="boring">                while let Some(item) = model.item(position) {
-</span><span class="boring">                    // Get `TodoObject` from `glib::Object`
-</span><span class="boring">                    let todo_object = item
-</span><span class="boring">                        .downcast_ref::&lt;TodoObject&gt;()
-</span><span class="boring">                        .expect(&quot;The object needs to be of type `TodoObject`.&quot;);
-</span><span class="boring">
-</span><span class="boring">                    if todo_object.is_completed() {
-</span><span class="boring">                        model.remove(position);
-</span><span class="boring">                    } else {
-</span><span class="boring">                        position += 1;
-</span><span class="boring">                    }
-</span><span class="boring">                }
-</span><span class="boring">            }));
-</span><span class="boring">    }
-</span><span class="boring">
-</span><span class="boring">    fn setup_factory(&amp;self) {
-</span><span class="boring">        // Create a new factory
-</span><span class="boring">        let factory = SignalListItemFactory::new();
-</span><span class="boring">
-</span><span class="boring">        // Create an empty `TodoRow` during setup
-</span><span class="boring">        factory.connect_setup(move |_, list_item| {
-</span><span class="boring">            // Create `TodoRow`
-</span><span class="boring">            let todo_row = TodoRow::new();
-</span><span class="boring">            list_item.set_child(Some(&amp;todo_row));
-</span><span class="boring">        });
-</span><span class="boring">
-</span><span class="boring">        // Tell factory how to bind `TodoRow` to a `TodoObject`
-</span><span class="boring">        factory.connect_bind(move |_, list_item| {
-</span><span class="boring">            // Get `TodoObject` from `ListItem`
-</span><span class="boring">            let todo_object = list_item
-</span><span class="boring">                .item()
-</span><span class="boring">                .expect(&quot;The item has to exist.&quot;)
-</span><span class="boring">                .downcast::&lt;TodoObject&gt;()
-</span><span class="boring">                .expect(&quot;The item has to be an `TodoObject`.&quot;);
-</span><span class="boring">
-</span><span class="boring">            // Get `TodoRow` from `ListItem`
-</span><span class="boring">            let todo_row = list_item
-</span><span class="boring">                .child()
-</span><span class="boring">                .expect(&quot;The child has to exist.&quot;)
-</span><span class="boring">                .downcast::&lt;TodoRow&gt;()
-</span><span class="boring">                .expect(&quot;The child has to be a `TodoRow`.&quot;);
-</span><span class="boring">
-</span><span class="boring">            todo_row.bind(&amp;todo_object);
-</span><span class="boring">        });
-</span><span class="boring">
-</span><span class="boring">        // Tell factory how to unbind `TodoRow` from `TodoObject`
-</span><span class="boring">        factory.connect_unbind(move |_, list_item| {
-</span><span class="boring">            // Get `TodoRow` from `ListItem`
-</span><span class="boring">            let todo_row = list_item
-</span><span class="boring">                .child()
-</span><span class="boring">                .expect(&quot;The child has to exist.&quot;)
-</span><span class="boring">                .downcast::&lt;TodoRow&gt;()
-</span><span class="boring">                .expect(&quot;The child has to be a `TodoRow`.&quot;);
-</span><span class="boring">
-</span><span class="boring">            todo_row.unbind();
-</span><span class="boring">        });
-</span><span class="boring">
-</span><span class="boring">        // Set the factory of the list view
-</span><span class="boring">        self.imp().list_view.set_factory(Some(&amp;factory));
-</span><span class="boring">    }
-</span><span class="boring">
-</span><span class="boring">    fn setup_filter_action(&amp;self) {
-</span><span class="boring">        // Get state
-</span><span class="boring">
-</span><span class="boring">        // Create action from key &quot;filter&quot;
-</span><span class="boring">        let filter_action = self.imp().settings.create_action(&quot;filter&quot;);
-</span><span class="boring">
-</span><span class="boring">        // Add action &quot;filter&quot; to action group &quot;win&quot;
-</span><span class="boring">        self.add_action(&amp;filter_action);
-</span><span class="boring">    }
-</span><span class="boring">}
-</span></code></pre>
-<p>In <code>setup_callbacks</code>, we add a signal handler to <code>clear_button</code>, which removes all completed tasks when activated.</p>
-<p><span class="filename">Filename: listings/todo_app/2/window/mod.rs</span></p>
-<pre><code class="language-rust  no_run noplayground"><span class="boring">mod imp;
-</span><span class="boring">
-</span><span class="boring">use crate::todo_object::{TodoData, TodoObject};
-</span><span class="boring">use crate::todo_row::TodoRow;
-</span><span class="boring">use glib::{clone, Object};
-</span><span class="boring">use gtk::prelude::*;
-</span><span class="boring">use gtk::subclass::prelude::*;
-</span><span class="boring">use gtk::{gio, glib};
-</span><span class="boring">use gtk::{Application, CustomFilter, FilterListModel, NoSelection, SignalListItemFactory};
-</span><span class="boring">
-</span><span class="boring">glib::wrapper! {
-</span><span class="boring">    pub struct Window(ObjectSubclass&lt;imp::Window&gt;)
-</span><span class="boring">        @extends gtk::ApplicationWindow, gtk::Window, gtk::Widget,
-</span><span class="boring">        @implements gio::ActionGroup, gio::ActionMap, gtk::Accessible, gtk::Buildable,
-</span><span class="boring">                    gtk::ConstraintTarget, gtk::Native, gtk::Root, gtk::ShortcutManager;
-</span><span class="boring">}
-</span><span class="boring">
-</span><span class="boring">impl Window {
-</span><span class="boring">    pub fn new(app: &amp;Application) -&gt; Self {
-</span><span class="boring">        // Create new window
-</span><span class="boring">        Object::new(&amp;[(&quot;application&quot;, app)]).expect(&quot;Failed to create `Window`.&quot;)
-</span><span class="boring">    }
-</span><span class="boring">
-</span><span class="boring">    fn model(&amp;self) -&gt; &amp;gio::ListStore {
-</span><span class="boring">        // Get state
-</span><span class="boring">        self.imp().model.get().expect(&quot;Could not get model&quot;)
-</span><span class="boring">    }
-</span><span class="boring">
-</span><span class="boring">    fn filter(&amp;self) -&gt; Option&lt;CustomFilter&gt; {
-</span><span class="boring">        // Get state
-</span><span class="boring">
-</span><span class="boring">        // Get filter_state from settings
-</span><span class="boring">        let filter_state: String = self.imp().settings.get(&quot;filter&quot;);
-</span><span class="boring">
-</span><span class="boring">        // Create custom filters
-</span><span class="boring">        let filter_open = CustomFilter::new(|obj| {
-</span><span class="boring">            // Get `TodoObject` from `glib::Object`
-</span><span class="boring">            let todo_object = obj
-</span><span class="boring">                .downcast_ref::&lt;TodoObject&gt;()
-</span><span class="boring">                .expect(&quot;The object needs to be of type `TodoObject`.&quot;);
-</span><span class="boring">
-</span><span class="boring">            // Only allow completed tasks
-</span><span class="boring">            !todo_object.is_completed()
-</span><span class="boring">        });
-</span><span class="boring">        let filter_done = CustomFilter::new(|obj| {
-</span><span class="boring">            // Get `TodoObject` from `glib::Object`
-</span><span class="boring">            let todo_object = obj
-</span><span class="boring">                .downcast_ref::&lt;TodoObject&gt;()
-</span><span class="boring">                .expect(&quot;The object needs to be of type `TodoObject`.&quot;);
-</span><span class="boring">
-</span><span class="boring">            // Only allow done tasks
-</span><span class="boring">            todo_object.is_completed()
-</span><span class="boring">        });
-</span><span class="boring">
-</span><span class="boring">        // Return the correct filter
-</span><span class="boring">        match filter_state.as_str() {
-</span><span class="boring">            &quot;All&quot; =&gt; None,
-</span><span class="boring">            &quot;Open&quot; =&gt; Some(filter_open),
-</span><span class="boring">            &quot;Done&quot; =&gt; Some(filter_done),
-</span><span class="boring">            _ =&gt; unreachable!(),
-</span><span class="boring">        }
-</span><span class="boring">    }
-</span><span class="boring">
-</span><span class="boring">    fn setup_model(&amp;self) {
-</span><span class="boring">        // Create new model
-</span><span class="boring">        let model = gio::ListStore::new(TodoObject::static_type());
-</span><span class="boring">
-</span><span class="boring">        // Get state and set model
-</span><span class="boring">        self.imp().model.set(model).expect(&quot;Could not set model&quot;);
-</span><span class="boring">
-</span><span class="boring">        // Wrap model with filter and selection and pass it to the list view
-</span><span class="boring">        let filter_model = FilterListModel::new(Some(self.model()), self.filter().as_ref());
-</span><span class="boring">        let selection_model = NoSelection::new(Some(&amp;filter_model));
-</span><span class="boring">        self.imp().list_view.set_model(Some(&amp;selection_model));
-</span><span class="boring">
-</span><span class="boring">        // Filter model whenever the value of the key &quot;filter&quot; changes
-</span><span class="boring">        self.imp().settings.connect_changed(
-</span><span class="boring">            Some(&quot;filter&quot;),
-</span><span class="boring">            clone!(@weak self as window, @weak filter_model =&gt; move |_, _| {
-</span><span class="boring">                filter_model.set_filter(window.filter().as_ref());
+</span><span class="boring">        // Setup callback for clicking (and the releasing) the icon of the entry
+</span><span class="boring">        self.imp().entry.connect_icon_release(
+</span><span class="boring">            clone!(@weak self as window =&gt; move |_,_| {
+</span><span class="boring">                window.new_task();
 </span><span class="boring">            }),
 </span><span class="boring">        );
 </span><span class="boring">    }
 </span><span class="boring">
-</span><span class="boring">    fn restore_data(&amp;self) {
-</span><span class="boring">        // Deserialize data from file to vector
-</span><span class="boring">        let tasks: Vec&lt;TodoData&gt; = self.imp().settings.get(&quot;tasks&quot;);
+</span><span class="boring">    fn new_task(&amp;self) {
+</span><span class="boring">        // Get content from entry and clear it
+</span><span class="boring">        let buffer = self.imp().entry.buffer();
+</span><span class="boring">        let content = buffer.text();
+</span><span class="boring">        buffer.set_text(&quot;&quot;);
 </span><span class="boring">
-</span><span class="boring">        // Convert `Vec&lt;TodoData&gt;` to `Vec&lt;TodoObject&gt;`
-</span><span class="boring">        let todo_objects: Vec&lt;TodoObject&gt; = tasks
-</span><span class="boring">            .into_iter()
-</span><span class="boring">            .map(|todo_data| TodoObject::new(todo_data.completed, todo_data.content))
-</span><span class="boring">            .collect();
-</span><span class="boring">
-</span><span class="boring">        // Insert restored objects into model
-</span><span class="boring">        self.model().splice(0, 0, &amp;todo_objects);
+</span><span class="boring">        // Add new task to model
+</span><span class="boring">        let task = TodoObject::new(false, content);
+</span><span class="boring">        self.model().append(&amp;task);
 </span><span class="boring">    }
 </span><span class="boring">
-</span>    fn setup_callbacks(&amp;self) {
-        // Get state
-        let model = self.model();
-
-        // Setup callback so that activation
-        // creates a new todo object and clears the entry
-        self.imp()
-            .entry
-            .connect_activate(clone!(@weak model =&gt; move |entry| {
-                let buffer = entry.buffer();
-                let content = buffer.text();
-                let todo_object = TodoObject::new(false, content);
-                model.append(&amp;todo_object);
-                buffer.set_text(&quot;&quot;);
-            }));
-
-        // Setup callback so that click on the clear_button
-        // removes all done tasks
-        self.imp()
-            .clear_button
-            .connect_clicked(clone!(@weak model =&gt; move |_| {
-                let mut position = 0;
-                while let Some(item) = model.item(position) {
-                    // Get `TodoObject` from `glib::Object`
-                    let todo_object = item
-                        .downcast_ref::&lt;TodoObject&gt;()
-                        .expect(&quot;The object needs to be of type `TodoObject`.&quot;);
-
-                    if todo_object.is_completed() {
-                        model.remove(position);
-                    } else {
-                        position += 1;
-                    }
-                }
-            }));
-    }
-<span class="boring">
 </span><span class="boring">    fn setup_factory(&amp;self) {
 </span><span class="boring">        // Create a new factory
 </span><span class="boring">        let factory = SignalListItemFactory::new();
@@ -1141,14 +958,33 @@ Whenever the state of the key &quot;filter&quot; changes, we call the method <co
 </span><span class="boring">        self.imp().list_view.set_factory(Some(&amp;factory));
 </span><span class="boring">    }
 </span><span class="boring">
-</span><span class="boring">    fn setup_filter_action(&amp;self) {
-</span><span class="boring">        // Get state
+</span><span class="boring">    fn setup_actions(&amp;self) {
+</span><span class="boring">        // Create action from key &quot;filter&quot; and add to action group &quot;win&quot;
+</span><span class="boring">        let action_filter = self.imp().settings.create_action(&quot;filter&quot;);
+</span><span class="boring">        self.add_action(&amp;action_filter);
 </span><span class="boring">
-</span><span class="boring">        // Create action from key &quot;filter&quot;
-</span><span class="boring">        let filter_action = self.imp().settings.create_action(&quot;filter&quot;);
+</span><span class="boring">        // Get model
+</span><span class="boring">        let model = self.model();
 </span><span class="boring">
-</span><span class="boring">        // Add action &quot;filter&quot; to action group &quot;win&quot;
-</span><span class="boring">        self.add_action(&amp;filter_action);
+</span><span class="boring">        // Create action to remove done tasks and add to action group &quot;win&quot;
+</span><span class="boring">        let action_remove_done_tasks =
+</span><span class="boring">            gio::SimpleAction::new(&quot;remove-done-tasks&quot;, None);
+</span><span class="boring">        action_remove_done_tasks.connect_activate(clone!(@weak model =&gt; move |_, _| {
+</span><span class="boring">            let mut position = 0;
+</span><span class="boring">            while let Some(item) = model.item(position) {
+</span><span class="boring">                // Get `TodoObject` from `glib::Object`
+</span><span class="boring">                let todo_object = item
+</span><span class="boring">                    .downcast_ref::&lt;TodoObject&gt;()
+</span><span class="boring">                    .expect(&quot;The object needs to be of type `TodoObject`.&quot;);
+</span><span class="boring">
+</span><span class="boring">                if todo_object.is_completed() {
+</span><span class="boring">                    model.remove(position);
+</span><span class="boring">                } else {
+</span><span class="boring">                    position += 1;
+</span><span class="boring">                }
+</span><span class="boring">            }
+</span><span class="boring">        }));
+</span><span class="boring">        self.add_action(&amp;action_remove_done_tasks);
 </span><span class="boring">    }
 </span><span class="boring">}
 </span></code></pre>
@@ -1173,7 +1009,7 @@ Since this has to be done at the application level, <code>setup_shortcuts</code>
 
     // Create a new application
     let app = Application::builder()
-        .application_id(&quot;org.gtk-rs.Todo&quot;)
+        .application_id(&quot;org.gtk-rs.Todo2&quot;)
         .build();
 
     // Connect to signals
@@ -1261,11 +1097,11 @@ If it can find one it will create a action <code>win.show-help-overlay</code> wh
 <p><span class="filename">Filename: listings/todo_app/2/resources/resources.gresource.xml</span></p>
 <pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
 &lt;gresources&gt;
-    &lt;gresource prefix=&quot;/org/gtk-rs/Todo/&quot;&gt;
-        &lt;file compressed=&quot;true&quot; preprocess=&quot;xml-stripblanks&quot; alias=&quot;gtk/help-overlay.ui&quot;&gt;shortcuts.ui&lt;/file&gt;
-        &lt;file compressed=&quot;true&quot; preprocess=&quot;xml-stripblanks&quot;&gt;todo_row.ui&lt;/file&gt;
-        &lt;file compressed=&quot;true&quot; preprocess=&quot;xml-stripblanks&quot;&gt;window.ui&lt;/file&gt;
-    &lt;/gresource&gt;
+  &lt;gresource prefix=&quot;/org/gtk-rs/Todo2/&quot;&gt;
+    &lt;file compressed=&quot;true&quot; preprocess=&quot;xml-stripblanks&quot; alias=&quot;gtk/help-overlay.ui&quot;&gt;shortcuts.ui&lt;/file&gt;
+    &lt;file compressed=&quot;true&quot; preprocess=&quot;xml-stripblanks&quot;&gt;todo_row.ui&lt;/file&gt;
+    &lt;file compressed=&quot;true&quot; preprocess=&quot;xml-stripblanks&quot;&gt;window.ui&lt;/file&gt;
+  &lt;/gresource&gt;
 &lt;/gresources&gt;
 </code></pre>
 <div style="text-align:center"><img src="img/todo_app_2_shortcuts.png"/></div>
@@ -1319,14 +1155,14 @@ Then we serialize the <code>Vec</code> and store the data as a json file.</p>
 </span><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::subclass::prelude::*;
 </span><span class="boring">use gtk::{gio, glib};
-</span><span class="boring">use gtk::{Button, CompositeTemplate, Entry, ListView, MenuButton};
+</span><span class="boring">use gtk::{CompositeTemplate, Entry, ListView, MenuButton};
 </span><span class="boring">use once_cell::sync::OnceCell;
 </span><span class="boring">
 </span><span class="boring">use crate::todo_object::TodoObject;
 </span><span class="boring">
 </span><span class="boring">// Object holding the state
 </span><span class="boring">#[derive(CompositeTemplate)]
-</span><span class="boring">#[template(resource = &quot;/org/gtk-rs/Todo/window.ui&quot;)]
+</span><span class="boring">#[template(resource = &quot;/org/gtk-rs/Todo2/window.ui&quot;)]
 </span><span class="boring">pub struct Window {
 </span><span class="boring">    #[template_child]
 </span><span class="boring">    pub entry: TemplateChild&lt;Entry&gt;,
@@ -1334,8 +1170,6 @@ Then we serialize the <code>Vec</code> and store the data as a json file.</p>
 </span><span class="boring">    pub menu_button: TemplateChild&lt;MenuButton&gt;,
 </span><span class="boring">    #[template_child]
 </span><span class="boring">    pub list_view: TemplateChild&lt;ListView&gt;,
-</span><span class="boring">    #[template_child]
-</span><span class="boring">    pub clear_button: TemplateChild&lt;Button&gt;,
 </span><span class="boring">    pub model: OnceCell&lt;gio::ListStore&gt;,
 </span><span class="boring">    pub settings: Settings,
 </span><span class="boring">}
@@ -1346,9 +1180,8 @@ Then we serialize the <code>Vec</code> and store the data as a json file.</p>
 </span><span class="boring">            entry: TemplateChild::default(),
 </span><span class="boring">            menu_button: TemplateChild::default(),
 </span><span class="boring">            list_view: TemplateChild::default(),
-</span><span class="boring">            clear_button: TemplateChild::default(),
 </span><span class="boring">            model: OnceCell::default(),
-</span><span class="boring">            settings: Settings::new(&quot;org.gtk-rs.Todo&quot;),
+</span><span class="boring">            settings: Settings::new(&quot;org.gtk-rs.Todo2&quot;),
 </span><span class="boring">        }
 </span><span class="boring">    }
 </span><span class="boring">}
@@ -1381,7 +1214,7 @@ Then we serialize the <code>Vec</code> and store the data as a json file.</p>
 </span><span class="boring">        obj.restore_data();
 </span><span class="boring">        obj.setup_callbacks();
 </span><span class="boring">        obj.setup_factory();
-</span><span class="boring">        obj.setup_filter_action();
+</span><span class="boring">        obj.setup_actions();
 </span><span class="boring">    }
 </span><span class="boring">}
 </span><span class="boring">
@@ -1436,7 +1269,9 @@ It might be the first time that we started the app and therefore there is no for
 </span><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::subclass::prelude::*;
 </span><span class="boring">use gtk::{gio, glib};
-</span><span class="boring">use gtk::{Application, CustomFilter, FilterListModel, NoSelection, SignalListItemFactory};
+</span><span class="boring">use gtk::{
+</span><span class="boring">    Application, CustomFilter, FilterListModel, NoSelection, SignalListItemFactory,
+</span><span class="boring">};
 </span><span class="boring">
 </span><span class="boring">glib::wrapper! {
 </span><span class="boring">    pub struct Window(ObjectSubclass&lt;imp::Window&gt;)
@@ -1499,7 +1334,8 @@ It might be the first time that we started the app and therefore there is no for
 </span><span class="boring">        self.imp().model.set(model).expect(&quot;Could not set model&quot;);
 </span><span class="boring">
 </span><span class="boring">        // Wrap model with filter and selection and pass it to the list view
-</span><span class="boring">        let filter_model = FilterListModel::new(Some(self.model()), self.filter().as_ref());
+</span><span class="boring">        let filter_model =
+</span><span class="boring">            FilterListModel::new(Some(self.model()), self.filter().as_ref());
 </span><span class="boring">        let selection_model = NoSelection::new(Some(&amp;filter_model));
 </span><span class="boring">        self.imp().list_view.set_model(Some(&amp;selection_model));
 </span><span class="boring">
@@ -1527,40 +1363,30 @@ It might be the first time that we started the app and therefore there is no for
     }
 <span class="boring">
 </span><span class="boring">    fn setup_callbacks(&amp;self) {
-</span><span class="boring">        // Get state
-</span><span class="boring">        let model = self.model();
-</span><span class="boring">
-</span><span class="boring">        // Setup callback so that activation
-</span><span class="boring">        // creates a new todo object and clears the entry
+</span><span class="boring">        // Setup callback for activation of the entry
 </span><span class="boring">        self.imp()
 </span><span class="boring">            .entry
-</span><span class="boring">            .connect_activate(clone!(@weak model =&gt; move |entry| {
-</span><span class="boring">                let buffer = entry.buffer();
-</span><span class="boring">                let content = buffer.text();
-</span><span class="boring">                let todo_object = TodoObject::new(false, content);
-</span><span class="boring">                model.append(&amp;todo_object);
-</span><span class="boring">                buffer.set_text(&quot;&quot;);
+</span><span class="boring">            .connect_activate(clone!(@weak self as window =&gt; move |_| {
+</span><span class="boring">                window.new_task();
 </span><span class="boring">            }));
 </span><span class="boring">
-</span><span class="boring">        // Setup callback so that click on the clear_button
-</span><span class="boring">        // removes all done tasks
-</span><span class="boring">        self.imp()
-</span><span class="boring">            .clear_button
-</span><span class="boring">            .connect_clicked(clone!(@weak model =&gt; move |_| {
-</span><span class="boring">                let mut position = 0;
-</span><span class="boring">                while let Some(item) = model.item(position) {
-</span><span class="boring">                    // Get `TodoObject` from `glib::Object`
-</span><span class="boring">                    let todo_object = item
-</span><span class="boring">                        .downcast_ref::&lt;TodoObject&gt;()
-</span><span class="boring">                        .expect(&quot;The object needs to be of type `TodoObject`.&quot;);
+</span><span class="boring">        // Setup callback for clicking (and the releasing) the icon of the entry
+</span><span class="boring">        self.imp().entry.connect_icon_release(
+</span><span class="boring">            clone!(@weak self as window =&gt; move |_,_| {
+</span><span class="boring">                window.new_task();
+</span><span class="boring">            }),
+</span><span class="boring">        );
+</span><span class="boring">    }
 </span><span class="boring">
-</span><span class="boring">                    if todo_object.is_completed() {
-</span><span class="boring">                        model.remove(position);
-</span><span class="boring">                    } else {
-</span><span class="boring">                        position += 1;
-</span><span class="boring">                    }
-</span><span class="boring">                }
-</span><span class="boring">            }));
+</span><span class="boring">    fn new_task(&amp;self) {
+</span><span class="boring">        // Get content from entry and clear it
+</span><span class="boring">        let buffer = self.imp().entry.buffer();
+</span><span class="boring">        let content = buffer.text();
+</span><span class="boring">        buffer.set_text(&quot;&quot;);
+</span><span class="boring">
+</span><span class="boring">        // Add new task to model
+</span><span class="boring">        let task = TodoObject::new(false, content);
+</span><span class="boring">        self.model().append(&amp;task);
 </span><span class="boring">    }
 </span><span class="boring">
 </span><span class="boring">    fn setup_factory(&amp;self) {
@@ -1609,14 +1435,33 @@ It might be the first time that we started the app and therefore there is no for
 </span><span class="boring">        self.imp().list_view.set_factory(Some(&amp;factory));
 </span><span class="boring">    }
 </span><span class="boring">
-</span><span class="boring">    fn setup_filter_action(&amp;self) {
-</span><span class="boring">        // Get state
+</span><span class="boring">    fn setup_actions(&amp;self) {
+</span><span class="boring">        // Create action from key &quot;filter&quot; and add to action group &quot;win&quot;
+</span><span class="boring">        let action_filter = self.imp().settings.create_action(&quot;filter&quot;);
+</span><span class="boring">        self.add_action(&amp;action_filter);
 </span><span class="boring">
-</span><span class="boring">        // Create action from key &quot;filter&quot;
-</span><span class="boring">        let filter_action = self.imp().settings.create_action(&quot;filter&quot;);
+</span><span class="boring">        // Get model
+</span><span class="boring">        let model = self.model();
 </span><span class="boring">
-</span><span class="boring">        // Add action &quot;filter&quot; to action group &quot;win&quot;
-</span><span class="boring">        self.add_action(&amp;filter_action);
+</span><span class="boring">        // Create action to remove done tasks and add to action group &quot;win&quot;
+</span><span class="boring">        let action_remove_done_tasks =
+</span><span class="boring">            gio::SimpleAction::new(&quot;remove-done-tasks&quot;, None);
+</span><span class="boring">        action_remove_done_tasks.connect_activate(clone!(@weak model =&gt; move |_, _| {
+</span><span class="boring">            let mut position = 0;
+</span><span class="boring">            while let Some(item) = model.item(position) {
+</span><span class="boring">                // Get `TodoObject` from `glib::Object`
+</span><span class="boring">                let todo_object = item
+</span><span class="boring">                    .downcast_ref::&lt;TodoObject&gt;()
+</span><span class="boring">                    .expect(&quot;The object needs to be of type `TodoObject`.&quot;);
+</span><span class="boring">
+</span><span class="boring">                if todo_object.is_completed() {
+</span><span class="boring">                    model.remove(position);
+</span><span class="boring">                } else {
+</span><span class="boring">                    position += 1;
+</span><span class="boring">                }
+</span><span class="boring">            }
+</span><span class="boring">        }));
+</span><span class="boring">        self.add_action(&amp;action_remove_done_tasks);
 </span><span class="boring">    }
 </span><span class="boring">}
 </span></code></pre>
@@ -1628,14 +1473,14 @@ It might be the first time that we started the app and therefore there is no for
 </span><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::subclass::prelude::*;
 </span><span class="boring">use gtk::{gio, glib};
-</span><span class="boring">use gtk::{Button, CompositeTemplate, Entry, ListView, MenuButton};
+</span><span class="boring">use gtk::{CompositeTemplate, Entry, ListView, MenuButton};
 </span><span class="boring">use once_cell::sync::OnceCell;
 </span><span class="boring">
 </span><span class="boring">use crate::todo_object::TodoObject;
 </span><span class="boring">
 </span><span class="boring">// Object holding the state
 </span><span class="boring">#[derive(CompositeTemplate)]
-</span><span class="boring">#[template(resource = &quot;/org/gtk-rs/Todo/window.ui&quot;)]
+</span><span class="boring">#[template(resource = &quot;/org/gtk-rs/Todo2/window.ui&quot;)]
 </span><span class="boring">pub struct Window {
 </span><span class="boring">    #[template_child]
 </span><span class="boring">    pub entry: TemplateChild&lt;Entry&gt;,
@@ -1643,8 +1488,6 @@ It might be the first time that we started the app and therefore there is no for
 </span><span class="boring">    pub menu_button: TemplateChild&lt;MenuButton&gt;,
 </span><span class="boring">    #[template_child]
 </span><span class="boring">    pub list_view: TemplateChild&lt;ListView&gt;,
-</span><span class="boring">    #[template_child]
-</span><span class="boring">    pub clear_button: TemplateChild&lt;Button&gt;,
 </span><span class="boring">    pub model: OnceCell&lt;gio::ListStore&gt;,
 </span><span class="boring">    pub settings: Settings,
 </span><span class="boring">}
@@ -1655,9 +1498,8 @@ It might be the first time that we started the app and therefore there is no for
 </span><span class="boring">            entry: TemplateChild::default(),
 </span><span class="boring">            menu_button: TemplateChild::default(),
 </span><span class="boring">            list_view: TemplateChild::default(),
-</span><span class="boring">            clear_button: TemplateChild::default(),
 </span><span class="boring">            model: OnceCell::default(),
-</span><span class="boring">            settings: Settings::new(&quot;org.gtk-rs.Todo&quot;),
+</span><span class="boring">            settings: Settings::new(&quot;org.gtk-rs.Todo2&quot;),
 </span><span class="boring">        }
 </span><span class="boring">    }
 </span><span class="boring">}
@@ -1690,7 +1532,7 @@ impl ObjectImpl for Window {
         obj.restore_data();
         obj.setup_callbacks();
         obj.setup_factory();
-        obj.setup_filter_action();
+        obj.setup_actions();
     }
 }
 <span class="boring">

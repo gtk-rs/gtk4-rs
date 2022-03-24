@@ -320,10 +320,17 @@ pub struct IntegerObject {
 </span><span class="boring">        PROPERTIES.as_ref()
 </span><span class="boring">    }
 </span><span class="boring">
-</span><span class="boring">    fn set_property(&amp;self, _obj: &amp;Self::Type, _id: usize, value: &amp;Value, pspec: &amp;ParamSpec) {
+</span><span class="boring">    fn set_property(
+</span><span class="boring">        &amp;self,
+</span><span class="boring">        _obj: &amp;Self::Type,
+</span><span class="boring">        _id: usize,
+</span><span class="boring">        value: &amp;Value,
+</span><span class="boring">        pspec: &amp;ParamSpec,
+</span><span class="boring">    ) {
 </span><span class="boring">        match pspec.name() {
 </span><span class="boring">            &quot;number&quot; =&gt; {
-</span><span class="boring">                let input_number = value.get().expect(&quot;The value needs to be of type `i32`.&quot;);
+</span><span class="boring">                let input_number =
+</span><span class="boring">                    value.get().expect(&quot;The value needs to be of type `i32`.&quot;);
 </span><span class="boring">                self.number.replace(input_number);
 </span><span class="boring">            }
 </span><span class="boring">            _ =&gt; unimplemented!(),
@@ -368,7 +375,8 @@ Neither <code>Label</code> nor any other widget is mentioned here.</p>
 </span><span class="boring">
 </span><span class="boring">fn build_ui(app: &amp;Application) {
 </span>    // Create a `Vec&lt;IntegerObject&gt;` with numbers from 0 to 100_000
-    let vector: Vec&lt;IntegerObject&gt; = (0..=100_000).into_iter().map(IntegerObject::new).collect();
+    let vector: Vec&lt;IntegerObject&gt; =
+        (0..=100_000).into_iter().map(IntegerObject::new).collect();
 
     // Create new model
     let model = gio::ListStore::new(IntegerObject::static_type());
@@ -456,7 +464,8 @@ We connect to it to create a <code>Label</code> for every requested widget.</p>
 </span><span class="boring">
 </span><span class="boring">fn build_ui(app: &amp;Application) {
 </span><span class="boring">    // Create a `Vec&lt;IntegerObject&gt;` with numbers from 0 to 100_000
-</span><span class="boring">    let vector: Vec&lt;IntegerObject&gt; = (0..=100_000).into_iter().map(IntegerObject::new).collect();
+</span><span class="boring">    let vector: Vec&lt;IntegerObject&gt; =
+</span><span class="boring">        (0..=100_000).into_iter().map(IntegerObject::new).collect();
 </span><span class="boring">
 </span><span class="boring">    // Create new model
 </span><span class="boring">    let model = gio::ListStore::new(IntegerObject::static_type());
@@ -541,7 +550,8 @@ We connect to it to create a <code>Label</code> for every requested widget.</p>
 </span><span class="boring">
 </span><span class="boring">fn build_ui(app: &amp;Application) {
 </span><span class="boring">    // Create a `Vec&lt;IntegerObject&gt;` with numbers from 0 to 100_000
-</span><span class="boring">    let vector: Vec&lt;IntegerObject&gt; = (0..=100_000).into_iter().map(IntegerObject::new).collect();
+</span><span class="boring">    let vector: Vec&lt;IntegerObject&gt; =
+</span><span class="boring">        (0..=100_000).into_iter().map(IntegerObject::new).collect();
 </span><span class="boring">
 </span><span class="boring">    // Create new model
 </span><span class="boring">    let model = gio::ListStore::new(IntegerObject::static_type());
@@ -628,7 +638,8 @@ Then we pass the model and the factory to the <a href="../docs/gtk4/struct.ListV
 </span><span class="boring">
 </span><span class="boring">fn build_ui(app: &amp;Application) {
 </span><span class="boring">    // Create a `Vec&lt;IntegerObject&gt;` with numbers from 0 to 100_000
-</span><span class="boring">    let vector: Vec&lt;IntegerObject&gt; = (0..=100_000).into_iter().map(IntegerObject::new).collect();
+</span><span class="boring">    let vector: Vec&lt;IntegerObject&gt; =
+</span><span class="boring">        (0..=100_000).into_iter().map(IntegerObject::new).collect();
 </span><span class="boring">
 </span><span class="boring">    // Create new model
 </span><span class="boring">    let model = gio::ListStore::new(IntegerObject::static_type());
@@ -713,7 +724,8 @@ Then we pass the model and the factory to the <a href="../docs/gtk4/struct.ListV
 </span><span class="boring">
 </span><span class="boring">fn build_ui(app: &amp;Application) {
 </span><span class="boring">    // Create a `Vec&lt;IntegerObject&gt;` with numbers from 0 to 100_000
-</span><span class="boring">    let vector: Vec&lt;IntegerObject&gt; = (0..=100_000).into_iter().map(IntegerObject::new).collect();
+</span><span class="boring">    let vector: Vec&lt;IntegerObject&gt; =
+</span><span class="boring">        (0..=100_000).into_iter().map(IntegerObject::new).collect();
 </span><span class="boring">
 </span><span class="boring">    // Create new model
 </span><span class="boring">    let model = gio::ListStore::new(IntegerObject::static_type());
@@ -826,7 +838,8 @@ For that we first add the method <code>increase_number</code> to our <code>Integ
 </span><span class="boring">
 </span><span class="boring">fn build_ui(app: &amp;Application) {
 </span><span class="boring">    // Create a `Vec&lt;IntegerObject&gt;` with numbers from 0 to 100_000
-</span><span class="boring">    let vector: Vec&lt;IntegerObject&gt; = (0..=100_000).into_iter().map(IntegerObject::new).collect();
+</span><span class="boring">    let vector: Vec&lt;IntegerObject&gt; =
+</span><span class="boring">        (0..=100_000).into_iter().map(IntegerObject::new).collect();
 </span><span class="boring">
 </span><span class="boring">    // Create new model
 </span><span class="boring">    let model = gio::ListStore::new(IntegerObject::static_type());
@@ -928,7 +941,8 @@ One naive approach would be to bind the properties in the &quot;bind&quot; step 
 </span><span class="boring">
 </span><span class="boring">fn build_ui(app: &amp;Application) {
 </span><span class="boring">    // Create a `Vec&lt;IntegerObject&gt;` with numbers from 0 to 100_000
-</span><span class="boring">    let vector: Vec&lt;IntegerObject&gt; = (0..=100_000).into_iter().map(IntegerObject::new).collect();
+</span><span class="boring">    let vector: Vec&lt;IntegerObject&gt; =
+</span><span class="boring">        (0..=100_000).into_iter().map(IntegerObject::new).collect();
 </span><span class="boring">
 </span><span class="boring">    // Create new model
 </span><span class="boring">    let model = gio::ListStore::new(IntegerObject::static_type());
@@ -1035,7 +1049,8 @@ Let's see how the &quot;setup&quot; step now works.</p>
 </span><span class="boring">
 </span><span class="boring">fn build_ui(app: &amp;Application) {
 </span><span class="boring">    // Create a `Vec&lt;IntegerObject&gt;` with numbers from 0 to 100_000
-</span><span class="boring">    let vector: Vec&lt;IntegerObject&gt; = (0..=100_000).into_iter().map(IntegerObject::new).collect();
+</span><span class="boring">    let vector: Vec&lt;IntegerObject&gt; =
+</span><span class="boring">        (0..=100_000).into_iter().map(IntegerObject::new).collect();
 </span><span class="boring">
 </span><span class="boring">    // Create new model
 </span><span class="boring">    let model = gio::ListStore::new(IntegerObject::static_type());
@@ -1109,9 +1124,9 @@ We do that by passing it to a <a href="../docs/gtk4/struct.FilterListModel.html"
 </span><span class="boring">use gtk::gio;
 </span><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::{
-</span><span class="boring">    Application, ApplicationWindow, CustomFilter, CustomSorter, FilterChange, FilterListModel,
-</span><span class="boring">    Label, ListView, PolicyType, ScrolledWindow, SignalListItemFactory, SingleSelection,
-</span><span class="boring">    SortListModel, SorterChange, Widget,
+</span><span class="boring">    Application, ApplicationWindow, CustomFilter, CustomSorter, FilterChange,
+</span><span class="boring">    FilterListModel, Label, ListView, PolicyType, ScrolledWindow,
+</span><span class="boring">    SignalListItemFactory, SingleSelection, SortListModel, SorterChange, Widget,
 </span><span class="boring">};
 </span><span class="boring">use integer_object::IntegerObject;
 </span><span class="boring">
@@ -1130,7 +1145,8 @@ We do that by passing it to a <a href="../docs/gtk4/struct.FilterListModel.html"
 </span><span class="boring">
 </span><span class="boring">fn build_ui(app: &amp;Application) {
 </span><span class="boring">    // Create a `Vec&lt;IntegerObject&gt;` with numbers from 0 to 100_000
-</span><span class="boring">    let vector: Vec&lt;IntegerObject&gt; = (0..=100_000).into_iter().map(IntegerObject::new).collect();
+</span><span class="boring">    let vector: Vec&lt;IntegerObject&gt; =
+</span><span class="boring">        (0..=100_000).into_iter().map(IntegerObject::new).collect();
 </span><span class="boring">
 </span><span class="boring">    // Create new model
 </span><span class="boring">    let model = gio::ListStore::new(IntegerObject::static_type());
@@ -1230,9 +1246,9 @@ Now we pass the filtered model to <a href="../docs/gtk4/struct.SortListModel.htm
 </span><span class="boring">use gtk::gio;
 </span><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::{
-</span><span class="boring">    Application, ApplicationWindow, CustomFilter, CustomSorter, FilterChange, FilterListModel,
-</span><span class="boring">    Label, ListView, PolicyType, ScrolledWindow, SignalListItemFactory, SingleSelection,
-</span><span class="boring">    SortListModel, SorterChange, Widget,
+</span><span class="boring">    Application, ApplicationWindow, CustomFilter, CustomSorter, FilterChange,
+</span><span class="boring">    FilterListModel, Label, ListView, PolicyType, ScrolledWindow,
+</span><span class="boring">    SignalListItemFactory, SingleSelection, SortListModel, SorterChange, Widget,
 </span><span class="boring">};
 </span><span class="boring">use integer_object::IntegerObject;
 </span><span class="boring">
@@ -1251,7 +1267,8 @@ Now we pass the filtered model to <a href="../docs/gtk4/struct.SortListModel.htm
 </span><span class="boring">
 </span><span class="boring">fn build_ui(app: &amp;Application) {
 </span><span class="boring">    // Create a `Vec&lt;IntegerObject&gt;` with numbers from 0 to 100_000
-</span><span class="boring">    let vector: Vec&lt;IntegerObject&gt; = (0..=100_000).into_iter().map(IntegerObject::new).collect();
+</span><span class="boring">    let vector: Vec&lt;IntegerObject&gt; =
+</span><span class="boring">        (0..=100_000).into_iter().map(IntegerObject::new).collect();
 </span><span class="boring">
 </span><span class="boring">    // Create new model
 </span><span class="boring">    let model = gio::ListStore::new(IntegerObject::static_type());
@@ -1350,9 +1367,9 @@ Now we pass the filtered model to <a href="../docs/gtk4/struct.SortListModel.htm
 </span><span class="boring">use gtk::gio;
 </span><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::{
-</span><span class="boring">    Application, ApplicationWindow, CustomFilter, CustomSorter, FilterChange, FilterListModel,
-</span><span class="boring">    Label, ListView, PolicyType, ScrolledWindow, SignalListItemFactory, SingleSelection,
-</span><span class="boring">    SortListModel, SorterChange, Widget,
+</span><span class="boring">    Application, ApplicationWindow, CustomFilter, CustomSorter, FilterChange,
+</span><span class="boring">    FilterListModel, Label, ListView, PolicyType, ScrolledWindow,
+</span><span class="boring">    SignalListItemFactory, SingleSelection, SortListModel, SorterChange, Widget,
 </span><span class="boring">};
 </span><span class="boring">use integer_object::IntegerObject;
 </span><span class="boring">
@@ -1371,7 +1388,8 @@ Now we pass the filtered model to <a href="../docs/gtk4/struct.SortListModel.htm
 </span><span class="boring">
 </span><span class="boring">fn build_ui(app: &amp;Application) {
 </span><span class="boring">    // Create a `Vec&lt;IntegerObject&gt;` with numbers from 0 to 100_000
-</span><span class="boring">    let vector: Vec&lt;IntegerObject&gt; = (0..=100_000).into_iter().map(IntegerObject::new).collect();
+</span><span class="boring">    let vector: Vec&lt;IntegerObject&gt; =
+</span><span class="boring">        (0..=100_000).into_iter().map(IntegerObject::new).collect();
 </span><span class="boring">
 </span><span class="boring">    // Create new model
 </span><span class="boring">    let model = gio::ListStore::new(IntegerObject::static_type());
@@ -1476,8 +1494,8 @@ This is why we will skip this topic here.</p>
 <p><span class="filename">Filename: listings/list_widgets/6/main.rs</span></p>
 <pre><code class="language-rust  no_run noplayground"><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::{
-</span><span class="boring">    Application, ApplicationWindow, Label, ListView, NoSelection, PolicyType, ScrolledWindow,
-</span><span class="boring">    SignalListItemFactory, StringList, StringObject, Widget,
+</span><span class="boring">    Application, ApplicationWindow, Label, ListView, NoSelection, PolicyType,
+</span><span class="boring">    ScrolledWindow, SignalListItemFactory, StringList, StringObject, Widget,
 </span><span class="boring">};
 </span><span class="boring">
 </span><span class="boring">fn main() {
@@ -1543,8 +1561,8 @@ Here we can use <a href="../docs/gtk4/struct.StringObject.html"><code>StringObje
 <p><span class="filename">Filename: listings/list_widgets/6/main.rs</span></p>
 <pre><code class="language-rust  no_run noplayground"><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::{
-</span><span class="boring">    Application, ApplicationWindow, Label, ListView, NoSelection, PolicyType, ScrolledWindow,
-</span><span class="boring">    SignalListItemFactory, StringList, StringObject, Widget,
+</span><span class="boring">    Application, ApplicationWindow, Label, ListView, NoSelection, PolicyType,
+</span><span class="boring">    ScrolledWindow, SignalListItemFactory, StringList, StringObject, Widget,
 </span><span class="boring">};
 </span><span class="boring">
 </span><span class="boring">fn main() {
