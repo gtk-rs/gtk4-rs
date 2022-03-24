@@ -78,10 +78,10 @@ Again, the "filter" setting correspond to the stateful actions called by the men
 We also add the "tasks" setting which is an array `a` of structs with a boolean `b` and string `s` as members (see [GVariant format string](https://docs.gtk.org/glib/gvariant-format-strings.html)).
 We set the default to an empty array `[]` (see [GVariant Text Format](https://docs.gtk.org/glib/gvariant-text.html)).
 
-<span class="filename">Filename: listings/todo_app/2/org.gtk-rs.Todogschema.xml</span>
+<span class="filename">Filename: listings/todo_app/2/org.gtk-rs.Todo2.gschema.xml</span>
 
 ```xml
-{{#rustdoc_include ../listings/todo_app/2/org.gtk-rs.Todogschema.xml}}
+{{#rustdoc_include ../listings/todo_app/2/org.gtk-rs.Todo2.gschema.xml}}
 ```
 
 We install the schema as described in the settings [chapter](./settings.html)
