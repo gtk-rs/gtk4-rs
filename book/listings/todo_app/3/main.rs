@@ -16,7 +16,7 @@ fn main() {
 
     // Create a new application
     let app = Application::builder()
-        .application_id("org.gtk-rs.Todo")
+        .application_id("org.gtk-rs.Todo3")
         .build();
 
     // Connect to signals
@@ -39,7 +39,7 @@ fn setup_shortcuts(app: &Application) {
 fn load_css() {
     // Load the CSS file and add it to the provider
     let provider = CssProvider::new();
-    provider.load_from_resource("/org/gtk-rs/Todo/style.css");
+    provider.load_from_resource("/org/gtk-rs/Todo3/style.css");
 
     // Add the provider to the default screen
     StyleContext::add_provider_for_display(

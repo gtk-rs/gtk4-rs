@@ -16,7 +16,7 @@ fn main() {
 
     // Create a new application
     let app = Application::builder()
-        .application_id("org.gtk-rs.Todo")
+        .application_id("org.gtk-rs.Todo1")
         .build();
 
     // Connect to "activate" signal of `app`

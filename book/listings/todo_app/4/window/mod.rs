@@ -94,9 +94,6 @@ impl Window {
     }
 
     fn setup_callbacks(&self) {
-        // Get state
-        let model = self.model();
-
         // Setup callback for activation of the entry
         self.imp()
             .entry
@@ -109,26 +106,6 @@ impl Window {
             .entry
             .connect_icon_release(clone!(@weak self as window => move |_,_| {
                 window.new_task();
-            }));
-
-        // Setup callback so that click on the clear_button
-        // removes all done tasks
-        self.imp()
-            .clear_button
-            .connect_clicked(clone!(@weak model => move |_| {
-                    let mut position = 0;
-                    while let Some(item) = model.item(position) {
-                        // Get `TodoObject` from `glib::Object`
-                        let todo_object = item
-                            .downcast_ref::<TodoObject>()
-                            .expect("The object needs to be of type `TodoObject`.");
-
-                        if todo_object.is_completed() {
-                            model.remove(position);
-                        } else {
-                            position += 1;
-                        }
-                    }
             }));
     }
 
@@ -189,11 +166,31 @@ impl Window {
         self.imp().list_view.set_factory(Some(&factory));
     }
 
-    fn setup_filter_action(&self) {
-        // Create action from key "filter"
-        let filter_action = self.imp().settings.create_action("filter");
+    fn setup_actions(&self) {
+        // Create action from key "filter" and add to action group "win"
+        let action_filter = self.imp().settings.create_action("filter");
+        self.add_action(&action_filter);
 
-        // Add action "filter" to action group "win"
-        self.add_action(&filter_action);
+        // Get model
+        let model = self.model();
+
+        // Create action to remove done tasks and add to action group "win"
+        let action_remove_done_tasks = gio::SimpleAction::new("remove-done-tasks", None);
+        action_remove_done_tasks.connect_activate(clone!(@weak model => move |_, _| {
+            let mut position = 0;
+            while let Some(item) = model.item(position) {
+                // Get `TodoObject` from `glib::Object`
+                let todo_object = item
+                    .downcast_ref::<TodoObject>()
+                    .expect("The object needs to be of type `TodoObject`.");
+
+                if todo_object.is_completed() {
+                    model.remove(position);
+                } else {
+                    position += 1;
+                }
+            }
+        }));
+        self.add_action(&action_remove_done_tasks);
     }
 }

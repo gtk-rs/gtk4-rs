@@ -6,7 +6,7 @@ use std::cell::RefCell;
 
 // Object holding the state
 #[derive(Default, CompositeTemplate)]
-#[template(resource = "/org/gtk-rs/Todo/todo_row.ui")]
+#[template(resource = "/org/gtk-rs/Todo3/todo_row.ui")]
 pub struct TodoRow {
     #[template_child]
     pub completed_button: TemplateChild<CheckButton>,

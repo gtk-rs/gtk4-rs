@@ -11,7 +11,7 @@ use crate::todo_object::TodoObject;
 
 // Object holding the state
 #[derive(CompositeTemplate)]
-#[template(resource = "/org/gtk-rs/Todo/window.ui")]
+#[template(resource = "/org/gtk-rs/Todo3/window.ui")]
 pub struct Window {
     #[template_child]
     pub entry: TemplateChild<Entry>,
@@ -19,8 +19,6 @@ pub struct Window {
     pub menu_button: TemplateChild<MenuButton>,
     #[template_child]
     pub list_view: TemplateChild<ListView>,
-    #[template_child]
-    pub clear_button: TemplateChild<Button>,
     pub model: OnceCell<gio::ListStore>,
     pub settings: Settings,
 }
@@ -31,9 +29,8 @@ impl Default for Window {
             entry: TemplateChild::default(),
             menu_button: TemplateChild::default(),
             list_view: TemplateChild::default(),
-            clear_button: TemplateChild::default(),
             model: OnceCell::default(),
-            settings: Settings::new("org.gtk-rs.Todo"),
+            settings: Settings::new("org.gtk-rs.Todo3"),
         }
     }
 }
@@ -66,7 +63,7 @@ impl ObjectImpl for Window {
         obj.restore_data();
         obj.setup_callbacks();
         obj.setup_factory();
-        obj.setup_filter_action();
+        obj.setup_actions();
     }
 }
 

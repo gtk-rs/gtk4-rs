@@ -20,6 +20,10 @@
       </item>
     </submenu>
     <item>
+      <attribute name="label" translatable="yes">_Remove Done Tasks</attribute>
+      <attribute name="action">win.remove-done-tasks</attribute>
+    </item>
+    <item>
       <attribute name="label" translatable="yes">_Keyboard Shortcuts</attribute>
       <attribute name="action">win.show-help-overlay</attribute>
     </item>
