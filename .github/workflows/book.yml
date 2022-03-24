@@ -22,7 +22,7 @@ jobs:
           profile: minimal
           toolchain: stable
           override: true
-          components: clippy
+          components: rustfmt, clippy
 
       - run: cargo build
         name: "Build"
