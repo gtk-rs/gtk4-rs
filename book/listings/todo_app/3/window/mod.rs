@@ -119,6 +119,9 @@ impl Window {
         // Get content from entry and clear it
         let buffer = self.imp().entry.buffer();
         let content = buffer.text();
+        if content.is_empty() {
+            return;
+        }
         buffer.set_text("");
 
         // Add new task to model
