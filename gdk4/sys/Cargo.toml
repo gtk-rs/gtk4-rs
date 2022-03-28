@@ -26,6 +26,9 @@ version = "4.3.2"
 [package.metadata.system-deps.gtk4.v4_6]
 version = "4.5"
 
+[package.metadata.system-deps.gtk4.v4_8]
+version = "4.7"
+
 [lib]
 name = "gdk4_sys"
 
@@ -34,6 +37,7 @@ dox = []
 v4_2 = []
 v4_4 = ["v4_2"]
 v4_6 = ["v4_4"]
+v4_8 = ["v4_6"]
 
 [dependencies]
 libc = "0.2"
