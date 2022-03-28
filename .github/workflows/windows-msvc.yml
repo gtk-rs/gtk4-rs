@@ -80,15 +80,15 @@ jobs:
       uses: actions-rs/cargo@v1
       with:
         command: build
-        args: --features v4_6
+        args: --features v4_8
     - name: Clippy
       uses: actions-rs/cargo@v1
       with:
         command: clippy
-        args: --features v4_6
+        args: --features v4_8
     - name: Tests
       uses: actions-rs/cargo@v1
       with:
         command: test
-        args: --features v4_6
+        args: --features v4_8
 
