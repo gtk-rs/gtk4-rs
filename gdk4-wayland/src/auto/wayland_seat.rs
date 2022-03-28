@@ -13,6 +13,8 @@ glib::wrapper! {
     }
 }
 
+impl WaylandSeat {}
+
 impl fmt::Display for WaylandSeat {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         f.write_str("WaylandSeat")

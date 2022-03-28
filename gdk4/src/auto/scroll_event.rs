@@ -4,6 +4,9 @@
 
 use crate::Event;
 use crate::ScrollDirection;
+#[cfg(any(feature = "v4_8", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+use crate::ScrollUnit;
 use glib::translate::*;
 use glib::StaticType;
 use std::fmt;
@@ -47,6 +50,14 @@ impl ScrollEvent {
     #[doc(alias = "get_direction")]
     pub fn direction(&self) -> ScrollDirection {
         unsafe { from_glib(ffi::gdk_scroll_event_get_direction(self.to_glib_none().0)) }
+    }
+
+    #[cfg(any(feature = "v4_8", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+    #[doc(alias = "gdk_scroll_event_get_unit")]
+    #[doc(alias = "get_unit")]
+    pub fn unit(&self) -> ScrollUnit {
+        unsafe { from_glib(ffi::gdk_scroll_event_get_unit(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gdk_scroll_event_is_stop")]
