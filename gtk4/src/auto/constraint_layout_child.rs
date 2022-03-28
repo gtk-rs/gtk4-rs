@@ -14,6 +14,8 @@ glib::wrapper! {
     }
 }
 
+impl ConstraintLayoutChild {}
+
 impl fmt::Display for ConstraintLayoutChild {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         f.write_str("ConstraintLayoutChild")

@@ -177,6 +177,9 @@ pub use self::enums::KeyMatch;
 pub use self::enums::MemoryFormat;
 pub use self::enums::NotifyType;
 pub use self::enums::ScrollDirection;
+#[cfg(any(feature = "v4_8", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+pub use self::enums::ScrollUnit;
 pub use self::enums::SubpixelLayout;
 pub use self::enums::SurfaceEdge;
 #[cfg(any(feature = "v4_6", feature = "dox"))]

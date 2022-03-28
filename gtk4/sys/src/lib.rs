@@ -12196,6 +12196,11 @@ extern "C" {
     pub fn gtk_event_controller_scroll_get_flags(
         scroll: *mut GtkEventControllerScroll,
     ) -> GtkEventControllerScrollFlags;
+    #[cfg(any(feature = "v4_8", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+    pub fn gtk_event_controller_scroll_get_unit(
+        scroll: *mut GtkEventControllerScroll,
+    ) -> gdk::GdkScrollUnit;
     pub fn gtk_event_controller_scroll_set_flags(
         scroll: *mut GtkEventControllerScroll,
         flags: GtkEventControllerScrollFlags,
@@ -15233,10 +15238,16 @@ extern "C" {
     pub fn gtk_search_entry_get_type() -> GType;
     pub fn gtk_search_entry_new() -> *mut GtkWidget;
     pub fn gtk_search_entry_get_key_capture_widget(entry: *mut GtkSearchEntry) -> *mut GtkWidget;
+    #[cfg(any(feature = "v4_8", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+    pub fn gtk_search_entry_get_search_delay(entry: *mut GtkSearchEntry) -> c_uint;
     pub fn gtk_search_entry_set_key_capture_widget(
         entry: *mut GtkSearchEntry,
         widget: *mut GtkWidget,
     );
+    #[cfg(any(feature = "v4_8", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+    pub fn gtk_search_entry_set_search_delay(entry: *mut GtkSearchEntry, delay: c_uint);
 
     //=========================================================================
     // GtkSelectionFilterModel

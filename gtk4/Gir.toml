@@ -307,6 +307,7 @@ manual = [
     "Gdk.Paintable",
     "Gdk.Rectangle",
     "Gdk.RGBA",
+    "Gdk.ScrollUnit",
     "Gdk.Snapshot",
     "Gdk.SurfaceEdge",
     "Gdk.Texture",

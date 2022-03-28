@@ -54,6 +54,18 @@ impl EventControllerScroll {
         }
     }
 
+    #[cfg(any(feature = "v4_8", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+    #[doc(alias = "gtk_event_controller_scroll_get_unit")]
+    #[doc(alias = "get_unit")]
+    pub fn unit(&self) -> gdk::ScrollUnit {
+        unsafe {
+            from_glib(ffi::gtk_event_controller_scroll_get_unit(
+                self.to_glib_none().0,
+            ))
+        }
+    }
+
     #[doc(alias = "gtk_event_controller_scroll_set_flags")]
     pub fn set_flags(&self, flags: EventControllerScrollFlags) {
         unsafe {

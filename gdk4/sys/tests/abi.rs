@@ -400,6 +400,13 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         },
     ),
     (
+        "GdkScrollUnit",
+        Layout {
+            size: size_of::<GdkScrollUnit>(),
+            alignment: align_of::<GdkScrollUnit>(),
+        },
+    ),
+    (
         "GdkSeat",
         Layout {
             size: size_of::<GdkSeat>(),
@@ -2913,6 +2920,8 @@ const RUST_CONSTANTS: &[(&str, &str)] = &[
     ("(gint) GDK_SCROLL_LEFT", "2"),
     ("(gint) GDK_SCROLL_RIGHT", "3"),
     ("(gint) GDK_SCROLL_SMOOTH", "4"),
+    ("(gint) GDK_SCROLL_UNIT_SURFACE", "1"),
+    ("(gint) GDK_SCROLL_UNIT_WHEEL", "0"),
     ("(gint) GDK_SCROLL_UP", "0"),
     ("(guint) GDK_SEAT_CAPABILITY_ALL", "15"),
     ("(guint) GDK_SEAT_CAPABILITY_ALL_POINTING", "7"),

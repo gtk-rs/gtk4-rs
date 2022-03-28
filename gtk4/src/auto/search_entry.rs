@@ -58,6 +58,14 @@ impl SearchEntry {
         }
     }
 
+    #[cfg(any(feature = "v4_8", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+    #[doc(alias = "gtk_search_entry_get_search_delay")]
+    #[doc(alias = "get_search_delay")]
+    pub fn search_delay(&self) -> u32 {
+        unsafe { ffi::gtk_search_entry_get_search_delay(self.to_glib_none().0) }
+    }
+
     #[doc(alias = "gtk_search_entry_set_key_capture_widget")]
     pub fn set_key_capture_widget(&self, widget: Option<&impl IsA<Widget>>) {
         unsafe {
@@ -65,6 +73,15 @@ impl SearchEntry {
                 self.to_glib_none().0,
                 widget.map(|p| p.as_ref()).to_glib_none().0,
             );
+        }
+    }
+
+    #[cfg(any(feature = "v4_8", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+    #[doc(alias = "gtk_search_entry_set_search_delay")]
+    pub fn set_search_delay(&self, delay: u32) {
+        unsafe {
+            ffi::gtk_search_entry_set_search_delay(self.to_glib_none().0, delay);
         }
     }
 
@@ -284,6 +301,31 @@ impl SearchEntry {
             )
         }
     }
+
+    #[cfg(any(feature = "v4_8", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+    #[doc(alias = "search-delay")]
+    pub fn connect_search_delay_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_search_delay_trampoline<F: Fn(&SearchEntry) + 'static>(
+            this: *mut ffi::GtkSearchEntry,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::search-delay\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_search_delay_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
 }
 
 impl Default for SearchEntry {
@@ -301,6 +343,9 @@ impl Default for SearchEntry {
 pub struct SearchEntryBuilder {
     activates_default: Option<bool>,
     placeholder_text: Option<String>,
+    #[cfg(any(feature = "v4_8", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+    search_delay: Option<u32>,
     can_focus: Option<bool>,
     can_target: Option<bool>,
     css_classes: Option<Vec<String>>,
@@ -356,6 +401,10 @@ impl SearchEntryBuilder {
         }
         if let Some(ref placeholder_text) = self.placeholder_text {
             properties.push(("placeholder-text", placeholder_text));
+        }
+        #[cfg(any(feature = "v4_8", feature = "dox"))]
+        if let Some(ref search_delay) = self.search_delay {
+            properties.push(("search-delay", search_delay));
         }
         if let Some(ref can_focus) = self.can_focus {
             properties.push(("can-focus", can_focus));
@@ -476,6 +525,13 @@ impl SearchEntryBuilder {
 
     pub fn placeholder_text(mut self, placeholder_text: &str) -> Self {
         self.placeholder_text = Some(placeholder_text.to_string());
+        self
+    }
+
+    #[cfg(any(feature = "v4_8", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+    pub fn search_delay(mut self, search_delay: u32) -> Self {
+        self.search_delay = Some(search_delay);
         self
     }
 
