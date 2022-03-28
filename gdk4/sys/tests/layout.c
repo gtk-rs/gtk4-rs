@@ -34,6 +34,7 @@ int main() {
     printf("%s;%zu;%zu\n", "GdkRGBA", sizeof(GdkRGBA), alignof(GdkRGBA));
     printf("%s;%zu;%zu\n", "GdkRectangle", sizeof(GdkRectangle), alignof(GdkRectangle));
     printf("%s;%zu;%zu\n", "GdkScrollDirection", sizeof(GdkScrollDirection), alignof(GdkScrollDirection));
+    printf("%s;%zu;%zu\n", "GdkScrollUnit", sizeof(GdkScrollUnit), alignof(GdkScrollUnit));
     printf("%s;%zu;%zu\n", "GdkSeat", sizeof(GdkSeat), alignof(GdkSeat));
     printf("%s;%zu;%zu\n", "GdkSeatCapabilities", sizeof(GdkSeatCapabilities), alignof(GdkSeatCapabilities));
     printf("%s;%zu;%zu\n", "GdkSubpixelLayout", sizeof(GdkSubpixelLayout), alignof(GdkSubpixelLayout));

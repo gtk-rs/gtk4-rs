@@ -172,6 +172,10 @@ pub const GDK_SCROLL_LEFT: GdkScrollDirection = 2;
 pub const GDK_SCROLL_RIGHT: GdkScrollDirection = 3;
 pub const GDK_SCROLL_SMOOTH: GdkScrollDirection = 4;
 
+pub type GdkScrollUnit = c_int;
+pub const GDK_SCROLL_UNIT_WHEEL: GdkScrollUnit = 0;
+pub const GDK_SCROLL_UNIT_SURFACE: GdkScrollUnit = 1;
+
 pub type GdkSubpixelLayout = c_int;
 pub const GDK_SUBPIXEL_LAYOUT_UNKNOWN: GdkSubpixelLayout = 0;
 pub const GDK_SUBPIXEL_LAYOUT_NONE: GdkSubpixelLayout = 1;
@@ -3575,6 +3579,13 @@ extern "C" {
     pub fn gdk_scroll_direction_get_type() -> GType;
 
     //=========================================================================
+    // GdkScrollUnit
+    //=========================================================================
+    #[cfg(any(feature = "v4_8", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+    pub fn gdk_scroll_unit_get_type() -> GType;
+
+    //=========================================================================
     // GdkSubpixelLayout
     //=========================================================================
     pub fn gdk_subpixel_layout_get_type() -> GType;
@@ -4607,6 +4618,9 @@ extern "C" {
         delta_y: *mut c_double,
     );
     pub fn gdk_scroll_event_get_direction(event: *mut GdkScrollEvent) -> GdkScrollDirection;
+    #[cfg(any(feature = "v4_8", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+    pub fn gdk_scroll_event_get_unit(event: *mut GdkScrollEvent) -> GdkScrollUnit;
     pub fn gdk_scroll_event_is_stop(event: *mut GdkScrollEvent) -> gboolean;
 
     //=========================================================================

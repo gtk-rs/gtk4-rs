@@ -22,6 +22,8 @@ impl glib::StaticType for ParamSpecExpression {
     }
 }
 
+impl ParamSpecExpression {}
+
 unsafe impl Send for ParamSpecExpression {}
 unsafe impl Sync for ParamSpecExpression {}
 

@@ -51,6 +51,7 @@ generate = [
     "Gdk.ProximityEvent",
     "Gdk.ScrollDirection",
     "Gdk.ScrollEvent",
+    "Gdk.ScrollUnit",
     "Gdk.SeatCapabilities",
     "Gdk.Snapshot",
     "Gdk.SubpixelLayout",
