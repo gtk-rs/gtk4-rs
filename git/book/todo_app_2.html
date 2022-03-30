@@ -487,6 +487,9 @@ We also add an action which allows us to remove done tasks. </p>
 </span><span class="boring">        // Get content from entry and clear it
 </span><span class="boring">        let buffer = self.imp().entry.buffer();
 </span><span class="boring">        let content = buffer.text();
+</span><span class="boring">        if content.is_empty() {
+</span><span class="boring">            return;
+</span><span class="boring">        }
 </span><span class="boring">        buffer.set_text(&quot;&quot;);
 </span><span class="boring">
 </span><span class="boring">        // Add new task to model
@@ -697,6 +700,9 @@ If the state is &quot;All&quot; nothing has to be filtered out, so we return <co
 </span><span class="boring">        // Get content from entry and clear it
 </span><span class="boring">        let buffer = self.imp().entry.buffer();
 </span><span class="boring">        let content = buffer.text();
+</span><span class="boring">        if content.is_empty() {
+</span><span class="boring">            return;
+</span><span class="boring">        }
 </span><span class="boring">        buffer.set_text(&quot;&quot;);
 </span><span class="boring">
 </span><span class="boring">        // Add new task to model
@@ -905,6 +911,9 @@ Whenever the state of the key &quot;filter&quot; changes, we call the method <co
 </span><span class="boring">        // Get content from entry and clear it
 </span><span class="boring">        let buffer = self.imp().entry.buffer();
 </span><span class="boring">        let content = buffer.text();
+</span><span class="boring">        if content.is_empty() {
+</span><span class="boring">            return;
+</span><span class="boring">        }
 </span><span class="boring">        buffer.set_text(&quot;&quot;);
 </span><span class="boring">
 </span><span class="boring">        // Add new task to model
@@ -1382,6 +1391,9 @@ It might be the first time that we started the app and therefore there is no for
 </span><span class="boring">        // Get content from entry and clear it
 </span><span class="boring">        let buffer = self.imp().entry.buffer();
 </span><span class="boring">        let content = buffer.text();
+</span><span class="boring">        if content.is_empty() {
+</span><span class="boring">            return;
+</span><span class="boring">        }
 </span><span class="boring">        buffer.set_text(&quot;&quot;);
 </span><span class="boring">
 </span><span class="boring">        // Add new task to model

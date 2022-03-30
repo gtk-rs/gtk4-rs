@@ -245,6 +245,9 @@ As usual, we have to list all <a href="https://docs.gtk.org/gtk4/class.Applicati
 </span><span class="boring">        // Get content from entry and clear it
 </span><span class="boring">        let buffer = self.imp().entry.buffer();
 </span><span class="boring">        let content = buffer.text();
+</span><span class="boring">        if content.is_empty() {
+</span><span class="boring">            return;
+</span><span class="boring">        }
 </span><span class="boring">        buffer.set_text(&quot;&quot;);
 </span><span class="boring">
 </span><span class="boring">        // Add new task to model
@@ -842,6 +845,9 @@ Then we store a reference to the model in <code>imp::Window</code> as well as in
 </span><span class="boring">        // Get content from entry and clear it
 </span><span class="boring">        let buffer = self.imp().entry.buffer();
 </span><span class="boring">        let content = buffer.text();
+</span><span class="boring">        if content.is_empty() {
+</span><span class="boring">            return;
+</span><span class="boring">        }
 </span><span class="boring">        buffer.set_text(&quot;&quot;);
 </span><span class="boring">
 </span><span class="boring">        // Add new task to model
@@ -961,6 +967,9 @@ Finally, the entry will be cleared.</p>
 </span><span class="boring">        // Get content from entry and clear it
 </span><span class="boring">        let buffer = self.imp().entry.buffer();
 </span><span class="boring">        let content = buffer.text();
+</span><span class="boring">        if content.is_empty() {
+</span><span class="boring">            return;
+</span><span class="boring">        }
 </span><span class="boring">        buffer.set_text(&quot;&quot;);
 </span><span class="boring">
 </span><span class="boring">        // Add new task to model
@@ -1086,6 +1095,9 @@ We will need to unbind them manually when they are no longer needed.</p>
 </span><span class="boring">        // Get content from entry and clear it
 </span><span class="boring">        let buffer = self.imp().entry.buffer();
 </span><span class="boring">        let content = buffer.text();
+</span><span class="boring">        if content.is_empty() {
+</span><span class="boring">            return;
+</span><span class="boring">        }
 </span><span class="boring">        buffer.set_text(&quot;&quot;);
 </span><span class="boring">
 </span><span class="boring">        // Add new task to model
