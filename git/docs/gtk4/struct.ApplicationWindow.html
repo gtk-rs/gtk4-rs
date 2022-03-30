@@ -82,7 +82,7 @@
 <p>Notably, <a href="struct.ApplicationWindow.html" title="crate::ApplicationWindow"><code>ApplicationWindow</code></a> can handle an application menubar.</p>
 <p>This class implements the <code>GActionGroup</code> and <code>GActionMap</code> interfaces,
 to let you add window-specific actions that will be exported by the
-associated <a href="https://gtk-rs.org/gtk-rs-core/git/docs/gio/auto/application/struct.Application.html" title="crate::gio::Application"><code>gio::Application</code></a>, together with its application-wide
+associated <a href="struct.Application.html" title="crate::Application"><code>Application</code></a>, together with its application-wide
 actions. Window-specific actions are prefixed with the “win.”
 prefix and application-wide actions are prefixed with the “app.”
 prefix. Actions must be addressed with the prefixed name when
@@ -108,7 +108,7 @@ used by <a href="struct.Builder.html" title="crate::Builder"><code>Builder</code
 <p>See also: <a href="prelude/trait.GtkApplicationExt.html#tymethod.set_menubar" title="crate::prelude::GtkApplicationExt::set_menubar()"><code>GtkApplicationExt::set_menubar()</code></a>.</p>
 <h3 id="a-gtkapplicationwindow-with-a-menubar"><a href="#a-gtkapplicationwindow-with-a-menubar">A GtkApplicationWindow with a menubar</a></h3>
 <p>The code sample below shows how to set up a <a href="struct.ApplicationWindow.html" title="crate::ApplicationWindow"><code>ApplicationWindow</code></a>
-with a menu bar defined on the <a href="https://gtk-rs.org/gtk-rs-core/git/docs/gio/auto/application/struct.Application.html" title="crate::gio::Application"><code>gio::Application</code></a>:</p>
+with a menu bar defined on the <a href="struct.Application.html" title="crate::Application"><code>Application</code></a>:</p>
 <p><strong>⚠️ The following code is in c ⚠️</strong></p>
 <div class="example-wrap"><pre class="language-c"><code>GtkApplication *app = gtk_application_new (&quot;org.gtk.test&quot;, 0);
 

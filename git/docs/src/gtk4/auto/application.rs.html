@@ -986,7 +986,7 @@
     <span class="doccomment">/// is available in the GTK source code repository</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// [`Application`][crate::Application] optionally registers with a session manager of the</span>
-    <span class="doccomment">/// users session (if you set the `property::gio::Application::register-session`</span>
+    <span class="doccomment">/// users session (if you set the `property::Application::register-session`</span>
     <span class="doccomment">/// property) and offers various functionality related to the session</span>
     <span class="doccomment">/// life-cycle.</span>
     <span class="doccomment">///</span>
@@ -1092,7 +1092,7 @@
     <span class="doccomment">/// Set this property to `TRUE` to register with the session manager.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This will make GTK track the session state (such as the</span>
-    <span class="doccomment">/// `property::gio::Application::screensaver-active` property).</span>
+    <span class="doccomment">/// `property::Application::screensaver-active` property).</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">register_session</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">register_session</span>: <span class="ident">bool</span>) -&gt; <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">register_session</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">register_session</span>);
         <span class="self">self</span>
@@ -1386,14 +1386,14 @@
     <span class="doccomment">/// Set this property to `TRUE` to register with the session manager.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This will make GTK track the session state (such as the</span>
-    <span class="doccomment">/// `property::gio::Application::screensaver-active` property).</span>
+    <span class="doccomment">/// `property::Application::screensaver-active` property).</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;register-session&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">is_register_session</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span>;
 
     <span class="doccomment">/// Set this property to `TRUE` to register with the session manager.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This will make GTK track the session state (such as the</span>
-    <span class="doccomment">/// `property::gio::Application::screensaver-active` property).</span>
+    <span class="doccomment">/// `property::Application::screensaver-active` property).</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;register-session&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">set_register_session</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">register_session</span>: <span class="ident">bool</span>);
 
@@ -1401,7 +1401,7 @@
     <span class="doccomment">/// currently active.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// GTK only tracks session state (including this) when</span>
-    <span class="doccomment">/// `property::gio::Application::register-session` is set to [`true`].</span>
+    <span class="doccomment">/// `property::Application::register-session` is set to [`true`].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Tracking the screensaver state is currently only supported on</span>
     <span class="doccomment">/// Linux.</span>
@@ -1410,7 +1410,7 @@
 
     <span class="doccomment">/// Emitted when the session manager is about to end the session.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// This signal is only emitted if `property::gio::Application::register-session`</span>
+    <span class="doccomment">/// This signal is only emitted if `property::Application::register-session`</span>
     <span class="doccomment">/// is `TRUE`. Applications can connect to this signal and call</span>
     <span class="doccomment">/// [`inhibit()`][Self::inhibit()] with `GTK_APPLICATION_INHIBIT_LOGOUT`</span>
     <span class="doccomment">/// to delay the end of the session until state has been saved.</span>
