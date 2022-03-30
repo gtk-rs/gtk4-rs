@@ -19,9 +19,9 @@ jobs:
       id: cache
       with:
         path: c:/gnome
-        key: ${{ runner.os }}-gtk
+        key: ${{ runner.os }}-gtk4-8
         restore-keys: |
-          ${{ runner.os }}-gtk
+          ${{ runner.os }}-gtk4-8
         
     - name: Set up the PATH environment
       run: |
@@ -42,7 +42,7 @@ jobs:
       working-directory: /
       if: steps.cache.outputs.cache-hit != 'true'
       run: |
-        git clone -b 4.6.0 https://gitlab.gnome.org/GNOME/gtk.git --depth 1
+        git clone https://gitlab.gnome.org/GNOME/gtk.git --depth 1
         
     - name: Setup Python
       uses: actions/setup-python@v2
