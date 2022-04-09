@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
-  <template class="TodoRow" parent="GtkBox">
+  <template class="TodoTaskRow" parent="GtkBox">
     <child>
       <object class="GtkCheckButton" id="completed_button">
         <property name="margin-top">12</property>

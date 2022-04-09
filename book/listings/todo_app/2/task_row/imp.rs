@@ -4,25 +4,24 @@ use gtk::subclass::prelude::*;
 use gtk::{glib, CheckButton, CompositeTemplate, Label};
 use std::cell::RefCell;
 
-// ANCHOR: struct_and_subclass
 // Object holding the state
 #[derive(Default, CompositeTemplate)]
-#[template(resource = "/org/gtk-rs/Todo1/todo_row.ui")]
-pub struct TodoRow {
+#[template(resource = "/org/gtk-rs/Todo2/task_row.ui")]
+pub struct TaskRow {
     #[template_child]
     pub completed_button: TemplateChild<CheckButton>,
     #[template_child]
     pub content_label: TemplateChild<Label>,
-    // Vector holding the bindings to properties of `TodoObject`
+    // Vector holding the bindings to properties of `TaskObject`
     pub bindings: RefCell<Vec<Binding>>,
 }
 
 // The central trait for subclassing a GObject
 #[glib::object_subclass]
-impl ObjectSubclass for TodoRow {
+impl ObjectSubclass for TaskRow {
     // `NAME` needs to match `class` attribute of template
-    const NAME: &'static str = "TodoRow";
-    type Type = super::TodoRow;
+    const NAME: &'static str = "TodoTaskRow";
+    type Type = super::TaskRow;
     type ParentType = gtk::Box;
 
     fn class_init(klass: &mut Self::Class) {
@@ -33,13 +32,12 @@ impl ObjectSubclass for TodoRow {
         obj.init_template();
     }
 }
-// ANCHOR_END: struct_and_subclass
 
 // Trait shared by all GObjects
-impl ObjectImpl for TodoRow {}
+impl ObjectImpl for TaskRow {}
 
 // Trait shared by all widgets
-impl WidgetImpl for TodoRow {}
+impl WidgetImpl for TaskRow {}
 
 // Trait shared by all boxes
-impl BoxImpl for TodoRow {}
+impl BoxImpl for TaskRow {}

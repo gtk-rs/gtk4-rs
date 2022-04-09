@@ -1,7 +1,7 @@
 mod imp;
 
-use crate::todo_object::TodoObject;
-use crate::todo_row::TodoRow;
+use crate::task_object::TaskObject;
+use crate::task_row::TaskRow;
 use glib::{clone, Object};
 use gtk::prelude::*;
 use gtk::subclass::prelude::*;
@@ -31,7 +31,7 @@ impl Window {
 
     fn setup_model(&self) {
         // Create new model
-        let model = gio::ListStore::new(TodoObject::static_type());
+        let model = gio::ListStore::new(TaskObject::static_type());
 
         // Get state and set model
         self.imp().model.set(model).expect("Could not set model");
@@ -71,7 +71,7 @@ impl Window {
         buffer.set_text("");
 
         // Add new task to model
-        let task = TodoObject::new(false, content);
+        let task = TaskObject::new(false, content);
         self.model().append(&task);
     }
     // ANCHOR_END: new_task
@@ -81,42 +81,42 @@ impl Window {
         // Create a new factory
         let factory = SignalListItemFactory::new();
 
-        // Create an empty `TodoRow` during setup
+        // Create an empty `TaskRow` during setup
         factory.connect_setup(move |_, list_item| {
-            // Create `TodoRow`
-            let todo_row = TodoRow::new();
-            list_item.set_child(Some(&todo_row));
+            // Create `TaskRow`
+            let task_row = TaskRow::new();
+            list_item.set_child(Some(&task_row));
         });
 
-        // Tell factory how to bind `TodoRow` to a `TodoObject`
+        // Tell factory how to bind `TaskRow` to a `TaskObject`
         factory.connect_bind(move |_, list_item| {
-            // Get `TodoObject` from `ListItem`
-            let todo_object = list_item
+            // Get `TaskObject` from `ListItem`
+            let task_object = list_item
                 .item()
                 .expect("The item has to exist.")
-                .downcast::<TodoObject>()
-                .expect("The item has to be an `TodoObject`.");
+                .downcast::<TaskObject>()
+                .expect("The item has to be an `TaskObject`.");
 
-            // Get `TodoRow` from `ListItem`
-            let todo_row = list_item
+            // Get `TaskRow` from `ListItem`
+            let task_row = list_item
                 .child()
                 .expect("The child has to exist.")
-                .downcast::<TodoRow>()
-                .expect("The child has to be a `TodoRow`.");
+                .downcast::<TaskRow>()
+                .expect("The child has to be a `TaskRow`.");
 
-            todo_row.bind(&todo_object);
+            task_row.bind(&task_object);
         });
 
-        // Tell factory how to unbind `TodoRow` from `TodoObject`
+        // Tell factory how to unbind `TaskRow` from `TaskObject`
         factory.connect_unbind(move |_, list_item| {
-            // Get `TodoRow` from `ListItem`
-            let todo_row = list_item
+            // Get `TaskRow` from `ListItem`
+            let task_row = list_item
                 .child()
                 .expect("The child has to exist.")
-                .downcast::<TodoRow>()
-                .expect("The child has to be a `TodoRow`.");
+                .downcast::<TaskRow>()
+                .expect("The child has to be a `TaskRow`.");
 
-            todo_row.unbind();
+            task_row.unbind();
         });
 
         // Set the factory of the list view

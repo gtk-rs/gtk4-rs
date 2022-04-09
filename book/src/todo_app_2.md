@@ -90,13 +90,13 @@ We stop deriving `Default` for `imp::Window` and implement it manually.
 {{#rustdoc_include ../listings/todo_app/2/window/imp.rs:struct_default}}
 ```
 
-We also add the getter methods `is_completed` and `todo_data` to `TodoObject`.
+We also add the getter methods `is_completed` and `todo_data` to `TaskObject`.
 We will make use of them in the following snippets.
 
-<span class="filename">Filename: listings/todo_app/2/todo_object/mod.rs</span>
+<span class="filename">Filename: listings/todo_app/2/task_object/mod.rs</span>
 
 ```rust ,no_run,noplayground
-{{#rustdoc_include ../listings/todo_app/2/todo_object/mod.rs:impl}}
+{{#rustdoc_include ../listings/todo_app/2/task_object/mod.rs:impl}}
 ```
 
 Similar to the previous chapter, we let `settings` create the action.
@@ -187,13 +187,13 @@ Let's implement that.
 
 Until now, we mostly converted primitives into variants.
 However, the [`glib::Variant`](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/derive.Variant.html) it also isn't much harder to do with our own structures.
-This is why we stored the data of `TodoObject` in a distinct `TodoData` structure.
-Doing so allows us to derive `glib::Variant` for `TodoData`.
+This is why we stored the data of `TaskObject` in a distinct `TaskData` structure.
+Doing so allows us to derive `glib::Variant` for `TaskData`.
 
-<span class="filename">Filename: listings/todo_app/2/todo_object/mod.rs</span>
+<span class="filename">Filename: listings/todo_app/2/task_object/mod.rs</span>
 
 ```rust ,no_run,noplayground
-{{#rustdoc_include ../listings/todo_app/2/todo_object/mod.rs:derive}}
+{{#rustdoc_include ../listings/todo_app/2/task_object/mod.rs:derive}}
 ```
 
 We override the `close_request` virtual function to save the tasks when the window is closed.

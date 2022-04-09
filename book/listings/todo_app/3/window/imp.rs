@@ -7,7 +7,7 @@ use gtk::{gio, glib};
 use gtk::{CompositeTemplate, Entry, ListView, MenuButton};
 use once_cell::sync::OnceCell;
 
-use crate::todo_object::TodoObject;
+use crate::task_object::TaskObject;
 
 // Object holding the state
 #[derive(CompositeTemplate)]
@@ -77,10 +77,10 @@ impl WindowImpl for Window {
         let mut tasks = Vec::new();
         let mut position = 0;
         while let Some(item) = window.model().item(position) {
-            // Get `TodoObject` from `glib::Object`
+            // Get `TaskObject` from `glib::Object`
             let todo_data = item
-                .downcast_ref::<TodoObject>()
-                .expect("The object needs to be of type `TodoObject`.")
+                .downcast_ref::<TaskObject>()
+                .expect("The object needs to be of type `TaskObject`.")
                 .todo_data();
             // Add todo data to vector and increase position
             tasks.push(todo_data);
