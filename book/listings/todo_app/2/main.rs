@@ -1,5 +1,5 @@
-mod todo_object;
-mod todo_row;
+mod task_object;
+mod task_row;
 mod window;
 
 use gtk::gio;

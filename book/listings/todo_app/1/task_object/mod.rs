@@ -5,20 +5,20 @@ use gtk::glib;
 
 // ANCHOR: glib_wrapper_and_new
 glib::wrapper! {
-    pub struct TodoObject(ObjectSubclass<imp::TodoObject>);
+    pub struct TaskObject(ObjectSubclass<imp::TaskObject>);
 }
 
-impl TodoObject {
+impl TaskObject {
     pub fn new(completed: bool, content: String) -> Self {
         Object::new(&[("completed", &completed), ("content", &content)])
-            .expect("Failed to create `TodoObject`.")
+            .expect("Failed to create `TaskObject`.")
     }
 }
 // ANCHOR_END: glib_wrapper_and_new
 
 // ANCHOR: todo_data
 #[derive(Default)]
-pub struct TodoData {
+pub struct TaskData {
     pub completed: bool,
     pub content: String,
 }

@@ -1,7 +1,7 @@
 mod imp;
 
-use crate::todo_object::{TodoData, TodoObject};
-use crate::todo_row::TodoRow;
+use crate::task_object::{TaskData, TaskObject};
+use crate::task_row::TaskRow;
 use glib::{clone, Object};
 use gtk::prelude::*;
 use gtk::subclass::prelude::*;
@@ -37,22 +37,22 @@ impl Window {
 
         // Create custom filters
         let filter_open = CustomFilter::new(|obj| {
-            // Get `TodoObject` from `glib::Object`
-            let todo_object = obj
-                .downcast_ref::<TodoObject>()
-                .expect("The object needs to be of type `TodoObject`.");
+            // Get `TaskObject` from `glib::Object`
+            let task_object = obj
+                .downcast_ref::<TaskObject>()
+                .expect("The object needs to be of type `TaskObject`.");
 
             // Only allow completed tasks
-            !todo_object.is_completed()
+            !task_object.is_completed()
         });
         let filter_done = CustomFilter::new(|obj| {
-            // Get `TodoObject` from `glib::Object`
-            let todo_object = obj
-                .downcast_ref::<TodoObject>()
-                .expect("The object needs to be of type `TodoObject`.");
+            // Get `TaskObject` from `glib::Object`
+            let task_object = obj
+                .downcast_ref::<TaskObject>()
+                .expect("The object needs to be of type `TaskObject`.");
 
             // Only allow done tasks
-            todo_object.is_completed()
+            task_object.is_completed()
         });
 
         // Return the correct filter
@@ -68,7 +68,7 @@ impl Window {
     // ANCHOR: setup_model
     fn setup_model(&self) {
         // Create new model
-        let model = gio::ListStore::new(TodoObject::static_type());
+        let model = gio::ListStore::new(TaskObject::static_type());
 
         // Get state and set model
         self.imp().model.set(model).expect("Could not set model");
@@ -92,16 +92,16 @@ impl Window {
     // ANCHOR: restore_data
     fn restore_data(&self) {
         // Deserialize data from file to vector
-        let tasks: Vec<TodoData> = self.imp().settings.get("tasks");
+        let tasks: Vec<TaskData> = self.imp().settings.get("tasks");
 
-        // Convert `Vec<TodoData>` to `Vec<TodoObject>`
-        let todo_objects: Vec<TodoObject> = tasks
+        // Convert `Vec<TaskData>` to `Vec<TaskObject>`
+        let task_objects: Vec<TaskObject> = tasks
             .into_iter()
-            .map(|todo_data| TodoObject::new(todo_data.completed, todo_data.content))
+            .map(|todo_data| TaskObject::new(todo_data.completed, todo_data.content))
             .collect();
 
         // Insert restored objects into model
-        self.model().splice(0, 0, &todo_objects);
+        self.model().splice(0, 0, &task_objects);
     }
     // ANCHOR_END: restore_data
 
@@ -133,7 +133,7 @@ impl Window {
         buffer.set_text("");
 
         // Add new task to model
-        let task = TodoObject::new(false, content);
+        let task = TaskObject::new(false, content);
         self.model().append(&task);
     }
 
@@ -141,42 +141,42 @@ impl Window {
         // Create a new factory
         let factory = SignalListItemFactory::new();
 
-        // Create an empty `TodoRow` during setup
+        // Create an empty `TaskRow` during setup
         factory.connect_setup(move |_, list_item| {
-            // Create `TodoRow`
-            let todo_row = TodoRow::new();
-            list_item.set_child(Some(&todo_row));
+            // Create `TaskRow`
+            let task_row = TaskRow::new();
+            list_item.set_child(Some(&task_row));
         });
 
-        // Tell factory how to bind `TodoRow` to a `TodoObject`
+        // Tell factory how to bind `TaskRow` to a `TaskObject`
         factory.connect_bind(move |_, list_item| {
-            // Get `TodoObject` from `ListItem`
-            let todo_object = list_item
+            // Get `TaskObject` from `ListItem`
+            let task_object = list_item
                 .item()
                 .expect("The item has to exist.")
-                .downcast::<TodoObject>()
-                .expect("The item has to be an `TodoObject`.");
+                .downcast::<TaskObject>()
+                .expect("The item has to be an `TaskObject`.");
 
-            // Get `TodoRow` from `ListItem`
-            let todo_row = list_item
+            // Get `TaskRow` from `ListItem`
+            let task_row = list_item
                 .child()
                 .expect("The child has to exist.")
-                .downcast::<TodoRow>()
-                .expect("The child has to be a `TodoRow`.");
+                .downcast::<TaskRow>()
+                .expect("The child has to be a `TaskRow`.");
 
-            todo_row.bind(&todo_object);
+            task_row.bind(&task_object);
         });
 
-        // Tell factory how to unbind `TodoRow` from `TodoObject`
+        // Tell factory how to unbind `TaskRow` from `TaskObject`
         factory.connect_unbind(move |_, list_item| {
-            // Get `TodoRow` from `ListItem`
-            let todo_row = list_item
+            // Get `TaskRow` from `ListItem`
+            let task_row = list_item
                 .child()
                 .expect("The child has to exist.")
-                .downcast::<TodoRow>()
-                .expect("The child has to be a `TodoRow`.");
+                .downcast::<TaskRow>()
+                .expect("The child has to be a `TaskRow`.");
 
-            todo_row.unbind();
+            task_row.unbind();
         });
 
         // Set the factory of the list view
@@ -198,12 +198,12 @@ impl Window {
         action_remove_done_tasks.connect_activate(clone!(@weak model => move |_, _| {
             let mut position = 0;
             while let Some(item) = model.item(position) {
-                // Get `TodoObject` from `glib::Object`
-                let todo_object = item
-                    .downcast_ref::<TodoObject>()
-                    .expect("The object needs to be of type `TodoObject`.");
+                // Get `TaskObject` from `glib::Object`
+                let task_object = item
+                    .downcast_ref::<TaskObject>()
+                    .expect("The object needs to be of type `TaskObject`.");
 
-                if todo_object.is_completed() {
+                if task_object.is_completed() {
                     model.remove(position);
                 } else {
                     position += 1;

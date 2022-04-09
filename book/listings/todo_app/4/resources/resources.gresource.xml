@@ -2,7 +2,7 @@
 <gresources>
   <gresource prefix="/org/gtk-rs/Todo4/">
     <file compressed="true" preprocess="xml-stripblanks" alias="gtk/help-overlay.ui">shortcuts.ui</file>
-    <file compressed="true" preprocess="xml-stripblanks">todo_row.ui</file>
+    <file compressed="true" preprocess="xml-stripblanks">task_row.ui</file>
     <file compressed="true" preprocess="xml-stripblanks">window.ui</file>
   </gresource>
 </gresources>

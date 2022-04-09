@@ -225,16 +225,16 @@ Before, the individual tasks were a bit hard to distinguish.
 It would be nice if the todo rows would be surrounded by borders.
 Let's add that!
 
-The class `TodoRow` inherits from `gtk::Box`, so we could just match for the node `box`.
+The class `TaskRow` inherits from `gtk::Box`, so we could just match for the node `box`.
 However, if we create a custom widget we might as well give it its own CSS name.
 Keep in mind, that this is not the same as when we gave a specific instance of a widget a name.
 When calling [`set_css_name` ](../docs/gtk4/subclass/widget/trait.WidgetClassSubclassExt.html#method.set_css_name), we change the name of the CSS node of a widget.
-In our case, the widget `TodoRow` now corresponds to the node `todo-row`.
+In our case, the widget `TaskRow` now corresponds to the node `todo-row`.
 
-<span class="filename">Filename: listings/todo_app/3/todo_row/imp.rs</span>
+<span class="filename">Filename: listings/todo_app/3/task_row/imp.rs</span>
 
 ```rust ,no_run,noplayground
-{{#rustdoc_include ../listings/todo_app/3/todo_row/imp.rs:object_subclass}}
+{{#rustdoc_include ../listings/todo_app/3/task_row/imp.rs:object_subclass}}
 ```
 
 Now we have to decide which color to use for the borders.
@@ -257,12 +257,12 @@ Now our tasks have borders around them, and we are one step further in finishing
 This was also an excellent opportunity to show how to set the CSS name of custom widget and how to access exported colors.
 In the end, we find that GTK provides a style rule to add borders to a node.
 This seems nicer, so we will use that instead.
-We match the style rule by adding the style class `frame` to our `TodoRow`.
+We match the style rule by adding the style class `frame` to our `TaskRow`.
 
-<span class="filename">Filename: listings/todo_app/4/resources/todo_row.ui</span>
+<span class="filename">Filename: listings/todo_app/4/resources/task_row.ui</span>
 
 ```xml
-{{#rustdoc_include ../listings/todo_app/4/resources/todo_row.ui}}
+{{#rustdoc_include ../listings/todo_app/4/resources/task_row.ui}}
 ```
 
 ## Conclusion

@@ -7,25 +7,25 @@ use once_cell::sync::Lazy;
 use std::cell::RefCell;
 use std::rc::Rc;
 
-use super::TodoData;
+use super::TaskData;
 
 // ANCHOR: struct_and_subclass
 // Object holding the state
 #[derive(Default)]
-pub struct TodoObject {
-    pub data: Rc<RefCell<TodoData>>,
+pub struct TaskObject {
+    pub data: Rc<RefCell<TaskData>>,
 }
 
 // The central trait for subclassing a GObject
 #[glib::object_subclass]
-impl ObjectSubclass for TodoObject {
-    const NAME: &'static str = "TodoObject";
-    type Type = super::TodoObject;
+impl ObjectSubclass for TaskObject {
+    const NAME: &'static str = "TodoTaskObject";
+    type Type = super::TaskObject;
 }
 // ANCHOR_END: struct_and_subclass
 
 // Trait shared by all GObjects
-impl ObjectImpl for TodoObject {
+impl ObjectImpl for TaskObject {
     fn properties() -> &'static [ParamSpec] {
         static PROPERTIES: Lazy<Vec<ParamSpec>> = Lazy::new(|| {
             vec![
