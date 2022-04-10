@@ -1914,9 +1914,6 @@ status = "generate"
     pattern = "*-set" # those properties are read only
     generate = ["get", "notify"]
     [[object.property]]
-    name = "line-height" # the annotation is set on the source code, doesn't get detected by gir
-    version = "4.6"
-    [[object.property]]
     name = "line-height-set" # uses a macro to generate the property
     version = "4.6"
     [[object.property]]
