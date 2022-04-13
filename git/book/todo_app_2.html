@@ -236,7 +236,7 @@ We stop deriving <code>Default</code> for <code>imp::Window</code> and implement
 </span><span class="boring">use gtk::{CompositeTemplate, Entry, ListView, MenuButton};
 </span><span class="boring">use once_cell::sync::OnceCell;
 </span><span class="boring">
-</span><span class="boring">use crate::todo_object::TodoObject;
+</span><span class="boring">use crate::task_object::TaskObject;
 </span><span class="boring">
 </span>// Object holding the state
 #[derive(CompositeTemplate)]
@@ -306,10 +306,10 @@ impl Default for Window {
 </span><span class="boring">        let mut tasks = Vec::new();
 </span><span class="boring">        let mut position = 0;
 </span><span class="boring">        while let Some(item) = window.model().item(position) {
-</span><span class="boring">            // Get `TodoObject` from `glib::Object`
+</span><span class="boring">            // Get `TaskObject` from `glib::Object`
 </span><span class="boring">            let todo_data = item
-</span><span class="boring">                .downcast_ref::&lt;TodoObject&gt;()
-</span><span class="boring">                .expect(&quot;The object needs to be of type `TodoObject`.&quot;)
+</span><span class="boring">                .downcast_ref::&lt;TaskObject&gt;()
+</span><span class="boring">                .expect(&quot;The object needs to be of type `TaskObject`.&quot;)
 </span><span class="boring">                .todo_data();
 </span><span class="boring">            // Add todo data to vector and increase position
 </span><span class="boring">            tasks.push(todo_data);
@@ -328,9 +328,9 @@ impl Default for Window {
 </span><span class="boring">// Trait shared by all application
 </span><span class="boring">impl ApplicationWindowImpl for Window {}
 </span></code></pre>
-<p>We also add the getter methods <code>is_completed</code> and <code>todo_data</code> to <code>TodoObject</code>.
+<p>We also add the getter methods <code>is_completed</code> and <code>todo_data</code> to <code>TaskObject</code>.
 We will make use of them in the following snippets.</p>
-<p><span class="filename">Filename: listings/todo_app/2/todo_object/mod.rs</span></p>
+<p><span class="filename">Filename: listings/todo_app/2/task_object/mod.rs</span></p>
 <pre><code class="language-rust  no_run noplayground"><span class="boring">mod imp;
 </span><span class="boring">
 </span><span class="boring">use glib::Object;
@@ -338,26 +338,26 @@ We will make use of them in the following snippets.</p>
 </span><span class="boring">use gtk::subclass::prelude::*;
 </span><span class="boring">
 </span><span class="boring">glib::wrapper! {
-</span><span class="boring">    pub struct TodoObject(ObjectSubclass&lt;imp::TodoObject&gt;);
+</span><span class="boring">    pub struct TaskObject(ObjectSubclass&lt;imp::TaskObject&gt;);
 </span><span class="boring">}
 </span><span class="boring">
-</span>impl TodoObject {
+</span>impl TaskObject {
     pub fn new(completed: bool, content: String) -&gt; Self {
         Object::new(&amp;[(&quot;completed&quot;, &amp;completed), (&quot;content&quot;, &amp;content)])
-            .expect(&quot;Failed to create `TodoObject`.&quot;)
+            .expect(&quot;Failed to create `TaskObject`.&quot;)
     }
 
     pub fn is_completed(&amp;self) -&gt; bool {
         self.imp().data.borrow().completed
     }
 
-    pub fn todo_data(&amp;self) -&gt; TodoData {
+    pub fn todo_data(&amp;self) -&gt; TaskData {
         self.imp().data.borrow().clone()
     }
 }
 <span class="boring">
 </span><span class="boring">#[derive(Default, glib::Variant, Clone)]
-</span><span class="boring">pub struct TodoData {
+</span><span class="boring">pub struct TaskData {
 </span><span class="boring">    pub completed: bool,
 </span><span class="boring">    pub content: String,
 </span><span class="boring">}
@@ -368,8 +368,8 @@ We also add an action which allows us to remove done tasks. </p>
 <p><span class="filename">Filename: listings/todo_app/2/window/mod.rs</span></p>
 <pre><code class="language-rust  no_run noplayground"><span class="boring">mod imp;
 </span><span class="boring">
-</span><span class="boring">use crate::todo_object::{TodoData, TodoObject};
-</span><span class="boring">use crate::todo_row::TodoRow;
+</span><span class="boring">use crate::task_object::{TaskData, TaskObject};
+</span><span class="boring">use crate::task_row::TaskRow;
 </span><span class="boring">use glib::{clone, Object};
 </span><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::subclass::prelude::*;
@@ -404,22 +404,22 @@ We also add an action which allows us to remove done tasks. </p>
 </span><span class="boring">
 </span><span class="boring">        // Create custom filters
 </span><span class="boring">        let filter_open = CustomFilter::new(|obj| {
-</span><span class="boring">            // Get `TodoObject` from `glib::Object`
-</span><span class="boring">            let todo_object = obj
-</span><span class="boring">                .downcast_ref::&lt;TodoObject&gt;()
-</span><span class="boring">                .expect(&quot;The object needs to be of type `TodoObject`.&quot;);
+</span><span class="boring">            // Get `TaskObject` from `glib::Object`
+</span><span class="boring">            let task_object = obj
+</span><span class="boring">                .downcast_ref::&lt;TaskObject&gt;()
+</span><span class="boring">                .expect(&quot;The object needs to be of type `TaskObject`.&quot;);
 </span><span class="boring">
 </span><span class="boring">            // Only allow completed tasks
-</span><span class="boring">            !todo_object.is_completed()
+</span><span class="boring">            !task_object.is_completed()
 </span><span class="boring">        });
 </span><span class="boring">        let filter_done = CustomFilter::new(|obj| {
-</span><span class="boring">            // Get `TodoObject` from `glib::Object`
-</span><span class="boring">            let todo_object = obj
-</span><span class="boring">                .downcast_ref::&lt;TodoObject&gt;()
-</span><span class="boring">                .expect(&quot;The object needs to be of type `TodoObject`.&quot;);
+</span><span class="boring">            // Get `TaskObject` from `glib::Object`
+</span><span class="boring">            let task_object = obj
+</span><span class="boring">                .downcast_ref::&lt;TaskObject&gt;()
+</span><span class="boring">                .expect(&quot;The object needs to be of type `TaskObject`.&quot;);
 </span><span class="boring">
 </span><span class="boring">            // Only allow done tasks
-</span><span class="boring">            todo_object.is_completed()
+</span><span class="boring">            task_object.is_completed()
 </span><span class="boring">        });
 </span><span class="boring">
 </span><span class="boring">        // Return the correct filter
@@ -433,7 +433,7 @@ We also add an action which allows us to remove done tasks. </p>
 </span><span class="boring">
 </span><span class="boring">    fn setup_model(&amp;self) {
 </span><span class="boring">        // Create new model
-</span><span class="boring">        let model = gio::ListStore::new(TodoObject::static_type());
+</span><span class="boring">        let model = gio::ListStore::new(TaskObject::static_type());
 </span><span class="boring">
 </span><span class="boring">        // Get state and set model
 </span><span class="boring">        self.imp().model.set(model).expect(&quot;Could not set model&quot;);
@@ -455,16 +455,16 @@ We also add an action which allows us to remove done tasks. </p>
 </span><span class="boring">
 </span><span class="boring">    fn restore_data(&amp;self) {
 </span><span class="boring">        // Deserialize data from file to vector
-</span><span class="boring">        let tasks: Vec&lt;TodoData&gt; = self.imp().settings.get(&quot;tasks&quot;);
+</span><span class="boring">        let tasks: Vec&lt;TaskData&gt; = self.imp().settings.get(&quot;tasks&quot;);
 </span><span class="boring">
-</span><span class="boring">        // Convert `Vec&lt;TodoData&gt;` to `Vec&lt;TodoObject&gt;`
-</span><span class="boring">        let todo_objects: Vec&lt;TodoObject&gt; = tasks
+</span><span class="boring">        // Convert `Vec&lt;TaskData&gt;` to `Vec&lt;TaskObject&gt;`
+</span><span class="boring">        let task_objects: Vec&lt;TaskObject&gt; = tasks
 </span><span class="boring">            .into_iter()
-</span><span class="boring">            .map(|todo_data| TodoObject::new(todo_data.completed, todo_data.content))
+</span><span class="boring">            .map(|todo_data| TaskObject::new(todo_data.completed, todo_data.content))
 </span><span class="boring">            .collect();
 </span><span class="boring">
 </span><span class="boring">        // Insert restored objects into model
-</span><span class="boring">        self.model().splice(0, 0, &amp;todo_objects);
+</span><span class="boring">        self.model().splice(0, 0, &amp;task_objects);
 </span><span class="boring">    }
 </span><span class="boring">
 </span><span class="boring">    fn setup_callbacks(&amp;self) {
@@ -493,7 +493,7 @@ We also add an action which allows us to remove done tasks. </p>
 </span><span class="boring">        buffer.set_text(&quot;&quot;);
 </span><span class="boring">
 </span><span class="boring">        // Add new task to model
-</span><span class="boring">        let task = TodoObject::new(false, content);
+</span><span class="boring">        let task = TaskObject::new(false, content);
 </span><span class="boring">        self.model().append(&amp;task);
 </span><span class="boring">    }
 </span><span class="boring">
@@ -501,42 +501,42 @@ We also add an action which allows us to remove done tasks. </p>
 </span><span class="boring">        // Create a new factory
 </span><span class="boring">        let factory = SignalListItemFactory::new();
 </span><span class="boring">
-</span><span class="boring">        // Create an empty `TodoRow` during setup
+</span><span class="boring">        // Create an empty `TaskRow` during setup
 </span><span class="boring">        factory.connect_setup(move |_, list_item| {
-</span><span class="boring">            // Create `TodoRow`
-</span><span class="boring">            let todo_row = TodoRow::new();
-</span><span class="boring">            list_item.set_child(Some(&amp;todo_row));
+</span><span class="boring">            // Create `TaskRow`
+</span><span class="boring">            let task_row = TaskRow::new();
+</span><span class="boring">            list_item.set_child(Some(&amp;task_row));
 </span><span class="boring">        });
 </span><span class="boring">
-</span><span class="boring">        // Tell factory how to bind `TodoRow` to a `TodoObject`
+</span><span class="boring">        // Tell factory how to bind `TaskRow` to a `TaskObject`
 </span><span class="boring">        factory.connect_bind(move |_, list_item| {
-</span><span class="boring">            // Get `TodoObject` from `ListItem`
-</span><span class="boring">            let todo_object = list_item
+</span><span class="boring">            // Get `TaskObject` from `ListItem`
+</span><span class="boring">            let task_object = list_item
 </span><span class="boring">                .item()
 </span><span class="boring">                .expect(&quot;The item has to exist.&quot;)
-</span><span class="boring">                .downcast::&lt;TodoObject&gt;()
-</span><span class="boring">                .expect(&quot;The item has to be an `TodoObject`.&quot;);
+</span><span class="boring">                .downcast::&lt;TaskObject&gt;()
+</span><span class="boring">                .expect(&quot;The item has to be an `TaskObject`.&quot;);
 </span><span class="boring">
-</span><span class="boring">            // Get `TodoRow` from `ListItem`
-</span><span class="boring">            let todo_row = list_item
+</span><span class="boring">            // Get `TaskRow` from `ListItem`
+</span><span class="boring">            let task_row = list_item
 </span><span class="boring">                .child()
 </span><span class="boring">                .expect(&quot;The child has to exist.&quot;)
-</span><span class="boring">                .downcast::&lt;TodoRow&gt;()
-</span><span class="boring">                .expect(&quot;The child has to be a `TodoRow`.&quot;);
+</span><span class="boring">                .downcast::&lt;TaskRow&gt;()
+</span><span class="boring">                .expect(&quot;The child has to be a `TaskRow`.&quot;);
 </span><span class="boring">
-</span><span class="boring">            todo_row.bind(&amp;todo_object);
+</span><span class="boring">            task_row.bind(&amp;task_object);
 </span><span class="boring">        });
 </span><span class="boring">
-</span><span class="boring">        // Tell factory how to unbind `TodoRow` from `TodoObject`
+</span><span class="boring">        // Tell factory how to unbind `TaskRow` from `TaskObject`
 </span><span class="boring">        factory.connect_unbind(move |_, list_item| {
-</span><span class="boring">            // Get `TodoRow` from `ListItem`
-</span><span class="boring">            let todo_row = list_item
+</span><span class="boring">            // Get `TaskRow` from `ListItem`
+</span><span class="boring">            let task_row = list_item
 </span><span class="boring">                .child()
 </span><span class="boring">                .expect(&quot;The child has to exist.&quot;)
-</span><span class="boring">                .downcast::&lt;TodoRow&gt;()
-</span><span class="boring">                .expect(&quot;The child has to be a `TodoRow`.&quot;);
+</span><span class="boring">                .downcast::&lt;TaskRow&gt;()
+</span><span class="boring">                .expect(&quot;The child has to be a `TaskRow`.&quot;);
 </span><span class="boring">
-</span><span class="boring">            todo_row.unbind();
+</span><span class="boring">            task_row.unbind();
 </span><span class="boring">        });
 </span><span class="boring">
 </span><span class="boring">        // Set the factory of the list view
@@ -557,12 +557,12 @@ We also add an action which allows us to remove done tasks. </p>
         action_remove_done_tasks.connect_activate(clone!(@weak model =&gt; move |_, _| {
             let mut position = 0;
             while let Some(item) = model.item(position) {
-                // Get `TodoObject` from `glib::Object`
-                let todo_object = item
-                    .downcast_ref::&lt;TodoObject&gt;()
-                    .expect(&quot;The object needs to be of type `TodoObject`.&quot;);
+                // Get `TaskObject` from `glib::Object`
+                let task_object = item
+                    .downcast_ref::&lt;TaskObject&gt;()
+                    .expect(&quot;The object needs to be of type `TaskObject`.&quot;);
 
-                if todo_object.is_completed() {
+                if task_object.is_completed() {
                     model.remove(position);
                 } else {
                     position += 1;
@@ -581,8 +581,8 @@ If the state is &quot;All&quot; nothing has to be filtered out, so we return <co
 <p><span class="filename">Filename: listings/todo_app/2/window/mod.rs</span></p>
 <pre><code class="language-rust  no_run noplayground"><span class="boring">mod imp;
 </span><span class="boring">
-</span><span class="boring">use crate::todo_object::{TodoData, TodoObject};
-</span><span class="boring">use crate::todo_row::TodoRow;
+</span><span class="boring">use crate::task_object::{TaskData, TaskObject};
+</span><span class="boring">use crate::task_row::TaskRow;
 </span><span class="boring">use glib::{clone, Object};
 </span><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::subclass::prelude::*;
@@ -617,22 +617,22 @@ If the state is &quot;All&quot; nothing has to be filtered out, so we return <co
 
         // Create custom filters
         let filter_open = CustomFilter::new(|obj| {
-            // Get `TodoObject` from `glib::Object`
-            let todo_object = obj
-                .downcast_ref::&lt;TodoObject&gt;()
-                .expect(&quot;The object needs to be of type `TodoObject`.&quot;);
+            // Get `TaskObject` from `glib::Object`
+            let task_object = obj
+                .downcast_ref::&lt;TaskObject&gt;()
+                .expect(&quot;The object needs to be of type `TaskObject`.&quot;);
 
             // Only allow completed tasks
-            !todo_object.is_completed()
+            !task_object.is_completed()
         });
         let filter_done = CustomFilter::new(|obj| {
-            // Get `TodoObject` from `glib::Object`
-            let todo_object = obj
-                .downcast_ref::&lt;TodoObject&gt;()
-                .expect(&quot;The object needs to be of type `TodoObject`.&quot;);
+            // Get `TaskObject` from `glib::Object`
+            let task_object = obj
+                .downcast_ref::&lt;TaskObject&gt;()
+                .expect(&quot;The object needs to be of type `TaskObject`.&quot;);
 
             // Only allow done tasks
-            todo_object.is_completed()
+            task_object.is_completed()
         });
 
         // Return the correct filter
@@ -646,7 +646,7 @@ If the state is &quot;All&quot; nothing has to be filtered out, so we return <co
 <span class="boring">
 </span><span class="boring">    fn setup_model(&amp;self) {
 </span><span class="boring">        // Create new model
-</span><span class="boring">        let model = gio::ListStore::new(TodoObject::static_type());
+</span><span class="boring">        let model = gio::ListStore::new(TaskObject::static_type());
 </span><span class="boring">
 </span><span class="boring">        // Get state and set model
 </span><span class="boring">        self.imp().model.set(model).expect(&quot;Could not set model&quot;);
@@ -668,16 +668,16 @@ If the state is &quot;All&quot; nothing has to be filtered out, so we return <co
 </span><span class="boring">
 </span><span class="boring">    fn restore_data(&amp;self) {
 </span><span class="boring">        // Deserialize data from file to vector
-</span><span class="boring">        let tasks: Vec&lt;TodoData&gt; = self.imp().settings.get(&quot;tasks&quot;);
+</span><span class="boring">        let tasks: Vec&lt;TaskData&gt; = self.imp().settings.get(&quot;tasks&quot;);
 </span><span class="boring">
-</span><span class="boring">        // Convert `Vec&lt;TodoData&gt;` to `Vec&lt;TodoObject&gt;`
-</span><span class="boring">        let todo_objects: Vec&lt;TodoObject&gt; = tasks
+</span><span class="boring">        // Convert `Vec&lt;TaskData&gt;` to `Vec&lt;TaskObject&gt;`
+</span><span class="boring">        let task_objects: Vec&lt;TaskObject&gt; = tasks
 </span><span class="boring">            .into_iter()
-</span><span class="boring">            .map(|todo_data| TodoObject::new(todo_data.completed, todo_data.content))
+</span><span class="boring">            .map(|todo_data| TaskObject::new(todo_data.completed, todo_data.content))
 </span><span class="boring">            .collect();
 </span><span class="boring">
 </span><span class="boring">        // Insert restored objects into model
-</span><span class="boring">        self.model().splice(0, 0, &amp;todo_objects);
+</span><span class="boring">        self.model().splice(0, 0, &amp;task_objects);
 </span><span class="boring">    }
 </span><span class="boring">
 </span><span class="boring">    fn setup_callbacks(&amp;self) {
@@ -706,7 +706,7 @@ If the state is &quot;All&quot; nothing has to be filtered out, so we return <co
 </span><span class="boring">        buffer.set_text(&quot;&quot;);
 </span><span class="boring">
 </span><span class="boring">        // Add new task to model
-</span><span class="boring">        let task = TodoObject::new(false, content);
+</span><span class="boring">        let task = TaskObject::new(false, content);
 </span><span class="boring">        self.model().append(&amp;task);
 </span><span class="boring">    }
 </span><span class="boring">
@@ -714,42 +714,42 @@ If the state is &quot;All&quot; nothing has to be filtered out, so we return <co
 </span><span class="boring">        // Create a new factory
 </span><span class="boring">        let factory = SignalListItemFactory::new();
 </span><span class="boring">
-</span><span class="boring">        // Create an empty `TodoRow` during setup
+</span><span class="boring">        // Create an empty `TaskRow` during setup
 </span><span class="boring">        factory.connect_setup(move |_, list_item| {
-</span><span class="boring">            // Create `TodoRow`
-</span><span class="boring">            let todo_row = TodoRow::new();
-</span><span class="boring">            list_item.set_child(Some(&amp;todo_row));
+</span><span class="boring">            // Create `TaskRow`
+</span><span class="boring">            let task_row = TaskRow::new();
+</span><span class="boring">            list_item.set_child(Some(&amp;task_row));
 </span><span class="boring">        });
 </span><span class="boring">
-</span><span class="boring">        // Tell factory how to bind `TodoRow` to a `TodoObject`
+</span><span class="boring">        // Tell factory how to bind `TaskRow` to a `TaskObject`
 </span><span class="boring">        factory.connect_bind(move |_, list_item| {
-</span><span class="boring">            // Get `TodoObject` from `ListItem`
-</span><span class="boring">            let todo_object = list_item
+</span><span class="boring">            // Get `TaskObject` from `ListItem`
+</span><span class="boring">            let task_object = list_item
 </span><span class="boring">                .item()
 </span><span class="boring">                .expect(&quot;The item has to exist.&quot;)
-</span><span class="boring">                .downcast::&lt;TodoObject&gt;()
-</span><span class="boring">                .expect(&quot;The item has to be an `TodoObject`.&quot;);
+</span><span class="boring">                .downcast::&lt;TaskObject&gt;()
+</span><span class="boring">                .expect(&quot;The item has to be an `TaskObject`.&quot;);
 </span><span class="boring">
-</span><span class="boring">            // Get `TodoRow` from `ListItem`
-</span><span class="boring">            let todo_row = list_item
+</span><span class="boring">            // Get `TaskRow` from `ListItem`
+</span><span class="boring">            let task_row = list_item
 </span><span class="boring">                .child()
 </span><span class="boring">                .expect(&quot;The child has to exist.&quot;)
-</span><span class="boring">                .downcast::&lt;TodoRow&gt;()
-</span><span class="boring">                .expect(&quot;The child has to be a `TodoRow`.&quot;);
+</span><span class="boring">                .downcast::&lt;TaskRow&gt;()
+</span><span class="boring">                .expect(&quot;The child has to be a `TaskRow`.&quot;);
 </span><span class="boring">
-</span><span class="boring">            todo_row.bind(&amp;todo_object);
+</span><span class="boring">            task_row.bind(&amp;task_object);
 </span><span class="boring">        });
 </span><span class="boring">
-</span><span class="boring">        // Tell factory how to unbind `TodoRow` from `TodoObject`
+</span><span class="boring">        // Tell factory how to unbind `TaskRow` from `TaskObject`
 </span><span class="boring">        factory.connect_unbind(move |_, list_item| {
-</span><span class="boring">            // Get `TodoRow` from `ListItem`
-</span><span class="boring">            let todo_row = list_item
+</span><span class="boring">            // Get `TaskRow` from `ListItem`
+</span><span class="boring">            let task_row = list_item
 </span><span class="boring">                .child()
 </span><span class="boring">                .expect(&quot;The child has to exist.&quot;)
-</span><span class="boring">                .downcast::&lt;TodoRow&gt;()
-</span><span class="boring">                .expect(&quot;The child has to be a `TodoRow`.&quot;);
+</span><span class="boring">                .downcast::&lt;TaskRow&gt;()
+</span><span class="boring">                .expect(&quot;The child has to be a `TaskRow`.&quot;);
 </span><span class="boring">
-</span><span class="boring">            todo_row.unbind();
+</span><span class="boring">            task_row.unbind();
 </span><span class="boring">        });
 </span><span class="boring">
 </span><span class="boring">        // Set the factory of the list view
@@ -770,12 +770,12 @@ If the state is &quot;All&quot; nothing has to be filtered out, so we return <co
 </span><span class="boring">        action_remove_done_tasks.connect_activate(clone!(@weak model =&gt; move |_, _| {
 </span><span class="boring">            let mut position = 0;
 </span><span class="boring">            while let Some(item) = model.item(position) {
-</span><span class="boring">                // Get `TodoObject` from `glib::Object`
-</span><span class="boring">                let todo_object = item
-</span><span class="boring">                    .downcast_ref::&lt;TodoObject&gt;()
-</span><span class="boring">                    .expect(&quot;The object needs to be of type `TodoObject`.&quot;);
+</span><span class="boring">                // Get `TaskObject` from `glib::Object`
+</span><span class="boring">                let task_object = item
+</span><span class="boring">                    .downcast_ref::&lt;TaskObject&gt;()
+</span><span class="boring">                    .expect(&quot;The object needs to be of type `TaskObject`.&quot;);
 </span><span class="boring">
-</span><span class="boring">                if todo_object.is_completed() {
+</span><span class="boring">                if task_object.is_completed() {
 </span><span class="boring">                    model.remove(position);
 </span><span class="boring">                } else {
 </span><span class="boring">                    position += 1;
@@ -792,8 +792,8 @@ Whenever the state of the key &quot;filter&quot; changes, we call the method <co
 <p><span class="filename">Filename: listings/todo_app/2/window/mod.rs</span></p>
 <pre><code class="language-rust  no_run noplayground"><span class="boring">mod imp;
 </span><span class="boring">
-</span><span class="boring">use crate::todo_object::{TodoData, TodoObject};
-</span><span class="boring">use crate::todo_row::TodoRow;
+</span><span class="boring">use crate::task_object::{TaskData, TaskObject};
+</span><span class="boring">use crate::task_row::TaskRow;
 </span><span class="boring">use glib::{clone, Object};
 </span><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::subclass::prelude::*;
@@ -828,22 +828,22 @@ Whenever the state of the key &quot;filter&quot; changes, we call the method <co
 </span><span class="boring">
 </span><span class="boring">        // Create custom filters
 </span><span class="boring">        let filter_open = CustomFilter::new(|obj| {
-</span><span class="boring">            // Get `TodoObject` from `glib::Object`
-</span><span class="boring">            let todo_object = obj
-</span><span class="boring">                .downcast_ref::&lt;TodoObject&gt;()
-</span><span class="boring">                .expect(&quot;The object needs to be of type `TodoObject`.&quot;);
+</span><span class="boring">            // Get `TaskObject` from `glib::Object`
+</span><span class="boring">            let task_object = obj
+</span><span class="boring">                .downcast_ref::&lt;TaskObject&gt;()
+</span><span class="boring">                .expect(&quot;The object needs to be of type `TaskObject`.&quot;);
 </span><span class="boring">
 </span><span class="boring">            // Only allow completed tasks
-</span><span class="boring">            !todo_object.is_completed()
+</span><span class="boring">            !task_object.is_completed()
 </span><span class="boring">        });
 </span><span class="boring">        let filter_done = CustomFilter::new(|obj| {
-</span><span class="boring">            // Get `TodoObject` from `glib::Object`
-</span><span class="boring">            let todo_object = obj
-</span><span class="boring">                .downcast_ref::&lt;TodoObject&gt;()
-</span><span class="boring">                .expect(&quot;The object needs to be of type `TodoObject`.&quot;);
+</span><span class="boring">            // Get `TaskObject` from `glib::Object`
+</span><span class="boring">            let task_object = obj
+</span><span class="boring">                .downcast_ref::&lt;TaskObject&gt;()
+</span><span class="boring">                .expect(&quot;The object needs to be of type `TaskObject`.&quot;);
 </span><span class="boring">
 </span><span class="boring">            // Only allow done tasks
-</span><span class="boring">            todo_object.is_completed()
+</span><span class="boring">            task_object.is_completed()
 </span><span class="boring">        });
 </span><span class="boring">
 </span><span class="boring">        // Return the correct filter
@@ -857,7 +857,7 @@ Whenever the state of the key &quot;filter&quot; changes, we call the method <co
 </span><span class="boring">
 </span>    fn setup_model(&amp;self) {
         // Create new model
-        let model = gio::ListStore::new(TodoObject::static_type());
+        let model = gio::ListStore::new(TaskObject::static_type());
 
         // Get state and set model
         self.imp().model.set(model).expect(&quot;Could not set model&quot;);
@@ -879,16 +879,16 @@ Whenever the state of the key &quot;filter&quot; changes, we call the method <co
 <span class="boring">
 </span><span class="boring">    fn restore_data(&amp;self) {
 </span><span class="boring">        // Deserialize data from file to vector
-</span><span class="boring">        let tasks: Vec&lt;TodoData&gt; = self.imp().settings.get(&quot;tasks&quot;);
+</span><span class="boring">        let tasks: Vec&lt;TaskData&gt; = self.imp().settings.get(&quot;tasks&quot;);
 </span><span class="boring">
-</span><span class="boring">        // Convert `Vec&lt;TodoData&gt;` to `Vec&lt;TodoObject&gt;`
-</span><span class="boring">        let todo_objects: Vec&lt;TodoObject&gt; = tasks
+</span><span class="boring">        // Convert `Vec&lt;TaskData&gt;` to `Vec&lt;TaskObject&gt;`
+</span><span class="boring">        let task_objects: Vec&lt;TaskObject&gt; = tasks
 </span><span class="boring">            .into_iter()
-</span><span class="boring">            .map(|todo_data| TodoObject::new(todo_data.completed, todo_data.content))
+</span><span class="boring">            .map(|todo_data| TaskObject::new(todo_data.completed, todo_data.content))
 </span><span class="boring">            .collect();
 </span><span class="boring">
 </span><span class="boring">        // Insert restored objects into model
-</span><span class="boring">        self.model().splice(0, 0, &amp;todo_objects);
+</span><span class="boring">        self.model().splice(0, 0, &amp;task_objects);
 </span><span class="boring">    }
 </span><span class="boring">
 </span><span class="boring">    fn setup_callbacks(&amp;self) {
@@ -917,7 +917,7 @@ Whenever the state of the key &quot;filter&quot; changes, we call the method <co
 </span><span class="boring">        buffer.set_text(&quot;&quot;);
 </span><span class="boring">
 </span><span class="boring">        // Add new task to model
-</span><span class="boring">        let task = TodoObject::new(false, content);
+</span><span class="boring">        let task = TaskObject::new(false, content);
 </span><span class="boring">        self.model().append(&amp;task);
 </span><span class="boring">    }
 </span><span class="boring">
@@ -925,42 +925,42 @@ Whenever the state of the key &quot;filter&quot; changes, we call the method <co
 </span><span class="boring">        // Create a new factory
 </span><span class="boring">        let factory = SignalListItemFactory::new();
 </span><span class="boring">
-</span><span class="boring">        // Create an empty `TodoRow` during setup
+</span><span class="boring">        // Create an empty `TaskRow` during setup
 </span><span class="boring">        factory.connect_setup(move |_, list_item| {
-</span><span class="boring">            // Create `TodoRow`
-</span><span class="boring">            let todo_row = TodoRow::new();
-</span><span class="boring">            list_item.set_child(Some(&amp;todo_row));
+</span><span class="boring">            // Create `TaskRow`
+</span><span class="boring">            let task_row = TaskRow::new();
+</span><span class="boring">            list_item.set_child(Some(&amp;task_row));
 </span><span class="boring">        });
 </span><span class="boring">
-</span><span class="boring">        // Tell factory how to bind `TodoRow` to a `TodoObject`
+</span><span class="boring">        // Tell factory how to bind `TaskRow` to a `TaskObject`
 </span><span class="boring">        factory.connect_bind(move |_, list_item| {
-</span><span class="boring">            // Get `TodoObject` from `ListItem`
-</span><span class="boring">            let todo_object = list_item
+</span><span class="boring">            // Get `TaskObject` from `ListItem`
+</span><span class="boring">            let task_object = list_item
 </span><span class="boring">                .item()
 </span><span class="boring">                .expect(&quot;The item has to exist.&quot;)
-</span><span class="boring">                .downcast::&lt;TodoObject&gt;()
-</span><span class="boring">                .expect(&quot;The item has to be an `TodoObject`.&quot;);
+</span><span class="boring">                .downcast::&lt;TaskObject&gt;()
+</span><span class="boring">                .expect(&quot;The item has to be an `TaskObject`.&quot;);
 </span><span class="boring">
-</span><span class="boring">            // Get `TodoRow` from `ListItem`
-</span><span class="boring">            let todo_row = list_item
+</span><span class="boring">            // Get `TaskRow` from `ListItem`
+</span><span class="boring">            let task_row = list_item
 </span><span class="boring">                .child()
 </span><span class="boring">                .expect(&quot;The child has to exist.&quot;)
-</span><span class="boring">                .downcast::&lt;TodoRow&gt;()
-</span><span class="boring">                .expect(&quot;The child has to be a `TodoRow`.&quot;);
+</span><span class="boring">                .downcast::&lt;TaskRow&gt;()
+</span><span class="boring">                .expect(&quot;The child has to be a `TaskRow`.&quot;);
 </span><span class="boring">
-</span><span class="boring">            todo_row.bind(&amp;todo_object);
+</span><span class="boring">            task_row.bind(&amp;task_object);
 </span><span class="boring">        });
 </span><span class="boring">
-</span><span class="boring">        // Tell factory how to unbind `TodoRow` from `TodoObject`
+</span><span class="boring">        // Tell factory how to unbind `TaskRow` from `TaskObject`
 </span><span class="boring">        factory.connect_unbind(move |_, list_item| {
-</span><span class="boring">            // Get `TodoRow` from `ListItem`
-</span><span class="boring">            let todo_row = list_item
+</span><span class="boring">            // Get `TaskRow` from `ListItem`
+</span><span class="boring">            let task_row = list_item
 </span><span class="boring">                .child()
 </span><span class="boring">                .expect(&quot;The child has to exist.&quot;)
-</span><span class="boring">                .downcast::&lt;TodoRow&gt;()
-</span><span class="boring">                .expect(&quot;The child has to be a `TodoRow`.&quot;);
+</span><span class="boring">                .downcast::&lt;TaskRow&gt;()
+</span><span class="boring">                .expect(&quot;The child has to be a `TaskRow`.&quot;);
 </span><span class="boring">
-</span><span class="boring">            todo_row.unbind();
+</span><span class="boring">            task_row.unbind();
 </span><span class="boring">        });
 </span><span class="boring">
 </span><span class="boring">        // Set the factory of the list view
@@ -981,12 +981,12 @@ Whenever the state of the key &quot;filter&quot; changes, we call the method <co
 </span><span class="boring">        action_remove_done_tasks.connect_activate(clone!(@weak model =&gt; move |_, _| {
 </span><span class="boring">            let mut position = 0;
 </span><span class="boring">            while let Some(item) = model.item(position) {
-</span><span class="boring">                // Get `TodoObject` from `glib::Object`
-</span><span class="boring">                let todo_object = item
-</span><span class="boring">                    .downcast_ref::&lt;TodoObject&gt;()
-</span><span class="boring">                    .expect(&quot;The object needs to be of type `TodoObject`.&quot;);
+</span><span class="boring">                // Get `TaskObject` from `glib::Object`
+</span><span class="boring">                let task_object = item
+</span><span class="boring">                    .downcast_ref::&lt;TaskObject&gt;()
+</span><span class="boring">                    .expect(&quot;The object needs to be of type `TaskObject`.&quot;);
 </span><span class="boring">
-</span><span class="boring">                if todo_object.is_completed() {
+</span><span class="boring">                if task_object.is_completed() {
 </span><span class="boring">                    model.remove(position);
 </span><span class="boring">                } else {
 </span><span class="boring">                    position += 1;
@@ -1001,8 +1001,8 @@ Whenever the state of the key &quot;filter&quot; changes, we call the method <co
 Here as well, a detailed action name is used.
 Since this has to be done at the application level, <code>setup_shortcuts</code> takes a <code>gtk::Application</code> as parameter.</p>
 <p><span class="filename">Filename: listings/todo_app/2/main.rs</span></p>
-<pre><code class="language-rust  no_run noplayground"><span class="boring">mod todo_object;
-</span><span class="boring">mod todo_row;
+<pre><code class="language-rust  no_run noplayground"><span class="boring">mod task_object;
+</span><span class="boring">mod task_row;
 </span><span class="boring">mod window;
 </span><span class="boring">
 </span><span class="boring">use gtk::gio;
@@ -1108,7 +1108,7 @@ If it can find one it will create a action <code>win.show-help-overlay</code> wh
 &lt;gresources&gt;
   &lt;gresource prefix=&quot;/org/gtk-rs/Todo2/&quot;&gt;
     &lt;file compressed=&quot;true&quot; preprocess=&quot;xml-stripblanks&quot; alias=&quot;gtk/help-overlay.ui&quot;&gt;shortcuts.ui&lt;/file&gt;
-    &lt;file compressed=&quot;true&quot; preprocess=&quot;xml-stripblanks&quot;&gt;todo_row.ui&lt;/file&gt;
+    &lt;file compressed=&quot;true&quot; preprocess=&quot;xml-stripblanks&quot;&gt;task_row.ui&lt;/file&gt;
     &lt;file compressed=&quot;true&quot; preprocess=&quot;xml-stripblanks&quot;&gt;window.ui&lt;/file&gt;
   &lt;/gresource&gt;
 &lt;/gresources&gt;
@@ -1120,9 +1120,9 @@ However, the tasks themselves will not.
 Let's implement that.</p>
 <p>Until now, we mostly converted primitives into variants.
 However, the <a href="https://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/derive.Variant.html"><code>glib::Variant</code></a> it also isn't much harder to do with our own structures.
-This is why we stored the data of <code>TodoObject</code> in a distinct <code>TodoData</code> structure.
-Doing so allows us to derive <code>glib::Variant</code> for <code>TodoData</code>.</p>
-<p><span class="filename">Filename: listings/todo_app/2/todo_object/mod.rs</span></p>
+This is why we stored the data of <code>TaskObject</code> in a distinct <code>TaskData</code> structure.
+Doing so allows us to derive <code>glib::Variant</code> for <code>TaskData</code>.</p>
+<p><span class="filename">Filename: listings/todo_app/2/task_object/mod.rs</span></p>
 <pre><code class="language-rust  no_run noplayground"><span class="boring">mod imp;
 </span><span class="boring">
 </span><span class="boring">use glib::Object;
@@ -1130,26 +1130,26 @@ Doing so allows us to derive <code>glib::Variant</code> for <code>TodoData</code
 </span><span class="boring">use gtk::subclass::prelude::*;
 </span><span class="boring">
 </span><span class="boring">glib::wrapper! {
-</span><span class="boring">    pub struct TodoObject(ObjectSubclass&lt;imp::TodoObject&gt;);
+</span><span class="boring">    pub struct TaskObject(ObjectSubclass&lt;imp::TaskObject&gt;);
 </span><span class="boring">}
 </span><span class="boring">
-</span><span class="boring">impl TodoObject {
+</span><span class="boring">impl TaskObject {
 </span><span class="boring">    pub fn new(completed: bool, content: String) -&gt; Self {
 </span><span class="boring">        Object::new(&amp;[(&quot;completed&quot;, &amp;completed), (&quot;content&quot;, &amp;content)])
-</span><span class="boring">            .expect(&quot;Failed to create `TodoObject`.&quot;)
+</span><span class="boring">            .expect(&quot;Failed to create `TaskObject`.&quot;)
 </span><span class="boring">    }
 </span><span class="boring">
 </span><span class="boring">    pub fn is_completed(&amp;self) -&gt; bool {
 </span><span class="boring">        self.imp().data.borrow().completed
 </span><span class="boring">    }
 </span><span class="boring">
-</span><span class="boring">    pub fn todo_data(&amp;self) -&gt; TodoData {
+</span><span class="boring">    pub fn todo_data(&amp;self) -&gt; TaskData {
 </span><span class="boring">        self.imp().data.borrow().clone()
 </span><span class="boring">    }
 </span><span class="boring">}
 </span><span class="boring">
 </span>#[derive(Default, glib::Variant, Clone)]
-pub struct TodoData {
+pub struct TaskData {
     pub completed: bool,
     pub content: String,
 }
@@ -1167,7 +1167,7 @@ Then we serialize the <code>Vec</code> and store the data as a json file.</p>
 </span><span class="boring">use gtk::{CompositeTemplate, Entry, ListView, MenuButton};
 </span><span class="boring">use once_cell::sync::OnceCell;
 </span><span class="boring">
-</span><span class="boring">use crate::todo_object::TodoObject;
+</span><span class="boring">use crate::task_object::TaskObject;
 </span><span class="boring">
 </span><span class="boring">// Object holding the state
 </span><span class="boring">#[derive(CompositeTemplate)]
@@ -1237,10 +1237,10 @@ impl WindowImpl for Window {
         let mut tasks = Vec::new();
         let mut position = 0;
         while let Some(item) = window.model().item(position) {
-            // Get `TodoObject` from `glib::Object`
+            // Get `TaskObject` from `glib::Object`
             let todo_data = item
-                .downcast_ref::&lt;TodoObject&gt;()
-                .expect(&quot;The object needs to be of type `TodoObject`.&quot;)
+                .downcast_ref::&lt;TaskObject&gt;()
+                .expect(&quot;The object needs to be of type `TaskObject`.&quot;)
                 .todo_data();
             // Add todo data to vector and increase position
             tasks.push(todo_data);
@@ -1272,8 +1272,8 @@ It might be the first time that we started the app and therefore there is no for
 <p><span class="filename">Filename: listings/todo_app/2/window/mod.rs</span></p>
 <pre><code class="language-rust  no_run noplayground"><span class="boring">mod imp;
 </span><span class="boring">
-</span><span class="boring">use crate::todo_object::{TodoData, TodoObject};
-</span><span class="boring">use crate::todo_row::TodoRow;
+</span><span class="boring">use crate::task_object::{TaskData, TaskObject};
+</span><span class="boring">use crate::task_row::TaskRow;
 </span><span class="boring">use glib::{clone, Object};
 </span><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::subclass::prelude::*;
@@ -1308,22 +1308,22 @@ It might be the first time that we started the app and therefore there is no for
 </span><span class="boring">
 </span><span class="boring">        // Create custom filters
 </span><span class="boring">        let filter_open = CustomFilter::new(|obj| {
-</span><span class="boring">            // Get `TodoObject` from `glib::Object`
-</span><span class="boring">            let todo_object = obj
-</span><span class="boring">                .downcast_ref::&lt;TodoObject&gt;()
-</span><span class="boring">                .expect(&quot;The object needs to be of type `TodoObject`.&quot;);
+</span><span class="boring">            // Get `TaskObject` from `glib::Object`
+</span><span class="boring">            let task_object = obj
+</span><span class="boring">                .downcast_ref::&lt;TaskObject&gt;()
+</span><span class="boring">                .expect(&quot;The object needs to be of type `TaskObject`.&quot;);
 </span><span class="boring">
 </span><span class="boring">            // Only allow completed tasks
-</span><span class="boring">            !todo_object.is_completed()
+</span><span class="boring">            !task_object.is_completed()
 </span><span class="boring">        });
 </span><span class="boring">        let filter_done = CustomFilter::new(|obj| {
-</span><span class="boring">            // Get `TodoObject` from `glib::Object`
-</span><span class="boring">            let todo_object = obj
-</span><span class="boring">                .downcast_ref::&lt;TodoObject&gt;()
-</span><span class="boring">                .expect(&quot;The object needs to be of type `TodoObject`.&quot;);
+</span><span class="boring">            // Get `TaskObject` from `glib::Object`
+</span><span class="boring">            let task_object = obj
+</span><span class="boring">                .downcast_ref::&lt;TaskObject&gt;()
+</span><span class="boring">                .expect(&quot;The object needs to be of type `TaskObject`.&quot;);
 </span><span class="boring">
 </span><span class="boring">            // Only allow done tasks
-</span><span class="boring">            todo_object.is_completed()
+</span><span class="boring">            task_object.is_completed()
 </span><span class="boring">        });
 </span><span class="boring">
 </span><span class="boring">        // Return the correct filter
@@ -1337,7 +1337,7 @@ It might be the first time that we started the app and therefore there is no for
 </span><span class="boring">
 </span><span class="boring">    fn setup_model(&amp;self) {
 </span><span class="boring">        // Create new model
-</span><span class="boring">        let model = gio::ListStore::new(TodoObject::static_type());
+</span><span class="boring">        let model = gio::ListStore::new(TaskObject::static_type());
 </span><span class="boring">
 </span><span class="boring">        // Get state and set model
 </span><span class="boring">        self.imp().model.set(model).expect(&quot;Could not set model&quot;);
@@ -1359,16 +1359,16 @@ It might be the first time that we started the app and therefore there is no for
 </span><span class="boring">
 </span>    fn restore_data(&amp;self) {
         // Deserialize data from file to vector
-        let tasks: Vec&lt;TodoData&gt; = self.imp().settings.get(&quot;tasks&quot;);
+        let tasks: Vec&lt;TaskData&gt; = self.imp().settings.get(&quot;tasks&quot;);
 
-        // Convert `Vec&lt;TodoData&gt;` to `Vec&lt;TodoObject&gt;`
-        let todo_objects: Vec&lt;TodoObject&gt; = tasks
+        // Convert `Vec&lt;TaskData&gt;` to `Vec&lt;TaskObject&gt;`
+        let task_objects: Vec&lt;TaskObject&gt; = tasks
             .into_iter()
-            .map(|todo_data| TodoObject::new(todo_data.completed, todo_data.content))
+            .map(|todo_data| TaskObject::new(todo_data.completed, todo_data.content))
             .collect();
 
         // Insert restored objects into model
-        self.model().splice(0, 0, &amp;todo_objects);
+        self.model().splice(0, 0, &amp;task_objects);
     }
 <span class="boring">
 </span><span class="boring">    fn setup_callbacks(&amp;self) {
@@ -1397,7 +1397,7 @@ It might be the first time that we started the app and therefore there is no for
 </span><span class="boring">        buffer.set_text(&quot;&quot;);
 </span><span class="boring">
 </span><span class="boring">        // Add new task to model
-</span><span class="boring">        let task = TodoObject::new(false, content);
+</span><span class="boring">        let task = TaskObject::new(false, content);
 </span><span class="boring">        self.model().append(&amp;task);
 </span><span class="boring">    }
 </span><span class="boring">
@@ -1405,42 +1405,42 @@ It might be the first time that we started the app and therefore there is no for
 </span><span class="boring">        // Create a new factory
 </span><span class="boring">        let factory = SignalListItemFactory::new();
 </span><span class="boring">
-</span><span class="boring">        // Create an empty `TodoRow` during setup
+</span><span class="boring">        // Create an empty `TaskRow` during setup
 </span><span class="boring">        factory.connect_setup(move |_, list_item| {
-</span><span class="boring">            // Create `TodoRow`
-</span><span class="boring">            let todo_row = TodoRow::new();
-</span><span class="boring">            list_item.set_child(Some(&amp;todo_row));
+</span><span class="boring">            // Create `TaskRow`
+</span><span class="boring">            let task_row = TaskRow::new();
+</span><span class="boring">            list_item.set_child(Some(&amp;task_row));
 </span><span class="boring">        });
 </span><span class="boring">
-</span><span class="boring">        // Tell factory how to bind `TodoRow` to a `TodoObject`
+</span><span class="boring">        // Tell factory how to bind `TaskRow` to a `TaskObject`
 </span><span class="boring">        factory.connect_bind(move |_, list_item| {
-</span><span class="boring">            // Get `TodoObject` from `ListItem`
-</span><span class="boring">            let todo_object = list_item
+</span><span class="boring">            // Get `TaskObject` from `ListItem`
+</span><span class="boring">            let task_object = list_item
 </span><span class="boring">                .item()
 </span><span class="boring">                .expect(&quot;The item has to exist.&quot;)
-</span><span class="boring">                .downcast::&lt;TodoObject&gt;()
-</span><span class="boring">                .expect(&quot;The item has to be an `TodoObject`.&quot;);
+</span><span class="boring">                .downcast::&lt;TaskObject&gt;()
+</span><span class="boring">                .expect(&quot;The item has to be an `TaskObject`.&quot;);
 </span><span class="boring">
-</span><span class="boring">            // Get `TodoRow` from `ListItem`
-</span><span class="boring">            let todo_row = list_item
+</span><span class="boring">            // Get `TaskRow` from `ListItem`
+</span><span class="boring">            let task_row = list_item
 </span><span class="boring">                .child()
 </span><span class="boring">                .expect(&quot;The child has to exist.&quot;)
-</span><span class="boring">                .downcast::&lt;TodoRow&gt;()
-</span><span class="boring">                .expect(&quot;The child has to be a `TodoRow`.&quot;);
+</span><span class="boring">                .downcast::&lt;TaskRow&gt;()
+</span><span class="boring">                .expect(&quot;The child has to be a `TaskRow`.&quot;);
 </span><span class="boring">
-</span><span class="boring">            todo_row.bind(&amp;todo_object);
+</span><span class="boring">            task_row.bind(&amp;task_object);
 </span><span class="boring">        });
 </span><span class="boring">
-</span><span class="boring">        // Tell factory how to unbind `TodoRow` from `TodoObject`
+</span><span class="boring">        // Tell factory how to unbind `TaskRow` from `TaskObject`
 </span><span class="boring">        factory.connect_unbind(move |_, list_item| {
-</span><span class="boring">            // Get `TodoRow` from `ListItem`
-</span><span class="boring">            let todo_row = list_item
+</span><span class="boring">            // Get `TaskRow` from `ListItem`
+</span><span class="boring">            let task_row = list_item
 </span><span class="boring">                .child()
 </span><span class="boring">                .expect(&quot;The child has to exist.&quot;)
-</span><span class="boring">                .downcast::&lt;TodoRow&gt;()
-</span><span class="boring">                .expect(&quot;The child has to be a `TodoRow`.&quot;);
+</span><span class="boring">                .downcast::&lt;TaskRow&gt;()
+</span><span class="boring">                .expect(&quot;The child has to be a `TaskRow`.&quot;);
 </span><span class="boring">
-</span><span class="boring">            todo_row.unbind();
+</span><span class="boring">            task_row.unbind();
 </span><span class="boring">        });
 </span><span class="boring">
 </span><span class="boring">        // Set the factory of the list view
@@ -1461,12 +1461,12 @@ It might be the first time that we started the app and therefore there is no for
 </span><span class="boring">        action_remove_done_tasks.connect_activate(clone!(@weak model =&gt; move |_, _| {
 </span><span class="boring">            let mut position = 0;
 </span><span class="boring">            while let Some(item) = model.item(position) {
-</span><span class="boring">                // Get `TodoObject` from `glib::Object`
-</span><span class="boring">                let todo_object = item
-</span><span class="boring">                    .downcast_ref::&lt;TodoObject&gt;()
-</span><span class="boring">                    .expect(&quot;The object needs to be of type `TodoObject`.&quot;);
+</span><span class="boring">                // Get `TaskObject` from `glib::Object`
+</span><span class="boring">                let task_object = item
+</span><span class="boring">                    .downcast_ref::&lt;TaskObject&gt;()
+</span><span class="boring">                    .expect(&quot;The object needs to be of type `TaskObject`.&quot;);
 </span><span class="boring">
-</span><span class="boring">                if todo_object.is_completed() {
+</span><span class="boring">                if task_object.is_completed() {
 </span><span class="boring">                    model.remove(position);
 </span><span class="boring">                } else {
 </span><span class="boring">                    position += 1;
@@ -1488,7 +1488,7 @@ It might be the first time that we started the app and therefore there is no for
 </span><span class="boring">use gtk::{CompositeTemplate, Entry, ListView, MenuButton};
 </span><span class="boring">use once_cell::sync::OnceCell;
 </span><span class="boring">
-</span><span class="boring">use crate::todo_object::TodoObject;
+</span><span class="boring">use crate::task_object::TaskObject;
 </span><span class="boring">
 </span><span class="boring">// Object holding the state
 </span><span class="boring">#[derive(CompositeTemplate)]
@@ -1558,10 +1558,10 @@ impl ObjectImpl for Window {
 </span><span class="boring">        let mut tasks = Vec::new();
 </span><span class="boring">        let mut position = 0;
 </span><span class="boring">        while let Some(item) = window.model().item(position) {
-</span><span class="boring">            // Get `TodoObject` from `glib::Object`
+</span><span class="boring">            // Get `TaskObject` from `glib::Object`
 </span><span class="boring">            let todo_data = item
-</span><span class="boring">                .downcast_ref::&lt;TodoObject&gt;()
-</span><span class="boring">                .expect(&quot;The object needs to be of type `TodoObject`.&quot;)
+</span><span class="boring">                .downcast_ref::&lt;TaskObject&gt;()
+</span><span class="boring">                .expect(&quot;The object needs to be of type `TaskObject`.&quot;)
 </span><span class="boring">                .todo_data();
 </span><span class="boring">            // Add todo data to vector and increase position
 </span><span class="boring">            tasks.push(todo_data);

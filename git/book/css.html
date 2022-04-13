@@ -553,12 +553,12 @@ Now we know that we have to add a CSS rule that applies to the <code>arrow</code
 Before, the individual tasks were a bit hard to distinguish.
 It would be nice if the todo rows would be surrounded by borders.
 Let's add that!</p>
-<p>The class <code>TodoRow</code> inherits from <code>gtk::Box</code>, so we could just match for the node <code>box</code>.
+<p>The class <code>TaskRow</code> inherits from <code>gtk::Box</code>, so we could just match for the node <code>box</code>.
 However, if we create a custom widget we might as well give it its own CSS name.
 Keep in mind, that this is not the same as when we gave a specific instance of a widget a name.
 When calling <a href="../docs/gtk4/subclass/widget/trait.WidgetClassSubclassExt.html#method.set_css_name"><code>set_css_name</code> </a>, we change the name of the CSS node of a widget.
-In our case, the widget <code>TodoRow</code> now corresponds to the node <code>todo-row</code>.</p>
-<p><span class="filename">Filename: listings/todo_app/3/todo_row/imp.rs</span></p>
+In our case, the widget <code>TaskRow</code> now corresponds to the node <code>todo-row</code>.</p>
+<p><span class="filename">Filename: listings/todo_app/3/task_row/imp.rs</span></p>
 <pre><code class="language-rust  no_run noplayground"><span class="boring">use glib::Binding;
 </span><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::subclass::prelude::*;
@@ -567,22 +567,22 @@ In our case, the widget <code>TodoRow</code> now corresponds to the node <code>t
 </span><span class="boring">
 </span><span class="boring">// Object holding the state
 </span><span class="boring">#[derive(Default, CompositeTemplate)]
-</span><span class="boring">#[template(resource = &quot;/org/gtk-rs/Todo3/todo_row.ui&quot;)]
-</span><span class="boring">pub struct TodoRow {
+</span><span class="boring">#[template(resource = &quot;/org/gtk-rs/Todo3/task_row.ui&quot;)]
+</span><span class="boring">pub struct TaskRow {
 </span><span class="boring">    #[template_child]
 </span><span class="boring">    pub completed_button: TemplateChild&lt;CheckButton&gt;,
 </span><span class="boring">    #[template_child]
 </span><span class="boring">    pub content_label: TemplateChild&lt;Label&gt;,
-</span><span class="boring">    // Vector holding the bindings to properties of `TodoObject`
+</span><span class="boring">    // Vector holding the bindings to properties of `TaskObject`
 </span><span class="boring">    pub bindings: RefCell&lt;Vec&lt;Binding&gt;&gt;,
 </span><span class="boring">}
 </span><span class="boring">
 </span>// The central trait for subclassing a GObject
 #[glib::object_subclass]
-impl ObjectSubclass for TodoRow {
+impl ObjectSubclass for TaskRow {
     // `NAME` needs to match `class` attribute of template
-    const NAME: &amp;'static str = &quot;TodoRow&quot;;
-    type Type = super::TodoRow;
+    const NAME: &amp;'static str = &quot;TodoTaskRow&quot;;
+    type Type = super::TaskRow;
     type ParentType = gtk::Box;
 
     fn class_init(klass: &amp;mut Self::Class) {
@@ -596,13 +596,13 @@ impl ObjectSubclass for TodoRow {
 }
 <span class="boring">
 </span><span class="boring">// Trait shared by all GObjects
-</span><span class="boring">impl ObjectImpl for TodoRow {}
+</span><span class="boring">impl ObjectImpl for TaskRow {}
 </span><span class="boring">
 </span><span class="boring">// Trait shared by all widgets
-</span><span class="boring">impl WidgetImpl for TodoRow {}
+</span><span class="boring">impl WidgetImpl for TaskRow {}
 </span><span class="boring">
 </span><span class="boring">// Trait shared by all boxes
-</span><span class="boring">impl BoxImpl for TodoRow {}
+</span><span class="boring">impl BoxImpl for TaskRow {}
 </span></code></pre>
 <p>Now we have to decide which color to use for the borders.
 Luckily, the stylesheet that GTK uses provides pre-defined colors for various use-cases.
@@ -619,11 +619,11 @@ We can then access the pre-defined color by adding an <code>@</code> in front of
 <p>This was also an excellent opportunity to show how to set the CSS name of custom widget and how to access exported colors.
 In the end, we find that GTK provides a style rule to add borders to a node.
 This seems nicer, so we will use that instead.
-We match the style rule by adding the style class <code>frame</code> to our <code>TodoRow</code>.</p>
-<p><span class="filename">Filename: listings/todo_app/4/resources/todo_row.ui</span></p>
+We match the style rule by adding the style class <code>frame</code> to our <code>TaskRow</code>.</p>
+<p><span class="filename">Filename: listings/todo_app/4/resources/task_row.ui</span></p>
 <pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
 &lt;interface&gt;
-  &lt;template class=&quot;TodoRow&quot; parent=&quot;GtkBox&quot;&gt;
+  &lt;template class=&quot;TodoTaskRow&quot; parent=&quot;GtkBox&quot;&gt;
     &lt;child&gt;
       &lt;object class=&quot;GtkCheckButton&quot; id=&quot;completed_button&quot;&gt;
         &lt;property name=&quot;margin-top&quot;&gt;12&lt;/property&gt;
