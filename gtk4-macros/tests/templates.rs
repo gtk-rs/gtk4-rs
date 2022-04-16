@@ -86,7 +86,7 @@ mod imp2 {
         #[template_child]
         button: TemplateChild<gtk::Button>,
         tx: RefCell<mpsc::Sender<u64>>,
-        rx: RefCell<mpsc::Receiver<u64>>,
+        rx: RefCell<Option<mpsc::Receiver<u64>>>,
     }
 
     impl Default for MyWidget2 {
@@ -95,7 +95,7 @@ mod imp2 {
             Self {
                 button: Default::default(),
                 tx: RefCell::new(tx),
-                rx: RefCell::new(rx),
+                rx: RefCell::new(Some(rx)),
             }
         }
     }
@@ -124,10 +124,13 @@ mod imp2 {
     }
 
     impl super::MyWidget2 {
-        pub async fn click_button(&self) -> u64 {
+        pub async fn click_button(&self) -> Option<u64> {
             use futures_util::StreamExt;
+            let mut rx = self.imp().rx.take()?;
             self.imp().button.emit_clicked();
-            self.imp().rx.borrow_mut().next().await.unwrap()
+            let v = rx.next().await?;
+            self.imp().rx.replace(Some(rx));
+            Some(v)
         }
     }
 
@@ -148,7 +151,7 @@ glib::wrapper! {
 #[gtk::test]
 async fn async_callbacks() {
     let widget: MyWidget2 = glib::Object::new(&[]).unwrap();
-    assert_eq!(widget.click_button().await, 42);
+    assert_eq!(widget.click_button().await, Some(42));
 }
 
 mod imp3 {
