@@ -25,6 +25,7 @@
         <link rel="stylesheet" href="ayu-highlight.css">
 
         <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="theme/style.css">
     </head>
     <body>
         <!-- Provide site root to javascript -->
@@ -142,7 +143,7 @@
 <p>At the very least, we need to create a <a href="../docs/gtk4/struct.Application.html"><code>gtk::Application</code></a> instance with an <a href="https://developer.gnome.org/documentation/tutorials/application-id.html">application id</a>.
 For that we use the <a href="https://rust-unofficial.github.io/patterns/patterns/creational/builder.html">builder pattern</a> which many <code>gtk-rs</code> objects support.
 Note that we also import the prelude to bring the necessary traits into scope.</p>
-<p><span class="filename">Filename: listings/hello_world/1/main.rs</span></p>
+<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/hello_world/1/main.rs">listings/hello_world/1/main.rs</a></p>
 <pre><code class="language-rust  no_run noplayground">use gtk::prelude::*;
 use gtk::Application;
 
@@ -162,7 +163,7 @@ and has no handlers connected to the 'activate' signal. It should do one of thes
 </code></pre>
 <p>GTK tells us that something should be called in its <code>activate</code> step.
 So let's create a <a href="../docs/gtk4/struct.ApplicationWindow.html"><code>gtk::ApplicationWindow</code></a> there.</p>
-<p><span class="filename">Filename: listings/hello_world/2/main.rs</span></p>
+<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/hello_world/2/main.rs">listings/hello_world/2/main.rs</a></p>
 <pre><code class="language-rust  no_run noplayground">use gtk::prelude::*;
 use gtk::{Application, ApplicationWindow};
 
@@ -194,7 +195,7 @@ fn build_ui(app: &amp;Application) {
 <div style="text-align:center"><img src="img/hello_world_empty.png" /></div>
 <p>Normally we expect to be able to interact with the user interface.
 Also, the name of the chapter suggests that the phrase &quot;Hello World!&quot; will be involved.</p>
-<p><span class="filename">Filename: listings/hello_world/3/main.rs</span></p>
+<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/hello_world/3/main.rs">listings/hello_world/3/main.rs</a></p>
 <pre><code class="language-rust  no_run noplayground"><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::{Application, ApplicationWindow, Button};
 </span><span class="boring">fn main() {

@@ -25,6 +25,7 @@
         <link rel="stylesheet" href="ayu-highlight.css">
 
         <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="theme/style.css">
     </head>
     <body>
         <!-- Provide site root to javascript -->
@@ -149,7 +150,7 @@ That is why you can move the window at the same time as a progress bar is growin
 <p>However, you surely saw GUIs that became unresponsive, at least for a few seconds.
 That happens when a single task takes too long.
 Let's look at one example.</p>
-<p><span class="filename">Filename: listings/main_event_loop/1/main.rs</span></p>
+<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/main_event_loop/1/main.rs">listings/main_event_loop/1/main.rs</a></p>
 <pre><code class="language-rust  no_run noplayground">use std::time::Duration;
 
 use gtk::prelude::*;
@@ -202,7 +203,7 @@ The <code>sleep</code> call is an artificial example,
 but it is not unusual wanting to run a slightly longer operation in one go.</p>
 <h2 id="how-to-avoid-blocking-the-main-loop"><a class="header" href="#how-to-avoid-blocking-the-main-loop">How to Avoid Blocking the Main Loop</a></h2>
 <p>In order to avoid blocking the main loop we can spawn a new thread and let the operation run there.</p>
-<p><span class="filename">Filename: listings/main_event_loop/2/main.rs</span></p>
+<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/main_event_loop/2/main.rs">listings/main_event_loop/2/main.rs</a></p>
 <pre><code class="language-rust  no_run noplayground"><span class="boring">use std::{thread, time::Duration};
 </span><span class="boring">
 </span><span class="boring">use gtk::prelude::*;
@@ -266,7 +267,7 @@ In our case, we don't want the user to spawn additional threads while an existin
 In order to achieve that we can create a channel.
 The main loop allows us to send a message from multiple places to a single receiver at the main thread.
 We want to send a <code>bool</code> to inform, whether we want the button to react to clicks or not.</p>
-<p><span class="filename">Filename: listings/main_event_loop/3/main.rs</span></p>
+<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/main_event_loop/3/main.rs">listings/main_event_loop/3/main.rs</a></p>
 <pre><code class="language-rust  no_run noplayground"><span class="boring">use std::{thread, time::Duration};
 </span><span class="boring">
 </span><span class="boring">use glib::{clone, Continue, MainContext, PRIORITY_DEFAULT};
@@ -349,7 +350,7 @@ This is why we specify <code>@default-return</code> as <code>Continue(False)</co
 You can also let the main loop take care of running <a href="https://rust-lang.github.io/async-book/"><code>async</code></a> functions.
 If you do that from the main thread use <a href="http://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/struct.MainContext.html#method.spawn_local"><code>spawn_local</code></a>, from other threads <a href="http://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/struct.MainContext.html#method.spawn"><code>spawn</code></a> has to be used.
 The converted code looks and behaves very similar to the multi-threaded code.</p>
-<p><span class="filename">Filename: listings/main_event_loop/4/main.rs</span></p>
+<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/main_event_loop/4/main.rs">listings/main_event_loop/4/main.rs</a></p>
 <pre><code class="language-rust  no_run noplayground"><span class="boring">use glib::{clone, timeout_future_seconds, Continue, MainContext, PRIORITY_DEFAULT};
 </span><span class="boring">use gtk::glib;
 </span><span class="boring">use gtk::prelude::*;
@@ -415,7 +416,7 @@ The converted code looks and behaves very similar to the multi-threaded code.</p
 </span><span class="boring">}
 </span></code></pre>
 <p>Since we are single-threaded again, we could even get rid of the channels while achieving the same result.</p>
-<p><span class="filename">Filename: listings/main_event_loop/5/main.rs</span></p>
+<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/main_event_loop/5/main.rs">listings/main_event_loop/5/main.rs</a></p>
 <pre><code class="language-rust  no_run noplayground"><span class="boring">use glib::{clone, timeout_future_seconds, MainContext};
 </span><span class="boring">use gtk::glib;
 </span><span class="boring">use gtk::prelude::*;

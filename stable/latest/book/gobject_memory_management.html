@@ -25,6 +25,7 @@
         <link rel="stylesheet" href="ayu-highlight.css">
 
         <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="theme/style.css">
     </head>
     <body>
         <!-- Provide site root to javascript -->
@@ -253,7 +254,7 @@ we can use the <a href="https://doc.rust-lang.org/std/cell/struct.Cell.html"><co
 For other objects, <a href="https://doc.rust-lang.org/std/cell/struct.RefCell.html"><code>RefCell</code></a> is the way to go.
 You can learn more about the two cell types in this <a href="https://doc.rust-lang.org/1.30.0/book/first-edition/choosing-your-guarantees.html#cell-types">section</a> of an older edition of the Rust book.</p>
 </blockquote>
-<p><span class="filename">Filename: listings/gobject_memory_management/1/main.rs</span></p>
+<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/gobject_memory_management/1/main.rs">listings/gobject_memory_management/1/main.rs</a></p>
 <pre><code class="language-rust  no_run noplayground"><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::Application;
 </span><span class="boring">use gtk::{self, ApplicationWindow, Button, Orientation};
@@ -316,7 +317,7 @@ You can learn more about the two cell types in this <a href="https://doc.rust-la
 </span></code></pre>
 <p>It is not very nice though to fill the scope with temporary variables like <code>number_copy</code>.
 We can improve that by using the <a href="https://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/macro.clone.html"><code>glib::clone!</code></a> macro.</p>
-<p><span class="filename">Filename: listings/gobject_memory_management/2/main.rs</span></p>
+<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/gobject_memory_management/2/main.rs">listings/gobject_memory_management/2/main.rs</a></p>
 <pre><code class="language-rust  no_run noplayground"><span class="boring">use glib::clone;
 </span><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::{self, ApplicationWindow, Button, Orientation};
@@ -383,7 +384,7 @@ We can improve that by using the <a href="https://gtk-rs.org/gtk-rs-core/stable/
 </span></code></pre>
 <p>Just like <code>Rc&lt;Cell&lt;T&gt;&gt;</code>, GObjects are reference-counted and mutable.
 Therefore, we can pass the buttons the same way to the closure as we did with <code>number</code>.</p>
-<p><span class="filename">Filename: listings/gobject_memory_management/3/main.rs</span></p>
+<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/gobject_memory_management/3/main.rs">listings/gobject_memory_management/3/main.rs</a></p>
 <pre><code class="language-rust  no_run noplayground"><span class="boring">use std::{cell::Cell, rc::Rc};
 </span><span class="boring">
 </span><span class="boring">use glib::clone;
@@ -463,7 +464,7 @@ A strong reference keeps the referenced value from being deallocated.
 If this chain leads to a circle, none of the values in this cycle ever get deallocated.
 With weak references we can break this cycle, because they don't keep their value alive but instead provide a way to retrieve a strong reference if the value is still alive.
 Since we want our apps to free unneeded memory, we should use weak references for the buttons instead.</p>
-<p><span class="filename">Filename: listings/gobject_memory_management/4/main.rs</span></p>
+<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/gobject_memory_management/4/main.rs">listings/gobject_memory_management/4/main.rs</a></p>
 <pre><code class="language-rust  no_run noplayground"><span class="boring">use std::{cell::Cell, rc::Rc};
 </span><span class="boring">
 </span><span class="boring">use glib::clone;
@@ -544,7 +545,7 @@ In case the closure expects a different return value <code>@default-return</code
 If we had moved weak references in both closures, nothing would have kept <code>number</code> alive and the closure would have never been called.
 Thinking about this, <code>button_increase</code> and <code>button_decrease</code> are also dropped at the end of the scope of <code>build_ui</code>.
 Who then keeps the buttons alive?</p>
-<p><span class="filename">Filename: listings/gobject_memory_management/4/main.rs</span></p>
+<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/gobject_memory_management/4/main.rs">listings/gobject_memory_management/4/main.rs</a></p>
 <pre><code class="language-rust  no_run noplayground"><span class="boring">use std::{cell::Cell, rc::Rc};
 </span><span class="boring">
 </span><span class="boring">use glib::clone;
@@ -617,7 +618,7 @@ Who then keeps the buttons alive?</p>
 </span><span class="boring">}
 </span></code></pre>
 <p>When we append the buttons to the <code>gtk_box</code>, <code>gtk_box</code> keeps a strong reference to them.</p>
-<p><span class="filename">Filename: listings/gobject_memory_management/4/main.rs</span></p>
+<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/gobject_memory_management/4/main.rs">listings/gobject_memory_management/4/main.rs</a></p>
 <pre><code class="language-rust  no_run noplayground"><span class="boring">use std::{cell::Cell, rc::Rc};
 </span><span class="boring">
 </span><span class="boring">use glib::clone;
