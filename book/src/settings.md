@@ -6,7 +6,7 @@ Let's learn how to use [`gio::Settings`](https://gtk-rs.org/gtk-rs-core/stable/l
 
 At the very beginning we have to create a `GSchema` xml file in order to describe the kind of data our application plans to store in the settings.
 
-<span class="filename">Filename: listings/settings/1/org.gtk-rs.example.gschema.xml</span>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/settings/1/org.gtk-rs.example.gschema.xml">listings/settings/1/org.gtk-rs.example.gschema.xml</a>
 
 ```xml
 {{#rustdoc_include ../listings/settings/1/org.gtk-rs.example.gschema.xml}}
@@ -14,7 +14,7 @@ At the very beginning we have to create a `GSchema` xml file in order to describ
 Let's get through it step by step.
 The `id` is the same application id we used when we created our application.
 
-<span class="filename">Filename: listings/settings/1/main.rs</span>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/settings/1/main.rs">listings/settings/1/main.rs</a>
 
 ```rust ,no_run,noplayground
 {{#rustdoc_include ../listings/settings/1/main.rs:application}}
@@ -45,7 +45,7 @@ Now we need to copy and compile the schema.
 
 We initialize the `Settings` object by specifying the application id.
 
-<span class="filename">Filename: listings/settings/1/main.rs</span>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/settings/1/main.rs">listings/settings/1/main.rs</a>
 
 ```rust ,no_run,noplayground
 {{#rustdoc_include ../listings/settings/1/main.rs:settings}}
@@ -53,7 +53,7 @@ We initialize the `Settings` object by specifying the application id.
 
 Then we get the settings key and use it when we create our `Switch`.
 
-<span class="filename">Filename: listings/settings/1/main.rs</span>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/settings/1/main.rs">listings/settings/1/main.rs</a>
 
 ```rust ,no_run,noplayground
 {{#rustdoc_include ../listings/settings/1/main.rs:switch}}
@@ -61,7 +61,7 @@ Then we get the settings key and use it when we create our `Switch`.
 
 Finally, we assure that the switch state is stored in the settings whenever we click on it.
 
-<span class="filename">Filename: listings/settings/1/main.rs</span>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/settings/1/main.rs">listings/settings/1/main.rs</a>
 
 ```rust ,no_run,noplayground
 {{#rustdoc_include ../listings/settings/1/main.rs:connect_state_set}}
@@ -83,7 +83,7 @@ We can remove the [`boolean`](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/
 We then bind the setting to the property by specifying the key, object and name of the property.
 Additionally, we specify [`SettingsBindFlags`](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/gio/struct.SettingsBindFlags.html) to control the direction in which the binding works.
 
-<span class="filename">Filename: listings/settings/2/main.rs</span>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/settings/2/main.rs">listings/settings/2/main.rs</a>
 
 ```rust ,no_run,noplayground
 {{#rustdoc_include ../listings/settings/2/main.rs:settings_bind}}

@@ -126,7 +126,7 @@ we can use the [`Cell`](https://doc.rust-lang.org/std/cell/struct.Cell.html) typ
 > For other objects, [`RefCell`](https://doc.rust-lang.org/std/cell/struct.RefCell.html) is the way to go.
 > You can learn more about the two cell types in this [section](https://doc.rust-lang.org/1.30.0/book/first-edition/choosing-your-guarantees.html#cell-types) of an older edition of the Rust book.
 
-<span class="filename">Filename: listings/gobject_memory_management/1/main.rs</span>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/gobject_memory_management/1/main.rs">listings/gobject_memory_management/1/main.rs</a>
 
 ```rust ,no_run,noplayground
 {{#rustdoc_include ../listings/gobject_memory_management/1/main.rs:callback}}
@@ -135,7 +135,7 @@ we can use the [`Cell`](https://doc.rust-lang.org/std/cell/struct.Cell.html) typ
 It is not very nice though to fill the scope with temporary variables like `number_copy`.
 We can improve that by using the [`glib::clone!`](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/macro.clone.html) macro.
 
-<span class="filename">Filename: listings/gobject_memory_management/2/main.rs</span>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/gobject_memory_management/2/main.rs">listings/gobject_memory_management/2/main.rs</a>
 
 ```rust ,no_run,noplayground
 {{#rustdoc_include ../listings/gobject_memory_management/2/main.rs:callback}}
@@ -144,7 +144,7 @@ We can improve that by using the [`glib::clone!`](https://gtk-rs.org/gtk-rs-core
 Just like `Rc<Cell<T>>`, GObjects are reference-counted and mutable.
 Therefore, we can pass the buttons the same way to the closure as we did with `number`.
 
-<span class="filename">Filename: listings/gobject_memory_management/3/main.rs</span>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/gobject_memory_management/3/main.rs">listings/gobject_memory_management/3/main.rs</a>
 
 ```rust ,no_run,noplayground
 {{#rustdoc_include ../listings/gobject_memory_management/3/main.rs:callback}}
@@ -161,7 +161,7 @@ If this chain leads to a circle, none of the values in this cycle ever get deall
 With weak references we can break this cycle, because they don't keep their value alive but instead provide a way to retrieve a strong reference if the value is still alive.
 Since we want our apps to free unneeded memory, we should use weak references for the buttons instead.
 
-<span class="filename">Filename: listings/gobject_memory_management/4/main.rs</span>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/gobject_memory_management/4/main.rs">listings/gobject_memory_management/4/main.rs</a>
 
 ```rust ,no_run,noplayground
 {{#rustdoc_include ../listings/gobject_memory_management/4/main.rs:callback}}
@@ -178,7 +178,7 @@ If we had moved weak references in both closures, nothing would have kept `numbe
 Thinking about this, `button_increase` and `button_decrease` are also dropped at the end of the scope of `build_ui`.
 Who then keeps the buttons alive?
 
-<span class="filename">Filename: listings/gobject_memory_management/4/main.rs</span>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/gobject_memory_management/4/main.rs">listings/gobject_memory_management/4/main.rs</a>
 
 ```rust ,no_run,noplayground
 {{#rustdoc_include ../listings/gobject_memory_management/4/main.rs:box_append}}
@@ -186,7 +186,7 @@ Who then keeps the buttons alive?
 
 When we append the buttons to the `gtk_box`, `gtk_box` keeps a strong reference to them.
 
-<span class="filename">Filename: listings/gobject_memory_management/4/main.rs</span>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/gobject_memory_management/4/main.rs">listings/gobject_memory_management/4/main.rs</a>
 
 ```rust ,no_run,noplayground
 {{#rustdoc_include ../listings/gobject_memory_management/4/main.rs:window_child}}

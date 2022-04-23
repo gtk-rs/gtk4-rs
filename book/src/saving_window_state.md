@@ -6,7 +6,7 @@ GTK does not provide this functionality out of the box, but luckily it is not to
 We basically want two integers (`height` & `width`) and a boolean (`is_maximized`) to persist.
 We already know how to do this by using [`gio::Settings`](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/gio/struct.Settings.html).
 
-<span class="filename">Filename: listings/saving_window_state/1/org.gtk-rs.example.gschema.xml</span>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/saving_window_state/1/org.gtk-rs.example.gschema.xml">listings/saving_window_state/1/org.gtk-rs.example.gschema.xml</a>
 
 ```xml
 {{#rustdoc_include ../listings/saving_window_state/1/org.gtk-rs.example.gschema.xml}}
@@ -16,7 +16,7 @@ Since we don't care about intermediate state, we only load the window state when
 That can be done by creating a custom window.
 First, we create one and add methods for getting and setting the window state.
 
-<span class="filename">Filename: listings/saving_window_state/1/custom_window/mod.rs</span>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/saving_window_state/1/custom_window/mod.rs">listings/saving_window_state/1/custom_window/mod.rs</a>
 
 ```rust ,no_run,noplayground
 {{#rustdoc_include ../listings/saving_window_state/1/custom_window/mod.rs:mod}}
@@ -29,7 +29,7 @@ First, we create one and add methods for getting and setting the window state.
 The implementation struct holds the `settings`.
 We also override the `constructed` and `close_request` methods, where we load or save the window state. 
 
-<span class="filename">Filename: listings/saving_window_state/1/custom_window/imp.rs</span>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/saving_window_state/1/custom_window/imp.rs">listings/saving_window_state/1/custom_window/imp.rs</a>
 
 ```rust ,no_run,noplayground
 {{#rustdoc_include ../listings/saving_window_state/1/custom_window/imp.rs:imp}}

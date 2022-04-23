@@ -7,7 +7,7 @@ The signal then takes care that all the registered callbacks will be executed.
 `gtk-rs` provides convenience methods for registering callbacks.
 In our "Hello World" example we [connected](../docs/gtk4/prelude/trait.ButtonExt.html#tymethod.connect_clicked) the "clicked" signal to a closure which sets the label of the button to "Hello World" as soon as it gets called.
 
-<span class="filename">Filename: listings/hello_world/3/main.rs</span>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/hello_world/3/main.rs">listings/hello_world/3/main.rs</a>
 
 ```rust ,no_run,noplayground
 {{#rustdoc_include ../listings/hello_world/3/main.rs:callback}}
@@ -15,7 +15,7 @@ In our "Hello World" example we [connected](../docs/gtk4/prelude/trait.ButtonExt
 
 If we wanted to, we could have connected to it with the generic [`connect_closure`](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/object/trait.ObjectExt.html#tymethod.connect_closure) method and the [`glib::closure_local!`](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/macro.closure_local.html) macro.
 
-<span class="filename">Filename: listings/gobject_signals/1/main.rs</span>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/gobject_signals/1/main.rs">listings/gobject_signals/1/main.rs</a>
 
 ```rust ,no_run,noplayground
 {{#rustdoc_include ../listings/gobject_signals/1/main.rs:callback}}
@@ -32,7 +32,7 @@ Let's see how we can create our own signals.
 Again we do that by extending our `CustomButton`.
 First we override the necessary methods in `ObjectImpl`.
 
-<span class="filename">Filename: listings/gobject_signals/2/custom_button/imp.rs</span>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/gobject_signals/2/custom_button/imp.rs">listings/gobject_signals/2/custom_button/imp.rs</a>
 
 ```rust ,no_run,noplayground
 {{#rustdoc_include ../listings/gobject_signals/2/custom_button/imp.rs:object_impl}}
@@ -48,7 +48,7 @@ We want the signal to be emitted, whenever `number` reaches `MAX_NUMBER`.
 Together with the signal we send the value `number` currently holds.
 After we did that, we set `number` back to 0.
 
-<span class="filename">Filename: listings/gobject_signals/2/custom_button/imp.rs</span>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/gobject_signals/2/custom_button/imp.rs">listings/gobject_signals/2/custom_button/imp.rs</a>
 
 ```rust ,no_run,noplayground
 {{#rustdoc_include ../listings/gobject_signals/2/custom_button/imp.rs:button_impl}}
@@ -58,7 +58,7 @@ If we now press on the button, the number of its label increases until it reache
 Then it emits the "max-number-reached" signal which we can nicely connect to.
 Whenever we now receive the "max-number-reached" signal, the accompanying number is printed to [standard output](https://en.wikipedia.org/wiki/Standard_streams#Standard_output_(stdout)).
 
-<span class="filename">Filename: listings/gobject_signals/2/main.rs</span>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/gobject_signals/2/main.rs">listings/gobject_signals/2/main.rs</a>
 
 ```rust ,no_run,noplayground
 {{#rustdoc_include ../listings/gobject_signals/2/main.rs:signal_handling}}
