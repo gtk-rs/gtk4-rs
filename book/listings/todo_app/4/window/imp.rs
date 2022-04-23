@@ -19,7 +19,7 @@ pub struct Window {
     pub menu_button: TemplateChild<MenuButton>,
     #[template_child]
     pub list_view: TemplateChild<ListView>,
-    pub model: OnceCell<gio::ListStore>,
+    pub current_tasks: OnceCell<gio::ListStore>,
     pub settings: Settings,
 }
 
@@ -29,7 +29,7 @@ impl Default for Window {
             entry: TemplateChild::default(),
             menu_button: TemplateChild::default(),
             list_view: TemplateChild::default(),
-            model: OnceCell::default(),
+            current_tasks: OnceCell::default(),
             settings: Settings::new("org.gtk-rs.Todo4"),
         }
     }
@@ -59,7 +59,7 @@ impl ObjectImpl for Window {
         self.parent_constructed(obj);
 
         // Setup
-        obj.setup_model();
+        obj.setup_tasks();
         obj.restore_data();
         obj.setup_callbacks();
         obj.setup_factory();
@@ -76,7 +76,7 @@ impl WindowImpl for Window {
         // Store todo data in vector
         let mut tasks = Vec::new();
         let mut position = 0;
-        while let Some(item) = window.model().item(position) {
+        while let Some(item) = window.current_tasks().item(position) {
             // Get `TaskObject` from `glib::Object`
             let todo_data = item
                 .downcast_ref::<TaskObject>()

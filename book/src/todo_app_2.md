@@ -128,7 +128,7 @@ Whenever the state of the key "filter" changes, we call the method `filter` agai
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo_app/2/window/mod.rs">listings/todo_app/2/window/mod.rs</a>
 
 ```rust ,no_run,noplayground
-{{#rustdoc_include ../listings/todo_app/2/window/mod.rs:setup_model}}
+{{#rustdoc_include ../listings/todo_app/2/window/mod.rs:setup_tasks}}
 ```
 
 Then, we bind the shortcuts to their actions with `set_accels_for_action`.

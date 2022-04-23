@@ -146,13 +146,13 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 ```
 
 Since we need to access the list model quite often, we add the convenience method `Window::model` for that.
-In `Window::setup_model` we create a new model.
+In `Window::setup_tasks` we create a new model.
 Then we store a reference to the model in `imp::Window` as well as in `gtk::ListView`.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo_app/1/window/mod.rs">listings/todo_app/1/window/mod.rs</a>
 
 ```rust ,no_run,noplayground
-{{#rustdoc_include ../listings/todo_app/1/window/mod.rs:model}}
+{{#rustdoc_include ../listings/todo_app/1/window/mod.rs:tasks}}
 ```
 
 In `Window::setup_callbacks` we connect to the "activate" signal of the entry.
