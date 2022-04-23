@@ -146,13 +146,13 @@ We override the `imp::Window::constructed` in order to set up window contents at
 ```
 
 Since we need to access the list model quite often, we add the convenience method `Window::model` for that.
-In `Window::setup_model` we create a new model.
+In `Window::setup_tasks` we create a new model.
 Then we store a reference to the model in `imp::Window` as well as in `gtk::ListView`.
 
 <span class="filename">Filename: listings/todo_app/1/window/mod.rs</span>
 
 ```rust ,no_run,noplayground
-{{#rustdoc_include ../listings/todo_app/1/window/mod.rs:model}}
+{{#rustdoc_include ../listings/todo_app/1/window/mod.rs:tasks}}
 ```
 
 In `Window::setup_callbacks` we connect to the "activate" signal of the entry.

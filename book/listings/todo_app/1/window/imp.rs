@@ -14,7 +14,7 @@ pub struct Window {
     pub entry: TemplateChild<Entry>,
     #[template_child]
     pub list_view: TemplateChild<ListView>,
-    pub model: OnceCell<gio::ListStore>,
+    pub current_tasks: OnceCell<gio::ListStore>,
 }
 
 // The central trait for subclassing a GObject
@@ -43,7 +43,7 @@ impl ObjectImpl for Window {
         self.parent_constructed(obj);
 
         // Setup
-        obj.setup_model();
+        obj.setup_tasks();
         obj.setup_callbacks();
         obj.setup_factory();
     }

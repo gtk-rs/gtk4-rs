@@ -23,9 +23,9 @@ impl Window {
         Object::new(&[("application", app)]).expect("Failed to create `Window`.")
     }
 
-    fn model(&self) -> &gio::ListStore {
+    fn current_tasks(&self) -> &gio::ListStore {
         // Get state
-        self.imp().model.get().expect("Could not get model")
+        self.imp().current_tasks.get().expect("Could not get model")
     }
 
     // ANCHOR: filter
@@ -65,17 +65,20 @@ impl Window {
     }
     // ANCHOR_END: filter
 
-    // ANCHOR: setup_model
-    fn setup_model(&self) {
+    // ANCHOR: setup_tasks
+    fn setup_tasks(&self) {
         // Create new model
         let model = gio::ListStore::new(TaskObject::static_type());
 
         // Get state and set model
-        self.imp().model.set(model).expect("Could not set model");
+        self.imp()
+            .current_tasks
+            .set(model)
+            .expect("Could not set model");
 
         // Wrap model with filter and selection and pass it to the list view
         let filter_model =
-            FilterListModel::new(Some(self.model()), self.filter().as_ref());
+            FilterListModel::new(Some(self.current_tasks()), self.filter().as_ref());
         let selection_model = NoSelection::new(Some(&filter_model));
         self.imp().list_view.set_model(Some(&selection_model));
 
@@ -87,7 +90,7 @@ impl Window {
             }),
         );
     }
-    // ANCHOR_END: setup_model
+    // ANCHOR_END: setup_tasks
 
     // ANCHOR: restore_data
     fn restore_data(&self) {
@@ -101,7 +104,7 @@ impl Window {
             .collect();
 
         // Insert restored objects into model
-        self.model().splice(0, 0, &task_objects);
+        self.current_tasks().splice(0, 0, &task_objects);
     }
     // ANCHOR_END: restore_data
 
@@ -134,7 +137,7 @@ impl Window {
 
         // Add new task to model
         let task = TaskObject::new(false, content);
-        self.model().append(&task);
+        self.current_tasks().append(&task);
     }
 
     fn setup_factory(&self) {
@@ -190,7 +193,7 @@ impl Window {
         self.add_action(&action_filter);
 
         // Get model
-        let model = self.model();
+        let model = self.current_tasks();
 
         // Create action to remove done tasks and add to action group "win"
         let action_remove_done_tasks =
