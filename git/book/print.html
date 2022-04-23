@@ -5955,20 +5955,23 @@ As usual, we have to list all <a href="https://docs.gtk.org/gtk4/class.Applicati
 </span><span class="boring">        Object::new(&amp;[(&quot;application&quot;, app)]).expect(&quot;Failed to create `Window`.&quot;)
 </span><span class="boring">    }
 </span><span class="boring">
-</span><span class="boring">    fn model(&amp;self) -&gt; &amp;gio::ListStore {
+</span><span class="boring">    fn current_tasks(&amp;self) -&gt; &amp;gio::ListStore {
 </span><span class="boring">        // Get state
-</span><span class="boring">        self.imp().model.get().expect(&quot;Could not get model&quot;)
+</span><span class="boring">        self.imp().current_tasks.get().expect(&quot;Could not get model&quot;)
 </span><span class="boring">    }
 </span><span class="boring">
-</span><span class="boring">    fn setup_model(&amp;self) {
+</span><span class="boring">    fn setup_tasks(&amp;self) {
 </span><span class="boring">        // Create new model
 </span><span class="boring">        let model = gio::ListStore::new(TaskObject::static_type());
 </span><span class="boring">
 </span><span class="boring">        // Get state and set model
-</span><span class="boring">        self.imp().model.set(model).expect(&quot;Could not set model&quot;);
+</span><span class="boring">        self.imp()
+</span><span class="boring">            .current_tasks
+</span><span class="boring">            .set(model)
+</span><span class="boring">            .expect(&quot;Could not set model&quot;);
 </span><span class="boring">
 </span><span class="boring">        // Wrap model with selection and pass it to the list view
-</span><span class="boring">        let selection_model = NoSelection::new(Some(self.model()));
+</span><span class="boring">        let selection_model = NoSelection::new(Some(self.current_tasks()));
 </span><span class="boring">        self.imp().list_view.set_model(Some(&amp;selection_model));
 </span><span class="boring">    }
 </span><span class="boring">
@@ -5999,7 +6002,7 @@ As usual, we have to list all <a href="https://docs.gtk.org/gtk4/class.Applicati
 </span><span class="boring">
 </span><span class="boring">        // Add new task to model
 </span><span class="boring">        let task = TaskObject::new(false, content);
-</span><span class="boring">        self.model().append(&amp;task);
+</span><span class="boring">        self.current_tasks().append(&amp;task);
 </span><span class="boring">    }
 </span><span class="boring">
 </span><span class="boring">    fn setup_factory(&amp;self) {
@@ -6070,7 +6073,7 @@ pub struct Window {
     pub entry: TemplateChild&lt;Entry&gt;,
     #[template_child]
     pub list_view: TemplateChild&lt;ListView&gt;,
-    pub model: OnceCell&lt;gio::ListStore&gt;,
+    pub current_tasks: OnceCell&lt;gio::ListStore&gt;,
 }
 
 // The central trait for subclassing a GObject
@@ -6097,7 +6100,7 @@ impl ObjectSubclass for Window {
 </span><span class="boring">        self.parent_constructed(obj);
 </span><span class="boring">
 </span><span class="boring">        // Setup
-</span><span class="boring">        obj.setup_model();
+</span><span class="boring">        obj.setup_tasks();
 </span><span class="boring">        obj.setup_callbacks();
 </span><span class="boring">        obj.setup_factory();
 </span><span class="boring">    }
@@ -6486,7 +6489,7 @@ We override the <code>imp::Window::constructed</code> in order to set up window 
 </span><span class="boring">    pub entry: TemplateChild&lt;Entry&gt;,
 </span><span class="boring">    #[template_child]
 </span><span class="boring">    pub list_view: TemplateChild&lt;ListView&gt;,
-</span><span class="boring">    pub model: OnceCell&lt;gio::ListStore&gt;,
+</span><span class="boring">    pub current_tasks: OnceCell&lt;gio::ListStore&gt;,
 </span><span class="boring">}
 </span><span class="boring">
 </span><span class="boring">// The central trait for subclassing a GObject
@@ -6513,7 +6516,7 @@ impl ObjectImpl for Window {
         self.parent_constructed(obj);
 
         // Setup
-        obj.setup_model();
+        obj.setup_tasks();
         obj.setup_callbacks();
         obj.setup_factory();
     }
@@ -6529,7 +6532,7 @@ impl ObjectImpl for Window {
 </span><span class="boring">impl ApplicationWindowImpl for Window {}
 </span></code></pre>
 <p>Since we need to access the list model quite often, we add the convenience method <code>Window::model</code> for that.
-In <code>Window::setup_model</code> we create a new model.
+In <code>Window::setup_tasks</code> we create a new model.
 Then we store a reference to the model in <code>imp::Window</code> as well as in <code>gtk::ListView</code>.</p>
 <p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo_app/1/window/mod.rs">listings/todo_app/1/window/mod.rs</a></p>
 <pre><code class="language-rust  no_run noplayground"><span class="boring">mod imp;
@@ -6555,20 +6558,23 @@ Then we store a reference to the model in <code>imp::Window</code> as well as in
 </span><span class="boring">        Object::new(&amp;[(&quot;application&quot;, app)]).expect(&quot;Failed to create `Window`.&quot;)
 </span><span class="boring">    }
 </span><span class="boring">
-</span>    fn model(&amp;self) -&gt; &amp;gio::ListStore {
+</span>    fn current_tasks(&amp;self) -&gt; &amp;gio::ListStore {
         // Get state
-        self.imp().model.get().expect(&quot;Could not get model&quot;)
+        self.imp().current_tasks.get().expect(&quot;Could not get model&quot;)
     }
 
-    fn setup_model(&amp;self) {
+    fn setup_tasks(&amp;self) {
         // Create new model
         let model = gio::ListStore::new(TaskObject::static_type());
 
         // Get state and set model
-        self.imp().model.set(model).expect(&quot;Could not set model&quot;);
+        self.imp()
+            .current_tasks
+            .set(model)
+            .expect(&quot;Could not set model&quot;);
 
         // Wrap model with selection and pass it to the list view
-        let selection_model = NoSelection::new(Some(self.model()));
+        let selection_model = NoSelection::new(Some(self.current_tasks()));
         self.imp().list_view.set_model(Some(&amp;selection_model));
     }
 <span class="boring">
@@ -6599,7 +6605,7 @@ Then we store a reference to the model in <code>imp::Window</code> as well as in
 </span><span class="boring">
 </span><span class="boring">        // Add new task to model
 </span><span class="boring">        let task = TaskObject::new(false, content);
-</span><span class="boring">        self.model().append(&amp;task);
+</span><span class="boring">        self.current_tasks().append(&amp;task);
 </span><span class="boring">    }
 </span><span class="boring">
 </span><span class="boring">    fn setup_factory(&amp;self) {
@@ -6677,20 +6683,23 @@ Finally, the entry will be cleared.</p>
 </span><span class="boring">        Object::new(&amp;[(&quot;application&quot;, app)]).expect(&quot;Failed to create `Window`.&quot;)
 </span><span class="boring">    }
 </span><span class="boring">
-</span><span class="boring">    fn model(&amp;self) -&gt; &amp;gio::ListStore {
+</span><span class="boring">    fn current_tasks(&amp;self) -&gt; &amp;gio::ListStore {
 </span><span class="boring">        // Get state
-</span><span class="boring">        self.imp().model.get().expect(&quot;Could not get model&quot;)
+</span><span class="boring">        self.imp().current_tasks.get().expect(&quot;Could not get model&quot;)
 </span><span class="boring">    }
 </span><span class="boring">
-</span><span class="boring">    fn setup_model(&amp;self) {
+</span><span class="boring">    fn setup_tasks(&amp;self) {
 </span><span class="boring">        // Create new model
 </span><span class="boring">        let model = gio::ListStore::new(TaskObject::static_type());
 </span><span class="boring">
 </span><span class="boring">        // Get state and set model
-</span><span class="boring">        self.imp().model.set(model).expect(&quot;Could not set model&quot;);
+</span><span class="boring">        self.imp()
+</span><span class="boring">            .current_tasks
+</span><span class="boring">            .set(model)
+</span><span class="boring">            .expect(&quot;Could not set model&quot;);
 </span><span class="boring">
 </span><span class="boring">        // Wrap model with selection and pass it to the list view
-</span><span class="boring">        let selection_model = NoSelection::new(Some(self.model()));
+</span><span class="boring">        let selection_model = NoSelection::new(Some(self.current_tasks()));
 </span><span class="boring">        self.imp().list_view.set_model(Some(&amp;selection_model));
 </span><span class="boring">    }
 </span><span class="boring">
@@ -6721,7 +6730,7 @@ Finally, the entry will be cleared.</p>
 </span><span class="boring">
 </span><span class="boring">        // Add new task to model
 </span><span class="boring">        let task = TaskObject::new(false, content);
-</span><span class="boring">        self.model().append(&amp;task);
+</span><span class="boring">        self.current_tasks().append(&amp;task);
 </span><span class="boring">    }
 </span><span class="boring">
 </span><span class="boring">    fn setup_factory(&amp;self) {
@@ -6805,20 +6814,23 @@ We will need to unbind them manually when they are no longer needed.</p>
 </span><span class="boring">        Object::new(&amp;[(&quot;application&quot;, app)]).expect(&quot;Failed to create `Window`.&quot;)
 </span><span class="boring">    }
 </span><span class="boring">
-</span><span class="boring">    fn model(&amp;self) -&gt; &amp;gio::ListStore {
+</span><span class="boring">    fn current_tasks(&amp;self) -&gt; &amp;gio::ListStore {
 </span><span class="boring">        // Get state
-</span><span class="boring">        self.imp().model.get().expect(&quot;Could not get model&quot;)
+</span><span class="boring">        self.imp().current_tasks.get().expect(&quot;Could not get model&quot;)
 </span><span class="boring">    }
 </span><span class="boring">
-</span><span class="boring">    fn setup_model(&amp;self) {
+</span><span class="boring">    fn setup_tasks(&amp;self) {
 </span><span class="boring">        // Create new model
 </span><span class="boring">        let model = gio::ListStore::new(TaskObject::static_type());
 </span><span class="boring">
 </span><span class="boring">        // Get state and set model
-</span><span class="boring">        self.imp().model.set(model).expect(&quot;Could not set model&quot;);
+</span><span class="boring">        self.imp()
+</span><span class="boring">            .current_tasks
+</span><span class="boring">            .set(model)
+</span><span class="boring">            .expect(&quot;Could not set model&quot;);
 </span><span class="boring">
 </span><span class="boring">        // Wrap model with selection and pass it to the list view
-</span><span class="boring">        let selection_model = NoSelection::new(Some(self.model()));
+</span><span class="boring">        let selection_model = NoSelection::new(Some(self.current_tasks()));
 </span><span class="boring">        self.imp().list_view.set_model(Some(&amp;selection_model));
 </span><span class="boring">    }
 </span><span class="boring">
@@ -6849,7 +6861,7 @@ We will need to unbind them manually when they are no longer needed.</p>
 </span><span class="boring">
 </span><span class="boring">        // Add new task to model
 </span><span class="boring">        let task = TaskObject::new(false, content);
-</span><span class="boring">        self.model().append(&amp;task);
+</span><span class="boring">        self.current_tasks().append(&amp;task);
 </span><span class="boring">    }
 </span><span class="boring">
 </span>    fn setup_factory(&amp;self) {
@@ -8363,7 +8375,7 @@ pub struct Window {
     pub menu_button: TemplateChild&lt;MenuButton&gt;,
     #[template_child]
     pub list_view: TemplateChild&lt;ListView&gt;,
-    pub model: OnceCell&lt;gio::ListStore&gt;,
+    pub current_tasks: OnceCell&lt;gio::ListStore&gt;,
     pub settings: Settings,
 }
 
@@ -8373,7 +8385,7 @@ impl Default for Window {
             entry: TemplateChild::default(),
             menu_button: TemplateChild::default(),
             list_view: TemplateChild::default(),
-            model: OnceCell::default(),
+            current_tasks: OnceCell::default(),
             settings: Settings::new(&quot;org.gtk-rs.Todo2&quot;),
         }
     }
@@ -8403,7 +8415,7 @@ impl Default for Window {
 </span><span class="boring">        self.parent_constructed(obj);
 </span><span class="boring">
 </span><span class="boring">        // Setup
-</span><span class="boring">        obj.setup_model();
+</span><span class="boring">        obj.setup_tasks();
 </span><span class="boring">        obj.restore_data();
 </span><span class="boring">        obj.setup_callbacks();
 </span><span class="boring">        obj.setup_factory();
@@ -8420,7 +8432,7 @@ impl Default for Window {
 </span><span class="boring">        // Store todo data in vector
 </span><span class="boring">        let mut tasks = Vec::new();
 </span><span class="boring">        let mut position = 0;
-</span><span class="boring">        while let Some(item) = window.model().item(position) {
+</span><span class="boring">        while let Some(item) = window.current_tasks().item(position) {
 </span><span class="boring">            // Get `TaskObject` from `glib::Object`
 </span><span class="boring">            let todo_data = item
 </span><span class="boring">                .downcast_ref::&lt;TaskObject&gt;()
@@ -8506,9 +8518,9 @@ We also add an action which allows us to remove done tasks. </p>
 </span><span class="boring">        Object::new(&amp;[(&quot;application&quot;, app)]).expect(&quot;Failed to create `Window`.&quot;)
 </span><span class="boring">    }
 </span><span class="boring">
-</span><span class="boring">    fn model(&amp;self) -&gt; &amp;gio::ListStore {
+</span><span class="boring">    fn current_tasks(&amp;self) -&gt; &amp;gio::ListStore {
 </span><span class="boring">        // Get state
-</span><span class="boring">        self.imp().model.get().expect(&quot;Could not get model&quot;)
+</span><span class="boring">        self.imp().current_tasks.get().expect(&quot;Could not get model&quot;)
 </span><span class="boring">    }
 </span><span class="boring">
 </span><span class="boring">    fn filter(&amp;self) -&gt; Option&lt;CustomFilter&gt; {
@@ -8546,16 +8558,19 @@ We also add an action which allows us to remove done tasks. </p>
 </span><span class="boring">        }
 </span><span class="boring">    }
 </span><span class="boring">
-</span><span class="boring">    fn setup_model(&amp;self) {
+</span><span class="boring">    fn setup_tasks(&amp;self) {
 </span><span class="boring">        // Create new model
 </span><span class="boring">        let model = gio::ListStore::new(TaskObject::static_type());
 </span><span class="boring">
 </span><span class="boring">        // Get state and set model
-</span><span class="boring">        self.imp().model.set(model).expect(&quot;Could not set model&quot;);
+</span><span class="boring">        self.imp()
+</span><span class="boring">            .current_tasks
+</span><span class="boring">            .set(model)
+</span><span class="boring">            .expect(&quot;Could not set model&quot;);
 </span><span class="boring">
 </span><span class="boring">        // Wrap model with filter and selection and pass it to the list view
 </span><span class="boring">        let filter_model =
-</span><span class="boring">            FilterListModel::new(Some(self.model()), self.filter().as_ref());
+</span><span class="boring">            FilterListModel::new(Some(self.current_tasks()), self.filter().as_ref());
 </span><span class="boring">        let selection_model = NoSelection::new(Some(&amp;filter_model));
 </span><span class="boring">        self.imp().list_view.set_model(Some(&amp;selection_model));
 </span><span class="boring">
@@ -8579,7 +8594,7 @@ We also add an action which allows us to remove done tasks. </p>
 </span><span class="boring">            .collect();
 </span><span class="boring">
 </span><span class="boring">        // Insert restored objects into model
-</span><span class="boring">        self.model().splice(0, 0, &amp;task_objects);
+</span><span class="boring">        self.current_tasks().splice(0, 0, &amp;task_objects);
 </span><span class="boring">    }
 </span><span class="boring">
 </span><span class="boring">    fn setup_callbacks(&amp;self) {
@@ -8609,7 +8624,7 @@ We also add an action which allows us to remove done tasks. </p>
 </span><span class="boring">
 </span><span class="boring">        // Add new task to model
 </span><span class="boring">        let task = TaskObject::new(false, content);
-</span><span class="boring">        self.model().append(&amp;task);
+</span><span class="boring">        self.current_tasks().append(&amp;task);
 </span><span class="boring">    }
 </span><span class="boring">
 </span><span class="boring">    fn setup_factory(&amp;self) {
@@ -8664,7 +8679,7 @@ We also add an action which allows us to remove done tasks. </p>
         self.add_action(&amp;action_filter);
 
         // Get model
-        let model = self.model();
+        let model = self.current_tasks();
 
         // Create action to remove done tasks and add to action group &quot;win&quot;
         let action_remove_done_tasks =
@@ -8719,9 +8734,9 @@ If the state is &quot;All&quot; nothing has to be filtered out, so we return <co
 </span><span class="boring">        Object::new(&amp;[(&quot;application&quot;, app)]).expect(&quot;Failed to create `Window`.&quot;)
 </span><span class="boring">    }
 </span><span class="boring">
-</span><span class="boring">    fn model(&amp;self) -&gt; &amp;gio::ListStore {
+</span><span class="boring">    fn current_tasks(&amp;self) -&gt; &amp;gio::ListStore {
 </span><span class="boring">        // Get state
-</span><span class="boring">        self.imp().model.get().expect(&quot;Could not get model&quot;)
+</span><span class="boring">        self.imp().current_tasks.get().expect(&quot;Could not get model&quot;)
 </span><span class="boring">    }
 </span><span class="boring">
 </span>    fn filter(&amp;self) -&gt; Option&lt;CustomFilter&gt; {
@@ -8759,16 +8774,19 @@ If the state is &quot;All&quot; nothing has to be filtered out, so we return <co
         }
     }
 <span class="boring">
-</span><span class="boring">    fn setup_model(&amp;self) {
+</span><span class="boring">    fn setup_tasks(&amp;self) {
 </span><span class="boring">        // Create new model
 </span><span class="boring">        let model = gio::ListStore::new(TaskObject::static_type());
 </span><span class="boring">
 </span><span class="boring">        // Get state and set model
-</span><span class="boring">        self.imp().model.set(model).expect(&quot;Could not set model&quot;);
+</span><span class="boring">        self.imp()
+</span><span class="boring">            .current_tasks
+</span><span class="boring">            .set(model)
+</span><span class="boring">            .expect(&quot;Could not set model&quot;);
 </span><span class="boring">
 </span><span class="boring">        // Wrap model with filter and selection and pass it to the list view
 </span><span class="boring">        let filter_model =
-</span><span class="boring">            FilterListModel::new(Some(self.model()), self.filter().as_ref());
+</span><span class="boring">            FilterListModel::new(Some(self.current_tasks()), self.filter().as_ref());
 </span><span class="boring">        let selection_model = NoSelection::new(Some(&amp;filter_model));
 </span><span class="boring">        self.imp().list_view.set_model(Some(&amp;selection_model));
 </span><span class="boring">
@@ -8792,7 +8810,7 @@ If the state is &quot;All&quot; nothing has to be filtered out, so we return <co
 </span><span class="boring">            .collect();
 </span><span class="boring">
 </span><span class="boring">        // Insert restored objects into model
-</span><span class="boring">        self.model().splice(0, 0, &amp;task_objects);
+</span><span class="boring">        self.current_tasks().splice(0, 0, &amp;task_objects);
 </span><span class="boring">    }
 </span><span class="boring">
 </span><span class="boring">    fn setup_callbacks(&amp;self) {
@@ -8822,7 +8840,7 @@ If the state is &quot;All&quot; nothing has to be filtered out, so we return <co
 </span><span class="boring">
 </span><span class="boring">        // Add new task to model
 </span><span class="boring">        let task = TaskObject::new(false, content);
-</span><span class="boring">        self.model().append(&amp;task);
+</span><span class="boring">        self.current_tasks().append(&amp;task);
 </span><span class="boring">    }
 </span><span class="boring">
 </span><span class="boring">    fn setup_factory(&amp;self) {
@@ -8877,7 +8895,7 @@ If the state is &quot;All&quot; nothing has to be filtered out, so we return <co
 </span><span class="boring">        self.add_action(&amp;action_filter);
 </span><span class="boring">
 </span><span class="boring">        // Get model
-</span><span class="boring">        let model = self.model();
+</span><span class="boring">        let model = self.current_tasks();
 </span><span class="boring">
 </span><span class="boring">        // Create action to remove done tasks and add to action group &quot;win&quot;
 </span><span class="boring">        let action_remove_done_tasks =
@@ -8930,9 +8948,9 @@ Whenever the state of the key &quot;filter&quot; changes, we call the method <co
 </span><span class="boring">        Object::new(&amp;[(&quot;application&quot;, app)]).expect(&quot;Failed to create `Window`.&quot;)
 </span><span class="boring">    }
 </span><span class="boring">
-</span><span class="boring">    fn model(&amp;self) -&gt; &amp;gio::ListStore {
+</span><span class="boring">    fn current_tasks(&amp;self) -&gt; &amp;gio::ListStore {
 </span><span class="boring">        // Get state
-</span><span class="boring">        self.imp().model.get().expect(&quot;Could not get model&quot;)
+</span><span class="boring">        self.imp().current_tasks.get().expect(&quot;Could not get model&quot;)
 </span><span class="boring">    }
 </span><span class="boring">
 </span><span class="boring">    fn filter(&amp;self) -&gt; Option&lt;CustomFilter&gt; {
@@ -8970,16 +8988,19 @@ Whenever the state of the key &quot;filter&quot; changes, we call the method <co
 </span><span class="boring">        }
 </span><span class="boring">    }
 </span><span class="boring">
-</span>    fn setup_model(&amp;self) {
+</span>    fn setup_tasks(&amp;self) {
         // Create new model
         let model = gio::ListStore::new(TaskObject::static_type());
 
         // Get state and set model
-        self.imp().model.set(model).expect(&quot;Could not set model&quot;);
+        self.imp()
+            .current_tasks
+            .set(model)
+            .expect(&quot;Could not set model&quot;);
 
         // Wrap model with filter and selection and pass it to the list view
         let filter_model =
-            FilterListModel::new(Some(self.model()), self.filter().as_ref());
+            FilterListModel::new(Some(self.current_tasks()), self.filter().as_ref());
         let selection_model = NoSelection::new(Some(&amp;filter_model));
         self.imp().list_view.set_model(Some(&amp;selection_model));
 
@@ -9003,7 +9024,7 @@ Whenever the state of the key &quot;filter&quot; changes, we call the method <co
 </span><span class="boring">            .collect();
 </span><span class="boring">
 </span><span class="boring">        // Insert restored objects into model
-</span><span class="boring">        self.model().splice(0, 0, &amp;task_objects);
+</span><span class="boring">        self.current_tasks().splice(0, 0, &amp;task_objects);
 </span><span class="boring">    }
 </span><span class="boring">
 </span><span class="boring">    fn setup_callbacks(&amp;self) {
@@ -9033,7 +9054,7 @@ Whenever the state of the key &quot;filter&quot; changes, we call the method <co
 </span><span class="boring">
 </span><span class="boring">        // Add new task to model
 </span><span class="boring">        let task = TaskObject::new(false, content);
-</span><span class="boring">        self.model().append(&amp;task);
+</span><span class="boring">        self.current_tasks().append(&amp;task);
 </span><span class="boring">    }
 </span><span class="boring">
 </span><span class="boring">    fn setup_factory(&amp;self) {
@@ -9088,7 +9109,7 @@ Whenever the state of the key &quot;filter&quot; changes, we call the method <co
 </span><span class="boring">        self.add_action(&amp;action_filter);
 </span><span class="boring">
 </span><span class="boring">        // Get model
-</span><span class="boring">        let model = self.model();
+</span><span class="boring">        let model = self.current_tasks();
 </span><span class="boring">
 </span><span class="boring">        // Create action to remove done tasks and add to action group &quot;win&quot;
 </span><span class="boring">        let action_remove_done_tasks =
@@ -9294,7 +9315,7 @@ Then we serialize the <code>Vec</code> and store the data as a json file.</p>
 </span><span class="boring">    pub menu_button: TemplateChild&lt;MenuButton&gt;,
 </span><span class="boring">    #[template_child]
 </span><span class="boring">    pub list_view: TemplateChild&lt;ListView&gt;,
-</span><span class="boring">    pub model: OnceCell&lt;gio::ListStore&gt;,
+</span><span class="boring">    pub current_tasks: OnceCell&lt;gio::ListStore&gt;,
 </span><span class="boring">    pub settings: Settings,
 </span><span class="boring">}
 </span><span class="boring">
@@ -9304,7 +9325,7 @@ Then we serialize the <code>Vec</code> and store the data as a json file.</p>
 </span><span class="boring">            entry: TemplateChild::default(),
 </span><span class="boring">            menu_button: TemplateChild::default(),
 </span><span class="boring">            list_view: TemplateChild::default(),
-</span><span class="boring">            model: OnceCell::default(),
+</span><span class="boring">            current_tasks: OnceCell::default(),
 </span><span class="boring">            settings: Settings::new(&quot;org.gtk-rs.Todo2&quot;),
 </span><span class="boring">        }
 </span><span class="boring">    }
@@ -9334,7 +9355,7 @@ Then we serialize the <code>Vec</code> and store the data as a json file.</p>
 </span><span class="boring">        self.parent_constructed(obj);
 </span><span class="boring">
 </span><span class="boring">        // Setup
-</span><span class="boring">        obj.setup_model();
+</span><span class="boring">        obj.setup_tasks();
 </span><span class="boring">        obj.restore_data();
 </span><span class="boring">        obj.setup_callbacks();
 </span><span class="boring">        obj.setup_factory();
@@ -9351,7 +9372,7 @@ impl WindowImpl for Window {
         // Store todo data in vector
         let mut tasks = Vec::new();
         let mut position = 0;
-        while let Some(item) = window.model().item(position) {
+        while let Some(item) = window.current_tasks().item(position) {
             // Get `TaskObject` from `glib::Object`
             let todo_data = item
                 .downcast_ref::&lt;TaskObject&gt;()
@@ -9410,9 +9431,9 @@ It might be the first time that we started the app and therefore there is no for
 </span><span class="boring">        Object::new(&amp;[(&quot;application&quot;, app)]).expect(&quot;Failed to create `Window`.&quot;)
 </span><span class="boring">    }
 </span><span class="boring">
-</span><span class="boring">    fn model(&amp;self) -&gt; &amp;gio::ListStore {
+</span><span class="boring">    fn current_tasks(&amp;self) -&gt; &amp;gio::ListStore {
 </span><span class="boring">        // Get state
-</span><span class="boring">        self.imp().model.get().expect(&quot;Could not get model&quot;)
+</span><span class="boring">        self.imp().current_tasks.get().expect(&quot;Could not get model&quot;)
 </span><span class="boring">    }
 </span><span class="boring">
 </span><span class="boring">    fn filter(&amp;self) -&gt; Option&lt;CustomFilter&gt; {
@@ -9450,16 +9471,19 @@ It might be the first time that we started the app and therefore there is no for
 </span><span class="boring">        }
 </span><span class="boring">    }
 </span><span class="boring">
-</span><span class="boring">    fn setup_model(&amp;self) {
+</span><span class="boring">    fn setup_tasks(&amp;self) {
 </span><span class="boring">        // Create new model
 </span><span class="boring">        let model = gio::ListStore::new(TaskObject::static_type());
 </span><span class="boring">
 </span><span class="boring">        // Get state and set model
-</span><span class="boring">        self.imp().model.set(model).expect(&quot;Could not set model&quot;);
+</span><span class="boring">        self.imp()
+</span><span class="boring">            .current_tasks
+</span><span class="boring">            .set(model)
+</span><span class="boring">            .expect(&quot;Could not set model&quot;);
 </span><span class="boring">
 </span><span class="boring">        // Wrap model with filter and selection and pass it to the list view
 </span><span class="boring">        let filter_model =
-</span><span class="boring">            FilterListModel::new(Some(self.model()), self.filter().as_ref());
+</span><span class="boring">            FilterListModel::new(Some(self.current_tasks()), self.filter().as_ref());
 </span><span class="boring">        let selection_model = NoSelection::new(Some(&amp;filter_model));
 </span><span class="boring">        self.imp().list_view.set_model(Some(&amp;selection_model));
 </span><span class="boring">
@@ -9483,7 +9507,7 @@ It might be the first time that we started the app and therefore there is no for
             .collect();
 
         // Insert restored objects into model
-        self.model().splice(0, 0, &amp;task_objects);
+        self.current_tasks().splice(0, 0, &amp;task_objects);
     }
 <span class="boring">
 </span><span class="boring">    fn setup_callbacks(&amp;self) {
@@ -9513,7 +9537,7 @@ It might be the first time that we started the app and therefore there is no for
 </span><span class="boring">
 </span><span class="boring">        // Add new task to model
 </span><span class="boring">        let task = TaskObject::new(false, content);
-</span><span class="boring">        self.model().append(&amp;task);
+</span><span class="boring">        self.current_tasks().append(&amp;task);
 </span><span class="boring">    }
 </span><span class="boring">
 </span><span class="boring">    fn setup_factory(&amp;self) {
@@ -9568,7 +9592,7 @@ It might be the first time that we started the app and therefore there is no for
 </span><span class="boring">        self.add_action(&amp;action_filter);
 </span><span class="boring">
 </span><span class="boring">        // Get model
-</span><span class="boring">        let model = self.model();
+</span><span class="boring">        let model = self.current_tasks();
 </span><span class="boring">
 </span><span class="boring">        // Create action to remove done tasks and add to action group &quot;win&quot;
 </span><span class="boring">        let action_remove_done_tasks =
@@ -9615,7 +9639,7 @@ It might be the first time that we started the app and therefore there is no for
 </span><span class="boring">    pub menu_button: TemplateChild&lt;MenuButton&gt;,
 </span><span class="boring">    #[template_child]
 </span><span class="boring">    pub list_view: TemplateChild&lt;ListView&gt;,
-</span><span class="boring">    pub model: OnceCell&lt;gio::ListStore&gt;,
+</span><span class="boring">    pub current_tasks: OnceCell&lt;gio::ListStore&gt;,
 </span><span class="boring">    pub settings: Settings,
 </span><span class="boring">}
 </span><span class="boring">
@@ -9625,7 +9649,7 @@ It might be the first time that we started the app and therefore there is no for
 </span><span class="boring">            entry: TemplateChild::default(),
 </span><span class="boring">            menu_button: TemplateChild::default(),
 </span><span class="boring">            list_view: TemplateChild::default(),
-</span><span class="boring">            model: OnceCell::default(),
+</span><span class="boring">            current_tasks: OnceCell::default(),
 </span><span class="boring">            settings: Settings::new(&quot;org.gtk-rs.Todo2&quot;),
 </span><span class="boring">        }
 </span><span class="boring">    }
@@ -9655,7 +9679,7 @@ impl ObjectImpl for Window {
         self.parent_constructed(obj);
 
         // Setup
-        obj.setup_model();
+        obj.setup_tasks();
         obj.restore_data();
         obj.setup_callbacks();
         obj.setup_factory();
@@ -9672,7 +9696,7 @@ impl ObjectImpl for Window {
 </span><span class="boring">        // Store todo data in vector
 </span><span class="boring">        let mut tasks = Vec::new();
 </span><span class="boring">        let mut position = 0;
-</span><span class="boring">        while let Some(item) = window.model().item(position) {
+</span><span class="boring">        while let Some(item) = window.current_tasks().item(position) {
 </span><span class="boring">            // Get `TaskObject` from `glib::Object`
 </span><span class="boring">            let todo_data = item
 </span><span class="boring">                .downcast_ref::&lt;TaskObject&gt;()
