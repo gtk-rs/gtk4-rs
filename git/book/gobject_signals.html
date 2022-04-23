@@ -25,6 +25,7 @@
         <link rel="stylesheet" href="ayu-highlight.css">
 
         <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="theme/style.css">
     </head>
     <body>
         <!-- Provide site root to javascript -->
@@ -143,7 +144,7 @@ For example, if we press on a button, the &quot;clicked&quot; signal will be emi
 The signal then takes care that all the registered callbacks will be executed.</p>
 <p><code>gtk-rs</code> provides convenience methods for registering callbacks.
 In our &quot;Hello World&quot; example we <a href="../docs/gtk4/prelude/trait.ButtonExt.html#tymethod.connect_clicked">connected</a> the &quot;clicked&quot; signal to a closure which sets the label of the button to &quot;Hello World&quot; as soon as it gets called.</p>
-<p><span class="filename">Filename: listings/hello_world/3/main.rs</span></p>
+<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/hello_world/3/main.rs">listings/hello_world/3/main.rs</a></p>
 <pre><code class="language-rust  no_run noplayground"><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::{Application, ApplicationWindow, Button};
 </span><span class="boring">fn main() {
@@ -187,7 +188,7 @@ In our &quot;Hello World&quot; example we <a href="../docs/gtk4/prelude/trait.Bu
 </span><span class="boring">}
 </span></code></pre>
 <p>If we wanted to, we could have connected to it with the generic <a href="https://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/object/trait.ObjectExt.html#tymethod.connect_closure"><code>connect_closure</code></a> method and the <a href="https://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/macro.closure_local.html"><code>glib::closure_local!</code></a> macro.</p>
-<p><span class="filename">Filename: listings/gobject_signals/1/main.rs</span></p>
+<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/gobject_signals/1/main.rs">listings/gobject_signals/1/main.rs</a></p>
 <pre><code class="language-rust  no_run noplayground"><span class="boring">use glib::closure_local;
 </span><span class="boring">use gtk::glib;
 </span><span class="boring">use gtk::prelude::*;
@@ -247,7 +248,7 @@ In our &quot;Hello World&quot; example we <a href="../docs/gtk4/prelude/trait.Bu
 <p>Let's see how we can create our own signals.
 Again we do that by extending our <code>CustomButton</code>.
 First we override the necessary methods in <code>ObjectImpl</code>.</p>
-<p><span class="filename">Filename: listings/gobject_signals/2/custom_button/imp.rs</span></p>
+<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/gobject_signals/2/custom_button/imp.rs">listings/gobject_signals/2/custom_button/imp.rs</a></p>
 <pre><code class="language-rust  no_run noplayground"><span class="boring">use glib::subclass::Signal;
 </span><span class="boring">use glib::{BindingFlags, ParamFlags, ParamSpec, ParamSpecInt, Value};
 </span><span class="boring">use gtk::glib;
@@ -373,7 +374,7 @@ There emitter could get a return value here but we don't need that here so we sp
 <p>We want the signal to be emitted, whenever <code>number</code> reaches <code>MAX_NUMBER</code>.
 Together with the signal we send the value <code>number</code> currently holds.
 After we did that, we set <code>number</code> back to 0.</p>
-<p><span class="filename">Filename: listings/gobject_signals/2/custom_button/imp.rs</span></p>
+<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/gobject_signals/2/custom_button/imp.rs">listings/gobject_signals/2/custom_button/imp.rs</a></p>
 <pre><code class="language-rust  no_run noplayground"><span class="boring">use glib::subclass::Signal;
 </span><span class="boring">use glib::{BindingFlags, ParamFlags, ParamSpec, ParamSpecInt, Value};
 </span><span class="boring">use gtk::glib;
@@ -494,7 +495,7 @@ impl ButtonImpl for CustomButton {
 <p>If we now press on the button, the number of its label increases until it reaches <code>MAX_NUMBER</code>.
 Then it emits the &quot;max-number-reached&quot; signal which we can nicely connect to.
 Whenever we now receive the &quot;max-number-reached&quot; signal, the accompanying number is printed to <a href="https://en.wikipedia.org/wiki/Standard_streams#Standard_output_(stdout)">standard output</a>.</p>
-<p><span class="filename">Filename: listings/gobject_signals/2/main.rs</span></p>
+<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/gobject_signals/2/main.rs">listings/gobject_signals/2/main.rs</a></p>
 <pre><code class="language-rust  no_run noplayground"><span class="boring">mod custom_button;
 </span><span class="boring">
 </span><span class="boring">use custom_button::CustomButton;

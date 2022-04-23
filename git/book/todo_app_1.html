@@ -25,6 +25,7 @@
         <link rel="stylesheet" href="ayu-highlight.css">
 
         <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="theme/style.css">
     </head>
     <body>
         <!-- Provide site root to javascript -->
@@ -146,7 +147,7 @@ Something like this:</p>
 <div style="text-align:center"><img src="img/todo_app_1_mockup.png" /></div>
 <h2 id="window"><a class="header" href="#window">Window</a></h2>
 <p>This mockup can be described by the following composite template.</p>
-<p><span class="filename">Filename: listings/todo_app/1/resources/window.ui</span></p>
+<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo_app/1/resources/window.ui">listings/todo_app/1/resources/window.ui</a></p>
 <pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
 &lt;interface&gt;
   &lt;template class=&quot;TodoWindow&quot; parent=&quot;GtkApplicationWindow&quot;&gt;
@@ -184,7 +185,7 @@ Something like this:</p>
 <p>In order to use the composite template, we create a custom widget.
 The <code>parent</code> is <code>gtk::ApplicationWindow</code>, so we inherit from it.
 As usual, we have to list all <a href="https://docs.gtk.org/gtk4/class.ApplicationWindow.html#ancestors">ancestors</a> and <a href="https://docs.gtk.org/gtk4/class.ApplicationWindow.html#implements">interfaces</a> apart from <code>GObject</code> and <code>GInitiallyUnowned</code>.</p>
-<p><span class="filename">Filename: listings/todo_app/1/window/mod.rs</span></p>
+<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo_app/1/window/mod.rs">listings/todo_app/1/window/mod.rs</a></p>
 <pre><code class="language-rust  no_run noplayground"><span class="boring">mod imp;
 </span><span class="boring">
 </span><span class="boring">use crate::task_object::TaskObject;
@@ -307,7 +308,7 @@ We store references to the entry, the list view as well as the list model.
 This will come in handy when we later add methods to our window.
 After that, we add the typical boilerplate for initializing composite templates.
 We only have to assure that the <code>class</code> attribute of the template in <code>window.ui</code> matches <code>NAME</code>.</p>
-<p><span class="filename">Filename: listings/todo_app/1/window/imp.rs</span></p>
+<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo_app/1/window/imp.rs">listings/todo_app/1/window/imp.rs</a></p>
 <pre><code class="language-rust  no_run noplayground"><span class="boring">use glib::subclass::InitializingObject;
 </span><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::subclass::prelude::*;
@@ -366,7 +367,7 @@ impl ObjectSubclass for Window {
 </span><span class="boring">impl ApplicationWindowImpl for Window {}
 </span></code></pre>
 <p><code>main.rs</code> also does not hold any surprises for us.</p>
-<p><span class="filename">Filename: listings/todo_app/1/main.rs</span></p>
+<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo_app/1/main.rs">listings/todo_app/1/main.rs</a></p>
 <pre><code class="language-rust  no_run noplayground"><span class="boring">mod task_object;
 </span><span class="boring">mod task_row;
 </span><span class="boring">mod window;
@@ -402,7 +403,7 @@ fn build_ui(app: &amp;Application) {
 </code></pre>
 <p>Finally, we specify our resources.
 Here, they already include <code>task_row.ui</code> which we will handle later in this chapter.</p>
-<p><span class="filename">Filename: listings/todo_app/1/resources/resources.gresource.xml</span></p>
+<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo_app/1/resources/resources.gresource.xml">listings/todo_app/1/resources/resources.gresource.xml</a></p>
 <pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
 &lt;gresources&gt;
   &lt;gresource prefix=&quot;/org/gtk-rs/Todo1/&quot;&gt;
@@ -425,7 +426,7 @@ This object will store the state of the task consisting of:</p>
 <li>a boolean describing whether the task is completed or not, and</li>
 <li>a string holding the task name.</li>
 </ul>
-<p><span class="filename">Filename: listings/todo_app/1/task_object/mod.rs</span></p>
+<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo_app/1/task_object/mod.rs">listings/todo_app/1/task_object/mod.rs</a></p>
 <pre><code class="language-rust  no_run noplayground"><span class="boring">mod imp;
 </span><span class="boring">
 </span><span class="boring">use glib::Object;
@@ -450,7 +451,7 @@ impl TaskObject {
 </span></code></pre>
 <p>Unlike the lists chapter, the state is stored in a struct rather than in individual members of <code>imp::TaskObject</code>.
 This will be very convenient when saving the state in one of the following chapters.</p>
-<p><span class="filename">Filename: listings/todo_app/1/task_object/mod.rs</span></p>
+<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo_app/1/task_object/mod.rs">listings/todo_app/1/task_object/mod.rs</a></p>
 <pre><code class="language-rust  no_run noplayground"><span class="boring">mod imp;
 </span><span class="boring">
 </span><span class="boring">use glib::Object;
@@ -475,7 +476,7 @@ pub struct TaskData {
 </code></pre>
 <p>Exposing <code>completed</code> and <code>content</code> as properties does not become much different that way, so we will not discuss it further.
 If you are curious, you can press on the small eye symbol on the top right of the code snippet to read the implementation.</p>
-<p><span class="filename">Filename: listings/todo_app/1/task_object/imp.rs</span></p>
+<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo_app/1/task_object/imp.rs">listings/todo_app/1/task_object/imp.rs</a></p>
 <pre><code class="language-rust  no_run noplayground"><span class="boring">use glib::{ParamFlags, ParamSpec, ParamSpecBoolean, ParamSpecString, Value};
 </span><span class="boring">use gtk::glib;
 </span><span class="boring">use gtk::prelude::*;
@@ -571,7 +572,7 @@ impl ObjectSubclass for TaskObject {
 The row of a task should look like this:</p>
 <div style="text-align:center"><img src="img/task_row.png" /></div>
 <p>Again, we describe the mockup with a composite template.</p>
-<p><span class="filename">Filename: listings/todo_app/1/resources/task_row.ui</span></p>
+<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo_app/1/resources/task_row.ui">listings/todo_app/1/resources/task_row.ui</a></p>
 <pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
 &lt;interface&gt;
   &lt;template class=&quot;TodoTaskRow&quot; parent=&quot;GtkBox&quot;&gt;
@@ -595,7 +596,7 @@ The row of a task should look like this:</p>
 &lt;/interface&gt;
 </code></pre>
 <p>In the code, we <a href="https://docs.gtk.org/gtk4/class.Box.html#hierarchy">derive</a> <code>TaskRow</code> from <code>gtk:Box</code>:</p>
-<p><span class="filename">Filename: listings/todo_app/1/task_row/mod.rs</span></p>
+<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo_app/1/task_row/mod.rs">listings/todo_app/1/task_row/mod.rs</a></p>
 <pre><code class="language-rust  no_run noplayground"><span class="boring">mod imp;
 </span><span class="boring">
 </span><span class="boring">use crate::task_object::TaskObject;
@@ -676,7 +677,7 @@ The row of a task should look like this:</p>
 <p>In <code>imp::TaskRow</code>, we hold references to <code>completed_button</code> and <code>content_label</code>.
 We also store a mutable vector of bindings.
 Why we need that will become clear as soon as we get to bind the state of <code>TaskObject</code> to the corresponding <code>TaskRow</code>.</p>
-<p><span class="filename">Filename: listings/todo_app/1/task_row/imp.rs</span></p>
+<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo_app/1/task_row/imp.rs">listings/todo_app/1/task_row/imp.rs</a></p>
 <pre><code class="language-rust  no_run noplayground"><span class="boring">use glib::Binding;
 </span><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::subclass::prelude::*;
@@ -723,7 +724,7 @@ impl ObjectSubclass for TaskRow {
 </span></code></pre>
 <p>Now we can bring everything together.
 We override the <code>imp::Window::constructed</code> in order to set up window contents at the time of its construction.</p>
-<p><span class="filename">Filename: listings/todo_app/1/window/imp.rs</span></p>
+<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo_app/1/window/imp.rs">listings/todo_app/1/window/imp.rs</a></p>
 <pre><code class="language-rust  no_run noplayground"><span class="boring">use glib::subclass::InitializingObject;
 </span><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::subclass::prelude::*;
@@ -784,7 +785,7 @@ impl ObjectImpl for Window {
 <p>Since we need to access the list model quite often, we add the convenience method <code>Window::model</code> for that.
 In <code>Window::setup_model</code> we create a new model.
 Then we store a reference to the model in <code>imp::Window</code> as well as in <code>gtk::ListView</code>.</p>
-<p><span class="filename">Filename: listings/todo_app/1/window/mod.rs</span></p>
+<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo_app/1/window/mod.rs">listings/todo_app/1/window/mod.rs</a></p>
 <pre><code class="language-rust  no_run noplayground"><span class="boring">mod imp;
 </span><span class="boring">
 </span><span class="boring">use crate::task_object::TaskObject;
@@ -906,7 +907,7 @@ Then we store a reference to the model in <code>imp::Window</code> as well as in
 This signal is triggered when we press the enter key in the entry.
 Then a new <code>TaskObject</code> with the content will be created and appended to the model.
 Finally, the entry will be cleared.</p>
-<p><span class="filename">Filename: listings/todo_app/1/window/mod.rs</span></p>
+<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo_app/1/window/mod.rs">listings/todo_app/1/window/mod.rs</a></p>
 <pre><code class="language-rust  no_run noplayground"><span class="boring">mod imp;
 </span><span class="boring">
 </span><span class="boring">use crate::task_object::TaskObject;
@@ -1034,7 +1035,7 @@ Unfortunately, expressions cannot handle bidirectional relationships.
 This means we have to use property bindings.
 We will need to unbind them manually when they are no longer needed.</p>
 <p>We will create empty <code>TaskRow</code> objects in the &quot;setup&quot; step in <code>Window::setup_factory</code> and deal with binding in the &quot;bind&quot; and &quot;unbind&quot; steps.</p>
-<p><span class="filename">Filename: listings/todo_app/1/window/mod.rs</span></p>
+<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo_app/1/window/mod.rs">listings/todo_app/1/window/mod.rs</a></p>
 <pre><code class="language-rust  no_run noplayground"><span class="boring">mod imp;
 </span><span class="boring">
 </span><span class="boring">use crate::task_object::TaskObject;
@@ -1157,7 +1158,7 @@ The only difference is that we store the bindings in a vector.
 This is necessary because a <code>TaskRow</code> will be reused as you scroll through the list.
 That means that over time a <code>TaskRow</code> will need to bound to a new <code>TaskObject</code> and has to be unbound from the old one.
 Unbinding will only work if it can access the stored <a href="https://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/struct.Binding.html"><code>glib::Binding</code></a>.</p>
-<p><span class="filename">Filename: listings/todo_app/1/task_row/mod.rs</span></p>
+<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo_app/1/task_row/mod.rs">listings/todo_app/1/task_row/mod.rs</a></p>
 <pre><code class="language-rust  no_run noplayground"><span class="boring">mod imp;
 </span><span class="boring">
 </span><span class="boring">use crate::task_object::TaskObject;
@@ -1238,7 +1239,7 @@ Unbinding will only work if it can access the stored <a href="https://gtk-rs.org
 <p><code>TaskRow::unbind</code> takes care of the cleanup.
 It iterates through the vector and unbinds each binding.
 In the end, it clears the vector.</p>
-<p><span class="filename">Filename: listings/todo_app/1/task_row/mod.rs</span></p>
+<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo_app/1/task_row/mod.rs">listings/todo_app/1/task_row/mod.rs</a></p>
 <pre><code class="language-rust  no_run noplayground"><span class="boring">mod imp;
 </span><span class="boring">
 </span><span class="boring">use crate::task_object::TaskObject;
