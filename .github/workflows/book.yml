@@ -7,7 +7,6 @@ on:
       - "master"
   release:
     types: [published]
-  workflow_dispatch:
 
 jobs:
   test:
@@ -52,16 +51,25 @@ jobs:
 
       - run: mdbook build -d public
         working-directory: book
-      - run: echo "DEST=$(if [ "$GITHUB_EVENT_NAME" == "workflow_dispatch" ]; then echo 'git'; else echo 'stable/latest'; fi)" >> ${GITHUB_ENV}
 
-      - name: Deploy
+      - name: Deploy to stable
         uses: peaceiris/actions-gh-pages@v3
-        if: ${{ (github.event_name == 'push' && github.ref == 'refs/heads/master') || github.event_name == 'release' || github.event_name == 'workflow_dispatch' }}
+        if: ${{ (github.event_name == 'push' && github.ref == 'refs/heads/master') || github.event_name == 'release' }}
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./book/public
           keep_files: false
-          destination_dir: ${{ env.DEST }}/book
+          destination_dir: stable/latest/book
+
+      - name: Deploy to git
+        uses: peaceiris/actions-gh-pages@v3
+        if: ${{ (github.event_name == 'push' && github.ref == 'refs/heads/master') || github.event_name == 'release' }}
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./book/public
+          keep_files: false
+          destination_dir: git/book
+
 
   codespell:
     runs-on: ubuntu-20.04
