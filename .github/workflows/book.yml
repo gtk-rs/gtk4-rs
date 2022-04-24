@@ -68,5 +68,3 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: crate-ci/typos@v1.0.4
-        with: 
-          files: ./book
