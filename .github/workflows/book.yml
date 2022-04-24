@@ -63,13 +63,10 @@ jobs:
           keep_files: false
           destination_dir: ${{ env.DEST }}/book
 
-  codespell:
+  spellcheck:
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v2
-      - uses: codespell-project/actions-codespell@master
-        with:
-          check_filenames: true
-          path: book
-          ignore_words_list: "crate"
-          skip: "*.svg"
+      - uses: crate-ci/typos@v1.0.4
+        with: 
+          files: ./book
