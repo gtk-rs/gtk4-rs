@@ -102,5 +102,5 @@ impl WindowImpl for Window {
 }
 // ANCHOR_END: window_impl
 
-// Trait shared by all application
+// Trait shared by all application windows
 impl ApplicationWindowImpl for Window {}
