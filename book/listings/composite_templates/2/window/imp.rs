@@ -57,5 +57,5 @@ impl WidgetImpl for Window {}
 // Trait shared by all windows
 impl WindowImpl for Window {}
 
-// Trait shared by all application
+// Trait shared by all application windows
 impl ApplicationWindowImpl for Window {}
