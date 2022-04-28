@@ -42,7 +42,7 @@ impl Window {
 
         // Wrap model with selection and pass it to the list view
         let selection_model = NoSelection::new(Some(&self.current_tasks()));
-        self.imp().list_view.set_model(Some(&selection_model));
+        self.imp().tasks_list.set_model(Some(&selection_model));
     }
     // ANCHOR_END: tasks
 
@@ -124,7 +124,7 @@ impl Window {
         });
 
         // Set the factory of the list view
-        self.imp().list_view.set_factory(Some(&factory));
+        self.imp().tasks_list.set_factory(Some(&factory));
     }
     // ANCHOR_END: setup_factory
 }
