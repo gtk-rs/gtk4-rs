@@ -3,7 +3,7 @@ use gtk::prelude::*;
 use gtk::subclass::prelude::*;
 use gtk::{gio, glib};
 use gtk::{CompositeTemplate, Entry, ListView};
-use once_cell::sync::OnceCell;
+use std::cell::RefCell;
 
 // ANCHOR: struct_and_subclass
 // Object holding the state
@@ -14,7 +14,7 @@ pub struct Window {
     pub entry: TemplateChild<Entry>,
     #[template_child]
     pub list_view: TemplateChild<ListView>,
-    pub current_tasks: OnceCell<gio::ListStore>,
+    pub current_tasks: RefCell<Option<gio::ListStore>>,
 }
 
 // The central trait for subclassing a GObject
