@@ -23,9 +23,13 @@ impl Window {
         Object::new(&[("application", app)]).expect("Failed to create `Window`.")
     }
 
-    fn current_tasks(&self) -> &gio::ListStore {
+    fn current_tasks(&self) -> gio::ListStore {
         // Get state
-        self.imp().current_tasks.get().expect("Could not get model")
+        self.imp()
+            .current_tasks
+            .borrow()
+            .clone()
+            .expect("Could not get current tasks.")
     }
 
     // ANCHOR: filter
@@ -71,14 +75,11 @@ impl Window {
         let model = gio::ListStore::new(TaskObject::static_type());
 
         // Get state and set model
-        self.imp()
-            .current_tasks
-            .set(model)
-            .expect("Could not set model");
+        self.imp().current_tasks.replace(Some(model));
 
         // Wrap model with filter and selection and pass it to the list view
         let filter_model =
-            FilterListModel::new(Some(self.current_tasks()), self.filter().as_ref());
+            FilterListModel::new(Some(&self.current_tasks()), self.filter().as_ref());
         let selection_model = NoSelection::new(Some(&filter_model));
         self.imp().list_view.set_model(Some(&selection_model));
 

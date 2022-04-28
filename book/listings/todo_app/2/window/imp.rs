@@ -5,7 +5,7 @@ use gtk::prelude::*;
 use gtk::subclass::prelude::*;
 use gtk::{gio, glib};
 use gtk::{CompositeTemplate, Entry, ListView, MenuButton};
-use once_cell::sync::OnceCell;
+use std::cell::RefCell;
 
 use crate::task_object::TaskObject;
 
@@ -20,7 +20,7 @@ pub struct Window {
     pub menu_button: TemplateChild<MenuButton>,
     #[template_child]
     pub list_view: TemplateChild<ListView>,
-    pub current_tasks: OnceCell<gio::ListStore>,
+    pub current_tasks: RefCell<Option<gio::ListStore>>,
     pub settings: Settings,
 }
 
@@ -30,7 +30,7 @@ impl Default for Window {
             entry: TemplateChild::default(),
             menu_button: TemplateChild::default(),
             list_view: TemplateChild::default(),
-            current_tasks: OnceCell::default(),
+            current_tasks: RefCell::default(),
             settings: Settings::new("org.gtk-rs.Todo2"),
         }
     }

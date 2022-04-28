@@ -24,9 +24,13 @@ impl Window {
     }
 
     // ANCHOR: tasks
-    fn current_tasks(&self) -> &gio::ListStore {
+    fn current_tasks(&self) -> gio::ListStore {
         // Get state
-        self.imp().current_tasks.get().expect("Could not get model")
+        self.imp()
+            .current_tasks
+            .borrow()
+            .clone()
+            .expect("Could not get current tasks.")
     }
 
     fn setup_tasks(&self) {
@@ -34,13 +38,10 @@ impl Window {
         let model = gio::ListStore::new(TaskObject::static_type());
 
         // Get state and set model
-        self.imp()
-            .current_tasks
-            .set(model)
-            .expect("Could not set model");
+        self.imp().current_tasks.replace(Some(model));
 
         // Wrap model with selection and pass it to the list view
-        let selection_model = NoSelection::new(Some(self.current_tasks()));
+        let selection_model = NoSelection::new(Some(&self.current_tasks()));
         self.imp().list_view.set_model(Some(&selection_model));
     }
     // ANCHOR_END: tasks
