@@ -61,7 +61,7 @@
             <property name="min-content-height">360</property>
             <property name="vexpand">true</property>
             <child>
-              <object class="GtkListView" id="list_view" />
+              <object class="GtkListView" id="tasks_list" />
             </child>
           </object>
         </child>

@@ -18,7 +18,7 @@ pub struct Window {
     #[template_child]
     pub menu_button: TemplateChild<MenuButton>,
     #[template_child]
-    pub list_view: TemplateChild<ListView>,
+    pub tasks_list: TemplateChild<ListView>,
     pub current_tasks: RefCell<Option<gio::ListStore>>,
     pub settings: Settings,
 }
@@ -28,7 +28,7 @@ impl Default for Window {
         Window {
             entry: TemplateChild::default(),
             menu_button: TemplateChild::default(),
-            list_view: TemplateChild::default(),
+            tasks_list: TemplateChild::default(),
             current_tasks: RefCell::default(),
             settings: Settings::new("org.gtk-rs.Todo3"),
         }

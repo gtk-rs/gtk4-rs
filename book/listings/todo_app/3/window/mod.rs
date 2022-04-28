@@ -78,7 +78,7 @@ impl Window {
         let filter_model =
             FilterListModel::new(Some(&self.current_tasks()), self.filter().as_ref());
         let selection_model = NoSelection::new(Some(&filter_model));
-        self.imp().list_view.set_model(Some(&selection_model));
+        self.imp().tasks_list.set_model(Some(&selection_model));
 
         // Filter model whenever the value of the key "filter" changes
         self.imp().settings.connect_changed(
@@ -176,7 +176,7 @@ impl Window {
         });
 
         // Set the factory of the list view
-        self.imp().list_view.set_factory(Some(&factory));
+        self.imp().tasks_list.set_factory(Some(&factory));
     }
 
     fn setup_actions(&self) {

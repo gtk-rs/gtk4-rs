@@ -13,7 +13,7 @@ pub struct Window {
     #[template_child]
     pub entry: TemplateChild<Entry>,
     #[template_child]
-    pub list_view: TemplateChild<ListView>,
+    pub tasks_list: TemplateChild<ListView>,
     pub current_tasks: RefCell<Option<gio::ListStore>>,
 }
 
