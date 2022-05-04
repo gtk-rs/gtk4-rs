@@ -77,7 +77,7 @@ Your browser does not support the video tag.
 
 Spawning threads is not the only way to run operations asynchronously.
 You can also let the main loop take care of running [`async`](https://rust-lang.github.io/async-book/) functions.
-If you do that from the main thread use [`spawn_local`](http://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/struct.MainContext.html#method.spawn_local), from other threads [`spawn`](http://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/struct.MainContext.html#method.spawn) has to be used.
+If you do that from the main thread use [`spawn_local`](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/struct.MainContext.html#method.spawn_local), from other threads [`spawn`](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/struct.MainContext.html#method.spawn) has to be used.
 The converted code looks and behaves very similar to the multi-threaded code.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/main_event_loop/4/main.rs">listings/main_event_loop/4/main.rs</a>

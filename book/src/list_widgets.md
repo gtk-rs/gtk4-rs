@@ -243,6 +243,6 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 
 We now know how to display a list of data.
 Small amount of elements can be handled by `ListBox` or `FlowBox`.
-These widgets are easy to use and can, if necessary, be bound to a model such as [`gio::ListStore`](http://gtk-rs.org/gtk-rs-core/stable/latest/docs/gio/struct.ListStore.html).
+These widgets are easy to use and can, if necessary, be bound to a model such as [`gio::ListStore`](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/gio/struct.ListStore.html).
 Their data can then be modified, sorted and filtered more easily.
 However, if we need the widgets to be scalable, we still need to use [`ListView`](../docs/gtk4/struct.ListView.html), [`ColumnView`](../docs/gtk4/struct.ColumnView.html) or [`GridView`](../docs/gtk4/struct.GridView.html) instead.
