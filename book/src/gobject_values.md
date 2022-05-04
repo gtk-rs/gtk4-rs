@@ -2,7 +2,7 @@
 
 Some GObject-related functions rely on generic values for their arguments or return parameters.
 Since GObject introspection works through a C interface, these functions cannot rely on any powerful Rust concepts.
-In these cases [`glib::Value`](http://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/value/struct.Value.html) or [`glib::Variant`](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/variant/struct.Variant.html) are used.
+In these cases [`glib::Value`](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/value/struct.Value.html) or [`glib::Variant`](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/variant/struct.Variant.html) are used.
 
 ## Value
 
