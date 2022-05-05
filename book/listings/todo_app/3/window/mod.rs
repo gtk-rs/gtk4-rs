@@ -94,10 +94,8 @@ impl Window {
         let tasks: Vec<TaskData> = self.imp().settings.get("tasks");
 
         // Convert `Vec<TaskData>` to `Vec<TaskObject>`
-        let task_objects: Vec<TaskObject> = tasks
-            .into_iter()
-            .map(|todo_data| TaskObject::new(todo_data.completed, todo_data.content))
-            .collect();
+        let task_objects: Vec<TaskObject> =
+            tasks.into_iter().map(TaskObject::from_task_data).collect();
 
         // Insert restored objects into model
         self.current_tasks().splice(0, 0, &task_objects);
