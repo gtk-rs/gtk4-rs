@@ -18,8 +18,12 @@ impl TaskObject {
         self.imp().data.borrow().completed
     }
 
-    pub fn todo_data(&self) -> TaskData {
+    pub fn task_data(&self) -> TaskData {
         self.imp().data.borrow().clone()
+    }
+
+    pub fn from_task_data(task_data: TaskData) -> Self {
+        Self::new(task_data.completed, task_data.content)
     }
 }
 
