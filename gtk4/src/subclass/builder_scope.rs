@@ -231,7 +231,7 @@ unsafe extern "C" fn builder_scope_create_closure<T: BuilderScopeImpl>(
     match ret {
         Ok(closure) => closure.to_glib_full(),
         Err(e) => {
-            *errorptr = e.into_raw();
+            *errorptr = e.into_glib_ptr();
             std::ptr::null_mut()
         }
     }
