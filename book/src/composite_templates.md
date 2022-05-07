@@ -45,12 +45,12 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 ```
 
 Now we have to compile the resources and link it to our application.
-One way to do this is to execute [`gio::compile_resources`](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/gio/fn.compile_resources.html) within a cargo [build script](https://doc.rust-lang.org/cargo/reference/build-scripts.html).
+One way to do this is to execute [`glib_build_tools::compile_resources`](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib_build_tools/fn.compile_resources.html) within a cargo [build script](https://doc.rust-lang.org/cargo/reference/build-scripts.html).
 
-First, we have to add `gtk4` as build dependency in `Cargo.toml` by executing:
+First, we have to add `glib-build-tools` as build dependency in `Cargo.toml` by executing:
 
 ```
-cargo add gtk4 --rename gtk --build
+cargo add glib-build-tools --build
 ```
 
 Then, we create a `build.rs` at the root of our package with the following content.
@@ -58,10 +58,8 @@ This will compile the resources whenever we trigger a build with cargo and then 
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/build.rs">listings/build.rs</a>
 ```rust ,no_run,noplayground
-use gtk::gio;
-
 fn main() {
-    gio::compile_resources(
+    glib_build_tools::compile_resources(
         "composite_templates/1/resources",
         "composite_templates/1/resources/resources.gresource.xml",
         "composite_templates_1.gresource",
