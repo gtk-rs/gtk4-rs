@@ -62,7 +62,6 @@ fn build_ui(application: &Application) {
     // Present the window
     window.present();
 }
-}
 ```
 
 Here we would like to create a simple app with two buttons.
