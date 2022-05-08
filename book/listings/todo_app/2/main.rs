@@ -1,5 +1,6 @@
 mod task_object;
 mod task_row;
+mod utils;
 mod window;
 
 use gtk::gio;
@@ -8,6 +9,8 @@ use gtk::Application;
 
 use window::Window;
 
+static APP_ID: &str = "org.gtk-rs.Todo2";
+
 // ANCHOR: main
 fn main() {
     // Register and include resources
@@ -15,9 +18,7 @@ fn main() {
         .expect("Failed to register resources.");
 
     // Create a new application
-    let app = Application::builder()
-        .application_id("org.gtk-rs.Todo2")
-        .build();
+    let app = Application::builder().application_id(APP_ID).build();
 
     // Connect to signals
     app.connect_startup(setup_shortcuts);

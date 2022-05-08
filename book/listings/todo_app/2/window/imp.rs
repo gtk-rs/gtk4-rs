@@ -5,13 +5,16 @@ use gtk::prelude::*;
 use gtk::subclass::prelude::*;
 use gtk::{gio, glib};
 use gtk::{CompositeTemplate, Entry, ListView, MenuButton};
+use once_cell::sync::OnceCell;
 use std::cell::RefCell;
+use std::fs::File;
 
 use crate::task_object::TaskObject;
+use crate::utils::data_path;
 
 // ANCHOR: struct_default
 // Object holding the state
-#[derive(CompositeTemplate)]
+#[derive(CompositeTemplate, Default)]
 #[template(resource = "/org/gtk-rs/Todo2/window.ui")]
 pub struct Window {
     #[template_child]
@@ -21,19 +24,7 @@ pub struct Window {
     #[template_child]
     pub tasks_list: TemplateChild<ListView>,
     pub current_tasks: RefCell<Option<gio::ListStore>>,
-    pub settings: Settings,
-}
-
-impl Default for Window {
-    fn default() -> Self {
-        Window {
-            entry: TemplateChild::default(),
-            menu_button: TemplateChild::default(),
-            tasks_list: TemplateChild::default(),
-            current_tasks: RefCell::default(),
-            settings: Settings::new("org.gtk-rs.Todo2"),
-        }
-    }
+    pub settings: OnceCell<Settings>,
 }
 // ANCHOR_END: struct_default
 
@@ -62,6 +53,7 @@ impl ObjectImpl for Window {
         self.parent_constructed(obj);
 
         // Setup
+        obj.setup_settings();
         obj.setup_tasks();
         obj.restore_data();
         obj.setup_callbacks();
@@ -79,22 +71,23 @@ impl WidgetImpl for Window {}
 impl WindowImpl for Window {
     fn close_request(&self, window: &Self::Type) -> Inhibit {
         // Store todo data in vector
-        let mut tasks = Vec::new();
+        let mut backup_data = Vec::new();
         let mut position = 0;
         while let Some(item) = window.current_tasks().item(position) {
-            // Get `TaskObject` from `glib::Object`
-            let task_data = item
+            // Get `TodoObject` from `glib::Object`
+            let todo_data = item
                 .downcast_ref::<TaskObject>()
-                .expect("The object needs to be of type `TaskObject`.")
+                .expect("The object needs to be of type `TodoObject`.")
                 .task_data();
             // Add todo data to vector and increase position
-            tasks.push(task_data);
+            backup_data.push(todo_data);
             position += 1;
         }
 
-        self.settings
-            .set("tasks", &tasks)
-            .expect("Could not save data in settings.");
+        // Save state in file
+        let file = File::create(data_path()).expect("Could not create json file.");
+        serde_json::to_writer(file, &backup_data)
+            .expect("Could not write data to json file");
 
         // Pass close request on to the parent
         self.parent_close_request(window)
