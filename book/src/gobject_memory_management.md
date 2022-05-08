@@ -54,7 +54,7 @@ fn build_ui(application: &Application) {
 
     // Create a window
     let window = ApplicationWindow::builder()
-        .application(app)
+        .application(application)
         .title("My GTK App")
         .child(&gtk_box)
         .build();
