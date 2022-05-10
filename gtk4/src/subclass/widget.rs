@@ -105,6 +105,8 @@ impl Iterator for WidgetActionIter {
     }
 }
 
+impl std::iter::FusedIterator for WidgetActionIter {}
+
 pub trait WidgetImpl: WidgetImplExt + ObjectImpl {
     fn compute_expand(&self, widget: &Self::Type, hexpand: &mut bool, vexpand: &mut bool) {
         self.parent_compute_expand(widget, hexpand, vexpand)
