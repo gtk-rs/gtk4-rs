@@ -126,6 +126,8 @@ impl<'a> Iterator for BitsetIter<'a> {
     }
 }
 
+impl<'a> std::iter::FusedIterator for BitsetIter<'a> {}
+
 #[doc(hidden)]
 impl<'a> ToGlibPtr<'a, *const ffi::GtkBitsetIter> for BitsetIter<'a> {
     type Storage = &'a Self;
