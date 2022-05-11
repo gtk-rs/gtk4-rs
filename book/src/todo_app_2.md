@@ -71,8 +71,6 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 
 Then, we create a settings schema.
 Again, the "filter" setting correspond to the stateful actions called by the menu.
-We also add the "tasks" setting which is an array `a` of structs with a boolean `b` and string `s` as members (see [GVariant format string](https://docs.gtk.org/glib/gvariant-format-strings.html)).
-We set the default to an empty array `[]` (see [GVariant Text Format](https://docs.gtk.org/glib/gvariant-text.html)).
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo_app/2/org.gtk-rs.Todo2.gschema.xml">listings/todo_app/2/org.gtk-rs.Todo2.gschema.xml</a>
 
@@ -82,13 +80,21 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 
 We install the schema as described in the settings [chapter](./settings.html)
 Then we add a reference to `settings` and a reference to `clear_button` to `imp::Window`.
-We stop deriving `Default` for `imp::Window` and implement it manually.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo_app/2/window/imp.rs">listings/todo_app/2/window/imp.rs</a>
 
 ```rust ,no_run,noplayground
 {{#rustdoc_include ../listings/todo_app/2/window/imp.rs:struct_default}}
 ```
+
+Again, we create functions to make it easier to access settings.
+
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo_app/2/window/mod.rs">listings/todo_app/2/window/mod.rs</a>
+
+```rust ,no_run,noplayground
+{{#rustdoc_include ../listings/todo_app/2/window/mod.rs:settings}}
+```
+
 
 We also add the getter methods `is_completed` and `todo_data` to `TaskObject`.
 We will make use of them in the following snippets.
@@ -181,19 +187,43 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 
 ## Saving and Restoring Tasks
 
-Our filter state will persist between sessions.
+Since we use `Settings`, our filter state will persist between sessions.
 However, the tasks themselves will not.
-Let's implement that.
+Let us implement that.
+We could store our tasks in `Settings`, but it would be inconvenient.
+When it comes to serializing and deserializing nothing beats the crate [`serde`](https://lib.rs/crates/serde).
+Combined with [`serde_json`](https://lib.rs/crates/serde_json) we can save our tasks as serialized [json](https://en.wikipedia.org/wiki/JSON) files.
 
-Until now, we mostly converted primitives into variants.
-However, the [`glib::Variant`](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/derive.Variant.html) it also isn't much harder to do with our own structures.
-This is why we stored the data of `TaskObject` in a distinct `TaskData` structure.
-Doing so allows us to derive `glib::Variant` for `TaskData`.
+First, we extend our `Cargo.toml` with the `serde` and `serde_json` crate.
+
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/Cargo.toml">listings/Cargo.toml</a>
+
+```toml
+[dependencies]
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+```
+
+Serde is a framework for serializing and deserializing Rust data structures.
+The `derive` feature allows us to make our structures (de-)serializable with a single line of code.
+We also use the `rc` feature so that Serde can deal with `std::rc::Rc` objects.
+This is why we stored the data of `TodoObject` in a distinct `TodoData` structure.
+Doing so allows us to derive `Serialize` and `Deserialize` for `TodoData`.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo_app/2/task_object/mod.rs">listings/todo_app/2/task_object/mod.rs</a>
 
 ```rust ,no_run,noplayground
-{{#rustdoc_include ../listings/todo_app/2/task_object/mod.rs:derive}}
+{{#rustdoc_include ../listings/todo_app/2/task_object/mod.rs:task_data}}
+```
+
+We plan to store our data as a file, so we create a utility function to provide a suitable file path for us.
+We use [`glib::user_config_dir`](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/fn.user_config_dir.html) to get the path to the config directory and create a new subdirectory for our app.
+Then we return the file path.
+
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo_app/2/utils.rs">listings/todo_app/2/utils.rs</a>
+
+```rust ,no_run,noplayground
+{{#rustdoc_include ../listings/todo_app/2/utils.rs:data_path}}
 ```
 
 We override the `close_request` virtual function to save the tasks when the window is closed.
@@ -206,14 +236,39 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 {{#rustdoc_include ../listings/todo_app/2/window/imp.rs:window_impl}}
 ```
 
-> Especially for more complicated types it isn't exactly easy to guess the correct variant text format.
-> We can use this snippet to determine the text format of the type of `backup_data`.
-> ```rust ,no_run,noplayground
-> backup_data.to_variant().type_().as_str();
-> ```
+Let's it have a look into what a `Vec<TaskData>` will be serialized.
+Note that [`serde_json::to_writer`](https://docs.serde.rs/serde_json/fn.to_writer.html) saves the data into a more concise, but also less readable way.
+To create the euqivalent but nicely formatted json below you can just replace `to_writer` with [`serde_json::to_writer_pretty`](https://docs.serde.rs/serde_json/fn.to_writer_pretty.html).
+
+Filename: data.json
+
+```json
+[
+  {
+    "completed": true,
+    "content": "Task Number Two"
+  },
+  {
+    "completed": false,
+    "content": "Task Number Five"
+  },
+  {
+    "completed": true,
+    "content": "Task Number Six"
+  },
+  {
+    "completed": false,
+    "content": "Task Number Seven"
+  },
+  {
+    "completed": false,
+    "content": "Task Number Eight"
+  }
+]
+```
 
 When we start the app, we will want to restore the saved data.
-Let's add a `restore_data` method for that.
+Let us add a `restore_data` method for that.
 We make sure to handle the case where there is no data file there yet.
 It might be the first time that we started the app and therefore there is no former session to restore.
 
@@ -229,7 +284,7 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 
 ```rust ,no_run,noplayground
 {{#rustdoc_include ../listings/todo_app/2/window/imp.rs:object_impl}}
-```
 
+```
 Our To-Do app suddenly became much more useful.
 Not only can we filter tasks, we also retain our tasks between sessions.

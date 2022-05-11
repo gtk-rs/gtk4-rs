@@ -1,5 +1,6 @@
 mod imp;
 
+use gio::Settings;
 use gio::SimpleAction;
 use glib::{clone, Object};
 use gtk::prelude::*;
@@ -19,6 +20,20 @@ impl Window {
         // Create new window
         Object::new(&[("application", app)]).expect("Failed to create Window")
     }
+
+    // ANCHOR: settings
+    fn setup_settings(&self) {
+        let settings = Settings::new("org.gtk-rs.example");
+        self.imp()
+            .settings
+            .set(settings)
+            .expect("Could not set `Settings`.");
+    }
+
+    fn settings(&self) -> &Settings {
+        self.imp().settings.get().expect("Could not get settings.")
+    }
+    // ANCHOR_END: settings
 
     fn setup_actions(&self) {
         // Get state
@@ -65,12 +80,11 @@ impl Window {
 
         // ANCHOR: settings_create_actions
         // Create action from key "sensitive-button" and add to action group "win"
-        let action_sensitive_button =
-            self.imp().settings.create_action("sensitive-button");
+        let action_sensitive_button = self.settings().create_action("sensitive-button");
         self.add_action(&action_sensitive_button);
 
         // Create action from key "orientation" and add to action group "win"
-        let action_orientation = self.imp().settings.create_action("orientation");
+        let action_orientation = self.settings().create_action("orientation");
         self.add_action(&action_orientation);
         // ANCHOR_END: settings_create_actions
     }
@@ -81,15 +95,13 @@ impl Window {
 
         // Bind setting "sensitive-button" to "sensitive" property of `button`
         let button = self.imp().button.get();
-        self.imp()
-            .settings
+        self.settings()
             .bind("sensitive-button", &button, "sensitive")
             .build();
 
         // Bind setting "orientation" to "orientation" property of `button`
         let gtk_box = self.imp().gtk_box.get();
-        self.imp()
-            .settings
+        self.settings()
             .bind("orientation", &gtk_box, "orientation")
             .mapping(|variant, _| {
                 let orientation = variant
