@@ -3,6 +3,7 @@ mod imp;
 use glib::Object;
 use gtk::glib;
 use gtk::subclass::prelude::*;
+use serde::{Deserialize, Serialize};
 
 glib::wrapper! {
     pub struct TaskObject(ObjectSubclass<imp::TaskObject>);
@@ -27,7 +28,7 @@ impl TaskObject {
     }
 }
 
-#[derive(Default, glib::Variant, Clone)]
+#[derive(Default, Clone, Serialize, Deserialize)]
 pub struct TaskData {
     pub completed: bool,
     pub content: String,

@@ -10,9 +10,5 @@
       <default>'All'</default>
       <summary>Filter of the tasks</summary>
     </key>
-    <key name="tasks" type="a(bs)">
-      <default>[]</default>
-      <summary>The tasks</summary>
-    </key>
   </schema>
 </schemalist>
