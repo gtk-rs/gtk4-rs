@@ -16,10 +16,10 @@ impl TaskObject {
 }
 // ANCHOR_END: glib_wrapper_and_new
 
-// ANCHOR: todo_data
+// ANCHOR: task_data
 #[derive(Default)]
 pub struct TaskData {
     pub completed: bool,
     pub content: String,
 }
-// ANCHOR: todo_data
+// ANCHOR: task_data

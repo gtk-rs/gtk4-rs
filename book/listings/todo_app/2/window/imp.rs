@@ -1,6 +1,7 @@
 use gio::Settings;
 use glib::signal::Inhibit;
 use glib::subclass::InitializingObject;
+use gtk::glib::Cast;
 use gtk::prelude::*;
 use gtk::subclass::prelude::*;
 use gtk::{gio, glib};
@@ -9,7 +10,7 @@ use once_cell::sync::OnceCell;
 use std::cell::RefCell;
 use std::fs::File;
 
-use crate::task_object::TaskObject;
+use crate::task_object::{TaskData, TaskObject};
 use crate::utils::data_path;
 
 // ANCHOR: struct_default
@@ -70,19 +71,14 @@ impl WidgetImpl for Window {}
 // Trait shared by all windows
 impl WindowImpl for Window {
     fn close_request(&self, window: &Self::Type) -> Inhibit {
-        // Store todo data in vector
-        let mut backup_data = Vec::new();
-        let mut position = 0;
-        while let Some(item) = window.current_tasks().item(position) {
-            // Get `TodoObject` from `glib::Object`
-            let todo_data = item
-                .downcast_ref::<TaskObject>()
-                .expect("The object needs to be of type `TodoObject`.")
-                .task_data();
-            // Add todo data to vector and increase position
-            backup_data.push(todo_data);
-            position += 1;
-        }
+        // Store task data in vector
+        let backup_data: Vec<TaskData> = window
+            .current_tasks()
+            .snapshot()
+            .iter()
+            .filter_map(Cast::downcast_ref::<TaskObject>)
+            .map(TaskObject::task_data)
+            .collect();
 
         // Save state in file
         let file = File::create(data_path()).expect("Could not create json file.");

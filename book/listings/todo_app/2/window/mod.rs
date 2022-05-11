@@ -118,13 +118,13 @@ impl Window {
                 .expect("Could not get backup data from json file.");
 
             // Convert `Vec<TaskData>` to `Vec<TaskObject>`
-            let todo_objects: Vec<TaskObject> = backup_data
+            let task_objects: Vec<TaskObject> = backup_data
                 .into_iter()
                 .map(TaskObject::from_task_data)
                 .collect();
 
             // Insert restored objects into model
-            self.current_tasks().splice(0, 0, &todo_objects);
+            self.current_tasks().splice(0, 0, &task_objects);
         }
     }
     // ANCHOR_END: restore_data
