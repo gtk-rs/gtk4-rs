@@ -2,6 +2,9 @@ mod imp;
 
 use crate::task_object::{TaskData, TaskObject};
 use crate::task_row::TaskRow;
+use crate::utils::data_path;
+use crate::APP_ID;
+use gio::Settings;
 use glib::{clone, Object};
 use gtk::prelude::*;
 use gtk::subclass::prelude::*;
@@ -9,6 +12,7 @@ use gtk::{gio, glib};
 use gtk::{
     Application, CustomFilter, FilterListModel, NoSelection, SignalListItemFactory,
 };
+use std::fs::File;
 
 glib::wrapper! {
     pub struct Window(ObjectSubclass<imp::Window>)
@@ -23,6 +27,18 @@ impl Window {
         Object::new(&[("application", app)]).expect("Failed to create `Window`.")
     }
 
+    fn setup_settings(&self) {
+        let settings = Settings::new(APP_ID);
+        self.imp()
+            .settings
+            .set(settings)
+            .expect("Could not set Settings.");
+    }
+
+    fn settings(&self) -> &Settings {
+        self.imp().settings.get().expect("Could not get settings.")
+    }
+
     fn current_tasks(&self) -> gio::ListStore {
         self.imp()
             .current_tasks
@@ -33,7 +49,7 @@ impl Window {
 
     fn filter(&self) -> Option<CustomFilter> {
         // Get filter state from settings
-        let filter_state: String = self.imp().settings.get("filter");
+        let filter_state: String = self.settings().get("filter");
 
         // Create custom filters
         let filter_open = CustomFilter::new(|obj| {
@@ -78,7 +94,7 @@ impl Window {
         self.imp().tasks_list.set_model(Some(&selection_model));
 
         // Filter model whenever the value of the key "filter" changes
-        self.imp().settings.connect_changed(
+        self.settings().connect_changed(
             Some("filter"),
             clone!(@weak self as window, @weak filter_model => move |_, _| {
                 filter_model.set_filter(window.filter().as_ref());
@@ -87,15 +103,20 @@ impl Window {
     }
 
     fn restore_data(&self) {
-        // Deserialize data from file to vector
-        let tasks: Vec<TaskData> = self.imp().settings.get("tasks");
+        if let Ok(file) = File::open(data_path()) {
+            // Deserialize data from file to vector
+            let backup_data: Vec<TaskData> = serde_json::from_reader(file)
+                .expect("Could not get backup data from json file.");
 
-        // Convert `Vec<TaskData>` to `Vec<TaskObject>`
-        let task_objects: Vec<TaskObject> =
-            tasks.into_iter().map(TaskObject::from_task_data).collect();
+            // Convert `Vec<TaskData>` to `Vec<TaskObject>`
+            let task_objects: Vec<TaskObject> = backup_data
+                .into_iter()
+                .map(TaskObject::from_task_data)
+                .collect();
 
-        // Insert restored objects into model
-        self.current_tasks().splice(0, 0, &task_objects);
+            // Insert restored objects into model
+            self.current_tasks().splice(0, 0, &task_objects);
+        }
     }
 
     fn setup_callbacks(&self) {
@@ -176,7 +197,7 @@ impl Window {
 
     fn setup_actions(&self) {
         // Create action from key "filter" and add to action group "win"
-        let action_filter = self.imp().settings.create_action("filter");
+        let action_filter = self.settings().create_action("filter");
         self.add_action(&action_filter);
 
         // Get model
