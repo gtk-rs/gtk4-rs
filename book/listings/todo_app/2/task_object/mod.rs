@@ -30,10 +30,10 @@ impl TaskObject {
 }
 // ANCHOR_END: impl
 
-// ANCHOR: derive
+// ANCHOR: task_data
 #[derive(Default, Clone, Serialize, Deserialize)]
 pub struct TaskData {
     pub completed: bool,
     pub content: String,
 }
-// ANCHOR_END: derive
+// ANCHOR_END: task_data

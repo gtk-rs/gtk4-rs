@@ -251,13 +251,22 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 
 Again, we install the schema as described in the settings [chapter](./settings.html).
 Then we add the settings to `imp::Window`.
-Since [`gio::Settings`](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/gio/struct.Settings.html) does not implement `Default`, we stop deriving `Default` for `imp::Window` and implement it manually.
+Since [`gio::Settings`](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/gio/struct.Settings.html) does not implement `Default`, we wrap it in a [`once_cell::sync::OnceCell`](https://docs.rs/once_cell/latest/once_cell/sync/struct.OnceCell.html).
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/actions/7/window/imp.rs">listings/actions/7/window/imp.rs</a>
 
 ```rust ,no_run,noplayground
 {{#rustdoc_include ../listings/actions/7/window/imp.rs:imp_struct}}
 ```
+
+Now we create functions to make it easier to access settings.
+
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/actions/7/window/mod.rs">listings/actions/7/window/mod.rs</a>
+
+```rust ,no_run,noplayground
+{{#rustdoc_include ../listings/actions/7/window/mod.rs:settings}}
+```
+
 
 Creating stateful actions from setting entries is so common that `Settings` provides a method for that exact purpose.
 We create actions with the[ `create_action`](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/gio/prelude/trait.SettingsExt.html#tymethod.create_action) method and then add them to the action group of our window.

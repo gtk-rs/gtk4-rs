@@ -28,17 +28,19 @@ impl Window {
         Object::new(&[("application", app)]).expect("Failed to create `Window`.")
     }
 
+    // ANCHOR: settings
     fn setup_settings(&self) {
         let settings = Settings::new(APP_ID);
         self.imp()
             .settings
             .set(settings)
-            .expect("Could not set Settings.");
+            .expect("Could not set `Settings`.");
     }
 
     fn settings(&self) -> &Settings {
         self.imp().settings.get().expect("Could not get settings.")
     }
+    // ANCHOR_END: settings
 
     fn current_tasks(&self) -> gio::ListStore {
         // Get state

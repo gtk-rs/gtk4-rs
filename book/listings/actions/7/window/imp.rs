@@ -4,10 +4,11 @@ use gtk::prelude::*;
 use gtk::subclass::prelude::*;
 use gtk::{gio, glib};
 use gtk::{Button, CompositeTemplate, Label};
+use once_cell::sync::OnceCell;
 
 // ANCHOR: imp_struct
 // Object holding the state
-#[derive(CompositeTemplate)]
+#[derive(CompositeTemplate, Default)]
 #[template(resource = "/org/gtk-rs/example/window.ui")]
 pub struct Window {
     #[template_child]
@@ -16,18 +17,7 @@ pub struct Window {
     pub button: TemplateChild<Button>,
     #[template_child]
     pub label: TemplateChild<Label>,
-    pub settings: Settings,
-}
-
-impl Default for Window {
-    fn default() -> Self {
-        Window {
-            gtk_box: TemplateChild::default(),
-            button: TemplateChild::default(),
-            label: TemplateChild::default(),
-            settings: Settings::new("org.gtk-rs.example"),
-        }
-    }
+    pub settings: OnceCell<Settings>,
 }
 // ANCHOR_END: imp_struct
 
@@ -56,6 +46,7 @@ impl ObjectImpl for Window {
         self.parent_constructed(obj);
 
         // Setup
+        obj.setup_settings();
         obj.setup_actions();
         obj.bind_settings();
     }

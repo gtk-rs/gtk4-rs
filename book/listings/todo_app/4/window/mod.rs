@@ -32,7 +32,7 @@ impl Window {
         self.imp()
             .settings
             .set(settings)
-            .expect("Could not set Settings.");
+            .expect("Could not set `Settings`.");
     }
 
     fn settings(&self) -> &Settings {
