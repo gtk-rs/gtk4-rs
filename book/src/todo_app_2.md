@@ -238,7 +238,7 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 
 Let's it have a look into what a `Vec<TaskData>` will be serialized.
 Note that [`serde_json::to_writer`](https://docs.serde.rs/serde_json/fn.to_writer.html) saves the data into a more concise, but also less readable way.
-To create the euqivalent but nicely formatted json below you can just replace `to_writer` with [`serde_json::to_writer_pretty`](https://docs.serde.rs/serde_json/fn.to_writer_pretty.html).
+To create the equivalent but nicely formatted json below you can just replace `to_writer` with [`serde_json::to_writer_pretty`](https://docs.serde.rs/serde_json/fn.to_writer_pretty.html).
 
 Filename: data.json
 
