@@ -30,8 +30,8 @@ fn build_ui(app: &Application) {
     // Create new model
     let model = gio::ListStore::new(IntegerObject::static_type());
 
-    // Add the vector to the model at position 0 and remove 0 elements
-    model.splice(0, 0, &vector);
+    // Add the vector to the model
+    model.extend_from_slice(&vector);
 
     let factory = SignalListItemFactory::new();
     // ANCHOR: factory_setup
