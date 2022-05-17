@@ -2,7 +2,13 @@
 
 Here you can find the listings used by the code snippets of the book.
 
-Each listing can be run by changing the current working directory to this folder and then executing:
+In order to run the listings change the current working directory to this folder and then execute the following in order to install application data.
+
+```
+cargo xtask install
+```
+
+Then execute the following to run one of the listings.
 
 ```bash
 cargo run --bin [example_name]_[number]
