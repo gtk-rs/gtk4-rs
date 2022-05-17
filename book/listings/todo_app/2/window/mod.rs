@@ -126,7 +126,7 @@ impl Window {
                 .collect();
 
             // Insert restored objects into model
-            self.current_tasks().splice(0, 0, &task_objects);
+            self.current_tasks().extend_from_slice(&task_objects);
         }
     }
     // ANCHOR_END: restore_data
