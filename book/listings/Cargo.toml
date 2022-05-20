@@ -239,19 +239,19 @@ path = "settings/1/main.rs"
 name = "settings_2"
 path = "settings/2/main.rs"
 
-# todo_app
+# todo
 [[bin]]
-name = "todo_app_1"
-path = "todo_app/1/main.rs"
+name = "todo_1"
+path = "todo/1/main.rs"
 
 [[bin]]
-name = "todo_app_2"
-path = "todo_app/2/main.rs"
+name = "todo_2"
+path = "todo/2/main.rs"
 
 [[bin]]
-name = "todo_app_3"
-path = "todo_app/3/main.rs"
+name = "todo_3"
+path = "todo/3/main.rs"
 
 [[bin]]
-name = "todo_app_4"
-path = "todo_app/4/main.rs"
+name = "todo_4"
+path = "todo/4/main.rs"

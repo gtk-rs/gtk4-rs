@@ -50,25 +50,25 @@ fn main() {
         "composite_templates_6.gresource",
     );
 
-    // todo_app
+    // todo
     gio::compile_resources(
-        "todo_app/1/resources",
-        "todo_app/1/resources/resources.gresource.xml",
-        "todo_app_1.gresource",
+        "todo/1/resources",
+        "todo/1/resources/resources.gresource.xml",
+        "todo_1.gresource",
     );
     gio::compile_resources(
-        "todo_app/2/resources",
-        "todo_app/2/resources/resources.gresource.xml",
-        "todo_app_2.gresource",
+        "todo/2/resources",
+        "todo/2/resources/resources.gresource.xml",
+        "todo_2.gresource",
     );
     gio::compile_resources(
-        "todo_app/3/resources",
-        "todo_app/3/resources/resources.gresource.xml",
-        "todo_app_3.gresource",
+        "todo/3/resources",
+        "todo/3/resources/resources.gresource.xml",
+        "todo_3.gresource",
     );
     gio::compile_resources(
-        "todo_app/4/resources",
-        "todo_app/4/resources/resources.gresource.xml",
-        "todo_app_4.gresource",
+        "todo/4/resources",
+        "todo/4/resources/resources.gresource.xml",
+        "todo_4.gresource",
     );
 }

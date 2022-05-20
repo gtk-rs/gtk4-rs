@@ -11,7 +11,7 @@ use window::Window;
 // ANCHOR: main
 fn main() {
     // Register and include resources
-    gio::resources_register_include!("todo_app_1.gresource")
+    gio::resources_register_include!("todo_1.gresource")
         .expect("Failed to register resources.");
 
     // Create a new application
