@@ -4,14 +4,14 @@ A GObject (or [`glib::Object`](https://gtk-rs.org/gtk-rs-core/stable/latest/docs
 Let's see in a set of real life examples which consequences this has.
 
 ```rust ,no_run,compile_fail
-use gtk::prelude::*;
-use gtk::{self, Application, ApplicationWindow, Button, Orientation};
-
+#use gtk::prelude::*;
+#use gtk::{self, Application, ApplicationWindow, Button, Orientation};
+#
+#const APP_ID: &str = "org.gtk-rs.GObjectMemoryManagement0";
+#
 fn main() {
     // Create a new application
-    let app = Application::builder()
-        .application_id("org.gtk-rs.example")
-        .build();
+    let app = Application::builder().application_id(APP_ID).build();
 
     // Connect to "activate" signal of `app`
     app.connect_activate(build_ui);
