@@ -2,10 +2,12 @@ use gio::Settings;
 use glib::signal::Inhibit;
 use gtk::{gio, glib};
 use gtk::{subclass::prelude::*, ApplicationWindow};
+use once_cell::sync::OnceCell;
 
 // ANCHOR: imp
+#[derive(Default)]
 pub struct Window {
-    pub settings: Settings,
+    pub settings: OnceCell<Settings>,
 }
 
 #[glib::object_subclass]
@@ -13,17 +15,12 @@ impl ObjectSubclass for Window {
     const NAME: &'static str = "MyGtkAppWindow";
     type Type = super::Window;
     type ParentType = ApplicationWindow;
-
-    fn new() -> Self {
-        Self {
-            settings: Settings::new("org.gtk-rs.example"),
-        }
-    }
 }
 impl ObjectImpl for Window {
     fn constructed(&self, obj: &Self::Type) {
         self.parent_constructed(obj);
         // Load latest window state
+        obj.setup_settings();
         obj.load_window_size();
     }
 }

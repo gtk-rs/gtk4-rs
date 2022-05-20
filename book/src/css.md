@@ -231,10 +231,10 @@ Keep in mind, that this is not the same as when we gave a specific instance of a
 When calling [`set_css_name` ](../docs/gtk4/subclass/widget/trait.WidgetClassSubclassExt.html#method.set_css_name), we change the name of the CSS node of a widget.
 In our case, the widget `TaskRow` now corresponds to the node `todo-row`.
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo_app/3/task_row/imp.rs">listings/todo_app/3/task_row/imp.rs</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/3/task_row/imp.rs">listings/todo/3/task_row/imp.rs</a>
 
 ```rust ,no_run,noplayground
-{{#rustdoc_include ../listings/todo_app/3/task_row/imp.rs:object_subclass}}
+{{#rustdoc_include ../listings/todo/3/task_row/imp.rs:object_subclass}}
 ```
 
 Now we have to decide which color to use for the borders.
@@ -244,25 +244,25 @@ As of this writing, the exported colors of the default stylesheet can only be fo
 There we find the color `borders`, which should be used for the widget's border color.
 We can then access the pre-defined color by adding an `@` in front of its name.
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo_app/3/resources/style.css">listings/todo_app/3/resources/style.css</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/3/resources/style.css">listings/todo/3/resources/style.css</a>
 
 ```css
-{{#rustdoc_include ../listings/todo_app/3/resources/style.css}}
+{{#rustdoc_include ../listings/todo/3/resources/style.css}}
 ```
 
 Now our tasks have borders around them, and we are one step further in finishing our To-Do app.
 
-<div style="text-align:center"><img src="img/todo_app_change.png"/></div>
+<div style="text-align:center"><img src="img/todo_change.png"/></div>
 
 This was also an excellent opportunity to show how to set the CSS name of custom widget and how to access exported colors.
 In the end, we find that GTK provides a style rule to add borders to a node.
 This seems nicer, so we will use that instead.
 We match the style rule by adding the style class `frame` to our `TaskRow`.
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo_app/4/resources/task_row.ui">listings/todo_app/4/resources/task_row.ui</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/4/resources/task_row.ui">listings/todo/4/resources/task_row.ui</a>
 
 ```xml
-{{#rustdoc_include ../listings/todo_app/4/resources/task_row.ui}}
+{{#rustdoc_include ../listings/todo/4/resources/task_row.ui}}
 ```
 
 ## Conclusion

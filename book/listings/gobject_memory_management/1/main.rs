@@ -3,10 +3,12 @@ use gtk::Application;
 use gtk::{self, ApplicationWindow, Button, Orientation};
 use std::{cell::Cell, rc::Rc};
 
+const APP_ID: &str = "org.gtk-rs.example";
+
 fn main() {
     // Create a new application
     let app = Application::builder()
-        .application_id("org.gtk-rs.example")
+        .application_id(APP_ID)
         .build();
 
     // Connect to "activate" signal of `app`

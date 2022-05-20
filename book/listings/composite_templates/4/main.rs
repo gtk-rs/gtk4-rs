@@ -7,6 +7,8 @@ use gtk::Application;
 
 use window::Window;
 
+const APP_ID: &str = "org.gtk-rs.example";
+
 fn main() {
     // Register and include resources
     gio::resources_register_include!("composite_templates_4.gresource")
@@ -14,7 +16,7 @@ fn main() {
 
     // Create a new application
     let app = Application::builder()
-        .application_id("org.gtk-rs.example")
+        .application_id(APP_ID)
         .build();
 
     // Connect to "activate" signal of `app`

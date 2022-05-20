@@ -1,10 +1,13 @@
 mod imp;
 
+use gio::Settings;
 use glib::Object;
 use gtk::prelude::*;
 use gtk::subclass::prelude::*;
 use gtk::Application;
 use gtk::{gio, glib};
+
+use crate::APP_ID;
 
 // ANCHOR: mod
 glib::wrapper! {
@@ -20,29 +23,36 @@ impl Window {
         Object::new(&[("application", app)]).expect("Failed to create `Window`.")
     }
 
-    pub fn save_window_size(&self) -> Result<(), glib::BoolError> {
-        // Get `settings` from `imp::Window`
-        let settings = &self.imp().settings;
+    fn setup_settings(&self) {
+        let settings = Settings::new(APP_ID);
+        self.imp()
+            .settings
+            .set(settings)
+            .expect("Could not set `Settings`.");
+    }
 
+    fn settings(&self) -> &Settings {
+        self.imp().settings.get().expect("Could not get settings.")
+    }
+
+    pub fn save_window_size(&self) -> Result<(), glib::BoolError> {
         // Get the size of the window
         let size = self.default_size();
 
         // Set the window state in `settings`
-        settings.set_int("window-width", size.0)?;
-        settings.set_int("window-height", size.1)?;
-        settings.set_boolean("is-maximized", self.is_maximized())?;
+        self.settings().set_int("window-width", size.0)?;
+        self.settings().set_int("window-height", size.1)?;
+        self.settings()
+            .set_boolean("is-maximized", self.is_maximized())?;
 
         Ok(())
     }
 
     fn load_window_size(&self) {
-        // Get `settings` from `imp::Window`
-        let settings = &self.imp().settings;
-
         // Get the window state from `settings`
-        let width = settings.int("window-width");
-        let height = settings.int("window-height");
-        let is_maximized = settings.boolean("is-maximized");
+        let width = self.settings().int("window-width");
+        let height = self.settings().int("window-height");
+        let is_maximized = self.settings().boolean("is-maximized");
 
         // Set the size of the window
         self.set_default_size(width, height);
