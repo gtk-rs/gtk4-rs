@@ -6,7 +6,7 @@ use gtk::Application;
 
 use window::Window;
 
-const APP_ID: &str = "org.gtk-rs.example";
+const APP_ID: &str = "org.gtk-rs.CompositeTemplates1";
 
 fn main() {
     // Register and include resources

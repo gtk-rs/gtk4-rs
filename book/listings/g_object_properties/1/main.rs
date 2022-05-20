@@ -2,7 +2,7 @@ use gtk::prelude::*;
 use gtk::{Align, Box, Orientation, Switch};
 use gtk::{Application, ApplicationWindow};
 
-const APP_ID: &str = "org.gtk-rs.example";
+const APP_ID: &str = "org.gtk-rs.GObjectProperties1";
 
 fn main() {
     // Create a new application

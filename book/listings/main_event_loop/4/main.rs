@@ -3,7 +3,7 @@ use gtk::glib;
 use gtk::prelude::*;
 use gtk::{Application, ApplicationWindow, Button};
 
-const APP_ID: &str = "org.gtk-rs.example";
+const APP_ID: &str = "org.gtk-rs.MainEventLoop4";
 
 fn main() {
     // Create a new application

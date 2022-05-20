@@ -3,7 +3,7 @@ use gtk::gio;
 use gtk::prelude::*;
 use gtk::{Align, Application, ApplicationWindow, Switch};
 
-const APP_ID: &str = "org.gtk-rs.example";
+const APP_ID: &str = "org.gtk-rs.Settings2";
 
 fn main() {
     // Create a new application

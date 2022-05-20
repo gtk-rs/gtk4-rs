@@ -4,7 +4,7 @@ use gtk::{
     ScrolledWindow, SignalListItemFactory, StringList, StringObject, Widget,
 };
 
-const APP_ID: &str = "org.gtk-rs.example";
+const APP_ID: &str = "org.gtk-rs.ListWidgets6";
 
 fn main() {
     // Create a new application
