@@ -2,10 +2,8 @@ mod task_object;
 mod task_row;
 mod window;
 
-use gtk::gio;
 use gtk::prelude::*;
-use gtk::Application;
-
+use gtk::{gio, Application};
 use window::Window;
 
 // ANCHOR: main

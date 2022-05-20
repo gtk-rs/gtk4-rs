@@ -1,7 +1,7 @@
 use gio::Settings;
 use glib::signal::Inhibit;
-use gtk::{gio, glib};
-use gtk::{subclass::prelude::*, ApplicationWindow};
+use gtk::subclass::prelude::*;
+use gtk::{gio, glib, ApplicationWindow};
 use once_cell::sync::OnceCell;
 
 // ANCHOR: imp

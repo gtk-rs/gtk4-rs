@@ -1,9 +1,7 @@
 mod window;
 
-use gtk::gio;
 use gtk::prelude::*;
-use gtk::Application;
-
+use gtk::{gio, Application};
 use window::Window;
 
 const APP_ID: &str = "org.gtk-rs.CompositeTemplates1";
@@ -14,9 +12,7 @@ fn main() {
         .expect("Failed to register resources.");
 
     // Create a new application
-    let app = Application::builder()
-        .application_id(APP_ID)
-        .build();
+    let app = Application::builder().application_id(APP_ID).build();
 
     // Connect to "activate" signal of `app`
     app.connect_activate(build_ui);

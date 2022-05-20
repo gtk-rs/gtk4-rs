@@ -1,10 +1,8 @@
 pub mod custom_button;
 mod window;
 
-use gtk::gio;
 use gtk::prelude::*;
-use gtk::Application;
-
+use gtk::{gio, Application};
 use window::Window;
 
 const APP_ID: &str = "org.gtk-rs.CompositeTemplates3";

@@ -1,7 +1,8 @@
 use std::path::PathBuf;
 
-use crate::APP_ID;
 use gtk::glib;
+
+use crate::APP_ID;
 
 // ANCHOR: data_path
 pub fn data_path() -> PathBuf {

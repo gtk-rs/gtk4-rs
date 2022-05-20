@@ -1,16 +1,15 @@
 use gio::SimpleAction;
 use glib::clone;
-use gtk::{gio, glib};
-use gtk::{prelude::*, Align};
-use gtk::{Application, ApplicationWindow, Button, Label, Orientation};
+use gtk::prelude::*;
+use gtk::{
+    gio, glib, Align, Application, ApplicationWindow, Button, Label, Orientation,
+};
 
 const APP_ID: &str = "org.gtk-rs.Actions3";
 
 fn main() {
     // Create a new application
-    let app = Application::builder()
-        .application_id(APP_ID)
-        .build();
+    let app = Application::builder().application_id(APP_ID).build();
 
     // Connect to "activate" signal of `app`
     app.connect_activate(build_ui);

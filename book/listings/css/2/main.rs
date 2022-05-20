@@ -1,15 +1,12 @@
 use gdk::Display;
-use gtk::gdk;
 use gtk::prelude::*;
-use gtk::{Application, ApplicationWindow, Button, CssProvider, StyleContext};
+use gtk::{gdk, Application, ApplicationWindow, Button, CssProvider, StyleContext};
 
 const APP_ID: &str = "org.gtk-rs.Css2";
 
 fn main() {
     // Create a new application
-    let app = Application::builder()
-        .application_id(APP_ID)
-        .build();
+    let app = Application::builder().application_id(APP_ID).build();
 
     // Connect to signals
     app.connect_startup(|_| load_css());

@@ -1,15 +1,12 @@
 use gio::{Settings, SettingsBindFlags};
-use gtk::gio;
 use gtk::prelude::*;
-use gtk::{Align, Application, ApplicationWindow, Switch};
+use gtk::{gio, Align, Application, ApplicationWindow, Switch};
 
 const APP_ID: &str = "org.gtk-rs.Settings2";
 
 fn main() {
     // Create a new application
-    let app = Application::builder()
-        .application_id(APP_ID)
-        .build();
+    let app = Application::builder().application_id(APP_ID).build();
 
     // Connect to "activate" signal of `app`
     app.connect_activate(build_ui);

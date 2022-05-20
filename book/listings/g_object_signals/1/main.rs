@@ -1,15 +1,12 @@
 use glib::closure_local;
-use gtk::glib;
 use gtk::prelude::*;
-use gtk::{Application, ApplicationWindow, Button};
+use gtk::{glib, Application, ApplicationWindow, Button};
 
 const APP_ID: &str = "org.gtk-rs.GObjectSignals1";
 
 fn main() {
     // Create a new application
-    let app = Application::builder()
-        .application_id(APP_ID)
-        .build();
+    let app = Application::builder().application_id(APP_ID).build();
 
     // Connect to "activate" signal of `app`
     app.connect_activate(build_ui);

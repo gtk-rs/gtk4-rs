@@ -1,10 +1,10 @@
+use std::cell::Cell;
+
 use glib::{ParamFlags, ParamSpec, ParamSpecInt, Value};
 use gtk::glib;
 use gtk::prelude::*;
 use gtk::subclass::prelude::*;
 use once_cell::sync::Lazy;
-
-use std::cell::Cell;
 
 // ANCHOR: integer_object
 // Object holding the state

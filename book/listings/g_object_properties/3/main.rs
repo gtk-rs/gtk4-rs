@@ -1,15 +1,12 @@
 use glib::BindingFlags;
-use gtk::{glib, Align, Orientation, Switch};
-use gtk::{prelude::*, Box};
-use gtk::{Application, ApplicationWindow};
+use gtk::prelude::*;
+use gtk::{glib, Align, Application, ApplicationWindow, Box, Orientation, Switch};
 
 const APP_ID: &str = "org.gtk-rs.GObjectProperties3";
 
 fn main() {
     // Create a new application
-    let app = Application::builder()
-        .application_id(APP_ID)
-        .build();
+    let app = Application::builder().application_id(APP_ID).build();
 
     // Connect to "activate" signal of `app`
     app.connect_activate(build_ui);

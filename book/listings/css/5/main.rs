@@ -5,9 +5,7 @@ const APP_ID: &str = "org.gtk-rs.Css5";
 
 fn main() {
     // Create a new application
-    let app = Application::builder()
-        .application_id(APP_ID)
-        .build();
+    let app = Application::builder().application_id(APP_ID).build();
 
     // Connect to signals
     app.connect_activate(build_ui);

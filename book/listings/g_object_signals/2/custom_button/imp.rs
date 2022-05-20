@@ -1,11 +1,11 @@
+use std::cell::Cell;
+
 use glib::subclass::Signal;
 use glib::{BindingFlags, ParamFlags, ParamSpec, ParamSpecInt, Value};
 use gtk::glib;
 use gtk::prelude::*;
 use gtk::subclass::prelude::*;
-
 use once_cell::sync::Lazy;
-use std::cell::Cell;
 
 // Object holding the state
 #[derive(Default)]

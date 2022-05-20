@@ -1,14 +1,11 @@
 use gtk::prelude::*;
-use gtk::{Align, Box, Orientation, Switch};
-use gtk::{Application, ApplicationWindow};
+use gtk::{Align, Application, ApplicationWindow, Box, Orientation, Switch};
 
 const APP_ID: &str = "org.gtk-rs.GObjectProperties2";
 
 fn main() {
     // Create a new application
-    let app = Application::builder()
-        .application_id(APP_ID)
-        .build();
+    let app = Application::builder().application_id(APP_ID).build();
 
     // Connect to "activate" signal of `app`
     app.connect_activate(build_ui);

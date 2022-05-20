@@ -8,9 +8,7 @@ const APP_ID: &str = "org.gtk-rs.GObjectSubclassing2";
 
 fn main() {
     // Create a new application
-    let app = Application::builder()
-        .application_id(APP_ID)
-        .build();
+    let app = Application::builder().application_id(APP_ID).build();
 
     // Connect to "activate" signal of `app`
     app.connect_activate(build_ui);

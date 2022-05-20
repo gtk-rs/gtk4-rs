@@ -2,17 +2,14 @@ use gio::SimpleAction;
 use glib::clone;
 use gtk::gio::SimpleActionGroup;
 use gtk::prelude::*;
-use gtk::{gio, glib};
-use gtk::{Application, ApplicationWindow};
+use gtk::{gio, glib, Application, ApplicationWindow};
 
 // ANCHOR: main
 const APP_ID: &str = "org.gtk-rs.Actions2";
 
 fn main() {
     // Create a new application
-    let app = Application::builder()
-        .application_id(APP_ID)
-        .build();
+    let app = Application::builder().application_id(APP_ID).build();
 
     // Connect to "activate" signal of `app`
     app.connect_activate(build_ui);

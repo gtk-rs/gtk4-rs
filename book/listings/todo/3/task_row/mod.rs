@@ -1,11 +1,12 @@
 mod imp;
 
-use crate::task_object::TaskObject;
 use glib::{BindingFlags, Object};
 use gtk::prelude::*;
 use gtk::subclass::prelude::*;
 use gtk::{glib, pango};
 use pango::{AttrInt, AttrList};
+
+use crate::task_object::TaskObject;
 
 glib::wrapper! {
     pub struct TaskRow(ObjectSubclass<imp::TaskRow>)

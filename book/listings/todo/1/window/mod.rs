@@ -1,12 +1,12 @@
 mod imp;
 
-use crate::task_object::TaskObject;
-use crate::task_row::TaskRow;
 use glib::{clone, Object};
 use gtk::prelude::*;
 use gtk::subclass::prelude::*;
-use gtk::{gio, glib};
-use gtk::{Application, NoSelection, SignalListItemFactory};
+use gtk::{gio, glib, Application, NoSelection, SignalListItemFactory};
+
+use crate::task_object::TaskObject;
+use crate::task_row::TaskRow;
 
 // ANCHOR: glib_wrapper
 glib::wrapper! {
