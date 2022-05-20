@@ -577,9 +577,7 @@ impl<O: IsA<Popover>> PopoverExt for O {
                 x_offset.as_mut_ptr(),
                 y_offset.as_mut_ptr(),
             );
-            let x_offset = x_offset.assume_init();
-            let y_offset = y_offset.assume_init();
-            (x_offset, y_offset)
+            (x_offset.assume_init(), y_offset.assume_init())
         }
     }
 

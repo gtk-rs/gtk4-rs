@@ -50,9 +50,8 @@ impl ToplevelLayout {
                 self.to_glib_none().0,
                 fullscreen.as_mut_ptr(),
             ));
-            let fullscreen = fullscreen.assume_init();
             if ret {
-                Some(from_glib(fullscreen))
+                Some(from_glib(fullscreen.assume_init()))
             } else {
                 None
             }
@@ -78,9 +77,8 @@ impl ToplevelLayout {
                 self.to_glib_none().0,
                 maximized.as_mut_ptr(),
             ));
-            let maximized = maximized.assume_init();
             if ret {
-                Some(from_glib(maximized))
+                Some(from_glib(maximized.assume_init()))
             } else {
                 None
             }

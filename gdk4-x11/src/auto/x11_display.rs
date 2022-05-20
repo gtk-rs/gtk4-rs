@@ -65,10 +65,8 @@ impl X11Display {
                 major.as_mut_ptr(),
                 minor.as_mut_ptr(),
             ));
-            let major = major.assume_init();
-            let minor = minor.assume_init();
             if ret {
-                Some((major, minor))
+                Some((major.assume_init(), minor.assume_init()))
             } else {
                 None
             }
@@ -86,10 +84,8 @@ impl X11Display {
                 major.as_mut_ptr(),
                 minor.as_mut_ptr(),
             ));
-            let major = major.assume_init();
-            let minor = minor.assume_init();
             if ret {
-                Some((major, minor))
+                Some((major.assume_init(), minor.assume_init()))
             } else {
                 None
             }
@@ -178,11 +174,10 @@ impl X11Display {
                 &mut ctext,
                 length.as_mut_ptr(),
             );
-            let format = format.assume_init();
             (
                 ret,
                 from_glib_none(encoding),
-                format,
+                format.assume_init(),
                 FromGlibContainer::from_glib_full_num(ctext, length.assume_init() as usize),
             )
         }
@@ -210,11 +205,10 @@ impl X11Display {
                 &mut ctext,
                 length.as_mut_ptr(),
             ));
-            let format = format.assume_init();
             if ret {
                 Some((
                     from_glib_none(encoding),
-                    format,
+                    format.assume_init(),
                     FromGlibContainer::from_glib_full_num(ctext, length.assume_init() as usize),
                 ))
             } else {

@@ -36,9 +36,7 @@ impl PadEvent {
                 index.as_mut_ptr(),
                 value.as_mut_ptr(),
             );
-            let index = index.assume_init();
-            let value = value.assume_init();
-            (index, value)
+            (index.assume_init(), value.assume_init())
         }
     }
 
@@ -59,9 +57,7 @@ impl PadEvent {
                 group.as_mut_ptr(),
                 mode.as_mut_ptr(),
             );
-            let group = group.assume_init();
-            let mode = mode.assume_init();
-            (group, mode)
+            (group.assume_init(), mode.assume_init())
         }
     }
 }

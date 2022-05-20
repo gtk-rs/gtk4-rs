@@ -188,8 +188,11 @@ impl<O: IsA<IMContext>> IMContextExt for O {
                 &mut attrs,
                 cursor_pos.as_mut_ptr(),
             );
-            let cursor_pos = cursor_pos.assume_init();
-            (from_glib_full(str), from_glib_full(attrs), cursor_pos)
+            (
+                from_glib_full(str),
+                from_glib_full(attrs),
+                cursor_pos.assume_init(),
+            )
         }
     }
 
@@ -202,9 +205,8 @@ impl<O: IsA<IMContext>> IMContextExt for O {
                 &mut text,
                 cursor_index.as_mut_ptr(),
             ));
-            let cursor_index = cursor_index.assume_init();
             if ret {
-                Some((from_glib_full(text), cursor_index))
+                Some((from_glib_full(text), cursor_index.assume_init()))
             } else {
                 None
             }
@@ -224,10 +226,12 @@ impl<O: IsA<IMContext>> IMContextExt for O {
                 cursor_index.as_mut_ptr(),
                 anchor_index.as_mut_ptr(),
             ));
-            let cursor_index = cursor_index.assume_init();
-            let anchor_index = anchor_index.assume_init();
             if ret {
-                Some((from_glib_full(text), cursor_index, anchor_index))
+                Some((
+                    from_glib_full(text),
+                    cursor_index.assume_init(),
+                    anchor_index.assume_init(),
+                ))
             } else {
                 None
             }

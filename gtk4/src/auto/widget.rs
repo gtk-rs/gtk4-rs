@@ -1322,9 +1322,7 @@ impl<O: IsA<Widget>> WidgetExt for O {
                 width.as_mut_ptr(),
                 height.as_mut_ptr(),
             );
-            let width = width.assume_init();
-            let height = height.assume_init();
-            (width, height)
+            (width.assume_init(), height.assume_init())
         }
     }
 
@@ -1536,11 +1534,12 @@ impl<O: IsA<Widget>> WidgetExt for O {
                 minimum_baseline.as_mut_ptr(),
                 natural_baseline.as_mut_ptr(),
             );
-            let minimum = minimum.assume_init();
-            let natural = natural.assume_init();
-            let minimum_baseline = minimum_baseline.assume_init();
-            let natural_baseline = natural_baseline.assume_init();
-            (minimum, natural, minimum_baseline, natural_baseline)
+            (
+                minimum.assume_init(),
+                natural.assume_init(),
+                minimum_baseline.assume_init(),
+                natural_baseline.assume_init(),
+            )
         }
     }
 
@@ -1932,10 +1931,8 @@ impl<O: IsA<Widget>> WidgetExt for O {
                 dest_x.as_mut_ptr(),
                 dest_y.as_mut_ptr(),
             ));
-            let dest_x = dest_x.assume_init();
-            let dest_y = dest_y.assume_init();
             if ret {
-                Some((dest_x, dest_y))
+                Some((dest_x.assume_init(), dest_y.assume_init()))
             } else {
                 None
             }

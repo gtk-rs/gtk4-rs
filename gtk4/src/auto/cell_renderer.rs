@@ -266,9 +266,7 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
                 xalign.as_mut_ptr(),
                 yalign.as_mut_ptr(),
             );
-            let xalign = xalign.assume_init();
-            let yalign = yalign.assume_init();
-            (xalign, yalign)
+            (xalign.assume_init(), yalign.assume_init())
         }
     }
 
@@ -281,9 +279,7 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
                 width.as_mut_ptr(),
                 height.as_mut_ptr(),
             );
-            let width = width.assume_init();
-            let height = height.assume_init();
-            (width, height)
+            (width.assume_init(), height.assume_init())
         }
     }
 
@@ -312,9 +308,7 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
                 xpad.as_mut_ptr(),
                 ypad.as_mut_ptr(),
             );
-            let xpad = xpad.assume_init();
-            let ypad = ypad.assume_init();
-            (xpad, ypad)
+            (xpad.assume_init(), ypad.assume_init())
         }
     }
 
@@ -328,9 +322,7 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
                 minimum_size.as_mut_ptr(),
                 natural_size.as_mut_ptr(),
             );
-            let minimum_size = minimum_size.assume_init();
-            let natural_size = natural_size.assume_init();
-            (minimum_size, natural_size)
+            (minimum_size.assume_init(), natural_size.assume_init())
         }
     }
 
@@ -345,9 +337,7 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
                 minimum_height.as_mut_ptr(),
                 natural_height.as_mut_ptr(),
             );
-            let minimum_height = minimum_height.assume_init();
-            let natural_height = natural_height.assume_init();
-            (minimum_height, natural_height)
+            (minimum_height.assume_init(), natural_height.assume_init())
         }
     }
 
@@ -375,9 +365,7 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
                 minimum_size.as_mut_ptr(),
                 natural_size.as_mut_ptr(),
             );
-            let minimum_size = minimum_size.assume_init();
-            let natural_size = natural_size.assume_init();
-            (minimum_size, natural_size)
+            (minimum_size.assume_init(), natural_size.assume_init())
         }
     }
 
@@ -392,9 +380,7 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
                 minimum_width.as_mut_ptr(),
                 natural_width.as_mut_ptr(),
             );
-            let minimum_width = minimum_width.assume_init();
-            let natural_width = natural_width.assume_init();
-            (minimum_width, natural_width)
+            (minimum_width.assume_init(), natural_width.assume_init())
         }
     }
 

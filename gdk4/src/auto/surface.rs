@@ -239,11 +239,12 @@ impl<O: IsA<Surface>> SurfaceExt for O {
                 y.as_mut_ptr(),
                 mask.as_mut_ptr(),
             ));
-            let x = x.assume_init();
-            let y = y.assume_init();
-            let mask = mask.assume_init();
             if ret {
-                Some((x, y, from_glib(mask)))
+                Some((
+                    x.assume_init(),
+                    y.assume_init(),
+                    from_glib(mask.assume_init()),
+                ))
             } else {
                 None
             }

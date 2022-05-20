@@ -69,9 +69,12 @@ impl RecentInfo {
                 count.as_mut_ptr(),
                 &mut stamp,
             ));
-            let count = count.assume_init();
             if ret {
-                Some((from_glib_none(app_exec), count, from_glib_none(stamp)))
+                Some((
+                    from_glib_none(app_exec),
+                    count.assume_init(),
+                    from_glib_none(stamp),
+                ))
             } else {
                 None
             }
