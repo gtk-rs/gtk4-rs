@@ -211,9 +211,7 @@ impl<O: IsA<Range>> RangeExt for O {
                 slider_start.as_mut_ptr(),
                 slider_end.as_mut_ptr(),
             );
-            let slider_start = slider_start.assume_init();
-            let slider_end = slider_end.assume_init();
-            (slider_start, slider_end)
+            (slider_start.assume_init(), slider_end.assume_init())
         }
     }
 

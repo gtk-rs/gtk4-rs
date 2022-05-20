@@ -54,9 +54,8 @@ impl GestureStylus {
                 axis.into_glib(),
                 value.as_mut_ptr(),
             ));
-            let value = value.assume_init();
             if ret {
-                Some(value)
+                Some(value.assume_init())
             } else {
                 None
             }

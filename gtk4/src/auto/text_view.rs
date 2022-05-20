@@ -1092,9 +1092,7 @@ impl<O: IsA<TextView>> TextViewExt for O {
                 window_x.as_mut_ptr(),
                 window_y.as_mut_ptr(),
             );
-            let window_x = window_x.assume_init();
-            let window_y = window_y.assume_init();
-            (window_x, window_y)
+            (window_x.assume_init(), window_y.assume_init())
         }
     }
 
@@ -1231,9 +1229,8 @@ impl<O: IsA<TextView>> TextViewExt for O {
                 x,
                 y,
             ));
-            let trailing = trailing.assume_init();
             if ret {
-                Some((iter, trailing))
+                Some((iter, trailing.assume_init()))
             } else {
                 None
             }
@@ -1274,8 +1271,7 @@ impl<O: IsA<TextView>> TextViewExt for O {
                 y,
                 line_top.as_mut_ptr(),
             );
-            let line_top = line_top.assume_init();
-            (target_iter, line_top)
+            (target_iter, line_top.assume_init())
         }
     }
 
@@ -1289,9 +1285,7 @@ impl<O: IsA<TextView>> TextViewExt for O {
                 y.as_mut_ptr(),
                 height.as_mut_ptr(),
             );
-            let y = y.assume_init();
-            let height = height.assume_init();
-            (y, height)
+            (y.assume_init(), height.assume_init())
         }
     }
 
@@ -1677,9 +1671,7 @@ impl<O: IsA<TextView>> TextViewExt for O {
                 buffer_x.as_mut_ptr(),
                 buffer_y.as_mut_ptr(),
             );
-            let buffer_x = buffer_x.assume_init();
-            let buffer_y = buffer_y.assume_init();
-            (buffer_x, buffer_y)
+            (buffer_x.assume_init(), buffer_y.assume_init())
         }
     }
 

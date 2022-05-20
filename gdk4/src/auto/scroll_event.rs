@@ -40,9 +40,7 @@ impl ScrollEvent {
                 delta_x.as_mut_ptr(),
                 delta_y.as_mut_ptr(),
             );
-            let delta_x = delta_x.assume_init();
-            let delta_y = delta_y.assume_init();
-            (delta_x, delta_y)
+            (delta_x.assume_init(), delta_y.assume_init())
         }
     }
 

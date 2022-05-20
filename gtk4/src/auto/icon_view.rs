@@ -206,9 +206,8 @@ impl IconView {
                 &mut path,
                 pos.as_mut_ptr(),
             ));
-            let pos = pos.assume_init();
             if ret {
-                Some((from_glib_full(path), from_glib(pos)))
+                Some((from_glib_full(path), from_glib(pos.assume_init())))
             } else {
                 None
             }
@@ -226,8 +225,7 @@ impl IconView {
                 &mut path,
                 pos.as_mut_ptr(),
             );
-            let pos = pos.assume_init();
-            (from_glib_full(path), from_glib(pos))
+            (from_glib_full(path), from_glib(pos.assume_init()))
         }
     }
 
