@@ -37,9 +37,7 @@ impl TouchpadEvent {
                 dx.as_mut_ptr(),
                 dy.as_mut_ptr(),
             );
-            let dx = dx.assume_init();
-            let dy = dy.assume_init();
-            (dx, dy)
+            (dx.assume_init(), dy.assume_init())
         }
     }
 

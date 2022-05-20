@@ -106,10 +106,11 @@ pub fn accelerator_parse(accelerator: &str) -> Option<(u32, gdk::ModifierType)> 
             accelerator_key.as_mut_ptr(),
             accelerator_mods.as_mut_ptr(),
         ));
-        let accelerator_key = accelerator_key.assume_init();
-        let accelerator_mods = accelerator_mods.assume_init();
         if ret {
-            Some((accelerator_key, from_glib(accelerator_mods)))
+            Some((
+                accelerator_key.assume_init(),
+                from_glib(accelerator_mods.assume_init()),
+            ))
         } else {
             None
         }
@@ -242,10 +243,7 @@ pub fn hsv_to_rgb(h: f32, s: f32, v: f32) -> (f32, f32, f32) {
         let mut g = mem::MaybeUninit::uninit();
         let mut b = mem::MaybeUninit::uninit();
         ffi::gtk_hsv_to_rgb(h, s, v, r.as_mut_ptr(), g.as_mut_ptr(), b.as_mut_ptr());
-        let r = r.assume_init();
-        let g = g.assume_init();
-        let b = b.assume_init();
-        (r, g, b)
+        (r.assume_init(), g.assume_init(), b.assume_init())
     }
 }
 
@@ -563,10 +561,7 @@ pub fn rgb_to_hsv(r: f32, g: f32, b: f32) -> (f32, f32, f32) {
         let mut s = mem::MaybeUninit::uninit();
         let mut v = mem::MaybeUninit::uninit();
         ffi::gtk_rgb_to_hsv(r, g, b, h.as_mut_ptr(), s.as_mut_ptr(), v.as_mut_ptr());
-        let h = h.assume_init();
-        let s = s.assume_init();
-        let v = v.assume_init();
-        (h, s, v)
+        (h.assume_init(), s.assume_init(), v.assume_init())
     }
 }
 

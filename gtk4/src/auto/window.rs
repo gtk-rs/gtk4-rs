@@ -982,9 +982,7 @@ impl<O: IsA<Window>> GtkWindowExt for O {
                 width.as_mut_ptr(),
                 height.as_mut_ptr(),
             );
-            let width = width.assume_init();
-            let height = height.assume_init();
-            (width, height)
+            (width.assume_init(), height.assume_init())
         }
     }
 

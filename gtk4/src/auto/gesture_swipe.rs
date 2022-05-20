@@ -54,10 +54,8 @@ impl GestureSwipe {
                 velocity_x.as_mut_ptr(),
                 velocity_y.as_mut_ptr(),
             ));
-            let velocity_x = velocity_x.assume_init();
-            let velocity_y = velocity_y.assume_init();
             if ret {
-                Some((velocity_x, velocity_y))
+                Some((velocity_x.assume_init(), velocity_y.assume_init()))
             } else {
                 None
             }

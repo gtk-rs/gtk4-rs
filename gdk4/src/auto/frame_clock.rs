@@ -83,9 +83,10 @@ impl FrameClock {
                 refresh_interval_return.as_mut_ptr(),
                 presentation_time_return.as_mut_ptr(),
             );
-            let refresh_interval_return = refresh_interval_return.assume_init();
-            let presentation_time_return = presentation_time_return.assume_init();
-            (refresh_interval_return, presentation_time_return)
+            (
+                refresh_interval_return.assume_init(),
+                presentation_time_return.assume_init(),
+            )
         }
     }
 

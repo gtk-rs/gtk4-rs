@@ -243,9 +243,7 @@ impl<O: IsA<Device>> DeviceExt for O {
                 win_x.as_mut_ptr(),
                 win_y.as_mut_ptr(),
             ));
-            let win_x = win_x.assume_init();
-            let win_y = win_y.assume_init();
-            (ret, win_x, win_y)
+            (ret, win_x.assume_init(), win_y.assume_init())
         }
     }
 
