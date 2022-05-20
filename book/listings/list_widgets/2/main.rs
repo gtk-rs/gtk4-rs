@@ -1,9 +1,8 @@
 mod integer_object;
 
-use gtk::gio;
 use gtk::prelude::*;
 use gtk::{
-    Application, ApplicationWindow, Label, ListView, PolicyType, ScrolledWindow,
+    gio, Application, ApplicationWindow, Label, ListView, PolicyType, ScrolledWindow,
     SignalListItemFactory, SingleSelection,
 };
 use integer_object::IntegerObject;

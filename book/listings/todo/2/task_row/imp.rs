@@ -1,8 +1,9 @@
+use std::cell::RefCell;
+
 use glib::Binding;
 use gtk::prelude::*;
 use gtk::subclass::prelude::*;
 use gtk::{glib, CheckButton, CompositeTemplate, Label};
-use std::cell::RefCell;
 
 // Object holding the state
 #[derive(Default, CompositeTemplate)]

@@ -2,10 +2,9 @@ mod integer_object;
 
 use glib::BindingFlags;
 use gtk::prelude::*;
-use gtk::{gio, glib};
 use gtk::{
-    Application, ApplicationWindow, Label, ListView, PolicyType, ScrolledWindow,
-    SignalListItemFactory, SingleSelection,
+    gio, glib, Application, ApplicationWindow, Label, ListView, PolicyType,
+    ScrolledWindow, SignalListItemFactory, SingleSelection,
 };
 use integer_object::IntegerObject;
 

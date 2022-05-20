@@ -1,14 +1,14 @@
+use std::cell::RefCell;
+use std::fs::File;
+
 use gio::Settings;
 use glib::signal::Inhibit;
 use glib::subclass::InitializingObject;
 use gtk::glib::Cast;
 use gtk::prelude::*;
 use gtk::subclass::prelude::*;
-use gtk::{gio, glib};
-use gtk::{CompositeTemplate, Entry, ListView, MenuButton};
+use gtk::{gio, glib, CompositeTemplate, Entry, ListView, MenuButton};
 use once_cell::sync::OnceCell;
-use std::cell::RefCell;
-use std::fs::File;
 
 use crate::task_object::{TaskData, TaskObject};
 use crate::utils::data_path;

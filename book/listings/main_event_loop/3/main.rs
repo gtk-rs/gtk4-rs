@@ -1,17 +1,15 @@
-use std::{thread, time::Duration};
+use std::thread;
+use std::time::Duration;
 
 use glib::{clone, Continue, MainContext, PRIORITY_DEFAULT};
-use gtk::glib;
 use gtk::prelude::*;
-use gtk::{Application, ApplicationWindow, Button};
+use gtk::{glib, Application, ApplicationWindow, Button};
 
 const APP_ID: &str = "org.gtk-rs.MainEventLoop3";
 
 fn main() {
     // Create a new application
-    let app = Application::builder()
-        .application_id(APP_ID)
-        .build();
+    let app = Application::builder().application_id(APP_ID).build();
 
     // Connect to "activate" signal of `app`
     app.connect_activate(build_ui);

@@ -1,16 +1,14 @@
 use gio::Settings;
-use gtk::gio;
-use gtk::{glib::signal::Inhibit, prelude::*};
-use gtk::{Align, Application, ApplicationWindow, Switch};
+use gtk::glib::signal::Inhibit;
+use gtk::prelude::*;
+use gtk::{gio, Align, Application, ApplicationWindow, Switch};
 
 const APP_ID: &str = "org.gtk-rs.Settings1";
 
 fn main() {
     // ANCHOR: application
     // Create a new application
-    let app = Application::builder()
-        .application_id(APP_ID)
-        .build();
+    let app = Application::builder().application_id(APP_ID).build();
     // ANCHOR_END: application
 
     // Connect to "activate" signal of `app`

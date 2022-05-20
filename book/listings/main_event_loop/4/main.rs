@@ -1,7 +1,6 @@
 use glib::{clone, timeout_future_seconds, Continue, MainContext, PRIORITY_DEFAULT};
-use gtk::glib;
 use gtk::prelude::*;
-use gtk::{Application, ApplicationWindow, Button};
+use gtk::{glib, Application, ApplicationWindow, Button};
 
 const APP_ID: &str = "org.gtk-rs.MainEventLoop4";
 

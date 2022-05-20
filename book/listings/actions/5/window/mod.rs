@@ -4,8 +4,7 @@ use gio::SimpleAction;
 use glib::{clone, Object};
 use gtk::prelude::*;
 use gtk::subclass::prelude::*;
-use gtk::Application;
-use gtk::{gio, glib};
+use gtk::{gio, glib, Application};
 
 glib::wrapper! {
     pub struct Window(ObjectSubclass<imp::Window>)

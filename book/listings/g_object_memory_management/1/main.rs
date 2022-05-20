@@ -1,15 +1,14 @@
+use std::cell::Cell;
+use std::rc::Rc;
+
 use gtk::prelude::*;
-use gtk::Application;
-use gtk::{self, ApplicationWindow, Button, Orientation};
-use std::{cell::Cell, rc::Rc};
+use gtk::{self, Application, ApplicationWindow, Button, Orientation};
 
 const APP_ID: &str = "org.gtk-rs.GObjectMemoryManagement1";
 
 fn main() {
     // Create a new application
-    let app = Application::builder()
-        .application_id(APP_ID)
-        .build();
+    let app = Application::builder().application_id(APP_ID).build();
 
     // Connect to "activate" signal of `app`
     app.connect_activate(build_ui);

@@ -3,7 +3,6 @@ mod imp;
 use glib::Object;
 use gtk::glib;
 use gtk::subclass::prelude::*;
-
 use serde::{Deserialize, Serialize};
 
 glib::wrapper! {

@@ -1,18 +1,20 @@
 mod imp;
 
-use crate::task_object::{TaskData, TaskObject};
-use crate::task_row::TaskRow;
-use crate::utils::data_path;
-use crate::APP_ID;
+use std::fs::File;
+
 use gio::Settings;
 use glib::{clone, Object};
 use gtk::prelude::*;
 use gtk::subclass::prelude::*;
-use gtk::{gio, glib};
 use gtk::{
-    Application, CustomFilter, FilterListModel, NoSelection, SignalListItemFactory,
+    gio, glib, Application, CustomFilter, FilterListModel, NoSelection,
+    SignalListItemFactory,
 };
-use std::fs::File;
+
+use crate::task_object::{TaskData, TaskObject};
+use crate::task_row::TaskRow;
+use crate::utils::data_path;
+use crate::APP_ID;
 
 glib::wrapper! {
     pub struct Window(ObjectSubclass<imp::Window>)

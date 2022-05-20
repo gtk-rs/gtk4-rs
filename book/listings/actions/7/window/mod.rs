@@ -1,12 +1,10 @@
 mod imp;
 
-use gio::Settings;
-use gio::SimpleAction;
+use gio::{Settings, SimpleAction};
 use glib::{clone, Object};
 use gtk::prelude::*;
 use gtk::subclass::prelude::*;
-use gtk::{gio, glib};
-use gtk::{Application, Orientation};
+use gtk::{gio, glib, Application, Orientation};
 
 use crate::APP_ID;
 

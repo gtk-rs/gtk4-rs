@@ -1,9 +1,8 @@
 mod integer_object;
 
-use gtk::gio;
 use gtk::prelude::*;
 use gtk::{
-    Application, ApplicationWindow, CustomFilter, CustomSorter, FilterChange,
+    gio, Application, ApplicationWindow, CustomFilter, CustomSorter, FilterChange,
     FilterListModel, Label, ListView, PolicyType, ScrolledWindow,
     SignalListItemFactory, SingleSelection, SortListModel, SorterChange, Widget,
 };

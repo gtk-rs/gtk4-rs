@@ -1,8 +1,7 @@
 use glib::subclass::InitializingObject;
-use gtk::glib;
 use gtk::prelude::*;
 use gtk::subclass::prelude::*;
-use gtk::CompositeTemplate;
+use gtk::{glib, CompositeTemplate};
 
 use crate::custom_button::CustomButton;
 

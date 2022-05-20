@@ -1,7 +1,8 @@
+use std::cell::Cell;
+
 use gtk::glib;
 use gtk::prelude::*;
 use gtk::subclass::prelude::*;
-use std::cell::Cell;
 
 // Object holding the state
 #[derive(Default)]
