@@ -5,10 +5,10 @@ Therefore, it makes sense that if we want to create a custom GObject, this is do
 Let's see how this works by replacing the button in our "Hello World!" app with a custom one.
 First, we need to create an implementation struct that holds the state and overrides the virtual methods.
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/gobject_subclassing/1/custom_button/imp.rs">listings/gobject_subclassing/1/custom_button/imp.rs</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/g_object_subclassing/1/custom_button/imp.rs">listings/g_object_subclassing/1/custom_button/imp.rs</a>
 
 ```rust ,no_run,noplayground
-{{#rustdoc_include ../listings/gobject_subclassing/1/custom_button/imp.rs}}
+{{#rustdoc_include ../listings/g_object_subclassing/1/custom_button/imp.rs}}
 ```
 The description of the subclassing is in `ObjectSubclass`.
 - `NAME` should consist of crate-name and object-name in order to avoid name collisions. Use [UpperCamelCase](https://en.wikipedia.org/wiki/Camel_case) here.
@@ -20,10 +20,10 @@ Since we only want to have a plain button for now, we override nothing.
 We still have to add the empty `impl` though.
 Next, we describe the public interface our custom GObject.
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/gobject_subclassing/1/custom_button/mod.rs">listings/gobject_subclassing/1/custom_button/mod.rs</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/g_object_subclassing/1/custom_button/mod.rs">listings/g_object_subclassing/1/custom_button/mod.rs</a>
 
 ```rust ,no_run,noplayground
-{{#rustdoc_include ../listings/gobject_subclassing/1/custom_button/mod.rs:mod}}
+{{#rustdoc_include ../listings/g_object_subclassing/1/custom_button/mod.rs:mod}}
 ```
 
 [`glib::wrapper!`](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/macro.wrapper.html) implements the same traits that our `ParentType` implements.
@@ -34,10 +34,10 @@ For `gtk::Button`, we can look up the ancestors and interfaces in the correspond
 
 After these steps, nothing is stopping us from replacing `gtk::Button` with our `CustomButton`.
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/gobject_subclassing/1/main.rs">listings/gobject_subclassing/1/main.rs</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/g_object_subclassing/1/main.rs">listings/g_object_subclassing/1/main.rs</a>
 
 ```rust ,no_run,noplayground
-{{#rustdoc_include ../listings/gobject_subclassing/1/main.rs}}
+{{#rustdoc_include ../listings/g_object_subclassing/1/main.rs}}
 ```
 
 > Describing objects with two structs is a peculiarity coming from how GObjects are defined in C.
@@ -53,18 +53,18 @@ For the gain of zero benefits, it did involve quite a bit of boilerplate after a
 So let's make it a bit more interesting!
 `gtk::Button` does not hold much state, but we can let `CustomButton` hold a number.
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/gobject_subclassing/2/custom_button/imp.rs">listings/gobject_subclassing/2/custom_button/imp.rs</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/g_object_subclassing/2/custom_button/imp.rs">listings/g_object_subclassing/2/custom_button/imp.rs</a>
 
 ```rust ,no_run,noplayground
-{{#rustdoc_include ../listings/gobject_subclassing/2/custom_button/imp.rs}}
+{{#rustdoc_include ../listings/g_object_subclassing/2/custom_button/imp.rs}}
 ```
 We override `constructed` in `ObjectImpl` so that the label of the button initializes with `number`.
 We also override `clicked` in `ButtonImpl` so that every click increases `number` and updates the label.
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/gobject_subclassing/2/main.rs">listings/gobject_subclassing/2/main.rs</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/g_object_subclassing/2/main.rs">listings/g_object_subclassing/2/main.rs</a>
 
 ```rust ,no_run,noplayground
-{{#rustdoc_include ../listings/gobject_subclassing/2/main.rs:activate}}
+{{#rustdoc_include ../listings/g_object_subclassing/2/main.rs:activate}}
 ```
 
 In `build_ui` we stop calling `connect_clicked`, and that was it.
@@ -73,7 +73,7 @@ Every time we click on the button, the number displayed by the label increases b
 
 <div style="text-align:center">
  <video autoplay muted loop>
-  <source src="vid/gobject_subclassing.webm" type="video/webm">
+  <source src="vid/g_object_subclassing.webm" type="video/webm">
 Your browser does not support the video tag.
  </video>
 </div>
