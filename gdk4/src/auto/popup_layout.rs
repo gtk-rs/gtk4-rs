@@ -93,11 +93,12 @@ impl PopupLayout {
                 top.as_mut_ptr(),
                 bottom.as_mut_ptr(),
             );
-            let left = left.assume_init();
-            let right = right.assume_init();
-            let top = top.assume_init();
-            let bottom = bottom.assume_init();
-            (left, right, top, bottom)
+            (
+                left.assume_init(),
+                right.assume_init(),
+                top.assume_init(),
+                bottom.assume_init(),
+            )
         }
     }
 

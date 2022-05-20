@@ -622,11 +622,12 @@ impl<O: IsA<Grid>> GridExt for O {
                 width.as_mut_ptr(),
                 height.as_mut_ptr(),
             );
-            let column = column.assume_init();
-            let row = row.assume_init();
-            let width = width.assume_init();
-            let height = height.assume_init();
-            (column, row, width, height)
+            (
+                column.assume_init(),
+                row.assume_init(),
+                width.assume_init(),
+                height.assume_init(),
+            )
         }
     }
 

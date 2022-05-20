@@ -380,9 +380,7 @@ impl<O: IsA<Fixed>> FixedExt for O {
                 x.as_mut_ptr(),
                 y.as_mut_ptr(),
             );
-            let x = x.assume_init();
-            let y = y.assume_init();
-            (x, y)
+            (x.assume_init(), y.assume_init())
         }
     }
 

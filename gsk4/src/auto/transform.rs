@@ -133,13 +133,14 @@ impl Transform {
                 out_dx.as_mut_ptr(),
                 out_dy.as_mut_ptr(),
             );
-            let out_xx = out_xx.assume_init();
-            let out_yx = out_yx.assume_init();
-            let out_xy = out_xy.assume_init();
-            let out_yy = out_yy.assume_init();
-            let out_dx = out_dx.assume_init();
-            let out_dy = out_dy.assume_init();
-            (out_xx, out_yx, out_xy, out_yy, out_dx, out_dy)
+            (
+                out_xx.assume_init(),
+                out_yx.assume_init(),
+                out_xy.assume_init(),
+                out_yy.assume_init(),
+                out_dx.assume_init(),
+                out_dy.assume_init(),
+            )
         }
     }
 
@@ -165,21 +166,14 @@ impl Transform {
                 out_dx.as_mut_ptr(),
                 out_dy.as_mut_ptr(),
             );
-            let out_skew_x = out_skew_x.assume_init();
-            let out_skew_y = out_skew_y.assume_init();
-            let out_scale_x = out_scale_x.assume_init();
-            let out_scale_y = out_scale_y.assume_init();
-            let out_angle = out_angle.assume_init();
-            let out_dx = out_dx.assume_init();
-            let out_dy = out_dy.assume_init();
             (
-                out_skew_x,
-                out_skew_y,
-                out_scale_x,
-                out_scale_y,
-                out_angle,
-                out_dx,
-                out_dy,
+                out_skew_x.assume_init(),
+                out_skew_y.assume_init(),
+                out_scale_x.assume_init(),
+                out_scale_y.assume_init(),
+                out_angle.assume_init(),
+                out_dx.assume_init(),
+                out_dy.assume_init(),
             )
         }
     }
@@ -198,11 +192,12 @@ impl Transform {
                 out_dx.as_mut_ptr(),
                 out_dy.as_mut_ptr(),
             );
-            let out_scale_x = out_scale_x.assume_init();
-            let out_scale_y = out_scale_y.assume_init();
-            let out_dx = out_dx.assume_init();
-            let out_dy = out_dy.assume_init();
-            (out_scale_x, out_scale_y, out_dx, out_dy)
+            (
+                out_scale_x.assume_init(),
+                out_scale_y.assume_init(),
+                out_dx.assume_init(),
+                out_dy.assume_init(),
+            )
         }
     }
 
@@ -231,9 +226,7 @@ impl Transform {
                 out_dx.as_mut_ptr(),
                 out_dy.as_mut_ptr(),
             );
-            let out_dx = out_dx.assume_init();
-            let out_dy = out_dy.assume_init();
-            (out_dx, out_dy)
+            (out_dx.assume_init(), out_dy.assume_init())
         }
     }
 

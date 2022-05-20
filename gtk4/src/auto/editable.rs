@@ -227,10 +227,8 @@ impl<O: IsA<Editable>> EditableExt for O {
                 start_pos.as_mut_ptr(),
                 end_pos.as_mut_ptr(),
             ));
-            let start_pos = start_pos.assume_init();
-            let end_pos = end_pos.assume_init();
             if ret {
-                Some((start_pos, end_pos))
+                Some((start_pos.assume_init(), end_pos.assume_init()))
             } else {
                 None
             }

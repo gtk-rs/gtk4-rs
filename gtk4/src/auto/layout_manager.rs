@@ -117,11 +117,12 @@ impl<O: IsA<LayoutManager>> LayoutManagerExt for O {
                 minimum_baseline.as_mut_ptr(),
                 natural_baseline.as_mut_ptr(),
             );
-            let minimum = minimum.assume_init();
-            let natural = natural.assume_init();
-            let minimum_baseline = minimum_baseline.assume_init();
-            let natural_baseline = natural_baseline.assume_init();
-            (minimum, natural, minimum_baseline, natural_baseline)
+            (
+                minimum.assume_init(),
+                natural.assume_init(),
+                minimum_baseline.assume_init(),
+                natural_baseline.assume_init(),
+            )
         }
     }
 }

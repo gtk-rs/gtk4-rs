@@ -105,9 +105,7 @@ impl<O: IsA<Paintable>> PaintableExt for O {
                 concrete_width.as_mut_ptr(),
                 concrete_height.as_mut_ptr(),
             );
-            let concrete_width = concrete_width.assume_init();
-            let concrete_height = concrete_height.assume_init();
-            (concrete_width, concrete_height)
+            (concrete_width.assume_init(), concrete_height.assume_init())
         }
     }
 

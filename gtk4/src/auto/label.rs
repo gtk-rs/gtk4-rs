@@ -116,9 +116,7 @@ impl Label {
                 x.as_mut_ptr(),
                 y.as_mut_ptr(),
             );
-            let x = x.assume_init();
-            let y = y.assume_init();
-            (x, y)
+            (x.assume_init(), y.assume_init())
         }
     }
 
@@ -165,10 +163,8 @@ impl Label {
                 start.as_mut_ptr(),
                 end.as_mut_ptr(),
             ));
-            let start = start.assume_init();
-            let end = end.assume_init();
             if ret {
-                Some((start, end))
+                Some((start.assume_init(), end.assume_init()))
             } else {
                 None
             }
