@@ -9,12 +9,10 @@ use gtk::Application;
 
 use window::Window;
 
-static APP_ID: &str = "org.gtk-rs.Todo2";
+static APP_ID: &str = "org.gtk-rs.Todo4";
 
-// ANCHOR: main
 fn main() {
-    // Register and include resources
-    gio::resources_register_include!("todo_app_2.gresource")
+    gio::resources_register_include!("todo_4.gresource")
         .expect("Failed to register resources.");
 
     // Create a new application
@@ -33,10 +31,9 @@ fn setup_shortcuts(app: &Application) {
     app.set_accels_for_action("win.filter('Open')", &["<Ctrl>o"]);
     app.set_accels_for_action("win.filter('Done')", &["<Ctrl>d"]);
 }
-// ANCHOR_END: main
 
 fn build_ui(app: &Application) {
     // Create a new custom window and show it
     let window = Window::new(app);
-    window.present();
+    window.show();
 }
