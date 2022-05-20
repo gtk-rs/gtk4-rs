@@ -80,66 +80,66 @@ name = "css_9"
 path = "css/9/main.rs"
 
 
-# gobject_memory_management
+# g_object_memory_management
 [[bin]]
-name = "gobject_memory_management_1"
-path = "gobject_memory_management/1/main.rs"
+name = "g_object_memory_management_1"
+path = "g_object_memory_management/1/main.rs"
 
 [[bin]]
-name = "gobject_memory_management_2"
-path = "gobject_memory_management/2/main.rs"
+name = "g_object_memory_management_2"
+path = "g_object_memory_management/2/main.rs"
 
 [[bin]]
-name = "gobject_memory_management_3"
-path = "gobject_memory_management/3/main.rs"
+name = "g_object_memory_management_3"
+path = "g_object_memory_management/3/main.rs"
 
 [[bin]]
-name = "gobject_memory_management_4"
-path = "gobject_memory_management/4/main.rs"
+name = "g_object_memory_management_4"
+path = "g_object_memory_management/4/main.rs"
 
-# gobject_properties
+# g_object_properties
 [[bin]]
-name = "gobject_properties_1"
-path = "gobject_properties/1/main.rs"
-
-[[bin]]
-name = "gobject_properties_2"
-path = "gobject_properties/2/main.rs"
+name = "g_object_properties_1"
+path = "g_object_properties/1/main.rs"
 
 [[bin]]
-name = "gobject_properties_3"
-path = "gobject_properties/3/main.rs"
+name = "g_object_properties_2"
+path = "g_object_properties/2/main.rs"
 
 [[bin]]
-name = "gobject_properties_4"
-path = "gobject_properties/4/main.rs"
-
-# gobject_signals
-[[bin]]
-name = "gobject_signals_1"
-path = "gobject_signals/1/main.rs"
+name = "g_object_properties_3"
+path = "g_object_properties/3/main.rs"
 
 [[bin]]
-name = "gobject_signals_2"
-path = "gobject_signals/2/main.rs"
+name = "g_object_properties_4"
+path = "g_object_properties/4/main.rs"
 
-# gobject_subclassing
+# g_object_signals
 [[bin]]
-name = "gobject_subclassing_1"
-path = "gobject_subclassing/1/main.rs"
-
-[[bin]]
-name = "gobject_subclassing_2"
-path = "gobject_subclassing/2/main.rs"
-
-# gobject_values
-[[bin]]
-name = "gobject_values_1"
-path = "gobject_values/1/main.rs"
+name = "g_object_signals_1"
+path = "g_object_signals/1/main.rs"
 
 [[bin]]
-name = "gobject_values_2"
-path = "gobject_values/2/main.rs"
+name = "g_object_signals_2"
+path = "g_object_signals/2/main.rs"
+
+# g_object_subclassing
+[[bin]]
+name = "g_object_subclassing_1"
+path = "g_object_subclassing/1/main.rs"
+
+[[bin]]
+name = "g_object_subclassing_2"
+path = "g_object_subclassing/2/main.rs"
+
+# g_object_values
+[[bin]]
+name = "g_object_values_1"
+path = "g_object_values/1/main.rs"
+
+[[bin]]
+name = "g_object_values_2"
+path = "g_object_values/2/main.rs"
 
 # hello_world
 [[bin]]
