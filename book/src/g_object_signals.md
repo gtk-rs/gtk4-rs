@@ -15,10 +15,10 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 
 If we wanted to, we could have connected to it with the generic [`connect_closure`](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/object/trait.ObjectExt.html#tymethod.connect_closure) method and the [`glib::closure_local!`](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/macro.closure_local.html) macro.
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/gobject_signals/1/main.rs">listings/gobject_signals/1/main.rs</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/g_object_signals/1/main.rs">listings/g_object_signals/1/main.rs</a>
 
 ```rust ,no_run,noplayground
-{{#rustdoc_include ../listings/gobject_signals/1/main.rs:callback}}
+{{#rustdoc_include ../listings/g_object_signals/1/main.rs:callback}}
 ```
 
 Similar to the generic way of accessing properties, the advantage of `connect_closure` is that it also works with custom signals.
@@ -32,10 +32,10 @@ Let's see how we can create our own signals.
 Again we do that by extending our `CustomButton`.
 First we override the necessary methods in `ObjectImpl`.
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/gobject_signals/2/custom_button/imp.rs">listings/gobject_signals/2/custom_button/imp.rs</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/g_object_signals/2/custom_button/imp.rs">listings/g_object_signals/2/custom_button/imp.rs</a>
 
 ```rust ,no_run,noplayground
-{{#rustdoc_include ../listings/gobject_signals/2/custom_button/imp.rs:object_impl}}
+{{#rustdoc_include ../listings/g_object_signals/2/custom_button/imp.rs:object_impl}}
 ```
 
 The `signals` method is responsible for defining a set of signals.
@@ -48,20 +48,20 @@ We want the signal to be emitted, whenever `number` reaches `MAX_NUMBER`.
 Together with the signal we send the value `number` currently holds.
 After we did that, we set `number` back to 0.
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/gobject_signals/2/custom_button/imp.rs">listings/gobject_signals/2/custom_button/imp.rs</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/g_object_signals/2/custom_button/imp.rs">listings/g_object_signals/2/custom_button/imp.rs</a>
 
 ```rust ,no_run,noplayground
-{{#rustdoc_include ../listings/gobject_signals/2/custom_button/imp.rs:button_impl}}
+{{#rustdoc_include ../listings/g_object_signals/2/custom_button/imp.rs:button_impl}}
 ```
 
 If we now press on the button, the number of its label increases until it reaches `MAX_NUMBER`.
 Then it emits the "max-number-reached" signal which we can nicely connect to.
 Whenever we now receive the "max-number-reached" signal, the accompanying number is printed to [standard output](https://en.wikipedia.org/wiki/Standard_streams#Standard_output_(stdout)).
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/gobject_signals/2/main.rs">listings/gobject_signals/2/main.rs</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/g_object_signals/2/main.rs">listings/g_object_signals/2/main.rs</a>
 
 ```rust ,no_run,noplayground
-{{#rustdoc_include ../listings/gobject_signals/2/main.rs:signal_handling}}
+{{#rustdoc_include ../listings/g_object_signals/2/main.rs:signal_handling}}
 ```
 
 You now know how to connect to every kind of signal and how to create your own.

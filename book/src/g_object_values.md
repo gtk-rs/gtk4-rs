@@ -27,10 +27,10 @@ enum Value <T> {
 
 For example, this is how you would use a `Value` representing an `i32`.
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/gobject_values/1/main.rs">listings/gobject_values/1/main.rs</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/g_object_values/1/main.rs">listings/g_object_values/1/main.rs</a>
 
 ```rust ,no_run,noplayground
-{{#rustdoc_include ../listings/gobject_values/1/main.rs:i32}}
+{{#rustdoc_include ../listings/g_object_values/1/main.rs:i32}}
 ```
 
 Also note that in the `enum` above boxed types such as `String` or `glib::Object` are wrapped in an `Option`.
@@ -38,18 +38,18 @@ This comes from C, where every boxed type can potentially be `None` (or `NULL` i
 You can still access it the same way as with the `i32` above.
 [`get`](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/value/struct.Value.html#method.get) will then not only return `Err` if you specified the wrong type, but also if the `Value` represents `None`.
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/gobject_values/1/main.rs">listings/gobject_values/1/main.rs</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/g_object_values/1/main.rs">listings/g_object_values/1/main.rs</a>
 
 ```rust ,no_run,noplayground
-{{#rustdoc_include ../listings/gobject_values/1/main.rs:string}}
+{{#rustdoc_include ../listings/g_object_values/1/main.rs:string}}
 ```
 
 If you want to differentiate between specifying the wrong type and a `Value` representing `None`, just call `get::<Option<T>>` instead.
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/gobject_values/1/main.rs">listings/gobject_values/1/main.rs</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/g_object_values/1/main.rs">listings/g_object_values/1/main.rs</a>
 
 ```rust ,no_run,noplayground
-{{#rustdoc_include ../listings/gobject_values/1/main.rs:string_none}}
+{{#rustdoc_include ../listings/g_object_values/1/main.rs:string_none}}
 ```
 
 We will use `Value` when we deal with properties and signals later on.
@@ -63,20 +63,20 @@ Variants can even be [derived](https://gtk-rs.org/gtk-rs-core/stable/latest/docs
 
 In the most simple case, converting Rust types to `Variant` and vice-versa is very similar to the way it worked with `Value`.
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/gobject_values/2/main.rs">listings/gobject_values/2/main.rs</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/g_object_values/2/main.rs">listings/g_object_values/2/main.rs</a>
 
 ```rust ,no_run,noplayground
-{{#rustdoc_include ../listings/gobject_values/2/main.rs:i32}}
+{{#rustdoc_include ../listings/g_object_values/2/main.rs:i32}}
 ```
 
 However, a `Variant` is also able to represent containers such as [`HashMap`](https://doc.rust-lang.org/std/collections/struct.HashMap.html) or [`Vec`](https://doc.rust-lang.org/std/vec/struct.Vec.html).
 The following snippet shows how to convert between `Vec` and `Variant`.
 More examples can be found in the [docs](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/variant/index.html).
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/gobject_values/2/main.rs">listings/gobject_values/2/main.rs</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/g_object_values/2/main.rs">listings/g_object_values/2/main.rs</a>
 
 ```rust ,no_run,noplayground
-{{#rustdoc_include ../listings/gobject_values/2/main.rs:vec}}
+{{#rustdoc_include ../listings/g_object_values/2/main.rs:vec}}
 ```
 
 We will use `Variant` when saving settings using [`gio::Settings`](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/gio/struct.Settings.html) or activating actions via [`gio::Action`](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/gio/struct.Action.html).
