@@ -6,7 +6,7 @@ use gtk::glib;
 use gtk::prelude::*;
 use gtk::{Application, ApplicationWindow};
 
-const APP_ID: &str = "org.gtk-rs.example";
+const APP_ID: &str = "org.gtk-rs.GObjectSignals2";
 
 fn main() {
     // Create a new application

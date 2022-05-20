@@ -4,7 +4,7 @@ use gtk::prelude::*;
 use gtk::{Application, ApplicationWindow, Button, CssProvider, StyleContext};
 
 // ANCHOR: main
-const APP_ID: &str = "org.gtk-rs.example";
+const APP_ID: &str = "org.gtk-rs.Css1";
 
 fn main() {
     // Create a new application

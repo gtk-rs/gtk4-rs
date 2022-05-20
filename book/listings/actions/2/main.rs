@@ -6,7 +6,7 @@ use gtk::{gio, glib};
 use gtk::{Application, ApplicationWindow};
 
 // ANCHOR: main
-const APP_ID: &str = "org.gtk-rs.example";
+const APP_ID: &str = "org.gtk-rs.Actions2";
 
 fn main() {
     // Create a new application

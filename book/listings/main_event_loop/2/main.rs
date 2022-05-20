@@ -3,7 +3,7 @@ use std::{thread, time::Duration};
 use gtk::prelude::*;
 use gtk::{self, Application, ApplicationWindow, Button};
 
-const APP_ID: &str = "org.gtk-rs.example";
+const APP_ID: &str = "org.gtk-rs.MainEventLoop2";
 
 fn main() {
     // Create a new application

@@ -3,7 +3,7 @@ use gtk::gio;
 use gtk::{glib::signal::Inhibit, prelude::*};
 use gtk::{Align, Application, ApplicationWindow, Switch};
 
-const APP_ID: &str = "org.gtk-rs.example";
+const APP_ID: &str = "org.gtk-rs.Settings1";
 
 fn main() {
     // ANCHOR: application
