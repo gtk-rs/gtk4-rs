@@ -14,7 +14,7 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 
 Since we don't care about intermediate state, we only load the window state when the window is constructed and save it when we close the window.
 That can be done by creating a custom window.
-First, we create one and add methods for getting and setting the window state.
+First, we create one and add convenience methods for accessing settings as well as the window state.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/saving_window_state/1/custom_window/mod.rs">listings/saving_window_state/1/custom_window/mod.rs</a>
 

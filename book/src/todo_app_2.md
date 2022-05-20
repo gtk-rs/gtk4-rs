@@ -10,7 +10,7 @@ This is how we want this to work in the end:
 
 <div style="text-align:center">
  <video autoplay muted loop>
-  <source src="vid/todo_app_2_animation.webm" type="video/webm">
+  <source src="vid/todo_2_animation.webm" type="video/webm">
 Your browser does not support the video tag.
  </video>
 </div>
@@ -21,7 +21,7 @@ This will come in handy when we later make the app preserve the tasks between se
 Let's start by adding a menu and a header bar to `window.ui`.
 After reading the [actions](actions.html) chapter the added code should feel familiar.
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo_app/2/resources/window.ui">listings/todo_app/2/resources/window.ui</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/2/resources/window.ui">listings/todo/2/resources/window.ui</a>
 
 ```diff
  <?xml version="1.0" encoding="UTF-8"?>
@@ -72,47 +72,47 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 Then, we create a settings schema.
 Again, the "filter" setting correspond to the stateful actions called by the menu.
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo_app/2/org.gtk-rs.Todo2.gschema.xml">listings/todo_app/2/org.gtk-rs.Todo2.gschema.xml</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/2/org.gtk-rs.Todo2.gschema.xml">listings/todo/2/org.gtk-rs.Todo2.gschema.xml</a>
 
 ```xml
-{{#rustdoc_include ../listings/todo_app/2/org.gtk-rs.Todo2.gschema.xml}}
+{{#rustdoc_include ../listings/todo/2/org.gtk-rs.Todo2.gschema.xml}}
 ```
 
 We install the schema as described in the settings [chapter](./settings.html)
 Then we add a reference to `settings` and a reference to `clear_button` to `imp::Window`.
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo_app/2/window/imp.rs">listings/todo_app/2/window/imp.rs</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/2/window/imp.rs">listings/todo/2/window/imp.rs</a>
 
 ```rust ,no_run,noplayground
-{{#rustdoc_include ../listings/todo_app/2/window/imp.rs:struct_default}}
+{{#rustdoc_include ../listings/todo/2/window/imp.rs:struct_default}}
 ```
 
 Again, we create functions to make it easier to access settings.
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo_app/2/window/mod.rs">listings/todo_app/2/window/mod.rs</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/2/window/mod.rs">listings/todo/2/window/mod.rs</a>
 
 ```rust ,no_run,noplayground
-{{#rustdoc_include ../listings/todo_app/2/window/mod.rs:settings}}
+{{#rustdoc_include ../listings/todo/2/window/mod.rs:settings}}
 ```
 
 
 We also add the getter methods `is_completed` and `todo_data` to `TaskObject`.
 We will make use of them in the following snippets.
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo_app/2/task_object/mod.rs">listings/todo_app/2/task_object/mod.rs</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/2/task_object/mod.rs">listings/todo/2/task_object/mod.rs</a>
 
 ```rust ,no_run,noplayground
-{{#rustdoc_include ../listings/todo_app/2/task_object/mod.rs:impl}}
+{{#rustdoc_include ../listings/todo/2/task_object/mod.rs:impl}}
 ```
 
 Similar to the previous chapter, we let `settings` create the action.
 Then we add the newly created action "filter" to our window.
 We also add an action which allows us to remove done tasks. 
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo_app/2/window/mod.rs">listings/todo_app/2/window/mod.rs</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/2/window/mod.rs">listings/todo/2/window/mod.rs</a>
 
 ```rust ,no_run,noplayground
-{{#rustdoc_include ../listings/todo_app/2/window/mod.rs:setup_actions}}
+{{#rustdoc_include ../listings/todo/2/window/mod.rs:setup_actions}}
 ```
 
 After activating the action "win.filter", the corresponding setting will be changed.
@@ -121,30 +121,30 @@ The possible states are "All", "Open" and "Done".
 We return `Some(filter)` for "Open" and "Done".
 If the state is "All" nothing has to be filtered out, so we return `None`.
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo_app/2/window/mod.rs">listings/todo_app/2/window/mod.rs</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/2/window/mod.rs">listings/todo/2/window/mod.rs</a>
 
 ```rust ,no_run,noplayground
-{{#rustdoc_include ../listings/todo_app/2/window/mod.rs:filter}}
+{{#rustdoc_include ../listings/todo/2/window/mod.rs:filter}}
 ```
 
 Now, we can set up the model.
 We initialize `filter_model` with the state from the settings by calling the method `filter`.
 Whenever the state of the key "filter" changes, we call the method `filter` again to get the updated `filter_model`.
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo_app/2/window/mod.rs">listings/todo_app/2/window/mod.rs</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/2/window/mod.rs">listings/todo/2/window/mod.rs</a>
 
 ```rust ,no_run,noplayground
-{{#rustdoc_include ../listings/todo_app/2/window/mod.rs:setup_tasks}}
+{{#rustdoc_include ../listings/todo/2/window/mod.rs:setup_tasks}}
 ```
 
 Then, we bind the shortcuts to their actions with `set_accels_for_action`.
 Here as well, a detailed action name is used.
 Since this has to be done at the application level, `setup_shortcuts` takes a `gtk::Application` as parameter.
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo_app/2/main.rs">listings/todo_app/2/main.rs</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/2/main.rs">listings/todo/2/main.rs</a>
 
 ```rust ,no_run,noplayground
-{{#rustdoc_include ../listings/todo_app/2/main.rs:main}}
+{{#rustdoc_include ../listings/todo/2/main.rs:main}}
 ```
 
 Now that we created all these nice shortcuts we will want our users to find them.
@@ -153,10 +153,10 @@ Again we use an `ui` file to describe it, but here we don't want to use it as te
 Instead we instantiate a widget of the existing class [`gtk::ShortcutsWindow`](../docs/gtk4/struct.ShortcutsWindow.html) with it. 
 
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo_app/2/resources/shortcuts.ui">listings/todo_app/2/resources/shortcuts.ui</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/2/resources/shortcuts.ui">listings/todo/2/resources/shortcuts.ui</a>
 
 ```xml
-{{#rustdoc_include ../listings/todo_app/2/resources/shortcuts.ui}}
+{{#rustdoc_include ../listings/todo/2/resources/shortcuts.ui}}
 ```
 
 The entries can be organized with [`gtk::ShortcutsSection`](../docs/gtk4/struct.ShortcutsSection.html) and [`gtk::ShortcutsGroup`](../docs/gtk4/struct.ShortcutsGroup.html).
@@ -176,13 +176,13 @@ We do that to take advantage of a convenience functionality documented [here](ht
 It will look for a resource at `gtk/help-overlay.ui` which defines a `ShortcutsWindow` with id `help_overlay`.
 If it can find one it will create a action `win.show-help-overlay` which will show the window and associate the shortcut <kbd>Ctrl</kbd> + <kbd>?</kbd> with this action.
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo_app/2/resources/resources.gresource.xml">listings/todo_app/2/resources/resources.gresource.xml</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/2/resources/resources.gresource.xml">listings/todo/2/resources/resources.gresource.xml</a>
 
 ```xml
-{{#rustdoc_include ../listings/todo_app/2/resources/resources.gresource.xml}}
+{{#rustdoc_include ../listings/todo/2/resources/resources.gresource.xml}}
 ```
 
-<div style="text-align:center"><img src="img/todo_app_2_shortcuts.png"/></div>
+<div style="text-align:center"><img src="img/todo_2_shortcuts.png"/></div>
 
 
 ## Saving and Restoring Tasks
@@ -210,30 +210,30 @@ We also use the `rc` feature so that Serde can deal with `std::rc::Rc` objects.
 This is why we stored the data of `TodoObject` in a distinct `TodoData` structure.
 Doing so allows us to derive `Serialize` and `Deserialize` for `TodoData`.
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo_app/2/task_object/mod.rs">listings/todo_app/2/task_object/mod.rs</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/2/task_object/mod.rs">listings/todo/2/task_object/mod.rs</a>
 
 ```rust ,no_run,noplayground
-{{#rustdoc_include ../listings/todo_app/2/task_object/mod.rs:task_data}}
+{{#rustdoc_include ../listings/todo/2/task_object/mod.rs:task_data}}
 ```
 
 We plan to store our data as a file, so we create a utility function to provide a suitable file path for us.
 We use [`glib::user_config_dir`](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/fn.user_config_dir.html) to get the path to the config directory and create a new subdirectory for our app.
 Then we return the file path.
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo_app/2/utils.rs">listings/todo_app/2/utils.rs</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/2/utils.rs">listings/todo/2/utils.rs</a>
 
 ```rust ,no_run,noplayground
-{{#rustdoc_include ../listings/todo_app/2/utils.rs:data_path}}
+{{#rustdoc_include ../listings/todo/2/utils.rs:data_path}}
 ```
 
 We override the `close_request` virtual function to save the tasks when the window is closed.
 To do so, we first iterate through all entries and store them in a `Vec`.
 Then we serialize the `Vec` and store the data as a json file.
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo_app/2/window/imp.rs">listings/todo_app/2/window/imp.rs</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/2/window/imp.rs">listings/todo/2/window/imp.rs</a>
 
 ```rust ,no_run,noplayground
-{{#rustdoc_include ../listings/todo_app/2/window/imp.rs:window_impl}}
+{{#rustdoc_include ../listings/todo/2/window/imp.rs:window_impl}}
 ```
 
 Let's it have a look into what a `Vec<TaskData>` will be serialized.
@@ -272,18 +272,18 @@ Let us add a `restore_data` method for that.
 We make sure to handle the case where there is no data file there yet.
 It might be the first time that we started the app and therefore there is no former session to restore.
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo_app/2/window/mod.rs">listings/todo_app/2/window/mod.rs</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/2/window/mod.rs">listings/todo/2/window/mod.rs</a>
 
 ```rust ,no_run,noplayground
-{{#rustdoc_include ../listings/todo_app/2/window/mod.rs:restore_data}}
+{{#rustdoc_include ../listings/todo/2/window/mod.rs:restore_data}}
 ```
 
 Finally, we make sure that everything is set up in `constructed`.
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo_app/2/window/imp.rs">listings/todo_app/2/window/imp.rs</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/2/window/imp.rs">listings/todo/2/window/imp.rs</a>
 
 ```rust ,no_run,noplayground
-{{#rustdoc_include ../listings/todo_app/2/window/imp.rs:object_impl}}
+{{#rustdoc_include ../listings/todo/2/window/imp.rs:object_impl}}
 
 ```
 Our To-Do app suddenly became much more useful.

@@ -3,11 +3,13 @@ use gtk::gio;
 use gtk::{glib::signal::Inhibit, prelude::*};
 use gtk::{Align, Application, ApplicationWindow, Switch};
 
+const APP_ID: &str = "org.gtk-rs.example";
+
 fn main() {
     // ANCHOR: application
     // Create a new application
     let app = Application::builder()
-        .application_id("org.gtk-rs.example")
+        .application_id(APP_ID)
         .build();
     // ANCHOR_END: application
 
@@ -21,7 +23,7 @@ fn main() {
 fn build_ui(app: &Application) {
     // ANCHOR: settings
     // Initialize settings
-    let settings = Settings::new("org.gtk-rs.example");
+    let settings = Settings::new(APP_ID);
     // ANCHOR_END: settings
 
     // ANCHOR: switch

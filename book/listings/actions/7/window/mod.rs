@@ -8,6 +8,8 @@ use gtk::subclass::prelude::*;
 use gtk::{gio, glib};
 use gtk::{Application, Orientation};
 
+use crate::APP_ID;
+
 glib::wrapper! {
     pub struct Window(ObjectSubclass<imp::Window>)
         @extends gtk::ApplicationWindow, gtk::Window, gtk::Widget,
@@ -23,7 +25,7 @@ impl Window {
 
     // ANCHOR: settings
     fn setup_settings(&self) {
-        let settings = Settings::new("org.gtk-rs.example");
+        let settings = Settings::new(APP_ID);
         self.imp()
             .settings
             .set(settings)

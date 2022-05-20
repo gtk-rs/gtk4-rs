@@ -3,10 +3,12 @@ use gtk::{glib, Align, Orientation, Switch};
 use gtk::{prelude::*, Box};
 use gtk::{Application, ApplicationWindow};
 
+const APP_ID: &str = "org.gtk-rs.example";
+
 fn main() {
     // Create a new application
     let app = Application::builder()
-        .application_id("org.gtk-rs.example")
+        .application_id(APP_ID)
         .build();
 
     // Connect to "activate" signal of `app`

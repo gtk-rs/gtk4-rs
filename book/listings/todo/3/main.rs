@@ -11,7 +11,7 @@ use gtk::{CssProvider, StyleContext};
 
 use window::Window;
 
-static APP_ID: &str = "org.gtk-rs.Todo3";
+const APP_ID: &str = "org.gtk-rs.Todo3";
 
 fn main() {
     gio::resources_register_include!("todo_3.gresource")

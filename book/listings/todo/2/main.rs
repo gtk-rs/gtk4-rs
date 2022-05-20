@@ -9,7 +9,7 @@ use gtk::Application;
 
 use window::Window;
 
-static APP_ID: &str = "org.gtk-rs.Todo2";
+const APP_ID: &str = "org.gtk-rs.Todo2";
 
 // ANCHOR: main
 fn main() {
