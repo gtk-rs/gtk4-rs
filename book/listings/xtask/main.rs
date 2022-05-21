@@ -34,9 +34,9 @@ fn install() -> anyhow::Result<()> {
         "saving_window_state/1/org.gtk-rs.SavingWindowState1.gschema.xml",
         "settings/1/org.gtk-rs.Settings1.gschema.xml",
         "settings/2/org.gtk-rs.Settings2.gschema.xml",
-        "todo_app/2/org.gtk-rs.Todo2.gschema.xml",
-        "todo_app/3/org.gtk-rs.Todo3.gschema.xml",
-        "todo_app/4/org.gtk-rs.Todo4.gschema.xml",
+        "todo/2/org.gtk-rs.Todo2.gschema.xml",
+        "todo/3/org.gtk-rs.Todo3.gschema.xml",
+        "todo/4/org.gtk-rs.Todo4.gschema.xml",
     ];
 
     install_scheme(sh, scheme)?;
@@ -53,8 +53,10 @@ fn install_scheme(sh: Shell, scheme: Vec<&str>) -> anyhow::Result<()> {
             .join("glib-2.0/schemas")
     };
 
+    println!("Create directory: {scheme_dir:#?}");
     sh.create_dir(&scheme_dir)?;
     for schema in scheme {
+        println!("Copy schema: {schema}");
         sh.copy_file(&schema, &scheme_dir)?;
     }
 
