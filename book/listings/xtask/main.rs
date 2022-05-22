@@ -1,5 +1,7 @@
+use std::env;
+use std::path::PathBuf;
+
 use anyhow::Context;
-use std::{env, path::PathBuf};
 use walkdir::WalkDir;
 use xshell::{cmd, Shell};
 
@@ -12,7 +14,7 @@ fn main() {
 
 fn try_main() -> anyhow::Result<()> {
     let task = env::args().nth(1);
-    match task.as_ref().map(|it| it.as_str()) {
+    match task.as_deref() {
         Some("install") => install()?,
         _ => print_help(),
     }
