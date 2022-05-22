@@ -1,4 +1,6 @@
+use crate::collection_object::{CollectionData, CollectionObject};
 use crate::task_object::TaskObject;
+use crate::utils::data_path;
 use crate::APP_ID;
 use adw::subclass::prelude::*;
 use adw::Leaflet;
@@ -13,6 +15,7 @@ use gtk::{prelude::*, Stack};
 use gtk::{CompositeTemplate, Entry, ListBox, MenuButton};
 use once_cell::sync::OnceCell;
 use std::cell::RefCell;
+use std::fs::File;
 
 // Object holding the state
 #[derive(CompositeTemplate, Default)]
@@ -60,6 +63,7 @@ impl ObjectImpl for Window {
         // Setup
         obj.setup_settings();
         obj.setup_collections();
+        obj.restore_data();
         obj.setup_callbacks();
         obj.setup_actions();
     }
@@ -71,6 +75,20 @@ impl WidgetImpl for Window {}
 // Trait shared by all windows
 impl WindowImpl for Window {
     fn close_request(&self, window: &Self::Type) -> Inhibit {
+        // Store task data in vector
+        let backup_data: Vec<CollectionData> = window
+            .collections()
+            .snapshot()
+            .iter()
+            .filter_map(Cast::downcast_ref::<CollectionObject>)
+            .map(CollectionObject::collection_data)
+            .collect();
+
+        // Save state in file
+        let file = File::create(data_path()).expect("Could not create json file.");
+        serde_json::to_writer(file, &backup_data)
+            .expect("Could not write data to json file");
+
         // Pass close request on to the parent
         self.parent_close_request(window)
     }
