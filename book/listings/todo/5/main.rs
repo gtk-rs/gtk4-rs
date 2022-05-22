@@ -6,7 +6,6 @@ mod window;
 use adw::Application;
 use gtk::gio;
 use gtk::prelude::*;
-
 use window::Window;
 
 static APP_ID: &str = "org.gtk-rs.Todo5";

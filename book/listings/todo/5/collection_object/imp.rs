@@ -1,13 +1,11 @@
+use std::cell::RefCell;
+
 use glib::{ParamFlags, ParamSpec, ParamSpecString, Value};
-use gtk::gio;
-use gtk::glib;
 use gtk::glib::ParamSpecObject;
 use gtk::prelude::*;
 use gtk::subclass::prelude::*;
-
-use once_cell::sync::Lazy;
-use once_cell::sync::OnceCell;
-use std::cell::RefCell;
+use gtk::{gio, glib};
+use once_cell::sync::{Lazy, OnceCell};
 
 // Object holding the state
 #[derive(Default)]
