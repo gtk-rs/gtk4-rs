@@ -12,7 +12,7 @@ use window::Window;
 static APP_ID: &str = "org.gtk-rs.Todo5";
 
 fn main() {
-    gio::resources_register_include!("todo_app_5.gresource")
+    gio::resources_register_include!("todo_5.gresource")
         .expect("Failed to register resources.");
 
     // Create a new application
