@@ -1,7 +1,10 @@
 mod imp;
 
-use crate::collection_object;
+use std::fs::File;
+
+use crate::collection_object::{self, CollectionData};
 use crate::task_object::{TaskData, TaskObject};
+use crate::utils::data_path;
 use crate::APP_ID;
 use adw::prelude::*;
 use adw::{ActionRow, NavigationDirection};
@@ -45,6 +48,14 @@ impl Window {
             .borrow()
             .clone()
             .expect("Could not get current tasks.")
+    }
+
+    fn collections(&self) -> gio::ListStore {
+        self.imp()
+            .collections
+            .get()
+            .expect("Could not get collection.")
+            .clone()
     }
 
     fn filter(&self) -> Option<CustomFilter> {
@@ -94,6 +105,23 @@ impl Window {
                 let row = window.create_collection_row(collection_object);
                 row.upcast()
             }))
+    }
+
+    fn restore_data(&self) {
+        if let Ok(file) = File::open(data_path()) {
+            // Deserialize data from file to vector
+            let backup_data: Vec<CollectionData> = serde_json::from_reader(file)
+                .expect("Could not get backup data from json file.");
+
+            // Convert `Vec<CollectionData>` to `Vec<CollectionObject>`
+            let collection_objects: Vec<CollectionObject> = backup_data
+                .into_iter()
+                .map(CollectionObject::from_collection_data)
+                .collect();
+
+            // Insert restored objects into model
+            self.collections().extend_from_slice(&collection_objects);
+        }
     }
 
     fn create_collection_row(
@@ -188,21 +216,17 @@ impl Window {
         );
 
         // Setup callback change of the collections
-        self.imp()
-            .collections
-            .get()
-            .expect("Could not get collection")
-            .connect_items_changed(
-                clone!(@weak self as window => move |collections, _, _, _| {
-                    if collections.n_items() > 0 {
-                        window.imp().empty_stack.set_visible_child_name("main");
-                    }
-                    else
-                    {
-                        window.imp().empty_stack.set_visible_child_name("empty");
-                    }
-                }),
-            );
+        self.collections().connect_items_changed(
+            clone!(@weak self as window => move |collections, _, _, _| {
+                if collections.n_items() > 0 {
+                    window.imp().empty_stack.set_visible_child_name("main");
+                }
+                else
+                {
+                    window.imp().empty_stack.set_visible_child_name("empty");
+                }
+            }),
+        );
     }
 
     fn new_task(&self) {
@@ -308,7 +332,7 @@ impl Window {
                 let title = entry.text().into();
                 let tasks = gio::ListStore::new(TaskObject::static_type());
                 let collection_object = CollectionObject::new(title, tasks);
-                window.imp().collections.get().expect("Could not get collections.").append(&collection_object);
+                window.collections().append(&collection_object);
                 window.set_current_tasks(collection_object.tasks());
                 window.imp().leaflet.navigate(NavigationDirection::Forward);
             }),
