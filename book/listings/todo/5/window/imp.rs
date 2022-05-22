@@ -1,21 +1,19 @@
-use crate::collection_object::{CollectionData, CollectionObject};
-
-use crate::utils::data_path;
+use std::cell::RefCell;
+use std::fs::File;
 
 use adw::subclass::prelude::*;
 use adw::Leaflet;
 use gio::Settings;
 use glib::signal::Inhibit;
 use glib::subclass::InitializingObject;
-
 use gtk::glib::SignalHandlerId;
+use gtk::prelude::*;
 use gtk::subclass::prelude::*;
-use gtk::{gio, glib};
-use gtk::{prelude::*, Stack};
-use gtk::{CompositeTemplate, Entry, ListBox};
+use gtk::{gio, glib, CompositeTemplate, Entry, ListBox, Stack};
 use once_cell::sync::OnceCell;
-use std::cell::RefCell;
-use std::fs::File;
+
+use crate::collection_object::{CollectionData, CollectionObject};
+use crate::utils::data_path;
 
 // Object holding the state
 #[derive(CompositeTemplate, Default)]

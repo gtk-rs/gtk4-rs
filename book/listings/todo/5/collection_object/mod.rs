@@ -1,12 +1,12 @@
 mod imp;
 
-use crate::task_object::{TaskData, TaskObject};
 use glib::Object;
-use gtk::prelude::ListModelExtManual;
-use gtk::prelude::*;
+use gtk::prelude::{ListModelExtManual, *};
 use gtk::subclass::prelude::*;
 use gtk::{gio, glib};
 use serde::{Deserialize, Serialize};
+
+use crate::task_object::{TaskData, TaskObject};
 
 glib::wrapper! {
     pub struct CollectionObject(ObjectSubclass<imp::CollectionObject>);

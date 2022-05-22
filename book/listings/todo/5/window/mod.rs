@@ -2,23 +2,21 @@ mod imp;
 
 use std::fs::File;
 
-use crate::collection_object::CollectionData;
-use crate::task_object::TaskObject;
-use crate::utils::data_path;
-use crate::APP_ID;
 use adw::prelude::*;
 use adw::{ActionRow, NavigationDirection};
 use gio::Settings;
 use glib::{clone, Object};
 use gtk::glib::BindingFlags;
 use gtk::subclass::prelude::*;
-use gtk::Label;
-use gtk::ListBoxRow;
-use gtk::{gio, glib, DialogFlags, Entry, ResponseType};
-use gtk::{Align, Dialog};
-use gtk::{CheckButton, CustomFilter, FilterListModel, NoSelection};
+use gtk::{
+    gio, glib, Align, CheckButton, CustomFilter, Dialog, DialogFlags, Entry,
+    FilterListModel, Label, ListBoxRow, NoSelection, ResponseType,
+};
 
-use crate::collection_object::CollectionObject;
+use crate::collection_object::{CollectionData, CollectionObject};
+use crate::task_object::TaskObject;
+use crate::utils::data_path;
+use crate::APP_ID;
 
 glib::wrapper! {
     pub struct Window(ObjectSubclass<imp::Window>)
