@@ -1,18 +1,18 @@
 use crate::collection_object::{CollectionData, CollectionObject};
-use crate::task_object::TaskObject;
+
 use crate::utils::data_path;
-use crate::APP_ID;
+
 use adw::subclass::prelude::*;
 use adw::Leaflet;
 use gio::Settings;
 use glib::signal::Inhibit;
 use glib::subclass::InitializingObject;
-use gtk::glib::subclass::SignalId;
+
 use gtk::glib::SignalHandlerId;
 use gtk::subclass::prelude::*;
 use gtk::{gio, glib};
 use gtk::{prelude::*, Stack};
-use gtk::{CompositeTemplate, Entry, ListBox, MenuButton};
+use gtk::{CompositeTemplate, Entry, ListBox};
 use once_cell::sync::OnceCell;
 use std::cell::RefCell;
 use std::fs::File;

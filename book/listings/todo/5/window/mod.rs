@@ -2,8 +2,8 @@ mod imp;
 
 use std::fs::File;
 
-use crate::collection_object::{self, CollectionData};
-use crate::task_object::{TaskData, TaskObject};
+use crate::collection_object::CollectionData;
+use crate::task_object::TaskObject;
 use crate::utils::data_path;
 use crate::APP_ID;
 use adw::prelude::*;
@@ -35,7 +35,10 @@ impl Window {
 
     fn setup_settings(&self) {
         let settings = Settings::new(APP_ID);
-        self.imp().settings.set(settings);
+        self.imp()
+            .settings
+            .set(settings)
+            .expect("Could not set `Settings`.");
     }
 
     fn settings(&self) -> &Settings {
@@ -138,9 +141,7 @@ impl Window {
             .flags(glib::BindingFlags::SYNC_CREATE)
             .build();
 
-        let row = ListBoxRow::builder().child(&label).build();
-
-        row
+        ListBoxRow::builder().child(&label).build()
     }
 
     fn set_current_tasks(&self, tasks: gio::ListStore) {
