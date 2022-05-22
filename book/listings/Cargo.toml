@@ -12,6 +12,7 @@ serde_json = "1.0"
 anyhow = "1.0"
 xshell = "0.2"
 dirs = "4.0"
+walkdir = "2.3"
 
 [build-dependencies]
 gtk = { version = "*", package = "gtk4" }

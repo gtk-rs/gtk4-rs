@@ -1,5 +1,6 @@
 use anyhow::Context;
 use std::{env, path::PathBuf};
+use walkdir::WalkDir;
 use xshell::{cmd, Shell};
 
 fn main() {
@@ -28,23 +29,25 @@ install          install everything needed to run the listings
 
 fn install() -> anyhow::Result<()> {
     let sh = Shell::new()?;
+    install_scheme(sh)?;
+    Ok(())
+}
 
-    let scheme = vec![
-        "actions/7/org.gtk-rs.Actions7.gschema.xml",
-        "saving_window_state/1/org.gtk-rs.SavingWindowState1.gschema.xml",
-        "settings/1/org.gtk-rs.Settings1.gschema.xml",
-        "settings/2/org.gtk-rs.Settings2.gschema.xml",
-        "todo/2/org.gtk-rs.Todo2.gschema.xml",
-        "todo/3/org.gtk-rs.Todo3.gschema.xml",
-        "todo/4/org.gtk-rs.Todo4.gschema.xml",
-    ];
+fn install_scheme(sh: Shell) -> anyhow::Result<()> {
+    let scheme_dir = scheme_dir()?;
+    println!("Create directory: {scheme_dir:#?}");
+    sh.create_dir(&scheme_dir)?;
+    for schema in scheme() {
+        println!("Copy schema: {schema:#?}");
+        sh.copy_file(&schema, &scheme_dir)?;
+    }
 
-    install_scheme(sh, scheme)?;
+    cmd!(sh, "glib-compile-schemas {scheme_dir}").run()?;
 
     Ok(())
 }
 
-fn install_scheme(sh: Shell, scheme: Vec<&str>) -> anyhow::Result<()> {
+fn scheme_dir() -> anyhow::Result<PathBuf> {
     let scheme_dir = if cfg!(windows) {
         PathBuf::from("C:/ProgramData/glib-2.0/schemas/")
     } else {
@@ -52,15 +55,22 @@ fn install_scheme(sh: Shell, scheme: Vec<&str>) -> anyhow::Result<()> {
             .context("Could not get data dir")?
             .join("glib-2.0/schemas")
     };
+    Ok(scheme_dir)
+}
 
-    println!("Create directory: {scheme_dir:#?}");
-    sh.create_dir(&scheme_dir)?;
-    for schema in scheme {
-        println!("Copy schema: {schema}");
-        sh.copy_file(&schema, &scheme_dir)?;
-    }
-
-    cmd!(sh, "glib-compile-schemas {scheme_dir}").run()?;
-
-    Ok(())
+fn scheme() -> Vec<PathBuf> {
+    WalkDir::new(".")
+        .into_iter()
+        .filter_map(|entry| entry.ok())
+        .filter_map(|entry| {
+            if let Some(file_name) = entry.path().file_name() {
+                if let Some(file_name) = file_name.to_str() {
+                    if file_name.ends_with("gschema.xml") {
+                        return Some(entry.into_path());
+                    }
+                }
+            }
+            None
+        })
+        .collect()
 }
