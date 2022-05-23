@@ -169,11 +169,14 @@ impl Window {
         }
 
         // When the items change, assure that `tasks_list` is only visible if the number of tasks is greater than 0
-        tasks.connect_items_changed(
+        let tasks_changed_handler_id = tasks.connect_items_changed(
             clone!(@weak self as window => move |tasks, _, _, _| {
                 window.imp().tasks_list.set_visible(tasks.n_items() > 0);
             }),
         );
+        self.imp()
+            .tasks_changed_handler_id
+            .replace(Some(tasks_changed_handler_id));
 
         // Set current tasks
         self.imp().current_tasks.replace(Some(tasks));
