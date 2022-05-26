@@ -6,6 +6,7 @@ use glib::translate::*;
 use glib::{IsA, Quark, Slice, ToValue};
 use once_cell::sync::Lazy;
 use std::boxed::Box as Box_;
+use std::mem;
 use std::pin::Pin;
 use std::ptr;
 
@@ -20,11 +21,97 @@ pub fn accelerator_valid(keyval: gdk::Key, modifiers: gdk::ModifierType) -> bool
     }
 }
 
+#[doc(alias = "gtk_accelerator_get_label")]
+pub fn accelerator_get_label(
+    accelerator_key: gdk::Key,
+    accelerator_mods: gdk::ModifierType,
+) -> glib::GString {
+    assert_initialized_main_thread!();
+    unsafe {
+        from_glib_full(ffi::gtk_accelerator_get_label(
+            accelerator_key.into_glib(),
+            accelerator_mods.into_glib(),
+        ))
+    }
+}
+
+#[doc(alias = "gtk_accelerator_get_label_with_keycode")]
+pub fn accelerator_get_label_with_keycode(
+    display: Option<&impl IsA<gdk::Display>>,
+    accelerator_key: gdk::Key,
+    keycode: u32,
+    accelerator_mods: gdk::ModifierType,
+) -> glib::GString {
+    assert_initialized_main_thread!();
+    unsafe {
+        from_glib_full(ffi::gtk_accelerator_get_label_with_keycode(
+            display.map(|p| p.as_ref()).to_glib_none().0,
+            accelerator_key.into_glib(),
+            keycode,
+            accelerator_mods.into_glib(),
+        ))
+    }
+}
+
+#[doc(alias = "gtk_accelerator_name")]
+pub fn accelerator_name(
+    accelerator_key: gdk::Key,
+    accelerator_mods: gdk::ModifierType,
+) -> glib::GString {
+    assert_initialized_main_thread!();
+    unsafe {
+        from_glib_full(ffi::gtk_accelerator_name(
+            accelerator_key.into_glib(),
+            accelerator_mods.into_glib(),
+        ))
+    }
+}
+
+#[doc(alias = "gtk_accelerator_name_with_keycode")]
+pub fn accelerator_name_with_keycode(
+    display: Option<&impl IsA<gdk::Display>>,
+    accelerator_key: gdk::Key,
+    keycode: u32,
+    accelerator_mods: gdk::ModifierType,
+) -> glib::GString {
+    assert_initialized_main_thread!();
+    unsafe {
+        from_glib_full(ffi::gtk_accelerator_name_with_keycode(
+            display.map(|p| p.as_ref()).to_glib_none().0,
+            accelerator_key.into_glib(),
+            keycode,
+            accelerator_mods.into_glib(),
+        ))
+    }
+}
+
+#[doc(alias = "gtk_accelerator_parse")]
+pub fn accelerator_parse(accelerator: &str) -> Option<(gdk::Key, gdk::ModifierType)> {
+    assert_initialized_main_thread!();
+    unsafe {
+        let mut accelerator_key = mem::MaybeUninit::uninit();
+        let mut accelerator_mods = mem::MaybeUninit::uninit();
+        let ret = from_glib(ffi::gtk_accelerator_parse(
+            accelerator.to_glib_none().0,
+            accelerator_key.as_mut_ptr(),
+            accelerator_mods.as_mut_ptr(),
+        ));
+        if ret {
+            Some((
+                gdk::Key::from_glib(accelerator_key.assume_init()),
+                from_glib(accelerator_mods.assume_init()),
+            ))
+        } else {
+            None
+        }
+    }
+}
+
 #[doc(alias = "gtk_accelerator_parse_with_keycode")]
 pub fn accelerator_parse_with_keycode(
     accelerator: &str,
     display: Option<&impl IsA<gdk::Display>>,
-) -> Option<(u32, Slice<u32>, gdk::ModifierType)> {
+) -> Option<(gdk::Key, Slice<u32>, gdk::ModifierType)> {
     assert_initialized_main_thread!();
     unsafe {
         let mut accelerator_key = std::mem::MaybeUninit::uninit();
@@ -46,7 +133,7 @@ pub fn accelerator_parse_with_keycode(
             }
             let accelerator_codes = Slice::from_glib_full_num(accelerator_codes_ptr, len);
             Some((
-                accelerator_key.assume_init(),
+                gdk::Key::from_glib(accelerator_key.assume_init()),
                 accelerator_codes,
                 from_glib(accelerator_mods.assume_init()),
             ))

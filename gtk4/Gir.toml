@@ -503,6 +503,21 @@ status = "generate"
     name = "accelerator_valid"
     manual = true # to make use of gdk::Key
     [[object.function]]
+    name = "accelerator_get_label"
+    manual = true # to make use of gdk::Key
+    [[object.function]]
+    name = "accelerator_get_label_with_keycode"
+    manual = true # to make use of gdk::Key
+    [[object.function]]
+    name = "accelerator_name"
+    manual = true # to make use of gdk::Key
+    [[object.function]]
+    name = "accelerator_name_with_keycode"
+    manual = true # to make use of gdk::Key
+    [[object.function]]
+    name = "accelerator_parse"
+    manual = true # to make use of gdk::Key
+    [[object.function]]
     name = "disable_setlocale"
     assertion = "not-initialized"
     [[object.function]]
