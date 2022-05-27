@@ -131,6 +131,9 @@ status = "generate"
     name = "text_property_to_text_list"
     # TODO: requires a manual implementation
     manual = true
+    [[object.function]]
+    name = "set_program_class"
+    manual = true
 
 [[object]]
 name = "GdkX11.X11Monitor"

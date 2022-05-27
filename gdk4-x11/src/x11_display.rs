@@ -1,6 +1,7 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
 use crate::X11Display;
+use glib::Cast;
 #[cfg(any(feature = "xlib", feature = "dox"))]
 #[cfg_attr(feature = "dox", doc(cfg(feature = "xlib")))]
 use glib::{signal::connect_raw, signal::SignalHandlerId, ObjectType};
@@ -94,5 +95,16 @@ impl X11Display {
             )),
             Box_::into_raw(f),
         )
+    }
+
+    #[doc(alias = "gdk_x11_display_set_program_class")]
+    pub fn set_program_class(&self, program_class: &str) {
+        assert_initialized_main_thread!();
+        unsafe {
+            ffi::gdk_x11_display_set_program_class(
+                self.upcast_ref::<gdk::Display>().to_glib_none().0,
+                program_class.to_glib_none().0,
+            );
+        }
     }
 }
