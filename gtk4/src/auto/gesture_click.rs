@@ -115,12 +115,14 @@ impl GestureClick {
     }
 
     #[doc(alias = "unpaired-release")]
-    pub fn connect_unpaired_release<F: Fn(&Self, f64, f64, u32, &gdk::EventSequence) + 'static>(
+    pub fn connect_unpaired_release<
+        F: Fn(&Self, f64, f64, u32, Option<&gdk::EventSequence>) + 'static,
+    >(
         &self,
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn unpaired_release_trampoline<
-            F: Fn(&GestureClick, f64, f64, u32, &gdk::EventSequence) + 'static,
+            F: Fn(&GestureClick, f64, f64, u32, Option<&gdk::EventSequence>) + 'static,
         >(
             this: *mut ffi::GtkGestureClick,
             x: libc::c_double,
@@ -135,7 +137,9 @@ impl GestureClick {
                 x,
                 y,
                 button,
-                &from_glib_borrow(sequence),
+                Option::<gdk::EventSequence>::from_glib_borrow(sequence)
+                    .as_ref()
+                    .as_ref(),
             )
         }
         unsafe {
