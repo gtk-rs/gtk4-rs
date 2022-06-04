@@ -11,8 +11,8 @@ use khronos_egl as egl;
 #[cfg(any(feature = "wayland_crate", feature = "dox"))]
 #[cfg_attr(feature = "dox", doc(cfg(feature = "wayland_crate")))]
 use wayland_client::{
-    protocol::wl_compositor::WlCompositor,
-    sys::client::{wl_display, wl_proxy},
+    backend::ObjectId,
+    protocol::{wl_compositor::WlCompositor, wl_display::WlDisplay},
     Proxy,
 };
 
@@ -36,10 +36,23 @@ impl WaylandDisplay {
     #[doc(alias = "get_wl_compositor")]
     #[cfg(any(feature = "wayland_crate", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "wayland_crate")))]
-    pub fn wl_compositor(&self) -> WlCompositor {
+    pub fn wl_compositor(&self) -> Option<WlCompositor> {
         unsafe {
-            let ptr = ffi::gdk_wayland_display_get_wl_compositor(self.to_glib_none().0);
-            Proxy::from_c_ptr(ptr as *mut wl_proxy).into()
+            let display_ptr = ffi::gdk_wayland_display_get_wl_display(self.to_glib_none().0);
+            let compositor_ptr = ffi::gdk_wayland_display_get_wl_compositor(self.to_glib_none().0);
+            if compositor_ptr.is_null() {
+                None
+            } else {
+                let backend = wayland_backend::sys::client::Backend::from_foreign_display(
+                    display_ptr as *mut _,
+                );
+                let cnx = wayland_client::Connection::from_backend(backend);
+                let compositor_id =
+                    ObjectId::from_ptr(&WlCompositor::interface(), compositor_ptr as *mut _)
+                        .unwrap();
+
+                WlCompositor::from_id(&cnx, compositor_id).ok()
+            }
         }
     }
 
@@ -47,10 +60,16 @@ impl WaylandDisplay {
     #[doc(alias = "get_wl_display")]
     #[cfg(any(feature = "wayland_crate", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "wayland_crate")))]
-    pub fn wl_display(&self) -> wayland_client::Display {
+    pub fn wl_display(&self) -> WlDisplay {
         unsafe {
-            let ptr = ffi::gdk_wayland_display_get_wl_display(self.to_glib_none().0);
-            wayland_client::Display::from_external_display(ptr as *mut wl_display)
+            let display_ptr = ffi::gdk_wayland_display_get_wl_display(self.to_glib_none().0);
+            let backend =
+                wayland_backend::sys::client::Backend::from_foreign_display(display_ptr as *mut _);
+            let cnx = wayland_client::Connection::from_backend(backend);
+            let display_id =
+                ObjectId::from_ptr(&WlDisplay::interface(), display_ptr as *mut _).unwrap();
+
+            WlDisplay::from_id(&cnx, display_id).unwrap()
         }
     }
 }
