@@ -137,6 +137,7 @@ mod directory_list;
 mod drawing_area;
 mod drop_target;
 mod editable;
+mod editable_label;
 mod entry;
 mod entry_buffer;
 mod entry_completion;

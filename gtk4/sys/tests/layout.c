@@ -141,6 +141,8 @@ int main() {
     printf("%s;%zu;%zu\n", "GtkImageType", sizeof(GtkImageType), alignof(GtkImageType));
     printf("%s;%zu;%zu\n", "GtkInputHints", sizeof(GtkInputHints), alignof(GtkInputHints));
     printf("%s;%zu;%zu\n", "GtkInputPurpose", sizeof(GtkInputPurpose), alignof(GtkInputPurpose));
+    printf("%s;%zu;%zu\n", "GtkInscriptionClass", sizeof(GtkInscriptionClass), alignof(GtkInscriptionClass));
+    printf("%s;%zu;%zu\n", "GtkInscriptionOverflow", sizeof(GtkInscriptionOverflow), alignof(GtkInscriptionOverflow));
     printf("%s;%zu;%zu\n", "GtkJustification", sizeof(GtkJustification), alignof(GtkJustification));
     printf("%s;%zu;%zu\n", "GtkLayoutChild", sizeof(GtkLayoutChild), alignof(GtkLayoutChild));
     printf("%s;%zu;%zu\n", "GtkLayoutChildClass", sizeof(GtkLayoutChildClass), alignof(GtkLayoutChildClass));

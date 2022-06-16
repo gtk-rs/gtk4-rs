@@ -261,6 +261,10 @@ bitflags! {
         const A11Y = ffi::GTK_DEBUG_A11Y as u32;
         #[doc(alias = "GTK_DEBUG_ICONFALLBACK")]
         const ICONFALLBACK = ffi::GTK_DEBUG_ICONFALLBACK as u32;
+        #[cfg(any(feature = "v4_8", feature = "dox"))]
+        #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+        #[doc(alias = "GTK_DEBUG_INVERT_TEXT_DIR")]
+        const INVERT_TEXT_DIR = ffi::GTK_DEBUG_INVERT_TEXT_DIR as u32;
     }
 }
 

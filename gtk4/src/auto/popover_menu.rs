@@ -57,7 +57,7 @@ impl PopoverMenu {
     ) -> PopoverMenu {
         assert_initialized_main_thread!();
         unsafe {
-            Widget::from_glib_full(ffi::gtk_popover_menu_new_from_model_full(
+            Widget::from_glib_none(ffi::gtk_popover_menu_new_from_model_full(
                 model.as_ref().to_glib_none().0,
                 flags.into_glib(),
             ))

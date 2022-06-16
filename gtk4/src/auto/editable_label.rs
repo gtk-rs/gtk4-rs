@@ -13,15 +13,13 @@ use crate::Overflow;
 use crate::Widget;
 use glib::object::Cast;
 use glib::object::IsA;
+#[cfg(any(feature = "v4_8", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
 use glib::object::ObjectType as ObjectType_;
-use glib::signal::connect_raw;
-use glib::signal::SignalHandlerId;
 use glib::translate::*;
 use glib::StaticType;
 use glib::ToValue;
-use std::boxed::Box as Box_;
 use std::fmt;
-use std::mem::transmute;
 
 glib::wrapper! {
     #[doc(alias = "GtkEditableLabel")]
@@ -69,27 +67,10 @@ impl EditableLabel {
         }
     }
 
-    #[doc(alias = "editing")]
-    pub fn connect_editing_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_editing_trampoline<F: Fn(&EditableLabel) + 'static>(
-            this: *mut ffi::GtkEditableLabel,
-            _param_spec: glib::ffi::gpointer,
-            f: glib::ffi::gpointer,
-        ) {
-            let f: &F = &*(f as *const F);
-            f(&from_glib_borrow(this))
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"notify::editing\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
-                    notify_editing_trampoline::<F> as *const (),
-                )),
-                Box_::into_raw(f),
-            )
-        }
+    #[cfg(any(feature = "v4_8", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+    pub fn set_editing(&self, editing: bool) {
+        glib::ObjectExt::set_property(self, "editing", &editing)
     }
 }
 
@@ -107,6 +88,9 @@ impl Default for EditableLabel {
 /// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 #[must_use = "The builder must be built to be used"]
 pub struct EditableLabelBuilder {
+    #[cfg(any(feature = "v4_8", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+    editing: Option<bool>,
     can_focus: Option<bool>,
     can_target: Option<bool>,
     css_classes: Option<Vec<String>>,
@@ -157,6 +141,10 @@ impl EditableLabelBuilder {
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> EditableLabel {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
+        #[cfg(any(feature = "v4_8", feature = "dox"))]
+        if let Some(ref editing) = self.editing {
+            properties.push(("editing", editing));
+        }
         if let Some(ref can_focus) = self.can_focus {
             properties.push(("can-focus", can_focus));
         }
@@ -267,6 +255,13 @@ impl EditableLabelBuilder {
         }
         glib::Object::new::<EditableLabel>(&properties)
             .expect("Failed to create an instance of EditableLabel")
+    }
+
+    #[cfg(any(feature = "v4_8", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+    pub fn editing(mut self, editing: bool) -> Self {
+        self.editing = Some(editing);
+        self
     }
 
     pub fn can_focus(mut self, can_focus: bool) -> Self {

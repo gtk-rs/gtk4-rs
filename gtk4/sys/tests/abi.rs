@@ -1151,6 +1151,20 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         },
     ),
     (
+        "GtkInscriptionClass",
+        Layout {
+            size: size_of::<GtkInscriptionClass>(),
+            alignment: align_of::<GtkInscriptionClass>(),
+        },
+    ),
+    (
+        "GtkInscriptionOverflow",
+        Layout {
+            size: size_of::<GtkInscriptionOverflow>(),
+            alignment: align_of::<GtkInscriptionOverflow>(),
+        },
+    ),
+    (
         "GtkJustification",
         Layout {
             size: size_of::<GtkJustification>(),
@@ -2618,6 +2632,7 @@ const RUST_CONSTANTS: &[(&str, &str)] = &[
     ("(guint) GTK_DEBUG_ICONFALLBACK", "262144"),
     ("(guint) GTK_DEBUG_ICONTHEME", "32"),
     ("(guint) GTK_DEBUG_INTERACTIVE", "1024"),
+    ("(guint) GTK_DEBUG_INVERT_TEXT_DIR", "524288"),
     ("(guint) GTK_DEBUG_KEYBINDINGS", "4"),
     ("(guint) GTK_DEBUG_LAYOUT", "8192"),
     ("(guint) GTK_DEBUG_MODULES", "8"),
@@ -2727,6 +2742,10 @@ const RUST_CONSTANTS: &[(&str, &str)] = &[
     ("(gint) GTK_INPUT_PURPOSE_PIN", "9"),
     ("(gint) GTK_INPUT_PURPOSE_TERMINAL", "10"),
     ("(gint) GTK_INPUT_PURPOSE_URL", "5"),
+    ("(gint) GTK_INSCRIPTION_OVERFLOW_CLIP", "0"),
+    ("(gint) GTK_INSCRIPTION_OVERFLOW_ELLIPSIZE_END", "3"),
+    ("(gint) GTK_INSCRIPTION_OVERFLOW_ELLIPSIZE_MIDDLE", "2"),
+    ("(gint) GTK_INSCRIPTION_OVERFLOW_ELLIPSIZE_START", "1"),
     ("GTK_INVALID_LIST_POSITION", "4294967295"),
     ("(gint) GTK_JUSTIFY_CENTER", "2"),
     ("(gint) GTK_JUSTIFY_FILL", "3"),
