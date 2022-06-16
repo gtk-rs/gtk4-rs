@@ -399,6 +399,12 @@ pub const GTK_INPUT_PURPOSE_PASSWORD: GtkInputPurpose = 8;
 pub const GTK_INPUT_PURPOSE_PIN: GtkInputPurpose = 9;
 pub const GTK_INPUT_PURPOSE_TERMINAL: GtkInputPurpose = 10;
 
+pub type GtkInscriptionOverflow = c_int;
+pub const GTK_INSCRIPTION_OVERFLOW_CLIP: GtkInscriptionOverflow = 0;
+pub const GTK_INSCRIPTION_OVERFLOW_ELLIPSIZE_START: GtkInscriptionOverflow = 1;
+pub const GTK_INSCRIPTION_OVERFLOW_ELLIPSIZE_MIDDLE: GtkInscriptionOverflow = 2;
+pub const GTK_INSCRIPTION_OVERFLOW_ELLIPSIZE_END: GtkInscriptionOverflow = 3;
+
 pub type GtkJustification = c_int;
 pub const GTK_JUSTIFY_LEFT: GtkJustification = 0;
 pub const GTK_JUSTIFY_RIGHT: GtkJustification = 1;
@@ -921,6 +927,7 @@ pub const GTK_DEBUG_CONSTRAINTS: GtkDebugFlags = 32768;
 pub const GTK_DEBUG_BUILDER_OBJECTS: GtkDebugFlags = 65536;
 pub const GTK_DEBUG_A11Y: GtkDebugFlags = 131072;
 pub const GTK_DEBUG_ICONFALLBACK: GtkDebugFlags = 262144;
+pub const GTK_DEBUG_INVERT_TEXT_DIR: GtkDebugFlags = 524288;
 
 pub type GtkDialogFlags = c_uint;
 pub const GTK_DIALOG_MODAL: GtkDialogFlags = 1;
@@ -3071,6 +3078,20 @@ pub struct _GtkIMMulticontextPrivate {
 }
 
 pub type GtkIMMulticontextPrivate = *mut _GtkIMMulticontextPrivate;
+
+#[derive(Copy, Clone)]
+#[repr(C)]
+pub struct GtkInscriptionClass {
+    pub parent_class: GtkWidgetClass,
+}
+
+impl ::std::fmt::Debug for GtkInscriptionClass {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("GtkInscriptionClass @ {:p}", self))
+            .field("parent_class", &self.parent_class)
+            .finish()
+    }
+}
 
 #[repr(C)]
 pub struct _GtkKeyvalTriggerClass {
@@ -6788,6 +6809,19 @@ impl ::std::fmt::Debug for GtkInfoBar {
 }
 
 #[repr(C)]
+pub struct GtkInscription {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
+
+impl ::std::fmt::Debug for GtkInscription {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("GtkInscription @ {:p}", self))
+            .finish()
+    }
+}
+
+#[repr(C)]
 pub struct GtkKeyvalTrigger {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -8971,6 +9005,13 @@ extern "C" {
     // GtkInputPurpose
     //=========================================================================
     pub fn gtk_input_purpose_get_type() -> GType;
+
+    //=========================================================================
+    // GtkInscriptionOverflow
+    //=========================================================================
+    #[cfg(any(feature = "v4_8", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+    pub fn gtk_inscription_overflow_get_type() -> GType;
 
     //=========================================================================
     // GtkJustification
@@ -11199,10 +11240,16 @@ extern "C" {
     pub fn gtk_check_button_new_with_label(label: *const c_char) -> *mut GtkWidget;
     pub fn gtk_check_button_new_with_mnemonic(label: *const c_char) -> *mut GtkWidget;
     pub fn gtk_check_button_get_active(self_: *mut GtkCheckButton) -> gboolean;
+    #[cfg(any(feature = "v4_8", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+    pub fn gtk_check_button_get_child(button: *mut GtkCheckButton) -> *mut GtkWidget;
     pub fn gtk_check_button_get_inconsistent(check_button: *mut GtkCheckButton) -> gboolean;
     pub fn gtk_check_button_get_label(self_: *mut GtkCheckButton) -> *const c_char;
     pub fn gtk_check_button_get_use_underline(self_: *mut GtkCheckButton) -> gboolean;
     pub fn gtk_check_button_set_active(self_: *mut GtkCheckButton, setting: gboolean);
+    #[cfg(any(feature = "v4_8", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+    pub fn gtk_check_button_set_child(button: *mut GtkCheckButton, child: *mut GtkWidget);
     pub fn gtk_check_button_set_group(self_: *mut GtkCheckButton, group: *mut GtkCheckButton);
     pub fn gtk_check_button_set_inconsistent(
         check_button: *mut GtkCheckButton,
@@ -13242,6 +13289,88 @@ extern "C" {
     );
     pub fn gtk_info_bar_set_revealed(info_bar: *mut GtkInfoBar, revealed: gboolean);
     pub fn gtk_info_bar_set_show_close_button(info_bar: *mut GtkInfoBar, setting: gboolean);
+
+    //=========================================================================
+    // GtkInscription
+    //=========================================================================
+    #[cfg(any(feature = "v4_8", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+    pub fn gtk_inscription_get_type() -> GType;
+    #[cfg(any(feature = "v4_8", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+    pub fn gtk_inscription_new(text: *const c_char) -> *mut GtkWidget;
+    #[cfg(any(feature = "v4_8", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+    pub fn gtk_inscription_get_attributes(self_: *mut GtkInscription) -> *mut pango::PangoAttrList;
+    #[cfg(any(feature = "v4_8", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+    pub fn gtk_inscription_get_min_chars(self_: *mut GtkInscription) -> c_uint;
+    #[cfg(any(feature = "v4_8", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+    pub fn gtk_inscription_get_min_lines(self_: *mut GtkInscription) -> c_uint;
+    #[cfg(any(feature = "v4_8", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+    pub fn gtk_inscription_get_nat_chars(self_: *mut GtkInscription) -> c_uint;
+    #[cfg(any(feature = "v4_8", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+    pub fn gtk_inscription_get_nat_lines(self_: *mut GtkInscription) -> c_uint;
+    #[cfg(any(feature = "v4_8", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+    pub fn gtk_inscription_get_text(self_: *mut GtkInscription) -> *const c_char;
+    #[cfg(any(feature = "v4_8", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+    pub fn gtk_inscription_get_text_overflow(self_: *mut GtkInscription) -> GtkInscriptionOverflow;
+    #[cfg(any(feature = "v4_8", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+    pub fn gtk_inscription_get_wrap_mode(self_: *mut GtkInscription) -> pango::PangoWrapMode;
+    #[cfg(any(feature = "v4_8", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+    pub fn gtk_inscription_get_xalign(self_: *mut GtkInscription) -> c_float;
+    #[cfg(any(feature = "v4_8", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+    pub fn gtk_inscription_get_yalign(self_: *mut GtkInscription) -> c_float;
+    #[cfg(any(feature = "v4_8", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+    pub fn gtk_inscription_set_attributes(
+        self_: *mut GtkInscription,
+        attrs: *mut pango::PangoAttrList,
+    );
+    #[cfg(any(feature = "v4_8", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+    pub fn gtk_inscription_set_markup(self_: *mut GtkInscription, markup: *const c_char);
+    #[cfg(any(feature = "v4_8", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+    pub fn gtk_inscription_set_min_chars(self_: *mut GtkInscription, min_chars: c_uint);
+    #[cfg(any(feature = "v4_8", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+    pub fn gtk_inscription_set_min_lines(self_: *mut GtkInscription, min_lines: c_uint);
+    #[cfg(any(feature = "v4_8", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+    pub fn gtk_inscription_set_nat_chars(self_: *mut GtkInscription, nat_chars: c_uint);
+    #[cfg(any(feature = "v4_8", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+    pub fn gtk_inscription_set_nat_lines(self_: *mut GtkInscription, nat_lines: c_uint);
+    #[cfg(any(feature = "v4_8", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+    pub fn gtk_inscription_set_text(self_: *mut GtkInscription, text: *const c_char);
+    #[cfg(any(feature = "v4_8", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+    pub fn gtk_inscription_set_text_overflow(
+        self_: *mut GtkInscription,
+        overflow: GtkInscriptionOverflow,
+    );
+    #[cfg(any(feature = "v4_8", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+    pub fn gtk_inscription_set_wrap_mode(
+        self_: *mut GtkInscription,
+        wrap_mode: pango::PangoWrapMode,
+    );
+    #[cfg(any(feature = "v4_8", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+    pub fn gtk_inscription_set_xalign(self_: *mut GtkInscription, xalign: c_float);
+    #[cfg(any(feature = "v4_8", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+    pub fn gtk_inscription_set_yalign(self_: *mut GtkInscription, yalign: c_float);
 
     //=========================================================================
     // GtkKeyvalTrigger

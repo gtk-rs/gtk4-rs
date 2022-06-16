@@ -6,6 +6,9 @@ use glib::object::ObjectType as ObjectType_;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
+#[cfg(any(feature = "v4_8", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+use glib::StaticType;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
@@ -61,6 +64,20 @@ impl BookmarkList {
         }
     }
 
+    #[cfg(any(feature = "v4_8", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+    #[doc(alias = "item-type")]
+    pub fn item_type(&self) -> glib::types::Type {
+        glib::ObjectExt::property(self, "item-type")
+    }
+
+    #[cfg(any(feature = "v4_8", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+    #[doc(alias = "n-items")]
+    pub fn n_items(&self) -> u32 {
+        glib::ObjectExt::property(self, "n-items")
+    }
+
     #[doc(alias = "attributes")]
     pub fn connect_attributes_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_attributes_trampoline<F: Fn(&BookmarkList) + 'static>(
@@ -107,6 +124,31 @@ impl BookmarkList {
         }
     }
 
+    #[cfg(any(feature = "v4_8", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+    #[doc(alias = "item-type")]
+    pub fn connect_item_type_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_item_type_trampoline<F: Fn(&BookmarkList) + 'static>(
+            this: *mut ffi::GtkBookmarkList,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::item-type\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_item_type_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
     #[doc(alias = "loading")]
     pub fn connect_loading_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_loading_trampoline<F: Fn(&BookmarkList) + 'static>(
@@ -124,6 +166,31 @@ impl BookmarkList {
                 b"notify::loading\0".as_ptr() as *const _,
                 Some(transmute::<_, unsafe extern "C" fn()>(
                     notify_loading_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    #[cfg(any(feature = "v4_8", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+    #[doc(alias = "n-items")]
+    pub fn connect_n_items_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_n_items_trampoline<F: Fn(&BookmarkList) + 'static>(
+            this: *mut ffi::GtkBookmarkList,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::n-items\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_n_items_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
             )

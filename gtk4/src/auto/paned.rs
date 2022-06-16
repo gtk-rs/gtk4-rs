@@ -99,9 +99,12 @@ impl Paned {
     }
 
     #[doc(alias = "gtk_paned_set_end_child")]
-    pub fn set_end_child(&self, child: &impl IsA<Widget>) {
+    pub fn set_end_child(&self, child: Option<&impl IsA<Widget>>) {
         unsafe {
-            ffi::gtk_paned_set_end_child(self.to_glib_none().0, child.as_ref().to_glib_none().0);
+            ffi::gtk_paned_set_end_child(
+                self.to_glib_none().0,
+                child.map(|p| p.as_ref()).to_glib_none().0,
+            );
         }
     }
 
@@ -141,9 +144,12 @@ impl Paned {
     }
 
     #[doc(alias = "gtk_paned_set_start_child")]
-    pub fn set_start_child(&self, child: &impl IsA<Widget>) {
+    pub fn set_start_child(&self, child: Option<&impl IsA<Widget>>) {
         unsafe {
-            ffi::gtk_paned_set_start_child(self.to_glib_none().0, child.as_ref().to_glib_none().0);
+            ffi::gtk_paned_set_start_child(
+                self.to_glib_none().0,
+                child.map(|p| p.as_ref()).to_glib_none().0,
+            );
         }
     }
 

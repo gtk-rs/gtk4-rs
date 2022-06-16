@@ -4399,6 +4399,116 @@ impl ToValue for InputPurpose {
     }
 }
 
+#[cfg(any(feature = "v4_8", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
+#[doc(alias = "GtkInscriptionOverflow")]
+pub enum InscriptionOverflow {
+    #[doc(alias = "GTK_INSCRIPTION_OVERFLOW_CLIP")]
+    Clip,
+    #[doc(alias = "GTK_INSCRIPTION_OVERFLOW_ELLIPSIZE_START")]
+    EllipsizeStart,
+    #[doc(alias = "GTK_INSCRIPTION_OVERFLOW_ELLIPSIZE_MIDDLE")]
+    EllipsizeMiddle,
+    #[doc(alias = "GTK_INSCRIPTION_OVERFLOW_ELLIPSIZE_END")]
+    EllipsizeEnd,
+    #[doc(hidden)]
+    __Unknown(i32),
+}
+
+#[cfg(any(feature = "v4_8", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+impl fmt::Display for InscriptionOverflow {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(
+            f,
+            "InscriptionOverflow::{}",
+            match *self {
+                Self::Clip => "Clip",
+                Self::EllipsizeStart => "EllipsizeStart",
+                Self::EllipsizeMiddle => "EllipsizeMiddle",
+                Self::EllipsizeEnd => "EllipsizeEnd",
+                _ => "Unknown",
+            }
+        )
+    }
+}
+
+#[cfg(any(feature = "v4_8", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+#[doc(hidden)]
+impl IntoGlib for InscriptionOverflow {
+    type GlibType = ffi::GtkInscriptionOverflow;
+
+    fn into_glib(self) -> ffi::GtkInscriptionOverflow {
+        match self {
+            Self::Clip => ffi::GTK_INSCRIPTION_OVERFLOW_CLIP,
+            Self::EllipsizeStart => ffi::GTK_INSCRIPTION_OVERFLOW_ELLIPSIZE_START,
+            Self::EllipsizeMiddle => ffi::GTK_INSCRIPTION_OVERFLOW_ELLIPSIZE_MIDDLE,
+            Self::EllipsizeEnd => ffi::GTK_INSCRIPTION_OVERFLOW_ELLIPSIZE_END,
+            Self::__Unknown(value) => value,
+        }
+    }
+}
+
+#[cfg(any(feature = "v4_8", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+#[doc(hidden)]
+impl FromGlib<ffi::GtkInscriptionOverflow> for InscriptionOverflow {
+    unsafe fn from_glib(value: ffi::GtkInscriptionOverflow) -> Self {
+        skip_assert_initialized!();
+        match value {
+            ffi::GTK_INSCRIPTION_OVERFLOW_CLIP => Self::Clip,
+            ffi::GTK_INSCRIPTION_OVERFLOW_ELLIPSIZE_START => Self::EllipsizeStart,
+            ffi::GTK_INSCRIPTION_OVERFLOW_ELLIPSIZE_MIDDLE => Self::EllipsizeMiddle,
+            ffi::GTK_INSCRIPTION_OVERFLOW_ELLIPSIZE_END => Self::EllipsizeEnd,
+            value => Self::__Unknown(value),
+        }
+    }
+}
+
+#[cfg(any(feature = "v4_8", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+impl StaticType for InscriptionOverflow {
+    fn static_type() -> Type {
+        unsafe { from_glib(ffi::gtk_inscription_overflow_get_type()) }
+    }
+}
+
+#[cfg(any(feature = "v4_8", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+impl glib::value::ValueType for InscriptionOverflow {
+    type Type = Self;
+}
+
+#[cfg(any(feature = "v4_8", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+unsafe impl<'a> FromValue<'a> for InscriptionOverflow {
+    type Checker = glib::value::GenericValueTypeChecker<Self>;
+
+    unsafe fn from_value(value: &'a glib::Value) -> Self {
+        skip_assert_initialized!();
+        from_glib(glib::gobject_ffi::g_value_get_enum(value.to_glib_none().0))
+    }
+}
+
+#[cfg(any(feature = "v4_8", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+impl ToValue for InscriptionOverflow {
+    fn to_value(&self) -> glib::Value {
+        let mut value = glib::Value::for_value_type::<Self>();
+        unsafe {
+            glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.into_glib());
+        }
+        value
+    }
+
+    fn value_type(&self) -> glib::Type {
+        Self::static_type()
+    }
+}
+
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
 #[doc(alias = "GtkJustification")]

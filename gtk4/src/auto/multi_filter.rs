@@ -4,9 +4,27 @@
 
 use crate::Buildable;
 use crate::Filter;
+#[cfg(any(feature = "v4_8", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+use glib::object::Cast;
 use glib::object::IsA;
+#[cfg(any(feature = "v4_8", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+use glib::signal::connect_raw;
+#[cfg(any(feature = "v4_8", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+use glib::signal::SignalHandlerId;
 use glib::translate::*;
+#[cfg(any(feature = "v4_8", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+use glib::StaticType;
+#[cfg(any(feature = "v4_8", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+use std::boxed::Box as Box_;
 use std::fmt;
+#[cfg(any(feature = "v4_8", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+use std::mem::transmute;
 
 glib::wrapper! {
     #[doc(alias = "GtkMultiFilter")]
@@ -27,6 +45,26 @@ pub trait MultiFilterExt: 'static {
 
     #[doc(alias = "gtk_multi_filter_remove")]
     fn remove(&self, position: u32);
+
+    #[cfg(any(feature = "v4_8", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+    #[doc(alias = "item-type")]
+    fn item_type(&self) -> glib::types::Type;
+
+    #[cfg(any(feature = "v4_8", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+    #[doc(alias = "n-items")]
+    fn n_items(&self) -> u32;
+
+    #[cfg(any(feature = "v4_8", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+    #[doc(alias = "item-type")]
+    fn connect_item_type_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+
+    #[cfg(any(feature = "v4_8", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+    #[doc(alias = "n-items")]
+    fn connect_n_items_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 }
 
 impl<O: IsA<MultiFilter>> MultiFilterExt for O {
@@ -42,6 +80,69 @@ impl<O: IsA<MultiFilter>> MultiFilterExt for O {
     fn remove(&self, position: u32) {
         unsafe {
             ffi::gtk_multi_filter_remove(self.as_ref().to_glib_none().0, position);
+        }
+    }
+
+    #[cfg(any(feature = "v4_8", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+    fn item_type(&self) -> glib::types::Type {
+        glib::ObjectExt::property(self.as_ref(), "item-type")
+    }
+
+    #[cfg(any(feature = "v4_8", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+    fn n_items(&self) -> u32 {
+        glib::ObjectExt::property(self.as_ref(), "n-items")
+    }
+
+    #[cfg(any(feature = "v4_8", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+    fn connect_item_type_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_item_type_trampoline<
+            P: IsA<MultiFilter>,
+            F: Fn(&P) + 'static,
+        >(
+            this: *mut ffi::GtkMultiFilter,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(MultiFilter::from_glib_borrow(this).unsafe_cast_ref())
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::item-type\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_item_type_trampoline::<Self, F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    #[cfg(any(feature = "v4_8", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+    fn connect_n_items_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_n_items_trampoline<P: IsA<MultiFilter>, F: Fn(&P) + 'static>(
+            this: *mut ffi::GtkMultiFilter,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(MultiFilter::from_glib_borrow(this).unsafe_cast_ref())
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::n-items\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_n_items_trampoline::<Self, F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
         }
     }
 }

@@ -398,6 +398,13 @@ pub use self::image::Image;
 mod info_bar;
 pub use self::info_bar::InfoBar;
 
+#[cfg(any(feature = "v4_8", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+mod inscription;
+#[cfg(any(feature = "v4_8", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+pub use self::inscription::Inscription;
+
 mod label;
 pub use self::label::Label;
 
@@ -902,6 +909,9 @@ pub use self::enums::IconThemeError;
 pub use self::enums::IconViewDropPosition;
 pub use self::enums::ImageType;
 pub use self::enums::InputPurpose;
+#[cfg(any(feature = "v4_8", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+pub use self::enums::InscriptionOverflow;
 pub use self::enums::Justification;
 pub use self::enums::LevelBarMode;
 pub use self::enums::License;
@@ -1209,6 +1219,9 @@ pub mod builders {
     pub use super::im_multicontext::IMMulticontextBuilder;
     pub use super::image::ImageBuilder;
     pub use super::info_bar::InfoBarBuilder;
+    #[cfg(any(feature = "v4_8", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+    pub use super::inscription::InscriptionBuilder;
     pub use super::label::LabelBuilder;
     pub use super::level_bar::LevelBarBuilder;
     pub use super::link_button::LinkButtonBuilder;

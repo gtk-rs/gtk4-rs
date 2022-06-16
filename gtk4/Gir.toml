@@ -80,7 +80,6 @@ generate = [
     "Gtk.CssParserError",
     "Gtk.CssParserWarning",
     "Gtk.CssProvider",
-    "Gtk.DebugFlags",
     "Gtk.DeleteType",
     "Gtk.DialogFlags",
     "Gtk.DirectionType",
@@ -88,7 +87,6 @@ generate = [
     "Gtk.DropControllerMotion",
     "Gtk.DropDown",
     "Gtk.DropTargetAsync",
-    "Gtk.EditableLabel",
     "Gtk.EditableProperties",
     "Gtk.EmojiChooser",
     "Gtk.EntryIconPosition",
@@ -133,6 +131,8 @@ generate = [
     "Gtk.IMMulticontext",   
     "Gtk.InputHints",
     "Gtk.InputPurpose",
+    "Gtk.Inscription",
+    "Gtk.InscriptionOverflow",
     "Gtk.Justification",
     "Gtk.LayoutChild",
     "Gtk.LayoutManager",
@@ -924,6 +924,13 @@ status = "generate"
     manual = true
 
 [[object]]
+name = "Gtk.DebugFlags"
+status = "generate"
+    [[object.member]]
+    name = "invert_text_dir"
+    version = "4.8"
+
+[[object]]
 name = "Gtk.Dialog"
 status = "generate"
 manual_traits = ["DialogExtManual"]
@@ -994,6 +1001,18 @@ manual_traits = ["EditableExtManual"]
     [[object.function]]
     name = "install_properties"
     manual = true # handled by EditableClassSubclassExt
+
+[[object]]
+name = "Gtk.EditableLabel"
+status = "generate"
+    [[object.property]]
+    # editing became writable in 4.8, so we have to generate it
+    # with a guard. However we now need to implement notify_ manually
+    # as it doesn't need the version guard
+    # https://gitlab.gnome.org/GNOME/gtk/-/commit/25069cf2334382e7c07964d480f6cf365472a647
+    name = "editing"
+    version = "4.8"
+    generate = ["set"]
 
 [[object]]
 name = "Gtk.Entry"
