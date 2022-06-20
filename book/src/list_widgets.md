@@ -14,7 +14,7 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 ```
 
 We cannot display so many widgets at once.
-Therefore, we add `ListBox` to a [`gtk::ScrolledWindow`](../docs/gtk/struct.ScrolledWindow.html).
+Therefore, we add `ListBox` to a [`gtk::ScrolledWindow`](../docs/gtk4/struct.ScrolledWindow.html).
 Now we can scroll through our elements.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/list_widgets/1/main.rs">listings/list_widgets/1/main.rs</a>
