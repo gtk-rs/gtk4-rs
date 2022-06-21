@@ -28,14 +28,6 @@
       <attribute name="action">win.show-help-overlay</attribute>
     </item>
   </menu>
-  <menu id="list-menu">
-    <section>
-      <item>
-        <attribute name="label" translatable="yes">_Remove Done Tasks</attribute>
-        <attribute name="action">win.remove-done-tasks</attribute>
-      </item>
-    </section>
-  </menu>
   <template class="TodoWindow" parent="AdwApplicationWindow">
     <property name="width-request">360</property>
     <property name="title" translatable="yes">To-Do</property>
