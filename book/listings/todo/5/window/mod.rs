@@ -169,6 +169,7 @@ impl Window {
         }
 
         // When the items change, assure that `tasks_list` is only visible if the number of tasks is greater than 0
+        self.imp().tasks_list.set_visible(tasks.n_items() > 0);
         let tasks_changed_handler_id = tasks.connect_items_changed(
             clone!(@weak self as window => move |tasks, _, _, _| {
                 window.imp().tasks_list.set_visible(tasks.n_items() > 0);
@@ -227,6 +228,20 @@ impl Window {
                 {
                     window.imp().empty_stack.set_visible_child_name("empty");
                 }
+            }),
+        );
+
+        // Setup callback for activating a row of collections list
+        self.imp().collections_list.connect_row_activated(
+            clone!(@weak self as window => move |_, row| {
+                let index = row.index();
+                let selected_tasks = window.collections()
+                    .item(index as u32)
+                    .expect("There needs to be an object at this positon.")
+                    .downcast::<CollectionObject>()
+                    .expect("The object needs to be a `CollectionObject`.")
+                    .tasks();
+                window.set_current_tasks(selected_tasks);
             }),
         );
     }
