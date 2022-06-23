@@ -11,7 +11,7 @@ use gtk::glib::BindingFlags;
 use gtk::subclass::prelude::*;
 use gtk::{
     gio, glib, Align, CheckButton, CustomFilter, Dialog, DialogFlags, Entry,
-    FilterListModel, Label, ListBoxRow, NoSelection, ResponseType,
+    FilterListModel, Label, ListBoxRow, NoSelection, ResponseType, SelectionMode,
 };
 
 use crate::collection_object::{CollectionData, CollectionObject};
@@ -244,6 +244,16 @@ impl Window {
                 window.set_current_tasks(selected_tasks);
             }),
         );
+
+        // Setup callback for folding the leaflet
+        self.imp().leaflet.connect_folded_notify(clone!(@weak self as window => move |leaflet| {
+            if leaflet.is_folded() {
+                window.imp().collections_list.set_selection_mode(SelectionMode::None)
+            }
+            else {
+                window.imp().collections_list.set_selection_mode(SelectionMode::Single)
+            }
+        }));
     }
 
     fn set_empty_stack(&self) {
