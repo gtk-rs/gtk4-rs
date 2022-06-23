@@ -101,7 +101,7 @@
                           <object class="GtkToggleButton">
                             <property name="icon-name">list-add-symbolic</property>
                             <property name="tooltip-text" translatable="yes">New Collection</property>
-                            <property name="action-name">list.new</property>
+                            <property name="action-name">win.new-collection</property>
                           </object>
                         </child>
                         <child type="end">

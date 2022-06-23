@@ -123,6 +123,9 @@ impl Window {
 
             // Insert restored objects into model
             self.collections().extend_from_slice(&collection_objects);
+
+            // Set first collection as current
+            self.set_current_tasks(collection_objects[0].tasks());
         }
     }
 
@@ -182,6 +185,28 @@ impl Window {
 
         // Set current tasks
         self.imp().current_tasks.replace(Some(tasks));
+
+        self.select_current_row();
+    }
+
+    fn select_current_row(&self) {
+        let collections: Vec<CollectionObject> = self
+            .collections()
+            .snapshot()
+            .into_iter()
+            .filter_map(|object| object.downcast::<CollectionObject>().ok())
+            .collect();
+
+        for (index, collection) in collections.iter().enumerate() {
+            if self.current_tasks() == collection.tasks() {
+                if let Some(row) =
+                    self.imp().collections_list.row_at_index(index as i32)
+                {
+                    self.imp().collections_list.select_row(Some(&row));
+                    break;
+                }
+            }
+        }
     }
 
     fn set_task_list_visible(&self, tasks: &ListStore) {
@@ -252,7 +277,8 @@ impl Window {
                 window.imp().collections_list.set_selection_mode(SelectionMode::None)
             }
             else {
-                window.imp().collections_list.set_selection_mode(SelectionMode::Single)
+                window.imp().collections_list.set_selection_mode(SelectionMode::Single);
+                window.select_current_row();
             }
         }));
 
