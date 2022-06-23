@@ -1,7 +1,7 @@
 use gtk::prelude::*;
 use gtk::{Application, ApplicationWindow, Label, ListBox, PolicyType, ScrolledWindow};
 
-const APP_ID: &str = "org.gtk-rs.ListWidgets1";
+const APP_ID: &str = "org.gtk_rs.ListWidgets1";
 
 fn main() {
     // Create a new application

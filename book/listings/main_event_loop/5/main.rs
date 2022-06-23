@@ -2,7 +2,7 @@ use glib::{clone, timeout_future_seconds, MainContext};
 use gtk::prelude::*;
 use gtk::{glib, Application, ApplicationWindow, Button};
 
-const APP_ID: &str = "org.gtk-rs.MainEventLoop5";
+const APP_ID: &str = "org.gtk_rs.MainEventLoop5";
 
 fn main() {
     // Create a new application

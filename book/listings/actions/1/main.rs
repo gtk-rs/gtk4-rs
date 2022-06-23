@@ -4,7 +4,7 @@ use gtk::prelude::*;
 use gtk::{gio, glib, Application, ApplicationWindow};
 
 // ANCHOR: main
-const APP_ID: &str = "org.gtk-rs.Actions1";
+const APP_ID: &str = "org.gtk_rs.Actions1";
 
 fn main() {
     // Create a new application

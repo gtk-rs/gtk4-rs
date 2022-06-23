@@ -4,7 +4,7 @@ use gtk::prelude::*;
 use gtk::{gio, Application};
 use window::Window;
 
-const APP_ID: &str = "org.gtk-rs.CompositeTemplates1";
+const APP_ID: &str = "org.gtk_rs.CompositeTemplates1";
 
 fn main() {
     // Register and include resources

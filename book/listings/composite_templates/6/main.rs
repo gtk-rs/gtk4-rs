@@ -5,7 +5,7 @@ use gtk::prelude::*;
 use gtk::{gio, Application};
 use window::Window;
 
-const APP_ID: &str = "org.gtk-rs.CompositeTemplates6";
+const APP_ID: &str = "org.gtk_rs.CompositeTemplates6";
 
 fn main() {
     // Register and include resources
