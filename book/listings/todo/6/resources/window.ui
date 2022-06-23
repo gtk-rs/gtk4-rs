@@ -20,14 +20,12 @@
       </item>
     </submenu>
     <item>
-      <attribute name="label" translatable="yes">_Keyboard Shortcuts</attribute>
-      <attribute name="action">win.show-help-overlay</attribute>
-    </item>
-  </menu>
-  <menu id="list-menu">
-    <item>
       <attribute name="label" translatable="yes">_Remove Done Tasks</attribute>
       <attribute name="action">win.remove-done-tasks</attribute>
+    </item>
+    <item>
+      <attribute name="label" translatable="yes">_Keyboard Shortcuts</attribute>
+      <attribute name="action">win.show-help-overlay</attribute>
     </item>
   </menu>
   <template class="TodoWindow" parent="AdwApplicationWindow">
@@ -106,12 +104,6 @@
                             <property name="action-name">win.new-collection</property>
                           </object>
                         </child>
-                        <child type="end">
-                          <object class="GtkMenuButton">
-                            <property name="direction">none</property>
-                            <property name="menu-model">main-menu</property>
-                          </object>
-                        </child>
                       </object>
                     </child>
                     <child>
@@ -165,7 +157,7 @@
                         <child type="end">
                           <object class="GtkMenuButton">
                             <property name="icon-name">view-more-symbolic</property>
-                            <property name="menu-model">list-menu</property>
+                            <property name="menu-model">main-menu</property>
                           </object>
                         </child>
                       </object>
