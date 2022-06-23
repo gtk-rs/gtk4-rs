@@ -262,7 +262,7 @@ impl Window {
                 let index = row.index();
                 let selected_tasks = window.collections()
                     .item(index as u32)
-                    .expect("There needs to be an object at this positon.")
+                    .expect("There needs to be an object at this position.")
                     .downcast::<CollectionObject>()
                     .expect("The object needs to be a `CollectionObject`.")
                     .tasks();
