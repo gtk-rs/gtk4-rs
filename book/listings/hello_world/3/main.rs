@@ -5,7 +5,7 @@ use gtk::prelude::*;
 // ANCHOR: use
 use gtk::{Application, ApplicationWindow, Button};
 // ANCHOR_END: use
-const APP_ID: &str = "org.gtk-rs.HelloWorld3";
+const APP_ID: &str = "org.gtk_rs.HelloWorld3";
 
 fn main() {
     // Create a new application

@@ -1,7 +1,7 @@
 use gtk::prelude::*;
 use gtk::{Application, ApplicationWindow, Button};
 
-const APP_ID: &str = "org.gtk-rs.Css5";
+const APP_ID: &str = "org.gtk_rs.Css5";
 
 fn main() {
     // Create a new application

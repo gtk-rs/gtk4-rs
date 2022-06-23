@@ -7,7 +7,7 @@ use gtk::prelude::*;
 use gtk::{gio, Application};
 use window::Window;
 
-const APP_ID: &str = "org.gtk-rs.Todo4";
+const APP_ID: &str = "org.gtk_rs.Todo4";
 
 fn main() {
     gio::resources_register_include!("todo_4.gresource")

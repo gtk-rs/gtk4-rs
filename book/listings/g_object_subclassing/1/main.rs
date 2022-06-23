@@ -4,7 +4,7 @@ use custom_button::CustomButton;
 use gtk::prelude::*;
 use gtk::{Application, ApplicationWindow};
 
-const APP_ID: &str = "org.gtk-rs.GObjectSubclassing1";
+const APP_ID: &str = "org.gtk_rs.GObjectSubclassing1";
 
 fn main() {
     // Create a new application

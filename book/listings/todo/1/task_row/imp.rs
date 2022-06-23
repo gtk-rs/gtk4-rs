@@ -8,7 +8,7 @@ use gtk::{glib, CheckButton, CompositeTemplate, Label};
 // ANCHOR: struct_and_subclass
 // Object holding the state
 #[derive(Default, CompositeTemplate)]
-#[template(resource = "/org/gtk-rs/Todo1/task_row.ui")]
+#[template(resource = "/org/gtk_rs/Todo1/task_row.ui")]
 pub struct TaskRow {
     #[template_child]
     pub completed_button: TemplateChild<CheckButton>,

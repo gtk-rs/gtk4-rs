@@ -4,7 +4,7 @@ use gtk::prelude::*;
 use gtk::{gio, Application};
 use window::Window;
 
-const APP_ID: &str = "org.gtk-rs.Actions5";
+const APP_ID: &str = "org.gtk_rs.Actions5";
 
 fn main() {
     // Register and include resources

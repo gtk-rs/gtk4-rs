@@ -5,7 +5,7 @@ use gtk::{
     gio, glib, Align, Application, ApplicationWindow, Button, Label, Orientation,
 };
 
-const APP_ID: &str = "org.gtk-rs.Actions3";
+const APP_ID: &str = "org.gtk_rs.Actions3";
 
 fn main() {
     // Create a new application
