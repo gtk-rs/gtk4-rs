@@ -17,7 +17,7 @@ use crate::utils::data_path;
 
 // Object holding the state
 #[derive(CompositeTemplate, Default)]
-#[template(resource = "/org/gtk-rs/Todo5/window.ui")]
+#[template(resource = "/org/gtk-rs/Todo6/window.ui")]
 pub struct Window {
     #[template_child]
     pub entry: TemplateChild<Entry>,

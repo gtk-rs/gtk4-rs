@@ -8,10 +8,10 @@ use gtk::gio;
 use gtk::prelude::*;
 use window::Window;
 
-static APP_ID: &str = "org.gtk-rs.Todo5";
+static APP_ID: &str = "org.gtk-rs.Todo6";
 
 fn main() {
-    gio::resources_register_include!("todo_5.gresource")
+    gio::resources_register_include!("todo_6.gresource")
         .expect("Failed to register resources.");
 
     // Create a new application
