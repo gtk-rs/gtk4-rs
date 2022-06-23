@@ -6,6 +6,7 @@ use adw::prelude::*;
 use adw::{ActionRow, NavigationDirection};
 use gio::Settings;
 use glib::{clone, Object};
+use gtk::gio::ListStore;
 use gtk::glib::BindingFlags;
 use gtk::subclass::prelude::*;
 use gtk::{
@@ -43,7 +44,7 @@ impl Window {
         self.imp().settings.get().expect("Could not get settings.")
     }
 
-    fn current_tasks(&self) -> gio::ListStore {
+    fn current_tasks(&self) -> ListStore {
         self.imp()
             .current_tasks
             .borrow()
@@ -51,7 +52,7 @@ impl Window {
             .expect("Could not get current tasks.")
     }
 
-    fn collections(&self) -> gio::ListStore {
+    fn collections(&self) -> ListStore {
         self.imp()
             .collections
             .get()
@@ -93,7 +94,7 @@ impl Window {
     }
 
     fn setup_collections(&self) {
-        let collections = gio::ListStore::new(CollectionObject::static_type());
+        let collections = ListStore::new(CollectionObject::static_type());
         self.imp()
             .collections
             .set(collections.clone())
@@ -142,7 +143,7 @@ impl Window {
         ListBoxRow::builder().child(&label).build()
     }
 
-    fn set_current_tasks(&self, tasks: gio::ListStore) {
+    fn set_current_tasks(&self, tasks: ListStore) {
         // Wrap model with filter and selection and pass it to the list view
         let filter_model = FilterListModel::new(Some(&tasks), self.filter().as_ref());
         let selection_model = NoSelection::new(Some(&filter_model));
@@ -169,10 +170,10 @@ impl Window {
         }
 
         // When the items change, assure that `tasks_list` is only visible if the number of tasks is greater than 0
-        self.imp().tasks_list.set_visible(tasks.n_items() > 0);
+        self.set_task_list_visible(&tasks);
         let tasks_changed_handler_id = tasks.connect_items_changed(
             clone!(@weak self as window => move |tasks, _, _, _| {
-                window.imp().tasks_list.set_visible(tasks.n_items() > 0);
+                window.set_task_list_visible(tasks);
             }),
         );
         self.imp()
@@ -181,6 +182,10 @@ impl Window {
 
         // Set current tasks
         self.imp().current_tasks.replace(Some(tasks));
+    }
+
+    fn set_task_list_visible(&self, tasks: &ListStore) {
+        self.imp().tasks_list.set_visible(tasks.n_items() > 0);
     }
 
     fn create_task_row(&self, task_object: &TaskObject) -> ActionRow {
@@ -219,15 +224,10 @@ impl Window {
         );
 
         // Setup callback change of the collections
+        self.set_empty_stack();
         self.collections().connect_items_changed(
-            clone!(@weak self as window => move |collections, _, _, _| {
-                if collections.n_items() > 0 {
-                    window.imp().empty_stack.set_visible_child_name("main");
-                }
-                else
-                {
-                    window.imp().empty_stack.set_visible_child_name("empty");
-                }
+            clone!(@weak self as window => move |_, _, _, _| {
+                window.set_empty_stack();
             }),
         );
 
@@ -244,6 +244,14 @@ impl Window {
                 window.set_current_tasks(selected_tasks);
             }),
         );
+    }
+
+    fn set_empty_stack(&self) {
+        if self.collections().n_items() > 0 {
+            self.imp().empty_stack.set_visible_child_name("main");
+        } else {
+            self.imp().empty_stack.set_visible_child_name("empty");
+        }
     }
 
     fn new_task(&self) {
