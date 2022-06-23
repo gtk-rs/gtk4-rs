@@ -242,6 +242,7 @@ impl Window {
                     .expect("The object needs to be a `CollectionObject`.")
                     .tasks();
                 window.set_current_tasks(selected_tasks);
+                window.imp().leaflet.navigate(NavigationDirection::Forward);
             }),
         );
 
@@ -254,6 +255,12 @@ impl Window {
                 window.imp().collections_list.set_selection_mode(SelectionMode::Single)
             }
         }));
+
+        self.imp().back_button.connect_clicked(
+            clone!(@weak self as window => move |_| {
+                window.imp().leaflet.navigate(NavigationDirection::Back);
+            }),
+        );
     }
 
     fn set_empty_stack(&self) {

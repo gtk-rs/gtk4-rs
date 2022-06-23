@@ -85,7 +85,6 @@
               <object class="AdwLeaflet" id="leaflet">
                 <property name="can-navigate-back">True</property>
                 <property name="fold-threshold-policy">natural</property>
-                <!-- <signal name="notify::folded" handler="notify_leaflet_folded_cb" swapped="yes" /> -->
                 <child>
                   <object class="GtkBox">
                     <property name="orientation">vertical</property>
@@ -146,9 +145,21 @@
                     <property name="hexpand">True</property>
                     <child>
                       <object class="AdwHeaderBar">
+                        <binding name="show-start-title-buttons">
+                          <lookup name="folded">leaflet</lookup>
+                        </binding>
                         <property name="title-widget">
                           <object class="AdwWindowTitle" />
                         </property>
+                        <child type="start">
+                          <object class="GtkButton" id="back_button">
+                            <binding name="visible">
+                              <lookup name="folded">leaflet</lookup>
+                            </binding>
+                            <property name="icon-name">go-previous-symbolic</property>
+                            <property name="tooltip-text" translatable="yes">Back</property>
+                          </object>
+                        </child>
                       </object>
                     </child>
                     <child>
