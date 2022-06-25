@@ -6,10 +6,10 @@ Let's learn how to use [`gio::Settings`](https://gtk-rs.org/gtk-rs-core/stable/l
 
 At the very beginning we have to create a `GSchema` xml file in order to describe the kind of data our application plans to store in the settings.
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/settings/1/org.gtk-rs.Settings1.gschema.xml">listings/settings/1/org.gtk-rs.Settings1.gschema.xml</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/settings/1/org.gtk_rs.Settings1.gschema.xml">listings/settings/1/org.gtk_rs.Settings1.gschema.xml</a>
 
 ```xml
-{{#rustdoc_include ../listings/settings/1/org.gtk-rs.Settings1.gschema.xml}}
+{{#rustdoc_include ../listings/settings/1/org.gtk_rs.Settings1.gschema.xml}}
 ```
 Let's get through it step by step.
 The `id` is the same application id we used when we created our application.
@@ -32,14 +32,14 @@ Now we need to copy and compile the schema.
 > You can install the schema by executing the following commands on a Linux or macOS machine:
 > ```bash
 > mkdir -p $HOME/.local/share/glib-2.0/schemas
-> cp org.gtk-rs.Settings1.gschema.xml $HOME/.local/share/glib-2.0/schemas/
+> cp org.gtk_rs.Settings1.gschema.xml $HOME/.local/share/glib-2.0/schemas/
 > glib-compile-schemas $HOME/.local/share/glib-2.0/schemas/
 > ```
 > 
 > On Windows run:
 > ```powershell
 > mkdir C:/ProgramData/glib-2.0/schemas/
-> cp org.gtk-rs.Settings1.gschema.xml C:/ProgramData/glib-2.0/schemas/
+> cp org.gtk_rs.Settings1.gschema.xml C:/ProgramData/glib-2.0/schemas/
 > glib-compile-schemas C:/ProgramData/glib-2.0/schemas/
 > ```
 

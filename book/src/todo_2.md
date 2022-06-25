@@ -72,10 +72,10 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 Then, we create a settings schema.
 Again, the "filter" setting correspond to the stateful actions called by the menu.
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/2/org.gtk-rs.Todo2.gschema.xml">listings/todo/2/org.gtk-rs.Todo2.gschema.xml</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/2/org.gtk_rs.Todo2.gschema.xml">listings/todo/2/org.gtk_rs.Todo2.gschema.xml</a>
 
 ```xml
-{{#rustdoc_include ../listings/todo/2/org.gtk-rs.Todo2.gschema.xml}}
+{{#rustdoc_include ../listings/todo/2/org.gtk_rs.Todo2.gschema.xml}}
 ```
 
 We install the schema as described in the settings [chapter](./settings.html)
