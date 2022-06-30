@@ -58,7 +58,7 @@ impl ParamSpecExpression {
     }
 
     pub fn upcast_ref(&self) -> &ParamSpec {
-        &*self
+        self
     }
 }
 

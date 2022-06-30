@@ -170,7 +170,7 @@ macro_rules! define_event {
             }
 
             pub fn upcast_ref(&self) -> &crate::Event {
-                &*self
+                self
             }
         }
     };

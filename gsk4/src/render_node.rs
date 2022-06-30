@@ -118,7 +118,7 @@ macro_rules! define_render_node {
     ($rust_type:ident, $ffi_type:path,  $node_type:path) => {
         impl std::convert::AsRef<crate::RenderNode> for $rust_type {
             fn as_ref(&self) -> &crate::RenderNode {
-                &*self
+                self
             }
         }
 
@@ -142,7 +142,7 @@ macro_rules! define_render_node {
             }
 
             fn upcast_ref(&self) -> &crate::RenderNode {
-                &*self
+                self
             }
         }
 
