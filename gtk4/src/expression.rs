@@ -256,7 +256,7 @@ macro_rules! define_expression {
             }
 
             pub fn upcast_ref(&self) -> &crate::Expression {
-                &*self
+                self
             }
         }
 
