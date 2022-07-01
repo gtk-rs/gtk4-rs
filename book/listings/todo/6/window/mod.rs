@@ -125,7 +125,9 @@ impl Window {
             self.collections().extend_from_slice(&collection_objects);
 
             // Set first collection as current
-            self.set_current_tasks(collection_objects[0].tasks());
+            if let Some(first_collection_object) = collection_objects.first() {
+                self.set_current_tasks(first_collection_object.tasks());
+            }
         }
     }
 
