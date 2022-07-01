@@ -7,9 +7,9 @@ use gio::Settings;
 use glib::signal::Inhibit;
 use glib::subclass::InitializingObject;
 use gtk::glib::SignalHandlerId;
+use gtk::prelude::*;
 use gtk::subclass::prelude::*;
-use gtk::{gio, glib, CompositeTemplate, Entry, ListBox, Stack};
-use gtk::{prelude::*, Button};
+use gtk::{gio, glib, Button, CompositeTemplate, Entry, ListBox, Stack};
 use once_cell::sync::OnceCell;
 
 use crate::collection_object::{CollectionData, CollectionObject};
@@ -28,7 +28,7 @@ pub struct Window {
     #[template_child]
     pub leaflet: TemplateChild<Leaflet>,
     #[template_child]
-    pub empty_stack: TemplateChild<Stack>,
+    pub stack: TemplateChild<Stack>,
     #[template_child]
     pub back_button: TemplateChild<Button>,
     pub collections: OnceCell<gio::ListStore>,
@@ -46,7 +46,7 @@ impl ObjectSubclass for Window {
     type ParentType = adw::ApplicationWindow;
 
     fn class_init(klass: &mut Self::Class) {
-        Self::bind_template(klass);
+        klass.bind_template();
     }
 
     fn instance_init(obj: &InitializingObject<Self>) {
