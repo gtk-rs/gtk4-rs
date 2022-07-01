@@ -6,11 +6,10 @@ use adw::prelude::*;
 use adw::{ActionRow, NavigationDirection};
 use gio::Settings;
 use glib::{clone, Object};
-use gtk::gio::ListStore;
 use gtk::glib::BindingFlags;
 use gtk::subclass::prelude::*;
 use gtk::{
-    gio, glib, Align, CheckButton, CustomFilter, Dialog, DialogFlags, Entry,
+    gio, glib, pango, Align, CheckButton, CustomFilter, Dialog, DialogFlags, Entry,
     FilterListModel, Label, ListBoxRow, NoSelection, ResponseType, SelectionMode,
 };
 
@@ -44,7 +43,7 @@ impl Window {
         self.imp().settings.get().expect("Could not get settings.")
     }
 
-    fn current_tasks(&self) -> ListStore {
+    fn current_tasks(&self) -> gio::ListStore {
         self.imp()
             .current_tasks
             .borrow()
@@ -52,7 +51,7 @@ impl Window {
             .expect("Could not get current tasks.")
     }
 
-    fn collections(&self) -> ListStore {
+    fn collections(&self) -> gio::ListStore {
         self.imp()
             .collections
             .get()
@@ -94,7 +93,7 @@ impl Window {
     }
 
     fn setup_collections(&self) {
-        let collections = ListStore::new(CollectionObject::static_type());
+        let collections = gio::ListStore::new(CollectionObject::static_type());
         self.imp()
             .collections
             .set(collections.clone())
@@ -136,7 +135,7 @@ impl Window {
         collection_object: &CollectionObject,
     ) -> ListBoxRow {
         let label = Label::builder()
-            .ellipsize(gtk::pango::EllipsizeMode::End)
+            .ellipsize(pango::EllipsizeMode::End)
             .xalign(0.0)
             .build();
 
@@ -148,7 +147,7 @@ impl Window {
         ListBoxRow::builder().child(&label).build()
     }
 
-    fn set_current_tasks(&self, tasks: ListStore) {
+    fn set_current_tasks(&self, tasks: gio::ListStore) {
         // Wrap model with filter and selection and pass it to the list view
         let filter_model = FilterListModel::new(Some(&tasks), self.filter().as_ref());
         let selection_model = NoSelection::new(Some(&filter_model));
@@ -174,7 +173,7 @@ impl Window {
             self.current_tasks().disconnect(handler_id);
         }
 
-        // When the items change, assure that `tasks_list` is only visible if the number of tasks is greater than 0
+        // Assure that the task list is only visible when it is supposed to
         self.set_task_list_visible(&tasks);
         let tasks_changed_handler_id = tasks.connect_items_changed(
             clone!(@weak self as window => move |tasks, _, _, _| {
@@ -189,6 +188,11 @@ impl Window {
         self.imp().current_tasks.replace(Some(tasks));
 
         self.select_current_row();
+    }
+
+    /// Assure that `tasks_list` is only visible if the number of tasks is greater than 0
+    fn set_task_list_visible(&self, tasks: &gio::ListStore) {
+        self.imp().tasks_list.set_visible(tasks.n_items() > 0);
     }
 
     fn select_current_row(&self) {
@@ -211,19 +215,20 @@ impl Window {
         }
     }
 
-    fn set_task_list_visible(&self, tasks: &ListStore) {
-        self.imp().tasks_list.set_visible(tasks.n_items() > 0);
-    }
-
     fn create_task_row(&self, task_object: &TaskObject) -> ActionRow {
+        // Create check button
         let check_button = CheckButton::builder()
             .valign(Align::Center)
             .can_focus(false)
             .build();
+
+        // Create row
         let row = ActionRow::builder()
             .activatable_widget(&check_button)
             .build();
         row.add_prefix(&check_button);
+
+        // Bind properties
         task_object
             .bind_property("completed", &check_button, "active")
             .flags(BindingFlags::SYNC_CREATE | BindingFlags::BIDIRECTIONAL)
@@ -232,6 +237,8 @@ impl Window {
             .bind_property("content", &row, "title")
             .flags(BindingFlags::SYNC_CREATE)
             .build();
+
+        // Return row
         row
     }
 
@@ -251,10 +258,10 @@ impl Window {
         );
 
         // Setup callback change of the collections
-        self.set_empty_stack();
+        self.set_stack();
         self.collections().connect_items_changed(
             clone!(@weak self as window => move |_, _, _, _| {
-                window.set_empty_stack();
+                window.set_stack();
             }),
         );
 
@@ -291,11 +298,11 @@ impl Window {
         );
     }
 
-    fn set_empty_stack(&self) {
+    fn set_stack(&self) {
         if self.collections().n_items() > 0 {
-            self.imp().empty_stack.set_visible_child_name("main");
+            self.imp().stack.set_visible_child_name("main");
         } else {
-            self.imp().empty_stack.set_visible_child_name("empty");
+            self.imp().stack.set_visible_child_name("empty");
         }
     }
 
@@ -350,6 +357,7 @@ impl Window {
     }
 
     fn new_collection(&self) {
+        // Create new Dialog
         let dialog = Dialog::with_buttons(
             Some("New Collection"),
             Some(self),
@@ -361,10 +369,15 @@ impl Window {
                 ("Create", ResponseType::Accept),
             ],
         );
-
         dialog.set_default_response(ResponseType::Accept);
 
-        let content_area = dialog.content_area();
+        // Set dialog button initially to false
+        let dialog_button = dialog
+            .widget_for_response(ResponseType::Accept)
+            .expect("The dialog needs to have a widget for response type `Accept`.");
+        dialog_button.set_sensitive(false);
+
+        // Create entry and add it to the dialog
         let entry = Entry::builder()
             .margin_top(12)
             .margin_bottom(12)
@@ -373,13 +386,17 @@ impl Window {
             .placeholder_text("Name")
             .activates_default(true)
             .build();
+        dialog.content_area().append(&entry);
 
+        // Set entry's css class to "error", when there is not text in it
         entry.connect_changed(clone!(@weak dialog => move |entry| {
             let text = entry.text();
-            let button = dialog.widget_for_response(ResponseType::Accept).unwrap();
+            let dialog_button = dialog.
+                widget_for_response(ResponseType::Accept).
+                expect("The dialog needs to have a widget for response type `Accept`.");
             let empty = text.is_empty();
 
-            button.set_sensitive(!empty);
+            dialog_button.set_sensitive(!empty);
 
             if empty {
                 entry.add_css_class("error");
@@ -388,22 +405,30 @@ impl Window {
                 entry.remove_css_class("error");
             }
         }));
-        entry.remove_css_class("error");
 
-        content_area.append(&entry);
-
+        // Connect respose to dialog
         dialog.connect_response(
             clone!(@weak self as window, @weak entry => move |dialog, response| {
+                // Destroy dialog
                 dialog.destroy();
 
+                // Return if the user chose a response different than `Accept`
                 if response != ResponseType::Accept {
                     return;
                 }
-                let title = entry.text().into();
+
+                // Create a new list store
                 let tasks = gio::ListStore::new(TaskObject::static_type());
+
+                // Create a new collection object from the title the user provided
+                let title = entry.text().into();
                 let collection_object = CollectionObject::new(title, tasks);
+
+                // Add new collection object and set current tasks
                 window.collections().append(&collection_object);
                 window.set_current_tasks(collection_object.tasks());
+
+                // Let the leaflet navigate to the next child
                 window.imp().leaflet.navigate(NavigationDirection::Forward);
             }),
         );
