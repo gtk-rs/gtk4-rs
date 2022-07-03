@@ -409,7 +409,7 @@ impl Window {
             }
         }));
 
-        // Connect respose to dialog
+        // Connect response to dialog
         dialog.connect_response(
             clone!(@weak self as window, @weak entry => move |dialog, response| {
                 // Destroy dialog
