@@ -43,12 +43,16 @@ impl Window {
         self.imp().settings.get().expect("Could not get settings.")
     }
 
-    fn current_tasks(&self) -> gio::ListStore {
+    fn current_collection(&self) -> CollectionObject {
         self.imp()
-            .current_tasks
+            .current_collection
             .borrow()
             .clone()
-            .expect("Could not get current tasks.")
+            .expect("Could not get current collection.")
+    }
+
+    fn current_tasks(&self) -> gio::ListStore {
+        self.current_collection().tasks()
     }
 
     fn collections(&self) -> gio::ListStore {
@@ -115,17 +119,17 @@ impl Window {
                 .expect("Could not get backup data from json file.");
 
             // Convert `Vec<CollectionData>` to `Vec<CollectionObject>`
-            let collection_objects: Vec<CollectionObject> = backup_data
+            let collections: Vec<CollectionObject> = backup_data
                 .into_iter()
                 .map(CollectionObject::from_collection_data)
                 .collect();
 
             // Insert restored objects into model
-            self.collections().extend_from_slice(&collection_objects);
+            self.collections().extend_from_slice(&collections);
 
             // Set first collection as current
-            if let Some(first_collection_object) = collection_objects.first() {
-                self.set_current_tasks(first_collection_object.tasks());
+            if let Some(first_collection) = collections.first() {
+                self.set_current_collection(first_collection.clone());
             }
         }
     }
@@ -147,8 +151,9 @@ impl Window {
         ListBoxRow::builder().child(&label).build()
     }
 
-    fn set_current_tasks(&self, tasks: gio::ListStore) {
+    fn set_current_collection(&self, collection: CollectionObject) {
         // Wrap model with filter and selection and pass it to the list view
+        let tasks = collection.tasks();
         let filter_model = FilterListModel::new(Some(&tasks), self.filter().as_ref());
         let selection_model = NoSelection::new(Some(&filter_model));
         self.imp().tasks_list.bind_model(
@@ -185,7 +190,7 @@ impl Window {
             .replace(Some(tasks_changed_handler_id));
 
         // Set current tasks
-        self.imp().current_tasks.replace(Some(tasks));
+        self.imp().current_collection.replace(Some(collection));
 
         self.select_current_row();
     }
@@ -196,22 +201,9 @@ impl Window {
     }
 
     fn select_current_row(&self) {
-        let collections: Vec<CollectionObject> = self
-            .collections()
-            .snapshot()
-            .into_iter()
-            .filter_map(|object| object.downcast::<CollectionObject>().ok())
-            .collect();
-
-        for (index, collection) in collections.iter().enumerate() {
-            if self.current_tasks() == collection.tasks() {
-                if let Some(row) =
-                    self.imp().collections_list.row_at_index(index as i32)
-                {
-                    self.imp().collections_list.select_row(Some(&row));
-                    break;
-                }
-            }
+        if let Some(index) = self.collections().find(&self.current_collection()) {
+            let row = self.imp().collections_list.row_at_index(index as i32);
+            self.imp().collections_list.select_row(row.as_ref());
         }
     }
 
@@ -269,13 +261,12 @@ impl Window {
         self.imp().collections_list.connect_row_activated(
             clone!(@weak self as window => move |_, row| {
                 let index = row.index();
-                let selected_tasks = window.collections()
+                let selected_collection = window.collections()
                     .item(index as u32)
                     .expect("There needs to be an object at this position.")
                     .downcast::<CollectionObject>()
-                    .expect("The object needs to be a `CollectionObject`.")
-                    .tasks();
-                window.set_current_tasks(selected_tasks);
+                    .expect("The object needs to be a `CollectionObject`.");
+                window.set_current_collection(selected_collection);
                 window.imp().leaflet.navigate(NavigationDirection::Forward);
             }),
         );
@@ -347,6 +338,18 @@ impl Window {
             }),
         );
         self.add_action(&action_remove_done_tasks);
+
+        // Create action to remove current collection and add to action group "win"
+        let action_remove_current_collection =
+            gio::SimpleAction::new("remove-current-collection", None);
+        action_remove_current_collection.connect_activate(
+            clone!(@weak self as window => move |_, _| {
+                if let Some(index) = window.collections().find(&window.current_collection()) {
+                    window.collections().remove(index);
+                }
+            }),
+        );
+        self.add_action(&action_remove_current_collection);
 
         // Create action to create new todo list and add to action group "win"
         let action_new_list = gio::SimpleAction::new("new-collection", None);
@@ -422,11 +425,11 @@ impl Window {
 
                 // Create a new collection object from the title the user provided
                 let title = entry.text().into();
-                let collection_object = CollectionObject::new(title, tasks);
+                let collection = CollectionObject::new(title, tasks);
 
                 // Add new collection object and set current tasks
-                window.collections().append(&collection_object);
-                window.set_current_tasks(collection_object.tasks());
+                window.collections().append(&collection);
+                window.set_current_collection(collection);
 
                 // Let the leaflet navigate to the next child
                 window.imp().leaflet.navigate(NavigationDirection::Forward);
