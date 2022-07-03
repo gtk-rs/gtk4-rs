@@ -32,7 +32,7 @@ pub struct Window {
     #[template_child]
     pub back_button: TemplateChild<Button>,
     pub collections: OnceCell<gio::ListStore>,
-    pub current_tasks: RefCell<Option<gio::ListStore>>,
+    pub current_collection: RefCell<Option<CollectionObject>>,
     pub tasks_changed_handler_id: RefCell<Option<SignalHandlerId>>,
     pub settings: OnceCell<Settings>,
 }

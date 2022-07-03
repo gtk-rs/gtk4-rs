@@ -24,6 +24,10 @@
       <attribute name="action">win.remove-done-tasks</attribute>
     </item>
     <item>
+      <attribute name="label" translatable="yes">_Remove Current Collection</attribute>
+      <attribute name="action">win.remove-current-collection</attribute>
+    </item>
+    <item>
       <attribute name="label" translatable="yes">_Keyboard Shortcuts</attribute>
       <attribute name="action">win.show-help-overlay</attribute>
     </item>
