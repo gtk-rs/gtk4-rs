@@ -186,6 +186,7 @@ gtk = { git = "https://github.com/gtk-rs/gtk4-rs.git", package = "gtk4" }
 | `v4_6` | Enable the new APIs part of GTK 4.6 |
 | `v4_4` | Enable the new APIs part of GTK 4.4 |
 | `v4_2` | Enable the new APIs part of GTK 4.2 |
+| `unsafe-assume-initialized` | Disable checks that gtk is initialized, for use in C ABI libraries |
 
 ### See Also
 
