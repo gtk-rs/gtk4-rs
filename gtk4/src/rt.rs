@@ -51,14 +51,22 @@ macro_rules! assert_not_initialized {
 #[inline]
 pub fn is_initialized() -> bool {
     skip_assert_initialized!();
-    INITIALIZED.load(Ordering::Acquire)
+    if cfg!(not(feature = "unsafe-assume-initialized")) {
+        INITIALIZED.load(Ordering::Acquire)
+    } else {
+        true
+    }
 }
 
 /// Returns `true` if GTK has been initialized and this is the main thread.
 #[inline]
 pub fn is_initialized_main_thread() -> bool {
     skip_assert_initialized!();
-    IS_MAIN_THREAD.with(|c| c.get())
+    if cfg!(not(feature = "unsafe-assume-initialized")) {
+        IS_MAIN_THREAD.with(|c| c.get())
+    } else {
+        true
+    }
 }
 
 /// Informs this crate that GTK has been initialized and the current thread is the main one.
