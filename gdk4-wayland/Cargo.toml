@@ -15,7 +15,7 @@ rust-version = "1.57"
 [features]
 v4_4 = ["ffi/v4_4"]
 dox = ["ffi/dox", "xkb_crate", "wayland_crate", "egl"]
-wayland_crate = ["wayland-client", "wayland-backend"]
+wayland_crate = ["wayland-client", "wayland-backend", "once_cell"]
 egl = ["khronos-egl"]
 xkb_crate = ["xkb"]
 
@@ -32,6 +32,7 @@ wayland-client = {version = "0.30.0-beta.7", optional = true}
 wayland-backend = {version = "0.1.0-beta.7", optional = true, features = ["client_system"]}
 khronos-egl = {version = "4.1.0", optional = true}
 xkb = {version = "0.2.1", optional = true}
+once_cell = {version = "1.0", optional = true}
 
 [dev-dependencies]
 gir-format-check = "^0.1"

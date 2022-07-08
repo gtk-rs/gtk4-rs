@@ -30,12 +30,9 @@ impl<O: IsA<WaylandSurface>> WaylandSurfaceExtManual for O {
             .downcast::<crate::WaylandDisplay>()
             .unwrap();
         unsafe {
-            let display_ptr = ffi::gdk_wayland_display_get_wl_display(display.to_glib_none().0);
             let surface_ptr =
                 ffi::gdk_wayland_surface_get_wl_surface(self.as_ref().to_glib_none().0);
-            let backend =
-                wayland_backend::sys::client::Backend::from_foreign_display(display_ptr as *mut _);
-            let cnx = wayland_client::Connection::from_backend(backend);
+            let cnx = display.connection();
             let surface_id =
                 ObjectId::from_ptr(&WlSurface::interface(), surface_ptr as *mut _).unwrap();
 

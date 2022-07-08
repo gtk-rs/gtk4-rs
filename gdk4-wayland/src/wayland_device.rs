@@ -27,15 +27,11 @@ impl WaylandDevice {
     pub fn wl_keyboard(&self) -> Option<WlKeyboard> {
         let display = self.display().downcast::<crate::WaylandDisplay>().unwrap();
         unsafe {
-            let display_ptr = ffi::gdk_wayland_display_get_wl_display(display.to_glib_none().0);
             let keyboard_ptr = ffi::gdk_wayland_device_get_wl_keyboard(self.to_glib_none().0);
             if keyboard_ptr.is_null() {
                 None
             } else {
-                let backend = wayland_backend::sys::client::Backend::from_foreign_display(
-                    display_ptr as *mut _,
-                );
-                let cnx = wayland_client::Connection::from_backend(backend);
+                let cnx = display.connection();
                 let keyboard_id =
                     ObjectId::from_ptr(&WlKeyboard::interface(), keyboard_ptr as *mut _).unwrap();
 
@@ -51,15 +47,11 @@ impl WaylandDevice {
     pub fn wl_pointer(&self) -> Option<WlPointer> {
         let display = self.display().downcast::<crate::WaylandDisplay>().unwrap();
         unsafe {
-            let display_ptr = ffi::gdk_wayland_display_get_wl_display(display.to_glib_none().0);
             let pointer_ptr = ffi::gdk_wayland_device_get_wl_pointer(self.to_glib_none().0);
             if pointer_ptr.is_null() {
                 None
             } else {
-                let backend = wayland_backend::sys::client::Backend::from_foreign_display(
-                    display_ptr as *mut _,
-                );
-                let cnx = wayland_client::Connection::from_backend(backend);
+                let cnx = display.connection();
                 let pointer_id =
                     ObjectId::from_ptr(&WlPointer::interface(), pointer_ptr as *mut _).unwrap();
 
@@ -75,15 +67,11 @@ impl WaylandDevice {
     pub fn wl_seat(&self) -> Option<WlSeat> {
         let display = self.display().downcast::<crate::WaylandDisplay>().unwrap();
         unsafe {
-            let display_ptr = ffi::gdk_wayland_display_get_wl_display(display.to_glib_none().0);
             let seat_ptr = ffi::gdk_wayland_device_get_wl_seat(self.to_glib_none().0);
             if seat_ptr.is_null() {
                 None
             } else {
-                let backend = wayland_backend::sys::client::Backend::from_foreign_display(
-                    display_ptr as *mut _,
-                );
-                let cnx = wayland_client::Connection::from_backend(backend);
+                let cnx = display.connection();
                 let seat_id = ObjectId::from_ptr(&WlSeat::interface(), seat_ptr as *mut _).unwrap();
 
                 WlSeat::from_id(&cnx, seat_id).ok()

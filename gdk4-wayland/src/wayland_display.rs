@@ -1,12 +1,21 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
+#[cfg(any(feature = "wayland_crate", feature = "dox"))]
+use once_cell::sync::Lazy;
+
 use crate::WaylandDisplay;
 #[cfg(any(feature = "wayland_crate", feature = "dox"))]
 #[cfg_attr(feature = "dox", doc(cfg(feature = "wayland_crate")))]
 use glib::translate::ToGlibPtr;
+#[cfg(any(feature = "wayland_crate", feature = "dox"))]
+use glib::{ObjectExt, Quark};
 #[cfg(any(all(feature = "v4_4", feature = "egl"), feature = "dox"))]
 #[cfg_attr(feature = "dox", doc(cfg(all(feature = "v4_4", feature = "egl"))))]
 use khronos_egl as egl;
+
+#[cfg(any(feature = "wayland_crate", feature = "dox"))]
+static WAYLAND_DISPLAY_CONNECTION_QUARK: Lazy<Quark> =
+    Lazy::new(|| Quark::from_str("gtk-rs-wayland-display-connection-quark"));
 
 #[cfg(any(feature = "wayland_crate", feature = "dox"))]
 #[cfg_attr(feature = "dox", doc(cfg(feature = "wayland_crate")))]
@@ -38,15 +47,11 @@ impl WaylandDisplay {
     #[cfg_attr(feature = "dox", doc(cfg(feature = "wayland_crate")))]
     pub fn wl_compositor(&self) -> Option<WlCompositor> {
         unsafe {
-            let display_ptr = ffi::gdk_wayland_display_get_wl_display(self.to_glib_none().0);
             let compositor_ptr = ffi::gdk_wayland_display_get_wl_compositor(self.to_glib_none().0);
             if compositor_ptr.is_null() {
                 None
             } else {
-                let backend = wayland_backend::sys::client::Backend::from_foreign_display(
-                    display_ptr as *mut _,
-                );
-                let cnx = wayland_client::Connection::from_backend(backend);
+                let cnx = self.connection();
                 let compositor_id =
                     ObjectId::from_ptr(&WlCompositor::interface(), compositor_ptr as *mut _)
                         .unwrap();
@@ -63,13 +68,28 @@ impl WaylandDisplay {
     pub fn wl_display(&self) -> WlDisplay {
         unsafe {
             let display_ptr = ffi::gdk_wayland_display_get_wl_display(self.to_glib_none().0);
-            let backend =
-                wayland_backend::sys::client::Backend::from_foreign_display(display_ptr as *mut _);
-            let cnx = wayland_client::Connection::from_backend(backend);
+            let cnx = self.connection();
             let display_id =
                 ObjectId::from_ptr(&WlDisplay::interface(), display_ptr as *mut _).unwrap();
 
             WlDisplay::from_id(&cnx, display_id).unwrap()
+        }
+    }
+
+    #[cfg(any(feature = "wayland_crate", feature = "dox"))]
+    pub(crate) unsafe fn connection(&self) -> wayland_client::Connection {
+        match self.qdata::<Option<wayland_client::Connection>>(*WAYLAND_DISPLAY_CONNECTION_QUARK) {
+            Some(conn) => conn.as_ref().clone().unwrap(),
+            None => {
+                let display_ptr = ffi::gdk_wayland_display_get_wl_display(self.to_glib_none().0);
+                let backend = wayland_backend::sys::client::Backend::from_foreign_display(
+                    display_ptr as *mut _,
+                );
+                let conn = wayland_client::Connection::from_backend(backend);
+                self.set_qdata(*WAYLAND_DISPLAY_CONNECTION_QUARK, cnx.clone());
+
+                conn
+            }
         }
     }
 }
