@@ -51,7 +51,7 @@ impl Window {
             .expect("Could not get current collection.")
     }
 
-    fn current_tasks(&self) -> gio::ListStore {
+    fn tasks(&self) -> gio::ListStore {
         self.current_collection().tasks()
     }
 
@@ -175,7 +175,7 @@ impl Window {
 
         // If present, disconnect old `tasks_changed` handler
         if let Some(handler_id) = self.imp().tasks_changed_handler_id.take() {
-            self.current_tasks().disconnect(handler_id);
+            self.tasks().disconnect(handler_id);
         }
 
         // Assure that the task list is only visible when it is supposed to
@@ -308,7 +308,7 @@ impl Window {
 
         // Add new task to model
         let task = TaskObject::new(false, content);
-        self.current_tasks().append(&task);
+        self.tasks().append(&task);
     }
 
     fn setup_actions(&self) {
@@ -321,16 +321,16 @@ impl Window {
             gio::SimpleAction::new("remove-done-tasks", None);
         action_remove_done_tasks.connect_activate(
             clone!(@weak self as window => move |_, _| {
-                let current_tasks = window.current_tasks();
+                let tasks = window.tasks();
                 let mut position = 0;
-                while let Some(item) = current_tasks.item(position) {
+                while let Some(item) = tasks.item(position) {
                     // Get `TaskObject` from `glib::Object`
                     let task_object = item
                         .downcast_ref::<TaskObject>()
                         .expect("The object needs to be of type `TaskObject`.");
 
                     if task_object.is_completed() {
-                        current_tasks.remove(position);
+                        tasks.remove(position);
                     } else {
                         position += 1;
                     }
