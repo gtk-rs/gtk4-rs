@@ -262,6 +262,10 @@ name = "todo_4"
 path = "todo/4/main.rs"
 
 [[bin]]
+name = "todo_5"
+path = "todo/5/main.rs"
+
+[[bin]]
 name = "todo_6"
 path = "todo/6/main.rs"
 
