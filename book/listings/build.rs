@@ -72,6 +72,11 @@ fn main() {
         "todo_4.gresource",
     );
     gio::compile_resources(
+        "todo/5/resources",
+        "todo/5/resources/resources.gresource.xml",
+        "todo_5.gresource",
+    );
+    gio::compile_resources(
         "todo/6/resources",
         "todo/6/resources/resources.gresource.xml",
         "todo_6.gresource",
