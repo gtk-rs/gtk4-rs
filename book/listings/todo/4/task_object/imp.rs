@@ -1,6 +1,6 @@
 use std::cell::RefCell;
 
-use glib::{ParamFlags, ParamSpec, ParamSpecBoolean, ParamSpecString, Value};
+use glib::{ParamSpec, ParamSpecBoolean, ParamSpecString, Value};
 use gtk::glib;
 use gtk::prelude::*;
 use gtk::subclass::prelude::*;
@@ -26,30 +26,8 @@ impl ObjectImpl for TaskObject {
     fn properties() -> &'static [ParamSpec] {
         static PROPERTIES: Lazy<Vec<ParamSpec>> = Lazy::new(|| {
             vec![
-                ParamSpecBoolean::new(
-                    // Name
-                    "completed",
-                    // Nickname
-                    "completed",
-                    // Short description
-                    "completed",
-                    // Default value
-                    false,
-                    // The property can be read and written to
-                    ParamFlags::READWRITE,
-                ),
-                ParamSpecString::new(
-                    // Name
-                    "content",
-                    // Nickname
-                    "content",
-                    // Short description
-                    "content",
-                    // Default value
-                    None,
-                    // The property can be read and written to
-                    ParamFlags::READWRITE,
-                ),
+                ParamSpecBoolean::builder("completed").build(),
+                ParamSpecString::builder("content").build(),
             ]
         });
         PROPERTIES.as_ref()

@@ -1,6 +1,6 @@
 use std::cell::RefCell;
 
-use glib::{ParamFlags, ParamSpec, ParamSpecString, Value};
+use glib::{ParamSpec, ParamSpecString, Value};
 use gtk::glib::ParamSpecObject;
 use gtk::prelude::*;
 use gtk::subclass::prelude::*;
@@ -26,30 +26,9 @@ impl ObjectImpl for CollectionObject {
     fn properties() -> &'static [ParamSpec] {
         static PROPERTIES: Lazy<Vec<ParamSpec>> = Lazy::new(|| {
             vec![
-                ParamSpecString::new(
-                    // Name
-                    "title",
-                    // Nickname
-                    "title",
-                    // Short description
-                    "title",
-                    // Default value
-                    None,
-                    // The property can be read and written to
-                    ParamFlags::READWRITE,
-                ),
-                ParamSpecObject::new(
-                    // Name
-                    "tasks",
-                    // Nickname
-                    "tasks",
-                    // Short description
-                    "tasks",
-                    // Object type
-                    gio::ListStore::static_type(),
-                    // The property can be read and written to
-                    ParamFlags::READWRITE,
-                ),
+                ParamSpecString::builder("title").build(),
+                ParamSpecObject::builder("tasks", gio::ListStore::static_type())
+                    .build(),
             ]
         });
         PROPERTIES.as_ref()
