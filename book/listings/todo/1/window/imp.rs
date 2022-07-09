@@ -14,7 +14,7 @@ pub struct Window {
     pub entry: TemplateChild<Entry>,
     #[template_child]
     pub tasks_list: TemplateChild<ListView>,
-    pub current_tasks: RefCell<Option<gio::ListStore>>,
+    pub tasks: RefCell<Option<gio::ListStore>>,
 }
 
 // The central trait for subclassing a GObject

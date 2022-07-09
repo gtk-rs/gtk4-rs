@@ -43,10 +43,10 @@ impl Window {
     }
     // ANCHOR_END: settings
 
-    fn current_tasks(&self) -> gio::ListStore {
+    fn tasks(&self) -> gio::ListStore {
         // Get state
         self.imp()
-            .current_tasks
+            .tasks
             .borrow()
             .clone()
             .expect("Could not get current tasks.")
@@ -95,11 +95,11 @@ impl Window {
         let model = gio::ListStore::new(TaskObject::static_type());
 
         // Get state and set model
-        self.imp().current_tasks.replace(Some(model));
+        self.imp().tasks.replace(Some(model));
 
         // Wrap model with filter and selection and pass it to the list view
         let filter_model =
-            FilterListModel::new(Some(&self.current_tasks()), self.filter().as_ref());
+            FilterListModel::new(Some(&self.tasks()), self.filter().as_ref());
         let selection_model = NoSelection::new(Some(&filter_model));
         self.imp().tasks_list.set_model(Some(&selection_model));
 
@@ -127,7 +127,7 @@ impl Window {
                 .collect();
 
             // Insert restored objects into model
-            self.current_tasks().extend_from_slice(&task_objects);
+            self.tasks().extend_from_slice(&task_objects);
         }
     }
     // ANCHOR_END: restore_data
@@ -161,7 +161,7 @@ impl Window {
 
         // Add new task to model
         let task = TaskObject::new(false, content);
-        self.current_tasks().append(&task);
+        self.tasks().append(&task);
     }
 
     fn setup_factory(&self) {
@@ -217,7 +217,7 @@ impl Window {
         self.add_action(&action_filter);
 
         // Get model
-        let model = self.current_tasks();
+        let model = self.tasks();
 
         // Create action to remove done tasks and add to action group "win"
         let action_remove_done_tasks =
