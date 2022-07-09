@@ -71,8 +71,6 @@ once_cell = "1"
 Now we define the "number" property within the `ObjectImpl` implementation.
 The `properties` method describes our set of properties.
 When naming our property, we make sure to do that in [kebab-case](https://en.wikipedia.org/wiki/Letter_case#Kebab_case).
-Then we describe its type, range and default value.
-We also declare that the property can be read and be written to.
 `set_property` describes how the underlying values can be changed.
 `property` takes care of returning the underlying value.
 
