@@ -23,3 +23,6 @@
 - [Actions](actions.md)
 - [Manipulating State of To-Do App](todo_2.md)
 - [CSS](css.md)
+- [Adwaita](adwaita.md)
+    - [Let To-Do App Follow GNOME's HIG]()
+    - [Make To-Do App Adaptive]()
