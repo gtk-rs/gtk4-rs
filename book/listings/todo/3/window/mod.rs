@@ -205,27 +205,27 @@ impl Window {
         let action_filter = self.settings().create_action("filter");
         self.add_action(&action_filter);
 
-        // Get model
-        let model = self.tasks();
-
         // Create action to remove done tasks and add to action group "win"
         let action_remove_done_tasks =
             gio::SimpleAction::new("remove-done-tasks", None);
-        action_remove_done_tasks.connect_activate(clone!(@weak model => move |_, _| {
-            let mut position = 0;
-            while let Some(item) = model.item(position) {
-                // Get `TaskObject` from `glib::Object`
-                let task_object = item
-                    .downcast_ref::<TaskObject>()
-                    .expect("The object needs to be of type `TaskObject`.");
+        action_remove_done_tasks.connect_activate(
+            clone!(@weak self as window => move |_, _| {
+                let tasks = window.tasks();
+                let mut position = 0;
+                while let Some(item) = tasks.item(position) {
+                    // Get `TaskObject` from `glib::Object`
+                    let task_object = item
+                        .downcast_ref::<TaskObject>()
+                        .expect("The object needs to be of type `TaskObject`.");
 
-                if task_object.is_completed() {
-                    model.remove(position);
-                } else {
-                    position += 1;
+                    if task_object.is_completed() {
+                        tasks.remove(position);
+                    } else {
+                        position += 1;
+                    }
                 }
-            }
-        }));
+            }),
+        );
         self.add_action(&action_remove_done_tasks);
     }
 }
