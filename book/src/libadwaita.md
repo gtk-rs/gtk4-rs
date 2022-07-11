@@ -43,13 +43,6 @@ Arch and derivatives:
 sudo pacman -S libadwaita
 ```
 
-Nix:  
-Add the following inputs to your derivation:
-
-```
-libadwaita
-```
-
 ## macOS
 
 ```
