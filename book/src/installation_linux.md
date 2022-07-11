@@ -23,10 +23,3 @@ Arch and derivatives:
 ```
 sudo pacman -S gtk4 base-devel
 ```
-
-Nix:  
-Add the following inputs to your derivation:
-
-```
-gtk4, gcc
-```
