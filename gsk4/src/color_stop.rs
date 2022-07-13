@@ -4,6 +4,34 @@ use gdk::RGBA;
 use glib::translate::*;
 use std::fmt;
 
+#[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A [builder-pattern] type to construct [`ColorStop`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
+#[must_use = "The builder must be built to be used"]
+pub struct ColorStopBuilder(Vec<ColorStop>);
+
+impl ColorStopBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`ColorStopBuilder`].
+    pub fn new() -> Self {
+        Self::default()
+    }
+
+    pub fn at(mut self, offset: f32, color: RGBA) -> Self {
+        self.0.push(ColorStop::new(offset, color));
+        self
+    }
+
+    // rustdoc-stripper-ignore-next
+    /// Build the [`ColorStop`].
+    #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
+    pub fn build(self) -> Vec<ColorStop> {
+        self.0
+    }
+}
+
 glib::wrapper! {
     #[doc(alias = "GskColorStop")]
     pub struct ColorStop(BoxedInline<ffi::GskColorStop>);
@@ -18,6 +46,14 @@ impl ColorStop {
                 color: *color.to_glib_none().0,
             })
         }
+    }
+
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-pattern struct instance to construct [`ColorStop`] objects.
+    ///
+    /// This method returns an instance of [`ColorStopBuilder`](crate::builders::ColorStopBuilder) which can be used to create [`ColorStop`] objects.
+    pub fn builder() -> ColorStopBuilder {
+        ColorStopBuilder::default()
     }
 
     pub fn offset(&self) -> f32 {
@@ -36,4 +72,31 @@ impl fmt::Debug for ColorStop {
             .field("color", &self.color())
             .finish()
     }
+}
+
+#[test]
+fn test_color_stop_builder() {
+    use std::str::FromStr;
+
+    let t1 = ColorStop::builder()
+        .at(0.0, gdk::RGBA::from_str("#FF0000").unwrap())
+        .at(0.333, gdk::RGBA::from_str("#FF0000").unwrap())
+        .at(0.667, gdk::RGBA::from_str("#0000FF").unwrap())
+        .at(1.0, gdk::RGBA::from_str("#FF0000").unwrap())
+        .build();
+
+    let t2 = &[
+        ColorStop::new(0.0, gdk::RGBA::from_str("#FF0000").unwrap()),
+        ColorStop::new(0.333, gdk::RGBA::from_str("#FF0000").unwrap()),
+        ColorStop::new(0.667, gdk::RGBA::from_str("#0000FF").unwrap()),
+        ColorStop::new(1.0, gdk::RGBA::from_str("#FF0000").unwrap()),
+    ];
+
+    assert_eq!(t1.len(), t2.len(), "Arrays don't have the same length");
+    assert!(
+        &t1.iter()
+            .zip(t2.iter())
+            .all(|(a, b)| a.offset() == b.offset() && a.color() == b.color()),
+        "Arrays are not equal"
+    );
 }
