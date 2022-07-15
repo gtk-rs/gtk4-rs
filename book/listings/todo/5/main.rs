@@ -1,8 +1,8 @@
 mod task_object;
+mod task_row;
 mod utils;
 mod window;
 
-use adw::Application;
 use gtk::gio;
 use gtk::prelude::*;
 use window::Window;
@@ -14,7 +14,7 @@ fn main() {
         .expect("Failed to register resources.");
 
     // Create a new application
-    let app = Application::builder().application_id(APP_ID).build();
+    let app = adw::Application::builder().application_id(APP_ID).build();
 
     // Connect to signals
     app.connect_startup(setup_shortcuts);
@@ -24,13 +24,13 @@ fn main() {
     app.run();
 }
 
-fn setup_shortcuts(app: &Application) {
+fn setup_shortcuts(app: &adw::Application) {
     app.set_accels_for_action("win.filter('All')", &["<Ctrl>a"]);
     app.set_accels_for_action("win.filter('Open')", &["<Ctrl>o"]);
     app.set_accels_for_action("win.filter('Done')", &["<Ctrl>d"]);
 }
 
-fn build_ui(app: &Application) {
+fn build_ui(app: &adw::Application) {
     // Create a new custom window and show it
     let window = Window::new(app);
     window.show();

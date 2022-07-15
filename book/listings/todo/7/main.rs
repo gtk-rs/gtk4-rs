@@ -1,3 +1,4 @@
+mod collection_object;
 mod task_object;
 mod utils;
 mod window;
@@ -6,10 +7,10 @@ use gtk::gio;
 use gtk::prelude::*;
 use window::Window;
 
-static APP_ID: &str = "org.gtk_rs.Todo6";
+static APP_ID: &str = "org.gtk_rs.Todo7";
 
 fn main() {
-    gio::resources_register_include!("todo_6.gresource")
+    gio::resources_register_include!("todo_7.gresource")
         .expect("Failed to register resources.");
 
     // Create a new application

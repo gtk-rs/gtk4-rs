@@ -1,15 +1,13 @@
 use std::cell::RefCell;
 use std::fs::File;
 
-use adw::subclass::prelude::*;
-
 use gio::Settings;
 use glib::signal::Inhibit;
 use glib::subclass::InitializingObject;
-
+use gtk::glib::Cast;
 use gtk::prelude::*;
 use gtk::subclass::prelude::*;
-use gtk::{gio, glib, CompositeTemplate, Entry, ListBox};
+use gtk::{gio, glib, CompositeTemplate, Entry, ListView, MenuButton};
 use once_cell::sync::OnceCell;
 
 use crate::task_object::{TaskData, TaskObject};
@@ -22,7 +20,9 @@ pub struct Window {
     #[template_child]
     pub entry: TemplateChild<Entry>,
     #[template_child]
-    pub tasks_list: TemplateChild<ListBox>,
+    pub menu_button: TemplateChild<MenuButton>,
+    #[template_child]
+    pub tasks_list: TemplateChild<ListView>,
     pub tasks: RefCell<Option<gio::ListStore>>,
     pub settings: OnceCell<Settings>,
 }
@@ -33,7 +33,7 @@ impl ObjectSubclass for Window {
     // `NAME` needs to match `class` attribute of template
     const NAME: &'static str = "TodoWindow";
     type Type = super::Window;
-    type ParentType = adw::ApplicationWindow;
+    type ParentType = gtk::ApplicationWindow;
 
     fn class_init(klass: &mut Self::Class) {
         klass.bind_template();
@@ -55,6 +55,7 @@ impl ObjectImpl for Window {
         obj.setup_tasks();
         obj.restore_data();
         obj.setup_callbacks();
+        obj.setup_factory();
         obj.setup_actions();
     }
 }
@@ -86,6 +87,3 @@ impl WindowImpl for Window {
 
 // Trait shared by all application windows
 impl ApplicationWindowImpl for Window {}
-
-// Trait shared by all adwaita application windows
-impl AdwApplicationWindowImpl for Window {}
