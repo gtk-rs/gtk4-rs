@@ -2,28 +2,38 @@ use std::cell::RefCell;
 use std::fs::File;
 
 use adw::subclass::prelude::*;
-
+use adw::Leaflet;
 use gio::Settings;
 use glib::signal::Inhibit;
 use glib::subclass::InitializingObject;
-
+use gtk::glib::SignalHandlerId;
 use gtk::prelude::*;
 use gtk::subclass::prelude::*;
-use gtk::{gio, glib, CompositeTemplate, Entry, ListBox};
+use gtk::{gio, glib, Button, CompositeTemplate, Entry, ListBox, Stack};
 use once_cell::sync::OnceCell;
 
-use crate::task_object::{TaskData, TaskObject};
+use crate::collection_object::{CollectionData, CollectionObject};
 use crate::utils::data_path;
 
 // Object holding the state
 #[derive(CompositeTemplate, Default)]
-#[template(resource = "/org/gtk_rs/Todo6/window.ui")]
+#[template(resource = "/org/gtk_rs/Todo7/window.ui")]
 pub struct Window {
     #[template_child]
     pub entry: TemplateChild<Entry>,
     #[template_child]
     pub tasks_list: TemplateChild<ListBox>,
-    pub tasks: RefCell<Option<gio::ListStore>>,
+    #[template_child]
+    pub collections_list: TemplateChild<ListBox>,
+    #[template_child]
+    pub leaflet: TemplateChild<Leaflet>,
+    #[template_child]
+    pub stack: TemplateChild<Stack>,
+    #[template_child]
+    pub back_button: TemplateChild<Button>,
+    pub collections: OnceCell<gio::ListStore>,
+    pub current_collection: RefCell<Option<CollectionObject>>,
+    pub tasks_changed_handler_id: RefCell<Option<SignalHandlerId>>,
     pub settings: OnceCell<Settings>,
 }
 
@@ -52,7 +62,7 @@ impl ObjectImpl for Window {
 
         // Setup
         obj.setup_settings();
-        obj.setup_tasks();
+        obj.setup_collections();
         obj.restore_data();
         obj.setup_callbacks();
         obj.setup_actions();
@@ -66,12 +76,12 @@ impl WidgetImpl for Window {}
 impl WindowImpl for Window {
     fn close_request(&self, window: &Self::Type) -> Inhibit {
         // Store task data in vector
-        let backup_data: Vec<TaskData> = window
-            .tasks()
+        let backup_data: Vec<CollectionData> = window
+            .collections()
             .snapshot()
             .iter()
-            .filter_map(Cast::downcast_ref::<TaskObject>)
-            .map(TaskObject::task_data)
+            .filter_map(Cast::downcast_ref::<CollectionObject>)
+            .map(CollectionObject::collection_data)
             .collect();
 
         // Save state in file
