@@ -1088,7 +1088,6 @@ pub mod traits {
     pub use super::im_multicontext::IMMulticontextExt;
     pub use super::layout_child::LayoutChildExt;
     pub use super::layout_manager::LayoutManagerExt;
-    pub use super::list_base::ListBaseExt;
     pub use super::list_box_row::ListBoxRowExt;
     pub use super::media_file::MediaFileExt;
     pub use super::media_stream::MediaStreamExt;
