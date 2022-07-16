@@ -117,7 +117,7 @@ pub trait ToplevelExt: 'static {
     fn set_fullscreen_mode(&self, fullscreen_mode: FullscreenMode);
 
     //#[doc(alias = "icon-list")]
-    //fn icon_list(&self) -> /*Unimplemented*/Fundamental: Pointer;
+    //fn icon_list(&self) -> /*Unimplemented*/Basic: Pointer;
 
     fn is_modal(&self) -> bool;
 
@@ -333,7 +333,7 @@ impl<O: IsA<Toplevel>> ToplevelExt for O {
         glib::ObjectExt::set_property(self.as_ref(), "fullscreen-mode", &fullscreen_mode)
     }
 
-    //fn icon_list(&self) -> /*Unimplemented*/Fundamental: Pointer {
+    //fn icon_list(&self) -> /*Unimplemented*/Basic: Pointer {
     //    glib::ObjectExt::property(self.as_ref(), "icon-list")
     //}
 
