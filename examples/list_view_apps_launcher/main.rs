@@ -29,23 +29,23 @@ fn build_ui(app: &gtk::Application) {
     let factory = gtk::SignalListItemFactory::new();
     // the "setup" stage is used for creating the widgets
     factory.connect_setup(move |_factory, item| {
+        // In gtk4 < 4.8, you don't need the following line
+        // as gtk used to pass GtkListItem directly. In order to make that API
+        // generic for potentially future new APIs, it was switched to taking a GObject in 4.8
+        let item = item.downcast_ref::<gtk::ListItem>().unwrap();
         let row = ApplicationRow::new();
         item.set_child(Some(&row));
     });
 
     // the bind stage is used for "binding" the data to the created widgets on the "setup" stage
-    factory.connect_bind(move |_factory, list_item| {
-        let app_info = list_item
-            .item()
-            .unwrap()
-            .downcast::<gio::AppInfo>()
-            .unwrap();
+    factory.connect_bind(move |_factory, item| {
+        // In gtk4 < 4.8, you don't need the following line
+        // as gtk used to pass GtkListItem directly. In order to make that API
+        // generic for potentially future new APIs, it was switched to taking a GObject in 4.8
+        let item = item.downcast_ref::<gtk::ListItem>().unwrap();
+        let app_info = item.item().unwrap().downcast::<gio::AppInfo>().unwrap();
 
-        let child = list_item
-            .child()
-            .unwrap()
-            .downcast::<ApplicationRow>()
-            .unwrap();
+        let child = item.child().unwrap().downcast::<ApplicationRow>().unwrap();
         child.set_app_info(&app_info);
     });
 
