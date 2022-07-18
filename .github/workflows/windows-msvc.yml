@@ -53,9 +53,9 @@ jobs:
       run: pip install meson ninja
       
     - name: Setup MSVC
-      uses: bus1/cabuild/action/msdevshell@v1
+      uses: microsoft/setup-msbuild@v1.1
       with:
-        architecture: x64
+        msbuild-architecture: x64
         
     - name: Install Rust
       uses: actions-rs/toolchain@v1
