@@ -4,8 +4,6 @@
 
 use crate::Buildable;
 use crate::EventController;
-use crate::PropagationLimit;
-use crate::PropagationPhase;
 use crate::Shortcut;
 use crate::ShortcutScope;
 use glib::object::Cast;
@@ -46,14 +44,6 @@ impl ShortcutController {
             ))
             .unsafe_cast()
         }
-    }
-
-    // rustdoc-stripper-ignore-next
-    /// Creates a new builder-pattern struct instance to construct [`ShortcutController`] objects.
-    ///
-    /// This method returns an instance of [`ShortcutControllerBuilder`](crate::builders::ShortcutControllerBuilder) which can be used to create [`ShortcutController`] objects.
-    pub fn builder() -> ShortcutControllerBuilder {
-        ShortcutControllerBuilder::default()
     }
 
     #[doc(alias = "gtk_shortcut_controller_add_shortcut")]
@@ -113,13 +103,6 @@ impl ShortcutController {
         }
     }
 
-    #[cfg(any(feature = "v4_8", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
-    #[doc(alias = "item-type")]
-    pub fn item_type(&self) -> glib::types::Type {
-        glib::ObjectExt::property(self, "item-type")
-    }
-
     #[doc(alias = "mnemonic-modifiers")]
     pub fn mnemonic_modifiers(&self) -> gdk::ModifierType {
         glib::ObjectExt::property(self, "mnemonic-modifiers")
@@ -128,38 +111,6 @@ impl ShortcutController {
     #[doc(alias = "mnemonic-modifiers")]
     pub fn set_mnemonic_modifiers(&self, mnemonic_modifiers: gdk::ModifierType) {
         glib::ObjectExt::set_property(self, "mnemonic-modifiers", &mnemonic_modifiers)
-    }
-
-    #[cfg(any(feature = "v4_8", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
-    #[doc(alias = "n-items")]
-    pub fn n_items(&self) -> u32 {
-        glib::ObjectExt::property(self, "n-items")
-    }
-
-    #[cfg(any(feature = "v4_8", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
-    #[doc(alias = "item-type")]
-    pub fn connect_item_type_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_item_type_trampoline<F: Fn(&ShortcutController) + 'static>(
-            this: *mut ffi::GtkShortcutController,
-            _param_spec: glib::ffi::gpointer,
-            f: glib::ffi::gpointer,
-        ) {
-            let f: &F = &*(f as *const F);
-            f(&from_glib_borrow(this))
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"notify::item-type\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
-                    notify_item_type_trampoline::<F> as *const (),
-                )),
-                Box_::into_raw(f),
-            )
-        }
     }
 
     #[doc(alias = "mnemonic-modifiers")]
@@ -184,31 +135,6 @@ impl ShortcutController {
                 b"notify::mnemonic-modifiers\0".as_ptr() as *const _,
                 Some(transmute::<_, unsafe extern "C" fn()>(
                     notify_mnemonic_modifiers_trampoline::<F> as *const (),
-                )),
-                Box_::into_raw(f),
-            )
-        }
-    }
-
-    #[cfg(any(feature = "v4_8", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
-    #[doc(alias = "n-items")]
-    pub fn connect_n_items_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_n_items_trampoline<F: Fn(&ShortcutController) + 'static>(
-            this: *mut ffi::GtkShortcutController,
-            _param_spec: glib::ffi::gpointer,
-            f: glib::ffi::gpointer,
-        ) {
-            let f: &F = &*(f as *const F);
-            f(&from_glib_borrow(this))
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"notify::n-items\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
-                    notify_n_items_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
@@ -242,86 +168,6 @@ impl ShortcutController {
 impl Default for ShortcutController {
     fn default() -> Self {
         Self::new()
-    }
-}
-
-#[derive(Clone, Default)]
-// rustdoc-stripper-ignore-next
-/// A [builder-pattern] type to construct [`ShortcutController`] objects.
-///
-/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
-#[must_use = "The builder must be built to be used"]
-pub struct ShortcutControllerBuilder {
-    mnemonic_modifiers: Option<gdk::ModifierType>,
-    model: Option<gio::ListModel>,
-    scope: Option<ShortcutScope>,
-    name: Option<String>,
-    propagation_limit: Option<PropagationLimit>,
-    propagation_phase: Option<PropagationPhase>,
-}
-
-impl ShortcutControllerBuilder {
-    // rustdoc-stripper-ignore-next
-    /// Create a new [`ShortcutControllerBuilder`].
-    pub fn new() -> Self {
-        Self::default()
-    }
-
-    // rustdoc-stripper-ignore-next
-    /// Build the [`ShortcutController`].
-    #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
-    pub fn build(self) -> ShortcutController {
-        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
-        if let Some(ref mnemonic_modifiers) = self.mnemonic_modifiers {
-            properties.push(("mnemonic-modifiers", mnemonic_modifiers));
-        }
-        if let Some(ref model) = self.model {
-            properties.push(("model", model));
-        }
-        if let Some(ref scope) = self.scope {
-            properties.push(("scope", scope));
-        }
-        if let Some(ref name) = self.name {
-            properties.push(("name", name));
-        }
-        if let Some(ref propagation_limit) = self.propagation_limit {
-            properties.push(("propagation-limit", propagation_limit));
-        }
-        if let Some(ref propagation_phase) = self.propagation_phase {
-            properties.push(("propagation-phase", propagation_phase));
-        }
-        glib::Object::new::<ShortcutController>(&properties)
-            .expect("Failed to create an instance of ShortcutController")
-    }
-
-    pub fn mnemonic_modifiers(mut self, mnemonic_modifiers: gdk::ModifierType) -> Self {
-        self.mnemonic_modifiers = Some(mnemonic_modifiers);
-        self
-    }
-
-    pub fn model(mut self, model: &impl IsA<gio::ListModel>) -> Self {
-        self.model = Some(model.clone().upcast());
-        self
-    }
-
-    pub fn scope(mut self, scope: ShortcutScope) -> Self {
-        self.scope = Some(scope);
-        self
-    }
-
-    pub fn name(mut self, name: &str) -> Self {
-        self.name = Some(name.to_string());
-        self
-    }
-
-    pub fn propagation_limit(mut self, propagation_limit: PropagationLimit) -> Self {
-        self.propagation_limit = Some(propagation_limit);
-        self
-    }
-
-    pub fn propagation_phase(mut self, propagation_phase: PropagationPhase) -> Self {
-        self.propagation_phase = Some(propagation_phase);
-        self
     }
 }
 
