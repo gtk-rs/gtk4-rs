@@ -183,6 +183,7 @@ mod scale;
 mod shortcut;
 mod shortcut_trigger;
 mod shortcuts_section;
+mod signal_list_item_factory;
 mod snapshot;
 mod spin_button;
 mod string_list;

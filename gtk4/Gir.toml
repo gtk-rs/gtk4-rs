@@ -211,7 +211,6 @@ generate = [
     "Gtk.ShortcutsGroup",
     "Gtk.ShortcutsWindow",
     "Gtk.ShortcutType",
-    "Gtk.SignalListItemFactory",
     "Gtk.SizeGroupMode",
     "Gtk.SizeRequestMode",
     "Gtk.Sorter",
@@ -1882,6 +1881,13 @@ manual_traits = ["ShortcutTriggerExtManual"]
 name = "Gtk.SignalAction"
 status = "generate"
 generate_builder = false
+
+[[object]]
+name = "Gtk.SignalListItemFactory"
+status = "generate"
+    [[object.signal]]
+    pattern = "(bind|setup|teardown|unbind)"
+    version = "4.8"
 
 [[object]]
 name = "Gtk.SingleSelection"

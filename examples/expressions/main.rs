@@ -22,7 +22,11 @@ fn main() {
 
 fn build_ui(app: &gtk::Application) {
     let factory = gtk::SignalListItemFactory::new();
-    factory.connect_setup(|_, list_item| {
+    factory.connect_setup(|_, item| {
+        // In gtk4 < 4.8, you don't need the following line
+        // as gtk used to pass GtkListItem directly. In order to make that API
+        // generic for potentially future new APIs, it was switched to taking a GObject in 4.8
+        let item = item.downcast_ref::<gtk::ListItem>().unwrap();
         let hbox = gtk::Box::builder()
             .orientation(gtk::Orientation::Horizontal)
             .spacing(24)
@@ -36,8 +40,7 @@ fn build_ui(app: &gtk::Application) {
 
         // Instead of binding properties and manually unbinding them, you can create expressions.
         // The value can be obtained even if it is several steps away.
-        list_item
-            .property_expression("item")
+        item.property_expression("item")
             .chain_property::<Note>("metadata")
             .chain_property::<Metadata>("title")
             .chain_closure_with_callback(|args| {
@@ -56,9 +59,9 @@ fn build_ui(app: &gtk::Application) {
                     format!("Last Modified: {}", last_modified.format_iso8601().unwrap())
                 }
             ))
-            .bind(&last_modified_label, "label", Some(list_item));
+            .bind(&last_modified_label, "label", Some(item));
 
-        list_item.set_child(Some(&hbox));
+        item.set_child(Some(&hbox));
     });
 
     let model = gtk::NoSelection::new(Some(&data()));
