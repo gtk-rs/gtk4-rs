@@ -1263,7 +1263,6 @@ pub mod builders {
     pub use super::separator::SeparatorBuilder;
     pub use super::settings::SettingsBuilder;
     pub use super::shortcut::ShortcutBuilder;
-    pub use super::shortcut_controller::ShortcutControllerBuilder;
     pub use super::shortcut_label::ShortcutLabelBuilder;
     pub use super::shortcuts_group::ShortcutsGroupBuilder;
     pub use super::shortcuts_section::ShortcutsSectionBuilder;
