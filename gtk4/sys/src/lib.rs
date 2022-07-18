@@ -17637,6 +17637,9 @@ extern "C" {
         widget: *mut GtkWidget,
         text: *const c_char,
     ) -> *mut pango::PangoLayout;
+    #[cfg(any(feature = "v4_8", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+    pub fn gtk_widget_dispose_template(widget: *mut GtkWidget, widget_type: GType);
     pub fn gtk_drag_check_threshold(
         widget: *mut GtkWidget,
         start_x: c_int,
