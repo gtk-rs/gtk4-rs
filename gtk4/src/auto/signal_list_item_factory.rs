@@ -2,7 +2,6 @@
 // from gir-files (https://github.com/gtk-rs/gir-files.git)
 // DO NOT EDIT
 
-use crate::ListItem;
 use crate::ListItemFactory;
 use glib::object::Cast;
 use glib::object::ObjectType as ObjectType_;
@@ -32,14 +31,16 @@ impl SignalListItemFactory {
     }
 
     #[doc(alias = "bind")]
-    pub fn connect_bind<F: Fn(&Self, &ListItem) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn bind_trampoline<F: Fn(&SignalListItemFactory, &ListItem) + 'static>(
+    pub fn connect_bind<F: Fn(&Self, &glib::Object) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn bind_trampoline<
+            F: Fn(&SignalListItemFactory, &glib::Object) + 'static,
+        >(
             this: *mut ffi::GtkSignalListItemFactory,
-            listitem: *mut ffi::GtkListItem,
+            object: *mut glib::gobject_ffi::GObject,
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&from_glib_borrow(this), &from_glib_borrow(listitem))
+            f(&from_glib_borrow(this), &from_glib_borrow(object))
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -55,16 +56,16 @@ impl SignalListItemFactory {
     }
 
     #[doc(alias = "setup")]
-    pub fn connect_setup<F: Fn(&Self, &ListItem) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_setup<F: Fn(&Self, &glib::Object) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn setup_trampoline<
-            F: Fn(&SignalListItemFactory, &ListItem) + 'static,
+            F: Fn(&SignalListItemFactory, &glib::Object) + 'static,
         >(
             this: *mut ffi::GtkSignalListItemFactory,
-            listitem: *mut ffi::GtkListItem,
+            object: *mut glib::gobject_ffi::GObject,
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&from_glib_borrow(this), &from_glib_borrow(listitem))
+            f(&from_glib_borrow(this), &from_glib_borrow(object))
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -80,16 +81,16 @@ impl SignalListItemFactory {
     }
 
     #[doc(alias = "teardown")]
-    pub fn connect_teardown<F: Fn(&Self, &ListItem) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_teardown<F: Fn(&Self, &glib::Object) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn teardown_trampoline<
-            F: Fn(&SignalListItemFactory, &ListItem) + 'static,
+            F: Fn(&SignalListItemFactory, &glib::Object) + 'static,
         >(
             this: *mut ffi::GtkSignalListItemFactory,
-            listitem: *mut ffi::GtkListItem,
+            object: *mut glib::gobject_ffi::GObject,
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&from_glib_borrow(this), &from_glib_borrow(listitem))
+            f(&from_glib_borrow(this), &from_glib_borrow(object))
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -105,16 +106,16 @@ impl SignalListItemFactory {
     }
 
     #[doc(alias = "unbind")]
-    pub fn connect_unbind<F: Fn(&Self, &ListItem) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_unbind<F: Fn(&Self, &glib::Object) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn unbind_trampoline<
-            F: Fn(&SignalListItemFactory, &ListItem) + 'static,
+            F: Fn(&SignalListItemFactory, &glib::Object) + 'static,
         >(
             this: *mut ffi::GtkSignalListItemFactory,
-            listitem: *mut ffi::GtkListItem,
+            object: *mut glib::gobject_ffi::GObject,
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&from_glib_borrow(this), &from_glib_borrow(listitem))
+            f(&from_glib_borrow(this), &from_glib_borrow(object))
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
