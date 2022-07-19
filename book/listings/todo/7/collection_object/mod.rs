@@ -1,8 +1,8 @@
 mod imp;
 
+use adw::prelude::{ListModelExtManual, *};
+use adw::subclass::prelude::*;
 use glib::Object;
-use gtk::prelude::{ListModelExtManual, *};
-use gtk::subclass::prelude::*;
 use gtk::{gio, glib};
 use serde::{Deserialize, Serialize};
 

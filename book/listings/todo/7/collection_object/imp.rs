@@ -1,9 +1,9 @@
 use std::cell::RefCell;
 
+use adw::prelude::*;
+use adw::subclass::prelude::*;
 use glib::{ParamSpec, ParamSpecString, Value};
 use gtk::glib::ParamSpecObject;
-use gtk::prelude::*;
-use gtk::subclass::prelude::*;
 use gtk::{gio, glib};
 use once_cell::sync::{Lazy, OnceCell};
 

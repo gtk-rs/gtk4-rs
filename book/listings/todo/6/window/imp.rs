@@ -7,8 +7,8 @@ use gio::Settings;
 use glib::signal::Inhibit;
 use glib::subclass::InitializingObject;
 
-use gtk::prelude::*;
-use gtk::subclass::prelude::*;
+use adw::prelude::*;
+use adw::subclass::prelude::*;
 use gtk::{gio, glib, CompositeTemplate, Entry, ListBox};
 use once_cell::sync::OnceCell;
 

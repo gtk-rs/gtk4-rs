@@ -1,8 +1,8 @@
 mod imp;
 
+use adw::subclass::prelude::*;
 use glib::Object;
 use gtk::glib;
-use gtk::subclass::prelude::*;
 use serde::{Deserialize, Serialize};
 
 glib::wrapper! {

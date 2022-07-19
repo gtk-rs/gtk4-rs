@@ -2,8 +2,8 @@ mod task_object;
 mod utils;
 mod window;
 
+use adw::prelude::*;
 use gtk::gio;
-use gtk::prelude::*;
 use window::Window;
 
 static APP_ID: &str = "org.gtk_rs.Todo6";
