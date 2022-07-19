@@ -3,11 +3,11 @@ mod imp;
 use std::fs::File;
 
 use adw::prelude::*;
+use adw::subclass::prelude::*;
 use adw::{ActionRow, NavigationDirection};
 use gio::Settings;
 use glib::{clone, Object};
 use gtk::glib::BindingFlags;
-use gtk::subclass::prelude::*;
 use gtk::{
     gio, glib, pango, Align, CheckButton, CustomFilter, Dialog, DialogFlags, Entry,
     FilterListModel, Label, ListBoxRow, NoSelection, ResponseType, SelectionMode,

@@ -1,14 +1,14 @@
 use std::cell::RefCell;
 use std::fs::File;
 
+use adw::prelude::*;
+use adw::subclass::prelude::*;
 use adw::subclass::prelude::*;
 use adw::Leaflet;
 use gio::Settings;
 use glib::signal::Inhibit;
 use glib::subclass::InitializingObject;
 use gtk::glib::SignalHandlerId;
-use gtk::prelude::*;
-use gtk::subclass::prelude::*;
 use gtk::{gio, glib, Button, CompositeTemplate, Entry, ListBox, Stack};
 use once_cell::sync::OnceCell;
 

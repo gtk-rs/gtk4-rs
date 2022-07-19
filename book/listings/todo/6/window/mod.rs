@@ -2,11 +2,11 @@ mod imp;
 
 use std::fs::File;
 
+use adw::subclass::prelude::*;
 use adw::{prelude::*, ActionRow};
 use gio::Settings;
 use glib::{clone, Object};
 use gtk::glib::BindingFlags;
-use gtk::subclass::prelude::*;
 use gtk::{gio, glib, Align, CheckButton, CustomFilter, FilterListModel, NoSelection};
 
 use crate::task_object::{TaskData, TaskObject};
