@@ -23,10 +23,12 @@ glib::wrapper! {
 }
 
 impl Window {
+    // ANCHOR: new
     pub fn new(app: &adw::Application) -> Self {
         // Create new window
         Object::new(&[("application", app)]).expect("Failed to create `Window`.")
     }
+    // ANCHOR_END: new
 
     fn setup_settings(&self) {
         let settings = Settings::new(APP_ID);
