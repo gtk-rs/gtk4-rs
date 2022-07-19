@@ -30,3 +30,86 @@ If the setting is set to dark, then dark styles are loaded.
 # TODO: Show transition
 
 ## Start using Libadwaita widgets
+
+We start by replacing all occurrences of `gtk::prelude` and `gtk::subclass::prelude` with [`adw::prelude`](https://world.pages.gitlab.gnome.org/Rust/libadwaita-rs/stable/latest/docs/libadwaita/prelude/index.html) and [`adw::subclass::prelude`](https://world.pages.gitlab.gnome.org/Rust/libadwaita-rs/stable/latest/docs/libadwaita/subclass/prelude/index.html).
+The `adw` preludes re-export the `gtk` ones plus add a couple of Libadwaita specific traits.
+
+Now we are going to replace a couple of GTK elements with  corresponding Libadwaita elements.
+You can find a subset of the diff below.
+To see the complete file just click on the link after "Filename:".
+
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/6/resources/window.ui">listings/todo/6/resources/window.ui</a>
+
+
+```diff
+-  <template class="TodoWindow" parent="GtkApplicationWindow">
++  <template class="TodoWindow" parent="AdwApplicationWindow">
+     <property name="width-request">360</property>
+     <property name="title" translatable="yes">To-Do</property>
++    <property name="content">
+       <object class="GtkBox">
+         <property name="orientation">vertical</property>
++        <property name="hexpand">True</property>
+         <child>
++          <object class="AdwHeaderBar">
++            <property name="title-widget">
++              <object class="AdwWindowTitle" />
++            </property>
++            <child type="end">
++              <object class="GtkMenuButton">
++                <property name="icon-name">view-more-symbolic</property>
++                <property name="menu-model">main-menu</property>
++              </object>
++            </child>
+           </object>
+         </child>
+         <child>
+           <object class="GtkScrolledWindow">
+             <property name="hscrollbar-policy">never</property>
+             <property name="min-content-height">360</property>
+-            <property name="vexpand">true</property>
+-            <child>
+-              <object class="GtkListView" id="tasks_list" />
+-            </child>
++            <property name="vexpand">True</property>
++            <property name="child">
++              <object class="GtkViewport">
++                <property name="scroll-to-focus">True</property>
++                <property name="child">
++                  <object class="AdwClamp">
++                    <property name="child">
++                      <object class="GtkBox">
++                        <property name="orientation">vertical</property>
++                        <property name="spacing">18</property>
++                        <property name="margin-top">24</property>
++                        <property name="margin-bottom">24</property>
++                        <property name="margin-start">12</property>
++                        <property name="margin-end">12</property>
++                        <child>
++                          <object class="GtkEntry" id="entry">
++                            <property name="placeholder-text" translatable="yes">Enter a Task…</property>
++                            <property name="secondary-icon-name">list-add-symbolic</property>
++                          </object>
++                        </child>
++                        <child>
++                          <object class="GtkListBox" id="tasks_list">
++                            <property name="visible">False</property>
++                            <property name="selection-mode">none</property>
++                            <style>
++                              <class name="boxed-list" />
++                            </style>
++                          </object>
++                        </child>
++                      </object>
++                    </property>
++                  </object>
++                </property>
++              </object>
++            </property>
+           </object>
+         </child>
+       </object>
++    </property>
+   </template>
+ </interface>
+```
