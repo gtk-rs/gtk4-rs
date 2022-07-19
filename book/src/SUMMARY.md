@@ -24,5 +24,5 @@
 - [Manipulating State of To-Do App](todo_2.md)
 - [CSS](css.md)
 - [Libadwaita](libadwaita.md)
-    - [Let To-Do App Follow GNOME's HIG]()
+    - [Let To-Do App Follow GNOME's HIG](todo_3.md)
     - [Make To-Do App Adaptive]()

@@ -9,6 +9,7 @@ use window::Window;
 
 static APP_ID: &str = "org.gtk_rs.Todo5";
 
+// ANCHOR: main
 fn main() {
     gio::resources_register_include!("todo_5.gresource")
         .expect("Failed to register resources.");
@@ -35,3 +36,4 @@ fn build_ui(app: &adw::Application) {
     let window = Window::new(app);
     window.show();
 }
+// ANCHOR_END: main
