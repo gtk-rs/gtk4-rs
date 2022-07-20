@@ -37,9 +37,6 @@
         <property name="hexpand">True</property>
         <child>
           <object class="AdwHeaderBar">
-            <property name="title-widget">
-              <object class="AdwWindowTitle" />
-            </property>
             <child type="end">
               <object class="GtkMenuButton">
                 <property name="icon-name">view-more-symbolic</property>

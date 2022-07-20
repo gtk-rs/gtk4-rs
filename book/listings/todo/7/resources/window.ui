@@ -46,9 +46,6 @@
                 <property name="orientation">vertical</property>
                 <child>
                   <object class="GtkHeaderBar">
-                    <property name="title-widget">
-                      <object class="AdwWindowTitle" />
-                    </property>
                     <style>
                       <class name="flat" />
                     </style>
@@ -98,9 +95,6 @@
                         <binding name="show-end-title-buttons">
                           <lookup name="folded">leaflet</lookup>
                         </binding>
-                        <property name="title-widget">
-                          <object class="AdwWindowTitle" />
-                        </property>
                         <child type="start">
                           <object class="GtkToggleButton">
                             <property name="icon-name">list-add-symbolic</property>
