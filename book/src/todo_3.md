@@ -34,7 +34,12 @@ If the setting is set to dark, then dark styles are loaded.
 We start by replacing all occurrences of `gtk::prelude` and `gtk::subclass::prelude` with [`adw::prelude`](https://world.pages.gitlab.gnome.org/Rust/libadwaita-rs/stable/latest/docs/libadwaita/prelude/index.html) and [`adw::subclass::prelude`](https://world.pages.gitlab.gnome.org/Rust/libadwaita-rs/stable/latest/docs/libadwaita/subclass/prelude/index.html).
 The `adw` preludes re-export the `gtk` ones plus add a couple of Libadwaita specific traits.
 
-Now we are going to replace a couple of GTK elements with  corresponding Libadwaita elements.
+In the remainder of this chapter we are going to follow two patterns of GNOME's HIG.
+The first one concerns [header bars](https://developer.gnome.org/hig/patterns/containers/header-bars.html).
+
+
+
+Now we are going to replace a couple of GTK elements with the corresponding Libadwaita elements.
 You can find the relevant subset of the diff below.
 To see the complete file just click on the link after "Filename:".
 
@@ -52,9 +57,6 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 +        <property name="hexpand">True</property>
          <child>
 +          <object class="AdwHeaderBar">
-+            <property name="title-widget">
-+              <object class="AdwWindowTitle" />
-+            </property>
 +            <child type="end">
 +              <object class="GtkMenuButton">
 +                <property name="icon-name">view-more-symbolic</property>
