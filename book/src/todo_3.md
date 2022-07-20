@@ -35,7 +35,7 @@ We start by replacing all occurrences of `gtk::prelude` and `gtk::subclass::prel
 The `adw` preludes re-export the `gtk` ones plus add a couple of Libadwaita specific traits.
 
 Now we are going to replace a couple of GTK elements with  corresponding Libadwaita elements.
-You can find a subset of the diff below.
+You can find the relevant subset of the diff below.
 To see the complete file just click on the link after "Filename:".
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/6/resources/window.ui">listings/todo/6/resources/window.ui</a>
@@ -67,11 +67,9 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
            <object class="GtkScrolledWindow">
              <property name="hscrollbar-policy">never</property>
              <property name="min-content-height">360</property>
--            <property name="vexpand">true</property>
 -            <child>
 -              <object class="GtkListView" id="tasks_list" />
 -            </child>
-+            <property name="vexpand">True</property>
 +            <property name="child">
 +              <object class="GtkViewport">
 +                <property name="scroll-to-focus">True</property>
