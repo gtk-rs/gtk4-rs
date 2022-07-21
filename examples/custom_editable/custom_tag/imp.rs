@@ -81,8 +81,8 @@ impl ObjectImpl for CustomTag {
     fn signals() -> &'static [Signal] {
         static SIGNALS: Lazy<Vec<Signal>> = Lazy::new(|| {
             vec![
-                Signal::builder("closed", &[], <()>::static_type().into()).build(),
-                Signal::builder("clicked", &[], <()>::static_type().into()).build(),
+                Signal::builder("closed").build(),
+                Signal::builder("clicked").build(),
             ]
         });
         SIGNALS.as_ref()
