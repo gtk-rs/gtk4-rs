@@ -311,9 +311,8 @@ mod tests {
         }
         impl ObjectImpl for MyObjectPrivate {
             fn signals() -> &'static [Signal] {
-                static SIGNALS: Lazy<Vec<Signal>> = Lazy::new(|| {
-                    vec![Signal::builder("destroyed", &[], <()>::static_type().into()).build()]
-                });
+                static SIGNALS: Lazy<Vec<Signal>> =
+                    Lazy::new(|| vec![Signal::builder("destroyed").build()]);
                 SIGNALS.as_ref()
             }
             fn dispose(&self, obj: &Self::Type) {
