@@ -3,7 +3,6 @@ use std::fs::File;
 
 use adw::prelude::*;
 use adw::subclass::prelude::*;
-use adw::subclass::prelude::*;
 use adw::Leaflet;
 use gio::Settings;
 use glib::signal::Inhibit;
