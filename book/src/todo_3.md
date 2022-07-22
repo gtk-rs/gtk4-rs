@@ -35,11 +35,23 @@ We start by replacing all occurrences of `gtk::prelude` and `gtk::subclass::prel
 The `adw` preludes re-export the `gtk` ones plus add a couple of Libadwaita specific traits.
 
 In the remainder of this chapter we are going to follow two patterns of GNOME's HIG.
-The first one concerns [header bars](https://developer.gnome.org/hig/patterns/containers/header-bars.html).
+Let's start by adapting the header bar to be [HIG compliant](https://developer.gnome.org/hig/patterns/containers/header-bars.html).
+We do that by replacing [`gtk::ApplicationWindow`](../docs/gtk4/struct.ApplicationWindow.html) with [`adw::ApplicationWindow`](https://world.pages.gitlab.gnome.org/Rust/libadwaita-rs/stable/latest/docs/libadwaita/struct.ApplicationWindow.html).
+We also use [`adw::HeaderBar`](https://world.pages.gitlab.gnome.org/Rust/libadwaita-rs/stable/latest/docs/libadwaita/struct.HeaderBar.html) as title bar.
+Finally, we add [tooltips](https://developer.gnome.org/hig/patterns/feedback/tooltips.html).
+
+The second pattern we are going to follow are [boxed lists](https://developer.gnome.org/hig/patterns/containers/boxed-lists.html).
+It is not mandatory to use them to be HIG compliant and there's a good reason for that: they are incompatible with recycling lists.
+This means they cannot be used [list views](https://developer.gnome.org/hig/patterns/containers/list-column-views.html) and are therefore only appropriate for relatively small lists.
+
+> Try to add tasks programmatically and see how many of them you need until the UI noticeably slows down.
+> Determine for yourself if you think that is a reasonable number or if we should have rather stuck with list views.
+
+We can use boxed lists by using [`gtk::ListBox`](../docs/gtk4/struct.ListBox.html) instead of [`gtk::ListView`](../docs/gtk4/struct.ListView.html).
+We then add the [`boxed-list`](https://gnome.pages.gitlab.gnome.org/libadwaita/doc/main/boxed-lists.html) that is provided by Libadwaita.
 
 
-
-Now we are going to replace a couple of GTK elements with the corresponding Libadwaita elements.
+Let's implement the discussed changes in the `window.ui` file.
 You can find the relevant subset of the diff below.
 To see the complete file just click on the link after "Filename:".
 
