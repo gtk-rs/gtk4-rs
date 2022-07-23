@@ -38,7 +38,6 @@ generate = [
     "Gsk.RoundedClipNode",
     "Gsk.ScalingFilter",
     "Gsk.SerializationError",
-    "Gsk.TextNode",
     "Gsk.TextureNode",
     "Gsk.TransformCategory",
     "Gsk.TransformNode",
@@ -168,6 +167,15 @@ status = "generate"
     [[object.function]]
     name = "get_shadow"
     manual = true # assert that i < n_shadows
+
+[[object]]
+name = "Gsk.TextNode"
+status = "generate"
+    [[object.function]]
+    name = "new"
+        [[object.function.parameter]]
+        name = "glyphs"
+        const = true
 
 [[object]]
 name = "Gsk.Transform"
