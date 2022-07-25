@@ -14,6 +14,7 @@ use once_cell::sync::OnceCell;
 use crate::task_object::{TaskData, TaskObject};
 use crate::utils::data_path;
 
+// ANCHOR: window
 // Object holding the state
 #[derive(CompositeTemplate, Default)]
 #[template(resource = "/org/gtk_rs/Todo6/window.ui")]
@@ -42,6 +43,7 @@ impl ObjectSubclass for Window {
         obj.init_template();
     }
 }
+// ANCHOR_END: window
 
 // Trait shared by all GObjects
 impl ObjectImpl for Window {
@@ -86,5 +88,7 @@ impl WindowImpl for Window {
 // Trait shared by all application windows
 impl ApplicationWindowImpl for Window {}
 
+// ANCHOR: AdwApplicationWindowImpl
 // Trait shared by all adwaita application windows
 impl AdwApplicationWindowImpl for Window {}
+// ANCHOR_END: AdwApplicationWindowImpl

@@ -134,3 +134,49 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 
 We replaced the `gtk::ApplicationWindow` with `adw::ApplicationWindow` and added a `adw::HeaderBar` to it.
 In order to follow the boxed list pattern, we started using [`gtk::ListBox`](../docs/gtk4/struct.ListBox.html), set its property "selection-mode" to "none" and let it match with the `boxed-list` style class. 
+
+Let's continue with the Rust code.
+`tasks_list` now binds to `ListBox` rather than `ListView`.
+
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/6/window/imp.rs">listings/todo/6/window/imp.rs</a>
+
+```rust,no_run,noplayground
+{{#rustdoc_include ../listings/todo/6/window/imp.rs:window}}
+```
+
+
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/6/window/imp.rs">listings/todo/6/window/imp.rs</a>
+
+```rust,no_run,noplayground
+{{#rustdoc_include ../listings/todo/6/window/imp.rs:AdwApplicationWindowImpl}}
+```
+
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/6/window/mod.rs">listings/todo/6/window/mod.rs</a>
+
+```rust,no_run,noplayground
+{{#rustdoc_include ../listings/todo/6/window/mod.rs:glib_wrapper}}
+```
+
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/6/window/mod.rs">listings/todo/6/window/mod.rs</a>
+
+```rust,no_run,noplayground
+{{#rustdoc_include ../listings/todo/6/window/mod.rs:bind_model}}
+```
+
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/6/window/mod.rs">listings/todo/6/window/mod.rs</a>
+
+```rust,no_run,noplayground
+{{#rustdoc_include ../listings/todo/6/window/mod.rs:create_task_row}}
+```
+
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/6/window/mod.rs">listings/todo/6/window/mod.rs</a>
+
+```rust,no_run,noplayground
+{{#rustdoc_include ../listings/todo/6/window/mod.rs:connect_items_changed}}
+```
+
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/6/window/mod.rs">listings/todo/6/window/mod.rs</a>
+
+```rust,no_run,noplayground
+{{#rustdoc_include ../listings/todo/6/window/mod.rs:set_task_list_visible}}
+```
