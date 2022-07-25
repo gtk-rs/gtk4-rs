@@ -13,12 +13,14 @@ use crate::task_object::{TaskData, TaskObject};
 use crate::utils::data_path;
 use crate::APP_ID;
 
+// ANCHOR: glib_wrapper
 glib::wrapper! {
     pub struct Window(ObjectSubclass<imp::Window>)
         @extends adw::ApplicationWindow, gtk::ApplicationWindow, gtk::Window, gtk::Widget,
         @implements gio::ActionGroup, gio::ActionMap, gtk::Accessible, gtk::Buildable,
                     gtk::ConstraintTarget, gtk::Native, gtk::Root, gtk::ShortcutManager;
 }
+// ANCHOR_END: glib_wrapper
 
 impl Window {
     pub fn new(app: &adw::Application) -> Self {
@@ -90,6 +92,7 @@ impl Window {
         let filter_model =
             FilterListModel::new(Some(&self.tasks()), self.filter().as_ref());
         let selection_model = NoSelection::new(Some(&filter_model));
+        // ANCHOR: bind_model
         self.imp().tasks_list.bind_model(
             Some(&selection_model),
             clone!(@weak self as window => @default-panic, move |obj| {
@@ -98,6 +101,7 @@ impl Window {
                 row.upcast()
             }),
         );
+        // ANCHOR_END: bind_model
 
         // Filter model whenever the value of the key "filter" changes
         self.settings().connect_changed(
@@ -107,6 +111,7 @@ impl Window {
             }),
         );
 
+        // ANCHOR: connect_items_changed
         // Assure that the task list is only visible when it is supposed to
         self.set_task_list_visible(&self.tasks());
         self.tasks().connect_items_changed(
@@ -114,12 +119,16 @@ impl Window {
                 window.set_task_list_visible(tasks);
             }),
         );
+        // ANCHOR_END: connect_items_changed
     }
 
+    // ANCHOR: set_task_list_visible
+    
     /// Assure that `tasks_list` is only visible if the number of tasks is greater than 0
     fn set_task_list_visible(&self, tasks: &gio::ListStore) {
         self.imp().tasks_list.set_visible(tasks.n_items() > 0);
     }
+    // ANCHOR_END: set_task_list_visible
 
     fn restore_data(&self) {
         if let Ok(file) = File::open(data_path()) {
@@ -138,6 +147,7 @@ impl Window {
         }
     }
 
+    // ANCHOR: create_task_row
     fn create_task_row(&self, task_object: &TaskObject) -> ActionRow {
         // Create check button
         let check_button = CheckButton::builder()
@@ -164,6 +174,7 @@ impl Window {
         // Return row
         row
     }
+    // ANCHOR_END: create_task_row
 
     fn setup_callbacks(&self) {
         // Setup callback for activation of the entry
