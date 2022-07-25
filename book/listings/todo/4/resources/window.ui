@@ -34,7 +34,7 @@
     <child type="titlebar">
       <object class="GtkHeaderBar">
         <child type="end">
-          <object class="GtkMenuButton" id="menu_button">
+          <object class="GtkMenuButton">
             <property name="icon-name">open-menu-symbolic</property>
             <property name="menu-model">main-menu</property>
           </object>

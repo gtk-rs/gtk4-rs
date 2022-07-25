@@ -7,7 +7,7 @@ use glib::subclass::InitializingObject;
 use gtk::glib::Cast;
 use gtk::prelude::*;
 use gtk::subclass::prelude::*;
-use gtk::{gio, glib, CompositeTemplate, Entry, ListView, MenuButton};
+use gtk::{gio, glib, CompositeTemplate, Entry, ListView};
 use once_cell::sync::OnceCell;
 
 use crate::task_object::{TaskData, TaskObject};
@@ -20,8 +20,6 @@ use crate::utils::data_path;
 pub struct Window {
     #[template_child]
     pub entry: TemplateChild<Entry>,
-    #[template_child]
-    pub menu_button: TemplateChild<MenuButton>,
     #[template_child]
     pub tasks_list: TemplateChild<ListView>,
     pub tasks: RefCell<Option<gio::ListStore>>,
