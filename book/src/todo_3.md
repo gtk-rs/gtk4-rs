@@ -1,7 +1,7 @@
 # Let To-Do App Follow GNOME's HIG
 
-Within this chapter we will adapt our To-Do app so that it follow GNOME's [HIG](https://developer.gnome.org/hig/).
-Let's start by installing libadwaita and adding the libadwaita crate to our dependencies as explained in the former [chapter](libadwaita.html).
+Within this chapter we will adapt our To-Do app so that it follows GNOME's [HIG](https://developer.gnome.org/hig/).
+Let's start by installing Libadwaita and adding the `libadwaita` crate to our dependencies as explained in the [former chapter](libadwaita.html).
 
 The most simple way to take advantage of Libadwaita is by replacing [`gtk::Application`](https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/struct.Application.html) with [`adw::Application`](https://world.pages.gitlab.gnome.org/Rust/libadwaita-rs/stable/latest/docs/libadwaita/struct.Application.html).
 
@@ -25,7 +25,7 @@ This is because the `Default` stylesheet provided by GTK has been replaced with 
 
 <div style="text-align:center"><img src="img/todo_change_4_5.png"/></div>
 
-Now, if we go to the settings and request a different style our app will oblige.
+Now, if we go to the settings and request a different style, our app will oblige.
 
 <div style="text-align:center">
  <video autoplay muted loop>
@@ -37,8 +37,8 @@ Your browser does not support the video tag.
 
 ## Start using Libadwaita widgets
 
-Of course Libadwaita is more than just a couple of stylesheet and a [`StyleManager`](https://world.pages.gitlab.gnome.org/Rust/libadwaita-rs/stable/latest/docs/libadwaita/struct.StyleManager.html).
-But before we get to the interesting stuff we make our lives easier in the future by replacing all occurrences of `gtk::prelude` and `gtk::subclass::prelude` with [`adw::prelude`](https://world.pages.gitlab.gnome.org/Rust/libadwaita-rs/stable/latest/docs/libadwaita/prelude/index.html) and [`adw::subclass::prelude`](https://world.pages.gitlab.gnome.org/Rust/libadwaita-rs/stable/latest/docs/libadwaita/subclass/prelude/index.html).
+Of course Libadwaita is more than just a couple of stylesheets and a [`StyleManager`](https://world.pages.gitlab.gnome.org/Rust/libadwaita-rs/stable/latest/docs/libadwaita/struct.StyleManager.html).
+But before we get to the interesting stuff, we make our lives easier in the future by replacing all occurrences of `gtk::prelude` and `gtk::subclass::prelude` with [`adw::prelude`](https://world.pages.gitlab.gnome.org/Rust/libadwaita-rs/stable/latest/docs/libadwaita/prelude/index.html) and [`adw::subclass::prelude`](https://world.pages.gitlab.gnome.org/Rust/libadwaita-rs/stable/latest/docs/libadwaita/subclass/prelude/index.html).
 This works because the `adw` preludes re-export the corresponding `gtk` preludes plus a couple of Libadwaita specific traits.
 
 In the remainder of this chapter we are going to follow a couple of patterns of GNOME's HIG.
@@ -59,7 +59,7 @@ Afterwards, we match with the [`boxed-list`](https://gnome.pages.gitlab.gnome.or
 
 Let's implement the discussed changes in the `window.ui` file.
 You can find the relevant subset of the diff below.
-To see the complete file just click on the link after "Filename:".
+To see the complete file, just click on the link after "Filename:".
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/6/resources/window.ui">listings/todo/6/resources/window.ui</a>
 
@@ -164,7 +164,7 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 
 `ListBox` supports models just fine, but without any widget recycling we don't need factories anymore.
 `setup_factory` can therefore be safely deleted.
-To setup we `ListBox` we call `bind_model` in `setup_tasks`.
+To setup the `ListBox`, we call `bind_model` in `setup_tasks`.
 There we specify the model, as well as a closure describing how to transform the given GObject into a widget the list box can display. 
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/6/window/mod.rs">listings/todo/6/window/mod.rs</a>
@@ -184,7 +184,7 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 {{#rustdoc_include ../listings/todo/6/window/mod.rs:create_task_row}}
 ```
 
-When using boxed lists you also have to take care to hide the `ListBox` when there is no task present.
+When using boxed lists, you also have to take care to hide the `ListBox` when there is no task present.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/6/window/mod.rs">listings/todo/6/window/mod.rs</a>
 
