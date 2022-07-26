@@ -152,7 +152,7 @@ impl Window {
     }
 
     fn set_current_collection(&self, collection: CollectionObject) {
-        // Wrap model with filter and selection and pass it to the list view
+        // Wrap model with filter and selection and pass it to the list box
         let tasks = collection.tasks();
         let filter_model = FilterListModel::new(Some(&tasks), self.filter().as_ref());
         let selection_model = NoSelection::new(Some(&filter_model));
