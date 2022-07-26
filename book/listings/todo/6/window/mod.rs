@@ -123,8 +123,8 @@ impl Window {
     }
 
     // ANCHOR: set_task_list_visible
-    
-    /// Assure that `tasks_list` is only visible if the number of tasks is greater than 0
+    /// Assure that `tasks_list` is only visible
+    /// if the number of tasks is greater than 0
     fn set_task_list_visible(&self, tasks: &gio::ListStore) {
         self.imp().tasks_list.set_visible(tasks.n_items() > 0);
     }
