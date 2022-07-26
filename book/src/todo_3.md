@@ -135,8 +135,10 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 We replaced the `gtk::ApplicationWindow` with `adw::ApplicationWindow` and added a `adw::HeaderBar` to it.
 In order to follow the boxed list pattern, we started using [`gtk::ListBox`](../docs/gtk4/struct.ListBox.html), set its property "selection-mode" to "none" and let it match with the `boxed-list` style class. 
 
-Let's continue with the Rust code.
+Let's continue with `window/imp.rs`.
 `tasks_list` now binds to `ListBox` rather than `ListView`.
+We also change the `ParentType` from `gtk::ApplicationWindow` to `adw::ApplicationWindow`.
+
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/6/window/imp.rs">listings/todo/6/window/imp.rs</a>
 
@@ -144,6 +146,7 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 {{#rustdoc_include ../listings/todo/6/window/imp.rs:window}}
 ```
 
+We don't override any function of `adw::ApplicationWindow`, but we still have to add the empty `impl`.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/6/window/imp.rs">listings/todo/6/window/imp.rs</a>
 
@@ -151,11 +154,19 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 {{#rustdoc_include ../listings/todo/6/window/imp.rs:AdwApplicationWindowImpl}}
 ```
 
+Moving on to `window/mod.rs`.
+First, we add `adw::ApplicationWindow` to our list of derived classes.
+
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/6/window/mod.rs">listings/todo/6/window/mod.rs</a>
 
 ```rust,no_run,noplayground
 {{#rustdoc_include ../listings/todo/6/window/mod.rs:glib_wrapper}}
 ```
+
+`ListBox` supports models just fine, but without any recycling of widgets we also don't need factories anymore.
+`setup_factory` can therefore be safely deleted.
+In `setup_tasks` we call `bind_model`.
+There we specify the model, as well as a closure describing how to transform the given GObject into a widget the list box can display. 
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/6/window/mod.rs">listings/todo/6/window/mod.rs</a>
 
@@ -163,11 +174,18 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 {{#rustdoc_include ../listings/todo/6/window/mod.rs:bind_model}}
 ```
 
+We still have to specify the `create_task_row` method.
+Here, we create an [`adw::ActionRow`](https://world.pages.gitlab.gnome.org/Rust/libadwaita-rs/stable/latest/docs/libadwaita/struct.ActionRow.html) with a [`gtk::CheckButton`](https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/struct.CheckButton.html) as activatable widget.
+Without recycling, a GObject will always belong to the same widget.
+That means we can just bind their properties without having to worry about unbinding them later on.
+
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/6/window/mod.rs">listings/todo/6/window/mod.rs</a>
 
 ```rust,no_run,noplayground
 {{#rustdoc_include ../listings/todo/6/window/mod.rs:create_task_row}}
 ```
+
+When using boxed lists you also have to take care to hide the `ListBox` when there is no task present.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/6/window/mod.rs">listings/todo/6/window/mod.rs</a>
 
@@ -175,8 +193,12 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 {{#rustdoc_include ../listings/todo/6/window/mod.rs:connect_items_changed}}
 ```
 
+Finally, we specify the method `set_task_list_visible`.
+
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/6/window/mod.rs">listings/todo/6/window/mod.rs</a>
 
 ```rust,no_run,noplayground
 {{#rustdoc_include ../listings/todo/6/window/mod.rs:set_task_list_visible}}
 ```
+
+# TODO: Comparison

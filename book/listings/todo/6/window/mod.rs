@@ -88,11 +88,11 @@ impl Window {
         // Get state and set model
         self.imp().tasks.replace(Some(model));
 
-        // Wrap model with filter and selection and pass it to the list view
+        // ANCHOR: bind_model
+        // Wrap model with filter and selection and pass it to the list box
         let filter_model =
             FilterListModel::new(Some(&self.tasks()), self.filter().as_ref());
         let selection_model = NoSelection::new(Some(&filter_model));
-        // ANCHOR: bind_model
         self.imp().tasks_list.bind_model(
             Some(&selection_model),
             clone!(@weak self as window => @default-panic, move |obj| {
