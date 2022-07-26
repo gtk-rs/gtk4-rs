@@ -252,7 +252,7 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 
 Now our tasks have borders around them, and we are one step further in finishing our To-Do app.
 
-<div style="text-align:center"><img src="img/todo_change.png"/></div>
+<div style="text-align:center"><img src="img/todo_change_3_4.png"/></div>
 
 This was also an excellent opportunity to show how to set the CSS name of custom widget and how to access exported colors.
 In the end, we find that GTK provides a style rule to add borders to a node.
