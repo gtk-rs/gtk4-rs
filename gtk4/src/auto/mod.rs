@@ -892,6 +892,9 @@ pub use self::enums::ConstraintAttribute;
 pub use self::enums::ConstraintRelation;
 pub use self::enums::ConstraintStrength;
 pub use self::enums::ConstraintVflParserError;
+#[cfg(any(feature = "v4_8", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+pub use self::enums::ContentFit;
 pub use self::enums::CornerType;
 pub use self::enums::CssParserError;
 pub use self::enums::CssParserWarning;

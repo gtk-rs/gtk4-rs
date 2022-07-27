@@ -76,6 +76,7 @@ generate = [
     "Gtk.ConstraintStrength",
     "Gtk.ConstraintTarget",
     "Gtk.ConstraintVflParserError",
+    "Gtk.ContentFit",
     "Gtk.CornerType",
     "Gtk.CssParserError",
     "Gtk.CssParserWarning",
@@ -1350,6 +1351,11 @@ status = "generate"
     [[object.function]]
     name = "get_mnemonic_keyval"
     manual = true # to make use of gdk::Key
+    [[object.function]]
+    name = "set_tabs"
+        [[object.function.parameter]]
+        name = "tabs"
+        const = true
 
 [[object]]
 name = "Gtk.LinkButton"

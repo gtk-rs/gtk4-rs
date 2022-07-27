@@ -74,6 +74,7 @@ int main() {
     printf("%s;%zu;%zu\n", "GtkConstraintRelation", sizeof(GtkConstraintRelation), alignof(GtkConstraintRelation));
     printf("%s;%zu;%zu\n", "GtkConstraintStrength", sizeof(GtkConstraintStrength), alignof(GtkConstraintStrength));
     printf("%s;%zu;%zu\n", "GtkConstraintVflParserError", sizeof(GtkConstraintVflParserError), alignof(GtkConstraintVflParserError));
+    printf("%s;%zu;%zu\n", "GtkContentFit", sizeof(GtkContentFit), alignof(GtkContentFit));
     printf("%s;%zu;%zu\n", "GtkCornerType", sizeof(GtkCornerType), alignof(GtkCornerType));
     printf("%s;%zu;%zu\n", "GtkCssLocation", sizeof(GtkCssLocation), alignof(GtkCssLocation));
     printf("%s;%zu;%zu\n", "GtkCssParserError", sizeof(GtkCssParserError), alignof(GtkCssParserError));
