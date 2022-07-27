@@ -671,6 +671,13 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         },
     ),
     (
+        "GtkContentFit",
+        Layout {
+            size: size_of::<GtkContentFit>(),
+            alignment: align_of::<GtkContentFit>(),
+        },
+    ),
+    (
         "GtkCornerType",
         Layout {
             size: size_of::<GtkCornerType>(),
@@ -2600,6 +2607,10 @@ const RUST_CONSTANTS: &[(&str, &str)] = &[
     ),
     ("(gint) GTK_CONSTRAINT_VFL_PARSER_ERROR_INVALID_SYMBOL", "0"),
     ("(gint) GTK_CONSTRAINT_VFL_PARSER_ERROR_INVALID_VIEW", "2"),
+    ("(gint) GTK_CONTENT_FIT_CONTAIN", "1"),
+    ("(gint) GTK_CONTENT_FIT_COVER", "2"),
+    ("(gint) GTK_CONTENT_FIT_FILL", "0"),
+    ("(gint) GTK_CONTENT_FIT_SCALE_DOWN", "3"),
     ("(gint) GTK_CORNER_BOTTOM_LEFT", "1"),
     ("(gint) GTK_CORNER_BOTTOM_RIGHT", "3"),
     ("(gint) GTK_CORNER_TOP_LEFT", "0"),

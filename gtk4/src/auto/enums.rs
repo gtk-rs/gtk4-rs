@@ -2744,6 +2744,116 @@ impl ToValue for ConstraintVflParserError {
     }
 }
 
+#[cfg(any(feature = "v4_8", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
+#[doc(alias = "GtkContentFit")]
+pub enum ContentFit {
+    #[doc(alias = "GTK_CONTENT_FIT_FILL")]
+    Fill,
+    #[doc(alias = "GTK_CONTENT_FIT_CONTAIN")]
+    Contain,
+    #[doc(alias = "GTK_CONTENT_FIT_COVER")]
+    Cover,
+    #[doc(alias = "GTK_CONTENT_FIT_SCALE_DOWN")]
+    ScaleDown,
+    #[doc(hidden)]
+    __Unknown(i32),
+}
+
+#[cfg(any(feature = "v4_8", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+impl fmt::Display for ContentFit {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(
+            f,
+            "ContentFit::{}",
+            match *self {
+                Self::Fill => "Fill",
+                Self::Contain => "Contain",
+                Self::Cover => "Cover",
+                Self::ScaleDown => "ScaleDown",
+                _ => "Unknown",
+            }
+        )
+    }
+}
+
+#[cfg(any(feature = "v4_8", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+#[doc(hidden)]
+impl IntoGlib for ContentFit {
+    type GlibType = ffi::GtkContentFit;
+
+    fn into_glib(self) -> ffi::GtkContentFit {
+        match self {
+            Self::Fill => ffi::GTK_CONTENT_FIT_FILL,
+            Self::Contain => ffi::GTK_CONTENT_FIT_CONTAIN,
+            Self::Cover => ffi::GTK_CONTENT_FIT_COVER,
+            Self::ScaleDown => ffi::GTK_CONTENT_FIT_SCALE_DOWN,
+            Self::__Unknown(value) => value,
+        }
+    }
+}
+
+#[cfg(any(feature = "v4_8", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+#[doc(hidden)]
+impl FromGlib<ffi::GtkContentFit> for ContentFit {
+    unsafe fn from_glib(value: ffi::GtkContentFit) -> Self {
+        skip_assert_initialized!();
+        match value {
+            ffi::GTK_CONTENT_FIT_FILL => Self::Fill,
+            ffi::GTK_CONTENT_FIT_CONTAIN => Self::Contain,
+            ffi::GTK_CONTENT_FIT_COVER => Self::Cover,
+            ffi::GTK_CONTENT_FIT_SCALE_DOWN => Self::ScaleDown,
+            value => Self::__Unknown(value),
+        }
+    }
+}
+
+#[cfg(any(feature = "v4_8", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+impl StaticType for ContentFit {
+    fn static_type() -> Type {
+        unsafe { from_glib(ffi::gtk_content_fit_get_type()) }
+    }
+}
+
+#[cfg(any(feature = "v4_8", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+impl glib::value::ValueType for ContentFit {
+    type Type = Self;
+}
+
+#[cfg(any(feature = "v4_8", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+unsafe impl<'a> FromValue<'a> for ContentFit {
+    type Checker = glib::value::GenericValueTypeChecker<Self>;
+
+    unsafe fn from_value(value: &'a glib::Value) -> Self {
+        skip_assert_initialized!();
+        from_glib(glib::gobject_ffi::g_value_get_enum(value.to_glib_none().0))
+    }
+}
+
+#[cfg(any(feature = "v4_8", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+impl ToValue for ContentFit {
+    fn to_value(&self) -> glib::Value {
+        let mut value = glib::Value::for_value_type::<Self>();
+        unsafe {
+            glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.into_glib());
+        }
+        value
+    }
+
+    fn value_type(&self) -> glib::Type {
+        Self::static_type()
+    }
+}
+
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
 #[doc(alias = "GtkCornerType")]

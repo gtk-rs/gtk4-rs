@@ -286,6 +286,12 @@ pub const GTK_CONSTRAINT_VFL_PARSER_ERROR_INVALID_METRIC: GtkConstraintVflParser
 pub const GTK_CONSTRAINT_VFL_PARSER_ERROR_INVALID_PRIORITY: GtkConstraintVflParserError = 4;
 pub const GTK_CONSTRAINT_VFL_PARSER_ERROR_INVALID_RELATION: GtkConstraintVflParserError = 5;
 
+pub type GtkContentFit = c_int;
+pub const GTK_CONTENT_FIT_FILL: GtkContentFit = 0;
+pub const GTK_CONTENT_FIT_CONTAIN: GtkContentFit = 1;
+pub const GTK_CONTENT_FIT_COVER: GtkContentFit = 2;
+pub const GTK_CONTENT_FIT_SCALE_DOWN: GtkContentFit = 3;
+
 pub type GtkCornerType = c_int;
 pub const GTK_CORNER_TOP_LEFT: GtkCornerType = 0;
 pub const GTK_CORNER_BOTTOM_LEFT: GtkCornerType = 1;
@@ -8930,6 +8936,13 @@ extern "C" {
     pub fn gtk_constraint_vfl_parser_error_quark() -> glib::GQuark;
 
     //=========================================================================
+    // GtkContentFit
+    //=========================================================================
+    #[cfg(any(feature = "v4_8", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+    pub fn gtk_content_fit_get_type() -> GType;
+
+    //=========================================================================
     // GtkCornerType
     //=========================================================================
     pub fn gtk_corner_type_get_type() -> GType;
@@ -13411,6 +13424,9 @@ extern "C" {
         end: *mut c_int,
     ) -> gboolean;
     pub fn gtk_label_get_single_line_mode(self_: *mut GtkLabel) -> gboolean;
+    #[cfg(any(feature = "v4_8", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+    pub fn gtk_label_get_tabs(self_: *mut GtkLabel) -> *mut pango::PangoTabArray;
     pub fn gtk_label_get_text(self_: *mut GtkLabel) -> *const c_char;
     pub fn gtk_label_get_use_markup(self_: *mut GtkLabel) -> gboolean;
     pub fn gtk_label_get_use_underline(self_: *mut GtkLabel) -> gboolean;
@@ -13435,6 +13451,9 @@ extern "C" {
     pub fn gtk_label_set_natural_wrap_mode(self_: *mut GtkLabel, wrap_mode: GtkNaturalWrapMode);
     pub fn gtk_label_set_selectable(self_: *mut GtkLabel, setting: gboolean);
     pub fn gtk_label_set_single_line_mode(self_: *mut GtkLabel, single_line_mode: gboolean);
+    #[cfg(any(feature = "v4_8", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+    pub fn gtk_label_set_tabs(self_: *mut GtkLabel, tabs: *mut pango::PangoTabArray);
     pub fn gtk_label_set_text(self_: *mut GtkLabel, str: *const c_char);
     pub fn gtk_label_set_text_with_mnemonic(self_: *mut GtkLabel, str: *const c_char);
     pub fn gtk_label_set_use_markup(self_: *mut GtkLabel, setting: gboolean);
@@ -14449,6 +14468,9 @@ extern "C" {
     pub fn gtk_picture_new_for_resource(resource_path: *const c_char) -> *mut GtkWidget;
     pub fn gtk_picture_get_alternative_text(self_: *mut GtkPicture) -> *const c_char;
     pub fn gtk_picture_get_can_shrink(self_: *mut GtkPicture) -> gboolean;
+    #[cfg(any(feature = "v4_8", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+    pub fn gtk_picture_get_content_fit(self_: *mut GtkPicture) -> GtkContentFit;
     pub fn gtk_picture_get_file(self_: *mut GtkPicture) -> *mut gio::GFile;
     pub fn gtk_picture_get_keep_aspect_ratio(self_: *mut GtkPicture) -> gboolean;
     pub fn gtk_picture_get_paintable(self_: *mut GtkPicture) -> *mut gdk::GdkPaintable;
@@ -14457,6 +14479,9 @@ extern "C" {
         alternative_text: *const c_char,
     );
     pub fn gtk_picture_set_can_shrink(self_: *mut GtkPicture, can_shrink: gboolean);
+    #[cfg(any(feature = "v4_8", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+    pub fn gtk_picture_set_content_fit(self_: *mut GtkPicture, content_fit: GtkContentFit);
     pub fn gtk_picture_set_file(self_: *mut GtkPicture, file: *mut gio::GFile);
     pub fn gtk_picture_set_filename(self_: *mut GtkPicture, filename: *const c_char);
     pub fn gtk_picture_set_keep_aspect_ratio(self_: *mut GtkPicture, keep_aspect_ratio: gboolean);

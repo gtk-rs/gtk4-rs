@@ -3771,6 +3771,15 @@ extern "C" {
     #[cfg(any(feature = "v4_6", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
     pub fn gdk_file_list_get_type() -> GType;
+    #[cfg(any(feature = "v4_8", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+    pub fn gdk_file_list_new_from_array(
+        files: *mut *mut gio::GFile,
+        n_files: size_t,
+    ) -> *mut GdkFileList;
+    #[cfg(any(feature = "v4_8", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+    pub fn gdk_file_list_new_from_list(files: *mut glib::GSList) -> *mut GdkFileList;
     #[cfg(any(feature = "v4_6", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
     pub fn gdk_file_list_get_files(file_list: *mut GdkFileList) -> *mut glib::GSList;
