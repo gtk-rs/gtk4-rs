@@ -2,9 +2,13 @@ name: book
 
 on:
   pull_request:
+    paths:
+      - "book/**"
   push:
     branches:
       - "master"
+    paths:
+      - "book/**"
   release:
     types: [published]
 
