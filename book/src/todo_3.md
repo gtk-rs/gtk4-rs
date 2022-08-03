@@ -1,9 +1,9 @@
-# Let To-Do App Follow GNOME's HIG
+# Make To-Do App Follow GNOME's HIG
 
 Within this chapter we will adapt our To-Do app so that it follows GNOME's [HIG](https://developer.gnome.org/hig/).
-Let's start by installing Libadwaita and adding the `libadwaita` crate to our dependencies as explained in the [former chapter](libadwaita.html).
+Let's start by installing Libadwaita and adding the `libadwaita` crate to our dependencies as explained in the [previous chapter](libadwaita.html).
 
-The most simple way to take advantage of Libadwaita is by replacing [`gtk::Application`](https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/struct.Application.html) with [`adw::Application`](https://world.pages.gitlab.gnome.org/Rust/libadwaita-rs/stable/latest/docs/libadwaita/struct.Application.html).
+The simplest way to take advantage of Libadwaita is by replacing [`gtk::Application`](https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/struct.Application.html) with [`adw::Application`](https://world.pages.gitlab.gnome.org/Rust/libadwaita-rs/stable/latest/docs/libadwaita/struct.Application.html).
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/5/main.rs">listings/todo/5/main.rs</a>
 
@@ -17,15 +17,15 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 {{#rustdoc_include ../listings/todo/5/window/mod.rs:new}}
 ```
 
-`adw::Application` calls [`init`](https://world.pages.gitlab.gnome.org/Rust/libadwaita-rs/stable/latest/docs/libadwaita/functions/fn.init.html) internally and makes sure that translations, types, stylesheets, and icons are set up properly for Libadwaita. 
-It also loads stylesheets automatically from resources as long as they are named [accordingly](https://world.pages.gitlab.gnome.org/Rust/libadwaita-rs/stable/latest/docs/libadwaita/struct.Application.html#automatic-resources).
+`adw::Application` calls [`adw::init`](https://world.pages.gitlab.gnome.org/Rust/libadwaita-rs/stable/latest/docs/libadwaita/functions/fn.init.html) internally and makes sure that translations, types, stylesheets, and icons are set up properly for Libadwaita. 
+It also loads stylesheets automatically from resources as long as they are named [correctly](https://world.pages.gitlab.gnome.org/Rust/libadwaita-rs/stable/latest/docs/libadwaita/struct.Application.html#automatic-resources).
 
 Looking at our To-Do app we can see that the looks of its widgets changed.
 This is because the `Default` stylesheet provided by GTK has been replaced with the `Adwaita` stylesheet provided by Libadwaita.
 
 <div style="text-align:center"><img src="img/todo_change_4_5.png"/></div>
 
-Now, if we go to the settings and request a different style, our app will oblige.
+Also, our app now switches to the dark style together with the rest of the system.
 
 <div style="text-align:center">
  <video autoplay muted loop>
@@ -38,13 +38,13 @@ Your browser does not support the video tag.
 ## Start using Libadwaita widgets
 
 Of course Libadwaita is more than just a couple of stylesheets and a [`StyleManager`](https://world.pages.gitlab.gnome.org/Rust/libadwaita-rs/stable/latest/docs/libadwaita/struct.StyleManager.html).
-But before we get to the interesting stuff, we make our lives easier in the future by replacing all occurrences of `gtk::prelude` and `gtk::subclass::prelude` with [`adw::prelude`](https://world.pages.gitlab.gnome.org/Rust/libadwaita-rs/stable/latest/docs/libadwaita/prelude/index.html) and [`adw::subclass::prelude`](https://world.pages.gitlab.gnome.org/Rust/libadwaita-rs/stable/latest/docs/libadwaita/subclass/prelude/index.html).
-This works because the `adw` preludes re-export the corresponding `gtk` preludes plus a couple of Libadwaita specific traits.
+But before we get to the interesting stuff, we will make our lives easier for the future by replacing all occurrences of `gtk::prelude` and `gtk::subclass::prelude` with [`adw::prelude`](https://world.pages.gitlab.gnome.org/Rust/libadwaita-rs/stable/latest/docs/libadwaita/prelude/index.html) and [`adw::subclass::prelude`](https://world.pages.gitlab.gnome.org/Rust/libadwaita-rs/stable/latest/docs/libadwaita/subclass/prelude/index.html).
+This works because the `adw` preludes, in addition to the Libadwaita-specific traits, re-export the corresponding `gtk` preludes.
 
 In the remainder of this chapter we are going to follow a couple of patterns of GNOME's HIG.
-Let's start by adapting the header bar to be [HIG compliant](https://developer.gnome.org/hig/patterns/containers/header-bars.html).
+Let's start by [adapting](https://developer.gnome.org/hig/patterns/containers/header-bars.html) the header bar.
 We do that by replacing [`gtk::ApplicationWindow`](../docs/gtk4/struct.ApplicationWindow.html) with [`adw::ApplicationWindow`](https://world.pages.gitlab.gnome.org/Rust/libadwaita-rs/stable/latest/docs/libadwaita/struct.ApplicationWindow.html).
-We also use [`adw::HeaderBar`](https://world.pages.gitlab.gnome.org/Rust/libadwaita-rs/stable/latest/docs/libadwaita/struct.HeaderBar.html) as title bar.
+We also use [`adw::HeaderBar`](https://world.pages.gitlab.gnome.org/Rust/libadwaita-rs/stable/latest/docs/libadwaita/struct.HeaderBar.html) as the title bar.
 Finally, we add [tooltips](https://developer.gnome.org/hig/patterns/feedback/tooltips.html).
 
 The second pattern we are going to follow are [boxed lists](https://developer.gnome.org/hig/patterns/containers/boxed-lists.html).
@@ -55,9 +55,9 @@ This means they cannot be used with [list views](https://developer.gnome.org/hig
 > Determine for yourself if you think that is a reasonable number or if we should have rather stuck with list views.
 
 We can use boxed lists by using [`gtk::ListBox`](../docs/gtk4/struct.ListBox.html) instead of [`gtk::ListView`](../docs/gtk4/struct.ListView.html).
-Afterwards, we match with the [`boxed-list`](https://gnome.pages.gitlab.gnome.org/libadwaita/doc/main/boxed-lists.html) style class that is provided by Libadwaita.
+We will also add the [`boxed-list`](https://gnome.pages.gitlab.gnome.org/libadwaita/doc/main/boxed-lists.html) style class provided by Libadwaita.
 
-Let's implement the discussed changes in the `window.ui` file.
+Let's implement all these changes in the `window.ui` file.
 You can find the relevant subset of the diff below.
 To see the complete file, just click on the link after "Filename:".
 
@@ -132,12 +132,12 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
  </interface>
 ```
 
-We replaced the `gtk::ApplicationWindow` with `adw::ApplicationWindow` and added a `adw::HeaderBar` to it.
-In order to follow the boxed list pattern, we started using [`gtk::ListBox`](../docs/gtk4/struct.ListBox.html), set its property "selection-mode" to "none" and let it match with the `boxed-list` style class. 
+We've replaced the `gtk::ApplicationWindow` with `adw::ApplicationWindow` and added an `adw::HeaderBar` to it.
+In order to follow the boxed list pattern, we switched to [`gtk::ListBox`](../docs/gtk4/struct.ListBox.html), set its property "selection-mode" to "none" and added the `boxed-list` style class. 
 
 Let's continue with `window/imp.rs`.
 The member variable `tasks_list` now describes a `ListBox` rather than a `ListView`.
-We also change the `ParentType` from `gtk::ApplicationWindow` to `adw::ApplicationWindow`.
+We also need to change the `ParentType` from `gtk::ApplicationWindow` to `adw::ApplicationWindow`.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/6/window/imp.rs">listings/todo/6/window/imp.rs</a>
 
@@ -192,7 +192,7 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 {{#rustdoc_include ../listings/todo/6/window/mod.rs:connect_items_changed}}
 ```
 
-Finally, we specify the method `set_task_list_visible`.
+Finally, we define the `set_task_list_visible` method.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/6/window/mod.rs">listings/todo/6/window/mod.rs</a>
 
