@@ -59,7 +59,7 @@ impl Default for CustomFilter {
 unsafe extern "C" fn destroy_closure<F: Fn(&glib::Object) -> bool + 'static>(
     ptr: glib::ffi::gpointer,
 ) {
-    Box::<F>::from_raw(ptr as *mut _);
+    let _ = Box::<F>::from_raw(ptr as *mut _);
 }
 
 unsafe extern "C" fn trampoline<F: Fn(&glib::Object) -> bool + 'static>(
