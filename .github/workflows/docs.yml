@@ -100,4 +100,5 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./public/
           keep_files: true
+          force_orphan: true
           destination_dir: ./
