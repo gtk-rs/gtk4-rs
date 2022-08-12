@@ -16,6 +16,12 @@ Currently, the minimum supported Rust version is `1.57.0`.
 
 - `CompositeTemplate`
 
+### Features
+
+| Feature | Description |
+| ---     | ----------- |
+| `xml_validation` | Check the existance of `#[template_child]` fields in the UI file. Only works with `#[template(string = "")]` |
+
 ### See Also
 
 - [glib](https://crates.io/crates/glib)

@@ -147,6 +147,8 @@ impl AttributedField {
         }
         name.cloned().unwrap_or_else(|| self.ident.to_string())
     }
+
+    #[cfg(feature = "xml_validation")]
     pub fn id_span(&self) -> Span {
         for arg in &self.attr.args {
             if let FieldAttributeArg::Id(_, span) = arg {
