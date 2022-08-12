@@ -5,6 +5,7 @@ use proc_macro_error::{emit_call_site_error, emit_error};
 use quote::quote;
 use syn::Data;
 
+#[cfg(feature = "xml_validation")]
 use std::collections::HashMap;
 use std::string::ToString;
 
@@ -34,6 +35,7 @@ fn gen_set_template(source: &TemplateSource, crate_ident: &proc_macro2::Ident) -
     }
 }
 
+#[cfg(feature = "xml_validation")]
 fn check_template_fields(source: &TemplateSource, fields: &[AttributedField]) {
     #[allow(unused_assignments)]
     let xml = match source {
@@ -188,10 +190,12 @@ pub fn impl_composite_template(input: &syn::DeriveInput) -> TokenStream {
         None => vec![],
     };
 
-    if let Some(source) = source {
-        check_template_fields(source, &attributed_fields);
+    #[cfg(feature = "xml_validation")]
+    {
+        if let Some(source) = source {
+            check_template_fields(source, &attributed_fields);
+        }
     }
-
     let template_children = gen_template_child_bindings(&attributed_fields);
     let checks = gen_template_child_type_checks(&attributed_fields);
 
