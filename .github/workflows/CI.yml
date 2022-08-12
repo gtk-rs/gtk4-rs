@@ -9,7 +9,7 @@ name: CI
 jobs:
   check:
     name: Build
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     container:
       image: ghcr.io/gtk-rs/gtk4-rs/gtk4:latest
     strategy:
@@ -50,7 +50,7 @@ jobs:
 
   examples:
     name: examples
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     container:
       image: ghcr.io/gtk-rs/gtk4-rs/gtk4:latest
     steps:
@@ -68,7 +68,7 @@ jobs:
 
   fmt:
     name: rustfmt
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v2
       - uses: actions-rs/toolchain@v1
@@ -84,7 +84,7 @@ jobs:
 
   regen_check:
     name: regen checker
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v2
         with:
@@ -116,7 +116,7 @@ jobs:
 
   checker:
     name: gtk-rs checker
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     strategy:
       matrix:
         crate:
