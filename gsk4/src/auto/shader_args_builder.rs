@@ -90,7 +90,7 @@ impl ShaderArgsBuilder {
     }
 
     #[doc(alias = "gsk_shader_args_builder_to_args")]
-    pub fn to_args(&self) -> glib::Bytes {
-        unsafe { from_glib_full(ffi::gsk_shader_args_builder_to_args(self.to_glib_none().0)) }
+    pub fn to_args(self) -> glib::Bytes {
+        unsafe { from_glib_full(ffi::gsk_shader_args_builder_to_args(self.into_glib_ptr())) }
     }
 }

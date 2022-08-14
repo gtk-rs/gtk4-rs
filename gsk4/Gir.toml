@@ -160,6 +160,11 @@ status = "generate"
     [[object.function]]
     name = "free_to_args"
     ignore = true # C convenience functions
+    [[object.function]]
+    name = "to_args"
+        [[object.function.parameter]]
+        name = "builder"
+        move = true
 
 [[object]]
 name = "Gsk.ShadowNode"
