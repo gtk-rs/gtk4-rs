@@ -48,7 +48,7 @@ We also use [`adw::HeaderBar`](https://world.pages.gitlab.gnome.org/Rust/libadwa
 Finally, we add [tooltips](https://developer.gnome.org/hig/patterns/feedback/tooltips.html).
 
 The second pattern we are going to follow are [boxed lists](https://developer.gnome.org/hig/patterns/containers/boxed-lists.html).
-The HIG does not require us to use them and there's a good reason for that: they are incompatible with recycling lists.
+The HIG does not require us to use this style and there's a good reason for that: it is incompatible with recycling lists.
 This means they cannot be used with [list views](https://developer.gnome.org/hig/patterns/containers/list-column-views.html) and are therefore only appropriate for relatively small lists.
 
 > Try to add tasks programmatically and see how many of them you have to add until the UI noticeably slows down.
@@ -81,7 +81,7 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 +                <property name="menu-model">main-menu</property>
 +              </object>
 +            </child>
-           </object>
++          </object>
          </child>
          <child>
            <object class="GtkScrolledWindow">
