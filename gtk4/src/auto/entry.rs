@@ -762,6 +762,10 @@ pub trait EntryExt: 'static {
     #[doc(alias = "get_activates_default")]
     fn activates_default(&self) -> bool;
 
+    #[doc(alias = "gtk_entry_get_alignment")]
+    #[doc(alias = "get_alignment")]
+    fn alignment(&self) -> f32;
+
     #[doc(alias = "gtk_entry_get_attributes")]
     #[doc(alias = "get_attributes")]
     fn attributes(&self) -> Option<pango::AttrList>;
@@ -877,6 +881,9 @@ pub trait EntryExt: 'static {
 
     #[doc(alias = "gtk_entry_set_activates_default")]
     fn set_activates_default(&self, setting: bool);
+
+    #[doc(alias = "gtk_entry_set_alignment")]
+    fn set_alignment(&self, xalign: f32);
 
     #[doc(alias = "gtk_entry_set_attributes")]
     fn set_attributes(&self, attrs: &pango::AttrList);
@@ -1268,6 +1275,10 @@ impl<O: IsA<Entry>> EntryExt for O {
         }
     }
 
+    fn alignment(&self) -> f32 {
+        unsafe { ffi::gtk_entry_get_alignment(self.as_ref().to_glib_none().0) }
+    }
+
     fn attributes(&self) -> Option<pango::AttrList> {
         unsafe {
             from_glib_none(ffi::gtk_entry_get_attributes(
@@ -1478,6 +1489,12 @@ impl<O: IsA<Entry>> EntryExt for O {
                 self.as_ref().to_glib_none().0,
                 setting.into_glib(),
             );
+        }
+    }
+
+    fn set_alignment(&self, xalign: f32) {
+        unsafe {
+            ffi::gtk_entry_set_alignment(self.as_ref().to_glib_none().0, xalign);
         }
     }
 

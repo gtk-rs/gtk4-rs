@@ -59,6 +59,23 @@ impl TreeViewColumn {
         TreeViewColumnBuilder::default()
     }
 
+    #[doc(alias = "gtk_tree_view_column_add_attribute")]
+    pub fn add_attribute(
+        &self,
+        cell_renderer: &impl IsA<CellRenderer>,
+        attribute: &str,
+        column: i32,
+    ) {
+        unsafe {
+            ffi::gtk_tree_view_column_add_attribute(
+                self.to_glib_none().0,
+                cell_renderer.as_ref().to_glib_none().0,
+                attribute.to_glib_none().0,
+                column,
+            );
+        }
+    }
+
     #[doc(alias = "gtk_tree_view_column_cell_get_position")]
     pub fn cell_get_position(&self, cell_renderer: &impl IsA<CellRenderer>) -> Option<(i32, i32)> {
         unsafe {
@@ -125,6 +142,23 @@ impl TreeViewColumn {
                 mut_override(iter.to_glib_none().0),
                 is_expander.into_glib(),
                 is_expanded.into_glib(),
+            );
+        }
+    }
+
+    #[doc(alias = "gtk_tree_view_column_clear")]
+    pub fn clear(&self) {
+        unsafe {
+            ffi::gtk_tree_view_column_clear(self.to_glib_none().0);
+        }
+    }
+
+    #[doc(alias = "gtk_tree_view_column_clear_attributes")]
+    pub fn clear_attributes(&self, cell_renderer: &impl IsA<CellRenderer>) {
+        unsafe {
+            ffi::gtk_tree_view_column_clear_attributes(
+                self.to_glib_none().0,
+                cell_renderer.as_ref().to_glib_none().0,
             );
         }
     }
@@ -288,6 +322,28 @@ impl TreeViewColumn {
     #[doc(alias = "get_x_offset")]
     pub fn x_offset(&self) -> i32 {
         unsafe { ffi::gtk_tree_view_column_get_x_offset(self.to_glib_none().0) }
+    }
+
+    #[doc(alias = "gtk_tree_view_column_pack_end")]
+    pub fn pack_end(&self, cell: &impl IsA<CellRenderer>, expand: bool) {
+        unsafe {
+            ffi::gtk_tree_view_column_pack_end(
+                self.to_glib_none().0,
+                cell.as_ref().to_glib_none().0,
+                expand.into_glib(),
+            );
+        }
+    }
+
+    #[doc(alias = "gtk_tree_view_column_pack_start")]
+    pub fn pack_start(&self, cell: &impl IsA<CellRenderer>, expand: bool) {
+        unsafe {
+            ffi::gtk_tree_view_column_pack_start(
+                self.to_glib_none().0,
+                cell.as_ref().to_glib_none().0,
+                expand.into_glib(),
+            );
+        }
     }
 
     #[doc(alias = "gtk_tree_view_column_queue_resize")]
