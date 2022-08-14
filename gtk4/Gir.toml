@@ -1926,6 +1926,11 @@ status = "generate"
     [[object.function]]
     name = "push_debug"
     manual = true # ignore format args
+    [[object.function]]
+    pattern = "to_(node|paintable)"
+        [[object.function.parameter]]
+        name = "snapshot"
+        move = true
 
 [[object]]
 name = "Gtk.SortListModel"
