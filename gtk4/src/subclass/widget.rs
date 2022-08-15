@@ -12,10 +12,9 @@ use crate::{
 use glib::subclass::SignalId;
 use glib::translate::*;
 use glib::{Cast, GString, IsA, Variant};
-use std::boxed::Box as Box_;
 use std::collections::HashMap;
 use std::fmt;
-
+use std::{boxed::Box as Box_, future::Future};
 #[derive(Debug, Default)]
 struct Internal {
     pub(crate) actions: HashMap<String, glib::ffi::gpointer>,
@@ -955,16 +954,37 @@ pub unsafe trait WidgetClassSubclassExt: ClassStruct {
         }
     }
 
-    #[doc(alias = "gtk_widget_class_install_action")]
-    fn install_action<
-        F: Fn(&<<Self as ClassStruct>::Type as ObjectSubclass>::Type, &str, Option<&Variant>)
-            + 'static,
-    >(
+    fn install_action_async<Fut, F>(
         &mut self,
         action_name: &str,
         parameter_type: Option<&str>,
         activate: F,
-    ) {
+    ) where
+        F: Fn(<<Self as ClassStruct>::Type as ObjectSubclass>::Type, &str, Option<&Variant>) -> Fut
+            + 'static
+            + Clone,
+        Fut: Future<Output = ()>,
+    {
+        self.install_action(
+            action_name,
+            parameter_type,
+            move |this, action_name, parameter_type| {
+                let ctx = glib::MainContext::default();
+                let action_name = action_name.to_owned();
+                let parameter_type = parameter_type.map(ToOwned::to_owned);
+                ctx.spawn_local(glib::clone!(@strong this, @strong action_name, @strong parameter_type, @strong activate => async move {
+                    activate(this, &action_name, parameter_type.as_ref()).await;
+                }));
+            },
+        );
+    }
+
+    #[doc(alias = "gtk_widget_class_install_action")]
+    fn install_action<F>(&mut self, action_name: &str, parameter_type: Option<&str>, activate: F)
+    where
+        F: Fn(&<<Self as ClassStruct>::Type as ObjectSubclass>::Type, &str, Option<&Variant>)
+            + 'static,
+    {
         unsafe {
             // We store the activate callbacks in a HashMap<action_name, activate>
             // so that we can retrieve f later on the activate_trampoline call
