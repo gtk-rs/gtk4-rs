@@ -108,15 +108,10 @@
                       <object class="GtkScrolledWindow">
                         <property name="vexpand">True</property>
                         <property name="child">
-                          <object class="GtkViewport">
-                            <property name="scroll-to-focus">True</property>
-                            <property name="child">
-                              <object class="GtkListBox" id="collections_list">
-                                <style>
-                                  <class name="navigation-sidebar" />
-                                </style>
-                              </object>
-                            </property>
+                          <object class="GtkListBox" id="collections_list">
+                            <style>
+                              <class name="navigation-sidebar" />
+                            </style>
                           </object>
                         </property>
                       </object>
@@ -165,35 +160,30 @@
                       <object class="GtkScrolledWindow">
                         <property name="vexpand">True</property>
                         <property name="child">
-                          <object class="GtkViewport">
-                            <property name="scroll-to-focus">True</property>
+                          <object class="AdwClamp">
                             <property name="child">
-                              <object class="AdwClamp">
-                                <property name="child">
-                                  <object class="GtkBox">
-                                    <property name="orientation">vertical</property>
-                                    <property name="spacing">18</property>
-                                    <property name="margin-top">24</property>
-                                    <property name="margin-bottom">24</property>
-                                    <property name="margin-start">12</property>
-                                    <property name="margin-end">12</property>
-                                    <child>
-                                      <object class="GtkEntry" id="entry">
-                                        <property name="placeholder-text" translatable="yes">Enter a Task…</property>
-                                        <property name="secondary-icon-name">list-add-symbolic</property>
-                                      </object>
-                                    </child>
-                                    <child>
-                                      <object class="GtkListBox" id="tasks_list">
-                                        <property name="visible">False</property>
-                                        <property name="selection-mode">none</property>
-                                        <style>
-                                          <class name="boxed-list" />
-                                        </style>
-                                      </object>
-                                    </child>
+                              <object class="GtkBox">
+                                <property name="orientation">vertical</property>
+                                <property name="spacing">18</property>
+                                <property name="margin-top">24</property>
+                                <property name="margin-bottom">24</property>
+                                <property name="margin-start">12</property>
+                                <property name="margin-end">12</property>
+                                <child>
+                                  <object class="GtkEntry" id="entry">
+                                    <property name="placeholder-text" translatable="yes">Enter a Task…</property>
+                                    <property name="secondary-icon-name">list-add-symbolic</property>
                                   </object>
-                                </property>
+                                </child>
+                                <child>
+                                  <object class="GtkListBox" id="tasks_list">
+                                    <property name="visible">False</property>
+                                    <property name="selection-mode">none</property>
+                                    <style>
+                                      <class name="boxed-list" />
+                                    </style>
+                                  </object>
+                                </child>
                               </object>
                             </property>
                           </object>
