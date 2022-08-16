@@ -35,19 +35,13 @@ Your browser does not support the video tag.
 </div>
 
 
-## Start using Libadwaita widgets
+## Boxed lists
 
 Of course Libadwaita is more than just a couple of stylesheets and a [`StyleManager`](https://world.pages.gitlab.gnome.org/Rust/libadwaita-rs/stable/latest/docs/libadwaita/struct.StyleManager.html).
 But before we get to the interesting stuff, we will make our lives easier for the future by replacing all occurrences of `gtk::prelude` and `gtk::subclass::prelude` with [`adw::prelude`](https://world.pages.gitlab.gnome.org/Rust/libadwaita-rs/stable/latest/docs/libadwaita/prelude/index.html) and [`adw::subclass::prelude`](https://world.pages.gitlab.gnome.org/Rust/libadwaita-rs/stable/latest/docs/libadwaita/subclass/prelude/index.html).
 This works because the `adw` preludes, in addition to the Libadwaita-specific traits, re-export the corresponding `gtk` preludes.
 
-In the remainder of this chapter we are going to follow a couple of patterns of GNOME's HIG.
-Let's start by [adapting](https://developer.gnome.org/hig/patterns/containers/header-bars.html) the header bar.
-We do that by replacing [`gtk::ApplicationWindow`](../docs/gtk4/struct.ApplicationWindow.html) with [`adw::ApplicationWindow`](https://world.pages.gitlab.gnome.org/Rust/libadwaita-rs/stable/latest/docs/libadwaita/struct.ApplicationWindow.html).
-We also use [`adw::HeaderBar`](https://world.pages.gitlab.gnome.org/Rust/libadwaita-rs/stable/latest/docs/libadwaita/struct.HeaderBar.html) as the title bar.
-Finally, we add [tooltips](https://developer.gnome.org/hig/patterns/feedback/tooltips.html).
-
-The second pattern we are going to follow are [boxed lists](https://developer.gnome.org/hig/patterns/containers/boxed-lists.html).
+Now we are going let our tasks follow the [boxed lists pattern](https://developer.gnome.org/hig/patterns/containers/boxed-lists.html).
 The HIG does not require us to use this style and there's a good reason for that: it is incompatible with recycling lists.
 This means they cannot be used with [list views](https://developer.gnome.org/hig/patterns/containers/list-column-views.html) and are therefore only appropriate for relatively small lists.
 
@@ -58,86 +52,55 @@ We can use boxed lists by using [`gtk::ListBox`](../docs/gtk4/struct.ListBox.htm
 We will also add the [`boxed-list`](https://gnome.pages.gitlab.gnome.org/libadwaita/doc/main/boxed-lists.html) style class provided by Libadwaita.
 
 Let's implement all these changes in the `window.ui` file.
-You can find the relevant subset of the diff below.
-To see the complete file, just click on the link after "Filename:".
+All of the changes are confined within the second child of the `ApplicationWindow`.
+To see the complete file, just click on the link after "Filename".
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/6/resources/window.ui">listings/todo/6/resources/window.ui</a>
 
 
-```diff
--  <template class="TodoWindow" parent="GtkApplicationWindow">
-+  <template class="TodoWindow" parent="AdwApplicationWindow">
-     <property name="width-request">360</property>
-     <property name="title" translatable="yes">To-Do</property>
-+    <property name="content">
-       <object class="GtkBox">
-         <property name="orientation">vertical</property>
-+        <property name="hexpand">True</property>
-         <child>
-+          <object class="AdwHeaderBar">
-+            <child type="end">
-+              <object class="GtkMenuButton">
-+                <property name="icon-name">open-menu-symbolic</property>
-+                <property name="menu-model">main-menu</property>
-+              </object>
-+            </child>
-+          </object>
-         </child>
-         <child>
-           <object class="GtkScrolledWindow">
-             <property name="hscrollbar-policy">never</property>
-             <property name="min-content-height">420</property>
--            <child>
--              <object class="GtkListView" id="tasks_list" />
--            </child>
-+            <property name="child">
-+              <object class="GtkViewport">
-+                <property name="scroll-to-focus">True</property>
-+                <property name="child">
-+                  <object class="AdwClamp">
-+                    <property name="child">
-+                      <object class="GtkBox">
-+                        <property name="orientation">vertical</property>
-+                        <property name="spacing">18</property>
-+                        <property name="margin-top">24</property>
-+                        <property name="margin-bottom">24</property>
-+                        <property name="margin-start">12</property>
-+                        <property name="margin-end">12</property>
-+                        <child>
-+                          <object class="GtkEntry" id="entry">
-+                            <property name="placeholder-text" translatable="yes">Enter a Task…</property>
-+                            <property name="secondary-icon-name">list-add-symbolic</property>
-+                          </object>
-+                        </child>
-+                        <child>
-+                          <object class="GtkListBox" id="tasks_list">
-+                            <property name="visible">False</property>
-+                            <property name="selection-mode">none</property>
-+                            <style>
-+                              <class name="boxed-list" />
-+                            </style>
-+                          </object>
-+                        </child>
-+                      </object>
-+                    </property>
-+                  </object>
-+                </property>
-+              </object>
-+            </property>
-           </object>
-         </child>
-       </object>
-+    </property>
-   </template>
- </interface>
+```xml
+<child>
+  <object class="GtkScrolledWindow">
+    <property name="hscrollbar-policy">never</property>
+    <property name="min-content-height">420</property>
+    <property name="vexpand">True</property>
+    <property name="child">
+      <object class="AdwClamp">
+        <property name="child">
+          <object class="GtkBox">
+            <property name="orientation">vertical</property>
+            <property name="spacing">18</property>
+            <property name="margin-top">24</property>
+            <property name="margin-bottom">24</property>
+            <property name="margin-start">12</property>
+            <property name="margin-end">12</property>
+            <child>
+              <object class="GtkEntry" id="entry">
+                <property name="placeholder-text" translatable="yes">Enter a Task…</property>
+                <property name="secondary-icon-name">list-add-symbolic</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkListBox" id="tasks_list">
+                <property name="visible">False</property>
+                <property name="selection-mode">none</property>
+                <style>
+                  <class name="boxed-list" />
+                </style>
+              </object>
+            </child>
+          </object>
+        </property>
+      </object>
+    </property>
+  </object>
+</child>
 ```
 
-We've replaced the `gtk::ApplicationWindow` with `adw::ApplicationWindow` and added an `adw::HeaderBar` to it.
 In order to follow the boxed list pattern, we switched to [`gtk::ListBox`](../docs/gtk4/struct.ListBox.html), set its property "selection-mode" to "none" and added the `boxed-list` style class. 
 
 Let's continue with `window/imp.rs`.
 The member variable `tasks_list` now describes a `ListBox` rather than a `ListView`.
-We also need to change the `ParentType` from `gtk::ApplicationWindow` to `adw::ApplicationWindow`.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/6/window/imp.rs">listings/todo/6/window/imp.rs</a>
 
@@ -145,23 +108,9 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 {{#rustdoc_include ../listings/todo/6/window/imp.rs:window}}
 ```
 
-We don't override any function of `adw::ApplicationWindow`, but we still have to add the empty `impl`.
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/6/window/imp.rs">listings/todo/6/window/imp.rs</a>
-
-```rust,no_run,noplayground
-{{#rustdoc_include ../listings/todo/6/window/imp.rs:AdwApplicationWindowImpl}}
-```
 
 We now move on to `window/mod.rs`.
-First, we add `adw::ApplicationWindow` to our list of derived classes.
-
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/6/window/mod.rs">listings/todo/6/window/mod.rs</a>
-
-```rust,no_run,noplayground
-{{#rustdoc_include ../listings/todo/6/window/mod.rs:glib_wrapper}}
-```
-
 `ListBox` supports models just fine, but without any widget recycling we don't need factories anymore.
 `setup_factory` can therefore be safely deleted.
 To setup the `ListBox`, we call `bind_model` in `setup_tasks`.
@@ -200,6 +149,6 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 {{#rustdoc_include ../listings/todo/6/window/mod.rs:set_task_list_visible}}
 ```
 
-Here you can see how this version of the todo app compares to the last iteration.
+This is how the boxed list style looks like in our app.
 
-<div style="text-align:center"><img src="img/todo_change_5_6.png"/></div>
+<div style="text-align:center"><img src="img/todo_6.png"/></div>
