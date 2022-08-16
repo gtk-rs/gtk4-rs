@@ -1,4 +1,4 @@
-# Make To-Do App Follow GNOME's HIG
+# Let To-Do App use Libadwaita
 
 Within this chapter we will adapt our To-Do app so that it follows GNOME's [HIG](https://developer.gnome.org/hig/).
 Let's start by installing Libadwaita and adding the `libadwaita` crate to our dependencies as explained in the [previous chapter](libadwaita.html).

@@ -4,10 +4,10 @@ If you target a certain platform with your GUI, you will want to follow the plat
 With a GTK application, chances are the platform is either [elementary OS](https://elementary.io) or [GNOME](https://www.gnome.org/).
 In this chapter we will discuss how to follow GNOME's [HIG](https://developer.gnome.org/hig/) with [libadwaita](https://gnome.pages.gitlab.gnome.org/libadwaita/doc/1-latest/). 
 
-Libadwaita is a GTK 4 library which:
+Libadwaita is a library augmenting GTK 4 which:
 - provides widgets to better follow GNOME's HIG
-- provides widgets to let application [adapt their UI](https://gnome.pages.gitlab.gnome.org/libadwaita/doc/main/adaptive-layouts.html) between desktop and mobile devices
-- integrates the Adwaita stylesheet
+- provides widgets to let applications [change their layout ](https://gnome.pages.gitlab.gnome.org/libadwaita/doc/main/adaptive-layouts.html) based on the available space
+- integrates the Adwaita [stylesheet](https://gnome.pages.gitlab.gnome.org/libadwaita/doc/main/styles-and-appearance.html)
 - allows runtime recoloring with [named colors](https://gnome.pages.gitlab.gnome.org/libadwaita/doc/main/named-colors.html)
 - adds [API](https://world.pages.gitlab.gnome.org/Rust/libadwaita-rs/stable/latest/docs/libadwaita/struct.StyleManager.html) to support the cross-desktop dark style preference
 
