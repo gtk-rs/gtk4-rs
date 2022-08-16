@@ -33,7 +33,7 @@ impl ObjectSubclass for Window {
     // `NAME` needs to match `class` attribute of template
     const NAME: &'static str = "TodoWindow";
     type Type = super::Window;
-    type ParentType = adw::ApplicationWindow;
+    type ParentType = gtk::ApplicationWindow;
 
     fn class_init(klass: &mut Self::Class) {
         klass.bind_template();
@@ -87,8 +87,3 @@ impl WindowImpl for Window {
 
 // Trait shared by all application windows
 impl ApplicationWindowImpl for Window {}
-
-// ANCHOR: AdwApplicationWindowImpl
-// Trait shared by all adwaita application windows
-impl AdwApplicationWindowImpl for Window {}
-// ANCHOR_END: AdwApplicationWindowImpl
