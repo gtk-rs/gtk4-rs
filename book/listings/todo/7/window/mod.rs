@@ -249,14 +249,6 @@ impl Window {
             }),
         );
 
-        // Setup callback change of the collections
-        self.set_stack();
-        self.collections().connect_items_changed(
-            clone!(@weak self as window => move |_, _, _, _| {
-                window.set_stack();
-            }),
-        );
-
         // Setup callback for activating a row of collections list
         self.imp().collections_list.connect_row_activated(
             clone!(@weak self as window => move |_, row| {
@@ -287,14 +279,6 @@ impl Window {
                 window.imp().leaflet.navigate(NavigationDirection::Back);
             }),
         );
-    }
-
-    fn set_stack(&self) {
-        if self.collections().n_items() > 0 {
-            self.imp().stack.set_visible_child_name("main");
-        } else {
-            self.imp().stack.set_visible_child_name("empty");
-        }
     }
 
     fn new_task(&self) {
