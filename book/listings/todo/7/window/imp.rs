@@ -8,7 +8,7 @@ use gio::Settings;
 use glib::signal::Inhibit;
 use glib::subclass::InitializingObject;
 use gtk::glib::SignalHandlerId;
-use gtk::{gio, glib, Button, CompositeTemplate, Entry, ListBox, Stack};
+use gtk::{gio, glib, Button, CompositeTemplate, Entry, ListBox};
 use once_cell::sync::OnceCell;
 
 use crate::collection_object::{CollectionData, CollectionObject};
@@ -26,8 +26,6 @@ pub struct Window {
     pub collections_list: TemplateChild<ListBox>,
     #[template_child]
     pub leaflet: TemplateChild<Leaflet>,
-    #[template_child]
-    pub stack: TemplateChild<Stack>,
     #[template_child]
     pub back_button: TemplateChild<Button>,
     pub collections: OnceCell<gio::ListStore>,
