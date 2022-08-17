@@ -273,6 +273,10 @@ path = "todo/6/main.rs"
 name = "todo_7"
 path = "todo/7/main.rs"
 
+[[bin]]
+name = "todo_8"
+path = "todo/8/main.rs"
+
 # xtask
 [[bin]]
 name = "xtask"
