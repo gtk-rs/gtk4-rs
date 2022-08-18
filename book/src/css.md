@@ -218,7 +218,7 @@ Indeed, we get a `MenuButton` with a magenta arrow.
 <div style="text-align:center"><img src="img/css_8.png"/></div>
 
 
-## Exported Colors
+## Set CSS Name and Use Exported Colors 
 
 Now that we know how to use CSS, it is time to update our To-Do app.
 Before, the individual tasks were a bit hard to distinguish.
@@ -228,7 +228,7 @@ Let's add that!
 The class `TaskRow` inherits from `gtk::Box`, so we could just match for the node `box`.
 However, if we create a custom widget we might as well give it its own CSS name.
 Keep in mind, that this is not the same as when we gave a specific instance of a widget a name.
-When calling [`set_css_name` ](../docs/gtk4/subclass/widget/trait.WidgetClassSubclassExt.html#method.set_css_name), we change the name of the CSS node of a widget.
+When calling [`set_css_name` ](../docs/gtk4/subclass/widget/trait.WidgetClassSubclassExt.html#method.set_css_name), we change the name of the CSS node of the widget class.
 In our case, the widget `TaskRow` now corresponds to the node `todo-row`.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/3/task_row/imp.rs">listings/todo/3/task_row/imp.rs</a>
@@ -250,20 +250,25 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 {{#rustdoc_include ../listings/todo/3/resources/style.css}}
 ```
 
-Now our tasks have borders around them, and we are one step further in finishing our To-Do app.
+<div style="text-align:center"><img src="img/todo_3.png"/></div>
 
-<div style="text-align:center"><img src="img/todo_change_3_4.png"/></div>
+## Adapt Todo App
 
-This was also an excellent opportunity to show how to set the CSS name of custom widget and how to access exported colors.
-In the end, we find that GTK provides a style rule to add borders to a node.
-This seems nicer, so we will use that instead.
-We match the style rule by adding the style class `frame` to our `TaskRow`.
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/4/resources/task_row.ui">listings/todo/4/resources/task_row.ui</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/4/resources/task_row.ui">listings/todo/4/resources/window.ui</a>
 
 ```xml
-{{#rustdoc_include ../listings/todo/4/resources/task_row.ui}}
+<object class="GtkListView" id="tasks_list">
+  <property name="valign">start</property>
+  <style>
+    <class name="frame"/>
+    <class name="separators"/>
+  </style>
+</object>
 ```
+
+<div style="text-align:center"><img src="img/todo_4.png"/></div>
+
 
 ## Conclusion
 
