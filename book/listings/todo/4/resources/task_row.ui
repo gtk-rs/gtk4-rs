@@ -17,8 +17,5 @@
         <property name="margin-end">12</property>
       </object>
     </child>
-    <style>
-      <class name="frame"/>
-    </style>
   </template>
 </interface>
