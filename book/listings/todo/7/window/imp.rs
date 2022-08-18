@@ -1,19 +1,20 @@
 use std::cell::RefCell;
 use std::fs::File;
 
-use adw::prelude::*;
 use adw::subclass::prelude::*;
-use adw::Leaflet;
+
 use gio::Settings;
 use glib::signal::Inhibit;
 use glib::subclass::InitializingObject;
-use gtk::glib::SignalHandlerId;
-use gtk::{gio, glib, Button, CompositeTemplate, Entry, ListBox};
+
+use adw::prelude::*;
+use gtk::{gio, glib, CompositeTemplate, Entry, ListBox};
 use once_cell::sync::OnceCell;
 
-use crate::collection_object::{CollectionData, CollectionObject};
+use crate::task_object::{TaskData, TaskObject};
 use crate::utils::data_path;
 
+// ANCHOR: window
 // Object holding the state
 #[derive(CompositeTemplate, Default)]
 #[template(resource = "/org/gtk_rs/Todo7/window.ui")]
@@ -22,15 +23,7 @@ pub struct Window {
     pub entry: TemplateChild<Entry>,
     #[template_child]
     pub tasks_list: TemplateChild<ListBox>,
-    #[template_child]
-    pub collections_list: TemplateChild<ListBox>,
-    #[template_child]
-    pub leaflet: TemplateChild<Leaflet>,
-    #[template_child]
-    pub back_button: TemplateChild<Button>,
-    pub collections: OnceCell<gio::ListStore>,
-    pub current_collection: RefCell<Option<CollectionObject>>,
-    pub tasks_changed_handler_id: RefCell<Option<SignalHandlerId>>,
+    pub tasks: RefCell<Option<gio::ListStore>>,
     pub settings: OnceCell<Settings>,
 }
 
@@ -50,6 +43,7 @@ impl ObjectSubclass for Window {
         obj.init_template();
     }
 }
+// ANCHOR_END: window
 
 // Trait shared by all GObjects
 impl ObjectImpl for Window {
@@ -59,7 +53,7 @@ impl ObjectImpl for Window {
 
         // Setup
         obj.setup_settings();
-        obj.setup_collections();
+        obj.setup_tasks();
         obj.restore_data();
         obj.setup_callbacks();
         obj.setup_actions();
@@ -73,12 +67,12 @@ impl WidgetImpl for Window {}
 impl WindowImpl for Window {
     fn close_request(&self, window: &Self::Type) -> Inhibit {
         // Store task data in vector
-        let backup_data: Vec<CollectionData> = window
-            .collections()
+        let backup_data: Vec<TaskData> = window
+            .tasks()
             .snapshot()
             .iter()
-            .filter_map(Cast::downcast_ref::<CollectionObject>)
-            .map(CollectionObject::collection_data)
+            .filter_map(Cast::downcast_ref::<TaskObject>)
+            .map(TaskObject::task_data)
             .collect();
 
         // Save state in file

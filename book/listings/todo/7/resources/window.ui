@@ -44,13 +44,6 @@
                 <binding name="show-end-title-buttons">
                   <lookup name="folded">leaflet</lookup>
                 </binding>
-                <child type="start">
-                  <object class="GtkToggleButton">
-                    <property name="icon-name">list-add-symbolic</property>
-                    <property name="tooltip-text" translatable="yes">New Collection</property>
-                    <property name="action-name">win.new-collection</property>
-                  </object>
-                </child>
               </object>
             </child>
             <child>
