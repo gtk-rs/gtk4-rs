@@ -220,7 +220,7 @@ Indeed, we get a `MenuButton` with a magenta arrow.
 
 ## Set CSS Name and Use Exported Colors 
 
-Now that we know how to use CSS, it is time to update our To-Do app.
+It is time to mess a bit with our To-Do app and learn a couple of more concepts on the way.
 Before, the individual tasks were a bit hard to distinguish.
 It would be nice if the todo rows would be surrounded by borders.
 Let's add that!
