@@ -220,16 +220,15 @@ Indeed, we get a `MenuButton` with a magenta arrow.
 
 ## Set CSS Name and Use Exported Colors 
 
-It is time to mess a bit with our To-Do app and learn a couple of more concepts on the way.
-Before, the individual tasks were a bit hard to distinguish.
-It would be nice if the todo rows would be surrounded by borders.
-Let's add that!
+We already learned how to give an instance of a widget a name with pseudo-classes.
+But what if we have a custom widget and we want to reference all instances of it?
+Let's see how to deal with this situation by messing with our To-Do app once more.
 
 The class `TaskRow` inherits from `gtk::Box`, so we could just match for the node `box`.
-However, if we create a custom widget we might as well give it its own CSS name.
-Keep in mind, that this is not the same as when we gave a specific instance of a widget a name.
+However, in that case we would also match with other instance of `gtk::Box`.
+What we will want to do instead is to give `TaskRow` its own CSS name.
 When calling [`set_css_name` ](../docs/gtk4/subclass/widget/trait.WidgetClassSubclassExt.html#method.set_css_name), we change the name of the CSS node of the widget class.
-In our case, the widget `TaskRow` now corresponds to the node `todo-row`.
+In our case, the widget `TaskRow` then corresponds to the node `task-row`.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/3/task_row/imp.rs">listings/todo/3/task_row/imp.rs</a>
 
@@ -237,12 +236,10 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 {{#rustdoc_include ../listings/todo/3/task_row/imp.rs:object_subclass}}
 ```
 
-Now we have to decide which color to use for the borders.
-Luckily, the stylesheet that GTK uses provides pre-defined colors for various use-cases.
-As of this writing, the exported colors of the default stylesheet can only be found in its [source code](https://gitlab.gnome.org/GNOME/gtk/-/blob/b2c227e9c57839a2a4e24462a71ae0bad9a95264/gtk/theme/Default/_colors-public.scss).
+What to do with the new node name now?
+Let's change the background color once more but this time with a twist.
+We are going to use the named color `success_color`.
 
-There we find the color `borders`, which should be used for the widget's border color.
-We can then access the pre-defined color by adding an `@` in front of its name.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/3/resources/style.css">listings/todo/3/resources/style.css</a>
 
@@ -250,10 +247,21 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 {{#rustdoc_include ../listings/todo/3/resources/style.css}}
 ```
 
+The `Default` stylesheet of GTK provides pre-defined colors for various use-cases.
+As of this writing, these exported colors can only be found in its [source code](https://gitlab.gnome.org/GNOME/gtk/-/blob/b2c227e9c57839a2a4e24462a71ae0bad9a95264/gtk/theme/Default/_colors-public.scss).
+
+There we find the color `success_color`, which in real scenarios should be used to indicate success.
+We can then access the pre-defined color by adding an `@` in front of its name.
+And that is how the task rows look like after the change.
+Probably better to revert this immediately again.
+
 <div style="text-align:center"><img src="img/todo_3.png"/></div>
 
 ## Adapt Todo App
 
+Luckily, finding an actual use for CSS in our To-Do app isn't too hard.
+Until now the different tasks weren't nicely separated.
+We can change that by adding the `frame` and the `separators` style class to our `tasks_list`.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/4/resources/task_row.ui">listings/todo/4/resources/window.ui</a>
 
