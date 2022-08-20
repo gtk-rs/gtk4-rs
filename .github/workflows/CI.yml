@@ -1,7 +1,26 @@
 on:
   push:
-    branches: [master]
+    branches:
+      - "master"
+    paths:
+      - ".github/workflows/CI.yml"
+      - "examples/**"
+      - "gdk4/**"
+      - "gdk4-wayland/**"
+      - "gdk4-x11/**"
+      - "gsk4/**"
+      - "gtk4/**"
+      - "gtk4-macros/**"
   pull_request:
+    paths:
+      - ".github/workflows/CI.yml"
+      - "examples/**"
+      - "gdk4/**"
+      - "gdk4-wayland/**"
+      - "gdk4-x11/**"
+      - "gsk4/**"
+      - "gtk4/**"
+      - "gtk4-macros/**"
   workflow_dispatch:
 
 name: CI
