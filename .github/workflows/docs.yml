@@ -3,7 +3,25 @@ name: docs
 on:
   push:
     branches: [master]
+    paths:
+      - ".github/workflows/docs.yml"
+      - "gdk4/**"
+      - "gdk4-wayland/**"
+      - "gdk4-x11/**"
+      - "gsk4/**"
+      - "gtk4/**"
+      - "gtk4-macros/**"
+      - "**/README.md"
   pull_request:
+    paths:
+      - ".github/workflows/docs.yml"
+      - "gdk4/**"
+      - "gdk4-wayland/**"
+      - "gdk4-x11/**"
+      - "gsk4/**"
+      - "gtk4/**"
+      - "gtk4-macros/**"
+      - "**/README.md"
   workflow_dispatch:
   release:
     types: [published]
