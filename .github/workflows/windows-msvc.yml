@@ -3,7 +3,19 @@ name: Windows MSVC
 on:
   push:
     branches: [master]
+    paths:
+      - ".github/workflows/windows-msvc.yml"
+      - "gdk4/**"
+      - "gsk4/**"
+      - "gtk4/**"
+      - "gtk4-macros/**"
   pull_request:
+    paths:
+      - ".github/workflows/windows-msvc.yml"
+      - "gdk4/**"
+      - "gsk4/**"
+      - "gtk4/**"
+      - "gtk4-macros/**"
   workflow_dispatch:
 
 jobs:
