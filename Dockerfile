@@ -1,8 +1,11 @@
 FROM fedora:latest
 
 RUN dnf update -y
-RUN dnf install git xorg-x11-server-Xvfb procps-ng wget libjpeg-turbo-devel expat-devel 'dnf-command(builddep)' -y
+RUN dnf install git xorg-x11-server-Xvfb procps-ng wget libjpeg-turbo-devel expat-devel mold 'dnf-command(builddep)' -y
 RUN dnf builddep gtk4 -y
+
+# setup mold as default linker
+RUN ln -sf $(which mold) $(realpath /usr/bin/ld)
 
 # build gtk4
 RUN git clone https://gitlab.gnome.org/gnome/gtk.git --depth=1
