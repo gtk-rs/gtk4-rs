@@ -14,11 +14,11 @@ For example, if you want to run the example in subfolder "basics", execute:
 cargo run --bin basics
 ```
 
-
 - [Basic example](./basics/)
 - [Using the Builder pattern](./builder_pattern/)
 - [Clipboard](./clipboard/)
 - [Clock example](./clock/)
+- [Column View Datagrid Example](./column_view_datagrid/)
 - [Composite Template](./composite_template/)
 - [Content Provider](./content_provider/)
 - [CSS](./css/)
