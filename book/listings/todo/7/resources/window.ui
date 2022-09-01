@@ -44,6 +44,13 @@
                 <binding name="show-end-title-buttons">
                   <lookup name="folded">leaflet</lookup>
                 </binding>
+                <child type="start">
+                  <object class="GtkToggleButton">
+                    <property name="icon-name">list-add-symbolic</property>
+                    <property name="tooltip-text" translatable="yes">New Collection</property>
+                    <property name="action-name">win.new-collection</property>
+                  </object>
+                </child>
               </object>
             </child>
             <child>
@@ -100,8 +107,6 @@
             </child>
             <child>
               <object class="GtkScrolledWindow">
-                <property name="hscrollbar-policy">never</property>
-                <property name="min-content-height">420</property>
                 <property name="vexpand">True</property>
                 <property name="child">
                   <object class="AdwClamp">
@@ -121,7 +126,6 @@
                         </child>
                         <child>
                           <object class="GtkListBox" id="tasks_list">
-                            <property name="valign">start</property>
                             <property name="visible">False</property>
                             <property name="selection-mode">none</property>
                             <style>

@@ -14,7 +14,6 @@ use once_cell::sync::OnceCell;
 use crate::task_object::{TaskData, TaskObject};
 use crate::utils::data_path;
 
-// ANCHOR: window
 // Object holding the state
 #[derive(CompositeTemplate, Default)]
 #[template(resource = "/org/gtk_rs/Todo7/window.ui")]
@@ -27,6 +26,7 @@ pub struct Window {
     pub settings: OnceCell<Settings>,
 }
 
+// ANCHOR: object_subclass
 // The central trait for subclassing a GObject
 #[glib::object_subclass]
 impl ObjectSubclass for Window {
@@ -43,7 +43,7 @@ impl ObjectSubclass for Window {
         obj.init_template();
     }
 }
-// ANCHOR_END: window
+// ANCHOR_END: object_subclass
 
 // Trait shared by all GObjects
 impl ObjectImpl for Window {
@@ -88,5 +88,7 @@ impl WindowImpl for Window {
 // Trait shared by all application windows
 impl ApplicationWindowImpl for Window {}
 
+// ANCHOR: adw_application_window_impl
 // Trait shared by all adwaita application windows
 impl AdwApplicationWindowImpl for Window {}
+// ANCHOR_END: adw_application_window_impl
