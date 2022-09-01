@@ -13,12 +13,14 @@ use crate::task_object::{TaskData, TaskObject};
 use crate::utils::data_path;
 use crate::APP_ID;
 
+// ANCHOR: glib_wrapper
 glib::wrapper! {
     pub struct Window(ObjectSubclass<imp::Window>)
         @extends adw::ApplicationWindow, gtk::ApplicationWindow, gtk::Window, gtk::Widget,
         @implements gio::ActionGroup, gio::ActionMap, gtk::Accessible, gtk::Buildable,
                     gtk::ConstraintTarget, gtk::Native, gtk::Root, gtk::ShortcutManager;
 }
+// ANCHOR_END: glib_wrapper
 
 impl Window {
     pub fn new(app: &adw::Application) -> Self {
