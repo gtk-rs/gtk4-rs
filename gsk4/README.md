@@ -10,7 +10,7 @@ Vulkan implementation.
 
 ## Minimum supported Rust version
 
-Currently, the minimum supported Rust version is `1.57.0`.
+Currently, the minimum supported Rust version is `1.63.0`.
 
 ## Documentation
 
