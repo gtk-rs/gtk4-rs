@@ -75,7 +75,7 @@ fn check_template_fields(source: &TemplateSource, fields: &[AttributedField]) {
             if name == b"object" || name == b"template" {
                 let id = e
                     .attributes()
-                    .find_map(|a| a.ok().and_then(|a| (a.key == b"id").then(|| a)));
+                    .find_map(|a| a.ok().and_then(|a| (a.key == b"id").then_some(a)));
                 let id = id.as_ref().and_then(|a| std::str::from_utf8(&a.value).ok());
                 if let Some(id) = id {
                     ids_left.remove(id);
