@@ -42,14 +42,15 @@ jobs:
       - uses: actions/checkout@v2
         with:
           submodules: "recursive"
+          set-safe-directory: true
       - uses: actions-rs/toolchain@v1
         with:
           profile: minimal
           toolchain: nightly
           override: true
           components: rustfmt
-      - working-directory: gir
-        run: cargo build --release
+      - run: git config --global --add safe.directory /__w/gtk4-rs/gtk4-rs
+      - run: git submodule update --checkout
       - run: cargo install rustdoc-stripper
       - run: git clone https://gitlab.gnome.org/World/Rust/gir-rustdoc/ # checkout action doesn't support random urls
       - run: python3 ./generator.py --embed-docs --yes ./
