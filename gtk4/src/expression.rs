@@ -126,7 +126,7 @@ impl Expression {
     where
         R: glib::value::ValueType,
     {
-        crate::ClosureExpression::new::<R, _, _>(&[self], closure)
+        crate::ClosureExpression::new::<R>(&[self], closure)
     }
 
     // rustdoc-stripper-ignore-next
