@@ -24,21 +24,12 @@ impl ObjectImpl for RotationBin {
     fn properties() -> &'static [glib::ParamSpec] {
         static PROPERTIES: Lazy<Vec<glib::ParamSpec>> = Lazy::new(|| {
             vec![
-                glib::ParamSpecObject::new(
-                    "child",
-                    "Child",
-                    "The child of the widget",
-                    gtk::Widget::static_type(),
-                    glib::ParamFlags::READWRITE | glib::ParamFlags::EXPLICIT_NOTIFY,
-                ),
-                glib::ParamSpecEnum::new(
-                    "rotation",
-                    "Rotation",
-                    "The Rotation of the widget",
-                    Rotation::static_type(),
-                    Rotation::default() as i32,
-                    glib::ParamFlags::READWRITE | glib::ParamFlags::EXPLICIT_NOTIFY,
-                ),
+                glib::ParamSpecObject::builder::<gtk::Widget>("child")
+                    .explicit_notify()
+                    .build(),
+                glib::ParamSpecEnum::builder::<Rotation>("rotation", Rotation::default())
+                    .explicit_notify()
+                    .build(),
             ]
         });
 

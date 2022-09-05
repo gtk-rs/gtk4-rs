@@ -1,6 +1,5 @@
 use std::cell::RefCell;
 
-use glib::translate::IntoGlib;
 use gtk::glib;
 use gtk::prelude::*;
 use gtk::subclass::prelude::*;
@@ -75,14 +74,12 @@ impl ObjectImpl for CustomOrientable {
     fn properties() -> &'static [glib::ParamSpec] {
         use once_cell::sync::Lazy;
         static PROPERTIES: Lazy<Vec<glib::ParamSpec>> = Lazy::new(|| {
-            vec![glib::ParamSpecEnum::new(
+            vec![glib::ParamSpecEnum::builder::<gtk::Orientation>(
                 "orientation",
-                "orientation",
-                "Orientation",
-                gtk::Orientation::static_type(),
-                gtk::Orientation::Horizontal.into_glib(),
-                glib::ParamFlags::READWRITE | glib::ParamFlags::CONSTRUCT,
-            )]
+                gtk::Orientation::Horizontal,
+            )
+            .construct()
+            .build()]
         });
         PROPERTIES.as_ref()
     }

@@ -41,20 +41,8 @@ impl ObjectImpl for CustomTag {
     fn properties() -> &'static [ParamSpec] {
         static PROPERTIES: Lazy<Vec<ParamSpec>> = Lazy::new(|| {
             vec![
-                ParamSpecString::new(
-                    "label",
-                    "Label",
-                    "Label",
-                    Some(""),
-                    glib::ParamFlags::READWRITE,
-                ),
-                ParamSpecBoolean::new(
-                    "has-close-button",
-                    "Has close button",
-                    "Whether this tag has a close button",
-                    false,
-                    glib::ParamFlags::READWRITE,
-                ),
+                ParamSpecString::builder("label").build(),
+                ParamSpecBoolean::builder("has-close-button").build(),
             ]
         });
         PROPERTIES.as_ref()
