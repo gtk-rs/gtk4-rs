@@ -8,11 +8,12 @@ define_expression!(ClosureExpression, ffi::GtkClosureExpression);
 
 impl ClosureExpression {
     #[doc(alias = "gtk_closure_expression_new")]
-    pub fn new<R, I, E>(params: I, closure: glib::RustClosure) -> Self
+    pub fn new<R>(
+        params: impl IntoIterator<Item = impl AsRef<Expression>>,
+        closure: glib::RustClosure,
+    ) -> Self
     where
         R: ValueType,
-        I: IntoIterator<Item = E>,
-        E: AsRef<Expression>,
     {
         assert_initialized_main_thread!();
 
@@ -32,11 +33,12 @@ impl ClosureExpression {
     }
 
     #[doc(alias = "gtk_closure_expression_new")]
-    pub fn with_callback<R, F, I, E>(params: I, callback: F) -> Self
+    pub fn with_callback<R, F>(
+        params: impl IntoIterator<Item = impl AsRef<Expression>>,
+        callback: F,
+    ) -> Self
     where
         F: Fn(&[Value]) -> R + 'static,
-        I: IntoIterator<Item = E>,
-        E: AsRef<Expression>,
         R: ValueType,
     {
         assert_initialized_main_thread!();
