@@ -25,13 +25,9 @@ impl ObjectImpl for ListBoxRow {
     fn properties() -> &'static [ParamSpec] {
         use once_cell::sync::Lazy;
         static PROPERTIES: Lazy<Vec<ParamSpec>> = Lazy::new(|| {
-            vec![ParamSpecObject::new(
-                "row-data",
-                "Row Data",
-                "Row Data",
-                RowData::static_type(),
-                glib::ParamFlags::READWRITE | glib::ParamFlags::CONSTRUCT_ONLY,
-            )]
+            vec![ParamSpecObject::builder::<RowData>("row-data")
+                .construct_only()
+                .build()]
         });
         PROPERTIES.as_ref()
     }

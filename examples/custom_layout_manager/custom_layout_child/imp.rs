@@ -28,13 +28,9 @@ impl ObjectSubclass for CustomLayoutChild {
 impl ObjectImpl for CustomLayoutChild {
     fn properties() -> &'static [ParamSpec] {
         static PROPERTIES: Lazy<Vec<ParamSpec>> = Lazy::new(|| {
-            vec![glib::ParamSpecBoxed::new(
-                "color",
-                "color",
-                "Background color",
-                gdk::RGBA::static_type(),
-                glib::ParamFlags::CONSTRUCT_ONLY | glib::ParamFlags::READWRITE,
-            )]
+            vec![glib::ParamSpecBoxed::builder::<gdk::RGBA>("color")
+                .construct_only()
+                .build()]
         });
         PROPERTIES.as_ref()
     }

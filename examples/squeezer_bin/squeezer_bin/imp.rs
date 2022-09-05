@@ -35,20 +35,12 @@ impl ObjectImpl for SqueezerBin {
     fn properties() -> &'static [glib::ParamSpec] {
         static PROPERTIES: Lazy<Vec<glib::ParamSpec>> = Lazy::new(|| {
             vec![
-                glib::ParamSpecObject::new(
-                    "child",
-                    "Child",
-                    "The child of the widget",
-                    gtk::Widget::static_type(),
-                    glib::ParamFlags::READWRITE | glib::ParamFlags::EXPLICIT_NOTIFY,
-                ),
-                glib::ParamSpecBoolean::new(
-                    "keep-aspect-ratio",
-                    "Keep aspect ratio",
-                    "If true it keeps the aspect ratio of the widget",
-                    false,
-                    glib::ParamFlags::READWRITE | glib::ParamFlags::EXPLICIT_NOTIFY,
-                ),
+                glib::ParamSpecObject::builder::<gtk::Widget>("child")
+                    .explicit_notify()
+                    .build(),
+                glib::ParamSpecBoolean::builder("keep-aspect-ratio")
+                    .explicit_notify()
+                    .build(),
             ]
         });
 

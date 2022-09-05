@@ -38,15 +38,8 @@ impl ObjectSubclass for CustomEditable {
 
 impl ObjectImpl for CustomEditable {
     fn properties() -> &'static [ParamSpec] {
-        static PROPERTIES: Lazy<Vec<ParamSpec>> = Lazy::new(|| {
-            vec![ParamSpecBoolean::new(
-                "show-spinner",
-                "Spinner shown",
-                "Whether the editable has a visible spinner",
-                false,
-                glib::ParamFlags::READWRITE,
-            )]
-        });
+        static PROPERTIES: Lazy<Vec<ParamSpec>> =
+            Lazy::new(|| vec![ParamSpecBoolean::builder("show-spinner").build()]);
         PROPERTIES.as_ref()
     }
 

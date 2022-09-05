@@ -30,20 +30,8 @@ impl ObjectImpl for Metadata {
         use once_cell::sync::Lazy;
         static PROPERTIES: Lazy<Vec<glib::ParamSpec>> = Lazy::new(|| {
             vec![
-                glib::ParamSpecString::new(
-                    "title",
-                    "Title",
-                    "Title of the note",
-                    None,
-                    glib::ParamFlags::READWRITE,
-                ),
-                glib::ParamSpecBoxed::new(
-                    "last-modified",
-                    "Last Modified",
-                    "Last modified datetime of the note",
-                    glib::DateTime::static_type(),
-                    glib::ParamFlags::READWRITE,
-                ),
+                glib::ParamSpecString::builder("title").build(),
+                glib::ParamSpecBoxed::builder::<glib::DateTime>("last-modified").build(),
             ]
         });
 
