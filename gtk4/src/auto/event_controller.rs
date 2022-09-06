@@ -72,6 +72,11 @@ pub trait EventControllerExt: 'static {
     #[doc(alias = "gtk_event_controller_set_propagation_phase")]
     fn set_propagation_phase(&self, phase: PropagationPhase);
 
+    #[cfg(any(feature = "v4_8", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+    #[doc(alias = "gtk_event_controller_set_static_name")]
+    fn set_static_name(&self, name: Option<&str>);
+
     #[doc(alias = "name")]
     fn connect_name_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
@@ -175,6 +180,17 @@ impl<O: IsA<EventController>> EventControllerExt for O {
             ffi::gtk_event_controller_set_propagation_phase(
                 self.as_ref().to_glib_none().0,
                 phase.into_glib(),
+            );
+        }
+    }
+
+    #[cfg(any(feature = "v4_8", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+    fn set_static_name(&self, name: Option<&str>) {
+        unsafe {
+            ffi::gtk_event_controller_set_static_name(
+                self.as_ref().to_glib_none().0,
+                name.to_glib_none().0,
             );
         }
     }

@@ -29,7 +29,7 @@ impl RoundedClipNode {
     pub fn new(child: impl AsRef<RenderNode>, clip: &RoundedRect) -> RoundedClipNode {
         skip_assert_initialized!();
         unsafe {
-            from_glib_none(ffi::gsk_rounded_clip_node_new(
+            from_glib_full(ffi::gsk_rounded_clip_node_new(
                 child.as_ref().to_glib_none().0,
                 clip.to_glib_none().0,
             ))
