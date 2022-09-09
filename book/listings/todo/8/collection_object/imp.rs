@@ -7,6 +7,7 @@ use gtk::glib::ParamSpecObject;
 use gtk::{gio, glib};
 use once_cell::sync::{Lazy, OnceCell};
 
+// ANCHOR: collection_object
 // Object holding the state
 #[derive(Default)]
 pub struct CollectionObject {
@@ -20,6 +21,7 @@ impl ObjectSubclass for CollectionObject {
     const NAME: &'static str = "TodoCollectionObject";
     type Type = super::CollectionObject;
 }
+// ANCHOR_END: collection_object
 
 // Trait shared by all GObjects
 impl ObjectImpl for CollectionObject {
