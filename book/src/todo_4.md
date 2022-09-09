@@ -255,3 +255,10 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
   </child>
 </object>
 ```
+
+
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/8/collection_object/imp.rs">listings/todo/8/collection_object/imp.rs</a>
+
+```rust,no_run,noplayground
+{{#rustdoc_include ../listings/todo/8/collection_object/imp.rs:collection_object}}
+```

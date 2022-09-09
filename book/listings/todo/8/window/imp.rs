@@ -18,10 +18,12 @@ use crate::utils::data_path;
 #[derive(CompositeTemplate, Default)]
 #[template(resource = "/org/gtk_rs/Todo8/window.ui")]
 pub struct Window {
+    pub settings: OnceCell<Settings>,
     #[template_child]
     pub entry: TemplateChild<Entry>,
     #[template_child]
     pub tasks_list: TemplateChild<ListBox>,
+    // 👇 all members below are new
     #[template_child]
     pub collections_list: TemplateChild<ListBox>,
     #[template_child]
@@ -33,7 +35,6 @@ pub struct Window {
     pub collections: OnceCell<gio::ListStore>,
     pub current_collection: RefCell<Option<CollectionObject>>,
     pub tasks_changed_handler_id: RefCell<Option<SignalHandlerId>>,
-    pub settings: OnceCell<Settings>,
 }
 
 // The central trait for subclassing a GObject
