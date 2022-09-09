@@ -14,6 +14,7 @@ use once_cell::sync::OnceCell;
 use crate::collection_object::{CollectionData, CollectionObject};
 use crate::utils::data_path;
 
+// ANCHOR: struct
 // Object holding the state
 #[derive(CompositeTemplate, Default)]
 #[template(resource = "/org/gtk_rs/Todo8/window.ui")]
@@ -36,6 +37,7 @@ pub struct Window {
     pub current_collection: RefCell<Option<CollectionObject>>,
     pub tasks_changed_handler_id: RefCell<Option<SignalHandlerId>>,
 }
+// ANCHOR_END: struct
 
 // The central trait for subclassing a GObject
 #[glib::object_subclass]
@@ -54,6 +56,7 @@ impl ObjectSubclass for Window {
     }
 }
 
+// ANCHOR: object_impl
 // Trait shared by all GObjects
 impl ObjectImpl for Window {
     fn constructed(&self, obj: &Self::Type) {
@@ -68,10 +71,12 @@ impl ObjectImpl for Window {
         obj.setup_actions();
     }
 }
+// ANCHOR_END: object_impl
 
 // Trait shared by all widgets
 impl WidgetImpl for Window {}
 
+// ANCHOR: window_impl
 // Trait shared by all windows
 impl WindowImpl for Window {
     fn close_request(&self, window: &Self::Type) -> Inhibit {
@@ -93,6 +98,7 @@ impl WindowImpl for Window {
         self.parent_close_request(window)
     }
 }
+// ANCHOR_END: window_impl
 
 // Trait shared by all application windows
 impl ApplicationWindowImpl for Window {}

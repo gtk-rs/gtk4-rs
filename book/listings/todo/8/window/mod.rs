@@ -43,16 +43,17 @@ impl Window {
         self.imp().settings.get().expect("Could not get settings.")
     }
 
+    // ANCHOR: helper
+    fn tasks(&self) -> gio::ListStore {
+        self.current_collection().tasks()
+    }
+
     fn current_collection(&self) -> CollectionObject {
         self.imp()
             .current_collection
             .borrow()
             .clone()
             .expect("Could not get current collection.")
-    }
-
-    fn tasks(&self) -> gio::ListStore {
-        self.current_collection().tasks()
     }
 
     fn collections(&self) -> gio::ListStore {
@@ -62,6 +63,7 @@ impl Window {
             .expect("Could not get collection.")
             .clone()
     }
+    // ANCHOR_END: helper
 
     fn filter(&self) -> Option<CustomFilter> {
         // Get filter state from settings
@@ -96,6 +98,7 @@ impl Window {
         }
     }
 
+    // ANCHOR: setup_collections
     fn setup_collections(&self) {
         let collections = gio::ListStore::new(CollectionObject::static_type());
         self.imp()
@@ -111,7 +114,9 @@ impl Window {
                 row.upcast()
             }))
     }
+    // ANCHOR_END: setup_collections
 
+    // ANCHOR: restore_data
     fn restore_data(&self) {
         if let Ok(file) = File::open(data_path()) {
             // Deserialize data from file to vector
@@ -133,7 +138,9 @@ impl Window {
             }
         }
     }
+    // ANCHOR_END: restore_data
 
+    // ANCHOR: create_collection_row
     fn create_collection_row(
         &self,
         collection_object: &CollectionObject,
@@ -150,7 +157,9 @@ impl Window {
 
         ListBoxRow::builder().child(&label).build()
     }
+    // ANCHOR_END: create_collection_row
 
+    // ANCHOR: set_current_collection
     fn set_current_collection(&self, collection: CollectionObject) {
         // Wrap model with filter and selection and pass it to the list box
         let tasks = collection.tasks();
@@ -194,18 +203,22 @@ impl Window {
 
         self.select_current_row();
     }
+    // ANCHOR_END: set_current_collection
 
-    /// Assure that `tasks_list` is only visible if the number of tasks is greater than 0
+    // ANCHOR: set_task_list_visible
     fn set_task_list_visible(&self, tasks: &gio::ListStore) {
         self.imp().tasks_list.set_visible(tasks.n_items() > 0);
     }
+    // ANCHOR_END: set_task_list_visible
 
+    // ANCHOR: select_current_row
     fn select_current_row(&self) {
         if let Some(index) = self.collections().find(&self.current_collection()) {
             let row = self.imp().collections_list.row_at_index(index as i32);
             self.imp().collections_list.select_row(row.as_ref());
         }
     }
+    // ANCHOR_END: select_current_row
 
     fn create_task_row(&self, task_object: &TaskObject) -> ActionRow {
         // Create check button
@@ -249,6 +262,7 @@ impl Window {
             }),
         );
 
+        // ANCHOR: setup_callbacks
         // Setup callback change of the collections
         self.set_stack();
         self.collections().connect_items_changed(
@@ -287,8 +301,10 @@ impl Window {
                 window.imp().leaflet.navigate(NavigationDirection::Back);
             }),
         );
+        // ANCHOR_END: setup_callbacks
     }
 
+    // ANCHOR: set_stack
     fn set_stack(&self) {
         if self.collections().n_items() > 0 {
             self.imp().stack.set_visible_child_name("main");
@@ -296,6 +312,7 @@ impl Window {
             self.imp().stack.set_visible_child_name("empty");
         }
     }
+    // ANCHOR_END: set_stack
 
     fn new_task(&self) {
         // Get content from entry and clear it
@@ -339,14 +356,17 @@ impl Window {
         );
         self.add_action(&action_remove_done_tasks);
 
+        // ANCHOR: setup_actions
         // Create action to create new todo list and add to action group "win"
         let action_new_list = gio::SimpleAction::new("new-collection", None);
         action_new_list.connect_activate(clone!(@weak self as window => move |_, _| {
             window.new_collection();
         }));
         self.add_action(&action_new_list);
+        // ANCHOR_END: setup_actions
     }
 
+    // ANCHOR: new_collection
     fn new_collection(&self) {
         // Create new Dialog
         let dialog = Dialog::with_buttons(
@@ -425,4 +445,5 @@ impl Window {
         );
         dialog.present();
     }
+    // ANCHOR_END: new_collection
 }
