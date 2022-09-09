@@ -12,6 +12,7 @@ glib::wrapper! {
     pub struct CollectionObject(ObjectSubclass<imp::CollectionObject>);
 }
 
+// ANCHOR: impl
 impl CollectionObject {
     pub fn new(title: String, tasks: gio::ListStore) -> Self {
         Object::new(&[("title", &title), ("tasks", &tasks)])
@@ -53,9 +54,12 @@ impl CollectionObject {
         Self::new(title, tasks)
     }
 }
+// ANCHOR_END: impl
 
+// ANCHOR: collection_data
 #[derive(Default, Clone, Serialize, Deserialize)]
 pub struct CollectionData {
     pub title: String,
     pub tasks_data: Vec<TaskData>,
 }
+// ANCHOR_END: collection_data

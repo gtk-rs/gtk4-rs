@@ -262,3 +262,107 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 ```rust,no_run,noplayground
 {{#rustdoc_include ../listings/todo/8/collection_object/imp.rs:collection_object}}
 ```
+
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/8/collection_object/mod.rs">listings/todo/8/collection_object/mod.rs</a>
+
+```rust,no_run,noplayground
+{{#rustdoc_include ../listings/todo/8/collection_object/mod.rs:collection_data}}
+```
+
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/8/collection_object/mod.rs">listings/todo/8/collection_object/mod.rs</a>
+
+```rust,no_run,noplayground
+{{#rustdoc_include ../listings/todo/8/collection_object/mod.rs:impl}}
+```
+
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/7/window/imp.rs">listings/todo/8/window/imp.rs</a>
+
+```rust,no_run,noplayground
+{{#rustdoc_include ../listings/todo/8/window/imp.rs:struct}}
+```
+
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/8/window/imp.rs">listings/todo/8/window/imp.rs</a>
+
+```rust,no_run,noplayground
+{{#rustdoc_include ../listings/todo/8/window/imp.rs:window_impl}}
+```
+
+
+We now call `setup_collections` instead of `setup_tasks`.
+
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/7/window/imp.rs">listings/todo/8/window/imp.rs</a>
+
+```rust,no_run,noplayground
+{{#rustdoc_include ../listings/todo/8/window/imp.rs:object_impl}}
+```
+
+
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/8/window/imp.rs">listings/todo/8/window/mod.rs</a>
+
+```rust,no_run,noplayground
+{{#rustdoc_include ../listings/todo/8/window/mod.rs:setup_collections}}
+```
+
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/8/window/imp.rs">listings/todo/8/window/mod.rs</a>
+
+```rust,no_run,noplayground
+{{#rustdoc_include ../listings/todo/8/window/mod.rs:create_collection_row}}
+```
+
+
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/8/window/imp.rs">listings/todo/8/window/mod.rs</a>
+
+```rust,no_run,noplayground
+{{#rustdoc_include ../listings/todo/8/window/mod.rs:helper}}
+```
+
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/8/window/imp.rs">listings/todo/8/window/mod.rs</a>
+
+```rust,no_run,noplayground
+{{#rustdoc_include ../listings/todo/8/window/mod.rs:restore_data}}
+```
+
+
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/8/window/imp.rs">listings/todo/8/window/mod.rs</a>
+
+```rust,no_run,noplayground
+{{#rustdoc_include ../listings/todo/8/window/mod.rs:set_current_collection}}
+```
+
+The method `set_task_list_visible` assures that `tasks_list` is only visible if the number of tasks is greater than 0.
+
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/8/window/imp.rs">listings/todo/8/window/mod.rs</a>
+
+```rust,no_run,noplayground
+{{#rustdoc_include ../listings/todo/8/window/mod.rs:set_task_list_visible}}
+```
+
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/8/window/imp.rs">listings/todo/8/window/mod.rs</a>
+
+```rust,no_run,noplayground
+{{#rustdoc_include ../listings/todo/8/window/mod.rs:select_current_row}}
+```
+
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/8/window/imp.rs">listings/todo/8/window/mod.rs</a>
+
+```rust,no_run,noplayground
+{{#rustdoc_include ../listings/todo/8/window/mod.rs:setup_actions}}
+```
+
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/8/window/imp.rs">listings/todo/8/window/mod.rs</a>
+
+```rust,no_run,noplayground
+{{#rustdoc_include ../listings/todo/8/window/mod.rs:new_collection}}
+```
+
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/8/window/imp.rs">listings/todo/8/window/mod.rs</a>
+
+```rust,no_run,noplayground
+{{#rustdoc_include ../listings/todo/8/window/mod.rs:setup_callbacks}}
+```
+
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/8/window/imp.rs">listings/todo/8/window/mod.rs</a>
+
+```rust,no_run,noplayground
+{{#rustdoc_include ../listings/todo/8/window/mod.rs:set_stack}}
+```
