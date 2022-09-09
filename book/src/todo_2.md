@@ -96,7 +96,7 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 ```
 
 
-We also add the getter methods `is_completed` and `todo_data` to `TaskObject`.
+We also add the methods `is_completed`, `task_data` and `from_task_data` to `TaskObject`.
 We will make use of them in the following snippets.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/2/task_object/mod.rs">listings/todo/2/task_object/mod.rs</a>
