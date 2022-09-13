@@ -21,7 +21,11 @@ impl<O: IsA<ColorChooser>> ColorChooserExtManual for O {
                 orientation.into_glib(),
                 colors_per_line,
                 colors.len() as c_int,
-                colors.as_ptr() as *mut gdk::ffi::GdkRGBA,
+                if colors.is_empty() {
+                    std::ptr::null_mut()
+                } else {
+                    colors.as_ptr() as *mut gdk::ffi::GdkRGBA
+                },
             )
         }
     }
