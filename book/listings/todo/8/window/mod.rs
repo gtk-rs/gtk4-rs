@@ -339,18 +339,6 @@ impl Window {
         );
         self.add_action(&action_remove_done_tasks);
 
-        // Create action to remove current collection and add to action group "win"
-        let action_remove_current_collection =
-            gio::SimpleAction::new("remove-current-collection", None);
-        action_remove_current_collection.connect_activate(
-            clone!(@weak self as window => move |_, _| {
-                if let Some(index) = window.collections().find(&window.current_collection()) {
-                    window.collections().remove(index);
-                }
-            }),
-        );
-        self.add_action(&action_remove_current_collection);
-
         // Create action to create new todo list and add to action group "win"
         let action_new_list = gio::SimpleAction::new("new-collection", None);
         action_new_list.connect_activate(clone!(@weak self as window => move |_, _| {
