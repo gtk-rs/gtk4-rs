@@ -106,13 +106,16 @@ impl Window {
             .set(collections.clone())
             .expect("Could not set collections");
 
-        self.imp()
-            .collections_list
-            .bind_model(Some(&collections), clone!(@weak self as window => @default-panic, move |obj| {
-                let collection_object = obj.downcast_ref().expect("The object is not of type `CollectionObject`.");
+        self.imp().collections_list.bind_model(
+            Some(&collections),
+            clone!(@weak self as window => @default-panic, move |obj| {
+                let collection_object = obj
+                    .downcast_ref()
+                    .expect("The object is not of type `CollectionObject`.");
                 let row = window.create_collection_row(collection_object);
                 row.upcast()
-            }))
+            }),
+        )
     }
     // ANCHOR_END: setup_collections
 
@@ -168,7 +171,9 @@ impl Window {
         self.imp().tasks_list.bind_model(
             Some(&selection_model),
             clone!(@weak self as window => @default-panic, move |obj| {
-                let task_object = obj.downcast_ref().expect("The object is not of type `TaskObject`.");
+                let task_object = obj
+                    .downcast_ref()
+                    .expect("The object is not of type `TaskObject`.");
                 let row = window.create_task_row(task_object);
                 row.upcast()
             }),
@@ -286,15 +291,22 @@ impl Window {
         );
 
         // Setup callback for folding the leaflet
-        self.imp().leaflet.connect_folded_notify(clone!(@weak self as window => move |leaflet| {
-            if leaflet.is_folded() {
-                window.imp().collections_list.set_selection_mode(SelectionMode::None)
-            }
-            else {
-                window.imp().collections_list.set_selection_mode(SelectionMode::Single);
-                window.select_current_row();
-            }
-        }));
+        self.imp().leaflet.connect_folded_notify(
+            clone!(@weak self as window => move |leaflet| {
+                if leaflet.is_folded() {
+                    window
+                        .imp()
+                        .collections_list
+                        .set_selection_mode(SelectionMode::None)
+                } else {
+                    window
+                        .imp()
+                        .collections_list
+                        .set_selection_mode(SelectionMode::Single);
+                    window.select_current_row();
+                }
+            }),
+        );
 
         self.imp().back_button.connect_clicked(
             clone!(@weak self as window => move |_| {
@@ -357,7 +369,7 @@ impl Window {
         self.add_action(&action_remove_done_tasks);
 
         // ANCHOR: setup_actions
-        // Create action to create new todo list and add to action group "win"
+        // Create action to create new collection and add to action group "win"
         let action_new_list = gio::SimpleAction::new("new-collection", None);
         action_new_list.connect_activate(clone!(@weak self as window => move |_, _| {
             window.new_collection();
