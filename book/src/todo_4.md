@@ -3,7 +3,12 @@
 ## Adding a Sidebar
 
 
-### TODO: Image of final result
+<div style="text-align:center">
+ <video autoplay muted loop>
+  <source src="vid/todo_adaptive_sidebar.webm" type="video/webm">
+Your browser does not support the video tag.
+ </video>
+</div>
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/7/resources/window.ui">listings/todo/7/resources/window.ui</a>
 
