@@ -2,13 +2,22 @@
 
 ## Adding a Sidebar
 
+Using Libadwaita on its own was already a big leap forward when it came to the look and feel of the To-Do app.
+Let us go one step further by adding a sidebar.
+Since this adds a significant amount of complexity, we are first aiming for an empty without any functionality.
 
-<div style="text-align:center">
- <video autoplay muted loop>
-  <source src="vid/todo_adaptive_sidebar.webm" type="video/webm">
-Your browser does not support the video tag.
- </video>
-</div>
+<div style="text-align:center"><img src="img/todo_7_sidebar.png"/></div>
+
+There are a couple of steps we have to go through to get to this state.
+First, we have to replace [`gtk::ApplicationWindow`](../docs/gtk4/struct.ApplicationWindow.html) with [`adw::ApplicationWindow`](https://world.pages.gitlab.gnome.org/Rust/libadwaita-rs/stable/latest/docs/libadwaita/struct.ApplicationWindow.html).
+The only difference is that `adw::ApplicationWindow` has no titlebar area.
+That comes in handy when we build up our interface with [`adw::Leaflet`](https://world.pages.gitlab.gnome.org/Rust/libadwaita-rs/stable/latest/docs/libadwaita/struct.Leaflet.html).
+The `Leaflet` will contain a sidebar on the left, separator in the middle and task view on the right.
+When using `adw::ApplicationWindow` the sidebar and task view will just have their own [`adw::HeaderBar`](https://world.pages.gitlab.gnome.org/Rust/libadwaita-rs/stable/latest/docs/libadwaita/struct.HeaderBar.html) we can let the separator span over the whole window.
+
+# Discuss differences of leaflet with video
+
+
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/7/resources/window.ui">listings/todo/7/resources/window.ui</a>
 
@@ -49,6 +58,9 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 </interface>
 ```
 
+We already add the necessary UI elements for the sidebar.
+For once a header bar with a button to add a new collection.
+We also add a `ListBox` to display the collections.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/7/resources/window.ui">listings/todo/7/resources/window.ui</a>
 
@@ -84,6 +96,9 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
   </child>
 </object>
 ```
+
+The task view didn't change too much.
+
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/7/resources/window.ui">listings/todo/7/resources/window.ui</a>
 
@@ -180,7 +195,7 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 
 https://developer.gnome.org/hig/patterns/feedback/placeholders.html
 
-<div style="text-align:center"><img src="img/todo_placeholder_page.png"/></div>
+<div style="text-align:center"><img src="img/todo_8_placeholder_page.png"/></div>
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/8/resources/window.ui">listings/todo/8/resources/window.ui</a>
 
@@ -261,6 +276,7 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 </object>
 ```
 
+## Collections
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/8/collection_object/imp.rs">listings/todo/8/collection_object/imp.rs</a>
 
@@ -353,6 +369,16 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 ```rust,no_run,noplayground
 {{#rustdoc_include ../listings/todo/8/window/mod.rs:setup_actions}}
 ```
+
+## Leaflet and Dialog
+
+<div style="text-align:center">
+ <video autoplay muted loop>
+  <source src="vid/todo_adaptive_sidebar.webm" type="video/webm">
+Your browser does not support the video tag.
+ </video>
+</div>
+
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/8/window/imp.rs">listings/todo/8/window/mod.rs</a>
 
