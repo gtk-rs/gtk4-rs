@@ -180,7 +180,7 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 
 https://developer.gnome.org/hig/patterns/feedback/placeholders.html
 
-### TODO: Add image of placeholder page
+<div style="text-align:center"><img src="img/todo_placeholder_page.png"/></div>
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/8/resources/window.ui">listings/todo/8/resources/window.ui</a>
 
@@ -371,3 +371,7 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 ```rust,no_run,noplayground
 {{#rustdoc_include ../listings/todo/8/window/mod.rs:set_stack}}
 ```
+
+> You might have noticed that there is not yet a way to remove a collection.
+> Try to implement this missing piece of functionality in your local version of the To-Do app.
+> Which edge cases do you have to consider?
