@@ -394,7 +394,7 @@ impl Window {
         );
         dialog.set_default_response(ResponseType::Accept);
 
-        // Set dialog button initially to false
+        // Make the dialog button insensitive initially
         let dialog_button = dialog
             .widget_for_response(ResponseType::Accept)
             .expect("The dialog needs to have a widget for response type `Accept`.");
