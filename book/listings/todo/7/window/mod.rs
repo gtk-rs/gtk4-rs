@@ -16,6 +16,7 @@ use crate::APP_ID;
 // ANCHOR: glib_wrapper
 glib::wrapper! {
     pub struct Window(ObjectSubclass<imp::Window>)
+        //       👇 changed
         @extends adw::ApplicationWindow, gtk::ApplicationWindow, gtk::Window, gtk::Widget,
         @implements gio::ActionGroup, gio::ActionMap, gtk::Accessible, gtk::Buildable,
                     gtk::ConstraintTarget, gtk::Native, gtk::Root, gtk::ShortcutManager;

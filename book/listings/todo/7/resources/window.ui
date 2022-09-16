@@ -81,9 +81,6 @@
             <property name="hexpand">True</property>
             <child>
               <object class="AdwHeaderBar">
-                <binding name="show-start-title-buttons">
-                  <lookup name="folded">leaflet</lookup>
-                </binding>
                 <property name="title-widget">
                   <object class="AdwWindowTitle" />
                 </property>
