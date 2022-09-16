@@ -60,7 +60,8 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 The leaflet has properties like "can-navigate-back" and "fold-threshold-policy" which wouldn't make too much sense if a `Leaflet` would behave exactly like a `gtk::Box`.
 Instead, the leaflet folds as soon as the requested size is too small to fit all children at the same time.
 If it is folded, the leaflet behaves instead like a [`gtk::Stack`](../docs/gtk4/struct.Stack.html).
-That means it only displays one of its children at the same time, excluding the `AdwLeafletPage` since its property "navigatable" is set to `False`.
+That means it only displays one of its children at the same time.
+The `AdwLeafletPage` will never be displayed in the folded state since its property "navigatable" is set to `False`.
 The adaptive behavior of the leaflet allows the To-Do app to work on smaller screen sizes even with the added collection view.
 
 
@@ -192,6 +193,10 @@ In our case, this placeholder page will be presented to the user if they open th
 
 <div style="text-align:center"><img src="img/todo_8_placeholder_page.png"/></div>
 
+We now wrap our UI in a `Stack`.
+One stack page describes the placeholder page, the other describes the main view.
+We will wire up the logic to display the correct stack page later in the Rust code.
+
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/8/resources/window.ui">listings/todo/8/resources/window.ui</a>
 
 ```xml
@@ -231,6 +236,9 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
   </template>
 </interface>
 ```
+
+In order to create the pageholder page as displayed before we combine a flat header bar with [`adw::StatusPage`](https://world.pages.gitlab.gnome.org/Rust/libadwaita-rs/stable/latest/docs/libadwaita/struct.StatusPage.html).
+
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/8/resources/window.ui">listings/todo/8/resources/window.ui</a>
 
@@ -273,11 +281,18 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 
 ## Collections
 
+We still need a way to store our collections.
+Just like we have `TaskObject` will we now introduced `CollectionObject`.
+It will have the members `title` and `tasks` and both are exposed as properties.
+As usual, the implementation can be seen by clicking at the eye symbol at the top right of the snipped. 
+
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/8/collection_object/imp.rs">listings/todo/8/collection_object/imp.rs</a>
 
 ```rust,no_run,noplayground
 {{#rustdoc_include ../listings/todo/8/collection_object/imp.rs:collection_object}}
 ```
+
+We also add the struct `CollectionData` to aid in serialization and deserialization.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/8/collection_object/mod.rs">listings/todo/8/collection_object/mod.rs</a>
 
@@ -285,11 +300,25 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 {{#rustdoc_include ../listings/todo/8/collection_object/mod.rs:collection_data}}
 ```
 
+Finally, we add methods to `CollectionObject` in order to
+- construct it with `new`,
+- easily access the tasks `ListStore` with `tasks` and
+- convert to and from `CollectionData` with `collection_data` and `from_collection_data`. 
+
+
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/8/collection_object/mod.rs">listings/todo/8/collection_object/mod.rs</a>
 
 ```rust,no_run,noplayground
 {{#rustdoc_include ../listings/todo/8/collection_object/mod.rs:impl}}
 ```
+
+## Window
+
+In order to hook up the new logic we have to add more state to `imp::Window`.
+For once there are additional widgets that we access via the `template_child` macro.
+Additionally, we reference the `collections` list store as well as the `current_collection`.
+We also store a handler id.
+Its purpose will become clear in later snippets.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/7/window/imp.rs">listings/todo/8/window/imp.rs</a>
 
@@ -297,14 +326,26 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 {{#rustdoc_include ../listings/todo/8/window/imp.rs:struct}}
 ```
 
+We also add a couple of helper methods which will come in handy later on.
+
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/8/window/imp.rs">listings/todo/8/window/mod.rs</a>
+
+```rust,no_run,noplayground
+{{#rustdoc_include ../listings/todo/8/window/mod.rs:helper}}
+```
+
+
+Again we want our data to be saved when we close the window.
+Since we added the method `CollectionObject::collection_data` the implementation of `close_request` didn't change too much.
+
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/8/window/imp.rs">listings/todo/8/window/imp.rs</a>
 
 ```rust,no_run,noplayground
 {{#rustdoc_include ../listings/todo/8/window/imp.rs:window_impl}}
 ```
 
-
-We now call `setup_collections` instead of `setup_tasks`.
+`constructed` stayed mostly the same as well.
+We simply call `setup_collections` now instead of `setup_tasks`.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/7/window/imp.rs">listings/todo/8/window/imp.rs</a>
 
@@ -323,13 +364,6 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 
 ```rust,no_run,noplayground
 {{#rustdoc_include ../listings/todo/8/window/mod.rs:create_collection_row}}
-```
-
-
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/8/window/imp.rs">listings/todo/8/window/mod.rs</a>
-
-```rust,no_run,noplayground
-{{#rustdoc_include ../listings/todo/8/window/mod.rs:helper}}
 ```
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/8/window/imp.rs">listings/todo/8/window/mod.rs</a>
