@@ -3,8 +3,9 @@
 ## Adding a Sidebar
 
 Using Libadwaita on its own was already a big leap forward when it came to the look and feel of the To-Do app.
-Let us go one step further by adding a sidebar.
-Since this adds a significant amount of complexity, we are first aiming for an empty without any functionality.
+Let us go one step further by adding a way to group tasks into collections.
+These collections will get their own sidebar on the left of the app.
+Since this adds a significant amount of complexity, we are first aiming for an empty space without any functionality.
 
 <div style="text-align:center"><img src="img/todo_7_sidebar.png"/></div>
 
@@ -12,10 +13,8 @@ There are a couple of steps we have to go through to get to this state.
 First, we have to replace [`gtk::ApplicationWindow`](../docs/gtk4/struct.ApplicationWindow.html) with [`adw::ApplicationWindow`](https://world.pages.gitlab.gnome.org/Rust/libadwaita-rs/stable/latest/docs/libadwaita/struct.ApplicationWindow.html).
 The only difference is that `adw::ApplicationWindow` has no titlebar area.
 That comes in handy when we build up our interface with [`adw::Leaflet`](https://world.pages.gitlab.gnome.org/Rust/libadwaita-rs/stable/latest/docs/libadwaita/struct.Leaflet.html).
-The `Leaflet` will contain a sidebar on the left, separator in the middle and task view on the right.
-When using `adw::ApplicationWindow` the sidebar and task view will just have their own [`adw::HeaderBar`](https://world.pages.gitlab.gnome.org/Rust/libadwaita-rs/stable/latest/docs/libadwaita/struct.HeaderBar.html) we can let the separator span over the whole window.
-
-# Discuss differences of leaflet with video
+In the screenshot above the `Leaflet` behaves like a [`gtk::Box`](../docs/gtk4/struct.Box.html) and contains a collection view on the left, separator in the middle and task view on the right.
+When using `adw::ApplicationWindow` the collection view and task view just have their own [`adw::HeaderBar`](https://world.pages.gitlab.gnome.org/Rust/libadwaita-rs/stable/latest/docs/libadwaita/struct.HeaderBar.html) we can let the separator span over the whole window.
 
 
 
@@ -36,7 +35,7 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
         <property name="fold-threshold-policy">natural</property>
         <child>
           <object class="GtkBox">
-            <!--Sidebar implementation-->
+            <!--Collection view implementation-->
           </object>
         </child>
         <child>
@@ -58,8 +57,25 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 </interface>
 ```
 
-We already add the necessary UI elements for the sidebar.
+The leaflet has properties like "can-navigate-back" and "fold-threshold-policy" which wouldn't make too much sense if a `Leaflet` would behave exactly like a `gtk::Box`.
+Instead, the leaflet folds as soon as the requested size is too small to fit all children at the same time.
+If it is folded, the leaflet behaves instead like a [`gtk::Stack`](../docs/gtk4/struct.Stack.html).
+That means it only displays one of its children at the same time, excluding the `AdwLeafletPage` since its property "navigatable" is set to `False`.
+The adaptive behavior of the leaflet allows the To-Do app to work on smaller screen sizes even with the added collection view.
+
+
+<div style="text-align:center">
+ <video autoplay muted loop>
+  <source src="vid/todo_leaflet.webm" type="video/webm">
+Your browser does not support the video tag.
+ </video>
+</div>
+
+
+We already add the necessary UI elements for the collection view.
 For once a header bar with a button to add a new collection.
+As you can see in the screencast above, the header bar also displays a close button if the leaflet is folded.
+We include this logic with a expression and its UI tag [`lookup`](https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/struct.Expression.html#gtkexpression-in-ui-files).
 We also add a `ListBox` to display the collections.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/7/resources/window.ui">listings/todo/7/resources/window.ui</a>
@@ -97,7 +113,10 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 </object>
 ```
 
-The task view didn't change too much.
+We also add a header bar to the task view.
+We don't have to worry about the close button here: it will always be displayed.
+However, we will need a way to go back to the collection view when the leaflet is folded.
+That is why we add `back_button` which can be used to return to the collection view and which is only visible when the leaflet is folded. 
 
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/7/resources/window.ui">listings/todo/7/resources/window.ui</a>
@@ -108,9 +127,6 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
   <property name="hexpand">True</property>
   <child>
     <object class="AdwHeaderBar">
-      <binding name="show-start-title-buttons">
-        <lookup name="folded">leaflet</lookup>
-      </binding>
       <property name="title-widget">
         <object class="AdwWindowTitle" />
       </property>
@@ -133,42 +149,13 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
     </object>
   </child>
   <child>
-    <object class="GtkScrolledWindow">
-      <property name="vexpand">True</property>
-      <property name="child">
-        <object class="AdwClamp">
-          <property name="child">
-            <object class="GtkBox">
-              <property name="orientation">vertical</property>
-              <property name="margin-top">12</property>
-              <property name="margin-bottom">12</property>
-              <property name="margin-start">12</property>
-              <property name="margin-end">12</property>
-              <property name="spacing">12</property>
-              <child>
-                <object class="GtkEntry" id="entry">
-                  <property name="placeholder-text" translatable="yes">Enter a Task…</property>
-                  <property name="secondary-icon-name">list-add-symbolic</property>
-                </object>
-              </child>
-              <child>
-                <object class="GtkListBox" id="tasks_list">
-                  <property name="visible">False</property>
-                  <property name="selection-mode">none</property>
-                  <style>
-                    <class name="boxed-list" />
-                  </style>
-                </object>
-              </child>
-            </object>
-          </property>
-        </object>
-      </property>
-    </object>
+    <!--This part stayed the same-->
   </child>
 </object>
 ```
 
+We also have to adapt the window implementation in our Rust code.
+For one, the parent type of our window is now `adw::ApplicationWindow` instead of `gtk::ApplicationWindow`. 
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/7/window/imp.rs">listings/todo/7/window/imp.rs</a>
 
@@ -176,6 +163,7 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 {{#rustdoc_include ../listings/todo/7/window/imp.rs:object_subclass}}
 ```
 
+That also means that we have to implement `AdwApplicationWindowImpl`.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/7/window/imp.rs">listings/todo/7/window/imp.rs</a>
 
@@ -183,6 +171,7 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 {{#rustdoc_include ../listings/todo/7/window/imp.rs:adw_application_window_impl}}
 ```
 
+Finally, we add `adw::ApplicationWindow` to the ancestors of `Window` in `mod.rs`.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/7/window/mod.rs">listings/todo/7/window/mod.rs</a>
 
@@ -193,7 +182,13 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 
 ## Placeholder Page
 
-https://developer.gnome.org/hig/patterns/feedback/placeholders.html
+Even before we start to populate the collection view, we ought to think about a different challenge: the empty state of our To-Do app.
+Before, the empty state without a single task was quite okay.
+It was clear that you had to add tasks in the entry bar.
+However, now the situation is different.
+Users will have to add a collection first, and we have to make that clear.
+The GNOME HIG suggests to use a [placeholder page](https://developer.gnome.org/hig/patterns/feedback/placeholders.html) for that.
+In our case, this placeholder page will be presented to the user if they open the app without any collections present.
 
 <div style="text-align:center"><img src="img/todo_8_placeholder_page.png"/></div>
 
