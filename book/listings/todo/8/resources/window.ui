@@ -36,7 +36,7 @@
         <property name="transition-type">crossfade</property>
         <child>
           <object class="GtkStackPage">
-            <property name="name">empty</property>
+            <property name="name">placeholder</property>
             <property name="child">
               <object class="GtkBox">
                 <property name="orientation">vertical</property>

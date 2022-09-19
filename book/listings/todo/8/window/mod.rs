@@ -280,7 +280,7 @@ impl Window {
             }),
         );
 
-        // Setup callback change of the collections
+        // Setup callback when items of collections change
         self.set_stack();
         self.collections().connect_items_changed(
             clone!(@weak self as window => move |_, _, _, _| {
@@ -333,7 +333,7 @@ impl Window {
         if self.collections().n_items() > 0 {
             self.imp().stack.set_visible_child_name("main");
         } else {
-            self.imp().stack.set_visible_child_name("empty");
+            self.imp().stack.set_visible_child_name("placeholder");
         }
     }
     // ANCHOR_END: set_stack
