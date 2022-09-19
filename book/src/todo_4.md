@@ -457,11 +457,23 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 {{#rustdoc_include ../listings/todo/8/window/mod.rs:new_collection}}
 ```
 
+We also add more callbacks to `setup_callbacks`.
+For once we want to filter our current task model whenever the value of the setting "filter" changes.
+Whenever the items of our collections change we also want to set the stack.
+This makes sure that our placeholder page is shown if there are no collections.
+When we click on an item of `collections_list`, `current_collection` should be set to the selected collection and we should then navigate to the task view.
+That is setup in `collections_list.connect_row_activated`, but we also need to setup `leaflet.connect_folded_notify` to make sure that no selection of `collections_list` items is happening in folded mode so that it just directly moves to the task view.
+Finally, we connect to a click of the `back_button` in the task view so that we can return to the collections view again in folded mode.
+
+
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/8/window/imp.rs">listings/todo/8/window/mod.rs</a>
 
 ```rust,no_run,noplayground
 {{#rustdoc_include ../listings/todo/8/window/mod.rs:setup_callbacks}}
 ```
+
+Before, we called the method `set_stack`.
+This method assures if collections are there, the "main" page is shown and the "placeholder" page otherwise.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/8/window/imp.rs">listings/todo/8/window/mod.rs</a>
 
