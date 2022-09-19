@@ -316,8 +316,8 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 
 In order to hook up the new logic we have to add more state to `imp::Window`.
 For once there are additional widgets that we access via the `template_child` macro.
-Additionally, we reference the `collections` list store as well as the `current_collection`.
-We also store a handler id.
+Additionally, we reference the `collections` list store, the `current_collection` as well as the `current_filter_model`.
+We also store the handler id `tasks_changed_handler_id`.
 Its purpose will become clear in later snippets.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/7/window/imp.rs">listings/todo/8/window/imp.rs</a>
@@ -381,9 +381,13 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 ```
 
 `set_current_collection` assures that all elements accessing tasks refer to the task model of the current collection.
-We bind the `tasks_list` to the current collection.
-We also adapt the `filter_model` whenever the setting "filter" changes.
-
+We bind the `tasks_list` to the current collection and store the filter model.
+Now we find out we need to store `tasks_changed_handler_id`.
+Whenever there are no tasks in our current collection we want to hide our tasks list.
+Otherwise, the list box will leave a bad-looking line behind.
+However, we don't want to accumulate signal handlers whenever we switch collections.
+This is why we store the handler id and disconnect the old handler as soon as we set a new collection.
+Finally, we select the collection row.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/8/window/imp.rs">listings/todo/8/window/mod.rs</a>
 
@@ -391,7 +395,8 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 {{#rustdoc_include ../listings/todo/8/window/mod.rs:set_current_collection}}
 ```
 
-The method `set_task_list_visible` assures that `tasks_list` is only visible if the number of tasks is greater than 0.
+Before we used the method `set_task_list_visible`.
+It assures that `tasks_list` is only visible if the number of tasks is greater than 0.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/8/window/imp.rs">listings/todo/8/window/mod.rs</a>
 
@@ -399,26 +404,32 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 {{#rustdoc_include ../listings/todo/8/window/mod.rs:set_task_list_visible}}
 ```
 
+`select_collection_row` assures that the row for the current collection is selected in `collections_list`.
+
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/8/window/imp.rs">listings/todo/8/window/mod.rs</a>
 
 ```rust,no_run,noplayground
-{{#rustdoc_include ../listings/todo/8/window/mod.rs:select_current_row}}
+{{#rustdoc_include ../listings/todo/8/window/mod.rs:select_collection_row}}
 ```
+
+
+## Leaflet and Dialog
+
+<div style="text-align:center">
+ <video autoplay muted loop>
+  <source src="vid/todo_8_adaptive_sidebar.webm" type="video/webm">
+Your browser does not support the video tag.
+ </video>
+</div>
+
+First, we add a new action "new-collection" in `setup_actions`.
+We already target it with the button on the top left of the collection view and we will use it for the dialog we will now implement.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/8/window/imp.rs">listings/todo/8/window/mod.rs</a>
 
 ```rust,no_run,noplayground
 {{#rustdoc_include ../listings/todo/8/window/mod.rs:setup_actions}}
 ```
-
-## Leaflet and Dialog
-
-<div style="text-align:center">
- <video autoplay muted loop>
-  <source src="vid/todo_adaptive_sidebar.webm" type="video/webm">
-Your browser does not support the video tag.
- </video>
-</div>
 
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/8/window/imp.rs">listings/todo/8/window/mod.rs</a>

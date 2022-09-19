@@ -8,7 +8,9 @@ use gio::Settings;
 use glib::signal::Inhibit;
 use glib::subclass::InitializingObject;
 use gtk::glib::SignalHandlerId;
-use gtk::{gio, glib, Button, CompositeTemplate, Entry, ListBox, Stack};
+use gtk::{
+    gio, glib, Button, CompositeTemplate, Entry, FilterListModel, ListBox, Stack,
+};
 use once_cell::sync::OnceCell;
 
 use crate::collection_object::{CollectionData, CollectionObject};
@@ -35,6 +37,7 @@ pub struct Window {
     pub back_button: TemplateChild<Button>,
     pub collections: OnceCell<gio::ListStore>,
     pub current_collection: RefCell<Option<CollectionObject>>,
+    pub current_filter_model: RefCell<Option<FilterListModel>>,
     pub tasks_changed_handler_id: RefCell<Option<SignalHandlerId>>,
 }
 // ANCHOR_END: struct
