@@ -415,21 +415,40 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 
 ## Leaflet and Dialog
 
+Thanks to the leaflet the todo app folds now when we resize it to a smaller width.
+However, there isn't yet a way to navigate between the different leaflet pages.
+Let us start with the most important one: adding a new collection.
+
 <div style="text-align:center">
  <video autoplay muted loop>
-  <source src="vid/todo_8_adaptive_sidebar.webm" type="video/webm">
+  <source src="vid/todo_8_dialog.webm" type="video/webm">
 Your browser does not support the video tag.
  </video>
 </div>
 
-First, we add a new action "new-collection" in `setup_actions`.
-We already target it with the button on the top left of the collection view and we will use it for the dialog we will now implement.
+The screencast above demonstrates the desired behavior
+When we activate the button with the `+` symbol, a dialog appears.
+While the entry is empty the "Create" button remains insensitive.
+As soon we start typing, the button becomes sensitive.
+When we remove letters until the entry is empty again, the "Create" button becomes insensitive again and the entry gets the "error" style.
+After pressing the "Create" button a new collection is created and we navigate to its task view.
+
+To implement that behavior we need to first add the action "new-collection" to the method `setup_actions`.
+This action will be activated by a click on the `+` button as well as on the button in the placeholder page.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/8/window/imp.rs">listings/todo/8/window/mod.rs</a>
 
 ```rust,no_run,noplayground
 {{#rustdoc_include ../listings/todo/8/window/mod.rs:setup_actions}}
 ```
+
+As soon as the action "new-collection" is activated the method `new_collection` will be called.
+Here, we create the dialog, set up the buttons as well as add the entry to it.
+We add a callback to the entry to assure that if the content changed, empty content lead to an insensitive `dialog_button` and an entry with css class "error".
+We also add a callback to the dialog itself.
+If we press on "Cancel" the dialog should just be destroyed without any further actions.
+However, if we press on "Create" we want a new collection to be created and set as current collection.
+Afterwards we navigate forward on our leaflet, which means we navigate to the task view.
 
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/8/window/imp.rs">listings/todo/8/window/mod.rs</a>
@@ -449,6 +468,14 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 ```rust,no_run,noplayground
 {{#rustdoc_include ../listings/todo/8/window/mod.rs:set_stack}}
 ```
+
+<div style="text-align:center">
+ <video autoplay muted loop>
+  <source src="vid/todo_8_adaptive_sidebar.webm" type="video/webm">
+Your browser does not support the video tag.
+ </video>
+</div>
+
 
 > You might have noticed that there is not yet a way to remove a collection.
 > Try to implement this missing piece of functionality in your local version of the To-Do app.
