@@ -481,6 +481,9 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 {{#rustdoc_include ../listings/todo/8/window/mod.rs:set_stack}}
 ```
 
+And that was it!
+Now we can enjoy the final result.
+
 <div style="text-align:center">
  <video autoplay muted loop>
   <source src="vid/todo_8_adaptive_sidebar.webm" type="video/webm">
