@@ -13,7 +13,7 @@ There are a couple of steps we have to go through to get to this state.
 First, we have to replace [`gtk::ApplicationWindow`](../docs/gtk4/struct.ApplicationWindow.html) with [`adw::ApplicationWindow`](https://world.pages.gitlab.gnome.org/Rust/libadwaita-rs/stable/latest/docs/libadwaita/struct.ApplicationWindow.html).
 The only difference between those two is that `adw::ApplicationWindow` has no titlebar area.
 That comes in handy when we build up our interface with [`adw::Leaflet`](https://world.pages.gitlab.gnome.org/Rust/libadwaita-rs/stable/latest/docs/libadwaita/struct.Leaflet.html).
-In the screenshot above the `Leaflet` behaves like a [`gtk::Box`](../docs/gtk4/struct.Box.html) and contains the collection view on the left, a separator in the middle and the task view on the right.
+In the screenshot above, the `Leaflet` behaves like a [`gtk::Box`](../docs/gtk4/struct.Box.html) and contains the collection view on the left, a separator in the middle and the task view on the right.
 When using `adw::ApplicationWindow` the collection view and task view have their own [`adw::HeaderBar`](https://world.pages.gitlab.gnome.org/Rust/libadwaita-rs/stable/latest/docs/libadwaita/struct.HeaderBar.html) and the separator spans over the whole window.
 
 
@@ -57,7 +57,7 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 </interface>
 ```
 
-The leaflet has properties like "can-navigate-back" and "fold-threshold-policy" which wouldn't make too much sense if a `Leaflet` would behave exactly like a `gtk::Box`.
+The leaflet has properties like "can-navigate-back" and "fold-threshold-policy", which wouldn't make too much sense if a `Leaflet` would behave exactly like a `gtk::Box`.
 Instead, the leaflet folds as soon as the requested size is too small to fit all children at the same time.
 If it is folded, the leaflet behaves instead like a [`gtk::Stack`](../docs/gtk4/struct.Stack.html).
 That means it only displays one of its children at the same time.
@@ -73,11 +73,11 @@ Your browser does not support the video tag.
 </div>
 
 
-We've already added the necessary UI elements for the collection view.
-For once a header bar with a button to add a new collection.
+We've already added the necessary UI elements for the collection view, such as a header bar with a button to add a new collection, as well as the list box `collections_list` to display the collections later on.
+
 As you can see in the screencast above, the header bar also displays a close button if the leaflet is folded.
-We include this logic with a expression which can be build up in the UI file with the tag [`lookup`](https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/struct.Expression.html#gtkexpression-in-ui-files).
-We also add the list box `collections_list` to display the collections later on.
+We include this logic with an expression which can be build up in the UI file with the tag [`lookup`](https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/struct.Expression.html#gtkexpression-in-ui-files).
+
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/7/resources/window.ui">listings/todo/7/resources/window.ui</a>
 
@@ -156,7 +156,7 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 ```
 
 We also have to adapt the window implementation.
-For once, the parent type of our window is now `adw::ApplicationWindow` instead of `gtk::ApplicationWindow`. 
+For example, the parent type of our window is now `adw::ApplicationWindow` instead of `gtk::ApplicationWindow`. 
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/7/window/imp.rs">listings/todo/7/window/imp.rs</a>
 
@@ -237,7 +237,7 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 </interface>
 ```
 
-In order to create the pageholder page as displayed before we combine a flat header bar with [`adw::StatusPage`](https://world.pages.gitlab.gnome.org/Rust/libadwaita-rs/stable/latest/docs/libadwaita/struct.StatusPage.html).
+In order to create the pageholder page as displayed before, we combine a flat header bar with [`adw::StatusPage`](https://world.pages.gitlab.gnome.org/Rust/libadwaita-rs/stable/latest/docs/libadwaita/struct.StatusPage.html).
 
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/8/resources/window.ui">listings/todo/8/resources/window.ui</a>
@@ -282,9 +282,9 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 ## Collections
 
 We still need a way to store our collections.
-Just like we have `TaskObject` will we now introduce `CollectionObject`.
-It will have the members `title` and `tasks` and both will be exposed as properties.
-As usual, the full implementation can be seen by clicking at the eye symbol at the top right of the snipped. 
+Just like we have already created `TaskObject`, we will now introduce `CollectionObject`.
+It will have the members `title` and `tasks`, both of which will be exposed as properties.
+As usual, the full implementation can be seen by clicking at the eye symbol at the top right of the snippet. 
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/8/collection_object/imp.rs">listings/todo/8/collection_object/imp.rs</a>
 
@@ -314,10 +314,10 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 
 ## Window
 
-In order to hook up the new logic we have to add more state to `imp::Window`.
-For once there are additional widgets that we access via the `template_child` macro.
+In order to hook up the new logic, we have to add more state to `imp::Window`.
+There are additional widgets that we access via the `template_child` macro.
 Additionally, we reference the `collections` list store, the `current_collection` as well as the `current_filter_model`.
-We also store the handler id `tasks_changed_handler_id`.
+We also store `tasks_changed_handler_id`.
 Its purpose will become clear in later snippets.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/7/window/imp.rs">listings/todo/8/window/imp.rs</a>
@@ -326,7 +326,7 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 {{#rustdoc_include ../listings/todo/8/window/imp.rs:struct}}
 ```
 
-We also add a couple of helper methods which will come in handy later on.
+Further, we add a couple of helper methods which will come in handy later on.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/8/window/imp.rs">listings/todo/8/window/mod.rs</a>
 
@@ -370,8 +370,8 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 ```
 
 We also adapt `restore_data`.
-Again, the heavy lifting comes `CollectionObject::from_collection_data` so we don't have to change too much here.
-Since the rows of `collections_list` can be selected we have to select one of them after restoring the data.
+Again, the heavy lifting comes from `CollectionObject::from_collection_data`, so we don't have to change too much here.
+Since the rows of `collections_list` can be selected, we have to select one of them after restoring the data.
 We choose the first one and let the method `set_current_collection` do the rest.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/8/window/imp.rs">listings/todo/8/window/mod.rs</a>
@@ -395,7 +395,7 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 {{#rustdoc_include ../listings/todo/8/window/mod.rs:set_current_collection}}
 ```
 
-Before we used the method `set_task_list_visible`.
+Previously, we used the method `set_task_list_visible`.
 It assures that `tasks_list` is only visible if the number of tasks is greater than 0.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/8/window/imp.rs">listings/todo/8/window/mod.rs</a>
@@ -415,7 +415,7 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 
 ## Leaflet and Dialog
 
-Thanks to the leaflet the todo app folds now when we resize it to a smaller width.
+Thanks to the leaflet the To-Do app folds now when we resize it to a smaller width.
 However, there isn't yet a way to navigate between the different leaflet pages.
 Let us start with the most important one: adding a new collection.
 
@@ -426,12 +426,12 @@ Your browser does not support the video tag.
  </video>
 </div>
 
-The screencast above demonstrates the desired behavior
+The screencast above demonstrates the desired behavior.
 When we activate the button with the `+` symbol, a dialog appears.
-While the entry is empty the "Create" button remains insensitive.
+While the entry, is empty the "Create" button remains insensitive.
 As soon we start typing, the button becomes sensitive.
 When we remove letters until the entry is empty again, the "Create" button becomes insensitive again and the entry gets the "error" style.
-After pressing the "Create" button a new collection is created and we navigate to its task view.
+After clicking the "Create" button, a new collection is created and we navigate to its task view.
 
 To implement that behavior we need to first add the action "new-collection" to the method `setup_actions`.
 This action will be activated by a click on the `+` button as well as on the button in the placeholder page.
@@ -442,12 +442,12 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 {{#rustdoc_include ../listings/todo/8/window/mod.rs:setup_actions}}
 ```
 
-As soon as the action "new-collection" is activated the method `new_collection` will be called.
+As soon as the action "new-collection" is activated, the method `new_collection` will be called.
 Here, we create the dialog, set up the buttons as well as add the entry to it.
 We add a callback to the entry to assure that if the content changed, empty content lead to an insensitive `dialog_button` and an entry with css class "error".
 We also add a callback to the dialog itself.
-If we press on "Cancel" the dialog should just be destroyed without any further actions.
-However, if we press on "Create" we want a new collection to be created and set as current collection.
+If we click "Cancel", the dialog should just be destroyed without any further actions.
+However, if we click "Create", we want a new collection to be created and set as current collection.
 Afterwards we navigate forward on our leaflet, which means we navigate to the task view.
 
 
@@ -458,7 +458,7 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 ```
 
 We also add more callbacks to `setup_callbacks`.
-For once we want to filter our current task model whenever the value of the setting "filter" changes.
+Importantly, we want to filter our current task model whenever the value of the setting "filter" changes.
 Whenever the items of our collections change we also want to set the stack.
 This makes sure that our placeholder page is shown if there are no collections.
 When we click on an item of `collections_list`, `current_collection` should be set to the selected collection and we should then navigate to the task view.
