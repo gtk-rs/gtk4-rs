@@ -63,6 +63,15 @@ impl Window {
             .expect("Could not get collection.")
             .clone()
     }
+
+    fn set_filter(&self) {
+        self.imp()
+            .current_filter_model
+            .borrow()
+            .clone()
+            .expect("The current filter model needs to be set")
+            .set_filter(self.filter().as_ref());
+    }
     // ANCHOR_END: helper
 
     fn filter(&self) -> Option<CustomFilter> {
@@ -179,13 +188,8 @@ impl Window {
             }),
         );
 
-        // Filter model whenever the value of the key "filter" changes
-        self.settings().connect_changed(
-            Some("filter"),
-            clone!(@weak self as window, @weak filter_model => move |_, _| {
-                filter_model.set_filter(window.filter().as_ref());
-            }),
-        );
+        // Store filter model
+        self.imp().current_filter_model.replace(Some(filter_model));
 
         // If present, disconnect old `tasks_changed` handler
         if let Some(handler_id) = self.imp().tasks_changed_handler_id.take() {
@@ -206,7 +210,7 @@ impl Window {
         // Set current tasks
         self.imp().current_collection.replace(Some(collection));
 
-        self.select_current_row();
+        self.select_collection_row();
     }
     // ANCHOR_END: set_current_collection
 
@@ -216,14 +220,14 @@ impl Window {
     }
     // ANCHOR_END: set_task_list_visible
 
-    // ANCHOR: select_current_row
-    fn select_current_row(&self) {
+    // ANCHOR: select_collection_row
+    fn select_collection_row(&self) {
         if let Some(index) = self.collections().find(&self.current_collection()) {
             let row = self.imp().collections_list.row_at_index(index as i32);
             self.imp().collections_list.select_row(row.as_ref());
         }
     }
-    // ANCHOR_END: select_current_row
+    // ANCHOR_END: select_collection_row
 
     fn create_task_row(&self, task_object: &TaskObject) -> ActionRow {
         // Create check button
@@ -268,6 +272,14 @@ impl Window {
         );
 
         // ANCHOR: setup_callbacks
+        // Filter model whenever the value of the key "filter" changes
+        self.settings().connect_changed(
+            Some("filter"),
+            clone!(@weak self as window => move |_, _| {
+                window.set_filter();
+            }),
+        );
+
         // Setup callback change of the collections
         self.set_stack();
         self.collections().connect_items_changed(
@@ -303,7 +315,7 @@ impl Window {
                         .imp()
                         .collections_list
                         .set_selection_mode(SelectionMode::Single);
-                    window.select_current_row();
+                    window.select_collection_row();
                 }
             }),
         );
