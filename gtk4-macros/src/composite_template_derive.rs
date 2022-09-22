@@ -2,6 +2,8 @@
 
 use proc_macro2::TokenStream;
 use proc_macro_error::{emit_call_site_error, emit_error};
+#[cfg(feature = "xml_validation")]
+use quick_xml::name::QName;
 use quote::quote;
 use syn::Data;
 
@@ -44,7 +46,6 @@ fn check_template_fields(source: &TemplateSource, fields: &[AttributedField]) {
     };
 
     let mut reader = quick_xml::Reader::from_str(xml);
-    let mut buf = Vec::new();
     let mut ids_left = fields
         .iter()
         .map(|field| match field.attr.ty {
@@ -55,7 +56,7 @@ fn check_template_fields(source: &TemplateSource, fields: &[AttributedField]) {
     loop {
         use quick_xml::events::Event;
 
-        let event = reader.read_event(&mut buf);
+        let event = reader.read_event();
         let elem = match &event {
             Ok(Event::Start(e)) => Some(e),
             Ok(Event::Empty(e)) => Some(e),
@@ -72,18 +73,16 @@ fn check_template_fields(source: &TemplateSource, fields: &[AttributedField]) {
         };
         if let Some(e) = elem {
             let name = e.name();
-            if name == b"object" || name == b"template" {
+            if name == QName(b"object") || name == QName(b"template") {
                 let id = e
                     .attributes()
-                    .find_map(|a| a.ok().and_then(|a| (a.key == b"id").then_some(a)));
+                    .find_map(|a| a.ok().and_then(|a| (a.key == QName(b"id")).then_some(a)));
                 let id = id.as_ref().and_then(|a| std::str::from_utf8(&a.value).ok());
                 if let Some(id) = id {
                     ids_left.remove(id);
                 }
             }
         }
-
-        buf.clear();
     }
 
     if let Some((name, span)) = ids_left.iter().next() {
