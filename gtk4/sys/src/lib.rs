@@ -12200,6 +12200,12 @@ extern "C" {
         controller: *mut GtkEventController,
         phase: GtkPropagationPhase,
     );
+    #[cfg(any(feature = "v4_8", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+    pub fn gtk_event_controller_set_static_name(
+        controller: *mut GtkEventController,
+        name: *const c_char,
+    );
 
     //=========================================================================
     // GtkEventControllerFocus
