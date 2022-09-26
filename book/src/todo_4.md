@@ -5,7 +5,7 @@
 Using Libadwaita on its own was already a big leap forward when it came to the look and feel of the To-Do app.
 Let us go one step further by adding a way to group tasks into collections.
 These collections will get their own sidebar on the left of the app.
-Since this adds a significant amount of complexity, we are first aiming for an empty sidebar without any functionality.
+We will start by adding an empty sidebar without any functionality.
 
 <div style="text-align:center"><img src="img/todo_7_sidebar.png"/></div>
 
@@ -73,10 +73,10 @@ Your browser does not support the video tag.
 </div>
 
 
-We've already added the necessary UI elements for the collection view, such as a header bar with a button to add a new collection, as well as the list box `collections_list` to display the collections later on.
+We add the necessary UI elements for the collection view, such as a header bar with a button to add a new collection, as well as the list box `collections_list` to display the collections later on.
 
 As you can see in the screencast above, the header bar also displays a close button if the leaflet is folded.
-We include this logic with an expression which can be build up in the UI file with the tag [`lookup`](https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/struct.Expression.html#gtkexpression-in-ui-files).
+We include this logic with an expression which can be built up in the UI file with the tag [`lookup`](https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/struct.Expression.html#gtkexpression-in-ui-files).
 
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/7/resources/window.ui">listings/todo/7/resources/window.ui</a>
@@ -150,7 +150,7 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
     </object>
   </child>
   <child>
-    <!--This part stayed the same-->
+    <!--This part stays the same-->
   </child>
 </object>
 ```
@@ -334,8 +334,8 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 {{#rustdoc_include ../listings/todo/8/window/mod.rs:helper}}
 ```
 
-Again we want our data to be saved when we close the window.
-Since most of the implementation is in the method `CollectionObject::collection_data` the implementation of `close_request` didn't change too much.
+As always, we want our data to be saved when we close the window.
+Since most of the implementation is in the method `CollectionObject::collection_data`, the implementation of `close_request` doesn't change much.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/8/window/imp.rs">listings/todo/8/window/imp.rs</a>
 
@@ -343,7 +343,7 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 {{#rustdoc_include ../listings/todo/8/window/imp.rs:window_impl}}
 ```
 
-`constructed` stayed mostly the same as well.
+`constructed` stays mostly the same as well.
 Instead of `setup_tasks` we now call `setup_collections`.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/7/window/imp.rs">listings/todo/8/window/imp.rs</a>
@@ -382,11 +382,10 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 
 `set_current_collection` assures that all elements accessing tasks refer to the task model of the current collection.
 We bind the `tasks_list` to the current collection and store the filter model.
-Now we find out we need to store `tasks_changed_handler_id`.
 Whenever there are no tasks in our current collection we want to hide our tasks list.
 Otherwise, the list box will leave a bad-looking line behind.
 However, we don't want to accumulate signal handlers whenever we switch collections.
-This is why we store the handler id and disconnect the old handler as soon as we set a new collection.
+This is why we store the `tasks_changed_handler_id` and disconnect the old handler as soon as we set a new collection.
 Finally, we select the collection row.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/8/window/imp.rs">listings/todo/8/window/mod.rs</a>
@@ -428,10 +427,10 @@ Your browser does not support the video tag.
 
 The screencast above demonstrates the desired behavior.
 When we activate the button with the `+` symbol, a dialog appears.
-While the entry, is empty the "Create" button remains insensitive.
-As soon we start typing, the button becomes sensitive.
-When we remove letters until the entry is empty again, the "Create" button becomes insensitive again and the entry gets the "error" style.
-After clicking the "Create" button, a new collection is created and we navigate to its task view.
+While the entry is empty, the "Create" button remains insensitive.
+As soon as we start typing, the button becomes sensitive.
+When we remove all typed letters and the entry becomes empty again, the "Create" button becomes insensitive and the entry gets the "error" style.
+After clicking the "Create" button, a new collection is created, and we navigate to its task view.
 
 To implement that behavior we need to first add the action "new-collection" to the method `setup_actions`.
 This action will be activated by a click on the `+` button as well as on the button in the placeholder page.
@@ -458,7 +457,7 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 ```
 
 We also add more callbacks to `setup_callbacks`.
-Importantly, we want to filter our current task model whenever the value of the setting "filter" changes.
+Importantly, we want to filter our current task model whenever the value of the "filter" setting changes.
 Whenever the items of our collections change we also want to set the stack.
 This makes sure that our placeholder page is shown if there are no collections.
 When we click on an item of `collections_list`, `current_collection` should be set to the selected collection and we should then navigate to the task view.

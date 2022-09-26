@@ -69,7 +69,7 @@ impl Window {
             .current_filter_model
             .borrow()
             .clone()
-            .expect("The current filter model needs to be set")
+            .expect("The current filter model needs to be set.")
             .set_filter(self.filter().as_ref());
     }
     // ANCHOR_END: helper
