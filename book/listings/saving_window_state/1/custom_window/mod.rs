@@ -19,7 +19,7 @@ glib::wrapper! {
 impl Window {
     pub fn new(app: &Application) -> Self {
         // Create new window
-        Object::new(&[("application", app)]).expect("Failed to create `Window`.")
+        Object::new(&[("application", app)]).expect("`Window` should be  instantiable.")
     }
 
     fn setup_settings(&self) {
@@ -27,11 +27,14 @@ impl Window {
         self.imp()
             .settings
             .set(settings)
-            .expect("Could not set `Settings`.");
+            .expect("`settings` should not be set before calling `setup_settings`.");
     }
 
     fn settings(&self) -> &Settings {
-        self.imp().settings.get().expect("Could not get settings.")
+        self.imp()
+            .settings
+            .get()
+            .expect("`settings` should be set in `setup_settings`.")
     }
 
     pub fn save_window_size(&self) -> Result<(), glib::BoolError> {

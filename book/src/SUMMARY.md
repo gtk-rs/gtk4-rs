@@ -25,4 +25,4 @@
 - [CSS](css.md)
 - [Libadwaita](libadwaita.md)
     - [Let To-Do App use Libadwaita](todo_3.md)
-    - [Make To-Do App Adaptive](todo_4.md)
+    - [Adding Collections](todo_4.md)

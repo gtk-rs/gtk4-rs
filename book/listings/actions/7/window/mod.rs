@@ -27,11 +27,14 @@ impl Window {
         self.imp()
             .settings
             .set(settings)
-            .expect("Could not set `Settings`.");
+            .expect("`settings` should not be set before calling `setup_settings`.");
     }
 
     fn settings(&self) -> &Settings {
-        self.imp().settings.get().expect("Could not get settings.")
+        self.imp()
+            .settings
+            .get()
+            .expect("`settings` should be set in `setup_settings`.")
     }
     // ANCHOR_END: settings
 
