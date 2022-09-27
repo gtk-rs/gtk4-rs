@@ -27,7 +27,7 @@ impl CollectionObject {
             .clone()
     }
 
-    pub fn collection_data(&self) -> CollectionData {
+    pub fn to_collection_data(&self) -> CollectionData {
         let title = self.imp().title.borrow().clone();
         let tasks_data = self
             .tasks()

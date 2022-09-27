@@ -89,10 +89,10 @@ impl WindowImpl for Window {
             .snapshot()
             .iter()
             .filter_map(Cast::downcast_ref::<CollectionObject>)
-            .map(CollectionObject::collection_data)
+            .map(CollectionObject::to_collection_data)
             .collect();
 
-        // Save state in file
+        // Save state to file
         let file = File::create(data_path()).expect("Could not create json file.");
         serde_json::to_writer(file, &backup_data)
             .expect("Could not write data to json file");

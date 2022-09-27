@@ -1,4 +1,4 @@
-# Make To-Do App Adaptive
+# Adding Collections
 
 ## Adding a Sidebar
 
@@ -57,11 +57,11 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 </interface>
 ```
 
-The leaflet has properties like "can-navigate-back" and "fold-threshold-policy", which wouldn't make too much sense if a `Leaflet` would behave exactly like a `gtk::Box`.
-Instead, the leaflet folds as soon as the requested size is too small to fit all children at the same time.
-If it is folded, the leaflet behaves instead like a [`gtk::Stack`](../docs/gtk4/struct.Stack.html).
-That means it only displays one of its children at the same time.
-The `AdwLeafletPage` will never be displayed in the folded state since its property "navigatable" is set to `False`.
+The `Leaflet` does not always behave like a `gtk::Box`.
+As soon as the requested size is too small to fit all children at the same time, the leaflet folds, and starts behaving like a [`gtk::Stack`](../docs/gtk4/struct.Stack.html).
+This means that it only displays one of its children at a time.
+Properties like "can-navigate-back" and "fold-threshold-policy" are for controlling this behavior.
+The `AdwLeafletPage` with the `gtk::Separator` will never be displayed in the folded state since its property "navigatable" is set to `False`.)
 The adaptive behavior of the leaflet allows the To-Do app to work on smaller screen sizes even with the added collection view.
 
 
@@ -297,13 +297,13 @@ We also add the struct `CollectionData` to aid in serialization and deserializat
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/8/collection_object/mod.rs">listings/todo/8/collection_object/mod.rs</a>
 
 ```rust,no_run,noplayground
-{{#rustdoc_include ../listings/todo/8/collection_object/mod.rs:collection_data}}
+{{#rustdoc_include ../listings/todo/8/collection_object/mod.rs:to_collection_data}}
 ```
 
 Finally, we add methods to `CollectionObject` in order to
 - construct it with `new`,
 - easily access the tasks `ListStore` with `tasks` and
-- convert to and from `CollectionData` with `collection_data` and `from_collection_data`. 
+- convert to and from `CollectionData` with `to_collection_data` and `from_collection_data`. 
 
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/8/collection_object/mod.rs">listings/todo/8/collection_object/mod.rs</a>
@@ -335,7 +335,7 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 ```
 
 As always, we want our data to be saved when we close the window.
-Since most of the implementation is in the method `CollectionObject::collection_data`, the implementation of `close_request` doesn't change much.
+Since most of the implementation is in the method `CollectionObject::to_collection_data`, the implementation of `close_request` doesn't change much.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/8/window/imp.rs">listings/todo/8/window/imp.rs</a>
 
@@ -432,7 +432,7 @@ As soon as we start typing, the button becomes sensitive.
 When we remove all typed letters and the entry becomes empty again, the "Create" button becomes insensitive and the entry gets the "error" style.
 After clicking the "Create" button, a new collection is created, and we navigate to its task view.
 
-To implement that behavior we need to first add the action "new-collection" to the method `setup_actions`.
+To implement that behavior we will first add a "new-collection" action to the `setup_actions` method.
 This action will be activated by a click on the `+` button as well as on the button in the placeholder page.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/8/window/imp.rs">listings/todo/8/window/mod.rs</a>
@@ -441,9 +441,9 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 {{#rustdoc_include ../listings/todo/8/window/mod.rs:setup_actions}}
 ```
 
-As soon as the action "new-collection" is activated, the method `new_collection` will be called.
+As soon as the "new-collection" action is activated, the `new_collection` method is called.
 Here, we create the dialog, set up the buttons as well as add the entry to it.
-We add a callback to the entry to assure that if the content changed, empty content lead to an insensitive `dialog_button` and an entry with css class "error".
+We add a callback to the entry to ensure that when the content changes, an empty content sets `dialog_button` as insensitive and adds an "error" CSS class to the entry.
 We also add a callback to the dialog itself.
 If we click "Cancel", the dialog should just be destroyed without any further actions.
 However, if we click "Create", we want a new collection to be created and set as current collection.
@@ -472,7 +472,7 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 ```
 
 Before, we called the method `set_stack`.
-This method assures if collections are there, the "main" page is shown and the "placeholder" page otherwise.
+This method ensure when there is at least one collection, the "main" page is shown, and the "placeholder" page otherwise.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/8/window/imp.rs">listings/todo/8/window/mod.rs</a>
 

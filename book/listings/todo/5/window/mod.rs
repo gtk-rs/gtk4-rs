@@ -26,7 +26,7 @@ impl Window {
     // ANCHOR: new
     pub fn new(app: &adw::Application) -> Self {
         // Create new window
-        Object::new(&[("application", app)]).expect("Failed to create `Window`.")
+        Object::new(&[("application", app)]).expect("`Window` should be  instantiable.")
     }
     // ANCHOR_END: new
 
@@ -35,11 +35,14 @@ impl Window {
         self.imp()
             .settings
             .set(settings)
-            .expect("Could not set `Settings`.");
+            .expect("`settings` should not be set before calling `setup_settings`.");
     }
 
     fn settings(&self) -> &Settings {
-        self.imp().settings.get().expect("Could not get settings.")
+        self.imp()
+            .settings
+            .get()
+            .expect("`settings` should be set in `setup_settings`.")
     }
 
     fn tasks(&self) -> gio::ListStore {
@@ -108,8 +111,9 @@ impl Window {
     fn restore_data(&self) {
         if let Ok(file) = File::open(data_path()) {
             // Deserialize data from file to vector
-            let backup_data: Vec<TaskData> = serde_json::from_reader(file)
-                .expect("Could not get backup data from json file.");
+            let backup_data: Vec<TaskData> = serde_json::from_reader(file).expect(
+                "It should be possible to read `backup_data` from the json file.",
+            );
 
             // Convert `Vec<TaskData>` to `Vec<TaskObject>`
             let task_objects: Vec<TaskObject> = backup_data

@@ -28,7 +28,7 @@ glib::wrapper! {
 impl Window {
     pub fn new(app: &adw::Application) -> Self {
         // Create new window
-        Object::new(&[("application", app)]).expect("Failed to create `Window`.")
+        Object::new(&[("application", app)]).expect("`Window` should be  instantiable.")
     }
 
     fn setup_settings(&self) {
@@ -36,11 +36,14 @@ impl Window {
         self.imp()
             .settings
             .set(settings)
-            .expect("Could not set `Settings`.");
+            .expect("`settings` should not be set before calling `setup_settings`.");
     }
 
     fn settings(&self) -> &Settings {
-        self.imp().settings.get().expect("Could not get settings.")
+        self.imp()
+            .settings
+            .get()
+            .expect("`settings` should be set in `setup_settings`.")
     }
 
     // ANCHOR: helper
@@ -53,14 +56,14 @@ impl Window {
             .current_collection
             .borrow()
             .clone()
-            .expect("Could not get current collection.")
+            .expect("`current_collection` should be set in `set_current_collections`.")
     }
 
     fn collections(&self) -> gio::ListStore {
         self.imp()
             .collections
             .get()
-            .expect("Could not get collection.")
+            .expect("`collections` should be set in `setup_collections`.")
             .clone()
     }
 
@@ -69,7 +72,7 @@ impl Window {
             .current_filter_model
             .borrow()
             .clone()
-            .expect("The current filter model needs to be set.")
+            .expect("`current_filter_model` should be set in `set_current_collection`.")
             .set_filter(self.filter().as_ref());
     }
     // ANCHOR_END: helper
@@ -120,7 +123,7 @@ impl Window {
             clone!(@weak self as window => @default-panic, move |obj| {
                 let collection_object = obj
                     .downcast_ref()
-                    .expect("The object is not of type `CollectionObject`.");
+                    .expect("The object should be of type `CollectionObject`.");
                 let row = window.create_collection_row(collection_object);
                 row.upcast()
             }),
@@ -133,7 +136,9 @@ impl Window {
         if let Ok(file) = File::open(data_path()) {
             // Deserialize data from file to vector
             let backup_data: Vec<CollectionData> = serde_json::from_reader(file)
-                .expect("Could not get backup data from json file.");
+                .expect(
+                    "It should be possible to read `backup_data` from the json file.",
+                );
 
             // Convert `Vec<CollectionData>` to `Vec<CollectionObject>`
             let collections: Vec<CollectionObject> = backup_data
@@ -182,7 +187,7 @@ impl Window {
             clone!(@weak self as window => @default-panic, move |obj| {
                 let task_object = obj
                     .downcast_ref()
-                    .expect("The object is not of type `TaskObject`.");
+                    .expect("The object should be of type `TaskObject`.");
                 let row = window.create_task_row(task_object);
                 row.upcast()
             }),
@@ -435,8 +440,7 @@ impl Window {
 
             if empty {
                 entry.add_css_class("error");
-            }
-            else {
+            } else {
                 entry.remove_css_class("error");
             }
         }));
