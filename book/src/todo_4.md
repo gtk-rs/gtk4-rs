@@ -32,7 +32,6 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
     <property name="content">
       <object class="AdwLeaflet" id="leaflet">
         <property name="can-navigate-back">True</property>
-        <property name="fold-threshold-policy">natural</property>
         <child>
           <object class="GtkBox">
             <!--Collection view implementation-->
@@ -60,7 +59,7 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 The `Leaflet` does not always behave like a `gtk::Box`.
 As soon as the requested size is too small to fit all children at the same time, the leaflet folds, and starts behaving like a [`gtk::Stack`](../docs/gtk4/struct.Stack.html).
 This means that it only displays one of its children at a time.
-Properties like "can-navigate-back" and "fold-threshold-policy" are for controlling this behavior.
+The property "can-navigate-back" controls whether gestures and shortcuts for navigating backward are enabled.
 The `AdwLeafletPage` with the `gtk::Separator` will never be displayed in the folded state since its property "navigatable" is set to `False`.)
 The adaptive behavior of the leaflet allows the To-Do app to work on smaller screen sizes even with the added collection view.
 
