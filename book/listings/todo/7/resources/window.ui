@@ -34,7 +34,6 @@
     <property name="content">
       <object class="AdwLeaflet" id="leaflet">
         <property name="can-navigate-back">True</property>
-        <property name="fold-threshold-policy">natural</property>
         <child>
           <object class="GtkBox">
             <property name="orientation">vertical</property>
