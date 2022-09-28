@@ -29,8 +29,9 @@
     </item>
   </menu>
   <template class="TodoWindow" parent="AdwApplicationWindow">
-    <property name="width-request">360</property>
     <property name="title" translatable="yes">To-Do</property>
+    <property name="default_width">650</property>
+    <property name="default_height">550</property>
     <property name="content">
       <object class="AdwLeaflet" id="leaflet">
         <property name="can-navigate-back">True</property>
@@ -78,6 +79,7 @@
           <object class="GtkBox">
             <property name="orientation">vertical</property>
             <property name="hexpand">True</property>
+            <property name="width-request">250</property>
             <child>
               <object class="AdwHeaderBar">
                 <property name="title-widget">
