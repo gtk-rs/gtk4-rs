@@ -27,8 +27,9 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
     <!--Menu implementation-->      
   </menu>
   <template class="TodoWindow" parent="AdwApplicationWindow">
-    <property name="width-request">360</property>
     <property name="title" translatable="yes">To-Do</property>
+    <property name="default_width">650</property>
+    <property name="default_height">550</property>
     <property name="content">
       <object class="AdwLeaflet" id="leaflet">
         <property name="can-navigate-back">True</property>
@@ -66,7 +67,7 @@ The adaptive behavior of the leaflet allows the To-Do app to work on smaller scr
 
 <div style="text-align:center">
  <video autoplay muted loop>
-  <source src="vid/todo_leaflet.webm" type="video/webm">
+  <source src="vid/todo_7_leaflet.webm" type="video/webm">
 Your browser does not support the video tag.
  </video>
 </div>
@@ -125,6 +126,7 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 <object class="GtkBox">
   <property name="orientation">vertical</property>
   <property name="hexpand">True</property>
+  <property name="width-request">250</property> 
   <child>
     <object class="AdwHeaderBar">
       <property name="title-widget">
@@ -205,8 +207,9 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
     <!--Menu implementation--> 
   </menu>
   <template class="TodoWindow" parent="AdwApplicationWindow">
-    <property name="width-request">360</property>
     <property name="title" translatable="yes">To-Do</property>
+    <property name="default_width">650</property>
+    <property name="default_height">550</property>
     <property name="content">
       <object class="GtkStack" id="stack">
         <property name="transition-type">crossfade</property>
