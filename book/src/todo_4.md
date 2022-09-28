@@ -297,7 +297,7 @@ We also add the struct `CollectionData` to aid in serialization and deserializat
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/8/collection_object/mod.rs">listings/todo/8/collection_object/mod.rs</a>
 
 ```rust,no_run,noplayground
-{{#rustdoc_include ../listings/todo/8/collection_object/mod.rs:to_collection_data}}
+{{#rustdoc_include ../listings/todo/8/collection_object/mod.rs:collection_data}}
 ```
 
 Finally, we add methods to `CollectionObject` in order to
