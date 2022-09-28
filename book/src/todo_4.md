@@ -1,6 +1,6 @@
 # Adding Collections
 
-## Adding a Sidebar
+## Sidebar
 
 Using Libadwaita on its own was already a big leap forward when it came to the look and feel of the To-Do app.
 Let us go one step further by adding a way to group tasks into collections.
