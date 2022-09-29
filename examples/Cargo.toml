@@ -17,6 +17,13 @@ path = "../gtk4"
 package = "gtk4"
 features = ["v4_8"]
 
+# used by gif-paintable example
+[dependencies.image]
+version = "0.24"
+features = ["gif"]
+default-features = false
+optional = true
+
 [features]
 default = []
 glium-support = ["glium", "epoxy", "libloading"]
@@ -104,6 +111,11 @@ path = "expressions/main.rs"
 [[bin]]
 name = "flow_box"
 path = "flow_box/main.rs"
+
+[[bin]]
+name = "gif_paintable"
+path = "gif_paintable/main.rs"
+required-features = ["image"]
 
 [[bin]]
 name = "glium_gl_area"
