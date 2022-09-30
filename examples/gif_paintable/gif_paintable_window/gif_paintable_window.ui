@@ -2,7 +2,7 @@
 <interface>
   <template class="GifPaintableWindow" parent="GtkApplicationWindow">
     <property name="default-width">600</property>
-    <property name="default-height">300</property>
+    <property name="default-height">400</property>
     <property name="title">GIF Paintable</property>
     <child type="titlebar">
       <object class="GtkHeaderBar">
@@ -16,7 +16,10 @@
       </object>
     </child>
     <child>
-      <object class="GtkPicture" id="picture"/>
+      <object class="GtkPicture" id="picture">
+        <property name="halign">center</property>
+        <property name="valign">center</property>
+      </object>
     </child>
   </template>
 </interface>

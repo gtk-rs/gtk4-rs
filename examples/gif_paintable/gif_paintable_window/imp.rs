@@ -26,8 +26,9 @@ impl ObjectSubclass for GifPaintableWindow {
             .accept_label("Open")
             .cancel_label("Cancel")
             .modal(true)
-            .filter(&gif_filter)
             .build();
+
+        dialog.add_filter(&gif_filter);
 
         Self {
             dialog,
@@ -44,9 +45,10 @@ impl ObjectSubclass for GifPaintableWindow {
                 let dialog = &win.imp().dialog;
                 dialog.set_transient_for(Some(&win));
                 if dialog.run_future().await == gtk::ResponseType::Accept {
-                    win.set_file(dialog.file().unwrap());
+                    if let Err(error) = win.set_file(dialog.file().unwrap()) {
+                        println!("Error loading the GIF: {error}");
+                    }
                 }
-                dialog.destroy();
             },
         );
     }
