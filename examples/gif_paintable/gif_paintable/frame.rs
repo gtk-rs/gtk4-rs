@@ -8,8 +8,8 @@ pub struct Frame {
     pub frame_duration: Duration,
 }
 
-impl Frame {
-    pub fn new(f: image::Frame) -> Self {
+impl From<image::Frame> for Frame {
+    fn from(f: image::Frame) -> Self {
         let mut frame_duration = Duration::from(f.delay());
 
         // convention is to use 100 milliseconds duration if it is defined as 0.

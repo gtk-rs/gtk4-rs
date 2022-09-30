@@ -49,7 +49,7 @@ impl GifPaintable {
             .into_frames()
             .collect_frames()?
             .into_iter()
-            .map(Frame::new)
+            .map(Frame::from)
             .collect::<Vec<Frame>>();
 
         imp.frames.replace(Some(frames));
