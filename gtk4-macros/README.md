@@ -20,7 +20,7 @@ Currently, the minimum supported Rust version is `1.63.0`.
 
 | Feature | Description |
 | ---     | ----------- |
-| `xml_validation` | Check the existance of `#[template_child]` fields in the UI file. Only works with `#[template(string = "")]` |
+| `xml_validation` | Check the existence of `#[template_child]` fields in the UI file. Only works with `#[template(string = "")]` |
 
 ### See Also
 

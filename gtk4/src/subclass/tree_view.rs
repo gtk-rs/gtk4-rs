@@ -145,7 +145,7 @@ impl<T: TreeViewImpl> TreeViewImplExt for T {
         unsafe {
             let data = T::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkTreeViewClass;
-            // cursor-changed is a sigal
+            // cursor-changed is a signal
             if let Some(f) = (*parent_class).cursor_changed {
                 f(tree_view.unsafe_cast_ref::<TreeView>().to_glib_none().0)
             }
