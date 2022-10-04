@@ -11,10 +11,10 @@ Libadwaita is a library augmenting GTK 4 which:
 - allows runtime recoloring with [named colors](https://gnome.pages.gitlab.gnome.org/libadwaita/doc/main/named-colors.html)
 - adds [API](https://world.pages.gitlab.gnome.org/Rust/libadwaita-rs/stable/latest/docs/libadwaita/struct.StyleManager.html) to support the cross-desktop dark style preference
 
-In order to use the Rust bindings add the following line to your dependencies in `Cargo.toml`, where `X.X` should be replaced with the most up-to-date version of the [libadwaita crate](https://crates.io/crates/libadwaita).
+In order to use the Rust bindings, add the [libadwaita crate](https://crates.io/crates/libadwaita) as dependency to `Cargo.toml` using following command:
 
-```toml
-adw = { version = "X.X", package = "libadwaita" }
+```
+cargo add libadwaita --rename=adw
 ```
 
 The versions of the `gtk4` and `libadwaita` crates need to be synced.

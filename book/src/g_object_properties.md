@@ -61,6 +61,10 @@ The crate `once_cell` provides the `Lazy` type which allows us to do that.
 `once_cell` is already part of Rust nightly.
 Until it hits stable, we will add it as external dependency.
 
+```
+cargo add once_cell
+```
+
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/Cargo.toml">listings/Cargo.toml</a>
 
 ```toml
