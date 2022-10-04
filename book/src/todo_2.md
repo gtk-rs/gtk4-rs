@@ -196,6 +196,11 @@ Combined with [`serde_json`](https://lib.rs/crates/serde_json) we can save our t
 
 First, we extend our `Cargo.toml` with the `serde` and `serde_json` crate.
 
+```
+cargo add serde --features derive
+cargo add serde_json
+```
+
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/Cargo.toml">listings/Cargo.toml</a>
 
 ```toml
