@@ -24,7 +24,7 @@ features = ["dox"]
 name = "gdk4_x11_sys"
 
 [features]
-dox = []
+dox = ["gdk/dox", "glib/dox"]
 v4_4 = []
 
 [dependencies]
