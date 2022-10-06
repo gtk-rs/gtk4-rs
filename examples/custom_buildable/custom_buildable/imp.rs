@@ -59,7 +59,7 @@ impl BuildableImpl for CustomBuildable {
         } else if Some("prefix") == type_ {
             // Check if the child was added using `<child type="prefix">`
             buildable.add_prefix(child.downcast_ref::<gtk::Widget>().unwrap());
-        } else if None == type_ {
+        } else if type_.is_none() {
             // Normal children
             buildable.add_suffix(child.downcast_ref::<gtk::Widget>().unwrap());
         };
