@@ -116,7 +116,6 @@ impl GestureRotateBuilder {
             properties.push(("propagation-phase", propagation_phase));
         }
         glib::Object::new::<GestureRotate>(&properties)
-            .expect("Failed to create an instance of GestureRotate")
     }
 
     pub fn n_points(mut self, n_points: u32) -> Self {

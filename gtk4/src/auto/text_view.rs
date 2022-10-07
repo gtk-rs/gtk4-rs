@@ -326,7 +326,6 @@ impl TextViewBuilder {
             properties.push(("vscroll-policy", vscroll_policy));
         }
         glib::Object::new::<TextView>(&properties)
-            .expect("Failed to create an instance of TextView")
     }
 
     pub fn accepts_tab(mut self, accepts_tab: bool) -> Self {

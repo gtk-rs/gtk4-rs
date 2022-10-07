@@ -238,7 +238,6 @@ impl SingleSelection {
 impl Default for SingleSelection {
     fn default() -> Self {
         glib::object::Object::new::<Self>(&[])
-            .expect("Can't construct SingleSelection object with default parameters")
     }
 }
 
@@ -280,7 +279,6 @@ impl SingleSelectionBuilder {
             properties.push(("selected", selected));
         }
         glib::Object::new::<SingleSelection>(&properties)
-            .expect("Failed to create an instance of SingleSelection")
     }
 
     pub fn autoselect(mut self, autoselect: bool) -> Self {

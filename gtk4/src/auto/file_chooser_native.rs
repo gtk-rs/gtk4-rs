@@ -147,7 +147,6 @@ impl FileChooserNative {
 impl Default for FileChooserNative {
     fn default() -> Self {
         glib::object::Object::new::<Self>(&[])
-            .expect("Can't construct FileChooserNative object with default parameters")
     }
 }
 
@@ -213,7 +212,6 @@ impl FileChooserNativeBuilder {
             properties.push(("select-multiple", select_multiple));
         }
         glib::Object::new::<FileChooserNative>(&properties)
-            .expect("Failed to create an instance of FileChooserNative")
     }
 
     pub fn accept_label(mut self, accept_label: &str) -> Self {

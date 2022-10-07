@@ -46,7 +46,6 @@ impl TextTag {
 impl Default for TextTag {
     fn default() -> Self {
         glib::object::Object::new::<Self>(&[])
-            .expect("Can't construct TextTag object with default parameters")
     }
 }
 
@@ -451,7 +450,7 @@ impl TextTagBuilder {
         if let Some(ref wrap_mode_set) = self.wrap_mode_set {
             properties.push(("wrap-mode-set", wrap_mode_set));
         }
-        glib::Object::new::<TextTag>(&properties).expect("Failed to create an instance of TextTag")
+        glib::Object::new::<TextTag>(&properties)
     }
 
     pub fn accumulative_margin(mut self, accumulative_margin: bool) -> Self {

@@ -201,7 +201,6 @@ impl SortListModel {
 impl Default for SortListModel {
     fn default() -> Self {
         glib::object::Object::new::<Self>(&[])
-            .expect("Can't construct SortListModel object with default parameters")
     }
 }
 
@@ -239,7 +238,6 @@ impl SortListModelBuilder {
             properties.push(("sorter", sorter));
         }
         glib::Object::new::<SortListModel>(&properties)
-            .expect("Failed to create an instance of SortListModel")
     }
 
     pub fn incremental(mut self, incremental: bool) -> Self {

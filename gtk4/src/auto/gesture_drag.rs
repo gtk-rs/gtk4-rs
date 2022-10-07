@@ -102,7 +102,6 @@ impl GestureDragBuilder {
             properties.push(("propagation-phase", propagation_phase));
         }
         glib::Object::new::<GestureDrag>(&properties)
-            .expect("Failed to create an instance of GestureDrag")
     }
 
     pub fn button(mut self, button: u32) -> Self {

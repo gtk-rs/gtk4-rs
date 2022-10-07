@@ -212,7 +212,7 @@ impl GLAreaBuilder {
         if let Some(ref accessible_role) = self.accessible_role {
             properties.push(("accessible-role", accessible_role));
         }
-        glib::Object::new::<GLArea>(&properties).expect("Failed to create an instance of GLArea")
+        glib::Object::new::<GLArea>(&properties)
     }
 
     pub fn auto_render(mut self, auto_render: bool) -> Self {

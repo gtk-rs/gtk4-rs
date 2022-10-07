@@ -521,7 +521,6 @@ impl CellRendererAccelBuilder {
             properties.push(("ypad", ypad));
         }
         glib::Object::new::<CellRendererAccel>(&properties)
-            .expect("Failed to create an instance of CellRendererAccel")
     }
 
     pub fn accel_key(mut self, accel_key: u32) -> Self {

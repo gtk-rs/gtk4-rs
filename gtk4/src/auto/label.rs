@@ -1008,7 +1008,6 @@ impl Label {
 impl Default for Label {
     fn default() -> Self {
         glib::object::Object::new::<Self>(&[])
-            .expect("Can't construct Label object with default parameters")
     }
 }
 
@@ -1235,7 +1234,7 @@ impl LabelBuilder {
         if let Some(ref accessible_role) = self.accessible_role {
             properties.push(("accessible-role", accessible_role));
         }
-        glib::Object::new::<Label>(&properties).expect("Failed to create an instance of Label")
+        glib::Object::new::<Label>(&properties)
     }
 
     pub fn attributes(mut self, attributes: &pango::AttrList) -> Self {

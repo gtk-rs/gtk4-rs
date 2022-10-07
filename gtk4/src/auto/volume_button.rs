@@ -252,7 +252,6 @@ impl VolumeButtonBuilder {
             properties.push(("orientation", orientation));
         }
         glib::Object::new::<VolumeButton>(&properties)
-            .expect("Failed to create an instance of VolumeButton")
     }
 
     pub fn use_symbolic(mut self, use_symbolic: bool) -> Self {

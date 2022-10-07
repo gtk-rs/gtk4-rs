@@ -201,7 +201,6 @@ impl FlowBoxChildBuilder {
             properties.push(("accessible-role", accessible_role));
         }
         glib::Object::new::<FlowBoxChild>(&properties)
-            .expect("Failed to create an instance of FlowBoxChild")
     }
 
     pub fn child(mut self, child: &impl IsA<Widget>) -> Self {

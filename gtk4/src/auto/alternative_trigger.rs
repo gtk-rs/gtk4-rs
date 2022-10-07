@@ -67,7 +67,6 @@ impl AlternativeTrigger {
 impl Default for AlternativeTrigger {
     fn default() -> Self {
         glib::object::Object::new::<Self>(&[])
-            .expect("Can't construct AlternativeTrigger object with default parameters")
     }
 }
 
@@ -101,7 +100,6 @@ impl AlternativeTriggerBuilder {
             properties.push(("second", second));
         }
         glib::Object::new::<AlternativeTrigger>(&properties)
-            .expect("Failed to create an instance of AlternativeTrigger")
     }
 
     pub fn first(mut self, first: &impl IsA<ShortcutTrigger>) -> Self {

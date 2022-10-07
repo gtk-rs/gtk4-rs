@@ -123,7 +123,6 @@ impl BoolFilter {
 impl Default for BoolFilter {
     fn default() -> Self {
         glib::object::Object::new::<Self>(&[])
-            .expect("Can't construct BoolFilter object with default parameters")
     }
 }
 
@@ -157,7 +156,6 @@ impl BoolFilterBuilder {
             properties.push(("invert", invert));
         }
         glib::Object::new::<BoolFilter>(&properties)
-            .expect("Failed to create an instance of BoolFilter")
     }
 
     pub fn expression(mut self, expression: impl AsRef<Expression>) -> Self {

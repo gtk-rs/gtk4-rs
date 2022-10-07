@@ -249,7 +249,6 @@ impl FontChooserWidgetBuilder {
             properties.push(("show-preview-entry", show_preview_entry));
         }
         glib::Object::new::<FontChooserWidget>(&properties)
-            .expect("Failed to create an instance of FontChooserWidget")
     }
 
     pub fn can_focus(mut self, can_focus: bool) -> Self {

@@ -418,7 +418,6 @@ impl CellRendererSpinBuilder {
             properties.push(("ypad", ypad));
         }
         glib::Object::new::<CellRendererSpin>(&properties)
-            .expect("Failed to create an instance of CellRendererSpin")
     }
 
     pub fn adjustment(mut self, adjustment: &impl IsA<Adjustment>) -> Self {

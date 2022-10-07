@@ -166,7 +166,6 @@ impl WindowControls {
 impl Default for WindowControls {
     fn default() -> Self {
         glib::object::Object::new::<Self>(&[])
-            .expect("Can't construct WindowControls object with default parameters")
     }
 }
 
@@ -320,7 +319,6 @@ impl WindowControlsBuilder {
             properties.push(("accessible-role", accessible_role));
         }
         glib::Object::new::<WindowControls>(&properties)
-            .expect("Failed to create an instance of WindowControls")
     }
 
     pub fn decoration_layout(mut self, decoration_layout: &str) -> Self {

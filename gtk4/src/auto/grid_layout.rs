@@ -307,7 +307,6 @@ impl GridLayoutBuilder {
             properties.push(("row-spacing", row_spacing));
         }
         glib::Object::new::<GridLayout>(&properties)
-            .expect("Failed to create an instance of GridLayout")
     }
 
     pub fn baseline_row(mut self, baseline_row: i32) -> Self {

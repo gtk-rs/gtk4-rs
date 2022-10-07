@@ -288,7 +288,6 @@ impl StatusbarBuilder {
             properties.push(("accessible-role", accessible_role));
         }
         glib::Object::new::<Statusbar>(&properties)
-            .expect("Failed to create an instance of Statusbar")
     }
 
     pub fn can_focus(mut self, can_focus: bool) -> Self {

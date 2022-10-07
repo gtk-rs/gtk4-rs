@@ -726,7 +726,6 @@ impl MenuButtonBuilder {
             properties.push(("accessible-role", accessible_role));
         }
         glib::Object::new::<MenuButton>(&properties)
-            .expect("Failed to create an instance of MenuButton")
     }
 
     #[cfg(any(feature = "v4_4", feature = "dox"))]

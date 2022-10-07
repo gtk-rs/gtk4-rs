@@ -75,7 +75,6 @@ impl IMMulticontextBuilder {
             properties.push(("input-purpose", input_purpose));
         }
         glib::Object::new::<IMMulticontext>(&properties)
-            .expect("Failed to create an instance of IMMulticontext")
     }
 
     pub fn input_hints(mut self, input_hints: InputHints) -> Self {

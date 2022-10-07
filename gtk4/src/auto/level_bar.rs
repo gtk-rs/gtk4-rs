@@ -483,7 +483,6 @@ impl LevelBarBuilder {
             properties.push(("orientation", orientation));
         }
         glib::Object::new::<LevelBar>(&properties)
-            .expect("Failed to create an instance of LevelBar")
     }
 
     pub fn inverted(mut self, inverted: bool) -> Self {

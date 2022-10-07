@@ -132,7 +132,6 @@ impl NumericSorter {
 impl Default for NumericSorter {
     fn default() -> Self {
         glib::object::Object::new::<Self>(&[])
-            .expect("Can't construct NumericSorter object with default parameters")
     }
 }
 
@@ -166,7 +165,6 @@ impl NumericSorterBuilder {
             properties.push(("sort-order", sort_order));
         }
         glib::Object::new::<NumericSorter>(&properties)
-            .expect("Failed to create an instance of NumericSorter")
     }
 
     pub fn expression(mut self, expression: impl AsRef<Expression>) -> Self {

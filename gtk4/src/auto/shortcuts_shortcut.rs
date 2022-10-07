@@ -561,7 +561,6 @@ impl ShortcutsShortcutBuilder {
             properties.push(("accessible-role", accessible_role));
         }
         glib::Object::new::<ShortcutsShortcut>(&properties)
-            .expect("Failed to create an instance of ShortcutsShortcut")
     }
 
     pub fn accel_size_group(mut self, accel_size_group: &SizeGroup) -> Self {

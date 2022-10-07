@@ -185,7 +185,6 @@ impl GestureLongPressBuilder {
             properties.push(("propagation-phase", propagation_phase));
         }
         glib::Object::new::<GestureLongPress>(&properties)
-            .expect("Failed to create an instance of GestureLongPress")
     }
 
     pub fn delay_factor(mut self, delay_factor: f64) -> Self {

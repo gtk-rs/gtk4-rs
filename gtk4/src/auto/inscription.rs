@@ -471,7 +471,6 @@ impl Inscription {
 impl Default for Inscription {
     fn default() -> Self {
         glib::object::Object::new::<Self>(&[])
-            .expect("Can't construct Inscription object with default parameters")
     }
 }
 
@@ -694,7 +693,6 @@ impl InscriptionBuilder {
             properties.push(("accessible-role", accessible_role));
         }
         glib::Object::new::<Inscription>(&properties)
-            .expect("Failed to create an instance of Inscription")
     }
 
     #[cfg(any(feature = "v4_8", feature = "dox"))]

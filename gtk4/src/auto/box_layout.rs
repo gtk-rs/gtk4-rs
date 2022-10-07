@@ -163,7 +163,6 @@ impl BoxLayout {
 impl Default for BoxLayout {
     fn default() -> Self {
         glib::object::Object::new::<Self>(&[])
-            .expect("Can't construct BoxLayout object with default parameters")
     }
 }
 
@@ -205,7 +204,6 @@ impl BoxLayoutBuilder {
             properties.push(("orientation", orientation));
         }
         glib::Object::new::<BoxLayout>(&properties)
-            .expect("Failed to create an instance of BoxLayout")
     }
 
     pub fn baseline_position(mut self, baseline_position: BaselinePosition) -> Self {

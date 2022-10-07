@@ -384,7 +384,6 @@ impl IconThemeBuilder {
             properties.push(("theme-name", theme_name));
         }
         glib::Object::new::<IconTheme>(&properties)
-            .expect("Failed to create an instance of IconTheme")
     }
 
     pub fn display(mut self, display: &impl IsA<gdk::Display>) -> Self {

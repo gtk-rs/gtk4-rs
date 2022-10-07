@@ -56,7 +56,6 @@ impl Box {
 impl Default for Box {
     fn default() -> Self {
         glib::object::Object::new::<Self>(&[])
-            .expect("Can't construct Box object with default parameters")
     }
 }
 
@@ -217,7 +216,7 @@ impl BoxBuilder {
         if let Some(ref orientation) = self.orientation {
             properties.push(("orientation", orientation));
         }
-        glib::Object::new::<Box>(&properties).expect("Failed to create an instance of Box")
+        glib::Object::new::<Box>(&properties)
     }
 
     pub fn baseline_position(mut self, baseline_position: BaselinePosition) -> Self {

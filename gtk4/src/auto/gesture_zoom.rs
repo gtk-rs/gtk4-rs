@@ -115,7 +115,6 @@ impl GestureZoomBuilder {
             properties.push(("propagation-phase", propagation_phase));
         }
         glib::Object::new::<GestureZoom>(&properties)
-            .expect("Failed to create an instance of GestureZoom")
     }
 
     pub fn n_points(mut self, n_points: u32) -> Self {

@@ -77,7 +77,6 @@ impl EditableLabel {
 impl Default for EditableLabel {
     fn default() -> Self {
         glib::object::Object::new::<Self>(&[])
-            .expect("Can't construct EditableLabel object with default parameters")
     }
 }
 
@@ -254,7 +253,6 @@ impl EditableLabelBuilder {
             properties.push(("xalign", xalign));
         }
         glib::Object::new::<EditableLabel>(&properties)
-            .expect("Failed to create an instance of EditableLabel")
     }
 
     #[cfg(any(feature = "v4_8", feature = "dox"))]

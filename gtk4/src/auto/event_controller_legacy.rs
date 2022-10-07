@@ -111,7 +111,6 @@ impl EventControllerLegacyBuilder {
             properties.push(("propagation-phase", propagation_phase));
         }
         glib::Object::new::<EventControllerLegacy>(&properties)
-            .expect("Failed to create an instance of EventControllerLegacy")
     }
 
     pub fn name(mut self, name: &str) -> Self {

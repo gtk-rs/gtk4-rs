@@ -78,7 +78,6 @@ impl Scale {
 impl Default for Scale {
     fn default() -> Self {
         glib::object::Object::new::<Self>(&[])
-            .expect("Can't construct Scale object with default parameters")
     }
 }
 
@@ -267,7 +266,7 @@ impl ScaleBuilder {
         if let Some(ref orientation) = self.orientation {
             properties.push(("orientation", orientation));
         }
-        glib::Object::new::<Scale>(&properties).expect("Failed to create an instance of Scale")
+        glib::Object::new::<Scale>(&properties)
     }
 
     pub fn digits(mut self, digits: i32) -> Self {

@@ -649,7 +649,7 @@ impl ImageBuilder {
         if let Some(ref accessible_role) = self.accessible_role {
             properties.push(("accessible-role", accessible_role));
         }
-        glib::Object::new::<Image>(&properties).expect("Failed to create an instance of Image")
+        glib::Object::new::<Image>(&properties)
     }
 
     pub fn file(mut self, file: &str) -> Self {

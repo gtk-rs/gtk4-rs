@@ -74,7 +74,6 @@ impl IMContextSimpleBuilder {
             properties.push(("input-purpose", input_purpose));
         }
         glib::Object::new::<IMContextSimple>(&properties)
-            .expect("Failed to create an instance of IMContextSimple")
     }
 
     pub fn input_hints(mut self, input_hints: InputHints) -> Self {

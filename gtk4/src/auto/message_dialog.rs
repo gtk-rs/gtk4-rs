@@ -525,7 +525,6 @@ impl MessageDialogBuilder {
             properties.push(("accessible-role", accessible_role));
         }
         glib::Object::new::<MessageDialog>(&properties)
-            .expect("Failed to create an instance of MessageDialog")
     }
 
     pub fn buttons(mut self, buttons: ButtonsType) -> Self {

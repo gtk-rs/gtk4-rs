@@ -278,7 +278,6 @@ impl ComboBoxBuilder {
             properties.push(("editing-canceled", editing_canceled));
         }
         glib::Object::new::<ComboBox>(&properties)
-            .expect("Failed to create an instance of ComboBox")
     }
 
     pub fn active(mut self, active: i32) -> Self {

@@ -672,7 +672,6 @@ impl EntryCompletionBuilder {
             properties.push(("text-column", text_column));
         }
         glib::Object::new::<EntryCompletion>(&properties)
-            .expect("Failed to create an instance of EntryCompletion")
     }
 
     pub fn cell_area(mut self, cell_area: &impl IsA<CellArea>) -> Self {

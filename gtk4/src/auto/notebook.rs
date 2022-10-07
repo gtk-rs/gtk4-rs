@@ -995,7 +995,6 @@ impl NotebookBuilder {
             properties.push(("accessible-role", accessible_role));
         }
         glib::Object::new::<Notebook>(&properties)
-            .expect("Failed to create an instance of Notebook")
     }
 
     pub fn enable_popup(mut self, enable_popup: bool) -> Self {

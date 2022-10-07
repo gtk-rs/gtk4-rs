@@ -2174,7 +2174,6 @@ impl SettingsBuilder {
             properties.push(("gtk-xft-rgba", gtk_xft_rgba));
         }
         glib::Object::new::<Settings>(&properties)
-            .expect("Failed to create an instance of Settings")
     }
 
     pub fn gtk_alternative_button_order(mut self, gtk_alternative_button_order: bool) -> Self {

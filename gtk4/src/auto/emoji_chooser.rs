@@ -257,7 +257,6 @@ impl EmojiChooserBuilder {
             properties.push(("accessible-role", accessible_role));
         }
         glib::Object::new::<EmojiChooser>(&properties)
-            .expect("Failed to create an instance of EmojiChooser")
     }
 
     pub fn autohide(mut self, autohide: bool) -> Self {

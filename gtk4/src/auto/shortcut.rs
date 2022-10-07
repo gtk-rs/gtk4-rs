@@ -166,7 +166,6 @@ impl Shortcut {
 impl Default for Shortcut {
     fn default() -> Self {
         glib::object::Object::new::<Self>(&[])
-            .expect("Can't construct Shortcut object with default parameters")
     }
 }
 
@@ -204,7 +203,6 @@ impl ShortcutBuilder {
             properties.push(("trigger", trigger));
         }
         glib::Object::new::<Shortcut>(&properties)
-            .expect("Failed to create an instance of Shortcut")
     }
 
     pub fn action(mut self, action: &impl IsA<ShortcutAction>) -> Self {

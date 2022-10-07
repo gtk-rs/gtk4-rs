@@ -238,7 +238,6 @@ impl WindowHandleBuilder {
             properties.push(("accessible-role", accessible_role));
         }
         glib::Object::new::<WindowHandle>(&properties)
-            .expect("Failed to create an instance of WindowHandle")
     }
 
     pub fn child(mut self, child: &impl IsA<Widget>) -> Self {

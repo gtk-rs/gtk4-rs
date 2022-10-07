@@ -200,7 +200,6 @@ impl GLShaderBuilder {
             properties.push(("source", source));
         }
         glib::Object::new::<GLShader>(&properties)
-            .expect("Failed to create an instance of GLShader")
     }
 
     pub fn resource(mut self, resource: &str) -> Self {

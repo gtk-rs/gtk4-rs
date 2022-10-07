@@ -582,7 +582,6 @@ impl CalendarBuilder {
             properties.push(("accessible-role", accessible_role));
         }
         glib::Object::new::<Calendar>(&properties)
-            .expect("Failed to create an instance of Calendar")
     }
 
     pub fn day(mut self, day: i32) -> Self {

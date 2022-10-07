@@ -159,7 +159,6 @@ impl CellAreaBoxBuilder {
             properties.push(("orientation", orientation));
         }
         glib::Object::new::<CellAreaBox>(&properties)
-            .expect("Failed to create an instance of CellAreaBox")
     }
 
     pub fn spacing(mut self, spacing: i32) -> Self {

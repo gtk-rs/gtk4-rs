@@ -247,7 +247,6 @@ impl GestureStylusBuilder {
             properties.push(("propagation-phase", propagation_phase));
         }
         glib::Object::new::<GestureStylus>(&properties)
-            .expect("Failed to create an instance of GestureStylus")
     }
 
     pub fn button(mut self, button: u32) -> Self {

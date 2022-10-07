@@ -98,7 +98,6 @@ impl Scrollbar {
 impl Default for Scrollbar {
     fn default() -> Self {
         glib::object::Object::new::<Self>(&[])
-            .expect("Can't construct Scrollbar object with default parameters")
     }
 }
 
@@ -252,7 +251,6 @@ impl ScrollbarBuilder {
             properties.push(("orientation", orientation));
         }
         glib::Object::new::<Scrollbar>(&properties)
-            .expect("Failed to create an instance of Scrollbar")
     }
 
     pub fn adjustment(mut self, adjustment: &impl IsA<Adjustment>) -> Self {

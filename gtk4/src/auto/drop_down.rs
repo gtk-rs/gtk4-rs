@@ -405,7 +405,6 @@ impl DropDown {
 impl Default for DropDown {
     fn default() -> Self {
         glib::object::Object::new::<Self>(&[])
-            .expect("Can't construct DropDown object with default parameters")
     }
 }
 
@@ -582,7 +581,6 @@ impl DropDownBuilder {
             properties.push(("accessible-role", accessible_role));
         }
         glib::Object::new::<DropDown>(&properties)
-            .expect("Failed to create an instance of DropDown")
     }
 
     pub fn enable_search(mut self, enable_search: bool) -> Self {

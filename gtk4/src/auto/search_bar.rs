@@ -389,7 +389,6 @@ impl SearchBarBuilder {
             properties.push(("accessible-role", accessible_role));
         }
         glib::Object::new::<SearchBar>(&properties)
-            .expect("Failed to create an instance of SearchBar")
     }
 
     pub fn child(mut self, child: &impl IsA<Widget>) -> Self {

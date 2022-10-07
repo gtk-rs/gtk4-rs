@@ -386,7 +386,6 @@ impl ColorButtonBuilder {
             properties.push(("use-alpha", use_alpha));
         }
         glib::Object::new::<ColorButton>(&properties)
-            .expect("Failed to create an instance of ColorButton")
     }
 
     pub fn modal(mut self, modal: bool) -> Self {

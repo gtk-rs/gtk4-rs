@@ -272,7 +272,6 @@ impl ActionBarBuilder {
             properties.push(("accessible-role", accessible_role));
         }
         glib::Object::new::<ActionBar>(&properties)
-            .expect("Failed to create an instance of ActionBar")
     }
 
     pub fn revealed(mut self, revealed: bool) -> Self {

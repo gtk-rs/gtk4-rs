@@ -1058,7 +1058,6 @@ impl TreeViewColumnBuilder {
             properties.push(("widget", widget));
         }
         glib::Object::new::<TreeViewColumn>(&properties)
-            .expect("Failed to create an instance of TreeViewColumn")
     }
 
     pub fn alignment(mut self, alignment: f32) -> Self {

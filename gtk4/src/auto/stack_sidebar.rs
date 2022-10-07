@@ -236,7 +236,6 @@ impl StackSidebarBuilder {
             properties.push(("accessible-role", accessible_role));
         }
         glib::Object::new::<StackSidebar>(&properties)
-            .expect("Failed to create an instance of StackSidebar")
     }
 
     pub fn stack(mut self, stack: &Stack) -> Self {

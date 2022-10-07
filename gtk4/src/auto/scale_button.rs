@@ -64,7 +64,6 @@ impl ScaleButton {
 impl Default for ScaleButton {
     fn default() -> Self {
         glib::object::Object::new::<Self>(&[])
-            .expect("Can't construct ScaleButton object with default parameters")
     }
 }
 
@@ -226,7 +225,6 @@ impl ScaleButtonBuilder {
             properties.push(("orientation", orientation));
         }
         glib::Object::new::<ScaleButton>(&properties)
-            .expect("Failed to create an instance of ScaleButton")
     }
 
     pub fn adjustment(mut self, adjustment: &impl IsA<Adjustment>) -> Self {

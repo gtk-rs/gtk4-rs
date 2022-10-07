@@ -232,7 +232,7 @@ impl PopoverBuilder {
         if let Some(ref accessible_role) = self.accessible_role {
             properties.push(("accessible-role", accessible_role));
         }
-        glib::Object::new::<Popover>(&properties).expect("Failed to create an instance of Popover")
+        glib::Object::new::<Popover>(&properties)
     }
 
     pub fn autohide(mut self, autohide: bool) -> Self {

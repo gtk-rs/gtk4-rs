@@ -51,7 +51,6 @@ impl Frame {
 impl Default for Frame {
     fn default() -> Self {
         glib::object::Object::new::<Self>(&[])
-            .expect("Can't construct Frame object with default parameters")
     }
 }
 
@@ -212,7 +211,7 @@ impl FrameBuilder {
         if let Some(ref accessible_role) = self.accessible_role {
             properties.push(("accessible-role", accessible_role));
         }
-        glib::Object::new::<Frame>(&properties).expect("Failed to create an instance of Frame")
+        glib::Object::new::<Frame>(&properties)
     }
 
     pub fn child(mut self, child: &impl IsA<Widget>) -> Self {
