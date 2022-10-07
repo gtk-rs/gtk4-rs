@@ -333,7 +333,6 @@ impl DropTarget {
 impl Default for DropTarget {
     fn default() -> Self {
         glib::object::Object::new::<Self>(&[])
-            .expect("Can't construct DropTarget object with default parameters")
     }
 }
 
@@ -383,7 +382,6 @@ impl DropTargetBuilder {
             properties.push(("propagation-phase", propagation_phase));
         }
         glib::Object::new::<DropTarget>(&properties)
-            .expect("Failed to create an instance of DropTarget")
     }
 
     pub fn actions(mut self, actions: gdk::DragAction) -> Self {

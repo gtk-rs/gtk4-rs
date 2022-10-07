@@ -77,7 +77,6 @@ impl PadController {
 impl Default for PadController {
     fn default() -> Self {
         glib::object::Object::new::<Self>(&[])
-            .expect("Can't construct PadController object with default parameters")
     }
 }
 
@@ -123,7 +122,6 @@ impl PadControllerBuilder {
             properties.push(("propagation-phase", propagation_phase));
         }
         glib::Object::new::<PadController>(&properties)
-            .expect("Failed to create an instance of PadController")
     }
 
     pub fn action_group(mut self, action_group: &impl IsA<gio::ActionGroup>) -> Self {

@@ -59,7 +59,6 @@ impl FontChooserDialog {
 impl Default for FontChooserDialog {
     fn default() -> Self {
         glib::object::Object::new::<Self>(&[])
-            .expect("Can't construct FontChooserDialog object with default parameters")
     }
 }
 
@@ -331,7 +330,6 @@ impl FontChooserDialogBuilder {
             properties.push(("show-preview-entry", show_preview_entry));
         }
         glib::Object::new::<FontChooserDialog>(&properties)
-            .expect("Failed to create an instance of FontChooserDialog")
     }
 
     pub fn use_header_bar(mut self, use_header_bar: i32) -> Self {

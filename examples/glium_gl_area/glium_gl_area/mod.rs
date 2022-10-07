@@ -18,7 +18,7 @@ impl Default for GliumGLArea {
 
 impl GliumGLArea {
     pub fn new() -> Self {
-        glib::Object::new(&[]).expect("Failed to create GliumGLArea")
+        glib::Object::new(&[])
     }
 }
 

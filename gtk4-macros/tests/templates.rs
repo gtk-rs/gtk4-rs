@@ -60,7 +60,7 @@ glib::wrapper! {
 
 #[gtk::test]
 fn template_string() {
-    let widget: MyWidget = glib::Object::new(&[]).unwrap();
+    let widget: MyWidget = glib::Object::new(&[]);
     assert_eq!(widget.imp().label.label(), "foobar");
     assert_eq!(widget.imp().label2.label(), "foobaz");
 }
@@ -150,7 +150,7 @@ glib::wrapper! {
 
 #[gtk::test]
 async fn async_callbacks() {
-    let widget: MyWidget2 = glib::Object::new(&[]).unwrap();
+    let widget: MyWidget2 = glib::Object::new(&[]);
     assert_eq!(widget.click_button().await, Some(42));
 }
 
@@ -198,5 +198,5 @@ glib::wrapper! {
 
 #[gtk::test]
 fn template_child_without_attribute() {
-    let _: MyWidget3 = glib::Object::new(&[]).unwrap();
+    let _: MyWidget3 = glib::Object::new(&[]);
 }

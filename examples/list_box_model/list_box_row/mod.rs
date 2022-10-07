@@ -11,6 +11,6 @@ glib::wrapper! {
 
 impl ListBoxRow {
     pub fn new(row_data: &RowData) -> Self {
-        glib::Object::new(&[("row-data", &row_data)]).unwrap()
+        glib::Object::new(&[("row-data", &row_data)])
     }
 }

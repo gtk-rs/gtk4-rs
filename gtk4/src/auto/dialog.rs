@@ -306,7 +306,7 @@ impl DialogBuilder {
         if let Some(ref accessible_role) = self.accessible_role {
             properties.push(("accessible-role", accessible_role));
         }
-        glib::Object::new::<Dialog>(&properties).expect("Failed to create an instance of Dialog")
+        glib::Object::new::<Dialog>(&properties)
     }
 
     pub fn use_header_bar(mut self, use_header_bar: i32) -> Self {

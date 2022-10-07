@@ -64,7 +64,7 @@ impl Default for RotationBin {
 
 impl RotationBin {
     pub fn new() -> Self {
-        glib::Object::new(&[]).expect("Failed to create a RotationBin")
+        glib::Object::new(&[])
     }
 
     pub fn child(&self) -> Option<impl IsA<gtk::Widget>> {

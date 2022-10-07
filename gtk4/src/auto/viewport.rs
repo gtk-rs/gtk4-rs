@@ -140,7 +140,6 @@ impl Viewport {
 impl Default for Viewport {
     fn default() -> Self {
         glib::object::Object::new::<Self>(&[])
-            .expect("Can't construct Viewport object with default parameters")
     }
 }
 
@@ -310,7 +309,6 @@ impl ViewportBuilder {
             properties.push(("vscroll-policy", vscroll_policy));
         }
         glib::Object::new::<Viewport>(&properties)
-            .expect("Failed to create an instance of Viewport")
     }
 
     pub fn child(mut self, child: &impl IsA<Widget>) -> Self {

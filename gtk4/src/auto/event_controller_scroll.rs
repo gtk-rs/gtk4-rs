@@ -199,7 +199,6 @@ impl EventControllerScroll {
 impl Default for EventControllerScroll {
     fn default() -> Self {
         glib::object::Object::new::<Self>(&[])
-            .expect("Can't construct EventControllerScroll object with default parameters")
     }
 }
 
@@ -241,7 +240,6 @@ impl EventControllerScrollBuilder {
             properties.push(("propagation-phase", propagation_phase));
         }
         glib::Object::new::<EventControllerScroll>(&properties)
-            .expect("Failed to create an instance of EventControllerScroll")
     }
 
     pub fn flags(mut self, flags: EventControllerScrollFlags) -> Self {

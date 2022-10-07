@@ -364,7 +364,6 @@ impl TreeExpanderBuilder {
             properties.push(("accessible-role", accessible_role));
         }
         glib::Object::new::<TreeExpander>(&properties)
-            .expect("Failed to create an instance of TreeExpander")
     }
 
     pub fn child(mut self, child: &impl IsA<Widget>) -> Self {

@@ -172,7 +172,6 @@ impl EventControllerKeyBuilder {
             properties.push(("propagation-phase", propagation_phase));
         }
         glib::Object::new::<EventControllerKey>(&properties)
-            .expect("Failed to create an instance of EventControllerKey")
     }
 
     pub fn name(mut self, name: &str) -> Self {

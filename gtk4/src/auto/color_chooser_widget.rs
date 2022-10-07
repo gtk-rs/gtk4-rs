@@ -241,7 +241,6 @@ impl ColorChooserWidgetBuilder {
             properties.push(("use-alpha", use_alpha));
         }
         glib::Object::new::<ColorChooserWidget>(&properties)
-            .expect("Failed to create an instance of ColorChooserWidget")
     }
 
     pub fn show_editor(mut self, show_editor: bool) -> Self {

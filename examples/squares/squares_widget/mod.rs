@@ -14,6 +14,6 @@ impl Default for SquaresWidget {
 
 impl SquaresWidget {
     pub fn new() -> Self {
-        glib::Object::new(&[]).expect("Failed to create a SquaresWidget")
+        glib::Object::new(&[])
     }
 }

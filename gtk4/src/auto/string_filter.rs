@@ -200,7 +200,6 @@ impl StringFilter {
 impl Default for StringFilter {
     fn default() -> Self {
         glib::object::Object::new::<Self>(&[])
-            .expect("Can't construct StringFilter object with default parameters")
     }
 }
 
@@ -242,7 +241,6 @@ impl StringFilterBuilder {
             properties.push(("search", search));
         }
         glib::Object::new::<StringFilter>(&properties)
-            .expect("Failed to create an instance of StringFilter")
     }
 
     pub fn expression(mut self, expression: impl AsRef<Expression>) -> Self {

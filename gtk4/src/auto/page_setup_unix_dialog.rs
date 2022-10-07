@@ -99,7 +99,6 @@ impl PageSetupUnixDialog {
 impl Default for PageSetupUnixDialog {
     fn default() -> Self {
         glib::object::Object::new::<Self>(&[])
-            .expect("Can't construct PageSetupUnixDialog object with default parameters")
     }
 }
 
@@ -347,7 +346,6 @@ impl PageSetupUnixDialogBuilder {
             properties.push(("accessible-role", accessible_role));
         }
         glib::Object::new::<PageSetupUnixDialog>(&properties)
-            .expect("Failed to create an instance of PageSetupUnixDialog")
     }
 
     pub fn use_header_bar(mut self, use_header_bar: i32) -> Self {

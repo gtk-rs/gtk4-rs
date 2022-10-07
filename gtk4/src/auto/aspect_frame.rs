@@ -241,7 +241,6 @@ impl AspectFrame {
 impl Default for AspectFrame {
     fn default() -> Self {
         glib::object::Object::new::<Self>(&[])
-            .expect("Can't construct AspectFrame object with default parameters")
     }
 }
 
@@ -407,7 +406,6 @@ impl AspectFrameBuilder {
             properties.push(("accessible-role", accessible_role));
         }
         glib::Object::new::<AspectFrame>(&properties)
-            .expect("Failed to create an instance of AspectFrame")
     }
 
     pub fn child(mut self, child: &impl IsA<Widget>) -> Self {

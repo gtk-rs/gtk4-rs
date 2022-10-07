@@ -248,7 +248,7 @@ impl SpinnerBuilder {
         if let Some(ref accessible_role) = self.accessible_role {
             properties.push(("accessible-role", accessible_role));
         }
-        glib::Object::new::<Spinner>(&properties).expect("Failed to create an instance of Spinner")
+        glib::Object::new::<Spinner>(&properties)
     }
 
     pub fn spinning(mut self, spinning: bool) -> Self {

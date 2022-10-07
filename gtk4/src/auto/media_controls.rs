@@ -99,7 +99,6 @@ impl MediaControls {
 impl Default for MediaControls {
     fn default() -> Self {
         glib::object::Object::new::<Self>(&[])
-            .expect("Can't construct MediaControls object with default parameters")
     }
 }
 
@@ -249,7 +248,6 @@ impl MediaControlsBuilder {
             properties.push(("accessible-role", accessible_role));
         }
         glib::Object::new::<MediaControls>(&properties)
-            .expect("Failed to create an instance of MediaControls")
     }
 
     pub fn media_stream(mut self, media_stream: &impl IsA<MediaStream>) -> Self {

@@ -442,7 +442,6 @@ impl ColumnView {
 impl Default for ColumnView {
     fn default() -> Self {
         glib::object::Object::new::<Self>(&[])
-            .expect("Can't construct ColumnView object with default parameters")
     }
 }
 
@@ -628,7 +627,6 @@ impl ColumnViewBuilder {
             properties.push(("vscroll-policy", vscroll_policy));
         }
         glib::Object::new::<ColumnView>(&properties)
-            .expect("Failed to create an instance of ColumnView")
     }
 
     pub fn enable_rubberband(mut self, enable_rubberband: bool) -> Self {

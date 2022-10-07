@@ -515,7 +515,6 @@ impl SearchEntryBuilder {
             properties.push(("xalign", xalign));
         }
         glib::Object::new::<SearchEntry>(&properties)
-            .expect("Failed to create an instance of SearchEntry")
     }
 
     pub fn activates_default(mut self, activates_default: bool) -> Self {

@@ -127,7 +127,6 @@ impl StringSorter {
 impl Default for StringSorter {
     fn default() -> Self {
         glib::object::Object::new::<Self>(&[])
-            .expect("Can't construct StringSorter object with default parameters")
     }
 }
 
@@ -161,7 +160,6 @@ impl StringSorterBuilder {
             properties.push(("ignore-case", ignore_case));
         }
         glib::Object::new::<StringSorter>(&properties)
-            .expect("Failed to create an instance of StringSorter")
     }
 
     pub fn expression(mut self, expression: impl AsRef<Expression>) -> Self {

@@ -321,7 +321,6 @@ impl CellRendererToggleBuilder {
             properties.push(("ypad", ypad));
         }
         glib::Object::new::<CellRendererToggle>(&properties)
-            .expect("Failed to create an instance of CellRendererToggle")
     }
 
     pub fn activatable(mut self, activatable: bool) -> Self {

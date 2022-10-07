@@ -254,7 +254,6 @@ impl DropControllerMotionBuilder {
             properties.push(("propagation-phase", propagation_phase));
         }
         glib::Object::new::<DropControllerMotion>(&properties)
-            .expect("Failed to create an instance of DropControllerMotion")
     }
 
     pub fn name(mut self, name: &str) -> Self {

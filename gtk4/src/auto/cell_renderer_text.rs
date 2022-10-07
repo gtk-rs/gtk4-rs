@@ -311,7 +311,6 @@ impl CellRendererTextBuilder {
             properties.push(("ypad", ypad));
         }
         glib::Object::new::<CellRendererText>(&properties)
-            .expect("Failed to create an instance of CellRendererText")
     }
 
     pub fn align_set(mut self, align_set: bool) -> Self {

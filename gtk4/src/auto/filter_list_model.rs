@@ -201,7 +201,6 @@ impl FilterListModel {
 impl Default for FilterListModel {
     fn default() -> Self {
         glib::object::Object::new::<Self>(&[])
-            .expect("Can't construct FilterListModel object with default parameters")
     }
 }
 
@@ -239,7 +238,6 @@ impl FilterListModelBuilder {
             properties.push(("model", model));
         }
         glib::Object::new::<FilterListModel>(&properties)
-            .expect("Failed to create an instance of FilterListModel")
     }
 
     pub fn filter(mut self, filter: &impl IsA<Filter>) -> Self {

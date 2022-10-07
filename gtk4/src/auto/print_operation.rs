@@ -139,7 +139,6 @@ impl PrintOperationBuilder {
             properties.push(("use-full-page", use_full_page));
         }
         glib::Object::new::<PrintOperation>(&properties)
-            .expect("Failed to create an instance of PrintOperation")
     }
 
     pub fn allow_async(mut self, allow_async: bool) -> Self {

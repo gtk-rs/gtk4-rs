@@ -309,7 +309,6 @@ impl TreeViewBuilder {
             properties.push(("vscroll-policy", vscroll_policy));
         }
         glib::Object::new::<TreeView>(&properties)
-            .expect("Failed to create an instance of TreeView")
     }
 
     pub fn activate_on_single_click(mut self, activate_on_single_click: bool) -> Self {

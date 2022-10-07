@@ -151,7 +151,6 @@ impl Constraint {
 impl Default for Constraint {
     fn default() -> Self {
         glib::object::Object::new::<Self>(&[])
-            .expect("Can't construct Constraint object with default parameters")
     }
 }
 
@@ -209,7 +208,6 @@ impl ConstraintBuilder {
             properties.push(("target-attribute", target_attribute));
         }
         glib::Object::new::<Constraint>(&properties)
-            .expect("Failed to create an instance of Constraint")
     }
 
     pub fn constant(mut self, constant: f64) -> Self {

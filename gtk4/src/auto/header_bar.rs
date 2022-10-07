@@ -356,7 +356,6 @@ impl HeaderBarBuilder {
             properties.push(("accessible-role", accessible_role));
         }
         glib::Object::new::<HeaderBar>(&properties)
-            .expect("Failed to create an instance of HeaderBar")
     }
 
     pub fn decoration_layout(mut self, decoration_layout: &str) -> Self {

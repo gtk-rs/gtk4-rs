@@ -62,7 +62,6 @@ impl ApplicationWindow {
 impl Default for ApplicationWindow {
     fn default() -> Self {
         glib::object::Object::new::<Self>(&[])
-            .expect("Can't construct ApplicationWindow object with default parameters")
     }
 }
 
@@ -310,7 +309,6 @@ impl ApplicationWindowBuilder {
             properties.push(("accessible-role", accessible_role));
         }
         glib::Object::new::<ApplicationWindow>(&properties)
-            .expect("Failed to create an instance of ApplicationWindow")
     }
 
     pub fn show_menubar(mut self, show_menubar: bool) -> Self {

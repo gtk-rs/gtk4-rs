@@ -445,7 +445,7 @@ impl InfoBarBuilder {
         if let Some(ref accessible_role) = self.accessible_role {
             properties.push(("accessible-role", accessible_role));
         }
-        glib::Object::new::<InfoBar>(&properties).expect("Failed to create an instance of InfoBar")
+        glib::Object::new::<InfoBar>(&properties)
     }
 
     pub fn message_type(mut self, message_type: MessageType) -> Self {

@@ -391,7 +391,6 @@ impl RevealerBuilder {
             properties.push(("accessible-role", accessible_role));
         }
         glib::Object::new::<Revealer>(&properties)
-            .expect("Failed to create an instance of Revealer")
     }
 
     pub fn child(mut self, child: &impl IsA<Widget>) -> Self {

@@ -303,7 +303,6 @@ impl ListView {
 impl Default for ListView {
     fn default() -> Self {
         glib::object::Object::new::<Self>(&[])
-            .expect("Can't construct ListView object with default parameters")
     }
 }
 
@@ -489,7 +488,6 @@ impl ListViewBuilder {
             properties.push(("vscroll-policy", vscroll_policy));
         }
         glib::Object::new::<ListView>(&properties)
-            .expect("Failed to create an instance of ListView")
     }
 
     pub fn enable_rubberband(mut self, enable_rubberband: bool) -> Self {

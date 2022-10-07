@@ -257,7 +257,7 @@ impl ButtonBuilder {
         if let Some(ref action_target) = self.action_target {
             properties.push(("action-target", action_target));
         }
-        glib::Object::new::<Button>(&properties).expect("Failed to create an instance of Button")
+        glib::Object::new::<Button>(&properties)
     }
 
     pub fn child(mut self, child: &impl IsA<Widget>) -> Self {

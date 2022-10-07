@@ -438,7 +438,6 @@ impl PrintUnixDialog {
 impl Default for PrintUnixDialog {
     fn default() -> Self {
         glib::object::Object::new::<Self>(&[])
-            .expect("Can't construct PrintUnixDialog object with default parameters")
     }
 }
 
@@ -714,7 +713,6 @@ impl PrintUnixDialogBuilder {
             properties.push(("accessible-role", accessible_role));
         }
         glib::Object::new::<PrintUnixDialog>(&properties)
-            .expect("Failed to create an instance of PrintUnixDialog")
     }
 
     pub fn current_page(mut self, current_page: i32) -> Self {

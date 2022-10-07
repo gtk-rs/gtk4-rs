@@ -327,7 +327,6 @@ impl DragSourceBuilder {
             properties.push(("propagation-phase", propagation_phase));
         }
         glib::Object::new::<DragSource>(&properties)
-            .expect("Failed to create an instance of DragSource")
     }
 
     pub fn actions(mut self, actions: gdk::DragAction) -> Self {

@@ -257,7 +257,6 @@ impl CheckButtonBuilder {
             properties.push(("action-target", action_target));
         }
         glib::Object::new::<CheckButton>(&properties)
-            .expect("Failed to create an instance of CheckButton")
     }
 
     pub fn active(mut self, active: bool) -> Self {

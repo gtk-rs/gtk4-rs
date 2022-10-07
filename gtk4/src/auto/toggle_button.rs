@@ -258,7 +258,6 @@ impl ToggleButtonBuilder {
             properties.push(("action-target", action_target));
         }
         glib::Object::new::<ToggleButton>(&properties)
-            .expect("Failed to create an instance of ToggleButton")
     }
 
     pub fn active(mut self, active: bool) -> Self {

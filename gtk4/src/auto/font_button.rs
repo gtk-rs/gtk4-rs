@@ -448,7 +448,6 @@ impl FontButtonBuilder {
             properties.push(("show-preview-entry", show_preview_entry));
         }
         glib::Object::new::<FontButton>(&properties)
-            .expect("Failed to create an instance of FontButton")
     }
 
     pub fn modal(mut self, modal: bool) -> Self {

@@ -304,7 +304,6 @@ impl FileChooserDialogBuilder {
             properties.push(("select-multiple", select_multiple));
         }
         glib::Object::new::<FileChooserDialog>(&properties)
-            .expect("Failed to create an instance of FileChooserDialog")
     }
 
     pub fn use_header_bar(mut self, use_header_bar: i32) -> Self {

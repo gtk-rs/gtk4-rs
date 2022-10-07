@@ -426,7 +426,7 @@ impl VideoBuilder {
         if let Some(ref accessible_role) = self.accessible_role {
             properties.push(("accessible-role", accessible_role));
         }
-        glib::Object::new::<Video>(&properties).expect("Failed to create an instance of Video")
+        glib::Object::new::<Video>(&properties)
     }
 
     pub fn autoplay(mut self, autoplay: bool) -> Self {

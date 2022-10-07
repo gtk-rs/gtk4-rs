@@ -65,7 +65,6 @@ impl DirectoryListBuilder {
             properties.push(("monitored", monitored));
         }
         glib::Object::new::<DirectoryList>(&properties)
-            .expect("Failed to create an instance of DirectoryList")
     }
 
     pub fn attributes(mut self, attributes: &str) -> Self {

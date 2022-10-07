@@ -159,7 +159,6 @@ impl SliceListModel {
 impl Default for SliceListModel {
     fn default() -> Self {
         glib::object::Object::new::<Self>(&[])
-            .expect("Can't construct SliceListModel object with default parameters")
     }
 }
 
@@ -197,7 +196,6 @@ impl SliceListModelBuilder {
             properties.push(("size", size));
         }
         glib::Object::new::<SliceListModel>(&properties)
-            .expect("Failed to create an instance of SliceListModel")
     }
 
     pub fn model(mut self, model: &impl IsA<gio::ListModel>) -> Self {

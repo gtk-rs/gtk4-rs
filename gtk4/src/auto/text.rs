@@ -1008,7 +1008,7 @@ impl TextBuilder {
         if let Some(ref xalign) = self.xalign {
             properties.push(("xalign", xalign));
         }
-        glib::Object::new::<Text>(&properties).expect("Failed to create an instance of Text")
+        glib::Object::new::<Text>(&properties)
     }
 
     pub fn activates_default(mut self, activates_default: bool) -> Self {

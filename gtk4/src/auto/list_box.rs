@@ -887,7 +887,7 @@ impl ListBoxBuilder {
         if let Some(ref accessible_role) = self.accessible_role {
             properties.push(("accessible-role", accessible_role));
         }
-        glib::Object::new::<ListBox>(&properties).expect("Failed to create an instance of ListBox")
+        glib::Object::new::<ListBox>(&properties)
     }
 
     pub fn accept_unpaired_release(mut self, accept_unpaired_release: bool) -> Self {

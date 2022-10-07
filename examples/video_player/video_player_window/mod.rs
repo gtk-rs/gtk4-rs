@@ -10,7 +10,7 @@ glib::wrapper! {
 
 impl VideoPlayerWindow {
     pub fn new<P: glib::IsA<gtk::Application>>(app: &P) -> Self {
-        glib::Object::new(&[("application", app)]).expect("Failed to create VideoPlayerWindow")
+        glib::Object::new(&[("application", app)])
     }
 
     fn set_video(&self, video: gio::File) {

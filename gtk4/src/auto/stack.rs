@@ -628,7 +628,7 @@ impl StackBuilder {
         if let Some(ref accessible_role) = self.accessible_role {
             properties.push(("accessible-role", accessible_role));
         }
-        glib::Object::new::<Stack>(&properties).expect("Failed to create an instance of Stack")
+        glib::Object::new::<Stack>(&properties)
     }
 
     pub fn hhomogeneous(mut self, hhomogeneous: bool) -> Self {

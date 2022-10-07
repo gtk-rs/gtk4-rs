@@ -348,7 +348,6 @@ impl CellRendererProgressBuilder {
             properties.push(("orientation", orientation));
         }
         glib::Object::new::<CellRendererProgress>(&properties)
-            .expect("Failed to create an instance of CellRendererProgress")
     }
 
     pub fn inverted(mut self, inverted: bool) -> Self {

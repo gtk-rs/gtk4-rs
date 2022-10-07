@@ -64,7 +64,6 @@ impl EntryBufferBuilder {
             properties.push(("text", text));
         }
         glib::Object::new::<EntryBuffer>(&properties)
-            .expect("Failed to create an instance of EntryBuffer")
     }
 
     pub fn max_length(mut self, max_length: i32) -> Self {

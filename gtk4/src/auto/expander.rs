@@ -350,7 +350,6 @@ impl Expander {
 impl Default for Expander {
     fn default() -> Self {
         glib::object::Object::new::<Self>(&[])
-            .expect("Can't construct Expander object with default parameters")
     }
 }
 
@@ -524,7 +523,6 @@ impl ExpanderBuilder {
             properties.push(("accessible-role", accessible_role));
         }
         glib::Object::new::<Expander>(&properties)
-            .expect("Failed to create an instance of Expander")
     }
 
     pub fn child(mut self, child: &impl IsA<Widget>) -> Self {

@@ -218,7 +218,6 @@ impl ListBoxRowBuilder {
             properties.push(("action-target", action_target));
         }
         glib::Object::new::<ListBoxRow>(&properties)
-            .expect("Failed to create an instance of ListBoxRow")
     }
 
     pub fn activatable(mut self, activatable: bool) -> Self {

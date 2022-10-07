@@ -223,7 +223,6 @@ impl EventControllerMotionBuilder {
             properties.push(("propagation-phase", propagation_phase));
         }
         glib::Object::new::<EventControllerMotion>(&properties)
-            .expect("Failed to create an instance of EventControllerMotion")
     }
 
     pub fn name(mut self, name: &str) -> Self {

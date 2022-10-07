@@ -45,7 +45,6 @@ impl TextMark {
 impl Default for TextMark {
     fn default() -> Self {
         glib::object::Object::new::<Self>(&[])
-            .expect("Can't construct TextMark object with default parameters")
     }
 }
 
@@ -79,7 +78,6 @@ impl TextMarkBuilder {
             properties.push(("name", name));
         }
         glib::Object::new::<TextMark>(&properties)
-            .expect("Failed to create an instance of TextMark")
     }
 
     pub fn left_gravity(mut self, left_gravity: bool) -> Self {

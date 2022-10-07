@@ -413,7 +413,6 @@ impl ShortcutsWindowBuilder {
             properties.push(("accessible-role", accessible_role));
         }
         glib::Object::new::<ShortcutsWindow>(&properties)
-            .expect("Failed to create an instance of ShortcutsWindow")
     }
 
     pub fn section_name(mut self, section_name: &str) -> Self {

@@ -407,7 +407,6 @@ impl ColumnViewColumn {
 impl Default for ColumnViewColumn {
     fn default() -> Self {
         glib::object::Object::new::<Self>(&[])
-            .expect("Can't construct ColumnViewColumn object with default parameters")
     }
 }
 
@@ -465,7 +464,6 @@ impl ColumnViewColumnBuilder {
             properties.push(("visible", visible));
         }
         glib::Object::new::<ColumnViewColumn>(&properties)
-            .expect("Failed to create an instance of ColumnViewColumn")
     }
 
     pub fn expand(mut self, expand: bool) -> Self {

@@ -242,7 +242,6 @@ impl StackSwitcherBuilder {
             properties.push(("orientation", orientation));
         }
         glib::Object::new::<StackSwitcher>(&properties)
-            .expect("Failed to create an instance of StackSwitcher")
     }
 
     pub fn stack(mut self, stack: &Stack) -> Self {

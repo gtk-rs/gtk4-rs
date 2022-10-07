@@ -92,7 +92,6 @@ impl X11DeviceXI2Builder {
             properties.push(("vendor-id", vendor_id));
         }
         glib::Object::new::<X11DeviceXI2>(&properties)
-            .expect("Failed to create an instance of X11DeviceXI2")
     }
 
     pub fn device_id(mut self, device_id: i32) -> Self {

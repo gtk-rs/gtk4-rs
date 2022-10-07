@@ -212,7 +212,6 @@ impl GestureClickBuilder {
             properties.push(("propagation-phase", propagation_phase));
         }
         glib::Object::new::<GestureClick>(&properties)
-            .expect("Failed to create an instance of GestureClick")
     }
 
     pub fn button(mut self, button: u32) -> Self {

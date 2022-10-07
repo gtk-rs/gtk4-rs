@@ -19,7 +19,7 @@ pub struct Entry {
 
 impl GridCell {
     pub fn new() -> Self {
-        glib::Object::new(&[]).expect("Failed to create GridCell")
+        glib::Object::new(&[])
     }
 
     pub fn set_entry(&self, entry: &Entry) {

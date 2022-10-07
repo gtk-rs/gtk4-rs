@@ -59,7 +59,6 @@ impl Adjustment {
 impl Default for Adjustment {
     fn default() -> Self {
         glib::object::Object::new::<Self>(&[])
-            .expect("Can't construct Adjustment object with default parameters")
     }
 }
 
@@ -109,7 +108,6 @@ impl AdjustmentBuilder {
             properties.push(("value", value));
         }
         glib::Object::new::<Adjustment>(&properties)
-            .expect("Failed to create an instance of Adjustment")
     }
 
     pub fn lower(mut self, lower: f64) -> Self {

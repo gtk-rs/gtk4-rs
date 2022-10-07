@@ -263,7 +263,6 @@ impl PopoverMenuBarBuilder {
             properties.push(("accessible-role", accessible_role));
         }
         glib::Object::new::<PopoverMenuBar>(&properties)
-            .expect("Failed to create an instance of PopoverMenuBar")
     }
 
     pub fn menu_model(mut self, menu_model: &impl IsA<gio::MenuModel>) -> Self {

@@ -668,7 +668,6 @@ impl AssistantBuilder {
             properties.push(("accessible-role", accessible_role));
         }
         glib::Object::new::<Assistant>(&properties)
-            .expect("Failed to create an instance of Assistant")
     }
 
     pub fn use_header_bar(mut self, use_header_bar: i32) -> Self {

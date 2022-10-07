@@ -611,7 +611,6 @@ impl Paned {
 impl Default for Paned {
     fn default() -> Self {
         glib::object::Object::new::<Self>(&[])
-            .expect("Can't construct Paned object with default parameters")
     }
 }
 
@@ -796,7 +795,7 @@ impl PanedBuilder {
         if let Some(ref orientation) = self.orientation {
             properties.push(("orientation", orientation));
         }
-        glib::Object::new::<Paned>(&properties).expect("Failed to create an instance of Paned")
+        glib::Object::new::<Paned>(&properties)
     }
 
     pub fn end_child(mut self, end_child: &impl IsA<Widget>) -> Self {

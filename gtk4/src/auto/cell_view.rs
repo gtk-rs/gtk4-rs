@@ -414,7 +414,6 @@ impl CellViewBuilder {
             properties.push(("orientation", orientation));
         }
         glib::Object::new::<CellView>(&properties)
-            .expect("Failed to create an instance of CellView")
     }
 
     pub fn cell_area(mut self, cell_area: &impl IsA<CellArea>) -> Self {

@@ -83,7 +83,6 @@ impl X11DeviceManagerXI2Builder {
             properties.push(("opcode", opcode));
         }
         glib::Object::new::<X11DeviceManagerXI2>(&properties)
-            .expect("Failed to create an instance of X11DeviceManagerXI2")
     }
 
     pub fn display(mut self, display: &impl IsA<gdk::Display>) -> Self {

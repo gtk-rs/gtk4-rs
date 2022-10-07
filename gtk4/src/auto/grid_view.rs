@@ -332,7 +332,6 @@ impl GridView {
 impl Default for GridView {
     fn default() -> Self {
         glib::object::Object::new::<Self>(&[])
-            .expect("Can't construct GridView object with default parameters")
     }
 }
 
@@ -522,7 +521,6 @@ impl GridViewBuilder {
             properties.push(("vscroll-policy", vscroll_policy));
         }
         glib::Object::new::<GridView>(&properties)
-            .expect("Failed to create an instance of GridView")
     }
 
     pub fn enable_rubberband(mut self, enable_rubberband: bool) -> Self {

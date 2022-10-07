@@ -85,8 +85,7 @@ impl ApplicationBuilder {
         if let Some(ref resource_base_path) = self.resource_base_path {
             properties.push(("resource-base-path", resource_base_path));
         }
-        let ret = glib::Object::new::<Application>(&properties)
-            .expect("Failed to create an instance of Application");
+        let ret = glib::Object::new::<Application>(&properties);
         {
             Application::register_startup_hook(&ret);
         }

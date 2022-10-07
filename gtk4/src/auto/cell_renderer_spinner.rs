@@ -230,7 +230,6 @@ impl CellRendererSpinnerBuilder {
             properties.push(("ypad", ypad));
         }
         glib::Object::new::<CellRendererSpinner>(&properties)
-            .expect("Failed to create an instance of CellRendererSpinner")
     }
 
     pub fn active(mut self, active: bool) -> Self {

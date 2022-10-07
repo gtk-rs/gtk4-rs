@@ -387,7 +387,7 @@ impl EntryBuilder {
         if let Some(ref xalign) = self.xalign {
             properties.push(("xalign", xalign));
         }
-        glib::Object::new::<Entry>(&properties).expect("Failed to create an instance of Entry")
+        glib::Object::new::<Entry>(&properties)
     }
 
     pub fn activates_default(mut self, activates_default: bool) -> Self {

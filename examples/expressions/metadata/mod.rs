@@ -14,6 +14,6 @@ impl Default for Metadata {
 
 impl Metadata {
     pub fn new() -> Self {
-        glib::Object::new(&[]).expect("Failed to create a Metadata")
+        glib::Object::new(&[])
     }
 }

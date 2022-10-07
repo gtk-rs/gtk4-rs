@@ -8,7 +8,7 @@ glib::wrapper! {
 
 impl ContentProvider {
     pub fn new() -> Self {
-        glib::Object::new::<Self>(&[]).unwrap()
+        glib::Object::new::<Self>(&[])
     }
 }
 

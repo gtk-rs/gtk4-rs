@@ -49,7 +49,6 @@ impl MountOperation {
 impl Default for MountOperation {
     fn default() -> Self {
         glib::object::Object::new::<Self>(&[])
-            .expect("Can't construct MountOperation object with default parameters")
     }
 }
 
@@ -119,7 +118,6 @@ impl MountOperationBuilder {
             properties.push(("username", username));
         }
         glib::Object::new::<MountOperation>(&properties)
-            .expect("Failed to create an instance of MountOperation")
     }
 
     pub fn display(mut self, display: &impl IsA<gdk::Display>) -> Self {

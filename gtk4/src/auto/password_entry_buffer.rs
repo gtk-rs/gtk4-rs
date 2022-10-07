@@ -70,7 +70,6 @@ impl PasswordEntryBufferBuilder {
             properties.push(("text", text));
         }
         glib::Object::new::<PasswordEntryBuffer>(&properties)
-            .expect("Failed to create an instance of PasswordEntryBuffer")
     }
 
     pub fn max_length(mut self, max_length: i32) -> Self {

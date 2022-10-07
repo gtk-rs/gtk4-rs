@@ -204,7 +204,6 @@ impl DrawingAreaBuilder {
             properties.push(("accessible-role", accessible_role));
         }
         glib::Object::new::<DrawingArea>(&properties)
-            .expect("Failed to create an instance of DrawingArea")
     }
 
     pub fn content_height(mut self, content_height: i32) -> Self {
