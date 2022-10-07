@@ -18,6 +18,6 @@ glib::wrapper! {
 // initial values for our two properties and then returns the new instance
 impl RowData {
     pub fn new(name: &str, count: u32) -> RowData {
-        glib::Object::new(&[("name", &name), ("count", &count)]).expect("Failed to create row data")
+        glib::Object::new(&[("name", &name), ("count", &count)])
     }
 }

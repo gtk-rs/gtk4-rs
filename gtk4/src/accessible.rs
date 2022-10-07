@@ -265,7 +265,7 @@ mod tests {
 
     #[test]
     fn test_accessible_update_property() {
-        let widget = glib::Object::new::<Button>(&[]).unwrap();
+        let widget = glib::Object::new::<Button>(&[]);
         widget.update_property(&[
             Property::Autocomplete(AccessibleAutocomplete::Inline),
             Property::Description("Test"),
@@ -293,9 +293,9 @@ mod tests {
     fn test_accessible_update_relation() {
         use crate::prelude::*;
 
-        let widget = glib::Object::new::<Button>(&[]).unwrap();
-        let other1 = glib::Object::new::<Button>(&[]).unwrap();
-        let other2 = glib::Object::new::<Button>(&[]).unwrap();
+        let widget = glib::Object::new::<Button>(&[]);
+        let other1 = glib::Object::new::<Button>(&[]);
+        let other2 = glib::Object::new::<Button>(&[]);
         widget.update_relation(&[
             Relation::ActiveDescendant(other1.upcast_ref()),
             Relation::ColCount(123),
@@ -320,7 +320,7 @@ mod tests {
 
     #[test]
     fn test_accessible_update_state() {
-        let widget = glib::Object::new::<Button>(&[]).unwrap();
+        let widget = glib::Object::new::<Button>(&[]);
         widget.update_state(&[
             State::Busy(true),
             State::Checked(AccessibleTristate::Mixed),

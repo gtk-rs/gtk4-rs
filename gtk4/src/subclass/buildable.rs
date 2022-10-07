@@ -194,11 +194,7 @@ impl<T: BuildableImpl> BuildableImplExt for T {
                     value.to_glib_none().0,
                 )
             } else {
-                buildable
-                    .try_set_property_from_value(name, value)
-                    .unwrap_or_else(|err| {
-                        panic!("Buildable property `{}` was not found {}", name, err);
-                    });
+                buildable.set_property_from_value(name, value);
             }
         }
     }

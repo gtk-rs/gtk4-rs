@@ -15,6 +15,6 @@ impl Default for CustomOrientable {
 
 impl CustomOrientable {
     pub fn new() -> Self {
-        glib::Object::new(&[]).expect("Failed to create CustomOrientable")
+        glib::Object::new(&[])
     }
 }

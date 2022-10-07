@@ -14,6 +14,6 @@ impl Default for CustomPaintable {
 
 impl CustomPaintable {
     pub fn new() -> Self {
-        glib::Object::new(&[]).expect("Failed to create a CustomPaintable")
+        glib::Object::new(&[])
     }
 }

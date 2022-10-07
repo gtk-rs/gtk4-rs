@@ -17,7 +17,7 @@ impl Default for CustomLayout {
 
 impl CustomLayout {
     pub fn new() -> Self {
-        glib::Object::new(&[]).expect("Failed to create CustomLayout")
+        glib::Object::new(&[])
     }
 
     pub fn set_position(&self, position: f64) {

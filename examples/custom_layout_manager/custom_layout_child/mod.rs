@@ -9,6 +9,6 @@ glib::wrapper! {
 
 impl CustomLayoutChild {
     pub fn new(color: gdk::RGBA) -> Self {
-        glib::Object::new(&[("color", &color)]).expect("Failed to create CustomLayoutChild")
+        glib::Object::new(&[("color", &color)])
     }
 }

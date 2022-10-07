@@ -46,8 +46,7 @@ impl Application {
 
 impl Default for Application {
     fn default() -> Self {
-        let app = glib::object::Object::new::<Self>(&[])
-            .expect("Can't construct Application object with default parameters");
+        let app = glib::object::Object::new::<Self>(&[]);
         Self::register_startup_hook(&app);
         app
     }

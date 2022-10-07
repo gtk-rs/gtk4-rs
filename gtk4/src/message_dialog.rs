@@ -77,7 +77,6 @@ impl MessageDialog {
 
 impl Default for MessageDialog {
     fn default() -> Self {
-        glib::object::Object::new::<Self>(&[])
-            .expect("Can't construct MessageDialog object with default parameters")
+        glib::Object::new(&[])
     }
 }
