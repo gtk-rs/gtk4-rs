@@ -65,13 +65,6 @@ Until it hits stable, we will add it as external dependency.
 cargo add once_cell
 ```
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/Cargo.toml">listings/Cargo.toml</a>
-
-```toml
-[dependencies]
-once_cell = "1"
-```
-
 Now we define the "number" property within the `ObjectImpl` implementation.
 The `properties` method describes our set of properties.
 When naming our property, we make sure to do that in [kebab-case](https://en.wikipedia.org/wiki/Letter_case#Kebab_case).

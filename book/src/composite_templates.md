@@ -47,12 +47,10 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 Now we have to compile the resources and link it to our application.
 One way to do this is to execute [`gio::compile_resources`](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/gio/fn.compile_resources.html) within a cargo [build script](https://doc.rust-lang.org/cargo/reference/build-scripts.html).
 
-First, we have to add `gtk` as build dependency in `Cargo.toml`.
-Version `X.X` corresponds to the `gtk` version used for the "regular" dependencies.
+First, we have to add `gtk4` as build dependency in `Cargo.toml` by executing:
 
-```toml
-[build-dependencies]
-gtk = { version = "X.X", package = "gtk4" }
+```
+cargo add gtk4 --rename gtk --build
 ```
 
 Then, we create a `build.rs` at the root of our package with the following content.
