@@ -11,7 +11,7 @@ impl RenderNode {
 
     pub fn type_(&self) -> glib::Type {
         unsafe {
-            let ptr = self.to_glib_none().0;
+            let ptr = self.as_ptr();
             from_glib((*(*(ptr as *mut glib::gobject_ffi::GTypeInstance)).g_class).g_type)
         }
     }
@@ -115,7 +115,7 @@ impl AsRef<RenderNode> for RenderNode {
 }
 
 macro_rules! define_render_node {
-    ($rust_type:ident, $ffi_type:path,  $node_type:path) => {
+    ($rust_type:ident, $ffi_type:path, $node_type:path) => {
         impl std::convert::AsRef<crate::RenderNode> for $rust_type {
             fn as_ref(&self) -> &crate::RenderNode {
                 self
@@ -136,7 +136,8 @@ macro_rules! define_render_node {
             fn upcast(self) -> crate::RenderNode {
                 unsafe {
                     glib::translate::from_glib_full(
-                        glib::translate::ToGlibPtr::to_glib_full(&self) as *mut ffi::GskRenderNode
+                        glib::translate::ToGlibPtr::<*mut $ffi_type>::to_glib_full(&self)
+                            as *mut ffi::GskRenderNode,
                     )
                 }
             }
@@ -180,7 +181,7 @@ macro_rules! define_render_node {
                 unsafe {
                     ffi::gsk_value_set_render_node(
                         glib::translate::ToGlibPtrMut::to_glib_none_mut(&mut value).0,
-                        glib::translate::ToGlibPtr::to_glib_none(self).0 as *mut _,
+                        self.as_ptr() as *mut _,
                     )
                 }
                 value
@@ -201,7 +202,7 @@ macro_rules! define_render_node {
                 unsafe {
                     ffi::gsk_value_set_render_node(
                         glib::translate::ToGlibPtrMut::to_glib_none_mut(&mut value).0,
-                        glib::translate::ToGlibPtr::to_glib_none(&s).0 as *mut _,
+                        s.map(|s| s.as_ptr()).unwrap_or(std::ptr::null_mut()) as *mut _,
                     )
                 }
                 value

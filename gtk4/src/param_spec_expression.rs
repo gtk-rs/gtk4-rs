@@ -55,7 +55,11 @@ impl ParamSpecExpression {
     }
 
     pub fn upcast(self) -> ParamSpec {
-        unsafe { from_glib_full(self.to_glib_full() as *mut gobject_ffi::GParamSpec) }
+        unsafe {
+            from_glib_full(
+                IntoGlibPtr::<*mut _>::into_glib_ptr(self) as *mut gobject_ffi::GParamSpec
+            )
+        }
     }
 
     pub fn upcast_ref(&self) -> &ParamSpec {
@@ -150,7 +154,7 @@ impl glib::value::ToValue for ParamSpecExpression {
             let mut value = Value::from_type(Self::static_type());
             gobject_ffi::g_value_take_param(
                 value.to_glib_none_mut().0,
-                self.to_glib_full() as *mut _,
+                ToGlibPtr::<*mut _>::to_glib_full(self) as *mut _,
             );
             value
         }
@@ -167,7 +171,10 @@ impl glib::value::ToValueOptional for ParamSpecExpression {
         assert_initialized_main_thread!();
         let mut value = Value::for_value_type::<Self>();
         unsafe {
-            gobject_ffi::g_value_take_param(value.to_glib_none_mut().0, s.to_glib_full() as *mut _);
+            gobject_ffi::g_value_take_param(
+                value.to_glib_none_mut().0,
+                ToGlibPtr::<*mut _>::to_glib_full(&s) as *mut _,
+            );
         }
 
         value
