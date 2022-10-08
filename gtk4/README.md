@@ -19,6 +19,7 @@ See also:
  - [gtk-rs project overview](https://gtk-rs.org)
  - [General `GLib` family types and object system overview](mod@glib)
  - [GTK documentation](https://www.gtk.org/docs/)
+ - [GTK Visual Index](https://docs.gtk.org/gtk4/visual_index.html)
 
 ## Minimum supported Rust version
 
