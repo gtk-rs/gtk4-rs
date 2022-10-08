@@ -101,9 +101,7 @@ impl WidgetImpl for SqueezerBin {
                 }
             }
 
-            let transform = gsk::Transform::new()
-                .scale(horizontal_zoom, vertical_zoom)
-                .unwrap();
+            let transform = gsk::Transform::new().scale(horizontal_zoom, vertical_zoom);
 
             child.allocate(
                 (width as f32 / horizontal_zoom) as i32,

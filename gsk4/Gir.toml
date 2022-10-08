@@ -191,6 +191,9 @@ status = "generate"
             name = "second"
             nullable = false
     [[object.function]]
+    pattern = "(translate_3d|translate|transform|skew|scale_3d|scale|rotate_3d|rotate|invert)"
+    manual = true # those functions return NULL in C which represents an identity transform
+    [[object.function]]
     name = "print"
     ignore = true # Same as Transform::to_string
     [[object.function]]
