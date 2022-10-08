@@ -5,3 +5,4 @@
 
 pub use crate::auto::builders::*;
 pub use crate::ShaderArgsBuilder;
+pub use crate::color_stop::ColorStopBuilder;
