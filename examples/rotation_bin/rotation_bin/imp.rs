@@ -177,12 +177,11 @@ impl WidgetImpl for RotationBin {
         // center, instead of a corner, by taking half of width and height.
         let transform = transform
             .translate(&Point::new(width as f32 / 2.0, height as f32 / 2.0))
-            .unwrap();
-        // Rotate by the desired angle
-        let transform = transform.rotate(self.rotation(widget).into()).unwrap();
-        // Revert the move of the origin point once our rotation is done.
-        let transform = transform.translate(&Point::new(-w as f32 / 2.0, -h as f32 / 2.0));
-        child.allocate(w, h, baseline, transform.as_ref())
+            // Rotate by the desired angle
+            .rotate(self.rotation(widget).into())
+            // Revert the move of the origin point once our rotation is done.
+            .translate(&Point::new(-w as f32 / 2.0, -h as f32 / 2.0));
+        child.allocate(w, h, baseline, Some(&transform))
     }
 }
 

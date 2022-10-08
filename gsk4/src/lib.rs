@@ -66,6 +66,7 @@ mod rounded_clip_node;
 mod shadow_node;
 mod text_node;
 mod texture_node;
+mod transform;
 mod transform_node;
 
 pub use color_stop::ColorStop;
