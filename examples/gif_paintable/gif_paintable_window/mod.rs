@@ -14,7 +14,7 @@ glib::wrapper! {
 
 impl GifPaintableWindow {
     pub fn new<P: glib::IsA<gtk::Application>>(app: &P) -> Self {
-        glib::Object::new(&[("application", app)]).expect("Failed to create GifPaintableWindow")
+        glib::Object::new(&[("application", app)])
     }
 
     fn set_file(&self, file: gio::File) -> Result<(), Box<dyn std::error::Error>> {

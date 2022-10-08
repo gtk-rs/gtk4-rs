@@ -15,7 +15,7 @@ glib::wrapper! {
 
 impl GifPaintable {
     pub fn new() -> Self {
-        glib::Object::new(&[]).expect("Failed to create object of type GifPaintable")
+        glib::Object::new(&[])
     }
 
     /// Loads the bytes of a GIF into the paintable.
