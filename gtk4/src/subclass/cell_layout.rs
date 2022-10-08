@@ -49,100 +49,67 @@ impl Drop for CellLayoutDataCallback {
 }
 
 pub trait CellLayoutImpl: ObjectImpl {
-    fn add_attribute<R: IsA<CellRenderer>>(
-        &self,
-        cell_layout: &Self::Type,
-        cell: &R,
-        attribute: &str,
-        column: i32,
-    ) {
-        self.parent_add_attribute(cell_layout, cell, attribute, column)
+    fn add_attribute<R: IsA<CellRenderer>>(&self, cell: &R, attribute: &str, column: i32) {
+        self.parent_add_attribute(cell, attribute, column)
     }
 
-    fn clear_attributes<R: IsA<CellRenderer>>(&self, cell_layout: &Self::Type, cell: &R) {
-        self.parent_clear_attributes(cell_layout, cell)
+    fn clear_attributes<R: IsA<CellRenderer>>(&self, cell: &R) {
+        self.parent_clear_attributes(cell)
     }
 
-    fn cells(&self, cell_layout: &Self::Type) -> Vec<CellRenderer> {
-        self.parent_cells(cell_layout)
+    fn cells(&self) -> Vec<CellRenderer> {
+        self.parent_cells()
     }
 
     fn set_cell_data_func<R: IsA<CellRenderer>>(
         &self,
-        cell_layout: &Self::Type,
+
         cell: &R,
         callback: Option<CellLayoutDataCallback>,
     ) {
-        self.parent_set_cell_data_func(cell_layout, cell, callback)
+        self.parent_set_cell_data_func(cell, callback)
     }
 
-    fn reorder<R: IsA<CellRenderer>>(&self, cell_layout: &Self::Type, cell: &R, position: i32) {
-        self.parent_reorder(cell_layout, cell, position)
+    fn reorder<R: IsA<CellRenderer>>(&self, cell: &R, position: i32) {
+        self.parent_reorder(cell, position)
     }
 
-    fn clear(&self, cell_layout: &Self::Type) {
-        self.parent_clear(cell_layout)
+    fn clear(&self) {
+        self.parent_clear()
     }
 
-    fn pack_start<R: IsA<CellRenderer>>(&self, cell_layout: &Self::Type, cell: &R, expand: bool) {
-        self.parent_pack_start(cell_layout, cell, expand)
+    fn pack_start<R: IsA<CellRenderer>>(&self, cell: &R, expand: bool) {
+        self.parent_pack_start(cell, expand)
     }
 
-    fn pack_end<R: IsA<CellRenderer>>(&self, cell_layout: &Self::Type, cell: &R, expand: bool) {
-        self.parent_pack_end(cell_layout, cell, expand)
+    fn pack_end<R: IsA<CellRenderer>>(&self, cell: &R, expand: bool) {
+        self.parent_pack_end(cell, expand)
     }
 
-    fn area(&self, cell_layout: &Self::Type) -> Option<CellArea> {
-        self.parent_area(cell_layout)
+    fn area(&self) -> Option<CellArea> {
+        self.parent_area()
     }
 }
 
 pub trait CellLayoutImplExt: ObjectSubclass {
-    fn parent_add_attribute<R: IsA<CellRenderer>>(
-        &self,
-        cell_layout: &Self::Type,
-        cell: &R,
-        attribute: &str,
-        column: i32,
-    );
-    fn parent_clear_attributes<R: IsA<CellRenderer>>(&self, cell_layout: &Self::Type, cell: &R);
-    fn parent_cells(&self, cell_layout: &Self::Type) -> Vec<CellRenderer>;
+    fn parent_add_attribute<R: IsA<CellRenderer>>(&self, cell: &R, attribute: &str, column: i32);
+    fn parent_clear_attributes<R: IsA<CellRenderer>>(&self, cell: &R);
+    fn parent_cells(&self) -> Vec<CellRenderer>;
     fn parent_set_cell_data_func<R: IsA<CellRenderer>>(
         &self,
-        cell_layout: &Self::Type,
+
         cell: &R,
         callback: Option<CellLayoutDataCallback>,
     );
-    fn parent_reorder<R: IsA<CellRenderer>>(
-        &self,
-        cell_layout: &Self::Type,
-        cell: &R,
-        position: i32,
-    );
-    fn parent_clear(&self, cell_layout: &Self::Type);
-    fn parent_pack_start<R: IsA<CellRenderer>>(
-        &self,
-        cell_layout: &Self::Type,
-        cell: &R,
-        expand: bool,
-    );
-    fn parent_pack_end<R: IsA<CellRenderer>>(
-        &self,
-        cell_layout: &Self::Type,
-        cell: &R,
-        expand: bool,
-    );
-    fn parent_area(&self, cell_layout: &Self::Type) -> Option<CellArea>;
+    fn parent_reorder<R: IsA<CellRenderer>>(&self, cell: &R, position: i32);
+    fn parent_clear(&self);
+    fn parent_pack_start<R: IsA<CellRenderer>>(&self, cell: &R, expand: bool);
+    fn parent_pack_end<R: IsA<CellRenderer>>(&self, cell: &R, expand: bool);
+    fn parent_area(&self) -> Option<CellArea>;
 }
 
 impl<O: CellLayoutImpl> CellLayoutImplExt for O {
-    fn parent_add_attribute<R: IsA<CellRenderer>>(
-        &self,
-        cell_layout: &Self::Type,
-        cell: &R,
-        attribute: &str,
-        column: i32,
-    ) {
+    fn parent_add_attribute<R: IsA<CellRenderer>>(&self, cell: &R, attribute: &str, column: i32) {
         unsafe {
             let type_data = Self::type_data();
             let parent_iface = type_data.as_ref().parent_interface::<CellLayout>()
@@ -150,7 +117,10 @@ impl<O: CellLayoutImpl> CellLayoutImplExt for O {
 
             if let Some(f) = (*parent_iface).add_attribute {
                 f(
-                    cell_layout.unsafe_cast_ref::<CellLayout>().to_glib_none().0,
+                    self.instance()
+                        .unsafe_cast_ref::<CellLayout>()
+                        .to_glib_none()
+                        .0,
                     cell.as_ref().to_glib_none().0,
                     attribute.to_glib_none().0,
                     column,
@@ -159,7 +129,7 @@ impl<O: CellLayoutImpl> CellLayoutImplExt for O {
         }
     }
 
-    fn parent_clear_attributes<R: IsA<CellRenderer>>(&self, cell_layout: &Self::Type, cell: &R) {
+    fn parent_clear_attributes<R: IsA<CellRenderer>>(&self, cell: &R) {
         unsafe {
             let type_data = Self::type_data();
             let parent_iface = type_data.as_ref().parent_interface::<CellLayout>()
@@ -167,14 +137,17 @@ impl<O: CellLayoutImpl> CellLayoutImplExt for O {
 
             if let Some(f) = (*parent_iface).clear_attributes {
                 f(
-                    cell_layout.unsafe_cast_ref::<CellLayout>().to_glib_none().0,
+                    self.instance()
+                        .unsafe_cast_ref::<CellLayout>()
+                        .to_glib_none()
+                        .0,
                     cell.as_ref().to_glib_none().0,
                 );
             }
         }
     }
 
-    fn parent_cells(&self, cell_layout: &Self::Type) -> Vec<CellRenderer> {
+    fn parent_cells(&self) -> Vec<CellRenderer> {
         unsafe {
             let type_data = Self::type_data();
             let parent_iface = type_data.as_ref().parent_interface::<CellLayout>()
@@ -185,14 +158,18 @@ impl<O: CellLayoutImpl> CellLayoutImplExt for O {
                 .as_ref()
                 .expect("no parent \"get_cells\" implementation");
 
-            let cells = f(cell_layout.unsafe_cast_ref::<CellLayout>().to_glib_none().0);
+            let cells = f(self
+                .instance()
+                .unsafe_cast_ref::<CellLayout>()
+                .to_glib_none()
+                .0);
             FromGlibPtrArrayContainerAsVec::from_glib_container_as_vec(cells)
         }
     }
 
     fn parent_set_cell_data_func<R: IsA<CellRenderer>>(
         &self,
-        cell_layout: &Self::Type,
+
         cell: &R,
         callback: Option<CellLayoutDataCallback>,
     ) {
@@ -208,7 +185,10 @@ impl<O: CellLayoutImpl> CellLayoutImplExt for O {
 
             if let Some(data_cb) = callback {
                 f(
-                    cell_layout.unsafe_cast_ref::<CellLayout>().to_glib_none().0,
+                    self.instance()
+                        .unsafe_cast_ref::<CellLayout>()
+                        .to_glib_none()
+                        .0,
                     cell.as_ref().to_glib_none().0,
                     data_cb.callback,
                     data_cb.user_data,
@@ -216,7 +196,10 @@ impl<O: CellLayoutImpl> CellLayoutImplExt for O {
                 );
             } else {
                 f(
-                    cell_layout.unsafe_cast_ref::<CellLayout>().to_glib_none().0,
+                    self.instance()
+                        .unsafe_cast_ref::<CellLayout>()
+                        .to_glib_none()
+                        .0,
                     cell.as_ref().to_glib_none().0,
                     None,
                     std::ptr::null_mut(),
@@ -226,12 +209,7 @@ impl<O: CellLayoutImpl> CellLayoutImplExt for O {
         }
     }
 
-    fn parent_reorder<R: IsA<CellRenderer>>(
-        &self,
-        cell_layout: &Self::Type,
-        cell: &R,
-        position: i32,
-    ) {
+    fn parent_reorder<R: IsA<CellRenderer>>(&self, cell: &R, position: i32) {
         {
             unsafe {
                 let type_data = Self::type_data();
@@ -240,7 +218,10 @@ impl<O: CellLayoutImpl> CellLayoutImplExt for O {
 
                 if let Some(f) = (*parent_iface).reorder {
                     f(
-                        cell_layout.unsafe_cast_ref::<CellLayout>().to_glib_none().0,
+                        self.instance()
+                            .unsafe_cast_ref::<CellLayout>()
+                            .to_glib_none()
+                            .0,
                         cell.as_ref().to_glib_none().0,
                         position,
                     );
@@ -249,24 +230,23 @@ impl<O: CellLayoutImpl> CellLayoutImplExt for O {
         }
     }
 
-    fn parent_clear(&self, cell_layout: &Self::Type) {
+    fn parent_clear(&self) {
         unsafe {
             let type_data = Self::type_data();
             let parent_iface = type_data.as_ref().parent_interface::<CellLayout>()
                 as *const ffi::GtkCellLayoutIface;
 
             if let Some(f) = (*parent_iface).clear {
-                f(cell_layout.unsafe_cast_ref::<CellLayout>().to_glib_none().0);
+                f(self
+                    .instance()
+                    .unsafe_cast_ref::<CellLayout>()
+                    .to_glib_none()
+                    .0);
             }
         }
     }
 
-    fn parent_pack_start<R: IsA<CellRenderer>>(
-        &self,
-        cell_layout: &Self::Type,
-        cell: &R,
-        expand: bool,
-    ) {
+    fn parent_pack_start<R: IsA<CellRenderer>>(&self, cell: &R, expand: bool) {
         unsafe {
             let type_data = Self::type_data();
             let parent_iface = type_data.as_ref().parent_interface::<CellLayout>()
@@ -274,7 +254,10 @@ impl<O: CellLayoutImpl> CellLayoutImplExt for O {
 
             if let Some(f) = (*parent_iface).pack_start {
                 f(
-                    cell_layout.unsafe_cast_ref::<CellLayout>().to_glib_none().0,
+                    self.instance()
+                        .unsafe_cast_ref::<CellLayout>()
+                        .to_glib_none()
+                        .0,
                     cell.as_ref().to_glib_none().0,
                     expand.into_glib(),
                 );
@@ -282,12 +265,7 @@ impl<O: CellLayoutImpl> CellLayoutImplExt for O {
         }
     }
 
-    fn parent_pack_end<R: IsA<CellRenderer>>(
-        &self,
-        cell_layout: &Self::Type,
-        cell: &R,
-        expand: bool,
-    ) {
+    fn parent_pack_end<R: IsA<CellRenderer>>(&self, cell: &R, expand: bool) {
         unsafe {
             let type_data = Self::type_data();
             let parent_iface = type_data.as_ref().parent_interface::<CellLayout>()
@@ -295,7 +273,10 @@ impl<O: CellLayoutImpl> CellLayoutImplExt for O {
 
             if let Some(f) = (*parent_iface).pack_end {
                 f(
-                    cell_layout.unsafe_cast_ref::<CellLayout>().to_glib_none().0,
+                    self.instance()
+                        .unsafe_cast_ref::<CellLayout>()
+                        .to_glib_none()
+                        .0,
                     cell.as_ref().to_glib_none().0,
                     expand.into_glib(),
                 );
@@ -303,14 +284,15 @@ impl<O: CellLayoutImpl> CellLayoutImplExt for O {
         }
     }
 
-    fn parent_area(&self, cell_layout: &Self::Type) -> Option<CellArea> {
+    fn parent_area(&self) -> Option<CellArea> {
         unsafe {
             let type_data = Self::type_data();
             let parent_iface = type_data.as_ref().parent_interface::<CellLayout>()
                 as *const ffi::GtkCellLayoutIface;
 
             (*parent_iface).get_area.map(|f| {
-                from_glib_none(f(cell_layout
+                from_glib_none(f(self
+                    .instance()
                     .unsafe_cast_ref::<CellLayout>()
                     .to_glib_none()
                     .0))
@@ -346,8 +328,7 @@ unsafe extern "C" fn cell_layout_get_area<T: CellLayoutImpl>(
     let instance = &*(cell_layout as *mut T::Instance);
     let imp = instance.imp();
 
-    imp.area(from_glib_borrow::<_, CellLayout>(cell_layout).unsafe_cast_ref())
-        .to_glib_full()
+    imp.area().to_glib_full()
 }
 
 unsafe extern "C" fn cell_layout_pack_start<T: CellLayoutImpl>(
@@ -357,14 +338,9 @@ unsafe extern "C" fn cell_layout_pack_start<T: CellLayoutImpl>(
 ) {
     let instance = &*(cell_layout as *mut T::Instance);
     let imp = instance.imp();
-
     let cell: Borrowed<CellRenderer> = from_glib_borrow(cellptr);
 
-    imp.pack_start(
-        from_glib_borrow::<_, CellLayout>(cell_layout).unsafe_cast_ref(),
-        &*cell,
-        from_glib(expand),
-    )
+    imp.pack_start(&*cell, from_glib(expand))
 }
 
 unsafe extern "C" fn cell_layout_pack_end<T: CellLayoutImpl>(
@@ -374,21 +350,16 @@ unsafe extern "C" fn cell_layout_pack_end<T: CellLayoutImpl>(
 ) {
     let instance = &*(cell_layout as *mut T::Instance);
     let imp = instance.imp();
-
     let cell: Borrowed<CellRenderer> = from_glib_borrow(cellptr);
 
-    imp.pack_end(
-        from_glib_borrow::<_, CellLayout>(cell_layout).unsafe_cast_ref(),
-        &*cell,
-        from_glib(expand),
-    )
+    imp.pack_end(&*cell, from_glib(expand))
 }
 
 unsafe extern "C" fn cell_layout_clear<T: CellLayoutImpl>(cell_layout: *mut ffi::GtkCellLayout) {
     let instance = &*(cell_layout as *mut T::Instance);
     let imp = instance.imp();
 
-    imp.clear(from_glib_borrow::<_, CellLayout>(cell_layout).unsafe_cast_ref())
+    imp.clear()
 }
 
 unsafe extern "C" fn cell_layout_reorder<T: CellLayoutImpl>(
@@ -398,14 +369,9 @@ unsafe extern "C" fn cell_layout_reorder<T: CellLayoutImpl>(
 ) {
     let instance = &*(cell_layout as *mut T::Instance);
     let imp = instance.imp();
-
     let cell: Borrowed<CellRenderer> = from_glib_borrow(cellptr);
 
-    imp.reorder(
-        from_glib_borrow::<_, CellLayout>(cell_layout).unsafe_cast_ref(),
-        &*cell,
-        position,
-    )
+    imp.reorder(&*cell, position)
 }
 
 unsafe extern "C" fn cell_layout_add_attribute<T: CellLayoutImpl>(
@@ -416,16 +382,10 @@ unsafe extern "C" fn cell_layout_add_attribute<T: CellLayoutImpl>(
 ) {
     let instance = &*(cell_layout as *mut T::Instance);
     let imp = instance.imp();
-
     let cell: Borrowed<CellRenderer> = from_glib_borrow(cellptr);
     let attribute: Borrowed<glib::GString> = from_glib_borrow(attributeptr);
 
-    imp.add_attribute(
-        from_glib_borrow::<_, CellLayout>(cell_layout).unsafe_cast_ref(),
-        &*cell,
-        &attribute,
-        column,
-    )
+    imp.add_attribute(&*cell, &attribute, column)
 }
 
 unsafe extern "C" fn cell_layout_clear_attributes<T: CellLayoutImpl>(
@@ -434,13 +394,9 @@ unsafe extern "C" fn cell_layout_clear_attributes<T: CellLayoutImpl>(
 ) {
     let instance = &*(cell_layout as *mut T::Instance);
     let imp = instance.imp();
-
     let cell: Borrowed<CellRenderer> = from_glib_borrow(cellptr);
 
-    imp.clear_attributes(
-        from_glib_borrow::<_, CellLayout>(cell_layout).unsafe_cast_ref(),
-        &*cell,
-    )
+    imp.clear_attributes(&*cell)
 }
 
 unsafe extern "C" fn cell_layout_set_cell_data_func<T: CellLayoutImpl>(
@@ -465,11 +421,7 @@ unsafe extern "C" fn cell_layout_set_cell_data_func<T: CellLayoutImpl>(
         })
     };
 
-    imp.set_cell_data_func(
-        from_glib_borrow::<_, CellLayout>(cell_layout).unsafe_cast_ref(),
-        &*cell,
-        callback,
-    )
+    imp.set_cell_data_func(&*cell, callback)
 }
 
 static CELL_LAYOUT_GET_CELLS_QUARK: Lazy<Quark> =
@@ -481,12 +433,11 @@ unsafe extern "C" fn cell_layout_get_cells<T: CellLayoutImpl>(
     let instance = &*(cell_layout as *mut T::Instance);
     let imp = instance.imp();
 
-    let wrap = from_glib_borrow::<_, CellLayout>(cell_layout);
-
-    let cells = imp.cells(wrap.unsafe_cast_ref());
+    let cells = imp.cells();
 
     // transfer container: list owned by the caller by not the actual content
     // so we need to keep the cells around and return a ptr of the list
-    wrap.set_qdata(*CELL_LAYOUT_GET_CELLS_QUARK, cells.clone());
+    imp.instance()
+        .set_qdata(*CELL_LAYOUT_GET_CELLS_QUARK, cells.clone());
     cells.to_glib_container().0
 }

@@ -13,50 +13,32 @@ use once_cell::sync::Lazy;
 use super::PtrHolder;
 
 pub trait BuildableImpl: ObjectImpl {
-    fn set_id(&self, buildable: &Self::Type, id: &str) {
-        self.parent_set_id(buildable, id)
+    fn set_id(&self, id: &str) {
+        self.parent_set_id(id)
     }
-    fn id(&self, buildable: &Self::Type) -> Option<GString> {
-        self.parent_id(buildable)
+    fn id(&self) -> Option<GString> {
+        self.parent_id()
     }
-    fn add_child(
-        &self,
-        buildable: &Self::Type,
-        builder: &Builder,
-        child: &Object,
-        type_: Option<&str>,
-    ) {
-        self.parent_add_child(buildable, builder, child, type_)
+    fn add_child(&self, builder: &Builder, child: &Object, type_: Option<&str>) {
+        self.parent_add_child(builder, child, type_)
     }
-    fn set_buildable_property(
-        &self,
-        buildable: &Self::Type,
-        builder: &Builder,
-        name: &str,
-        value: &Value,
-    ) {
-        self.parent_set_buildable_property(buildable, builder, name, value)
+    fn set_buildable_property(&self, builder: &Builder, name: &str, value: &Value) {
+        self.parent_set_buildable_property(builder, name, value)
     }
-    fn parser_finished(&self, buildable: &Self::Type, builder: &Builder) {
-        self.parent_parser_finished(buildable, builder)
+    fn parser_finished(&self, builder: &Builder) {
+        self.parent_parser_finished(builder)
     }
-    fn internal_child(
-        &self,
-        buildable: &Self::Type,
-        builder: &Builder,
-        name: &str,
-    ) -> Option<Object> {
-        self.parent_internal_child(buildable, builder, name)
+    fn internal_child(&self, builder: &Builder, name: &str) -> Option<Object> {
+        self.parent_internal_child(builder, name)
     }
-    fn construct_child(&self, buildable: &Self::Type, builder: &Builder, name: &str) -> Object {
-        self.parent_construct_child(buildable, builder, name)
+    fn construct_child(&self, builder: &Builder, name: &str) -> Object {
+        self.parent_construct_child(builder, name)
     }
     /*
     Only useful for custom tags, not something the application developer has to often implement
     and needs more thinking in terms of how to handle both BuildableParser & the various ptr you're supposed to pass around
     fn custom_tag_start(
         &self,
-        buildable: &Self::Type,
         builder: &Builder,
         child: Option<&Object>,
         tagname: &str,
@@ -65,7 +47,6 @@ pub trait BuildableImpl: ObjectImpl {
     );
     fn custom_tag_end(
         &self,
-        buildable: &Self::Type,
         builder: &Builder,
         child: Option<&Object>,
         tagname: &str,
@@ -73,7 +54,6 @@ pub trait BuildableImpl: ObjectImpl {
     );
     fn custom_finished(
         &self,
-        buildable: &Self::Type,
         builder: &Builder,
         child: Option<&Object>,
         tagname: &str,
@@ -83,39 +63,17 @@ pub trait BuildableImpl: ObjectImpl {
 }
 
 pub trait BuildableImplExt: ObjectSubclass {
-    fn parent_set_id(&self, buildable: &Self::Type, id: &str);
-    fn parent_id(&self, buildable: &Self::Type) -> Option<GString>;
-    fn parent_add_child(
-        &self,
-        buildable: &Self::Type,
-        builder: &Builder,
-        child: &Object,
-        type_: Option<&str>,
-    );
-    fn parent_set_buildable_property(
-        &self,
-        buildable: &Self::Type,
-        builder: &Builder,
-        name: &str,
-        value: &Value,
-    );
-    fn parent_parser_finished(&self, buildable: &Self::Type, builder: &Builder);
-    fn parent_internal_child(
-        &self,
-        buildable: &Self::Type,
-        builder: &Builder,
-        name: &str,
-    ) -> Option<Object>;
-    fn parent_construct_child(
-        &self,
-        buildable: &Self::Type,
-        builder: &Builder,
-        name: &str,
-    ) -> Object;
+    fn parent_set_id(&self, id: &str);
+    fn parent_id(&self) -> Option<GString>;
+    fn parent_add_child(&self, builder: &Builder, child: &Object, type_: Option<&str>);
+    fn parent_set_buildable_property(&self, builder: &Builder, name: &str, value: &Value);
+    fn parent_parser_finished(&self, builder: &Builder);
+    fn parent_internal_child(&self, builder: &Builder, name: &str) -> Option<Object>;
+    fn parent_construct_child(&self, builder: &Builder, name: &str) -> Object;
 }
 
 impl<T: BuildableImpl> BuildableImplExt for T {
-    fn parent_set_id(&self, buildable: &Self::Type, id: &str) {
+    fn parent_set_id(&self, id: &str) {
         unsafe {
             let type_data = Self::type_data();
             let parent_iface =
@@ -126,13 +84,16 @@ impl<T: BuildableImpl> BuildableImplExt for T {
                 .expect("no parent \"set_id\" implementation");
 
             func(
-                buildable.unsafe_cast_ref::<Buildable>().to_glib_none().0,
+                self.instance()
+                    .unsafe_cast_ref::<Buildable>()
+                    .to_glib_none()
+                    .0,
                 id.to_glib_none().0,
             )
         }
     }
 
-    fn parent_id(&self, buildable: &Self::Type) -> Option<GString> {
+    fn parent_id(&self) -> Option<GString> {
         unsafe {
             let type_data = Self::type_data();
             let parent_iface =
@@ -143,18 +104,15 @@ impl<T: BuildableImpl> BuildableImplExt for T {
                 .expect("no parent \"get_id\" implementation");
 
             from_glib_none(func(
-                buildable.unsafe_cast_ref::<Buildable>().to_glib_none().0,
+                self.instance()
+                    .unsafe_cast_ref::<Buildable>()
+                    .to_glib_none()
+                    .0,
             ))
         }
     }
 
-    fn parent_add_child(
-        &self,
-        buildable: &Self::Type,
-        builder: &Builder,
-        child: &Object,
-        type_: Option<&str>,
-    ) {
+    fn parent_add_child(&self, builder: &Builder, child: &Object, type_: Option<&str>) {
         unsafe {
             let type_data = Self::type_data();
             let parent_iface =
@@ -165,7 +123,10 @@ impl<T: BuildableImpl> BuildableImplExt for T {
                 .expect("no parent \"add_child\" implementation");
 
             func(
-                buildable.unsafe_cast_ref::<Buildable>().to_glib_none().0,
+                self.instance()
+                    .unsafe_cast_ref::<Buildable>()
+                    .to_glib_none()
+                    .0,
                 builder.to_glib_none().0,
                 child.to_glib_none().0,
                 type_.to_glib_none().0,
@@ -173,13 +134,7 @@ impl<T: BuildableImpl> BuildableImplExt for T {
         }
     }
 
-    fn parent_set_buildable_property(
-        &self,
-        buildable: &Self::Type,
-        builder: &Builder,
-        name: &str,
-        value: &Value,
-    ) {
+    fn parent_set_buildable_property(&self, builder: &Builder, name: &str, value: &Value) {
         unsafe {
             let type_data = Self::type_data();
             let parent_iface =
@@ -188,18 +143,21 @@ impl<T: BuildableImpl> BuildableImplExt for T {
             // gtk::Builder falls back to using ObjectExt::set_property if the method is not implemented
             if let Some(func) = (*parent_iface).set_buildable_property {
                 func(
-                    buildable.unsafe_cast_ref::<Buildable>().to_glib_none().0,
+                    self.instance()
+                        .unsafe_cast_ref::<Buildable>()
+                        .to_glib_none()
+                        .0,
                     builder.to_glib_none().0,
                     name.to_glib_none().0,
                     value.to_glib_none().0,
                 )
             } else {
-                buildable.set_property_from_value(name, value);
+                self.instance().set_property_from_value(name, value);
             }
         }
     }
 
-    fn parent_parser_finished(&self, buildable: &Self::Type, builder: &Builder) {
+    fn parent_parser_finished(&self, builder: &Builder) {
         unsafe {
             let type_data = Self::type_data();
             let parent_iface =
@@ -207,19 +165,17 @@ impl<T: BuildableImpl> BuildableImplExt for T {
 
             if let Some(func) = (*parent_iface).parser_finished {
                 func(
-                    buildable.unsafe_cast_ref::<Buildable>().to_glib_none().0,
+                    self.instance()
+                        .unsafe_cast_ref::<Buildable>()
+                        .to_glib_none()
+                        .0,
                     builder.to_glib_none().0,
                 )
             }
         }
     }
 
-    fn parent_internal_child(
-        &self,
-        buildable: &Self::Type,
-        builder: &Builder,
-        name: &str,
-    ) -> Option<Object> {
+    fn parent_internal_child(&self, builder: &Builder, name: &str) -> Option<Object> {
         unsafe {
             let type_data = Self::type_data();
             let parent_iface =
@@ -227,7 +183,10 @@ impl<T: BuildableImpl> BuildableImplExt for T {
 
             if let Some(func) = (*parent_iface).get_internal_child {
                 from_glib_none(func(
-                    buildable.unsafe_cast_ref::<Buildable>().to_glib_none().0,
+                    self.instance()
+                        .unsafe_cast_ref::<Buildable>()
+                        .to_glib_none()
+                        .0,
                     builder.to_glib_none().0,
                     name.to_glib_none().0,
                 ))
@@ -237,12 +196,7 @@ impl<T: BuildableImpl> BuildableImplExt for T {
         }
     }
 
-    fn parent_construct_child(
-        &self,
-        buildable: &Self::Type,
-        builder: &Builder,
-        name: &str,
-    ) -> Object {
+    fn parent_construct_child(&self, builder: &Builder, name: &str) -> Object {
         unsafe {
             let type_data = Self::type_data();
             let parent_iface =
@@ -253,7 +207,10 @@ impl<T: BuildableImpl> BuildableImplExt for T {
                 .expect("no parent \"construct_child\" implementation");
 
             from_glib_full(func(
-                buildable.unsafe_cast_ref::<Buildable>().to_glib_none().0,
+                self.instance()
+                    .unsafe_cast_ref::<Buildable>()
+                    .to_glib_none()
+                    .0,
                 builder.to_glib_none().0,
                 name.to_glib_none().0,
             ))
@@ -288,10 +245,7 @@ unsafe extern "C" fn buildable_set_id<T: BuildableImpl>(
     let imp = instance.imp();
     let id = from_glib_borrow::<_, GString>(id);
 
-    imp.set_id(
-        from_glib_borrow::<_, Buildable>(buildable).unsafe_cast_ref(),
-        &id,
-    )
+    imp.set_id(&id)
 }
 
 unsafe extern "C" fn buildable_get_id<T: BuildableImpl>(
@@ -300,8 +254,7 @@ unsafe extern "C" fn buildable_get_id<T: BuildableImpl>(
     let instance = &*(buildable as *mut T::Instance);
     let imp = instance.imp();
 
-    imp.id(from_glib_borrow::<_, Buildable>(buildable).unsafe_cast_ref())
-        .to_glib_full()
+    imp.id().to_glib_full()
 }
 
 unsafe extern "C" fn buildable_add_child<T: BuildableImpl>(
@@ -315,7 +268,6 @@ unsafe extern "C" fn buildable_add_child<T: BuildableImpl>(
     let type_ = from_glib_borrow::<_, Option<GString>>(typeptr);
 
     imp.add_child(
-        from_glib_borrow::<_, Buildable>(buildable).unsafe_cast_ref(),
         &from_glib_borrow(builderptr),
         &from_glib_borrow(objectptr),
         type_.as_ref().as_ref().map(|s| s.as_ref()),
@@ -333,7 +285,6 @@ unsafe extern "C" fn buildable_set_buildable_property<T: BuildableImpl>(
     let name = from_glib_borrow::<_, GString>(nameptr);
 
     imp.set_buildable_property(
-        from_glib_borrow::<_, Buildable>(buildable).unsafe_cast_ref(),
         &from_glib_borrow(builderptr),
         &name,
         &from_glib_none(valueptr),
@@ -349,12 +300,8 @@ unsafe extern "C" fn buildable_construct_child<T: BuildableImpl>(
     let imp = instance.imp();
     let name = from_glib_borrow::<_, GString>(nameptr);
 
-    imp.construct_child(
-        from_glib_borrow::<_, Buildable>(buildable).unsafe_cast_ref(),
-        &from_glib_borrow(builderptr),
-        &name,
-    )
-    .to_glib_full()
+    imp.construct_child(&from_glib_borrow(builderptr), &name)
+        .to_glib_full()
 }
 
 unsafe extern "C" fn buildable_parser_finished<T: BuildableImpl>(
@@ -364,10 +311,7 @@ unsafe extern "C" fn buildable_parser_finished<T: BuildableImpl>(
     let instance = &*(buildable as *mut T::Instance);
     let imp = instance.imp();
 
-    imp.parser_finished(
-        from_glib_borrow::<_, Buildable>(buildable).unsafe_cast_ref(),
-        &from_glib_borrow(builderptr),
-    )
+    imp.parser_finished(&from_glib_borrow(builderptr))
 }
 
 static BUILDABLE_GET_INTERNAL_CHILD_QUARK: Lazy<Quark> =
@@ -379,14 +323,13 @@ unsafe extern "C" fn buildable_get_internal_child<T: BuildableImpl>(
 ) -> *mut glib::gobject_ffi::GObject {
     let instance = &*(buildable as *mut T::Instance);
     let imp = instance.imp();
-    let wrap = from_glib_borrow::<_, Buildable>(buildable);
     let name = from_glib_borrow::<_, GString>(nameptr);
 
-    let ret = imp.internal_child(wrap.unsafe_cast_ref(), &from_glib_borrow(builderptr), &name);
+    let ret = imp.internal_child(&from_glib_borrow(builderptr), &name);
 
     // transfer none: ensure the internal child stays alive for as long as the object building it
     let ret = ret.to_glib_full();
-    wrap.set_qdata(
+    imp.instance().set_qdata(
         *BUILDABLE_GET_INTERNAL_CHILD_QUARK,
         PtrHolder(ret, |ptr| {
             glib::gobject_ffi::g_object_unref(ptr as *mut _);

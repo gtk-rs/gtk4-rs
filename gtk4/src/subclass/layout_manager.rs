@@ -11,24 +11,12 @@ use libc::c_int;
 use crate::{LayoutChild, LayoutManager, Orientation, SizeRequestMode, Widget};
 
 pub trait LayoutManagerImpl: LayoutManagerImplExt + ObjectImpl {
-    fn allocate(
-        &self,
-        layout_manager: &Self::Type,
-        widget: &Widget,
-        width: i32,
-        height: i32,
-        baseline: i32,
-    ) {
-        self.parent_allocate(layout_manager, widget, width, height, baseline)
+    fn allocate(&self, widget: &Widget, width: i32, height: i32, baseline: i32) {
+        self.parent_allocate(widget, width, height, baseline)
     }
 
-    fn create_layout_child(
-        &self,
-        layout_manager: &Self::Type,
-        widget: &Widget,
-        for_child: &Widget,
-    ) -> LayoutChild {
-        self.parent_create_layout_child(layout_manager, widget, for_child)
+    fn create_layout_child(&self, widget: &Widget, for_child: &Widget) -> LayoutChild {
+        self.parent_create_layout_child(widget, for_child)
     }
     // rustdoc-stripper-ignore-next
     /// Only set if the child implemented LayoutChildImpl
@@ -37,76 +25,55 @@ pub trait LayoutManagerImpl: LayoutManagerImplExt + ObjectImpl {
     }
 
     #[doc(alias = "get_request_mode")]
-    fn request_mode(&self, layout_manager: &Self::Type, widget: &Widget) -> SizeRequestMode {
-        self.parent_request_mode(layout_manager, widget)
+    fn request_mode(&self, widget: &Widget) -> SizeRequestMode {
+        self.parent_request_mode(widget)
     }
 
     fn measure(
         &self,
-        layout_manager: &Self::Type,
         widget: &Widget,
         orientation: Orientation,
         for_size: i32,
     ) -> (i32, i32, i32, i32) {
-        self.parent_measure(layout_manager, widget, orientation, for_size)
+        self.parent_measure(widget, orientation, for_size)
     }
 
-    fn root(&self, layout_manager: &Self::Type) {
-        self.parent_root(layout_manager)
+    fn root(&self) {
+        self.parent_root()
     }
 
-    fn unroot(&self, layout_manager: &Self::Type) {
-        self.parent_unroot(layout_manager)
+    fn unroot(&self) {
+        self.parent_unroot()
     }
 }
 
 pub trait LayoutManagerImplExt: ObjectSubclass {
-    fn parent_allocate(
-        &self,
-        layout_manager: &Self::Type,
-        widget: &Widget,
-        width: i32,
-        height: i32,
-        baseline: i32,
-    );
+    fn parent_allocate(&self, widget: &Widget, width: i32, height: i32, baseline: i32);
 
-    fn parent_create_layout_child(
-        &self,
-        layout_manager: &Self::Type,
-        widget: &Widget,
-        for_child: &Widget,
-    ) -> LayoutChild;
+    fn parent_create_layout_child(&self, widget: &Widget, for_child: &Widget) -> LayoutChild;
 
-    fn parent_request_mode(&self, layout_manager: &Self::Type, widget: &Widget) -> SizeRequestMode;
+    fn parent_request_mode(&self, widget: &Widget) -> SizeRequestMode;
 
     fn parent_measure(
         &self,
-        layout_manager: &Self::Type,
         widget: &Widget,
         orientation: Orientation,
         for_size: i32,
     ) -> (i32, i32, i32, i32);
 
-    fn parent_root(&self, layout_manager: &Self::Type);
+    fn parent_root(&self);
 
-    fn parent_unroot(&self, layout_manager: &Self::Type);
+    fn parent_unroot(&self);
 }
 
 impl<T: LayoutManagerImpl> LayoutManagerImplExt for T {
-    fn parent_allocate(
-        &self,
-        layout_manager: &Self::Type,
-        widget: &Widget,
-        width: i32,
-        height: i32,
-        baseline: i32,
-    ) {
+    fn parent_allocate(&self, widget: &Widget, width: i32, height: i32, baseline: i32) {
         unsafe {
             let data = T::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkLayoutManagerClass;
             if let Some(f) = (*parent_class).allocate {
                 f(
-                    layout_manager
+                    self.instance()
                         .unsafe_cast_ref::<LayoutManager>()
                         .to_glib_none()
                         .0,
@@ -119,12 +86,7 @@ impl<T: LayoutManagerImpl> LayoutManagerImplExt for T {
         }
     }
 
-    fn parent_create_layout_child(
-        &self,
-        layout_manager: &Self::Type,
-        widget: &Widget,
-        for_child: &Widget,
-    ) -> LayoutChild {
+    fn parent_create_layout_child(&self, widget: &Widget, for_child: &Widget) -> LayoutChild {
         unsafe {
             let data = T::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkLayoutManagerClass;
@@ -132,7 +94,7 @@ impl<T: LayoutManagerImpl> LayoutManagerImplExt for T {
                 .create_layout_child
                 .expect("No parent class impl for \"create_layout_child\"");
             from_glib_none(f(
-                layout_manager
+                self.instance()
                     .unsafe_cast_ref::<LayoutManager>()
                     .to_glib_none()
                     .0,
@@ -142,7 +104,7 @@ impl<T: LayoutManagerImpl> LayoutManagerImplExt for T {
         }
     }
 
-    fn parent_request_mode(&self, layout_manager: &Self::Type, widget: &Widget) -> SizeRequestMode {
+    fn parent_request_mode(&self, widget: &Widget) -> SizeRequestMode {
         unsafe {
             let data = T::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkLayoutManagerClass;
@@ -150,7 +112,7 @@ impl<T: LayoutManagerImpl> LayoutManagerImplExt for T {
                 .get_request_mode
                 .expect("No parent class impl for \"get_request_mode\"");
             from_glib(f(
-                layout_manager
+                self.instance()
                     .unsafe_cast_ref::<LayoutManager>()
                     .to_glib_none()
                     .0,
@@ -161,7 +123,6 @@ impl<T: LayoutManagerImpl> LayoutManagerImplExt for T {
 
     fn parent_measure(
         &self,
-        layout_manager: &Self::Type,
         widget: &Widget,
         orientation: Orientation,
         for_size: i32,
@@ -178,7 +139,7 @@ impl<T: LayoutManagerImpl> LayoutManagerImplExt for T {
             let mut minimum_baseline = -1;
             let mut natural_baseline = -1;
             f(
-                layout_manager
+                self.instance()
                     .unsafe_cast_ref::<LayoutManager>()
                     .to_glib_none()
                     .0,
@@ -194,12 +155,13 @@ impl<T: LayoutManagerImpl> LayoutManagerImplExt for T {
         }
     }
 
-    fn parent_root(&self, layout_manager: &Self::Type) {
+    fn parent_root(&self) {
         unsafe {
             let data = T::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkLayoutManagerClass;
             if let Some(f) = (*parent_class).root {
-                f(layout_manager
+                f(self
+                    .instance()
                     .unsafe_cast_ref::<LayoutManager>()
                     .to_glib_none()
                     .0)
@@ -207,12 +169,13 @@ impl<T: LayoutManagerImpl> LayoutManagerImplExt for T {
         }
     }
 
-    fn parent_unroot(&self, layout_manager: &Self::Type) {
+    fn parent_unroot(&self) {
         unsafe {
             let data = T::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkLayoutManagerClass;
             if let Some(f) = (*parent_class).unroot {
-                f(layout_manager
+                f(self
+                    .instance()
                     .unsafe_cast_ref::<LayoutManager>()
                     .to_glib_none()
                     .0)
@@ -252,11 +215,10 @@ unsafe extern "C" fn layout_manager_allocate<T: LayoutManagerImpl>(
 ) {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
-    let wrap: Borrowed<LayoutManager> = from_glib_borrow(ptr);
 
     let widget: Borrowed<Widget> = from_glib_borrow(widgetptr);
 
-    imp.allocate(wrap.unsafe_cast_ref(), &widget, width, height, baseline)
+    imp.allocate(&widget, width, height, baseline)
 }
 
 unsafe extern "C" fn layout_manager_create_layout_child<T: LayoutManagerImpl>(
@@ -266,12 +228,10 @@ unsafe extern "C" fn layout_manager_create_layout_child<T: LayoutManagerImpl>(
 ) -> *mut ffi::GtkLayoutChild {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
-    let wrap: Borrowed<LayoutManager> = from_glib_borrow(ptr);
     let widget: Borrowed<Widget> = from_glib_borrow(widgetptr);
     let for_child: Borrowed<Widget> = from_glib_borrow(for_childptr);
 
-    imp.create_layout_child(wrap.unsafe_cast_ref(), &widget, &for_child)
-        .to_glib_full()
+    imp.create_layout_child(&widget, &for_child).to_glib_full()
 }
 
 unsafe extern "C" fn layout_manager_get_request_mode<T: LayoutManagerImpl>(
@@ -280,11 +240,9 @@ unsafe extern "C" fn layout_manager_get_request_mode<T: LayoutManagerImpl>(
 ) -> ffi::GtkSizeRequestMode {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
-    let wrap: Borrowed<LayoutManager> = from_glib_borrow(ptr);
     let widget: Borrowed<Widget> = from_glib_borrow(widgetptr);
 
-    imp.request_mode(wrap.unsafe_cast_ref(), &widget)
-        .into_glib()
+    imp.request_mode(&widget).into_glib()
 }
 
 unsafe extern "C" fn layout_manager_measure<T: LayoutManagerImpl>(
@@ -299,15 +257,10 @@ unsafe extern "C" fn layout_manager_measure<T: LayoutManagerImpl>(
 ) {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
-    let wrap: Borrowed<LayoutManager> = from_glib_borrow(ptr);
     let widget: Borrowed<Widget> = from_glib_borrow(widgetptr);
 
-    let (minimum, natural, minimum_baseline, natural_baseline) = imp.measure(
-        wrap.unsafe_cast_ref(),
-        &widget,
-        from_glib(orientation),
-        for_size,
-    );
+    let (minimum, natural, minimum_baseline, natural_baseline) =
+        imp.measure(&widget, from_glib(orientation), for_size);
     if !minimum_ptr.is_null() {
         *minimum_ptr = minimum;
     }
@@ -325,15 +278,13 @@ unsafe extern "C" fn layout_manager_measure<T: LayoutManagerImpl>(
 unsafe extern "C" fn layout_manager_root<T: LayoutManagerImpl>(ptr: *mut ffi::GtkLayoutManager) {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
-    let wrap: Borrowed<LayoutManager> = from_glib_borrow(ptr);
 
-    imp.root(wrap.unsafe_cast_ref())
+    imp.root()
 }
 
 unsafe extern "C" fn layout_manager_unroot<T: LayoutManagerImpl>(ptr: *mut ffi::GtkLayoutManager) {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
-    let wrap: Borrowed<LayoutManager> = from_glib_borrow(ptr);
 
-    imp.unroot(wrap.unsafe_cast_ref())
+    imp.unroot()
 }

@@ -9,61 +9,63 @@ use glib::translate::*;
 use glib::Cast;
 
 pub trait MediaStreamImpl: MediaStreamImplExt + ObjectImpl {
-    fn pause(&self, media_stream: &Self::Type) {
-        self.parent_pause(media_stream)
+    fn pause(&self) {
+        self.parent_pause()
     }
 
-    fn play(&self, media_stream: &Self::Type) -> bool {
-        self.parent_play(media_stream)
+    fn play(&self) -> bool {
+        self.parent_play()
     }
 
-    fn realize(&self, media_stream: &Self::Type, surface: gdk::Surface) {
-        self.parent_realize(media_stream, surface)
+    fn realize(&self, surface: gdk::Surface) {
+        self.parent_realize(surface)
     }
 
-    fn seek(&self, media_stream: &Self::Type, timestamp: i64) {
-        self.parent_seek(media_stream, timestamp)
+    fn seek(&self, timestamp: i64) {
+        self.parent_seek(timestamp)
     }
 
-    fn unrealize(&self, media_stream: &Self::Type, surface: gdk::Surface) {
-        self.parent_unrealize(media_stream, surface)
+    fn unrealize(&self, surface: gdk::Surface) {
+        self.parent_unrealize(surface)
     }
 
-    fn update_audio(&self, media_stream: &Self::Type, muted: bool, volume: f64) {
-        self.parent_update_audio(media_stream, muted, volume)
+    fn update_audio(&self, muted: bool, volume: f64) {
+        self.parent_update_audio(muted, volume)
     }
 }
 
 pub trait MediaStreamImplExt: ObjectSubclass {
-    fn parent_pause(&self, media_stream: &Self::Type);
-    fn parent_play(&self, media_stream: &Self::Type) -> bool;
-    fn parent_realize(&self, media_stream: &Self::Type, surface: gdk::Surface);
-    fn parent_seek(&self, media_stream: &Self::Type, timestamp: i64);
-    fn parent_unrealize(&self, media_stream: &Self::Type, surface: gdk::Surface);
-    fn parent_update_audio(&self, media_stream: &Self::Type, muted: bool, volume: f64);
+    fn parent_pause(&self);
+    fn parent_play(&self) -> bool;
+    fn parent_realize(&self, surface: gdk::Surface);
+    fn parent_seek(&self, timestamp: i64);
+    fn parent_unrealize(&self, surface: gdk::Surface);
+    fn parent_update_audio(&self, muted: bool, volume: f64);
 }
 
 impl<T: MediaStreamImpl> MediaStreamImplExt for T {
-    fn parent_pause(&self, media_stream: &Self::Type) {
+    fn parent_pause(&self) {
         unsafe {
             let data = T::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkMediaStreamClass;
             let f = (*parent_class)
                 .pause
                 .expect("No parent class impl for \"pause\"");
-            f(media_stream
+            f(self
+                .instance()
                 .unsafe_cast_ref::<MediaStream>()
                 .to_glib_none()
                 .0)
         }
     }
 
-    fn parent_play(&self, media_stream: &Self::Type) -> bool {
+    fn parent_play(&self) -> bool {
         unsafe {
             let data = T::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkMediaStreamClass;
             if let Some(f) = (*parent_class).play {
-                return from_glib(f(media_stream
+                return from_glib(f(self
+                    .instance()
                     .unsafe_cast_ref::<MediaStream>()
                     .to_glib_none()
                     .0));
@@ -72,7 +74,7 @@ impl<T: MediaStreamImpl> MediaStreamImplExt for T {
         }
     }
 
-    fn parent_realize(&self, media_stream: &Self::Type, surface: gdk::Surface) {
+    fn parent_realize(&self, surface: gdk::Surface) {
         unsafe {
             let data = T::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkMediaStreamClass;
@@ -80,7 +82,7 @@ impl<T: MediaStreamImpl> MediaStreamImplExt for T {
                 .realize
                 .expect("No parent class impl for \"realize\"");
             f(
-                media_stream
+                self.instance()
                     .unsafe_cast_ref::<MediaStream>()
                     .to_glib_none()
                     .0,
@@ -89,7 +91,7 @@ impl<T: MediaStreamImpl> MediaStreamImplExt for T {
         }
     }
 
-    fn parent_seek(&self, media_stream: &Self::Type, timestamp: i64) {
+    fn parent_seek(&self, timestamp: i64) {
         unsafe {
             let data = T::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkMediaStreamClass;
@@ -97,7 +99,7 @@ impl<T: MediaStreamImpl> MediaStreamImplExt for T {
                 .seek
                 .expect("No parent class impl for \"realize\"");
             f(
-                media_stream
+                self.instance()
                     .unsafe_cast_ref::<MediaStream>()
                     .to_glib_none()
                     .0,
@@ -106,7 +108,7 @@ impl<T: MediaStreamImpl> MediaStreamImplExt for T {
         }
     }
 
-    fn parent_unrealize(&self, media_stream: &Self::Type, surface: gdk::Surface) {
+    fn parent_unrealize(&self, surface: gdk::Surface) {
         unsafe {
             let data = T::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkMediaStreamClass;
@@ -114,7 +116,7 @@ impl<T: MediaStreamImpl> MediaStreamImplExt for T {
                 .unrealize
                 .expect("No parent class impl for \"unrealize\"");
             f(
-                media_stream
+                self.instance()
                     .unsafe_cast_ref::<MediaStream>()
                     .to_glib_none()
                     .0,
@@ -123,7 +125,7 @@ impl<T: MediaStreamImpl> MediaStreamImplExt for T {
         }
     }
 
-    fn parent_update_audio(&self, media_stream: &Self::Type, muted: bool, volume: f64) {
+    fn parent_update_audio(&self, muted: bool, volume: f64) {
         unsafe {
             let data = T::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkMediaStreamClass;
@@ -131,7 +133,7 @@ impl<T: MediaStreamImpl> MediaStreamImplExt for T {
                 .update_audio
                 .expect("No parent class impl for \"update_audio\"");
             f(
-                media_stream
+                self.instance()
                     .unsafe_cast_ref::<MediaStream>()
                     .to_glib_none()
                     .0,
@@ -164,9 +166,8 @@ unsafe impl<T: MediaStreamImpl> IsSubclassable<T> for MediaStream {
 unsafe extern "C" fn media_stream_pause<T: MediaStreamImpl>(ptr: *mut ffi::GtkMediaStream) {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
-    let wrap: Borrowed<MediaStream> = from_glib_borrow(ptr);
 
-    imp.pause(wrap.unsafe_cast_ref())
+    imp.pause()
 }
 
 unsafe extern "C" fn media_stream_play<T: MediaStreamImpl>(
@@ -174,9 +175,8 @@ unsafe extern "C" fn media_stream_play<T: MediaStreamImpl>(
 ) -> glib::ffi::gboolean {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
-    let wrap: Borrowed<MediaStream> = from_glib_borrow(ptr);
 
-    imp.play(wrap.unsafe_cast_ref()).into_glib()
+    imp.play().into_glib()
 }
 
 unsafe extern "C" fn media_stream_realize<T: MediaStreamImpl>(
@@ -185,9 +185,8 @@ unsafe extern "C" fn media_stream_realize<T: MediaStreamImpl>(
 ) {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
-    let wrap: Borrowed<MediaStream> = from_glib_borrow(ptr);
 
-    imp.realize(wrap.unsafe_cast_ref(), from_glib_none(surface))
+    imp.realize(from_glib_none(surface))
 }
 
 unsafe extern "C" fn media_stream_seek<T: MediaStreamImpl>(
@@ -196,9 +195,8 @@ unsafe extern "C" fn media_stream_seek<T: MediaStreamImpl>(
 ) {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
-    let wrap: Borrowed<MediaStream> = from_glib_borrow(ptr);
 
-    imp.seek(wrap.unsafe_cast_ref(), timestamp)
+    imp.seek(timestamp)
 }
 
 unsafe extern "C" fn media_stream_unrealize<T: MediaStreamImpl>(
@@ -207,9 +205,8 @@ unsafe extern "C" fn media_stream_unrealize<T: MediaStreamImpl>(
 ) {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
-    let wrap: Borrowed<MediaStream> = from_glib_borrow(ptr);
 
-    imp.unrealize(wrap.unsafe_cast_ref(), from_glib_none(surface))
+    imp.unrealize(from_glib_none(surface))
 }
 
 unsafe extern "C" fn media_stream_update_audio<T: MediaStreamImpl>(
@@ -219,7 +216,6 @@ unsafe extern "C" fn media_stream_update_audio<T: MediaStreamImpl>(
 ) {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
-    let wrap: Borrowed<MediaStream> = from_glib_borrow(ptr);
 
-    imp.update_audio(wrap.unsafe_cast_ref(), from_glib(muted), volume)
+    imp.update_audio(from_glib(muted), volume)
 }

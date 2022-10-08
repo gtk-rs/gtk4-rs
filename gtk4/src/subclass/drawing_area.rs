@@ -9,23 +9,23 @@ use glib::translate::*;
 use glib::Cast;
 
 pub trait DrawingAreaImpl: DrawingAreaImplExt + WidgetImpl {
-    fn resize(&self, drawing_area: &Self::Type, width: i32, height: i32) {
-        self.parent_resize(drawing_area, width, height)
+    fn resize(&self, width: i32, height: i32) {
+        self.parent_resize(width, height)
     }
 }
 
 pub trait DrawingAreaImplExt: ObjectSubclass {
-    fn parent_resize(&self, drawing_area: &Self::Type, width: i32, height: i32);
+    fn parent_resize(&self, width: i32, height: i32);
 }
 
 impl<T: DrawingAreaImpl> DrawingAreaImplExt for T {
-    fn parent_resize(&self, drawing_area: &Self::Type, width: i32, height: i32) {
+    fn parent_resize(&self, width: i32, height: i32) {
         unsafe {
             let data = T::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkDrawingAreaClass;
             if let Some(f) = (*parent_class).resize {
                 f(
-                    drawing_area
+                    self.instance()
                         .unsafe_cast_ref::<DrawingArea>()
                         .to_glib_none()
                         .0,
@@ -53,7 +53,6 @@ unsafe extern "C" fn drawing_area_resize<T: DrawingAreaImpl>(
 ) {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
-    let wrap: Borrowed<DrawingArea> = from_glib_borrow(ptr);
 
-    imp.resize(wrap.unsafe_cast_ref(), width, height)
+    imp.resize(width, height)
 }

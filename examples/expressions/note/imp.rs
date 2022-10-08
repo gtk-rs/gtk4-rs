@@ -29,13 +29,7 @@ impl ObjectImpl for Note {
         PROPERTIES.as_ref()
     }
 
-    fn set_property(
-        &self,
-        _obj: &Self::Type,
-        _id: usize,
-        value: &glib::Value,
-        pspec: &glib::ParamSpec,
-    ) {
+    fn set_property(&self, _id: usize, value: &glib::Value, pspec: &glib::ParamSpec) {
         match pspec.name() {
             "metadata" => {
                 let metadata = value.get().unwrap();
@@ -45,7 +39,7 @@ impl ObjectImpl for Note {
         }
     }
 
-    fn property(&self, _obj: &Self::Type, _id: usize, pspec: &glib::ParamSpec) -> glib::Value {
+    fn property(&self, _id: usize, pspec: &glib::ParamSpec) -> glib::Value {
         match pspec.name() {
             "metadata" => self.metadata.get().unwrap().to_value(),
             _ => unimplemented!(),

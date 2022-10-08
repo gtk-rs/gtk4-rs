@@ -13,58 +13,56 @@ use std::future::Future;
 use std::pin::Pin;
 
 pub trait ContentProviderImpl: ContentProviderImplExt + ObjectImpl {
-    fn content_changed(&self, provider: &Self::Type) {
-        self.parent_content_changed(provider)
+    fn content_changed(&self) {
+        self.parent_content_changed()
     }
 
-    fn attach_clipboard(&self, provider: &Self::Type, clipboard: &Clipboard) {
-        self.parent_attach_clipboard(provider, clipboard)
+    fn attach_clipboard(&self, clipboard: &Clipboard) {
+        self.parent_attach_clipboard(clipboard)
     }
 
-    fn detach_clipboard(&self, provider: &Self::Type, clipboard: &Clipboard) {
-        self.parent_detach_clipboard(provider, clipboard)
+    fn detach_clipboard(&self, clipboard: &Clipboard) {
+        self.parent_detach_clipboard(clipboard)
     }
 
-    fn formats(&self, provider: &Self::Type) -> ContentFormats {
-        self.parent_formats(provider)
+    fn formats(&self) -> ContentFormats {
+        self.parent_formats()
     }
 
-    fn storable_formats(&self, provider: &Self::Type) -> ContentFormats {
-        self.parent_storable_formats(provider)
+    fn storable_formats(&self) -> ContentFormats {
+        self.parent_storable_formats()
     }
 
     fn write_mime_type_future(
         &self,
-        provider: &Self::Type,
         mime_type: &str,
         stream: &gio::OutputStream,
         io_priority: glib::Priority,
     ) -> Pin<Box<dyn Future<Output = Result<(), glib::Error>> + 'static>> {
-        self.parent_write_mime_type_future(provider, mime_type, stream, io_priority)
+        self.parent_write_mime_type_future(mime_type, stream, io_priority)
     }
 
-    fn value(&self, provider: &Self::Type, type_: glib::Type) -> Result<Value, glib::Error> {
-        self.parent_value(provider, type_)
+    fn value(&self, type_: glib::Type) -> Result<Value, glib::Error> {
+        self.parent_value(type_)
     }
 }
 
 pub trait ContentProviderImplExt: ObjectSubclass {
-    fn parent_content_changed(&self, provider: &Self::Type);
+    fn parent_content_changed(&self);
 
-    fn parent_attach_clipboard(&self, provider: &Self::Type, clipboard: &Clipboard);
+    fn parent_attach_clipboard(&self, clipboard: &Clipboard);
 
-    fn parent_detach_clipboard(&self, provider: &Self::Type, clipboard: &Clipboard);
+    fn parent_detach_clipboard(&self, clipboard: &Clipboard);
 
-    fn parent_formats(&self, provider: &Self::Type) -> ContentFormats;
+    fn parent_formats(&self) -> ContentFormats;
 
-    fn parent_storable_formats(&self, provider: &Self::Type) -> ContentFormats;
+    fn parent_storable_formats(&self) -> ContentFormats;
 
     fn parent_write_mime_type_async<
         Q: IsA<gio::Cancellable>,
         R: FnOnce(Result<(), glib::Error>) + 'static,
     >(
         &self,
-        provider: &Self::Type,
         mime_type: &str,
         stream: &gio::OutputStream,
         io_priority: glib::Priority,
@@ -74,22 +72,22 @@ pub trait ContentProviderImplExt: ObjectSubclass {
 
     fn parent_write_mime_type_future(
         &self,
-        provider: &Self::Type,
         mime_type: &str,
         stream: &gio::OutputStream,
         io_priority: glib::Priority,
     ) -> Pin<Box<dyn Future<Output = Result<(), glib::Error>> + 'static>>;
 
-    fn parent_value(&self, provider: &Self::Type, type_: glib::Type) -> Result<Value, glib::Error>;
+    fn parent_value(&self, type_: glib::Type) -> Result<Value, glib::Error>;
 }
 
 impl<T: ContentProviderImpl> ContentProviderImplExt for T {
-    fn parent_content_changed(&self, provider: &Self::Type) {
+    fn parent_content_changed(&self) {
         unsafe {
             let data = T::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GdkContentProviderClass;
             if let Some(f) = (*parent_class).content_changed {
-                f(provider
+                f(self
+                    .instance()
                     .unsafe_cast_ref::<ContentProvider>()
                     .to_glib_none()
                     .0)
@@ -97,13 +95,13 @@ impl<T: ContentProviderImpl> ContentProviderImplExt for T {
         }
     }
 
-    fn parent_attach_clipboard(&self, provider: &Self::Type, clipboard: &Clipboard) {
+    fn parent_attach_clipboard(&self, clipboard: &Clipboard) {
         unsafe {
             let data = T::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GdkContentProviderClass;
             if let Some(f) = (*parent_class).attach_clipboard {
                 f(
-                    provider
+                    self.instance()
                         .unsafe_cast_ref::<ContentProvider>()
                         .to_glib_none()
                         .0,
@@ -113,13 +111,13 @@ impl<T: ContentProviderImpl> ContentProviderImplExt for T {
         }
     }
 
-    fn parent_detach_clipboard(&self, provider: &Self::Type, clipboard: &Clipboard) {
+    fn parent_detach_clipboard(&self, clipboard: &Clipboard) {
         unsafe {
             let data = T::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GdkContentProviderClass;
             if let Some(f) = (*parent_class).detach_clipboard {
                 f(
-                    provider
+                    self.instance()
                         .unsafe_cast_ref::<ContentProvider>()
                         .to_glib_none()
                         .0,
@@ -129,14 +127,15 @@ impl<T: ContentProviderImpl> ContentProviderImplExt for T {
         }
     }
 
-    fn parent_formats(&self, provider: &Self::Type) -> ContentFormats {
+    fn parent_formats(&self) -> ContentFormats {
         unsafe {
             let data = T::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GdkContentProviderClass;
             let f = (*parent_class)
                 .ref_formats
                 .expect("no parent \"ref_formats\" implementation");
-            let ret = f(provider
+            let ret = f(self
+                .instance()
                 .unsafe_cast_ref::<ContentProvider>()
                 .to_glib_none()
                 .0);
@@ -145,14 +144,15 @@ impl<T: ContentProviderImpl> ContentProviderImplExt for T {
         }
     }
 
-    fn parent_storable_formats(&self, provider: &Self::Type) -> ContentFormats {
+    fn parent_storable_formats(&self) -> ContentFormats {
         unsafe {
             let data = T::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GdkContentProviderClass;
             let f = (*parent_class)
                 .ref_storable_formats
                 .expect("no parent \"ref_storable_formats\" implementation");
-            let ret = f(provider
+            let ret = f(self
+                .instance()
                 .unsafe_cast_ref::<ContentProvider>()
                 .to_glib_none()
                 .0);
@@ -166,7 +166,6 @@ impl<T: ContentProviderImpl> ContentProviderImplExt for T {
         R: FnOnce(Result<(), glib::Error>) + 'static,
     >(
         &self,
-        provider: &Self::Type,
         mime_type: &str,
         stream: &gio::OutputStream,
         io_priority: glib::Priority,
@@ -225,7 +224,7 @@ impl<T: ContentProviderImpl> ContentProviderImplExt for T {
             let cancellable = cancellable.map(|p| p.as_ref());
             let callback = parent_write_mime_type_async_trampoline::<R>;
             f(
-                provider
+                self.instance()
                     .unsafe_cast_ref::<ContentProvider>()
                     .to_glib_none()
                     .0,
@@ -241,7 +240,6 @@ impl<T: ContentProviderImpl> ContentProviderImplExt for T {
 
     fn parent_write_mime_type_future(
         &self,
-        provider: &Self::Type,
         mime_type: &str,
         stream: &gio::OutputStream,
         io_priority: glib::Priority,
@@ -249,12 +247,9 @@ impl<T: ContentProviderImpl> ContentProviderImplExt for T {
         let stream = stream.clone();
         let mime_type = String::from(mime_type);
         Box::pin(gio::GioFuture::new(
-            provider,
-            move |obj, cancellable, send| {
-                let imp = obj.imp();
-
+            &self.ref_counted(),
+            move |imp, cancellable, send| {
                 imp.parent_write_mime_type_async(
-                    &imp.instance(),
                     &mime_type,
                     &stream,
                     io_priority,
@@ -267,7 +262,7 @@ impl<T: ContentProviderImpl> ContentProviderImplExt for T {
         ))
     }
 
-    fn parent_value(&self, provider: &Self::Type, type_: glib::Type) -> Result<Value, glib::Error> {
+    fn parent_value(&self, type_: glib::Type) -> Result<Value, glib::Error> {
         unsafe {
             let data = T::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GdkContentProviderClass;
@@ -278,7 +273,7 @@ impl<T: ContentProviderImpl> ContentProviderImplExt for T {
 
             let mut error = std::ptr::null_mut();
             f(
-                provider
+                self.instance()
                     .unsafe_cast_ref::<ContentProvider>()
                     .to_glib_none()
                     .0,
@@ -316,9 +311,8 @@ unsafe extern "C" fn content_provider_content_changed<T: ContentProviderImpl>(
 ) {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
-    let wrap: Borrowed<ContentProvider> = from_glib_borrow(ptr);
 
-    imp.content_changed(wrap.unsafe_cast_ref())
+    imp.content_changed()
 }
 
 unsafe extern "C" fn content_provider_attach_clipboard<T: ContentProviderImpl>(
@@ -327,10 +321,9 @@ unsafe extern "C" fn content_provider_attach_clipboard<T: ContentProviderImpl>(
 ) {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
-    let wrap: Borrowed<ContentProvider> = from_glib_borrow(ptr);
     let clipboard = from_glib_borrow(clipboard_ptr);
 
-    imp.attach_clipboard(wrap.unsafe_cast_ref(), &clipboard)
+    imp.attach_clipboard(&clipboard)
 }
 
 unsafe extern "C" fn content_provider_detach_clipboard<T: ContentProviderImpl>(
@@ -339,10 +332,9 @@ unsafe extern "C" fn content_provider_detach_clipboard<T: ContentProviderImpl>(
 ) {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
-    let wrap: Borrowed<ContentProvider> = from_glib_borrow(ptr);
     let clipboard = from_glib_borrow(clipboard_ptr);
 
-    imp.detach_clipboard(wrap.unsafe_cast_ref(), &clipboard)
+    imp.detach_clipboard(&clipboard)
 }
 
 unsafe extern "C" fn content_provider_formats<T: ContentProviderImpl>(
@@ -350,9 +342,8 @@ unsafe extern "C" fn content_provider_formats<T: ContentProviderImpl>(
 ) -> *mut ffi::GdkContentFormats {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
-    let wrap: Borrowed<ContentProvider> = from_glib_borrow(ptr);
 
-    imp.formats(wrap.unsafe_cast_ref()).to_glib_full()
+    imp.formats().to_glib_full()
 }
 
 unsafe extern "C" fn content_provider_storable_formats<T: ContentProviderImpl>(
@@ -360,9 +351,8 @@ unsafe extern "C" fn content_provider_storable_formats<T: ContentProviderImpl>(
 ) -> *mut ffi::GdkContentFormats {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
-    let wrap: Borrowed<ContentProvider> = from_glib_borrow(ptr);
 
-    imp.storable_formats(wrap.unsafe_cast_ref()).to_glib_full()
+    imp.storable_formats().to_glib_full()
 }
 
 unsafe extern "C" fn content_provider_write_mime_type_async<T: ContentProviderImpl>(
@@ -397,7 +387,6 @@ unsafe extern "C" fn content_provider_write_mime_type_async<T: ContentProviderIm
     glib::MainContext::default().spawn_local(async move {
         let res = imp
             .write_mime_type_future(
-                wrap.unsafe_cast_ref(),
                 mime_type.as_str(),
                 stream.unsafe_cast_ref::<gio::OutputStream>(),
                 from_glib(priority),
@@ -434,10 +423,9 @@ unsafe extern "C" fn content_provider_get_value<T: ContentProviderImpl>(
 ) -> glib::ffi::gboolean {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
-    let wrap: Borrowed<ContentProvider> = from_glib_borrow(ptr);
     let value: Value = from_glib_none(value_ptr);
 
-    let ret = imp.value(wrap.unsafe_cast_ref(), value.type_());
+    let ret = imp.value(value.type_());
     match ret {
         Ok(v) => {
             glib::gobject_ffi::g_value_copy(v.to_glib_none().0, value_ptr);

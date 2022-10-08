@@ -34,7 +34,7 @@ impl ObjectSubclass for GridCell {
 }
 
 impl ObjectImpl for GridCell {
-    fn dispose(&self, _widget: &Self::Type) {
+    fn dispose(&self) {
         self.name.unparent();
     }
 }

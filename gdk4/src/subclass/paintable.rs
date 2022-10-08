@@ -10,44 +10,44 @@ use glib::Cast;
 
 pub trait PaintableImpl: ObjectImpl {
     #[doc(alias = "get_current_image")]
-    fn current_image(&self, paintable: &Self::Type) -> Paintable {
-        self.parent_current_image(paintable)
+    fn current_image(&self) -> Paintable {
+        self.parent_current_image()
     }
 
     #[doc(alias = "get_flags")]
-    fn flags(&self, paintable: &Self::Type) -> PaintableFlags {
-        self.parent_flags(paintable)
+    fn flags(&self) -> PaintableFlags {
+        self.parent_flags()
     }
 
     #[doc(alias = "get_intrinsic_width")]
-    fn intrinsic_width(&self, paintable: &Self::Type) -> i32 {
-        self.parent_intrinsic_width(paintable)
+    fn intrinsic_width(&self) -> i32 {
+        self.parent_intrinsic_width()
     }
 
     #[doc(alias = "get_intrinsic_height")]
-    fn intrinsic_height(&self, paintable: &Self::Type) -> i32 {
-        self.parent_intrinsic_height(paintable)
+    fn intrinsic_height(&self) -> i32 {
+        self.parent_intrinsic_height()
     }
 
     #[doc(alias = "get_intrinsic_aspect_ratio")]
-    fn intrinsic_aspect_ratio(&self, paintable: &Self::Type) -> f64 {
-        self.parent_intrinsic_aspect_ratio(paintable)
+    fn intrinsic_aspect_ratio(&self) -> f64 {
+        self.parent_intrinsic_aspect_ratio()
     }
 
-    fn snapshot(&self, paintable: &Self::Type, snapshot: &Snapshot, width: f64, height: f64);
+    fn snapshot(&self, snapshot: &Snapshot, width: f64, height: f64);
 }
 
 pub trait PaintableImplExt: ObjectSubclass {
-    fn parent_current_image(&self, paintable: &Self::Type) -> Paintable;
-    fn parent_flags(&self, paintable: &Self::Type) -> PaintableFlags;
-    fn parent_intrinsic_width(&self, paintable: &Self::Type) -> i32;
-    fn parent_intrinsic_height(&self, paintable: &Self::Type) -> i32;
-    fn parent_intrinsic_aspect_ratio(&self, paintable: &Self::Type) -> f64;
-    fn parent_snapshot(&self, paintable: &Self::Type, snapshot: &Snapshot, width: f64, height: f64);
+    fn parent_current_image(&self) -> Paintable;
+    fn parent_flags(&self) -> PaintableFlags;
+    fn parent_intrinsic_width(&self) -> i32;
+    fn parent_intrinsic_height(&self) -> i32;
+    fn parent_intrinsic_aspect_ratio(&self) -> f64;
+    fn parent_snapshot(&self, snapshot: &Snapshot, width: f64, height: f64);
 }
 
 impl<T: PaintableImpl> PaintableImplExt for T {
-    fn parent_current_image(&self, paintable: &Self::Type) -> Paintable {
+    fn parent_current_image(&self) -> Paintable {
         unsafe {
             let type_data = Self::type_data();
             let parent_iface = type_data.as_ref().parent_interface::<Paintable>()
@@ -56,13 +56,18 @@ impl<T: PaintableImpl> PaintableImplExt for T {
                 .get_current_image
                 .expect("no parent \"get_current_image\" implementation");
 
-            let ret = func(paintable.unsafe_cast_ref::<Paintable>().to_glib_none().0);
+            let ret = func(
+                self.instance()
+                    .unsafe_cast_ref::<Paintable>()
+                    .to_glib_none()
+                    .0,
+            );
 
             from_glib_full(ret)
         }
     }
 
-    fn parent_flags(&self, paintable: &Self::Type) -> PaintableFlags {
+    fn parent_flags(&self) -> PaintableFlags {
         unsafe {
             let type_data = Self::type_data();
             let parent_iface = type_data.as_ref().parent_interface::<Paintable>()
@@ -72,12 +77,15 @@ impl<T: PaintableImpl> PaintableImplExt for T {
                 .expect("no parent \"get_flags\" implementation");
 
             from_glib(func(
-                paintable.unsafe_cast_ref::<Paintable>().to_glib_none().0,
+                self.instance()
+                    .unsafe_cast_ref::<Paintable>()
+                    .to_glib_none()
+                    .0,
             ))
         }
     }
 
-    fn parent_intrinsic_width(&self, paintable: &Self::Type) -> i32 {
+    fn parent_intrinsic_width(&self) -> i32 {
         unsafe {
             let type_data = Self::type_data();
             let parent_iface = type_data.as_ref().parent_interface::<Paintable>()
@@ -86,11 +94,16 @@ impl<T: PaintableImpl> PaintableImplExt for T {
                 .get_intrinsic_width
                 .expect("no parent \"get_intrinsic_width\" implementation");
 
-            func(paintable.unsafe_cast_ref::<Paintable>().to_glib_none().0)
+            func(
+                self.instance()
+                    .unsafe_cast_ref::<Paintable>()
+                    .to_glib_none()
+                    .0,
+            )
         }
     }
 
-    fn parent_intrinsic_height(&self, paintable: &Self::Type) -> i32 {
+    fn parent_intrinsic_height(&self) -> i32 {
         unsafe {
             let type_data = Self::type_data();
             let parent_iface = type_data.as_ref().parent_interface::<Paintable>()
@@ -99,11 +112,16 @@ impl<T: PaintableImpl> PaintableImplExt for T {
                 .get_intrinsic_height
                 .expect("no parent \"get_intrinsic_height\" implementation");
 
-            func(paintable.unsafe_cast_ref::<Paintable>().to_glib_none().0)
+            func(
+                self.instance()
+                    .unsafe_cast_ref::<Paintable>()
+                    .to_glib_none()
+                    .0,
+            )
         }
     }
 
-    fn parent_intrinsic_aspect_ratio(&self, paintable: &Self::Type) -> f64 {
+    fn parent_intrinsic_aspect_ratio(&self) -> f64 {
         unsafe {
             let type_data = Self::type_data();
             let parent_iface = type_data.as_ref().parent_interface::<Paintable>()
@@ -112,17 +130,16 @@ impl<T: PaintableImpl> PaintableImplExt for T {
                 .get_intrinsic_aspect_ratio
                 .expect("no parent \"get_intrinsic_aspect_ratio\" implementation");
 
-            func(paintable.unsafe_cast_ref::<Paintable>().to_glib_none().0)
+            func(
+                self.instance()
+                    .unsafe_cast_ref::<Paintable>()
+                    .to_glib_none()
+                    .0,
+            )
         }
     }
 
-    fn parent_snapshot(
-        &self,
-        paintable: &Self::Type,
-        snapshot: &Snapshot,
-        width: f64,
-        height: f64,
-    ) {
+    fn parent_snapshot(&self, snapshot: &Snapshot, width: f64, height: f64) {
         unsafe {
             let type_data = Self::type_data();
             let parent_iface = type_data.as_ref().parent_interface::<Paintable>()
@@ -132,7 +149,10 @@ impl<T: PaintableImpl> PaintableImplExt for T {
                 .expect("no parent \"snapshot\" implementation");
 
             func(
-                paintable.unsafe_cast_ref::<Paintable>().to_glib_none().0,
+                self.instance()
+                    .unsafe_cast_ref::<Paintable>()
+                    .to_glib_none()
+                    .0,
                 snapshot.to_glib_none().0,
                 width,
                 height,
@@ -160,8 +180,7 @@ unsafe extern "C" fn paintable_get_current_image<T: PaintableImpl>(
     let instance = &*(paintable as *mut T::Instance);
     let imp = instance.imp();
 
-    imp.current_image(from_glib_borrow::<_, Paintable>(paintable).unsafe_cast_ref())
-        .to_glib_full()
+    imp.current_image().to_glib_full()
 }
 
 unsafe extern "C" fn paintable_get_flags<T: PaintableImpl>(
@@ -170,8 +189,7 @@ unsafe extern "C" fn paintable_get_flags<T: PaintableImpl>(
     let instance = &*(paintable as *mut T::Instance);
     let imp = instance.imp();
 
-    imp.flags(from_glib_borrow::<_, Paintable>(paintable).unsafe_cast_ref())
-        .into_glib()
+    imp.flags().into_glib()
 }
 
 unsafe extern "C" fn paintable_get_intrinsic_width<T: PaintableImpl>(
@@ -180,7 +198,7 @@ unsafe extern "C" fn paintable_get_intrinsic_width<T: PaintableImpl>(
     let instance = &*(paintable as *mut T::Instance);
     let imp = instance.imp();
 
-    imp.intrinsic_width(from_glib_borrow::<_, Paintable>(paintable).unsafe_cast_ref())
+    imp.intrinsic_width()
 }
 
 unsafe extern "C" fn paintable_get_intrinsic_height<T: PaintableImpl>(
@@ -189,7 +207,7 @@ unsafe extern "C" fn paintable_get_intrinsic_height<T: PaintableImpl>(
     let instance = &*(paintable as *mut T::Instance);
     let imp = instance.imp();
 
-    imp.intrinsic_height(from_glib_borrow::<_, Paintable>(paintable).unsafe_cast_ref())
+    imp.intrinsic_height()
 }
 
 unsafe extern "C" fn paintable_get_intrinsic_aspect_ratio<T: PaintableImpl>(
@@ -198,7 +216,7 @@ unsafe extern "C" fn paintable_get_intrinsic_aspect_ratio<T: PaintableImpl>(
     let instance = &*(paintable as *mut T::Instance);
     let imp = instance.imp();
 
-    imp.intrinsic_aspect_ratio(from_glib_borrow::<_, Paintable>(paintable).unsafe_cast_ref())
+    imp.intrinsic_aspect_ratio()
 }
 
 unsafe extern "C" fn paintable_snapshot<T: PaintableImpl>(
@@ -210,10 +228,5 @@ unsafe extern "C" fn paintable_snapshot<T: PaintableImpl>(
     let instance = &*(paintable as *mut T::Instance);
     let imp = instance.imp();
 
-    imp.snapshot(
-        from_glib_borrow::<_, Paintable>(paintable).unsafe_cast_ref(),
-        &Snapshot::from_glib_borrow(snapshotptr),
-        width,
-        height,
-    )
+    imp.snapshot(&Snapshot::from_glib_borrow(snapshotptr), width, height)
 }

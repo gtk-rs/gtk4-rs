@@ -10,17 +10,17 @@ use glib::Cast;
 
 pub trait ScrollableImpl: ObjectImpl {
     #[doc(alias = "get_border")]
-    fn border(&self, scrollable: &Self::Type) -> Option<Border> {
-        self.parent_border(scrollable)
+    fn border(&self) -> Option<Border> {
+        self.parent_border()
     }
 }
 
 pub trait ScrollableImplExt: ObjectSubclass {
-    fn parent_border(&self, scrollable: &Self::Type) -> Option<Border>;
+    fn parent_border(&self) -> Option<Border>;
 }
 
 impl<T: ScrollableImpl> ScrollableImplExt for T {
-    fn parent_border(&self, scrollable: &Self::Type) -> Option<Border> {
+    fn parent_border(&self) -> Option<Border> {
         unsafe {
             let type_data = Self::type_data();
             let parent_iface = type_data.as_ref().parent_interface::<Scrollable>()
@@ -29,7 +29,10 @@ impl<T: ScrollableImpl> ScrollableImplExt for T {
             if let Some(func) = (*parent_iface).get_border {
                 let border = std::ptr::null_mut();
                 if from_glib(func(
-                    scrollable.unsafe_cast_ref::<Scrollable>().to_glib_none().0,
+                    self.instance()
+                        .unsafe_cast_ref::<Scrollable>()
+                        .to_glib_none()
+                        .0,
                     border,
                 )) {
                     return Some(from_glib_none(border));
@@ -60,9 +63,7 @@ unsafe extern "C" fn scrollable_get_border<T: ScrollableImpl>(
     let instance = &*(scrollable as *mut T::Instance);
     let imp = instance.imp();
 
-    if let Some(border) =
-        imp.border(from_glib_borrow::<_, Scrollable>(scrollable).unsafe_cast_ref())
-    {
+    if let Some(border) = imp.border() {
         *borderptr = *border.to_glib_full();
         true.into_glib()
     } else {

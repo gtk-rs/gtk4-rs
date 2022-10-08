@@ -9,22 +9,26 @@ use glib::translate::*;
 use glib::Cast;
 
 pub trait FlowBoxChildImpl: FlowBoxChildImplExt + WidgetImpl {
-    fn activate(&self, child: &Self::Type) {
-        self.parent_activate(child)
+    fn activate(&self) {
+        self.parent_activate()
     }
 }
 
 pub trait FlowBoxChildImplExt: ObjectSubclass {
-    fn parent_activate(&self, child: &Self::Type);
+    fn parent_activate(&self);
 }
 
 impl<T: FlowBoxChildImpl> FlowBoxChildImplExt for T {
-    fn parent_activate(&self, child: &Self::Type) {
+    fn parent_activate(&self) {
         unsafe {
             let data = T::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkFlowBoxChildClass;
             if let Some(f) = (*parent_class).activate {
-                f(child.unsafe_cast_ref::<FlowBoxChild>().to_glib_none().0)
+                f(self
+                    .instance()
+                    .unsafe_cast_ref::<FlowBoxChild>()
+                    .to_glib_none()
+                    .0)
             }
         }
     }
@@ -42,7 +46,6 @@ unsafe impl<T: FlowBoxChildImpl> IsSubclassable<T> for FlowBoxChild {
 unsafe extern "C" fn child_activate<T: FlowBoxChildImpl>(ptr: *mut ffi::GtkFlowBoxChild) {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
-    let wrap: Borrowed<FlowBoxChild> = from_glib_borrow(ptr);
 
-    imp.activate(wrap.unsafe_cast_ref())
+    imp.activate()
 }

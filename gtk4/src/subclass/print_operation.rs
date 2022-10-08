@@ -12,95 +12,74 @@ use glib::translate::*;
 use glib::Cast;
 
 pub trait PrintOperationImpl: PrintOperationImplExt + PrintOperationPreviewImpl {
-    fn begin_print(&self, print_operation: &Self::Type, context: &PrintContext) {
-        self.parent_begin_print(print_operation, context)
+    fn begin_print(&self, context: &PrintContext) {
+        self.parent_begin_print(context)
     }
 
-    fn create_custom_widget(&self, print_operation: &Self::Type) -> Option<Widget> {
-        self.parent_create_custom_widget(print_operation)
+    fn create_custom_widget(&self) -> Option<Widget> {
+        self.parent_create_custom_widget()
     }
 
-    fn custom_widget_apply(&self, print_operation: &Self::Type, widget: &Widget) {
-        self.parent_custom_widget_apply(print_operation, widget)
+    fn custom_widget_apply(&self, widget: &Widget) {
+        self.parent_custom_widget_apply(widget)
     }
 
-    fn done(&self, print_operation: &Self::Type, result: PrintOperationResult) {
-        self.parent_done(print_operation, result)
+    fn done(&self, result: PrintOperationResult) {
+        self.parent_done(result)
     }
 
-    fn draw_page(&self, print_operation: &Self::Type, context: &PrintContext, page_nr: i32) {
-        self.parent_draw_page(print_operation, context, page_nr)
+    fn draw_page(&self, context: &PrintContext, page_nr: i32) {
+        self.parent_draw_page(context, page_nr)
     }
 
-    fn end_print(&self, print_operation: &Self::Type, context: &PrintContext) {
-        self.parent_end_print(print_operation, context)
+    fn end_print(&self, context: &PrintContext) {
+        self.parent_end_print(context)
     }
 
-    fn paginate(&self, print_operation: &Self::Type, context: &PrintContext) -> bool {
-        self.parent_paginate(print_operation, context)
+    fn paginate(&self, context: &PrintContext) -> bool {
+        self.parent_paginate(context)
     }
 
     fn preview(
         &self,
-        print_operation: &Self::Type,
         preview: &PrintOperationPreview,
         context: &PrintContext,
         parent: Option<&Window>,
     ) -> bool {
-        self.parent_preview(print_operation, preview, context, parent)
+        self.parent_preview(preview, context, parent)
     }
 
-    fn request_page_setup(
-        &self,
-        print_operation: &Self::Type,
-        context: &PrintContext,
-        page_nr: i32,
-        setup: &PageSetup,
-    ) {
-        self.parent_request_page_setup(print_operation, context, page_nr, setup)
+    fn request_page_setup(&self, context: &PrintContext, page_nr: i32, setup: &PageSetup) {
+        self.parent_request_page_setup(context, page_nr, setup)
     }
 
-    fn status_changed(&self, print_operation: &Self::Type) {
-        self.parent_status_changed(print_operation)
+    fn status_changed(&self) {
+        self.parent_status_changed()
     }
 
-    fn update_custom_widget(
-        &self,
-        print_operation: &Self::Type,
-        widget: &Widget,
-        setup: &PageSetup,
-        settings: &PrintSettings,
-    ) {
-        self.parent_update_custom_widget(print_operation, widget, setup, settings)
+    fn update_custom_widget(&self, widget: &Widget, setup: &PageSetup, settings: &PrintSettings) {
+        self.parent_update_custom_widget(widget, setup, settings)
     }
 }
 
 pub trait PrintOperationImplExt: ObjectSubclass {
-    fn parent_begin_print(&self, print_operation: &Self::Type, context: &PrintContext);
-    fn parent_create_custom_widget(&self, print_operation: &Self::Type) -> Option<Widget>;
-    fn parent_custom_widget_apply(&self, print_operation: &Self::Type, widget: &Widget);
-    fn parent_done(&self, print_operation: &Self::Type, result: PrintOperationResult);
-    fn parent_draw_page(&self, print_operation: &Self::Type, context: &PrintContext, page_nr: i32);
-    fn parent_end_print(&self, print_operation: &Self::Type, context: &PrintContext);
-    fn parent_paginate(&self, print_operation: &Self::Type, context: &PrintContext) -> bool;
+    fn parent_begin_print(&self, context: &PrintContext);
+    fn parent_create_custom_widget(&self) -> Option<Widget>;
+    fn parent_custom_widget_apply(&self, widget: &Widget);
+    fn parent_done(&self, result: PrintOperationResult);
+    fn parent_draw_page(&self, context: &PrintContext, page_nr: i32);
+    fn parent_end_print(&self, context: &PrintContext);
+    fn parent_paginate(&self, context: &PrintContext) -> bool;
     fn parent_preview(
         &self,
-        print_operation: &Self::Type,
         preview: &PrintOperationPreview,
         context: &PrintContext,
         parent: Option<&Window>,
     ) -> bool;
-    fn parent_request_page_setup(
-        &self,
-        print_operation: &Self::Type,
-        context: &PrintContext,
-        page_nr: i32,
-        setup: &PageSetup,
-    );
-    fn parent_status_changed(&self, print_operation: &Self::Type);
+    fn parent_request_page_setup(&self, context: &PrintContext, page_nr: i32, setup: &PageSetup);
+    fn parent_status_changed(&self);
     fn parent_update_custom_widget(
         &self,
-        print_operation: &Self::Type,
         widget: &Widget,
         setup: &PageSetup,
         settings: &PrintSettings,
@@ -108,13 +87,13 @@ pub trait PrintOperationImplExt: ObjectSubclass {
 }
 
 impl<T: PrintOperationImpl> PrintOperationImplExt for T {
-    fn parent_begin_print(&self, print_operation: &Self::Type, context: &PrintContext) {
+    fn parent_begin_print(&self, context: &PrintContext) {
         unsafe {
             let data = T::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkPrintOperationClass;
             if let Some(f) = (*parent_class).begin_print {
                 f(
-                    print_operation
+                    self.instance()
                         .unsafe_cast_ref::<PrintOperation>()
                         .to_glib_none()
                         .0,
@@ -124,12 +103,13 @@ impl<T: PrintOperationImpl> PrintOperationImplExt for T {
         }
     }
 
-    fn parent_create_custom_widget(&self, print_operation: &Self::Type) -> Option<Widget> {
+    fn parent_create_custom_widget(&self) -> Option<Widget> {
         unsafe {
             let data = T::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkPrintOperationClass;
             if let Some(f) = (*parent_class).create_custom_widget {
-                let ret = f(print_operation
+                let ret = f(self
+                    .instance()
                     .unsafe_cast_ref::<PrintOperation>()
                     .to_glib_none()
                     .0);
@@ -140,13 +120,13 @@ impl<T: PrintOperationImpl> PrintOperationImplExt for T {
         }
     }
 
-    fn parent_custom_widget_apply(&self, print_operation: &Self::Type, widget: &Widget) {
+    fn parent_custom_widget_apply(&self, widget: &Widget) {
         unsafe {
             let data = T::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkPrintOperationClass;
             if let Some(f) = (*parent_class).custom_widget_apply {
                 f(
-                    print_operation
+                    self.instance()
                         .unsafe_cast_ref::<PrintOperation>()
                         .to_glib_none()
                         .0,
@@ -156,13 +136,13 @@ impl<T: PrintOperationImpl> PrintOperationImplExt for T {
         }
     }
 
-    fn parent_done(&self, print_operation: &Self::Type, result: PrintOperationResult) {
+    fn parent_done(&self, result: PrintOperationResult) {
         unsafe {
             let data = T::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkPrintOperationClass;
             if let Some(f) = (*parent_class).done {
                 f(
-                    print_operation
+                    self.instance()
                         .unsafe_cast_ref::<PrintOperation>()
                         .to_glib_none()
                         .0,
@@ -172,13 +152,13 @@ impl<T: PrintOperationImpl> PrintOperationImplExt for T {
         }
     }
 
-    fn parent_draw_page(&self, print_operation: &Self::Type, context: &PrintContext, page_nr: i32) {
+    fn parent_draw_page(&self, context: &PrintContext, page_nr: i32) {
         unsafe {
             let data = T::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkPrintOperationClass;
             if let Some(f) = (*parent_class).draw_page {
                 f(
-                    print_operation
+                    self.instance()
                         .unsafe_cast_ref::<PrintOperation>()
                         .to_glib_none()
                         .0,
@@ -189,13 +169,13 @@ impl<T: PrintOperationImpl> PrintOperationImplExt for T {
         }
     }
 
-    fn parent_end_print(&self, print_operation: &Self::Type, context: &PrintContext) {
+    fn parent_end_print(&self, context: &PrintContext) {
         unsafe {
             let data = T::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkPrintOperationClass;
             if let Some(f) = (*parent_class).end_print {
                 f(
-                    print_operation
+                    self.instance()
                         .unsafe_cast_ref::<PrintOperation>()
                         .to_glib_none()
                         .0,
@@ -205,13 +185,13 @@ impl<T: PrintOperationImpl> PrintOperationImplExt for T {
         }
     }
 
-    fn parent_paginate(&self, print_operation: &Self::Type, context: &PrintContext) -> bool {
+    fn parent_paginate(&self, context: &PrintContext) -> bool {
         unsafe {
             let data = T::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkPrintOperationClass;
             if let Some(f) = (*parent_class).paginate {
                 from_glib(f(
-                    print_operation
+                    self.instance()
                         .unsafe_cast_ref::<PrintOperation>()
                         .to_glib_none()
                         .0,
@@ -226,7 +206,6 @@ impl<T: PrintOperationImpl> PrintOperationImplExt for T {
 
     fn parent_preview(
         &self,
-        print_operation: &Self::Type,
         preview: &PrintOperationPreview,
         context: &PrintContext,
         parent: Option<&Window>,
@@ -236,7 +215,7 @@ impl<T: PrintOperationImpl> PrintOperationImplExt for T {
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkPrintOperationClass;
             if let Some(f) = (*parent_class).preview {
                 from_glib(f(
-                    print_operation
+                    self.instance()
                         .unsafe_cast_ref::<PrintOperation>()
                         .to_glib_none()
                         .0,
@@ -251,19 +230,13 @@ impl<T: PrintOperationImpl> PrintOperationImplExt for T {
         }
     }
 
-    fn parent_request_page_setup(
-        &self,
-        print_operation: &Self::Type,
-        context: &PrintContext,
-        page_nr: i32,
-        setup: &PageSetup,
-    ) {
+    fn parent_request_page_setup(&self, context: &PrintContext, page_nr: i32, setup: &PageSetup) {
         unsafe {
             let data = T::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkPrintOperationClass;
             if let Some(f) = (*parent_class).request_page_setup {
                 f(
-                    print_operation
+                    self.instance()
                         .unsafe_cast_ref::<PrintOperation>()
                         .to_glib_none()
                         .0,
@@ -275,12 +248,13 @@ impl<T: PrintOperationImpl> PrintOperationImplExt for T {
         }
     }
 
-    fn parent_status_changed(&self, print_operation: &Self::Type) {
+    fn parent_status_changed(&self) {
         unsafe {
             let data = T::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkPrintOperationClass;
             if let Some(f) = (*parent_class).status_changed {
-                f(print_operation
+                f(self
+                    .instance()
                     .unsafe_cast_ref::<PrintOperation>()
                     .to_glib_none()
                     .0);
@@ -290,7 +264,6 @@ impl<T: PrintOperationImpl> PrintOperationImplExt for T {
 
     fn parent_update_custom_widget(
         &self,
-        print_operation: &Self::Type,
         widget: &Widget,
         setup: &PageSetup,
         settings: &PrintSettings,
@@ -300,7 +273,7 @@ impl<T: PrintOperationImpl> PrintOperationImplExt for T {
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkPrintOperationClass;
             if let Some(f) = (*parent_class).update_custom_widget {
                 f(
-                    print_operation
+                    self.instance()
                         .unsafe_cast_ref::<PrintOperation>()
                         .to_glib_none()
                         .0,
@@ -336,10 +309,9 @@ unsafe extern "C" fn print_operation_begin_print<T: PrintOperationImpl>(
 ) {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
-    let wrap: Borrowed<PrintOperation> = from_glib_borrow(ptr);
     let context: Borrowed<PrintContext> = from_glib_borrow(contextptr);
 
-    imp.begin_print(wrap.unsafe_cast_ref(), &context)
+    imp.begin_print(&context)
 }
 
 unsafe extern "C" fn print_operation_create_custom_widget<T: PrintOperationImpl>(
@@ -347,10 +319,8 @@ unsafe extern "C" fn print_operation_create_custom_widget<T: PrintOperationImpl>
 ) -> *mut ffi::GtkWidget {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
-    let wrap: Borrowed<PrintOperation> = from_glib_borrow(ptr);
 
-    imp.create_custom_widget(wrap.unsafe_cast_ref())
-        .to_glib_full()
+    imp.create_custom_widget().to_glib_full()
 }
 
 unsafe extern "C" fn print_operation_custom_widget_apply<T: PrintOperationImpl>(
@@ -359,10 +329,9 @@ unsafe extern "C" fn print_operation_custom_widget_apply<T: PrintOperationImpl>(
 ) {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
-    let wrap: Borrowed<PrintOperation> = from_glib_borrow(ptr);
     let widget: Borrowed<Widget> = from_glib_borrow(widgetptr);
 
-    imp.custom_widget_apply(wrap.unsafe_cast_ref(), &widget)
+    imp.custom_widget_apply(&widget)
 }
 
 unsafe extern "C" fn print_operation_done<T: PrintOperationImpl>(
@@ -371,9 +340,8 @@ unsafe extern "C" fn print_operation_done<T: PrintOperationImpl>(
 ) {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
-    let wrap: Borrowed<PrintOperation> = from_glib_borrow(ptr);
 
-    imp.done(wrap.unsafe_cast_ref(), from_glib(resultptr))
+    imp.done(from_glib(resultptr))
 }
 
 unsafe extern "C" fn print_operation_draw_page<T: PrintOperationImpl>(
@@ -383,10 +351,9 @@ unsafe extern "C" fn print_operation_draw_page<T: PrintOperationImpl>(
 ) {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
-    let wrap: Borrowed<PrintOperation> = from_glib_borrow(ptr);
     let context: Borrowed<PrintContext> = from_glib_borrow(contextptr);
 
-    imp.draw_page(wrap.unsafe_cast_ref(), &context, page_nr)
+    imp.draw_page(&context, page_nr)
 }
 
 unsafe extern "C" fn print_operation_end_print<T: PrintOperationImpl>(
@@ -395,10 +362,9 @@ unsafe extern "C" fn print_operation_end_print<T: PrintOperationImpl>(
 ) {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
-    let wrap: Borrowed<PrintOperation> = from_glib_borrow(ptr);
     let context: Borrowed<PrintContext> = from_glib_borrow(contextptr);
 
-    imp.end_print(wrap.unsafe_cast_ref(), &context)
+    imp.end_print(&context)
 }
 
 unsafe extern "C" fn print_operation_request_page_setup<T: PrintOperationImpl>(
@@ -409,11 +375,10 @@ unsafe extern "C" fn print_operation_request_page_setup<T: PrintOperationImpl>(
 ) {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
-    let wrap: Borrowed<PrintOperation> = from_glib_borrow(ptr);
     let context: Borrowed<PrintContext> = from_glib_borrow(contextptr);
     let setup: Borrowed<PageSetup> = from_glib_borrow(setupptr);
 
-    imp.request_page_setup(wrap.unsafe_cast_ref(), &context, page_nr, &setup)
+    imp.request_page_setup(&context, page_nr, &setup)
 }
 
 unsafe extern "C" fn print_operation_status_changed<T: PrintOperationImpl>(
@@ -421,9 +386,8 @@ unsafe extern "C" fn print_operation_status_changed<T: PrintOperationImpl>(
 ) {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
-    let wrap: Borrowed<PrintOperation> = from_glib_borrow(ptr);
 
-    imp.status_changed(wrap.unsafe_cast_ref())
+    imp.status_changed()
 }
 
 unsafe extern "C" fn print_operation_update_custom_widget<T: PrintOperationImpl>(
@@ -434,10 +398,9 @@ unsafe extern "C" fn print_operation_update_custom_widget<T: PrintOperationImpl>
 ) {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
-    let wrap: Borrowed<PrintOperation> = from_glib_borrow(ptr);
     let widget: Borrowed<Widget> = from_glib_borrow(widgetptr);
     let setup: Borrowed<PageSetup> = from_glib_borrow(setupptr);
     let settings: Borrowed<PrintSettings> = from_glib_borrow(settingsptr);
 
-    imp.update_custom_widget(wrap.unsafe_cast_ref(), &widget, &setup, &settings)
+    imp.update_custom_widget(&widget, &setup, &settings)
 }

@@ -39,7 +39,7 @@ impl ObjectImpl for RowData {
         PROPERTIES.as_ref()
     }
 
-    fn set_property(&self, _obj: &Self::Type, _id: usize, value: &Value, pspec: &ParamSpec) {
+    fn set_property(&self, _id: usize, value: &Value, pspec: &ParamSpec) {
         match pspec.name() {
             "name" => {
                 let name = value.get().unwrap();
@@ -53,7 +53,7 @@ impl ObjectImpl for RowData {
         }
     }
 
-    fn property(&self, _obj: &Self::Type, _id: usize, pspec: &ParamSpec) -> Value {
+    fn property(&self, _id: usize, pspec: &ParamSpec) -> Value {
         match pspec.name() {
             "name" => self.name.borrow().to_value(),
             "count" => self.count.get().to_value(),

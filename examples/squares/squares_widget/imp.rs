@@ -17,17 +17,13 @@ impl ObjectSubclass for SquaresWidget {
 impl ObjectImpl for SquaresWidget {}
 
 impl WidgetImpl for SquaresWidget {
-    fn measure(
-        &self,
-        _widget: &Self::Type,
-        _orientation: gtk::Orientation,
-        _for_size: i32,
-    ) -> (i32, i32, i32, i32) {
+    fn measure(&self, _orientation: gtk::Orientation, _for_size: i32) -> (i32, i32, i32, i32) {
         // We need some space to draw
         (100, 200, -1, -1)
     }
 
-    fn snapshot(&self, widget: &Self::Type, snapshot: &gtk::Snapshot) {
+    fn snapshot(&self, snapshot: &gtk::Snapshot) {
+        let widget = self.instance();
         // Draw four color squares
         let width = (widget.width() / 2) as f32;
         let height = (widget.height() / 2) as f32;

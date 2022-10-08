@@ -45,8 +45,8 @@ mod imp {
     }
 
     impl ObjectImpl for MyWidget {
-        fn dispose(&self, obj: &Self::Type) {
-            while let Some(child) = obj.first_child() {
+        fn dispose(&self) {
+            while let Some(child) = self.instance().first_child() {
                 child.unparent();
             }
         }
@@ -135,8 +135,8 @@ mod imp2 {
     }
 
     impl ObjectImpl for MyWidget2 {
-        fn dispose(&self, obj: &Self::Type) {
-            while let Some(child) = obj.first_child() {
+        fn dispose(&self) {
+            while let Some(child) = self.instance().first_child() {
                 child.unparent();
             }
         }

@@ -10,28 +10,17 @@ use glib::{Cast, GString};
 
 pub trait BuilderScopeImpl: ObjectImpl {
     #[doc(alias = "get_type_from_name")]
-    fn type_from_name(
-        &self,
-        builder_scope: &Self::Type,
-        builder: &Builder,
-        type_name: &str,
-    ) -> glib::Type {
-        self.parent_type_from_name(builder_scope, builder, type_name)
+    fn type_from_name(&self, builder: &Builder, type_name: &str) -> glib::Type {
+        self.parent_type_from_name(builder, type_name)
     }
 
     #[doc(alias = "get_type_from_function")]
-    fn type_from_function(
-        &self,
-        builder_scope: &Self::Type,
-        builder: &Builder,
-        function_name: &str,
-    ) -> glib::Type {
-        self.parent_type_from_function(builder_scope, builder, function_name)
+    fn type_from_function(&self, builder: &Builder, function_name: &str) -> glib::Type {
+        self.parent_type_from_function(builder, function_name)
     }
 
     fn create_closure(
         &self,
-        builder_scope: &Self::Type,
         builder: &Builder,
         function_name: &str,
         flags: BuilderClosureFlags,
@@ -40,23 +29,12 @@ pub trait BuilderScopeImpl: ObjectImpl {
 }
 
 pub trait BuilderScopeImplExt: ObjectSubclass {
-    fn parent_type_from_name(
-        &self,
-        builder_scope: &Self::Type,
-        builder: &Builder,
-        type_name: &str,
-    ) -> glib::Type;
+    fn parent_type_from_name(&self, builder: &Builder, type_name: &str) -> glib::Type;
 
-    fn parent_type_from_function(
-        &self,
-        builder_scope: &Self::Type,
-        builder: &Builder,
-        function_name: &str,
-    ) -> glib::Type;
+    fn parent_type_from_function(&self, builder: &Builder, function_name: &str) -> glib::Type;
 
     fn parent_create_closure(
         &self,
-        builder_scope: &Self::Type,
         builder: &Builder,
         function_name: &str,
         flags: BuilderClosureFlags,
@@ -65,12 +43,7 @@ pub trait BuilderScopeImplExt: ObjectSubclass {
 }
 
 impl<B: BuilderScopeImpl> BuilderScopeImplExt for B {
-    fn parent_type_from_name(
-        &self,
-        builder_scope: &Self::Type,
-        builder: &Builder,
-        type_name: &str,
-    ) -> glib::Type {
+    fn parent_type_from_name(&self, builder: &Builder, type_name: &str) -> glib::Type {
         unsafe {
             let type_data = Self::type_data();
             let parent_iface = type_data.as_ref().parent_interface::<BuilderScope>()
@@ -81,7 +54,7 @@ impl<B: BuilderScopeImpl> BuilderScopeImplExt for B {
                 .expect("no parent \"get_type_from_name\" implementation");
 
             from_glib(func(
-                builder_scope
+                self.instance()
                     .unsafe_cast_ref::<BuilderScope>()
                     .to_glib_none()
                     .0,
@@ -91,12 +64,7 @@ impl<B: BuilderScopeImpl> BuilderScopeImplExt for B {
         }
     }
 
-    fn parent_type_from_function(
-        &self,
-        builder_scope: &Self::Type,
-        builder: &Builder,
-        function_name: &str,
-    ) -> glib::Type {
+    fn parent_type_from_function(&self, builder: &Builder, function_name: &str) -> glib::Type {
         unsafe {
             let type_data = Self::type_data();
             let parent_iface = type_data.as_ref().parent_interface::<BuilderScope>()
@@ -107,7 +75,7 @@ impl<B: BuilderScopeImpl> BuilderScopeImplExt for B {
                 .expect("no parent \"get_type_from_function\" implementation");
 
             from_glib(func(
-                builder_scope
+                self.instance()
                     .unsafe_cast_ref::<BuilderScope>()
                     .to_glib_none()
                     .0,
@@ -119,7 +87,6 @@ impl<B: BuilderScopeImpl> BuilderScopeImplExt for B {
 
     fn parent_create_closure(
         &self,
-        builder_scope: &Self::Type,
         builder: &Builder,
         function_name: &str,
         flags: BuilderClosureFlags,
@@ -136,7 +103,7 @@ impl<B: BuilderScopeImpl> BuilderScopeImplExt for B {
 
             let mut error = std::ptr::null_mut();
             let closure = func(
-                builder_scope
+                self.instance()
                     .unsafe_cast_ref::<BuilderScope>()
                     .to_glib_none()
                     .0,
@@ -180,12 +147,7 @@ unsafe extern "C" fn builder_scope_get_type_from_name<T: BuilderScopeImpl>(
     let builder: Borrowed<Builder> = from_glib_borrow(builderptr);
     let type_name: Borrowed<GString> = from_glib_borrow(type_nameptr);
 
-    imp.type_from_name(
-        from_glib_borrow::<_, BuilderScope>(builder_scope).unsafe_cast_ref(),
-        &builder,
-        &type_name,
-    )
-    .into_glib()
+    imp.type_from_name(&builder, &type_name).into_glib()
 }
 
 unsafe extern "C" fn builder_scope_get_type_from_function<T: BuilderScopeImpl>(
@@ -198,12 +160,7 @@ unsafe extern "C" fn builder_scope_get_type_from_function<T: BuilderScopeImpl>(
     let builder: Borrowed<Builder> = from_glib_borrow(builderptr);
     let func_name: Borrowed<GString> = from_glib_borrow(func_nameptr);
 
-    imp.type_from_function(
-        from_glib_borrow::<_, BuilderScope>(builder_scope).unsafe_cast_ref(),
-        &builder,
-        &func_name,
-    )
-    .into_glib()
+    imp.type_from_function(&builder, &func_name).into_glib()
 }
 
 unsafe extern "C" fn builder_scope_create_closure<T: BuilderScopeImpl>(
@@ -221,7 +178,6 @@ unsafe extern "C" fn builder_scope_create_closure<T: BuilderScopeImpl>(
     let object: Borrowed<Option<glib::Object>> = from_glib_borrow(objectptr);
 
     let ret = imp.create_closure(
-        from_glib_borrow::<_, BuilderScope>(builder_scope).unsafe_cast_ref(),
         &builder,
         &func_name,
         from_glib(flags),

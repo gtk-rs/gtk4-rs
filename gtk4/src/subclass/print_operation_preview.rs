@@ -9,39 +9,29 @@ use glib::translate::*;
 use glib::Cast;
 
 pub trait PrintOperationPreviewImpl: ObjectImpl {
-    fn ready(&self, print_operation_preview: &Self::Type, context: &PrintContext) {
-        self.parent_ready(print_operation_preview, context)
+    fn ready(&self, context: &PrintContext) {
+        self.parent_ready(context)
     }
 
-    fn got_page_size(
-        &self,
-        print_operation_preview: &Self::Type,
-        context: &PrintContext,
-        page_setup: &PageSetup,
-    ) {
-        self.parent_got_page_size(print_operation_preview, context, page_setup)
+    fn got_page_size(&self, context: &PrintContext, page_setup: &PageSetup) {
+        self.parent_got_page_size(context, page_setup)
     }
 
-    fn render_page(&self, print_operation_preview: &Self::Type, page_nr: i32);
-    fn is_selected(&self, print_operation_preview: &Self::Type, page_nr: i32) -> bool;
-    fn end_preview(&self, print_operation_preview: &Self::Type);
+    fn render_page(&self, page_nr: i32);
+    fn is_selected(&self, page_nr: i32) -> bool;
+    fn end_preview(&self);
 }
 
 pub trait PrintOperationPreviewImplExt: ObjectSubclass {
-    fn parent_ready(&self, print_operation_preview: &Self::Type, context: &PrintContext);
-    fn parent_got_page_size(
-        &self,
-        print_operation_preview: &Self::Type,
-        context: &PrintContext,
-        page_setup: &PageSetup,
-    );
-    fn parent_render_page(&self, print_operation_preview: &Self::Type, page_nr: i32);
-    fn parent_is_selected(&self, print_operation_preview: &Self::Type, page_nr: i32) -> bool;
-    fn parent_end_preview(&self, print_operation_preview: &Self::Type);
+    fn parent_ready(&self, context: &PrintContext);
+    fn parent_got_page_size(&self, context: &PrintContext, page_setup: &PageSetup);
+    fn parent_render_page(&self, page_nr: i32);
+    fn parent_is_selected(&self, page_nr: i32) -> bool;
+    fn parent_end_preview(&self);
 }
 
 impl<T: PrintOperationPreviewImpl> PrintOperationPreviewImplExt for T {
-    fn parent_ready(&self, print_operation_preview: &Self::Type, context: &PrintContext) {
+    fn parent_ready(&self, context: &PrintContext) {
         unsafe {
             let type_data = Self::type_data();
             let parent_iface = type_data
@@ -51,7 +41,7 @@ impl<T: PrintOperationPreviewImpl> PrintOperationPreviewImplExt for T {
 
             if let Some(func) = (*parent_iface).ready {
                 func(
-                    print_operation_preview
+                    self.instance()
                         .unsafe_cast_ref::<PrintOperationPreview>()
                         .to_glib_none()
                         .0,
@@ -61,12 +51,7 @@ impl<T: PrintOperationPreviewImpl> PrintOperationPreviewImplExt for T {
         }
     }
 
-    fn parent_got_page_size(
-        &self,
-        print_operation_preview: &Self::Type,
-        context: &PrintContext,
-        page_setup: &PageSetup,
-    ) {
+    fn parent_got_page_size(&self, context: &PrintContext, page_setup: &PageSetup) {
         unsafe {
             let type_data = Self::type_data();
             let parent_iface = type_data
@@ -76,7 +61,7 @@ impl<T: PrintOperationPreviewImpl> PrintOperationPreviewImplExt for T {
 
             if let Some(func) = (*parent_iface).got_page_size {
                 func(
-                    print_operation_preview
+                    self.instance()
                         .unsafe_cast_ref::<PrintOperationPreview>()
                         .to_glib_none()
                         .0,
@@ -87,7 +72,7 @@ impl<T: PrintOperationPreviewImpl> PrintOperationPreviewImplExt for T {
         }
     }
 
-    fn parent_render_page(&self, print_operation_preview: &Self::Type, page_nr: i32) {
+    fn parent_render_page(&self, page_nr: i32) {
         unsafe {
             let type_data = Self::type_data();
             let parent_iface = type_data
@@ -97,7 +82,7 @@ impl<T: PrintOperationPreviewImpl> PrintOperationPreviewImplExt for T {
 
             if let Some(func) = (*parent_iface).render_page {
                 func(
-                    print_operation_preview
+                    self.instance()
                         .unsafe_cast_ref::<PrintOperationPreview>()
                         .to_glib_none()
                         .0,
@@ -107,7 +92,7 @@ impl<T: PrintOperationPreviewImpl> PrintOperationPreviewImplExt for T {
         }
     }
 
-    fn parent_is_selected(&self, print_operation_preview: &Self::Type, page_nr: i32) -> bool {
+    fn parent_is_selected(&self, page_nr: i32) -> bool {
         unsafe {
             let type_data = Self::type_data();
             let parent_iface = type_data
@@ -119,7 +104,7 @@ impl<T: PrintOperationPreviewImpl> PrintOperationPreviewImplExt for T {
                 .expect("no parent \"is_selected\" implementation");
 
             from_glib(func(
-                print_operation_preview
+                self.instance()
                     .unsafe_cast_ref::<PrintOperationPreview>()
                     .to_glib_none()
                     .0,
@@ -128,7 +113,7 @@ impl<T: PrintOperationPreviewImpl> PrintOperationPreviewImplExt for T {
         }
     }
 
-    fn parent_end_preview(&self, print_operation_preview: &Self::Type) {
+    fn parent_end_preview(&self) {
         unsafe {
             let type_data = Self::type_data();
             let parent_iface = type_data
@@ -138,7 +123,7 @@ impl<T: PrintOperationPreviewImpl> PrintOperationPreviewImplExt for T {
 
             if let Some(func) = (*parent_iface).end_preview {
                 func(
-                    print_operation_preview
+                    self.instance()
                         .unsafe_cast_ref::<PrintOperationPreview>()
                         .to_glib_none()
                         .0,
@@ -173,10 +158,7 @@ unsafe extern "C" fn print_operation_preview_ready<T: PrintOperationPreviewImpl>
     let imp = instance.imp();
     let context: Borrowed<PrintContext> = from_glib_borrow(contextptr);
 
-    imp.ready(
-        from_glib_borrow::<_, PrintOperationPreview>(print_operation_preview).unsafe_cast_ref(),
-        &context,
-    )
+    imp.ready(&context)
 }
 
 unsafe extern "C" fn print_operation_preview_got_page_size<T: PrintOperationPreviewImpl>(
@@ -190,11 +172,7 @@ unsafe extern "C" fn print_operation_preview_got_page_size<T: PrintOperationPrev
     let context: Borrowed<PrintContext> = from_glib_borrow(contextptr);
     let setup: Borrowed<PageSetup> = from_glib_borrow(setupptr);
 
-    imp.got_page_size(
-        from_glib_borrow::<_, PrintOperationPreview>(print_operation_preview).unsafe_cast_ref(),
-        &context,
-        &setup,
-    )
+    imp.got_page_size(&context, &setup)
 }
 
 unsafe extern "C" fn print_operation_preview_render_page<T: PrintOperationPreviewImpl>(
@@ -204,10 +182,7 @@ unsafe extern "C" fn print_operation_preview_render_page<T: PrintOperationPrevie
     let instance = &*(print_operation_preview as *mut T::Instance);
     let imp = instance.imp();
 
-    imp.render_page(
-        from_glib_borrow::<_, PrintOperationPreview>(print_operation_preview).unsafe_cast_ref(),
-        page_nr,
-    )
+    imp.render_page(page_nr)
 }
 
 unsafe extern "C" fn print_operation_preview_is_selected<T: PrintOperationPreviewImpl>(
@@ -217,11 +192,7 @@ unsafe extern "C" fn print_operation_preview_is_selected<T: PrintOperationPrevie
     let instance = &*(print_operation_preview as *mut T::Instance);
     let imp = instance.imp();
 
-    imp.is_selected(
-        from_glib_borrow::<_, PrintOperationPreview>(print_operation_preview).unsafe_cast_ref(),
-        page_nr,
-    )
-    .into_glib()
+    imp.is_selected(page_nr).into_glib()
 }
 
 unsafe extern "C" fn print_operation_preview_end_preview<T: PrintOperationPreviewImpl>(
@@ -230,7 +201,5 @@ unsafe extern "C" fn print_operation_preview_end_preview<T: PrintOperationPrevie
     let instance = &*(print_operation_preview as *mut T::Instance);
     let imp = instance.imp();
 
-    imp.end_preview(
-        from_glib_borrow::<_, PrintOperationPreview>(print_operation_preview).unsafe_cast_ref(),
-    )
+    imp.end_preview()
 }

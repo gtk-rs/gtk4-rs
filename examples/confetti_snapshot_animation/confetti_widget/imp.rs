@@ -19,7 +19,7 @@ impl ObjectSubclass for ConfettiWidget {
 impl ObjectImpl for ConfettiWidget {}
 impl WidgetImpl for ConfettiWidget {
     // We override the snapshot virtual function to draw custom graphics
-    fn snapshot(&self, _widget: &Self::Type, snapshot: &gtk::Snapshot) {
+    fn snapshot(&self, snapshot: &gtk::Snapshot) {
         for e in self.explosions.borrow().iter() {
             e.draw(snapshot);
         }

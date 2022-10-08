@@ -9,70 +9,70 @@ use glib::translate::*;
 use glib::Cast;
 
 pub trait WindowImpl: WindowImplExt + WidgetImpl {
-    fn activate_focus(&self, window: &Self::Type) {
-        self.parent_activate_focus(window)
+    fn activate_focus(&self) {
+        self.parent_activate_focus()
     }
 
-    fn activate_default(&self, window: &Self::Type) {
-        self.parent_activate_default(window)
+    fn activate_default(&self) {
+        self.parent_activate_default()
     }
 
-    fn keys_changed(&self, window: &Self::Type) {
-        self.parent_keys_changed(window)
+    fn keys_changed(&self) {
+        self.parent_keys_changed()
     }
 
-    fn enable_debugging(&self, window: &Self::Type, toggle: bool) -> bool {
-        self.parent_enable_debugging(window, toggle)
+    fn enable_debugging(&self, toggle: bool) -> bool {
+        self.parent_enable_debugging(toggle)
     }
 
-    fn close_request(&self, window: &Self::Type) -> glib::signal::Inhibit {
-        self.parent_close_request(window)
+    fn close_request(&self) -> glib::signal::Inhibit {
+        self.parent_close_request()
     }
 }
 
 pub trait WindowImplExt: ObjectSubclass {
-    fn parent_activate_focus(&self, window: &Self::Type);
-    fn parent_activate_default(&self, window: &Self::Type);
-    fn parent_keys_changed(&self, window: &Self::Type);
-    fn parent_enable_debugging(&self, window: &Self::Type, toggle: bool) -> bool;
-    fn parent_close_request(&self, window: &Self::Type) -> glib::signal::Inhibit;
+    fn parent_activate_focus(&self);
+    fn parent_activate_default(&self);
+    fn parent_keys_changed(&self);
+    fn parent_enable_debugging(&self, toggle: bool) -> bool;
+    fn parent_close_request(&self) -> glib::signal::Inhibit;
 }
 
 impl<T: WindowImpl> WindowImplExt for T {
-    fn parent_activate_focus(&self, window: &Self::Type) {
+    fn parent_activate_focus(&self) {
         unsafe {
             let data = T::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkWindowClass;
             let f = (*parent_class)
                 .activate_focus
                 .expect("No parent class impl for \"activate_focus\"");
-            f(window.unsafe_cast_ref::<Window>().to_glib_none().0)
+            f(self.instance().unsafe_cast_ref::<Window>().to_glib_none().0)
         }
     }
 
-    fn parent_activate_default(&self, window: &Self::Type) {
+    fn parent_activate_default(&self) {
         unsafe {
             let data = T::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkWindowClass;
             let f = (*parent_class)
                 .activate_default
                 .expect("No parent class impl for \"activate_default\"");
-            f(window.unsafe_cast_ref::<Window>().to_glib_none().0)
+            f(self.instance().unsafe_cast_ref::<Window>().to_glib_none().0)
         }
     }
 
-    fn parent_keys_changed(&self, window: &Self::Type) {
+    fn parent_keys_changed(&self) {
         unsafe {
             let data = T::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkWindowClass;
             let f = (*parent_class)
                 .keys_changed
                 .expect("No parent class impl for \"keys_changed\"");
-            f(window.unsafe_cast_ref::<Window>().to_glib_none().0)
+            f(self.instance().unsafe_cast_ref::<Window>().to_glib_none().0)
         }
     }
 
-    fn parent_enable_debugging(&self, window: &Self::Type, toggle: bool) -> bool {
+    fn parent_enable_debugging(&self, toggle: bool) -> bool {
         unsafe {
             let data = T::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkWindowClass;
@@ -80,20 +80,21 @@ impl<T: WindowImpl> WindowImplExt for T {
                 .enable_debugging
                 .expect("No parent class impl for \"enable_debugging\"");
             from_glib(f(
-                window.unsafe_cast_ref::<Window>().to_glib_none().0,
+                self.instance().unsafe_cast_ref::<Window>().to_glib_none().0,
                 toggle.into_glib(),
             ))
         }
     }
 
-    fn parent_close_request(&self, window: &Self::Type) -> glib::signal::Inhibit {
+    fn parent_close_request(&self) -> glib::signal::Inhibit {
         unsafe {
             let data = T::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkWindowClass;
             let f = (*parent_class)
                 .close_request
                 .expect("No parent class impl for \"close_request\"");
-            glib::signal::Inhibit(from_glib(f(window
+            glib::signal::Inhibit(from_glib(f(self
+                .instance()
                 .unsafe_cast_ref::<Window>()
                 .to_glib_none()
                 .0)))
@@ -117,25 +118,22 @@ unsafe impl<T: WindowImpl> IsSubclassable<T> for Window {
 unsafe extern "C" fn window_activate_focus<T: WindowImpl>(ptr: *mut ffi::GtkWindow) {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
-    let wrap: Borrowed<Window> = from_glib_borrow(ptr);
 
-    imp.activate_focus(wrap.unsafe_cast_ref())
+    imp.activate_focus()
 }
 
 unsafe extern "C" fn window_activate_default<T: WindowImpl>(ptr: *mut ffi::GtkWindow) {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
-    let wrap: Borrowed<Window> = from_glib_borrow(ptr);
 
-    imp.activate_default(wrap.unsafe_cast_ref())
+    imp.activate_default()
 }
 
 unsafe extern "C" fn window_keys_changed<T: WindowImpl>(ptr: *mut ffi::GtkWindow) {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
-    let wrap: Borrowed<Window> = from_glib_borrow(ptr);
 
-    imp.keys_changed(wrap.unsafe_cast_ref())
+    imp.keys_changed()
 }
 
 unsafe extern "C" fn window_enable_debugging<T: WindowImpl>(
@@ -144,11 +142,9 @@ unsafe extern "C" fn window_enable_debugging<T: WindowImpl>(
 ) -> glib::ffi::gboolean {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
-    let wrap: Borrowed<Window> = from_glib_borrow(ptr);
     let toggle: bool = from_glib(toggleptr);
 
-    imp.enable_debugging(wrap.unsafe_cast_ref(), toggle)
-        .into_glib()
+    imp.enable_debugging(toggle).into_glib()
 }
 
 unsafe extern "C" fn window_close_request<T: WindowImpl>(
@@ -156,7 +152,6 @@ unsafe extern "C" fn window_close_request<T: WindowImpl>(
 ) -> glib::ffi::gboolean {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
-    let wrap: Borrowed<Window> = from_glib_borrow(ptr);
 
-    imp.close_request(wrap.unsafe_cast_ref()).into_glib()
+    imp.close_request().into_glib()
 }

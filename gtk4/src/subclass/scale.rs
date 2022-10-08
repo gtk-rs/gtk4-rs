@@ -10,17 +10,17 @@ use glib::Cast;
 
 pub trait ScaleImpl: ScaleImplExt + RangeImpl {
     #[doc(alias = "get_layout_offsets")]
-    fn layout_offsets(&self, scale: &Self::Type) -> (i32, i32) {
-        self.parent_layout_offsets(scale)
+    fn layout_offsets(&self) -> (i32, i32) {
+        self.parent_layout_offsets()
     }
 }
 
 pub trait ScaleImplExt: ObjectSubclass {
-    fn parent_layout_offsets(&self, scale: &Self::Type) -> (i32, i32);
+    fn parent_layout_offsets(&self) -> (i32, i32);
 }
 
 impl<T: ScaleImpl> ScaleImplExt for T {
-    fn parent_layout_offsets(&self, scale: &Self::Type) -> (i32, i32) {
+    fn parent_layout_offsets(&self) -> (i32, i32) {
         unsafe {
             let data = T::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkScaleClass;
@@ -28,7 +28,7 @@ impl<T: ScaleImpl> ScaleImplExt for T {
             let mut y = 0;
             if let Some(f) = (*parent_class).get_layout_offsets {
                 f(
-                    scale.unsafe_cast_ref::<Scale>().to_glib_none().0,
+                    self.instance().unsafe_cast_ref::<Scale>().to_glib_none().0,
                     &mut x,
                     &mut y,
                 );
@@ -54,9 +54,8 @@ unsafe extern "C" fn scale_get_layout_offsets<T: ScaleImpl>(
 ) {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
-    let wrap: Borrowed<Scale> = from_glib_borrow(ptr);
 
-    let (x, y) = imp.layout_offsets(wrap.unsafe_cast_ref());
+    let (x, y) = imp.layout_offsets();
     *x_ptr = x;
     *y_ptr = y;
 }

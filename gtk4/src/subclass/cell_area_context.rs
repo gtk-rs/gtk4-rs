@@ -10,49 +10,38 @@ use glib::Cast;
 use std::mem::MaybeUninit;
 
 pub trait CellAreaContextImpl: CellAreaContextImplExt + ObjectImpl {
-    fn reset(&self, cell_area_context: &Self::Type) {
-        self.parent_reset(cell_area_context)
+    fn reset(&self) {
+        self.parent_reset()
     }
 
-    fn preferred_height_for_width(&self, cell_area_context: &Self::Type, width: i32) -> (i32, i32) {
-        self.parent_preferred_height_for_width(cell_area_context, width)
+    fn preferred_height_for_width(&self, width: i32) -> (i32, i32) {
+        self.parent_preferred_height_for_width(width)
     }
 
-    fn preferred_width_for_height(
-        &self,
-        cell_area_context: &Self::Type,
-        height: i32,
-    ) -> (i32, i32) {
-        self.parent_preferred_width_for_height(cell_area_context, height)
+    fn preferred_width_for_height(&self, height: i32) -> (i32, i32) {
+        self.parent_preferred_width_for_height(height)
     }
 
-    fn allocate(&self, cell_area_context: &Self::Type, width: i32, height: i32) {
-        self.parent_allocate(cell_area_context, width, height)
+    fn allocate(&self, width: i32, height: i32) {
+        self.parent_allocate(width, height)
     }
 }
 
 pub trait CellAreaContextImplExt: ObjectSubclass {
-    fn parent_reset(&self, cell_area_context: &Self::Type);
-    fn parent_preferred_height_for_width(
-        &self,
-        cell_area_context: &Self::Type,
-        width: i32,
-    ) -> (i32, i32);
-    fn parent_preferred_width_for_height(
-        &self,
-        cell_area_context: &Self::Type,
-        height: i32,
-    ) -> (i32, i32);
-    fn parent_allocate(&self, cell_area_context: &Self::Type, width: i32, height: i32);
+    fn parent_reset(&self);
+    fn parent_preferred_height_for_width(&self, width: i32) -> (i32, i32);
+    fn parent_preferred_width_for_height(&self, height: i32) -> (i32, i32);
+    fn parent_allocate(&self, width: i32, height: i32);
 }
 
 impl<T: CellAreaContextImpl> CellAreaContextImplExt for T {
-    fn parent_reset(&self, cell_area_context: &Self::Type) {
+    fn parent_reset(&self) {
         unsafe {
             let data = T::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkCellAreaContextClass;
             if let Some(f) = (*parent_class).reset {
-                f(cell_area_context
+                f(self
+                    .instance()
                     .unsafe_cast_ref::<CellAreaContext>()
                     .to_glib_none()
                     .0)
@@ -60,11 +49,7 @@ impl<T: CellAreaContextImpl> CellAreaContextImplExt for T {
         }
     }
 
-    fn parent_preferred_height_for_width(
-        &self,
-        cell_area_context: &Self::Type,
-        width: i32,
-    ) -> (i32, i32) {
+    fn parent_preferred_height_for_width(&self, width: i32) -> (i32, i32) {
         unsafe {
             let data = T::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkCellAreaContextClass;
@@ -72,7 +57,7 @@ impl<T: CellAreaContextImpl> CellAreaContextImplExt for T {
                 let mut minimum_size = MaybeUninit::uninit();
                 let mut natural_size = MaybeUninit::uninit();
                 f(
-                    cell_area_context
+                    self.instance()
                         .unsafe_cast_ref::<CellAreaContext>()
                         .to_glib_none()
                         .0,
@@ -87,11 +72,7 @@ impl<T: CellAreaContextImpl> CellAreaContextImplExt for T {
         }
     }
 
-    fn parent_preferred_width_for_height(
-        &self,
-        cell_area_context: &Self::Type,
-        height: i32,
-    ) -> (i32, i32) {
+    fn parent_preferred_width_for_height(&self, height: i32) -> (i32, i32) {
         unsafe {
             let data = T::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkCellAreaContextClass;
@@ -99,7 +80,7 @@ impl<T: CellAreaContextImpl> CellAreaContextImplExt for T {
                 let mut minimum_size = MaybeUninit::uninit();
                 let mut natural_size = MaybeUninit::uninit();
                 f(
-                    cell_area_context
+                    self.instance()
                         .unsafe_cast_ref::<CellAreaContext>()
                         .to_glib_none()
                         .0,
@@ -114,13 +95,13 @@ impl<T: CellAreaContextImpl> CellAreaContextImplExt for T {
         }
     }
 
-    fn parent_allocate(&self, cell_area_context: &Self::Type, width: i32, height: i32) {
+    fn parent_allocate(&self, width: i32, height: i32) {
         unsafe {
             let data = T::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkCellAreaContextClass;
             if let Some(f) = (*parent_class).allocate {
                 f(
-                    cell_area_context
+                    self.instance()
                         .unsafe_cast_ref::<CellAreaContext>()
                         .to_glib_none()
                         .0,
@@ -156,9 +137,8 @@ unsafe extern "C" fn cell_area_context_reset<T: CellAreaContextImpl>(
 ) {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
-    let wrap: Borrowed<CellAreaContext> = from_glib_borrow(ptr);
 
-    imp.reset(wrap.unsafe_cast_ref())
+    imp.reset()
 }
 
 unsafe extern "C" fn cell_area_context_get_preferred_height_for_width<T: CellAreaContextImpl>(
@@ -169,9 +149,8 @@ unsafe extern "C" fn cell_area_context_get_preferred_height_for_width<T: CellAre
 ) {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
-    let wrap: Borrowed<CellAreaContext> = from_glib_borrow(ptr);
 
-    let (min_height, nat_height) = imp.preferred_height_for_width(wrap.unsafe_cast_ref(), width);
+    let (min_height, nat_height) = imp.preferred_height_for_width(width);
     *minimum_height = min_height;
     *natural_height = nat_height;
 }
@@ -184,9 +163,8 @@ unsafe extern "C" fn cell_area_context_get_preferred_width_for_height<T: CellAre
 ) {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
-    let wrap: Borrowed<CellAreaContext> = from_glib_borrow(ptr);
 
-    let (min_width, nat_width) = imp.preferred_width_for_height(wrap.unsafe_cast_ref(), height);
+    let (min_width, nat_width) = imp.preferred_width_for_height(height);
     *minimum_width = min_width;
     *natural_width = nat_width;
 }
@@ -198,7 +176,6 @@ unsafe extern "C" fn cell_area_context_allocate<T: CellAreaContextImpl>(
 ) {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
-    let wrap: Borrowed<CellAreaContext> = from_glib_borrow(ptr);
 
-    imp.allocate(wrap.unsafe_cast_ref(), width, height)
+    imp.allocate(width, height)
 }

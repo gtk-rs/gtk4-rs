@@ -9,22 +9,23 @@ use glib::translate::*;
 use glib::Cast;
 
 pub trait ToggleButtonImpl: ToggleButtonImplExt + ButtonImpl {
-    fn toggled(&self, toggle_button: &Self::Type) {
-        self.parent_toggled(toggle_button)
+    fn toggled(&self) {
+        self.parent_toggled()
     }
 }
 
 pub trait ToggleButtonImplExt: ObjectSubclass {
-    fn parent_toggled(&self, toggle_button: &Self::Type);
+    fn parent_toggled(&self);
 }
 
 impl<T: ToggleButtonImpl> ToggleButtonImplExt for T {
-    fn parent_toggled(&self, toggle_button: &Self::Type) {
+    fn parent_toggled(&self) {
         unsafe {
             let data = T::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkToggleButtonClass;
             if let Some(f) = (*parent_class).toggled {
-                f(toggle_button
+                f(self
+                    .instance()
                     .unsafe_cast_ref::<ToggleButton>()
                     .to_glib_none()
                     .0)
@@ -45,7 +46,6 @@ unsafe impl<T: ToggleButtonImpl> IsSubclassable<T> for ToggleButton {
 unsafe extern "C" fn toggle_button_toggled<T: ToggleButtonImpl>(ptr: *mut ffi::GtkToggleButton) {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
-    let wrap: Borrowed<ToggleButton> = from_glib_borrow(ptr);
 
-    imp.toggled(wrap.unsafe_cast_ref())
+    imp.toggled()
 }

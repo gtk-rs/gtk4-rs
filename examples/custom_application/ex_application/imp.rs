@@ -15,9 +15,9 @@ impl ObjectSubclass for ExApplication {
 
 impl ObjectImpl for ExApplication {}
 impl ApplicationImpl for ExApplication {
-    fn activate(&self, application: &Self::Type) {
+    fn activate(&self) {
         // We create our window at activation stage
-        let window = gtk::ApplicationWindow::new(application);
+        let window = gtk::ApplicationWindow::new(&*self.instance());
         window.set_default_size(600, 350);
         window.set_title(Some("Application Subclass"));
 
