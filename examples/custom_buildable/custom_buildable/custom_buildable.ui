@@ -23,5 +23,6 @@
         </child>
       </object>
     </child>
+    <label-attribute name="hello"  />
   </template>
 </interface>
