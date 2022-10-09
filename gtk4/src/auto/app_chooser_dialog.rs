@@ -34,6 +34,7 @@ glib::wrapper! {
 }
 
 impl AppChooserDialog {
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_app_chooser_dialog_new")]
     pub fn new(
         parent: Option<&impl IsA<Window>>,
@@ -51,6 +52,7 @@ impl AppChooserDialog {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_app_chooser_dialog_new_for_content_type")]
     #[doc(alias = "new_for_content_type")]
     pub fn for_content_type(
@@ -69,6 +71,7 @@ impl AppChooserDialog {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_app_chooser_dialog_get_heading")]
     #[doc(alias = "get_heading")]
     pub fn heading(&self) -> Option<glib::GString> {
@@ -79,6 +82,7 @@ impl AppChooserDialog {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_app_chooser_dialog_get_widget")]
     #[doc(alias = "get_widget")]
     pub fn widget(&self) -> Widget {
@@ -89,6 +93,7 @@ impl AppChooserDialog {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_app_chooser_dialog_set_heading")]
     pub fn set_heading(&self, heading: &str) {
         unsafe {

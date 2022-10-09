@@ -29,12 +29,14 @@ glib::wrapper! {
 }
 
 impl EntryCompletion {
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_entry_completion_new")]
     pub fn new() -> EntryCompletion {
         assert_initialized_main_thread!();
         unsafe { from_glib_full(ffi::gtk_entry_completion_new()) }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_entry_completion_new_with_area")]
     #[doc(alias = "new_with_area")]
     pub fn with_area(area: &impl IsA<CellArea>) -> EntryCompletion {
@@ -54,6 +56,7 @@ impl EntryCompletion {
         EntryCompletionBuilder::default()
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_entry_completion_complete")]
     pub fn complete(&self) {
         unsafe {
@@ -61,6 +64,7 @@ impl EntryCompletion {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_entry_completion_compute_prefix")]
     pub fn compute_prefix(&self, key: &str) -> Option<glib::GString> {
         unsafe {
@@ -71,6 +75,7 @@ impl EntryCompletion {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_entry_completion_get_completion_prefix")]
     #[doc(alias = "get_completion_prefix")]
     pub fn completion_prefix(&self) -> Option<glib::GString> {
@@ -81,6 +86,7 @@ impl EntryCompletion {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_entry_completion_get_inline_completion")]
     #[doc(alias = "get_inline_completion")]
     pub fn is_inline_completion(&self) -> bool {
@@ -91,6 +97,7 @@ impl EntryCompletion {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_entry_completion_get_inline_selection")]
     #[doc(alias = "get_inline_selection")]
     pub fn is_inline_selection(&self) -> bool {
@@ -101,18 +108,21 @@ impl EntryCompletion {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_entry_completion_get_minimum_key_length")]
     #[doc(alias = "get_minimum_key_length")]
     pub fn minimum_key_length(&self) -> i32 {
         unsafe { ffi::gtk_entry_completion_get_minimum_key_length(self.to_glib_none().0) }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_entry_completion_get_model")]
     #[doc(alias = "get_model")]
     pub fn model(&self) -> Option<TreeModel> {
         unsafe { from_glib_none(ffi::gtk_entry_completion_get_model(self.to_glib_none().0)) }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_entry_completion_get_popup_completion")]
     #[doc(alias = "get_popup_completion")]
     pub fn is_popup_completion(&self) -> bool {
@@ -123,6 +133,7 @@ impl EntryCompletion {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_entry_completion_get_popup_set_width")]
     #[doc(alias = "get_popup_set_width")]
     pub fn is_popup_set_width(&self) -> bool {
@@ -133,6 +144,7 @@ impl EntryCompletion {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_entry_completion_get_popup_single_match")]
     #[doc(alias = "get_popup_single_match")]
     pub fn is_popup_single_match(&self) -> bool {
@@ -143,12 +155,14 @@ impl EntryCompletion {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_entry_completion_get_text_column")]
     #[doc(alias = "get_text_column")]
     pub fn text_column(&self) -> i32 {
         unsafe { ffi::gtk_entry_completion_get_text_column(self.to_glib_none().0) }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_entry_completion_insert_prefix")]
     pub fn insert_prefix(&self) {
         unsafe {
@@ -156,6 +170,7 @@ impl EntryCompletion {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_entry_completion_set_inline_completion")]
     pub fn set_inline_completion(&self, inline_completion: bool) {
         unsafe {
@@ -166,6 +181,7 @@ impl EntryCompletion {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_entry_completion_set_inline_selection")]
     pub fn set_inline_selection(&self, inline_selection: bool) {
         unsafe {
@@ -176,6 +192,7 @@ impl EntryCompletion {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_entry_completion_set_match_func")]
     pub fn set_match_func<P: Fn(&EntryCompletion, &str, &TreeIter) -> bool + 'static>(
         &self,
@@ -217,6 +234,7 @@ impl EntryCompletion {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_entry_completion_set_minimum_key_length")]
     pub fn set_minimum_key_length(&self, length: i32) {
         unsafe {
@@ -224,6 +242,7 @@ impl EntryCompletion {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_entry_completion_set_model")]
     pub fn set_model(&self, model: Option<&impl IsA<TreeModel>>) {
         unsafe {
@@ -234,6 +253,7 @@ impl EntryCompletion {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_entry_completion_set_popup_completion")]
     pub fn set_popup_completion(&self, popup_completion: bool) {
         unsafe {
@@ -244,6 +264,7 @@ impl EntryCompletion {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_entry_completion_set_popup_set_width")]
     pub fn set_popup_set_width(&self, popup_set_width: bool) {
         unsafe {
@@ -254,6 +275,7 @@ impl EntryCompletion {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_entry_completion_set_popup_single_match")]
     pub fn set_popup_single_match(&self, popup_single_match: bool) {
         unsafe {
@@ -264,6 +286,7 @@ impl EntryCompletion {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_entry_completion_set_text_column")]
     pub fn set_text_column(&self, column: i32) {
         unsafe {

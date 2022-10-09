@@ -3,6 +3,9 @@
 // DO NOT EDIT
 
 use crate::Accessible;
+#[cfg(any(feature = "v4_10", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+use crate::AccessibleRange;
 use crate::AccessibleRole;
 use crate::Adjustment;
 use crate::Align;
@@ -27,6 +30,18 @@ use std::fmt;
 use std::mem;
 use std::mem::transmute;
 
+#[cfg(any(feature = "v4_10", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+glib::wrapper! {
+    #[doc(alias = "GtkScale")]
+    pub struct Scale(Object<ffi::GtkScale, ffi::GtkScaleClass>) @extends Range, Widget, @implements Accessible, Buildable, ConstraintTarget, AccessibleRange, Orientable;
+
+    match fn {
+        type_ => || ffi::gtk_scale_get_type(),
+    }
+}
+
+#[cfg(not(any(feature = "v4_10", feature = "dox")))]
 glib::wrapper! {
     #[doc(alias = "GtkScale")]
     pub struct Scale(Object<ffi::GtkScale, ffi::GtkScaleClass>) @extends Range, Widget, @implements Accessible, Buildable, ConstraintTarget, Orientable;

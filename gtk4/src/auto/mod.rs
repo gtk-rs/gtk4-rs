@@ -11,6 +11,13 @@ pub use self::about_dialog::AboutDialog;
 mod accessible;
 pub use self::accessible::Accessible;
 
+#[cfg(any(feature = "v4_10", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+mod accessible_range;
+#[cfg(any(feature = "v4_10", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+pub use self::accessible_range::AccessibleRange;
+
 mod action_bar;
 pub use self::action_bar::ActionBar;
 
@@ -1051,6 +1058,9 @@ pub use self::constants::PRINT_SETTINGS_WIN32_DRIVER_VERSION;
 #[doc(hidden)]
 pub mod traits {
     pub use super::accessible::AccessibleExt;
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub use super::accessible_range::AccessibleRangeExt;
     pub use super::actionable::ActionableExt;
     pub use super::adjustment::AdjustmentExt;
     pub use super::app_chooser::AppChooserExt;

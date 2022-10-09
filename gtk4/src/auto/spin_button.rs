@@ -3,6 +3,9 @@
 // DO NOT EDIT
 
 use crate::Accessible;
+#[cfg(any(feature = "v4_10", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+use crate::AccessibleRange;
 use crate::AccessibleRole;
 use crate::Adjustment;
 use crate::Align;
@@ -32,6 +35,18 @@ use std::fmt;
 use std::mem;
 use std::mem::transmute;
 
+#[cfg(any(feature = "v4_10", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+glib::wrapper! {
+    #[doc(alias = "GtkSpinButton")]
+    pub struct SpinButton(Object<ffi::GtkSpinButton>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, AccessibleRange, CellEditable, Editable, Orientable;
+
+    match fn {
+        type_ => || ffi::gtk_spin_button_get_type(),
+    }
+}
+
+#[cfg(not(any(feature = "v4_10", feature = "dox")))]
 glib::wrapper! {
     #[doc(alias = "GtkSpinButton")]
     pub struct SpinButton(Object<ffi::GtkSpinButton>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, CellEditable, Editable, Orientable;

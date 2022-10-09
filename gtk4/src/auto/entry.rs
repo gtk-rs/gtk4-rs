@@ -85,6 +85,7 @@ pub struct EntryBuilder {
     activates_default: Option<bool>,
     attributes: Option<pango::AttrList>,
     buffer: Option<EntryBuffer>,
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     completion: Option<EntryCompletion>,
     enable_emoji_completion: Option<bool>,
     extra_menu: Option<gio::MenuModel>,
@@ -405,6 +406,7 @@ impl EntryBuilder {
         self
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     pub fn completion(mut self, completion: &EntryCompletion) -> Self {
         self.completion = Some(completion.clone());
         self
@@ -774,6 +776,7 @@ pub trait EntryExt: 'static {
     #[doc(alias = "get_buffer")]
     fn buffer(&self) -> EntryBuffer;
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_entry_get_completion")]
     #[doc(alias = "get_completion")]
     fn completion(&self) -> Option<EntryCompletion>;
@@ -891,6 +894,7 @@ pub trait EntryExt: 'static {
     #[doc(alias = "gtk_entry_set_buffer")]
     fn set_buffer(&self, buffer: &impl IsA<EntryBuffer>);
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_entry_set_completion")]
     fn set_completion(&self, completion: Option<&EntryCompletion>);
 
@@ -1118,6 +1122,7 @@ pub trait EntryExt: 'static {
     #[doc(alias = "buffer")]
     fn connect_buffer_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "completion")]
     fn connect_completion_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 

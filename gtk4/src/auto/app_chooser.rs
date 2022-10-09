@@ -24,14 +24,17 @@ impl AppChooser {
 }
 
 pub trait AppChooserExt: 'static {
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_app_chooser_get_app_info")]
     #[doc(alias = "get_app_info")]
     fn app_info(&self) -> Option<gio::AppInfo>;
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_app_chooser_get_content_type")]
     #[doc(alias = "get_content_type")]
     fn content_type(&self) -> glib::GString;
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_app_chooser_refresh")]
     fn refresh(&self);
 }
