@@ -92,14 +92,14 @@ jobs:
       uses: actions-rs/cargo@v1
       with:
         command: build
-        args: --features v4_8,xml_validation
+        args: --features v4_10,xml_validation
     - name: Clippy
       uses: actions-rs/cargo@v1
       with:
         command: clippy
-        args: --features v4_8,xml_validation
+        args: --features v4_10,xml_validation
     - name: Tests
       uses: actions-rs/cargo@v1
       with:
         command: test
-        args: --features v4_8,xml_validation
+        args: --features v4_10,xml_validation

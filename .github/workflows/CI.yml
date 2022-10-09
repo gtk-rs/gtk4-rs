@@ -39,7 +39,7 @@ jobs:
           - nightly
           - "1.63.0"
         conf:
-          - { name: "gtk4", features: "v4_8,xml_validation", test_sys: false }
+          - { name: "gtk4", features: "v4_10,xml_validation", test_sys: false }
           - { name: "gsk4", features: "v4_6,broadway", test_sys: true }
           - { name: "gdk4", features: "v4_8", test_sys: true }
           - { name: "gdk4-wayland", features: "v4_4", test_sys: true }
