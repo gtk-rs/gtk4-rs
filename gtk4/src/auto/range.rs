@@ -3,6 +3,9 @@
 // DO NOT EDIT
 
 use crate::Accessible;
+#[cfg(any(feature = "v4_10", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+use crate::AccessibleRange;
 use crate::Adjustment;
 use crate::Buildable;
 use crate::ConstraintTarget;
@@ -20,6 +23,18 @@ use std::fmt;
 use std::mem;
 use std::mem::transmute;
 
+#[cfg(any(feature = "v4_10", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+glib::wrapper! {
+    #[doc(alias = "GtkRange")]
+    pub struct Range(Object<ffi::GtkRange, ffi::GtkRangeClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, AccessibleRange, Orientable;
+
+    match fn {
+        type_ => || ffi::gtk_range_get_type(),
+    }
+}
+
+#[cfg(not(any(feature = "v4_10", feature = "dox")))]
 glib::wrapper! {
     #[doc(alias = "GtkRange")]
     pub struct Range(Object<ffi::GtkRange, ffi::GtkRangeClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, Orientable;

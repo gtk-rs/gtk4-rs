@@ -1210,6 +1210,23 @@ pub type GtkAccessibleInterface = *mut _GtkAccessibleInterface;
 
 #[derive(Copy, Clone)]
 #[repr(C)]
+pub struct GtkAccessibleRangeInterface {
+    pub g_iface: gobject::GTypeInterface,
+    pub set_current_value:
+        Option<unsafe extern "C" fn(*mut GtkAccessibleRange, c_double) -> gboolean>,
+}
+
+impl ::std::fmt::Debug for GtkAccessibleRangeInterface {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("GtkAccessibleRangeInterface @ {:p}", self))
+            .field("g_iface", &self.g_iface)
+            .field("set_current_value", &self.set_current_value)
+            .finish()
+    }
+}
+
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkActionableInterface {
     pub g_iface: gobject::GTypeInterface,
     pub get_action_name: Option<unsafe extern "C" fn(*mut GtkActionable) -> *const c_char>,
@@ -8525,6 +8542,18 @@ pub struct GtkAccessible {
 impl ::std::fmt::Debug for GtkAccessible {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         write!(f, "GtkAccessible @ {:p}", self)
+    }
+}
+
+#[repr(C)]
+pub struct GtkAccessibleRange {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
+
+impl ::std::fmt::Debug for GtkAccessibleRange {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        write!(f, "GtkAccessibleRange @ {:p}", self)
     }
 }
 
@@ -18060,6 +18089,13 @@ extern "C" {
         states: *mut GtkAccessibleState,
         values: *const gobject::GValue,
     );
+
+    //=========================================================================
+    // GtkAccessibleRange
+    //=========================================================================
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gtk_accessible_range_get_type() -> GType;
 
     //=========================================================================
     // GtkActionable

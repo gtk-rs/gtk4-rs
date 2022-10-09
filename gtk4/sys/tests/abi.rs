@@ -223,6 +223,13 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         },
     ),
     (
+        "GtkAccessibleRangeInterface",
+        Layout {
+            size: size_of::<GtkAccessibleRangeInterface>(),
+            alignment: align_of::<GtkAccessibleRangeInterface>(),
+        },
+    ),
+    (
         "GtkAccessibleRelation",
         Layout {
             size: size_of::<GtkAccessibleRelation>(),

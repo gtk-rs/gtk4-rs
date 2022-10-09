@@ -3,6 +3,9 @@
 // DO NOT EDIT
 
 use crate::Accessible;
+#[cfg(any(feature = "v4_10", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+use crate::AccessibleRange;
 use crate::AccessibleRole;
 use crate::Adjustment;
 use crate::Align;
@@ -26,6 +29,18 @@ use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
 
+#[cfg(any(feature = "v4_10", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+glib::wrapper! {
+    #[doc(alias = "GtkVolumeButton")]
+    pub struct VolumeButton(Object<ffi::GtkVolumeButton>) @extends ScaleButton, Widget, @implements Accessible, Buildable, ConstraintTarget, AccessibleRange, Orientable;
+
+    match fn {
+        type_ => || ffi::gtk_volume_button_get_type(),
+    }
+}
+
+#[cfg(not(any(feature = "v4_10", feature = "dox")))]
 glib::wrapper! {
     #[doc(alias = "GtkVolumeButton")]
     pub struct VolumeButton(Object<ffi::GtkVolumeButton>) @extends ScaleButton, Widget, @implements Accessible, Buildable, ConstraintTarget, Orientable;

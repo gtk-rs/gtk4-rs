@@ -33,6 +33,7 @@ glib::wrapper! {
 }
 
 impl AppChooserWidget {
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_app_chooser_widget_new")]
     pub fn new(content_type: &str) -> AppChooserWidget {
         assert_initialized_main_thread!();
@@ -52,6 +53,7 @@ impl AppChooserWidget {
         AppChooserWidgetBuilder::default()
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_app_chooser_widget_get_default_text")]
     #[doc(alias = "get_default_text")]
     pub fn default_text(&self) -> Option<glib::GString> {
@@ -62,6 +64,7 @@ impl AppChooserWidget {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_app_chooser_widget_get_show_all")]
     #[doc(alias = "get_show_all")]
     pub fn shows_all(&self) -> bool {
@@ -72,6 +75,7 @@ impl AppChooserWidget {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_app_chooser_widget_get_show_default")]
     #[doc(alias = "get_show_default")]
     pub fn shows_default(&self) -> bool {
@@ -82,6 +86,7 @@ impl AppChooserWidget {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_app_chooser_widget_get_show_fallback")]
     #[doc(alias = "get_show_fallback")]
     pub fn shows_fallback(&self) -> bool {
@@ -92,6 +97,7 @@ impl AppChooserWidget {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_app_chooser_widget_get_show_other")]
     #[doc(alias = "get_show_other")]
     pub fn shows_other(&self) -> bool {
@@ -102,6 +108,7 @@ impl AppChooserWidget {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_app_chooser_widget_get_show_recommended")]
     #[doc(alias = "get_show_recommended")]
     pub fn shows_recommended(&self) -> bool {
@@ -112,6 +119,7 @@ impl AppChooserWidget {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_app_chooser_widget_set_default_text")]
     pub fn set_default_text(&self, text: &str) {
         unsafe {
@@ -122,6 +130,7 @@ impl AppChooserWidget {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_app_chooser_widget_set_show_all")]
     pub fn set_show_all(&self, setting: bool) {
         unsafe {
@@ -129,6 +138,7 @@ impl AppChooserWidget {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_app_chooser_widget_set_show_default")]
     pub fn set_show_default(&self, setting: bool) {
         unsafe {
@@ -139,6 +149,7 @@ impl AppChooserWidget {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_app_chooser_widget_set_show_fallback")]
     pub fn set_show_fallback(&self, setting: bool) {
         unsafe {
@@ -149,6 +160,7 @@ impl AppChooserWidget {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_app_chooser_widget_set_show_other")]
     pub fn set_show_other(&self, setting: bool) {
         unsafe {
@@ -156,6 +168,7 @@ impl AppChooserWidget {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_app_chooser_widget_set_show_recommended")]
     pub fn set_show_recommended(&self, setting: bool) {
         unsafe {
