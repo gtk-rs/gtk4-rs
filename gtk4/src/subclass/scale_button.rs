@@ -9,23 +9,23 @@ use glib::translate::*;
 use glib::Cast;
 
 pub trait ScaleButtonImpl: ScaleButtonImplExt + WidgetImpl {
-    fn value_changed(&self, scale_button: &Self::Type, new_value: f64) {
-        self.parent_value_changed(scale_button, new_value)
+    fn value_changed(&self, new_value: f64) {
+        self.parent_value_changed(new_value)
     }
 }
 
 pub trait ScaleButtonImplExt: ObjectSubclass {
-    fn parent_value_changed(&self, scale_button: &Self::Type, new_value: f64);
+    fn parent_value_changed(&self, new_value: f64);
 }
 
 impl<T: ScaleButtonImpl> ScaleButtonImplExt for T {
-    fn parent_value_changed(&self, scale_button: &Self::Type, new_value: f64) {
+    fn parent_value_changed(&self, new_value: f64) {
         unsafe {
             let data = T::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkScaleButtonClass;
             if let Some(f) = (*parent_class).value_changed {
                 f(
-                    scale_button
+                    self.instance()
                         .unsafe_cast_ref::<ScaleButton>()
                         .to_glib_none()
                         .0,
@@ -51,7 +51,6 @@ unsafe extern "C" fn scale_button_value_changed<T: ScaleButtonImpl>(
 ) {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
-    let wrap: Borrowed<ScaleButton> = from_glib_borrow(ptr);
 
-    imp.value_changed(wrap.unsafe_cast_ref(), new_value)
+    imp.value_changed(new_value)
 }

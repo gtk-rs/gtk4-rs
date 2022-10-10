@@ -32,7 +32,7 @@ impl ObjectImpl for ListBoxRow {
         PROPERTIES.as_ref()
     }
 
-    fn set_property(&self, _obj: &Self::Type, _id: usize, value: &Value, pspec: &ParamSpec) {
+    fn set_property(&self, _id: usize, value: &Value, pspec: &ParamSpec) {
         match pspec.name() {
             "row-data" => {
                 let row_data = value.get().unwrap();
@@ -42,14 +42,16 @@ impl ObjectImpl for ListBoxRow {
         }
     }
 
-    fn property(&self, _obj: &Self::Type, _id: usize, pspec: &ParamSpec) -> Value {
+    fn property(&self, _id: usize, pspec: &ParamSpec) -> Value {
         match pspec.name() {
             "row-data" => self.row_data.borrow().to_value(),
             _ => unimplemented!(),
         }
     }
 
-    fn constructed(&self, obj: &Self::Type) {
+    fn constructed(&self) {
+        let obj = self.instance();
+
         let item = self.row_data.borrow();
         let item = item.as_ref().cloned().unwrap();
 

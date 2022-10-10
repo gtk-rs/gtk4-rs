@@ -9,29 +9,30 @@ use glib::translate::*;
 use glib::Cast;
 
 pub trait CheckButtonImpl: CheckButtonImplExt + WidgetImpl {
-    fn toggled(&self, check_button: &Self::Type) {
-        self.parent_toggled(check_button)
+    fn toggled(&self) {
+        self.parent_toggled()
     }
 
     #[cfg(any(feature = "v4_2", feature = "dox"))]
-    fn activate(&self, check_button: &Self::Type) {
-        self.parent_activate(check_button)
+    fn activate(&self) {
+        self.parent_activate()
     }
 }
 
 pub trait CheckButtonImplExt: ObjectSubclass {
-    fn parent_toggled(&self, check_button: &Self::Type);
+    fn parent_toggled(&self);
     #[cfg(any(feature = "v4_2", feature = "dox"))]
-    fn parent_activate(&self, check_button: &Self::Type);
+    fn parent_activate(&self);
 }
 
 impl<T: CheckButtonImpl> CheckButtonImplExt for T {
-    fn parent_toggled(&self, check_button: &Self::Type) {
+    fn parent_toggled(&self) {
         unsafe {
             let data = T::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkCheckButtonClass;
             if let Some(f) = (*parent_class).toggled {
-                f(check_button
+                f(self
+                    .instance()
                     .unsafe_cast_ref::<CheckButton>()
                     .to_glib_none()
                     .0)
@@ -40,12 +41,13 @@ impl<T: CheckButtonImpl> CheckButtonImplExt for T {
     }
 
     #[cfg(any(feature = "v4_2", feature = "dox"))]
-    fn parent_activate(&self, check_button: &Self::Type) {
+    fn parent_activate(&self) {
         unsafe {
             let data = T::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkCheckButtonClass;
             if let Some(f) = (*parent_class).activate {
-                f(check_button
+                f(self
+                    .instance()
                     .unsafe_cast_ref::<CheckButton>()
                     .to_glib_none()
                     .0)
@@ -71,16 +73,14 @@ unsafe impl<T: CheckButtonImpl> IsSubclassable<T> for CheckButton {
 unsafe extern "C" fn check_button_toggled<T: CheckButtonImpl>(ptr: *mut ffi::GtkCheckButton) {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
-    let wrap: Borrowed<CheckButton> = from_glib_borrow(ptr);
 
-    imp.toggled(wrap.unsafe_cast_ref())
+    imp.toggled()
 }
 
 #[cfg(any(feature = "v4_2", feature = "dox"))]
 unsafe extern "C" fn check_button_activate<T: CheckButtonImpl>(ptr: *mut ffi::GtkCheckButton) {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
-    let wrap: Borrowed<CheckButton> = from_glib_borrow(ptr);
 
-    imp.activate(wrap.unsafe_cast_ref())
+    imp.activate()
 }

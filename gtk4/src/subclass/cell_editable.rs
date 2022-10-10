@@ -9,34 +9,35 @@ use glib::translate::*;
 use glib::Cast;
 
 pub trait CellEditableImpl: ObjectImpl {
-    fn editing_done(&self, cell_editable: &Self::Type) {
-        self.parent_editing_done(cell_editable)
+    fn editing_done(&self) {
+        self.parent_editing_done()
     }
 
-    fn remove_widget(&self, cell_editable: &Self::Type) {
-        self.parent_remove_widget(cell_editable)
+    fn remove_widget(&self) {
+        self.parent_remove_widget()
     }
 
-    fn start_editing(&self, cell_editable: &Self::Type, event: Option<&gdk::Event>) {
-        self.parent_start_editing(cell_editable, event)
+    fn start_editing(&self, event: Option<&gdk::Event>) {
+        self.parent_start_editing(event)
     }
 }
 
 pub trait CellEditableImplExt: ObjectSubclass {
-    fn parent_editing_done(&self, cell_editable: &Self::Type);
-    fn parent_remove_widget(&self, cell_editable: &Self::Type);
-    fn parent_start_editing(&self, cell_editable: &Self::Type, event: Option<&gdk::Event>);
+    fn parent_editing_done(&self);
+    fn parent_remove_widget(&self);
+    fn parent_start_editing(&self, event: Option<&gdk::Event>);
 }
 
 impl<O: CellEditableImpl> CellEditableImplExt for O {
-    fn parent_editing_done(&self, cell_editable: &Self::Type) {
+    fn parent_editing_done(&self) {
         unsafe {
             let type_data = Self::type_data();
             let parent_iface = type_data.as_ref().parent_interface::<CellEditable>()
                 as *const ffi::GtkCellEditableIface;
 
             if let Some(f) = (*parent_iface).editing_done {
-                f(cell_editable
+                f(self
+                    .instance()
                     .unsafe_cast_ref::<CellEditable>()
                     .to_glib_none()
                     .0);
@@ -44,14 +45,15 @@ impl<O: CellEditableImpl> CellEditableImplExt for O {
         }
     }
 
-    fn parent_remove_widget(&self, cell_editable: &Self::Type) {
+    fn parent_remove_widget(&self) {
         unsafe {
             let type_data = Self::type_data();
             let parent_iface = type_data.as_ref().parent_interface::<CellEditable>()
                 as *const ffi::GtkCellEditableIface;
 
             if let Some(f) = (*parent_iface).remove_widget {
-                f(cell_editable
+                f(self
+                    .instance()
                     .unsafe_cast_ref::<CellEditable>()
                     .to_glib_none()
                     .0);
@@ -59,7 +61,7 @@ impl<O: CellEditableImpl> CellEditableImplExt for O {
         }
     }
 
-    fn parent_start_editing(&self, cell_editable: &Self::Type, event: Option<&gdk::Event>) {
+    fn parent_start_editing(&self, event: Option<&gdk::Event>) {
         unsafe {
             let type_data = Self::type_data();
             let parent_iface = type_data.as_ref().parent_interface::<CellEditable>()
@@ -67,7 +69,7 @@ impl<O: CellEditableImpl> CellEditableImplExt for O {
 
             if let Some(f) = (*parent_iface).start_editing {
                 f(
-                    cell_editable
+                    self.instance()
                         .unsafe_cast_ref::<CellEditable>()
                         .to_glib_none()
                         .0,
@@ -99,7 +101,7 @@ unsafe extern "C" fn cell_editable_editing_done<T: CellEditableImpl>(
     let instance = &*(cell_editable as *mut T::Instance);
     let imp = instance.imp();
 
-    imp.editing_done(from_glib_borrow::<_, CellEditable>(cell_editable).unsafe_cast_ref())
+    imp.editing_done()
 }
 
 unsafe extern "C" fn cell_editable_remove_widget<T: CellEditableImpl>(
@@ -108,7 +110,7 @@ unsafe extern "C" fn cell_editable_remove_widget<T: CellEditableImpl>(
     let instance = &*(cell_editable as *mut T::Instance);
     let imp = instance.imp();
 
-    imp.remove_widget(from_glib_borrow::<_, CellEditable>(cell_editable).unsafe_cast_ref())
+    imp.remove_widget()
 }
 
 unsafe extern "C" fn cell_editable_start_editing<T: CellEditableImpl>(
@@ -118,8 +120,5 @@ unsafe extern "C" fn cell_editable_start_editing<T: CellEditableImpl>(
     let instance = &*(cell_editable as *mut T::Instance);
     let imp = instance.imp();
     let event: Borrowed<Option<gdk::Event>> = from_glib_borrow(eventptr);
-    imp.start_editing(
-        from_glib_borrow::<_, CellEditable>(cell_editable).unsafe_cast_ref(),
-        event.as_ref().as_ref(),
-    )
+    imp.start_editing(event.as_ref().as_ref())
 }

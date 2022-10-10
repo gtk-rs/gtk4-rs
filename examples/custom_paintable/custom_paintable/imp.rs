@@ -15,20 +15,20 @@ impl ObjectSubclass for CustomPaintable {
 impl ObjectImpl for CustomPaintable {}
 
 impl PaintableImpl for CustomPaintable {
-    fn flags(&self, _paintable: &Self::Type) -> gdk::PaintableFlags {
+    fn flags(&self) -> gdk::PaintableFlags {
         // Fixed size
         gdk::PaintableFlags::SIZE
     }
 
-    fn intrinsic_width(&self, _paintable: &Self::Type) -> i32 {
+    fn intrinsic_width(&self) -> i32 {
         200
     }
 
-    fn intrinsic_height(&self, _paintable: &Self::Type) -> i32 {
+    fn intrinsic_height(&self) -> i32 {
         200
     }
 
-    fn snapshot(&self, _paintable: &Self::Type, snapshot: &gdk::Snapshot, width: f64, height: f64) {
+    fn snapshot(&self, snapshot: &gdk::Snapshot, width: f64, height: f64) {
         let snapshot = snapshot.downcast_ref::<gtk::Snapshot>().unwrap();
         // Draw a linear gradient
         snapshot.append_linear_gradient(

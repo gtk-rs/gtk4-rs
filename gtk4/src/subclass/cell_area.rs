@@ -70,7 +70,6 @@ pub trait CellAreaImpl: CellAreaImplExt + ObjectImpl {
 
     fn set_cell_property<R: IsA<CellRenderer>>(
         &self,
-        _obj: &Self::Type,
         _renderer: &R,
         _id: usize,
         _value: &Value,
@@ -81,7 +80,6 @@ pub trait CellAreaImpl: CellAreaImplExt + ObjectImpl {
 
     fn cell_property<R: IsA<CellRenderer>>(
         &self,
-        _obj: &Self::Type,
         _renderer: &R,
         _id: usize,
         _pspec: &ParamSpec,
@@ -91,128 +89,115 @@ pub trait CellAreaImpl: CellAreaImplExt + ObjectImpl {
 
     fn activate<P: IsA<CellAreaContext>, W: IsA<Widget>>(
         &self,
-        cell_area: &Self::Type,
         context: &P,
         widget: &W,
         area: &gdk::Rectangle,
         flags: CellRendererState,
         edit_only: bool,
     ) -> bool {
-        self.parent_activate(cell_area, context, widget, area, flags, edit_only)
+        self.parent_activate(context, widget, area, flags, edit_only)
     }
 
-    fn add<R: IsA<CellRenderer>>(&self, cell_area: &Self::Type, renderer: &R) {
-        self.parent_add(cell_area, renderer)
+    fn add<R: IsA<CellRenderer>>(&self, renderer: &R) {
+        self.parent_add(renderer)
     }
 
     fn apply_attributes<M: IsA<TreeModel>>(
         &self,
-        cell_area: &Self::Type,
         tree_model: &M,
         iter: &TreeIter,
         is_expander: bool,
         is_expanded: bool,
     ) {
-        self.parent_apply_attributes(cell_area, tree_model, iter, is_expander, is_expanded)
+        self.parent_apply_attributes(tree_model, iter, is_expander, is_expanded)
     }
 
-    fn create_context(&self, cell_area: &Self::Type) -> Option<CellAreaContext> {
-        self.parent_create_context(cell_area)
+    fn create_context(&self) -> Option<CellAreaContext> {
+        self.parent_create_context()
     }
 
-    fn copy_context<P: IsA<CellAreaContext>>(
-        &self,
-        cell_area: &Self::Type,
-        context: &P,
-    ) -> Option<CellAreaContext> {
-        self.parent_copy_context(cell_area, context)
+    fn copy_context<P: IsA<CellAreaContext>>(&self, context: &P) -> Option<CellAreaContext> {
+        self.parent_copy_context(context)
     }
 
     fn event<W: IsA<Widget>, P: IsA<CellAreaContext>>(
         &self,
-        cell_area: &Self::Type,
         context: &P,
         widget: &W,
         event: &gdk::Event,
         area: &gdk::Rectangle,
         flags: CellRendererState,
     ) -> bool {
-        self.parent_event(cell_area, context, widget, event, area, flags)
+        self.parent_event(context, widget, event, area, flags)
     }
 
-    fn foreach(&self, cell_area: &Self::Type, callback: &CellCallback) {
-        self.parent_foreach(cell_area, callback);
+    fn foreach(&self, callback: &CellCallback) {
+        self.parent_foreach(callback);
     }
 
     fn foreach_alloc<P: IsA<CellAreaContext>, W: IsA<Widget>>(
         &self,
-        cell_type: &Self::Type,
         context: &P,
         widget: &W,
         area: &gdk::Rectangle,
         bg_area: &gdk::Rectangle,
         callback: &CellCallbackAllocate,
     ) {
-        self.parent_foreach_alloc(cell_type, context, widget, area, bg_area, callback)
+        self.parent_foreach_alloc(context, widget, area, bg_area, callback)
     }
 
-    fn remove<R: IsA<CellRenderer>>(&self, cell_area: &Self::Type, renderer: &R) {
-        self.parent_remove(cell_area, renderer)
+    fn remove<R: IsA<CellRenderer>>(&self, renderer: &R) {
+        self.parent_remove(renderer)
     }
 
-    fn is_activatable(&self, cell_area: &Self::Type) -> bool {
-        self.parent_is_activatable(cell_area)
+    fn is_activatable(&self) -> bool {
+        self.parent_is_activatable()
     }
 
-    fn focus(&self, cell_area: &Self::Type, direction_type: DirectionType) -> bool {
-        self.parent_focus(cell_area, direction_type)
+    fn focus(&self, direction_type: DirectionType) -> bool {
+        self.parent_focus(direction_type)
     }
 
-    fn request_mode(&self, cell_area: &Self::Type) -> SizeRequestMode {
-        self.parent_request_mode(cell_area)
+    fn request_mode(&self) -> SizeRequestMode {
+        self.parent_request_mode()
     }
 
     fn preferred_width<P: IsA<CellAreaContext>, W: IsA<Widget>>(
         &self,
-        cell_area: &Self::Type,
         context: &P,
         widget: &W,
     ) -> (i32, i32) {
-        self.parent_preferred_width(cell_area, context, widget)
+        self.parent_preferred_width(context, widget)
     }
 
     fn preferred_width_for_height<P: IsA<CellAreaContext>, W: IsA<Widget>>(
         &self,
-        cell_area: &Self::Type,
         context: &P,
         widget: &W,
         height: i32,
     ) -> (i32, i32) {
-        self.parent_preferred_width_for_height(cell_area, context, widget, height)
+        self.parent_preferred_width_for_height(context, widget, height)
     }
 
     fn preferred_height<P: IsA<CellAreaContext>, W: IsA<Widget>>(
         &self,
-        cell_area: &Self::Type,
         context: &P,
         widget: &W,
     ) -> (i32, i32) {
-        self.parent_preferred_height(cell_area, context, widget)
+        self.parent_preferred_height(context, widget)
     }
 
     fn preferred_height_for_width<P: IsA<CellAreaContext>, W: IsA<Widget>>(
         &self,
-        cell_area: &Self::Type,
         context: &P,
         widget: &W,
         width: i32,
     ) -> (i32, i32) {
-        self.parent_preferred_height_for_width(cell_area, context, widget, width)
+        self.parent_preferred_height_for_width(context, widget, width)
     }
 
     fn snapshot<P: IsA<CellAreaContext>, W: IsA<Widget>>(
         &self,
-        cell_area: &Self::Type,
         context: &P,
         snapshot: &Snapshot,
         widget: &W,
@@ -222,7 +207,6 @@ pub trait CellAreaImpl: CellAreaImplExt + ObjectImpl {
         paint_focus: bool,
     ) {
         self.parent_snapshot(
-            cell_area,
             context,
             snapshot,
             widget,
@@ -237,7 +221,6 @@ pub trait CellAreaImpl: CellAreaImplExt + ObjectImpl {
 pub trait CellAreaImplExt: ObjectSubclass {
     fn parent_activate<P: IsA<CellAreaContext>, W: IsA<Widget>>(
         &self,
-        cell_area: &Self::Type,
         context: &P,
         widget: &W,
         area: &gdk::Rectangle,
@@ -245,27 +228,21 @@ pub trait CellAreaImplExt: ObjectSubclass {
         edit_only: bool,
     ) -> bool;
 
-    fn parent_add<R: IsA<CellRenderer>>(&self, cell_area: &Self::Type, renderer: &R);
+    fn parent_add<R: IsA<CellRenderer>>(&self, renderer: &R);
 
     fn parent_apply_attributes<M: IsA<TreeModel>>(
         &self,
-        cell_area: &Self::Type,
         tree_model: &M,
         iter: &TreeIter,
         is_expander: bool,
         is_expanded: bool,
     );
-    fn parent_create_context(&self, cell_area: &Self::Type) -> Option<CellAreaContext>;
+    fn parent_create_context(&self) -> Option<CellAreaContext>;
 
-    fn parent_copy_context<P: IsA<CellAreaContext>>(
-        &self,
-        cell_area: &Self::Type,
-        context: &P,
-    ) -> Option<CellAreaContext>;
+    fn parent_copy_context<P: IsA<CellAreaContext>>(&self, context: &P) -> Option<CellAreaContext>;
 
     fn parent_event<W: IsA<Widget>, P: IsA<CellAreaContext>>(
         &self,
-        cell_area: &Self::Type,
         context: &P,
         widget: &W,
         event: &gdk::Event,
@@ -273,11 +250,10 @@ pub trait CellAreaImplExt: ObjectSubclass {
         flags: CellRendererState,
     ) -> bool;
 
-    fn parent_foreach(&self, cell_area: &Self::Type, callback: &CellCallback);
+    fn parent_foreach(&self, callback: &CellCallback);
 
     fn parent_foreach_alloc<P: IsA<CellAreaContext>, W: IsA<Widget>>(
         &self,
-        cell_type: &Self::Type,
         context: &P,
         widget: &W,
         area: &gdk::Rectangle,
@@ -285,31 +261,28 @@ pub trait CellAreaImplExt: ObjectSubclass {
         callback: &CellCallbackAllocate,
     );
 
-    fn parent_remove<R: IsA<CellRenderer>>(&self, cell_area: &Self::Type, renderer: &R);
+    fn parent_remove<R: IsA<CellRenderer>>(&self, renderer: &R);
 
-    fn parent_is_activatable(&self, cell_area: &Self::Type) -> bool;
+    fn parent_is_activatable(&self) -> bool;
 
-    fn parent_focus(&self, cell_area: &Self::Type, direction_type: DirectionType) -> bool;
+    fn parent_focus(&self, direction_type: DirectionType) -> bool;
 
-    fn parent_request_mode(&self, cell_area: &Self::Type) -> SizeRequestMode;
+    fn parent_request_mode(&self) -> SizeRequestMode;
 
     fn parent_preferred_width<P: IsA<CellAreaContext>, W: IsA<Widget>>(
         &self,
-        cell_area: &Self::Type,
         context: &P,
         widget: &W,
     ) -> (i32, i32);
 
     fn parent_preferred_height<P: IsA<CellAreaContext>, W: IsA<Widget>>(
         &self,
-        cell_area: &Self::Type,
         context: &P,
         widget: &W,
     ) -> (i32, i32);
 
     fn parent_preferred_width_for_height<P: IsA<CellAreaContext>, W: IsA<Widget>>(
         &self,
-        cell_area: &Self::Type,
         context: &P,
         widget: &W,
         height: i32,
@@ -317,7 +290,6 @@ pub trait CellAreaImplExt: ObjectSubclass {
 
     fn parent_preferred_height_for_width<P: IsA<CellAreaContext>, W: IsA<Widget>>(
         &self,
-        cell_area: &Self::Type,
         context: &P,
         widget: &W,
         width: i32,
@@ -325,7 +297,6 @@ pub trait CellAreaImplExt: ObjectSubclass {
 
     fn parent_snapshot<P: IsA<CellAreaContext>, W: IsA<Widget>>(
         &self,
-        cell_area: &Self::Type,
         context: &P,
         snapshot: &Snapshot,
         widget: &W,
@@ -339,7 +310,6 @@ pub trait CellAreaImplExt: ObjectSubclass {
 impl<T: CellAreaImpl> CellAreaImplExt for T {
     fn parent_activate<P: IsA<CellAreaContext>, W: IsA<Widget>>(
         &self,
-        cell_area: &Self::Type,
         context: &P,
         widget: &W,
         area: &gdk::Rectangle,
@@ -351,7 +321,10 @@ impl<T: CellAreaImpl> CellAreaImplExt for T {
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkCellAreaClass;
             if let Some(f) = (*parent_class).activate {
                 from_glib(f(
-                    cell_area.unsafe_cast_ref::<CellArea>().to_glib_none().0,
+                    self.instance()
+                        .unsafe_cast_ref::<CellArea>()
+                        .to_glib_none()
+                        .0,
                     context.as_ref().to_glib_none().0,
                     widget.as_ref().to_glib_none().0,
                     area.to_glib_none().0,
@@ -364,13 +337,16 @@ impl<T: CellAreaImpl> CellAreaImplExt for T {
         }
     }
 
-    fn parent_add<R: IsA<CellRenderer>>(&self, cell_area: &Self::Type, renderer: &R) {
+    fn parent_add<R: IsA<CellRenderer>>(&self, renderer: &R) {
         unsafe {
             let data = T::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkCellAreaClass;
             if let Some(f) = (*parent_class).add {
                 f(
-                    cell_area.unsafe_cast_ref::<CellArea>().to_glib_none().0,
+                    self.instance()
+                        .unsafe_cast_ref::<CellArea>()
+                        .to_glib_none()
+                        .0,
                     renderer.as_ref().to_glib_none().0,
                 )
             }
@@ -379,7 +355,6 @@ impl<T: CellAreaImpl> CellAreaImplExt for T {
 
     fn parent_apply_attributes<M: IsA<TreeModel>>(
         &self,
-        cell_area: &Self::Type,
         tree_model: &M,
         iter: &TreeIter,
         is_expander: bool,
@@ -390,7 +365,10 @@ impl<T: CellAreaImpl> CellAreaImplExt for T {
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkCellAreaClass;
             if let Some(f) = (*parent_class).apply_attributes {
                 f(
-                    cell_area.unsafe_cast_ref::<CellArea>().to_glib_none().0,
+                    self.instance()
+                        .unsafe_cast_ref::<CellArea>()
+                        .to_glib_none()
+                        .0,
                     tree_model.as_ref().to_glib_none().0,
                     iter.to_glib_none().0 as *mut _,
                     is_expander.into_glib(),
@@ -400,7 +378,7 @@ impl<T: CellAreaImpl> CellAreaImplExt for T {
         }
     }
 
-    fn parent_create_context(&self, cell_area: &Self::Type) -> Option<CellAreaContext> {
+    fn parent_create_context(&self) -> Option<CellAreaContext> {
         unsafe {
             let data = T::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkCellAreaClass;
@@ -408,16 +386,16 @@ impl<T: CellAreaImpl> CellAreaImplExt for T {
                 .create_context
                 .expect("No parent class impl for \"create_context\"");
 
-            let ret = f(cell_area.unsafe_cast_ref::<CellArea>().to_glib_none().0);
+            let ret = f(self
+                .instance()
+                .unsafe_cast_ref::<CellArea>()
+                .to_glib_none()
+                .0);
             Some(from_glib_full(ret))
         }
     }
 
-    fn parent_copy_context<P: IsA<CellAreaContext>>(
-        &self,
-        cell_area: &Self::Type,
-        context: &P,
-    ) -> Option<CellAreaContext> {
+    fn parent_copy_context<P: IsA<CellAreaContext>>(&self, context: &P) -> Option<CellAreaContext> {
         unsafe {
             let data = T::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkCellAreaClass;
@@ -426,7 +404,10 @@ impl<T: CellAreaImpl> CellAreaImplExt for T {
                 .expect("No parent class impl for \"copy_context\"");
 
             let ret = f(
-                cell_area.unsafe_cast_ref::<CellArea>().to_glib_none().0,
+                self.instance()
+                    .unsafe_cast_ref::<CellArea>()
+                    .to_glib_none()
+                    .0,
                 context.as_ref().to_glib_none().0,
             );
             Some(from_glib_full(ret))
@@ -435,7 +416,6 @@ impl<T: CellAreaImpl> CellAreaImplExt for T {
 
     fn parent_event<W: IsA<Widget>, P: IsA<CellAreaContext>>(
         &self,
-        cell_area: &Self::Type,
         context: &P,
         widget: &W,
         event: &gdk::Event,
@@ -447,7 +427,10 @@ impl<T: CellAreaImpl> CellAreaImplExt for T {
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkCellAreaClass;
             if let Some(f) = (*parent_class).event {
                 from_glib(f(
-                    cell_area.unsafe_cast_ref::<CellArea>().to_glib_none().0,
+                    self.instance()
+                        .unsafe_cast_ref::<CellArea>()
+                        .to_glib_none()
+                        .0,
                     context.as_ref().to_glib_none().0,
                     widget.as_ref().to_glib_none().0,
                     event.to_glib_none().0,
@@ -461,13 +444,16 @@ impl<T: CellAreaImpl> CellAreaImplExt for T {
         }
     }
 
-    fn parent_foreach(&self, cell_area: &Self::Type, callback: &CellCallback) {
+    fn parent_foreach(&self, callback: &CellCallback) {
         unsafe {
             let data = T::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkCellAreaClass;
             if let Some(f) = (*parent_class).foreach {
                 f(
-                    cell_area.unsafe_cast_ref::<CellArea>().to_glib_none().0,
+                    self.instance()
+                        .unsafe_cast_ref::<CellArea>()
+                        .to_glib_none()
+                        .0,
                     callback.callback,
                     callback.user_data,
                 )
@@ -477,7 +463,6 @@ impl<T: CellAreaImpl> CellAreaImplExt for T {
 
     fn parent_foreach_alloc<P: IsA<CellAreaContext>, W: IsA<Widget>>(
         &self,
-        cell_area: &Self::Type,
         context: &P,
         widget: &W,
         area: &gdk::Rectangle,
@@ -489,7 +474,10 @@ impl<T: CellAreaImpl> CellAreaImplExt for T {
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkCellAreaClass;
             if let Some(f) = (*parent_class).foreach_alloc {
                 f(
-                    cell_area.unsafe_cast_ref::<CellArea>().to_glib_none().0,
+                    self.instance()
+                        .unsafe_cast_ref::<CellArea>()
+                        .to_glib_none()
+                        .0,
                     context.as_ref().to_glib_none().0,
                     widget.as_ref().to_glib_none().0,
                     area.to_glib_none().0,
@@ -501,38 +489,48 @@ impl<T: CellAreaImpl> CellAreaImplExt for T {
         }
     }
 
-    fn parent_remove<R: IsA<CellRenderer>>(&self, cell_area: &Self::Type, renderer: &R) {
+    fn parent_remove<R: IsA<CellRenderer>>(&self, renderer: &R) {
         unsafe {
             let data = T::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkCellAreaClass;
             if let Some(f) = (*parent_class).remove {
                 f(
-                    cell_area.unsafe_cast_ref::<CellArea>().to_glib_none().0,
+                    self.instance()
+                        .unsafe_cast_ref::<CellArea>()
+                        .to_glib_none()
+                        .0,
                     renderer.as_ref().to_glib_none().0,
                 )
             }
         }
     }
 
-    fn parent_is_activatable(&self, cell_area: &Self::Type) -> bool {
+    fn parent_is_activatable(&self) -> bool {
         unsafe {
             let data = T::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkCellAreaClass;
             if let Some(f) = (*parent_class).is_activatable {
-                from_glib(f(cell_area.unsafe_cast_ref::<CellArea>().to_glib_none().0))
+                from_glib(f(self
+                    .instance()
+                    .unsafe_cast_ref::<CellArea>()
+                    .to_glib_none()
+                    .0))
             } else {
                 false
             }
         }
     }
 
-    fn parent_focus(&self, cell_area: &Self::Type, direction_type: DirectionType) -> bool {
+    fn parent_focus(&self, direction_type: DirectionType) -> bool {
         unsafe {
             let data = T::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkCellAreaClass;
             if let Some(f) = (*parent_class).focus {
                 from_glib(f(
-                    cell_area.unsafe_cast_ref::<CellArea>().to_glib_none().0,
+                    self.instance()
+                        .unsafe_cast_ref::<CellArea>()
+                        .to_glib_none()
+                        .0,
                     direction_type.into_glib(),
                 ))
             } else {
@@ -541,20 +539,23 @@ impl<T: CellAreaImpl> CellAreaImplExt for T {
         }
     }
 
-    fn parent_request_mode(&self, cell_area: &Self::Type) -> SizeRequestMode {
+    fn parent_request_mode(&self) -> SizeRequestMode {
         unsafe {
             let data = T::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkCellAreaClass;
             let f = (*parent_class)
                 .get_request_mode
                 .expect("No parent class impl for \"get_request_mode\"");
-            from_glib(f(cell_area.unsafe_cast_ref::<CellArea>().to_glib_none().0))
+            from_glib(f(self
+                .instance()
+                .unsafe_cast_ref::<CellArea>()
+                .to_glib_none()
+                .0))
         }
     }
 
     fn parent_preferred_width<P: IsA<CellAreaContext>, W: IsA<Widget>>(
         &self,
-        cell_area: &Self::Type,
         cell_area_context: &P,
         widget: &W,
     ) -> (i32, i32) {
@@ -566,7 +567,10 @@ impl<T: CellAreaImpl> CellAreaImplExt for T {
             let mut minimum_size = mem::MaybeUninit::uninit();
             let mut natural_size = mem::MaybeUninit::uninit();
             f(
-                cell_area.unsafe_cast_ref::<CellArea>().to_glib_none().0,
+                self.instance()
+                    .unsafe_cast_ref::<CellArea>()
+                    .to_glib_none()
+                    .0,
                 cell_area_context.as_ref().to_glib_none().0,
                 widget.as_ref().to_glib_none().0,
                 minimum_size.as_mut_ptr(),
@@ -578,7 +582,6 @@ impl<T: CellAreaImpl> CellAreaImplExt for T {
 
     fn parent_preferred_height<P: IsA<CellAreaContext>, W: IsA<Widget>>(
         &self,
-        cell_area: &Self::Type,
         cell_area_context: &P,
         widget: &W,
     ) -> (i32, i32) {
@@ -590,7 +593,10 @@ impl<T: CellAreaImpl> CellAreaImplExt for T {
             let mut minimum_size = mem::MaybeUninit::uninit();
             let mut natural_size = mem::MaybeUninit::uninit();
             f(
-                cell_area.unsafe_cast_ref::<CellArea>().to_glib_none().0,
+                self.instance()
+                    .unsafe_cast_ref::<CellArea>()
+                    .to_glib_none()
+                    .0,
                 cell_area_context.as_ref().to_glib_none().0,
                 widget.as_ref().to_glib_none().0,
                 minimum_size.as_mut_ptr(),
@@ -602,7 +608,6 @@ impl<T: CellAreaImpl> CellAreaImplExt for T {
 
     fn parent_preferred_width_for_height<P: IsA<CellAreaContext>, W: IsA<Widget>>(
         &self,
-        cell_area: &Self::Type,
         cell_area_context: &P,
         widget: &W,
         height: i32,
@@ -615,7 +620,10 @@ impl<T: CellAreaImpl> CellAreaImplExt for T {
             let mut minimum_size = mem::MaybeUninit::uninit();
             let mut natural_size = mem::MaybeUninit::uninit();
             f(
-                cell_area.unsafe_cast_ref::<CellArea>().to_glib_none().0,
+                self.instance()
+                    .unsafe_cast_ref::<CellArea>()
+                    .to_glib_none()
+                    .0,
                 cell_area_context.as_ref().to_glib_none().0,
                 widget.as_ref().to_glib_none().0,
                 height,
@@ -628,7 +636,6 @@ impl<T: CellAreaImpl> CellAreaImplExt for T {
 
     fn parent_preferred_height_for_width<P: IsA<CellAreaContext>, W: IsA<Widget>>(
         &self,
-        cell_area: &Self::Type,
         cell_area_context: &P,
         widget: &W,
         width: i32,
@@ -640,7 +647,10 @@ impl<T: CellAreaImpl> CellAreaImplExt for T {
             let mut minimum_size = mem::MaybeUninit::uninit();
             let mut natural_size = mem::MaybeUninit::uninit();
             f(
-                cell_area.unsafe_cast_ref::<CellArea>().to_glib_none().0,
+                self.instance()
+                    .unsafe_cast_ref::<CellArea>()
+                    .to_glib_none()
+                    .0,
                 cell_area_context.as_ref().to_glib_none().0,
                 widget.as_ref().to_glib_none().0,
                 width,
@@ -653,7 +663,6 @@ impl<T: CellAreaImpl> CellAreaImplExt for T {
 
     fn parent_snapshot<P: IsA<CellAreaContext>, W: IsA<Widget>>(
         &self,
-        cell_area: &Self::Type,
         context: &P,
         snapshot: &Snapshot,
         widget: &W,
@@ -667,7 +676,10 @@ impl<T: CellAreaImpl> CellAreaImplExt for T {
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkCellAreaClass;
             if let Some(f) = (*parent_class).snapshot {
                 f(
-                    cell_area.unsafe_cast_ref::<CellArea>().to_glib_none().0,
+                    self.instance()
+                        .unsafe_cast_ref::<CellArea>()
+                        .to_glib_none()
+                        .0,
                     context.as_ref().to_glib_none().0,
                     widget.as_ref().to_glib_none().0,
                     snapshot.to_glib_none().0,
@@ -735,7 +747,6 @@ unsafe extern "C" fn cell_area_set_cell_property<T: CellAreaImpl>(
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
     imp.set_cell_property(
-        from_glib_borrow::<_, CellArea>(ptr).unsafe_cast_ref(),
         &*from_glib_borrow::<_, CellRenderer>(rendererptr),
         id as usize,
         &*(valueptr as *mut Value),
@@ -754,7 +765,6 @@ unsafe extern "C" fn cell_area_get_cell_property<T: CellAreaImpl>(
     let imp = instance.imp();
 
     let value = imp.cell_property(
-        from_glib_borrow::<_, CellArea>(ptr).unsafe_cast_ref(),
         &*from_glib_borrow::<_, CellRenderer>(rendererptr),
         id as usize,
         &from_glib_borrow(pspecptr),
@@ -772,10 +782,9 @@ unsafe extern "C" fn cell_area_add<T: CellAreaImpl>(
 ) {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
-    let wrap: Borrowed<CellArea> = from_glib_borrow(ptr);
     let renderer: Borrowed<CellRenderer> = from_glib_borrow(rendererptr);
 
-    imp.add(wrap.unsafe_cast_ref(), &*renderer)
+    imp.add(&*renderer)
 }
 
 unsafe extern "C" fn cell_area_apply_attributes<T: CellAreaImpl>(
@@ -787,12 +796,10 @@ unsafe extern "C" fn cell_area_apply_attributes<T: CellAreaImpl>(
 ) {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
-    let wrap: Borrowed<CellArea> = from_glib_borrow(ptr);
     let model: Borrowed<TreeModel> = from_glib_borrow(modelptr);
     let iter: Borrowed<TreeIter> = from_glib_borrow(iterptr);
 
     imp.apply_attributes(
-        wrap.unsafe_cast_ref(),
         &*model,
         &iter,
         from_glib(is_expander),
@@ -806,10 +813,9 @@ unsafe extern "C" fn cell_area_remove<T: CellAreaImpl>(
 ) {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
-    let wrap: Borrowed<CellArea> = from_glib_borrow(ptr);
     let renderer: Borrowed<CellRenderer> = from_glib_borrow(rendererptr);
 
-    imp.remove(wrap.unsafe_cast_ref(), &*renderer)
+    imp.remove(&*renderer)
 }
 
 unsafe extern "C" fn cell_area_is_activatable<T: CellAreaImpl>(
@@ -817,9 +823,8 @@ unsafe extern "C" fn cell_area_is_activatable<T: CellAreaImpl>(
 ) -> glib::ffi::gboolean {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
-    let wrap: Borrowed<CellArea> = from_glib_borrow(ptr);
 
-    imp.is_activatable(wrap.unsafe_cast_ref()).into_glib()
+    imp.is_activatable().into_glib()
 }
 
 unsafe extern "C" fn cell_area_focus<T: CellAreaImpl>(
@@ -828,10 +833,8 @@ unsafe extern "C" fn cell_area_focus<T: CellAreaImpl>(
 ) -> glib::ffi::gboolean {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
-    let wrap: Borrowed<CellArea> = from_glib_borrow(ptr);
 
-    imp.focus(wrap.unsafe_cast_ref(), from_glib(directionptr))
-        .into_glib()
+    imp.focus(from_glib(directionptr)).into_glib()
 }
 
 unsafe extern "C" fn cell_area_get_request_mode<T: CellAreaImpl>(
@@ -839,9 +842,8 @@ unsafe extern "C" fn cell_area_get_request_mode<T: CellAreaImpl>(
 ) -> ffi::GtkSizeRequestMode {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
-    let wrap: Borrowed<CellArea> = from_glib_borrow(ptr);
 
-    imp.request_mode(wrap.unsafe_cast_ref()).into_glib()
+    imp.request_mode().into_glib()
 }
 
 unsafe extern "C" fn cell_area_get_preferred_height<T: CellAreaImpl>(
@@ -853,11 +855,10 @@ unsafe extern "C" fn cell_area_get_preferred_height<T: CellAreaImpl>(
 ) {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
-    let wrap: Borrowed<CellArea> = from_glib_borrow(ptr);
     let context: Borrowed<CellAreaContext> = from_glib_borrow(contextptr);
     let widget: Borrowed<Widget> = from_glib_borrow(wdgtptr);
 
-    let (min_size, nat_size) = imp.preferred_height(wrap.unsafe_cast_ref(), &*context, &*widget);
+    let (min_size, nat_size) = imp.preferred_height(&*context, &*widget);
     if !minptr.is_null() {
         *minptr = min_size;
     }
@@ -875,11 +876,10 @@ unsafe extern "C" fn cell_area_get_preferred_width<T: CellAreaImpl>(
 ) {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
-    let wrap: Borrowed<CellArea> = from_glib_borrow(ptr);
     let context: Borrowed<CellAreaContext> = from_glib_borrow(contextptr);
     let widget: Borrowed<Widget> = from_glib_borrow(wdgtptr);
 
-    let (min_size, nat_size) = imp.preferred_width(wrap.unsafe_cast_ref(), &*context, &*widget);
+    let (min_size, nat_size) = imp.preferred_width(&*context, &*widget);
     if !minptr.is_null() {
         *minptr = min_size;
     }
@@ -898,12 +898,10 @@ unsafe extern "C" fn cell_area_get_preferred_width_for_height<T: CellAreaImpl>(
 ) {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
-    let wrap: Borrowed<CellArea> = from_glib_borrow(ptr);
     let context: Borrowed<CellAreaContext> = from_glib_borrow(contextptr);
     let widget: Borrowed<Widget> = from_glib_borrow(wdgtptr);
 
-    let (min_width, nat_width) =
-        imp.preferred_width_for_height(wrap.unsafe_cast_ref(), &*context, &*widget, height);
+    let (min_width, nat_width) = imp.preferred_width_for_height(&*context, &*widget, height);
     if !min_width_ptr.is_null() {
         *min_width_ptr = min_width;
     }
@@ -922,12 +920,10 @@ unsafe extern "C" fn cell_area_get_preferred_height_for_width<T: CellAreaImpl>(
 ) {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
-    let wrap: Borrowed<CellArea> = from_glib_borrow(ptr);
     let context: Borrowed<CellAreaContext> = from_glib_borrow(contextptr);
     let widget: Borrowed<Widget> = from_glib_borrow(wdgtptr);
 
-    let (min_height, nat_height) =
-        imp.preferred_height_for_width(wrap.unsafe_cast_ref(), &*context, &*widget, width);
+    let (min_height, nat_height) = imp.preferred_height_for_width(&*context, &*widget, width);
     if !min_height_ptr.is_null() {
         *min_height_ptr = min_height;
     }
@@ -946,12 +942,10 @@ unsafe extern "C" fn cell_area_activate<T: CellAreaImpl>(
 ) -> glib::ffi::gboolean {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
-    let wrap: Borrowed<CellArea> = from_glib_borrow(ptr);
     let context: Borrowed<CellAreaContext> = from_glib_borrow(contextptr);
     let widget: Borrowed<Widget> = from_glib_borrow(wdgtptr);
 
     imp.activate(
-        wrap.unsafe_cast_ref(),
         &*context,
         &*widget,
         &from_glib_borrow(cellptr),
@@ -973,13 +967,11 @@ unsafe extern "C" fn cell_area_snapshot<T: CellAreaImpl>(
 ) {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
-    let wrap: Borrowed<CellArea> = from_glib_borrow(ptr);
     let context: Borrowed<CellAreaContext> = from_glib_borrow(contextptr);
     let widget: Borrowed<Widget> = from_glib_borrow(wdgtptr);
     let snapshot: Borrowed<Snapshot> = from_glib_borrow(snapshotptr);
 
     imp.snapshot(
-        wrap.unsafe_cast_ref(),
         &*context,
         &snapshot,
         &*widget,
@@ -995,9 +987,8 @@ unsafe extern "C" fn cell_area_create_context<T: CellAreaImpl>(
 ) -> *mut ffi::GtkCellAreaContext {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
-    let wrap: Borrowed<CellArea> = from_glib_borrow(ptr);
 
-    imp.create_context(wrap.unsafe_cast_ref()).to_glib_full()
+    imp.create_context().to_glib_full()
 }
 
 unsafe extern "C" fn cell_area_copy_context<T: CellAreaImpl>(
@@ -1006,11 +997,9 @@ unsafe extern "C" fn cell_area_copy_context<T: CellAreaImpl>(
 ) -> *mut ffi::GtkCellAreaContext {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
-    let wrap: Borrowed<CellArea> = from_glib_borrow(ptr);
     let context: Borrowed<CellAreaContext> = from_glib_borrow(contextptr);
 
-    imp.copy_context(wrap.unsafe_cast_ref(), &*context)
-        .to_glib_full()
+    imp.copy_context(&*context).to_glib_full()
 }
 
 unsafe extern "C" fn cell_area_event<T: CellAreaImpl>(
@@ -1023,21 +1012,13 @@ unsafe extern "C" fn cell_area_event<T: CellAreaImpl>(
 ) -> glib::ffi::gboolean {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
-    let wrap: Borrowed<CellArea> = from_glib_borrow(ptr);
     let context: Borrowed<CellAreaContext> = from_glib_borrow(contextptr);
     let widget: Borrowed<Widget> = from_glib_borrow(widgetptr);
     let event: Borrowed<gdk::Event> = from_glib_borrow(eventptr);
     let rectangle: Borrowed<gdk::Rectangle> = from_glib_borrow(rectangleptr);
 
-    imp.event(
-        wrap.unsafe_cast_ref(),
-        &*context,
-        &*widget,
-        &event,
-        &rectangle,
-        from_glib(flags),
-    )
-    .into_glib()
+    imp.event(&*context, &*widget, &event, &rectangle, from_glib(flags))
+        .into_glib()
 }
 
 unsafe extern "C" fn cell_area_foreach<T: CellAreaImpl>(
@@ -1047,14 +1028,13 @@ unsafe extern "C" fn cell_area_foreach<T: CellAreaImpl>(
 ) {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
-    let wrap: Borrowed<CellArea> = from_glib_borrow(ptr);
 
     let callback = CellCallback {
         callback,
         user_data,
     };
 
-    imp.foreach(wrap.unsafe_cast_ref(), &callback)
+    imp.foreach(&callback)
 }
 
 unsafe extern "C" fn cell_area_foreach_alloc<T: CellAreaImpl>(
@@ -1068,7 +1048,6 @@ unsafe extern "C" fn cell_area_foreach_alloc<T: CellAreaImpl>(
 ) {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
-    let wrap: Borrowed<CellArea> = from_glib_borrow(ptr);
     let context: Borrowed<CellAreaContext> = from_glib_borrow(contextptr);
     let widget: Borrowed<Widget> = from_glib_borrow(widgetptr);
     let rectangle: Borrowed<gdk::Rectangle> = from_glib_borrow(rectangleptr);
@@ -1079,14 +1058,7 @@ unsafe extern "C" fn cell_area_foreach_alloc<T: CellAreaImpl>(
         user_data,
     };
 
-    imp.foreach_alloc(
-        wrap.unsafe_cast_ref(),
-        &*context,
-        &*widget,
-        &area,
-        &rectangle,
-        &callback,
-    )
+    imp.foreach_alloc(&*context, &*widget, &area, &rectangle, &callback)
 }
 
 #[allow(clippy::missing_safety_doc)]

@@ -9,30 +9,22 @@ use glib::translate::*;
 use glib::Cast;
 
 pub trait ShortcutManagerImpl: ObjectImpl {
-    fn add_controller(&self, shortcut_manager: &Self::Type, controller: &ShortcutController) {
-        self.parent_add_controller(shortcut_manager, controller);
+    fn add_controller(&self, controller: &ShortcutController) {
+        self.parent_add_controller(controller);
     }
 
-    fn remove_controller(&self, shortcut_manager: &Self::Type, controller: &ShortcutController) {
-        self.parent_remove_controller(shortcut_manager, controller)
+    fn remove_controller(&self, controller: &ShortcutController) {
+        self.parent_remove_controller(controller)
     }
 }
 
 pub trait ShortcutManagerImplExt: ObjectSubclass {
-    fn parent_add_controller(&self, shortcut_manager: &Self::Type, controller: &ShortcutController);
-    fn parent_remove_controller(
-        &self,
-        shortcut_manager: &Self::Type,
-        controller: &ShortcutController,
-    );
+    fn parent_add_controller(&self, controller: &ShortcutController);
+    fn parent_remove_controller(&self, controller: &ShortcutController);
 }
 
 impl<T: ShortcutManagerImpl> ShortcutManagerImplExt for T {
-    fn parent_add_controller(
-        &self,
-        shortcut_manager: &Self::Type,
-        controller: &ShortcutController,
-    ) {
+    fn parent_add_controller(&self, controller: &ShortcutController) {
         unsafe {
             let type_data = Self::type_data();
             let parent_iface = type_data.as_ref().parent_interface::<ShortcutManager>()
@@ -43,7 +35,7 @@ impl<T: ShortcutManagerImpl> ShortcutManagerImplExt for T {
                 .expect("no parent \"add_controller\" implementation");
 
             func(
-                shortcut_manager
+                self.instance()
                     .unsafe_cast_ref::<ShortcutManager>()
                     .to_glib_none()
                     .0,
@@ -52,11 +44,7 @@ impl<T: ShortcutManagerImpl> ShortcutManagerImplExt for T {
         }
     }
 
-    fn parent_remove_controller(
-        &self,
-        shortcut_manager: &Self::Type,
-        controller: &ShortcutController,
-    ) {
+    fn parent_remove_controller(&self, controller: &ShortcutController) {
         unsafe {
             let type_data = Self::type_data();
             let parent_iface = type_data.as_ref().parent_interface::<ShortcutManager>()
@@ -67,7 +55,7 @@ impl<T: ShortcutManagerImpl> ShortcutManagerImplExt for T {
                 .expect("no parent \"remove_controller\" implementation");
 
             func(
-                shortcut_manager
+                self.instance()
                     .unsafe_cast_ref::<ShortcutManager>()
                     .to_glib_none()
                     .0,
@@ -98,10 +86,7 @@ unsafe extern "C" fn shortcut_manager_add_controller<T: ShortcutManagerImpl>(
     let instance = &*(shortcut_manager as *mut T::Instance);
     let imp = instance.imp();
 
-    imp.add_controller(
-        from_glib_borrow::<_, ShortcutManager>(shortcut_manager).unsafe_cast_ref(),
-        &ShortcutController::from_glib_borrow(controller),
-    )
+    imp.add_controller(&ShortcutController::from_glib_borrow(controller))
 }
 
 unsafe extern "C" fn shortcut_manager_remove_controller<T: ShortcutManagerImpl>(
@@ -111,8 +96,5 @@ unsafe extern "C" fn shortcut_manager_remove_controller<T: ShortcutManagerImpl>(
     let instance = &*(shortcut_manager as *mut T::Instance);
     let imp = instance.imp();
 
-    imp.remove_controller(
-        from_glib_borrow::<_, ShortcutManager>(shortcut_manager).unsafe_cast_ref(),
-        &ShortcutController::from_glib_borrow(controller),
-    )
+    imp.remove_controller(&ShortcutController::from_glib_borrow(controller))
 }

@@ -45,16 +45,16 @@ impl ObjectImpl for ExMenuButton {
     // Needed for direct subclasses of GtkWidget;
     // Here you need to unparent all direct children
     // of your template.
-    fn dispose(&self, obj: &Self::Type) {
-        while let Some(child) = obj.first_child() {
+    fn dispose(&self) {
+        while let Some(child) = self.instance().first_child() {
             child.unparent();
         }
     }
 }
 
 impl WidgetImpl for ExMenuButton {
-    fn size_allocate(&self, widget: &Self::Type, width: i32, height: i32, baseline: i32) {
-        self.parent_size_allocate(widget, width, height, baseline);
+    fn size_allocate(&self, width: i32, height: i32, baseline: i32) {
+        self.parent_size_allocate(width, height, baseline);
         self.popover.present();
     }
 }

@@ -38,13 +38,14 @@ impl ObjectSubclass for ExButton {
 }
 
 impl ObjectImpl for ExButton {
-    fn constructed(&self, obj: &Self::Type) {
-        self.parent_constructed(obj);
+    fn constructed(&self) {
+        let obj = self.instance();
+        self.parent_constructed();
 
         // Create the child label.
         let label = "Hello world!";
         let child = gtk::Label::new(Some(label));
-        child.set_parent(obj);
+        child.set_parent(&*obj);
         *self.child.borrow_mut() = Some(child.upcast::<gtk::Widget>());
 
         // Make it look like a GTK button with a label (as opposed to an icon).
@@ -62,7 +63,7 @@ impl ObjectImpl for ExButton {
         obj.add_controller(&gesture);
     }
 
-    fn dispose(&self, _obj: &Self::Type) {
+    fn dispose(&self) {
         // Child widgets need to be manually unparented in `dispose()`.
         if let Some(child) = self.child.borrow_mut().take() {
             child.unparent();

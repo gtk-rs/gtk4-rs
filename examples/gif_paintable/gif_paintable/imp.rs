@@ -24,7 +24,7 @@ impl ObjectSubclass for GifPaintable {
 impl ObjectImpl for GifPaintable {}
 
 impl PaintableImpl for GifPaintable {
-    fn intrinsic_height(&self, _paintable: &Self::Type) -> i32 {
+    fn intrinsic_height(&self) -> i32 {
         self.next_frame
             .borrow()
             .as_ref()
@@ -32,7 +32,7 @@ impl PaintableImpl for GifPaintable {
             .unwrap_or(-1)
     }
 
-    fn intrinsic_width(&self, _paintable: &Self::Type) -> i32 {
+    fn intrinsic_width(&self) -> i32 {
         self.next_frame
             .borrow()
             .as_ref()
@@ -40,7 +40,7 @@ impl PaintableImpl for GifPaintable {
             .unwrap_or(-1)
     }
 
-    fn snapshot(&self, _paintable: &Self::Type, snapshot: &gdk::Snapshot, width: f64, height: f64) {
+    fn snapshot(&self, snapshot: &gdk::Snapshot, width: f64, height: f64) {
         if let Some(texture) = &*self.next_frame.borrow() {
             texture.snapshot(snapshot, width, height);
         } else {

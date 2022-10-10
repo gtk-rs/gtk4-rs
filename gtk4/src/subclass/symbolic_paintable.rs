@@ -12,20 +12,18 @@ use glib::Cast;
 pub trait SymbolicPaintableImpl: PaintableImpl {
     fn snapshot_symbolic(
         &self,
-        paintable: &Self::Type,
         snapshot: &gdk::Snapshot,
         width: f64,
         height: f64,
         colors: &[gdk::RGBA],
     ) {
-        self.parent_snapshot_symbolic(paintable, snapshot, width, height, colors)
+        self.parent_snapshot_symbolic(snapshot, width, height, colors)
     }
 }
 
 pub trait SymbolicPaintableImplExt: ObjectSubclass {
     fn parent_snapshot_symbolic(
         &self,
-        _paintable: &Self::Type,
         _snapshot: &gdk::Snapshot,
         _width: f64,
         _height: f64,
@@ -36,7 +34,6 @@ pub trait SymbolicPaintableImplExt: ObjectSubclass {
 impl<T: SymbolicPaintableImpl> SymbolicPaintableImplExt for T {
     fn parent_snapshot_symbolic(
         &self,
-        paintable: &Self::Type,
         snapshot: &gdk::Snapshot,
         width: f64,
         height: f64,
@@ -49,7 +46,7 @@ impl<T: SymbolicPaintableImpl> SymbolicPaintableImplExt for T {
 
             let func = (*parent_iface).snapshot_symbolic.unwrap();
             func(
-                paintable
+                self.instance()
                     .unsafe_cast_ref::<SymbolicPaintable>()
                     .to_glib_none()
                     .0,
@@ -90,7 +87,6 @@ unsafe extern "C" fn symbolic_paintable_snapshot_symbolic<T: SymbolicPaintableIm
     let snapshot: Borrowed<gdk::Snapshot> = from_glib_borrow(snapshotptr);
 
     imp.snapshot_symbolic(
-        from_glib_borrow::<_, SymbolicPaintable>(paintable).unsafe_cast_ref(),
         &snapshot,
         width,
         height,

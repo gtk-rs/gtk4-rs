@@ -17,7 +17,7 @@ impl ObjectSubclass for ContentProvider {
 impl ObjectImpl for ContentProvider {}
 
 impl ContentProviderImpl for ContentProvider {
-    fn formats(&self, _provider: &Self::Type) -> gdk::ContentFormats {
+    fn formats(&self) -> gdk::ContentFormats {
         gdk::ContentFormatsBuilder::new()
             .add_mime_type("text/plain;charset=utf-8")
             .build()
@@ -25,7 +25,6 @@ impl ContentProviderImpl for ContentProvider {
 
     fn write_mime_type_future(
         &self,
-        _provider: &Self::Type,
         mime_type: &str,
         stream: &gio::OutputStream,
         io_priority: glib::Priority,

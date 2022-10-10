@@ -92,7 +92,6 @@ mod imp {
     impl BuilderScopeImpl for BuilderRustScope {
         fn create_closure(
             &self,
-            _builder_scope: &Self::Type,
             builder: &Builder,
             function_name: &str,
             flags: BuilderClosureFlags,
@@ -315,8 +314,8 @@ mod tests {
                     Lazy::new(|| vec![Signal::builder("destroyed").build()]);
                 SIGNALS.as_ref()
             }
-            fn dispose(&self, obj: &Self::Type) {
-                obj.emit_by_name::<()>("destroyed", &[]);
+            fn dispose(&self) {
+                self.instance().emit_by_name::<()>("destroyed", &[]);
             }
         }
         glib::wrapper! {

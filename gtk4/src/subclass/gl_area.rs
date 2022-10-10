@@ -11,33 +11,34 @@ use glib::Cast;
 
 #[allow(clippy::upper_case_acronyms)]
 pub trait GLAreaImpl: GLAreaImplExt + WidgetImpl {
-    fn create_context(&self, gl_area: &Self::Type) -> Option<GLContext> {
-        self.parent_create_context(gl_area)
+    fn create_context(&self) -> Option<GLContext> {
+        self.parent_create_context()
     }
 
-    fn render(&self, gl_area: &Self::Type, context: &GLContext) -> bool {
-        self.parent_render(gl_area, context)
+    fn render(&self, context: &GLContext) -> bool {
+        self.parent_render(context)
     }
 
-    fn resize(&self, gl_area: &Self::Type, width: i32, height: i32) {
-        self.parent_resize(gl_area, width, height)
+    fn resize(&self, width: i32, height: i32) {
+        self.parent_resize(width, height)
     }
 }
 
 #[allow(clippy::upper_case_acronyms)]
 pub trait GLAreaImplExt: ObjectSubclass {
-    fn parent_create_context(&self, gl_area: &Self::Type) -> Option<GLContext>;
-    fn parent_render(&self, gl_area: &Self::Type, context: &GLContext) -> bool;
-    fn parent_resize(&self, gl_area: &Self::Type, width: i32, height: i32);
+    fn parent_create_context(&self) -> Option<GLContext>;
+    fn parent_render(&self, context: &GLContext) -> bool;
+    fn parent_resize(&self, width: i32, height: i32);
 }
 
 impl<T: GLAreaImpl> GLAreaImplExt for T {
-    fn parent_create_context(&self, gl_area: &Self::Type) -> Option<GLContext> {
+    fn parent_create_context(&self) -> Option<GLContext> {
         unsafe {
             let data = T::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkGLAreaClass;
             if let Some(f) = (*parent_class).create_context {
-                return Some(from_glib_none(f(gl_area
+                return Some(from_glib_none(f(self
+                    .instance()
                     .unsafe_cast_ref::<GLArea>()
                     .to_glib_none()
                     .0)));
@@ -46,7 +47,7 @@ impl<T: GLAreaImpl> GLAreaImplExt for T {
         }
     }
 
-    fn parent_render(&self, gl_area: &Self::Type, context: &GLContext) -> bool {
+    fn parent_render(&self, context: &GLContext) -> bool {
         unsafe {
             let data = T::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkGLAreaClass;
@@ -54,19 +55,19 @@ impl<T: GLAreaImpl> GLAreaImplExt for T {
                 .render
                 .expect("No parent class impl for \"render\"");
             from_glib(f(
-                gl_area.unsafe_cast_ref::<GLArea>().to_glib_none().0,
+                self.instance().unsafe_cast_ref::<GLArea>().to_glib_none().0,
                 context.to_glib_none().0,
             ))
         }
     }
 
-    fn parent_resize(&self, gl_area: &Self::Type, width: i32, height: i32) {
+    fn parent_resize(&self, width: i32, height: i32) {
         unsafe {
             let data = T::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkGLAreaClass;
             if let Some(f) = (*parent_class).resize {
                 f(
-                    gl_area.unsafe_cast_ref::<GLArea>().to_glib_none().0,
+                    self.instance().unsafe_cast_ref::<GLArea>().to_glib_none().0,
                     width,
                     height,
                 )
@@ -91,9 +92,8 @@ unsafe extern "C" fn gl_area_create_context<T: GLAreaImpl>(
 ) -> *mut gdk::ffi::GdkGLContext {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
-    let wrap: Borrowed<GLArea> = from_glib_borrow(ptr);
 
-    imp.create_context(wrap.unsafe_cast_ref()).to_glib_full()
+    imp.create_context().to_glib_full()
 }
 
 unsafe extern "C" fn gl_area_render<T: GLAreaImpl>(
@@ -102,10 +102,8 @@ unsafe extern "C" fn gl_area_render<T: GLAreaImpl>(
 ) -> glib::ffi::gboolean {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
-    let wrap: Borrowed<GLArea> = from_glib_borrow(ptr);
 
-    imp.render(wrap.unsafe_cast_ref(), &from_glib_borrow(context))
-        .into_glib()
+    imp.render(&from_glib_borrow(context)).into_glib()
 }
 
 unsafe extern "C" fn gl_area_resize<T: GLAreaImpl>(
@@ -115,7 +113,6 @@ unsafe extern "C" fn gl_area_resize<T: GLAreaImpl>(
 ) {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
-    let wrap: Borrowed<GLArea> = from_glib_borrow(ptr);
 
-    imp.resize(wrap.unsafe_cast_ref(), width, height)
+    imp.resize(width, height)
 }
