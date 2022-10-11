@@ -42,8 +42,8 @@ jobs:
           - { name: "gtk4", features: "v4_10,xml_validation", test_sys: false }
           - { name: "gsk4", features: "v4_6,broadway", test_sys: true }
           - { name: "gdk4", features: "v4_8", test_sys: true }
-          - { name: "gdk4-wayland", features: "v4_4", test_sys: true }
-          - { name: "gdk4-x11", features: "v4_4", test_sys: false }
+          - { name: "gdk4-wayland", features: "v4_4,wayland_crate,egl,xkb_crate", test_sys: true }
+          - { name: "gdk4-x11", features: "v4_4,xlib,egl", test_sys: false }
           - { name: "gtk4-macros", features: "xml_validation", test_sys: false }
     steps:
       - uses: actions/checkout@v2
