@@ -3,7 +3,19 @@ name: Windows MSVC
 on:
   push:
     branches: [master]
+    paths:
+      - ".github/workflows/windows-msvc.yml"
+      - "gdk4/**"
+      - "gsk4/**"
+      - "gtk4/**"
+      - "gtk4-macros/**"
   pull_request:
+    paths:
+      - ".github/workflows/windows-msvc.yml"
+      - "gdk4/**"
+      - "gsk4/**"
+      - "gtk4/**"
+      - "gtk4-macros/**"
   workflow_dispatch:
 
 jobs:
@@ -19,9 +31,9 @@ jobs:
       id: cache
       with:
         path: c:/gnome
-        key: ${{ runner.os }}-gtk4-8
+        key: ${{ runner.os }}-gtk4-8.0
         restore-keys: |
-          ${{ runner.os }}-gtk4-8
+          ${{ runner.os }}-gtk4-8.0
         
     - name: Set up the PATH environment
       run: |
@@ -68,7 +80,7 @@ jobs:
       working-directory: /gtk
       if: steps.cache.outputs.cache-hit != 'true'
       run: |
-        meson setup builddir --prefix=C:/gnome -Dbuild-tests=false -Dmedia-gstreamer=disabled -Dbuild-examples=false
+        meson setup builddir --prefix=C:/gnome -Ddemos=false -Dbuild-tests=false -Dmedia-gstreamer=disabled -Dbuild-examples=false -Dglib:tests=false -Dharfbuzz:tests=disabled -Dharfbuzz:docs=disabled -Dgraphene:tests=false -Dgdk-pixbuf:tests=false -Dcairo:tests=disabled
         
     - name: Build and install GTK
       working-directory: /gtk
@@ -80,14 +92,14 @@ jobs:
       uses: actions-rs/cargo@v1
       with:
         command: build
-        args: --features v4_8
+        args: --features v4_10,xml_validation
     - name: Clippy
       uses: actions-rs/cargo@v1
       with:
         command: clippy
-        args: --features v4_8
+        args: --features v4_10,xml_validation
     - name: Tests
       uses: actions-rs/cargo@v1
       with:
         command: test
-        args: --features v4_8
+        args: --features v4_10,xml_validation

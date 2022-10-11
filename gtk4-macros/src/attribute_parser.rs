@@ -35,7 +35,7 @@ pub fn parse_template_source(input: &DeriveInput) -> Result<Template> {
             if p.is_ident("file") || p.is_ident("resource") || p.is_ident("string") {
                 if source.is_some() {
                     bail!(Error::new_spanned(
-                        &p,
+                        p,
                         "Specify only one of 'file', 'resource', or 'string'"
                     ));
                 }
@@ -43,18 +43,18 @@ pub fn parse_template_source(input: &DeriveInput) -> Result<Template> {
             }
             if p.is_ident("allow_template_child_without_attribute") {
                 if !matches!(m, Meta::Path(_)) {
-                    bail!(Error::new_spanned(&m, "Wrong meta"));
+                    bail!(Error::new_spanned(m, "Wrong meta"));
                 }
                 if allow_template_child_without_attribute {
                     bail!(Error::new_spanned(
-                        &p,
+                        p,
                         "Duplicate 'allow_template_child_without_attribute'"
                     ));
                 }
                 allow_template_child_without_attribute = true;
             }
         } else {
-            bail!(Error::new_spanned(&n, "wrong meta type"));
+            bail!(Error::new_spanned(n, "wrong meta type"));
         }
     }
     let source = match source {
@@ -147,6 +147,8 @@ impl AttributedField {
         }
         name.cloned().unwrap_or_else(|| self.ident.to_string())
     }
+
+    #[cfg(feature = "xml_validation")]
     pub fn id_span(&self) -> Span {
         for arg in &self.attr.args {
             if let FieldAttributeArg::Id(_, span) = arg {

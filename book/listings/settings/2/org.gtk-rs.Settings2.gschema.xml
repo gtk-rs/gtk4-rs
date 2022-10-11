@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<schemalist>
-  <schema id="org.gtk-rs.Settings2" path="/org/gtk-rs/Settings2/">
-    <key name="is-switch-enabled" type="b">
-      <default>false</default>
-      <summary>Default switch state</summary>
-    </key>
-  </schema>
-</schemalist>

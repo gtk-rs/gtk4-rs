@@ -9,40 +9,40 @@ use glib::translate::*;
 use glib::Cast;
 
 pub trait DialogImpl: DialogImplExt + WindowImpl {
-    fn response(&self, dialog: &Self::Type, response: ResponseType) {
-        self.parent_response(dialog, response)
+    fn response(&self, response: ResponseType) {
+        self.parent_response(response)
     }
 
-    fn close(&self, dialog: &Self::Type) {
-        self.parent_close(dialog)
+    fn close(&self) {
+        self.parent_close()
     }
 }
 
 pub trait DialogImplExt: ObjectSubclass {
-    fn parent_response(&self, dialog: &Self::Type, response: ResponseType);
-    fn parent_close(&self, dialog: &Self::Type);
+    fn parent_response(&self, response: ResponseType);
+    fn parent_close(&self);
 }
 
 impl<T: DialogImpl> DialogImplExt for T {
-    fn parent_response(&self, dialog: &Self::Type, response: ResponseType) {
+    fn parent_response(&self, response: ResponseType) {
         unsafe {
             let data = T::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkDialogClass;
             if let Some(f) = (*parent_class).response {
                 f(
-                    dialog.unsafe_cast_ref::<Dialog>().to_glib_none().0,
+                    self.instance().unsafe_cast_ref::<Dialog>().to_glib_none().0,
                     response.into_glib(),
                 )
             }
         }
     }
 
-    fn parent_close(&self, dialog: &Self::Type) {
+    fn parent_close(&self) {
         unsafe {
             let data = T::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkDialogClass;
             if let Some(f) = (*parent_class).close {
-                f(dialog.unsafe_cast_ref::<Dialog>().to_glib_none().0)
+                f(self.instance().unsafe_cast_ref::<Dialog>().to_glib_none().0)
             }
         }
     }
@@ -61,16 +61,14 @@ unsafe impl<T: DialogImpl> IsSubclassable<T> for Dialog {
 unsafe extern "C" fn dialog_response<T: DialogImpl>(ptr: *mut ffi::GtkDialog, responseptr: i32) {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
-    let wrap: Borrowed<Dialog> = from_glib_borrow(ptr);
     let res: ResponseType = from_glib(responseptr);
 
-    imp.response(wrap.unsafe_cast_ref(), res)
+    imp.response(res)
 }
 
 unsafe extern "C" fn dialog_close<T: DialogImpl>(ptr: *mut ffi::GtkDialog) {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
-    let wrap: Borrowed<Dialog> = from_glib_borrow(ptr);
 
-    imp.close(wrap.unsafe_cast_ref())
+    imp.close()
 }

@@ -2,7 +2,7 @@ use glib::BindingFlags;
 use gtk::prelude::*;
 use gtk::{glib, Align, Application, ApplicationWindow, Box, Orientation, Switch};
 
-const APP_ID: &str = "org.gtk-rs.GObjectProperties3";
+const APP_ID: &str = "org.gtk_rs.GObjectProperties3";
 
 fn main() {
     // Create a new application

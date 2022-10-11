@@ -87,7 +87,7 @@ pub trait DialogExtManual: 'static {
     fn run_async<F: FnOnce(&Self, ResponseType) + 'static>(&self, f: F);
 }
 
-impl<O: IsA<Dialog> + IsA<Widget>> DialogExtManual for O {
+impl<O: IsA<Dialog>> DialogExtManual for O {
     fn add_buttons(&self, buttons: &[(&str, ResponseType)]) {
         for &(text, id) in buttons {
             O::add_button(self, text, id);
@@ -115,7 +115,7 @@ impl<O: IsA<Dialog> + IsA<Widget>> DialogExtManual for O {
                 }
             });
 
-            self.show();
+            self.as_ref().present();
 
             if let Ok(response) = receiver.await {
                 self.disconnect(response_handler);
@@ -136,7 +136,7 @@ impl<O: IsA<Dialog> + IsA<Widget>> DialogExtManual for O {
             }
             (*f.borrow_mut()).take().expect("cannot get callback")(s, response_type);
         }));
-        self.show();
+        self.as_ref().present();
     }
 }
 

@@ -4,7 +4,7 @@ use std::rc::Rc;
 use gtk::prelude::*;
 use gtk::{self, Application, ApplicationWindow, Button, Orientation};
 
-const APP_ID: &str = "org.gtk-rs.GObjectMemoryManagement1";
+const APP_ID: &str = "org.gtk_rs.GObjectMemoryManagement1";
 
 fn main() {
     // Create a new application

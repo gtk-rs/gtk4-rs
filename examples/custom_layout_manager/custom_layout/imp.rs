@@ -31,17 +31,12 @@ impl ObjectSubclass for CustomLayout {
 
 impl ObjectImpl for CustomLayout {}
 impl LayoutManagerImpl for CustomLayout {
-    fn request_mode(
-        &self,
-        _layout_manager: &Self::Type,
-        _widget: &gtk::Widget,
-    ) -> gtk::SizeRequestMode {
+    fn request_mode(&self, _widget: &gtk::Widget) -> gtk::SizeRequestMode {
         gtk::SizeRequestMode::ConstantSize
     }
 
     fn measure(
         &self,
-        _layout_manager: &Self::Type,
         widget: &gtk::Widget,
         orientation: gtk::Orientation,
         _for_size: i32,
@@ -72,14 +67,7 @@ impl LayoutManagerImpl for CustomLayout {
     }
 
     #[allow(clippy::many_single_char_names)]
-    fn allocate(
-        &self,
-        _layout_manager: &Self::Type,
-        widget: &gtk::Widget,
-        width: i32,
-        height: i32,
-        _baseline: i32,
-    ) {
+    fn allocate(&self, widget: &gtk::Widget, width: i32, height: i32, _baseline: i32) {
         let mut child_width = 0;
         let mut child_height = 0;
         let t = self.position.get();

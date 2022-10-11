@@ -8,7 +8,7 @@ use once_cell::sync::OnceCell;
 // ANCHOR: imp_struct
 // Object holding the state
 #[derive(CompositeTemplate, Default)]
-#[template(resource = "/org/gtk-rs/example/window.ui")]
+#[template(resource = "/org/gtk_rs/example/window.ui")]
 pub struct Window {
     #[template_child]
     pub gtk_box: TemplateChild<gtk::Box>,

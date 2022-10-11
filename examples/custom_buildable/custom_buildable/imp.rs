@@ -36,8 +36,8 @@ impl ObjectImpl for CustomBuildable {
     // Needed for direct subclasses of GtkWidget;
     // Here you need to unparent all direct children
     // of your template.
-    fn dispose(&self, buildable: &Self::Type) {
-        while let Some(child) = buildable.first_child() {
+    fn dispose(&self) {
+        while let Some(child) = self.instance().first_child() {
             child.unparent();
         }
     }
@@ -46,16 +46,11 @@ impl ObjectImpl for CustomBuildable {
 impl WidgetImpl for CustomBuildable {}
 
 impl BuildableImpl for CustomBuildable {
-    fn add_child(
-        &self,
-        buildable: &Self::Type,
-        builder: &gtk::Builder,
-        child: &glib::Object,
-        type_: Option<&str>,
-    ) {
+    fn add_child(&self, builder: &gtk::Builder, child: &glib::Object, type_: Option<&str>) {
+        let buildable = self.instance();
         // We first check if the main child `box_` has already been bound.
         if !self.box_.is_bound() {
-            self.parent_add_child(buildable, builder, child, type_);
+            self.parent_add_child(builder, child, type_);
         } else if Some("prefix") == type_ {
             // Check if the child was added using `<child type="prefix">`
             buildable.add_prefix(child.downcast_ref::<gtk::Widget>().unwrap());

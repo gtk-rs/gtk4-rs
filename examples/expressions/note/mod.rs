@@ -16,6 +16,6 @@ impl Default for Note {
 
 impl Note {
     pub fn new(metadata: &Metadata) -> Self {
-        glib::Object::new(&[("metadata", metadata)]).expect("Failed to create a Note")
+        glib::Object::new(&[("metadata", metadata)])
     }
 }

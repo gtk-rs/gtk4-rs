@@ -19,10 +19,11 @@ See also:
  - [gtk-rs project overview](https://gtk-rs.org)
  - [General `GLib` family types and object system overview](mod@glib)
  - [GTK documentation](https://www.gtk.org/docs/)
+ - [GTK Visual Index](https://docs.gtk.org/gtk4/visual_index.html)
 
 ## Minimum supported Rust version
 
-Currently, the minimum supported Rust version is `1.57.0`.
+Currently, the minimum supported Rust version is `1.63.0`.
 
 ## "Hello, World!" example program
 
@@ -182,10 +183,13 @@ gtk = { git = "https://github.com/gtk-rs/gtk4-rs.git", package = "gtk4" }
 
 | Feature | Description |
 | ---     | ----------- |
+| `v4_10` | Enable the new APIs part of the to be released GTK 4.10 |
 | `v4_8` | Enable the new APIs part of GTK 4.8 |
 | `v4_6` | Enable the new APIs part of GTK 4.6 |
 | `v4_4` | Enable the new APIs part of GTK 4.4 |
 | `v4_2` | Enable the new APIs part of GTK 4.2 |
+| `unsafe-assume-initialized` | Disable checks that gtk is initialized, for use in C ABI libraries |
+| `xml_validation` | Enable `xml_validation` feature of gtk4-macros 
 
 ### See Also
 

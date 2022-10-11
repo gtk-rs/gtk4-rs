@@ -34,9 +34,10 @@
     <child type="titlebar">
       <object class="GtkHeaderBar">
         <child type="end">
-          <object class="GtkMenuButton" id="menu_button">
+          <object class="GtkMenuButton">
             <property name="icon-name">open-menu-symbolic</property>
             <property name="menu-model">main-menu</property>
+            <property name="tooltip-text" translatable="yes">Main Menu</property>
           </object>
         </child>
       </object>
@@ -61,7 +62,9 @@
             <property name="min-content-height">360</property>
             <property name="vexpand">true</property>
             <child>
-              <object class="GtkListView" id="tasks_list" />
+              <object class="GtkListView" id="tasks_list">
+                <property name="valign">start</property>
+              </object>
             </child>
           </object>
         </child>

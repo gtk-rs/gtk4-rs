@@ -31,29 +31,15 @@ impl ObjectImpl for RowData {
         use once_cell::sync::Lazy;
         static PROPERTIES: Lazy<Vec<ParamSpec>> = Lazy::new(|| {
             vec![
-                glib::ParamSpecString::new(
-                    "name",
-                    "Name",
-                    "Name",
-                    None, // Default value
-                    glib::ParamFlags::READWRITE,
-                ),
-                glib::ParamSpecUInt::new(
-                    "count",
-                    "Count",
-                    "Count",
-                    0,
-                    100,
-                    0, // Allowed range and default value
-                    glib::ParamFlags::READWRITE,
-                ),
+                glib::ParamSpecString::builder("name").build(),
+                glib::ParamSpecUInt::builder("count").maximum(100).build(),
             ]
         });
 
         PROPERTIES.as_ref()
     }
 
-    fn set_property(&self, _obj: &Self::Type, _id: usize, value: &Value, pspec: &ParamSpec) {
+    fn set_property(&self, _id: usize, value: &Value, pspec: &ParamSpec) {
         match pspec.name() {
             "name" => {
                 let name = value.get().unwrap();
@@ -67,7 +53,7 @@ impl ObjectImpl for RowData {
         }
     }
 
-    fn property(&self, _obj: &Self::Type, _id: usize, pspec: &ParamSpec) -> Value {
+    fn property(&self, _id: usize, pspec: &ParamSpec) -> Value {
         match pspec.name() {
             "name" => self.name.borrow().to_value(),
             "count" => self.count.get().to_value(),

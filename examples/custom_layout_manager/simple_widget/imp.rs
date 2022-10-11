@@ -35,17 +35,18 @@ impl ObjectSubclass for SimpleWidget {
 }
 
 impl ObjectImpl for SimpleWidget {
-    fn constructed(&self, obj: &Self::Type) {
+    fn constructed(&self) {
         let gesture = gtk::GestureClick::new();
         // Trigger a transition on click
+        let obj = self.instance();
         gesture.connect_pressed(clone!(@strong obj as this => move |_, _, _, _| {
             this.do_transition();
         }));
-        obj.add_controller(&gesture);
+        self.instance().add_controller(&gesture);
     }
 
-    fn dispose(&self, widget: &Self::Type) {
-        while let Some(child) = widget.first_child() {
+    fn dispose(&self) {
+        while let Some(child) = self.instance().first_child() {
             child.unparent();
         }
     }

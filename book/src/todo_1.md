@@ -88,7 +88,7 @@ This will be very convenient when saving the state in one of the following chapt
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/1/task_object/mod.rs">listings/todo/1/task_object/mod.rs</a>
 
 ```rust ,no_run,noplayground
-{{#rustdoc_include ../listings/todo/1/task_object/mod.rs:todo_data}}
+{{#rustdoc_include ../listings/todo/1/task_object/mod.rs:task_data}}
 ```
 
 Exposing `completed` and `content` as properties does not become much different that way, so we will not discuss it further.

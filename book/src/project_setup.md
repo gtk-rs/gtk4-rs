@@ -9,19 +9,20 @@ Now, create a new project by executing:
 cargo new my-gtk-app
 ```
 
-Add the following line to your dependencies in `Cargo.toml`, where `X.X` should be replaced with the most up-to-date version of the [gtk4 crate](https://crates.io/crates/gtk4).
+Add the [gtk4 crate](https://crates.io/crates/gtk4) to your dependencies in `Cargo.toml` using following command:
 
-```toml
-gtk = { version = "X.X", package = "gtk4" }
+```
+cargo add gtk4 --rename gtk
 ```
 
 >To use functionality that has been added to later releases, you have to specify this as a [feature](https://doc.rust-lang.org/cargo/reference/features.html).
 >Per default `gtk4-rs` is compatible with all GTK 4 releases.
->For example, if you want to use functionality that was introduced with GTK 4.6, you would add the following to your `gtk` dependency in `Cargo.toml`.
-> 
-> ```toml
->gtk = { version = "X.X", package = "gtk4", features = ["v4_6"]}
->```
+>For example, if you want to use functionality that was introduced with GTK 4.6, you would run the following command:
+>
+> ```
+> cargo add gtk4 --rename gtk --features v4_6
+> ```
+>
 >This will only work if your available GTK version is indeed >= 4.6.
 >You can get the version by executing the following command:
 >```

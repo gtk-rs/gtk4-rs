@@ -20,14 +20,14 @@ glib::wrapper! {
 impl Window {
     pub fn new(app: &Application) -> Self {
         // Create new window
-        Object::new(&[("application", app)]).expect("Failed to create `Window`.")
+        Object::new(&[("application", app)]).expect("`Window` should be  instantiable.")
     }
 
     // ANCHOR: tasks
-    fn current_tasks(&self) -> gio::ListStore {
+    fn tasks(&self) -> gio::ListStore {
         // Get state
         self.imp()
-            .current_tasks
+            .tasks
             .borrow()
             .clone()
             .expect("Could not get current tasks.")
@@ -38,10 +38,10 @@ impl Window {
         let model = gio::ListStore::new(TaskObject::static_type());
 
         // Get state and set model
-        self.imp().current_tasks.replace(Some(model));
+        self.imp().tasks.replace(Some(model));
 
         // Wrap model with selection and pass it to the list view
-        let selection_model = NoSelection::new(Some(&self.current_tasks()));
+        let selection_model = NoSelection::new(Some(&self.tasks()));
         self.imp().tasks_list.set_model(Some(&selection_model));
     }
     // ANCHOR_END: tasks
@@ -76,7 +76,7 @@ impl Window {
 
         // Add new task to model
         let task = TaskObject::new(false, content);
-        self.current_tasks().append(&task);
+        self.tasks().append(&task);
     }
     // ANCHOR_END: new_task
 

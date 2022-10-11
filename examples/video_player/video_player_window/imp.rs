@@ -1,4 +1,3 @@
-use glib::clone;
 use gtk::subclass::prelude::*;
 use gtk::{glib, prelude::*, CompositeTemplate};
 
@@ -44,21 +43,16 @@ impl ObjectSubclass for VideoPlayerWindow {
 
     fn class_init(klass: &mut Self::Class) {
         klass.bind_template();
-        klass.install_action(
+        klass.install_action_async(
             "win.open",
             None,
-            move |win, _action_name, _action_target| {
-                let imp = win.imp();
-                imp.dialog.set_transient_for(Some(win));
-                imp.dialog
-                    .connect_response(clone!(@weak win => move |d, response| {
-                        if response == gtk::ResponseType::Accept {
-                            win.set_video(d.file().unwrap());
-                        }
-                        d.destroy();
-                    }));
-
-                imp.dialog.show();
+            |win, _action_name, _action_target| async move {
+                let dialog = &win.imp().dialog;
+                dialog.set_transient_for(Some(&win));
+                if dialog.run_future().await == gtk::ResponseType::Accept {
+                    win.set_video(dialog.file().unwrap());
+                }
+                dialog.destroy();
             },
         );
     }

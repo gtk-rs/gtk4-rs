@@ -38,7 +38,6 @@ generate = [
     "Gsk.RoundedClipNode",
     "Gsk.ScalingFilter",
     "Gsk.SerializationError",
-    "Gsk.TextNode",
     "Gsk.TextureNode",
     "Gsk.TransformCategory",
     "Gsk.TransformNode",
@@ -161,6 +160,11 @@ status = "generate"
     [[object.function]]
     name = "free_to_args"
     ignore = true # C convenience functions
+    [[object.function]]
+    name = "to_args"
+        [[object.function.parameter]]
+        name = "builder"
+        move = true
 
 [[object]]
 name = "Gsk.ShadowNode"
@@ -170,6 +174,15 @@ status = "generate"
     manual = true # assert that i < n_shadows
 
 [[object]]
+name = "Gsk.TextNode"
+status = "generate"
+    [[object.function]]
+    name = "new"
+        [[object.function.parameter]]
+        name = "glyphs"
+        const = true
+
+[[object]]
 name = "Gsk.Transform"
 status = "generate"
     [[object.function]]
@@ -177,6 +190,9 @@ status = "generate"
         [[object.function.parameter]]
             name = "second"
             nullable = false
+    [[object.function]]
+    pattern = "(translate_3d|translate|transform|skew|scale_3d|scale|rotate_3d|rotate|invert)"
+    manual = true # those functions return NULL in C which represents an identity transform
     [[object.function]]
     name = "print"
     ignore = true # Same as Transform::to_string

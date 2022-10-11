@@ -243,10 +243,10 @@ The menu entries nicely display the state of our stateful actions, but after the
 As usual, we solve this problem with [`gio::Settings`](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/gio/struct.Settings.html).
 First we create a schema with settings corresponding to the stateful actions we created before.
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/actions/7/org.gtk-rs.Actions7.gschema.xml">listings/actions/7/org.gtk-rs.Actions7.gschema.xml</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/actions/7/org.gtk_rs.Actions7.gschema.xml">listings/actions/7/org.gtk_rs.Actions7.gschema.xml</a>
 
 ```xml
-{{#rustdoc_include ../listings/actions/7/org.gtk-rs.Actions7.gschema.xml}}
+{{#rustdoc_include ../listings/actions/7/org.gtk_rs.Actions7.gschema.xml}}
 ```
 
 Again, we install the schema as described in the settings [chapter](./settings.html).

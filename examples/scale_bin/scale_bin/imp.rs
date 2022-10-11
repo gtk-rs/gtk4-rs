@@ -24,29 +24,24 @@ impl ObjectSubclass for ScaleBin {
 }
 
 impl ObjectImpl for ScaleBin {
-    fn constructed(&self, obj: &Self::Type) {
+    fn constructed(&self) {
+        self.parent_constructed();
+        let obj = self.instance();
         obj.set_halign(gtk::Align::Start);
         obj.set_valign(gtk::Align::Start);
 
         let child = gtk::Label::new(Some("Hello World!"));
-        child.set_parent(obj);
-
-        self.parent_constructed(obj);
+        child.set_parent(&*obj);
     }
 
-    fn dispose(&self, obj: &Self::Type) {
-        let child = obj.first_child().unwrap();
+    fn dispose(&self) {
+        let child = self.instance().first_child().unwrap();
         child.unparent();
     }
 }
 
 impl WidgetImpl for ScaleBin {
-    fn measure(
-        &self,
-        widget: &Self::Type,
-        orientation: gtk::Orientation,
-        for_size: i32,
-    ) -> (i32, i32, i32, i32) {
+    fn measure(&self, orientation: gtk::Orientation, for_size: i32) -> (i32, i32, i32, i32) {
         let zoom = self.zoom.get();
         let new_for_size = if for_size > 0 {
             (zoom * for_size as f64) as i32
@@ -54,7 +49,8 @@ impl WidgetImpl for ScaleBin {
             for_size
         };
 
-        let (minimum, natural, _, _) = widget
+        let (minimum, natural, _, _) = self
+            .instance()
             .first_child()
             .unwrap()
             .measure(orientation, new_for_size);
@@ -67,16 +63,16 @@ impl WidgetImpl for ScaleBin {
         )
     }
 
-    fn size_allocate(&self, widget: &Self::Type, width: i32, height: i32, baseline: i32) {
+    fn size_allocate(&self, width: i32, height: i32, baseline: i32) {
         let zoom = self.zoom.get() as f32;
 
         let transform = gsk::Transform::new().scale(zoom, zoom);
 
-        widget.first_child().unwrap().allocate(
+        self.instance().first_child().unwrap().allocate(
             (width as f32 / zoom) as i32,
             (height as f32 / zoom) as i32,
             baseline,
-            transform.as_ref(),
+            Some(&transform),
         );
     }
 }

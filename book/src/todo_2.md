@@ -72,10 +72,10 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 Then, we create a settings schema.
 Again, the "filter" setting correspond to the stateful actions called by the menu.
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/2/org.gtk-rs.Todo2.gschema.xml">listings/todo/2/org.gtk-rs.Todo2.gschema.xml</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/2/org.gtk_rs.Todo2.gschema.xml">listings/todo/2/org.gtk_rs.Todo2.gschema.xml</a>
 
 ```xml
-{{#rustdoc_include ../listings/todo/2/org.gtk-rs.Todo2.gschema.xml}}
+{{#rustdoc_include ../listings/todo/2/org.gtk_rs.Todo2.gschema.xml}}
 ```
 
 We install the schema as described in the settings [chapter](./settings.html)
@@ -96,7 +96,7 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 ```
 
 
-We also add the getter methods `is_completed` and `todo_data` to `TaskObject`.
+We also add the methods `is_completed`, `task_data` and `from_task_data` to `TaskObject`.
 We will make use of them in the following snippets.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/2/task_object/mod.rs">listings/todo/2/task_object/mod.rs</a>
@@ -195,6 +195,11 @@ When it comes to serializing and deserializing nothing beats the crate [`serde`]
 Combined with [`serde_json`](https://lib.rs/crates/serde_json) we can save our tasks as serialized [json](https://en.wikipedia.org/wiki/JSON) files.
 
 First, we extend our `Cargo.toml` with the `serde` and `serde_json` crate.
+
+```
+cargo add serde --features derive
+cargo add serde_json
+```
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/Cargo.toml">listings/Cargo.toml</a>
 

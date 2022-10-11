@@ -15,7 +15,7 @@ glib::wrapper! {
 
 impl BaseButton {
     pub fn new() -> Self {
-        glib::Object::new(&[]).expect("Failed to create BaseButton")
+        glib::Object::new(&[])
     }
 }
 

@@ -10,22 +10,22 @@ use glib::{Cast, GString, Variant};
 
 pub trait ActionableImpl: WidgetImpl {
     #[doc(alias = "get_action_name")]
-    fn action_name(&self, actionable: &Self::Type) -> Option<GString>;
+    fn action_name(&self) -> Option<GString>;
     #[doc(alias = "get_action_target_value")]
-    fn action_target_value(&self, actionable: &Self::Type) -> Option<Variant>;
-    fn set_action_name(&self, actionable: &Self::Type, name: Option<&str>);
-    fn set_action_target_value(&self, actionable: &Self::Type, value: Option<&Variant>);
+    fn action_target_value(&self) -> Option<Variant>;
+    fn set_action_name(&self, name: Option<&str>);
+    fn set_action_target_value(&self, value: Option<&Variant>);
 }
 
 pub trait ActionableImplExt: ObjectSubclass {
-    fn parent_action_name(&self, actionable: &Self::Type) -> Option<GString>;
-    fn parent_action_target_value(&self, actionable: &Self::Type) -> Option<Variant>;
-    fn parent_set_action_name(&self, actionable: &Self::Type, name: Option<&str>);
-    fn parent_set_action_target_value(&self, actionable: &Self::Type, value: Option<&Variant>);
+    fn parent_action_name(&self) -> Option<GString>;
+    fn parent_action_target_value(&self) -> Option<Variant>;
+    fn parent_set_action_name(&self, name: Option<&str>);
+    fn parent_set_action_target_value(&self, value: Option<&Variant>);
 }
 
 impl<T: ActionableImpl> ActionableImplExt for T {
-    fn parent_action_name(&self, actionable: &Self::Type) -> Option<GString> {
+    fn parent_action_name(&self) -> Option<GString> {
         unsafe {
             let type_data = Self::type_data();
             let parent_iface = type_data.as_ref().parent_interface::<Actionable>()
@@ -36,12 +36,15 @@ impl<T: ActionableImpl> ActionableImplExt for T {
                 .expect("no parent \"get_action_name\" implementation");
 
             from_glib_none(func(
-                actionable.unsafe_cast_ref::<Actionable>().to_glib_none().0,
+                self.instance()
+                    .unsafe_cast_ref::<Actionable>()
+                    .to_glib_none()
+                    .0,
             ))
         }
     }
 
-    fn parent_action_target_value(&self, actionable: &Self::Type) -> Option<Variant> {
+    fn parent_action_target_value(&self) -> Option<Variant> {
         unsafe {
             let type_data = Self::type_data();
             let parent_iface = type_data.as_ref().parent_interface::<Actionable>()
@@ -52,12 +55,15 @@ impl<T: ActionableImpl> ActionableImplExt for T {
                 .expect("no parent \"get_action_target_value\" implementation");
 
             from_glib_none(func(
-                actionable.unsafe_cast_ref::<Actionable>().to_glib_none().0,
+                self.instance()
+                    .unsafe_cast_ref::<Actionable>()
+                    .to_glib_none()
+                    .0,
             ))
         }
     }
 
-    fn parent_set_action_name(&self, actionable: &Self::Type, name: Option<&str>) {
+    fn parent_set_action_name(&self, name: Option<&str>) {
         unsafe {
             let type_data = Self::type_data();
             let parent_iface = type_data.as_ref().parent_interface::<Actionable>()
@@ -68,13 +74,16 @@ impl<T: ActionableImpl> ActionableImplExt for T {
                 .expect("no parent \"set_action_name\" implementation");
 
             func(
-                actionable.unsafe_cast_ref::<Actionable>().to_glib_none().0,
+                self.instance()
+                    .unsafe_cast_ref::<Actionable>()
+                    .to_glib_none()
+                    .0,
                 name.to_glib_none().0,
             );
         }
     }
 
-    fn parent_set_action_target_value(&self, actionable: &Self::Type, value: Option<&Variant>) {
+    fn parent_set_action_target_value(&self, value: Option<&Variant>) {
         unsafe {
             let type_data = Self::type_data();
             let parent_iface = type_data.as_ref().parent_interface::<Actionable>()
@@ -85,7 +94,10 @@ impl<T: ActionableImpl> ActionableImplExt for T {
                 .expect("no parent \"set_action_target_value\" implementation");
 
             func(
-                actionable.unsafe_cast_ref::<Actionable>().to_glib_none().0,
+                self.instance()
+                    .unsafe_cast_ref::<Actionable>()
+                    .to_glib_none()
+                    .0,
                 value.to_glib_none().0,
             );
         }
@@ -109,8 +121,7 @@ unsafe extern "C" fn actionable_get_action_name<T: ActionableImpl>(
     let instance = &*(actionable as *mut T::Instance);
     let imp = instance.imp();
 
-    imp.action_name(from_glib_borrow::<_, Actionable>(actionable).unsafe_cast_ref())
-        .to_glib_full()
+    imp.action_name().to_glib_full()
 }
 
 unsafe extern "C" fn actionable_get_action_target_value<T: ActionableImpl>(
@@ -119,8 +130,7 @@ unsafe extern "C" fn actionable_get_action_target_value<T: ActionableImpl>(
     let instance = &*(actionable as *mut T::Instance);
     let imp = instance.imp();
 
-    imp.action_target_value(from_glib_borrow::<_, Actionable>(actionable).unsafe_cast_ref())
-        .to_glib_full()
+    imp.action_target_value().to_glib_full()
 }
 
 unsafe extern "C" fn actionable_set_action_name<T: ActionableImpl>(
@@ -130,10 +140,7 @@ unsafe extern "C" fn actionable_set_action_name<T: ActionableImpl>(
     let instance = &*(actionable as *mut T::Instance);
     let imp = instance.imp();
     let name: Borrowed<Option<GString>> = from_glib_borrow(name);
-    imp.set_action_name(
-        from_glib_borrow::<_, Actionable>(actionable).unsafe_cast_ref(),
-        name.as_ref().as_ref().map(|s| s.as_str()),
-    )
+    imp.set_action_name(name.as_ref().as_ref().map(|s| s.as_str()))
 }
 
 unsafe extern "C" fn actionable_set_action_target_value<T: ActionableImpl>(
@@ -144,8 +151,5 @@ unsafe extern "C" fn actionable_set_action_target_value<T: ActionableImpl>(
     let imp = instance.imp();
     let val: Borrowed<Option<Variant>> = from_glib_borrow(value);
 
-    imp.set_action_target_value(
-        from_glib_borrow::<_, Actionable>(actionable).unsafe_cast_ref(),
-        val.as_ref().as_ref(),
-    )
+    imp.set_action_target_value(val.as_ref().as_ref())
 }

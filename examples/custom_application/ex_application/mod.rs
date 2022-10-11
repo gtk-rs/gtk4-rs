@@ -18,6 +18,5 @@ impl ExApplication {
             ("application-id", &"org.gtk_rs.application-subclass"),
             ("flags", &gio::ApplicationFlags::empty()),
         ])
-        .expect("Failed to create ExApplication")
     }
 }

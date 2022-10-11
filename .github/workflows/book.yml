@@ -2,15 +2,19 @@ name: book
 
 on:
   pull_request:
+    paths:
+      - "book/**"
   push:
     branches:
       - "master"
+    paths:
+      - "book/**"
   release:
     types: [published]
 
 jobs:
   test:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     name: listings build
     container:
       image: ghcr.io/gtk-rs/gtk4-rs/gtk4:latest
@@ -36,7 +40,7 @@ jobs:
         working-directory: book/listings
 
   build-deploy:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     name: build
     steps:
       - uses: actions/checkout@v2
@@ -62,7 +66,7 @@ jobs:
           destination_dir: stable/latest/book
 
   codespell:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v2
       - uses: codespell-project/actions-codespell@master

@@ -1,6 +1,6 @@
 use std::cell::Cell;
 
-use glib::{ParamFlags, ParamSpec, ParamSpecInt, Value};
+use glib::{ParamSpec, ParamSpecInt, Value};
 use gtk::glib;
 use gtk::prelude::*;
 use gtk::subclass::prelude::*;
@@ -23,24 +23,8 @@ impl ObjectSubclass for IntegerObject {
 // Trait shared by all GObjects
 impl ObjectImpl for IntegerObject {
     fn properties() -> &'static [ParamSpec] {
-        static PROPERTIES: Lazy<Vec<ParamSpec>> = Lazy::new(|| {
-            vec![ParamSpecInt::new(
-                // Name
-                "number",
-                // Nickname
-                "number",
-                // Short description
-                "number",
-                // Minimum value
-                i32::MIN,
-                // Maximum value
-                i32::MAX,
-                // Default value
-                0,
-                // The property can be read and written to
-                ParamFlags::READWRITE,
-            )]
-        });
+        static PROPERTIES: Lazy<Vec<ParamSpec>> =
+            Lazy::new(|| vec![ParamSpecInt::builder("number").build()]);
         PROPERTIES.as_ref()
     }
 

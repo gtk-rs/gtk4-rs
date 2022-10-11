@@ -22,12 +22,12 @@ For more information about each crate, please refer to their `README.md` file in
 
 ## Minimum supported Rust version
 
-Currently, the minimum supported Rust version is `1.57.0`.
+Currently, the minimum supported Rust version is `1.63.0`.
 
 ## Documentation
 
 - [Examples](https://github.com/gtk-rs/gtk4-rs/tree/master/examples)
-- Book [Stable](https://gtk-rs.org/gtk4-rs/stable/latest/book/) / [Development](https://gtk-rs.org/gtk4-rs/git/book/)
+- Book [Stable](https://gtk-rs.org/gtk4-rs/stable/latest/book/)
 - The Rust API [Stable](https://gtk-rs.org/gtk4-rs/stable/latest/docs/) / [Development](https://gtk-rs.org/gtk4-rs/git/docs/)
 
 ### Useful links
@@ -74,6 +74,12 @@ The automatic ones can be generated using the [`generator.py`](https://github.co
 
 ```bash
 python3 ./generator.py
+```
+
+If you didn't do so yet, please check out all the submodules before via
+
+```bash
+$ git submodule update --checkout
 ```
 
 All the crates except `gtk4-macros` follow this structure

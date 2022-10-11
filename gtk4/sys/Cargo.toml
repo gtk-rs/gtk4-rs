@@ -11,7 +11,7 @@ links = "gtk-4"
 name = "gtk4-sys"
 repository = "https://github.com/gtk-rs/gtk4-rs"
 version = "0.5.0"
-rust-version = "1.57"
+rust-version = "1.63"
 [package.metadata.docs.rs]
 features = ["dox"]
 [package.metadata.system-deps.gtk4]
@@ -30,6 +30,9 @@ version = "4.6"
 [package.metadata.system-deps.gtk4.v4_8]
 version = "4.7"
 
+[package.metadata.system-deps.gtk4.v4_10]
+version = "4.9"
+
 [lib]
 name = "gtk4_sys"
 
@@ -39,6 +42,7 @@ v4_2 = []
 v4_4 = ["v4_2"]
 v4_6 = ["v4_4"]
 v4_8 = ["v4_6"]
+v4_10 = ["v4_8"]
 
 [dependencies]
 libc = "0.2"

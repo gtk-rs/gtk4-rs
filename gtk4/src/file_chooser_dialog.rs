@@ -32,7 +32,6 @@ impl FileChooserDialog {
 
 impl Default for FileChooserDialog {
     fn default() -> Self {
-        glib::object::Object::new::<Self>(&[])
-            .expect("Can't construct FileChooserDialog object with default parameters")
+        glib::Object::new(&[])
     }
 }

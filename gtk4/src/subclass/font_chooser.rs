@@ -47,47 +47,47 @@ impl Drop for FilterCallback {
 }
 
 pub trait FontChooserImpl: ObjectImpl {
-    fn font_family(&self, font_chooser: &Self::Type) -> Option<FontFamily> {
-        self.parent_font_family(font_chooser)
+    fn font_family(&self) -> Option<FontFamily> {
+        self.parent_font_family()
     }
 
-    fn font_face(&self, font_chooser: &Self::Type) -> Option<FontFace> {
-        self.parent_font_face(font_chooser)
+    fn font_face(&self) -> Option<FontFace> {
+        self.parent_font_face()
     }
 
-    fn font_size(&self, font_chooser: &Self::Type) -> i32 {
-        self.parent_font_size(font_chooser)
+    fn font_size(&self) -> i32 {
+        self.parent_font_size()
     }
 
-    fn set_filter_func(&self, font_chooser: &Self::Type, callback: Option<FilterCallback>) {
-        self.parent_set_filter_func(font_chooser, callback)
+    fn set_filter_func(&self, callback: Option<FilterCallback>) {
+        self.parent_set_filter_func(callback)
     }
 
-    fn set_font_map<P: IsA<FontMap>>(&self, font_chooser: &Self::Type, font_map: Option<&P>) {
-        self.parent_set_font_map(font_chooser, font_map)
+    fn set_font_map<P: IsA<FontMap>>(&self, font_map: Option<&P>) {
+        self.parent_set_font_map(font_map)
     }
 
-    fn font_map(&self, font_chooser: &Self::Type) -> Option<FontMap> {
-        self.parent_font_map(font_chooser)
+    fn font_map(&self) -> Option<FontMap> {
+        self.parent_font_map()
     }
 
-    fn font_activated(&self, font_chooser: &Self::Type, font_name: &str) {
-        self.parent_font_activated(font_chooser, font_name)
+    fn font_activated(&self, font_name: &str) {
+        self.parent_font_activated(font_name)
     }
 }
 
 pub trait FontChooserImplExt: ObjectSubclass {
-    fn parent_font_family(&self, font_chooser: &Self::Type) -> Option<FontFamily>;
-    fn parent_font_face(&self, font_chooser: &Self::Type) -> Option<FontFace>;
-    fn parent_font_size(&self, font_chooser: &Self::Type) -> i32;
-    fn parent_set_filter_func(&self, font_chooser: &Self::Type, callback: Option<FilterCallback>);
-    fn parent_set_font_map<P: IsA<FontMap>>(&self, font_chooser: &Self::Type, font_map: Option<&P>);
-    fn parent_font_map(&self, font_chooser: &Self::Type) -> Option<FontMap>;
-    fn parent_font_activated(&self, font_chooser: &Self::Type, font_name: &str);
+    fn parent_font_family(&self) -> Option<FontFamily>;
+    fn parent_font_face(&self) -> Option<FontFace>;
+    fn parent_font_size(&self) -> i32;
+    fn parent_set_filter_func(&self, callback: Option<FilterCallback>);
+    fn parent_set_font_map<P: IsA<FontMap>>(&self, font_map: Option<&P>);
+    fn parent_font_map(&self) -> Option<FontMap>;
+    fn parent_font_activated(&self, font_name: &str);
 }
 
 impl<O: FontChooserImpl> FontChooserImplExt for O {
-    fn parent_font_family(&self, font_chooser: &Self::Type) -> Option<FontFamily> {
+    fn parent_font_family(&self) -> Option<FontFamily> {
         unsafe {
             let type_data = Self::type_data();
             let parent_iface = type_data.as_ref().parent_interface::<FontChooser>()
@@ -96,14 +96,15 @@ impl<O: FontChooserImpl> FontChooserImplExt for O {
                 .get_font_family
                 .expect("no parent \"get_font_family\" implementation");
 
-            from_glib_none(f(font_chooser
+            from_glib_none(f(self
+                .instance()
                 .unsafe_cast_ref::<FontChooser>()
                 .to_glib_none()
                 .0))
         }
     }
 
-    fn parent_font_face(&self, font_chooser: &Self::Type) -> Option<FontFace> {
+    fn parent_font_face(&self) -> Option<FontFace> {
         unsafe {
             let type_data = Self::type_data();
             let parent_iface = type_data.as_ref().parent_interface::<FontChooser>()
@@ -113,21 +114,23 @@ impl<O: FontChooserImpl> FontChooserImplExt for O {
                 .get_font_face
                 .expect("no parent \"get_font_face\" implementation");
 
-            from_glib_none(f(font_chooser
+            from_glib_none(f(self
+                .instance()
                 .unsafe_cast_ref::<FontChooser>()
                 .to_glib_none()
                 .0))
         }
     }
 
-    fn parent_font_size(&self, font_chooser: &Self::Type) -> i32 {
+    fn parent_font_size(&self) -> i32 {
         unsafe {
             let type_data = Self::type_data();
             let parent_iface = type_data.as_ref().parent_interface::<FontChooser>()
                 as *const ffi::GtkFontChooserIface;
 
             if let Some(f) = (*parent_iface).get_font_size {
-                f(font_chooser
+                f(self
+                    .instance()
                     .unsafe_cast_ref::<FontChooser>()
                     .to_glib_none()
                     .0)
@@ -138,7 +141,7 @@ impl<O: FontChooserImpl> FontChooserImplExt for O {
         }
     }
 
-    fn parent_set_filter_func(&self, font_chooser: &Self::Type, callback: Option<FilterCallback>) {
+    fn parent_set_filter_func(&self, callback: Option<FilterCallback>) {
         unsafe {
             let type_data = Self::type_data();
             let parent_iface = type_data.as_ref().parent_interface::<FontChooser>()
@@ -147,7 +150,7 @@ impl<O: FontChooserImpl> FontChooserImplExt for O {
             if let Some(f) = (*parent_iface).set_filter_func {
                 if let Some(filter_callback) = callback {
                     f(
-                        font_chooser
+                        self.instance()
                             .unsafe_cast_ref::<FontChooser>()
                             .to_glib_none()
                             .0,
@@ -157,7 +160,7 @@ impl<O: FontChooserImpl> FontChooserImplExt for O {
                     )
                 } else {
                     f(
-                        font_chooser
+                        self.instance()
                             .unsafe_cast_ref::<FontChooser>()
                             .to_glib_none()
                             .0,
@@ -170,11 +173,7 @@ impl<O: FontChooserImpl> FontChooserImplExt for O {
         }
     }
 
-    fn parent_set_font_map<P: IsA<FontMap>>(
-        &self,
-        font_chooser: &Self::Type,
-        font_map: Option<&P>,
-    ) {
+    fn parent_set_font_map<P: IsA<FontMap>>(&self, font_map: Option<&P>) {
         unsafe {
             let type_data = Self::type_data();
             let parent_iface = type_data.as_ref().parent_interface::<FontChooser>()
@@ -184,7 +183,7 @@ impl<O: FontChooserImpl> FontChooserImplExt for O {
                 .set_font_map
                 .expect("no parent \"set_font_map\" implementation");
             f(
-                font_chooser
+                self.instance()
                     .unsafe_cast_ref::<FontChooser>()
                     .to_glib_none()
                     .0,
@@ -193,7 +192,7 @@ impl<O: FontChooserImpl> FontChooserImplExt for O {
         }
     }
 
-    fn parent_font_map(&self, font_chooser: &Self::Type) -> Option<FontMap> {
+    fn parent_font_map(&self) -> Option<FontMap> {
         unsafe {
             let type_data = Self::type_data();
             let parent_iface = type_data.as_ref().parent_interface::<FontChooser>()
@@ -203,21 +202,22 @@ impl<O: FontChooserImpl> FontChooserImplExt for O {
                 .get_font_map
                 .expect("no parent \"get_font_map\" implementation");
 
-            from_glib_none(f(font_chooser
+            from_glib_none(f(self
+                .instance()
                 .unsafe_cast_ref::<FontChooser>()
                 .to_glib_none()
                 .0))
         }
     }
 
-    fn parent_font_activated(&self, font_chooser: &Self::Type, font_name: &str) {
+    fn parent_font_activated(&self, font_name: &str) {
         unsafe {
             let type_data = Self::type_data();
             let parent_iface = type_data.as_ref().parent_interface::<FontChooser>()
                 as *const ffi::GtkFontChooserIface;
             if let Some(f) = (*parent_iface).font_activated {
                 f(
-                    font_chooser
+                    self.instance()
                         .unsafe_cast_ref::<FontChooser>()
                         .to_glib_none()
                         .0,
@@ -255,12 +255,11 @@ unsafe extern "C" fn font_chooser_get_font_family<T: FontChooserImpl>(
 ) -> *mut pango::ffi::PangoFontFamily {
     let instance = &*(font_chooser as *mut T::Instance);
     let imp = instance.imp();
-    let wrap = from_glib_borrow::<_, FontChooser>(font_chooser);
 
-    let ret = imp.font_family(wrap.unsafe_cast_ref());
+    let ret = imp.font_family();
     if let Some(font_family) = ret {
         let font_family = font_family.to_glib_full();
-        wrap.set_qdata(
+        imp.instance().set_qdata(
             *FONT_CHOOSER_GET_FONT_FAMILY_QUARK,
             PtrHolder(font_family, |ptr| {
                 glib::gobject_ffi::g_object_unref(ptr as *mut _)
@@ -279,12 +278,11 @@ unsafe extern "C" fn font_chooser_get_font_face<T: FontChooserImpl>(
 ) -> *mut pango::ffi::PangoFontFace {
     let instance = &*(font_chooser as *mut T::Instance);
     let imp = instance.imp();
-    let wrap = from_glib_borrow::<_, FontChooser>(font_chooser);
 
-    let ret = imp.font_face(wrap.unsafe_cast_ref());
+    let ret = imp.font_face();
     if let Some(font_face) = ret {
         let font_face = font_face.to_glib_full();
-        wrap.set_qdata(
+        imp.instance().set_qdata(
             *FONT_CHOOSER_GET_FONT_FACE_QUARK,
             PtrHolder(font_face, |ptr| {
                 glib::gobject_ffi::g_object_unref(ptr as *mut _);
@@ -302,7 +300,7 @@ unsafe extern "C" fn font_chooser_get_font_size<T: FontChooserImpl>(
     let instance = &*(font_chooser as *mut T::Instance);
     let imp = instance.imp();
 
-    imp.font_size(from_glib_borrow::<_, FontChooser>(font_chooser).unsafe_cast_ref())
+    imp.font_size()
 }
 
 unsafe extern "C" fn font_chooser_font_activated<T: FontChooserImpl>(
@@ -313,10 +311,7 @@ unsafe extern "C" fn font_chooser_font_activated<T: FontChooserImpl>(
     let imp = instance.imp();
     let font_name: Borrowed<GString> = from_glib_borrow(font_nameptr);
 
-    imp.font_activated(
-        from_glib_borrow::<_, FontChooser>(font_chooser).unsafe_cast_ref(),
-        &font_name,
-    )
+    imp.font_activated(&font_name)
 }
 
 unsafe extern "C" fn font_chooser_set_font_map<T: FontChooserImpl>(
@@ -327,10 +322,7 @@ unsafe extern "C" fn font_chooser_set_font_map<T: FontChooserImpl>(
     let imp = instance.imp();
     let font_map: Borrowed<Option<FontMap>> = from_glib_borrow(font_mapptr);
 
-    imp.set_font_map(
-        from_glib_borrow::<_, FontChooser>(font_chooser).unsafe_cast_ref(),
-        font_map.as_ref().as_ref(),
-    )
+    imp.set_font_map(font_map.as_ref().as_ref())
 }
 
 unsafe extern "C" fn font_chooser_get_font_map<T: FontChooserImpl>(
@@ -339,8 +331,7 @@ unsafe extern "C" fn font_chooser_get_font_map<T: FontChooserImpl>(
     let instance = &*(font_chooser as *mut T::Instance);
     let imp = instance.imp();
 
-    imp.font_map(from_glib_borrow::<_, FontChooser>(font_chooser).unsafe_cast_ref())
-        .to_glib_full()
+    imp.font_map().to_glib_full()
 }
 
 unsafe extern "C" fn font_chooser_set_filter_func<T: FontChooserImpl>(
@@ -362,8 +353,5 @@ unsafe extern "C" fn font_chooser_set_filter_func<T: FontChooserImpl>(
         })
     };
 
-    imp.set_filter_func(
-        from_glib_borrow::<_, FontChooser>(font_chooser).unsafe_cast_ref(),
-        callback,
-    );
+    imp.set_filter_func(callback);
 }

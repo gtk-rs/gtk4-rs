@@ -6,7 +6,7 @@ Macro helpers for GTK 4 bindings, part of [gtk4-rs](https://github.com/gtk-rs/gt
 
 ## Minimum supported Rust version
 
-Currently, the minimum supported Rust version is `1.57.0`.
+Currently, the minimum supported Rust version is `1.63.0`.
 
 ## Documentation
 
@@ -15,6 +15,12 @@ Currently, the minimum supported Rust version is `1.57.0`.
 ## Available Macros
 
 - `CompositeTemplate`
+
+### Features
+
+| Feature | Description |
+| ---     | ----------- |
+| `xml_validation` | Check the existence of `#[template_child]` fields in the UI file. Only works with `#[template(string = "")]` |
 
 ### See Also
 

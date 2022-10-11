@@ -3,6 +3,7 @@
 use crate::ParamSpecExpression;
 
 use glib::gobject_ffi;
+use glib::prelude::*;
 use glib::translate::*;
 use glib::{ParamSpec, StaticType, Value};
 
@@ -54,11 +55,15 @@ impl ParamSpecExpression {
     }
 
     pub fn upcast(self) -> ParamSpec {
-        unsafe { from_glib_full(self.to_glib_full() as *mut gobject_ffi::GParamSpec) }
+        unsafe {
+            from_glib_full(
+                IntoGlibPtr::<*mut _>::into_glib_ptr(self) as *mut gobject_ffi::GParamSpec
+            )
+        }
     }
 
     pub fn upcast_ref(&self) -> &ParamSpec {
-        &*self
+        self
     }
 }
 
@@ -75,6 +80,32 @@ pub struct ParamSpecExpressionBuilder<'a> {
     flags: glib::ParamFlags,
 }
 
+impl<'a> ParamSpecBuilderExt<'a> for ParamSpecExpressionBuilder<'a> {
+    // rustdoc-stripper-ignore-next
+    /// Default: `self.name`
+    fn set_nick(&mut self, nick: Option<&'a str>) {
+        self.nick = nick;
+    }
+
+    // rustdoc-stripper-ignore-next
+    /// Default: `self.name`
+    fn set_blurb(&mut self, blurb: Option<&'a str>) {
+        self.blurb = blurb;
+    }
+
+    // rustdoc-stripper-ignore-next
+    /// Default: `glib::ParamFlags::READWRITE`
+    fn set_flags(&mut self, flags: glib::ParamFlags) {
+        self.flags = flags;
+    }
+
+    // rustdoc-stripper-ignore-next
+    /// Implementation detail.
+    fn current_flags(&self) -> glib::ParamFlags {
+        self.flags
+    }
+}
+
 impl<'a> ParamSpecExpressionBuilder<'a> {
     fn new(name: &'a str) -> Self {
         assert_initialized_main_thread!();
@@ -82,27 +113,6 @@ impl<'a> ParamSpecExpressionBuilder<'a> {
             name,
             ..Default::default()
         }
-    }
-
-    // rustdoc-stripper-ignore-next
-    /// Default: `self.name`
-    pub fn nick(mut self, nick: &'a str) -> Self {
-        self.nick = Some(nick);
-        self
-    }
-
-    // rustdoc-stripper-ignore-next
-    /// Default: `self.name`
-    pub fn blurb(mut self, blurb: &'a str) -> Self {
-        self.blurb = Some(blurb);
-        self
-    }
-
-    // rustdoc-stripper-ignore-next
-    /// Default: `glib::ParamFlags::READWRITE`
-    pub fn flags(mut self, flags: glib::ParamFlags) -> Self {
-        self.flags = flags;
-        self
     }
 
     #[must_use]
@@ -144,7 +154,7 @@ impl glib::value::ToValue for ParamSpecExpression {
             let mut value = Value::from_type(Self::static_type());
             gobject_ffi::g_value_take_param(
                 value.to_glib_none_mut().0,
-                self.to_glib_full() as *mut _,
+                ToGlibPtr::<*mut _>::to_glib_full(self) as *mut _,
             );
             value
         }
@@ -161,7 +171,10 @@ impl glib::value::ToValueOptional for ParamSpecExpression {
         assert_initialized_main_thread!();
         let mut value = Value::for_value_type::<Self>();
         unsafe {
-            gobject_ffi::g_value_take_param(value.to_glib_none_mut().0, s.to_glib_full() as *mut _);
+            gobject_ffi::g_value_take_param(
+                value.to_glib_none_mut().0,
+                ToGlibPtr::<*mut _>::to_glib_full(&s) as *mut _,
+            );
         }
 
         value
@@ -174,7 +187,7 @@ mod tests {
     use crate as gtk4;
 
     #[test]
-    fn test_paramspec_expression() {
+    fn paramspec_expression() {
         let pspec = ParamSpecExpression::new(
             "expression",
             "Expression",
@@ -184,5 +197,18 @@ mod tests {
 
         let expr_pspec = pspec.downcast::<ParamSpecExpression>();
         assert!(expr_pspec.is_ok());
+    }
+
+    #[test]
+    fn paramspec_expression_builder() {
+        let pspec = ParamSpecExpression::builder("expression")
+            .construct_only()
+            .read_only()
+            .build();
+
+        assert_eq!(
+            pspec.flags(),
+            glib::ParamFlags::CONSTRUCT_ONLY | glib::ParamFlags::READABLE
+        );
     }
 }

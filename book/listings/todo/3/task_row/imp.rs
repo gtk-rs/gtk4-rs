@@ -7,7 +7,7 @@ use gtk::{glib, CheckButton, CompositeTemplate, Label};
 
 // Object holding the state
 #[derive(Default, CompositeTemplate)]
-#[template(resource = "/org/gtk-rs/Todo3/task_row.ui")]
+#[template(resource = "/org/gtk_rs/Todo3/task_row.ui")]
 pub struct TaskRow {
     #[template_child]
     pub completed_button: TemplateChild<CheckButton>,
@@ -28,7 +28,7 @@ impl ObjectSubclass for TaskRow {
 
     fn class_init(klass: &mut Self::Class) {
         klass.bind_template();
-        klass.set_css_name("todo-row");
+        klass.set_css_name("task-row");
     }
 
     fn instance_init(obj: &glib::subclass::InitializingObject<Self>) {

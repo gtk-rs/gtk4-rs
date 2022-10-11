@@ -5,7 +5,7 @@ use gtk::prelude::*;
 use gtk::{Application, Button};
 
 // ANCHOR: main
-const APP_ID: &str = "org.gtk-rs.SavingWindowState1";
+const APP_ID: &str = "org.gtk_rs.SavingWindowState1";
 
 fn main() {
     // Create a new application

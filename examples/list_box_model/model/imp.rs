@@ -21,13 +21,13 @@ impl ObjectSubclass for Model {
 impl ObjectImpl for Model {}
 
 impl ListModelImpl for Model {
-    fn item_type(&self, _list_model: &Self::Type) -> glib::Type {
+    fn item_type(&self) -> glib::Type {
         RowData::static_type()
     }
-    fn n_items(&self, _list_model: &Self::Type) -> u32 {
+    fn n_items(&self) -> u32 {
         self.0.borrow().len() as u32
     }
-    fn item(&self, _list_model: &Self::Type, position: u32) -> Option<glib::Object> {
+    fn item(&self, position: u32) -> Option<glib::Object> {
         self.0
             .borrow()
             .get(position as usize)

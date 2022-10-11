@@ -35,66 +35,63 @@ impl ObjectImpl for SqueezerBin {
     fn properties() -> &'static [glib::ParamSpec] {
         static PROPERTIES: Lazy<Vec<glib::ParamSpec>> = Lazy::new(|| {
             vec![
-                glib::ParamSpecObject::new(
-                    "child",
-                    "Child",
-                    "The child of the widget",
-                    gtk::Widget::static_type(),
-                    glib::ParamFlags::READWRITE | glib::ParamFlags::EXPLICIT_NOTIFY,
-                ),
-                glib::ParamSpecBoolean::new(
-                    "keep-aspect-ratio",
-                    "Keep aspect ratio",
-                    "If true it keeps the aspect ratio of the widget",
-                    false,
-                    glib::ParamFlags::READWRITE | glib::ParamFlags::EXPLICIT_NOTIFY,
-                ),
+                glib::ParamSpecObject::builder::<gtk::Widget>("child")
+                    .explicit_notify()
+                    .build(),
+                glib::ParamSpecBoolean::builder("keep-aspect-ratio")
+                    .explicit_notify()
+                    .build(),
             ]
         });
 
         PROPERTIES.as_ref()
     }
 
-    fn property(&self, obj: &Self::Type, _id: usize, pspec: &ParamSpec) -> Value {
+    fn property(&self, _id: usize, pspec: &ParamSpec) -> Value {
+        let obj = self.instance();
         match pspec.name() {
-            "child" => self.child(obj).to_value(),
-            "keep-aspect-ratio" => self.keep_aspect_ratio(obj).to_value(),
+            "child" => self.child(&obj).to_value(),
+            "keep-aspect-ratio" => self.keep_aspect_ratio(&obj).to_value(),
             _ => unimplemented!(),
         }
     }
 
-    fn set_property(&self, obj: &Self::Type, _id: usize, value: &Value, pspec: &ParamSpec) {
+    fn set_property(&self, _id: usize, value: &Value, pspec: &ParamSpec) {
+        let obj = self.instance();
         match pspec.name() {
             "child" => {
-                self.set_child(obj, value.get::<gtk::Widget>().ok().as_ref());
+                self.set_child(&obj, value.get::<gtk::Widget>().ok().as_ref());
             }
             "keep-aspect-ratio" => {
-                self.set_keep_aspect_ratio(obj, value.get().unwrap());
+                self.set_keep_aspect_ratio(&obj, value.get().unwrap());
             }
             _ => unimplemented!(),
         }
     }
 
-    fn constructed(&self, obj: &Self::Type) {
+    fn constructed(&self) {
+        let obj = self.instance();
+
         obj.set_halign(gtk::Align::Fill);
         obj.set_valign(gtk::Align::Fill);
         obj.set_hexpand(true);
         obj.set_vexpand(true);
 
-        self.parent_constructed(obj);
+        self.parent_constructed();
     }
 
-    fn dispose(&self, obj: &Self::Type) {
-        if let Some(child) = obj.child() {
+    fn dispose(&self) {
+        if let Some(child) = self.instance().child() {
             child.unparent();
         }
     }
 }
 
 impl WidgetImpl for SqueezerBin {
-    fn size_allocate(&self, widget: &Self::Type, width: i32, height: i32, baseline: i32) {
+    fn size_allocate(&self, width: i32, height: i32, baseline: i32) {
+        let widget = self.instance();
         if let Some(child) = widget.child() {
-            let ((_, horizontal_size), (_, vertical_size)) = child_size(widget);
+            let ((_, horizontal_size), (_, vertical_size)) = child_size(&*widget);
 
             let (mut horizontal_zoom, mut vertical_zoom) = (
                 width as f32 / horizontal_size as f32,
@@ -109,9 +106,7 @@ impl WidgetImpl for SqueezerBin {
                 }
             }
 
-            let transform = gsk::Transform::new()
-                .scale(horizontal_zoom, vertical_zoom)
-                .unwrap();
+            let transform = gsk::Transform::new().scale(horizontal_zoom, vertical_zoom);
 
             child.allocate(
                 (width as f32 / horizontal_zoom) as i32,

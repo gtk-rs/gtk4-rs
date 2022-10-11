@@ -9,38 +9,17 @@ use glib::translate::*;
 use glib::{Cast, Value};
 
 pub trait TreeDragDestImpl: ObjectImpl {
-    fn drag_data_received(
-        &self,
-        tree_drag_dest: &Self::Type,
-        dest: &TreePath,
-        value: Value,
-    ) -> bool;
-    fn row_drop_possible(&self, tree_drag_dest: &Self::Type, dest: &TreePath, value: Value)
-        -> bool;
+    fn drag_data_received(&self, dest: &TreePath, value: Value) -> bool;
+    fn row_drop_possible(&self, dest: &TreePath, value: Value) -> bool;
 }
 
 pub trait TreeDragDestImplExt: ObjectSubclass {
-    fn parent_drag_data_received(
-        &self,
-        tree_drag_dest: &Self::Type,
-        dest: &TreePath,
-        value: Value,
-    ) -> bool;
-    fn parent_row_drop_possible(
-        &self,
-        tree_drag_dest: &Self::Type,
-        dest: &TreePath,
-        value: Value,
-    ) -> bool;
+    fn parent_drag_data_received(&self, dest: &TreePath, value: Value) -> bool;
+    fn parent_row_drop_possible(&self, dest: &TreePath, value: Value) -> bool;
 }
 
 impl<T: TreeDragDestImpl> TreeDragDestImplExt for T {
-    fn parent_drag_data_received(
-        &self,
-        tree_drag_dest: &Self::Type,
-        dest: &TreePath,
-        value: Value,
-    ) -> bool {
+    fn parent_drag_data_received(&self, dest: &TreePath, value: Value) -> bool {
         unsafe {
             let type_data = Self::type_data();
             let parent_iface = type_data.as_ref().parent_interface::<TreeDragDest>()
@@ -51,7 +30,7 @@ impl<T: TreeDragDestImpl> TreeDragDestImplExt for T {
                 .expect("no parent \"drag_data_received\" implementation");
 
             from_glib(func(
-                tree_drag_dest
+                self.instance()
                     .unsafe_cast_ref::<TreeDragDest>()
                     .to_glib_none()
                     .0,
@@ -61,12 +40,7 @@ impl<T: TreeDragDestImpl> TreeDragDestImplExt for T {
         }
     }
 
-    fn parent_row_drop_possible(
-        &self,
-        tree_drag_dest: &Self::Type,
-        dest: &TreePath,
-        value: Value,
-    ) -> bool {
+    fn parent_row_drop_possible(&self, dest: &TreePath, value: Value) -> bool {
         unsafe {
             let type_data = Self::type_data();
             let parent_iface = type_data.as_ref().parent_interface::<TreeDragDest>()
@@ -77,7 +51,7 @@ impl<T: TreeDragDestImpl> TreeDragDestImplExt for T {
                 .expect("no parent \"drag_data_received\" implementation");
 
             from_glib(func(
-                tree_drag_dest
+                self.instance()
                     .unsafe_cast_ref::<TreeDragDest>()
                     .to_glib_none()
                     .0,
@@ -113,12 +87,7 @@ unsafe extern "C" fn tree_drag_dest_drag_data_received<T: TreeDragDestImpl>(
     let dest: Borrowed<TreePath> = from_glib_borrow(destptr);
     let value: Value = from_glib_none(valueptr);
 
-    imp.drag_data_received(
-        from_glib_borrow::<_, TreeDragDest>(tree_drag_dest).unsafe_cast_ref(),
-        &dest,
-        value,
-    )
-    .into_glib()
+    imp.drag_data_received(&dest, value).into_glib()
 }
 
 unsafe extern "C" fn tree_drag_dest_row_drop_possible<T: TreeDragDestImpl>(
@@ -131,10 +100,5 @@ unsafe extern "C" fn tree_drag_dest_row_drop_possible<T: TreeDragDestImpl>(
     let dest: Borrowed<TreePath> = from_glib_borrow(destptr);
     let value: Value = from_glib_none(valueptr);
 
-    imp.row_drop_possible(
-        from_glib_borrow::<_, TreeDragDest>(tree_drag_dest).unsafe_cast_ref(),
-        &dest,
-        value,
-    )
-    .into_glib()
+    imp.row_drop_possible(&dest, value).into_glib()
 }

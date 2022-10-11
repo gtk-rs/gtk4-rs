@@ -107,7 +107,7 @@ But why did we not do the same thing with our multi-threaded example?
 # fn main() {
 #     // Create a new application
 #     let app = Application::builder()
-#        .application_id("org.gtk-rs.MainEventLoop6")
+#        .application_id("org.gtk_rs.MainEventLoop6")
 #        .build();
 #
 #     // Connect to "activate" signal

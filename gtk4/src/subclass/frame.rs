@@ -9,17 +9,17 @@ use glib::translate::*;
 use glib::Cast;
 
 pub trait FrameImpl: FrameImplExt + WidgetImpl {
-    fn compute_child_allocation(&self, frame: &Self::Type) -> Allocation {
-        self.parent_compute_child_allocation(frame)
+    fn compute_child_allocation(&self) -> Allocation {
+        self.parent_compute_child_allocation()
     }
 }
 
 pub trait FrameImplExt: ObjectSubclass {
-    fn parent_compute_child_allocation(&self, frame: &Self::Type) -> Allocation;
+    fn parent_compute_child_allocation(&self) -> Allocation;
 }
 
 impl<T: FrameImpl> FrameImplExt for T {
-    fn parent_compute_child_allocation(&self, frame: &Self::Type) -> Allocation {
+    fn parent_compute_child_allocation(&self) -> Allocation {
         unsafe {
             let data = T::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkFrameClass;
@@ -28,7 +28,7 @@ impl<T: FrameImpl> FrameImplExt for T {
                 .expect("No parent class impl for \"compute_child_allocation\"");
             let mut allocation = Allocation::uninitialized();
             f(
-                frame.unsafe_cast_ref::<Frame>().to_glib_none().0,
+                self.instance().unsafe_cast_ref::<Frame>().to_glib_none().0,
                 allocation.to_glib_none_mut().0,
             );
             allocation
@@ -51,8 +51,7 @@ unsafe extern "C" fn frame_compute_child_allocation<T: FrameImpl>(
 ) {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
-    let wrap: Borrowed<Frame> = from_glib_borrow(ptr);
 
-    let allocation = imp.compute_child_allocation(wrap.unsafe_cast_ref());
+    let allocation = imp.compute_child_allocation();
     *allocationptr = *allocation.to_glib_none().0;
 }

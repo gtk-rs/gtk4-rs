@@ -15,7 +15,7 @@ glib::wrapper! {
 // Constructor for new instances. This simply calls glib::Object::new()
 impl Model {
     pub fn new() -> Model {
-        glib::Object::new(&[]).expect("Failed to create Model")
+        glib::Object::new(&[])
     }
 
     pub fn append(&self, obj: &RowData) {

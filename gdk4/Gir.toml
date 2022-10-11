@@ -452,8 +452,11 @@ status = "generate"
     [[object.function]]
     name = "get_files"
         [[object.function.parameter]]
-        pattern = "*" # work around not being able to target self param (https://github.com/gtk-rs/gir/issues/1246)
+        name = "file_list"
         const = true
+    [[object.function]]
+    name = "new_from_list"
+    ignore = true # it is the same as new_from_array
 
 [[object]]
 name = "Gdk.GLContext"

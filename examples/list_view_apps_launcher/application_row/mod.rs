@@ -17,7 +17,7 @@ impl Default for ApplicationRow {
 
 impl ApplicationRow {
     pub fn new() -> Self {
-        glib::Object::new(&[]).expect("Failed to create ApplicationRow")
+        glib::Object::new(&[])
     }
 
     pub fn set_app_info(&self, app_info: &gio::AppInfo) {

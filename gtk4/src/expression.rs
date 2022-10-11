@@ -49,7 +49,7 @@ impl Expression {
 
     pub fn type_(&self) -> Type {
         unsafe {
-            let ptr = self.to_glib_none().0;
+            let ptr = self.as_ptr();
             from_glib((*(*(ptr as *mut glib::gobject_ffi::GTypeInstance)).g_class).g_type)
         }
     }
@@ -126,7 +126,7 @@ impl Expression {
     where
         R: glib::value::ValueType,
     {
-        crate::ClosureExpression::new::<R, _, _>(&[self], closure)
+        crate::ClosureExpression::new::<R>([self], closure)
     }
 
     // rustdoc-stripper-ignore-next
@@ -137,7 +137,7 @@ impl Expression {
         F: Fn(&[glib::Value]) -> R + 'static,
         R: glib::value::ValueType,
     {
-        crate::ClosureExpression::with_callback(&[self], f)
+        crate::ClosureExpression::with_callback([self], f)
     }
 }
 
@@ -256,7 +256,7 @@ macro_rules! define_expression {
             }
 
             pub fn upcast_ref(&self) -> &crate::Expression {
-                &*self
+                self
             }
         }
 
@@ -288,7 +288,7 @@ macro_rules! define_expression {
                 unsafe {
                     ffi::gtk_value_set_expression(
                         value.to_glib_none_mut().0,
-                        self.to_glib_none().0 as *mut _,
+                        self.as_ptr() as *mut _,
                     )
                 }
                 value
@@ -307,7 +307,7 @@ macro_rules! define_expression {
                 unsafe {
                     ffi::gtk_value_set_expression(
                         value.to_glib_none_mut().0,
-                        s.to_glib_none().0 as *mut _,
+                        s.map(|s| s.as_ptr()).unwrap_or(std::ptr::null_mut()) as *mut _,
                     )
                 }
                 value

@@ -2,7 +2,7 @@ use gdk::Display;
 use gtk::prelude::*;
 use gtk::{gdk, Application, ApplicationWindow, Button, CssProvider, StyleContext};
 
-const APP_ID: &str = "org.gtk-rs.Css3";
+const APP_ID: &str = "org.gtk_rs.Css3";
 
 fn main() {
     // Create a new application

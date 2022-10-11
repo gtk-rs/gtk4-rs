@@ -9,26 +9,21 @@ use glib::translate::*;
 use glib::Cast;
 
 pub trait TreeDragSourceImpl: ObjectImpl {
-    fn row_draggable(&self, tree_drag_source: &Self::Type, path: &TreePath) -> bool {
-        self.parent_row_draggable(tree_drag_source, path)
+    fn row_draggable(&self, path: &TreePath) -> bool {
+        self.parent_row_draggable(path)
     }
-    fn drag_data_get(&self, tree_drag_source: &Self::Type, path: &TreePath)
-        -> gdk::ContentProvider;
-    fn drag_data_delete(&self, tree_drag_source: &Self::Type, path: &TreePath) -> bool;
+    fn drag_data_get(&self, path: &TreePath) -> gdk::ContentProvider;
+    fn drag_data_delete(&self, path: &TreePath) -> bool;
 }
 
 pub trait TreeDragSourceImplExt: ObjectSubclass {
-    fn parent_row_draggable(&self, _tree_drag_source: &Self::Type, _path: &TreePath) -> bool;
-    fn parent_drag_data_get(
-        &self,
-        tree_drag_source: &Self::Type,
-        path: &TreePath,
-    ) -> gdk::ContentProvider;
-    fn parent_drag_data_delete(&self, tree_drag_source: &Self::Type, path: &TreePath) -> bool;
+    fn parent_row_draggable(&self, _path: &TreePath) -> bool;
+    fn parent_drag_data_get(&self, path: &TreePath) -> gdk::ContentProvider;
+    fn parent_drag_data_delete(&self, path: &TreePath) -> bool;
 }
 
 impl<T: TreeDragSourceImpl> TreeDragSourceImplExt for T {
-    fn parent_row_draggable(&self, tree_drag_source: &Self::Type, path: &TreePath) -> bool {
+    fn parent_row_draggable(&self, path: &TreePath) -> bool {
         unsafe {
             let type_data = Self::type_data();
             let parent_iface = type_data.as_ref().parent_interface::<TreeDragSource>()
@@ -36,7 +31,7 @@ impl<T: TreeDragSourceImpl> TreeDragSourceImplExt for T {
 
             if let Some(func) = (*parent_iface).row_draggable {
                 from_glib(func(
-                    tree_drag_source
+                    self.instance()
                         .unsafe_cast_ref::<TreeDragSource>()
                         .to_glib_none()
                         .0,
@@ -49,11 +44,7 @@ impl<T: TreeDragSourceImpl> TreeDragSourceImplExt for T {
         }
     }
 
-    fn parent_drag_data_get(
-        &self,
-        tree_drag_source: &Self::Type,
-        path: &TreePath,
-    ) -> gdk::ContentProvider {
+    fn parent_drag_data_get(&self, path: &TreePath) -> gdk::ContentProvider {
         unsafe {
             let type_data = Self::type_data();
             let parent_iface = type_data.as_ref().parent_interface::<TreeDragSource>()
@@ -64,7 +55,7 @@ impl<T: TreeDragSourceImpl> TreeDragSourceImplExt for T {
                 .expect("no parent \"drag_data_get\" implementation");
 
             from_glib_full(func(
-                tree_drag_source
+                self.instance()
                     .unsafe_cast_ref::<TreeDragSource>()
                     .to_glib_none()
                     .0,
@@ -73,7 +64,7 @@ impl<T: TreeDragSourceImpl> TreeDragSourceImplExt for T {
         }
     }
 
-    fn parent_drag_data_delete(&self, tree_drag_source: &Self::Type, path: &TreePath) -> bool {
+    fn parent_drag_data_delete(&self, path: &TreePath) -> bool {
         unsafe {
             let type_data = Self::type_data();
             let parent_iface = type_data.as_ref().parent_interface::<TreeDragSource>()
@@ -84,7 +75,7 @@ impl<T: TreeDragSourceImpl> TreeDragSourceImplExt for T {
                 .expect("no parent \"drag_data_delete\" implementation");
 
             from_glib(func(
-                tree_drag_source
+                self.instance()
                     .unsafe_cast_ref::<TreeDragSource>()
                     .to_glib_none()
                     .0,
@@ -118,11 +109,7 @@ unsafe extern "C" fn tree_drag_source_row_draggable<T: TreeDragSourceImpl>(
 
     let path: Borrowed<TreePath> = from_glib_borrow(pathptr);
 
-    imp.row_draggable(
-        from_glib_borrow::<_, TreeDragSource>(tree_drag_source).unsafe_cast_ref(),
-        &path,
-    )
-    .into_glib()
+    imp.row_draggable(&path).into_glib()
 }
 
 unsafe extern "C" fn tree_drag_source_drag_data_get<T: TreeDragSourceImpl>(
@@ -133,11 +120,7 @@ unsafe extern "C" fn tree_drag_source_drag_data_get<T: TreeDragSourceImpl>(
     let imp = instance.imp();
     let path: Borrowed<TreePath> = from_glib_borrow(pathptr);
 
-    imp.drag_data_get(
-        from_glib_borrow::<_, TreeDragSource>(tree_drag_source).unsafe_cast_ref(),
-        &path,
-    )
-    .to_glib_full()
+    imp.drag_data_get(&path).to_glib_full()
 }
 
 unsafe extern "C" fn tree_drag_source_drag_data_delete<T: TreeDragSourceImpl>(
@@ -147,9 +130,5 @@ unsafe extern "C" fn tree_drag_source_drag_data_delete<T: TreeDragSourceImpl>(
     let instance = &*(tree_drag_source as *mut T::Instance);
     let imp = instance.imp();
     let path: Borrowed<TreePath> = from_glib_borrow(pathptr);
-    imp.drag_data_delete(
-        from_glib_borrow::<_, TreeDragSource>(tree_drag_source).unsafe_cast_ref(),
-        &path,
-    )
-    .into_glib()
+    imp.drag_data_delete(&path).into_glib()
 }

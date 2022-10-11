@@ -9,58 +9,51 @@ use glib::translate::*;
 use glib::Cast;
 
 pub trait RangeImpl: RangeImplExt + WidgetImpl {
-    fn adjust_bounds(&self, range: &Self::Type, new_value: f64) {
-        self.parent_adjust_bounds(range, new_value)
+    fn adjust_bounds(&self, new_value: f64) {
+        self.parent_adjust_bounds(new_value)
     }
 
-    fn change_value(&self, range: &Self::Type, scroll_type: ScrollType, new_value: f64) -> bool {
-        self.parent_change_value(range, scroll_type, new_value)
+    fn change_value(&self, scroll_type: ScrollType, new_value: f64) -> bool {
+        self.parent_change_value(scroll_type, new_value)
     }
 
     #[doc(alias = "get_range_border")]
-    fn range_border(&self, range: &Self::Type) -> Border {
-        self.parent_range_border(range)
+    fn range_border(&self) -> Border {
+        self.parent_range_border()
     }
 
-    fn move_slider(&self, range: &Self::Type, scroll_type: ScrollType) {
-        self.parent_move_slider(range, scroll_type)
+    fn move_slider(&self, scroll_type: ScrollType) {
+        self.parent_move_slider(scroll_type)
     }
 
-    fn value_changed(&self, range: &Self::Type) {
-        self.parent_value_changed(range)
+    fn value_changed(&self) {
+        self.parent_value_changed()
     }
 }
 
 pub trait RangeImplExt: ObjectSubclass {
-    fn parent_adjust_bounds(&self, range: &Self::Type, new_value: f64);
-    fn parent_change_value(
-        &self,
-        range: &Self::Type,
-        scroll_type: ScrollType,
-        new_value: f64,
-    ) -> bool;
-    fn parent_range_border(&self, range: &Self::Type) -> Border;
-    fn parent_move_slider(&self, range: &Self::Type, scroll_type: ScrollType);
-    fn parent_value_changed(&self, range: &Self::Type);
+    fn parent_adjust_bounds(&self, new_value: f64);
+    fn parent_change_value(&self, scroll_type: ScrollType, new_value: f64) -> bool;
+    fn parent_range_border(&self) -> Border;
+    fn parent_move_slider(&self, scroll_type: ScrollType);
+    fn parent_value_changed(&self);
 }
 
 impl<T: RangeImpl> RangeImplExt for T {
-    fn parent_adjust_bounds(&self, range: &Self::Type, new_value: f64) {
+    fn parent_adjust_bounds(&self, new_value: f64) {
         unsafe {
             let data = T::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkRangeClass;
             if let Some(f) = (*parent_class).adjust_bounds {
-                f(range.unsafe_cast_ref::<Range>().to_glib_none().0, new_value)
+                f(
+                    self.instance().unsafe_cast_ref::<Range>().to_glib_none().0,
+                    new_value,
+                )
             }
         }
     }
 
-    fn parent_change_value(
-        &self,
-        range: &Self::Type,
-        scroll_type: ScrollType,
-        new_value: f64,
-    ) -> bool {
+    fn parent_change_value(&self, scroll_type: ScrollType, new_value: f64) -> bool {
         unsafe {
             let data = T::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkRangeClass;
@@ -68,21 +61,21 @@ impl<T: RangeImpl> RangeImplExt for T {
                 .change_value
                 .expect("No parent class impl for \"change_value\"");
             from_glib(f(
-                range.unsafe_cast_ref::<Range>().to_glib_none().0,
+                self.instance().unsafe_cast_ref::<Range>().to_glib_none().0,
                 scroll_type.into_glib(),
                 new_value,
             ))
         }
     }
 
-    fn parent_range_border(&self, range: &Self::Type) -> Border {
+    fn parent_range_border(&self) -> Border {
         unsafe {
             let data = T::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkRangeClass;
             let mut border = Border::default();
             if let Some(f) = (*parent_class).get_range_border {
                 f(
-                    range.unsafe_cast_ref::<Range>().to_glib_none().0,
+                    self.instance().unsafe_cast_ref::<Range>().to_glib_none().0,
                     border.to_glib_none_mut().0,
                 );
             }
@@ -90,25 +83,25 @@ impl<T: RangeImpl> RangeImplExt for T {
         }
     }
 
-    fn parent_move_slider(&self, range: &Self::Type, scroll_type: ScrollType) {
+    fn parent_move_slider(&self, scroll_type: ScrollType) {
         unsafe {
             let data = T::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkRangeClass;
             if let Some(f) = (*parent_class).move_slider {
                 f(
-                    range.unsafe_cast_ref::<Range>().to_glib_none().0,
+                    self.instance().unsafe_cast_ref::<Range>().to_glib_none().0,
                     scroll_type.into_glib(),
                 )
             }
         }
     }
 
-    fn parent_value_changed(&self, range: &Self::Type) {
+    fn parent_value_changed(&self) {
         unsafe {
             let data = T::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkRangeClass;
             if let Some(f) = (*parent_class).value_changed {
-                f(range.unsafe_cast_ref::<Range>().to_glib_none().0)
+                f(self.instance().unsafe_cast_ref::<Range>().to_glib_none().0)
             }
         }
     }
@@ -130,9 +123,8 @@ unsafe impl<T: RangeImpl> IsSubclassable<T> for Range {
 unsafe extern "C" fn range_adjust_bounds<T: RangeImpl>(ptr: *mut ffi::GtkRange, new_value: f64) {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
-    let wrap: Borrowed<Range> = from_glib_borrow(ptr);
 
-    imp.adjust_bounds(wrap.unsafe_cast_ref(), new_value)
+    imp.adjust_bounds(new_value)
 }
 
 unsafe extern "C" fn range_change_value<T: RangeImpl>(
@@ -142,9 +134,8 @@ unsafe extern "C" fn range_change_value<T: RangeImpl>(
 ) -> glib::ffi::gboolean {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
-    let wrap: Borrowed<Range> = from_glib_borrow(ptr);
 
-    imp.change_value(wrap.unsafe_cast_ref(), from_glib(scroll_type), new_value)
+    imp.change_value(from_glib(scroll_type), new_value)
         .into_glib()
 }
 
@@ -154,9 +145,8 @@ unsafe extern "C" fn range_get_range_border<T: RangeImpl>(
 ) {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
-    let wrap: Borrowed<Range> = from_glib_borrow(ptr);
 
-    let border = imp.range_border(wrap.unsafe_cast_ref());
+    let border = imp.range_border();
     *borderptr = *border.to_glib_none().0;
 }
 
@@ -166,15 +156,13 @@ unsafe extern "C" fn range_move_slider<T: RangeImpl>(
 ) {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
-    let wrap: Borrowed<Range> = from_glib_borrow(ptr);
 
-    imp.move_slider(wrap.unsafe_cast_ref(), from_glib(scroll_type))
+    imp.move_slider(from_glib(scroll_type))
 }
 
 unsafe extern "C" fn range_value_changed<T: RangeImpl>(ptr: *mut ffi::GtkRange) {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
-    let wrap: Borrowed<Range> = from_glib_borrow(ptr);
 
-    imp.value_changed(wrap.unsafe_cast_ref())
+    imp.value_changed()
 }

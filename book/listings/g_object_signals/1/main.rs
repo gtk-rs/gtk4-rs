@@ -2,7 +2,7 @@ use glib::closure_local;
 use gtk::prelude::*;
 use gtk::{glib, Application, ApplicationWindow, Button};
 
-const APP_ID: &str = "org.gtk-rs.GObjectSignals1";
+const APP_ID: &str = "org.gtk_rs.GObjectSignals1";
 
 fn main() {
     // Create a new application

@@ -7,7 +7,7 @@ use glib::subclass::InitializingObject;
 use gtk::glib::Cast;
 use gtk::prelude::*;
 use gtk::subclass::prelude::*;
-use gtk::{gio, glib, CompositeTemplate, Entry, ListView, MenuButton};
+use gtk::{gio, glib, CompositeTemplate, Entry, ListView};
 use once_cell::sync::OnceCell;
 
 use crate::task_object::{TaskData, TaskObject};
@@ -15,15 +15,13 @@ use crate::utils::data_path;
 
 // Object holding the state
 #[derive(CompositeTemplate, Default)]
-#[template(resource = "/org/gtk-rs/Todo3/window.ui")]
+#[template(resource = "/org/gtk_rs/Todo3/window.ui")]
 pub struct Window {
     #[template_child]
     pub entry: TemplateChild<Entry>,
     #[template_child]
-    pub menu_button: TemplateChild<MenuButton>,
-    #[template_child]
     pub tasks_list: TemplateChild<ListView>,
-    pub current_tasks: RefCell<Option<gio::ListStore>>,
+    pub tasks: RefCell<Option<gio::ListStore>>,
     pub settings: OnceCell<Settings>,
 }
 
@@ -68,14 +66,14 @@ impl WindowImpl for Window {
     fn close_request(&self, window: &Self::Type) -> Inhibit {
         // Store task data in vector
         let backup_data: Vec<TaskData> = window
-            .current_tasks()
+            .tasks()
             .snapshot()
             .iter()
             .filter_map(Cast::downcast_ref::<TaskObject>)
             .map(TaskObject::task_data)
             .collect();
 
-        // Save state in file
+        // Save state to file
         let file = File::create(data_path()).expect("Could not create json file.");
         serde_json::to_writer(file, &backup_data)
             .expect("Could not write data to json file");

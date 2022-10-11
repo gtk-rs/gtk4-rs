@@ -28,32 +28,30 @@ impl ObjectSubclass for CustomLayoutChild {
 impl ObjectImpl for CustomLayoutChild {
     fn properties() -> &'static [ParamSpec] {
         static PROPERTIES: Lazy<Vec<ParamSpec>> = Lazy::new(|| {
-            vec![glib::ParamSpecBoxed::new(
-                "color",
-                "color",
-                "Background color",
-                gdk::RGBA::static_type(),
-                glib::ParamFlags::CONSTRUCT_ONLY | glib::ParamFlags::READWRITE,
-            )]
+            vec![glib::ParamSpecBoxed::builder::<gdk::RGBA>("color")
+                .construct_only()
+                .build()]
         });
         PROPERTIES.as_ref()
     }
 
-    fn property(&self, _obj: &Self::Type, _id: usize, pspec: &ParamSpec) -> Value {
+    fn property(&self, _id: usize, pspec: &ParamSpec) -> Value {
         match pspec.name() {
             "color" => self.color.borrow().to_value(),
             _ => unreachable!(),
         }
     }
 
-    fn set_property(&self, _obj: &Self::Type, _id: usize, value: &Value, pspec: &ParamSpec) {
+    fn set_property(&self, _id: usize, value: &Value, pspec: &ParamSpec) {
         match pspec.name() {
             "color" => self.color.replace(value.get().unwrap()),
             _ => unreachable!(),
         };
     }
 
-    fn constructed(&self, widget: &Self::Type) {
+    fn constructed(&self) {
+        self.parent_constructed();
+        let widget = self.instance();
         widget.set_margin_top(4);
         widget.set_margin_bottom(4);
         widget.set_margin_start(4);
@@ -62,17 +60,13 @@ impl ObjectImpl for CustomLayoutChild {
 }
 
 impl WidgetImpl for CustomLayoutChild {
-    fn measure(
-        &self,
-        _widget: &Self::Type,
-        _orientation: gtk::Orientation,
-        _for_size: i32,
-    ) -> (i32, i32, i32, i32) {
+    fn measure(&self, _orientation: gtk::Orientation, _for_size: i32) -> (i32, i32, i32, i32) {
         // Return (minimum size, natural size, baseline position for the minimum size, baseline position for natural size)
         (32, 32, -1, -1)
     }
 
-    fn snapshot(&self, widget: &Self::Type, snapshot: &gtk::Snapshot) {
+    fn snapshot(&self, snapshot: &gtk::Snapshot) {
+        let widget = self.instance();
         snapshot.append_color(
             &self.color.borrow(),
             &graphene::Rect::new(0.0, 0.0, widget.width() as f32, widget.height() as f32),

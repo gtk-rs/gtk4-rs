@@ -26,7 +26,7 @@ glib::wrapper! {
 impl Window {
     pub fn new(app: &Application) -> Self {
         // Create new window
-        Object::new(&[("application", app)]).expect("Failed to create `Window`.")
+        Object::new(&[("application", app)]).expect("`Window` should be  instantiable.")
     }
 
     // ANCHOR: settings
@@ -35,18 +35,21 @@ impl Window {
         self.imp()
             .settings
             .set(settings)
-            .expect("Could not set `Settings`.");
+            .expect("`settings` should not be set before calling `setup_settings`.");
     }
 
     fn settings(&self) -> &Settings {
-        self.imp().settings.get().expect("Could not get settings.")
+        self.imp()
+            .settings
+            .get()
+            .expect("`settings` should be set in `setup_settings`.")
     }
     // ANCHOR_END: settings
 
-    fn current_tasks(&self) -> gio::ListStore {
+    fn tasks(&self) -> gio::ListStore {
         // Get state
         self.imp()
-            .current_tasks
+            .tasks
             .borrow()
             .clone()
             .expect("Could not get current tasks.")
@@ -95,11 +98,11 @@ impl Window {
         let model = gio::ListStore::new(TaskObject::static_type());
 
         // Get state and set model
-        self.imp().current_tasks.replace(Some(model));
+        self.imp().tasks.replace(Some(model));
 
         // Wrap model with filter and selection and pass it to the list view
         let filter_model =
-            FilterListModel::new(Some(&self.current_tasks()), self.filter().as_ref());
+            FilterListModel::new(Some(&self.tasks()), self.filter().as_ref());
         let selection_model = NoSelection::new(Some(&filter_model));
         self.imp().tasks_list.set_model(Some(&selection_model));
 
@@ -117,8 +120,9 @@ impl Window {
     fn restore_data(&self) {
         if let Ok(file) = File::open(data_path()) {
             // Deserialize data from file to vector
-            let backup_data: Vec<TaskData> = serde_json::from_reader(file)
-                .expect("Could not get backup data from json file.");
+            let backup_data: Vec<TaskData> = serde_json::from_reader(file).expect(
+                "It should be possible to read `backup_data` from the json file.",
+            );
 
             // Convert `Vec<TaskData>` to `Vec<TaskObject>`
             let task_objects: Vec<TaskObject> = backup_data
@@ -127,7 +131,7 @@ impl Window {
                 .collect();
 
             // Insert restored objects into model
-            self.current_tasks().extend_from_slice(&task_objects);
+            self.tasks().extend_from_slice(&task_objects);
         }
     }
     // ANCHOR_END: restore_data
@@ -161,7 +165,7 @@ impl Window {
 
         // Add new task to model
         let task = TaskObject::new(false, content);
-        self.current_tasks().append(&task);
+        self.tasks().append(&task);
     }
 
     fn setup_factory(&self) {
@@ -216,27 +220,27 @@ impl Window {
         let action_filter = self.settings().create_action("filter");
         self.add_action(&action_filter);
 
-        // Get model
-        let model = self.current_tasks();
-
         // Create action to remove done tasks and add to action group "win"
         let action_remove_done_tasks =
             gio::SimpleAction::new("remove-done-tasks", None);
-        action_remove_done_tasks.connect_activate(clone!(@weak model => move |_, _| {
-            let mut position = 0;
-            while let Some(item) = model.item(position) {
-                // Get `TaskObject` from `glib::Object`
-                let task_object = item
-                    .downcast_ref::<TaskObject>()
-                    .expect("The object needs to be of type `TaskObject`.");
+        action_remove_done_tasks.connect_activate(
+            clone!(@weak self as window => move |_, _| {
+                let tasks = window.tasks();
+                let mut position = 0;
+                while let Some(item) = tasks.item(position) {
+                    // Get `TaskObject` from `glib::Object`
+                    let task_object = item
+                        .downcast_ref::<TaskObject>()
+                        .expect("The object needs to be of type `TaskObject`.");
 
-                if task_object.is_completed() {
-                    model.remove(position);
-                } else {
-                    position += 1;
+                    if task_object.is_completed() {
+                        tasks.remove(position);
+                    } else {
+                        position += 1;
+                    }
                 }
-            }
-        }));
+            }),
+        );
         self.add_action(&action_remove_done_tasks);
     }
     // ANCHOR_END: setup_actions

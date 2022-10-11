@@ -8,7 +8,7 @@ use gtk::prelude::*;
 use gtk::{gdk, gio, Application, CssProvider, StyleContext};
 use window::Window;
 
-const APP_ID: &str = "org.gtk-rs.Todo3";
+const APP_ID: &str = "org.gtk_rs.Todo3";
 
 fn main() {
     gio::resources_register_include!("todo_3.gresource")
@@ -37,7 +37,7 @@ fn setup_shortcuts(app: &Application) {
 fn load_css() {
     // Load the CSS file and add it to the provider
     let provider = CssProvider::new();
-    provider.load_from_resource("/org/gtk-rs/Todo3/style.css");
+    provider.load_from_resource("/org/gtk_rs/Todo3/style.css");
 
     // Add the provider to the default screen
     StyleContext::add_provider_for_display(

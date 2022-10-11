@@ -17,7 +17,7 @@ impl TreeRowReference {
         assert_eq!(
             new_order.len() as i32,
             self.model().iter_n_children(Some(iter)),
-            "TreeRowReference got passed a `new_order` bigger than the total childrens in the model for the passed iter"
+            "TreeRowReference got passed a `new_order` bigger than the total children in the model for the passed iter"
         );
         assert_initialized_main_thread!();
         unsafe {

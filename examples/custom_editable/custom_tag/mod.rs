@@ -12,7 +12,6 @@ glib::wrapper! {
 impl CustomTag {
     pub fn new(label: &str) -> Self {
         glib::Object::new(&[("label", &label), ("has-close-button", &true)])
-            .expect("Failed to create a CustomTag")
     }
 
     pub fn set_has_close_button(&self, has_close_button: bool) {

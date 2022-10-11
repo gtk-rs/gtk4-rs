@@ -7,7 +7,7 @@ Let's see in a set of real life examples which consequences this has.
 #use gtk::prelude::*;
 #use gtk::{self, Application, ApplicationWindow, Button, Orientation};
 #
-#const APP_ID: &str = "org.gtk-rs.GObjectMemoryManagement0";
+#const APP_ID: &str = "org.gtk_rs.GObjectMemoryManagement0";
 #
 fn main() {
     // Create a new application

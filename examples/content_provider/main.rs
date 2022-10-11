@@ -12,7 +12,9 @@ fn main() {
 
 fn on_activate(application: &gtk::Application) {
     let window = gtk::ApplicationWindow::new(application);
-    let display = window.display();
+    // We have to go through the trait directly as a similar method exists in
+    // both GtkRootExt and GtkWidgetExt trait.
+    let display = WidgetExt::display(&window);
 
     window.connect_realize(glib::clone!(@weak display, @weak application => move |_| {
         let provider = ContentProvider::new();

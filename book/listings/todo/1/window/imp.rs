@@ -8,13 +8,13 @@ use gtk::{gio, glib, CompositeTemplate, Entry, ListView};
 // ANCHOR: struct_and_subclass
 // Object holding the state
 #[derive(CompositeTemplate, Default)]
-#[template(resource = "/org/gtk-rs/Todo1/window.ui")]
+#[template(resource = "/org/gtk_rs/Todo1/window.ui")]
 pub struct Window {
     #[template_child]
     pub entry: TemplateChild<Entry>,
     #[template_child]
     pub tasks_list: TemplateChild<ListView>,
-    pub current_tasks: RefCell<Option<gio::ListStore>>,
+    pub tasks: RefCell<Option<gio::ListStore>>,
 }
 
 // The central trait for subclassing a GObject

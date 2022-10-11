@@ -12,10 +12,9 @@ use crate::{
 use glib::subclass::SignalId;
 use glib::translate::*;
 use glib::{Cast, GString, IsA, Variant};
-use std::boxed::Box as Box_;
 use std::collections::HashMap;
 use std::fmt;
-
+use std::{boxed::Box as Box_, future::Future};
 #[derive(Debug, Default)]
 struct Internal {
     pub(crate) actions: HashMap<String, glib::ffi::gpointer>,
@@ -108,166 +107,147 @@ impl Iterator for WidgetActionIter {
 impl std::iter::FusedIterator for WidgetActionIter {}
 
 pub trait WidgetImpl: WidgetImplExt + ObjectImpl {
-    fn compute_expand(&self, widget: &Self::Type, hexpand: &mut bool, vexpand: &mut bool) {
-        self.parent_compute_expand(widget, hexpand, vexpand)
+    fn compute_expand(&self, hexpand: &mut bool, vexpand: &mut bool) {
+        self.parent_compute_expand(hexpand, vexpand)
     }
 
-    fn contains(&self, widget: &Self::Type, x: f64, y: f64) -> bool {
-        self.parent_contains(widget, x, y)
+    fn contains(&self, x: f64, y: f64) -> bool {
+        self.parent_contains(x, y)
     }
 
-    fn direction_changed(&self, widget: &Self::Type, previous_direction: TextDirection) {
-        self.parent_direction_changed(widget, previous_direction)
+    fn direction_changed(&self, previous_direction: TextDirection) {
+        self.parent_direction_changed(previous_direction)
     }
 
-    fn focus(&self, widget: &Self::Type, direction_type: DirectionType) -> bool {
-        self.parent_focus(widget, direction_type)
+    fn focus(&self, direction_type: DirectionType) -> bool {
+        self.parent_focus(direction_type)
     }
 
     #[doc(alias = "get_request_mode")]
-    fn request_mode(&self, widget: &Self::Type) -> SizeRequestMode {
-        self.parent_request_mode(widget)
+    fn request_mode(&self) -> SizeRequestMode {
+        self.parent_request_mode()
     }
 
-    fn grab_focus(&self, widget: &Self::Type) -> bool {
-        self.parent_grab_focus(widget)
+    fn grab_focus(&self) -> bool {
+        self.parent_grab_focus()
     }
 
-    fn hide(&self, widget: &Self::Type) {
-        self.parent_hide(widget)
+    fn hide(&self) {
+        self.parent_hide()
     }
 
-    fn keynav_failed(&self, widget: &Self::Type, direction_type: DirectionType) -> bool {
-        self.parent_keynav_failed(widget, direction_type)
+    fn keynav_failed(&self, direction_type: DirectionType) -> bool {
+        self.parent_keynav_failed(direction_type)
     }
 
-    fn map(&self, widget: &Self::Type) {
-        self.parent_map(widget)
+    fn map(&self) {
+        self.parent_map()
     }
 
-    fn measure(
-        &self,
-        widget: &Self::Type,
-        orientation: Orientation,
-        for_size: i32,
-    ) -> (i32, i32, i32, i32) {
-        self.parent_measure(widget, orientation, for_size)
+    fn measure(&self, orientation: Orientation, for_size: i32) -> (i32, i32, i32, i32) {
+        self.parent_measure(orientation, for_size)
     }
 
-    fn mnemonic_activate(&self, widget: &Self::Type, group_cycling: bool) -> bool {
-        self.parent_mnemonic_activate(widget, group_cycling)
+    fn mnemonic_activate(&self, group_cycling: bool) -> bool {
+        self.parent_mnemonic_activate(group_cycling)
     }
 
-    fn move_focus(&self, widget: &Self::Type, direction_type: DirectionType) {
-        self.parent_move_focus(widget, direction_type)
+    fn move_focus(&self, direction_type: DirectionType) {
+        self.parent_move_focus(direction_type)
     }
 
-    fn query_tooltip(
-        &self,
-        widget: &Self::Type,
-        x: i32,
-        y: i32,
-        keyboard_tooltip: bool,
-        tooltip: &Tooltip,
-    ) -> bool {
-        self.parent_query_tooltip(widget, x, y, keyboard_tooltip, tooltip)
+    fn query_tooltip(&self, x: i32, y: i32, keyboard_tooltip: bool, tooltip: &Tooltip) -> bool {
+        self.parent_query_tooltip(x, y, keyboard_tooltip, tooltip)
     }
 
-    fn realize(&self, widget: &Self::Type) {
-        self.parent_realize(widget)
+    fn realize(&self) {
+        self.parent_realize()
     }
 
-    fn root(&self, widget: &Self::Type) {
-        self.parent_root(widget)
+    fn root(&self) {
+        self.parent_root()
     }
 
-    fn set_focus_child(&self, widget: &Self::Type, child: Option<&Widget>) {
-        self.parent_set_focus_child(widget, child)
+    fn set_focus_child(&self, child: Option<&Widget>) {
+        self.parent_set_focus_child(child)
     }
 
-    fn show(&self, widget: &Self::Type) {
-        self.parent_show(widget)
+    fn show(&self) {
+        self.parent_show()
     }
 
-    fn size_allocate(&self, widget: &Self::Type, width: i32, height: i32, baseline: i32) {
-        self.parent_size_allocate(widget, width, height, baseline)
+    fn size_allocate(&self, width: i32, height: i32, baseline: i32) {
+        self.parent_size_allocate(width, height, baseline)
     }
 
-    fn snapshot(&self, widget: &Self::Type, snapshot: &Snapshot) {
-        self.parent_snapshot(widget, snapshot)
+    fn snapshot(&self, snapshot: &Snapshot) {
+        self.parent_snapshot(snapshot)
     }
 
-    fn state_flags_changed(&self, widget: &Self::Type, state_flags: &StateFlags) {
-        self.parent_state_flags_changed(widget, state_flags)
+    fn state_flags_changed(&self, state_flags: &StateFlags) {
+        self.parent_state_flags_changed(state_flags)
     }
 
-    fn system_setting_changed(&self, widget: &Self::Type, settings: &SystemSetting) {
-        self.parent_system_setting_changed(widget, settings)
+    fn system_setting_changed(&self, settings: &SystemSetting) {
+        self.parent_system_setting_changed(settings)
     }
 
-    fn unmap(&self, widget: &Self::Type) {
-        self.parent_unmap(widget)
+    fn unmap(&self) {
+        self.parent_unmap()
     }
 
-    fn unrealize(&self, widget: &Self::Type) {
-        self.parent_unrealize(widget)
+    fn unrealize(&self) {
+        self.parent_unrealize()
     }
 
-    fn unroot(&self, widget: &Self::Type) {
-        self.parent_unroot(widget)
+    fn unroot(&self) {
+        self.parent_unroot()
     }
 }
 
 pub trait WidgetImplExt: ObjectSubclass {
-    fn parent_compute_expand(&self, widget: &Self::Type, hexpand: &mut bool, vexpand: &mut bool);
-    fn parent_contains(&self, widget: &Self::Type, x: f64, y: f64) -> bool;
-    fn parent_direction_changed(&self, widget: &Self::Type, previous_direction: TextDirection);
-    fn parent_focus(&self, widget: &Self::Type, direction_type: DirectionType) -> bool;
-    fn parent_request_mode(&self, widget: &Self::Type) -> SizeRequestMode;
-    fn parent_grab_focus(&self, widget: &Self::Type) -> bool;
-    fn parent_hide(&self, widget: &Self::Type);
-    fn parent_keynav_failed(&self, widget: &Self::Type, direction_type: DirectionType) -> bool;
-    fn parent_map(&self, widget: &Self::Type);
-    fn parent_measure(
-        &self,
-        widget: &Self::Type,
-        orientation: Orientation,
-        for_size: i32,
-    ) -> (i32, i32, i32, i32);
-    fn parent_mnemonic_activate(&self, widget: &Self::Type, group_cycling: bool) -> bool;
-    fn parent_move_focus(&self, widget: &Self::Type, direction_type: DirectionType);
+    fn parent_compute_expand(&self, hexpand: &mut bool, vexpand: &mut bool);
+    fn parent_contains(&self, x: f64, y: f64) -> bool;
+    fn parent_direction_changed(&self, previous_direction: TextDirection);
+    fn parent_focus(&self, direction_type: DirectionType) -> bool;
+    fn parent_request_mode(&self) -> SizeRequestMode;
+    fn parent_grab_focus(&self) -> bool;
+    fn parent_hide(&self);
+    fn parent_keynav_failed(&self, direction_type: DirectionType) -> bool;
+    fn parent_map(&self);
+    fn parent_measure(&self, orientation: Orientation, for_size: i32) -> (i32, i32, i32, i32);
+    fn parent_mnemonic_activate(&self, group_cycling: bool) -> bool;
+    fn parent_move_focus(&self, direction_type: DirectionType);
     fn parent_query_tooltip(
         &self,
-        widget: &Self::Type,
         x: i32,
         y: i32,
         keyboard_tooltip: bool,
         tooltip: &Tooltip,
     ) -> bool;
-    fn parent_realize(&self, widget: &Self::Type);
-    fn parent_root(&self, widget: &Self::Type);
-    fn parent_set_focus_child(&self, widget: &Self::Type, child: Option<&Widget>);
-    fn parent_show(&self, widget: &Self::Type);
-    fn parent_size_allocate(&self, widget: &Self::Type, width: i32, height: i32, baseline: i32);
-    fn parent_snapshot(&self, widget: &Self::Type, snapshot: &Snapshot);
-    fn parent_state_flags_changed(&self, widget: &Self::Type, state_flags: &StateFlags);
-    fn parent_system_setting_changed(&self, widget: &Self::Type, settings: &SystemSetting);
-    fn parent_unmap(&self, widget: &Self::Type);
-    fn parent_unrealize(&self, widget: &Self::Type);
-    fn parent_unroot(&self, widget: &Self::Type);
+    fn parent_realize(&self);
+    fn parent_root(&self);
+    fn parent_set_focus_child(&self, child: Option<&Widget>);
+    fn parent_show(&self);
+    fn parent_size_allocate(&self, width: i32, height: i32, baseline: i32);
+    fn parent_snapshot(&self, snapshot: &Snapshot);
+    fn parent_state_flags_changed(&self, state_flags: &StateFlags);
+    fn parent_system_setting_changed(&self, settings: &SystemSetting);
+    fn parent_unmap(&self);
+    fn parent_unrealize(&self);
+    fn parent_unroot(&self);
 }
 
 impl<T: WidgetImpl> WidgetImplExt for T {
-    fn parent_compute_expand(&self, widget: &Self::Type, hexpand: &mut bool, vexpand: &mut bool) {
+    fn parent_compute_expand(&self, hexpand: &mut bool, vexpand: &mut bool) {
         unsafe {
             let data = T::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkWidgetClass;
-            let widget = widget.unsafe_cast_ref::<Widget>();
             if let Some(f) = (*parent_class).compute_expand {
                 let mut hexpand_glib = hexpand.into_glib();
                 let mut vexpand_glib = vexpand.into_glib();
                 f(
-                    widget.to_glib_none().0,
+                    self.instance().unsafe_cast_ref::<Widget>().to_glib_none().0,
                     &mut hexpand_glib,
                     &mut vexpand_glib,
                 );
@@ -277,38 +257,42 @@ impl<T: WidgetImpl> WidgetImplExt for T {
         }
     }
 
-    fn parent_contains(&self, widget: &Self::Type, x: f64, y: f64) -> bool {
+    fn parent_contains(&self, x: f64, y: f64) -> bool {
         unsafe {
             let data = T::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkWidgetClass;
             if let Some(f) = (*parent_class).contains {
-                from_glib(f(widget.unsafe_cast_ref::<Widget>().to_glib_none().0, x, y))
+                from_glib(f(
+                    self.instance().unsafe_cast_ref::<Widget>().to_glib_none().0,
+                    x,
+                    y,
+                ))
             } else {
                 false
             }
         }
     }
 
-    fn parent_direction_changed(&self, widget: &Self::Type, previous_direction: TextDirection) {
+    fn parent_direction_changed(&self, previous_direction: TextDirection) {
         unsafe {
             let data = T::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkWidgetClass;
             if let Some(f) = (*parent_class).direction_changed {
                 f(
-                    widget.unsafe_cast_ref::<Widget>().to_glib_none().0,
+                    self.instance().unsafe_cast_ref::<Widget>().to_glib_none().0,
                     previous_direction.into_glib(),
                 )
             }
         }
     }
 
-    fn parent_focus(&self, widget: &Self::Type, direction_type: DirectionType) -> bool {
+    fn parent_focus(&self, direction_type: DirectionType) -> bool {
         unsafe {
             let data = T::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkWidgetClass;
             if let Some(f) = (*parent_class).focus {
                 from_glib(f(
-                    widget.unsafe_cast_ref::<Widget>().to_glib_none().0,
+                    self.instance().unsafe_cast_ref::<Widget>().to_glib_none().0,
                     direction_type.into_glib(),
                 ))
             } else {
@@ -317,46 +301,54 @@ impl<T: WidgetImpl> WidgetImplExt for T {
         }
     }
 
-    fn parent_request_mode(&self, widget: &Self::Type) -> SizeRequestMode {
+    fn parent_request_mode(&self) -> SizeRequestMode {
         unsafe {
             let data = T::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkWidgetClass;
             let f = (*parent_class)
                 .get_request_mode
                 .expect("No parent class impl for \"get_request_mode\"");
-            from_glib(f(widget.unsafe_cast_ref::<Widget>().to_glib_none().0))
+            from_glib(f(self
+                .instance()
+                .unsafe_cast_ref::<Widget>()
+                .to_glib_none()
+                .0))
         }
     }
 
-    fn parent_grab_focus(&self, widget: &Self::Type) -> bool {
+    fn parent_grab_focus(&self) -> bool {
         unsafe {
             let data = T::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkWidgetClass;
             if let Some(f) = (*parent_class).grab_focus {
-                from_glib(f(widget.unsafe_cast_ref::<Widget>().to_glib_none().0))
+                from_glib(f(self
+                    .instance()
+                    .unsafe_cast_ref::<Widget>()
+                    .to_glib_none()
+                    .0))
             } else {
                 false
             }
         }
     }
 
-    fn parent_hide(&self, widget: &Self::Type) {
+    fn parent_hide(&self) {
         unsafe {
             let data = T::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkWidgetClass;
             if let Some(f) = (*parent_class).hide {
-                f(widget.unsafe_cast_ref::<Widget>().to_glib_none().0)
+                f(self.instance().unsafe_cast_ref::<Widget>().to_glib_none().0)
             }
         }
     }
 
-    fn parent_keynav_failed(&self, widget: &Self::Type, direction_type: DirectionType) -> bool {
+    fn parent_keynav_failed(&self, direction_type: DirectionType) -> bool {
         unsafe {
             let data = T::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkWidgetClass;
             if let Some(f) = (*parent_class).keynav_failed {
                 from_glib(f(
-                    widget.unsafe_cast_ref::<Widget>().to_glib_none().0,
+                    self.instance().unsafe_cast_ref::<Widget>().to_glib_none().0,
                     direction_type.into_glib(),
                 ))
             } else {
@@ -365,22 +357,17 @@ impl<T: WidgetImpl> WidgetImplExt for T {
         }
     }
 
-    fn parent_map(&self, widget: &Self::Type) {
+    fn parent_map(&self) {
         unsafe {
             let data = T::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkWidgetClass;
             if let Some(f) = (*parent_class).map {
-                f(widget.unsafe_cast_ref::<Widget>().to_glib_none().0)
+                f(self.instance().unsafe_cast_ref::<Widget>().to_glib_none().0)
             }
         }
     }
 
-    fn parent_measure(
-        &self,
-        widget: &Self::Type,
-        orientation: Orientation,
-        for_size: i32,
-    ) -> (i32, i32, i32, i32) {
+    fn parent_measure(&self, orientation: Orientation, for_size: i32) -> (i32, i32, i32, i32) {
         unsafe {
             let data = T::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkWidgetClass;
@@ -394,7 +381,7 @@ impl<T: WidgetImpl> WidgetImplExt for T {
             let mut min_base = -1;
             let mut nat_base = -1;
             f(
-                widget.unsafe_cast_ref::<Widget>().to_glib_none().0,
+                self.instance().unsafe_cast_ref::<Widget>().to_glib_none().0,
                 orientation.into_glib(),
                 for_size,
                 &mut min,
@@ -406,13 +393,13 @@ impl<T: WidgetImpl> WidgetImplExt for T {
         }
     }
 
-    fn parent_mnemonic_activate(&self, widget: &Self::Type, group_cycling: bool) -> bool {
+    fn parent_mnemonic_activate(&self, group_cycling: bool) -> bool {
         unsafe {
             let data = T::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkWidgetClass;
             if let Some(f) = (*parent_class).mnemonic_activate {
                 from_glib(f(
-                    widget.unsafe_cast_ref::<Widget>().to_glib_none().0,
+                    self.instance().unsafe_cast_ref::<Widget>().to_glib_none().0,
                     group_cycling.into_glib(),
                 ))
             } else {
@@ -421,13 +408,13 @@ impl<T: WidgetImpl> WidgetImplExt for T {
         }
     }
 
-    fn parent_move_focus(&self, widget: &Self::Type, direction_type: DirectionType) {
+    fn parent_move_focus(&self, direction_type: DirectionType) {
         unsafe {
             let data = T::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkWidgetClass;
             if let Some(f) = (*parent_class).move_focus {
                 f(
-                    widget.unsafe_cast_ref::<Widget>().to_glib_none().0,
+                    self.instance().unsafe_cast_ref::<Widget>().to_glib_none().0,
                     direction_type.into_glib(),
                 )
             }
@@ -436,7 +423,6 @@ impl<T: WidgetImpl> WidgetImplExt for T {
 
     fn parent_query_tooltip(
         &self,
-        widget: &Self::Type,
         x: i32,
         y: i32,
         keyboard_tooltip: bool,
@@ -447,7 +433,7 @@ impl<T: WidgetImpl> WidgetImplExt for T {
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkWidgetClass;
             if let Some(f) = (*parent_class).query_tooltip {
                 from_glib(f(
-                    widget.unsafe_cast_ref::<Widget>().to_glib_none().0,
+                    self.instance().unsafe_cast_ref::<Widget>().to_glib_none().0,
                     x,
                     y,
                     keyboard_tooltip.into_glib(),
@@ -459,56 +445,56 @@ impl<T: WidgetImpl> WidgetImplExt for T {
         }
     }
 
-    fn parent_realize(&self, widget: &Self::Type) {
+    fn parent_realize(&self) {
         unsafe {
             let data = T::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkWidgetClass;
             if let Some(f) = (*parent_class).realize {
-                f(widget.unsafe_cast_ref::<Widget>().to_glib_none().0)
+                f(self.instance().unsafe_cast_ref::<Widget>().to_glib_none().0)
             }
         }
     }
 
-    fn parent_root(&self, widget: &Self::Type) {
+    fn parent_root(&self) {
         unsafe {
             let data = T::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkWidgetClass;
             if let Some(f) = (*parent_class).root {
-                f(widget.unsafe_cast_ref::<Widget>().to_glib_none().0)
+                f(self.instance().unsafe_cast_ref::<Widget>().to_glib_none().0)
             }
         }
     }
 
-    fn parent_set_focus_child(&self, widget: &Self::Type, child: Option<&Widget>) {
+    fn parent_set_focus_child(&self, child: Option<&Widget>) {
         unsafe {
             let data = T::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkWidgetClass;
             if let Some(f) = (*parent_class).set_focus_child {
                 f(
-                    widget.unsafe_cast_ref::<Widget>().to_glib_none().0,
+                    self.instance().unsafe_cast_ref::<Widget>().to_glib_none().0,
                     child.to_glib_none().0,
                 )
             }
         }
     }
 
-    fn parent_show(&self, widget: &Self::Type) {
+    fn parent_show(&self) {
         unsafe {
             let data = T::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkWidgetClass;
             if let Some(f) = (*parent_class).show {
-                f(widget.unsafe_cast_ref::<Widget>().to_glib_none().0)
+                f(self.instance().unsafe_cast_ref::<Widget>().to_glib_none().0)
             }
         }
     }
 
-    fn parent_size_allocate(&self, widget: &Self::Type, width: i32, height: i32, baseline: i32) {
+    fn parent_size_allocate(&self, width: i32, height: i32, baseline: i32) {
         unsafe {
             let data = T::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkWidgetClass;
             if let Some(f) = (*parent_class).size_allocate {
                 f(
-                    widget.unsafe_cast_ref::<Widget>().to_glib_none().0,
+                    self.instance().unsafe_cast_ref::<Widget>().to_glib_none().0,
                     width,
                     height,
                     baseline,
@@ -517,71 +503,71 @@ impl<T: WidgetImpl> WidgetImplExt for T {
         }
     }
 
-    fn parent_snapshot(&self, widget: &Self::Type, snapshot: &Snapshot) {
+    fn parent_snapshot(&self, snapshot: &Snapshot) {
         unsafe {
             let data = T::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkWidgetClass;
             if let Some(f) = (*parent_class).snapshot {
                 f(
-                    widget.unsafe_cast_ref::<Widget>().to_glib_none().0,
+                    self.instance().unsafe_cast_ref::<Widget>().to_glib_none().0,
                     snapshot.to_glib_none().0,
                 )
             }
         }
     }
 
-    fn parent_state_flags_changed(&self, widget: &Self::Type, state_flags: &StateFlags) {
+    fn parent_state_flags_changed(&self, state_flags: &StateFlags) {
         unsafe {
             let data = T::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkWidgetClass;
             if let Some(f) = (*parent_class).state_flags_changed {
                 f(
-                    widget.unsafe_cast_ref::<Widget>().to_glib_none().0,
+                    self.instance().unsafe_cast_ref::<Widget>().to_glib_none().0,
                     state_flags.into_glib(),
                 )
             }
         }
     }
 
-    fn parent_system_setting_changed(&self, widget: &Self::Type, settings: &SystemSetting) {
+    fn parent_system_setting_changed(&self, settings: &SystemSetting) {
         unsafe {
             let data = T::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkWidgetClass;
             if let Some(f) = (*parent_class).system_setting_changed {
                 f(
-                    widget.unsafe_cast_ref::<Widget>().to_glib_none().0,
+                    self.instance().unsafe_cast_ref::<Widget>().to_glib_none().0,
                     settings.into_glib(),
                 )
             }
         }
     }
 
-    fn parent_unmap(&self, widget: &Self::Type) {
+    fn parent_unmap(&self) {
         unsafe {
             let data = T::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkWidgetClass;
             if let Some(f) = (*parent_class).unmap {
-                f(widget.unsafe_cast_ref::<Widget>().to_glib_none().0)
+                f(self.instance().unsafe_cast_ref::<Widget>().to_glib_none().0)
             }
         }
     }
 
-    fn parent_unrealize(&self, widget: &Self::Type) {
+    fn parent_unrealize(&self) {
         unsafe {
             let data = T::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkWidgetClass;
             if let Some(f) = (*parent_class).unrealize {
-                f(widget.unsafe_cast_ref::<Widget>().to_glib_none().0)
+                f(self.instance().unsafe_cast_ref::<Widget>().to_glib_none().0)
             }
         }
     }
 
-    fn parent_unroot(&self, widget: &Self::Type) {
+    fn parent_unroot(&self) {
         unsafe {
             let data = T::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkWidgetClass;
             if let Some(f) = (*parent_class).unroot {
-                f(widget.unsafe_cast_ref::<Widget>().to_glib_none().0)
+                f(self.instance().unsafe_cast_ref::<Widget>().to_glib_none().0)
             }
         }
     }
@@ -638,9 +624,9 @@ unsafe extern "C" fn widget_compute_expand<T: WidgetImpl>(
 ) {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
-    let wrap: Borrowed<Widget> = from_glib_borrow(ptr);
 
-    let widget = wrap.unsafe_cast_ref::<Widget>();
+    let widget = imp.instance();
+    let widget = widget.unsafe_cast_ref::<Widget>();
     let mut hexpand: bool = if widget.is_hexpand_set() {
         widget.hexpands()
     } else {
@@ -652,7 +638,7 @@ unsafe extern "C" fn widget_compute_expand<T: WidgetImpl>(
         from_glib(*vexpand_ptr)
     };
 
-    imp.compute_expand(wrap.unsafe_cast_ref(), &mut hexpand, &mut vexpand);
+    imp.compute_expand(&mut hexpand, &mut vexpand);
 
     *hexpand_ptr = hexpand.into_glib();
     *vexpand_ptr = vexpand.into_glib();
@@ -665,9 +651,8 @@ unsafe extern "C" fn widget_contains<T: WidgetImpl>(
 ) -> glib::ffi::gboolean {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
-    let wrap: Borrowed<Widget> = from_glib_borrow(ptr);
 
-    imp.contains(wrap.unsafe_cast_ref(), x, y).into_glib()
+    imp.contains(x, y).into_glib()
 }
 
 unsafe extern "C" fn widget_direction_changed<T: WidgetImpl>(
@@ -676,10 +661,9 @@ unsafe extern "C" fn widget_direction_changed<T: WidgetImpl>(
 ) {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
-    let wrap: Borrowed<Widget> = from_glib_borrow(ptr);
     let direction_wrap = from_glib(direction_ptr);
 
-    imp.direction_changed(wrap.unsafe_cast_ref(), direction_wrap)
+    imp.direction_changed(direction_wrap)
 }
 
 unsafe extern "C" fn widget_focus<T: WidgetImpl>(
@@ -688,11 +672,9 @@ unsafe extern "C" fn widget_focus<T: WidgetImpl>(
 ) -> glib::ffi::gboolean {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
-    let wrap: Borrowed<Widget> = from_glib_borrow(ptr);
     let direction_type = from_glib(direction_type_ptr);
 
-    imp.focus(wrap.unsafe_cast_ref(), direction_type)
-        .into_glib()
+    imp.focus(direction_type).into_glib()
 }
 
 unsafe extern "C" fn widget_get_request_mode<T: WidgetImpl>(
@@ -700,9 +682,8 @@ unsafe extern "C" fn widget_get_request_mode<T: WidgetImpl>(
 ) -> ffi::GtkSizeRequestMode {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
-    let wrap: Borrowed<Widget> = from_glib_borrow(ptr);
 
-    imp.request_mode(wrap.unsafe_cast_ref()).into_glib()
+    imp.request_mode().into_glib()
 }
 
 unsafe extern "C" fn widget_grab_focus<T: WidgetImpl>(
@@ -710,17 +691,15 @@ unsafe extern "C" fn widget_grab_focus<T: WidgetImpl>(
 ) -> glib::ffi::gboolean {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
-    let wrap: Borrowed<Widget> = from_glib_borrow(ptr);
 
-    imp.grab_focus(wrap.unsafe_cast_ref()).into_glib()
+    imp.grab_focus().into_glib()
 }
 
 unsafe extern "C" fn widget_hide<T: WidgetImpl>(ptr: *mut ffi::GtkWidget) {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
-    let wrap: Borrowed<Widget> = from_glib_borrow(ptr);
 
-    imp.hide(wrap.unsafe_cast_ref())
+    imp.hide()
 }
 
 unsafe extern "C" fn widget_keynav_failed<T: WidgetImpl>(
@@ -729,19 +708,16 @@ unsafe extern "C" fn widget_keynav_failed<T: WidgetImpl>(
 ) -> glib::ffi::gboolean {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
-    let wrap: Borrowed<Widget> = from_glib_borrow(ptr);
     let direction_type = from_glib(direction_type_ptr);
 
-    imp.keynav_failed(wrap.unsafe_cast_ref(), direction_type)
-        .into_glib()
+    imp.keynav_failed(direction_type).into_glib()
 }
 
 unsafe extern "C" fn widget_map<T: WidgetImpl>(ptr: *mut ffi::GtkWidget) {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
-    let wrap: Borrowed<Widget> = from_glib_borrow(ptr);
 
-    imp.map(wrap.unsafe_cast_ref())
+    imp.map()
 }
 
 unsafe extern "C" fn widget_measure<T: WidgetImpl>(
@@ -755,9 +731,8 @@ unsafe extern "C" fn widget_measure<T: WidgetImpl>(
 ) {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
-    let wrap: Borrowed<Widget> = from_glib_borrow(ptr);
     let orientation = from_glib(orientation_ptr);
-    let (min, nat, min_base, nat_base) = imp.measure(wrap.unsafe_cast_ref(), orientation, for_size);
+    let (min, nat, min_base, nat_base) = imp.measure(orientation, for_size);
     if !min_ptr.is_null() {
         *min_ptr = min;
     }
@@ -778,11 +753,9 @@ unsafe extern "C" fn widget_mnemonic_activate<T: WidgetImpl>(
 ) -> glib::ffi::gboolean {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
-    let wrap: Borrowed<Widget> = from_glib_borrow(ptr);
     let group_cycling: bool = from_glib(group_cycling_ptr);
 
-    imp.mnemonic_activate(wrap.unsafe_cast_ref(), group_cycling)
-        .into_glib()
+    imp.mnemonic_activate(group_cycling).into_glib()
 }
 
 unsafe extern "C" fn widget_move_focus<T: WidgetImpl>(
@@ -791,10 +764,9 @@ unsafe extern "C" fn widget_move_focus<T: WidgetImpl>(
 ) {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
-    let wrap: Borrowed<Widget> = from_glib_borrow(ptr);
     let direction_type = from_glib(direction_type_ptr);
 
-    imp.move_focus(wrap.unsafe_cast_ref(), direction_type)
+    imp.move_focus(direction_type)
 }
 
 unsafe extern "C" fn widget_query_tooltip<T: WidgetImpl>(
@@ -806,29 +778,26 @@ unsafe extern "C" fn widget_query_tooltip<T: WidgetImpl>(
 ) -> glib::ffi::gboolean {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
-    let wrap: Borrowed<Widget> = from_glib_borrow(ptr);
 
     let keyboard_tooltip: bool = from_glib(keyboard_tooltip_ptr);
     let tooltip = from_glib_borrow(tooltip_ptr);
 
-    imp.query_tooltip(wrap.unsafe_cast_ref(), x, y, keyboard_tooltip, &tooltip)
+    imp.query_tooltip(x, y, keyboard_tooltip, &tooltip)
         .into_glib()
 }
 
 unsafe extern "C" fn widget_realize<T: WidgetImpl>(ptr: *mut ffi::GtkWidget) {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
-    let wrap: Borrowed<Widget> = from_glib_borrow(ptr);
 
-    imp.realize(wrap.unsafe_cast_ref())
+    imp.realize()
 }
 
 unsafe extern "C" fn widget_root<T: WidgetImpl>(ptr: *mut ffi::GtkWidget) {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
-    let wrap: Borrowed<Widget> = from_glib_borrow(ptr);
 
-    imp.root(wrap.unsafe_cast_ref())
+    imp.root()
 }
 
 unsafe extern "C" fn widget_set_focus_child<T: WidgetImpl>(
@@ -837,18 +806,16 @@ unsafe extern "C" fn widget_set_focus_child<T: WidgetImpl>(
 ) {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
-    let wrap: Borrowed<Widget> = from_glib_borrow(ptr);
     let child: Borrowed<Option<Widget>> = from_glib_borrow(child_ptr);
 
-    imp.set_focus_child(wrap.unsafe_cast_ref(), child.as_ref().as_ref())
+    imp.set_focus_child(child.as_ref().as_ref())
 }
 
 unsafe extern "C" fn widget_show<T: WidgetImpl>(ptr: *mut ffi::GtkWidget) {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
-    let wrap: Borrowed<Widget> = from_glib_borrow(ptr);
 
-    imp.show(wrap.unsafe_cast_ref())
+    imp.show()
 }
 
 unsafe extern "C" fn widget_size_allocate<T: WidgetImpl>(
@@ -859,9 +826,8 @@ unsafe extern "C" fn widget_size_allocate<T: WidgetImpl>(
 ) {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
-    let wrap: Borrowed<Widget> = from_glib_borrow(ptr);
 
-    imp.size_allocate(wrap.unsafe_cast_ref(), width, height, baseline)
+    imp.size_allocate(width, height, baseline)
 }
 
 unsafe extern "C" fn widget_snapshot<T: WidgetImpl>(
@@ -870,10 +836,9 @@ unsafe extern "C" fn widget_snapshot<T: WidgetImpl>(
 ) {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
-    let wrap: Borrowed<Widget> = from_glib_borrow(ptr);
     let snapshot = from_glib_borrow(snapshot_ptr);
 
-    imp.snapshot(wrap.unsafe_cast_ref(), &snapshot)
+    imp.snapshot(&snapshot)
 }
 
 unsafe extern "C" fn widget_state_flags_changed<T: WidgetImpl>(
@@ -882,10 +847,9 @@ unsafe extern "C" fn widget_state_flags_changed<T: WidgetImpl>(
 ) {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
-    let wrap: Borrowed<Widget> = from_glib_borrow(ptr);
     let state_flags = from_glib(state_flags_ptr);
 
-    imp.state_flags_changed(wrap.unsafe_cast_ref(), &state_flags)
+    imp.state_flags_changed(&state_flags)
 }
 
 unsafe extern "C" fn widget_system_setting_changed<T: WidgetImpl>(
@@ -894,34 +858,30 @@ unsafe extern "C" fn widget_system_setting_changed<T: WidgetImpl>(
 ) {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
-    let wrap: Borrowed<Widget> = from_glib_borrow(ptr);
     let settings = from_glib(settings_ptr);
 
-    imp.system_setting_changed(wrap.unsafe_cast_ref(), &settings)
+    imp.system_setting_changed(&settings)
 }
 
 unsafe extern "C" fn widget_unmap<T: WidgetImpl>(ptr: *mut ffi::GtkWidget) {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
-    let wrap: Borrowed<Widget> = from_glib_borrow(ptr);
 
-    imp.unmap(wrap.unsafe_cast_ref())
+    imp.unmap()
 }
 
 unsafe extern "C" fn widget_unrealize<T: WidgetImpl>(ptr: *mut ffi::GtkWidget) {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
-    let wrap: Borrowed<Widget> = from_glib_borrow(ptr);
 
-    imp.unrealize(wrap.unsafe_cast_ref())
+    imp.unrealize()
 }
 
 unsafe extern "C" fn widget_unroot<T: WidgetImpl>(ptr: *mut ffi::GtkWidget) {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
-    let wrap: Borrowed<Widget> = from_glib_borrow(ptr);
 
-    imp.unroot(wrap.unsafe_cast_ref())
+    imp.unroot()
 }
 
 #[allow(clippy::missing_safety_doc)]
@@ -955,16 +915,37 @@ pub unsafe trait WidgetClassSubclassExt: ClassStruct {
         }
     }
 
-    #[doc(alias = "gtk_widget_class_install_action")]
-    fn install_action<
-        F: Fn(&<<Self as ClassStruct>::Type as ObjectSubclass>::Type, &str, Option<&Variant>)
-            + 'static,
-    >(
+    fn install_action_async<Fut, F>(
         &mut self,
         action_name: &str,
         parameter_type: Option<&str>,
         activate: F,
-    ) {
+    ) where
+        F: Fn(<<Self as ClassStruct>::Type as ObjectSubclass>::Type, &str, Option<&Variant>) -> Fut
+            + 'static
+            + Clone,
+        Fut: Future<Output = ()>,
+    {
+        self.install_action(
+            action_name,
+            parameter_type,
+            move |this, action_name, parameter_type| {
+                let ctx = glib::MainContext::default();
+                let action_name = action_name.to_owned();
+                let parameter_type = parameter_type.map(ToOwned::to_owned);
+                ctx.spawn_local(glib::clone!(@strong this, @strong action_name, @strong parameter_type, @strong activate => async move {
+                    activate(this, &action_name, parameter_type.as_ref()).await;
+                }));
+            },
+        );
+    }
+
+    #[doc(alias = "gtk_widget_class_install_action")]
+    fn install_action<F>(&mut self, action_name: &str, parameter_type: Option<&str>, activate: F)
+    where
+        F: Fn(&<<Self as ClassStruct>::Type as ObjectSubclass>::Type, &str, Option<&Variant>)
+            + 'static,
+    {
         unsafe {
             // We store the activate callbacks in a HashMap<action_name, activate>
             // so that we can retrieve f later on the activate_trampoline call

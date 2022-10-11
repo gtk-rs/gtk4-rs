@@ -6,7 +6,7 @@ use gtk::{gdk, Application, CssProvider, StyleContext};
 
 use crate::window::Window;
 
-const APP_ID: &str = "org.gtk-rs.Css8";
+const APP_ID: &str = "org.gtk_rs.Css8";
 
 fn main() {
     // Create a new application

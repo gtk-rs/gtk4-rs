@@ -41,26 +41,14 @@ impl ObjectImpl for CustomTag {
     fn properties() -> &'static [ParamSpec] {
         static PROPERTIES: Lazy<Vec<ParamSpec>> = Lazy::new(|| {
             vec![
-                ParamSpecString::new(
-                    "label",
-                    "Label",
-                    "Label",
-                    Some(""),
-                    glib::ParamFlags::READWRITE,
-                ),
-                ParamSpecBoolean::new(
-                    "has-close-button",
-                    "Has close button",
-                    "Whether this tag has a close button",
-                    false,
-                    glib::ParamFlags::READWRITE,
-                ),
+                ParamSpecString::builder("label").build(),
+                ParamSpecBoolean::builder("has-close-button").build(),
             ]
         });
         PROPERTIES.as_ref()
     }
 
-    fn property(&self, _obj: &Self::Type, _id: usize, pspec: &ParamSpec) -> glib::Value {
+    fn property(&self, _id: usize, pspec: &ParamSpec) -> glib::Value {
         match pspec.name() {
             "label" => self.label.text().to_value(),
             "has-close-button" => self.has_close_button.get().to_value(),
@@ -68,11 +56,11 @@ impl ObjectImpl for CustomTag {
         }
     }
 
-    fn set_property(&self, tag: &Self::Type, _id: usize, value: &glib::Value, pspec: &ParamSpec) {
+    fn set_property(&self, _id: usize, value: &glib::Value, pspec: &ParamSpec) {
         match pspec.name() {
             "label" => self.label.set_text(value.get().unwrap()),
             "has-close-button" => {
-                tag.set_has_close_button(value.get().unwrap());
+                self.instance().set_has_close_button(value.get().unwrap());
             }
             _ => unimplemented!(),
         }
@@ -81,15 +69,17 @@ impl ObjectImpl for CustomTag {
     fn signals() -> &'static [Signal] {
         static SIGNALS: Lazy<Vec<Signal>> = Lazy::new(|| {
             vec![
-                Signal::builder("closed", &[], <()>::static_type().into()).build(),
-                Signal::builder("clicked", &[], <()>::static_type().into()).build(),
+                Signal::builder("closed").build(),
+                Signal::builder("clicked").build(),
             ]
         });
         SIGNALS.as_ref()
     }
 
-    fn constructed(&self, tag: &Self::Type) {
-        self.container.set_parent(tag);
+    fn constructed(&self) {
+        self.parent_constructed();
+        let tag = self.instance();
+        self.container.set_parent(&*tag);
         self.container.append(&self.label);
 
         let gesture = gtk::GestureClick::new();
@@ -99,21 +89,16 @@ impl ObjectImpl for CustomTag {
         tag.add_controller(&gesture);
     }
 
-    fn dispose(&self, _tag: &Self::Type) {
+    fn dispose(&self) {
         self.container.unparent();
     }
 }
 impl WidgetImpl for CustomTag {
-    fn measure(
-        &self,
-        _widget: &Self::Type,
-        orientation: gtk::Orientation,
-        for_size: i32,
-    ) -> (i32, i32, i32, i32) {
+    fn measure(&self, orientation: gtk::Orientation, for_size: i32) -> (i32, i32, i32, i32) {
         self.container.measure(orientation, for_size)
     }
 
-    fn size_allocate(&self, _widget: &Self::Type, width: i32, height: i32, baseline: i32) {
+    fn size_allocate(&self, width: i32, height: i32, baseline: i32) {
         self.container
             .size_allocate(&gtk::Allocation::new(0, 0, width, height), baseline)
     }

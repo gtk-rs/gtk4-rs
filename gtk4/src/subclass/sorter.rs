@@ -9,22 +9,22 @@ use glib::translate::*;
 use glib::{Cast, Object};
 
 pub trait SorterImpl: SorterImplExt + ObjectImpl {
-    fn compare(&self, sorter: &Self::Type, item1: &Object, item2: &Object) -> Ordering {
-        self.parent_compare(sorter, item1, item2)
+    fn compare(&self, item1: &Object, item2: &Object) -> Ordering {
+        self.parent_compare(item1, item2)
     }
     #[doc(alias = "get_order")]
-    fn order(&self, sorter: &Self::Type) -> SorterOrder {
-        self.parent_order(sorter)
+    fn order(&self) -> SorterOrder {
+        self.parent_order()
     }
 }
 
 pub trait SorterImplExt: ObjectSubclass {
-    fn parent_compare(&self, sorter: &Self::Type, item1: &Object, item2: &Object) -> Ordering;
-    fn parent_order(&self, sorter: &Self::Type) -> SorterOrder;
+    fn parent_compare(&self, item1: &Object, item2: &Object) -> Ordering;
+    fn parent_order(&self) -> SorterOrder;
 }
 
 impl<T: SorterImpl> SorterImplExt for T {
-    fn parent_compare(&self, sorter: &Self::Type, item1: &Object, item2: &Object) -> Ordering {
+    fn parent_compare(&self, item1: &Object, item2: &Object) -> Ordering {
         unsafe {
             let data = T::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkSorterClass;
@@ -32,21 +32,25 @@ impl<T: SorterImpl> SorterImplExt for T {
                 .compare
                 .expect("No parent class impl for \"compare\"");
             from_glib(f(
-                sorter.unsafe_cast_ref::<Sorter>().to_glib_none().0,
+                self.instance().unsafe_cast_ref::<Sorter>().to_glib_none().0,
                 item1.to_glib_none().0,
                 item2.to_glib_none().0,
             ))
         }
     }
 
-    fn parent_order(&self, sorter: &Self::Type) -> SorterOrder {
+    fn parent_order(&self) -> SorterOrder {
         unsafe {
             let data = T::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkSorterClass;
             let f = (*parent_class)
                 .get_order
                 .expect("No parent class impl for \"get_order\"");
-            from_glib(f(sorter.unsafe_cast_ref::<Sorter>().to_glib_none().0))
+            from_glib(f(self
+                .instance()
+                .unsafe_cast_ref::<Sorter>()
+                .to_glib_none()
+                .0))
         }
     }
 }
@@ -73,14 +77,9 @@ unsafe extern "C" fn sorter_compare<T: SorterImpl>(
 ) -> ffi::GtkOrdering {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
-    let wrap: Borrowed<Sorter> = from_glib_borrow(ptr);
 
-    imp.compare(
-        wrap.unsafe_cast_ref(),
-        &from_glib_borrow(item1ptr),
-        &from_glib_borrow(item2ptr),
-    )
-    .into_glib()
+    imp.compare(&from_glib_borrow(item1ptr), &from_glib_borrow(item2ptr))
+        .into_glib()
 }
 
 unsafe extern "C" fn sorter_get_order<T: SorterImpl>(
@@ -88,7 +87,6 @@ unsafe extern "C" fn sorter_get_order<T: SorterImpl>(
 ) -> ffi::GtkSorterOrder {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
-    let wrap: Borrowed<Sorter> = from_glib_borrow(ptr);
 
-    imp.order(wrap.unsafe_cast_ref()).into_glib()
+    imp.order().into_glib()
 }

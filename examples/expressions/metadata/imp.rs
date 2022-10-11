@@ -30,33 +30,15 @@ impl ObjectImpl for Metadata {
         use once_cell::sync::Lazy;
         static PROPERTIES: Lazy<Vec<glib::ParamSpec>> = Lazy::new(|| {
             vec![
-                glib::ParamSpecString::new(
-                    "title",
-                    "Title",
-                    "Title of the note",
-                    None,
-                    glib::ParamFlags::READWRITE,
-                ),
-                glib::ParamSpecBoxed::new(
-                    "last-modified",
-                    "Last Modified",
-                    "Last modified datetime of the note",
-                    glib::DateTime::static_type(),
-                    glib::ParamFlags::READWRITE,
-                ),
+                glib::ParamSpecString::builder("title").build(),
+                glib::ParamSpecBoxed::builder::<glib::DateTime>("last-modified").build(),
             ]
         });
 
         PROPERTIES.as_ref()
     }
 
-    fn set_property(
-        &self,
-        _obj: &Self::Type,
-        _id: usize,
-        value: &glib::Value,
-        pspec: &glib::ParamSpec,
-    ) {
+    fn set_property(&self, _id: usize, value: &glib::Value, pspec: &glib::ParamSpec) {
         match pspec.name() {
             "title" => {
                 let title = value.get().unwrap();
@@ -70,7 +52,7 @@ impl ObjectImpl for Metadata {
         }
     }
 
-    fn property(&self, _obj: &Self::Type, _id: usize, pspec: &glib::ParamSpec) -> glib::Value {
+    fn property(&self, _id: usize, pspec: &glib::ParamSpec) -> glib::Value {
         match pspec.name() {
             "title" => self.title.borrow().to_value(),
             "last-modified" => self.last_modified.borrow().to_value(),

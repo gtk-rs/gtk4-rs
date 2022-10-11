@@ -13,7 +13,7 @@ impl Event {
 
     pub fn type_(&self) -> glib::Type {
         unsafe {
-            let ptr = self.to_glib_none().0;
+            let ptr = self.as_ptr();
             from_glib((*(*(ptr as *mut glib::gobject_ffi::GTypeInstance)).g_class).g_type)
         }
     }
@@ -170,7 +170,7 @@ macro_rules! define_event {
             }
 
             pub fn upcast_ref(&self) -> &crate::Event {
-                &*self
+                self
             }
         }
     };

@@ -61,7 +61,6 @@ impl BookmarkListBuilder {
             properties.push(("io-priority", io_priority));
         }
         glib::Object::new::<BookmarkList>(&properties)
-            .expect("Failed to create an instance of BookmarkList")
     }
 
     pub fn attributes(mut self, attributes: &str) -> Self {

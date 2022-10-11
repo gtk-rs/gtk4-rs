@@ -1,7 +1,7 @@
 use gtk::prelude::*;
 use gtk::{Application, ApplicationWindow};
 
-const APP_ID: &str = "org.gtk-rs.HelloWorld2";
+const APP_ID: &str = "org.gtk_rs.HelloWorld2";
 
 fn main() {
     // Create a new application

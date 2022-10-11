@@ -3,14 +3,32 @@ name: docs
 on:
   push:
     branches: [master]
+    paths:
+      - ".github/workflows/docs.yml"
+      - "gdk4/**"
+      - "gdk4-wayland/**"
+      - "gdk4-x11/**"
+      - "gsk4/**"
+      - "gtk4/**"
+      - "gtk4-macros/**"
+      - "**/README.md"
   pull_request:
+    paths:
+      - ".github/workflows/docs.yml"
+      - "gdk4/**"
+      - "gdk4-wayland/**"
+      - "gdk4-x11/**"
+      - "gsk4/**"
+      - "gtk4/**"
+      - "gtk4-macros/**"
+      - "**/README.md"
   workflow_dispatch:
   release:
     types: [published]
 
 jobs:
   build-deploy:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     name: build
     container:
       image: ghcr.io/gtk-rs/gtk4-rs/gtk4:latest
@@ -24,14 +42,15 @@ jobs:
       - uses: actions/checkout@v2
         with:
           submodules: "recursive"
+          set-safe-directory: true
       - uses: actions-rs/toolchain@v1
         with:
           profile: minimal
           toolchain: nightly
           override: true
           components: rustfmt
-      - working-directory: gir
-        run: cargo build --release
+      - run: git config --global --add safe.directory /__w/gtk4-rs/gtk4-rs
+      - run: git submodule update --checkout
       - run: cargo install rustdoc-stripper
       - run: git clone https://gitlab.gnome.org/World/Rust/gir-rustdoc/ # checkout action doesn't support random urls
       - run: python3 ./generator.py --embed-docs --yes ./
@@ -92,7 +111,7 @@ jobs:
           keep_files: false
           destination_dir: ${{ env.DEST }}/docs
 
-      - run: python3 ./gir-rustdoc/gir-rustdoc.py --project-title 'GTK 4 Rust bindings' html-index --early-section 'Book' '<ul><li><a href="stable/latest/book">Latest stable</a></li><li><a href="git/book">Development</a></li></ul>'
+      - run: python3 ./gir-rustdoc/gir-rustdoc.py --project-title 'GTK 4 Rust bindings' html-index --early-section 'Book' '<ul><li><a href="stable/latest/book">Latest stable</a></li></ul>'
       - name: deploy index page
         uses: peaceiris/actions-gh-pages@v3
         if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/master' }}
@@ -100,4 +119,5 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./public/
           keep_files: true
+          #force_orphan: true
           destination_dir: ./

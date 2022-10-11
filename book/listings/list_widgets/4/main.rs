@@ -7,7 +7,7 @@ use gtk::{
 };
 use integer_object::IntegerObject;
 
-const APP_ID: &str = "org.gtk-rs.ListWidgets4";
+const APP_ID: &str = "org.gtk_rs.ListWidgets4";
 
 fn main() {
     // Create a new application

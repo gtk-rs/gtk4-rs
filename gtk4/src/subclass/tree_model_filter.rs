@@ -9,38 +9,26 @@ use glib::translate::*;
 use glib::{Cast, IsA, Value};
 
 pub trait TreeModelFilterImpl: TreeModelFilterImplExt + ObjectImpl {
-    fn visible<M: IsA<TreeModel>>(
-        &self,
-        tree_model_filter: &Self::Type,
-        child_model: &M,
-        iter: &TreeIter,
-    ) -> bool {
-        self.parent_visible(tree_model_filter, child_model, iter)
+    fn visible<M: IsA<TreeModel>>(&self, child_model: &M, iter: &TreeIter) -> bool {
+        self.parent_visible(child_model, iter)
     }
 
     fn modify<M: IsA<TreeModel>>(
         &self,
-        tree_model_filter: &Self::Type,
         child_model: &M,
         iter: &TreeIter,
         value: Value,
         column: i32,
     ) {
-        self.parent_modify(tree_model_filter, child_model, iter, value, column)
+        self.parent_modify(child_model, iter, value, column)
     }
 }
 
 pub trait TreeModelFilterImplExt: ObjectSubclass {
-    fn parent_visible<M: IsA<TreeModel>>(
-        &self,
-        tree_model_filter: &Self::Type,
-        child_model: &M,
-        iter: &TreeIter,
-    ) -> bool;
+    fn parent_visible<M: IsA<TreeModel>>(&self, child_model: &M, iter: &TreeIter) -> bool;
 
     fn parent_modify<M: IsA<TreeModel>>(
         &self,
-        tree_model_filter: &Self::Type,
         child_model: &M,
         iter: &TreeIter,
         value: Value,
@@ -49,18 +37,13 @@ pub trait TreeModelFilterImplExt: ObjectSubclass {
 }
 
 impl<T: TreeModelFilterImpl> TreeModelFilterImplExt for T {
-    fn parent_visible<M: IsA<TreeModel>>(
-        &self,
-        tree_model_filter: &Self::Type,
-        child_model: &M,
-        iter: &TreeIter,
-    ) -> bool {
+    fn parent_visible<M: IsA<TreeModel>>(&self, child_model: &M, iter: &TreeIter) -> bool {
         unsafe {
             let data = T::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkTreeModelFilterClass;
             if let Some(f) = (*parent_class).visible {
                 from_glib(f(
-                    tree_model_filter
+                    self.instance()
                         .unsafe_cast_ref::<TreeModelFilter>()
                         .to_glib_none()
                         .0,
@@ -75,7 +58,6 @@ impl<T: TreeModelFilterImpl> TreeModelFilterImplExt for T {
 
     fn parent_modify<M: IsA<TreeModel>>(
         &self,
-        tree_model_filter: &Self::Type,
         child_model: &M,
         iter: &TreeIter,
         value: Value,
@@ -86,7 +68,7 @@ impl<T: TreeModelFilterImpl> TreeModelFilterImplExt for T {
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkTreeModelFilterClass;
             if let Some(f) = (*parent_class).modify {
                 f(
-                    tree_model_filter
+                    self.instance()
                         .unsafe_cast_ref::<TreeModelFilter>()
                         .to_glib_none()
                         .0,
@@ -122,12 +104,10 @@ unsafe extern "C" fn tree_model_filter_visible<T: TreeModelFilterImpl>(
 ) -> glib::ffi::gboolean {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
-    let wrap: Borrowed<TreeModelFilter> = from_glib_borrow(ptr);
     let child_model: Borrowed<TreeModel> = from_glib_borrow(child_modelptr);
     let iter: Borrowed<TreeIter> = from_glib_borrow(iterptr);
 
-    imp.visible(wrap.unsafe_cast_ref(), &*child_model, &iter)
-        .into_glib()
+    imp.visible(&*child_model, &iter).into_glib()
 }
 
 unsafe extern "C" fn tree_model_filter_modify<T: TreeModelFilterImpl>(
@@ -139,10 +119,9 @@ unsafe extern "C" fn tree_model_filter_modify<T: TreeModelFilterImpl>(
 ) {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
-    let wrap: Borrowed<TreeModelFilter> = from_glib_borrow(ptr);
     let child_model: Borrowed<TreeModel> = from_glib_borrow(child_modelptr);
     let iter: Borrowed<TreeIter> = from_glib_borrow(iterptr);
     let value: Value = from_glib_full(valueptr);
 
-    imp.modify(wrap.unsafe_cast_ref(), &*child_model, &iter, value, column)
+    imp.modify(&*child_model, &iter, value, column)
 }

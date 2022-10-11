@@ -1,3 +1,3 @@
-todo-row {
-  border: 1px solid @borders;
+task-row {
+  background-color: @success_color;
 }

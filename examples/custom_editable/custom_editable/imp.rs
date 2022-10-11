@@ -38,27 +38,16 @@ impl ObjectSubclass for CustomEditable {
 
 impl ObjectImpl for CustomEditable {
     fn properties() -> &'static [ParamSpec] {
-        static PROPERTIES: Lazy<Vec<ParamSpec>> = Lazy::new(|| {
-            vec![ParamSpecBoolean::new(
-                "show-spinner",
-                "Spinner shown",
-                "Whether the editable has a visible spinner",
-                false,
-                glib::ParamFlags::READWRITE,
-            )]
-        });
+        static PROPERTIES: Lazy<Vec<ParamSpec>> =
+            Lazy::new(|| vec![ParamSpecBoolean::builder("show-spinner").build()]);
         PROPERTIES.as_ref()
     }
 
-    fn set_property(
-        &self,
-        editable: &Self::Type,
-        id: usize,
-        value: &glib::Value,
-        pspec: &glib::ParamSpec,
-    ) {
+    fn set_property(&self, id: usize, value: &glib::Value, pspec: &glib::ParamSpec) {
+        let editable = self.instance();
+
         // In case this is a property that's automatically added for Editable implementations.
-        if !self.delegate_set_property(editable, id, value, pspec) {
+        if !self.delegate_set_property(id, value, pspec) {
             match pspec.name() {
                 "show-spinner" => {
                     editable.set_show_spinner(value.get().unwrap());
@@ -68,9 +57,9 @@ impl ObjectImpl for CustomEditable {
         }
     }
 
-    fn property(&self, editable: &Self::Type, id: usize, pspec: &glib::ParamSpec) -> glib::Value {
+    fn property(&self, id: usize, pspec: &glib::ParamSpec) -> glib::Value {
         // In case this is a property that's automatically added for Editable implementations.
-        if let Some(value) = self.delegate_get_property(editable, id, pspec) {
+        if let Some(value) = self.delegate_get_property(id, pspec) {
             value
         } else {
             match pspec.name() {
@@ -80,7 +69,8 @@ impl ObjectImpl for CustomEditable {
         }
     }
 
-    fn constructed(&self, editable: &Self::Type) {
+    fn constructed(&self) {
+        let editable = self.instance();
         // Most of the times when implementing Editable, you just want to embed something like
         // `gtk::Text` inside a more complex widget. In such case, your implementation most forward the `gtk::Text`
         // or any `Editable` to the delegate. That starts by returning at `EditableImpl::get_delegate`.
@@ -92,12 +82,14 @@ impl ObjectImpl for CustomEditable {
         self.text.set_hexpand(true);
         self.text.set_vexpand(true);
 
-        self.text.set_parent(editable);
+        self.text.set_parent(&*editable);
         editable.add_css_class("tagged");
         editable.set_enable_undo(true);
     }
 
-    fn dispose(&self, editable: &Self::Type) {
+    fn dispose(&self) {
+        let editable = self.instance();
+
         // Wire down the delegate signals machinery
         editable.finish_delegate();
         self.text.unparent();
@@ -107,12 +99,12 @@ impl ObjectImpl for CustomEditable {
     }
 }
 impl WidgetImpl for CustomEditable {
-    fn grab_focus(&self, _widget: &Self::Type) -> bool {
+    fn grab_focus(&self) -> bool {
         self.text.grab_focus()
     }
 }
 impl EditableImpl for CustomEditable {
-    fn delegate(&self, _editable: &Self::Type) -> Option<gtk::Editable> {
+    fn delegate(&self) -> Option<gtk::Editable> {
         Some(self.text.clone().upcast())
     }
 }

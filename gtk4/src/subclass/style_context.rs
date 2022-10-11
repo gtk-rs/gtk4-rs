@@ -9,22 +9,23 @@ use glib::translate::*;
 use glib::Cast;
 
 pub trait StyleContextImpl: StyleContextImplExt + ObjectImpl {
-    fn changed(&self, style_context: &Self::Type) {
-        self.parent_changed(style_context)
+    fn changed(&self) {
+        self.parent_changed()
     }
 }
 
 pub trait StyleContextImplExt: ObjectSubclass {
-    fn parent_changed(&self, style_context: &Self::Type);
+    fn parent_changed(&self);
 }
 
 impl<T: StyleContextImpl> StyleContextImplExt for T {
-    fn parent_changed(&self, style_context: &Self::Type) {
+    fn parent_changed(&self) {
         unsafe {
             let data = T::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkStyleContextClass;
             if let Some(f) = (*parent_class).changed {
-                f(style_context
+                f(self
+                    .instance()
                     .unsafe_cast_ref::<StyleContext>()
                     .to_glib_none()
                     .0)
@@ -49,7 +50,6 @@ unsafe impl<T: StyleContextImpl> IsSubclassable<T> for StyleContext {
 unsafe extern "C" fn style_context_changed<T: StyleContextImpl>(ptr: *mut ffi::GtkStyleContext) {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
-    let wrap: Borrowed<StyleContext> = from_glib_borrow(ptr);
 
-    imp.changed(wrap.unsafe_cast_ref())
+    imp.changed()
 }

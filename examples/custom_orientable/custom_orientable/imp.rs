@@ -1,6 +1,5 @@
 use std::cell::RefCell;
 
-use glib::translate::IntoGlib;
 use gtk::glib;
 use gtk::prelude::*;
 use gtk::subclass::prelude::*;
@@ -35,8 +34,9 @@ impl ObjectSubclass for CustomOrientable {
 }
 
 impl ObjectImpl for CustomOrientable {
-    fn constructed(&self, obj: &Self::Type) {
-        self.parent_constructed(obj);
+    fn constructed(&self) {
+        let obj = self.instance();
+        self.parent_constructed();
 
         // Create the children labels.
         let first_label = gtk::Label::new(Some("Hello"));
@@ -47,15 +47,15 @@ impl ObjectImpl for CustomOrientable {
             .downcast::<gtk::BoxLayout>()
             .unwrap();
         layout_manager.set_spacing(6);
-        first_label.set_parent(obj);
-        second_label.set_parent(obj);
+        first_label.set_parent(&*obj);
+        second_label.set_parent(&*obj);
         self.first_label
             .replace(Some(first_label.upcast::<gtk::Widget>()));
         self.second_label
             .replace(Some(second_label.upcast::<gtk::Widget>()));
     }
 
-    fn dispose(&self, _obj: &Self::Type) {
+    fn dispose(&self) {
         // Child widgets need to be manually unparented in `dispose()`.
         if let Some(child) = self.first_label.borrow_mut().take() {
             child.unparent();
@@ -75,31 +75,24 @@ impl ObjectImpl for CustomOrientable {
     fn properties() -> &'static [glib::ParamSpec] {
         use once_cell::sync::Lazy;
         static PROPERTIES: Lazy<Vec<glib::ParamSpec>> = Lazy::new(|| {
-            vec![glib::ParamSpecEnum::new(
+            vec![glib::ParamSpecEnum::builder::<gtk::Orientation>(
                 "orientation",
-                "orientation",
-                "Orientation",
-                gtk::Orientation::static_type(),
-                gtk::Orientation::Horizontal.into_glib(),
-                glib::ParamFlags::READWRITE | glib::ParamFlags::CONSTRUCT,
-            )]
+                gtk::Orientation::Horizontal,
+            )
+            .construct()
+            .build()]
         });
         PROPERTIES.as_ref()
     }
 
-    fn set_property(
-        &self,
-        obj: &Self::Type,
-        _id: usize,
-        value: &glib::Value,
-        pspec: &glib::ParamSpec,
-    ) {
+    fn set_property(&self, _id: usize, value: &glib::Value, pspec: &glib::ParamSpec) {
         match pspec.name() {
             "orientation" => {
                 let orientation = value.get().unwrap();
                 self.orientation.replace(orientation);
                 // We have to set the value in our layout manager as well.
-                let layout_manager = obj
+                let layout_manager = self
+                    .instance()
                     .layout_manager()
                     .unwrap()
                     .downcast::<gtk::BoxLayout>()
@@ -110,7 +103,7 @@ impl ObjectImpl for CustomOrientable {
         }
     }
 
-    fn property(&self, _obj: &Self::Type, _id: usize, pspec: &glib::ParamSpec) -> glib::Value {
+    fn property(&self, _id: usize, pspec: &glib::ParamSpec) -> glib::Value {
         match pspec.name() {
             "orientation" => self.orientation.borrow().to_value(),
             _ => unimplemented!(),

@@ -2,7 +2,7 @@ use gio::{Settings, SettingsBindFlags};
 use gtk::prelude::*;
 use gtk::{gio, Align, Application, ApplicationWindow, Switch};
 
-const APP_ID: &str = "org.gtk-rs.Settings2";
+const APP_ID: &str = "org.gtk_rs.Settings2";
 
 fn main() {
     // Create a new application

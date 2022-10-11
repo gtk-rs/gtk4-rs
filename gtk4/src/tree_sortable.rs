@@ -100,7 +100,7 @@ where
 unsafe extern "C" fn destroy_closure<T, F: Fn(&T, &TreeIter, &TreeIter) -> Ordering>(
     ptr: glib::ffi::gpointer,
 ) {
-    Box::<F>::from_raw(ptr as *mut _);
+    let _ = Box::<F>::from_raw(ptr as *mut _);
 }
 
 fn into_raw<F, T>(func: F) -> glib::ffi::gpointer

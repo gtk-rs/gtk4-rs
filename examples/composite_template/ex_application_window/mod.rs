@@ -10,7 +10,7 @@ glib::wrapper! {
 
 impl ExApplicationWindow {
     pub fn new<P: glib::IsA<gtk::Application>>(app: &P) -> Self {
-        glib::Object::new(&[("application", app)]).expect("Failed to create ExApplicationWindow")
+        glib::Object::new(&[("application", app)])
     }
 
     pub fn init_label(&self) {

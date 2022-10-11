@@ -20,6 +20,7 @@ generate = [
     "Gtk.AccessibleAutocomplete",
     "Gtk.AccessibleInvalidState",
     "Gtk.AccessibleProperty",
+    "Gtk.AccessibleRange",
     "Gtk.AccessibleRelation",
     "Gtk.AccessibleRole",
     "Gtk.AccessibleSort",
@@ -76,11 +77,11 @@ generate = [
     "Gtk.ConstraintStrength",
     "Gtk.ConstraintTarget",
     "Gtk.ConstraintVflParserError",
+    "Gtk.ContentFit",
     "Gtk.CornerType",
     "Gtk.CssParserError",
     "Gtk.CssParserWarning",
     "Gtk.CssProvider",
-    "Gtk.DebugFlags",
     "Gtk.DeleteType",
     "Gtk.DialogFlags",
     "Gtk.DirectionType",
@@ -88,7 +89,6 @@ generate = [
     "Gtk.DropControllerMotion",
     "Gtk.DropDown",
     "Gtk.DropTargetAsync",
-    "Gtk.EditableLabel",
     "Gtk.EditableProperties",
     "Gtk.EmojiChooser",
     "Gtk.EntryIconPosition",
@@ -104,7 +104,6 @@ generate = [
     "Gtk.FileChooserWidget",
     "Gtk.Filter",
     "Gtk.FilterChange",
-    "Gtk.FilterListModel",
     "Gtk.FilterMatch",
     "Gtk.Fixed",
     "Gtk.FixedLayout",
@@ -133,6 +132,8 @@ generate = [
     "Gtk.IMMulticontext",   
     "Gtk.InputHints",
     "Gtk.InputPurpose",
+    "Gtk.Inscription",
+    "Gtk.InscriptionOverflow",
     "Gtk.Justification",
     "Gtk.LayoutChild",
     "Gtk.LayoutManager",
@@ -150,8 +151,6 @@ generate = [
     "Gtk.MnemonicAction",
     "Gtk.MountOperation",
     "Gtk.MovementStep",
-    "Gtk.MultiFilter",
-    "Gtk.MultiSorter",
     "Gtk.Native",
     "Gtk.NaturalWrapMode",
     "Gtk.NeverTrigger",
@@ -208,22 +207,17 @@ generate = [
     "Gtk.Separator",
     "Gtk.Settings",
     "Gtk.ShortcutActionFlags",
-    "Gtk.ShortcutController",
     "Gtk.ShortcutLabel",
     "Gtk.ShortcutManager",
     "Gtk.ShortcutScope",
     "Gtk.ShortcutsGroup",
     "Gtk.ShortcutsWindow",
     "Gtk.ShortcutType",
-    "Gtk.SignalListItemFactory",
-    "Gtk.SingleSelection",
     "Gtk.SizeGroupMode",
     "Gtk.SizeRequestMode",
-    "Gtk.SliceListModel",
     "Gtk.Sorter",
     "Gtk.SorterChange",
     "Gtk.SorterOrder",
-    "Gtk.SortListModel",
     "Gtk.SortType",
     "Gtk.SpinButtonUpdatePolicy",
     "Gtk.Spinner",
@@ -629,6 +623,9 @@ generate_builder  = false # use glib::Priority
     [[object.function]]
     name = "set_io_priority"
     manual = true # return glib::Priority
+    [[object.property]]
+    pattern = "(n-items|item-type)"
+    generate = [] # disable generated getter/notify, use the ones from GListModel iface
 
 [[object]]
 name = "Gtk.Builder"
@@ -924,6 +921,13 @@ status = "generate"
     manual = true
 
 [[object]]
+name = "Gtk.DebugFlags"
+status = "generate"
+    [[object.member]]
+    name = "invert_text_dir"
+    version = "4.8"
+
+[[object]]
 name = "Gtk.Dialog"
 status = "generate"
 manual_traits = ["DialogExtManual"]
@@ -949,6 +953,9 @@ generate_builder  = false # use glib::Priority
     [[object.function]]
     name = "set_io_priority"
     manual = true # to use glib::Priority
+    [[object.property]]
+    pattern = "(n-items|item-type)"
+    generate = [] # disable generated getter/notify, use the ones from GListModel iface
 
 [[object]]
 name = "Gtk.DragIcon"
@@ -994,6 +1001,18 @@ manual_traits = ["EditableExtManual"]
     [[object.function]]
     name = "install_properties"
     manual = true # handled by EditableClassSubclassExt
+
+[[object]]
+name = "Gtk.EditableLabel"
+status = "generate"
+    [[object.property]]
+    # editing became writable in 4.8, so we have to generate it
+    # with a guard. However we now need to implement notify_ manually
+    # as it doesn't need the version guard
+    # https://gitlab.gnome.org/GNOME/gtk/-/commit/25069cf2334382e7c07964d480f6cf365472a647
+    name = "editing"
+    version = "4.8"
+    generate = ["set"]
 
 [[object]]
 name = "Gtk.Entry"
@@ -1156,6 +1175,13 @@ status = "generate"
 generate_builder = false
 
 [[object]]
+name = "Gtk.FilterListModel"
+status = "generate"
+    [[object.property]]
+    pattern = "(n-items|item-type)"
+    generate = [] # disable generated getter/notify, use the ones from GListModel iface
+
+[[object]]
 name = "Gtk.FixedLayoutChild"
 status = "generate"
 generate_builder = false
@@ -1164,6 +1190,9 @@ generate_builder = false
 name = "Gtk.FlattenListModel"
 status = "generate"
 generate_builder = false
+    [[object.property]]
+    pattern = "(n-items|item-type)"
+    generate = [] # disable generated getter/notify, use the ones from GListModel iface
 
 [[object]]
 name = "Gtk.FlowBox"
@@ -1323,6 +1352,11 @@ status = "generate"
     [[object.function]]
     name = "get_mnemonic_keyval"
     manual = true # to make use of gdk::Key
+    [[object.function]]
+    name = "set_tabs"
+        [[object.function.parameter]]
+        name = "tabs"
+        const = true
 
 [[object]]
 name = "Gtk.LinkButton"
@@ -1432,7 +1466,10 @@ generate_builder = false
     name = "set_map_func"
         [[object.function.parameter]]
         name = "map_func"
-        nullable = false    
+        nullable = false
+    [[object.property]]
+    pattern = "(n-items|item-type)"
+    generate = [] # disable generated getter/notify, use the ones from GListModel iface
 
 [[object]]
 name = "Gtk.MediaStream"
@@ -1475,9 +1512,26 @@ status = "manual" # to make use of gdk::Key # to make use of gdk::Key
 generate_builder = false
 
 [[object]]
+name = "Gtk.MultiFilter"
+status = "generate"
+    [[object.property]]
+    pattern = "(n-items|item-type)"
+    generate = [] # disable generated getter/notify, use the ones from GListModel iface
+
+[[object]]
 name = "Gtk.MultiSelection"
 status = "generate"
 generate_builder = false
+    [[object.property]]
+    pattern = "(n-items|item-type)"
+    generate = [] # disable generated getter/notify, use the ones from GListModel iface
+
+[[object]]
+name = "Gtk.MultiSorter"
+status = "generate"
+    [[object.property]]
+    pattern = "(n-items|item-type)"
+    generate = [] # disable generated getter/notify, use the ones from GListModel iface
 
 [[object]]
 name = "Gtk.NamedAction"
@@ -1493,6 +1547,9 @@ manual_traits = ["NativeDialogExtManual"]
 name = "Gtk.NoSelection"
 status = "generate"
 generate_builder = false
+    [[object.property]]
+    pattern = "(n-items|item-type)"
+    generate = [] # disable generated getter/notify, use the ones from GListModel iface
 
 [[object]]
 name = "Gtk.Notebook"
@@ -1763,6 +1820,9 @@ status = "generate"
 name = "Gtk.SelectionFilterModel"
 status = "generate"
 generate_builder = false
+    [[object.property]]
+    pattern = "(n-items|item-type)"
+    generate = [] # disable generated getter/notify, use the ones from GListModel iface
 
 [[object]]
 name = "Gtk.Shortcut"
@@ -1778,6 +1838,14 @@ status = "generate"
     [[object.function]]
     name = "print"
     ignore = true # Same as ShortcutAction::to_str
+
+[[object]]
+name = "Gtk.ShortcutController"
+status = "generate"
+generate_builder = false
+    [[object.property]]
+    pattern = "(n-items|item-type)"
+    generate = [] # disable generated getter/notify, use the ones from GListModel iface
 
 [[object]]
 name = "Gtk.ShortcutsSection"
@@ -1822,9 +1890,30 @@ status = "generate"
 generate_builder = false
 
 [[object]]
+name = "Gtk.SignalListItemFactory"
+status = "generate"
+    [[object.signal]]
+    pattern = "(bind|setup|teardown|unbind)"
+    version = "4.8"
+
+[[object]]
+name = "Gtk.SingleSelection"
+status = "generate"
+    [[object.property]]
+    pattern = "(n-items|item-type)"
+    generate = [] # disable generated getter/notify, use the ones from GListModel iface
+
+[[object]]
 name = "Gtk.SizeGroup"
 status = "generate"
 generate_builder = false
+
+[[object]]
+name = "Gtk.SliceListModel"
+status = "generate"
+    [[object.property]]
+    pattern = "(n-items|item-type)"
+    generate = [] # disable generated getter/notify, use the ones from GListModel iface
 
 [[object]]
 name = "Gtk.Snapshot"
@@ -1838,6 +1927,18 @@ status = "generate"
     [[object.function]]
     name = "push_debug"
     manual = true # ignore format args
+    [[object.function]]
+    pattern = "to_(node|paintable)"
+        [[object.function.parameter]]
+        name = "snapshot"
+        move = true
+
+[[object]]
+name = "Gtk.SortListModel"
+status = "generate"
+    [[object.property]]
+    pattern = "(n-items|item-type)"
+    generate = [] # disable generated getter/notify, use the ones from GListModel iface
 
 [[object]]
 name = "Gtk.SpinButton"
@@ -1996,6 +2097,9 @@ boxed_inline = true
 name = "Gtk.TreeListModel"
 status = "generate"
 generate_builder = false
+    [[object.property]]
+    pattern = "(n-items|item-type)"
+    generate = [] # disable generated getter/notify, use the ones from GListModel iface
 
 [[object]]
 name = "Gtk.TreeListRow"

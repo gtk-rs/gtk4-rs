@@ -83,7 +83,7 @@ use syn::{parse_macro_input, DeriveInput};
 ///
 /// impl MyWidget {
 ///     pub fn new() -> Self {
-///         glib::Object::new(&[]).expect("Failed to create an instance of MyWidget")
+///         glib::Object::new(&[])
 ///     }
 /// }
 /// ```
@@ -236,7 +236,7 @@ pub fn composite_template_derive(input: TokenStream) -> TokenStream {
 /// #[gtk::template_callbacks]
 /// impl MyWidget {
 ///     pub fn new() -> Self {
-///         glib::Object::new(&[]).expect("Failed to create an instance of MyWidget")
+///         glib::Object::new(&[])
 ///     }
 ///     #[template_callback]
 ///     pub fn print_both_labels(&self) {

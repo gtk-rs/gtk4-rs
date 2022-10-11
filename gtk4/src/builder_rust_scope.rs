@@ -47,7 +47,7 @@ impl Default for BuilderRustScope {
 
 impl BuilderRustScope {
     pub fn new() -> Self {
-        glib::Object::new(&[]).unwrap()
+        glib::Object::new(&[])
     }
     // rustdoc-stripper-ignore-next
     /// Adds a Rust callback to the scope with the given `name`. The callback can then be accessed
@@ -92,7 +92,6 @@ mod imp {
     impl BuilderScopeImpl for BuilderRustScope {
         fn create_closure(
             &self,
-            _builder_scope: &Self::Type,
             builder: &Builder,
             function_name: &str,
             flags: BuilderClosureFlags,
@@ -311,13 +310,12 @@ mod tests {
         }
         impl ObjectImpl for MyObjectPrivate {
             fn signals() -> &'static [Signal] {
-                static SIGNALS: Lazy<Vec<Signal>> = Lazy::new(|| {
-                    vec![Signal::builder("destroyed", &[], <()>::static_type().into()).build()]
-                });
+                static SIGNALS: Lazy<Vec<Signal>> =
+                    Lazy::new(|| vec![Signal::builder("destroyed").build()]);
                 SIGNALS.as_ref()
             }
-            fn dispose(&self, obj: &Self::Type) {
-                obj.emit_by_name::<()>("destroyed", &[]);
+            fn dispose(&self) {
+                self.instance().emit_by_name::<()>("destroyed", &[]);
             }
         }
         glib::wrapper! {

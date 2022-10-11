@@ -25,18 +25,14 @@ impl ObjectImpl for ListBoxRow {
     fn properties() -> &'static [ParamSpec] {
         use once_cell::sync::Lazy;
         static PROPERTIES: Lazy<Vec<ParamSpec>> = Lazy::new(|| {
-            vec![ParamSpecObject::new(
-                "row-data",
-                "Row Data",
-                "Row Data",
-                RowData::static_type(),
-                glib::ParamFlags::READWRITE | glib::ParamFlags::CONSTRUCT_ONLY,
-            )]
+            vec![ParamSpecObject::builder::<RowData>("row-data")
+                .construct_only()
+                .build()]
         });
         PROPERTIES.as_ref()
     }
 
-    fn set_property(&self, _obj: &Self::Type, _id: usize, value: &Value, pspec: &ParamSpec) {
+    fn set_property(&self, _id: usize, value: &Value, pspec: &ParamSpec) {
         match pspec.name() {
             "row-data" => {
                 let row_data = value.get().unwrap();
@@ -46,14 +42,16 @@ impl ObjectImpl for ListBoxRow {
         }
     }
 
-    fn property(&self, _obj: &Self::Type, _id: usize, pspec: &ParamSpec) -> Value {
+    fn property(&self, _id: usize, pspec: &ParamSpec) -> Value {
         match pspec.name() {
             "row-data" => self.row_data.borrow().to_value(),
             _ => unimplemented!(),
         }
     }
 
-    fn constructed(&self, obj: &Self::Type) {
+    fn constructed(&self) {
+        let obj = self.instance();
+
         let item = self.row_data.borrow();
         let item = item.as_ref().cloned().unwrap();
 

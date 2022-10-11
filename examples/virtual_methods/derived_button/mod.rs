@@ -9,7 +9,7 @@ glib::wrapper! {
 
 impl DerivedButton {
     pub fn new() -> Self {
-        glib::Object::new(&[]).expect("Failed to create DerivedButton")
+        glib::Object::new(&[])
     }
 }
 

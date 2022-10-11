@@ -98,6 +98,7 @@ static TEST_THREAD_WORKER: once_cell::sync::Lazy<glib::ThreadPool> =
 #[allow(clippy::upper_case_acronyms)]
 #[allow(clippy::type_complexity)]
 #[allow(unused_imports)]
+#[allow(deprecated)]
 mod auto;
 
 #[macro_use]
@@ -137,6 +138,7 @@ mod directory_list;
 mod drawing_area;
 mod drop_target;
 mod editable;
+mod editable_label;
 mod entry;
 mod entry_buffer;
 mod entry_completion;
@@ -182,6 +184,7 @@ mod scale;
 mod shortcut;
 mod shortcut_trigger;
 mod shortcuts_section;
+mod signal_list_item_factory;
 mod snapshot;
 mod spin_button;
 mod string_list;
