@@ -3,12 +3,13 @@
 use crate::WaylandDevice;
 #[cfg(any(feature = "wayland_crate", feature = "dox"))]
 #[cfg_attr(feature = "dox", doc(cfg(feature = "wayland_crate")))]
-use glib::translate::ToGlibPtr;
+use {gdk::prelude::*, glib::translate::ToGlibPtr};
+
 #[cfg(any(feature = "wayland_crate", feature = "dox"))]
 #[cfg_attr(feature = "dox", doc(cfg(feature = "wayland_crate")))]
 use wayland_client::{
+    backend::ObjectId,
     protocol::{wl_keyboard::WlKeyboard, wl_pointer::WlPointer, wl_seat::WlSeat},
-    sys::client::wl_proxy,
     Proxy,
 };
 
@@ -24,10 +25,19 @@ impl WaylandDevice {
     #[doc(alias = "get_wl_keyboard")]
     #[cfg(any(feature = "wayland_crate", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "wayland_crate")))]
-    pub fn wl_keyboard(&self) -> WlKeyboard {
+    pub fn wl_keyboard(&self) -> Option<WlKeyboard> {
+        let display = self.display().downcast::<crate::WaylandDisplay>().unwrap();
         unsafe {
-            let ptr = ffi::gdk_wayland_device_get_wl_keyboard(self.to_glib_none().0);
-            Proxy::from_c_ptr(ptr as *mut wl_proxy).into()
+            let keyboard_ptr = ffi::gdk_wayland_device_get_wl_keyboard(self.to_glib_none().0);
+            if keyboard_ptr.is_null() {
+                None
+            } else {
+                let cnx = display.connection();
+                let id =
+                    ObjectId::from_ptr(WlKeyboard::interface(), keyboard_ptr as *mut _).unwrap();
+
+                WlKeyboard::from_id(&cnx, id).ok()
+            }
         }
     }
 
@@ -35,10 +45,18 @@ impl WaylandDevice {
     #[doc(alias = "get_wl_pointer")]
     #[cfg(any(feature = "wayland_crate", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "wayland_crate")))]
-    pub fn wl_pointer(&self) -> WlPointer {
+    pub fn wl_pointer(&self) -> Option<WlPointer> {
+        let display = self.display().downcast::<crate::WaylandDisplay>().unwrap();
         unsafe {
-            let ptr = ffi::gdk_wayland_device_get_wl_pointer(self.to_glib_none().0);
-            Proxy::from_c_ptr(ptr as *mut wl_proxy).into()
+            let pointer_ptr = ffi::gdk_wayland_device_get_wl_pointer(self.to_glib_none().0);
+            if pointer_ptr.is_null() {
+                None
+            } else {
+                let cnx = display.connection();
+                let id = ObjectId::from_ptr(WlPointer::interface(), pointer_ptr as *mut _).unwrap();
+
+                WlPointer::from_id(&cnx, id).ok()
+            }
         }
     }
 
@@ -46,10 +64,18 @@ impl WaylandDevice {
     #[doc(alias = "get_wl_seat")]
     #[cfg(any(feature = "wayland_crate", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "wayland_crate")))]
-    pub fn wl_seat(&self) -> WlSeat {
+    pub fn wl_seat(&self) -> Option<WlSeat> {
+        let display = self.display().downcast::<crate::WaylandDisplay>().unwrap();
         unsafe {
-            let ptr = ffi::gdk_wayland_device_get_wl_seat(self.to_glib_none().0);
-            Proxy::from_c_ptr(ptr as *mut wl_proxy).into()
+            let seat_ptr = ffi::gdk_wayland_device_get_wl_seat(self.to_glib_none().0);
+            if seat_ptr.is_null() {
+                None
+            } else {
+                let cnx = display.connection();
+                let id = ObjectId::from_ptr(WlSeat::interface(), seat_ptr as *mut _).unwrap();
+
+                WlSeat::from_id(&cnx, id).ok()
+            }
         }
     }
 
