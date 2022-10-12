@@ -96,9 +96,6 @@ pub trait FileChooserExt: 'static {
     #[doc(alias = "gtk_file_chooser_set_create_folders")]
     fn set_create_folders(&self, create_folders: bool);
 
-    #[doc(alias = "gtk_file_chooser_set_current_folder")]
-    fn set_current_folder(&self, file: Option<&impl IsA<gio::File>>) -> Result<(), glib::Error>;
-
     #[doc(alias = "gtk_file_chooser_set_current_name")]
     fn set_current_name(&self, name: &str);
 
@@ -303,23 +300,6 @@ impl<O: IsA<FileChooser>> FileChooserExt for O {
                 self.as_ref().to_glib_none().0,
                 create_folders.into_glib(),
             );
-        }
-    }
-
-    fn set_current_folder(&self, file: Option<&impl IsA<gio::File>>) -> Result<(), glib::Error> {
-        unsafe {
-            let mut error = ptr::null_mut();
-            let is_ok = ffi::gtk_file_chooser_set_current_folder(
-                self.as_ref().to_glib_none().0,
-                file.map(|p| p.as_ref()).to_glib_none().0,
-                &mut error,
-            );
-            assert_eq!(is_ok == glib::ffi::GFALSE, !error.is_null());
-            if error.is_null() {
-                Ok(())
-            } else {
-                Err(from_glib_full(error))
-            }
         }
     }
 
