@@ -1161,6 +1161,9 @@ manual_traits = ["FileChooserExtManual"]
     [[object.function]]
     name = "add_choice"
     manual = true # rust-ify the options param
+    [[object.function]]
+    name = "set_current_folder"
+    manual = true # Drops the error assertion as it is not always correct
 
 [[object]]
 name = "Gtk.FileChooserDialog"
