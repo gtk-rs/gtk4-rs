@@ -8,12 +8,14 @@ use crate::StyleContext;
 use glib::translate::*;
 use glib::Cast;
 
+#[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 pub trait StyleContextImpl: StyleContextImplExt + ObjectImpl {
     fn changed(&self) {
         self.parent_changed()
     }
 }
 
+#[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 pub trait StyleContextImplExt: ObjectSubclass {
     fn parent_changed(&self);
 }

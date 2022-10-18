@@ -8,6 +8,7 @@ use crate::{MovementStep, TreeIter, TreePath, TreeView, TreeViewColumn};
 use glib::translate::*;
 use glib::Cast;
 
+#[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 pub trait TreeViewImpl: TreeViewImplExt + WidgetImpl {
     fn columns_changed(&self) {
         self.parent_columns_changed()
@@ -70,6 +71,7 @@ pub trait TreeViewImpl: TreeViewImplExt + WidgetImpl {
     }
 }
 
+#[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 pub trait TreeViewImplExt: ObjectSubclass {
     fn parent_columns_changed(&self);
     fn parent_cursor_changed(&self);

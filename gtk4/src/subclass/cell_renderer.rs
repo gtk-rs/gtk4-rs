@@ -12,6 +12,7 @@ use glib::object::IsA;
 use glib::translate::*;
 use glib::{Cast, GString};
 
+#[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 pub trait CellRendererImpl: CellRendererImplExt + ObjectImpl {
     fn activate<P: IsA<Widget>>(
         &self,
@@ -92,6 +93,7 @@ pub trait CellRendererImpl: CellRendererImplExt + ObjectImpl {
     }
 }
 
+#[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 pub trait CellRendererImplExt: ObjectSubclass {
     fn parent_activate<P: IsA<Widget>>(
         &self,

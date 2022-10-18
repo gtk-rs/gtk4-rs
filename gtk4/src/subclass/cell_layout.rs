@@ -48,6 +48,7 @@ impl Drop for CellLayoutDataCallback {
     }
 }
 
+#[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 pub trait CellLayoutImpl: ObjectImpl {
     fn add_attribute<R: IsA<CellRenderer>>(&self, cell: &R, attribute: &str, column: i32) {
         self.parent_add_attribute(cell, attribute, column)
@@ -91,6 +92,7 @@ pub trait CellLayoutImpl: ObjectImpl {
     }
 }
 
+#[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 pub trait CellLayoutImplExt: ObjectSubclass {
     fn parent_add_attribute<R: IsA<CellRenderer>>(&self, cell: &R, attribute: &str, column: i32);
     fn parent_clear_attributes<R: IsA<CellRenderer>>(&self, cell: &R);
