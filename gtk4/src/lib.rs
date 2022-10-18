@@ -5,6 +5,7 @@
 #![allow(clippy::non_send_fields_in_send_ty)]
 #![allow(clippy::too_many_arguments)]
 #![allow(clippy::wrong_self_convention)]
+#![allow(deprecated)]
 #![doc = include_str!("../README.md")]
 
 pub use ffi;
@@ -98,7 +99,6 @@ static TEST_THREAD_WORKER: once_cell::sync::Lazy<glib::ThreadPool> =
 #[allow(clippy::upper_case_acronyms)]
 #[allow(clippy::type_complexity)]
 #[allow(unused_imports)]
-#[allow(deprecated)]
 mod auto;
 
 #[macro_use]

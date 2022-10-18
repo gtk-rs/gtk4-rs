@@ -8,6 +8,7 @@ use crate::CellEditable;
 use glib::translate::*;
 use glib::Cast;
 
+#[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 pub trait CellEditableImpl: ObjectImpl {
     fn editing_done(&self) {
         self.parent_editing_done()
@@ -22,6 +23,7 @@ pub trait CellEditableImpl: ObjectImpl {
     }
 }
 
+#[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 pub trait CellEditableImplExt: ObjectSubclass {
     fn parent_editing_done(&self);
     fn parent_remove_widget(&self);

@@ -8,11 +8,13 @@ use crate::{TreeDragDest, TreePath};
 use glib::translate::*;
 use glib::{Cast, Value};
 
+#[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 pub trait TreeDragDestImpl: ObjectImpl {
     fn drag_data_received(&self, dest: &TreePath, value: Value) -> bool;
     fn row_drop_possible(&self, dest: &TreePath, value: Value) -> bool;
 }
 
+#[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 pub trait TreeDragDestImplExt: ObjectSubclass {
     fn parent_drag_data_received(&self, dest: &TreePath, value: Value) -> bool;
     fn parent_row_drop_possible(&self, dest: &TreePath, value: Value) -> bool;

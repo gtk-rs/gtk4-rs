@@ -63,6 +63,7 @@ impl CellCallbackAllocate {
     }
 }
 
+#[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 pub trait CellAreaImpl: CellAreaImplExt + ObjectImpl {
     fn cell_properties() -> &'static [ParamSpec] {
         &[]
@@ -218,6 +219,7 @@ pub trait CellAreaImpl: CellAreaImplExt + ObjectImpl {
     }
 }
 
+#[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 pub trait CellAreaImplExt: ObjectSubclass {
     fn parent_activate<P: IsA<CellAreaContext>, W: IsA<Widget>>(
         &self,

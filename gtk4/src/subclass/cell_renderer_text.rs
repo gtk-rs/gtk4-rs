@@ -8,12 +8,14 @@ use crate::CellRendererText;
 use glib::translate::*;
 use glib::{Cast, GString};
 
+#[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 pub trait CellRendererTextImpl: CellRendererTextImplExt + CellRendererImpl {
     fn edited(&self, path: &str, new_text: &str) {
         self.parent_edited(path, new_text);
     }
 }
 
+#[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 pub trait CellRendererTextImplExt: ObjectSubclass {
     fn parent_edited(&self, path: &str, new_text: &str);
 }
