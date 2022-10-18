@@ -21,6 +21,7 @@ glib::wrapper! {
 }
 
 impl TreeStore {
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_tree_store_append")]
     pub fn append(&self, parent: Option<&TreeIter>) -> TreeIter {
         unsafe {
@@ -34,6 +35,7 @@ impl TreeStore {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_tree_store_clear")]
     pub fn clear(&self) {
         unsafe {
@@ -41,6 +43,7 @@ impl TreeStore {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_tree_store_insert")]
     pub fn insert(&self, parent: Option<&TreeIter>, position: i32) -> TreeIter {
         unsafe {
@@ -55,6 +58,7 @@ impl TreeStore {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_tree_store_insert_after")]
     pub fn insert_after(&self, parent: Option<&TreeIter>, sibling: Option<&TreeIter>) -> TreeIter {
         unsafe {
@@ -69,6 +73,7 @@ impl TreeStore {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_tree_store_insert_before")]
     pub fn insert_before(&self, parent: Option<&TreeIter>, sibling: Option<&TreeIter>) -> TreeIter {
         unsafe {
@@ -83,6 +88,7 @@ impl TreeStore {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_tree_store_is_ancestor")]
     pub fn is_ancestor(&self, iter: &TreeIter, descendant: &TreeIter) -> bool {
         unsafe {
@@ -94,6 +100,7 @@ impl TreeStore {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_tree_store_iter_depth")]
     pub fn iter_depth(&self, iter: &TreeIter) -> i32 {
         unsafe {
@@ -104,6 +111,7 @@ impl TreeStore {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_tree_store_iter_is_valid")]
     pub fn iter_is_valid(&self, iter: &TreeIter) -> bool {
         unsafe {
@@ -114,6 +122,7 @@ impl TreeStore {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_tree_store_move_after")]
     pub fn move_after(&self, iter: &TreeIter, position: Option<&TreeIter>) {
         unsafe {
@@ -125,6 +134,7 @@ impl TreeStore {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_tree_store_move_before")]
     pub fn move_before(&self, iter: &TreeIter, position: Option<&TreeIter>) {
         unsafe {
@@ -136,6 +146,7 @@ impl TreeStore {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_tree_store_prepend")]
     pub fn prepend(&self, parent: Option<&TreeIter>) -> TreeIter {
         unsafe {
@@ -149,6 +160,7 @@ impl TreeStore {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_tree_store_remove")]
     pub fn remove(&self, iter: &TreeIter) -> bool {
         unsafe {
@@ -159,6 +171,7 @@ impl TreeStore {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_tree_store_swap")]
     pub fn swap(&self, a: &TreeIter, b: &TreeIter) {
         unsafe {

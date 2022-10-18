@@ -21,6 +21,7 @@ glib::wrapper! {
 }
 
 impl ListStore {
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_list_store_append")]
     pub fn append(&self) -> TreeIter {
         unsafe {
@@ -30,6 +31,7 @@ impl ListStore {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_list_store_clear")]
     pub fn clear(&self) {
         unsafe {
@@ -37,6 +39,7 @@ impl ListStore {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_list_store_insert")]
     pub fn insert(&self, position: i32) -> TreeIter {
         unsafe {
@@ -46,6 +49,7 @@ impl ListStore {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_list_store_insert_after")]
     pub fn insert_after(&self, sibling: Option<&TreeIter>) -> TreeIter {
         unsafe {
@@ -59,6 +63,7 @@ impl ListStore {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_list_store_insert_before")]
     pub fn insert_before(&self, sibling: Option<&TreeIter>) -> TreeIter {
         unsafe {
@@ -72,6 +77,7 @@ impl ListStore {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_list_store_iter_is_valid")]
     pub fn iter_is_valid(&self, iter: &TreeIter) -> bool {
         unsafe {
@@ -82,6 +88,7 @@ impl ListStore {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_list_store_move_after")]
     pub fn move_after(&self, iter: &TreeIter, position: Option<&TreeIter>) {
         unsafe {
@@ -93,6 +100,7 @@ impl ListStore {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_list_store_move_before")]
     pub fn move_before(&self, iter: &TreeIter, position: Option<&TreeIter>) {
         unsafe {
@@ -104,6 +112,7 @@ impl ListStore {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_list_store_prepend")]
     pub fn prepend(&self) -> TreeIter {
         unsafe {
@@ -113,6 +122,7 @@ impl ListStore {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_list_store_remove")]
     pub fn remove(&self, iter: &TreeIter) -> bool {
         unsafe {
@@ -123,6 +133,7 @@ impl ListStore {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_list_store_swap")]
     pub fn swap(&self, a: &TreeIter, b: &TreeIter) {
         unsafe {

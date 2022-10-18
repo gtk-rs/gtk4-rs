@@ -30,6 +30,7 @@ glib::wrapper! {
 }
 
 impl CellRendererCombo {
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_cell_renderer_combo_new")]
     pub fn new() -> CellRendererCombo {
         assert_initialized_main_thread!();

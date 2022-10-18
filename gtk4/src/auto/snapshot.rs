@@ -165,6 +165,7 @@ pub trait SnapshotExt: 'static {
     #[doc(alias = "gtk_snapshot_push_shadow")]
     fn push_shadow(&self, shadow: &[gsk::Shadow]);
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_snapshot_render_background")]
     fn render_background(
         &self,
@@ -175,6 +176,7 @@ pub trait SnapshotExt: 'static {
         height: f64,
     );
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_snapshot_render_focus")]
     fn render_focus(
         &self,
@@ -185,6 +187,7 @@ pub trait SnapshotExt: 'static {
         height: f64,
     );
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_snapshot_render_frame")]
     fn render_frame(
         &self,
@@ -195,6 +198,7 @@ pub trait SnapshotExt: 'static {
         height: f64,
     );
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_snapshot_render_insertion_cursor")]
     fn render_insertion_cursor(
         &self,
@@ -206,6 +210,7 @@ pub trait SnapshotExt: 'static {
         direction: pango::Direction,
     );
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_snapshot_render_layout")]
     fn render_layout(
         &self,

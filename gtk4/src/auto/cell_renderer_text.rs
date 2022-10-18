@@ -28,6 +28,7 @@ glib::wrapper! {
 impl CellRendererText {
     pub const NONE: Option<&'static CellRendererText> = None;
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_cell_renderer_text_new")]
     pub fn new() -> CellRendererText {
         assert_initialized_main_thread!();
@@ -615,6 +616,7 @@ impl CellRendererTextBuilder {
 }
 
 pub trait CellRendererTextExt: 'static {
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_cell_renderer_text_set_fixed_height_from_font")]
     fn set_fixed_height_from_font(&self, number_of_rows: i32);
 

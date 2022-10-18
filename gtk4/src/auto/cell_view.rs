@@ -39,12 +39,14 @@ glib::wrapper! {
 }
 
 impl CellView {
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_cell_view_new")]
     pub fn new() -> CellView {
         assert_initialized_main_thread!();
         unsafe { Widget::from_glib_none(ffi::gtk_cell_view_new()).unsafe_cast() }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_cell_view_new_with_context")]
     #[doc(alias = "new_with_context")]
     pub fn with_context(
@@ -61,6 +63,7 @@ impl CellView {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_cell_view_new_with_markup")]
     #[doc(alias = "new_with_markup")]
     pub fn with_markup(markup: &str) -> CellView {
@@ -71,6 +74,7 @@ impl CellView {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_cell_view_new_with_text")]
     #[doc(alias = "new_with_text")]
     pub fn with_text(text: &str) -> CellView {
@@ -81,6 +85,7 @@ impl CellView {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_cell_view_new_with_texture")]
     #[doc(alias = "new_with_texture")]
     pub fn with_texture(texture: &impl IsA<gdk::Texture>) -> CellView {
@@ -101,30 +106,35 @@ impl CellView {
         CellViewBuilder::default()
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_cell_view_get_displayed_row")]
     #[doc(alias = "get_displayed_row")]
     pub fn displayed_row(&self) -> Option<TreePath> {
         unsafe { from_glib_full(ffi::gtk_cell_view_get_displayed_row(self.to_glib_none().0)) }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_cell_view_get_draw_sensitive")]
     #[doc(alias = "get_draw_sensitive")]
     pub fn draws_sensitive(&self) -> bool {
         unsafe { from_glib(ffi::gtk_cell_view_get_draw_sensitive(self.to_glib_none().0)) }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_cell_view_get_fit_model")]
     #[doc(alias = "get_fit_model")]
     pub fn fits_model(&self) -> bool {
         unsafe { from_glib(ffi::gtk_cell_view_get_fit_model(self.to_glib_none().0)) }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_cell_view_get_model")]
     #[doc(alias = "get_model")]
     pub fn model(&self) -> Option<TreeModel> {
         unsafe { from_glib_none(ffi::gtk_cell_view_get_model(self.to_glib_none().0)) }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_cell_view_set_displayed_row")]
     pub fn set_displayed_row(&self, path: Option<&TreePath>) {
         unsafe {
@@ -135,6 +145,7 @@ impl CellView {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_cell_view_set_draw_sensitive")]
     pub fn set_draw_sensitive(&self, draw_sensitive: bool) {
         unsafe {
@@ -145,6 +156,7 @@ impl CellView {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_cell_view_set_fit_model")]
     pub fn set_fit_model(&self, fit_model: bool) {
         unsafe {
@@ -152,6 +164,7 @@ impl CellView {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_cell_view_set_model")]
     pub fn set_model(&self, model: Option<&impl IsA<TreeModel>>) {
         unsafe {

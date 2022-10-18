@@ -64,6 +64,7 @@ int main() {
     printf("%s;%zu;%zu\n", "GtkCenterLayoutClass", sizeof(GtkCenterLayoutClass), alignof(GtkCenterLayoutClass));
     printf("%s;%zu;%zu\n", "GtkCheckButton", sizeof(GtkCheckButton), alignof(GtkCheckButton));
     printf("%s;%zu;%zu\n", "GtkCheckButtonClass", sizeof(GtkCheckButtonClass), alignof(GtkCheckButtonClass));
+    printf("%s;%zu;%zu\n", "GtkCollation", sizeof(GtkCollation), alignof(GtkCollation));
     printf("%s;%zu;%zu\n", "GtkColorChooserInterface", sizeof(GtkColorChooserInterface), alignof(GtkColorChooserInterface));
     printf("%s;%zu;%zu\n", "GtkComboBox", sizeof(GtkComboBox), alignof(GtkComboBox));
     printf("%s;%zu;%zu\n", "GtkComboBoxClass", sizeof(GtkComboBoxClass), alignof(GtkComboBoxClass));

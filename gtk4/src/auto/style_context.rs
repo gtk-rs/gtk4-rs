@@ -59,28 +59,35 @@ impl StyleContext {
 }
 
 pub trait StyleContextExt: 'static {
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_style_context_add_class")]
     fn add_class(&self, class_name: &str);
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_style_context_add_provider")]
     fn add_provider(&self, provider: &impl IsA<StyleProvider>, priority: u32);
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_style_context_get_border")]
     #[doc(alias = "get_border")]
     fn border(&self) -> Border;
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_style_context_get_color")]
     #[doc(alias = "get_color")]
     fn color(&self) -> gdk::RGBA;
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_style_context_get_display")]
     #[doc(alias = "get_display")]
     fn display(&self) -> gdk::Display;
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_style_context_get_margin")]
     #[doc(alias = "get_margin")]
     fn margin(&self) -> Border;
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_style_context_get_padding")]
     #[doc(alias = "get_padding")]
     fn padding(&self) -> Border;
@@ -89,37 +96,48 @@ pub trait StyleContextExt: 'static {
     #[doc(alias = "get_scale")]
     fn scale(&self) -> i32;
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_style_context_get_state")]
     #[doc(alias = "get_state")]
     fn state(&self) -> StateFlags;
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_style_context_has_class")]
     fn has_class(&self, class_name: &str) -> bool;
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_style_context_lookup_color")]
     fn lookup_color(&self, color_name: &str) -> Option<gdk::RGBA>;
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_style_context_remove_class")]
     fn remove_class(&self, class_name: &str);
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_style_context_remove_provider")]
     fn remove_provider(&self, provider: &impl IsA<StyleProvider>);
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_style_context_restore")]
     fn restore(&self);
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_style_context_save")]
     fn save(&self);
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_style_context_set_display")]
     fn set_display(&self, display: &impl IsA<gdk::Display>);
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_style_context_set_scale")]
     fn set_scale(&self, scale: i32);
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_style_context_set_state")]
     fn set_state(&self, flags: StateFlags);
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_style_context_to_string")]
     fn to_string(&self, flags: StyleContextPrintFlags) -> glib::GString;
 

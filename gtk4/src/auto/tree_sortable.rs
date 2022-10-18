@@ -26,9 +26,11 @@ impl TreeSortable {
 }
 
 pub trait TreeSortableExt: 'static {
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_tree_sortable_has_default_sort_func")]
     fn has_default_sort_func(&self) -> bool;
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_tree_sortable_sort_column_changed")]
     fn sort_column_changed(&self);
 

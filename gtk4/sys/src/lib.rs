@@ -253,6 +253,11 @@ pub const GTK_CELL_RENDERER_MODE_INERT: GtkCellRendererMode = 0;
 pub const GTK_CELL_RENDERER_MODE_ACTIVATABLE: GtkCellRendererMode = 1;
 pub const GTK_CELL_RENDERER_MODE_EDITABLE: GtkCellRendererMode = 2;
 
+pub type GtkCollation = c_int;
+pub const GTK_COLLATION_NONE: GtkCollation = 0;
+pub const GTK_COLLATION_UNICODE: GtkCollation = 1;
+pub const GTK_COLLATION_FILENAME: GtkCollation = 2;
+
 pub type GtkConstraintAttribute = c_int;
 pub const GTK_CONSTRAINT_ATTRIBUTE_NONE: GtkConstraintAttribute = 0;
 pub const GTK_CONSTRAINT_ATTRIBUTE_LEFT: GtkConstraintAttribute = 1;
@@ -8944,6 +8949,13 @@ extern "C" {
     pub fn gtk_cell_renderer_mode_get_type() -> GType;
 
     //=========================================================================
+    // GtkCollation
+    //=========================================================================
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gtk_collation_get_type() -> GType;
+
+    //=========================================================================
     // GtkConstraintAttribute
     //=========================================================================
     pub fn gtk_constraint_attribute_get_type() -> GType;
@@ -16133,8 +16145,14 @@ extern "C" {
     //=========================================================================
     pub fn gtk_string_sorter_get_type() -> GType;
     pub fn gtk_string_sorter_new(expression: *mut GtkExpression) -> *mut GtkStringSorter;
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gtk_string_sorter_get_collation(self_: *mut GtkStringSorter) -> GtkCollation;
     pub fn gtk_string_sorter_get_expression(self_: *mut GtkStringSorter) -> *mut GtkExpression;
     pub fn gtk_string_sorter_get_ignore_case(self_: *mut GtkStringSorter) -> gboolean;
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gtk_string_sorter_set_collation(self_: *mut GtkStringSorter, collation: GtkCollation);
     pub fn gtk_string_sorter_set_expression(
         self_: *mut GtkStringSorter,
         expression: *mut GtkExpression,
@@ -17771,6 +17789,9 @@ extern "C" {
         height: *mut c_int,
     );
     pub fn gtk_widget_get_state_flags(widget: *mut GtkWidget) -> GtkStateFlags;
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gtk_widget_get_style_color(widget: *mut GtkWidget, color: *mut gdk::GdkRGBA);
     pub fn gtk_widget_get_style_context(widget: *mut GtkWidget) -> *mut GtkStyleContext;
     pub fn gtk_widget_get_template_child(
         widget: *mut GtkWidget,

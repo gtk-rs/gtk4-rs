@@ -30,6 +30,7 @@ glib::wrapper! {
 }
 
 impl CellAreaBox {
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_cell_area_box_new")]
     pub fn new() -> CellAreaBox {
         assert_initialized_main_thread!();
@@ -44,12 +45,14 @@ impl CellAreaBox {
         CellAreaBoxBuilder::default()
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_cell_area_box_get_spacing")]
     #[doc(alias = "get_spacing")]
     pub fn spacing(&self) -> i32 {
         unsafe { ffi::gtk_cell_area_box_get_spacing(self.to_glib_none().0) }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_cell_area_box_pack_end")]
     pub fn pack_end(
         &self,
@@ -69,6 +72,7 @@ impl CellAreaBox {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_cell_area_box_pack_start")]
     pub fn pack_start(
         &self,
@@ -88,6 +92,7 @@ impl CellAreaBox {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_cell_area_box_set_spacing")]
     pub fn set_spacing(&self, spacing: i32) {
         unsafe {

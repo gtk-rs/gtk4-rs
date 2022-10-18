@@ -36,18 +36,23 @@ impl TreeModelSort {
 }
 
 pub trait TreeModelSortExt: 'static {
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_tree_model_sort_clear_cache")]
     fn clear_cache(&self);
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_tree_model_sort_convert_child_iter_to_iter")]
     fn convert_child_iter_to_iter(&self, child_iter: &TreeIter) -> Option<TreeIter>;
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_tree_model_sort_convert_child_path_to_path")]
     fn convert_child_path_to_path(&self, child_path: &TreePath) -> Option<TreePath>;
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_tree_model_sort_convert_iter_to_child_iter")]
     fn convert_iter_to_child_iter(&self, sorted_iter: &TreeIter) -> TreeIter;
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_tree_model_sort_convert_path_to_child_path")]
     fn convert_path_to_child_path(&self, sorted_path: &TreePath) -> Option<TreePath>;
 
@@ -55,9 +60,11 @@ pub trait TreeModelSortExt: 'static {
     #[doc(alias = "get_model")]
     fn model(&self) -> TreeModel;
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_tree_model_sort_iter_is_valid")]
     fn iter_is_valid(&self, iter: &TreeIter) -> bool;
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_tree_model_sort_reset_default_sort_func")]
     fn reset_default_sort_func(&self);
 }

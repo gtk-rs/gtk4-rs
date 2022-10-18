@@ -28,39 +28,49 @@ impl CellAreaContext {
 }
 
 pub trait CellAreaContextExt: 'static {
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_cell_area_context_allocate")]
     fn allocate(&self, width: i32, height: i32);
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_cell_area_context_get_allocation")]
     #[doc(alias = "get_allocation")]
     fn allocation(&self) -> (i32, i32);
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_cell_area_context_get_area")]
     #[doc(alias = "get_area")]
     fn area(&self) -> CellArea;
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_cell_area_context_get_preferred_height")]
     #[doc(alias = "get_preferred_height")]
     fn preferred_height(&self) -> (i32, i32);
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_cell_area_context_get_preferred_height_for_width")]
     #[doc(alias = "get_preferred_height_for_width")]
     fn preferred_height_for_width(&self, width: i32) -> (i32, i32);
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_cell_area_context_get_preferred_width")]
     #[doc(alias = "get_preferred_width")]
     fn preferred_width(&self) -> (i32, i32);
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_cell_area_context_get_preferred_width_for_height")]
     #[doc(alias = "get_preferred_width_for_height")]
     fn preferred_width_for_height(&self, height: i32) -> (i32, i32);
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_cell_area_context_push_preferred_height")]
     fn push_preferred_height(&self, minimum_height: i32, natural_height: i32);
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_cell_area_context_push_preferred_width")]
     fn push_preferred_width(&self, minimum_width: i32, natural_width: i32);
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_cell_area_context_reset")]
     fn reset(&self);
 

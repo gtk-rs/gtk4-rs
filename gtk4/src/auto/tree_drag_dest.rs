@@ -21,9 +21,11 @@ impl TreeDragDest {
 }
 
 pub trait TreeDragDestExt: 'static {
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_tree_drag_dest_drag_data_received")]
     fn drag_data_received(&self, dest: &TreePath, value: &glib::Value) -> bool;
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_tree_drag_dest_row_drop_possible")]
     fn row_drop_possible(&self, dest_path: &TreePath, value: &glib::Value) -> bool;
 }

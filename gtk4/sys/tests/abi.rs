@@ -601,6 +601,13 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         },
     ),
     (
+        "GtkCollation",
+        Layout {
+            size: size_of::<GtkCollation>(),
+            alignment: align_of::<GtkCollation>(),
+        },
+    ),
+    (
         "GtkColorChooserInterface",
         Layout {
             size: size_of::<GtkColorChooserInterface>(),
@@ -2580,6 +2587,9 @@ const RUST_CONSTANTS: &[(&str, &str)] = &[
     ("(guint) GTK_CELL_RENDERER_PRELIT", "2"),
     ("(guint) GTK_CELL_RENDERER_SELECTED", "1"),
     ("(guint) GTK_CELL_RENDERER_SORTED", "8"),
+    ("(gint) GTK_COLLATION_FILENAME", "2"),
+    ("(gint) GTK_COLLATION_NONE", "0"),
+    ("(gint) GTK_COLLATION_UNICODE", "1"),
     ("(gint) GTK_CONSTRAINT_ATTRIBUTE_BASELINE", "11"),
     ("(gint) GTK_CONSTRAINT_ATTRIBUTE_BOTTOM", "4"),
     ("(gint) GTK_CONSTRAINT_ATTRIBUTE_CENTER_X", "9"),
