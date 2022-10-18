@@ -24,7 +24,7 @@ features = ["dox"]
 name = "gdk4_wayland_sys"
 
 [features]
-dox = []
+dox = ["glib/dox"]
 v4_4 = []
 
 [dependencies]

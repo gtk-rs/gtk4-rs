@@ -33,7 +33,7 @@ version = "4.7"
 name = "gdk4_sys"
 
 [features]
-dox = []
+dox = ["glib/dox", "gobject/dox", "gio/dox", "gdk_pixbuf/dox", "pango/dox", "cairo/dox"]
 v4_2 = []
 v4_4 = ["v4_2"]
 v4_6 = ["v4_4"]
