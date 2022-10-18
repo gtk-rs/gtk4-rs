@@ -18,12 +18,6 @@ pub trait SnapshotExtManual {
 
     #[doc(alias = "gtk_snapshot_push_debug")]
     fn push_debug(&self, message: &str);
-
-    #[doc(alias = "gtk_snapshot_to_node")]
-    fn to_node(self) -> Option<gsk::RenderNode>;
-
-    #[doc(alias = "gtk_snapshot_to_paintable")]
-    fn to_paintable(self, size: Option<&graphene::Size>) -> Option<gdk::Paintable>;
 }
 
 impl<T: IsA<Snapshot>> SnapshotExtManual for T {
@@ -48,19 +42,6 @@ impl<T: IsA<Snapshot>> SnapshotExtManual for T {
     fn push_debug(&self, message: &str) {
         unsafe {
             ffi::gtk_snapshot_push_debug(self.as_ref().to_glib_none().0, message.to_glib_none().0)
-        }
-    }
-
-    fn to_node(self) -> Option<gsk::RenderNode> {
-        unsafe { from_glib_full(ffi::gtk_snapshot_to_node(self.upcast().into_glib_ptr())) }
-    }
-
-    fn to_paintable(self, size: Option<&graphene::Size>) -> Option<gdk::Paintable> {
-        unsafe {
-            from_glib_full(ffi::gtk_snapshot_to_paintable(
-                self.upcast().into_glib_ptr(),
-                size.to_glib_none().0,
-            ))
         }
     }
 }

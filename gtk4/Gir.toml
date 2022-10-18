@@ -1934,10 +1934,9 @@ manual_traits = ["SnapshotExtManual"]
     manual = true # ignore format args
     [[object.function]]
     pattern = "to_(node|paintable)"
-    manual = true # until we fix move config for Ext traits
-    #    [[object.function.parameter]]
-    #    name = "snapshot"
-    #    move = true
+        [[object.function.parameter]]
+        name = "snapshot"
+        move = true
 
 [[object]]
 name = "Gtk.SortListModel"

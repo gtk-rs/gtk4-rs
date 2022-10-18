@@ -3,6 +3,7 @@
 // DO NOT EDIT
 
 use crate::GLShader;
+use glib::object::Cast;
 use glib::translate::*;
 
 glib::wrapper! {
