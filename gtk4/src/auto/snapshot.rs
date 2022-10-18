@@ -3,6 +3,7 @@
 // DO NOT EDIT
 
 use crate::StyleContext;
+use glib::object::Cast;
 use glib::object::IsA;
 use glib::translate::*;
 use std::fmt;
@@ -237,6 +238,12 @@ pub trait SnapshotExt: 'static {
 
     #[doc(alias = "gtk_snapshot_scale_3d")]
     fn scale_3d(&self, factor_x: f32, factor_y: f32, factor_z: f32);
+
+    #[doc(alias = "gtk_snapshot_to_node")]
+    fn to_node(self) -> Option<gsk::RenderNode>;
+
+    #[doc(alias = "gtk_snapshot_to_paintable")]
+    fn to_paintable(self, size: Option<&graphene::Size>) -> Option<gdk::Paintable>;
 
     #[doc(alias = "gtk_snapshot_transform")]
     fn transform(&self, transform: Option<&gsk::Transform>);
@@ -702,6 +709,19 @@ impl<O: IsA<Snapshot>> SnapshotExt for O {
                 factor_y,
                 factor_z,
             );
+        }
+    }
+
+    fn to_node(self) -> Option<gsk::RenderNode> {
+        unsafe { from_glib_full(ffi::gtk_snapshot_to_node(self.upcast().into_glib_ptr())) }
+    }
+
+    fn to_paintable(self, size: Option<&graphene::Size>) -> Option<gdk::Paintable> {
+        unsafe {
+            from_glib_full(ffi::gtk_snapshot_to_paintable(
+                self.upcast().into_glib_ptr(),
+                size.to_glib_none().0,
+            ))
         }
     }
 
