@@ -34,12 +34,14 @@ glib::wrapper! {
 }
 
 impl TreeViewColumn {
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_tree_view_column_new")]
     pub fn new() -> TreeViewColumn {
         assert_initialized_main_thread!();
         unsafe { from_glib_none(ffi::gtk_tree_view_column_new()) }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_tree_view_column_new_with_area")]
     #[doc(alias = "new_with_area")]
     pub fn with_area(area: &impl IsA<CellArea>) -> TreeViewColumn {
@@ -59,6 +61,7 @@ impl TreeViewColumn {
         TreeViewColumnBuilder::default()
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_tree_view_column_add_attribute")]
     pub fn add_attribute(
         &self,
@@ -76,6 +79,7 @@ impl TreeViewColumn {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_tree_view_column_cell_get_position")]
     pub fn cell_get_position(&self, cell_renderer: &impl IsA<CellRenderer>) -> Option<(i32, i32)> {
         unsafe {
@@ -95,6 +99,7 @@ impl TreeViewColumn {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_tree_view_column_cell_get_size")]
     pub fn cell_get_size(&self) -> (i32, i32, i32, i32) {
         unsafe {
@@ -118,6 +123,7 @@ impl TreeViewColumn {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_tree_view_column_cell_is_visible")]
     pub fn cell_is_visible(&self) -> bool {
         unsafe {
@@ -127,6 +133,7 @@ impl TreeViewColumn {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_tree_view_column_cell_set_cell_data")]
     pub fn cell_set_cell_data(
         &self,
@@ -146,6 +153,7 @@ impl TreeViewColumn {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_tree_view_column_clear")]
     pub fn clear(&self) {
         unsafe {
@@ -153,6 +161,7 @@ impl TreeViewColumn {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_tree_view_column_clear_attributes")]
     pub fn clear_attributes(&self, cell_renderer: &impl IsA<CellRenderer>) {
         unsafe {
@@ -163,6 +172,7 @@ impl TreeViewColumn {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_tree_view_column_clicked")]
     pub fn clicked(&self) {
         unsafe {
@@ -170,6 +180,7 @@ impl TreeViewColumn {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_tree_view_column_focus_cell")]
     pub fn focus_cell(&self, cell: &impl IsA<CellRenderer>) {
         unsafe {
@@ -180,18 +191,21 @@ impl TreeViewColumn {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_tree_view_column_get_alignment")]
     #[doc(alias = "get_alignment")]
     pub fn alignment(&self) -> f32 {
         unsafe { ffi::gtk_tree_view_column_get_alignment(self.to_glib_none().0) }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_tree_view_column_get_button")]
     #[doc(alias = "get_button")]
     pub fn button(&self) -> Widget {
         unsafe { from_glib_none(ffi::gtk_tree_view_column_get_button(self.to_glib_none().0)) }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_tree_view_column_get_clickable")]
     #[doc(alias = "get_clickable")]
     pub fn is_clickable(&self) -> bool {
@@ -202,30 +216,35 @@ impl TreeViewColumn {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_tree_view_column_get_expand")]
     #[doc(alias = "get_expand")]
     pub fn expands(&self) -> bool {
         unsafe { from_glib(ffi::gtk_tree_view_column_get_expand(self.to_glib_none().0)) }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_tree_view_column_get_fixed_width")]
     #[doc(alias = "get_fixed_width")]
     pub fn fixed_width(&self) -> i32 {
         unsafe { ffi::gtk_tree_view_column_get_fixed_width(self.to_glib_none().0) }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_tree_view_column_get_max_width")]
     #[doc(alias = "get_max_width")]
     pub fn max_width(&self) -> i32 {
         unsafe { ffi::gtk_tree_view_column_get_max_width(self.to_glib_none().0) }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_tree_view_column_get_min_width")]
     #[doc(alias = "get_min_width")]
     pub fn min_width(&self) -> i32 {
         unsafe { ffi::gtk_tree_view_column_get_min_width(self.to_glib_none().0) }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_tree_view_column_get_reorderable")]
     #[doc(alias = "get_reorderable")]
     pub fn is_reorderable(&self) -> bool {
@@ -236,6 +255,7 @@ impl TreeViewColumn {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_tree_view_column_get_resizable")]
     #[doc(alias = "get_resizable")]
     pub fn is_resizable(&self) -> bool {
@@ -246,18 +266,21 @@ impl TreeViewColumn {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_tree_view_column_get_sizing")]
     #[doc(alias = "get_sizing")]
     pub fn sizing(&self) -> TreeViewColumnSizing {
         unsafe { from_glib(ffi::gtk_tree_view_column_get_sizing(self.to_glib_none().0)) }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_tree_view_column_get_sort_column_id")]
     #[doc(alias = "get_sort_column_id")]
     pub fn sort_column_id(&self) -> i32 {
         unsafe { ffi::gtk_tree_view_column_get_sort_column_id(self.to_glib_none().0) }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_tree_view_column_get_sort_indicator")]
     #[doc(alias = "get_sort_indicator")]
     pub fn is_sort_indicator(&self) -> bool {
@@ -268,6 +291,7 @@ impl TreeViewColumn {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_tree_view_column_get_sort_order")]
     #[doc(alias = "get_sort_order")]
     pub fn sort_order(&self) -> SortType {
@@ -278,18 +302,21 @@ impl TreeViewColumn {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_tree_view_column_get_spacing")]
     #[doc(alias = "get_spacing")]
     pub fn spacing(&self) -> i32 {
         unsafe { ffi::gtk_tree_view_column_get_spacing(self.to_glib_none().0) }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_tree_view_column_get_title")]
     #[doc(alias = "get_title")]
     pub fn title(&self) -> glib::GString {
         unsafe { from_glib_none(ffi::gtk_tree_view_column_get_title(self.to_glib_none().0)) }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_tree_view_column_get_tree_view")]
     #[doc(alias = "get_tree_view")]
     pub fn tree_view(&self) -> Option<Widget> {
@@ -300,30 +327,35 @@ impl TreeViewColumn {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_tree_view_column_get_visible")]
     #[doc(alias = "get_visible")]
     pub fn is_visible(&self) -> bool {
         unsafe { from_glib(ffi::gtk_tree_view_column_get_visible(self.to_glib_none().0)) }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_tree_view_column_get_widget")]
     #[doc(alias = "get_widget")]
     pub fn widget(&self) -> Option<Widget> {
         unsafe { from_glib_none(ffi::gtk_tree_view_column_get_widget(self.to_glib_none().0)) }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_tree_view_column_get_width")]
     #[doc(alias = "get_width")]
     pub fn width(&self) -> i32 {
         unsafe { ffi::gtk_tree_view_column_get_width(self.to_glib_none().0) }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_tree_view_column_get_x_offset")]
     #[doc(alias = "get_x_offset")]
     pub fn x_offset(&self) -> i32 {
         unsafe { ffi::gtk_tree_view_column_get_x_offset(self.to_glib_none().0) }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_tree_view_column_pack_end")]
     pub fn pack_end(&self, cell: &impl IsA<CellRenderer>, expand: bool) {
         unsafe {
@@ -335,6 +367,7 @@ impl TreeViewColumn {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_tree_view_column_pack_start")]
     pub fn pack_start(&self, cell: &impl IsA<CellRenderer>, expand: bool) {
         unsafe {
@@ -346,6 +379,7 @@ impl TreeViewColumn {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_tree_view_column_queue_resize")]
     pub fn queue_resize(&self) {
         unsafe {
@@ -353,6 +387,7 @@ impl TreeViewColumn {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_tree_view_column_set_alignment")]
     pub fn set_alignment(&self, xalign: f32) {
         unsafe {
@@ -360,6 +395,7 @@ impl TreeViewColumn {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_tree_view_column_set_cell_data_func")]
     pub fn set_cell_data_func<
         P: Fn(&TreeViewColumn, &CellRenderer, &TreeModel, &TreeIter) + 'static,
@@ -406,6 +442,7 @@ impl TreeViewColumn {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_tree_view_column_set_clickable")]
     pub fn set_clickable(&self, clickable: bool) {
         unsafe {
@@ -413,6 +450,7 @@ impl TreeViewColumn {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_tree_view_column_set_expand")]
     pub fn set_expand(&self, expand: bool) {
         unsafe {
@@ -420,6 +458,7 @@ impl TreeViewColumn {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_tree_view_column_set_fixed_width")]
     pub fn set_fixed_width(&self, fixed_width: i32) {
         unsafe {
@@ -427,6 +466,7 @@ impl TreeViewColumn {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_tree_view_column_set_max_width")]
     pub fn set_max_width(&self, max_width: i32) {
         unsafe {
@@ -434,6 +474,7 @@ impl TreeViewColumn {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_tree_view_column_set_min_width")]
     pub fn set_min_width(&self, min_width: i32) {
         unsafe {
@@ -441,6 +482,7 @@ impl TreeViewColumn {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_tree_view_column_set_reorderable")]
     pub fn set_reorderable(&self, reorderable: bool) {
         unsafe {
@@ -451,6 +493,7 @@ impl TreeViewColumn {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_tree_view_column_set_resizable")]
     pub fn set_resizable(&self, resizable: bool) {
         unsafe {
@@ -458,6 +501,7 @@ impl TreeViewColumn {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_tree_view_column_set_sizing")]
     pub fn set_sizing(&self, type_: TreeViewColumnSizing) {
         unsafe {
@@ -465,6 +509,7 @@ impl TreeViewColumn {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_tree_view_column_set_sort_column_id")]
     pub fn set_sort_column_id(&self, sort_column_id: i32) {
         unsafe {
@@ -472,6 +517,7 @@ impl TreeViewColumn {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_tree_view_column_set_sort_indicator")]
     pub fn set_sort_indicator(&self, setting: bool) {
         unsafe {
@@ -482,6 +528,7 @@ impl TreeViewColumn {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_tree_view_column_set_sort_order")]
     pub fn set_sort_order(&self, order: SortType) {
         unsafe {
@@ -489,6 +536,7 @@ impl TreeViewColumn {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_tree_view_column_set_spacing")]
     pub fn set_spacing(&self, spacing: i32) {
         unsafe {
@@ -496,6 +544,7 @@ impl TreeViewColumn {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_tree_view_column_set_title")]
     pub fn set_title(&self, title: &str) {
         unsafe {
@@ -503,6 +552,7 @@ impl TreeViewColumn {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_tree_view_column_set_visible")]
     pub fn set_visible(&self, visible: bool) {
         unsafe {
@@ -510,6 +560,7 @@ impl TreeViewColumn {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_tree_view_column_set_widget")]
     pub fn set_widget(&self, widget: Option<&impl IsA<Widget>>) {
         unsafe {

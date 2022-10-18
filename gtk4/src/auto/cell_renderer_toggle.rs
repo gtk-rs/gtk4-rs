@@ -26,6 +26,7 @@ glib::wrapper! {
 }
 
 impl CellRendererToggle {
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_cell_renderer_toggle_new")]
     pub fn new() -> CellRendererToggle {
         assert_initialized_main_thread!();
@@ -40,6 +41,7 @@ impl CellRendererToggle {
         CellRendererToggleBuilder::default()
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_cell_renderer_toggle_get_activatable")]
     #[doc(alias = "get_activatable")]
     pub fn is_activatable(&self) -> bool {
@@ -50,6 +52,7 @@ impl CellRendererToggle {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_cell_renderer_toggle_get_active")]
     #[doc(alias = "get_active")]
     pub fn is_active(&self) -> bool {
@@ -60,6 +63,7 @@ impl CellRendererToggle {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_cell_renderer_toggle_get_radio")]
     #[doc(alias = "get_radio")]
     pub fn is_radio(&self) -> bool {
@@ -70,6 +74,7 @@ impl CellRendererToggle {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_cell_renderer_toggle_set_activatable")]
     pub fn set_activatable(&self, setting: bool) {
         unsafe {
@@ -80,6 +85,7 @@ impl CellRendererToggle {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_cell_renderer_toggle_set_active")]
     pub fn set_active(&self, setting: bool) {
         unsafe {
@@ -87,6 +93,7 @@ impl CellRendererToggle {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_cell_renderer_toggle_set_radio")]
     pub fn set_radio(&self, radio: bool) {
         unsafe {

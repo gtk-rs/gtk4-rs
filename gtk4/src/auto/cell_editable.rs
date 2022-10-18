@@ -31,9 +31,11 @@ impl CellEditable {
 }
 
 pub trait CellEditableExt: 'static {
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_cell_editable_editing_done")]
     fn editing_done(&self);
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_cell_editable_remove_widget")]
     fn remove_widget(&self);
 

@@ -364,6 +364,13 @@ pub trait WidgetExt: 'static {
     #[doc(alias = "get_state_flags")]
     fn state_flags(&self) -> StateFlags;
 
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    #[doc(alias = "gtk_widget_get_style_color")]
+    #[doc(alias = "get_style_color")]
+    fn style_color(&self) -> gdk::RGBA;
+
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_widget_get_style_context")]
     #[doc(alias = "get_style_context")]
     fn style_context(&self) -> StyleContext;
@@ -1347,6 +1354,19 @@ impl<O: IsA<Widget>> WidgetExt for O {
             from_glib(ffi::gtk_widget_get_state_flags(
                 self.as_ref().to_glib_none().0,
             ))
+        }
+    }
+
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    fn style_color(&self) -> gdk::RGBA {
+        unsafe {
+            let mut color = gdk::RGBA::uninitialized();
+            ffi::gtk_widget_get_style_color(
+                self.as_ref().to_glib_none().0,
+                color.to_glib_none_mut().0,
+            );
+            color
         }
     }
 

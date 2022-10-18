@@ -26,6 +26,7 @@ glib::wrapper! {
 }
 
 impl CellRendererSpinner {
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_cell_renderer_spinner_new")]
     pub fn new() -> CellRendererSpinner {
         assert_initialized_main_thread!();

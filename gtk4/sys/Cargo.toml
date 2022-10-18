@@ -33,6 +33,9 @@ version = "4.7"
 [package.metadata.system-deps.gtk4.v4_10]
 version = "4.9"
 
+[package.metadata.system-deps.gtk4.v4_12]
+version = "4.12"
+
 [lib]
 name = "gtk4_sys"
 
@@ -43,6 +46,7 @@ v4_4 = ["v4_2"]
 v4_6 = ["v4_4"]
 v4_8 = ["v4_6"]
 v4_10 = ["v4_8"]
+v4_12 = ["v4_10"]
 
 [dependencies]
 libc = "0.2"

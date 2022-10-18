@@ -37,6 +37,7 @@ impl CellRenderer {
 }
 
 pub trait CellRendererExt: 'static {
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_cell_renderer_activate")]
     fn activate(
         &self,
@@ -48,6 +49,7 @@ pub trait CellRendererExt: 'static {
         flags: CellRendererState,
     ) -> bool;
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_cell_renderer_get_aligned_area")]
     #[doc(alias = "get_aligned_area")]
     fn aligned_area(
@@ -57,87 +59,110 @@ pub trait CellRendererExt: 'static {
         cell_area: &gdk::Rectangle,
     ) -> gdk::Rectangle;
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_cell_renderer_get_alignment")]
     #[doc(alias = "get_alignment")]
     fn alignment(&self) -> (f32, f32);
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_cell_renderer_get_fixed_size")]
     #[doc(alias = "get_fixed_size")]
     fn fixed_size(&self) -> (i32, i32);
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_cell_renderer_get_is_expanded")]
     #[doc(alias = "get_is_expanded")]
     fn is_expanded(&self) -> bool;
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_cell_renderer_get_is_expander")]
     #[doc(alias = "get_is_expander")]
     fn is_expander(&self) -> bool;
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_cell_renderer_get_padding")]
     #[doc(alias = "get_padding")]
     fn padding(&self) -> (i32, i32);
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_cell_renderer_get_preferred_height")]
     #[doc(alias = "get_preferred_height")]
     fn preferred_height(&self, widget: &impl IsA<Widget>) -> (i32, i32);
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_cell_renderer_get_preferred_height_for_width")]
     #[doc(alias = "get_preferred_height_for_width")]
     fn preferred_height_for_width(&self, widget: &impl IsA<Widget>, width: i32) -> (i32, i32);
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_cell_renderer_get_preferred_size")]
     #[doc(alias = "get_preferred_size")]
     fn preferred_size(&self, widget: &impl IsA<Widget>) -> (Requisition, Requisition);
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_cell_renderer_get_preferred_width")]
     #[doc(alias = "get_preferred_width")]
     fn preferred_width(&self, widget: &impl IsA<Widget>) -> (i32, i32);
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_cell_renderer_get_preferred_width_for_height")]
     #[doc(alias = "get_preferred_width_for_height")]
     fn preferred_width_for_height(&self, widget: &impl IsA<Widget>, height: i32) -> (i32, i32);
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_cell_renderer_get_request_mode")]
     #[doc(alias = "get_request_mode")]
     fn request_mode(&self) -> SizeRequestMode;
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_cell_renderer_get_sensitive")]
     #[doc(alias = "get_sensitive")]
     fn is_sensitive(&self) -> bool;
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_cell_renderer_get_state")]
     #[doc(alias = "get_state")]
     fn state(&self, widget: Option<&impl IsA<Widget>>, cell_state: CellRendererState)
         -> StateFlags;
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_cell_renderer_get_visible")]
     #[doc(alias = "get_visible")]
     fn is_visible(&self) -> bool;
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_cell_renderer_is_activatable")]
     fn is_activatable(&self) -> bool;
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_cell_renderer_set_alignment")]
     fn set_alignment(&self, xalign: f32, yalign: f32);
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_cell_renderer_set_fixed_size")]
     fn set_fixed_size(&self, width: i32, height: i32);
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_cell_renderer_set_is_expanded")]
     fn set_is_expanded(&self, is_expanded: bool);
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_cell_renderer_set_is_expander")]
     fn set_is_expander(&self, is_expander: bool);
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_cell_renderer_set_padding")]
     fn set_padding(&self, xpad: i32, ypad: i32);
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_cell_renderer_set_sensitive")]
     fn set_sensitive(&self, sensitive: bool);
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_cell_renderer_set_visible")]
     fn set_visible(&self, visible: bool);
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_cell_renderer_snapshot")]
     fn snapshot(
         &self,
@@ -148,6 +173,7 @@ pub trait CellRendererExt: 'static {
         flags: CellRendererState,
     );
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_cell_renderer_start_editing")]
     fn start_editing(
         &self,
@@ -159,6 +185,7 @@ pub trait CellRendererExt: 'static {
         flags: CellRendererState,
     ) -> Option<CellEditable>;
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_cell_renderer_stop_editing")]
     fn stop_editing(&self, canceled: bool);
 

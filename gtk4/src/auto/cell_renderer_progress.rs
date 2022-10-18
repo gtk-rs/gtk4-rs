@@ -27,6 +27,7 @@ glib::wrapper! {
 }
 
 impl CellRendererProgress {
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_cell_renderer_progress_new")]
     pub fn new() -> CellRendererProgress {
         assert_initialized_main_thread!();

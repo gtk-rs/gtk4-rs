@@ -40,12 +40,14 @@ glib::wrapper! {
 impl ComboBox {
     pub const NONE: Option<&'static ComboBox> = None;
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_combo_box_new")]
     pub fn new() -> ComboBox {
         assert_initialized_main_thread!();
         unsafe { Widget::from_glib_none(ffi::gtk_combo_box_new()).unsafe_cast() }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_combo_box_new_with_entry")]
     #[doc(alias = "new_with_entry")]
     pub fn with_entry() -> ComboBox {
@@ -53,6 +55,7 @@ impl ComboBox {
         unsafe { Widget::from_glib_none(ffi::gtk_combo_box_new_with_entry()).unsafe_cast() }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_combo_box_new_with_model")]
     #[doc(alias = "new_with_model")]
     pub fn with_model(model: &impl IsA<TreeModel>) -> ComboBox {
@@ -65,6 +68,7 @@ impl ComboBox {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_combo_box_new_with_model_and_entry")]
     #[doc(alias = "new_with_model_and_entry")]
     pub fn with_model_and_entry(model: &impl IsA<TreeModel>) -> ComboBox {
@@ -487,75 +491,96 @@ impl ComboBoxBuilder {
 }
 
 pub trait ComboBoxExt: 'static {
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_combo_box_get_active_id")]
     #[doc(alias = "get_active_id")]
     fn active_id(&self) -> Option<glib::GString>;
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_combo_box_get_active_iter")]
     #[doc(alias = "get_active_iter")]
     fn active_iter(&self) -> Option<TreeIter>;
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_combo_box_get_button_sensitivity")]
     #[doc(alias = "get_button_sensitivity")]
     fn button_sensitivity(&self) -> SensitivityType;
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_combo_box_get_child")]
     #[doc(alias = "get_child")]
     fn child(&self) -> Option<Widget>;
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_combo_box_get_entry_text_column")]
     #[doc(alias = "get_entry_text_column")]
     fn entry_text_column(&self) -> i32;
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_combo_box_get_has_entry")]
     #[doc(alias = "get_has_entry")]
     fn has_entry(&self) -> bool;
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_combo_box_get_id_column")]
     #[doc(alias = "get_id_column")]
     fn id_column(&self) -> i32;
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_combo_box_get_model")]
     #[doc(alias = "get_model")]
     fn model(&self) -> Option<TreeModel>;
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_combo_box_get_popup_fixed_width")]
     #[doc(alias = "get_popup_fixed_width")]
     fn is_popup_fixed_width(&self) -> bool;
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_combo_box_popdown")]
     fn popdown(&self);
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_combo_box_popup")]
     fn popup(&self);
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_combo_box_popup_for_device")]
     fn popup_for_device(&self, device: &gdk::Device);
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_combo_box_set_active_id")]
     fn set_active_id(&self, active_id: Option<&str>) -> bool;
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_combo_box_set_active_iter")]
     fn set_active_iter(&self, iter: Option<&TreeIter>);
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_combo_box_set_button_sensitivity")]
     fn set_button_sensitivity(&self, sensitivity: SensitivityType);
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_combo_box_set_child")]
     fn set_child(&self, child: Option<&impl IsA<Widget>>);
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_combo_box_set_entry_text_column")]
     fn set_entry_text_column(&self, text_column: i32);
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_combo_box_set_id_column")]
     fn set_id_column(&self, id_column: i32);
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_combo_box_set_model")]
     fn set_model(&self, model: Option<&impl IsA<TreeModel>>);
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_combo_box_set_popup_fixed_width")]
     fn set_popup_fixed_width(&self, fixed: bool);
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_combo_box_set_row_separator_func")]
     fn set_row_separator_func<P: Fn(&TreeModel, &TreeIter) -> bool + 'static>(&self, func: P);
 

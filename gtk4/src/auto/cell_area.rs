@@ -40,6 +40,7 @@ impl CellArea {
 }
 
 pub trait CellAreaExt: 'static {
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_cell_area_activate")]
     fn activate(
         &self,
@@ -50,6 +51,7 @@ pub trait CellAreaExt: 'static {
         edit_only: bool,
     ) -> bool;
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_cell_area_activate_cell")]
     fn activate_cell(
         &self,
@@ -60,9 +62,11 @@ pub trait CellAreaExt: 'static {
         flags: CellRendererState,
     ) -> bool;
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_cell_area_add")]
     fn add(&self, renderer: &impl IsA<CellRenderer>);
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_cell_area_add_focus_sibling")]
     fn add_focus_sibling(
         &self,
@@ -70,6 +74,7 @@ pub trait CellAreaExt: 'static {
         sibling: &impl IsA<CellRenderer>,
     );
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_cell_area_apply_attributes")]
     fn apply_attributes(
         &self,
@@ -79,21 +84,27 @@ pub trait CellAreaExt: 'static {
         is_expanded: bool,
     );
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_cell_area_attribute_connect")]
     fn attribute_connect(&self, renderer: &impl IsA<CellRenderer>, attribute: &str, column: i32);
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_cell_area_attribute_disconnect")]
     fn attribute_disconnect(&self, renderer: &impl IsA<CellRenderer>, attribute: &str);
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_cell_area_attribute_get_column")]
     fn attribute_get_column(&self, renderer: &impl IsA<CellRenderer>, attribute: &str) -> i32;
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_cell_area_copy_context")]
     fn copy_context(&self, context: &impl IsA<CellAreaContext>) -> CellAreaContext;
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_cell_area_create_context")]
     fn create_context(&self) -> CellAreaContext;
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_cell_area_event")]
     fn event(
         &self,
@@ -104,9 +115,11 @@ pub trait CellAreaExt: 'static {
         flags: CellRendererState,
     ) -> i32;
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_cell_area_focus")]
     fn focus(&self, direction: DirectionType) -> bool;
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_cell_area_foreach")]
     fn foreach<P: FnMut(&CellRenderer) -> bool>(&self, callback: P);
 
@@ -120,6 +133,7 @@ pub trait CellAreaExt: 'static {
         callback: P,
     );
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_cell_area_get_cell_allocation")]
     #[doc(alias = "get_cell_allocation")]
     fn cell_allocation(
@@ -130,6 +144,7 @@ pub trait CellAreaExt: 'static {
         cell_area: &gdk::Rectangle,
     ) -> gdk::Rectangle;
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_cell_area_get_cell_at_position")]
     #[doc(alias = "get_cell_at_position")]
     fn cell_at_position(
@@ -145,26 +160,32 @@ pub trait CellAreaExt: 'static {
     #[doc(alias = "get_current_path_string")]
     fn current_path_string(&self) -> glib::GString;
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_cell_area_get_edit_widget")]
     #[doc(alias = "get_edit_widget")]
     fn edit_widget(&self) -> Option<CellEditable>;
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_cell_area_get_edited_cell")]
     #[doc(alias = "get_edited_cell")]
     fn edited_cell(&self) -> Option<CellRenderer>;
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_cell_area_get_focus_cell")]
     #[doc(alias = "get_focus_cell")]
     fn focus_cell(&self) -> Option<CellRenderer>;
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_cell_area_get_focus_from_sibling")]
     #[doc(alias = "get_focus_from_sibling")]
     fn focus_from_sibling(&self, renderer: &impl IsA<CellRenderer>) -> Option<CellRenderer>;
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_cell_area_get_focus_siblings")]
     #[doc(alias = "get_focus_siblings")]
     fn focus_siblings(&self, renderer: &impl IsA<CellRenderer>) -> Vec<CellRenderer>;
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_cell_area_get_preferred_height")]
     #[doc(alias = "get_preferred_height")]
     fn preferred_height(
@@ -173,6 +194,7 @@ pub trait CellAreaExt: 'static {
         widget: &impl IsA<Widget>,
     ) -> (i32, i32);
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_cell_area_get_preferred_height_for_width")]
     #[doc(alias = "get_preferred_height_for_width")]
     fn preferred_height_for_width(
@@ -182,6 +204,7 @@ pub trait CellAreaExt: 'static {
         width: i32,
     ) -> (i32, i32);
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_cell_area_get_preferred_width")]
     #[doc(alias = "get_preferred_width")]
     fn preferred_width(
@@ -190,6 +213,7 @@ pub trait CellAreaExt: 'static {
         widget: &impl IsA<Widget>,
     ) -> (i32, i32);
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_cell_area_get_preferred_width_for_height")]
     #[doc(alias = "get_preferred_width_for_height")]
     fn preferred_width_for_height(
@@ -203,9 +227,11 @@ pub trait CellAreaExt: 'static {
     #[doc(alias = "get_request_mode")]
     fn request_mode(&self) -> SizeRequestMode;
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_cell_area_has_renderer")]
     fn has_renderer(&self, renderer: &impl IsA<CellRenderer>) -> bool;
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_cell_area_inner_cell_area")]
     fn inner_cell_area(
         &self,
@@ -213,9 +239,11 @@ pub trait CellAreaExt: 'static {
         cell_area: &gdk::Rectangle,
     ) -> gdk::Rectangle;
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_cell_area_is_activatable")]
     fn is_activatable(&self) -> bool;
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_cell_area_is_focus_sibling")]
     fn is_focus_sibling(
         &self,
@@ -223,9 +251,11 @@ pub trait CellAreaExt: 'static {
         sibling: &impl IsA<CellRenderer>,
     ) -> bool;
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_cell_area_remove")]
     fn remove(&self, renderer: &impl IsA<CellRenderer>);
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_cell_area_remove_focus_sibling")]
     fn remove_focus_sibling(
         &self,
@@ -233,6 +263,7 @@ pub trait CellAreaExt: 'static {
         sibling: &impl IsA<CellRenderer>,
     );
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_cell_area_request_renderer")]
     fn request_renderer(
         &self,
@@ -242,9 +273,11 @@ pub trait CellAreaExt: 'static {
         for_size: i32,
     ) -> (i32, i32);
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_cell_area_set_focus_cell")]
     fn set_focus_cell(&self, renderer: Option<&impl IsA<CellRenderer>>);
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_cell_area_snapshot")]
     fn snapshot(
         &self,
@@ -257,6 +290,7 @@ pub trait CellAreaExt: 'static {
         paint_focus: bool,
     );
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_cell_area_stop_editing")]
     fn stop_editing(&self, canceled: bool);
 

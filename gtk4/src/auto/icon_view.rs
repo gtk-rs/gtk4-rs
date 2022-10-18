@@ -49,12 +49,14 @@ glib::wrapper! {
 }
 
 impl IconView {
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_icon_view_new")]
     pub fn new() -> IconView {
         assert_initialized_main_thread!();
         unsafe { Widget::from_glib_none(ffi::gtk_icon_view_new()).unsafe_cast() }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_icon_view_new_with_area")]
     #[doc(alias = "new_with_area")]
     pub fn with_area(area: &impl IsA<CellArea>) -> IconView {
@@ -67,6 +69,7 @@ impl IconView {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_icon_view_new_with_model")]
     #[doc(alias = "new_with_model")]
     pub fn with_model(model: &impl IsA<TreeModel>) -> IconView {
@@ -87,6 +90,7 @@ impl IconView {
         IconViewBuilder::default()
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_icon_view_create_drag_icon")]
     pub fn create_drag_icon(&self, path: &TreePath) -> Option<gdk::Paintable> {
         unsafe {
@@ -97,6 +101,7 @@ impl IconView {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_icon_view_enable_model_drag_dest")]
     pub fn enable_model_drag_dest(&self, formats: &gdk::ContentFormats, actions: gdk::DragAction) {
         unsafe {
@@ -108,6 +113,7 @@ impl IconView {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_icon_view_enable_model_drag_source")]
     pub fn enable_model_drag_source(
         &self,
@@ -125,6 +131,7 @@ impl IconView {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_icon_view_get_activate_on_single_click")]
     #[doc(alias = "get_activate_on_single_click")]
     pub fn activates_on_single_click(&self) -> bool {
@@ -135,6 +142,7 @@ impl IconView {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_icon_view_get_cell_rect")]
     #[doc(alias = "get_cell_rect")]
     pub fn cell_rect(
@@ -158,18 +166,21 @@ impl IconView {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_icon_view_get_column_spacing")]
     #[doc(alias = "get_column_spacing")]
     pub fn column_spacing(&self) -> i32 {
         unsafe { ffi::gtk_icon_view_get_column_spacing(self.to_glib_none().0) }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_icon_view_get_columns")]
     #[doc(alias = "get_columns")]
     pub fn columns(&self) -> i32 {
         unsafe { ffi::gtk_icon_view_get_columns(self.to_glib_none().0) }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_icon_view_get_cursor")]
     #[doc(alias = "get_cursor")]
     pub fn cursor(&self) -> Option<(TreePath, CellRenderer)> {
@@ -189,6 +200,7 @@ impl IconView {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_icon_view_get_dest_item_at_pos")]
     #[doc(alias = "get_dest_item_at_pos")]
     pub fn dest_item_at_pos(
@@ -214,6 +226,7 @@ impl IconView {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_icon_view_get_drag_dest_item")]
     #[doc(alias = "get_drag_dest_item")]
     pub fn drag_dest_item(&self) -> (Option<TreePath>, IconViewDropPosition) {
@@ -229,6 +242,7 @@ impl IconView {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_icon_view_get_item_at_pos")]
     #[doc(alias = "get_item_at_pos")]
     pub fn item_at_pos(&self, x: i32, y: i32) -> Option<(TreePath, CellRenderer)> {
@@ -250,6 +264,7 @@ impl IconView {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_icon_view_get_item_column")]
     #[doc(alias = "get_item_column")]
     pub fn item_column(&self, path: &TreePath) -> i32 {
@@ -261,6 +276,7 @@ impl IconView {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_icon_view_get_item_orientation")]
     #[doc(alias = "get_item_orientation")]
     pub fn item_orientation(&self) -> Orientation {
@@ -271,12 +287,14 @@ impl IconView {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_icon_view_get_item_padding")]
     #[doc(alias = "get_item_padding")]
     pub fn item_padding(&self) -> i32 {
         unsafe { ffi::gtk_icon_view_get_item_padding(self.to_glib_none().0) }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_icon_view_get_item_row")]
     #[doc(alias = "get_item_row")]
     pub fn item_row(&self, path: &TreePath) -> i32 {
@@ -288,30 +306,35 @@ impl IconView {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_icon_view_get_item_width")]
     #[doc(alias = "get_item_width")]
     pub fn item_width(&self) -> i32 {
         unsafe { ffi::gtk_icon_view_get_item_width(self.to_glib_none().0) }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_icon_view_get_margin")]
     #[doc(alias = "get_margin")]
     pub fn margin(&self) -> i32 {
         unsafe { ffi::gtk_icon_view_get_margin(self.to_glib_none().0) }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_icon_view_get_markup_column")]
     #[doc(alias = "get_markup_column")]
     pub fn markup_column(&self) -> i32 {
         unsafe { ffi::gtk_icon_view_get_markup_column(self.to_glib_none().0) }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_icon_view_get_model")]
     #[doc(alias = "get_model")]
     pub fn model(&self) -> Option<TreeModel> {
         unsafe { from_glib_none(ffi::gtk_icon_view_get_model(self.to_glib_none().0)) }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_icon_view_get_path_at_pos")]
     #[doc(alias = "get_path_at_pos")]
     pub fn path_at_pos(&self, x: i32, y: i32) -> Option<TreePath> {
@@ -324,24 +347,28 @@ impl IconView {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_icon_view_get_pixbuf_column")]
     #[doc(alias = "get_pixbuf_column")]
     pub fn pixbuf_column(&self) -> i32 {
         unsafe { ffi::gtk_icon_view_get_pixbuf_column(self.to_glib_none().0) }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_icon_view_get_reorderable")]
     #[doc(alias = "get_reorderable")]
     pub fn is_reorderable(&self) -> bool {
         unsafe { from_glib(ffi::gtk_icon_view_get_reorderable(self.to_glib_none().0)) }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_icon_view_get_row_spacing")]
     #[doc(alias = "get_row_spacing")]
     pub fn row_spacing(&self) -> i32 {
         unsafe { ffi::gtk_icon_view_get_row_spacing(self.to_glib_none().0) }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_icon_view_get_selected_items")]
     #[doc(alias = "get_selected_items")]
     pub fn selected_items(&self) -> Vec<TreePath> {
@@ -352,30 +379,35 @@ impl IconView {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_icon_view_get_selection_mode")]
     #[doc(alias = "get_selection_mode")]
     pub fn selection_mode(&self) -> SelectionMode {
         unsafe { from_glib(ffi::gtk_icon_view_get_selection_mode(self.to_glib_none().0)) }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_icon_view_get_spacing")]
     #[doc(alias = "get_spacing")]
     pub fn spacing(&self) -> i32 {
         unsafe { ffi::gtk_icon_view_get_spacing(self.to_glib_none().0) }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_icon_view_get_text_column")]
     #[doc(alias = "get_text_column")]
     pub fn text_column(&self) -> i32 {
         unsafe { ffi::gtk_icon_view_get_text_column(self.to_glib_none().0) }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_icon_view_get_tooltip_column")]
     #[doc(alias = "get_tooltip_column")]
     pub fn tooltip_column(&self) -> i32 {
         unsafe { ffi::gtk_icon_view_get_tooltip_column(self.to_glib_none().0) }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_icon_view_get_tooltip_context")]
     #[doc(alias = "get_tooltip_context")]
     pub fn tooltip_context(
@@ -405,6 +437,7 @@ impl IconView {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_icon_view_get_visible_range")]
     #[doc(alias = "get_visible_range")]
     pub fn visible_range(&self) -> Option<(TreePath, TreePath)> {
@@ -424,6 +457,7 @@ impl IconView {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_icon_view_item_activated")]
     pub fn item_activated(&self, path: &TreePath) {
         unsafe {
@@ -434,6 +468,7 @@ impl IconView {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_icon_view_path_is_selected")]
     pub fn path_is_selected(&self, path: &TreePath) -> bool {
         unsafe {
@@ -444,6 +479,7 @@ impl IconView {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_icon_view_scroll_to_path")]
     pub fn scroll_to_path(&self, path: &TreePath, use_align: bool, row_align: f32, col_align: f32) {
         unsafe {
@@ -457,6 +493,7 @@ impl IconView {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_icon_view_select_all")]
     pub fn select_all(&self) {
         unsafe {
@@ -464,6 +501,7 @@ impl IconView {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_icon_view_select_path")]
     pub fn select_path(&self, path: &TreePath) {
         unsafe {
@@ -474,6 +512,7 @@ impl IconView {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_icon_view_selected_foreach")]
     pub fn selected_foreach<P: FnMut(&IconView, &TreePath)>(&self, func: P) {
         let func_data: P = func;
@@ -498,6 +537,7 @@ impl IconView {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_icon_view_set_activate_on_single_click")]
     pub fn set_activate_on_single_click(&self, single: bool) {
         unsafe {
@@ -508,6 +548,7 @@ impl IconView {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_icon_view_set_column_spacing")]
     pub fn set_column_spacing(&self, column_spacing: i32) {
         unsafe {
@@ -515,6 +556,7 @@ impl IconView {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_icon_view_set_columns")]
     pub fn set_columns(&self, columns: i32) {
         unsafe {
@@ -522,6 +564,7 @@ impl IconView {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_icon_view_set_cursor")]
     pub fn set_cursor(
         &self,
@@ -539,6 +582,7 @@ impl IconView {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_icon_view_set_drag_dest_item")]
     pub fn set_drag_dest_item(&self, path: Option<&TreePath>, pos: IconViewDropPosition) {
         unsafe {
@@ -550,6 +594,7 @@ impl IconView {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_icon_view_set_item_orientation")]
     pub fn set_item_orientation(&self, orientation: Orientation) {
         unsafe {
@@ -557,6 +602,7 @@ impl IconView {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_icon_view_set_item_padding")]
     pub fn set_item_padding(&self, item_padding: i32) {
         unsafe {
@@ -564,6 +610,7 @@ impl IconView {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_icon_view_set_item_width")]
     pub fn set_item_width(&self, item_width: i32) {
         unsafe {
@@ -571,6 +618,7 @@ impl IconView {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_icon_view_set_margin")]
     pub fn set_margin(&self, margin: i32) {
         unsafe {
@@ -578,6 +626,7 @@ impl IconView {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_icon_view_set_markup_column")]
     pub fn set_markup_column(&self, column: i32) {
         unsafe {
@@ -585,6 +634,7 @@ impl IconView {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_icon_view_set_model")]
     pub fn set_model(&self, model: Option<&impl IsA<TreeModel>>) {
         unsafe {
@@ -595,6 +645,7 @@ impl IconView {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_icon_view_set_pixbuf_column")]
     pub fn set_pixbuf_column(&self, column: i32) {
         unsafe {
@@ -602,6 +653,7 @@ impl IconView {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_icon_view_set_reorderable")]
     pub fn set_reorderable(&self, reorderable: bool) {
         unsafe {
@@ -609,6 +661,7 @@ impl IconView {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_icon_view_set_row_spacing")]
     pub fn set_row_spacing(&self, row_spacing: i32) {
         unsafe {
@@ -616,6 +669,7 @@ impl IconView {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_icon_view_set_selection_mode")]
     pub fn set_selection_mode(&self, mode: SelectionMode) {
         unsafe {
@@ -623,6 +677,7 @@ impl IconView {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_icon_view_set_spacing")]
     pub fn set_spacing(&self, spacing: i32) {
         unsafe {
@@ -630,6 +685,7 @@ impl IconView {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_icon_view_set_text_column")]
     pub fn set_text_column(&self, column: i32) {
         unsafe {
@@ -637,6 +693,7 @@ impl IconView {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_icon_view_set_tooltip_cell")]
     pub fn set_tooltip_cell(
         &self,
@@ -654,6 +711,7 @@ impl IconView {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_icon_view_set_tooltip_column")]
     pub fn set_tooltip_column(&self, column: i32) {
         unsafe {
@@ -661,6 +719,7 @@ impl IconView {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_icon_view_set_tooltip_item")]
     pub fn set_tooltip_item(&self, tooltip: &Tooltip, path: &TreePath) {
         unsafe {
@@ -672,6 +731,7 @@ impl IconView {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_icon_view_unselect_all")]
     pub fn unselect_all(&self) {
         unsafe {
@@ -679,6 +739,7 @@ impl IconView {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_icon_view_unselect_path")]
     pub fn unselect_path(&self, path: &TreePath) {
         unsafe {
@@ -689,6 +750,7 @@ impl IconView {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_icon_view_unset_model_drag_dest")]
     pub fn unset_model_drag_dest(&self) {
         unsafe {
@@ -696,6 +758,7 @@ impl IconView {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_icon_view_unset_model_drag_source")]
     pub fn unset_model_drag_source(&self) {
         unsafe {

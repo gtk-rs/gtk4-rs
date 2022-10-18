@@ -44,6 +44,14 @@ impl StringSorter {
         StringSorterBuilder::default()
     }
 
+    //#[cfg(any(feature = "v4_10", feature = "dox"))]
+    //#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    //#[doc(alias = "gtk_string_sorter_get_collation")]
+    //#[doc(alias = "get_collation")]
+    //pub fn collation(&self) -> /*Ignored*/Collation {
+    //    unsafe { TODO: call ffi:gtk_string_sorter_get_collation() }
+    //}
+
     #[doc(alias = "gtk_string_sorter_get_expression")]
     #[doc(alias = "get_expression")]
     pub fn expression(&self) -> Option<Expression> {
@@ -60,6 +68,13 @@ impl StringSorter {
         }
     }
 
+    //#[cfg(any(feature = "v4_10", feature = "dox"))]
+    //#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    //#[doc(alias = "gtk_string_sorter_set_collation")]
+    //pub fn set_collation(&self, collation: /*Ignored*/Collation) {
+    //    unsafe { TODO: call ffi:gtk_string_sorter_set_collation() }
+    //}
+
     #[doc(alias = "gtk_string_sorter_set_expression")]
     pub fn set_expression(&self, expression: Option<impl AsRef<Expression>>) {
         unsafe {
@@ -74,6 +89,31 @@ impl StringSorter {
     pub fn set_ignore_case(&self, ignore_case: bool) {
         unsafe {
             ffi::gtk_string_sorter_set_ignore_case(self.to_glib_none().0, ignore_case.into_glib());
+        }
+    }
+
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    #[doc(alias = "collation")]
+    pub fn connect_collation_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_collation_trampoline<F: Fn(&StringSorter) + 'static>(
+            this: *mut ffi::GtkStringSorter,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::collation\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_collation_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
         }
     }
 
@@ -137,6 +177,7 @@ impl Default for StringSorter {
 /// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 #[must_use = "The builder must be built to be used"]
 pub struct StringSorterBuilder {
+    //collation: /*Unknown type*/,
     expression: Option<Expression>,
     ignore_case: Option<bool>,
 }

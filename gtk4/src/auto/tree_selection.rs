@@ -26,17 +26,20 @@ glib::wrapper! {
 }
 
 impl TreeSelection {
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_tree_selection_count_selected_rows")]
     pub fn count_selected_rows(&self) -> i32 {
         unsafe { ffi::gtk_tree_selection_count_selected_rows(self.to_glib_none().0) }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_tree_selection_get_mode")]
     #[doc(alias = "get_mode")]
     pub fn mode(&self) -> SelectionMode {
         unsafe { from_glib(ffi::gtk_tree_selection_get_mode(self.to_glib_none().0)) }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_tree_selection_get_selected")]
     #[doc(alias = "get_selected")]
     pub fn selected(&self) -> Option<(TreeModel, TreeIter)> {
@@ -56,6 +59,7 @@ impl TreeSelection {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_tree_selection_get_selected_rows")]
     #[doc(alias = "get_selected_rows")]
     pub fn selected_rows(&self) -> (Vec<TreePath>, TreeModel) {
@@ -68,12 +72,14 @@ impl TreeSelection {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_tree_selection_get_tree_view")]
     #[doc(alias = "get_tree_view")]
     pub fn tree_view(&self) -> TreeView {
         unsafe { from_glib_none(ffi::gtk_tree_selection_get_tree_view(self.to_glib_none().0)) }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_tree_selection_iter_is_selected")]
     pub fn iter_is_selected(&self, iter: &TreeIter) -> bool {
         unsafe {
@@ -84,6 +90,7 @@ impl TreeSelection {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_tree_selection_path_is_selected")]
     pub fn path_is_selected(&self, path: &TreePath) -> bool {
         unsafe {
@@ -94,6 +101,7 @@ impl TreeSelection {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_tree_selection_select_all")]
     pub fn select_all(&self) {
         unsafe {
@@ -101,6 +109,7 @@ impl TreeSelection {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_tree_selection_select_iter")]
     pub fn select_iter(&self, iter: &TreeIter) {
         unsafe {
@@ -111,6 +120,7 @@ impl TreeSelection {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_tree_selection_select_path")]
     pub fn select_path(&self, path: &TreePath) {
         unsafe {
@@ -121,6 +131,7 @@ impl TreeSelection {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_tree_selection_select_range")]
     pub fn select_range(&self, start_path: &TreePath, end_path: &TreePath) {
         unsafe {
@@ -132,6 +143,7 @@ impl TreeSelection {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_tree_selection_selected_foreach")]
     pub fn selected_foreach<P: FnMut(&TreeModel, &TreePath, &TreeIter)>(&self, func: P) {
         let func_data: P = func;
@@ -158,6 +170,7 @@ impl TreeSelection {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_tree_selection_set_mode")]
     pub fn set_mode(&self, type_: SelectionMode) {
         unsafe {
@@ -165,6 +178,7 @@ impl TreeSelection {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_tree_selection_set_select_function")]
     pub fn set_select_function<
         P: Fn(&TreeSelection, &TreeModel, &TreePath, bool) -> bool + 'static,
@@ -210,6 +224,7 @@ impl TreeSelection {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_tree_selection_unselect_all")]
     pub fn unselect_all(&self) {
         unsafe {
@@ -217,6 +232,7 @@ impl TreeSelection {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_tree_selection_unselect_iter")]
     pub fn unselect_iter(&self, iter: &TreeIter) {
         unsafe {
@@ -227,6 +243,7 @@ impl TreeSelection {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_tree_selection_unselect_path")]
     pub fn unselect_path(&self, path: &TreePath) {
         unsafe {
@@ -237,6 +254,7 @@ impl TreeSelection {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_tree_selection_unselect_range")]
     pub fn unselect_range(&self, start_path: &TreePath, end_path: &TreePath) {
         unsafe {

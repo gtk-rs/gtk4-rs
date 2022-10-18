@@ -21,12 +21,15 @@ impl TreeDragSource {
 }
 
 pub trait TreeDragSourceExt: 'static {
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_tree_drag_source_drag_data_delete")]
     fn drag_data_delete(&self, path: &TreePath) -> bool;
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_tree_drag_source_drag_data_get")]
     fn drag_data_get(&self, path: &TreePath) -> Option<gdk::ContentProvider>;
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_tree_drag_source_row_draggable")]
     fn row_draggable(&self, path: &TreePath) -> bool;
 }
