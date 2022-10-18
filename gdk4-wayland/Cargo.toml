@@ -14,7 +14,7 @@ rust-version = "1.63"
 
 [features]
 v4_4 = ["ffi/v4_4"]
-dox = ["ffi/dox", "xkb_crate", "wayland_crate", "egl"]
+dox = ["ffi/dox", "gdk/dox", "gio/dox", "glib/dox", "xkb_crate", "wayland_crate", "egl"]
 wayland_crate = ["wayland-client", "wayland-backend"]
 egl = ["khronos-egl"]
 xkb_crate = ["xkb"]

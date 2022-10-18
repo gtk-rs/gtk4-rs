@@ -16,7 +16,7 @@ rust-version = "1.63"
 name = "gtk4"
 
 [features]
-dox = ["gdk/dox", "gsk/dox", "ffi/dox"]
+dox = ["gdk/dox", "gsk/dox", "ffi/dox", "cairo-rs/dox", "gdk-pixbuf/dox", "gio/dox", "glib/dox", "graphene/dox", "pango/dox"]
 v4_2 = ["ffi/v4_2", "gdk/v4_2", "gsk/v4_2"]
 v4_4 = ["ffi/v4_4", "v4_2", "gdk/v4_4", "gsk/v4_4"]
 v4_6 = ["ffi/v4_6", "v4_4", "gdk/v4_6", "gsk/v4_6", "pango/v1_50"]

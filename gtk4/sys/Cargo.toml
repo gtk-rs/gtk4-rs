@@ -52,7 +52,7 @@ package = "cairo-sys-rs"
 git = "https://github.com/gtk-rs/gtk-rs-core"
 version = "0.16"
 
-[dependencies.gdk-pixbuf]
+[dependencies.gdk_pixbuf]
 package = "gdk-pixbuf-sys"
 git = "https://github.com/gtk-rs/gtk-rs-core"
 version = "0.16"
