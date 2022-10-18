@@ -30,7 +30,7 @@ version = "4.6"
 name = "gsk4_sys"
 
 [features]
-dox = []
+dox = ["glib/dox", "gobject/dox", "pango/dox", "cairo/dox", "graphene/dox", "gdk/dox"]
 v4_2 = []
 v4_4 = ["v4_2"]
 v4_6 = ["v4_4"]
