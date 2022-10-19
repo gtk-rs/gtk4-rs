@@ -46,7 +46,7 @@ version = "0.16"
 [dependencies.gdk]
 package = "gdk4-sys"
 path = "../../gdk4/sys"
-version = "0.5"
+version = "0.5.0"
 
 [dependencies.glib]
 package = "glib-sys"
