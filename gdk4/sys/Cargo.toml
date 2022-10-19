@@ -46,31 +46,37 @@ libc = "0.2"
 package = "cairo-sys-rs"
 git = "https://github.com/gtk-rs/gtk-rs-core"
 version = "0.16"
+branch = "0.16"
 
 [dependencies.gdk_pixbuf]
 package = "gdk-pixbuf-sys"
 git = "https://github.com/gtk-rs/gtk-rs-core"
 version = "0.16"
+branch = "0.16"
 
 [dependencies.gio]
 package = "gio-sys"
 git = "https://github.com/gtk-rs/gtk-rs-core"
 version = "0.16"
+branch = "0.16"
 
 [dependencies.glib]
 package = "glib-sys"
 git = "https://github.com/gtk-rs/gtk-rs-core"
 version = "0.16"
+branch = "0.16"
 
 [dependencies.gobject]
 package = "gobject-sys"
 git = "https://github.com/gtk-rs/gtk-rs-core"
 version = "0.16"
+branch = "0.16"
 
 [dependencies.pango]
 package = "pango-sys"
 git = "https://github.com/gtk-rs/gtk-rs-core"
 version = "0.16"
+branch = "0.16"
 
 [build-dependencies]
 system-deps = "6"
