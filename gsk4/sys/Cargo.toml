@@ -41,7 +41,7 @@ libc = "0.2"
 [dependencies.cairo]
 package = "cairo-sys-rs"
 git = "https://github.com/gtk-rs/gtk-rs-core"
-version = "0.16"
+version = "0.17"
 
 [dependencies.gdk]
 package = "gdk4-sys"
@@ -51,22 +51,22 @@ version = "0.6"
 [dependencies.glib]
 package = "glib-sys"
 git = "https://github.com/gtk-rs/gtk-rs-core"
-version = "0.16"
+version = "0.17"
 
 [dependencies.gobject]
 package = "gobject-sys"
 git = "https://github.com/gtk-rs/gtk-rs-core"
-version = "0.16"
+version = "0.17"
 
 [dependencies.graphene]
 package = "graphene-sys"
 git = "https://github.com/gtk-rs/gtk-rs-core"
-version = "0.16"
+version = "0.17"
 
 [dependencies.pango]
 package = "pango-sys"
 git = "https://github.com/gtk-rs/gtk-rs-core"
-version = "0.16"
+version = "0.17"
 
 [build-dependencies]
 system-deps = "6"
