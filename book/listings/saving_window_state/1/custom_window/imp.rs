@@ -17,19 +17,21 @@ impl ObjectSubclass for Window {
     type ParentType = ApplicationWindow;
 }
 impl ObjectImpl for Window {
-    fn constructed(&self, obj: &Self::Type) {
-        self.parent_constructed(obj);
+    fn constructed(&self) {
+        self.parent_constructed();
         // Load latest window state
-        obj.setup_settings();
-        obj.load_window_size();
+        self.instance().setup_settings();
+        self.instance().load_window_size();
     }
 }
 impl WidgetImpl for Window {}
 impl WindowImpl for Window {
     // Save window state right before the window will be closed
-    fn close_request(&self, obj: &Self::Type) -> Inhibit {
+    fn close_request(&self) -> Inhibit {
         // Save window size
-        obj.save_window_size().expect("Failed to save window state");
+        self.instance()
+            .save_window_size()
+            .expect("Failed to save window state");
 
         // Don't inhibit the default handler
         Inhibit(false)

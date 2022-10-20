@@ -26,7 +26,7 @@ impl Window {
     // ANCHOR: new
     pub fn new(app: &adw::Application) -> Self {
         // Create new window
-        Object::new(&[("application", app)]).expect("`Window` should be  instantiable.")
+        Object::new(&[("application", app)])
     }
     // ANCHOR_END: new
 
