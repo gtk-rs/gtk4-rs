@@ -20,9 +20,9 @@ impl ObjectSubclass for CustomButton {
 
 // Trait shared by all GObjects
 impl ObjectImpl for CustomButton {
-    fn constructed(&self, obj: &Self::Type) {
-        self.parent_constructed(obj);
-        obj.set_label(&self.number.get().to_string());
+    fn constructed(&self) {
+        self.parent_constructed();
+        self.instance().set_label(&self.number.get().to_string());
     }
 }
 
@@ -31,8 +31,8 @@ impl WidgetImpl for CustomButton {}
 
 // Trait shared by all buttons
 impl ButtonImpl for CustomButton {
-    fn clicked(&self, button: &Self::Type) {
+    fn clicked(&self) {
         self.number.set(self.number.get() + 1);
-        button.set_label(&self.number.get().to_string())
+        self.instance().set_label(&self.number.get().to_string())
     }
 }

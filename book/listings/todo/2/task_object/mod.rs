@@ -13,7 +13,6 @@ glib::wrapper! {
 impl TaskObject {
     pub fn new(completed: bool, content: String) -> Self {
         Object::new(&[("completed", &completed), ("content", &content)])
-            .expect("Failed to create `TaskObject`.")
     }
 
     pub fn is_completed(&self) -> bool {

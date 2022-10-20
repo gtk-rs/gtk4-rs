@@ -26,15 +26,9 @@ impl ObjectSubclass for CustomButton {
 impl ObjectImpl for CustomButton {
     fn signals() -> &'static [Signal] {
         static SIGNALS: Lazy<Vec<Signal>> = Lazy::new(|| {
-            vec![Signal::builder(
-                // Signal name
-                "max-number-reached",
-                // Types of the values which will be sent to the signal handler
-                &[i32::static_type().into()],
-                // Type of the value the signal handler sends back
-                <()>::static_type().into(),
-            )
-            .build()]
+            vec![Signal::builder("max-number-reached")
+                .param_types([i32::static_type()])
+                .build()]
         });
         SIGNALS.as_ref()
     }
@@ -46,13 +40,7 @@ impl ObjectImpl for CustomButton {
         PROPERTIES.as_ref()
     }
 
-    fn set_property(
-        &self,
-        _obj: &Self::Type,
-        _id: usize,
-        value: &Value,
-        pspec: &ParamSpec,
-    ) {
+    fn set_property(&self, _id: usize, value: &Value, pspec: &ParamSpec) {
         match pspec.name() {
             "number" => {
                 let input_number =
@@ -63,19 +51,20 @@ impl ObjectImpl for CustomButton {
         }
     }
 
-    fn property(&self, _obj: &Self::Type, _id: usize, pspec: &ParamSpec) -> Value {
+    fn property(&self, _id: usize, pspec: &ParamSpec) -> Value {
         match pspec.name() {
             "number" => self.number.get().to_value(),
             _ => unimplemented!(),
         }
     }
 
-    fn constructed(&self, obj: &Self::Type) {
-        self.parent_constructed(obj);
+    fn constructed(&self) {
+        self.parent_constructed();
 
         // Bind label to number
         // `SYNC_CREATE` ensures that the label will be immediately set
-        obj.bind_property("number", obj, "label")
+        self.instance()
+            .bind_property("number", &*self.instance(), "label")
             .flags(BindingFlags::SYNC_CREATE)
             .build();
     }
@@ -89,15 +78,16 @@ static MAX_NUMBER: i32 = 8;
 
 // Trait shared by all buttons
 impl ButtonImpl for CustomButton {
-    fn clicked(&self, button: &Self::Type) {
+    fn clicked(&self) {
         let incremented_number = self.number.get() + 1;
         // If `number` reached `MAX_NUMBER`,
         // emit "max-number-reached" signal and set `number` back to 0
         if incremented_number == MAX_NUMBER {
-            button.emit_by_name::<()>("max-number-reached", &[&incremented_number]);
-            button.set_property("number", &0);
+            self.instance()
+                .emit_by_name::<()>("max-number-reached", &[&incremented_number]);
+            self.instance().set_property("number", &0);
         } else {
-            button.set_property("number", &incremented_number);
+            self.instance().set_property("number", &incremented_number);
         }
     }
 }
