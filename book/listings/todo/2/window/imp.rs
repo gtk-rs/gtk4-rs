@@ -52,12 +52,13 @@ impl ObjectImpl for Window {
         self.parent_constructed();
 
         // Setup
-        self.instance().setup_settings();
-        self.instance().setup_tasks();
-        self.instance().restore_data();
-        self.instance().setup_callbacks();
-        self.instance().setup_factory();
-        self.instance().setup_actions();
+        let instance = self.instance();
+        instance.setup_settings();
+        instance.setup_tasks();
+        instance.restore_data();
+        instance.setup_callbacks();
+        instance.setup_factory();
+        instance.setup_actions();
     }
 }
 // ANCHOR_END: object_impl

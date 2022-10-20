@@ -45,9 +45,10 @@ impl ObjectImpl for Window {
         self.parent_constructed();
 
         // Setup
-        self.instance().setup_settings();
-        self.instance().setup_actions();
-        self.instance().bind_settings();
+        let instance = self.instance();
+        instance.setup_settings();
+        instance.setup_actions();
+        instance.bind_settings();
     }
 }
 // ANCHOR_END: object_impl
