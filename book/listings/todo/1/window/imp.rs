@@ -38,14 +38,14 @@ impl ObjectSubclass for Window {
 // ANCHOR: constructed
 // Trait shared by all GObjects
 impl ObjectImpl for Window {
-    fn constructed(&self, obj: &Self::Type) {
+    fn constructed(&self) {
         // Call "constructed" on parent
-        self.parent_constructed(obj);
+        self.parent_constructed();
 
         // Setup
-        obj.setup_tasks();
-        obj.setup_callbacks();
-        obj.setup_factory();
+        self.instance().setup_tasks();
+        self.instance().setup_callbacks();
+        self.instance().setup_factory();
     }
 }
 // ANCHOR_END: constructed

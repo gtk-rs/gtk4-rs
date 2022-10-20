@@ -12,11 +12,11 @@ glib::wrapper! {
 
 impl CustomButton {
     pub fn new() -> Self {
-        Object::new(&[]).expect("Failed to create `CustomButton`.")
+        Object::new(&[])
     }
 
     pub fn with_label(label: &str) -> Self {
-        Object::new(&[("label", &label)]).expect("Failed to create `CustomButton`.")
+        Object::new(&[("label", &label)])
     }
 }
 // ANCHOR_END: mod

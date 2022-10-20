@@ -36,13 +36,7 @@ impl ObjectImpl for TaskObject {
         PROPERTIES.as_ref()
     }
 
-    fn set_property(
-        &self,
-        _obj: &Self::Type,
-        _id: usize,
-        value: &Value,
-        pspec: &ParamSpec,
-    ) {
+    fn set_property(&self, _id: usize, value: &Value, pspec: &ParamSpec) {
         match pspec.name() {
             "completed" => {
                 let input_value =
@@ -59,7 +53,7 @@ impl ObjectImpl for TaskObject {
         }
     }
 
-    fn property(&self, _obj: &Self::Type, _id: usize, pspec: &ParamSpec) -> Value {
+    fn property(&self, _id: usize, pspec: &ParamSpec) -> Value {
         match pspec.name() {
             "completed" => self.data.borrow().completed.to_value(),
             "content" => self.data.borrow().content.to_value(),

@@ -26,7 +26,7 @@ glib::wrapper! {
 impl Window {
     pub fn new(app: &adw::Application) -> Self {
         // Create new window
-        Object::new(&[("application", app)]).expect("`Window` should be  instantiable.")
+        Object::new(&[("application", app)])
     }
 
     fn setup_settings(&self) {
