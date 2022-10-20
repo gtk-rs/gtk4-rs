@@ -895,6 +895,9 @@ pub use self::enums::BuilderError;
 pub use self::enums::ButtonsType;
 pub use self::enums::CellRendererAccelMode;
 pub use self::enums::CellRendererMode;
+#[cfg(any(feature = "v4_10", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+pub use self::enums::Collation;
 pub use self::enums::ConstraintAttribute;
 pub use self::enums::ConstraintRelation;
 pub use self::enums::ConstraintStrength;
