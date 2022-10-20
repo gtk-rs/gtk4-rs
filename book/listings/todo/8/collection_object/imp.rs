@@ -29,20 +29,13 @@ impl ObjectImpl for CollectionObject {
         static PROPERTIES: Lazy<Vec<ParamSpec>> = Lazy::new(|| {
             vec![
                 ParamSpecString::builder("title").build(),
-                ParamSpecObject::builder("tasks", gio::ListStore::static_type())
-                    .build(),
+                ParamSpecObject::builder::<gio::ListStore>("tasks").build(),
             ]
         });
         PROPERTIES.as_ref()
     }
 
-    fn set_property(
-        &self,
-        _obj: &Self::Type,
-        _id: usize,
-        value: &Value,
-        pspec: &ParamSpec,
-    ) {
+    fn set_property(&self, _id: usize, value: &Value, pspec: &ParamSpec) {
         match pspec.name() {
             "title" => {
                 let input_value = value
@@ -60,7 +53,7 @@ impl ObjectImpl for CollectionObject {
         }
     }
 
-    fn property(&self, _obj: &Self::Type, _id: usize, pspec: &ParamSpec) -> Value {
+    fn property(&self, _id: usize, pspec: &ParamSpec) -> Value {
         match pspec.name() {
             "title" => self.title.borrow().to_value(),
             "tasks" => self.tasks.get().expect("Could not get tasks.").to_value(),

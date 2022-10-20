@@ -16,7 +16,6 @@ glib::wrapper! {
 impl CollectionObject {
     pub fn new(title: String, tasks: gio::ListStore) -> Self {
         Object::new(&[("title", &title), ("tasks", &tasks)])
-            .expect("Failed to create `CollectionObject`.")
     }
 
     pub fn tasks(&self) -> gio::ListStore {

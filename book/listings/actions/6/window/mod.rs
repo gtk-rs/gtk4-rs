@@ -16,7 +16,7 @@ glib::wrapper! {
 impl Window {
     pub fn new(app: &Application) -> Self {
         // Create new window
-        Object::new(&[("application", app)]).expect("Failed to create Window")
+        Object::new(&[("application", app)])
     }
 
     // ANCHOR: setup_actions
