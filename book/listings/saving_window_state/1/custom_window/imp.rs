@@ -20,8 +20,9 @@ impl ObjectImpl for Window {
     fn constructed(&self) {
         self.parent_constructed();
         // Load latest window state
-        self.instance().setup_settings();
-        self.instance().load_window_size();
+        let instance = self.instance();
+        instance.setup_settings();
+        instance.load_window_size();
     }
 }
 impl WidgetImpl for Window {}
