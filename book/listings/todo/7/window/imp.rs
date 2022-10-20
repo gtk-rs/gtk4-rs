@@ -48,16 +48,16 @@ impl ObjectSubclass for Window {
 
 // Trait shared by all GObjects
 impl ObjectImpl for Window {
-    fn constructed(&self, obj: &Self::Type) {
+    fn constructed(&self) {
         // Call "constructed" on parent
-        self.parent_constructed(obj);
+        self.parent_constructed();
 
         // Setup
-        obj.setup_settings();
-        obj.setup_tasks();
-        obj.restore_data();
-        obj.setup_callbacks();
-        obj.setup_actions();
+        self.instance().setup_settings();
+        self.instance().setup_tasks();
+        self.instance().restore_data();
+        self.instance().setup_callbacks();
+        self.instance().setup_actions();
     }
 }
 
@@ -66,9 +66,10 @@ impl WidgetImpl for Window {}
 
 // Trait shared by all windows
 impl WindowImpl for Window {
-    fn close_request(&self, window: &Self::Type) -> Inhibit {
+    fn close_request(&self) -> Inhibit {
         // Store task data in vector
-        let backup_data: Vec<TaskData> = window
+        let backup_data: Vec<TaskData> = self
+            .instance()
             .tasks()
             .snapshot()
             .iter()
@@ -82,7 +83,7 @@ impl WindowImpl for Window {
             .expect("Could not write data to json file");
 
         // Pass close request on to the parent
-        self.parent_close_request(window)
+        self.parent_close_request()
     }
 }
 

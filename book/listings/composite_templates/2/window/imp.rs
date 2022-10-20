@@ -37,9 +37,9 @@ impl ObjectSubclass for Window {
 // ANCHOR: object_impl
 // Trait shared by all GObjects
 impl ObjectImpl for Window {
-    fn constructed(&self, obj: &Self::Type) {
+    fn constructed(&self) {
         // Call "constructed" on parent
-        self.parent_constructed(obj);
+        self.parent_constructed();
 
         // Connect to "clicked" signal of `button`
         self.button.connect_clicked(move |button| {

@@ -22,7 +22,7 @@ impl Default for TaskRow {
 
 impl TaskRow {
     pub fn new() -> Self {
-        Object::new(&[]).expect("Failed to create `TaskRow`.")
+        Object::new(&[])
     }
 
     pub fn bind(&self, task_object: &TaskObject) {
@@ -51,11 +51,8 @@ impl TaskRow {
         let content_label_binding = task_object
             .bind_property("completed", &content_label, "attributes")
             .flags(BindingFlags::SYNC_CREATE)
-            .transform_to(|_, active_value| {
+            .transform_to(|_, active| {
                 let attribute_list = AttrList::new();
-                let active = active_value
-                    .get::<bool>()
-                    .expect("The value needs to be of type `bool`.");
                 if active {
                     // If "active" is true, content of the label will be strikethrough
                     let attribute = AttrInt::new_strikethrough(true);
