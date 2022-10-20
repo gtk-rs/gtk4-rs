@@ -42,7 +42,6 @@ The `signals` method is responsible for defining a set of signals.
 In our case, we only create a single signal named "max-number-reached".
 When naming our signal, we make sure to do that in [kebab-case](https://en.wikipedia.org/wiki/Letter_case#Kebab_case).
 When emitted, it sends a single `i32` value.
-There emitter could get a return value here but we don't need that here so we specify `()`.
 
 We want the signal to be emitted, whenever `number` reaches `MAX_NUMBER`.
 Together with the signal we send the value `number` currently holds.
