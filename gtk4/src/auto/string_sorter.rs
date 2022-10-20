@@ -2,6 +2,9 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+#[cfg(any(feature = "v4_10", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+use crate::Collation;
 use crate::Expression;
 use crate::Sorter;
 use glib::object::Cast;
@@ -44,13 +47,13 @@ impl StringSorter {
         StringSorterBuilder::default()
     }
 
-    //#[cfg(any(feature = "v4_10", feature = "dox"))]
-    //#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
-    //#[doc(alias = "gtk_string_sorter_get_collation")]
-    //#[doc(alias = "get_collation")]
-    //pub fn collation(&self) -> /*Ignored*/Collation {
-    //    unsafe { TODO: call ffi:gtk_string_sorter_get_collation() }
-    //}
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    #[doc(alias = "gtk_string_sorter_get_collation")]
+    #[doc(alias = "get_collation")]
+    pub fn collation(&self) -> Collation {
+        unsafe { from_glib(ffi::gtk_string_sorter_get_collation(self.to_glib_none().0)) }
+    }
 
     #[doc(alias = "gtk_string_sorter_get_expression")]
     #[doc(alias = "get_expression")]
@@ -68,12 +71,14 @@ impl StringSorter {
         }
     }
 
-    //#[cfg(any(feature = "v4_10", feature = "dox"))]
-    //#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
-    //#[doc(alias = "gtk_string_sorter_set_collation")]
-    //pub fn set_collation(&self, collation: /*Ignored*/Collation) {
-    //    unsafe { TODO: call ffi:gtk_string_sorter_set_collation() }
-    //}
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    #[doc(alias = "gtk_string_sorter_set_collation")]
+    pub fn set_collation(&self, collation: Collation) {
+        unsafe {
+            ffi::gtk_string_sorter_set_collation(self.to_glib_none().0, collation.into_glib());
+        }
+    }
 
     #[doc(alias = "gtk_string_sorter_set_expression")]
     pub fn set_expression(&self, expression: Option<impl AsRef<Expression>>) {
@@ -177,7 +182,9 @@ impl Default for StringSorter {
 /// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 #[must_use = "The builder must be built to be used"]
 pub struct StringSorterBuilder {
-    //collation: /*Unknown type*/,
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    collation: Option<Collation>,
     expression: Option<Expression>,
     ignore_case: Option<bool>,
 }
@@ -194,6 +201,10 @@ impl StringSorterBuilder {
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> StringSorter {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
+        #[cfg(any(feature = "v4_10", feature = "dox"))]
+        if let Some(ref collation) = self.collation {
+            properties.push(("collation", collation));
+        }
         if let Some(ref expression) = self.expression {
             properties.push(("expression", expression));
         }
@@ -201,6 +212,13 @@ impl StringSorterBuilder {
             properties.push(("ignore-case", ignore_case));
         }
         glib::Object::new::<StringSorter>(&properties)
+    }
+
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn collation(mut self, collation: Collation) -> Self {
+        self.collation = Some(collation);
+        self
     }
 
     pub fn expression(mut self, expression: impl AsRef<Expression>) -> Self {
