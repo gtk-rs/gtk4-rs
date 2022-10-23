@@ -35,7 +35,7 @@ impl ObjectSubclass for CustomOrientable {
 
 impl ObjectImpl for CustomOrientable {
     fn constructed(&self) {
-        let obj = self.instance();
+        let obj = self.obj();
         self.parent_constructed();
 
         // Create the children labels.
@@ -92,7 +92,7 @@ impl ObjectImpl for CustomOrientable {
                 self.orientation.replace(orientation);
                 // We have to set the value in our layout manager as well.
                 let layout_manager = self
-                    .instance()
+                    .obj()
                     .layout_manager()
                     .unwrap()
                     .downcast::<gtk::BoxLayout>()

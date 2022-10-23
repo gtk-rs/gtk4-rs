@@ -37,7 +37,7 @@ impl ObjectImpl for RotationBin {
     }
 
     fn property(&self, _id: usize, pspec: &glib::ParamSpec) -> glib::Value {
-        let obj = self.instance();
+        let obj = self.obj();
 
         match pspec.name() {
             "child" => self.child(&*obj).to_value(),
@@ -47,7 +47,7 @@ impl ObjectImpl for RotationBin {
     }
 
     fn set_property(&self, _id: usize, value: &glib::Value, pspec: &glib::ParamSpec) {
-        let obj = self.instance();
+        let obj = self.obj();
 
         match pspec.name() {
             "child" => {
@@ -70,7 +70,7 @@ impl ObjectImpl for RotationBin {
 impl WidgetImpl for RotationBin {
     // When rotated by 90 or 270 degrees swap HeightForWidth with WidthForHeight
     fn request_mode(&self) -> SizeRequestMode {
-        let widget = self.instance();
+        let widget = self.obj();
         let child = self.child.borrow();
         let child = match child.as_ref() {
             Some(child) => child,
@@ -105,7 +105,7 @@ impl WidgetImpl for RotationBin {
             }
         };
 
-        match self.rotation(&self.instance()) {
+        match self.rotation(&self.obj()) {
             Rotation::Normal | Rotation::Deg180 => {
                 *hexpand = child.compute_expand(gtk::Orientation::Horizontal);
                 *vexpand = child.compute_expand(gtk::Orientation::Vertical);
@@ -118,7 +118,7 @@ impl WidgetImpl for RotationBin {
     }
 
     fn measure(&self, orientation: gtk::Orientation, for_size: i32) -> (i32, i32, i32, i32) {
-        let widget = self.instance();
+        let widget = self.obj();
         let child = self.child.borrow();
         let child = match child.as_ref() {
             Some(child) => child,
@@ -154,7 +154,7 @@ impl WidgetImpl for RotationBin {
     }
 
     fn size_allocate(&self, width: i32, height: i32, baseline: i32) {
-        let widget = self.instance();
+        let widget = self.obj();
         let child = self.child.borrow();
         let child = match child.as_ref() {
             Some(child) => child,

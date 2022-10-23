@@ -38,7 +38,7 @@ mod imp {
 
     impl ObjectImpl for MyWidget {
         fn dispose(&self) {
-            if let Some(child) = self.instance().first_child() {
+            if let Some(child) = self.obj().first_child() {
                 child.unparent();
             }
         }

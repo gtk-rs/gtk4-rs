@@ -29,7 +29,7 @@ impl<T: ButtonImpl> ButtonImplExt for T {
             let data = T::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkButtonClass;
             if let Some(f) = (*parent_class).activate {
-                f(self.instance().unsafe_cast_ref::<Button>().to_glib_none().0)
+                f(self.obj().unsafe_cast_ref::<Button>().to_glib_none().0)
             }
         }
     }
@@ -39,7 +39,7 @@ impl<T: ButtonImpl> ButtonImplExt for T {
             let data = T::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkButtonClass;
             if let Some(f) = (*parent_class).clicked {
-                f(self.instance().unsafe_cast_ref::<Button>().to_glib_none().0)
+                f(self.obj().unsafe_cast_ref::<Button>().to_glib_none().0)
             }
         }
     }

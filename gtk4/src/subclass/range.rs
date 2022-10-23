@@ -46,7 +46,7 @@ impl<T: RangeImpl> RangeImplExt for T {
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkRangeClass;
             if let Some(f) = (*parent_class).adjust_bounds {
                 f(
-                    self.instance().unsafe_cast_ref::<Range>().to_glib_none().0,
+                    self.obj().unsafe_cast_ref::<Range>().to_glib_none().0,
                     new_value,
                 )
             }
@@ -61,7 +61,7 @@ impl<T: RangeImpl> RangeImplExt for T {
                 .change_value
                 .expect("No parent class impl for \"change_value\"");
             from_glib(f(
-                self.instance().unsafe_cast_ref::<Range>().to_glib_none().0,
+                self.obj().unsafe_cast_ref::<Range>().to_glib_none().0,
                 scroll_type.into_glib(),
                 new_value,
             ))
@@ -75,7 +75,7 @@ impl<T: RangeImpl> RangeImplExt for T {
             let mut border = Border::default();
             if let Some(f) = (*parent_class).get_range_border {
                 f(
-                    self.instance().unsafe_cast_ref::<Range>().to_glib_none().0,
+                    self.obj().unsafe_cast_ref::<Range>().to_glib_none().0,
                     border.to_glib_none_mut().0,
                 );
             }
@@ -89,7 +89,7 @@ impl<T: RangeImpl> RangeImplExt for T {
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkRangeClass;
             if let Some(f) = (*parent_class).move_slider {
                 f(
-                    self.instance().unsafe_cast_ref::<Range>().to_glib_none().0,
+                    self.obj().unsafe_cast_ref::<Range>().to_glib_none().0,
                     scroll_type.into_glib(),
                 )
             }
@@ -101,7 +101,7 @@ impl<T: RangeImpl> RangeImplExt for T {
             let data = T::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkRangeClass;
             if let Some(f) = (*parent_class).value_changed {
-                f(self.instance().unsafe_cast_ref::<Range>().to_glib_none().0)
+                f(self.obj().unsafe_cast_ref::<Range>().to_glib_none().0)
             }
         }
     }

@@ -73,7 +73,7 @@ impl<T: LayoutManagerImpl> LayoutManagerImplExt for T {
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkLayoutManagerClass;
             if let Some(f) = (*parent_class).allocate {
                 f(
-                    self.instance()
+                    self.obj()
                         .unsafe_cast_ref::<LayoutManager>()
                         .to_glib_none()
                         .0,
@@ -94,7 +94,7 @@ impl<T: LayoutManagerImpl> LayoutManagerImplExt for T {
                 .create_layout_child
                 .expect("No parent class impl for \"create_layout_child\"");
             from_glib_none(f(
-                self.instance()
+                self.obj()
                     .unsafe_cast_ref::<LayoutManager>()
                     .to_glib_none()
                     .0,
@@ -112,7 +112,7 @@ impl<T: LayoutManagerImpl> LayoutManagerImplExt for T {
                 .get_request_mode
                 .expect("No parent class impl for \"get_request_mode\"");
             from_glib(f(
-                self.instance()
+                self.obj()
                     .unsafe_cast_ref::<LayoutManager>()
                     .to_glib_none()
                     .0,
@@ -139,7 +139,7 @@ impl<T: LayoutManagerImpl> LayoutManagerImplExt for T {
             let mut minimum_baseline = -1;
             let mut natural_baseline = -1;
             f(
-                self.instance()
+                self.obj()
                     .unsafe_cast_ref::<LayoutManager>()
                     .to_glib_none()
                     .0,
@@ -161,7 +161,7 @@ impl<T: LayoutManagerImpl> LayoutManagerImplExt for T {
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkLayoutManagerClass;
             if let Some(f) = (*parent_class).root {
                 f(self
-                    .instance()
+                    .obj()
                     .unsafe_cast_ref::<LayoutManager>()
                     .to_glib_none()
                     .0)
@@ -175,7 +175,7 @@ impl<T: LayoutManagerImpl> LayoutManagerImplExt for T {
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkLayoutManagerClass;
             if let Some(f) = (*parent_class).unroot {
                 f(self
-                    .instance()
+                    .obj()
                     .unsafe_cast_ref::<LayoutManager>()
                     .to_glib_none()
                     .0)

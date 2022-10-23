@@ -29,11 +29,7 @@ impl<T: PopoverImpl> PopoverImplExt for T {
             let data = T::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkPopoverClass;
             if let Some(f) = (*parent_class).activate_default {
-                f(self
-                    .instance()
-                    .unsafe_cast_ref::<Popover>()
-                    .to_glib_none()
-                    .0)
+                f(self.obj().unsafe_cast_ref::<Popover>().to_glib_none().0)
             }
         }
     }
@@ -43,11 +39,7 @@ impl<T: PopoverImpl> PopoverImplExt for T {
             let data = T::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkPopoverClass;
             if let Some(f) = (*parent_class).closed {
-                f(self
-                    .instance()
-                    .unsafe_cast_ref::<Popover>()
-                    .to_glib_none()
-                    .0)
+                f(self.obj().unsafe_cast_ref::<Popover>().to_glib_none().0)
             }
         }
     }

@@ -90,10 +90,7 @@ impl<T: IMContextImpl> IMContextImplExt for T {
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkIMContextClass;
             if let Some(f) = (*parent_class).commit {
                 f(
-                    self.instance()
-                        .unsafe_cast_ref::<IMContext>()
-                        .to_glib_none()
-                        .0,
+                    self.obj().unsafe_cast_ref::<IMContext>().to_glib_none().0,
                     string.to_glib_none().0,
                 );
             }
@@ -106,10 +103,7 @@ impl<T: IMContextImpl> IMContextImplExt for T {
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkIMContextClass;
             if let Some(f) = (*parent_class).delete_surrounding {
                 from_glib(f(
-                    self.instance()
-                        .unsafe_cast_ref::<IMContext>()
-                        .to_glib_none()
-                        .0,
+                    self.obj().unsafe_cast_ref::<IMContext>().to_glib_none().0,
                     offset,
                     n_chars,
                 ))
@@ -126,10 +120,7 @@ impl<T: IMContextImpl> IMContextImplExt for T {
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkIMContextClass;
             if let Some(f) = (*parent_class).filter_keypress {
                 from_glib(f(
-                    self.instance()
-                        .unsafe_cast_ref::<IMContext>()
-                        .to_glib_none()
-                        .0,
+                    self.obj().unsafe_cast_ref::<IMContext>().to_glib_none().0,
                     event.to_glib_none().0,
                 ))
             } else {
@@ -144,11 +135,7 @@ impl<T: IMContextImpl> IMContextImplExt for T {
             let data = T::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkIMContextClass;
             if let Some(f) = (*parent_class).focus_in {
-                f(self
-                    .instance()
-                    .unsafe_cast_ref::<IMContext>()
-                    .to_glib_none()
-                    .0)
+                f(self.obj().unsafe_cast_ref::<IMContext>().to_glib_none().0)
             }
         }
     }
@@ -158,11 +145,7 @@ impl<T: IMContextImpl> IMContextImplExt for T {
             let data = T::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkIMContextClass;
             if let Some(f) = (*parent_class).focus_out {
-                f(self
-                    .instance()
-                    .unsafe_cast_ref::<IMContext>()
-                    .to_glib_none()
-                    .0)
+                f(self.obj().unsafe_cast_ref::<IMContext>().to_glib_none().0)
             }
         }
     }
@@ -175,10 +158,7 @@ impl<T: IMContextImpl> IMContextImplExt for T {
                 let mut text = std::ptr::null_mut();
                 let mut cursor_index = std::mem::MaybeUninit::uninit();
                 let ret = from_glib(f(
-                    self.instance()
-                        .unsafe_cast_ref::<IMContext>()
-                        .to_glib_none()
-                        .0,
+                    self.obj().unsafe_cast_ref::<IMContext>().to_glib_none().0,
                     &mut text,
                     cursor_index.as_mut_ptr(),
                 ));
@@ -201,10 +181,7 @@ impl<T: IMContextImpl> IMContextImplExt for T {
             let mut attrs = std::ptr::null_mut();
             let mut cursor_pos = std::mem::MaybeUninit::uninit();
             f(
-                self.instance()
-                    .unsafe_cast_ref::<IMContext>()
-                    .to_glib_none()
-                    .0,
+                self.obj().unsafe_cast_ref::<IMContext>().to_glib_none().0,
                 &mut string,
                 &mut attrs,
                 cursor_pos.as_mut_ptr(),
@@ -222,11 +199,7 @@ impl<T: IMContextImpl> IMContextImplExt for T {
             let data = T::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkIMContextClass;
             if let Some(f) = (*parent_class).preedit_changed {
-                f(self
-                    .instance()
-                    .unsafe_cast_ref::<IMContext>()
-                    .to_glib_none()
-                    .0)
+                f(self.obj().unsafe_cast_ref::<IMContext>().to_glib_none().0)
             }
         }
     }
@@ -236,11 +209,7 @@ impl<T: IMContextImpl> IMContextImplExt for T {
             let data = T::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkIMContextClass;
             if let Some(f) = (*parent_class).preedit_end {
-                f(self
-                    .instance()
-                    .unsafe_cast_ref::<IMContext>()
-                    .to_glib_none()
-                    .0)
+                f(self.obj().unsafe_cast_ref::<IMContext>().to_glib_none().0)
             }
         }
     }
@@ -250,11 +219,7 @@ impl<T: IMContextImpl> IMContextImplExt for T {
             let data = T::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkIMContextClass;
             if let Some(f) = (*parent_class).preedit_start {
-                f(self
-                    .instance()
-                    .unsafe_cast_ref::<IMContext>()
-                    .to_glib_none()
-                    .0)
+                f(self.obj().unsafe_cast_ref::<IMContext>().to_glib_none().0)
             }
         }
     }
@@ -264,11 +229,7 @@ impl<T: IMContextImpl> IMContextImplExt for T {
             let data = T::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkIMContextClass;
             if let Some(f) = (*parent_class).reset {
-                f(self
-                    .instance()
-                    .unsafe_cast_ref::<IMContext>()
-                    .to_glib_none()
-                    .0)
+                f(self.obj().unsafe_cast_ref::<IMContext>().to_glib_none().0)
             }
         }
     }
@@ -279,7 +240,7 @@ impl<T: IMContextImpl> IMContextImplExt for T {
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkIMContextClass;
             if let Some(f) = (*parent_class).retrieve_surrounding {
                 from_glib(f(self
-                    .instance()
+                    .obj()
                     .unsafe_cast_ref::<IMContext>()
                     .to_glib_none()
                     .0))
@@ -296,10 +257,7 @@ impl<T: IMContextImpl> IMContextImplExt for T {
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkIMContextClass;
             if let Some(f) = (*parent_class).set_client_widget {
                 f(
-                    self.instance()
-                        .unsafe_cast_ref::<IMContext>()
-                        .to_glib_none()
-                        .0,
+                    self.obj().unsafe_cast_ref::<IMContext>().to_glib_none().0,
                     widget.map(|p| p.as_ref()).to_glib_none().0,
                 )
             }
@@ -312,10 +270,7 @@ impl<T: IMContextImpl> IMContextImplExt for T {
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkIMContextClass;
             if let Some(f) = (*parent_class).set_cursor_location {
                 f(
-                    self.instance()
-                        .unsafe_cast_ref::<IMContext>()
-                        .to_glib_none()
-                        .0,
+                    self.obj().unsafe_cast_ref::<IMContext>().to_glib_none().0,
                     area.to_glib_none().0 as *mut _,
                 );
             }
@@ -328,10 +283,7 @@ impl<T: IMContextImpl> IMContextImplExt for T {
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkIMContextClass;
             if let Some(f) = (*parent_class).set_surrounding {
                 f(
-                    self.instance()
-                        .unsafe_cast_ref::<IMContext>()
-                        .to_glib_none()
-                        .0,
+                    self.obj().unsafe_cast_ref::<IMContext>().to_glib_none().0,
                     text.to_glib_none().0,
                     text.len() as i32,
                     cursor_index,
@@ -346,10 +298,7 @@ impl<T: IMContextImpl> IMContextImplExt for T {
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkIMContextClass;
             if let Some(f) = (*parent_class).set_use_preedit {
                 f(
-                    self.instance()
-                        .unsafe_cast_ref::<IMContext>()
-                        .to_glib_none()
-                        .0,
+                    self.obj().unsafe_cast_ref::<IMContext>().to_glib_none().0,
                     use_preedit.into_glib(),
                 )
             }

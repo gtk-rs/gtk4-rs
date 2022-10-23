@@ -29,10 +29,7 @@ impl<T: ScrollableImpl> ScrollableImplExt for T {
             if let Some(func) = (*parent_iface).get_border {
                 let border = std::ptr::null_mut();
                 if from_glib(func(
-                    self.instance()
-                        .unsafe_cast_ref::<Scrollable>()
-                        .to_glib_none()
-                        .0,
+                    self.obj().unsafe_cast_ref::<Scrollable>().to_glib_none().0,
                     border,
                 )) {
                     return Some(from_glib_none(border));

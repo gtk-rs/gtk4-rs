@@ -27,7 +27,7 @@ impl<T: StyleContextImpl> StyleContextImplExt for T {
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkStyleContextClass;
             if let Some(f) = (*parent_class).changed {
                 f(self
-                    .instance()
+                    .obj()
                     .unsafe_cast_ref::<StyleContext>()
                     .to_glib_none()
                     .0)

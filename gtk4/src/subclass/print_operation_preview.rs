@@ -41,7 +41,7 @@ impl<T: PrintOperationPreviewImpl> PrintOperationPreviewImplExt for T {
 
             if let Some(func) = (*parent_iface).ready {
                 func(
-                    self.instance()
+                    self.obj()
                         .unsafe_cast_ref::<PrintOperationPreview>()
                         .to_glib_none()
                         .0,
@@ -61,7 +61,7 @@ impl<T: PrintOperationPreviewImpl> PrintOperationPreviewImplExt for T {
 
             if let Some(func) = (*parent_iface).got_page_size {
                 func(
-                    self.instance()
+                    self.obj()
                         .unsafe_cast_ref::<PrintOperationPreview>()
                         .to_glib_none()
                         .0,
@@ -82,7 +82,7 @@ impl<T: PrintOperationPreviewImpl> PrintOperationPreviewImplExt for T {
 
             if let Some(func) = (*parent_iface).render_page {
                 func(
-                    self.instance()
+                    self.obj()
                         .unsafe_cast_ref::<PrintOperationPreview>()
                         .to_glib_none()
                         .0,
@@ -104,7 +104,7 @@ impl<T: PrintOperationPreviewImpl> PrintOperationPreviewImplExt for T {
                 .expect("no parent \"is_selected\" implementation");
 
             from_glib(func(
-                self.instance()
+                self.obj()
                     .unsafe_cast_ref::<PrintOperationPreview>()
                     .to_glib_none()
                     .0,
@@ -123,7 +123,7 @@ impl<T: PrintOperationPreviewImpl> PrintOperationPreviewImplExt for T {
 
             if let Some(func) = (*parent_iface).end_preview {
                 func(
-                    self.instance()
+                    self.obj()
                         .unsafe_cast_ref::<PrintOperationPreview>()
                         .to_glib_none()
                         .0,

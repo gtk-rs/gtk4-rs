@@ -31,11 +31,7 @@ impl<T: CheckButtonImpl> CheckButtonImplExt for T {
             let data = T::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkCheckButtonClass;
             if let Some(f) = (*parent_class).toggled {
-                f(self
-                    .instance()
-                    .unsafe_cast_ref::<CheckButton>()
-                    .to_glib_none()
-                    .0)
+                f(self.obj().unsafe_cast_ref::<CheckButton>().to_glib_none().0)
             }
         }
     }
@@ -46,11 +42,7 @@ impl<T: CheckButtonImpl> CheckButtonImplExt for T {
             let data = T::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkCheckButtonClass;
             if let Some(f) = (*parent_class).activate {
-                f(self
-                    .instance()
-                    .unsafe_cast_ref::<CheckButton>()
-                    .to_glib_none()
-                    .0)
+                f(self.obj().unsafe_cast_ref::<CheckButton>().to_glib_none().0)
             }
         }
     }

@@ -28,7 +28,7 @@ impl<T: ScaleImpl> ScaleImplExt for T {
             let mut y = 0;
             if let Some(f) = (*parent_class).get_layout_offsets {
                 f(
-                    self.instance().unsafe_cast_ref::<Scale>().to_glib_none().0,
+                    self.obj().unsafe_cast_ref::<Scale>().to_glib_none().0,
                     &mut x,
                     &mut y,
                 );

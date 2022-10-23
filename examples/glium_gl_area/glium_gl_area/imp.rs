@@ -146,7 +146,7 @@ impl WidgetImpl for GliumGLArea {
     fn realize(&self) {
         self.parent_realize();
 
-        let widget = self.instance();
+        let widget = self.obj();
         if widget.error().is_some() {
             return;
         }

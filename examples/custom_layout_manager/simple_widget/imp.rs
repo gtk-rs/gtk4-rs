@@ -38,15 +38,15 @@ impl ObjectImpl for SimpleWidget {
     fn constructed(&self) {
         let gesture = gtk::GestureClick::new();
         // Trigger a transition on click
-        let obj = self.instance();
+        let obj = self.obj();
         gesture.connect_pressed(clone!(@strong obj as this => move |_, _, _, _| {
             this.do_transition();
         }));
-        self.instance().add_controller(&gesture);
+        self.obj().add_controller(&gesture);
     }
 
     fn dispose(&self) {
-        while let Some(child) = self.instance().first_child() {
+        while let Some(child) = self.obj().first_child() {
             child.unparent();
         }
     }

@@ -51,7 +51,7 @@ impl ObjectImpl for CustomLayoutChild {
 
     fn constructed(&self) {
         self.parent_constructed();
-        let widget = self.instance();
+        let widget = self.obj();
         widget.set_margin_top(4);
         widget.set_margin_bottom(4);
         widget.set_margin_start(4);
@@ -66,7 +66,7 @@ impl WidgetImpl for CustomLayoutChild {
     }
 
     fn snapshot(&self, snapshot: &gtk::Snapshot) {
-        let widget = self.instance();
+        let widget = self.obj();
         snapshot.append_color(
             &self.color.borrow(),
             &graphene::Rect::new(0.0, 0.0, widget.width() as f32, widget.height() as f32),
