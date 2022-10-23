@@ -87,7 +87,7 @@ impl<T: ContentProviderImpl> ContentProviderImplExt for T {
             let parent_class = data.as_ref().parent_class() as *mut ffi::GdkContentProviderClass;
             if let Some(f) = (*parent_class).content_changed {
                 f(self
-                    .instance()
+                    .obj()
                     .unsafe_cast_ref::<ContentProvider>()
                     .to_glib_none()
                     .0)
@@ -101,7 +101,7 @@ impl<T: ContentProviderImpl> ContentProviderImplExt for T {
             let parent_class = data.as_ref().parent_class() as *mut ffi::GdkContentProviderClass;
             if let Some(f) = (*parent_class).attach_clipboard {
                 f(
-                    self.instance()
+                    self.obj()
                         .unsafe_cast_ref::<ContentProvider>()
                         .to_glib_none()
                         .0,
@@ -117,7 +117,7 @@ impl<T: ContentProviderImpl> ContentProviderImplExt for T {
             let parent_class = data.as_ref().parent_class() as *mut ffi::GdkContentProviderClass;
             if let Some(f) = (*parent_class).detach_clipboard {
                 f(
-                    self.instance()
+                    self.obj()
                         .unsafe_cast_ref::<ContentProvider>()
                         .to_glib_none()
                         .0,
@@ -135,7 +135,7 @@ impl<T: ContentProviderImpl> ContentProviderImplExt for T {
                 .ref_formats
                 .expect("no parent \"ref_formats\" implementation");
             let ret = f(self
-                .instance()
+                .obj()
                 .unsafe_cast_ref::<ContentProvider>()
                 .to_glib_none()
                 .0);
@@ -152,7 +152,7 @@ impl<T: ContentProviderImpl> ContentProviderImplExt for T {
                 .ref_storable_formats
                 .expect("no parent \"ref_storable_formats\" implementation");
             let ret = f(self
-                .instance()
+                .obj()
                 .unsafe_cast_ref::<ContentProvider>()
                 .to_glib_none()
                 .0);
@@ -224,7 +224,7 @@ impl<T: ContentProviderImpl> ContentProviderImplExt for T {
             let cancellable = cancellable.map(|p| p.as_ref());
             let callback = parent_write_mime_type_async_trampoline::<R>;
             f(
-                self.instance()
+                self.obj()
                     .unsafe_cast_ref::<ContentProvider>()
                     .to_glib_none()
                     .0,
@@ -273,7 +273,7 @@ impl<T: ContentProviderImpl> ContentProviderImplExt for T {
 
             let mut error = std::ptr::null_mut();
             f(
-                self.instance()
+                self.obj()
                     .unsafe_cast_ref::<ContentProvider>()
                     .to_glib_none()
                     .0,

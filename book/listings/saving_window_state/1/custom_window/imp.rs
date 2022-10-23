@@ -20,9 +20,9 @@ impl ObjectImpl for Window {
     fn constructed(&self) {
         self.parent_constructed();
         // Load latest window state
-        let instance = self.instance();
-        instance.setup_settings();
-        instance.load_window_size();
+        let obj = self.obj();
+        obj.setup_settings();
+        obj.load_window_size();
     }
 }
 impl WidgetImpl for Window {}
@@ -30,7 +30,7 @@ impl WindowImpl for Window {
     // Save window state right before the window will be closed
     fn close_request(&self) -> Inhibit {
         // Save window size
-        self.instance()
+        self.obj()
             .save_window_size()
             .expect("Failed to save window state");
 

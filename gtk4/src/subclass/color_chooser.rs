@@ -42,7 +42,7 @@ impl<T: ColorChooserImpl> ColorChooserImplExt for T {
                     colors.iter().map(|c| *c.to_glib_none().0).collect();
 
                 func(
-                    self.instance()
+                    self.obj()
                         .unsafe_cast_ref::<ColorChooser>()
                         .to_glib_none()
                         .0,
@@ -63,7 +63,7 @@ impl<T: ColorChooserImpl> ColorChooserImplExt for T {
 
             if let Some(func) = (*parent_iface).color_activated {
                 func(
-                    self.instance()
+                    self.obj()
                         .unsafe_cast_ref::<ColorChooser>()
                         .to_glib_none()
                         .0,
@@ -84,7 +84,7 @@ impl<T: ColorChooserImpl> ColorChooserImplExt for T {
                 .expect("no parent \"get_rgba\" implementation");
             let rgba = std::ptr::null_mut();
             func(
-                self.instance()
+                self.obj()
                     .unsafe_cast_ref::<ColorChooser>()
                     .to_glib_none()
                     .0,
@@ -102,7 +102,7 @@ impl<T: ColorChooserImpl> ColorChooserImplExt for T {
 
             if let Some(func) = (*parent_iface).set_rgba {
                 func(
-                    self.instance()
+                    self.obj()
                         .unsafe_cast_ref::<ColorChooser>()
                         .to_glib_none()
                         .0,

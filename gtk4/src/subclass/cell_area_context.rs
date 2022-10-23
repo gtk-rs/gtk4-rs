@@ -43,7 +43,7 @@ impl<T: CellAreaContextImpl> CellAreaContextImplExt for T {
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkCellAreaContextClass;
             if let Some(f) = (*parent_class).reset {
                 f(self
-                    .instance()
+                    .obj()
                     .unsafe_cast_ref::<CellAreaContext>()
                     .to_glib_none()
                     .0)
@@ -59,7 +59,7 @@ impl<T: CellAreaContextImpl> CellAreaContextImplExt for T {
                 let mut minimum_size = MaybeUninit::uninit();
                 let mut natural_size = MaybeUninit::uninit();
                 f(
-                    self.instance()
+                    self.obj()
                         .unsafe_cast_ref::<CellAreaContext>()
                         .to_glib_none()
                         .0,
@@ -82,7 +82,7 @@ impl<T: CellAreaContextImpl> CellAreaContextImplExt for T {
                 let mut minimum_size = MaybeUninit::uninit();
                 let mut natural_size = MaybeUninit::uninit();
                 f(
-                    self.instance()
+                    self.obj()
                         .unsafe_cast_ref::<CellAreaContext>()
                         .to_glib_none()
                         .0,
@@ -103,7 +103,7 @@ impl<T: CellAreaContextImpl> CellAreaContextImplExt for T {
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkCellAreaContextClass;
             if let Some(f) = (*parent_class).allocate {
                 f(
-                    self.instance()
+                    self.obj()
                         .unsafe_cast_ref::<CellAreaContext>()
                         .to_glib_none()
                         .0,

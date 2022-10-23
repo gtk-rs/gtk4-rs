@@ -37,7 +37,7 @@ impl ObjectImpl for CustomBuildable {
     // Here you need to unparent all direct children
     // of your template.
     fn dispose(&self) {
-        while let Some(child) = self.instance().first_child() {
+        while let Some(child) = self.obj().first_child() {
             child.unparent();
         }
     }
@@ -47,7 +47,7 @@ impl WidgetImpl for CustomBuildable {}
 
 impl BuildableImpl for CustomBuildable {
     fn add_child(&self, builder: &gtk::Builder, child: &glib::Object, type_: Option<&str>) {
-        let buildable = self.instance();
+        let buildable = self.obj();
         // We first check if the main child `box_` has already been bound.
         if !self.box_.is_bound() {
             self.parent_add_child(builder, child, type_);

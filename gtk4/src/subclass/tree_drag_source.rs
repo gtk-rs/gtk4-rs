@@ -33,7 +33,7 @@ impl<T: TreeDragSourceImpl> TreeDragSourceImplExt for T {
 
             if let Some(func) = (*parent_iface).row_draggable {
                 from_glib(func(
-                    self.instance()
+                    self.obj()
                         .unsafe_cast_ref::<TreeDragSource>()
                         .to_glib_none()
                         .0,
@@ -57,7 +57,7 @@ impl<T: TreeDragSourceImpl> TreeDragSourceImplExt for T {
                 .expect("no parent \"drag_data_get\" implementation");
 
             from_glib_full(func(
-                self.instance()
+                self.obj()
                     .unsafe_cast_ref::<TreeDragSource>()
                     .to_glib_none()
                     .0,
@@ -77,7 +77,7 @@ impl<T: TreeDragSourceImpl> TreeDragSourceImplExt for T {
                 .expect("no parent \"drag_data_delete\" implementation");
 
             from_glib(func(
-                self.instance()
+                self.obj()
                     .unsafe_cast_ref::<TreeDragSource>()
                     .to_glib_none()
                     .0,

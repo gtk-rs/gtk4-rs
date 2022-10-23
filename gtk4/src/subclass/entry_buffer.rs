@@ -56,10 +56,7 @@ impl<T: EntryBufferImpl> EntryBufferImplExt for T {
                 .delete_text
                 .expect("No parent class impl for \"delete_text\"");
             f(
-                self.instance()
-                    .unsafe_cast_ref::<EntryBuffer>()
-                    .to_glib_none()
-                    .0,
+                self.obj().unsafe_cast_ref::<EntryBuffer>().to_glib_none().0,
                 position,
                 n_chars.unwrap_or(u32::MAX),
             )
@@ -72,10 +69,7 @@ impl<T: EntryBufferImpl> EntryBufferImplExt for T {
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkEntryBufferClass;
             if let Some(f) = (*parent_class).deleted_text {
                 f(
-                    self.instance()
-                        .unsafe_cast_ref::<EntryBuffer>()
-                        .to_glib_none()
-                        .0,
+                    self.obj().unsafe_cast_ref::<EntryBuffer>().to_glib_none().0,
                     position,
                     n_chars.unwrap_or(u32::MAX),
                 )
@@ -90,11 +84,7 @@ impl<T: EntryBufferImpl> EntryBufferImplExt for T {
             let f = (*parent_class)
                 .get_length
                 .expect("No parent class impl for \"get_length\"");
-            f(self
-                .instance()
-                .unsafe_cast_ref::<EntryBuffer>()
-                .to_glib_none()
-                .0)
+            f(self.obj().unsafe_cast_ref::<EntryBuffer>().to_glib_none().0)
         }
     }
 
@@ -107,10 +97,7 @@ impl<T: EntryBufferImpl> EntryBufferImplExt for T {
                 .expect("No parent class impl for \"get_text\"");
             let mut n_bytes = 0;
             let res = f(
-                self.instance()
-                    .unsafe_cast_ref::<EntryBuffer>()
-                    .to_glib_none()
-                    .0,
+                self.obj().unsafe_cast_ref::<EntryBuffer>().to_glib_none().0,
                 &mut n_bytes,
             );
             FromGlibContainer::from_glib_none_num(res, n_bytes as usize)
@@ -126,10 +113,7 @@ impl<T: EntryBufferImpl> EntryBufferImplExt for T {
                 .expect("No parent class impl for \"insert_text\"");
 
             f(
-                self.instance()
-                    .unsafe_cast_ref::<EntryBuffer>()
-                    .to_glib_none()
-                    .0,
+                self.obj().unsafe_cast_ref::<EntryBuffer>().to_glib_none().0,
                 position,
                 text.to_glib_none().0,
                 text.chars().count() as u32,
@@ -143,10 +127,7 @@ impl<T: EntryBufferImpl> EntryBufferImplExt for T {
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkEntryBufferClass;
             if let Some(f) = (*parent_class).inserted_text {
                 f(
-                    self.instance()
-                        .unsafe_cast_ref::<EntryBuffer>()
-                        .to_glib_none()
-                        .0,
+                    self.obj().unsafe_cast_ref::<EntryBuffer>().to_glib_none().0,
                     position,
                     text.to_glib_none().0,
                     text.chars().count() as u32,
@@ -226,7 +207,7 @@ unsafe extern "C" fn entry_buffer_get_text<T: EntryBufferImpl>(
     // Ensures that the returned text stays alive for as long as
     // the entry buffer instance
     let fullptr = ret.to_glib_full();
-    imp.instance().set_qdata(
+    imp.obj().set_qdata(
         *GET_TEXT_QUARK,
         PtrHolder(fullptr, |ptr| {
             glib::ffi::g_free(ptr as *mut _);

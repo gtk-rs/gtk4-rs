@@ -81,10 +81,7 @@ impl<T: TextBufferImpl> TextBufferImplExt for T {
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkTextBufferClass;
             if let Some(f) = (*parent_class).apply_tag {
                 f(
-                    self.instance()
-                        .unsafe_cast_ref::<TextBuffer>()
-                        .to_glib_none()
-                        .0,
+                    self.obj().unsafe_cast_ref::<TextBuffer>().to_glib_none().0,
                     tag.to_glib_none().0,
                     start.to_glib_none().0,
                     end.to_glib_none().0,
@@ -98,11 +95,7 @@ impl<T: TextBufferImpl> TextBufferImplExt for T {
             let data = T::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkTextBufferClass;
             if let Some(f) = (*parent_class).begin_user_action {
-                f(self
-                    .instance()
-                    .unsafe_cast_ref::<TextBuffer>()
-                    .to_glib_none()
-                    .0)
+                f(self.obj().unsafe_cast_ref::<TextBuffer>().to_glib_none().0)
             }
         }
     }
@@ -112,11 +105,7 @@ impl<T: TextBufferImpl> TextBufferImplExt for T {
             let data = T::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkTextBufferClass;
             if let Some(f) = (*parent_class).changed {
-                f(self
-                    .instance()
-                    .unsafe_cast_ref::<TextBuffer>()
-                    .to_glib_none()
-                    .0)
+                f(self.obj().unsafe_cast_ref::<TextBuffer>().to_glib_none().0)
             }
         }
     }
@@ -127,10 +116,7 @@ impl<T: TextBufferImpl> TextBufferImplExt for T {
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkTextBufferClass;
             if let Some(f) = (*parent_class).delete_range {
                 f(
-                    self.instance()
-                        .unsafe_cast_ref::<TextBuffer>()
-                        .to_glib_none()
-                        .0,
+                    self.obj().unsafe_cast_ref::<TextBuffer>().to_glib_none().0,
                     start.to_glib_none_mut().0,
                     end.to_glib_none_mut().0,
                 )
@@ -143,11 +129,7 @@ impl<T: TextBufferImpl> TextBufferImplExt for T {
             let data = T::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkTextBufferClass;
             if let Some(f) = (*parent_class).end_user_action {
-                f(self
-                    .instance()
-                    .unsafe_cast_ref::<TextBuffer>()
-                    .to_glib_none()
-                    .0)
+                f(self.obj().unsafe_cast_ref::<TextBuffer>().to_glib_none().0)
             }
         }
     }
@@ -158,10 +140,7 @@ impl<T: TextBufferImpl> TextBufferImplExt for T {
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkTextBufferClass;
             if let Some(f) = (*parent_class).insert_child_anchor {
                 f(
-                    self.instance()
-                        .unsafe_cast_ref::<TextBuffer>()
-                        .to_glib_none()
-                        .0,
+                    self.obj().unsafe_cast_ref::<TextBuffer>().to_glib_none().0,
                     iter.to_glib_none_mut().0,
                     anchor.to_glib_none().0,
                 )
@@ -175,10 +154,7 @@ impl<T: TextBufferImpl> TextBufferImplExt for T {
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkTextBufferClass;
             if let Some(f) = (*parent_class).insert_paintable {
                 f(
-                    self.instance()
-                        .unsafe_cast_ref::<TextBuffer>()
-                        .to_glib_none()
-                        .0,
+                    self.obj().unsafe_cast_ref::<TextBuffer>().to_glib_none().0,
                     iter.to_glib_none_mut().0,
                     paintable.to_glib_none().0,
                 )
@@ -192,10 +168,7 @@ impl<T: TextBufferImpl> TextBufferImplExt for T {
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkTextBufferClass;
             if let Some(f) = (*parent_class).insert_text {
                 f(
-                    self.instance()
-                        .unsafe_cast_ref::<TextBuffer>()
-                        .to_glib_none()
-                        .0,
+                    self.obj().unsafe_cast_ref::<TextBuffer>().to_glib_none().0,
                     iter.to_glib_none_mut().0,
                     new_text.to_glib_none().0,
                     new_text.len() as i32,
@@ -210,10 +183,7 @@ impl<T: TextBufferImpl> TextBufferImplExt for T {
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkTextBufferClass;
             if let Some(f) = (*parent_class).mark_deleted {
                 f(
-                    self.instance()
-                        .unsafe_cast_ref::<TextBuffer>()
-                        .to_glib_none()
-                        .0,
+                    self.obj().unsafe_cast_ref::<TextBuffer>().to_glib_none().0,
                     mark.to_glib_none().0,
                 )
             }
@@ -226,10 +196,7 @@ impl<T: TextBufferImpl> TextBufferImplExt for T {
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkTextBufferClass;
             if let Some(f) = (*parent_class).mark_set {
                 f(
-                    self.instance()
-                        .unsafe_cast_ref::<TextBuffer>()
-                        .to_glib_none()
-                        .0,
+                    self.obj().unsafe_cast_ref::<TextBuffer>().to_glib_none().0,
                     location.to_glib_none().0,
                     mark.to_glib_none().0,
                 )
@@ -242,11 +209,7 @@ impl<T: TextBufferImpl> TextBufferImplExt for T {
             let data = T::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkTextBufferClass;
             if let Some(f) = (*parent_class).modified_changed {
-                f(self
-                    .instance()
-                    .unsafe_cast_ref::<TextBuffer>()
-                    .to_glib_none()
-                    .0)
+                f(self.obj().unsafe_cast_ref::<TextBuffer>().to_glib_none().0)
             }
         }
     }
@@ -257,10 +220,7 @@ impl<T: TextBufferImpl> TextBufferImplExt for T {
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkTextBufferClass;
             if let Some(f) = (*parent_class).paste_done {
                 f(
-                    self.instance()
-                        .unsafe_cast_ref::<TextBuffer>()
-                        .to_glib_none()
-                        .0,
+                    self.obj().unsafe_cast_ref::<TextBuffer>().to_glib_none().0,
                     clipboard.to_glib_none().0,
                 )
             }
@@ -272,11 +232,7 @@ impl<T: TextBufferImpl> TextBufferImplExt for T {
             let data = T::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkTextBufferClass;
             if let Some(f) = (*parent_class).redo {
-                f(self
-                    .instance()
-                    .unsafe_cast_ref::<TextBuffer>()
-                    .to_glib_none()
-                    .0)
+                f(self.obj().unsafe_cast_ref::<TextBuffer>().to_glib_none().0)
             }
         }
     }
@@ -287,10 +243,7 @@ impl<T: TextBufferImpl> TextBufferImplExt for T {
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkTextBufferClass;
             if let Some(f) = (*parent_class).remove_tag {
                 f(
-                    self.instance()
-                        .unsafe_cast_ref::<TextBuffer>()
-                        .to_glib_none()
-                        .0,
+                    self.obj().unsafe_cast_ref::<TextBuffer>().to_glib_none().0,
                     tag.to_glib_none().0,
                     start.to_glib_none().0,
                     end.to_glib_none().0,
@@ -304,11 +257,7 @@ impl<T: TextBufferImpl> TextBufferImplExt for T {
             let data = T::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkTextBufferClass;
             if let Some(f) = (*parent_class).undo {
-                f(self
-                    .instance()
-                    .unsafe_cast_ref::<TextBuffer>()
-                    .to_glib_none()
-                    .0)
+                f(self.obj().unsafe_cast_ref::<TextBuffer>().to_glib_none().0)
             }
         }
     }

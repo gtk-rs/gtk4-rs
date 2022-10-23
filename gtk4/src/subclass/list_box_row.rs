@@ -24,11 +24,7 @@ impl<T: ListBoxRowImpl> ListBoxRowImplExt for T {
             let data = T::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkListBoxRowClass;
             if let Some(f) = (*parent_class).activate {
-                f(self
-                    .instance()
-                    .unsafe_cast_ref::<ListBoxRow>()
-                    .to_glib_none()
-                    .0)
+                f(self.obj().unsafe_cast_ref::<ListBoxRow>().to_glib_none().0)
             }
         }
     }

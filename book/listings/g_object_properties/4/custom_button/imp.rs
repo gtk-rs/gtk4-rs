@@ -52,9 +52,8 @@ impl ObjectImpl for CustomButton {
 
         // Bind label to number
         // `SYNC_CREATE` ensures that the label will be immediately set
-        let instance = self.instance();
-        instance
-            .bind_property("number", &*instance, "label")
+        let obj = self.obj();
+        obj.bind_property("number", obj.as_ref(), "label")
             .flags(BindingFlags::SYNC_CREATE)
             .build();
     }
@@ -69,7 +68,7 @@ impl WidgetImpl for CustomButton {}
 impl ButtonImpl for CustomButton {
     fn clicked(&self) {
         let incremented_number = self.number.get() + 1;
-        self.instance().set_property("number", &incremented_number);
+        self.obj().set_property("number", &incremented_number);
     }
 }
 // ANCHOR_END: button_impl

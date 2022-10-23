@@ -43,10 +43,10 @@ impl ObjectImpl for Window {
         self.parent_constructed();
 
         // Setup
-        let instance = self.instance();
-        instance.setup_tasks();
-        instance.setup_callbacks();
-        instance.setup_factory();
+        let obj = self.obj();
+        obj.setup_tasks();
+        obj.setup_callbacks();
+        obj.setup_factory();
     }
 }
 // ANCHOR_END: constructed
