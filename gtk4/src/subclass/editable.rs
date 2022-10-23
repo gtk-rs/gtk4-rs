@@ -62,7 +62,7 @@ pub trait EditableImplExt: ObjectSubclass {
             let mut value = glib::Value::from_type(pspec.value_type());
 
             if from_glib(ffi::gtk_editable_delegate_get_property(
-                self.instance()
+                self.obj()
                     .unsafe_cast_ref::<glib::Object>()
                     .to_glib_none()
                     .0,
@@ -86,7 +86,7 @@ pub trait EditableImplExt: ObjectSubclass {
     ) -> bool {
         unsafe {
             from_glib(ffi::gtk_editable_delegate_set_property(
-                self.instance()
+                self.obj()
                     .unsafe_cast_ref::<glib::Object>()
                     .to_glib_none()
                     .0,
@@ -117,10 +117,7 @@ impl<T: EditableImpl> EditableImplExt for T {
 
             if let Some(func) = (*parent_iface).insert_text {
                 func(
-                    self.instance()
-                        .unsafe_cast_ref::<Editable>()
-                        .to_glib_none()
-                        .0,
+                    self.obj().unsafe_cast_ref::<Editable>().to_glib_none().0,
                     text.to_glib_none().0,
                     length,
                     position,
@@ -137,10 +134,7 @@ impl<T: EditableImpl> EditableImplExt for T {
 
             if let Some(func) = (*parent_iface).delete_text {
                 func(
-                    self.instance()
-                        .unsafe_cast_ref::<Editable>()
-                        .to_glib_none()
-                        .0,
+                    self.obj().unsafe_cast_ref::<Editable>().to_glib_none().0,
                     start_position,
                     end_position,
                 );
@@ -158,10 +152,7 @@ impl<T: EditableImpl> EditableImplExt for T {
                 .expect("no parent \"get_text\" implementation");
 
             from_glib_none(func(
-                self.instance()
-                    .unsafe_cast_ref::<Editable>()
-                    .to_glib_none()
-                    .0,
+                self.obj().unsafe_cast_ref::<Editable>().to_glib_none().0,
             ))
         }
     }
@@ -175,10 +166,7 @@ impl<T: EditableImpl> EditableImplExt for T {
                 .get_delegate
                 .expect("no parent \"get_delegate\" implementation");
             from_glib_none(func(
-                self.instance()
-                    .unsafe_cast_ref::<Editable>()
-                    .to_glib_none()
-                    .0,
+                self.obj().unsafe_cast_ref::<Editable>().to_glib_none().0,
             ))
         }
     }
@@ -190,12 +178,7 @@ impl<T: EditableImpl> EditableImplExt for T {
                 as *const ffi::GtkEditableInterface;
 
             if let Some(func) = (*parent_iface).changed {
-                func(
-                    self.instance()
-                        .unsafe_cast_ref::<Editable>()
-                        .to_glib_none()
-                        .0,
-                );
+                func(self.obj().unsafe_cast_ref::<Editable>().to_glib_none().0);
             }
         }
     }
@@ -208,10 +191,7 @@ impl<T: EditableImpl> EditableImplExt for T {
 
             if let Some(func) = (*parent_iface).do_insert_text {
                 func(
-                    self.instance()
-                        .unsafe_cast_ref::<Editable>()
-                        .to_glib_none()
-                        .0,
+                    self.obj().unsafe_cast_ref::<Editable>().to_glib_none().0,
                     text.to_glib_none().0,
                     length,
                     position,
@@ -228,10 +208,7 @@ impl<T: EditableImpl> EditableImplExt for T {
 
             if let Some(func) = (*parent_iface).do_delete_text {
                 func(
-                    self.instance()
-                        .unsafe_cast_ref::<Editable>()
-                        .to_glib_none()
-                        .0,
+                    self.obj().unsafe_cast_ref::<Editable>().to_glib_none().0,
                     start_position,
                     end_position,
                 );
@@ -249,10 +226,7 @@ impl<T: EditableImpl> EditableImplExt for T {
                 let mut start_position = std::mem::MaybeUninit::uninit();
                 let mut end_position = std::mem::MaybeUninit::uninit();
                 if from_glib(func(
-                    self.instance()
-                        .unsafe_cast_ref::<Editable>()
-                        .to_glib_none()
-                        .0,
+                    self.obj().unsafe_cast_ref::<Editable>().to_glib_none().0,
                     start_position.as_mut_ptr(),
                     end_position.as_mut_ptr(),
                 )) {
@@ -271,10 +245,7 @@ impl<T: EditableImpl> EditableImplExt for T {
 
             if let Some(func) = (*parent_iface).set_selection_bounds {
                 func(
-                    self.instance()
-                        .unsafe_cast_ref::<Editable>()
-                        .to_glib_none()
-                        .0,
+                    self.obj().unsafe_cast_ref::<Editable>().to_glib_none().0,
                     start_position,
                     end_position,
                 );
@@ -366,7 +337,7 @@ unsafe extern "C" fn editable_get_delegate<T: EditableImpl>(
     let delegate = imp.delegate();
 
     match imp
-        .instance()
+        .obj()
         .qdata::<Option<Editable>>(*EDITABLE_GET_DELEGATE_QUARK)
     {
         Some(delegate_data) => {
@@ -377,7 +348,7 @@ unsafe extern "C" fn editable_get_delegate<T: EditableImpl>(
             );
         }
         None => {
-            imp.instance()
+            imp.obj()
                 .set_qdata(*EDITABLE_GET_DELEGATE_QUARK, delegate.clone());
         }
     };

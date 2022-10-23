@@ -25,7 +25,7 @@ impl<T: RecentManagerImpl> RecentManagerImplExt for T {
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkRecentManagerClass;
             if let Some(f) = (*parent_class).changed {
                 f(self
-                    .instance()
+                    .obj()
                     .unsafe_cast_ref::<RecentManager>()
                     .to_glib_none()
                     .0)

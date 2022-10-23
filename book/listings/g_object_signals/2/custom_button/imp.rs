@@ -63,9 +63,8 @@ impl ObjectImpl for CustomButton {
 
         // Bind label to number
         // `SYNC_CREATE` ensures that the label will be immediately set
-        let instance = self.instance();
-        instance
-            .bind_property("number", &*instance, "label")
+        let obj = self.obj();
+        obj.bind_property("number", obj.as_ref(), "label")
             .flags(BindingFlags::SYNC_CREATE)
             .build();
     }
@@ -81,14 +80,14 @@ static MAX_NUMBER: i32 = 8;
 impl ButtonImpl for CustomButton {
     fn clicked(&self) {
         let incremented_number = self.number.get() + 1;
-        let instance = self.instance();
+        let obj = self.obj();
         // If `number` reached `MAX_NUMBER`,
         // emit "max-number-reached" signal and set `number` back to 0
         if incremented_number == MAX_NUMBER {
-            instance.emit_by_name::<()>("max-number-reached", &[&incremented_number]);
-            instance.set_property("number", &0);
+            obj.emit_by_name::<()>("max-number-reached", &[&incremented_number]);
+            obj.set_property("number", &0);
         } else {
-            instance.set_property("number", &incremented_number);
+            obj.set_property("number", &incremented_number);
         }
     }
 }

@@ -30,11 +30,7 @@ impl<T: AdjustmentImpl> AdjustmentImplExt for T {
             let data = T::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkAdjustmentClass;
             if let Some(f) = (*parent_class).changed {
-                f(self
-                    .instance()
-                    .unsafe_cast_ref::<Adjustment>()
-                    .to_glib_none()
-                    .0)
+                f(self.obj().unsafe_cast_ref::<Adjustment>().to_glib_none().0)
             }
         }
     }
@@ -44,11 +40,7 @@ impl<T: AdjustmentImpl> AdjustmentImplExt for T {
             let data = T::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkAdjustmentClass;
             if let Some(f) = (*parent_class).value_changed {
-                f(self
-                    .instance()
-                    .unsafe_cast_ref::<Adjustment>()
-                    .to_glib_none()
-                    .0)
+                f(self.obj().unsafe_cast_ref::<Adjustment>().to_glib_none().0)
             }
         }
     }

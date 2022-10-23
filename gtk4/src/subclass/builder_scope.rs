@@ -54,7 +54,7 @@ impl<B: BuilderScopeImpl> BuilderScopeImplExt for B {
                 .expect("no parent \"get_type_from_name\" implementation");
 
             from_glib(func(
-                self.instance()
+                self.obj()
                     .unsafe_cast_ref::<BuilderScope>()
                     .to_glib_none()
                     .0,
@@ -75,7 +75,7 @@ impl<B: BuilderScopeImpl> BuilderScopeImplExt for B {
                 .expect("no parent \"get_type_from_function\" implementation");
 
             from_glib(func(
-                self.instance()
+                self.obj()
                     .unsafe_cast_ref::<BuilderScope>()
                     .to_glib_none()
                     .0,
@@ -103,7 +103,7 @@ impl<B: BuilderScopeImpl> BuilderScopeImplExt for B {
 
             let mut error = std::ptr::null_mut();
             let closure = func(
-                self.instance()
+                self.obj()
                     .unsafe_cast_ref::<BuilderScope>()
                     .to_glib_none()
                     .0,

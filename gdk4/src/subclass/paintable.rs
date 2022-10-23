@@ -56,12 +56,7 @@ impl<T: PaintableImpl> PaintableImplExt for T {
                 .get_current_image
                 .expect("no parent \"get_current_image\" implementation");
 
-            let ret = func(
-                self.instance()
-                    .unsafe_cast_ref::<Paintable>()
-                    .to_glib_none()
-                    .0,
-            );
+            let ret = func(self.obj().unsafe_cast_ref::<Paintable>().to_glib_none().0);
 
             from_glib_full(ret)
         }
@@ -77,10 +72,7 @@ impl<T: PaintableImpl> PaintableImplExt for T {
                 .expect("no parent \"get_flags\" implementation");
 
             from_glib(func(
-                self.instance()
-                    .unsafe_cast_ref::<Paintable>()
-                    .to_glib_none()
-                    .0,
+                self.obj().unsafe_cast_ref::<Paintable>().to_glib_none().0,
             ))
         }
     }
@@ -94,12 +86,7 @@ impl<T: PaintableImpl> PaintableImplExt for T {
                 .get_intrinsic_width
                 .expect("no parent \"get_intrinsic_width\" implementation");
 
-            func(
-                self.instance()
-                    .unsafe_cast_ref::<Paintable>()
-                    .to_glib_none()
-                    .0,
-            )
+            func(self.obj().unsafe_cast_ref::<Paintable>().to_glib_none().0)
         }
     }
 
@@ -112,12 +99,7 @@ impl<T: PaintableImpl> PaintableImplExt for T {
                 .get_intrinsic_height
                 .expect("no parent \"get_intrinsic_height\" implementation");
 
-            func(
-                self.instance()
-                    .unsafe_cast_ref::<Paintable>()
-                    .to_glib_none()
-                    .0,
-            )
+            func(self.obj().unsafe_cast_ref::<Paintable>().to_glib_none().0)
         }
     }
 
@@ -130,12 +112,7 @@ impl<T: PaintableImpl> PaintableImplExt for T {
                 .get_intrinsic_aspect_ratio
                 .expect("no parent \"get_intrinsic_aspect_ratio\" implementation");
 
-            func(
-                self.instance()
-                    .unsafe_cast_ref::<Paintable>()
-                    .to_glib_none()
-                    .0,
-            )
+            func(self.obj().unsafe_cast_ref::<Paintable>().to_glib_none().0)
         }
     }
 
@@ -149,10 +126,7 @@ impl<T: PaintableImpl> PaintableImplExt for T {
                 .expect("no parent \"snapshot\" implementation");
 
             func(
-                self.instance()
-                    .unsafe_cast_ref::<Paintable>()
-                    .to_glib_none()
-                    .0,
+                self.obj().unsafe_cast_ref::<Paintable>().to_glib_none().0,
                 snapshot.to_glib_none().0,
                 width,
                 height,

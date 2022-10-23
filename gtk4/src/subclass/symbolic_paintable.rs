@@ -46,7 +46,7 @@ impl<T: SymbolicPaintableImpl> SymbolicPaintableImplExt for T {
 
             let func = (*parent_iface).snapshot_symbolic.unwrap();
             func(
-                self.instance()
+                self.obj()
                     .unsafe_cast_ref::<SymbolicPaintable>()
                     .to_glib_none()
                     .0,

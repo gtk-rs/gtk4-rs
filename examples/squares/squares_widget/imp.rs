@@ -23,7 +23,7 @@ impl WidgetImpl for SquaresWidget {
     }
 
     fn snapshot(&self, snapshot: &gtk::Snapshot) {
-        let widget = self.instance();
+        let widget = self.obj();
         // Draw four color squares
         let width = (widget.width() / 2) as f32;
         let height = (widget.height() / 2) as f32;

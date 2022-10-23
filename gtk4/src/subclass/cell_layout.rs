@@ -119,10 +119,7 @@ impl<O: CellLayoutImpl> CellLayoutImplExt for O {
 
             if let Some(f) = (*parent_iface).add_attribute {
                 f(
-                    self.instance()
-                        .unsafe_cast_ref::<CellLayout>()
-                        .to_glib_none()
-                        .0,
+                    self.obj().unsafe_cast_ref::<CellLayout>().to_glib_none().0,
                     cell.as_ref().to_glib_none().0,
                     attribute.to_glib_none().0,
                     column,
@@ -139,10 +136,7 @@ impl<O: CellLayoutImpl> CellLayoutImplExt for O {
 
             if let Some(f) = (*parent_iface).clear_attributes {
                 f(
-                    self.instance()
-                        .unsafe_cast_ref::<CellLayout>()
-                        .to_glib_none()
-                        .0,
+                    self.obj().unsafe_cast_ref::<CellLayout>().to_glib_none().0,
                     cell.as_ref().to_glib_none().0,
                 );
             }
@@ -160,11 +154,7 @@ impl<O: CellLayoutImpl> CellLayoutImplExt for O {
                 .as_ref()
                 .expect("no parent \"get_cells\" implementation");
 
-            let cells = f(self
-                .instance()
-                .unsafe_cast_ref::<CellLayout>()
-                .to_glib_none()
-                .0);
+            let cells = f(self.obj().unsafe_cast_ref::<CellLayout>().to_glib_none().0);
             FromGlibPtrArrayContainerAsVec::from_glib_container_as_vec(cells)
         }
     }
@@ -187,10 +177,7 @@ impl<O: CellLayoutImpl> CellLayoutImplExt for O {
 
             if let Some(data_cb) = callback {
                 f(
-                    self.instance()
-                        .unsafe_cast_ref::<CellLayout>()
-                        .to_glib_none()
-                        .0,
+                    self.obj().unsafe_cast_ref::<CellLayout>().to_glib_none().0,
                     cell.as_ref().to_glib_none().0,
                     data_cb.callback,
                     data_cb.user_data,
@@ -198,10 +185,7 @@ impl<O: CellLayoutImpl> CellLayoutImplExt for O {
                 );
             } else {
                 f(
-                    self.instance()
-                        .unsafe_cast_ref::<CellLayout>()
-                        .to_glib_none()
-                        .0,
+                    self.obj().unsafe_cast_ref::<CellLayout>().to_glib_none().0,
                     cell.as_ref().to_glib_none().0,
                     None,
                     std::ptr::null_mut(),
@@ -220,10 +204,7 @@ impl<O: CellLayoutImpl> CellLayoutImplExt for O {
 
                 if let Some(f) = (*parent_iface).reorder {
                     f(
-                        self.instance()
-                            .unsafe_cast_ref::<CellLayout>()
-                            .to_glib_none()
-                            .0,
+                        self.obj().unsafe_cast_ref::<CellLayout>().to_glib_none().0,
                         cell.as_ref().to_glib_none().0,
                         position,
                     );
@@ -239,11 +220,7 @@ impl<O: CellLayoutImpl> CellLayoutImplExt for O {
                 as *const ffi::GtkCellLayoutIface;
 
             if let Some(f) = (*parent_iface).clear {
-                f(self
-                    .instance()
-                    .unsafe_cast_ref::<CellLayout>()
-                    .to_glib_none()
-                    .0);
+                f(self.obj().unsafe_cast_ref::<CellLayout>().to_glib_none().0);
             }
         }
     }
@@ -256,10 +233,7 @@ impl<O: CellLayoutImpl> CellLayoutImplExt for O {
 
             if let Some(f) = (*parent_iface).pack_start {
                 f(
-                    self.instance()
-                        .unsafe_cast_ref::<CellLayout>()
-                        .to_glib_none()
-                        .0,
+                    self.obj().unsafe_cast_ref::<CellLayout>().to_glib_none().0,
                     cell.as_ref().to_glib_none().0,
                     expand.into_glib(),
                 );
@@ -275,10 +249,7 @@ impl<O: CellLayoutImpl> CellLayoutImplExt for O {
 
             if let Some(f) = (*parent_iface).pack_end {
                 f(
-                    self.instance()
-                        .unsafe_cast_ref::<CellLayout>()
-                        .to_glib_none()
-                        .0,
+                    self.obj().unsafe_cast_ref::<CellLayout>().to_glib_none().0,
                     cell.as_ref().to_glib_none().0,
                     expand.into_glib(),
                 );
@@ -294,7 +265,7 @@ impl<O: CellLayoutImpl> CellLayoutImplExt for O {
 
             (*parent_iface).get_area.map(|f| {
                 from_glib_none(f(self
-                    .instance()
+                    .obj()
                     .unsafe_cast_ref::<CellLayout>()
                     .to_glib_none()
                     .0))
@@ -439,7 +410,7 @@ unsafe extern "C" fn cell_layout_get_cells<T: CellLayoutImpl>(
 
     // transfer container: list owned by the caller by not the actual content
     // so we need to keep the cells around and return a ptr of the list
-    imp.instance()
+    imp.obj()
         .set_qdata(*CELL_LAYOUT_GET_CELLS_QUARK, cells.clone());
     cells.to_glib_container().0
 }

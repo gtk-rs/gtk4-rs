@@ -38,7 +38,7 @@ impl<T: GLAreaImpl> GLAreaImplExt for T {
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkGLAreaClass;
             if let Some(f) = (*parent_class).create_context {
                 return Some(from_glib_none(f(self
-                    .instance()
+                    .obj()
                     .unsafe_cast_ref::<GLArea>()
                     .to_glib_none()
                     .0)));
@@ -55,7 +55,7 @@ impl<T: GLAreaImpl> GLAreaImplExt for T {
                 .render
                 .expect("No parent class impl for \"render\"");
             from_glib(f(
-                self.instance().unsafe_cast_ref::<GLArea>().to_glib_none().0,
+                self.obj().unsafe_cast_ref::<GLArea>().to_glib_none().0,
                 context.to_glib_none().0,
             ))
         }
@@ -67,7 +67,7 @@ impl<T: GLAreaImpl> GLAreaImplExt for T {
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkGLAreaClass;
             if let Some(f) = (*parent_class).resize {
                 f(
-                    self.instance().unsafe_cast_ref::<GLArea>().to_glib_none().0,
+                    self.obj().unsafe_cast_ref::<GLArea>().to_glib_none().0,
                     width,
                     height,
                 )

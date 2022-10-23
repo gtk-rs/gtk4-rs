@@ -35,7 +35,7 @@ impl<T: ShortcutManagerImpl> ShortcutManagerImplExt for T {
                 .expect("no parent \"add_controller\" implementation");
 
             func(
-                self.instance()
+                self.obj()
                     .unsafe_cast_ref::<ShortcutManager>()
                     .to_glib_none()
                     .0,
@@ -55,7 +55,7 @@ impl<T: ShortcutManagerImpl> ShortcutManagerImplExt for T {
                 .expect("no parent \"remove_controller\" implementation");
 
             func(
-                self.instance()
+                self.obj()
                     .unsafe_cast_ref::<ShortcutManager>()
                     .to_glib_none()
                     .0,

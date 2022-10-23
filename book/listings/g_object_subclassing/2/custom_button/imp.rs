@@ -22,7 +22,7 @@ impl ObjectSubclass for CustomButton {
 impl ObjectImpl for CustomButton {
     fn constructed(&self) {
         self.parent_constructed();
-        self.instance().set_label(&self.number.get().to_string());
+        self.obj().set_label(&self.number.get().to_string());
     }
 }
 
@@ -33,6 +33,6 @@ impl WidgetImpl for CustomButton {}
 impl ButtonImpl for CustomButton {
     fn clicked(&self) {
         self.number.set(self.number.get() + 1);
-        self.instance().set_label(&self.number.get().to_string())
+        self.obj().set_label(&self.number.get().to_string())
     }
 }

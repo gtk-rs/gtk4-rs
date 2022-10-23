@@ -51,11 +51,7 @@ impl<T: MediaStreamImpl> MediaStreamImplExt for T {
             let f = (*parent_class)
                 .pause
                 .expect("No parent class impl for \"pause\"");
-            f(self
-                .instance()
-                .unsafe_cast_ref::<MediaStream>()
-                .to_glib_none()
-                .0)
+            f(self.obj().unsafe_cast_ref::<MediaStream>().to_glib_none().0)
         }
     }
 
@@ -65,7 +61,7 @@ impl<T: MediaStreamImpl> MediaStreamImplExt for T {
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkMediaStreamClass;
             if let Some(f) = (*parent_class).play {
                 return from_glib(f(self
-                    .instance()
+                    .obj()
                     .unsafe_cast_ref::<MediaStream>()
                     .to_glib_none()
                     .0));
@@ -82,10 +78,7 @@ impl<T: MediaStreamImpl> MediaStreamImplExt for T {
                 .realize
                 .expect("No parent class impl for \"realize\"");
             f(
-                self.instance()
-                    .unsafe_cast_ref::<MediaStream>()
-                    .to_glib_none()
-                    .0,
+                self.obj().unsafe_cast_ref::<MediaStream>().to_glib_none().0,
                 surface.to_glib_none().0,
             )
         }
@@ -99,10 +92,7 @@ impl<T: MediaStreamImpl> MediaStreamImplExt for T {
                 .seek
                 .expect("No parent class impl for \"realize\"");
             f(
-                self.instance()
-                    .unsafe_cast_ref::<MediaStream>()
-                    .to_glib_none()
-                    .0,
+                self.obj().unsafe_cast_ref::<MediaStream>().to_glib_none().0,
                 timestamp,
             )
         }
@@ -116,10 +106,7 @@ impl<T: MediaStreamImpl> MediaStreamImplExt for T {
                 .unrealize
                 .expect("No parent class impl for \"unrealize\"");
             f(
-                self.instance()
-                    .unsafe_cast_ref::<MediaStream>()
-                    .to_glib_none()
-                    .0,
+                self.obj().unsafe_cast_ref::<MediaStream>().to_glib_none().0,
                 surface.to_glib_none().0,
             )
         }
@@ -133,10 +120,7 @@ impl<T: MediaStreamImpl> MediaStreamImplExt for T {
                 .update_audio
                 .expect("No parent class impl for \"update_audio\"");
             f(
-                self.instance()
-                    .unsafe_cast_ref::<MediaStream>()
-                    .to_glib_none()
-                    .0,
+                self.obj().unsafe_cast_ref::<MediaStream>().to_glib_none().0,
                 muted.into_glib(),
                 volume,
             )
