@@ -39,7 +39,7 @@ impl<O: CellEditableImpl> CellEditableImplExt for O {
 
             if let Some(f) = (*parent_iface).editing_done {
                 f(self
-                    .instance()
+                    .obj()
                     .unsafe_cast_ref::<CellEditable>()
                     .to_glib_none()
                     .0);
@@ -55,7 +55,7 @@ impl<O: CellEditableImpl> CellEditableImplExt for O {
 
             if let Some(f) = (*parent_iface).remove_widget {
                 f(self
-                    .instance()
+                    .obj()
                     .unsafe_cast_ref::<CellEditable>()
                     .to_glib_none()
                     .0);
@@ -71,7 +71,7 @@ impl<O: CellEditableImpl> CellEditableImplExt for O {
 
             if let Some(f) = (*parent_iface).start_editing {
                 f(
-                    self.instance()
+                    self.obj()
                         .unsafe_cast_ref::<CellEditable>()
                         .to_glib_none()
                         .0,

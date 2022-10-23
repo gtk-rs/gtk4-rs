@@ -53,12 +53,12 @@ impl ObjectImpl for Window {
         self.parent_constructed();
 
         // Setup
-        let instance = self.instance();
-        instance.setup_settings();
-        instance.setup_tasks();
-        instance.restore_data();
-        instance.setup_callbacks();
-        instance.setup_actions();
+        let obj = self.obj();
+        obj.setup_settings();
+        obj.setup_tasks();
+        obj.restore_data();
+        obj.setup_callbacks();
+        obj.setup_actions();
     }
 }
 
@@ -70,7 +70,7 @@ impl WindowImpl for Window {
     fn close_request(&self) -> Inhibit {
         // Store task data in vector
         let backup_data: Vec<TaskData> = self
-            .instance()
+            .obj()
             .tasks()
             .snapshot()
             .iter()

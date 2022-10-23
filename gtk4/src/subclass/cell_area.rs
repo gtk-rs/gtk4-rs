@@ -323,10 +323,7 @@ impl<T: CellAreaImpl> CellAreaImplExt for T {
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkCellAreaClass;
             if let Some(f) = (*parent_class).activate {
                 from_glib(f(
-                    self.instance()
-                        .unsafe_cast_ref::<CellArea>()
-                        .to_glib_none()
-                        .0,
+                    self.obj().unsafe_cast_ref::<CellArea>().to_glib_none().0,
                     context.as_ref().to_glib_none().0,
                     widget.as_ref().to_glib_none().0,
                     area.to_glib_none().0,
@@ -345,10 +342,7 @@ impl<T: CellAreaImpl> CellAreaImplExt for T {
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkCellAreaClass;
             if let Some(f) = (*parent_class).add {
                 f(
-                    self.instance()
-                        .unsafe_cast_ref::<CellArea>()
-                        .to_glib_none()
-                        .0,
+                    self.obj().unsafe_cast_ref::<CellArea>().to_glib_none().0,
                     renderer.as_ref().to_glib_none().0,
                 )
             }
@@ -367,10 +361,7 @@ impl<T: CellAreaImpl> CellAreaImplExt for T {
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkCellAreaClass;
             if let Some(f) = (*parent_class).apply_attributes {
                 f(
-                    self.instance()
-                        .unsafe_cast_ref::<CellArea>()
-                        .to_glib_none()
-                        .0,
+                    self.obj().unsafe_cast_ref::<CellArea>().to_glib_none().0,
                     tree_model.as_ref().to_glib_none().0,
                     iter.to_glib_none().0 as *mut _,
                     is_expander.into_glib(),
@@ -388,11 +379,7 @@ impl<T: CellAreaImpl> CellAreaImplExt for T {
                 .create_context
                 .expect("No parent class impl for \"create_context\"");
 
-            let ret = f(self
-                .instance()
-                .unsafe_cast_ref::<CellArea>()
-                .to_glib_none()
-                .0);
+            let ret = f(self.obj().unsafe_cast_ref::<CellArea>().to_glib_none().0);
             Some(from_glib_full(ret))
         }
     }
@@ -406,10 +393,7 @@ impl<T: CellAreaImpl> CellAreaImplExt for T {
                 .expect("No parent class impl for \"copy_context\"");
 
             let ret = f(
-                self.instance()
-                    .unsafe_cast_ref::<CellArea>()
-                    .to_glib_none()
-                    .0,
+                self.obj().unsafe_cast_ref::<CellArea>().to_glib_none().0,
                 context.as_ref().to_glib_none().0,
             );
             Some(from_glib_full(ret))
@@ -429,10 +413,7 @@ impl<T: CellAreaImpl> CellAreaImplExt for T {
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkCellAreaClass;
             if let Some(f) = (*parent_class).event {
                 from_glib(f(
-                    self.instance()
-                        .unsafe_cast_ref::<CellArea>()
-                        .to_glib_none()
-                        .0,
+                    self.obj().unsafe_cast_ref::<CellArea>().to_glib_none().0,
                     context.as_ref().to_glib_none().0,
                     widget.as_ref().to_glib_none().0,
                     event.to_glib_none().0,
@@ -452,10 +433,7 @@ impl<T: CellAreaImpl> CellAreaImplExt for T {
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkCellAreaClass;
             if let Some(f) = (*parent_class).foreach {
                 f(
-                    self.instance()
-                        .unsafe_cast_ref::<CellArea>()
-                        .to_glib_none()
-                        .0,
+                    self.obj().unsafe_cast_ref::<CellArea>().to_glib_none().0,
                     callback.callback,
                     callback.user_data,
                 )
@@ -476,10 +454,7 @@ impl<T: CellAreaImpl> CellAreaImplExt for T {
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkCellAreaClass;
             if let Some(f) = (*parent_class).foreach_alloc {
                 f(
-                    self.instance()
-                        .unsafe_cast_ref::<CellArea>()
-                        .to_glib_none()
-                        .0,
+                    self.obj().unsafe_cast_ref::<CellArea>().to_glib_none().0,
                     context.as_ref().to_glib_none().0,
                     widget.as_ref().to_glib_none().0,
                     area.to_glib_none().0,
@@ -497,10 +472,7 @@ impl<T: CellAreaImpl> CellAreaImplExt for T {
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkCellAreaClass;
             if let Some(f) = (*parent_class).remove {
                 f(
-                    self.instance()
-                        .unsafe_cast_ref::<CellArea>()
-                        .to_glib_none()
-                        .0,
+                    self.obj().unsafe_cast_ref::<CellArea>().to_glib_none().0,
                     renderer.as_ref().to_glib_none().0,
                 )
             }
@@ -512,11 +484,7 @@ impl<T: CellAreaImpl> CellAreaImplExt for T {
             let data = T::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkCellAreaClass;
             if let Some(f) = (*parent_class).is_activatable {
-                from_glib(f(self
-                    .instance()
-                    .unsafe_cast_ref::<CellArea>()
-                    .to_glib_none()
-                    .0))
+                from_glib(f(self.obj().unsafe_cast_ref::<CellArea>().to_glib_none().0))
             } else {
                 false
             }
@@ -529,10 +497,7 @@ impl<T: CellAreaImpl> CellAreaImplExt for T {
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkCellAreaClass;
             if let Some(f) = (*parent_class).focus {
                 from_glib(f(
-                    self.instance()
-                        .unsafe_cast_ref::<CellArea>()
-                        .to_glib_none()
-                        .0,
+                    self.obj().unsafe_cast_ref::<CellArea>().to_glib_none().0,
                     direction_type.into_glib(),
                 ))
             } else {
@@ -548,11 +513,7 @@ impl<T: CellAreaImpl> CellAreaImplExt for T {
             let f = (*parent_class)
                 .get_request_mode
                 .expect("No parent class impl for \"get_request_mode\"");
-            from_glib(f(self
-                .instance()
-                .unsafe_cast_ref::<CellArea>()
-                .to_glib_none()
-                .0))
+            from_glib(f(self.obj().unsafe_cast_ref::<CellArea>().to_glib_none().0))
         }
     }
 
@@ -569,10 +530,7 @@ impl<T: CellAreaImpl> CellAreaImplExt for T {
             let mut minimum_size = mem::MaybeUninit::uninit();
             let mut natural_size = mem::MaybeUninit::uninit();
             f(
-                self.instance()
-                    .unsafe_cast_ref::<CellArea>()
-                    .to_glib_none()
-                    .0,
+                self.obj().unsafe_cast_ref::<CellArea>().to_glib_none().0,
                 cell_area_context.as_ref().to_glib_none().0,
                 widget.as_ref().to_glib_none().0,
                 minimum_size.as_mut_ptr(),
@@ -595,10 +553,7 @@ impl<T: CellAreaImpl> CellAreaImplExt for T {
             let mut minimum_size = mem::MaybeUninit::uninit();
             let mut natural_size = mem::MaybeUninit::uninit();
             f(
-                self.instance()
-                    .unsafe_cast_ref::<CellArea>()
-                    .to_glib_none()
-                    .0,
+                self.obj().unsafe_cast_ref::<CellArea>().to_glib_none().0,
                 cell_area_context.as_ref().to_glib_none().0,
                 widget.as_ref().to_glib_none().0,
                 minimum_size.as_mut_ptr(),
@@ -622,10 +577,7 @@ impl<T: CellAreaImpl> CellAreaImplExt for T {
             let mut minimum_size = mem::MaybeUninit::uninit();
             let mut natural_size = mem::MaybeUninit::uninit();
             f(
-                self.instance()
-                    .unsafe_cast_ref::<CellArea>()
-                    .to_glib_none()
-                    .0,
+                self.obj().unsafe_cast_ref::<CellArea>().to_glib_none().0,
                 cell_area_context.as_ref().to_glib_none().0,
                 widget.as_ref().to_glib_none().0,
                 height,
@@ -649,10 +601,7 @@ impl<T: CellAreaImpl> CellAreaImplExt for T {
             let mut minimum_size = mem::MaybeUninit::uninit();
             let mut natural_size = mem::MaybeUninit::uninit();
             f(
-                self.instance()
-                    .unsafe_cast_ref::<CellArea>()
-                    .to_glib_none()
-                    .0,
+                self.obj().unsafe_cast_ref::<CellArea>().to_glib_none().0,
                 cell_area_context.as_ref().to_glib_none().0,
                 widget.as_ref().to_glib_none().0,
                 width,
@@ -678,10 +627,7 @@ impl<T: CellAreaImpl> CellAreaImplExt for T {
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkCellAreaClass;
             if let Some(f) = (*parent_class).snapshot {
                 f(
-                    self.instance()
-                        .unsafe_cast_ref::<CellArea>()
-                        .to_glib_none()
-                        .0,
+                    self.obj().unsafe_cast_ref::<CellArea>().to_glib_none().0,
                     context.as_ref().to_glib_none().0,
                     widget.as_ref().to_glib_none().0,
                     snapshot.to_glib_none().0,

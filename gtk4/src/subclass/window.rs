@@ -46,7 +46,7 @@ impl<T: WindowImpl> WindowImplExt for T {
             let f = (*parent_class)
                 .activate_focus
                 .expect("No parent class impl for \"activate_focus\"");
-            f(self.instance().unsafe_cast_ref::<Window>().to_glib_none().0)
+            f(self.obj().unsafe_cast_ref::<Window>().to_glib_none().0)
         }
     }
 
@@ -57,7 +57,7 @@ impl<T: WindowImpl> WindowImplExt for T {
             let f = (*parent_class)
                 .activate_default
                 .expect("No parent class impl for \"activate_default\"");
-            f(self.instance().unsafe_cast_ref::<Window>().to_glib_none().0)
+            f(self.obj().unsafe_cast_ref::<Window>().to_glib_none().0)
         }
     }
 
@@ -68,7 +68,7 @@ impl<T: WindowImpl> WindowImplExt for T {
             let f = (*parent_class)
                 .keys_changed
                 .expect("No parent class impl for \"keys_changed\"");
-            f(self.instance().unsafe_cast_ref::<Window>().to_glib_none().0)
+            f(self.obj().unsafe_cast_ref::<Window>().to_glib_none().0)
         }
     }
 
@@ -80,7 +80,7 @@ impl<T: WindowImpl> WindowImplExt for T {
                 .enable_debugging
                 .expect("No parent class impl for \"enable_debugging\"");
             from_glib(f(
-                self.instance().unsafe_cast_ref::<Window>().to_glib_none().0,
+                self.obj().unsafe_cast_ref::<Window>().to_glib_none().0,
                 toggle.into_glib(),
             ))
         }
@@ -94,7 +94,7 @@ impl<T: WindowImpl> WindowImplExt for T {
                 .close_request
                 .expect("No parent class impl for \"close_request\"");
             glib::signal::Inhibit(from_glib(f(self
-                .instance()
+                .obj()
                 .unsafe_cast_ref::<Window>()
                 .to_glib_none()
                 .0)))

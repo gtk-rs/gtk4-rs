@@ -108,11 +108,7 @@ impl<T: TreeViewImpl> TreeViewImplExt for T {
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkTreeViewClass;
             // columns-changed is a signal
             if let Some(f) = (*parent_class).columns_changed {
-                f(self
-                    .instance()
-                    .unsafe_cast_ref::<TreeView>()
-                    .to_glib_none()
-                    .0)
+                f(self.obj().unsafe_cast_ref::<TreeView>().to_glib_none().0)
             }
         }
     }
@@ -123,11 +119,7 @@ impl<T: TreeViewImpl> TreeViewImplExt for T {
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkTreeViewClass;
             // cursor-changed is a signal
             if let Some(f) = (*parent_class).cursor_changed {
-                f(self
-                    .instance()
-                    .unsafe_cast_ref::<TreeView>()
-                    .to_glib_none()
-                    .0)
+                f(self.obj().unsafe_cast_ref::<TreeView>().to_glib_none().0)
             }
         }
     }
@@ -144,10 +136,7 @@ impl<T: TreeViewImpl> TreeViewImplExt for T {
             // expand-collapse-cursor-row is a signal
             if let Some(f) = (*parent_class).expand_collapse_cursor_row {
                 from_glib(f(
-                    self.instance()
-                        .unsafe_cast_ref::<TreeView>()
-                        .to_glib_none()
-                        .0,
+                    self.obj().unsafe_cast_ref::<TreeView>().to_glib_none().0,
                     logical.into_glib(),
                     expand.into_glib(),
                     open_all.into_glib(),
@@ -171,10 +160,7 @@ impl<T: TreeViewImpl> TreeViewImplExt for T {
             // move-cursor is a signal
             if let Some(f) = (*parent_class).move_cursor {
                 from_glib(f(
-                    self.instance()
-                        .unsafe_cast_ref::<TreeView>()
-                        .to_glib_none()
-                        .0,
+                    self.obj().unsafe_cast_ref::<TreeView>().to_glib_none().0,
                     step.into_glib(),
                     count,
                     extend.into_glib(),
@@ -194,10 +180,7 @@ impl<T: TreeViewImpl> TreeViewImplExt for T {
             // row-activated is a signal
             if let Some(f) = (*parent_class).row_activated {
                 f(
-                    self.instance()
-                        .unsafe_cast_ref::<TreeView>()
-                        .to_glib_none()
-                        .0,
+                    self.obj().unsafe_cast_ref::<TreeView>().to_glib_none().0,
                     path.to_glib_none().0 as *mut _,
                     column.to_glib_none().0,
                 );
@@ -212,10 +195,7 @@ impl<T: TreeViewImpl> TreeViewImplExt for T {
             // row-collapsed is a signal
             if let Some(f) = (*parent_class).row_collapsed {
                 f(
-                    self.instance()
-                        .unsafe_cast_ref::<TreeView>()
-                        .to_glib_none()
-                        .0,
+                    self.obj().unsafe_cast_ref::<TreeView>().to_glib_none().0,
                     iter.to_glib_none().0 as *mut _,
                     path.to_glib_none().0 as *mut _,
                 )
@@ -230,10 +210,7 @@ impl<T: TreeViewImpl> TreeViewImplExt for T {
             // row-expanded is a signal
             if let Some(f) = (*parent_class).row_expanded {
                 f(
-                    self.instance()
-                        .unsafe_cast_ref::<TreeView>()
-                        .to_glib_none()
-                        .0,
+                    self.obj().unsafe_cast_ref::<TreeView>().to_glib_none().0,
                     iter.to_glib_none().0 as *mut _,
                     path.to_glib_none().0 as *mut _,
                 )
@@ -247,11 +224,7 @@ impl<T: TreeViewImpl> TreeViewImplExt for T {
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkTreeViewClass;
             // select-all is a signal
             if let Some(f) = (*parent_class).select_all {
-                from_glib(f(self
-                    .instance()
-                    .unsafe_cast_ref::<TreeView>()
-                    .to_glib_none()
-                    .0))
+                from_glib(f(self.obj().unsafe_cast_ref::<TreeView>().to_glib_none().0))
             } else {
                 false
             }
@@ -264,11 +237,7 @@ impl<T: TreeViewImpl> TreeViewImplExt for T {
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkTreeViewClass;
             // select-cursor-parent is a signal
             if let Some(f) = (*parent_class).select_cursor_parent {
-                from_glib(f(self
-                    .instance()
-                    .unsafe_cast_ref::<TreeView>()
-                    .to_glib_none()
-                    .0))
+                from_glib(f(self.obj().unsafe_cast_ref::<TreeView>().to_glib_none().0))
             } else {
                 false
             }
@@ -282,10 +251,7 @@ impl<T: TreeViewImpl> TreeViewImplExt for T {
             // select-cursor-row is a signal
             if let Some(f) = (*parent_class).select_cursor_row {
                 from_glib(f(
-                    self.instance()
-                        .unsafe_cast_ref::<TreeView>()
-                        .to_glib_none()
-                        .0,
+                    self.obj().unsafe_cast_ref::<TreeView>().to_glib_none().0,
                     start_editing.into_glib(),
                 ))
             } else {
@@ -300,11 +266,7 @@ impl<T: TreeViewImpl> TreeViewImplExt for T {
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkTreeViewClass;
             // start-interactive-search is a signal
             if let Some(f) = (*parent_class).start_interactive_search {
-                from_glib(f(self
-                    .instance()
-                    .unsafe_cast_ref::<TreeView>()
-                    .to_glib_none()
-                    .0))
+                from_glib(f(self.obj().unsafe_cast_ref::<TreeView>().to_glib_none().0))
             } else {
                 false
             }
@@ -318,10 +280,7 @@ impl<T: TreeViewImpl> TreeViewImplExt for T {
             // test-collapse-row is a signal
             if let Some(f) = (*parent_class).test_collapse_row {
                 from_glib(f(
-                    self.instance()
-                        .unsafe_cast_ref::<TreeView>()
-                        .to_glib_none()
-                        .0,
+                    self.obj().unsafe_cast_ref::<TreeView>().to_glib_none().0,
                     iter.to_glib_none().0 as *mut _,
                     path.to_glib_none().0 as *mut _,
                 ))
@@ -339,10 +298,7 @@ impl<T: TreeViewImpl> TreeViewImplExt for T {
             // test-expand-row is a signal
             if let Some(f) = (*parent_class).test_expand_row {
                 from_glib(f(
-                    self.instance()
-                        .unsafe_cast_ref::<TreeView>()
-                        .to_glib_none()
-                        .0,
+                    self.obj().unsafe_cast_ref::<TreeView>().to_glib_none().0,
                     iter.to_glib_none().0 as *mut _,
                     path.to_glib_none().0 as *mut _,
                 ))
@@ -359,11 +315,7 @@ impl<T: TreeViewImpl> TreeViewImplExt for T {
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkTreeViewClass;
             // toggle-cursor-row is a signal
             if let Some(f) = (*parent_class).toggle_cursor_row {
-                from_glib(f(self
-                    .instance()
-                    .unsafe_cast_ref::<TreeView>()
-                    .to_glib_none()
-                    .0))
+                from_glib(f(self.obj().unsafe_cast_ref::<TreeView>().to_glib_none().0))
             } else {
                 false
             }
@@ -376,11 +328,7 @@ impl<T: TreeViewImpl> TreeViewImplExt for T {
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkTreeViewClass;
             // unselect-all is a signal
             if let Some(f) = (*parent_class).unselect_all {
-                from_glib(f(self
-                    .instance()
-                    .unsafe_cast_ref::<TreeView>()
-                    .to_glib_none()
-                    .0))
+                from_glib(f(self.obj().unsafe_cast_ref::<TreeView>().to_glib_none().0))
             } else {
                 false
             }

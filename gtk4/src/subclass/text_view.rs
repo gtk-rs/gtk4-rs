@@ -93,11 +93,7 @@ impl<T: TextViewImpl> TextViewImplExt for T {
             let data = T::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkTextViewClass;
             if let Some(f) = (*parent_class).backspace {
-                f(self
-                    .instance()
-                    .unsafe_cast_ref::<TextView>()
-                    .to_glib_none()
-                    .0)
+                f(self.obj().unsafe_cast_ref::<TextView>().to_glib_none().0)
             }
         }
     }
@@ -107,11 +103,7 @@ impl<T: TextViewImpl> TextViewImplExt for T {
             let data = T::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkTextViewClass;
             if let Some(f) = (*parent_class).copy_clipboard {
-                f(self
-                    .instance()
-                    .unsafe_cast_ref::<TextView>()
-                    .to_glib_none()
-                    .0)
+                f(self.obj().unsafe_cast_ref::<TextView>().to_glib_none().0)
             }
         }
     }
@@ -121,11 +113,7 @@ impl<T: TextViewImpl> TextViewImplExt for T {
             let data = T::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkTextViewClass;
             if let Some(f) = (*parent_class).cut_clipboard {
-                f(self
-                    .instance()
-                    .unsafe_cast_ref::<TextView>()
-                    .to_glib_none()
-                    .0)
+                f(self.obj().unsafe_cast_ref::<TextView>().to_glib_none().0)
             }
         }
     }
@@ -136,10 +124,7 @@ impl<T: TextViewImpl> TextViewImplExt for T {
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkTextViewClass;
             if let Some(f) = (*parent_class).delete_from_cursor {
                 f(
-                    self.instance()
-                        .unsafe_cast_ref::<TextView>()
-                        .to_glib_none()
-                        .0,
+                    self.obj().unsafe_cast_ref::<TextView>().to_glib_none().0,
                     type_.into_glib(),
                     count,
                 )
@@ -159,10 +144,7 @@ impl<T: TextViewImpl> TextViewImplExt for T {
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkTextViewClass;
             if let Some(f) = (*parent_class).extend_selection {
                 glib::signal::Inhibit(from_glib(f(
-                    self.instance()
-                        .unsafe_cast_ref::<TextView>()
-                        .to_glib_none()
-                        .0,
+                    self.obj().unsafe_cast_ref::<TextView>().to_glib_none().0,
                     granularity.into_glib(),
                     location.to_glib_none().0,
                     start.to_glib_none_mut().0,
@@ -180,10 +162,7 @@ impl<T: TextViewImpl> TextViewImplExt for T {
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkTextViewClass;
             if let Some(f) = (*parent_class).insert_at_cursor {
                 f(
-                    self.instance()
-                        .unsafe_cast_ref::<TextView>()
-                        .to_glib_none()
-                        .0,
+                    self.obj().unsafe_cast_ref::<TextView>().to_glib_none().0,
                     text.to_glib_none().0,
                 )
             }
@@ -195,11 +174,7 @@ impl<T: TextViewImpl> TextViewImplExt for T {
             let data = T::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkTextViewClass;
             if let Some(f) = (*parent_class).insert_emoji {
-                f(self
-                    .instance()
-                    .unsafe_cast_ref::<TextView>()
-                    .to_glib_none()
-                    .0)
+                f(self.obj().unsafe_cast_ref::<TextView>().to_glib_none().0)
             }
         }
     }
@@ -210,10 +185,7 @@ impl<T: TextViewImpl> TextViewImplExt for T {
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkTextViewClass;
             if let Some(f) = (*parent_class).move_cursor {
                 f(
-                    self.instance()
-                        .unsafe_cast_ref::<TextView>()
-                        .to_glib_none()
-                        .0,
+                    self.obj().unsafe_cast_ref::<TextView>().to_glib_none().0,
                     step.into_glib(),
                     count,
                     extend_selection.into_glib(),
@@ -227,11 +199,7 @@ impl<T: TextViewImpl> TextViewImplExt for T {
             let data = T::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkTextViewClass;
             if let Some(f) = (*parent_class).paste_clipboard {
-                f(self
-                    .instance()
-                    .unsafe_cast_ref::<TextView>()
-                    .to_glib_none()
-                    .0)
+                f(self.obj().unsafe_cast_ref::<TextView>().to_glib_none().0)
             }
         }
     }
@@ -241,11 +209,7 @@ impl<T: TextViewImpl> TextViewImplExt for T {
             let data = T::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkTextViewClass;
             if let Some(f) = (*parent_class).set_anchor {
-                f(self
-                    .instance()
-                    .unsafe_cast_ref::<TextView>()
-                    .to_glib_none()
-                    .0)
+                f(self.obj().unsafe_cast_ref::<TextView>().to_glib_none().0)
             }
         }
     }
@@ -256,10 +220,7 @@ impl<T: TextViewImpl> TextViewImplExt for T {
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkTextViewClass;
             if let Some(f) = (*parent_class).snapshot_layer {
                 f(
-                    self.instance()
-                        .unsafe_cast_ref::<TextView>()
-                        .to_glib_none()
-                        .0,
+                    self.obj().unsafe_cast_ref::<TextView>().to_glib_none().0,
                     layer.into_glib(),
                     snapshot.to_glib_none().0,
                 )
@@ -272,11 +233,7 @@ impl<T: TextViewImpl> TextViewImplExt for T {
             let data = T::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkTextViewClass;
             if let Some(f) = (*parent_class).toggle_overwrite {
-                f(self
-                    .instance()
-                    .unsafe_cast_ref::<TextView>()
-                    .to_glib_none()
-                    .0)
+                f(self.obj().unsafe_cast_ref::<TextView>().to_glib_none().0)
             }
         }
     }

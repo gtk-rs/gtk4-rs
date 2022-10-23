@@ -93,7 +93,7 @@ impl<T: PrintOperationImpl> PrintOperationImplExt for T {
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkPrintOperationClass;
             if let Some(f) = (*parent_class).begin_print {
                 f(
-                    self.instance()
+                    self.obj()
                         .unsafe_cast_ref::<PrintOperation>()
                         .to_glib_none()
                         .0,
@@ -109,7 +109,7 @@ impl<T: PrintOperationImpl> PrintOperationImplExt for T {
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkPrintOperationClass;
             if let Some(f) = (*parent_class).create_custom_widget {
                 let ret = f(self
-                    .instance()
+                    .obj()
                     .unsafe_cast_ref::<PrintOperation>()
                     .to_glib_none()
                     .0);
@@ -126,7 +126,7 @@ impl<T: PrintOperationImpl> PrintOperationImplExt for T {
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkPrintOperationClass;
             if let Some(f) = (*parent_class).custom_widget_apply {
                 f(
-                    self.instance()
+                    self.obj()
                         .unsafe_cast_ref::<PrintOperation>()
                         .to_glib_none()
                         .0,
@@ -142,7 +142,7 @@ impl<T: PrintOperationImpl> PrintOperationImplExt for T {
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkPrintOperationClass;
             if let Some(f) = (*parent_class).done {
                 f(
-                    self.instance()
+                    self.obj()
                         .unsafe_cast_ref::<PrintOperation>()
                         .to_glib_none()
                         .0,
@@ -158,7 +158,7 @@ impl<T: PrintOperationImpl> PrintOperationImplExt for T {
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkPrintOperationClass;
             if let Some(f) = (*parent_class).draw_page {
                 f(
-                    self.instance()
+                    self.obj()
                         .unsafe_cast_ref::<PrintOperation>()
                         .to_glib_none()
                         .0,
@@ -175,7 +175,7 @@ impl<T: PrintOperationImpl> PrintOperationImplExt for T {
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkPrintOperationClass;
             if let Some(f) = (*parent_class).end_print {
                 f(
-                    self.instance()
+                    self.obj()
                         .unsafe_cast_ref::<PrintOperation>()
                         .to_glib_none()
                         .0,
@@ -191,7 +191,7 @@ impl<T: PrintOperationImpl> PrintOperationImplExt for T {
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkPrintOperationClass;
             if let Some(f) = (*parent_class).paginate {
                 from_glib(f(
-                    self.instance()
+                    self.obj()
                         .unsafe_cast_ref::<PrintOperation>()
                         .to_glib_none()
                         .0,
@@ -215,7 +215,7 @@ impl<T: PrintOperationImpl> PrintOperationImplExt for T {
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkPrintOperationClass;
             if let Some(f) = (*parent_class).preview {
                 from_glib(f(
-                    self.instance()
+                    self.obj()
                         .unsafe_cast_ref::<PrintOperation>()
                         .to_glib_none()
                         .0,
@@ -236,7 +236,7 @@ impl<T: PrintOperationImpl> PrintOperationImplExt for T {
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkPrintOperationClass;
             if let Some(f) = (*parent_class).request_page_setup {
                 f(
-                    self.instance()
+                    self.obj()
                         .unsafe_cast_ref::<PrintOperation>()
                         .to_glib_none()
                         .0,
@@ -254,7 +254,7 @@ impl<T: PrintOperationImpl> PrintOperationImplExt for T {
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkPrintOperationClass;
             if let Some(f) = (*parent_class).status_changed {
                 f(self
-                    .instance()
+                    .obj()
                     .unsafe_cast_ref::<PrintOperation>()
                     .to_glib_none()
                     .0);
@@ -273,7 +273,7 @@ impl<T: PrintOperationImpl> PrintOperationImplExt for T {
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkPrintOperationClass;
             if let Some(f) = (*parent_class).update_custom_widget {
                 f(
-                    self.instance()
+                    self.obj()
                         .unsafe_cast_ref::<PrintOperation>()
                         .to_glib_none()
                         .0,

@@ -60,7 +60,7 @@ impl ObjectImpl for CustomTag {
         match pspec.name() {
             "label" => self.label.set_text(value.get().unwrap()),
             "has-close-button" => {
-                self.instance().set_has_close_button(value.get().unwrap());
+                self.obj().set_has_close_button(value.get().unwrap());
             }
             _ => unimplemented!(),
         }
@@ -78,7 +78,7 @@ impl ObjectImpl for CustomTag {
 
     fn constructed(&self) {
         self.parent_constructed();
-        let tag = self.instance();
+        let tag = self.obj();
         self.container.set_parent(&*tag);
         self.container.append(&self.label);
 

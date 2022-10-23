@@ -97,7 +97,7 @@ impl<O: FontChooserImpl> FontChooserImplExt for O {
                 .expect("no parent \"get_font_family\" implementation");
 
             from_glib_none(f(self
-                .instance()
+                .obj()
                 .unsafe_cast_ref::<FontChooser>()
                 .to_glib_none()
                 .0))
@@ -115,7 +115,7 @@ impl<O: FontChooserImpl> FontChooserImplExt for O {
                 .expect("no parent \"get_font_face\" implementation");
 
             from_glib_none(f(self
-                .instance()
+                .obj()
                 .unsafe_cast_ref::<FontChooser>()
                 .to_glib_none()
                 .0))
@@ -129,11 +129,7 @@ impl<O: FontChooserImpl> FontChooserImplExt for O {
                 as *const ffi::GtkFontChooserIface;
 
             if let Some(f) = (*parent_iface).get_font_size {
-                f(self
-                    .instance()
-                    .unsafe_cast_ref::<FontChooser>()
-                    .to_glib_none()
-                    .0)
+                f(self.obj().unsafe_cast_ref::<FontChooser>().to_glib_none().0)
             } else {
                 // No font size is selected
                 -1
@@ -150,20 +146,14 @@ impl<O: FontChooserImpl> FontChooserImplExt for O {
             if let Some(f) = (*parent_iface).set_filter_func {
                 if let Some(filter_callback) = callback {
                     f(
-                        self.instance()
-                            .unsafe_cast_ref::<FontChooser>()
-                            .to_glib_none()
-                            .0,
+                        self.obj().unsafe_cast_ref::<FontChooser>().to_glib_none().0,
                         filter_callback.filter_func,
                         filter_callback.user_data,
                         filter_callback.destroy_notify,
                     )
                 } else {
                     f(
-                        self.instance()
-                            .unsafe_cast_ref::<FontChooser>()
-                            .to_glib_none()
-                            .0,
+                        self.obj().unsafe_cast_ref::<FontChooser>().to_glib_none().0,
                         None,
                         std::ptr::null_mut(),
                         None,
@@ -183,10 +173,7 @@ impl<O: FontChooserImpl> FontChooserImplExt for O {
                 .set_font_map
                 .expect("no parent \"set_font_map\" implementation");
             f(
-                self.instance()
-                    .unsafe_cast_ref::<FontChooser>()
-                    .to_glib_none()
-                    .0,
+                self.obj().unsafe_cast_ref::<FontChooser>().to_glib_none().0,
                 font_map.map(|fm| fm.as_ref()).to_glib_none().0,
             );
         }
@@ -203,7 +190,7 @@ impl<O: FontChooserImpl> FontChooserImplExt for O {
                 .expect("no parent \"get_font_map\" implementation");
 
             from_glib_none(f(self
-                .instance()
+                .obj()
                 .unsafe_cast_ref::<FontChooser>()
                 .to_glib_none()
                 .0))
@@ -217,10 +204,7 @@ impl<O: FontChooserImpl> FontChooserImplExt for O {
                 as *const ffi::GtkFontChooserIface;
             if let Some(f) = (*parent_iface).font_activated {
                 f(
-                    self.instance()
-                        .unsafe_cast_ref::<FontChooser>()
-                        .to_glib_none()
-                        .0,
+                    self.obj().unsafe_cast_ref::<FontChooser>().to_glib_none().0,
                     font_name.to_glib_none().0,
                 );
             }
@@ -259,7 +243,7 @@ unsafe extern "C" fn font_chooser_get_font_family<T: FontChooserImpl>(
     let ret = imp.font_family();
     if let Some(font_family) = ret {
         let font_family = font_family.to_glib_full();
-        imp.instance().set_qdata(
+        imp.obj().set_qdata(
             *FONT_CHOOSER_GET_FONT_FAMILY_QUARK,
             PtrHolder(font_family, |ptr| {
                 glib::gobject_ffi::g_object_unref(ptr as *mut _)
@@ -282,7 +266,7 @@ unsafe extern "C" fn font_chooser_get_font_face<T: FontChooserImpl>(
     let ret = imp.font_face();
     if let Some(font_face) = ret {
         let font_face = font_face.to_glib_full();
-        imp.instance().set_qdata(
+        imp.obj().set_qdata(
             *FONT_CHOOSER_GET_FONT_FACE_QUARK,
             PtrHolder(font_face, |ptr| {
                 glib::gobject_ffi::g_object_unref(ptr as *mut _);

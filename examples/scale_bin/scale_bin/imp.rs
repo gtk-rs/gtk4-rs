@@ -26,7 +26,7 @@ impl ObjectSubclass for ScaleBin {
 impl ObjectImpl for ScaleBin {
     fn constructed(&self) {
         self.parent_constructed();
-        let obj = self.instance();
+        let obj = self.obj();
         obj.set_halign(gtk::Align::Start);
         obj.set_valign(gtk::Align::Start);
 
@@ -35,7 +35,7 @@ impl ObjectImpl for ScaleBin {
     }
 
     fn dispose(&self) {
-        let child = self.instance().first_child().unwrap();
+        let child = self.obj().first_child().unwrap();
         child.unparent();
     }
 }
@@ -50,7 +50,7 @@ impl WidgetImpl for ScaleBin {
         };
 
         let (minimum, natural, _, _) = self
-            .instance()
+            .obj()
             .first_child()
             .unwrap()
             .measure(orientation, new_for_size);
@@ -68,7 +68,7 @@ impl WidgetImpl for ScaleBin {
 
         let transform = gsk::Transform::new().scale(zoom, zoom);
 
-        self.instance().first_child().unwrap().allocate(
+        self.obj().first_child().unwrap().allocate(
             (width as f32 / zoom) as i32,
             (height as f32 / zoom) as i32,
             baseline,

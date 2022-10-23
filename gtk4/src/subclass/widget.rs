@@ -247,7 +247,7 @@ impl<T: WidgetImpl> WidgetImplExt for T {
                 let mut hexpand_glib = hexpand.into_glib();
                 let mut vexpand_glib = vexpand.into_glib();
                 f(
-                    self.instance().unsafe_cast_ref::<Widget>().to_glib_none().0,
+                    self.obj().unsafe_cast_ref::<Widget>().to_glib_none().0,
                     &mut hexpand_glib,
                     &mut vexpand_glib,
                 );
@@ -263,7 +263,7 @@ impl<T: WidgetImpl> WidgetImplExt for T {
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkWidgetClass;
             if let Some(f) = (*parent_class).contains {
                 from_glib(f(
-                    self.instance().unsafe_cast_ref::<Widget>().to_glib_none().0,
+                    self.obj().unsafe_cast_ref::<Widget>().to_glib_none().0,
                     x,
                     y,
                 ))
@@ -279,7 +279,7 @@ impl<T: WidgetImpl> WidgetImplExt for T {
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkWidgetClass;
             if let Some(f) = (*parent_class).direction_changed {
                 f(
-                    self.instance().unsafe_cast_ref::<Widget>().to_glib_none().0,
+                    self.obj().unsafe_cast_ref::<Widget>().to_glib_none().0,
                     previous_direction.into_glib(),
                 )
             }
@@ -292,7 +292,7 @@ impl<T: WidgetImpl> WidgetImplExt for T {
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkWidgetClass;
             if let Some(f) = (*parent_class).focus {
                 from_glib(f(
-                    self.instance().unsafe_cast_ref::<Widget>().to_glib_none().0,
+                    self.obj().unsafe_cast_ref::<Widget>().to_glib_none().0,
                     direction_type.into_glib(),
                 ))
             } else {
@@ -308,11 +308,7 @@ impl<T: WidgetImpl> WidgetImplExt for T {
             let f = (*parent_class)
                 .get_request_mode
                 .expect("No parent class impl for \"get_request_mode\"");
-            from_glib(f(self
-                .instance()
-                .unsafe_cast_ref::<Widget>()
-                .to_glib_none()
-                .0))
+            from_glib(f(self.obj().unsafe_cast_ref::<Widget>().to_glib_none().0))
         }
     }
 
@@ -321,11 +317,7 @@ impl<T: WidgetImpl> WidgetImplExt for T {
             let data = T::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkWidgetClass;
             if let Some(f) = (*parent_class).grab_focus {
-                from_glib(f(self
-                    .instance()
-                    .unsafe_cast_ref::<Widget>()
-                    .to_glib_none()
-                    .0))
+                from_glib(f(self.obj().unsafe_cast_ref::<Widget>().to_glib_none().0))
             } else {
                 false
             }
@@ -337,7 +329,7 @@ impl<T: WidgetImpl> WidgetImplExt for T {
             let data = T::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkWidgetClass;
             if let Some(f) = (*parent_class).hide {
-                f(self.instance().unsafe_cast_ref::<Widget>().to_glib_none().0)
+                f(self.obj().unsafe_cast_ref::<Widget>().to_glib_none().0)
             }
         }
     }
@@ -348,7 +340,7 @@ impl<T: WidgetImpl> WidgetImplExt for T {
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkWidgetClass;
             if let Some(f) = (*parent_class).keynav_failed {
                 from_glib(f(
-                    self.instance().unsafe_cast_ref::<Widget>().to_glib_none().0,
+                    self.obj().unsafe_cast_ref::<Widget>().to_glib_none().0,
                     direction_type.into_glib(),
                 ))
             } else {
@@ -362,7 +354,7 @@ impl<T: WidgetImpl> WidgetImplExt for T {
             let data = T::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkWidgetClass;
             if let Some(f) = (*parent_class).map {
-                f(self.instance().unsafe_cast_ref::<Widget>().to_glib_none().0)
+                f(self.obj().unsafe_cast_ref::<Widget>().to_glib_none().0)
             }
         }
     }
@@ -381,7 +373,7 @@ impl<T: WidgetImpl> WidgetImplExt for T {
             let mut min_base = -1;
             let mut nat_base = -1;
             f(
-                self.instance().unsafe_cast_ref::<Widget>().to_glib_none().0,
+                self.obj().unsafe_cast_ref::<Widget>().to_glib_none().0,
                 orientation.into_glib(),
                 for_size,
                 &mut min,
@@ -399,7 +391,7 @@ impl<T: WidgetImpl> WidgetImplExt for T {
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkWidgetClass;
             if let Some(f) = (*parent_class).mnemonic_activate {
                 from_glib(f(
-                    self.instance().unsafe_cast_ref::<Widget>().to_glib_none().0,
+                    self.obj().unsafe_cast_ref::<Widget>().to_glib_none().0,
                     group_cycling.into_glib(),
                 ))
             } else {
@@ -414,7 +406,7 @@ impl<T: WidgetImpl> WidgetImplExt for T {
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkWidgetClass;
             if let Some(f) = (*parent_class).move_focus {
                 f(
-                    self.instance().unsafe_cast_ref::<Widget>().to_glib_none().0,
+                    self.obj().unsafe_cast_ref::<Widget>().to_glib_none().0,
                     direction_type.into_glib(),
                 )
             }
@@ -433,7 +425,7 @@ impl<T: WidgetImpl> WidgetImplExt for T {
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkWidgetClass;
             if let Some(f) = (*parent_class).query_tooltip {
                 from_glib(f(
-                    self.instance().unsafe_cast_ref::<Widget>().to_glib_none().0,
+                    self.obj().unsafe_cast_ref::<Widget>().to_glib_none().0,
                     x,
                     y,
                     keyboard_tooltip.into_glib(),
@@ -450,7 +442,7 @@ impl<T: WidgetImpl> WidgetImplExt for T {
             let data = T::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkWidgetClass;
             if let Some(f) = (*parent_class).realize {
-                f(self.instance().unsafe_cast_ref::<Widget>().to_glib_none().0)
+                f(self.obj().unsafe_cast_ref::<Widget>().to_glib_none().0)
             }
         }
     }
@@ -460,7 +452,7 @@ impl<T: WidgetImpl> WidgetImplExt for T {
             let data = T::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkWidgetClass;
             if let Some(f) = (*parent_class).root {
-                f(self.instance().unsafe_cast_ref::<Widget>().to_glib_none().0)
+                f(self.obj().unsafe_cast_ref::<Widget>().to_glib_none().0)
             }
         }
     }
@@ -471,7 +463,7 @@ impl<T: WidgetImpl> WidgetImplExt for T {
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkWidgetClass;
             if let Some(f) = (*parent_class).set_focus_child {
                 f(
-                    self.instance().unsafe_cast_ref::<Widget>().to_glib_none().0,
+                    self.obj().unsafe_cast_ref::<Widget>().to_glib_none().0,
                     child.to_glib_none().0,
                 )
             }
@@ -483,7 +475,7 @@ impl<T: WidgetImpl> WidgetImplExt for T {
             let data = T::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkWidgetClass;
             if let Some(f) = (*parent_class).show {
-                f(self.instance().unsafe_cast_ref::<Widget>().to_glib_none().0)
+                f(self.obj().unsafe_cast_ref::<Widget>().to_glib_none().0)
             }
         }
     }
@@ -494,7 +486,7 @@ impl<T: WidgetImpl> WidgetImplExt for T {
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkWidgetClass;
             if let Some(f) = (*parent_class).size_allocate {
                 f(
-                    self.instance().unsafe_cast_ref::<Widget>().to_glib_none().0,
+                    self.obj().unsafe_cast_ref::<Widget>().to_glib_none().0,
                     width,
                     height,
                     baseline,
@@ -509,7 +501,7 @@ impl<T: WidgetImpl> WidgetImplExt for T {
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkWidgetClass;
             if let Some(f) = (*parent_class).snapshot {
                 f(
-                    self.instance().unsafe_cast_ref::<Widget>().to_glib_none().0,
+                    self.obj().unsafe_cast_ref::<Widget>().to_glib_none().0,
                     snapshot.to_glib_none().0,
                 )
             }
@@ -522,7 +514,7 @@ impl<T: WidgetImpl> WidgetImplExt for T {
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkWidgetClass;
             if let Some(f) = (*parent_class).state_flags_changed {
                 f(
-                    self.instance().unsafe_cast_ref::<Widget>().to_glib_none().0,
+                    self.obj().unsafe_cast_ref::<Widget>().to_glib_none().0,
                     state_flags.into_glib(),
                 )
             }
@@ -535,7 +527,7 @@ impl<T: WidgetImpl> WidgetImplExt for T {
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkWidgetClass;
             if let Some(f) = (*parent_class).system_setting_changed {
                 f(
-                    self.instance().unsafe_cast_ref::<Widget>().to_glib_none().0,
+                    self.obj().unsafe_cast_ref::<Widget>().to_glib_none().0,
                     settings.into_glib(),
                 )
             }
@@ -547,7 +539,7 @@ impl<T: WidgetImpl> WidgetImplExt for T {
             let data = T::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkWidgetClass;
             if let Some(f) = (*parent_class).unmap {
-                f(self.instance().unsafe_cast_ref::<Widget>().to_glib_none().0)
+                f(self.obj().unsafe_cast_ref::<Widget>().to_glib_none().0)
             }
         }
     }
@@ -557,7 +549,7 @@ impl<T: WidgetImpl> WidgetImplExt for T {
             let data = T::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkWidgetClass;
             if let Some(f) = (*parent_class).unrealize {
-                f(self.instance().unsafe_cast_ref::<Widget>().to_glib_none().0)
+                f(self.obj().unsafe_cast_ref::<Widget>().to_glib_none().0)
             }
         }
     }
@@ -567,7 +559,7 @@ impl<T: WidgetImpl> WidgetImplExt for T {
             let data = T::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkWidgetClass;
             if let Some(f) = (*parent_class).unroot {
-                f(self.instance().unsafe_cast_ref::<Widget>().to_glib_none().0)
+                f(self.obj().unsafe_cast_ref::<Widget>().to_glib_none().0)
             }
         }
     }
@@ -625,7 +617,7 @@ unsafe extern "C" fn widget_compute_expand<T: WidgetImpl>(
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
 
-    let widget = imp.instance();
+    let widget = imp.obj();
     let widget = widget.unsafe_cast_ref::<Widget>();
     let mut hexpand: bool = if widget.is_hexpand_set() {
         widget.hexpands()

@@ -315,7 +315,7 @@ mod tests {
                 SIGNALS.as_ref()
             }
             fn dispose(&self) {
-                self.instance().emit_by_name::<()>("destroyed", &[]);
+                self.obj().emit_by_name::<()>("destroyed", &[]);
             }
         }
         glib::wrapper! {
