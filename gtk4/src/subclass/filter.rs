@@ -31,11 +31,7 @@ impl<T: FilterImpl> FilterImplExt for T {
             let f = (*parent_class)
                 .get_strictness
                 .expect("No parent class impl for \"get_strictness\"");
-            from_glib(f(self
-                .instance()
-                .unsafe_cast_ref::<Filter>()
-                .to_glib_none()
-                .0))
+            from_glib(f(self.obj().unsafe_cast_ref::<Filter>().to_glib_none().0))
         }
     }
 
@@ -47,7 +43,7 @@ impl<T: FilterImpl> FilterImplExt for T {
                 .match_
                 .expect("No parent class impl for \"match\"");
             from_glib(f(
-                self.instance().unsafe_cast_ref::<Filter>().to_glib_none().0,
+                self.obj().unsafe_cast_ref::<Filter>().to_glib_none().0,
                 item.to_glib_none().0,
             ))
         }

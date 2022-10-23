@@ -39,7 +39,7 @@ impl ObjectSubclass for ExButton {
 
 impl ObjectImpl for ExButton {
     fn constructed(&self) {
-        let obj = self.instance();
+        let obj = self.obj();
         self.parent_constructed();
 
         // Create the child label.

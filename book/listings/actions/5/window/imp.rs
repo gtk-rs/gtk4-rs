@@ -36,7 +36,7 @@ impl ObjectImpl for Window {
         self.parent_constructed();
 
         // Add actions
-        self.instance().setup_actions();
+        self.obj().setup_actions();
     }
 }
 // ANCHOR_END: object_impl

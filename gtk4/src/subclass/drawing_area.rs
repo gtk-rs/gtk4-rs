@@ -25,10 +25,7 @@ impl<T: DrawingAreaImpl> DrawingAreaImplExt for T {
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkDrawingAreaClass;
             if let Some(f) = (*parent_class).resize {
                 f(
-                    self.instance()
-                        .unsafe_cast_ref::<DrawingArea>()
-                        .to_glib_none()
-                        .0,
+                    self.obj().unsafe_cast_ref::<DrawingArea>().to_glib_none().0,
                     width,
                     height,
                 )

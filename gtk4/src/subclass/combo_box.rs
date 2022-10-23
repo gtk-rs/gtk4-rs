@@ -39,11 +39,7 @@ impl<T: ComboBoxImpl> ComboBoxImplExt for T {
             let data = T::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkComboBoxClass;
             if let Some(f) = (*parent_class).activate {
-                f(self
-                    .instance()
-                    .unsafe_cast_ref::<ComboBox>()
-                    .to_glib_none()
-                    .0)
+                f(self.obj().unsafe_cast_ref::<ComboBox>().to_glib_none().0)
             }
         }
     }
@@ -52,11 +48,7 @@ impl<T: ComboBoxImpl> ComboBoxImplExt for T {
             let data = T::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkComboBoxClass;
             if let Some(f) = (*parent_class).changed {
-                f(self
-                    .instance()
-                    .unsafe_cast_ref::<ComboBox>()
-                    .to_glib_none()
-                    .0)
+                f(self.obj().unsafe_cast_ref::<ComboBox>().to_glib_none().0)
             }
         }
     }
@@ -66,10 +58,7 @@ impl<T: ComboBoxImpl> ComboBoxImplExt for T {
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkComboBoxClass;
             if let Some(f) = (*parent_class).format_entry_text {
                 return Some(from_glib_full(f(
-                    self.instance()
-                        .unsafe_cast_ref::<ComboBox>()
-                        .to_glib_none()
-                        .0,
+                    self.obj().unsafe_cast_ref::<ComboBox>().to_glib_none().0,
                     path.to_glib_none().0,
                 )));
             }

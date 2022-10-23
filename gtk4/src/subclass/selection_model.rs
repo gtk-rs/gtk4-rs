@@ -71,7 +71,7 @@ impl<T: SelectionModelImpl> SelectionModelImplExt for T {
                 .expect("no parent \"get_selection_in_range\" implementation");
 
             from_glib_full(func(
-                self.instance()
+                self.obj()
                     .unsafe_cast_ref::<SelectionModel>()
                     .to_glib_none()
                     .0,
@@ -92,7 +92,7 @@ impl<T: SelectionModelImpl> SelectionModelImplExt for T {
                 .expect("no parent \"is_selected\" implementation");
 
             from_glib(func(
-                self.instance()
+                self.obj()
                     .unsafe_cast_ref::<SelectionModel>()
                     .to_glib_none()
                     .0,
@@ -112,7 +112,7 @@ impl<T: SelectionModelImpl> SelectionModelImplExt for T {
                 .expect("no parent \"select_all\" implementation");
 
             from_glib(func(
-                self.instance()
+                self.obj()
                     .unsafe_cast_ref::<SelectionModel>()
                     .to_glib_none()
                     .0,
@@ -131,7 +131,7 @@ impl<T: SelectionModelImpl> SelectionModelImplExt for T {
                 .expect("no parent \"select_item\" implementation");
 
             from_glib(func(
-                self.instance()
+                self.obj()
                     .unsafe_cast_ref::<SelectionModel>()
                     .to_glib_none()
                     .0,
@@ -152,7 +152,7 @@ impl<T: SelectionModelImpl> SelectionModelImplExt for T {
                 .expect("no parent \"select_range\" implementation");
 
             from_glib(func(
-                self.instance()
+                self.obj()
                     .unsafe_cast_ref::<SelectionModel>()
                     .to_glib_none()
                     .0,
@@ -174,7 +174,7 @@ impl<T: SelectionModelImpl> SelectionModelImplExt for T {
                 .expect("no parent \"set_selection\" implementation");
 
             from_glib(func(
-                self.instance()
+                self.obj()
                     .unsafe_cast_ref::<SelectionModel>()
                     .to_glib_none()
                     .0,
@@ -195,7 +195,7 @@ impl<T: SelectionModelImpl> SelectionModelImplExt for T {
                 .expect("no parent \"unselect_all\" implementation");
 
             from_glib(func(
-                self.instance()
+                self.obj()
                     .unsafe_cast_ref::<SelectionModel>()
                     .to_glib_none()
                     .0,
@@ -214,7 +214,7 @@ impl<T: SelectionModelImpl> SelectionModelImplExt for T {
                 .expect("no parent \"unselect_item\" implementation");
 
             from_glib(func(
-                self.instance()
+                self.obj()
                     .unsafe_cast_ref::<SelectionModel>()
                     .to_glib_none()
                     .0,
@@ -234,7 +234,7 @@ impl<T: SelectionModelImpl> SelectionModelImplExt for T {
                 .expect("no parent \"unselect_range\" implementation");
 
             from_glib(func(
-                self.instance()
+                self.obj()
                     .unsafe_cast_ref::<SelectionModel>()
                     .to_glib_none()
                     .0,

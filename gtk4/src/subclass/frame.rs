@@ -28,7 +28,7 @@ impl<T: FrameImpl> FrameImplExt for T {
                 .expect("No parent class impl for \"compute_child_allocation\"");
             let mut allocation = Allocation::uninitialized();
             f(
-                self.instance().unsafe_cast_ref::<Frame>().to_glib_none().0,
+                self.obj().unsafe_cast_ref::<Frame>().to_glib_none().0,
                 allocation.to_glib_none_mut().0,
             );
             allocation

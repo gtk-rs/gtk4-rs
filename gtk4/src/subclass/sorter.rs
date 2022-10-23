@@ -32,7 +32,7 @@ impl<T: SorterImpl> SorterImplExt for T {
                 .compare
                 .expect("No parent class impl for \"compare\"");
             from_glib(f(
-                self.instance().unsafe_cast_ref::<Sorter>().to_glib_none().0,
+                self.obj().unsafe_cast_ref::<Sorter>().to_glib_none().0,
                 item1.to_glib_none().0,
                 item2.to_glib_none().0,
             ))
@@ -46,11 +46,7 @@ impl<T: SorterImpl> SorterImplExt for T {
             let f = (*parent_class)
                 .get_order
                 .expect("No parent class impl for \"get_order\"");
-            from_glib(f(self
-                .instance()
-                .unsafe_cast_ref::<Sorter>()
-                .to_glib_none()
-                .0))
+            from_glib(f(self.obj().unsafe_cast_ref::<Sorter>().to_glib_none().0))
         }
     }
 }

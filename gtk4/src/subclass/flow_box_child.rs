@@ -25,7 +25,7 @@ impl<T: FlowBoxChildImpl> FlowBoxChildImplExt for T {
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkFlowBoxChildClass;
             if let Some(f) = (*parent_class).activate {
                 f(self
-                    .instance()
+                    .obj()
                     .unsafe_cast_ref::<FlowBoxChild>()
                     .to_glib_none()
                     .0)

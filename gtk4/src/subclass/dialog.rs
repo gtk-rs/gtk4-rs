@@ -30,7 +30,7 @@ impl<T: DialogImpl> DialogImplExt for T {
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkDialogClass;
             if let Some(f) = (*parent_class).response {
                 f(
-                    self.instance().unsafe_cast_ref::<Dialog>().to_glib_none().0,
+                    self.obj().unsafe_cast_ref::<Dialog>().to_glib_none().0,
                     response.into_glib(),
                 )
             }
@@ -42,7 +42,7 @@ impl<T: DialogImpl> DialogImplExt for T {
             let data = T::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkDialogClass;
             if let Some(f) = (*parent_class).close {
-                f(self.instance().unsafe_cast_ref::<Dialog>().to_glib_none().0)
+                f(self.obj().unsafe_cast_ref::<Dialog>().to_glib_none().0)
             }
         }
     }

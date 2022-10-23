@@ -44,7 +44,7 @@ impl ObjectImpl for CustomEditable {
     }
 
     fn set_property(&self, id: usize, value: &glib::Value, pspec: &glib::ParamSpec) {
-        let editable = self.instance();
+        let editable = self.obj();
 
         // In case this is a property that's automatically added for Editable implementations.
         if !self.delegate_set_property(id, value, pspec) {
@@ -70,7 +70,7 @@ impl ObjectImpl for CustomEditable {
     }
 
     fn constructed(&self) {
-        let editable = self.instance();
+        let editable = self.obj();
         // Most of the times when implementing Editable, you just want to embed something like
         // `gtk::Text` inside a more complex widget. In such case, your implementation most forward the `gtk::Text`
         // or any `Editable` to the delegate. That starts by returning at `EditableImpl::get_delegate`.
@@ -88,7 +88,7 @@ impl ObjectImpl for CustomEditable {
     }
 
     fn dispose(&self) {
-        let editable = self.instance();
+        let editable = self.obj();
 
         // Wire down the delegate signals machinery
         editable.finish_delegate();

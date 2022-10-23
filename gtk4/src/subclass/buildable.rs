@@ -84,10 +84,7 @@ impl<T: BuildableImpl> BuildableImplExt for T {
                 .expect("no parent \"set_id\" implementation");
 
             func(
-                self.instance()
-                    .unsafe_cast_ref::<Buildable>()
-                    .to_glib_none()
-                    .0,
+                self.obj().unsafe_cast_ref::<Buildable>().to_glib_none().0,
                 id.to_glib_none().0,
             )
         }
@@ -104,10 +101,7 @@ impl<T: BuildableImpl> BuildableImplExt for T {
                 .expect("no parent \"get_id\" implementation");
 
             from_glib_none(func(
-                self.instance()
-                    .unsafe_cast_ref::<Buildable>()
-                    .to_glib_none()
-                    .0,
+                self.obj().unsafe_cast_ref::<Buildable>().to_glib_none().0,
             ))
         }
     }
@@ -123,10 +117,7 @@ impl<T: BuildableImpl> BuildableImplExt for T {
                 .expect("no parent \"add_child\" implementation");
 
             func(
-                self.instance()
-                    .unsafe_cast_ref::<Buildable>()
-                    .to_glib_none()
-                    .0,
+                self.obj().unsafe_cast_ref::<Buildable>().to_glib_none().0,
                 builder.to_glib_none().0,
                 child.to_glib_none().0,
                 type_.to_glib_none().0,
@@ -143,16 +134,13 @@ impl<T: BuildableImpl> BuildableImplExt for T {
             // gtk::Builder falls back to using ObjectExt::set_property if the method is not implemented
             if let Some(func) = (*parent_iface).set_buildable_property {
                 func(
-                    self.instance()
-                        .unsafe_cast_ref::<Buildable>()
-                        .to_glib_none()
-                        .0,
+                    self.obj().unsafe_cast_ref::<Buildable>().to_glib_none().0,
                     builder.to_glib_none().0,
                     name.to_glib_none().0,
                     value.to_glib_none().0,
                 )
             } else {
-                self.instance().set_property_from_value(name, value);
+                self.obj().set_property_from_value(name, value);
             }
         }
     }
@@ -165,10 +153,7 @@ impl<T: BuildableImpl> BuildableImplExt for T {
 
             if let Some(func) = (*parent_iface).parser_finished {
                 func(
-                    self.instance()
-                        .unsafe_cast_ref::<Buildable>()
-                        .to_glib_none()
-                        .0,
+                    self.obj().unsafe_cast_ref::<Buildable>().to_glib_none().0,
                     builder.to_glib_none().0,
                 )
             }
@@ -183,10 +168,7 @@ impl<T: BuildableImpl> BuildableImplExt for T {
 
             if let Some(func) = (*parent_iface).get_internal_child {
                 from_glib_none(func(
-                    self.instance()
-                        .unsafe_cast_ref::<Buildable>()
-                        .to_glib_none()
-                        .0,
+                    self.obj().unsafe_cast_ref::<Buildable>().to_glib_none().0,
                     builder.to_glib_none().0,
                     name.to_glib_none().0,
                 ))
@@ -207,10 +189,7 @@ impl<T: BuildableImpl> BuildableImplExt for T {
                 .expect("no parent \"construct_child\" implementation");
 
             from_glib_full(func(
-                self.instance()
-                    .unsafe_cast_ref::<Buildable>()
-                    .to_glib_none()
-                    .0,
+                self.obj().unsafe_cast_ref::<Buildable>().to_glib_none().0,
                 builder.to_glib_none().0,
                 name.to_glib_none().0,
             ))
@@ -329,7 +308,7 @@ unsafe extern "C" fn buildable_get_internal_child<T: BuildableImpl>(
 
     // transfer none: ensure the internal child stays alive for as long as the object building it
     let ret = ret.to_glib_full();
-    imp.instance().set_qdata(
+    imp.obj().set_qdata(
         *BUILDABLE_GET_INTERNAL_CHILD_QUARK,
         PtrHolder(ret, |ptr| {
             glib::gobject_ffi::g_object_unref(ptr as *mut _);

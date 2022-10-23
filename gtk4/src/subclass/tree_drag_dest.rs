@@ -32,7 +32,7 @@ impl<T: TreeDragDestImpl> TreeDragDestImplExt for T {
                 .expect("no parent \"drag_data_received\" implementation");
 
             from_glib(func(
-                self.instance()
+                self.obj()
                     .unsafe_cast_ref::<TreeDragDest>()
                     .to_glib_none()
                     .0,
@@ -53,7 +53,7 @@ impl<T: TreeDragDestImpl> TreeDragDestImplExt for T {
                 .expect("no parent \"drag_data_received\" implementation");
 
             from_glib(func(
-                self.instance()
+                self.obj()
                     .unsafe_cast_ref::<TreeDragDest>()
                     .to_glib_none()
                     .0,

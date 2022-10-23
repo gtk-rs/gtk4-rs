@@ -35,7 +35,7 @@ impl<T: NativeDialogImpl> NativeDialogImplExt for T {
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkNativeDialogClass;
             if let Some(f) = (*parent_class).response {
                 f(
-                    self.instance()
+                    self.obj()
                         .unsafe_cast_ref::<NativeDialog>()
                         .to_glib_none()
                         .0,
@@ -53,7 +53,7 @@ impl<T: NativeDialogImpl> NativeDialogImplExt for T {
                 .show
                 .expect("No parent class impl for \"show\"");
             f(self
-                .instance()
+                .obj()
                 .unsafe_cast_ref::<NativeDialog>()
                 .to_glib_none()
                 .0)
@@ -68,7 +68,7 @@ impl<T: NativeDialogImpl> NativeDialogImplExt for T {
                 .hide
                 .expect("No parent class impl for \"hide\"");
             f(self
-                .instance()
+                .obj()
                 .unsafe_cast_ref::<NativeDialog>()
                 .to_glib_none()
                 .0)

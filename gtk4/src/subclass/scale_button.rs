@@ -25,10 +25,7 @@ impl<T: ScaleButtonImpl> ScaleButtonImplExt for T {
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkScaleButtonClass;
             if let Some(f) = (*parent_class).value_changed {
                 f(
-                    self.instance()
-                        .unsafe_cast_ref::<ScaleButton>()
-                        .to_glib_none()
-                        .0,
+                    self.obj().unsafe_cast_ref::<ScaleButton>().to_glib_none().0,
                     new_value,
                 )
             }

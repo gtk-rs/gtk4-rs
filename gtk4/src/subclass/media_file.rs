@@ -28,11 +28,7 @@ impl<T: MediaFileImpl> MediaFileImplExt for T {
             let data = T::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkMediaFileClass;
             if let Some(f) = (*parent_class).close {
-                f(self
-                    .instance()
-                    .unsafe_cast_ref::<MediaFile>()
-                    .to_glib_none()
-                    .0)
+                f(self.obj().unsafe_cast_ref::<MediaFile>().to_glib_none().0)
             }
         }
     }
@@ -42,11 +38,7 @@ impl<T: MediaFileImpl> MediaFileImplExt for T {
             let data = T::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkMediaFileClass;
             if let Some(f) = (*parent_class).open {
-                f(self
-                    .instance()
-                    .unsafe_cast_ref::<MediaFile>()
-                    .to_glib_none()
-                    .0)
+                f(self.obj().unsafe_cast_ref::<MediaFile>().to_glib_none().0)
             }
         }
     }

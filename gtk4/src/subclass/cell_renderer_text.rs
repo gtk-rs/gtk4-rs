@@ -27,7 +27,7 @@ impl<T: CellRendererTextImpl> CellRendererTextImplExt for T {
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkCellRendererTextClass;
             if let Some(f) = (*parent_class).edited {
                 f(
-                    self.instance()
+                    self.obj()
                         .unsafe_cast_ref::<CellRendererText>()
                         .to_glib_none()
                         .0,

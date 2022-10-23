@@ -36,10 +36,7 @@ impl<T: ActionableImpl> ActionableImplExt for T {
                 .expect("no parent \"get_action_name\" implementation");
 
             from_glib_none(func(
-                self.instance()
-                    .unsafe_cast_ref::<Actionable>()
-                    .to_glib_none()
-                    .0,
+                self.obj().unsafe_cast_ref::<Actionable>().to_glib_none().0,
             ))
         }
     }
@@ -55,10 +52,7 @@ impl<T: ActionableImpl> ActionableImplExt for T {
                 .expect("no parent \"get_action_target_value\" implementation");
 
             from_glib_none(func(
-                self.instance()
-                    .unsafe_cast_ref::<Actionable>()
-                    .to_glib_none()
-                    .0,
+                self.obj().unsafe_cast_ref::<Actionable>().to_glib_none().0,
             ))
         }
     }
@@ -74,10 +68,7 @@ impl<T: ActionableImpl> ActionableImplExt for T {
                 .expect("no parent \"set_action_name\" implementation");
 
             func(
-                self.instance()
-                    .unsafe_cast_ref::<Actionable>()
-                    .to_glib_none()
-                    .0,
+                self.obj().unsafe_cast_ref::<Actionable>().to_glib_none().0,
                 name.to_glib_none().0,
             );
         }
@@ -94,10 +85,7 @@ impl<T: ActionableImpl> ActionableImplExt for T {
                 .expect("no parent \"set_action_target_value\" implementation");
 
             func(
-                self.instance()
-                    .unsafe_cast_ref::<Actionable>()
-                    .to_glib_none()
-                    .0,
+                self.obj().unsafe_cast_ref::<Actionable>().to_glib_none().0,
                 value.to_glib_none().0,
             );
         }

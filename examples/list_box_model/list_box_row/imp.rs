@@ -50,7 +50,7 @@ impl ObjectImpl for ListBoxRow {
     }
 
     fn constructed(&self) {
-        let obj = self.instance();
+        let obj = self.obj();
 
         let item = self.row_data.borrow();
         let item = item.as_ref().cloned().unwrap();
