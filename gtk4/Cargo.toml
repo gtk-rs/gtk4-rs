@@ -25,6 +25,11 @@ v4_10 = ["ffi/v4_10", "v4_8"]
 xml_validation = ["gtk4-macros/xml_validation"]
 unsafe-assume-initialized = []
 
+# Versions from https://gitlab.gnome.org/GNOME/gnome-build-meta/-/tree/gnome-43/elements/sdk
+# gtk takes care of setting the versions of gsk and gdk
+# gio takes care of setting the version of glib
+gnome_43 = ["v4_8", "cairo-rs/v1_16", "gdk-pixbuf/v2_42", "gio/v2_74", "pango/v1_50"]
+
 [package.metadata.docs.rs]
 features = ["dox"]
 
