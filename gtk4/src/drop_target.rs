@@ -39,7 +39,7 @@ impl DropTarget {
             let types =
                 ffi::gtk_drop_target_get_gtypes(self.to_glib_none().0, n_types.as_mut_ptr());
 
-            FromGlibContainer::from_glib_none_num(types, n_types.assume_init() as usize)
+            FromGlibContainer::from_glib_none_num(types, n_types.assume_init() as _)
         }
     }
 

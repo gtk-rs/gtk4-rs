@@ -1367,7 +1367,7 @@ pub trait CompositeTemplateCallbacks {
     /// callback name.
     fn add_callbacks_to_scope_prefixed(scope: &BuilderRustScope, prefix: &str) {
         for (name, func) in Self::CALLBACKS {
-            scope.add_callback(format!("{}{}", prefix, name), func);
+            scope.add_callback(format!("{prefix}{name}"), func);
         }
     }
 }

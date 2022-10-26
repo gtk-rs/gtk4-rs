@@ -73,7 +73,7 @@ impl<O: IsA<EntryBuffer>> EntryBufferExtManual for O {
     }
 
     fn bytes(&self) -> usize {
-        unsafe { ffi::gtk_entry_buffer_get_bytes(self.as_ref().to_glib_none().0) as usize }
+        unsafe { ffi::gtk_entry_buffer_get_bytes(self.as_ref().to_glib_none().0) as _ }
     }
 
     fn length(&self) -> u16 {

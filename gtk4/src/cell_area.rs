@@ -59,9 +59,8 @@ impl<O: IsA<CellArea>> CellAreaExtManual for O {
                     cell_class.as_ref() as *const _ as *mut ffi::GtkCellAreaClass,
                     property_name.to_glib_none().0,
                 ));
-            let pspec = pspec.unwrap_or_else(|| {
-                panic!("The CellArea property {} doesn't exists", property_name)
-            });
+            let pspec = pspec
+                .unwrap_or_else(|| panic!("The CellArea property {property_name} doesn't exists"));
             let mut value = glib::Value::from_type(pspec.value_type());
             ffi::gtk_cell_area_cell_get_property(
                 self.as_ref().to_glib_none().0,
@@ -97,9 +96,8 @@ impl<O: IsA<CellArea>> CellAreaExtManual for O {
                     cell_class.as_ref() as *const _ as *mut ffi::GtkCellAreaClass,
                     property_name.to_glib_none().0,
                 ));
-            let pspec = pspec.unwrap_or_else(|| {
-                panic!("The CellArea property {} doesn't exists", property_name)
-            });
+            let pspec = pspec
+                .unwrap_or_else(|| panic!("The CellArea property {property_name} doesn't exists"));
 
             assert!(
                 pspec.value_type().is_a(value.value_type()),
