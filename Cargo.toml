@@ -20,6 +20,8 @@ members = [
   "gdk4-x11/sys",
   "gdk4-wayland",
   "gdk4-wayland/sys",
+  "gdk4-win32",
+  "gdk4-win32/sys",
   "gsk4",
   "gsk4/sys",
   "gtk4",
