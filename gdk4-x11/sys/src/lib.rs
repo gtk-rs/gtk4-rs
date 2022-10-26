@@ -108,7 +108,7 @@ pub struct GdkX11AppLaunchContext {
 
 impl ::std::fmt::Debug for GdkX11AppLaunchContext {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("GdkX11AppLaunchContext @ {:p}", self))
+        f.debug_struct(&format!("GdkX11AppLaunchContext @ {self:p}"))
             .finish()
     }
 }
@@ -121,7 +121,7 @@ pub struct GdkX11DeviceManagerXI2 {
 
 impl ::std::fmt::Debug for GdkX11DeviceManagerXI2 {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("GdkX11DeviceManagerXI2 @ {:p}", self))
+        f.debug_struct(&format!("GdkX11DeviceManagerXI2 @ {self:p}"))
             .finish()
     }
 }
@@ -134,7 +134,7 @@ pub struct GdkX11DeviceXI2 {
 
 impl ::std::fmt::Debug for GdkX11DeviceXI2 {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("GdkX11DeviceXI2 @ {:p}", self))
+        f.debug_struct(&format!("GdkX11DeviceXI2 @ {self:p}"))
             .finish()
     }
 }
@@ -147,7 +147,7 @@ pub struct GdkX11Display {
 
 impl ::std::fmt::Debug for GdkX11Display {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("GdkX11Display @ {:p}", self))
+        f.debug_struct(&format!("GdkX11Display @ {self:p}"))
             .finish()
     }
 }
@@ -160,7 +160,7 @@ pub struct GdkX11Drag {
 
 impl ::std::fmt::Debug for GdkX11Drag {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("GdkX11Drag @ {:p}", self)).finish()
+        f.debug_struct(&format!("GdkX11Drag @ {self:p}")).finish()
     }
 }
 
@@ -172,7 +172,7 @@ pub struct GdkX11GLContext {
 
 impl ::std::fmt::Debug for GdkX11GLContext {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("GdkX11GLContext @ {:p}", self))
+        f.debug_struct(&format!("GdkX11GLContext @ {self:p}"))
             .finish()
     }
 }
@@ -185,7 +185,7 @@ pub struct GdkX11Monitor {
 
 impl ::std::fmt::Debug for GdkX11Monitor {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("GdkX11Monitor @ {:p}", self))
+        f.debug_struct(&format!("GdkX11Monitor @ {self:p}"))
             .finish()
     }
 }
@@ -198,8 +198,7 @@ pub struct GdkX11Screen {
 
 impl ::std::fmt::Debug for GdkX11Screen {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("GdkX11Screen @ {:p}", self))
-            .finish()
+        f.debug_struct(&format!("GdkX11Screen @ {self:p}")).finish()
     }
 }
 
@@ -211,7 +210,7 @@ pub struct GdkX11Surface {
 
 impl ::std::fmt::Debug for GdkX11Surface {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("GdkX11Surface @ {:p}", self))
+        f.debug_struct(&format!("GdkX11Surface @ {self:p}"))
             .finish()
     }
 }

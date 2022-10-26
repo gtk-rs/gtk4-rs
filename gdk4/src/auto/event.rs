@@ -51,7 +51,7 @@ impl Event {
             if ret {
                 Some(FromGlibContainer::from_glib_none_num(
                     axes,
-                    n_axes.assume_init() as usize,
+                    n_axes.assume_init() as _,
                 ))
             } else {
                 None
@@ -129,7 +129,7 @@ impl Event {
                     self.as_ref().to_glib_none().0,
                     out_n_coords.as_mut_ptr(),
                 ),
-                out_n_coords.assume_init() as usize,
+                out_n_coords.assume_init() as _,
             );
             ret
         }

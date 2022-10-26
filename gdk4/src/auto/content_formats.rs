@@ -21,7 +21,7 @@ impl ContentFormats {
     #[doc(alias = "gdk_content_formats_new")]
     pub fn new(mime_types: &[&str]) -> ContentFormats {
         assert_initialized_main_thread!();
-        let n_mime_types = mime_types.len() as u32;
+        let n_mime_types = mime_types.len() as _;
         unsafe {
             from_glib_full(ffi::gdk_content_formats_new(
                 mime_types.to_glib_none().0,
@@ -68,7 +68,7 @@ impl ContentFormats {
                     self.to_glib_none().0,
                     n_mime_types.as_mut_ptr(),
                 ),
-                n_mime_types.assume_init() as usize,
+                n_mime_types.assume_init() as _,
             );
             ret
         }

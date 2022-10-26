@@ -275,7 +275,7 @@ impl<O: IsA<IMContext>> IMContextExt for O {
     }
 
     fn set_surrounding(&self, text: &str, cursor_index: i32) {
-        let len = text.len() as i32;
+        let len = text.len() as _;
         unsafe {
             ffi::gtk_im_context_set_surrounding(
                 self.as_ref().to_glib_none().0,
@@ -289,7 +289,7 @@ impl<O: IsA<IMContext>> IMContextExt for O {
     #[cfg(any(feature = "v4_2", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_2")))]
     fn set_surrounding_with_selection(&self, text: &str, cursor_index: i32, anchor_index: i32) {
-        let len = text.len() as i32;
+        let len = text.len() as _;
         unsafe {
             ffi::gtk_im_context_set_surrounding_with_selection(
                 self.as_ref().to_glib_none().0,

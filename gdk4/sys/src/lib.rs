@@ -2608,7 +2608,7 @@ pub struct GdkContentFormats {
 
 impl ::std::fmt::Debug for GdkContentFormats {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("GdkContentFormats @ {:p}", self))
+        f.debug_struct(&format!("GdkContentFormats @ {self:p}"))
             .finish()
     }
 }
@@ -2621,7 +2621,7 @@ pub struct GdkContentFormatsBuilder {
 
 impl ::std::fmt::Debug for GdkContentFormatsBuilder {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("GdkContentFormatsBuilder @ {:p}", self))
+        f.debug_struct(&format!("GdkContentFormatsBuilder @ {self:p}"))
             .finish()
     }
 }
@@ -2667,7 +2667,7 @@ pub struct GdkContentProviderClass {
 
 impl ::std::fmt::Debug for GdkContentProviderClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("GdkContentProviderClass @ {:p}", self))
+        f.debug_struct(&format!("GdkContentProviderClass @ {self:p}"))
             .field("parent_class", &self.parent_class)
             .field("content_changed", &self.content_changed)
             .field("attach_clipboard", &self.attach_clipboard)
@@ -2705,7 +2705,7 @@ pub struct GdkEventSequence {
 
 impl ::std::fmt::Debug for GdkEventSequence {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("GdkEventSequence @ {:p}", self))
+        f.debug_struct(&format!("GdkEventSequence @ {self:p}"))
             .finish()
     }
 }
@@ -2718,8 +2718,7 @@ pub struct GdkFileList {
 
 impl ::std::fmt::Debug for GdkFileList {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("GdkFileList @ {:p}", self))
-            .finish()
+        f.debug_struct(&format!("GdkFileList @ {self:p}")).finish()
     }
 }
 
@@ -2747,7 +2746,7 @@ pub struct GdkFrameTimings {
 
 impl ::std::fmt::Debug for GdkFrameTimings {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("GdkFrameTimings @ {:p}", self))
+        f.debug_struct(&format!("GdkFrameTimings @ {self:p}"))
             .finish()
     }
 }
@@ -2770,7 +2769,7 @@ pub struct GdkKeymapKey {
 
 impl ::std::fmt::Debug for GdkKeymapKey {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("GdkKeymapKey @ {:p}", self))
+        f.debug_struct(&format!("GdkKeymapKey @ {self:p}"))
             .field("keycode", &self.keycode)
             .field("group", &self.group)
             .field("level", &self.level)
@@ -2809,7 +2808,7 @@ pub struct GdkPaintableInterface {
 
 impl ::std::fmt::Debug for GdkPaintableInterface {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("GdkPaintableInterface @ {:p}", self))
+        f.debug_struct(&format!("GdkPaintableInterface @ {self:p}"))
             .field("snapshot", &self.snapshot)
             .field("get_current_image", &self.get_current_image)
             .field("get_flags", &self.get_flags)
@@ -2839,7 +2838,7 @@ pub struct GdkPopupLayout {
 
 impl ::std::fmt::Debug for GdkPopupLayout {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("GdkPopupLayout @ {:p}", self))
+        f.debug_struct(&format!("GdkPopupLayout @ {self:p}"))
             .finish()
     }
 }
@@ -2855,7 +2854,7 @@ pub struct GdkRGBA {
 
 impl ::std::fmt::Debug for GdkRGBA {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("GdkRGBA @ {:p}", self))
+        f.debug_struct(&format!("GdkRGBA @ {self:p}"))
             .field("red", &self.red)
             .field("green", &self.green)
             .field("blue", &self.blue)
@@ -2875,7 +2874,7 @@ pub struct GdkRectangle {
 
 impl ::std::fmt::Debug for GdkRectangle {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("GdkRectangle @ {:p}", self))
+        f.debug_struct(&format!("GdkRectangle @ {self:p}"))
             .field("x", &self.x)
             .field("y", &self.y)
             .field("width", &self.width)
@@ -2918,7 +2917,7 @@ pub struct GdkTimeCoord {
 
 impl ::std::fmt::Debug for GdkTimeCoord {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("GdkTimeCoord @ {:p}", self))
+        f.debug_struct(&format!("GdkTimeCoord @ {self:p}"))
             .field("time", &self.time)
             .field("flags", &self.flags)
             .field("axes", &self.axes)
@@ -2942,7 +2941,7 @@ pub struct GdkToplevelLayout {
 
 impl ::std::fmt::Debug for GdkToplevelLayout {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("GdkToplevelLayout @ {:p}", self))
+        f.debug_struct(&format!("GdkToplevelLayout @ {self:p}"))
             .finish()
     }
 }
@@ -2964,7 +2963,7 @@ pub struct GdkAppLaunchContext {
 
 impl ::std::fmt::Debug for GdkAppLaunchContext {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("GdkAppLaunchContext @ {:p}", self))
+        f.debug_struct(&format!("GdkAppLaunchContext @ {self:p}"))
             .finish()
     }
 }
@@ -2977,7 +2976,7 @@ pub struct GdkButtonEvent {
 
 impl ::std::fmt::Debug for GdkButtonEvent {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("GdkButtonEvent @ {:p}", self))
+        f.debug_struct(&format!("GdkButtonEvent @ {self:p}"))
             .finish()
     }
 }
@@ -2990,7 +2989,7 @@ pub struct GdkCairoContext {
 
 impl ::std::fmt::Debug for GdkCairoContext {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("GdkCairoContext @ {:p}", self))
+        f.debug_struct(&format!("GdkCairoContext @ {self:p}"))
             .finish()
     }
 }
@@ -3003,8 +3002,7 @@ pub struct GdkClipboard {
 
 impl ::std::fmt::Debug for GdkClipboard {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("GdkClipboard @ {:p}", self))
-            .finish()
+        f.debug_struct(&format!("GdkClipboard @ {self:p}")).finish()
     }
 }
 
@@ -3016,7 +3014,7 @@ pub struct GdkContentDeserializer {
 
 impl ::std::fmt::Debug for GdkContentDeserializer {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("GdkContentDeserializer @ {:p}", self))
+        f.debug_struct(&format!("GdkContentDeserializer @ {self:p}"))
             .finish()
     }
 }
@@ -3029,7 +3027,7 @@ pub struct GdkContentProvider {
 
 impl ::std::fmt::Debug for GdkContentProvider {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("GdkContentProvider @ {:p}", self))
+        f.debug_struct(&format!("GdkContentProvider @ {self:p}"))
             .field("parent", &self.parent)
             .finish()
     }
@@ -3043,7 +3041,7 @@ pub struct GdkContentSerializer {
 
 impl ::std::fmt::Debug for GdkContentSerializer {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("GdkContentSerializer @ {:p}", self))
+        f.debug_struct(&format!("GdkContentSerializer @ {self:p}"))
             .finish()
     }
 }
@@ -3056,7 +3054,7 @@ pub struct GdkCrossingEvent {
 
 impl ::std::fmt::Debug for GdkCrossingEvent {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("GdkCrossingEvent @ {:p}", self))
+        f.debug_struct(&format!("GdkCrossingEvent @ {self:p}"))
             .finish()
     }
 }
@@ -3069,7 +3067,7 @@ pub struct GdkCursor {
 
 impl ::std::fmt::Debug for GdkCursor {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("GdkCursor @ {:p}", self)).finish()
+        f.debug_struct(&format!("GdkCursor @ {self:p}")).finish()
     }
 }
 
@@ -3081,8 +3079,7 @@ pub struct GdkDNDEvent {
 
 impl ::std::fmt::Debug for GdkDNDEvent {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("GdkDNDEvent @ {:p}", self))
-            .finish()
+        f.debug_struct(&format!("GdkDNDEvent @ {self:p}")).finish()
     }
 }
 
@@ -3094,7 +3091,7 @@ pub struct GdkDeleteEvent {
 
 impl ::std::fmt::Debug for GdkDeleteEvent {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("GdkDeleteEvent @ {:p}", self))
+        f.debug_struct(&format!("GdkDeleteEvent @ {self:p}"))
             .finish()
     }
 }
@@ -3107,7 +3104,7 @@ pub struct GdkDevice {
 
 impl ::std::fmt::Debug for GdkDevice {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("GdkDevice @ {:p}", self)).finish()
+        f.debug_struct(&format!("GdkDevice @ {self:p}")).finish()
     }
 }
 
@@ -3119,7 +3116,7 @@ pub struct GdkDeviceTool {
 
 impl ::std::fmt::Debug for GdkDeviceTool {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("GdkDeviceTool @ {:p}", self))
+        f.debug_struct(&format!("GdkDeviceTool @ {self:p}"))
             .finish()
     }
 }
@@ -3132,7 +3129,7 @@ pub struct GdkDisplay {
 
 impl ::std::fmt::Debug for GdkDisplay {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("GdkDisplay @ {:p}", self)).finish()
+        f.debug_struct(&format!("GdkDisplay @ {self:p}")).finish()
     }
 }
 
@@ -3144,7 +3141,7 @@ pub struct GdkDisplayManager {
 
 impl ::std::fmt::Debug for GdkDisplayManager {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("GdkDisplayManager @ {:p}", self))
+        f.debug_struct(&format!("GdkDisplayManager @ {self:p}"))
             .finish()
     }
 }
@@ -3157,7 +3154,7 @@ pub struct GdkDrag {
 
 impl ::std::fmt::Debug for GdkDrag {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("GdkDrag @ {:p}", self)).finish()
+        f.debug_struct(&format!("GdkDrag @ {self:p}")).finish()
     }
 }
 
@@ -3169,7 +3166,7 @@ pub struct GdkDrawContext {
 
 impl ::std::fmt::Debug for GdkDrawContext {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("GdkDrawContext @ {:p}", self))
+        f.debug_struct(&format!("GdkDrawContext @ {self:p}"))
             .finish()
     }
 }
@@ -3182,7 +3179,7 @@ pub struct GdkDrop {
 
 impl ::std::fmt::Debug for GdkDrop {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("GdkDrop @ {:p}", self)).finish()
+        f.debug_struct(&format!("GdkDrop @ {self:p}")).finish()
     }
 }
 
@@ -3194,7 +3191,7 @@ pub struct GdkEvent {
 
 impl ::std::fmt::Debug for GdkEvent {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("GdkEvent @ {:p}", self)).finish()
+        f.debug_struct(&format!("GdkEvent @ {self:p}")).finish()
     }
 }
 
@@ -3206,7 +3203,7 @@ pub struct GdkFocusEvent {
 
 impl ::std::fmt::Debug for GdkFocusEvent {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("GdkFocusEvent @ {:p}", self))
+        f.debug_struct(&format!("GdkFocusEvent @ {self:p}"))
             .finish()
     }
 }
@@ -3219,7 +3216,7 @@ pub struct GdkFrameClock {
 
 impl ::std::fmt::Debug for GdkFrameClock {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("GdkFrameClock @ {:p}", self))
+        f.debug_struct(&format!("GdkFrameClock @ {self:p}"))
             .finish()
     }
 }
@@ -3232,8 +3229,7 @@ pub struct GdkGLContext {
 
 impl ::std::fmt::Debug for GdkGLContext {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("GdkGLContext @ {:p}", self))
-            .finish()
+        f.debug_struct(&format!("GdkGLContext @ {self:p}")).finish()
     }
 }
 
@@ -3245,8 +3241,7 @@ pub struct GdkGLTexture {
 
 impl ::std::fmt::Debug for GdkGLTexture {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("GdkGLTexture @ {:p}", self))
-            .finish()
+        f.debug_struct(&format!("GdkGLTexture @ {self:p}")).finish()
     }
 }
 
@@ -3258,7 +3253,7 @@ pub struct GdkGrabBrokenEvent {
 
 impl ::std::fmt::Debug for GdkGrabBrokenEvent {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("GdkGrabBrokenEvent @ {:p}", self))
+        f.debug_struct(&format!("GdkGrabBrokenEvent @ {self:p}"))
             .finish()
     }
 }
@@ -3271,8 +3266,7 @@ pub struct GdkKeyEvent {
 
 impl ::std::fmt::Debug for GdkKeyEvent {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("GdkKeyEvent @ {:p}", self))
-            .finish()
+        f.debug_struct(&format!("GdkKeyEvent @ {self:p}")).finish()
     }
 }
 
@@ -3284,7 +3278,7 @@ pub struct GdkMemoryTexture {
 
 impl ::std::fmt::Debug for GdkMemoryTexture {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("GdkMemoryTexture @ {:p}", self))
+        f.debug_struct(&format!("GdkMemoryTexture @ {self:p}"))
             .finish()
     }
 }
@@ -3297,7 +3291,7 @@ pub struct GdkMonitor {
 
 impl ::std::fmt::Debug for GdkMonitor {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("GdkMonitor @ {:p}", self)).finish()
+        f.debug_struct(&format!("GdkMonitor @ {self:p}")).finish()
     }
 }
 
@@ -3309,7 +3303,7 @@ pub struct GdkMotionEvent {
 
 impl ::std::fmt::Debug for GdkMotionEvent {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("GdkMotionEvent @ {:p}", self))
+        f.debug_struct(&format!("GdkMotionEvent @ {self:p}"))
             .finish()
     }
 }
@@ -3322,8 +3316,7 @@ pub struct GdkPadEvent {
 
 impl ::std::fmt::Debug for GdkPadEvent {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("GdkPadEvent @ {:p}", self))
-            .finish()
+        f.debug_struct(&format!("GdkPadEvent @ {self:p}")).finish()
     }
 }
 
@@ -3335,7 +3328,7 @@ pub struct GdkProximityEvent {
 
 impl ::std::fmt::Debug for GdkProximityEvent {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("GdkProximityEvent @ {:p}", self))
+        f.debug_struct(&format!("GdkProximityEvent @ {self:p}"))
             .finish()
     }
 }
@@ -3348,7 +3341,7 @@ pub struct GdkScrollEvent {
 
 impl ::std::fmt::Debug for GdkScrollEvent {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("GdkScrollEvent @ {:p}", self))
+        f.debug_struct(&format!("GdkScrollEvent @ {self:p}"))
             .finish()
     }
 }
@@ -3361,7 +3354,7 @@ pub struct GdkSeat {
 
 impl ::std::fmt::Debug for GdkSeat {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("GdkSeat @ {:p}", self))
+        f.debug_struct(&format!("GdkSeat @ {self:p}"))
             .field("parent_instance", &self.parent_instance)
             .finish()
     }
@@ -3375,8 +3368,7 @@ pub struct GdkSnapshot {
 
 impl ::std::fmt::Debug for GdkSnapshot {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("GdkSnapshot @ {:p}", self))
-            .finish()
+        f.debug_struct(&format!("GdkSnapshot @ {self:p}")).finish()
     }
 }
 
@@ -3388,7 +3380,7 @@ pub struct GdkSurface {
 
 impl ::std::fmt::Debug for GdkSurface {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("GdkSurface @ {:p}", self)).finish()
+        f.debug_struct(&format!("GdkSurface @ {self:p}")).finish()
     }
 }
 
@@ -3400,7 +3392,7 @@ pub struct GdkTexture {
 
 impl ::std::fmt::Debug for GdkTexture {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("GdkTexture @ {:p}", self)).finish()
+        f.debug_struct(&format!("GdkTexture @ {self:p}")).finish()
     }
 }
 
@@ -3412,7 +3404,7 @@ pub struct GdkTouchEvent {
 
 impl ::std::fmt::Debug for GdkTouchEvent {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("GdkTouchEvent @ {:p}", self))
+        f.debug_struct(&format!("GdkTouchEvent @ {self:p}"))
             .finish()
     }
 }
@@ -3425,7 +3417,7 @@ pub struct GdkTouchpadEvent {
 
 impl ::std::fmt::Debug for GdkTouchpadEvent {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("GdkTouchpadEvent @ {:p}", self))
+        f.debug_struct(&format!("GdkTouchpadEvent @ {self:p}"))
             .finish()
     }
 }
@@ -3438,7 +3430,7 @@ pub struct GdkVulkanContext {
 
 impl ::std::fmt::Debug for GdkVulkanContext {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("GdkVulkanContext @ {:p}", self))
+        f.debug_struct(&format!("GdkVulkanContext @ {self:p}"))
             .finish()
     }
 }
@@ -3452,7 +3444,7 @@ pub struct GdkDevicePad {
 
 impl ::std::fmt::Debug for GdkDevicePad {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        write!(f, "GdkDevicePad @ {:p}", self)
+        write!(f, "GdkDevicePad @ {self:p}")
     }
 }
 
@@ -3464,7 +3456,7 @@ pub struct GdkDragSurface {
 
 impl ::std::fmt::Debug for GdkDragSurface {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        write!(f, "GdkDragSurface @ {:p}", self)
+        write!(f, "GdkDragSurface @ {self:p}")
     }
 }
 
@@ -3476,7 +3468,7 @@ pub struct GdkPaintable {
 
 impl ::std::fmt::Debug for GdkPaintable {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        write!(f, "GdkPaintable @ {:p}", self)
+        write!(f, "GdkPaintable @ {self:p}")
     }
 }
 
@@ -3488,7 +3480,7 @@ pub struct GdkPopup {
 
 impl ::std::fmt::Debug for GdkPopup {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        write!(f, "GdkPopup @ {:p}", self)
+        write!(f, "GdkPopup @ {self:p}")
     }
 }
 
@@ -3500,7 +3492,7 @@ pub struct GdkToplevel {
 
 impl ::std::fmt::Debug for GdkToplevel {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        write!(f, "GdkToplevel @ {:p}", self)
+        write!(f, "GdkToplevel @ {self:p}")
     }
 }
 

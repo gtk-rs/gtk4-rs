@@ -33,7 +33,7 @@ impl RepeatingLinearGradientNode {
         color_stops: &[ColorStop],
     ) -> RepeatingLinearGradientNode {
         assert_initialized_main_thread!();
-        let n_color_stops = color_stops.len() as usize;
+        let n_color_stops = color_stops.len() as _;
         unsafe {
             from_glib_full(ffi::gsk_repeating_linear_gradient_node_new(
                 bounds.to_glib_none().0,

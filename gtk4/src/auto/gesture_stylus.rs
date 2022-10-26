@@ -76,7 +76,7 @@ impl GestureStylus {
             if ret {
                 Some(FromGlibContainer::from_glib_full_num(
                     backlog,
-                    n_elems.assume_init() as usize,
+                    n_elems.assume_init() as _,
                 ))
             } else {
                 None
