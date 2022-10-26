@@ -103,7 +103,7 @@ mod imp {
                 .ok_or_else(|| {
                     glib::Error::new(
                         BuilderError::InvalidFunction,
-                        &format!("No function named `{}`", function_name),
+                        &format!("No function named `{function_name}`"),
                     )
                 })
                 .map(|callback| {

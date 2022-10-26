@@ -209,7 +209,7 @@ fn parse_field_attr_meta(
     let ident_str = ident.to_string();
     let unknown_err = Err(Error::new(
         ident.span(),
-        &format!("unknown attribute argument: `{}`", ident_str),
+        format!("unknown attribute argument: `{ident_str}`"),
     ));
     let value = match ty {
         FieldAttributeType::TemplateChild => match ident_str.as_str() {
