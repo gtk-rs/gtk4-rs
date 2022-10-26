@@ -31,7 +31,7 @@ impl CssProvider {
 
     #[doc(alias = "gtk_css_provider_load_from_data")]
     pub fn load_from_data(&self, data: &[u8]) {
-        let length = data.len() as isize;
+        let length = data.len() as _;
         unsafe {
             ffi::gtk_css_provider_load_from_data(
                 self.to_glib_none().0,

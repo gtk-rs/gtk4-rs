@@ -28,7 +28,7 @@ impl ShadowNode {
     #[doc(alias = "gsk_shadow_node_new")]
     pub fn new(child: impl AsRef<RenderNode>, shadows: &[Shadow]) -> ShadowNode {
         skip_assert_initialized!();
-        let n_shadows = shadows.len() as usize;
+        let n_shadows = shadows.len() as _;
         unsafe {
             from_glib_full(ffi::gsk_shadow_node_new(
                 child.as_ref().to_glib_none().0,

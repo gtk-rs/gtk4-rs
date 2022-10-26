@@ -88,7 +88,7 @@ impl RecentInfo {
             let mut length = mem::MaybeUninit::uninit();
             let ret = FromGlibContainer::from_glib_full_num(
                 ffi::gtk_recent_info_get_applications(self.to_glib_none().0, length.as_mut_ptr()),
-                length.assume_init() as usize,
+                length.assume_init() as _,
             );
             ret
         }
@@ -119,7 +119,7 @@ impl RecentInfo {
             let mut length = mem::MaybeUninit::uninit();
             let ret = FromGlibContainer::from_glib_full_num(
                 ffi::gtk_recent_info_get_groups(self.to_glib_none().0, length.as_mut_ptr()),
-                length.assume_init() as usize,
+                length.assume_init() as _,
             );
             ret
         }

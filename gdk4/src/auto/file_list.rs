@@ -22,7 +22,7 @@ impl FileList {
     #[doc(alias = "new_from_array")]
     pub fn from_array(files: &[gio::File]) -> FileList {
         assert_initialized_main_thread!();
-        let n_files = files.len() as usize;
+        let n_files = files.len() as _;
         unsafe {
             from_glib_full(ffi::gdk_file_list_new_from_array(
                 files.to_glib_none().0,

@@ -861,7 +861,7 @@ impl<O: IsA<TextBuffer>> TextBufferExt for O {
     }
 
     fn insert(&self, iter: &mut TextIter, text: &str) {
-        let len = text.len() as i32;
+        let len = text.len() as _;
         unsafe {
             ffi::gtk_text_buffer_insert(
                 self.as_ref().to_glib_none().0,
@@ -873,7 +873,7 @@ impl<O: IsA<TextBuffer>> TextBufferExt for O {
     }
 
     fn insert_at_cursor(&self, text: &str) {
-        let len = text.len() as i32;
+        let len = text.len() as _;
         unsafe {
             ffi::gtk_text_buffer_insert_at_cursor(
                 self.as_ref().to_glib_none().0,
@@ -894,7 +894,7 @@ impl<O: IsA<TextBuffer>> TextBufferExt for O {
     }
 
     fn insert_interactive(&self, iter: &mut TextIter, text: &str, default_editable: bool) -> bool {
-        let len = text.len() as i32;
+        let len = text.len() as _;
         unsafe {
             from_glib(ffi::gtk_text_buffer_insert_interactive(
                 self.as_ref().to_glib_none().0,
@@ -907,7 +907,7 @@ impl<O: IsA<TextBuffer>> TextBufferExt for O {
     }
 
     fn insert_interactive_at_cursor(&self, text: &str, default_editable: bool) -> bool {
-        let len = text.len() as i32;
+        let len = text.len() as _;
         unsafe {
             from_glib(ffi::gtk_text_buffer_insert_interactive_at_cursor(
                 self.as_ref().to_glib_none().0,
@@ -919,7 +919,7 @@ impl<O: IsA<TextBuffer>> TextBufferExt for O {
     }
 
     fn insert_markup(&self, iter: &mut TextIter, markup: &str) {
-        let len = markup.len() as i32;
+        let len = markup.len() as _;
         unsafe {
             ffi::gtk_text_buffer_insert_markup(
                 self.as_ref().to_glib_none().0,
@@ -1096,7 +1096,7 @@ impl<O: IsA<TextBuffer>> TextBufferExt for O {
     }
 
     fn set_text(&self, text: &str) {
-        let len = text.len() as i32;
+        let len = text.len() as _;
         unsafe {
             ffi::gtk_text_buffer_set_text(
                 self.as_ref().to_glib_none().0,
