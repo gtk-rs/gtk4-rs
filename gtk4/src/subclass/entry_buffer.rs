@@ -100,7 +100,7 @@ impl<T: EntryBufferImpl> EntryBufferImplExt for T {
                 self.obj().unsafe_cast_ref::<EntryBuffer>().to_glib_none().0,
                 &mut n_bytes,
             );
-            FromGlibContainer::from_glib_none_num(res, n_bytes as usize)
+            FromGlibContainer::from_glib_none_num(res, n_bytes as _)
         }
     }
 
@@ -258,7 +258,7 @@ fn text_n_chars(text: &str, n_chars: u32) -> &str {
     if n_chars != u32::MAX && n_chars > 0 {
         let mut iter = text
             .char_indices()
-            .skip((n_chars - 1) as usize)
+            .skip((n_chars - 1) as _)
             .map(|(pos, _)| pos);
         iter
             .next()
