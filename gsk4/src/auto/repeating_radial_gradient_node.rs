@@ -36,7 +36,7 @@ impl RepeatingRadialGradientNode {
         color_stops: &[ColorStop],
     ) -> RepeatingRadialGradientNode {
         assert_initialized_main_thread!();
-        let n_color_stops = color_stops.len() as usize;
+        let n_color_stops = color_stops.len() as _;
         unsafe {
             from_glib_full(ffi::gsk_repeating_radial_gradient_node_new(
                 bounds.to_glib_none().0,

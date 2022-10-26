@@ -45,7 +45,7 @@ impl Builder {
     #[doc(alias = "new_from_string")]
     pub fn from_string(string: &str) -> Builder {
         assert_initialized_main_thread!();
-        let length = string.len() as isize;
+        let length = string.len() as _;
         unsafe {
             from_glib_full(ffi::gtk_builder_new_from_string(
                 string.to_glib_none().0,
@@ -74,7 +74,7 @@ impl Builder {
 
     #[doc(alias = "gtk_builder_add_from_string")]
     pub fn add_from_string(&self, buffer: &str) -> Result<(), glib::Error> {
-        let length = buffer.len() as isize;
+        let length = buffer.len() as _;
         unsafe {
             let mut error = ptr::null_mut();
             let is_ok = ffi::gtk_builder_add_from_string(
@@ -144,7 +144,7 @@ impl Builder {
         buffer: &str,
         object_ids: &[&str],
     ) -> Result<(), glib::Error> {
-        let length = buffer.len() as isize;
+        let length = buffer.len() as _;
         unsafe {
             let mut error = ptr::null_mut();
             let is_ok = ffi::gtk_builder_add_objects_from_string(
@@ -205,7 +205,7 @@ impl Builder {
         template_type: glib::types::Type,
         buffer: &str,
     ) -> Result<(), glib::Error> {
-        let length = buffer.len() as isize;
+        let length = buffer.len() as _;
         unsafe {
             let mut error = ptr::null_mut();
             let is_ok = ffi::gtk_builder_extend_with_template(

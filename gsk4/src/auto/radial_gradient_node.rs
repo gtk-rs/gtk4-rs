@@ -37,7 +37,7 @@ impl RadialGradientNode {
         color_stops: &[ColorStop],
     ) -> RadialGradientNode {
         assert_initialized_main_thread!();
-        let n_color_stops = color_stops.len() as usize;
+        let n_color_stops = color_stops.len() as _;
         unsafe {
             from_glib_full(ffi::gsk_radial_gradient_node_new(
                 bounds.to_glib_none().0,
@@ -72,7 +72,7 @@ impl RadialGradientNode {
                     self.to_glib_none().0,
                     n_stops.as_mut_ptr(),
                 ),
-                n_stops.assume_init() as usize,
+                n_stops.assume_init() as _,
             );
             ret
         }

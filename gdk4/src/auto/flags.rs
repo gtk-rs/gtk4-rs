@@ -14,23 +14,23 @@ bitflags! {
     #[doc(alias = "GdkAnchorHints")]
     pub struct AnchorHints: u32 {
         #[doc(alias = "GDK_ANCHOR_FLIP_X")]
-        const FLIP_X = ffi::GDK_ANCHOR_FLIP_X as u32;
+        const FLIP_X = ffi::GDK_ANCHOR_FLIP_X as _;
         #[doc(alias = "GDK_ANCHOR_FLIP_Y")]
-        const FLIP_Y = ffi::GDK_ANCHOR_FLIP_Y as u32;
+        const FLIP_Y = ffi::GDK_ANCHOR_FLIP_Y as _;
         #[doc(alias = "GDK_ANCHOR_SLIDE_X")]
-        const SLIDE_X = ffi::GDK_ANCHOR_SLIDE_X as u32;
+        const SLIDE_X = ffi::GDK_ANCHOR_SLIDE_X as _;
         #[doc(alias = "GDK_ANCHOR_SLIDE_Y")]
-        const SLIDE_Y = ffi::GDK_ANCHOR_SLIDE_Y as u32;
+        const SLIDE_Y = ffi::GDK_ANCHOR_SLIDE_Y as _;
         #[doc(alias = "GDK_ANCHOR_RESIZE_X")]
-        const RESIZE_X = ffi::GDK_ANCHOR_RESIZE_X as u32;
+        const RESIZE_X = ffi::GDK_ANCHOR_RESIZE_X as _;
         #[doc(alias = "GDK_ANCHOR_RESIZE_Y")]
-        const RESIZE_Y = ffi::GDK_ANCHOR_RESIZE_Y as u32;
+        const RESIZE_Y = ffi::GDK_ANCHOR_RESIZE_Y as _;
         #[doc(alias = "GDK_ANCHOR_FLIP")]
-        const FLIP = ffi::GDK_ANCHOR_FLIP as u32;
+        const FLIP = ffi::GDK_ANCHOR_FLIP as _;
         #[doc(alias = "GDK_ANCHOR_SLIDE")]
-        const SLIDE = ffi::GDK_ANCHOR_SLIDE as u32;
+        const SLIDE = ffi::GDK_ANCHOR_SLIDE as _;
         #[doc(alias = "GDK_ANCHOR_RESIZE")]
-        const RESIZE = ffi::GDK_ANCHOR_RESIZE as u32;
+        const RESIZE = ffi::GDK_ANCHOR_RESIZE as _;
     }
 }
 
@@ -94,27 +94,27 @@ bitflags! {
     #[doc(alias = "GdkAxisFlags")]
     pub struct AxisFlags: u32 {
         #[doc(alias = "GDK_AXIS_FLAG_X")]
-        const X = ffi::GDK_AXIS_FLAG_X as u32;
+        const X = ffi::GDK_AXIS_FLAG_X as _;
         #[doc(alias = "GDK_AXIS_FLAG_Y")]
-        const Y = ffi::GDK_AXIS_FLAG_Y as u32;
+        const Y = ffi::GDK_AXIS_FLAG_Y as _;
         #[doc(alias = "GDK_AXIS_FLAG_DELTA_X")]
-        const DELTA_X = ffi::GDK_AXIS_FLAG_DELTA_X as u32;
+        const DELTA_X = ffi::GDK_AXIS_FLAG_DELTA_X as _;
         #[doc(alias = "GDK_AXIS_FLAG_DELTA_Y")]
-        const DELTA_Y = ffi::GDK_AXIS_FLAG_DELTA_Y as u32;
+        const DELTA_Y = ffi::GDK_AXIS_FLAG_DELTA_Y as _;
         #[doc(alias = "GDK_AXIS_FLAG_PRESSURE")]
-        const PRESSURE = ffi::GDK_AXIS_FLAG_PRESSURE as u32;
+        const PRESSURE = ffi::GDK_AXIS_FLAG_PRESSURE as _;
         #[doc(alias = "GDK_AXIS_FLAG_XTILT")]
-        const XTILT = ffi::GDK_AXIS_FLAG_XTILT as u32;
+        const XTILT = ffi::GDK_AXIS_FLAG_XTILT as _;
         #[doc(alias = "GDK_AXIS_FLAG_YTILT")]
-        const YTILT = ffi::GDK_AXIS_FLAG_YTILT as u32;
+        const YTILT = ffi::GDK_AXIS_FLAG_YTILT as _;
         #[doc(alias = "GDK_AXIS_FLAG_WHEEL")]
-        const WHEEL = ffi::GDK_AXIS_FLAG_WHEEL as u32;
+        const WHEEL = ffi::GDK_AXIS_FLAG_WHEEL as _;
         #[doc(alias = "GDK_AXIS_FLAG_DISTANCE")]
-        const DISTANCE = ffi::GDK_AXIS_FLAG_DISTANCE as u32;
+        const DISTANCE = ffi::GDK_AXIS_FLAG_DISTANCE as _;
         #[doc(alias = "GDK_AXIS_FLAG_ROTATION")]
-        const ROTATION = ffi::GDK_AXIS_FLAG_ROTATION as u32;
+        const ROTATION = ffi::GDK_AXIS_FLAG_ROTATION as _;
         #[doc(alias = "GDK_AXIS_FLAG_SLIDER")]
-        const SLIDER = ffi::GDK_AXIS_FLAG_SLIDER as u32;
+        const SLIDER = ffi::GDK_AXIS_FLAG_SLIDER as _;
     }
 }
 
@@ -178,13 +178,13 @@ bitflags! {
     #[doc(alias = "GdkDragAction")]
     pub struct DragAction: u32 {
         #[doc(alias = "GDK_ACTION_COPY")]
-        const COPY = ffi::GDK_ACTION_COPY as u32;
+        const COPY = ffi::GDK_ACTION_COPY as _;
         #[doc(alias = "GDK_ACTION_MOVE")]
-        const MOVE = ffi::GDK_ACTION_MOVE as u32;
+        const MOVE = ffi::GDK_ACTION_MOVE as _;
         #[doc(alias = "GDK_ACTION_LINK")]
-        const LINK = ffi::GDK_ACTION_LINK as u32;
+        const LINK = ffi::GDK_ACTION_LINK as _;
         #[doc(alias = "GDK_ACTION_ASK")]
-        const ASK = ffi::GDK_ACTION_ASK as u32;
+        const ASK = ffi::GDK_ACTION_ASK as _;
     }
 }
 
@@ -256,21 +256,21 @@ bitflags! {
     #[doc(alias = "GdkFrameClockPhase")]
     pub struct FrameClockPhase: u32 {
         #[doc(alias = "GDK_FRAME_CLOCK_PHASE_NONE")]
-        const NONE = ffi::GDK_FRAME_CLOCK_PHASE_NONE as u32;
+        const NONE = ffi::GDK_FRAME_CLOCK_PHASE_NONE as _;
         #[doc(alias = "GDK_FRAME_CLOCK_PHASE_FLUSH_EVENTS")]
-        const FLUSH_EVENTS = ffi::GDK_FRAME_CLOCK_PHASE_FLUSH_EVENTS as u32;
+        const FLUSH_EVENTS = ffi::GDK_FRAME_CLOCK_PHASE_FLUSH_EVENTS as _;
         #[doc(alias = "GDK_FRAME_CLOCK_PHASE_BEFORE_PAINT")]
-        const BEFORE_PAINT = ffi::GDK_FRAME_CLOCK_PHASE_BEFORE_PAINT as u32;
+        const BEFORE_PAINT = ffi::GDK_FRAME_CLOCK_PHASE_BEFORE_PAINT as _;
         #[doc(alias = "GDK_FRAME_CLOCK_PHASE_UPDATE")]
-        const UPDATE = ffi::GDK_FRAME_CLOCK_PHASE_UPDATE as u32;
+        const UPDATE = ffi::GDK_FRAME_CLOCK_PHASE_UPDATE as _;
         #[doc(alias = "GDK_FRAME_CLOCK_PHASE_LAYOUT")]
-        const LAYOUT = ffi::GDK_FRAME_CLOCK_PHASE_LAYOUT as u32;
+        const LAYOUT = ffi::GDK_FRAME_CLOCK_PHASE_LAYOUT as _;
         #[doc(alias = "GDK_FRAME_CLOCK_PHASE_PAINT")]
-        const PAINT = ffi::GDK_FRAME_CLOCK_PHASE_PAINT as u32;
+        const PAINT = ffi::GDK_FRAME_CLOCK_PHASE_PAINT as _;
         #[doc(alias = "GDK_FRAME_CLOCK_PHASE_RESUME_EVENTS")]
-        const RESUME_EVENTS = ffi::GDK_FRAME_CLOCK_PHASE_RESUME_EVENTS as u32;
+        const RESUME_EVENTS = ffi::GDK_FRAME_CLOCK_PHASE_RESUME_EVENTS as _;
         #[doc(alias = "GDK_FRAME_CLOCK_PHASE_AFTER_PAINT")]
-        const AFTER_PAINT = ffi::GDK_FRAME_CLOCK_PHASE_AFTER_PAINT as u32;
+        const AFTER_PAINT = ffi::GDK_FRAME_CLOCK_PHASE_AFTER_PAINT as _;
     }
 }
 
@@ -336,9 +336,9 @@ bitflags! {
     #[doc(alias = "GdkGLAPI")]
     pub struct GLAPI: u32 {
         #[doc(alias = "GDK_GL_API_GL")]
-        const GL = ffi::GDK_GL_API_GL as u32;
+        const GL = ffi::GDK_GL_API_GL as _;
         #[doc(alias = "GDK_GL_API_GLES")]
-        const GLES = ffi::GDK_GL_API_GLES as u32;
+        const GLES = ffi::GDK_GL_API_GLES as _;
     }
 }
 
@@ -416,29 +416,29 @@ bitflags! {
     #[doc(alias = "GdkModifierType")]
     pub struct ModifierType: u32 {
         #[doc(alias = "GDK_SHIFT_MASK")]
-        const SHIFT_MASK = ffi::GDK_SHIFT_MASK as u32;
+        const SHIFT_MASK = ffi::GDK_SHIFT_MASK as _;
         #[doc(alias = "GDK_LOCK_MASK")]
-        const LOCK_MASK = ffi::GDK_LOCK_MASK as u32;
+        const LOCK_MASK = ffi::GDK_LOCK_MASK as _;
         #[doc(alias = "GDK_CONTROL_MASK")]
-        const CONTROL_MASK = ffi::GDK_CONTROL_MASK as u32;
+        const CONTROL_MASK = ffi::GDK_CONTROL_MASK as _;
         #[doc(alias = "GDK_ALT_MASK")]
-        const ALT_MASK = ffi::GDK_ALT_MASK as u32;
+        const ALT_MASK = ffi::GDK_ALT_MASK as _;
         #[doc(alias = "GDK_BUTTON1_MASK")]
-        const BUTTON1_MASK = ffi::GDK_BUTTON1_MASK as u32;
+        const BUTTON1_MASK = ffi::GDK_BUTTON1_MASK as _;
         #[doc(alias = "GDK_BUTTON2_MASK")]
-        const BUTTON2_MASK = ffi::GDK_BUTTON2_MASK as u32;
+        const BUTTON2_MASK = ffi::GDK_BUTTON2_MASK as _;
         #[doc(alias = "GDK_BUTTON3_MASK")]
-        const BUTTON3_MASK = ffi::GDK_BUTTON3_MASK as u32;
+        const BUTTON3_MASK = ffi::GDK_BUTTON3_MASK as _;
         #[doc(alias = "GDK_BUTTON4_MASK")]
-        const BUTTON4_MASK = ffi::GDK_BUTTON4_MASK as u32;
+        const BUTTON4_MASK = ffi::GDK_BUTTON4_MASK as _;
         #[doc(alias = "GDK_BUTTON5_MASK")]
-        const BUTTON5_MASK = ffi::GDK_BUTTON5_MASK as u32;
+        const BUTTON5_MASK = ffi::GDK_BUTTON5_MASK as _;
         #[doc(alias = "GDK_SUPER_MASK")]
-        const SUPER_MASK = ffi::GDK_SUPER_MASK as u32;
+        const SUPER_MASK = ffi::GDK_SUPER_MASK as _;
         #[doc(alias = "GDK_HYPER_MASK")]
-        const HYPER_MASK = ffi::GDK_HYPER_MASK as u32;
+        const HYPER_MASK = ffi::GDK_HYPER_MASK as _;
         #[doc(alias = "GDK_META_MASK")]
-        const META_MASK = ffi::GDK_META_MASK as u32;
+        const META_MASK = ffi::GDK_META_MASK as _;
     }
 }
 
@@ -502,9 +502,9 @@ bitflags! {
     #[doc(alias = "GdkPaintableFlags")]
     pub struct PaintableFlags: u32 {
         #[doc(alias = "GDK_PAINTABLE_STATIC_SIZE")]
-        const SIZE = ffi::GDK_PAINTABLE_STATIC_SIZE as u32;
+        const SIZE = ffi::GDK_PAINTABLE_STATIC_SIZE as _;
         #[doc(alias = "GDK_PAINTABLE_STATIC_CONTENTS")]
-        const CONTENTS = ffi::GDK_PAINTABLE_STATIC_CONTENTS as u32;
+        const CONTENTS = ffi::GDK_PAINTABLE_STATIC_CONTENTS as _;
     }
 }
 
@@ -568,21 +568,21 @@ bitflags! {
     #[doc(alias = "GdkSeatCapabilities")]
     pub struct SeatCapabilities: u32 {
         #[doc(alias = "GDK_SEAT_CAPABILITY_NONE")]
-        const NONE = ffi::GDK_SEAT_CAPABILITY_NONE as u32;
+        const NONE = ffi::GDK_SEAT_CAPABILITY_NONE as _;
         #[doc(alias = "GDK_SEAT_CAPABILITY_POINTER")]
-        const POINTER = ffi::GDK_SEAT_CAPABILITY_POINTER as u32;
+        const POINTER = ffi::GDK_SEAT_CAPABILITY_POINTER as _;
         #[doc(alias = "GDK_SEAT_CAPABILITY_TOUCH")]
-        const TOUCH = ffi::GDK_SEAT_CAPABILITY_TOUCH as u32;
+        const TOUCH = ffi::GDK_SEAT_CAPABILITY_TOUCH as _;
         #[doc(alias = "GDK_SEAT_CAPABILITY_TABLET_STYLUS")]
-        const TABLET_STYLUS = ffi::GDK_SEAT_CAPABILITY_TABLET_STYLUS as u32;
+        const TABLET_STYLUS = ffi::GDK_SEAT_CAPABILITY_TABLET_STYLUS as _;
         #[doc(alias = "GDK_SEAT_CAPABILITY_KEYBOARD")]
-        const KEYBOARD = ffi::GDK_SEAT_CAPABILITY_KEYBOARD as u32;
+        const KEYBOARD = ffi::GDK_SEAT_CAPABILITY_KEYBOARD as _;
         #[doc(alias = "GDK_SEAT_CAPABILITY_TABLET_PAD")]
-        const TABLET_PAD = ffi::GDK_SEAT_CAPABILITY_TABLET_PAD as u32;
+        const TABLET_PAD = ffi::GDK_SEAT_CAPABILITY_TABLET_PAD as _;
         #[doc(alias = "GDK_SEAT_CAPABILITY_ALL_POINTING")]
-        const ALL_POINTING = ffi::GDK_SEAT_CAPABILITY_ALL_POINTING as u32;
+        const ALL_POINTING = ffi::GDK_SEAT_CAPABILITY_ALL_POINTING as _;
         #[doc(alias = "GDK_SEAT_CAPABILITY_ALL")]
-        const ALL = ffi::GDK_SEAT_CAPABILITY_ALL as u32;
+        const ALL = ffi::GDK_SEAT_CAPABILITY_ALL as _;
     }
 }
 
@@ -646,37 +646,37 @@ bitflags! {
     #[doc(alias = "GdkToplevelState")]
     pub struct ToplevelState: u32 {
         #[doc(alias = "GDK_TOPLEVEL_STATE_MINIMIZED")]
-        const MINIMIZED = ffi::GDK_TOPLEVEL_STATE_MINIMIZED as u32;
+        const MINIMIZED = ffi::GDK_TOPLEVEL_STATE_MINIMIZED as _;
         #[doc(alias = "GDK_TOPLEVEL_STATE_MAXIMIZED")]
-        const MAXIMIZED = ffi::GDK_TOPLEVEL_STATE_MAXIMIZED as u32;
+        const MAXIMIZED = ffi::GDK_TOPLEVEL_STATE_MAXIMIZED as _;
         #[doc(alias = "GDK_TOPLEVEL_STATE_STICKY")]
-        const STICKY = ffi::GDK_TOPLEVEL_STATE_STICKY as u32;
+        const STICKY = ffi::GDK_TOPLEVEL_STATE_STICKY as _;
         #[doc(alias = "GDK_TOPLEVEL_STATE_FULLSCREEN")]
-        const FULLSCREEN = ffi::GDK_TOPLEVEL_STATE_FULLSCREEN as u32;
+        const FULLSCREEN = ffi::GDK_TOPLEVEL_STATE_FULLSCREEN as _;
         #[doc(alias = "GDK_TOPLEVEL_STATE_ABOVE")]
-        const ABOVE = ffi::GDK_TOPLEVEL_STATE_ABOVE as u32;
+        const ABOVE = ffi::GDK_TOPLEVEL_STATE_ABOVE as _;
         #[doc(alias = "GDK_TOPLEVEL_STATE_BELOW")]
-        const BELOW = ffi::GDK_TOPLEVEL_STATE_BELOW as u32;
+        const BELOW = ffi::GDK_TOPLEVEL_STATE_BELOW as _;
         #[doc(alias = "GDK_TOPLEVEL_STATE_FOCUSED")]
-        const FOCUSED = ffi::GDK_TOPLEVEL_STATE_FOCUSED as u32;
+        const FOCUSED = ffi::GDK_TOPLEVEL_STATE_FOCUSED as _;
         #[doc(alias = "GDK_TOPLEVEL_STATE_TILED")]
-        const TILED = ffi::GDK_TOPLEVEL_STATE_TILED as u32;
+        const TILED = ffi::GDK_TOPLEVEL_STATE_TILED as _;
         #[doc(alias = "GDK_TOPLEVEL_STATE_TOP_TILED")]
-        const TOP_TILED = ffi::GDK_TOPLEVEL_STATE_TOP_TILED as u32;
+        const TOP_TILED = ffi::GDK_TOPLEVEL_STATE_TOP_TILED as _;
         #[doc(alias = "GDK_TOPLEVEL_STATE_TOP_RESIZABLE")]
-        const TOP_RESIZABLE = ffi::GDK_TOPLEVEL_STATE_TOP_RESIZABLE as u32;
+        const TOP_RESIZABLE = ffi::GDK_TOPLEVEL_STATE_TOP_RESIZABLE as _;
         #[doc(alias = "GDK_TOPLEVEL_STATE_RIGHT_TILED")]
-        const RIGHT_TILED = ffi::GDK_TOPLEVEL_STATE_RIGHT_TILED as u32;
+        const RIGHT_TILED = ffi::GDK_TOPLEVEL_STATE_RIGHT_TILED as _;
         #[doc(alias = "GDK_TOPLEVEL_STATE_RIGHT_RESIZABLE")]
-        const RIGHT_RESIZABLE = ffi::GDK_TOPLEVEL_STATE_RIGHT_RESIZABLE as u32;
+        const RIGHT_RESIZABLE = ffi::GDK_TOPLEVEL_STATE_RIGHT_RESIZABLE as _;
         #[doc(alias = "GDK_TOPLEVEL_STATE_BOTTOM_TILED")]
-        const BOTTOM_TILED = ffi::GDK_TOPLEVEL_STATE_BOTTOM_TILED as u32;
+        const BOTTOM_TILED = ffi::GDK_TOPLEVEL_STATE_BOTTOM_TILED as _;
         #[doc(alias = "GDK_TOPLEVEL_STATE_BOTTOM_RESIZABLE")]
-        const BOTTOM_RESIZABLE = ffi::GDK_TOPLEVEL_STATE_BOTTOM_RESIZABLE as u32;
+        const BOTTOM_RESIZABLE = ffi::GDK_TOPLEVEL_STATE_BOTTOM_RESIZABLE as _;
         #[doc(alias = "GDK_TOPLEVEL_STATE_LEFT_TILED")]
-        const LEFT_TILED = ffi::GDK_TOPLEVEL_STATE_LEFT_TILED as u32;
+        const LEFT_TILED = ffi::GDK_TOPLEVEL_STATE_LEFT_TILED as _;
         #[doc(alias = "GDK_TOPLEVEL_STATE_LEFT_RESIZABLE")]
-        const LEFT_RESIZABLE = ffi::GDK_TOPLEVEL_STATE_LEFT_RESIZABLE as u32;
+        const LEFT_RESIZABLE = ffi::GDK_TOPLEVEL_STATE_LEFT_RESIZABLE as _;
     }
 }
 

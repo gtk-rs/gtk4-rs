@@ -282,7 +282,7 @@ impl PrintSettings {
                     self.to_glib_none().0,
                     num_ranges.as_mut_ptr(),
                 ),
-                num_ranges.assume_init() as usize,
+                num_ranges.assume_init() as _,
             );
             ret
         }

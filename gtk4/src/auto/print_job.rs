@@ -80,7 +80,7 @@ impl PrintJob {
             let mut n_ranges = mem::MaybeUninit::uninit();
             let ret = FromGlibContainer::from_glib_none_num(
                 ffi::gtk_print_job_get_page_ranges(self.to_glib_none().0, n_ranges.as_mut_ptr()),
-                n_ranges.assume_init() as usize,
+                n_ranges.assume_init() as _,
             );
             ret
         }
@@ -194,7 +194,7 @@ impl PrintJob {
 
     #[doc(alias = "gtk_print_job_set_page_ranges")]
     pub fn set_page_ranges(&self, ranges: &[PageRange]) {
-        let n_ranges = ranges.len() as i32;
+        let n_ranges = ranges.len() as _;
         unsafe {
             ffi::gtk_print_job_set_page_ranges(
                 self.to_glib_none().0,
