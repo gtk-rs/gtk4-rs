@@ -98,7 +98,6 @@ static TEST_THREAD_WORKER: once_cell::sync::Lazy<glib::ThreadPool> =
 #[allow(clippy::many_single_char_names)]
 #[allow(clippy::upper_case_acronyms)]
 #[allow(clippy::type_complexity)]
-#[allow(clippy::should_implement_trait)]
 #[allow(unused_imports)]
 mod auto;
 

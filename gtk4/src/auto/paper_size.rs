@@ -253,6 +253,7 @@ impl PaperSize {
 
     #[doc(alias = "gtk_paper_size_get_default")]
     #[doc(alias = "get_default")]
+    #[allow(clippy::should_implement_trait)]
     pub fn default() -> glib::GString {
         assert_initialized_main_thread!();
         unsafe { from_glib_none(ffi::gtk_paper_size_get_default()) }
