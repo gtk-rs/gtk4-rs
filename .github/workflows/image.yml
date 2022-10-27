@@ -1,6 +1,9 @@
 name: github packages
 
 on:
+  # Rebuild the container once every week
+  schedule:
+  - cron: '0 1 * * 1'
   push:
     branches:
       - "master"
