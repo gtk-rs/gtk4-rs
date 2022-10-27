@@ -53,7 +53,6 @@ macro_rules! skip_assert_initialized {
 
 #[allow(clippy::wrong_self_convention)]
 #[allow(clippy::upper_case_acronyms)]
-#[allow(clippy::should_implement_trait)]
 #[allow(unused_imports)]
 mod auto;
 
