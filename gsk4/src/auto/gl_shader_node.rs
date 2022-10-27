@@ -33,7 +33,7 @@ impl GLShaderNode {
         children: &[RenderNode],
     ) -> GLShaderNode {
         skip_assert_initialized!();
-        let n_children = children.len() as u32;
+        let n_children = children.len() as _;
         unsafe {
             from_glib_full(ffi::gsk_gl_shader_node_new(
                 shader.to_glib_none().0,

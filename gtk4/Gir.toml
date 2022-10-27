@@ -65,6 +65,7 @@ generate = [
     "Gtk.CellRendererState",
     "Gtk.CenterBox",
     "Gtk.CenterLayout",
+    "Gtk.Collation",
     "Gtk.ColorButton",
     "Gtk.ColorChooserDialog",
     "Gtk.ColorChooserWidget",

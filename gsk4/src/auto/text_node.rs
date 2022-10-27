@@ -63,7 +63,7 @@ impl TextNode {
             let mut n_glyphs = mem::MaybeUninit::uninit();
             let ret = FromGlibContainer::from_glib_none_num(
                 ffi::gsk_text_node_get_glyphs(self.to_glib_none().0, n_glyphs.as_mut_ptr()),
-                n_glyphs.assume_init() as usize,
+                n_glyphs.assume_init() as _,
             );
             ret
         }

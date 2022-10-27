@@ -54,7 +54,7 @@ impl<T: SymbolicPaintableImpl> SymbolicPaintableImplExt for T {
                 width,
                 height,
                 colors.to_glib_none().0,
-                colors.len() as usize,
+                colors.len() as _,
             )
         }
     }

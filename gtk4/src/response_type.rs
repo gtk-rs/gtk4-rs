@@ -134,3 +134,29 @@ impl ToValue for ResponseType {
         Self::static_type()
     }
 }
+
+impl PartialEq<i32> for ResponseType {
+    fn eq(&self, other: &i32) -> bool {
+        self.into_glib().eq(other)
+    }
+}
+
+impl PartialEq<ResponseType> for i32 {
+    fn eq(&self, other: &ResponseType) -> bool {
+        other.into_glib().eq(self)
+    }
+}
+
+impl From<i32> for ResponseType {
+    fn from(response: i32) -> Self {
+        skip_assert_initialized!();
+        unsafe { Self::from_glib(response) }
+    }
+}
+
+impl From<ResponseType> for i32 {
+    fn from(r: ResponseType) -> Self {
+        skip_assert_initialized!();
+        r.into_glib()
+    }
+}

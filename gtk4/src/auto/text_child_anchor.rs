@@ -73,7 +73,7 @@ impl<O: IsA<TextChildAnchor>> TextChildAnchorExt for O {
                     self.as_ref().to_glib_none().0,
                     out_len.as_mut_ptr(),
                 ),
-                out_len.assume_init() as usize,
+                out_len.assume_init() as _,
             );
             ret
         }

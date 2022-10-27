@@ -185,7 +185,7 @@ impl<O: IsA<Display>> DisplayExtManual for O {
             "GdkMacosDisplay" => Backend::MacOS,
             "GdkWin32Display" => Backend::Win32,
             "GdkBroadwayDisplay" => Backend::Broadway,
-            e => panic!("Unsupported display backend {}", e),
+            e => panic!("Unsupported display backend {e}"),
         }
     }
 }

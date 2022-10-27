@@ -35,6 +35,7 @@ impl RecentManager {
 
     #[doc(alias = "gtk_recent_manager_get_default")]
     #[doc(alias = "get_default")]
+    #[allow(clippy::should_implement_trait)]
     pub fn default() -> RecentManager {
         assert_initialized_main_thread!();
         unsafe { from_glib_none(ffi::gtk_recent_manager_get_default()) }

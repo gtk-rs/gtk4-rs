@@ -38,7 +38,7 @@ impl<O: IsA<SymbolicPaintable>> SymbolicPaintableExt for O {
         height: f64,
         colors: &[gdk::RGBA],
     ) {
-        let n_colors = colors.len() as usize;
+        let n_colors = colors.len() as _;
         unsafe {
             ffi::gtk_symbolic_paintable_snapshot_symbolic(
                 self.as_ref().to_glib_none().0,

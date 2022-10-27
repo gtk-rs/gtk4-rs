@@ -285,7 +285,7 @@ impl<O: IsA<Snapshot>> SnapshotExt for O {
         rotation: f32,
         stops: &[gsk::ColorStop],
     ) {
-        let n_stops = stops.len() as usize;
+        let n_stops = stops.len() as _;
         unsafe {
             ffi::gtk_snapshot_append_conic_gradient(
                 self.as_ref().to_glib_none().0,
@@ -337,7 +337,7 @@ impl<O: IsA<Snapshot>> SnapshotExt for O {
         end_point: &graphene::Point,
         stops: &[gsk::ColorStop],
     ) {
-        let n_stops = stops.len() as usize;
+        let n_stops = stops.len() as _;
         unsafe {
             ffi::gtk_snapshot_append_linear_gradient(
                 self.as_ref().to_glib_none().0,
@@ -391,7 +391,7 @@ impl<O: IsA<Snapshot>> SnapshotExt for O {
         end: f32,
         stops: &[gsk::ColorStop],
     ) {
-        let n_stops = stops.len() as usize;
+        let n_stops = stops.len() as _;
         unsafe {
             ffi::gtk_snapshot_append_radial_gradient(
                 self.as_ref().to_glib_none().0,
@@ -414,7 +414,7 @@ impl<O: IsA<Snapshot>> SnapshotExt for O {
         end_point: &graphene::Point,
         stops: &[gsk::ColorStop],
     ) {
-        let n_stops = stops.len() as usize;
+        let n_stops = stops.len() as _;
         unsafe {
             ffi::gtk_snapshot_append_repeating_linear_gradient(
                 self.as_ref().to_glib_none().0,
@@ -437,7 +437,7 @@ impl<O: IsA<Snapshot>> SnapshotExt for O {
         end: f32,
         stops: &[gsk::ColorStop],
     ) {
-        let n_stops = stops.len() as usize;
+        let n_stops = stops.len() as _;
         unsafe {
             ffi::gtk_snapshot_append_repeating_radial_gradient(
                 self.as_ref().to_glib_none().0,
@@ -557,7 +557,7 @@ impl<O: IsA<Snapshot>> SnapshotExt for O {
     }
 
     fn push_shadow(&self, shadow: &[gsk::Shadow]) {
-        let n_shadows = shadow.len() as usize;
+        let n_shadows = shadow.len() as _;
         unsafe {
             ffi::gtk_snapshot_push_shadow(
                 self.as_ref().to_glib_none().0,
