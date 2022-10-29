@@ -11,7 +11,7 @@ glib::wrapper! {
 
 impl CustomButton {
     pub fn new() -> Self {
-        Object::new(&[])
+        Object::builder().build()
     }
 }
 

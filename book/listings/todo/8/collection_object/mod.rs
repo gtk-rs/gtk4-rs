@@ -14,8 +14,11 @@ glib::wrapper! {
 
 // ANCHOR: impl
 impl CollectionObject {
-    pub fn new(title: String, tasks: gio::ListStore) -> Self {
-        Object::new(&[("title", &title), ("tasks", &tasks)])
+    pub fn new(title: &str, tasks: gio::ListStore) -> Self {
+        Object::builder()
+            .property("title", title)
+            .property("tasks", tasks)
+            .build()
     }
 
     pub fn tasks(&self) -> gio::ListStore {
@@ -50,7 +53,7 @@ impl CollectionObject {
         let tasks = gio::ListStore::new(TaskObject::static_type());
         tasks.extend_from_slice(&tasks_to_extend);
 
-        Self::new(title, tasks)
+        Self::new(&title, tasks)
     }
 }
 // ANCHOR_END: impl

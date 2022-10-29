@@ -26,7 +26,7 @@ impl Window {
     // ANCHOR: new
     pub fn new(app: &adw::Application) -> Self {
         // Create new window
-        Object::new(&[("application", app)])
+        Object::builder().property("application", app).build()
     }
     // ANCHOR_END: new
 

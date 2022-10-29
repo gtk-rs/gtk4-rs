@@ -28,7 +28,7 @@ glib::wrapper! {
 impl Window {
     pub fn new(app: &adw::Application) -> Self {
         // Create new window
-        Object::new(&[("application", app)])
+        Object::builder().property("application", app).build()
     }
 
     fn setup_settings(&self) {
@@ -460,8 +460,8 @@ impl Window {
                 let tasks = gio::ListStore::new(TaskObject::static_type());
 
                 // Create a new collection object from the title the user provided
-                let title = entry.text().into();
-                let collection = CollectionObject::new(title, tasks);
+                let title = entry.text().to_string();
+                let collection = CollectionObject::new(&title, tasks);
 
                 // Add new collection object and set current tasks
                 window.collections().append(&collection);
