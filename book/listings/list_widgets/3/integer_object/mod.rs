@@ -11,7 +11,7 @@ glib::wrapper! {
 // ANCHOR: integer_object
 impl IntegerObject {
     pub fn new(number: i32) -> Self {
-        Object::new(&[("number", &number)])
+        Object::builder().property("number", number).build()
     }
 
     pub fn increase_number(self) {

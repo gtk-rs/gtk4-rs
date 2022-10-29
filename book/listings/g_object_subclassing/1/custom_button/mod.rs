@@ -12,11 +12,11 @@ glib::wrapper! {
 
 impl CustomButton {
     pub fn new() -> Self {
-        Object::new(&[])
+        Object::builder().build()
     }
 
     pub fn with_label(label: &str) -> Self {
-        Object::new(&[("label", &label)])
+        Object::builder().property("label", label).build()
     }
 }
 // ANCHOR_END: mod

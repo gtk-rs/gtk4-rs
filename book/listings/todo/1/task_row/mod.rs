@@ -24,7 +24,7 @@ impl Default for TaskRow {
 
 impl TaskRow {
     pub fn new() -> Self {
-        Object::new(&[])
+        Object::builder().build()
     }
 
     // ANCHOR: bind

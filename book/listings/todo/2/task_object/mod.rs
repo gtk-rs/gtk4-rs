@@ -12,7 +12,10 @@ glib::wrapper! {
 // ANCHOR: impl
 impl TaskObject {
     pub fn new(completed: bool, content: String) -> Self {
-        Object::new(&[("completed", &completed), ("content", &content)])
+        Object::builder()
+            .property("completed", completed)
+            .property("content", content)
+            .build()
     }
 
     pub fn is_completed(&self) -> bool {
