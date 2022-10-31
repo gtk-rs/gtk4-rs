@@ -6,6 +6,7 @@ on:
     paths:
       - ".github/workflows/windows-msvc.yml"
       - "gdk4/**"
+      - "gdk4-win32/**"
       - "gsk4/**"
       - "gtk4/**"
       - "gtk4-macros/**"
@@ -13,6 +14,7 @@ on:
     paths:
       - ".github/workflows/windows-msvc.yml"
       - "gdk4/**"
+      - "gdk4-win32/**"
       - "gsk4/**"
       - "gtk4/**"
       - "gtk4-macros/**"
@@ -103,3 +105,22 @@ jobs:
       with:
         command: test
         args: --features v4_10,xml_validation
+
+    - name: Build gdk-win32
+      working-directory: /gdk4-win32
+      uses: actions-rs/cargo@v1
+      with:
+        command: build
+        args: --features egl,win32
+    - name: Clippy gdk-win32
+      working-directory: /gdk4-win32
+      uses: actions-rs/cargo@v1
+      with:
+        command: clippy
+        args: --features egl,win32
+    - name: Tests gdk-win32
+      working-directory: /gdk4-win32
+      uses: actions-rs/cargo@v1
+      with:
+        command: test
+        args: --features egl,win32
