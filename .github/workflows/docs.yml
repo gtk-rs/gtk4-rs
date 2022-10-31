@@ -7,6 +7,7 @@ on:
       - ".github/workflows/docs.yml"
       - "gdk4/**"
       - "gdk4-wayland/**"
+      - "gdk4-win32/**"
       - "gdk4-x11/**"
       - "gsk4/**"
       - "gtk4/**"
@@ -17,6 +18,7 @@ on:
       - ".github/workflows/docs.yml"
       - "gdk4/**"
       - "gdk4-wayland/**"
+      - "gdk4-win32/**"
       - "gdk4-x11/**"
       - "gsk4/**"
       - "gtk4/**"
@@ -67,7 +69,15 @@ jobs:
       - uses: actions-rs/cargo@v1
         with:
           command: doc
-          args: -p gdk4 -p gdk4-sys -p gdk4-wayland -p gdk4-wayland-sys -p gdk4-x11 -p gdk4-x11-sys -p gsk4 -p gsk4-sys -p gtk4 -p gtk4-sys -p gtk4-macros --features "dox" --no-deps
+          args: >
+            -p gdk4 -p gdk4-sys
+            -p gdk4-wayland -p gdk4-wayland-sys
+            -p gdk4-win32 -p gdk4-win32-sys
+            -p gdk4-x11 -p gdk4-x11-sys
+            -p gsk4 -p gsk4-sys
+            -p gtk4 -p gtk4-sys
+            -p gtk4-macros
+            --features "dox" --no-deps
 
       - name: Fix broken URLs
         run: |
