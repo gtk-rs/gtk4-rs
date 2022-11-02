@@ -107,20 +107,17 @@ jobs:
         args: --features v4_10,xml_validation
 
     - name: Build gdk-win32
-      working-directory: /gdk4-win32
       uses: actions-rs/cargo@v1
       with:
         command: build
-        args: --features egl,win32
+        args: --features egl,win32 --manifest-path ./gdk4-win32/Cargo.toml
     - name: Clippy gdk-win32
-      working-directory: /gdk4-win32
       uses: actions-rs/cargo@v1
       with:
         command: clippy
-        args: --features egl,win32
+        args: --features egl,win32 --manifest-path ./gdk4-win32/Cargo.
     - name: Tests gdk-win32
-      working-directory: /gdk4-win32
       uses: actions-rs/cargo@v1
       with:
         command: test
-        args: --features egl,win32
+        args: --features egl,win32 --manifest-path ./gdk4-win32/Cargo.
