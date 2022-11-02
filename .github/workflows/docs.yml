@@ -66,6 +66,7 @@ jobs:
             --extern-html-root-url=x11=https://docs.rs/x11/latest/
             --extern-html-root-url=khronos_egl=https://docs.rs/khronos-egl/latest/
             --extern-html-root-url=xkb=https://docs.rs/xkb/latest/
+            --extern-html-root-url=windows=https://microsoft.github.io/windows-docs-rs/doc/windows/
       - uses: actions-rs/cargo@v1
         with:
           command: doc
