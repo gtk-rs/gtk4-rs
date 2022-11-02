@@ -7,6 +7,7 @@ on:
       - "examples/**"
       - "gdk4/**"
       - "gdk4-wayland/**"
+      - "gdk4-win32/**"
       - "gdk4-x11/**"
       - "gsk4/**"
       - "gtk4/**"
@@ -17,6 +18,7 @@ on:
       - "examples/**"
       - "gdk4/**"
       - "gdk4-wayland/**"
+      - "gdk4-win32/**"
       - "gdk4-x11/**"
       - "gsk4/**"
       - "gtk4/**"
@@ -148,6 +150,7 @@ jobs:
           - { name: "gsk4", is_macros_crate: false }
           - { name: "gdk4-x11", is_macros_crate: false }
           - { name: "gdk4-wayland", is_macros_crate: false }
+          - { name: "gdk4-win32", is_macros_crate: false }
           - { name: "gtk4-macros", is_macros_crate: true }
     steps:
       - uses: actions/checkout@v2
