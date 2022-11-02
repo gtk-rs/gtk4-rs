@@ -18,8 +18,6 @@ mod rt;
 #[allow(unused_imports)]
 mod auto;
 
-pub mod builders;
-
 pub use auto::*;
 
 mod win32_display;
