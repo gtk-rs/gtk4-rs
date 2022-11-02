@@ -115,9 +115,9 @@ jobs:
       uses: actions-rs/cargo@v1
       with:
         command: clippy
-        args: --features egl,win32 --manifest-path ./gdk4-win32/Cargo.
+        args: --features egl,win32 --manifest-path ./gdk4-win32/Cargo.toml
     - name: Tests gdk-win32
       uses: actions-rs/cargo@v1
       with:
         command: test
-        args: --features egl,win32 --manifest-path ./gdk4-win32/Cargo.
+        args: --features egl,win32 --manifest-path ./gdk4-win32/Cargo.toml
