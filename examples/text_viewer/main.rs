@@ -45,7 +45,7 @@ pub fn build_ui(application: &Application) {
                 let file = d.file().expect("Couldn't get file");
 
                 let filename = file.path().expect("Couldn't get file path");
-                let file = File::open(&filename.as_path()).expect("Couldn't open file");
+                let file = File::open(filename).expect("Couldn't open file");
 
                 let mut reader = BufReader::new(file);
                 let mut contents = String::new();
