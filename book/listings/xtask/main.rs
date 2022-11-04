@@ -31,36 +31,36 @@ install          install everything needed to run the listings
 
 fn install() -> anyhow::Result<()> {
     let sh = Shell::new()?;
-    install_scheme(sh)?;
+    install_schema(sh)?;
     Ok(())
 }
 
-fn install_scheme(sh: Shell) -> anyhow::Result<()> {
-    let scheme_dir = scheme_dir()?;
-    println!("Create directory: {scheme_dir:#?}");
-    sh.create_dir(&scheme_dir)?;
-    for schema in scheme() {
+fn install_schema(sh: Shell) -> anyhow::Result<()> {
+    let schema_dir = schema_dir()?;
+    println!("Create directory: {schema_dir:#?}");
+    sh.create_dir(&schema_dir)?;
+    for schema in schema() {
         println!("Copy schema: {schema:#?}");
-        sh.copy_file(&schema, &scheme_dir)?;
+        sh.copy_file(&schema, &schema_dir)?;
     }
 
-    cmd!(sh, "glib-compile-schemas {scheme_dir}").run()?;
+    cmd!(sh, "glib-compile-schemas {schema_dir}").run()?;
 
     Ok(())
 }
 
-fn scheme_dir() -> anyhow::Result<PathBuf> {
-    let scheme_dir = if cfg!(windows) {
+fn schema_dir() -> anyhow::Result<PathBuf> {
+    let schema_dir = if cfg!(windows) {
         PathBuf::from("C:/ProgramData/glib-2.0/schemas/")
     } else {
         dirs::data_dir()
             .context("Could not get data dir")?
             .join("glib-2.0/schemas")
     };
-    Ok(scheme_dir)
+    Ok(schema_dir)
 }
 
-fn scheme() -> Vec<PathBuf> {
+fn schema() -> Vec<PathBuf> {
     WalkDir::new(".")
         .into_iter()
         .filter_map(|entry| entry.ok())
