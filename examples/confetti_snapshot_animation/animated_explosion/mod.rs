@@ -38,7 +38,7 @@ impl AnimatedExplosion {
             .unwrap()
             .update(dt as f32);
 
-        if !imp.finished.get() && time - imp.start.get() >= imp.duration.get() as f64 {
+        if !imp.finished.get() && time - imp.start.get() >= imp.duration.get() {
             imp.finished.replace(true);
         }
         Continue(!imp.finished.get())

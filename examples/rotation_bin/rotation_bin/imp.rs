@@ -40,8 +40,8 @@ impl ObjectImpl for RotationBin {
         let obj = self.obj();
 
         match pspec.name() {
-            "child" => self.child(&*obj).to_value(),
-            "rotation" => self.rotation(&*obj).to_value(),
+            "child" => self.child(&obj).to_value(),
+            "rotation" => self.rotation(&obj).to_value(),
             _ => unimplemented!(),
         }
     }
@@ -51,10 +51,10 @@ impl ObjectImpl for RotationBin {
 
         match pspec.name() {
             "child" => {
-                self.set_child(&*obj, value.get::<gtk::Widget>().ok().as_ref());
+                self.set_child(&obj, value.get::<gtk::Widget>().ok().as_ref());
             }
             "rotation" => {
-                self.set_rotation(&*obj, value.get().unwrap());
+                self.set_rotation(&obj, value.get().unwrap());
             }
             _ => unimplemented!(),
         }
