@@ -3,6 +3,7 @@
 #[test]
 fn failures() {
     let t = trybuild2::TestCases::new();
+    #[cfg(feature = "xml_validation")]
     t.compile_fail_check_sub(
         "tests/compile-fail/composite-template-bad-xml.rs",
         "error: Failed reading template XML",
@@ -19,6 +20,7 @@ fn failures() {
         "tests/compile-fail/composite-template-missing-fq-child-attr.rs",
         "error: field `label` with type `TemplateChild` possibly missing #[template_child] attribute",
     );
+    #[cfg(feature = "xml_validation")]
     t.compile_fail_check_sub(
         "tests/compile-fail/composite-template-missing-id.rs",
         "error: Template child with id `label` not found in template XML",
