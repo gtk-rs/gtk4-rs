@@ -18,11 +18,6 @@ glib::wrapper! {
 }
 
 impl Win32Display {
-    //#[doc(alias = "gdk_win32_display_add_filter")]
-    //pub fn add_filter(&self, function: /*Unimplemented*/Fn(&Win32Display, /*Ignored*/win32::MSG, i32) -> Win32MessageFilterReturn, data: /*Unimplemented*/Option<Basic: Pointer>) {
-    //    unsafe { TODO: call ffi:gdk_win32_display_add_filter() }
-    //}
-
     #[doc(alias = "gdk_win32_display_get_win32hcursor")]
     #[doc(alias = "get_win32hcursor")]
     pub fn win32hcursor(&self, cursor: &gdk::Cursor) -> Win32HCursor {
@@ -33,11 +28,6 @@ impl Win32Display {
             ))
         }
     }
-
-    //#[doc(alias = "gdk_win32_display_remove_filter")]
-    //pub fn remove_filter(&self, function: /*Unimplemented*/Fn(&Win32Display, /*Ignored*/win32::MSG, i32) -> Win32MessageFilterReturn, data: /*Unimplemented*/Option<Basic: Pointer>) {
-    //    unsafe { TODO: call ffi:gdk_win32_display_remove_filter() }
-    //}
 
     #[doc(alias = "gdk_win32_display_set_cursor_theme")]
     pub fn set_cursor_theme(&self, name: Option<&str>, size: i32) {
