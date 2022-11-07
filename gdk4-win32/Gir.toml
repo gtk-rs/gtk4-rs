@@ -95,6 +95,9 @@ status = "generate"
     [[object.function]]
     name = "get_egl_display"
     manual = true
+    [[object.function]]
+    pattern = "(add|remove)_filter"
+    manual = true
 
 [[object]]
 name = "GdkWin32.Win32HCursor"
