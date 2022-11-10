@@ -59,6 +59,6 @@ From there, run the following commands:
 cd /
 git clone https://gitlab.gnome.org/GNOME/libadwaita.git --depth 1
 cd libadwaita
-meson setup builddir -Dprefix=C:/gnome -Dintrospection=disabled -Dvapi=false -Dexamples=false
+meson setup builddir -Dprefix=C:/gnome -Dintrospection=disabled -Dvapi=false
 meson install -C builddir
 ```
