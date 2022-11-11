@@ -100,7 +100,7 @@ cd /
 cd libxml2
 cmake -S . -B build -D CMAKE_BUILD_TYPE=Release -D CMAKE_INSTALL_PREFIX=C:\gnome -D LIBXML2_WITH_ICONV=OFF -D LIBXML2_WITH_LZMA=OFF -D LIBXML2_WITH_PYTHON=OFF -D LIBXML2_WITH_ZLIB=OFF
 cmake --build build --config Release
-cmake --isntall build
+cmake --install build
 cd /
 
 cd librsvg/win32
