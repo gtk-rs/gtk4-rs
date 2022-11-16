@@ -215,7 +215,9 @@ status = "generate"
     [[object.function]]
     name = "toplevel_size_get_type"
     ignore = true # used directly in gdk::ToplevelSize
-
+    [[object.function]]
+    name = "set_allowed_backends"
+    assertion = "skip"
 
 [[object]]
 name = "Gdk.AppLaunchContext"

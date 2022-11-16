@@ -44,7 +44,7 @@ pub fn pixbuf_get_from_texture(texture: &impl IsA<Texture>) -> Option<gdk_pixbuf
 
 #[doc(alias = "gdk_set_allowed_backends")]
 pub fn set_allowed_backends(backends: &str) {
-    assert_initialized_main_thread!();
+    skip_assert_initialized!();
     unsafe {
         ffi::gdk_set_allowed_backends(backends.to_glib_none().0);
     }
