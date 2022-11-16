@@ -18,7 +18,7 @@ The description of the subclassing is in `ObjectSubclass`.
 After that, we would have the option to override the virtual methods of our ancestors.
 Since we only want to have a plain button for now, we override nothing.
 We still have to add the empty `impl` though.
-Next, we describe the public interface our custom GObject.
+Next, we describe the public interface of our custom GObject.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/g_object_subclassing/1/custom_button/mod.rs">listings/g_object_subclassing/1/custom_button/mod.rs</a>
 
