@@ -1,0 +1,77 @@
+name: book
+
+on:
+  pull_request:
+    paths:
+      - "book/**"
+  push:
+    branches:
+      - "master"
+    paths:
+      - "book/**"
+  release:
+    types: [published]
+
+jobs:
+  test:
+    runs-on: ubuntu-22.04
+    name: listings build
+    container:
+      image: ghcr.io/gtk-rs/gtk4-rs/gtk4:latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions-rs/toolchain@v1
+        with:
+          profile: minimal
+          toolchain: stable
+          override: true
+          components: rustfmt, clippy
+
+      - run: cargo build
+        name: "Build"
+        working-directory: book/listings
+
+      - run: cargo clippy
+        name: "Clippy"
+        working-directory: book/listings
+
+      - run: cargo fmt --check
+        name: "Format"
+        working-directory: book/listings
+
+  build-deploy:
+    runs-on: ubuntu-22.04
+    name: build
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions-rs/toolchain@v1
+        with:
+          profile: minimal
+          toolchain: stable
+          override: true
+
+      - name: Setup mdBook
+        uses: peaceiris/actions-mdbook@v1
+
+      - run: mdbook build -d public
+        working-directory: book
+
+      - name: Deploy to stable
+        uses: peaceiris/actions-gh-pages@v3
+        if: ${{ (github.event_name == 'push' && github.ref == 'refs/heads/master') || github.event_name == 'release' }}
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./book/public
+          keep_files: false
+          destination_dir: stable/latest/book
+
+  codespell:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v2
+      - uses: codespell-project/actions-codespell@master
+        with:
+          check_filenames: true
+          path: book
+          ignore_words_list: "crate"
+          skip: "*.svg"

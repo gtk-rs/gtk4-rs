@@ -1,0 +1,201 @@
+[options]
+girs_directories = ["../gir-files"]
+library = "Gsk"
+version = "4.0"
+min_cfg_version = "4.0.0"
+target_path = "."
+work_mode = "normal"
+use_gi_docgen = true
+generate_safety_asserts = true
+single_version_file = true
+deprecate_by_min_version = true
+trust_return_value_nullability = true
+
+generate = [
+    "Gsk.BlendMode",
+    "Gsk.BlendNode",
+    "Gsk.BlurNode",
+    "Gsk.CairoNode",
+    "Gsk.CairoRenderer",
+    "Gsk.ClipNode",
+    "Gsk.ColorMatrixNode",
+    "Gsk.ColorNode",
+    "Gsk.ConicGradientNode",
+    "Gsk.Corner",
+    "Gsk.CrossFadeNode",
+    "Gsk.DebugNode",
+    "Gsk.GLRenderer",
+    "Gsk.GLUniformType",
+    "Gsk.InsetShadowNode",
+    "Gsk.LinearGradientNode",
+    "Gsk.OpacityNode",
+    "Gsk.OutsetShadowNode",
+    "Gsk.RadialGradientNode",
+    "Gsk.RenderNodeType",
+    "Gsk.RepeatingLinearGradientNode",
+    "Gsk.RepeatingRadialGradientNode",
+    "Gsk.RepeatNode",
+    "Gsk.RoundedClipNode",
+    "Gsk.ScalingFilter",
+    "Gsk.SerializationError",
+    "Gsk.TextureNode",
+    "Gsk.TransformCategory",
+    "Gsk.TransformNode",
+]
+
+manual = [
+    "cairo.Context",
+    "cairo.Region",
+    "cairo.Surface",
+    "Gdk.RGBA",
+    "Gdk.Surface",
+    "Gdk.Texture",
+    "Gio.File", # docs specific
+    "GLib.Bytes",
+    "GLib.Error",
+    "GLib.Quark",
+    "GLib.String",
+    "Graphene.Matrix",
+    "Graphene.Point",
+    "Graphene.Point3D",
+    "Graphene.Rect",
+    "Graphene.Size",
+    "Graphene.Vec2",
+    "Graphene.Vec3",
+    "Graphene.Vec4",
+    "Gsk.ColorStop",
+    "Gsk.NglRenderer",
+    "Gsk.ParseLocation",
+    "Gsk.RoundedRect",
+    "Gsk.Shadow",
+    "Gtk.Snapshot", # docs specific
+    "Pango.Font",
+    "Pango.GlyphInfo",
+    "Pango.GlyphString",
+]
+
+[[object]]
+name = "Gsk.*"
+status = "generate"
+    [[object.function]]
+    pattern = "value_(dup|get|set|take)_render_node"
+    ignore = true # used to implement Value traits manually
+
+[[object]]
+name = "Gsk.BorderNode"
+status = "generate"
+    [[object.function]]
+    name = "new"
+    manual = true
+    [[object.function]]
+    name = "get_widths"
+    manual = true
+    [[object.function]]
+    name = "get_colors"
+    manual = true
+
+[[object]]
+name = "Gsk.BroadwayRenderer"
+status = "generate"
+cfg_condition = "feature = \"broadway\""
+
+[[object]]
+name = "Gsk.ContainerNode"
+status = "generate"
+    [[object.function]]
+    name = "get_child"
+    manual = true # assert that idx < n_children
+
+[[object]]
+name = "Gsk.GLShader"
+status = "generate"
+generate_builder = true
+    [[object.function]]
+    name = "get_arg_bool"
+    # Retrieves the boolean value of an arg
+    rename = "arg_bool"
+    [[object.function]]
+    name = "format_args_va"
+    ignore = true # not useful for bindings
+    [[object.function]]
+    name = "format_args"
+    ignore = true # TODO: fix me once varargs are supported
+    [[object.function]]
+    name = "get_arg_vec2"
+    manual = true # TODO: fix me once (https://gitlab.gnome.org/GNOME/gtk/-/merge_requests/3744) is merged
+    [[object.function]]
+    name = "get_arg_vec3"
+    manual = true # TODO: fix me once (https://gitlab.gnome.org/GNOME/gtk/-/merge_requests/3744) is merged
+    [[object.function]]
+    name = "get_arg_vec4"
+    manual = true # TODO: fix me once (https://gitlab.gnome.org/GNOME/gtk/-/merge_requests/3744) is merged
+
+[[object]]
+name = "Gsk.GLShaderNode"
+status = "generate"
+    [[object.function]]
+    name = "get_child"
+    manual = true # assert that idx < n_children
+
+[[object]]
+name = "Gsk.Renderer"
+status = "generate"
+trait_name = "GskRendererExt"
+
+[[object]]
+name = "Gsk.RenderNode"
+status = "generate"
+    [[object.function]]
+    name = "deserialize"
+    manual = true # split between two variants
+    [[object.function]]
+    name = "draw"
+        [[object.function.parameter]]
+        name = "cr"
+        const = true
+
+[[object]]
+name = "Gsk.ShaderArgsBuilder"
+status = "generate"
+    [[object.function]]
+    name = "free_to_args"
+    ignore = true # C convenience functions
+    [[object.function]]
+    name = "to_args"
+        [[object.function.parameter]]
+        name = "builder"
+        move = true
+
+[[object]]
+name = "Gsk.ShadowNode"
+status = "generate"
+    [[object.function]]
+    name = "get_shadow"
+    manual = true # assert that i < n_shadows
+
+[[object]]
+name = "Gsk.TextNode"
+status = "generate"
+    [[object.function]]
+    name = "new"
+        [[object.function.parameter]]
+        name = "glyphs"
+        const = true
+
+[[object]]
+name = "Gsk.Transform"
+status = "generate"
+    [[object.function]]
+    name = "equal"
+        [[object.function.parameter]]
+            name = "second"
+            nullable = false
+    [[object.function]]
+    pattern = "(translate_3d|translate|transform|skew|scale_3d|scale|rotate_3d|rotate|invert)"
+    manual = true # those functions return NULL in C which represents an identity transform
+    [[object.function]]
+    name = "print"
+    ignore = true # Same as Transform::to_string
+    [[object.function]]
+    name = "parse"
+    manual = true # bool_return_is_error doesn't seem to work for it

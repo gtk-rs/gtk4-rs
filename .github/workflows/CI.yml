@@ -1,0 +1,181 @@
+on:
+  push:
+    branches:
+      - "master"
+    paths:
+      - ".github/workflows/CI.yml"
+      - "examples/**"
+      - "gdk4/**"
+      - "gdk4-wayland/**"
+      - "gdk4-win32/**"
+      - "gdk4-x11/**"
+      - "gsk4/**"
+      - "gtk4/**"
+      - "gtk4-macros/**"
+  pull_request:
+    paths:
+      - ".github/workflows/CI.yml"
+      - "examples/**"
+      - "gdk4/**"
+      - "gdk4-wayland/**"
+      - "gdk4-win32/**"
+      - "gdk4-x11/**"
+      - "gsk4/**"
+      - "gtk4/**"
+      - "gtk4-macros/**"
+  workflow_dispatch:
+
+name: CI
+
+jobs:
+  check:
+    name: Build
+    runs-on: ubuntu-22.04
+    container:
+      image: ghcr.io/gtk-rs/gtk4-rs/gtk4:latest
+    strategy:
+      matrix:
+        rust:
+          - stable
+          - beta
+          - nightly
+          - "1.63.0"
+        conf:
+          - { name: "gtk4", features: "v4_10,xml_validation", test_sys: false }
+          - { name: "gsk4", features: "v4_6,broadway", test_sys: true }
+          - { name: "gdk4", features: "v4_8", test_sys: true }
+          - { name: "gdk4-wayland", features: "v4_4,wayland_crate,egl,xkb_crate", test_sys: true }
+          - { name: "gdk4-x11", features: "v4_4,xlib,egl", test_sys: false }
+          - { name: "gtk4-macros", features: "xml_validation", test_sys: false }
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions-rs/toolchain@v1
+        with:
+          toolchain: ${{ matrix.rust }}
+          override: true
+
+      - name: "${{ matrix.conf.name }}: tests"
+        run: xvfb-run --auto-servernum cargo test --manifest-path ${{ matrix.conf.name }}/Cargo.toml --features "${{ matrix.conf.features }}"
+      - name: "${{ matrix.conf.name }}/sys: tests"
+        run: xvfb-run --auto-servernum cargo test --manifest-path ${{ matrix.conf.name }}/sys/Cargo.toml
+        if: matrix.conf.test_sys
+      - name: "${{ matrix.conf.name }}: build"
+        run: cargo build --manifest-path ${{ matrix.conf.name }}/Cargo.toml --features "${{ matrix.conf.features }}"
+
+      - run: rustup component add clippy
+        if: matrix.rust == 'beta' || matrix.rust == 'stable'
+      - run: cargo clippy --manifest-path ${{ matrix.conf.name }}/Cargo.toml --features "${{ matrix.conf.features }}" --all-targets -- -D warnings
+        if: matrix.rust == 'beta' || matrix.rust == 'stable'
+
+      - uses: bcomnes/cleanup-xvfb@v1
+
+  examples:
+    name: examples
+    runs-on: ubuntu-22.04
+    container:
+      image: ghcr.io/gtk-rs/gtk4-rs/gtk4:latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions-rs/toolchain@v1
+        with:
+          profile: minimal
+          toolchain: stable
+          override: true
+          components: clippy
+      - name: "examples: build"
+        run: cargo build --manifest-path examples/Cargo.toml --bins --examples --all-features
+      - name: "examples: clippy"
+        run: cargo clippy --manifest-path examples/Cargo.toml --all-targets -- -D warnings
+
+  fmt:
+    name: rustfmt
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions-rs/toolchain@v1
+        with:
+          profile: minimal
+          toolchain: stable
+          override: true
+          components: rustfmt
+      - uses: actions-rs/cargo@v1
+        with:
+          command: fmt
+          args: --all -- --check
+
+  regen_check:
+    name: regen checker
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: "recursive"
+          set-safe-directory: true
+      - uses: actions-rs/toolchain@v1
+        with:
+          profile: minimal
+          toolchain: stable
+          override: true
+      - run: git submodule update --checkout
+      - run: python3 ./generator.py --yes ./
+      - run: git diff --exit-code
+
+  docs:
+    name: docs embed check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: recursive
+          set-safe-directory: true
+      - uses: actions-rs/toolchain@v1
+        with:
+          profile: minimal
+          toolchain: stable
+          override: true
+      - run: git submodule update --checkout
+      - run: cargo install rustdoc-stripper
+      - run: python3 generator.py --embed-docs
+      - run: python3 generator.py --strip-docs
+      - run: git diff --exit-code
+
+  checker:
+    name: gtk-rs checker
+    runs-on: ubuntu-22.04
+    strategy:
+      matrix:
+        crate:
+          - { name: "gtk4", is_macros_crate: false }
+          - { name: "gdk4", is_macros_crate: false }
+          - { name: "gsk4", is_macros_crate: false }
+          - { name: "gdk4-x11", is_macros_crate: false }
+          - { name: "gdk4-wayland", is_macros_crate: false }
+          - { name: "gdk4-win32", is_macros_crate: false }
+          - { name: "gtk4-macros", is_macros_crate: true }
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/checkout@v2
+        with:
+          repository: gtk-rs/checker
+          ref: master
+          path: checker
+      - working-directory: checker
+        run: cargo build --release
+      - run: cargo run -- ../${{matrix.crate.name}}
+        working-directory: checker
+        if: ${{ ! matrix.crate.is_macros_crate }}
+      - run: cargo run -- ../${{matrix.crate.name}}/sys
+        working-directory: checker
+        if: ${{ ! matrix.crate.is_macros_crate }}
+      - run: ./check_init_asserts ../${{matrix.crate.name}}
+        working-directory: checker
+        if: ${{ ! matrix.crate.is_macros_crate }}
+      - run: cargo run -- --no-manual-traits ../${{matrix.crate.name}}
+        working-directory: checker
+        if: matrix.crate.is_macros_crate
+      - name: Check doc aliases
+        run: |
+          python3 doc_aliases.py ../${{matrix.crate.name}}
+          cd .. && git diff --exit-code
+        working-directory: checker
+        if: ${{ ! matrix.crate.is_macros_crate }}

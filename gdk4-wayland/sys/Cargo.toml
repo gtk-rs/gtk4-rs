@@ -1,0 +1,43 @@
+[package]
+authors = ["The gtk-rs Project Developers"]
+build = "build.rs"
+description = "FFI bindings of GDK4 Wayland"
+documentation = "https://gtk-rs.org/gtk4-rs/stable/latest/docs/gdk4_wayland_sys/"
+edition = "2021"
+homepage = "http://gtk-rs.org/"
+keywords = ["gdk4", "gdk4-wayland", "ffi", "gtk-rs", "gnome"]
+license = "MIT"
+name = "gdk4-wayland-sys"
+repository = "https://github.com/gtk-rs/gtk4-rs"
+version = "0.6.0"
+rust-version = "1.63"
+[package.metadata.system-deps.gtk4_wayland]
+name = "gtk4-wayland"
+version = "4.0.0"
+
+[package.metadata.system-deps.gtk4_wayland.v4_4]
+version = "4.4"
+[package.metadata.docs.rs]
+features = ["dox"]
+
+[lib]
+name = "gdk4_wayland_sys"
+
+[features]
+dox = ["glib/dox"]
+v4_4 = []
+
+[dependencies]
+libc = "0.2"
+
+[dependencies.glib]
+package = "glib-sys"
+git = "https://github.com/gtk-rs/gtk-rs-core"
+version = "0.17"
+
+[build-dependencies]
+system-deps = "6"
+
+[dev-dependencies]
+shell-words = "1.0.0"
+tempfile = "3"

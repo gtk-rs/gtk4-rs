@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <menu id="main-menu">
+    <submenu>
+      <attribute name="label" translatable="yes">_Filter</attribute>
+      <item>
+        <attribute name="label" translatable="yes">_All</attribute>
+        <attribute name="action">win.filter</attribute>
+        <attribute name="target">All</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">_Open</attribute>
+        <attribute name="action">win.filter</attribute>
+        <attribute name="target">Open</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">_Done</attribute>
+        <attribute name="action">win.filter</attribute>
+        <attribute name="target">Done</attribute>
+      </item>
+    </submenu>
+    <item>
+      <attribute name="label" translatable="yes">_Remove Done Tasks</attribute>
+      <attribute name="action">win.remove-done-tasks</attribute>
+    </item>
+    <item>
+      <attribute name="label" translatable="yes">_Keyboard Shortcuts</attribute>
+      <attribute name="action">win.show-help-overlay</attribute>
+    </item>
+  </menu>
+  <template class="TodoWindow" parent="AdwApplicationWindow">
+    <property name="title" translatable="yes">To-Do</property>
+    <property name="default_width">650</property>
+    <property name="default_height">550</property>
+    <property name="content">
+      <object class="GtkStack" id="stack">
+        <property name="transition-type">crossfade</property>
+        <child>
+          <object class="GtkStackPage">
+            <property name="name">placeholder</property>
+            <property name="child">
+              <object class="GtkBox">
+                <property name="orientation">vertical</property>
+                <child>
+                  <object class="GtkHeaderBar">
+                    <style>
+                      <class name="flat" />
+                    </style>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkWindowHandle">
+                    <property name="vexpand">True</property>
+                    <property name="child">
+                      <object class="AdwStatusPage">
+                        <property name="icon-name">checkbox-checked-symbolic</property>
+                        <property name="title" translatable="yes">No Tasks</property>
+                        <property name="description" translatable="yes">Create some tasks to start using the app.</property>
+                        <property name="child">
+                          <object class="GtkButton">
+                            <property name="label" translatable="yes">_New Collection</property>
+                            <property name="use-underline">True</property>
+                            <property name="halign">center</property>
+                            <property name="action-name">win.new-collection</property>
+                            <style>
+                              <class name="pill" />
+                              <class name="suggested-action" />
+                            </style>
+                          </object>
+                        </property>
+                      </object>
+                    </property>
+                  </object>
+                </child>
+              </object>
+            </property>
+          </object>
+        </child>
+        <child>
+          <object class="GtkStackPage">
+            <property name="name">main</property>
+            <property name="child">
+              <object class="AdwLeaflet" id="leaflet">
+                <property name="can-navigate-back">True</property>
+                <child>
+                  <object class="GtkBox">
+                    <property name="orientation">vertical</property>
+                    <property name="width-request">200</property>
+                    <child>
+                      <object class="AdwHeaderBar">
+                        <binding name="show-end-title-buttons">
+                          <lookup name="folded">leaflet</lookup>
+                        </binding>
+                        <child type="start">
+                          <object class="GtkToggleButton">
+                            <property name="icon-name">list-add-symbolic</property>
+                            <property name="tooltip-text" translatable="yes">New Collection</property>
+                            <property name="action-name">win.new-collection</property>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkScrolledWindow">
+                        <property name="vexpand">True</property>
+                        <property name="child">
+                          <object class="GtkListBox" id="collections_list">
+                            <style>
+                              <class name="navigation-sidebar" />
+                            </style>
+                          </object>
+                        </property>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+                <child>
+                  <object class="AdwLeafletPage">
+                    <property name="navigatable">False</property>
+                    <property name="child">
+                      <object class="GtkSeparator" />
+                    </property>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkBox">
+                    <property name="orientation">vertical</property>
+                    <property name="hexpand">True</property>
+                    <property name="width-request">250</property>                    
+                    <child>
+                      <object class="AdwHeaderBar">
+                        <property name="title-widget">
+                          <object class="AdwWindowTitle" />
+                        </property>
+                        <child type="start">
+                          <object class="GtkButton" id="back_button">
+                            <binding name="visible">
+                              <lookup name="folded">leaflet</lookup>
+                            </binding>
+                            <property name="icon-name">go-previous-symbolic</property>
+                            <property name="tooltip-text" translatable="yes">Back</property>
+                          </object>
+                        </child>
+                        <child type="end">
+                          <object class="GtkMenuButton">
+                            <property name="icon-name">open-menu-symbolic</property>
+                            <property name="menu-model">main-menu</property>
+                            <property name="tooltip-text" translatable="yes">Main Menu</property>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkScrolledWindow">
+                        <property name="vexpand">True</property>
+                        <property name="child">
+                          <object class="AdwClamp">
+                            <property name="child">
+                              <object class="GtkBox">
+                                <property name="orientation">vertical</property>
+                                <property name="margin-top">12</property>
+                                <property name="margin-bottom">12</property>
+                                <property name="margin-start">12</property>
+                                <property name="margin-end">12</property>
+                                <property name="spacing">12</property>
+                                <child>
+                                  <object class="GtkEntry" id="entry">
+                                    <property name="placeholder-text" translatable="yes">Enter a Task…</property>
+                                    <property name="secondary-icon-name">list-add-symbolic</property>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="GtkListBox" id="tasks_list">
+                                    <property name="visible">False</property>
+                                    <property name="selection-mode">none</property>
+                                    <style>
+                                      <class name="boxed-list" />
+                                    </style>
+                                  </object>
+                                </child>
+                              </object>
+                            </property>
+                          </object>
+                        </property>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+              </object>
+            </property>
+          </object>
+        </child>
+      </object>
+    </property>
+  </template>
+</interface>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <template class="MyGtkAppWindow" parent="GtkApplicationWindow">
+    <property name="title">My GTK App</property>
+    <child>
+      <object class="GtkBox" id="gtk_box">
+        <property name="orientation">vertical</property>
+        <property name="margin-top">12</property>
+        <property name="margin-bottom">12</property>
+        <property name="margin-start">12</property>
+        <property name="margin-end">12</property>
+        <property name="spacing">12</property>
+        <property name="halign">center</property>
+        <child>
+          <object class="GtkButton" id="button">
+            <property name="label">Press me!</property>
+            <property name="action-name">win.count</property>
+            <property name="action-target">1</property>
+          </object>
+        </child>
+        <child>
+          <object class="GtkLabel" id="label">
+            <property name="label">Counter: 0</property>
+          </object>
+        </child>
+      </object>
+    </child>
+  </template>
+</interface>

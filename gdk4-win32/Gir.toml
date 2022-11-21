@@ -1,0 +1,126 @@
+[options]
+girs_directories = ["../gir-files"]
+library = "GdkWin32"
+version = "4.0"
+min_cfg_version = "4.0.0"
+target_path = "."
+work_mode = "normal"
+use_gi_docgen = true
+single_version_file = true
+generate_safety_asserts = true
+deprecate_by_min_version = true
+trust_return_value_nullability = true
+
+generate = [
+    "GdkWin32.Win32DisplayManager",
+    "GdkWin32.Win32Drag",
+    "GdkWin32.Win32GLContext",
+    "GdkWin32.Win32MessageFilterReturn",
+    "GdkWin32.Win32Monitor",
+    "GdkWin32.Win32Screen",
+]
+
+manual = [
+    "Gdk.Cursor",
+    "Gdk.DisplayManager",
+    "Gdk.DrawContext",
+    "Gdk.Rectangle",
+    "GdkPixbuf.Pixbuf",
+    "win32.HCURSOR",
+    "win32.HICON",
+    "win32.HWND",
+]
+
+[[object]]
+name = "Gdk.Device"
+status = "manual"
+final_type = false
+    [[object.function]]
+    name = "get_vendor_id"
+    ignore = true # docs only, otherwise it gets picked as ExtManual
+    [[object.function]]
+    name = "get_product_id"
+    ignore = true # docs only, otherwise it gets picked as ExtManual
+
+[[object]]
+name = "Gdk.Display"
+status = "manual"
+final_type = false
+    [[object.function]]
+    name = "notify_startup_complete"
+    ignore = true # docs only, otherwise it gets picked as ExtManual
+    [[object.function]]
+    name = "get_product_id"
+    ignore = true # docs only, otherwise it gets picked as ExtManual
+
+[[object]]
+name = "Gdk.Drag"
+status = "manual"
+final_type = false
+
+[[object]]
+name = "Gdk.Event" # docs only
+status = "manual"
+final_type = false
+
+[[object]]
+name = "Gdk.GLContext"
+status = "manual"
+final_type = false
+
+[[object]]
+name = "Gdk.Monitor"
+status = "manual"
+final_type = false
+    [[object.function]]
+    name = "get_scale_factor"
+    ignore = true # docs only, otherwise it gets picked as ExtManual
+
+[[object]]
+name = "Gdk.Surface"
+status = "manual"
+final_type = false
+
+[[object]]
+name = "GdkWin32.*"
+status = "generate"
+
+[[object.function]]
+name = "win32_handle_table_lookup"
+ignore = true # to be deprecated upstream, and not clean to bind
+
+[[object]]
+name = "GdkWin32.Win32Display"
+status = "generate"
+    [[object.function]]
+    name = "get_egl_display"
+    manual = true
+    [[object.function]]
+    pattern = "(add|remove)_filter"
+    manual = true
+
+[[object]]
+name = "GdkWin32.Win32HCursor"
+status = "generate"
+# doesn't work with HANDLE
+# generate_builder = true
+    [[object.function]]
+    name = "new"
+    manual = true
+    [[object.property]]
+    name = "handle"
+    manual = true
+
+[[object]]
+name = "GdkWin32.Win32Surface"
+status = "generate"
+# doesn't work with HANDLE
+    [[object.function]]
+    name = "lookup_for_display"
+    manual = true
+    [[object.function]]
+    name = "get_handle"
+    manual = true
+    [[object.function]]
+    name = "get_impl_hwnd"
+    manual = true

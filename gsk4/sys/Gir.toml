@@ -1,0 +1,18 @@
+[options]
+work_mode = "sys"
+library = "Gsk"
+version = "4.0"
+min_cfg_version = "4.0.0"
+single_version_file = "."
+girs_directories = ["../../gir-files"]
+
+external_libraries = [
+    "GLib",
+    "GObject",
+    "Pango",
+    "Cairo",
+    "Graphene",
+]
+
+[external_libraries]
+gdk4 = "Gdk"

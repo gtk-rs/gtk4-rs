@@ -1,0 +1,111 @@
+[options]
+girs_directories = ["../gir-files"]
+library = "GdkWayland"
+version = "4.0"
+min_cfg_version = "4.0.0"
+target_path = "."
+work_mode = "normal"
+use_gi_docgen = true
+single_version_file = true
+generate_safety_asserts = true
+deprecate_by_min_version = true
+trust_return_value_nullability = true
+
+generate = [
+    "GdkWayland.WaylandGLContext",
+    "GdkWayland.WaylandPopup",
+    "GdkWayland.WaylandToplevel",
+    "GdkWayland.WaylandToplevelExported"
+]
+
+manual = [
+    "Gdk.DrawContext",
+    "Gdk.InputSource", # docs only
+    "Gdk.Popup",
+    "Gdk.Toplevel",
+]
+
+[[object]]
+name = "Gdk.Device"
+status = "manual"
+final_type = false
+
+[[object]]
+name = "Gdk.Display"
+status = "manual"
+final_type = false
+    [[object.function]]
+    name = "notify_startup_complete"
+    ignore = true # docs only, otherwise it gets picked as ExtManual
+
+[[object]]
+name = "Gdk.GLContext"
+status = "manual"
+final_type = false
+
+[[object]]
+name = "Gdk.Monitor"
+status = "manual"
+final_type = false
+
+[[object]]
+name = "Gdk.Seat"
+status = "manual"
+final_type = false
+
+[[object]]
+name = "Gdk.Surface"
+status = "manual"
+final_type = false
+
+[[object]]
+name = "GdkWayland.WaylandDevice"
+status = "generate"
+    [[object.function]]
+    name = "get_wl_keyboard"
+    manual = true
+    [[object.function]]
+    name = "get_wl_pointer"
+    manual = true
+    [[object.function]]
+    name = "get_wl_seat"
+    manual = true
+    [[object.function]]
+    name = "get_xkb_keymap"
+    manual = true
+
+[[object]]
+name = "GdkWayland.WaylandDisplay"
+status = "generate"
+    [[object.function]]
+    name = "get_egl_display"
+    manual = true
+    [[object.function]]
+    name = "get_wl_compositor"
+    manual = true
+    [[object.function]]
+    name = "get_wl_display"
+    manual = true
+
+[[object]]
+name = "GdkWayland.WaylandMonitor"
+status = "generate"
+    [[object.function]]
+    name = "get_wl_output"
+    manual = true
+
+[[object]]
+name = "GdkWayland.WaylandSeat"
+status = "generate"
+    [[object.function]]
+    name = "get_wl_seat"
+    manual = true
+
+[[object]]
+name = "GdkWayland.WaylandSurface"
+status = "generate"
+manual_traits = ["WaylandSurfaceExtManual"]
+    [[object.function]]
+    name = "get_wl_surface"
+    rename = "wl_surface"
+    manual = true

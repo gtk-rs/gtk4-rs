@@ -1,0 +1,617 @@
+[external_libraries]
+Gio = {min_version = "2.66"}
+
+[options]
+girs_directories = ["../gir-files"]
+library = "Gdk"
+version = "4.0"
+min_cfg_version = "4.0.0"
+target_path = "."
+work_mode = "normal"
+use_gi_docgen = true
+generate_safety_asserts = true
+single_version_file = true
+deprecate_by_min_version = true
+trust_return_value_nullability = true
+
+generate = [
+    "Gdk.AnchorHints",
+    "Gdk.AxisFlags",
+    "Gdk.ButtonEvent",
+    "Gdk.CairoContext",
+    "Gdk.CrossingEvent",
+    "Gdk.CrossingMode",
+    "Gdk.DeleteEvent",
+    "Gdk.DevicePad",
+    "Gdk.DevicePadFeature",
+    "Gdk.DeviceToolType",
+    "Gdk.DNDEvent",
+    "Gdk.DragAction",
+    "Gdk.DragCancelReason",
+    "Gdk.DragSurface",
+    "Gdk.Event",
+    "Gdk.EventSequence",
+    "Gdk.FocusEvent",
+    "Gdk.FrameClock",
+    "Gdk.FrameClockPhase",
+    "Gdk.FrameTimings",
+    "Gdk.FullscreenMode",
+    "Gdk.GLAPI",
+    "Gdk.GLError",
+    "Gdk.GrabBrokenEvent",
+    "Gdk.Gravity",
+    "Gdk.InputSource",
+    "Gdk.KeyMatch",
+    "Gdk.ModifierType",
+    "Gdk.MotionEvent",
+    "Gdk.NotifyType",
+    "Gdk.PadEvent",
+    "Gdk.Paintable",
+    "Gdk.PaintableFlags",
+    "Gdk.ProximityEvent",
+    "Gdk.ScrollDirection",
+    "Gdk.ScrollEvent",
+    "Gdk.ScrollUnit",
+    "Gdk.SeatCapabilities",
+    "Gdk.SubpixelLayout",
+    "Gdk.SurfaceEdge",
+    "Gdk.TextureError",
+    "Gdk.TitlebarGesture",
+    "Gdk.ToplevelLayout",
+    "Gdk.ToplevelState",
+    "Gdk.TouchEvent",
+    "Gdk.TouchpadEvent",
+    "Gdk.TouchpadGesturePhase",
+    "Gdk.VulkanContext",
+    "Gdk.VulkanError",
+]
+
+manual = [
+    "cairo.Content",
+    "cairo.Context",
+    "cairo.Region",
+    "cairo.Surface",
+    "Gdk.KeymapKey",
+    "Gdk.TimeCoord",
+    "Gdk.ToplevelSize",
+    "GdkPixbuf.Pixbuf",
+    "Gio.AppLaunchContext",
+    "Gio.Cancellable",
+    "Gio.File",
+    "Gio.Icon",
+    "Gio.Initable",
+    "Gio.InputStream",
+    "Gio.IOErrorEnum",
+    "Gio.ListModel",
+    "Gio.LoadableIcon",
+    "Gio.OutputStream",
+    "GLib.Bytes",
+    "GLib.Error",
+    "GLib.Priority",
+    "GLib.Quark",
+    "GLib.String",
+    "GObject.Value",
+    "Pango.Direction",
+    "Pango.Layout",
+    "Pango.LayoutLine",
+]
+
+[[object]]
+name = "Gdk.*"
+status = "generate"
+    [[object.function]]
+    pattern = ".+"
+        [[object.function.parameter]]
+        name = "cr"
+        const = true
+        [[object.function.parameter]]
+        name = "surface"
+        const = true
+    [[object.function]]
+    name = "cairo_region_create_from_surface"
+    manual = true
+    rename = "create_region"
+    doc_trait_name = "GdkCairoSurfaceExt"
+    [[object.function]]
+    name = "cairo_draw_from_gl"
+    manual = true
+    rename = "draw_from_gl"
+    doc_trait_name = "GdkCairoContextExt"
+    [[object.function]]
+    name = "cairo_set_source_rgba"
+    manual = true
+    rename = "set_source_rgba"
+    doc_trait_name = "GdkCairoContextExt"
+    [[object.function]]
+    name = "cairo_set_source_pixbuf"
+    manual = true
+    rename = "set_source_pixbuf"
+    doc_trait_name = "GdkCairoContextExt"
+    [[object.function]]
+    name = "cairo_rectangle"
+    manual = true
+    rename = "add_rectangle"
+    doc_trait_name = "GdkCairoContextExt"
+    [[object.function]]
+    name = "cairo_region"
+    manual = true
+    rename = "add_region"
+    doc_trait_name = "GdkCairoContextExt"
+    [[object.function]]
+    name = "pango_layout_get_clip_region"
+    manual = true
+    doc_ignore_parameters = ["n_ranges"] 
+    [[object.function]]
+    name = "pango_layout_line_get_clip_region"
+    manual = true
+    doc_ignore_parameters = ["n_ranges"] 
+    [[object.function]]
+    name = "content_register_deserializer"
+    manual = true
+    [[object.function]]
+    name = "content_register_serializer"
+    manual = true
+    [[object.function]]
+    name = "content_serialize_async"
+    manual = true # init assert
+    [[object.function]]
+    name = "content_deserialize_async"
+    manual = true
+    [[object.function]]
+    name = "events_get_angle"
+    manual = true # move to GdkEvent
+    rename = "angle"
+    doc_struct_name = "Event"
+    [[object.function]]
+    name = "events_get_center"
+    manual = true # move to GdkEvent
+    rename = "center"
+    doc_struct_name = "Event"
+    [[object.function]]
+    name = "events_get_distance"
+    manual = true # move to GdkEvent
+    rename = "distance"
+    doc_struct_name = "Event"
+    [[object.function]]
+    name = "keyval_convert_case"
+    rename = "convert_case"
+    manual = true # manually handled by Key
+    doc_struct_name = "Key"
+    [[object.function]]
+    name = "keyval_from_name"
+    manual = true # manually handled by Key
+    rename = "from_name"
+    doc_struct_name = "Key"
+    [[object.function]]
+    name = "keyval_is_lower"
+    manual = true # manually handled by Key
+    rename = "is_lower"
+    doc_struct_name = "Key"
+    [[object.function]]
+    name = "keyval_is_upper"
+    manual = true # manually handled by Key
+    rename = "is_upper"
+    doc_struct_name = "Key"
+    [[object.function]]
+    name = "keyval_name"
+    manual = true # manually handled by Key
+    rename = "name"
+    doc_struct_name = "Key"
+    [[object.function]]
+    name = "keyval_to_lower"
+    manual = true # manually handled by Key
+    rename = "to_lower"
+    doc_struct_name = "Key"
+    [[object.function]]
+    name = "keyval_to_unicode"
+    manual = true # manually handled by Key
+    rename = "to_unicode"
+    doc_struct_name = "Key"
+    [[object.function]]
+    name = "keyval_to_upper"
+    manual = true # manually handled by Key
+    rename = "to_upper"
+    doc_struct_name = "Key"
+    [[object.function]]
+    name = "toplevel_size_get_type"
+    ignore = true # used directly in gdk::ToplevelSize
+    [[object.function]]
+    name = "set_allowed_backends"
+    assertion = "skip"
+
+[[object]]
+name = "Gdk.AppLaunchContext"
+status = "generate"
+generate_builder = false
+final_type = false
+
+[[object]]
+name = "Gdk.AxisUse"
+status = "generate"
+    [[object.member]]
+    name = "last"
+    ignore = true # not useful
+
+[[object]]
+name = "Gdk.Clipboard"
+status = "generate"
+generate_builder = false
+    [[object.function]]
+    pattern = "set_(value|valist)"
+    ignore = true
+    [[object.function]]
+    name = "set"
+    manual = true # use ToValue
+    [[object.function]]
+    name = "read_async"
+    manual = true # mime_types are cloned instead of converting them to a Vec<String>
+    [[object.function]]
+    name = "set_content"
+        [object.function.return]
+        bool_return_is_error = "Can't set new clipboard content"
+
+[[object]]
+name = "Gdk.ContentDeserializer"
+status = "generate"
+    [[object.function]]
+    name = "get_gtype"
+    rename = "type_"
+    [[object.function]]
+    name = "get_task_data"
+    ignore = true # unsafe
+    [[object.function]]
+    name = "get_user_data"
+    ignore = true # unsafe
+    [[object.function]]
+    name = "set_task_data"
+    ignore = true # unsafe
+    [[object.function]]
+    name = "get_priority"
+    manual = true # to use glib::Priority
+    [[object.function]]
+    name = "return_error"
+    manual = true # wrong error mutability
+
+[[object]]
+name = "Gdk.ContentFormats"
+status = "generate"
+    [[object.function]]
+    name = "new_for_gtype"
+    rename = "for_type"
+    [[object.function]]
+    name = "contain_gtype"
+    rename = "contains_type"
+    [[object.function]]
+    name = "match_gtype"
+    rename = "match_type"
+    [[object.function]]
+    name = "union_deserialize_gtypes"
+    rename = "union_deserialize_types"
+    [[object.function]]
+    name = "union_serialize_gtypes"
+    rename = "union_serialize_types"
+    [[object.function]]
+    name = "get_gtypes"
+    manual = true
+    rename = "types"
+    [[object.function]]
+    name = "print"
+    ignore = true # Same as ContentFormats::to_string
+    [[object.function]]
+    name = "parse"
+        [object.function.return]
+        nullable_return_is_error = "Can't parse ContentFormats"
+
+[[object]]
+name = "Gdk.ContentFormatsBuilder"
+status = "generate"
+    [[object.function]]
+    name = "free_to_formats"
+    ignore = true # marked skip, redundant with to_formats
+    [[object.function]]
+    name = "to_formats"
+    rename = "build"
+    manual = true # renamed, returns non-null, builder-like
+    [[object.function]]
+    name = "add_gtype"
+    manual = true
+    rename = "add_type"
+    [[object.function]]
+    pattern = "add_(mime_type|formats)"
+    manual = true
+
+[[object]]
+name = "Gdk.ContentProvider"
+status = "generate"
+manual_traits = ["ContentProviderExtManual"]
+    [[object.function]]
+    name = "new_typed"
+    ignore = true # new_for_value is what the bindings are supposed to use
+    [[object.function]]
+    name = "get_value"
+    manual = true # to return Value
+    doc_trait_name = "ContentProviderExtManual"
+    [[object.function]]
+    name = "ref_formats"
+    rename = "formats"
+    [[object.function]]
+    name = "ref_storable_formats"
+    rename = "storable_formats"
+    [[object.property]]
+    name = "formats"
+    generate = ["notify"] # ignore get/set
+    [[object.property]]
+    name = "storable-formats"
+    generate = ["notify"] # ignore get/set
+
+[[object]]
+name = "Gdk.ContentSerializer"
+status = "generate"
+    [[object.function]]
+    name = "get_gtype"
+    rename = "type_"
+    [[object.function]]
+    name = "get_task_data"
+    ignore = true # unsafe
+    [[object.function]]
+    name = "get_user_data"
+    ignore = true # unsafe
+    [[object.function]]
+    name = "set_task_data"
+    ignore = true #unsafe
+    [[object.function]]
+    name = "get_priority"
+    manual = true # to use glib::Priority
+    [[object.function]]
+    name = "return_error"
+    manual = true # wrong error mutability
+
+
+[[object]]
+name = "Gdk.Cursor"
+status = "generate"
+generate_builder = true
+
+[[object]]
+name = "Gdk.Device"
+status = "generate"
+final_type = false
+    [[object.function]]
+    name = "get_caps_lock_state"
+    rename = "is_caps_locked"
+    [[object.function]]
+    name = "get_num_lock_state"
+    rename = "is_num_locked"
+    [[object.function]]
+    name = "get_scroll_lock_state"
+    rename = "is_scroll_locked"
+    [[object.property]]
+    name = "tool"
+    generate = ["notify"]
+
+[[object]]
+name = "Gdk.DeviceTool"
+status = "generate"
+generate_builder = false
+
+[[object]]
+name = "Gdk.Display"
+status = "generate"
+final_type = false
+manual_traits = ["DisplayExtManual"]
+    [[object.function]]
+    name = "get_setting"
+    manual = true # TODO: fix me once (https://gitlab.gnome.org/GNOME/gtk/-/merge_requests/3744) is merged
+    # Actually retrieves the setting in the provided argument
+    bypass_auto_rename = true
+    [[object.function]]
+    name = "translate_key"
+    manual = true # to return a Key instead of a u32
+    [[object.function]]
+    pattern = "map_key(code|val)"
+    manual = true # make use of Key
+
+[[object]]
+name = "Gdk.DisplayManager"
+status = "generate"
+generate_builder = false
+
+[[object]]
+name = "Gdk.Drag"
+status = "generate"
+final_type = false
+
+[[object]]
+name = "Gdk.DrawContext"
+status = "generate"
+manual_traits = ["DrawContextExtManual"]
+    [[object.function]]
+    name = "get_frame_region"
+    doc_trait_name = "DrawContextExtManual"
+    manual = true
+
+[[object]]
+name = "Gdk.Drop"
+status = "generate"
+    [[object.function]]
+    name = "read_async"
+    manual = true # mime_types are cloned instead of converting them to a Vec<String>
+
+[[object]]
+name = "Gdk.EventType"
+status = "generate"
+    [[object.member]]
+    name = "touchpad_hold"
+    version = "4.8"
+    [[object.member]]
+    name = "event_last"
+    alias = true # not useful
+
+[[object]]
+name = "Gdk.FileList"
+status = "generate"
+    [[object.function]]
+    name = "get_files"
+        [[object.function.parameter]]
+        name = "file_list"
+        const = true
+    [[object.function]]
+    name = "new_from_list"
+    ignore = true # it is the same as new_from_array
+
+[[object]]
+name = "Gdk.GLContext"
+status = "generate"
+final_type = false
+
+[[object]]
+name = "Gdk.GLTexture"
+status = "generate"
+concurrency = "send+sync"
+    [[object.function]]
+    name = "new"
+    manual = true
+
+[[object]]
+name = "Gdk.KeyEvent"
+status = "generate"
+    [[object.function]]
+    name = "get_keyval"
+    manual = true
+    [[object.function]]
+    name = "get_match"
+    manual = true
+    [[object.function]]
+    name = "matches"
+    manual = true
+
+[[object]]
+name = "Gdk.MemoryFormat"
+status = "generate"
+    [[object.member]]
+    name = "r16g16b16"
+    version = "4.6"
+    [[object.member]]
+    name = "r16g16b16a16_premultiplied"
+    version = "4.6"
+    [[object.member]]
+    name = "r16g16b16a16"
+    version = "4.6"
+    [[object.member]]
+    name = "r16g16b16_float"
+    version = "4.6"
+    [[object.member]]
+    name = "r16g16b16a16_float_premultiplied"
+    version = "4.6"
+    [[object.member]]
+    name = "r16g16b16a16_float"
+    version = "4.6"
+    [[object.member]]
+    name = "r32g32b32_float"
+    version = "4.6"
+    [[object.member]]
+    name = "r32g32b32a32_float_premultiplied"
+    version = "4.6"
+    [[object.member]]
+    name = "r32g32b32a32_float"
+    version = "4.6"
+    [[object.member]]
+    name = "n_formats"
+    alias = true # not useful
+
+[[object]]
+name = "Gdk.MemoryTexture"
+status = "generate"
+concurrency = "send+sync"
+
+[[object]]
+name = "Gdk.Monitor"
+status = "generate"
+final_type = false
+generate_builder = false
+
+[[object]]
+name = "Gdk.Popup"
+status = "generate"
+
+[[object]]
+name = "Gdk.PopupLayout"
+status = "generate"
+    [[object.function]]
+    name = "get_offset"
+    manual = true # invalid mutability
+
+[[object]]
+name = "Gdk.Rectangle"
+status = "generate"
+boxed_inline = true
+
+[[object]]
+name = "Gdk.RGBA"
+status = "generate"
+boxed_inline = true
+    [[object.function]]
+    name = "parse"
+    # This is a constructor
+    manual = true
+
+[[object]]
+name = "Gdk.Seat"
+status = "generate"
+final_type = false
+
+[[object]]
+name = "Gdk.Snapshot"
+status = "generate"
+final_type = false
+
+[[object]]
+name = "Gdk.Surface"
+status = "generate"
+final_type = false
+manual_traits = ["SurfaceExtManual"]
+    [[object.function]]
+    name = "create_similar_surface"
+    manual = true
+    doc_trait_name = "SurfaceExtManual"
+    [[object.function]]
+    name = "set_input_region"
+        [[object.function.parameter]]
+        name = "region"
+        const = true
+    [[object.function]]
+    name = "set_opaque_region"
+        [[object.function.parameter]]
+        name = "region"
+        const = true
+    [[object.function]]
+    name = "translate_coordinates"
+    doc_trait_name = "SurfaceExtManual"
+    manual = true # mutability issue
+
+[[object]]
+name = "Gdk.Texture"
+status = "generate"
+manual_traits = ["TextureExtManual"]
+concurrency = "send+sync"
+    [[object.function]]
+    name = "download"
+    doc_trait_name = "TextureExtManual"
+    manual = true
+    [[object.function]]
+    name = "save_to_png"
+        [object.function.return]
+        bool_return_is_error = "Failed to save the texture as png"
+    [[object.function]]
+    name = "save_to_tiff"
+        [object.function.return]
+        bool_return_is_error = "Failed to save the texture as tiff"
+
+[[object]]
+name = "Gdk.Toplevel"
+status = "generate"
+manual_traits = ["ToplevelExtManual"]
+    [[object.signal]]
+    name = "compute-size"
+    manual = true
+    doc_trait_name = "ToplevelExtManual"

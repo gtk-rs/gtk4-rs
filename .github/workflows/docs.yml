@@ -1,0 +1,135 @@
+name: docs
+
+on:
+  push:
+    branches: [master]
+    paths:
+      - ".github/workflows/docs.yml"
+      - "gdk4/**"
+      - "gdk4-wayland/**"
+      - "gdk4-win32/**"
+      - "gdk4-x11/**"
+      - "gsk4/**"
+      - "gtk4/**"
+      - "gtk4-macros/**"
+      - "**/README.md"
+  pull_request:
+    paths:
+      - ".github/workflows/docs.yml"
+      - "gdk4/**"
+      - "gdk4-wayland/**"
+      - "gdk4-win32/**"
+      - "gdk4-x11/**"
+      - "gsk4/**"
+      - "gtk4/**"
+      - "gtk4-macros/**"
+      - "**/README.md"
+  workflow_dispatch:
+  release:
+    types: [published]
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-22.04
+    name: build
+    container:
+      image: ghcr.io/gtk-rs/gtk4-rs/gtk4:latest
+    env:
+      RELEASES: |
+        0.5=0.5
+        0.4=0.4
+        0.3=0.3
+        0.2=0.2
+        0.1=0.1
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: "recursive"
+          set-safe-directory: true
+      - uses: actions-rs/toolchain@v1
+        with:
+          profile: minimal
+          toolchain: nightly
+          override: true
+          components: rustfmt
+      - run: git config --global --add safe.directory /__w/gtk4-rs/gtk4-rs
+      - run: git submodule update --checkout
+      - run: cargo install rustdoc-stripper
+      - run: git clone https://gitlab.gnome.org/World/Rust/gir-rustdoc/ # checkout action doesn't support random urls
+      - run: python3 ./generator.py --embed-docs --yes ./
+      - run: echo "RELEASE=$(echo '${{ github.event.release.tag_name }}' | grep -Po '(\d+)\.(\d+)')" >> ${GITHUB_ENV}
+      - run: echo "DEST=$(if [ "$GITHUB_EVENT_NAME" == "release" ]; then echo 'stable/${{ env.RELEASE }}'; else echo 'git'; fi)" >> ${GITHUB_ENV}
+      - run: echo "RUSTDOCFLAGS=$(eval python3 ./gir-rustdoc/gir-rustdoc.py --pages-url 'https://gtk-rs.org/gtk4-rs/' --default-branch 'master' pre-docs | xargs)" >> ${GITHUB_ENV}
+        env:
+          RUSTDOCFLAGS: >
+            --extern-html-root-url=wayland_client=https://smithay.github.io/wayland-rs/
+            --extern-html-root-url=x11=https://docs.rs/x11/latest/
+            --extern-html-root-url=khronos_egl=https://docs.rs/khronos-egl/latest/
+            --extern-html-root-url=xkb=https://docs.rs/xkb/latest/
+            --extern-html-root-url=windows=https://microsoft.github.io/windows-docs-rs/doc/
+      - uses: actions-rs/cargo@v1
+        with:
+          command: doc
+          args: >
+            -p gdk4 -p gdk4-sys
+            -p gdk4-wayland -p gdk4-wayland-sys
+            -p gdk4-win32 -p gdk4-win32-sys
+            -p gdk4-x11 -p gdk4-x11-sys
+            -p gsk4 -p gsk4-sys
+            -p gtk4 -p gtk4-sys
+            -p gtk4-macros
+            --features "dox" --no-deps
+
+      - name: Fix broken URLs
+        run: |
+          sed -i 's|section-list-widget.html|https://docs.gtk.org/gtk4/section-list-widget.html|g' target/doc/gtk4/struct.ColumnView.html
+          sed -i 's|section-list-widget.html|https://docs.gtk.org/gtk4/section-list-widget.html|g' target/doc/gtk4/struct.ListBox.html
+          sed -i 's|section-list-widget.html|https://docs.gtk.org/gtk4/section-list-widget.html|g' target/doc/gtk4/struct.ListView.html
+          sed -i 's|section-list-widget.html|https://docs.gtk.org/gtk4/section-list-widget.html|g' target/doc/gtk4/struct.GridView.html
+
+          sed -i 's|input-handling.html|https://docs.gtk.org/gtk4/input-handling.html|g' target/doc/gtk4/struct.EventController.html
+
+          sed -i 's|section-text-widget.html|https://docs.gtk.org/gtk4/section-text-widget.html|g' target/doc/gtk4/struct.TextBuffer.html
+          sed -i 's|section-text-widget.html|https://docs.gtk.org/gtk4/section-text-widget.html|g' target/doc/gtk4/struct.TextIter.html
+          sed -i 's|section-text-widget.html|https://docs.gtk.org/gtk4/section-text-widget.html|g' target/doc/gtk4/struct.TextMark.html
+          sed -i 's|section-text-widget.html|https://docs.gtk.org/gtk4/section-text-widget.html|g' target/doc/gtk4/struct.TextTag.html
+          sed -i 's|section-text-widget.html|https://docs.gtk.org/gtk4/section-text-widget.html|g' target/doc/gtk4/struct.TextTagTable.html
+          sed -i 's|section-text-widget.html|https://docs.gtk.org/gtk4/section-text-widget.html|g' target/doc/gtk4/struct.TextView.html
+
+          sed -i 's|section-tree-widget.html|https://docs.gtk.org/gtk4/section-tree-widget.html|g' target/doc/gtk4/struct.TreeView.html
+      - name: GTK Docs Images
+        if: ${{ (github.event_name == 'push' && github.ref == 'refs/heads/master') || github.event_name == 'release' }}
+        run: |
+          git clone --depth=1 https://gitlab.gnome.org/GNOME/gtk --no-checkout ./gtk-src
+          cd ./gtk-src
+          git sparse-checkout init --cone
+          git sparse-checkout set docs/reference/gtk/images
+          git checkout main
+          mv ./docs/reference/gtk/images/*.png ../target/doc/gtk4
+      - name: Grab gtk-rs LOGO
+        if: ${{ (github.event_name == 'push' && github.ref == 'refs/heads/master') || github.event_name == 'release' }}
+        run: |
+          wget https://raw.githubusercontent.com/gtk-rs/gtk-rs.github.io/master/logo/gtk-rs-16.png -O ./target/doc/favicon-16x16.png
+          wget https://raw.githubusercontent.com/gtk-rs/gtk-rs.github.io/master/logo/gtk-rs-32.png -O ./target/doc/favicon-32x32.png
+          wget https://raw.githubusercontent.com/gtk-rs/gtk-rs.github.io/master/logo/gtk-rs-256.png -O ./target/doc/rust-logo.png
+          wget https://raw.githubusercontent.com/gtk-rs/gtk-rs.github.io/master/logo/gtk-rs.svg -O ./target/doc/rust-logo.svg
+          wget https://raw.githubusercontent.com/gtk-rs/gtk-rs.github.io/master/logo/gtk-rs.svg -O ./target/doc/favicon.svg
+      - name: deploy
+        uses: peaceiris/actions-gh-pages@v3
+        if: ${{ (github.event_name == 'push' && github.ref == 'refs/heads/master') || github.event_name == 'release' }}
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./target/doc/
+          keep_files: false
+          destination_dir: ${{ env.DEST }}/docs
+
+      - run: python3 ./gir-rustdoc/gir-rustdoc.py --project-title 'GTK 4 Rust bindings' html-index --early-section 'Book' '<ul><li><a href="stable/latest/book">Latest stable</a></li></ul>'
+      - name: deploy index page
+        uses: peaceiris/actions-gh-pages@v3
+        if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/master' }}
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./public/
+          keep_files: true
+          #force_orphan: true
+          destination_dir: ./

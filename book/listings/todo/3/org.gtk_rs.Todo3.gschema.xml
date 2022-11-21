@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<schemalist>
+  <schema id="org.gtk_rs.Todo3" path="/org/gtk_rs/Todo3/">
+    <key name="filter" type="s">
+      <choices>
+        <choice value='All'/>
+        <choice value='Open'/>
+        <choice value='Done'/>
+      </choices>
+      <default>'All'</default>
+      <summary>Filter of the tasks</summary>
+    </key>
+  </schema>
+</schemalist>

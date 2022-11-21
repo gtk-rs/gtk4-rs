@@ -1,0 +1,163 @@
+[options]
+girs_directories = ["../gir-files"]
+library = "GdkX11"
+version = "4.0"
+min_cfg_version = "4.0.0"
+target_path = "."
+work_mode = "normal"
+use_gi_docgen = true
+single_version_file = true
+generate_safety_asserts = true
+deprecate_by_min_version = true
+trust_return_value_nullability = true
+
+generate = [
+    "GdkX11.X11AppLaunchContext",
+    "GdkX11.X11DeviceType",
+    "GdkX11.X11Drag",
+    "GdkX11.X11GLContext",
+]
+
+manual = [
+    "Gdk.Cursor",
+    "Gdk.DeviceTool", # docs only
+    "Gdk.DrawContext",
+    "Gdk.InputSource",
+    "Gdk.Rectangle",
+    "Gdk.Seat", # docs only
+    "Gio.AppLaunchContext",
+    "xlib.Atom",
+    "xlib.Cursor",
+    "xlib.Display",
+    "xlib.Screen",
+    "xlib.Window",
+    "xlib.XID",
+]
+
+[[object]]
+name = "Gdk.AppLaunchContext"
+status = "manual"
+final_type = false
+
+[[object]]
+name = "Gdk.Device"
+status = "manual"
+final_type = false
+    [[object.function]]
+    name = "get_vendor_id"
+    ignore = true # docs only, otherwise it gets picked as ExtManual
+    [[object.function]]
+    name = "get_product_id"
+    ignore = true # docs only, otherwise it gets picked as ExtManual
+
+[[object]]
+name = "Gdk.Display"
+status = "manual"
+final_type = false
+    [[object.function]]
+    name = "notify_startup_complete"
+    ignore = true # docs only, otherwise it gets picked as ExtManual
+    [[object.function]]
+    name = "get_product_id"
+    ignore = true # docs only, otherwise it gets picked as ExtManual
+
+[[object]]
+name = "Gdk.Drag"
+status = "manual"
+final_type = false
+
+[[object]]
+name = "Gdk.Event" # docs only
+status = "manual"
+final_type = false
+
+[[object]]
+name = "Gdk.GLContext"
+status = "manual"
+final_type = false
+
+[[object]]
+name = "Gdk.Monitor"
+status = "manual"
+final_type = false
+    [[object.function]]
+    name = "get_scale_factor"
+    ignore = true # docs only, otherwise it gets picked as ExtManual
+
+[[object]]
+name = "Gdk.Surface"
+status = "manual"
+final_type = false
+
+[[object]]
+name = "GdkX11.*"
+status = "generate"
+    [[object.function]]
+    pattern = "(x11_get_xatom_by_name_for_display|x11_get_xatom_name_for_display)"
+    manual = true 
+    [[object.function]]
+    name = "x11_free_compound_text"
+    ignore = true
+    [[object.function]]
+    name = "x11_free_text_list"
+    ignore = true
+    [[object.function]]
+    name = "x11_lookup_xdisplay"
+    ignore = true # TODO: manually implementation needed
+
+[[object]]
+name = "GdkX11.X11DeviceManagerXI2"
+status = "generate"
+generate_builder = true
+
+[[object]]
+name = "GdkX11.X11DeviceXI2"
+status = "generate"
+generate_builder = true
+
+[[object]]
+name = "GdkX11.X11Display"
+status = "generate"
+    [[object.signal]]
+    name = "xevent"
+    manual = true
+    [[object.function]]
+    name = "get_egl_display"
+    manual = true
+    [[object.function]]
+    pattern = "get_x.*"
+    manual = true
+    [[object.function]]
+    name = "text_property_to_text_list"
+    # TODO: requires a manual implementation
+    manual = true
+    [[object.function]]
+    name = "set_program_class"
+    manual = true
+
+[[object]]
+name = "GdkX11.X11Monitor"
+status = "generate"
+    [[object.function]]
+    name = "get_output"
+    manual = true
+
+[[object]]
+name = "GdkX11.X11Screen"
+status = "generate"
+    [[object.function]]
+    name = "get_xscreen"
+    manual = true
+    [[object.function]]
+    name = "get_monitor_output"
+    manual = true
+
+[[object]]
+name = "GdkX11.X11Surface"
+status = "generate"
+    [[object.function]]
+    name = "get_xid"
+    manual = true
+    [[object.function]]
+    name = "lookup_for_display"
+    manual = true

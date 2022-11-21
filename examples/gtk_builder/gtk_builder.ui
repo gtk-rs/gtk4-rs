@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <object class="GtkApplicationWindow" id="window">
+    <property name="title" translatable="yes">Builder Basics</property>
+    <property name="default-width">320</property>
+    <property name="default-height">240</property>
+    <child>
+      <object class="GtkButton" id="button">
+        <property name="label" translatable="yes">Big Useless Button</property>
+      </object>
+    </child>
+  </object>
+  <object class="GtkMessageDialog" id="messagedialog">
+    <property name="transient-for">window</property>
+    <property name="resizable">False</property>
+    <property name="modal">True</property>
+    <property name="buttons">ok</property>
+    <property name="text" translatable="yes">Thank you for trying this example</property>
+    <property name="secondary-text" translatable="yes">You have pressed the button</property>
+  </object>
+</interface>

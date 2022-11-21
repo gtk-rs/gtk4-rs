@@ -1,0 +1,30 @@
+name: github packages
+
+on:
+  # Rebuild the container once every week
+  schedule:
+  - cron: '0 1 * * 1'
+  push:
+    branches:
+      - "master"
+    paths:
+      - "Dockerfile"
+  pull_request:
+    paths:
+      - "Dockerfile"
+  workflow_dispatch:
+
+jobs:
+  docker:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v2
+      - name: Push to GitHub Packages
+        uses: docker/build-push-action@v1
+        with:
+          push: ${{ github.event_name != 'pull_request' }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+          registry: ghcr.io
+          repository: ${{ github.repository }}/gtk4
+          tags: latest

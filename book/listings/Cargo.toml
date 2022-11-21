@@ -1,0 +1,283 @@
+[package]
+name = "gtk4-rs-book-listings"
+version = "0.1.0"
+edition = "2021"
+
+
+[dependencies]
+gtk = { version = "*", package = "gtk4" }
+adw = { version = "0.2.0-alpha.2", package = "libadwaita" }
+once_cell = "1.0"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+anyhow = "1.0"
+xshell = "0.2"
+dirs = "4.0"
+walkdir = "2.3"
+
+[build-dependencies]
+glib-build-tools = "*"
+
+# actions
+[[bin]]
+name = "actions_1"
+path = "actions/1/main.rs"
+
+[[bin]]
+name = "actions_2"
+path = "actions/2/main.rs"
+
+[[bin]]
+name = "actions_3"
+path = "actions/3/main.rs"
+
+[[bin]]
+name = "actions_4"
+path = "actions/4/main.rs"
+
+[[bin]]
+name = "actions_5"
+path = "actions/5/main.rs"
+
+[[bin]]
+name = "actions_6"
+path = "actions/6/main.rs"
+
+[[bin]]
+name = "actions_7"
+path = "actions/7/main.rs"
+
+# css
+[[bin]]
+name = "css_1"
+path = "css/1/main.rs"
+
+[[bin]]
+name = "css_2"
+path = "css/2/main.rs"
+
+[[bin]]
+name = "css_3"
+path = "css/3/main.rs"
+
+[[bin]]
+name = "css_4"
+path = "css/4/main.rs"
+
+[[bin]]
+name = "css_5"
+path = "css/5/main.rs"
+
+[[bin]]
+name = "css_6"
+path = "css/6/main.rs"
+
+[[bin]]
+name = "css_7"
+path = "css/7/main.rs"
+
+[[bin]]
+name = "css_8"
+path = "css/8/main.rs"
+
+[[bin]]
+name = "css_9"
+path = "css/9/main.rs"
+
+
+# g_object_memory_management
+[[bin]]
+name = "g_object_memory_management_1"
+path = "g_object_memory_management/1/main.rs"
+
+[[bin]]
+name = "g_object_memory_management_2"
+path = "g_object_memory_management/2/main.rs"
+
+[[bin]]
+name = "g_object_memory_management_3"
+path = "g_object_memory_management/3/main.rs"
+
+[[bin]]
+name = "g_object_memory_management_4"
+path = "g_object_memory_management/4/main.rs"
+
+# g_object_properties
+[[bin]]
+name = "g_object_properties_1"
+path = "g_object_properties/1/main.rs"
+
+[[bin]]
+name = "g_object_properties_2"
+path = "g_object_properties/2/main.rs"
+
+[[bin]]
+name = "g_object_properties_3"
+path = "g_object_properties/3/main.rs"
+
+[[bin]]
+name = "g_object_properties_4"
+path = "g_object_properties/4/main.rs"
+
+# g_object_signals
+[[bin]]
+name = "g_object_signals_1"
+path = "g_object_signals/1/main.rs"
+
+[[bin]]
+name = "g_object_signals_2"
+path = "g_object_signals/2/main.rs"
+
+# g_object_subclassing
+[[bin]]
+name = "g_object_subclassing_1"
+path = "g_object_subclassing/1/main.rs"
+
+[[bin]]
+name = "g_object_subclassing_2"
+path = "g_object_subclassing/2/main.rs"
+
+# g_object_values
+[[bin]]
+name = "g_object_values_1"
+path = "g_object_values/1/main.rs"
+
+[[bin]]
+name = "g_object_values_2"
+path = "g_object_values/2/main.rs"
+
+# hello_world
+[[bin]]
+name = "hello_world_1"
+path = "hello_world/1/main.rs"
+
+[[bin]]
+name = "hello_world_2"
+path = "hello_world/2/main.rs"
+
+[[bin]]
+name = "hello_world_3"
+path = "hello_world/3/main.rs"
+
+# composite_templates
+[[bin]]
+name = "composite_templates_1"
+path = "composite_templates/1/main.rs"
+
+[[bin]]
+name = "composite_templates_2"
+path = "composite_templates/2/main.rs"
+
+[[bin]]
+name = "composite_templates_3"
+path = "composite_templates/3/main.rs"
+
+[[bin]]
+name = "composite_templates_4"
+path = "composite_templates/4/main.rs"
+
+[[bin]]
+name = "composite_templates_5"
+path = "composite_templates/5/main.rs"
+
+[[bin]]
+name = "composite_templates_6"
+path = "composite_templates/6/main.rs"
+
+# main_event_loop
+[[bin]]
+name = "main_event_loop_1"
+path = "main_event_loop/1/main.rs"
+
+[[bin]]
+name = "main_event_loop_2"
+path = "main_event_loop/2/main.rs"
+
+[[bin]]
+name = "main_event_loop_3"
+path = "main_event_loop/3/main.rs"
+
+[[bin]]
+name = "main_event_loop_4"
+path = "main_event_loop/4/main.rs"
+
+[[bin]]
+name = "main_event_loop_5"
+path = "main_event_loop/5/main.rs"
+
+# saving_window_state
+[[bin]]
+name = "saving_window_state_1"
+path = "saving_window_state/1/main.rs"
+
+# list_widgets
+[[bin]]
+name = "list_widgets_1"
+path = "list_widgets/1/main.rs"
+
+[[bin]]
+name = "list_widgets_2"
+path = "list_widgets/2/main.rs"
+
+[[bin]]
+name = "list_widgets_3"
+path = "list_widgets/3/main.rs"
+
+[[bin]]
+name = "list_widgets_4"
+path = "list_widgets/4/main.rs"
+
+[[bin]]
+name = "list_widgets_5"
+path = "list_widgets/5/main.rs"
+
+[[bin]]
+name = "list_widgets_6"
+path = "list_widgets/6/main.rs"
+
+# settings
+[[bin]]
+name = "settings_1"
+path = "settings/1/main.rs"
+
+[[bin]]
+name = "settings_2"
+path = "settings/2/main.rs"
+
+# todo
+[[bin]]
+name = "todo_1"
+path = "todo/1/main.rs"
+
+[[bin]]
+name = "todo_2"
+path = "todo/2/main.rs"
+
+[[bin]]
+name = "todo_3"
+path = "todo/3/main.rs"
+
+[[bin]]
+name = "todo_4"
+path = "todo/4/main.rs"
+
+[[bin]]
+name = "todo_5"
+path = "todo/5/main.rs"
+
+[[bin]]
+name = "todo_6"
+path = "todo/6/main.rs"
+
+[[bin]]
+name = "todo_7"
+path = "todo/7/main.rs"
+
+[[bin]]
+name = "todo_8"
+path = "todo/8/main.rs"
+
+# xtask
+[[bin]]
+name = "xtask"
+path = "xtask/main.rs"

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <template class="GifPaintableWindow" parent="GtkApplicationWindow">
+    <property name="default-width">600</property>
+    <property name="default-height">400</property>
+    <property name="title">GIF Paintable</property>
+    <child type="titlebar">
+      <object class="GtkHeaderBar">
+        <property name="show-title-buttons">True</property>
+        <child type="start">
+          <object class="GtkButton">
+              <property name="action-name">win.open</property>
+              <property name="label">Open</property>
+          </object>
+        </child>
+      </object>
+    </child>
+    <child>
+      <object class="GtkPicture" id="picture">
+        <property name="halign">center</property>
+        <property name="valign">center</property>
+      </object>
+    </child>
+  </template>
+</interface>

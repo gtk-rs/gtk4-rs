@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <template class="ApplicationRow" parent="GtkBox">
+    <property name="orientation">horizontal</property>
+    <property name="spacing">12</property>
+    <child>
+      <object class="GtkImage" id="image">
+        <property name="margin-top">6</property>
+        <property name="margin-bottom">6</property>
+        <property name="margin-start">6</property>
+        <property name="margin-end">6</property>
+        <property name="pixel-size">48</property>
+      </object>
+    </child>
+    <child>
+      <object class="GtkBox">
+        <property name="orientation">vertical</property>
+        <property name="margin-top">6</property>
+        <property name="margin-bottom">6</property>
+        <child>
+          <object class="GtkLabel" id="name">
+            <property name="halign">start</property>
+            <style>
+              <class name="title-4" />
+            </style>
+          </object>
+        </child>
+        <child>
+          <object class="GtkLabel" id="description">
+            <property name="halign">start</property>
+            <property name="wrap">True</property>
+            <style>
+              <class name="body" />
+            </style>
+          </object>
+        </child>
+      </object>
+    </child>
+  </template>
+</interface>

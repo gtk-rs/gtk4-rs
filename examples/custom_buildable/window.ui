@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <object class="GtkApplicationWindow" id="window">
+    <property name="default-width">500</property>
+    <property name="default-height">500</property>
+    <property name="title">Custom Buildable</property>
+    <child>
+      <object class="GtkBox">
+        <property name="valign">center</property>
+        <property name="halign">center</property>
+        <child>
+          <object class="CustomBuildable">
+            <child type="prefix">
+              <object class="GtkButton">
+                <property name="label" translatable="yes">Prefix Button</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkButton">
+                <property name="label" translatable="yes">Suffix Button</property>
+              </object>
+            </child>
+          </object>
+        </child>
+      </object>
+    </child>
+  </object>
+</interface>
