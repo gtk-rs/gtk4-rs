@@ -4,5 +4,5 @@
 //! Builder pattern types.
 
 pub use crate::auto::builders::*;
-pub use crate::ShaderArgsBuilder;
 pub use crate::color_stop::ColorStopBuilder;
+pub use crate::ShaderArgsBuilder;
