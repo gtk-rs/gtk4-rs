@@ -61,4 +61,11 @@ git clone https://gitlab.gnome.org/GNOME/libadwaita.git --depth 1
 cd libadwaita
 meson setup builddir -Dprefix=C:/gnome -Dintrospection=disabled -Dvapi=false
 meson install -C builddir
+
+# A workaround for https://gitlab.gnome.org/GNOME/gtk/-/issues/5303, which may
+# not be necessary in the future.
+#
+
+xcopy /s C:\gnome\share\icons\hicolor\scalable\apps C:\gnome\share\icons\hicolor\scalable\actions
+gtk4-update-icon-cache.exe -t -f C:\gnome\share\icons\hicolor
 ```

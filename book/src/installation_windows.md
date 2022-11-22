@@ -109,8 +109,6 @@ nmake /f generate-msvc.mak generate-nmake-files PYTHON=<output from last command
 xcopy /s C:\gnome\include\cairo C:\gnome\include
 nmake /f Makefile.vc CFG=release install PREFIX=C:\gnome
 cd /
-
-gtk-update-icon-cache.exe -t -f C:\gnome\share\icons\hicolor
 ```
 
 
