@@ -83,6 +83,7 @@ impl ToValue for ApplicationInhibitFlags {
 impl From<ApplicationInhibitFlags> for glib::Value {
     #[inline]
     fn from(v: ApplicationInhibitFlags) -> Self {
+        skip_assert_initialized!();
         ToValue::to_value(&v)
     }
 }
@@ -154,6 +155,7 @@ impl ToValue for BuilderClosureFlags {
 impl From<BuilderClosureFlags> for glib::Value {
     #[inline]
     fn from(v: BuilderClosureFlags) -> Self {
+        skip_assert_initialized!();
         ToValue::to_value(&v)
     }
 }
@@ -237,6 +239,7 @@ impl ToValue for CellRendererState {
 impl From<CellRendererState> for glib::Value {
     #[inline]
     fn from(v: CellRendererState) -> Self {
+        skip_assert_initialized!();
         ToValue::to_value(&v)
     }
 }
@@ -348,6 +351,7 @@ impl ToValue for DebugFlags {
 impl From<DebugFlags> for glib::Value {
     #[inline]
     fn from(v: DebugFlags) -> Self {
+        skip_assert_initialized!();
         ToValue::to_value(&v)
     }
 }
@@ -423,6 +427,7 @@ impl ToValue for DialogFlags {
 impl From<DialogFlags> for glib::Value {
     #[inline]
     fn from(v: DialogFlags) -> Self {
+        skip_assert_initialized!();
         ToValue::to_value(&v)
     }
 }
@@ -504,6 +509,7 @@ impl ToValue for EventControllerScrollFlags {
 impl From<EventControllerScrollFlags> for glib::Value {
     #[inline]
     fn from(v: EventControllerScrollFlags) -> Self {
+        skip_assert_initialized!();
         ToValue::to_value(&v)
     }
 }
@@ -583,6 +589,7 @@ impl ToValue for FontChooserLevel {
 impl From<FontChooserLevel> for glib::Value {
     #[inline]
     fn from(v: FontChooserLevel) -> Self {
+        skip_assert_initialized!();
         ToValue::to_value(&v)
     }
 }
@@ -658,6 +665,7 @@ impl ToValue for IconLookupFlags {
 impl From<IconLookupFlags> for glib::Value {
     #[inline]
     fn from(v: IconLookupFlags) -> Self {
+        skip_assert_initialized!();
         ToValue::to_value(&v)
     }
 }
@@ -753,6 +761,7 @@ impl ToValue for InputHints {
 impl From<InputHints> for glib::Value {
     #[inline]
     fn from(v: InputHints) -> Self {
+        skip_assert_initialized!();
         ToValue::to_value(&v)
     }
 }
@@ -828,6 +837,7 @@ impl ToValue for PickFlags {
 impl From<PickFlags> for glib::Value {
     #[inline]
     fn from(v: PickFlags) -> Self {
+        skip_assert_initialized!();
         ToValue::to_value(&v)
     }
 }
@@ -899,6 +909,7 @@ impl ToValue for PopoverMenuFlags {
 impl From<PopoverMenuFlags> for glib::Value {
     #[inline]
     fn from(v: PopoverMenuFlags) -> Self {
+        skip_assert_initialized!();
         ToValue::to_value(&v)
     }
 }
@@ -998,6 +1009,7 @@ impl ToValue for PrintCapabilities {
 impl From<PrintCapabilities> for glib::Value {
     #[inline]
     fn from(v: PrintCapabilities) -> Self {
+        skip_assert_initialized!();
         ToValue::to_value(&v)
     }
 }
@@ -1069,6 +1081,7 @@ impl ToValue for ShortcutActionFlags {
 impl From<ShortcutActionFlags> for glib::Value {
     #[inline]
     fn from(v: ShortcutActionFlags) -> Self {
+        skip_assert_initialized!();
         ToValue::to_value(&v)
     }
 }
@@ -1170,6 +1183,7 @@ impl ToValue for StateFlags {
 impl From<StateFlags> for glib::Value {
     #[inline]
     fn from(v: StateFlags) -> Self {
+        skip_assert_initialized!();
         ToValue::to_value(&v)
     }
 }
@@ -1247,6 +1261,7 @@ impl ToValue for StyleContextPrintFlags {
 impl From<StyleContextPrintFlags> for glib::Value {
     #[inline]
     fn from(v: StyleContextPrintFlags) -> Self {
+        skip_assert_initialized!();
         ToValue::to_value(&v)
     }
 }
@@ -1322,6 +1337,7 @@ impl ToValue for TextSearchFlags {
 impl From<TextSearchFlags> for glib::Value {
     #[inline]
     fn from(v: TextSearchFlags) -> Self {
+        skip_assert_initialized!();
         ToValue::to_value(&v)
     }
 }
@@ -1395,6 +1411,7 @@ impl ToValue for TreeModelFlags {
 impl From<TreeModelFlags> for glib::Value {
     #[inline]
     fn from(v: TreeModelFlags) -> Self {
+        skip_assert_initialized!();
         ToValue::to_value(&v)
     }
 }
