@@ -282,6 +282,13 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         },
     ),
     (
+        "GtkAlertDialogClass",
+        Layout {
+            size: size_of::<GtkAlertDialogClass>(),
+            alignment: align_of::<GtkAlertDialogClass>(),
+        },
+    ),
+    (
         "GtkAlign",
         Layout {
             size: size_of::<GtkAlign>(),
@@ -611,6 +618,27 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         },
     ),
     (
+        "GtkColorDialogButtonClass",
+        Layout {
+            size: size_of::<GtkColorDialogButtonClass>(),
+            alignment: align_of::<GtkColorDialogButtonClass>(),
+        },
+    ),
+    (
+        "GtkColorDialogClass",
+        Layout {
+            size: size_of::<GtkColorDialogClass>(),
+            alignment: align_of::<GtkColorDialogClass>(),
+        },
+    ),
+    (
+        "GtkColumnViewSorterClass",
+        Layout {
+            size: size_of::<GtkColumnViewSorterClass>(),
+            alignment: align_of::<GtkColumnViewSorterClass>(),
+        },
+    ),
+    (
         "GtkComboBox",
         Layout {
             size: size_of::<GtkComboBox>(),
@@ -772,6 +800,13 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         },
     ),
     (
+        "GtkDialogError",
+        Layout {
+            size: size_of::<GtkDialogError>(),
+            alignment: align_of::<GtkDialogError>(),
+        },
+    ),
+    (
         "GtkDialogFlags",
         Layout {
             size: size_of::<GtkDialogFlags>(),
@@ -912,6 +947,13 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         },
     ),
     (
+        "GtkFileDialogClass",
+        Layout {
+            size: size_of::<GtkFileDialogClass>(),
+            alignment: align_of::<GtkFileDialogClass>(),
+        },
+    ),
+    (
         "GtkFilter",
         Layout {
             size: size_of::<GtkFilter>(),
@@ -1007,6 +1049,27 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         Layout {
             size: size_of::<GtkFontChooserLevel>(),
             alignment: align_of::<GtkFontChooserLevel>(),
+        },
+    ),
+    (
+        "GtkFontDialogButtonClass",
+        Layout {
+            size: size_of::<GtkFontDialogButtonClass>(),
+            alignment: align_of::<GtkFontDialogButtonClass>(),
+        },
+    ),
+    (
+        "GtkFontDialogClass",
+        Layout {
+            size: size_of::<GtkFontDialogClass>(),
+            alignment: align_of::<GtkFontDialogClass>(),
+        },
+    ),
+    (
+        "GtkFontLevel",
+        Layout {
+            size: size_of::<GtkFontLevel>(),
+            alignment: align_of::<GtkFontLevel>(),
         },
     ),
     (
@@ -2665,6 +2728,9 @@ const RUST_CONSTANTS: &[(&str, &str)] = &[
     ("(gint) GTK_DELETE_WORDS", "2"),
     ("(gint) GTK_DELETE_WORD_ENDS", "1"),
     ("(guint) GTK_DIALOG_DESTROY_WITH_PARENT", "2"),
+    ("(gint) GTK_DIALOG_ERROR_ABORTED", "1"),
+    ("(gint) GTK_DIALOG_ERROR_CANCELLED", "2"),
+    ("(gint) GTK_DIALOG_ERROR_FAILED", "0"),
     ("(guint) GTK_DIALOG_MODAL", "1"),
     ("(guint) GTK_DIALOG_USE_HEADER_BAR", "4"),
     ("(gint) GTK_DIR_DOWN", "3"),
@@ -2711,6 +2777,10 @@ const RUST_CONSTANTS: &[(&str, &str)] = &[
     ("(guint) GTK_FONT_CHOOSER_LEVEL_SIZE", "2"),
     ("(guint) GTK_FONT_CHOOSER_LEVEL_STYLE", "1"),
     ("(guint) GTK_FONT_CHOOSER_LEVEL_VARIATIONS", "4"),
+    ("(gint) GTK_FONT_LEVEL_FACE", "1"),
+    ("(gint) GTK_FONT_LEVEL_FAMILY", "0"),
+    ("(gint) GTK_FONT_LEVEL_FEATURES", "3"),
+    ("(gint) GTK_FONT_LEVEL_FONT", "2"),
     ("(guint) GTK_ICON_LOOKUP_FORCE_REGULAR", "1"),
     ("(guint) GTK_ICON_LOOKUP_FORCE_SYMBOLIC", "2"),
     ("(guint) GTK_ICON_LOOKUP_PRELOAD", "4"),

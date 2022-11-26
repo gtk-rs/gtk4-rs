@@ -39,6 +39,7 @@ glib::wrapper! {
 }
 
 impl ColorChooserDialog {
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_color_chooser_dialog_new")]
     pub fn new(title: Option<&str>, parent: Option<&impl IsA<Window>>) -> ColorChooserDialog {
         assert_initialized_main_thread!();
@@ -165,7 +166,9 @@ pub struct ColorChooserDialogBuilder {
     visible: Option<bool>,
     width_request: Option<i32>,
     accessible_role: Option<AccessibleRole>,
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     rgba: Option<gdk::RGBA>,
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     use_alpha: Option<bool>,
 }
 
@@ -636,11 +639,13 @@ impl ColorChooserDialogBuilder {
         self
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     pub fn rgba(mut self, rgba: &gdk::RGBA) -> Self {
         self.rgba = Some(rgba.clone());
         self
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     pub fn use_alpha(mut self, use_alpha: bool) -> Self {
         self.use_alpha = Some(use_alpha);
         self

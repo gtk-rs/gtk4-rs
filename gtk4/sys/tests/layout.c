@@ -19,6 +19,7 @@ int main() {
     printf("%s;%zu;%zu\n", "GtkActionableInterface", sizeof(GtkActionableInterface), alignof(GtkActionableInterface));
     printf("%s;%zu;%zu\n", "GtkAdjustment", sizeof(GtkAdjustment), alignof(GtkAdjustment));
     printf("%s;%zu;%zu\n", "GtkAdjustmentClass", sizeof(GtkAdjustmentClass), alignof(GtkAdjustmentClass));
+    printf("%s;%zu;%zu\n", "GtkAlertDialogClass", sizeof(GtkAlertDialogClass), alignof(GtkAlertDialogClass));
     printf("%s;%zu;%zu\n", "GtkAlign", sizeof(GtkAlign), alignof(GtkAlign));
     printf("%s;%zu;%zu\n", "GtkAllocation", sizeof(GtkAllocation), alignof(GtkAllocation));
     printf("%s;%zu;%zu\n", "GtkApplication", sizeof(GtkApplication), alignof(GtkApplication));
@@ -66,6 +67,9 @@ int main() {
     printf("%s;%zu;%zu\n", "GtkCheckButtonClass", sizeof(GtkCheckButtonClass), alignof(GtkCheckButtonClass));
     printf("%s;%zu;%zu\n", "GtkCollation", sizeof(GtkCollation), alignof(GtkCollation));
     printf("%s;%zu;%zu\n", "GtkColorChooserInterface", sizeof(GtkColorChooserInterface), alignof(GtkColorChooserInterface));
+    printf("%s;%zu;%zu\n", "GtkColorDialogButtonClass", sizeof(GtkColorDialogButtonClass), alignof(GtkColorDialogButtonClass));
+    printf("%s;%zu;%zu\n", "GtkColorDialogClass", sizeof(GtkColorDialogClass), alignof(GtkColorDialogClass));
+    printf("%s;%zu;%zu\n", "GtkColumnViewSorterClass", sizeof(GtkColumnViewSorterClass), alignof(GtkColumnViewSorterClass));
     printf("%s;%zu;%zu\n", "GtkComboBox", sizeof(GtkComboBox), alignof(GtkComboBox));
     printf("%s;%zu;%zu\n", "GtkComboBoxClass", sizeof(GtkComboBoxClass), alignof(GtkComboBoxClass));
     printf("%s;%zu;%zu\n", "GtkConstraintAttribute", sizeof(GtkConstraintAttribute), alignof(GtkConstraintAttribute));
@@ -89,6 +93,7 @@ int main() {
     printf("%s;%zu;%zu\n", "GtkDeleteType", sizeof(GtkDeleteType), alignof(GtkDeleteType));
     printf("%s;%zu;%zu\n", "GtkDialog", sizeof(GtkDialog), alignof(GtkDialog));
     printf("%s;%zu;%zu\n", "GtkDialogClass", sizeof(GtkDialogClass), alignof(GtkDialogClass));
+    printf("%s;%zu;%zu\n", "GtkDialogError", sizeof(GtkDialogError), alignof(GtkDialogError));
     printf("%s;%zu;%zu\n", "GtkDialogFlags", sizeof(GtkDialogFlags), alignof(GtkDialogFlags));
     printf("%s;%zu;%zu\n", "GtkDirectionType", sizeof(GtkDirectionType), alignof(GtkDirectionType));
     printf("%s;%zu;%zu\n", "GtkDirectoryListClass", sizeof(GtkDirectoryListClass), alignof(GtkDirectoryListClass));
@@ -109,6 +114,7 @@ int main() {
     printf("%s;%zu;%zu\n", "GtkFileChooserAction", sizeof(GtkFileChooserAction), alignof(GtkFileChooserAction));
     printf("%s;%zu;%zu\n", "GtkFileChooserError", sizeof(GtkFileChooserError), alignof(GtkFileChooserError));
     printf("%s;%zu;%zu\n", "GtkFileChooserNativeClass", sizeof(GtkFileChooserNativeClass), alignof(GtkFileChooserNativeClass));
+    printf("%s;%zu;%zu\n", "GtkFileDialogClass", sizeof(GtkFileDialogClass), alignof(GtkFileDialogClass));
     printf("%s;%zu;%zu\n", "GtkFilter", sizeof(GtkFilter), alignof(GtkFilter));
     printf("%s;%zu;%zu\n", "GtkFilterChange", sizeof(GtkFilterChange), alignof(GtkFilterChange));
     printf("%s;%zu;%zu\n", "GtkFilterClass", sizeof(GtkFilterClass), alignof(GtkFilterClass));
@@ -123,6 +129,9 @@ int main() {
     printf("%s;%zu;%zu\n", "GtkFlowBoxChildClass", sizeof(GtkFlowBoxChildClass), alignof(GtkFlowBoxChildClass));
     printf("%s;%zu;%zu\n", "GtkFontChooserIface", sizeof(GtkFontChooserIface), alignof(GtkFontChooserIface));
     printf("%s;%zu;%zu\n", "GtkFontChooserLevel", sizeof(GtkFontChooserLevel), alignof(GtkFontChooserLevel));
+    printf("%s;%zu;%zu\n", "GtkFontDialogButtonClass", sizeof(GtkFontDialogButtonClass), alignof(GtkFontDialogButtonClass));
+    printf("%s;%zu;%zu\n", "GtkFontDialogClass", sizeof(GtkFontDialogClass), alignof(GtkFontDialogClass));
+    printf("%s;%zu;%zu\n", "GtkFontLevel", sizeof(GtkFontLevel), alignof(GtkFontLevel));
     printf("%s;%zu;%zu\n", "GtkFrame", sizeof(GtkFrame), alignof(GtkFrame));
     printf("%s;%zu;%zu\n", "GtkFrameClass", sizeof(GtkFrameClass), alignof(GtkFrameClass));
     printf("%s;%zu;%zu\n", "GtkGLArea", sizeof(GtkGLArea), alignof(GtkGLArea));

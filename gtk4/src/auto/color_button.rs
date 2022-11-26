@@ -36,6 +36,7 @@ glib::wrapper! {
 }
 
 impl ColorButton {
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_color_button_new")]
     pub fn new() -> ColorButton {
         assert_initialized_main_thread!();
@@ -60,18 +61,21 @@ impl ColorButton {
         ColorButtonBuilder::default()
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_color_button_get_modal")]
     #[doc(alias = "get_modal")]
     pub fn is_modal(&self) -> bool {
         unsafe { from_glib(ffi::gtk_color_button_get_modal(self.to_glib_none().0)) }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_color_button_get_title")]
     #[doc(alias = "get_title")]
     pub fn title(&self) -> glib::GString {
         unsafe { from_glib_none(ffi::gtk_color_button_get_title(self.to_glib_none().0)) }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_color_button_set_modal")]
     pub fn set_modal(&self, modal: bool) {
         unsafe {
@@ -79,6 +83,7 @@ impl ColorButton {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_color_button_set_title")]
     pub fn set_title(&self, title: &str) {
         unsafe {
@@ -264,7 +269,9 @@ pub struct ColorButtonBuilder {
     visible: Option<bool>,
     width_request: Option<i32>,
     accessible_role: Option<AccessibleRole>,
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     rgba: Option<gdk::RGBA>,
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     use_alpha: Option<bool>,
 }
 
@@ -553,11 +560,13 @@ impl ColorButtonBuilder {
         self
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     pub fn rgba(mut self, rgba: &gdk::RGBA) -> Self {
         self.rgba = Some(rgba.clone());
         self
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     pub fn use_alpha(mut self, use_alpha: bool) -> Self {
         self.use_alpha = Some(use_alpha);
         self

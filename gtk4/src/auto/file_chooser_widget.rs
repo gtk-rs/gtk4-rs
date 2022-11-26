@@ -36,6 +36,7 @@ glib::wrapper! {
 }
 
 impl FileChooserWidget {
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_file_chooser_widget_new")]
     pub fn new(action: FileChooserAction) -> FileChooserWidget {
         assert_initialized_main_thread!();
@@ -61,6 +62,13 @@ impl FileChooserWidget {
     #[doc(alias = "search-mode")]
     pub fn set_search_mode(&self, search_mode: bool) {
         glib::ObjectExt::set_property(self, "search-mode", &search_mode)
+    }
+
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    #[doc(alias = "show-time")]
+    pub fn shows_time(&self) -> bool {
+        glib::ObjectExt::property(self, "show-time")
     }
 
     pub fn subtitle(&self) -> Option<glib::GString> {
@@ -413,6 +421,31 @@ impl FileChooserWidget {
         }
     }
 
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    #[doc(alias = "show-time")]
+    pub fn connect_show_time_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_show_time_trampoline<F: Fn(&FileChooserWidget) + 'static>(
+            this: *mut ffi::GtkFileChooserWidget,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::show-time\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_show_time_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
     #[doc(alias = "subtitle")]
     pub fn connect_subtitle_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_subtitle_trampoline<F: Fn(&FileChooserWidget) + 'static>(
@@ -481,9 +514,13 @@ pub struct FileChooserWidgetBuilder {
     visible: Option<bool>,
     width_request: Option<i32>,
     accessible_role: Option<AccessibleRole>,
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     action: Option<FileChooserAction>,
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     create_folders: Option<bool>,
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     filter: Option<FileFilter>,
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     select_multiple: Option<bool>,
 }
 
@@ -762,21 +799,25 @@ impl FileChooserWidgetBuilder {
         self
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     pub fn action(mut self, action: FileChooserAction) -> Self {
         self.action = Some(action);
         self
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     pub fn create_folders(mut self, create_folders: bool) -> Self {
         self.create_folders = Some(create_folders);
         self
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     pub fn filter(mut self, filter: &FileFilter) -> Self {
         self.filter = Some(filter.clone());
         self
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     pub fn select_multiple(mut self, select_multiple: bool) -> Self {
         self.select_multiple = Some(select_multiple);
         self
