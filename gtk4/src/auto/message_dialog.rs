@@ -48,6 +48,7 @@ impl MessageDialog {
         MessageDialogBuilder::default()
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_message_dialog_get_message_area")]
     #[doc(alias = "get_message_area")]
     pub fn message_area(&self) -> Widget {
@@ -58,6 +59,7 @@ impl MessageDialog {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_message_dialog_set_markup")]
     pub fn set_markup(&self, str: &str) {
         unsafe {

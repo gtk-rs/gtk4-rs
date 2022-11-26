@@ -36,16 +36,24 @@ pub use self::alternative_trigger::AlternativeTrigger;
 mod any_filter;
 pub use self::any_filter::AnyFilter;
 
+#[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 mod app_chooser;
+#[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 pub use self::app_chooser::AppChooser;
 
+#[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 mod app_chooser_button;
+#[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 pub use self::app_chooser_button::AppChooserButton;
 
+#[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 mod app_chooser_dialog;
+#[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 pub use self::app_chooser_dialog::AppChooserDialog;
 
+#[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 mod app_chooser_widget;
+#[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 pub use self::app_chooser_widget::AppChooserWidget;
 
 mod application;
@@ -99,49 +107,77 @@ pub use self::calendar::Calendar;
 mod callback_action;
 pub use self::callback_action::CallbackAction;
 
+#[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 mod cell_area;
+#[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 pub use self::cell_area::CellArea;
 
+#[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 mod cell_area_box;
+#[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 pub use self::cell_area_box::CellAreaBox;
 
 mod cell_area_context;
 pub use self::cell_area_context::CellAreaContext;
 
+#[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 mod cell_editable;
+#[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 pub use self::cell_editable::CellEditable;
 
+#[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 mod cell_layout;
+#[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 pub use self::cell_layout::CellLayout;
 
+#[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 mod cell_renderer;
+#[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 pub use self::cell_renderer::CellRenderer;
 
+#[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 mod cell_renderer_accel;
+#[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 pub use self::cell_renderer_accel::CellRendererAccel;
 
+#[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 mod cell_renderer_combo;
+#[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 pub use self::cell_renderer_combo::CellRendererCombo;
 
+#[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 mod cell_renderer_pixbuf;
+#[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 pub use self::cell_renderer_pixbuf::CellRendererPixbuf;
 
+#[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 mod cell_renderer_progress;
+#[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 pub use self::cell_renderer_progress::CellRendererProgress;
 
+#[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 mod cell_renderer_spin;
+#[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 pub use self::cell_renderer_spin::CellRendererSpin;
 
+#[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 mod cell_renderer_spinner;
+#[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 pub use self::cell_renderer_spinner::CellRendererSpinner;
 
+#[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 mod cell_renderer_text;
+#[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 pub use self::cell_renderer_text::CellRendererText;
 
+#[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 mod cell_renderer_toggle;
+#[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 pub use self::cell_renderer_toggle::CellRendererToggle;
 
+#[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 mod cell_view;
+#[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 pub use self::cell_view::CellView;
 
 mod center_box;
@@ -156,16 +192,24 @@ pub use self::check_button::CheckButton;
 mod closure_expression;
 pub use self::closure_expression::ClosureExpression;
 
+#[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 mod color_button;
+#[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 pub use self::color_button::ColorButton;
 
+#[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 mod color_chooser;
+#[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 pub use self::color_chooser::ColorChooser;
 
+#[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 mod color_chooser_dialog;
+#[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 pub use self::color_chooser_dialog::ColorChooserDialog;
 
+#[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 mod color_chooser_widget;
+#[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 pub use self::color_chooser_widget::ColorChooserWidget;
 
 mod column_view;
@@ -174,10 +218,14 @@ pub use self::column_view::ColumnView;
 mod column_view_column;
 pub use self::column_view_column::ColumnViewColumn;
 
+#[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 mod combo_box;
+#[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 pub use self::combo_box::ComboBox;
 
+#[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 mod combo_box_text;
+#[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 pub use self::combo_box_text::ComboBoxText;
 
 mod constant_expression;
@@ -249,7 +297,9 @@ pub use self::entry::Entry;
 mod entry_buffer;
 pub use self::entry_buffer::EntryBuffer;
 
+#[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 mod entry_completion;
+#[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 pub use self::entry_completion::EntryCompletion;
 
 mod event_controller;
@@ -279,16 +329,24 @@ pub use self::expander::Expander;
 mod expression;
 pub use self::expression::Expression;
 
+#[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 mod file_chooser;
+#[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 pub use self::file_chooser::FileChooser;
 
+#[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 mod file_chooser_dialog;
+#[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 pub use self::file_chooser_dialog::FileChooserDialog;
 
+#[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 mod file_chooser_native;
+#[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 pub use self::file_chooser_native::FileChooserNative;
 
+#[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 mod file_chooser_widget;
+#[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 pub use self::file_chooser_widget::FileChooserWidget;
 
 mod file_filter;
@@ -318,16 +376,24 @@ pub use self::flow_box::FlowBox;
 mod flow_box_child;
 pub use self::flow_box_child::FlowBoxChild;
 
+#[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 mod font_button;
+#[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 pub use self::font_button::FontButton;
 
+#[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 mod font_chooser;
+#[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 pub use self::font_chooser::FontChooser;
 
+#[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 mod font_chooser_dialog;
+#[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 pub use self::font_chooser_dialog::FontChooserDialog;
 
+#[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 mod font_chooser_widget;
+#[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 pub use self::font_chooser_widget::FontChooserWidget;
 
 mod frame;
@@ -396,7 +462,9 @@ pub use self::icon_paintable::IconPaintable;
 mod icon_theme;
 pub use self::icon_theme::IconTheme;
 
+#[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 mod icon_view;
+#[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 pub use self::icon_view::IconView;
 
 mod image;
@@ -442,7 +510,9 @@ pub use self::list_item::ListItem;
 mod list_item_factory;
 pub use self::list_item_factory::ListItemFactory;
 
+#[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 mod list_store;
+#[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 pub use self::list_store::ListStore;
 
 mod list_view;
@@ -466,7 +536,9 @@ pub use self::media_stream::MediaStream;
 mod menu_button;
 pub use self::menu_button::MenuButton;
 
+#[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 mod message_dialog;
+#[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 pub use self::message_dialog::MessageDialog;
 
 mod mnemonic_action;
@@ -738,7 +810,9 @@ pub use self::string_object::StringObject;
 mod string_sorter;
 pub use self::string_sorter::StringSorter;
 
+#[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 mod style_context;
+#[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 pub use self::style_context::StyleContext;
 
 mod style_provider;
@@ -781,10 +855,14 @@ pub use self::toggle_button::ToggleButton;
 mod tooltip;
 pub use self::tooltip::Tooltip;
 
+#[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 mod tree_drag_dest;
+#[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 pub use self::tree_drag_dest::TreeDragDest;
 
+#[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 mod tree_drag_source;
+#[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 pub use self::tree_drag_source::TreeDragSource;
 
 mod tree_expander;
@@ -799,28 +877,44 @@ pub use self::tree_list_row::TreeListRow;
 mod tree_list_row_sorter;
 pub use self::tree_list_row_sorter::TreeListRowSorter;
 
+#[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 mod tree_model;
+#[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 pub use self::tree_model::TreeModel;
 
+#[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 mod tree_model_filter;
+#[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 pub use self::tree_model_filter::TreeModelFilter;
 
+#[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 mod tree_model_sort;
+#[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 pub use self::tree_model_sort::TreeModelSort;
 
+#[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 mod tree_selection;
+#[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 pub use self::tree_selection::TreeSelection;
 
+#[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 mod tree_sortable;
+#[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 pub use self::tree_sortable::TreeSortable;
 
+#[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 mod tree_store;
+#[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 pub use self::tree_store::TreeStore;
 
+#[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 mod tree_view;
+#[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 pub use self::tree_view::TreeView;
 
+#[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 mod tree_view_column;
+#[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 pub use self::tree_view_column::TreeViewColumn;
 
 mod video;
@@ -1066,6 +1160,7 @@ pub mod traits {
     pub use super::accessible_range::AccessibleRangeExt;
     pub use super::actionable::ActionableExt;
     pub use super::adjustment::AdjustmentExt;
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     pub use super::app_chooser::AppChooserExt;
     pub use super::application::GtkApplicationExt;
     pub use super::application_window::ApplicationWindowExt;
@@ -1073,14 +1168,21 @@ pub mod traits {
     pub use super::buildable::BuildableExt;
     pub use super::builder_scope::BuilderScopeExt;
     pub use super::button::ButtonExt;
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     pub use super::cell_area::CellAreaExt;
     pub use super::cell_area_context::CellAreaContextExt;
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     pub use super::cell_editable::CellEditableExt;
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     pub use super::cell_layout::CellLayoutExt;
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     pub use super::cell_renderer::CellRendererExt;
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     pub use super::cell_renderer_text::CellRendererTextExt;
     pub use super::check_button::CheckButtonExt;
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     pub use super::color_chooser::ColorChooserExt;
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     pub use super::combo_box::ComboBoxExt;
     pub use super::constraint_target::ConstraintTargetExt;
     pub use super::dialog::DialogExt;
@@ -1089,10 +1191,12 @@ pub mod traits {
     pub use super::entry::EntryExt;
     pub use super::entry_buffer::EntryBufferExt;
     pub use super::event_controller::EventControllerExt;
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     pub use super::file_chooser::FileChooserExt;
     pub use super::filter::FilterExt;
     pub use super::fixed::FixedExt;
     pub use super::flow_box_child::FlowBoxChildExt;
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     pub use super::font_chooser::FontChooserExt;
     pub use super::frame::FrameExt;
     pub use super::gesture::GestureExt;
@@ -1127,6 +1231,7 @@ pub mod traits {
     pub use super::shortcut_trigger::ShortcutTriggerExt;
     pub use super::snapshot::SnapshotExt;
     pub use super::sorter::SorterExt;
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     pub use super::style_context::StyleContextExt;
     pub use super::style_provider::StyleProviderExt;
     #[cfg(any(feature = "v4_6", feature = "dox"))]
@@ -1138,12 +1243,19 @@ pub mod traits {
     pub use super::text_tag::TextTagExt;
     pub use super::text_view::TextViewExt;
     pub use super::toggle_button::ToggleButtonExt;
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     pub use super::tree_drag_dest::TreeDragDestExt;
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     pub use super::tree_drag_source::TreeDragSourceExt;
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     pub use super::tree_model::TreeModelExt;
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     pub use super::tree_model_filter::TreeModelFilterExt;
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     pub use super::tree_model_sort::TreeModelSortExt;
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     pub use super::tree_sortable::TreeSortableExt;
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     pub use super::tree_view::TreeViewExt;
     pub use super::widget::WidgetExt;
     pub use super::window::GtkWindowExt;
@@ -1155,7 +1267,9 @@ pub mod builders {
     pub use super::action_bar::ActionBarBuilder;
     pub use super::adjustment::AdjustmentBuilder;
     pub use super::alternative_trigger::AlternativeTriggerBuilder;
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     pub use super::app_chooser_button::AppChooserButtonBuilder;
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     pub use super::app_chooser_widget::AppChooserWidgetBuilder;
     pub use super::application::ApplicationBuilder;
     pub use super::application_window::ApplicationWindowBuilder;
@@ -1166,24 +1280,39 @@ pub mod builders {
     pub use super::box_layout::BoxLayoutBuilder;
     pub use super::button::ButtonBuilder;
     pub use super::calendar::CalendarBuilder;
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     pub use super::cell_area_box::CellAreaBoxBuilder;
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     pub use super::cell_renderer_accel::CellRendererAccelBuilder;
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     pub use super::cell_renderer_combo::CellRendererComboBuilder;
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     pub use super::cell_renderer_pixbuf::CellRendererPixbufBuilder;
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     pub use super::cell_renderer_progress::CellRendererProgressBuilder;
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     pub use super::cell_renderer_spin::CellRendererSpinBuilder;
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     pub use super::cell_renderer_spinner::CellRendererSpinnerBuilder;
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     pub use super::cell_renderer_text::CellRendererTextBuilder;
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     pub use super::cell_renderer_toggle::CellRendererToggleBuilder;
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     pub use super::cell_view::CellViewBuilder;
     pub use super::center_box::CenterBoxBuilder;
     pub use super::check_button::CheckButtonBuilder;
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     pub use super::color_button::ColorButtonBuilder;
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     pub use super::color_chooser_dialog::ColorChooserDialogBuilder;
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     pub use super::color_chooser_widget::ColorChooserWidgetBuilder;
     pub use super::column_view::ColumnViewBuilder;
     pub use super::column_view_column::ColumnViewColumnBuilder;
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     pub use super::combo_box::ComboBoxBuilder;
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     pub use super::combo_box_text::ComboBoxTextBuilder;
     pub use super::constraint::ConstraintBuilder;
     pub use super::constraint_guide::ConstraintGuideBuilder;
@@ -1198,6 +1327,7 @@ pub mod builders {
     pub use super::emoji_chooser::EmojiChooserBuilder;
     pub use super::entry::EntryBuilder;
     pub use super::entry_buffer::EntryBufferBuilder;
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     pub use super::entry_completion::EntryCompletionBuilder;
     pub use super::event_controller_focus::EventControllerFocusBuilder;
     pub use super::event_controller_key::EventControllerKeyBuilder;
@@ -1205,15 +1335,21 @@ pub mod builders {
     pub use super::event_controller_motion::EventControllerMotionBuilder;
     pub use super::event_controller_scroll::EventControllerScrollBuilder;
     pub use super::expander::ExpanderBuilder;
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     pub use super::file_chooser_dialog::FileChooserDialogBuilder;
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     pub use super::file_chooser_native::FileChooserNativeBuilder;
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     pub use super::file_chooser_widget::FileChooserWidgetBuilder;
     pub use super::filter_list_model::FilterListModelBuilder;
     pub use super::fixed::FixedBuilder;
     pub use super::flow_box::FlowBoxBuilder;
     pub use super::flow_box_child::FlowBoxChildBuilder;
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     pub use super::font_button::FontButtonBuilder;
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     pub use super::font_chooser_dialog::FontChooserDialogBuilder;
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     pub use super::font_chooser_widget::FontChooserWidgetBuilder;
     pub use super::frame::FrameBuilder;
     pub use super::gesture_click::GestureClickBuilder;
@@ -1230,6 +1366,7 @@ pub mod builders {
     pub use super::grid_view::GridViewBuilder;
     pub use super::header_bar::HeaderBarBuilder;
     pub use super::icon_theme::IconThemeBuilder;
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     pub use super::icon_view::IconViewBuilder;
     pub use super::im_context_simple::IMContextSimpleBuilder;
     pub use super::im_multicontext::IMMulticontextBuilder;
@@ -1247,6 +1384,7 @@ pub mod builders {
     pub use super::lock_button::LockButtonBuilder;
     pub use super::media_controls::MediaControlsBuilder;
     pub use super::menu_button::MenuButtonBuilder;
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     pub use super::message_dialog::MessageDialogBuilder;
     pub use super::mount_operation::MountOperationBuilder;
     pub use super::notebook::NotebookBuilder;
@@ -1304,7 +1442,9 @@ pub mod builders {
     pub use super::text_view::TextViewBuilder;
     pub use super::toggle_button::ToggleButtonBuilder;
     pub use super::tree_expander::TreeExpanderBuilder;
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     pub use super::tree_view::TreeViewBuilder;
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     pub use super::tree_view_column::TreeViewColumnBuilder;
     pub use super::video::VideoBuilder;
     pub use super::viewport::ViewportBuilder;

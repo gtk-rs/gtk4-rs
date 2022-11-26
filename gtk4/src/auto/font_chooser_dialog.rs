@@ -35,6 +35,7 @@ glib::wrapper! {
 }
 
 impl FontChooserDialog {
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_font_chooser_dialog_new")]
     pub fn new(title: Option<&str>, parent: Option<&impl IsA<Window>>) -> FontChooserDialog {
         assert_initialized_main_thread!();
@@ -127,11 +128,17 @@ pub struct FontChooserDialogBuilder {
     visible: Option<bool>,
     width_request: Option<i32>,
     accessible_role: Option<AccessibleRole>,
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     font: Option<String>,
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     font_desc: Option<pango::FontDescription>,
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     language: Option<String>,
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     level: Option<FontChooserLevel>,
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     preview_text: Option<String>,
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     show_preview_entry: Option<bool>,
 }
 
@@ -606,31 +613,37 @@ impl FontChooserDialogBuilder {
         self
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     pub fn font(mut self, font: &str) -> Self {
         self.font = Some(font.to_string());
         self
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     pub fn font_desc(mut self, font_desc: &pango::FontDescription) -> Self {
         self.font_desc = Some(font_desc.clone());
         self
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     pub fn language(mut self, language: &str) -> Self {
         self.language = Some(language.to_string());
         self
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     pub fn level(mut self, level: FontChooserLevel) -> Self {
         self.level = Some(level);
         self
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     pub fn preview_text(mut self, preview_text: &str) -> Self {
         self.preview_text = Some(preview_text.to_string());
         self
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     pub fn show_preview_entry(mut self, show_preview_entry: bool) -> Self {
         self.show_preview_entry = Some(show_preview_entry);
         self
