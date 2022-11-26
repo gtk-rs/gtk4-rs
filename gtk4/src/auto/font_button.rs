@@ -37,12 +37,14 @@ glib::wrapper! {
 }
 
 impl FontButton {
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_font_button_new")]
     pub fn new() -> FontButton {
         assert_initialized_main_thread!();
         unsafe { Widget::from_glib_none(ffi::gtk_font_button_new()).unsafe_cast() }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_font_button_new_with_font")]
     #[doc(alias = "new_with_font")]
     pub fn with_font(fontname: &str) -> FontButton {
@@ -63,30 +65,35 @@ impl FontButton {
         FontButtonBuilder::default()
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_font_button_get_modal")]
     #[doc(alias = "get_modal")]
     pub fn is_modal(&self) -> bool {
         unsafe { from_glib(ffi::gtk_font_button_get_modal(self.to_glib_none().0)) }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_font_button_get_title")]
     #[doc(alias = "get_title")]
     pub fn title(&self) -> glib::GString {
         unsafe { from_glib_none(ffi::gtk_font_button_get_title(self.to_glib_none().0)) }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_font_button_get_use_font")]
     #[doc(alias = "get_use_font")]
     pub fn uses_font(&self) -> bool {
         unsafe { from_glib(ffi::gtk_font_button_get_use_font(self.to_glib_none().0)) }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_font_button_get_use_size")]
     #[doc(alias = "get_use_size")]
     pub fn uses_size(&self) -> bool {
         unsafe { from_glib(ffi::gtk_font_button_get_use_size(self.to_glib_none().0)) }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_font_button_set_modal")]
     pub fn set_modal(&self, modal: bool) {
         unsafe {
@@ -94,6 +101,7 @@ impl FontButton {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_font_button_set_title")]
     pub fn set_title(&self, title: &str) {
         unsafe {
@@ -101,6 +109,7 @@ impl FontButton {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_font_button_set_use_font")]
     pub fn set_use_font(&self, use_font: bool) {
         unsafe {
@@ -108,6 +117,7 @@ impl FontButton {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_font_button_set_use_size")]
     pub fn set_use_size(&self, use_size: bool) {
         unsafe {
@@ -307,11 +317,17 @@ pub struct FontButtonBuilder {
     visible: Option<bool>,
     width_request: Option<i32>,
     accessible_role: Option<AccessibleRole>,
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     font: Option<String>,
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     font_desc: Option<pango::FontDescription>,
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     language: Option<String>,
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     level: Option<FontChooserLevel>,
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     preview_text: Option<String>,
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     show_preview_entry: Option<bool>,
 }
 
@@ -620,31 +636,37 @@ impl FontButtonBuilder {
         self
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     pub fn font(mut self, font: &str) -> Self {
         self.font = Some(font.to_string());
         self
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     pub fn font_desc(mut self, font_desc: &pango::FontDescription) -> Self {
         self.font_desc = Some(font_desc.clone());
         self
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     pub fn language(mut self, language: &str) -> Self {
         self.language = Some(language.to_string());
         self
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     pub fn level(mut self, level: FontChooserLevel) -> Self {
         self.level = Some(level);
         self
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     pub fn preview_text(mut self, preview_text: &str) -> Self {
         self.preview_text = Some(preview_text.to_string());
         self
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     pub fn show_preview_entry(mut self, show_preview_entry: bool) -> Self {
         self.show_preview_entry = Some(show_preview_entry);
         self

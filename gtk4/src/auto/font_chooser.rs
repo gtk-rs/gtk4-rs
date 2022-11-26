@@ -26,98 +26,125 @@ impl FontChooser {
 }
 
 pub trait FontChooserExt: 'static {
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_font_chooser_get_font")]
     #[doc(alias = "get_font")]
     fn font(&self) -> Option<glib::GString>;
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_font_chooser_get_font_desc")]
     #[doc(alias = "get_font_desc")]
     fn font_desc(&self) -> Option<pango::FontDescription>;
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_font_chooser_get_font_face")]
     #[doc(alias = "get_font_face")]
     fn font_face(&self) -> Option<pango::FontFace>;
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_font_chooser_get_font_family")]
     #[doc(alias = "get_font_family")]
     fn font_family(&self) -> Option<pango::FontFamily>;
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_font_chooser_get_font_features")]
     #[doc(alias = "get_font_features")]
     fn font_features(&self) -> glib::GString;
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_font_chooser_get_font_map")]
     #[doc(alias = "get_font_map")]
     fn font_map(&self) -> Option<pango::FontMap>;
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_font_chooser_get_font_size")]
     #[doc(alias = "get_font_size")]
     fn font_size(&self) -> i32;
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_font_chooser_get_language")]
     #[doc(alias = "get_language")]
     fn language(&self) -> glib::GString;
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_font_chooser_get_level")]
     #[doc(alias = "get_level")]
     fn level(&self) -> FontChooserLevel;
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_font_chooser_get_preview_text")]
     #[doc(alias = "get_preview_text")]
     fn preview_text(&self) -> glib::GString;
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_font_chooser_get_show_preview_entry")]
     #[doc(alias = "get_show_preview_entry")]
     fn shows_preview_entry(&self) -> bool;
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_font_chooser_set_filter_func")]
     fn set_filter_func<P: Fn(&pango::FontFamily, &pango::FontFace) -> bool + 'static>(
         &self,
         filter: P,
     );
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_font_chooser_set_font")]
     fn set_font(&self, fontname: &str);
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_font_chooser_set_font_desc")]
     fn set_font_desc(&self, font_desc: &pango::FontDescription);
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_font_chooser_set_font_map")]
     fn set_font_map(&self, fontmap: Option<&impl IsA<pango::FontMap>>);
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_font_chooser_set_language")]
     fn set_language(&self, language: &str);
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_font_chooser_set_level")]
     fn set_level(&self, level: FontChooserLevel);
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_font_chooser_set_preview_text")]
     fn set_preview_text(&self, text: &str);
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_font_chooser_set_show_preview_entry")]
     fn set_show_preview_entry(&self, show_preview_entry: bool);
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "font-activated")]
     fn connect_font_activated<F: Fn(&Self, &str) + 'static>(&self, f: F) -> SignalHandlerId;
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "font")]
     fn connect_font_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "font-desc")]
     fn connect_font_desc_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "font-features")]
     fn connect_font_features_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "language")]
     fn connect_language_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "level")]
     fn connect_level_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "preview-text")]
     fn connect_preview_text_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "show-preview-entry")]
     fn connect_show_preview_entry_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 }

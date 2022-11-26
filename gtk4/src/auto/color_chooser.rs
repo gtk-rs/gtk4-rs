@@ -25,26 +25,33 @@ impl ColorChooser {
 }
 
 pub trait ColorChooserExt: 'static {
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_color_chooser_get_rgba")]
     #[doc(alias = "get_rgba")]
     fn rgba(&self) -> gdk::RGBA;
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_color_chooser_get_use_alpha")]
     #[doc(alias = "get_use_alpha")]
     fn uses_alpha(&self) -> bool;
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_color_chooser_set_rgba")]
     fn set_rgba(&self, color: &gdk::RGBA);
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_color_chooser_set_use_alpha")]
     fn set_use_alpha(&self, use_alpha: bool);
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "color-activated")]
     fn connect_color_activated<F: Fn(&Self, &gdk::RGBA) + 'static>(&self, f: F) -> SignalHandlerId;
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "rgba")]
     fn connect_rgba_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "use-alpha")]
     fn connect_use_alpha_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 }

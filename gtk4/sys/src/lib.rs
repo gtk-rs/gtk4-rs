@@ -325,6 +325,11 @@ pub const GTK_DELETE_PARAGRAPH_ENDS: GtkDeleteType = 5;
 pub const GTK_DELETE_PARAGRAPHS: GtkDeleteType = 6;
 pub const GTK_DELETE_WHITESPACE: GtkDeleteType = 7;
 
+pub type GtkDialogError = c_int;
+pub const GTK_DIALOG_ERROR_FAILED: GtkDialogError = 0;
+pub const GTK_DIALOG_ERROR_ABORTED: GtkDialogError = 1;
+pub const GTK_DIALOG_ERROR_CANCELLED: GtkDialogError = 2;
+
 pub type GtkDirectionType = c_int;
 pub const GTK_DIR_TAB_FORWARD: GtkDirectionType = 0;
 pub const GTK_DIR_TAB_BACKWARD: GtkDirectionType = 1;
@@ -373,6 +378,12 @@ pub type GtkFilterMatch = c_int;
 pub const GTK_FILTER_MATCH_SOME: GtkFilterMatch = 0;
 pub const GTK_FILTER_MATCH_NONE: GtkFilterMatch = 1;
 pub const GTK_FILTER_MATCH_ALL: GtkFilterMatch = 2;
+
+pub type GtkFontLevel = c_int;
+pub const GTK_FONT_LEVEL_FAMILY: GtkFontLevel = 0;
+pub const GTK_FONT_LEVEL_FACE: GtkFontLevel = 1;
+pub const GTK_FONT_LEVEL_FONT: GtkFontLevel = 2;
+pub const GTK_FONT_LEVEL_FEATURES: GtkFontLevel = 3;
 
 pub type GtkIconSize = c_int;
 pub const GTK_ICON_SIZE_INHERIT: GtkIconSize = 0;
@@ -1287,6 +1298,20 @@ impl ::std::fmt::Debug for GtkAdjustmentClass {
     }
 }
 
+#[derive(Copy, Clone)]
+#[repr(C)]
+pub struct GtkAlertDialogClass {
+    pub parent_class: gobject::GObjectClass,
+}
+
+impl ::std::fmt::Debug for GtkAlertDialogClass {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("GtkAlertDialogClass @ {self:p}"))
+            .field("parent_class", &self.parent_class)
+            .finish()
+    }
+}
+
 #[repr(C)]
 pub struct _GtkAlternativeTriggerClass {
     _data: [u8; 0],
@@ -2129,6 +2154,34 @@ impl ::std::fmt::Debug for GtkColorChooserInterface {
     }
 }
 
+#[derive(Copy, Clone)]
+#[repr(C)]
+pub struct GtkColorDialogButtonClass {
+    pub parent_class: GtkWidgetClass,
+}
+
+impl ::std::fmt::Debug for GtkColorDialogButtonClass {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("GtkColorDialogButtonClass @ {self:p}"))
+            .field("parent_class", &self.parent_class)
+            .finish()
+    }
+}
+
+#[derive(Copy, Clone)]
+#[repr(C)]
+pub struct GtkColorDialogClass {
+    pub parent_class: gobject::GObjectClass,
+}
+
+impl ::std::fmt::Debug for GtkColorDialogClass {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("GtkColorDialogClass @ {self:p}"))
+            .field("parent_class", &self.parent_class)
+            .finish()
+    }
+}
+
 #[repr(C)]
 pub struct _GtkColumnViewClass {
     _data: [u8; 0],
@@ -2144,6 +2197,20 @@ pub struct _GtkColumnViewColumnClass {
 }
 
 pub type GtkColumnViewColumnClass = *mut _GtkColumnViewColumnClass;
+
+#[derive(Copy, Clone)]
+#[repr(C)]
+pub struct GtkColumnViewSorterClass {
+    pub parent_class: GtkSorterClass,
+}
+
+impl ::std::fmt::Debug for GtkColumnViewSorterClass {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("GtkColumnViewSorterClass @ {self:p}"))
+            .field("parent_class", &self.parent_class)
+            .finish()
+    }
+}
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -2645,6 +2712,20 @@ impl ::std::fmt::Debug for GtkFileChooserNativeClass {
 
 #[derive(Copy, Clone)]
 #[repr(C)]
+pub struct GtkFileDialogClass {
+    pub parent_class: gobject::GObjectClass,
+}
+
+impl ::std::fmt::Debug for GtkFileDialogClass {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("GtkFileDialogClass @ {self:p}"))
+            .field("parent_class", &self.parent_class)
+            .finish()
+    }
+}
+
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkFilterClass {
     pub parent_class: gobject::GObjectClass,
     pub match_: Option<unsafe extern "C" fn(*mut GtkFilter, *mut gobject::GObject) -> gboolean>,
@@ -2798,6 +2879,34 @@ impl ::std::fmt::Debug for GtkFontChooserIface {
             .field("font_activated", &self.font_activated)
             .field("set_font_map", &self.set_font_map)
             .field("get_font_map", &self.get_font_map)
+            .finish()
+    }
+}
+
+#[derive(Copy, Clone)]
+#[repr(C)]
+pub struct GtkFontDialogButtonClass {
+    pub parent_class: GtkWidgetClass,
+}
+
+impl ::std::fmt::Debug for GtkFontDialogButtonClass {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("GtkFontDialogButtonClass @ {self:p}"))
+            .field("parent_class", &self.parent_class)
+            .finish()
+    }
+}
+
+#[derive(Copy, Clone)]
+#[repr(C)]
+pub struct GtkFontDialogClass {
+    pub parent_class: gobject::GObjectClass,
+}
+
+impl ::std::fmt::Debug for GtkFontDialogClass {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("GtkFontDialogClass @ {self:p}"))
+            .field("parent_class", &self.parent_class)
             .finish()
     }
 }
@@ -5286,6 +5395,19 @@ impl ::std::fmt::Debug for GtkAdjustment {
 }
 
 #[repr(C)]
+pub struct GtkAlertDialog {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
+
+impl ::std::fmt::Debug for GtkAlertDialog {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("GtkAlertDialog @ {self:p}"))
+            .finish()
+    }
+}
+
+#[repr(C)]
 pub struct GtkAlternativeTrigger {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -5830,6 +5952,32 @@ impl ::std::fmt::Debug for GtkColorChooserWidget {
 }
 
 #[repr(C)]
+pub struct GtkColorDialog {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
+
+impl ::std::fmt::Debug for GtkColorDialog {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("GtkColorDialog @ {self:p}"))
+            .finish()
+    }
+}
+
+#[repr(C)]
+pub struct GtkColorDialogButton {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
+
+impl ::std::fmt::Debug for GtkColorDialogButton {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("GtkColorDialogButton @ {self:p}"))
+            .finish()
+    }
+}
+
+#[repr(C)]
 pub struct GtkColumnView {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -5851,6 +5999,19 @@ pub struct GtkColumnViewColumn {
 impl ::std::fmt::Debug for GtkColumnViewColumn {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("GtkColumnViewColumn @ {self:p}"))
+            .finish()
+    }
+}
+
+#[repr(C)]
+pub struct GtkColumnViewSorter {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
+
+impl ::std::fmt::Debug for GtkColumnViewSorter {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("GtkColumnViewSorter @ {self:p}"))
             .finish()
     }
 }
@@ -6338,6 +6499,19 @@ impl ::std::fmt::Debug for GtkFileChooserWidget {
 }
 
 #[repr(C)]
+pub struct GtkFileDialog {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
+
+impl ::std::fmt::Debug for GtkFileDialog {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("GtkFileDialog @ {self:p}"))
+            .finish()
+    }
+}
+
+#[repr(C)]
 pub struct GtkFileFilter {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -6490,6 +6664,32 @@ pub struct GtkFontChooserWidget {
 impl ::std::fmt::Debug for GtkFontChooserWidget {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("GtkFontChooserWidget @ {self:p}"))
+            .finish()
+    }
+}
+
+#[repr(C)]
+pub struct GtkFontDialog {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
+
+impl ::std::fmt::Debug for GtkFontDialog {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("GtkFontDialog @ {self:p}"))
+            .finish()
+    }
+}
+
+#[repr(C)]
+pub struct GtkFontDialogButton {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
+
+impl ::std::fmt::Debug for GtkFontDialogButton {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("GtkFontDialogButton @ {self:p}"))
             .finish()
     }
 }
@@ -8957,6 +9157,16 @@ extern "C" {
     pub fn gtk_delete_type_get_type() -> GType;
 
     //=========================================================================
+    // GtkDialogError
+    //=========================================================================
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gtk_dialog_error_get_type() -> GType;
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gtk_dialog_error_quark() -> glib::GQuark;
+
+    //=========================================================================
     // GtkDirectionType
     //=========================================================================
     pub fn gtk_direction_type_get_type() -> GType;
@@ -8996,6 +9206,11 @@ extern "C" {
     // GtkFilterMatch
     //=========================================================================
     pub fn gtk_filter_match_get_type() -> GType;
+
+    //=========================================================================
+    // GtkFontLevel
+    //=========================================================================
+    pub fn gtk_font_level_get_type() -> GType;
 
     //=========================================================================
     // GtkIconSize
@@ -10176,6 +10391,70 @@ extern "C" {
     pub fn gtk_adjustment_set_value(adjustment: *mut GtkAdjustment, value: c_double);
 
     //=========================================================================
+    // GtkAlertDialog
+    //=========================================================================
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gtk_alert_dialog_get_type() -> GType;
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gtk_alert_dialog_new(format: *const c_char, ...) -> *mut GtkAlertDialog;
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gtk_alert_dialog_choose(
+        self_: *mut GtkAlertDialog,
+        parent: *mut GtkWindow,
+        cancellable: *mut gio::GCancellable,
+        callback: gio::GAsyncReadyCallback,
+        user_data: gpointer,
+    );
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gtk_alert_dialog_choose_finish(
+        self_: *mut GtkAlertDialog,
+        result: *mut gio::GAsyncResult,
+    ) -> c_int;
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gtk_alert_dialog_get_buttons(self_: *mut GtkAlertDialog) -> *const *const c_char;
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gtk_alert_dialog_get_cancel_button(self_: *mut GtkAlertDialog) -> c_int;
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gtk_alert_dialog_get_default_button(self_: *mut GtkAlertDialog) -> c_int;
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gtk_alert_dialog_get_detail(self_: *mut GtkAlertDialog) -> *const c_char;
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gtk_alert_dialog_get_message(self_: *mut GtkAlertDialog) -> *const c_char;
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gtk_alert_dialog_get_modal(self_: *mut GtkAlertDialog) -> gboolean;
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gtk_alert_dialog_set_buttons(self_: *mut GtkAlertDialog, labels: *const *const c_char);
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gtk_alert_dialog_set_cancel_button(self_: *mut GtkAlertDialog, button: c_int);
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gtk_alert_dialog_set_default_button(self_: *mut GtkAlertDialog, button: c_int);
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gtk_alert_dialog_set_detail(self_: *mut GtkAlertDialog, detail: *const c_char);
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gtk_alert_dialog_set_message(self_: *mut GtkAlertDialog, message: *const c_char);
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gtk_alert_dialog_set_modal(self_: *mut GtkAlertDialog, modal: gboolean);
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gtk_alert_dialog_show(self_: *mut GtkAlertDialog, parent: *mut GtkWindow);
+
+    //=========================================================================
     // GtkAlternativeTrigger
     //=========================================================================
     pub fn gtk_alternative_trigger_get_type() -> GType;
@@ -11313,6 +11592,83 @@ extern "C" {
     pub fn gtk_color_chooser_widget_new() -> *mut GtkWidget;
 
     //=========================================================================
+    // GtkColorDialog
+    //=========================================================================
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gtk_color_dialog_get_type() -> GType;
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gtk_color_dialog_new() -> *mut GtkColorDialog;
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gtk_color_dialog_choose_rgba(
+        self_: *mut GtkColorDialog,
+        parent: *mut GtkWindow,
+        initial_color: *const gdk::GdkRGBA,
+        cancellable: *mut gio::GCancellable,
+        callback: gio::GAsyncReadyCallback,
+        user_data: gpointer,
+    );
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gtk_color_dialog_choose_rgba_finish(
+        self_: *mut GtkColorDialog,
+        result: *mut gio::GAsyncResult,
+        error: *mut *mut glib::GError,
+    ) -> *mut gdk::GdkRGBA;
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gtk_color_dialog_get_modal(self_: *mut GtkColorDialog) -> gboolean;
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gtk_color_dialog_get_title(self_: *mut GtkColorDialog) -> *const c_char;
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gtk_color_dialog_get_with_alpha(self_: *mut GtkColorDialog) -> gboolean;
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gtk_color_dialog_set_modal(self_: *mut GtkColorDialog, modal: gboolean);
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gtk_color_dialog_set_title(self_: *mut GtkColorDialog, title: *const c_char);
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gtk_color_dialog_set_with_alpha(self_: *mut GtkColorDialog, with_alpha: gboolean);
+
+    //=========================================================================
+    // GtkColorDialogButton
+    //=========================================================================
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gtk_color_dialog_button_get_type() -> GType;
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gtk_color_dialog_button_new(dialog: *mut GtkColorDialog) -> *mut GtkWidget;
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gtk_color_dialog_button_get_dialog(
+        self_: *mut GtkColorDialogButton,
+    ) -> *mut GtkColorDialog;
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gtk_color_dialog_button_get_rgba(
+        self_: *mut GtkColorDialogButton,
+    ) -> *const gdk::GdkRGBA;
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gtk_color_dialog_button_set_dialog(
+        self_: *mut GtkColorDialogButton,
+        dialog: *mut GtkColorDialog,
+    );
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gtk_color_dialog_button_set_rgba(
+        self_: *mut GtkColorDialogButton,
+        color: *const gdk::GdkRGBA,
+    );
+
+    //=========================================================================
     // GtkColumnView
     //=========================================================================
     pub fn gtk_column_view_get_type() -> GType;
@@ -11381,6 +11737,9 @@ extern "C" {
     pub fn gtk_column_view_column_get_header_menu(
         self_: *mut GtkColumnViewColumn,
     ) -> *mut gio::GMenuModel;
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gtk_column_view_column_get_id(self_: *mut GtkColumnViewColumn) -> *const c_char;
     pub fn gtk_column_view_column_get_resizable(self_: *mut GtkColumnViewColumn) -> gboolean;
     pub fn gtk_column_view_column_get_sorter(self_: *mut GtkColumnViewColumn) -> *mut GtkSorter;
     pub fn gtk_column_view_column_get_title(self_: *mut GtkColumnViewColumn) -> *const c_char;
@@ -11398,6 +11757,9 @@ extern "C" {
         self_: *mut GtkColumnViewColumn,
         menu: *mut gio::GMenuModel,
     );
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gtk_column_view_column_set_id(self_: *mut GtkColumnViewColumn, id: *const c_char);
     pub fn gtk_column_view_column_set_resizable(
         self_: *mut GtkColumnViewColumn,
         resizable: gboolean,
@@ -11408,6 +11770,31 @@ extern "C" {
     );
     pub fn gtk_column_view_column_set_title(self_: *mut GtkColumnViewColumn, title: *const c_char);
     pub fn gtk_column_view_column_set_visible(self_: *mut GtkColumnViewColumn, visible: gboolean);
+
+    //=========================================================================
+    // GtkColumnViewSorter
+    //=========================================================================
+    pub fn gtk_column_view_sorter_get_type() -> GType;
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gtk_column_view_sorter_get_n_sort_columns(self_: *mut GtkColumnViewSorter) -> c_uint;
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gtk_column_view_sorter_get_nth_sort_column(
+        self_: *mut GtkColumnViewSorter,
+        position: c_uint,
+        sort_order: *mut GtkSortType,
+    ) -> *mut GtkColumnViewColumn;
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gtk_column_view_sorter_get_primary_sort_column(
+        self_: *mut GtkColumnViewSorter,
+    ) -> *mut GtkColumnViewColumn;
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gtk_column_view_sorter_get_primary_sort_order(
+        self_: *mut GtkColumnViewSorter,
+    ) -> GtkSortType;
 
     //=========================================================================
     // GtkComboBox
@@ -12375,6 +12762,142 @@ extern "C" {
     pub fn gtk_file_chooser_widget_new(action: GtkFileChooserAction) -> *mut GtkWidget;
 
     //=========================================================================
+    // GtkFileDialog
+    //=========================================================================
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gtk_file_dialog_get_type() -> GType;
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gtk_file_dialog_new() -> *mut GtkFileDialog;
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gtk_file_dialog_get_current_filter(self_: *mut GtkFileDialog) -> *mut GtkFileFilter;
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gtk_file_dialog_get_current_folder(self_: *mut GtkFileDialog) -> *mut gio::GFile;
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gtk_file_dialog_get_filters(self_: *mut GtkFileDialog) -> *mut gio::GListModel;
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gtk_file_dialog_get_modal(self_: *mut GtkFileDialog) -> gboolean;
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gtk_file_dialog_get_shortcut_folders(self_: *mut GtkFileDialog) -> *mut gio::GListModel;
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gtk_file_dialog_get_title(self_: *mut GtkFileDialog) -> *const c_char;
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gtk_file_dialog_open(
+        self_: *mut GtkFileDialog,
+        parent: *mut GtkWindow,
+        current_file: *mut gio::GFile,
+        cancellable: *mut gio::GCancellable,
+        callback: gio::GAsyncReadyCallback,
+        user_data: gpointer,
+    );
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gtk_file_dialog_open_finish(
+        self_: *mut GtkFileDialog,
+        result: *mut gio::GAsyncResult,
+        error: *mut *mut glib::GError,
+    ) -> *mut gio::GFile;
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gtk_file_dialog_open_multiple(
+        self_: *mut GtkFileDialog,
+        parent: *mut GtkWindow,
+        cancellable: *mut gio::GCancellable,
+        callback: gio::GAsyncReadyCallback,
+        user_data: gpointer,
+    );
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gtk_file_dialog_open_multiple_finish(
+        self_: *mut GtkFileDialog,
+        result: *mut gio::GAsyncResult,
+        error: *mut *mut glib::GError,
+    ) -> *mut gio::GListModel;
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gtk_file_dialog_save(
+        self_: *mut GtkFileDialog,
+        parent: *mut GtkWindow,
+        current_file: *mut gio::GFile,
+        current_name: *const c_char,
+        cancellable: *mut gio::GCancellable,
+        callback: gio::GAsyncReadyCallback,
+        user_data: gpointer,
+    );
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gtk_file_dialog_save_finish(
+        self_: *mut GtkFileDialog,
+        result: *mut gio::GAsyncResult,
+        error: *mut *mut glib::GError,
+    ) -> *mut gio::GFile;
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gtk_file_dialog_select_folder(
+        self_: *mut GtkFileDialog,
+        parent: *mut GtkWindow,
+        current_folder: *mut gio::GFile,
+        cancellable: *mut gio::GCancellable,
+        callback: gio::GAsyncReadyCallback,
+        user_data: gpointer,
+    );
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gtk_file_dialog_select_folder_finish(
+        self_: *mut GtkFileDialog,
+        result: *mut gio::GAsyncResult,
+        error: *mut *mut glib::GError,
+    ) -> *mut gio::GFile;
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gtk_file_dialog_select_multiple_folders(
+        self_: *mut GtkFileDialog,
+        parent: *mut GtkWindow,
+        cancellable: *mut gio::GCancellable,
+        callback: gio::GAsyncReadyCallback,
+        user_data: gpointer,
+    );
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gtk_file_dialog_select_multiple_folders_finish(
+        self_: *mut GtkFileDialog,
+        result: *mut gio::GAsyncResult,
+        error: *mut *mut glib::GError,
+    ) -> *mut gio::GListModel;
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gtk_file_dialog_set_current_filter(
+        self_: *mut GtkFileDialog,
+        filter: *mut GtkFileFilter,
+    );
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gtk_file_dialog_set_current_folder(self_: *mut GtkFileDialog, folder: *mut gio::GFile);
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gtk_file_dialog_set_filters(self_: *mut GtkFileDialog, filters: *mut gio::GListModel);
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gtk_file_dialog_set_modal(self_: *mut GtkFileDialog, modal: gboolean);
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gtk_file_dialog_set_shortcut_folders(
+        self_: *mut GtkFileDialog,
+        shortcut_folders: *mut gio::GListModel,
+    );
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gtk_file_dialog_set_title(self_: *mut GtkFileDialog, title: *const c_char);
+
+    //=========================================================================
     // GtkFileFilter
     //=========================================================================
     pub fn gtk_file_filter_get_type() -> GType;
@@ -12590,6 +13113,194 @@ extern "C" {
     //=========================================================================
     pub fn gtk_font_chooser_widget_get_type() -> GType;
     pub fn gtk_font_chooser_widget_new() -> *mut GtkWidget;
+
+    //=========================================================================
+    // GtkFontDialog
+    //=========================================================================
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gtk_font_dialog_get_type() -> GType;
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gtk_font_dialog_new() -> *mut GtkFontDialog;
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gtk_font_dialog_choose_face(
+        self_: *mut GtkFontDialog,
+        parent: *mut GtkWindow,
+        initial_value: *mut pango::PangoFontFace,
+        cancellable: *mut gio::GCancellable,
+        callback: gio::GAsyncReadyCallback,
+        user_data: gpointer,
+    );
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gtk_font_dialog_choose_face_finish(
+        self_: *mut GtkFontDialog,
+        result: *mut gio::GAsyncResult,
+        error: *mut *mut glib::GError,
+    ) -> *mut pango::PangoFontFace;
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gtk_font_dialog_choose_family(
+        self_: *mut GtkFontDialog,
+        parent: *mut GtkWindow,
+        initial_value: *mut pango::PangoFontFamily,
+        cancellable: *mut gio::GCancellable,
+        callback: gio::GAsyncReadyCallback,
+        user_data: gpointer,
+    );
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gtk_font_dialog_choose_family_finish(
+        self_: *mut GtkFontDialog,
+        result: *mut gio::GAsyncResult,
+        error: *mut *mut glib::GError,
+    ) -> *mut pango::PangoFontFamily;
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gtk_font_dialog_choose_font(
+        self_: *mut GtkFontDialog,
+        parent: *mut GtkWindow,
+        initial_value: *mut pango::PangoFontDescription,
+        cancellable: *mut gio::GCancellable,
+        callback: gio::GAsyncReadyCallback,
+        user_data: gpointer,
+    );
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gtk_font_dialog_choose_font_and_features(
+        self_: *mut GtkFontDialog,
+        parent: *mut GtkWindow,
+        initial_value: *mut pango::PangoFontDescription,
+        cancellable: *mut gio::GCancellable,
+        callback: gio::GAsyncReadyCallback,
+        user_data: gpointer,
+    );
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gtk_font_dialog_choose_font_and_features_finish(
+        self_: *mut GtkFontDialog,
+        result: *mut gio::GAsyncResult,
+        font_desc: *mut *mut pango::PangoFontDescription,
+        font_features: *mut *mut c_char,
+        language: *mut *mut pango::PangoLanguage,
+        error: *mut *mut glib::GError,
+    ) -> gboolean;
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gtk_font_dialog_choose_font_finish(
+        self_: *mut GtkFontDialog,
+        result: *mut gio::GAsyncResult,
+        error: *mut *mut glib::GError,
+    ) -> *mut pango::PangoFontDescription;
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gtk_font_dialog_get_filter(self_: *mut GtkFontDialog) -> *mut GtkFilter;
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gtk_font_dialog_get_font_map(self_: *mut GtkFontDialog) -> *mut pango::PangoFontMap;
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gtk_font_dialog_get_language(self_: *mut GtkFontDialog) -> *mut pango::PangoLanguage;
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gtk_font_dialog_get_modal(self_: *mut GtkFontDialog) -> gboolean;
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gtk_font_dialog_get_title(self_: *mut GtkFontDialog) -> *const c_char;
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gtk_font_dialog_set_filter(self_: *mut GtkFontDialog, filter: *mut GtkFilter);
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gtk_font_dialog_set_font_map(
+        self_: *mut GtkFontDialog,
+        fontmap: *mut pango::PangoFontMap,
+    );
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gtk_font_dialog_set_language(
+        self_: *mut GtkFontDialog,
+        language: *mut pango::PangoLanguage,
+    );
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gtk_font_dialog_set_modal(self_: *mut GtkFontDialog, modal: gboolean);
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gtk_font_dialog_set_title(self_: *mut GtkFontDialog, title: *const c_char);
+
+    //=========================================================================
+    // GtkFontDialogButton
+    //=========================================================================
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gtk_font_dialog_button_get_type() -> GType;
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gtk_font_dialog_button_new(dialog: *mut GtkFontDialog) -> *mut GtkWidget;
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gtk_font_dialog_button_get_dialog(self_: *mut GtkFontDialogButton)
+        -> *mut GtkFontDialog;
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gtk_font_dialog_button_get_font_desc(
+        self_: *mut GtkFontDialogButton,
+    ) -> *mut pango::PangoFontDescription;
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gtk_font_dialog_button_get_font_features(
+        self_: *mut GtkFontDialogButton,
+    ) -> *const c_char;
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gtk_font_dialog_button_get_language(
+        self_: *mut GtkFontDialogButton,
+    ) -> *mut pango::PangoLanguage;
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gtk_font_dialog_button_get_level(self_: *mut GtkFontDialogButton) -> GtkFontLevel;
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gtk_font_dialog_button_get_use_font(self_: *mut GtkFontDialogButton) -> gboolean;
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gtk_font_dialog_button_get_use_size(self_: *mut GtkFontDialogButton) -> gboolean;
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gtk_font_dialog_button_set_dialog(
+        self_: *mut GtkFontDialogButton,
+        dialog: *mut GtkFontDialog,
+    );
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gtk_font_dialog_button_set_font_desc(
+        self_: *mut GtkFontDialogButton,
+        font_desc: *const pango::PangoFontDescription,
+    );
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gtk_font_dialog_button_set_font_features(
+        self_: *mut GtkFontDialogButton,
+        font_features: *const c_char,
+    );
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gtk_font_dialog_button_set_language(
+        self_: *mut GtkFontDialogButton,
+        language: *mut pango::PangoLanguage,
+    );
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gtk_font_dialog_button_set_level(self_: *mut GtkFontDialogButton, level: GtkFontLevel);
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gtk_font_dialog_button_set_use_font(self_: *mut GtkFontDialogButton, use_font: gboolean);
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gtk_font_dialog_button_set_use_size(self_: *mut GtkFontDialogButton, use_size: gboolean);
 
     //=========================================================================
     // GtkFrame
@@ -17698,6 +18409,9 @@ extern "C" {
     pub fn gtk_widget_get_can_target(widget: *mut GtkWidget) -> gboolean;
     pub fn gtk_widget_get_child_visible(widget: *mut GtkWidget) -> gboolean;
     pub fn gtk_widget_get_clipboard(widget: *mut GtkWidget) -> *mut gdk::GdkClipboard;
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gtk_widget_get_color(widget: *mut GtkWidget, color: *mut gdk::GdkRGBA);
     pub fn gtk_widget_get_css_classes(widget: *mut GtkWidget) -> *mut *mut c_char;
     pub fn gtk_widget_get_css_name(self_: *mut GtkWidget) -> *const c_char;
     pub fn gtk_widget_get_cursor(widget: *mut GtkWidget) -> *mut gdk::GdkCursor;
@@ -17752,9 +18466,6 @@ extern "C" {
         height: *mut c_int,
     );
     pub fn gtk_widget_get_state_flags(widget: *mut GtkWidget) -> GtkStateFlags;
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
-    pub fn gtk_widget_get_style_color(widget: *mut GtkWidget, color: *mut gdk::GdkRGBA);
     pub fn gtk_widget_get_style_context(widget: *mut GtkWidget) -> *mut GtkStyleContext;
     pub fn gtk_widget_get_template_child(
         widget: *mut GtkWidget,

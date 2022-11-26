@@ -90,6 +90,13 @@ impl ToValue for AnchorHints {
     }
 }
 
+impl From<AnchorHints> for glib::Value {
+    #[inline]
+    fn from(v: AnchorHints) -> Self {
+        ToValue::to_value(&v)
+    }
+}
+
 bitflags! {
     #[doc(alias = "GdkAxisFlags")]
     pub struct AxisFlags: u32 {
@@ -174,6 +181,13 @@ impl ToValue for AxisFlags {
     }
 }
 
+impl From<AxisFlags> for glib::Value {
+    #[inline]
+    fn from(v: AxisFlags) -> Self {
+        ToValue::to_value(&v)
+    }
+}
+
 bitflags! {
     #[doc(alias = "GdkDragAction")]
     pub struct DragAction: u32 {
@@ -252,6 +266,13 @@ impl ToValue for DragAction {
     }
 }
 
+impl From<DragAction> for glib::Value {
+    #[inline]
+    fn from(v: DragAction) -> Self {
+        ToValue::to_value(&v)
+    }
+}
+
 bitflags! {
     #[doc(alias = "GdkFrameClockPhase")]
     pub struct FrameClockPhase: u32 {
@@ -327,6 +348,13 @@ impl ToValue for FrameClockPhase {
 
     fn value_type(&self) -> glib::Type {
         Self::static_type()
+    }
+}
+
+impl From<FrameClockPhase> for glib::Value {
+    #[inline]
+    fn from(v: FrameClockPhase) -> Self {
+        ToValue::to_value(&v)
     }
 }
 
@@ -409,6 +437,15 @@ impl ToValue for GLAPI {
 
     fn value_type(&self) -> glib::Type {
         Self::static_type()
+    }
+}
+
+#[cfg(any(feature = "v4_6", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+impl From<GLAPI> for glib::Value {
+    #[inline]
+    fn from(v: GLAPI) -> Self {
+        ToValue::to_value(&v)
     }
 }
 
@@ -498,6 +535,13 @@ impl ToValue for ModifierType {
     }
 }
 
+impl From<ModifierType> for glib::Value {
+    #[inline]
+    fn from(v: ModifierType) -> Self {
+        ToValue::to_value(&v)
+    }
+}
+
 bitflags! {
     #[doc(alias = "GdkPaintableFlags")]
     pub struct PaintableFlags: u32 {
@@ -561,6 +605,13 @@ impl ToValue for PaintableFlags {
 
     fn value_type(&self) -> glib::Type {
         Self::static_type()
+    }
+}
+
+impl From<PaintableFlags> for glib::Value {
+    #[inline]
+    fn from(v: PaintableFlags) -> Self {
+        ToValue::to_value(&v)
     }
 }
 
@@ -639,6 +690,13 @@ impl ToValue for SeatCapabilities {
 
     fn value_type(&self) -> glib::Type {
         Self::static_type()
+    }
+}
+
+impl From<SeatCapabilities> for glib::Value {
+    #[inline]
+    fn from(v: SeatCapabilities) -> Self {
+        ToValue::to_value(&v)
     }
 }
 
@@ -733,5 +791,12 @@ impl ToValue for ToplevelState {
 
     fn value_type(&self) -> glib::Type {
         Self::static_type()
+    }
+}
+
+impl From<ToplevelState> for glib::Value {
+    #[inline]
+    fn from(v: ToplevelState) -> Self {
+        ToValue::to_value(&v)
     }
 }
