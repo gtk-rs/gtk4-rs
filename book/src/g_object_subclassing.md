@@ -42,7 +42,7 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 
 > Describing objects with two structs is a peculiarity coming from how GObjects are defined in C.
 > `imp::CustomButton` handles the state of the GObject and the overridden virtual methods.
-> `CustomButton` determines the exposed methods be determining the implemented traits and adding methods itself. 
+> `CustomButton` determines the exposed methods from the implemented traits and added methods. 
 
 ## Adding Functionality
 
