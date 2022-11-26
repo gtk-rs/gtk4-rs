@@ -7,6 +7,7 @@ use glib::IsA;
 impl TreeViewColumn {
     #[doc(alias = "gtk_tree_view_column_new_with_attributes")]
     #[doc(alias = "new_with_attributes")]
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     pub fn with_attributes(
         title: &str,
         cell_renderer: &impl IsA<CellRenderer>,
@@ -22,6 +23,7 @@ impl TreeViewColumn {
     }
 
     #[doc(alias = "gtk_tree_view_column_set_attributes")]
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     pub fn set_attributes(
         &self,
         cell_renderer: &impl IsA<CellRenderer>,
@@ -35,6 +37,7 @@ impl TreeViewColumn {
 
     #[doc(alias = "gtk_tree_view_column_set_cell_data_func")]
     #[doc(alias = "set_cell_data_func")]
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     pub fn unset_cell_data_func(&self, cell_renderer: &impl IsA<CellRenderer>) {
         unsafe {
             ffi::gtk_tree_view_column_set_cell_data_func(

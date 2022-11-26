@@ -7,6 +7,7 @@ use glib::IsA;
 
 // rustdoc-stripper-ignore-next
 /// Trait containing manually implemented methods of [`CellLayout`](crate::CellLayout).
+#[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 pub trait CellLayoutExtManual: 'static {
     #[doc(alias = "gtk_cell_layout_set_attributes")]
     fn set_attributes(&self, cell: &impl IsA<CellRenderer>, attributes: &[(&str, i32)]);
