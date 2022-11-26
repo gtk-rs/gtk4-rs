@@ -139,6 +139,81 @@ impl CenterBox {
             )
         }
     }
+
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    #[doc(alias = "center-widget")]
+    pub fn connect_center_widget_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_center_widget_trampoline<F: Fn(&CenterBox) + 'static>(
+            this: *mut ffi::GtkCenterBox,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::center-widget\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_center_widget_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    #[doc(alias = "end-widget")]
+    pub fn connect_end_widget_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_end_widget_trampoline<F: Fn(&CenterBox) + 'static>(
+            this: *mut ffi::GtkCenterBox,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::end-widget\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_end_widget_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    #[doc(alias = "start-widget")]
+    pub fn connect_start_widget_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_start_widget_trampoline<F: Fn(&CenterBox) + 'static>(
+            this: *mut ffi::GtkCenterBox,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::start-widget\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_start_widget_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
 }
 
 impl Default for CenterBox {
@@ -155,6 +230,15 @@ impl Default for CenterBox {
 #[must_use = "The builder must be built to be used"]
 pub struct CenterBoxBuilder {
     baseline_position: Option<BaselinePosition>,
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    center_widget: Option<Widget>,
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    end_widget: Option<Widget>,
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    start_widget: Option<Widget>,
     can_focus: Option<bool>,
     can_target: Option<bool>,
     css_classes: Option<Vec<String>>,
@@ -202,6 +286,18 @@ impl CenterBoxBuilder {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref baseline_position) = self.baseline_position {
             properties.push(("baseline-position", baseline_position));
+        }
+        #[cfg(any(feature = "v4_10", feature = "dox"))]
+        if let Some(ref center_widget) = self.center_widget {
+            properties.push(("center-widget", center_widget));
+        }
+        #[cfg(any(feature = "v4_10", feature = "dox"))]
+        if let Some(ref end_widget) = self.end_widget {
+            properties.push(("end-widget", end_widget));
+        }
+        #[cfg(any(feature = "v4_10", feature = "dox"))]
+        if let Some(ref start_widget) = self.start_widget {
+            properties.push(("start-widget", start_widget));
         }
         if let Some(ref can_focus) = self.can_focus {
             properties.push(("can-focus", can_focus));
@@ -301,6 +397,27 @@ impl CenterBoxBuilder {
 
     pub fn baseline_position(mut self, baseline_position: BaselinePosition) -> Self {
         self.baseline_position = Some(baseline_position);
+        self
+    }
+
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn center_widget(mut self, center_widget: &impl IsA<Widget>) -> Self {
+        self.center_widget = Some(center_widget.clone().upcast());
+        self
+    }
+
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn end_widget(mut self, end_widget: &impl IsA<Widget>) -> Self {
+        self.end_widget = Some(end_widget.clone().upcast());
+        self
+    }
+
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn start_widget(mut self, start_widget: &impl IsA<Widget>) -> Self {
+        self.start_widget = Some(start_widget.clone().upcast());
         self
     }
 

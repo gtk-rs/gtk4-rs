@@ -36,6 +36,7 @@ glib::wrapper! {
 }
 
 impl InfoBar {
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_info_bar_new")]
     pub fn new() -> InfoBar {
         assert_initialized_main_thread!();
@@ -50,6 +51,7 @@ impl InfoBar {
         InfoBarBuilder::default()
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_info_bar_add_action_widget")]
     pub fn add_action_widget(&self, child: &impl IsA<Widget>, response_id: ResponseType) {
         unsafe {
@@ -61,6 +63,7 @@ impl InfoBar {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_info_bar_add_button")]
     pub fn add_button(&self, button_text: &str, response_id: ResponseType) -> Button {
         unsafe {
@@ -72,6 +75,7 @@ impl InfoBar {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_info_bar_add_child")]
     pub fn add_child(&self, widget: &impl IsA<Widget>) {
         unsafe {
@@ -79,18 +83,21 @@ impl InfoBar {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_info_bar_get_message_type")]
     #[doc(alias = "get_message_type")]
     pub fn message_type(&self) -> MessageType {
         unsafe { from_glib(ffi::gtk_info_bar_get_message_type(self.to_glib_none().0)) }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_info_bar_get_revealed")]
     #[doc(alias = "get_revealed")]
     pub fn is_revealed(&self) -> bool {
         unsafe { from_glib(ffi::gtk_info_bar_get_revealed(self.to_glib_none().0)) }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_info_bar_get_show_close_button")]
     #[doc(alias = "get_show_close_button")]
     pub fn shows_close_button(&self) -> bool {
@@ -101,6 +108,7 @@ impl InfoBar {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_info_bar_remove_action_widget")]
     pub fn remove_action_widget(&self, widget: &impl IsA<Widget>) {
         unsafe {
@@ -111,6 +119,7 @@ impl InfoBar {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_info_bar_remove_child")]
     pub fn remove_child(&self, widget: &impl IsA<Widget>) {
         unsafe {
@@ -118,6 +127,7 @@ impl InfoBar {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_info_bar_response")]
     pub fn response(&self, response_id: ResponseType) {
         unsafe {
@@ -125,6 +135,7 @@ impl InfoBar {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_info_bar_set_default_response")]
     pub fn set_default_response(&self, response_id: ResponseType) {
         unsafe {
@@ -132,6 +143,7 @@ impl InfoBar {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_info_bar_set_message_type")]
     pub fn set_message_type(&self, message_type: MessageType) {
         unsafe {
@@ -139,6 +151,7 @@ impl InfoBar {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_info_bar_set_response_sensitive")]
     pub fn set_response_sensitive(&self, response_id: ResponseType, setting: bool) {
         unsafe {
@@ -150,6 +163,7 @@ impl InfoBar {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_info_bar_set_revealed")]
     pub fn set_revealed(&self, revealed: bool) {
         unsafe {
@@ -157,6 +171,7 @@ impl InfoBar {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_info_bar_set_show_close_button")]
     pub fn set_show_close_button(&self, setting: bool) {
         unsafe {
