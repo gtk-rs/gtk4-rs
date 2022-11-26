@@ -2004,6 +2004,7 @@ generate_builder = false
 [[object]]
 name = "Gtk.StringList"
 status = "generate"
+generate_builder = false
     [[object.function]]
     name = "take"
     ignore = true # A C helper, bindings should use append instead
