@@ -29,7 +29,6 @@ generate = [
     "Gtk.ActionBar",
     "Gtk.ActivateAction",
     "Gtk.Adjustment",
-    #"Gtk.AlertDialog", needs https://github.com/gtk-rs/gir/pull/1397
     "Gtk.Align",
     "Gtk.Allocation",
     "Gtk.AlternativeTrigger",
@@ -588,6 +587,13 @@ manual_traits = ["ActionableExtManual"]
     name = "set_action_target"
     manual = true # the target is defined as str
     doc_trait_name = "ActionableExtManual"
+
+[[object]]
+name = "Gtk.AlertDialog"
+status = "generate"
+    [[object.function]]
+    name = "choose"
+    ignore = true # depends on https://github.com/gtk-rs/gir/pull/1397
 
 [[object]]
 name = "Gtk.AppChooserDialog"
