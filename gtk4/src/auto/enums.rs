@@ -3492,6 +3492,144 @@ impl From<DeleteType> for glib::Value {
     }
 }
 
+#[cfg(any(feature = "v4_10", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
+#[doc(alias = "GtkDialogError")]
+pub enum DialogError {
+    #[doc(alias = "GTK_DIALOG_ERROR_FAILED")]
+    Failed,
+    #[doc(alias = "GTK_DIALOG_ERROR_ABORTED")]
+    Aborted,
+    #[doc(alias = "GTK_DIALOG_ERROR_CANCELLED")]
+    Cancelled,
+    #[doc(hidden)]
+    __Unknown(i32),
+}
+
+#[cfg(any(feature = "v4_10", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+impl fmt::Display for DialogError {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(
+            f,
+            "DialogError::{}",
+            match *self {
+                Self::Failed => "Failed",
+                Self::Aborted => "Aborted",
+                Self::Cancelled => "Cancelled",
+                _ => "Unknown",
+            }
+        )
+    }
+}
+
+#[cfg(any(feature = "v4_10", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+#[doc(hidden)]
+impl IntoGlib for DialogError {
+    type GlibType = ffi::GtkDialogError;
+
+    fn into_glib(self) -> ffi::GtkDialogError {
+        match self {
+            Self::Failed => ffi::GTK_DIALOG_ERROR_FAILED,
+            Self::Aborted => ffi::GTK_DIALOG_ERROR_ABORTED,
+            Self::Cancelled => ffi::GTK_DIALOG_ERROR_CANCELLED,
+            Self::__Unknown(value) => value,
+        }
+    }
+}
+
+#[cfg(any(feature = "v4_10", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+#[doc(hidden)]
+impl FromGlib<ffi::GtkDialogError> for DialogError {
+    unsafe fn from_glib(value: ffi::GtkDialogError) -> Self {
+        skip_assert_initialized!();
+        match value {
+            ffi::GTK_DIALOG_ERROR_FAILED => Self::Failed,
+            ffi::GTK_DIALOG_ERROR_ABORTED => Self::Aborted,
+            ffi::GTK_DIALOG_ERROR_CANCELLED => Self::Cancelled,
+            value => Self::__Unknown(value),
+        }
+    }
+}
+
+#[cfg(any(feature = "v4_10", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+impl ErrorDomain for DialogError {
+    fn domain() -> Quark {
+        skip_assert_initialized!();
+
+        unsafe { from_glib(ffi::gtk_dialog_error_quark()) }
+    }
+
+    fn code(self) -> i32 {
+        self.into_glib()
+    }
+
+    fn from(code: i32) -> Option<Self> {
+        skip_assert_initialized!();
+        match code {
+            ffi::GTK_DIALOG_ERROR_FAILED => Some(Self::Failed),
+            ffi::GTK_DIALOG_ERROR_ABORTED => Some(Self::Aborted),
+            ffi::GTK_DIALOG_ERROR_CANCELLED => Some(Self::Cancelled),
+            _ => Some(Self::Failed),
+        }
+    }
+}
+
+#[cfg(any(feature = "v4_10", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+impl StaticType for DialogError {
+    fn static_type() -> Type {
+        unsafe { from_glib(ffi::gtk_dialog_error_get_type()) }
+    }
+}
+
+#[cfg(any(feature = "v4_10", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+impl glib::value::ValueType for DialogError {
+    type Type = Self;
+}
+
+#[cfg(any(feature = "v4_10", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+unsafe impl<'a> FromValue<'a> for DialogError {
+    type Checker = glib::value::GenericValueTypeChecker<Self>;
+
+    unsafe fn from_value(value: &'a glib::Value) -> Self {
+        skip_assert_initialized!();
+        from_glib(glib::gobject_ffi::g_value_get_enum(value.to_glib_none().0))
+    }
+}
+
+#[cfg(any(feature = "v4_10", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+impl ToValue for DialogError {
+    fn to_value(&self) -> glib::Value {
+        let mut value = glib::Value::for_value_type::<Self>();
+        unsafe {
+            glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.into_glib());
+        }
+        value
+    }
+
+    fn value_type(&self) -> glib::Type {
+        Self::static_type()
+    }
+}
+
+#[cfg(any(feature = "v4_10", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+impl From<DialogError> for glib::Value {
+    #[inline]
+    fn from(v: DialogError) -> Self {
+        ToValue::to_value(&v)
+    }
+}
+
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
 #[doc(alias = "GtkDirectionType")]
@@ -4324,6 +4462,107 @@ impl ToValue for FilterMatch {
 impl From<FilterMatch> for glib::Value {
     #[inline]
     fn from(v: FilterMatch) -> Self {
+        ToValue::to_value(&v)
+    }
+}
+
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
+#[doc(alias = "GtkFontLevel")]
+pub enum FontLevel {
+    #[doc(alias = "GTK_FONT_LEVEL_FAMILY")]
+    Family,
+    #[doc(alias = "GTK_FONT_LEVEL_FACE")]
+    Face,
+    #[doc(alias = "GTK_FONT_LEVEL_FONT")]
+    Font,
+    #[doc(alias = "GTK_FONT_LEVEL_FEATURES")]
+    Features,
+    #[doc(hidden)]
+    __Unknown(i32),
+}
+
+impl fmt::Display for FontLevel {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(
+            f,
+            "FontLevel::{}",
+            match *self {
+                Self::Family => "Family",
+                Self::Face => "Face",
+                Self::Font => "Font",
+                Self::Features => "Features",
+                _ => "Unknown",
+            }
+        )
+    }
+}
+
+#[doc(hidden)]
+impl IntoGlib for FontLevel {
+    type GlibType = ffi::GtkFontLevel;
+
+    fn into_glib(self) -> ffi::GtkFontLevel {
+        match self {
+            Self::Family => ffi::GTK_FONT_LEVEL_FAMILY,
+            Self::Face => ffi::GTK_FONT_LEVEL_FACE,
+            Self::Font => ffi::GTK_FONT_LEVEL_FONT,
+            Self::Features => ffi::GTK_FONT_LEVEL_FEATURES,
+            Self::__Unknown(value) => value,
+        }
+    }
+}
+
+#[doc(hidden)]
+impl FromGlib<ffi::GtkFontLevel> for FontLevel {
+    unsafe fn from_glib(value: ffi::GtkFontLevel) -> Self {
+        skip_assert_initialized!();
+        match value {
+            ffi::GTK_FONT_LEVEL_FAMILY => Self::Family,
+            ffi::GTK_FONT_LEVEL_FACE => Self::Face,
+            ffi::GTK_FONT_LEVEL_FONT => Self::Font,
+            ffi::GTK_FONT_LEVEL_FEATURES => Self::Features,
+            value => Self::__Unknown(value),
+        }
+    }
+}
+
+impl StaticType for FontLevel {
+    fn static_type() -> Type {
+        unsafe { from_glib(ffi::gtk_font_level_get_type()) }
+    }
+}
+
+impl glib::value::ValueType for FontLevel {
+    type Type = Self;
+}
+
+unsafe impl<'a> FromValue<'a> for FontLevel {
+    type Checker = glib::value::GenericValueTypeChecker<Self>;
+
+    unsafe fn from_value(value: &'a glib::Value) -> Self {
+        skip_assert_initialized!();
+        from_glib(glib::gobject_ffi::g_value_get_enum(value.to_glib_none().0))
+    }
+}
+
+impl ToValue for FontLevel {
+    fn to_value(&self) -> glib::Value {
+        let mut value = glib::Value::for_value_type::<Self>();
+        unsafe {
+            glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.into_glib());
+        }
+        value
+    }
+
+    fn value_type(&self) -> glib::Type {
+        Self::static_type()
+    }
+}
+
+impl From<FontLevel> for glib::Value {
+    #[inline]
+    fn from(v: FontLevel) -> Self {
         ToValue::to_value(&v)
     }
 }

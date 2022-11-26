@@ -212,11 +212,28 @@ mod color_chooser_widget;
 #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 pub use self::color_chooser_widget::ColorChooserWidget;
 
+#[cfg(any(feature = "v4_10", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+mod color_dialog;
+#[cfg(any(feature = "v4_10", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+pub use self::color_dialog::ColorDialog;
+
+#[cfg(any(feature = "v4_10", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+mod color_dialog_button;
+#[cfg(any(feature = "v4_10", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+pub use self::color_dialog_button::ColorDialogButton;
+
 mod column_view;
 pub use self::column_view::ColumnView;
 
 mod column_view_column;
 pub use self::column_view_column::ColumnViewColumn;
+
+mod column_view_sorter;
+pub use self::column_view_sorter::ColumnViewSorter;
 
 #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 mod combo_box;
@@ -349,6 +366,13 @@ mod file_chooser_widget;
 #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 pub use self::file_chooser_widget::FileChooserWidget;
 
+#[cfg(any(feature = "v4_10", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+mod file_dialog;
+#[cfg(any(feature = "v4_10", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+pub use self::file_dialog::FileDialog;
+
 mod file_filter;
 pub use self::file_filter::FileFilter;
 
@@ -395,6 +419,20 @@ pub use self::font_chooser_dialog::FontChooserDialog;
 mod font_chooser_widget;
 #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 pub use self::font_chooser_widget::FontChooserWidget;
+
+#[cfg(any(feature = "v4_10", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+mod font_dialog;
+#[cfg(any(feature = "v4_10", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+pub use self::font_dialog::FontDialog;
+
+#[cfg(any(feature = "v4_10", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+mod font_dialog_button;
+#[cfg(any(feature = "v4_10", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+pub use self::font_dialog_button::FontDialogButton;
 
 mod frame;
 pub use self::frame::Frame;
@@ -1003,6 +1041,9 @@ pub use self::enums::CornerType;
 pub use self::enums::CssParserError;
 pub use self::enums::CssParserWarning;
 pub use self::enums::DeleteType;
+#[cfg(any(feature = "v4_10", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+pub use self::enums::DialogError;
 pub use self::enums::DirectionType;
 pub use self::enums::EditableProperties;
 pub use self::enums::EntryIconPosition;
@@ -1011,6 +1052,7 @@ pub use self::enums::FileChooserAction;
 pub use self::enums::FileChooserError;
 pub use self::enums::FilterChange;
 pub use self::enums::FilterMatch;
+pub use self::enums::FontLevel;
 pub use self::enums::IconSize;
 pub use self::enums::IconThemeError;
 pub use self::enums::IconViewDropPosition;
@@ -1308,6 +1350,12 @@ pub mod builders {
     pub use super::color_chooser_dialog::ColorChooserDialogBuilder;
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     pub use super::color_chooser_widget::ColorChooserWidgetBuilder;
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub use super::color_dialog::ColorDialogBuilder;
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub use super::color_dialog_button::ColorDialogButtonBuilder;
     pub use super::column_view::ColumnViewBuilder;
     pub use super::column_view_column::ColumnViewColumnBuilder;
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
@@ -1341,6 +1389,9 @@ pub mod builders {
     pub use super::file_chooser_native::FileChooserNativeBuilder;
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     pub use super::file_chooser_widget::FileChooserWidgetBuilder;
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub use super::file_dialog::FileDialogBuilder;
     pub use super::filter_list_model::FilterListModelBuilder;
     pub use super::fixed::FixedBuilder;
     pub use super::flow_box::FlowBoxBuilder;
@@ -1351,6 +1402,12 @@ pub mod builders {
     pub use super::font_chooser_dialog::FontChooserDialogBuilder;
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     pub use super::font_chooser_widget::FontChooserWidgetBuilder;
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub use super::font_dialog::FontDialogBuilder;
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub use super::font_dialog_button::FontDialogButtonBuilder;
     pub use super::frame::FrameBuilder;
     pub use super::gesture_click::GestureClickBuilder;
     pub use super::gesture_drag::GestureDragBuilder;
