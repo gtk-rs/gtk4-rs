@@ -109,9 +109,13 @@ pub struct FileChooserDialogBuilder {
     visible: Option<bool>,
     width_request: Option<i32>,
     accessible_role: Option<AccessibleRole>,
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     action: Option<FileChooserAction>,
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     create_folders: Option<bool>,
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     filter: Option<FileFilter>,
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     select_multiple: Option<bool>,
 }
 
@@ -580,21 +584,25 @@ impl FileChooserDialogBuilder {
         self
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     pub fn action(mut self, action: FileChooserAction) -> Self {
         self.action = Some(action);
         self
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     pub fn create_folders(mut self, create_folders: bool) -> Self {
         self.create_folders = Some(create_folders);
         self
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     pub fn filter(mut self, filter: &FileFilter) -> Self {
         self.filter = Some(filter.clone());
         self
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     pub fn select_multiple(mut self, select_multiple: bool) -> Self {
         self.select_multiple = Some(select_multiple);
         self

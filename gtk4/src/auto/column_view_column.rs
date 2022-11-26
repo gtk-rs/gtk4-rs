@@ -95,6 +95,14 @@ impl ColumnViewColumn {
         }
     }
 
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    #[doc(alias = "gtk_column_view_column_get_id")]
+    #[doc(alias = "get_id")]
+    pub fn id(&self) -> Option<glib::GString> {
+        unsafe { from_glib_none(ffi::gtk_column_view_column_get_id(self.to_glib_none().0)) }
+    }
+
     #[doc(alias = "gtk_column_view_column_get_resizable")]
     #[doc(alias = "get_resizable")]
     pub fn is_resizable(&self) -> bool {
@@ -162,6 +170,15 @@ impl ColumnViewColumn {
                 self.to_glib_none().0,
                 menu.map(|p| p.as_ref()).to_glib_none().0,
             );
+        }
+    }
+
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    #[doc(alias = "gtk_column_view_column_set_id")]
+    pub fn set_id(&self, id: Option<&str>) {
+        unsafe {
+            ffi::gtk_column_view_column_set_id(self.to_glib_none().0, id.to_glib_none().0);
         }
     }
 
@@ -311,6 +328,31 @@ impl ColumnViewColumn {
         }
     }
 
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    #[doc(alias = "id")]
+    pub fn connect_id_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_id_trampoline<F: Fn(&ColumnViewColumn) + 'static>(
+            this: *mut ffi::GtkColumnViewColumn,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::id\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_id_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
     #[doc(alias = "resizable")]
     pub fn connect_resizable_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_resizable_trampoline<F: Fn(&ColumnViewColumn) + 'static>(
@@ -421,6 +463,9 @@ pub struct ColumnViewColumnBuilder {
     factory: Option<ListItemFactory>,
     fixed_width: Option<i32>,
     header_menu: Option<gio::MenuModel>,
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    id: Option<String>,
     resizable: Option<bool>,
     sorter: Option<Sorter>,
     title: Option<String>,
@@ -450,6 +495,10 @@ impl ColumnViewColumnBuilder {
         }
         if let Some(ref header_menu) = self.header_menu {
             properties.push(("header-menu", header_menu));
+        }
+        #[cfg(any(feature = "v4_10", feature = "dox"))]
+        if let Some(ref id) = self.id {
+            properties.push(("id", id));
         }
         if let Some(ref resizable) = self.resizable {
             properties.push(("resizable", resizable));
@@ -483,6 +532,13 @@ impl ColumnViewColumnBuilder {
 
     pub fn header_menu(mut self, header_menu: &impl IsA<gio::MenuModel>) -> Self {
         self.header_menu = Some(header_menu.clone().upcast());
+        self
+    }
+
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn id(mut self, id: &str) -> Self {
+        self.id = Some(id.to_string());
         self
     }
 

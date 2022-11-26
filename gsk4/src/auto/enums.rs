@@ -165,6 +165,13 @@ impl ToValue for BlendMode {
     }
 }
 
+impl From<BlendMode> for glib::Value {
+    #[inline]
+    fn from(v: BlendMode) -> Self {
+        ToValue::to_value(&v)
+    }
+}
+
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
 #[doc(alias = "GskCorner")]
@@ -256,6 +263,13 @@ impl ToValue for Corner {
 
     fn value_type(&self) -> glib::Type {
         Self::static_type()
+    }
+}
+
+impl From<Corner> for glib::Value {
+    #[inline]
+    fn from(v: Corner) -> Self {
+        ToValue::to_value(&v)
     }
 }
 
@@ -370,6 +384,13 @@ impl ToValue for GLUniformType {
 
     fn value_type(&self) -> glib::Type {
         Self::static_type()
+    }
+}
+
+impl From<GLUniformType> for glib::Value {
+    #[inline]
+    fn from(v: GLUniformType) -> Self {
+        ToValue::to_value(&v)
     }
 }
 
@@ -577,6 +598,13 @@ impl ToValue for RenderNodeType {
     }
 }
 
+impl From<RenderNodeType> for glib::Value {
+    #[inline]
+    fn from(v: RenderNodeType) -> Self {
+        ToValue::to_value(&v)
+    }
+}
+
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
 #[doc(alias = "GskScalingFilter")]
@@ -663,6 +691,13 @@ impl ToValue for ScalingFilter {
 
     fn value_type(&self) -> glib::Type {
         Self::static_type()
+    }
+}
+
+impl From<ScalingFilter> for glib::Value {
+    #[inline]
+    fn from(v: ScalingFilter) -> Self {
+        ToValue::to_value(&v)
     }
 }
 
@@ -777,6 +812,13 @@ impl ToValue for SerializationError {
     }
 }
 
+impl From<SerializationError> for glib::Value {
+    #[inline]
+    fn from(v: SerializationError) -> Self {
+        ToValue::to_value(&v)
+    }
+}
+
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
 #[doc(alias = "GskTransformCategory")]
@@ -883,5 +925,12 @@ impl ToValue for TransformCategory {
 
     fn value_type(&self) -> glib::Type {
         Self::static_type()
+    }
+}
+
+impl From<TransformCategory> for glib::Value {
+    #[inline]
+    fn from(v: TransformCategory) -> Self {
+        ToValue::to_value(&v)
     }
 }
