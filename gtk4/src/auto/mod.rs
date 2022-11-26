@@ -508,7 +508,9 @@ pub use self::icon_view::IconView;
 mod image;
 pub use self::image::Image;
 
+#[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 mod info_bar;
+#[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 pub use self::info_bar::InfoBar;
 
 #[cfg(any(feature = "v4_8", feature = "dox"))]
@@ -1428,6 +1430,7 @@ pub mod builders {
     pub use super::im_context_simple::IMContextSimpleBuilder;
     pub use super::im_multicontext::IMMulticontextBuilder;
     pub use super::image::ImageBuilder;
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     pub use super::info_bar::InfoBarBuilder;
     #[cfg(any(feature = "v4_8", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
@@ -1490,6 +1493,7 @@ pub mod builders {
     pub use super::stack_switcher::StackSwitcherBuilder;
     pub use super::statusbar::StatusbarBuilder;
     pub use super::string_filter::StringFilterBuilder;
+    pub use super::string_list::StringListBuilder;
     pub use super::string_sorter::StringSorterBuilder;
     pub use super::switch::SwitchBuilder;
     pub use super::text::TextBuilder;
