@@ -30,6 +30,13 @@ pub use self::activate_action::ActivateAction;
 mod adjustment;
 pub use self::adjustment::Adjustment;
 
+#[cfg(any(feature = "v4_10", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+mod alert_dialog;
+#[cfg(any(feature = "v4_10", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+pub use self::alert_dialog::AlertDialog;
+
 mod alternative_trigger;
 pub use self::alternative_trigger::AlternativeTrigger;
 
@@ -1310,6 +1317,9 @@ pub mod builders {
     pub use super::about_dialog::AboutDialogBuilder;
     pub use super::action_bar::ActionBarBuilder;
     pub use super::adjustment::AdjustmentBuilder;
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub use super::alert_dialog::AlertDialogBuilder;
     pub use super::alternative_trigger::AlternativeTriggerBuilder;
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     pub use super::app_chooser_button::AppChooserButtonBuilder;
