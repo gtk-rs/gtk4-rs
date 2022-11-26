@@ -6,6 +6,7 @@ use glib::translate::*;
 
 // rustdoc-stripper-ignore-next
 /// Trait containing manually implemented methods of [`ComboBox`](crate::ComboBox).
+#[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 pub trait ComboBoxExtManual: 'static {
     #[doc(alias = "gtk_combo_box_set_row_separator_func")]
     #[doc(alias = "set_row_separator_func")]

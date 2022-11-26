@@ -8,6 +8,7 @@ use libc::c_int;
 impl TreeStore {
     #[doc(alias = "gtk_tree_store_newv")]
     #[doc(alias = "gtk_tree_store_new")]
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     pub fn new(column_types: &[Type]) -> Self {
         assert_initialized_main_thread!();
         unsafe {
@@ -24,6 +25,7 @@ impl TreeStore {
 
     #[doc(alias = "gtk_tree_store_insert_with_values")]
     #[doc(alias = "gtk_tree_store_insert_with_valuesv")]
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     pub fn insert_with_values(
         &self,
         parent: Option<&TreeIter>,
@@ -89,6 +91,7 @@ impl TreeStore {
     }
 
     #[doc(alias = "gtk_tree_store_reorder")]
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     pub fn reorder(&self, parent: &TreeIter, new_order: &[u32]) {
         unsafe {
             let count = ffi::gtk_tree_model_iter_n_children(
@@ -126,6 +129,7 @@ impl TreeStore {
     #[doc(alias = "gtk_tree_store_set")]
     #[doc(alias = "gtk_tree_store_set_valuesv")]
     #[doc(alias = "gtk_tree_store_set_valist")]
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     pub fn set(&self, iter: &TreeIter, columns_and_values: &[(u32, &dyn ToValue)]) {
         unsafe {
             let n_columns =
@@ -177,6 +181,7 @@ impl TreeStore {
     }
 
     #[doc(alias = "gtk_tree_store_set_column_types")]
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     pub fn set_column_types(&self, types: &[glib::Type]) {
         unsafe {
             let types_ptr: Vec<glib::ffi::GType> = types.iter().map(|t| t.into_glib()).collect();
@@ -189,6 +194,7 @@ impl TreeStore {
     }
 
     #[doc(alias = "gtk_tree_store_set_value")]
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     pub fn set_value(&self, iter: &TreeIter, column: u32, value: &Value) {
         unsafe {
             let columns =

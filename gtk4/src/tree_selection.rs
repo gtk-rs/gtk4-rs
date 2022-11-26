@@ -3,6 +3,7 @@
 use crate::TreeSelection;
 use glib::translate::*;
 
+#[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 impl TreeSelection {
     #[doc(alias = "gtk_tree_selection_set_select_function")]
     #[doc(alias = "set_select_function")]
