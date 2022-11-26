@@ -3,10 +3,7 @@
 // DO NOT EDIT
 
 use crate::Buildable;
-use glib::object::Cast;
 use glib::translate::*;
-use glib::StaticType;
-use glib::ToValue;
 use std::fmt;
 
 glib::wrapper! {
@@ -23,14 +20,6 @@ impl StringList {
     pub fn new(strings: &[&str]) -> StringList {
         assert_initialized_main_thread!();
         unsafe { from_glib_full(ffi::gtk_string_list_new(strings.to_glib_none().0)) }
-    }
-
-    // rustdoc-stripper-ignore-next
-    /// Creates a new builder-pattern struct instance to construct [`StringList`] objects.
-    ///
-    /// This method returns an instance of [`StringListBuilder`](crate::builders::StringListBuilder) which can be used to create [`StringList`] objects.
-    pub fn builder() -> StringListBuilder {
-        StringListBuilder::default()
     }
 
     #[doc(alias = "gtk_string_list_append")]
@@ -68,51 +57,6 @@ impl StringList {
                 additions.to_glib_none().0,
             );
         }
-    }
-}
-
-impl Default for StringList {
-    fn default() -> Self {
-        glib::object::Object::new::<Self>(&[])
-    }
-}
-
-#[derive(Clone, Default)]
-// rustdoc-stripper-ignore-next
-/// A [builder-pattern] type to construct [`StringList`] objects.
-///
-/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
-#[must_use = "The builder must be built to be used"]
-pub struct StringListBuilder {
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
-    strings: Option<Vec<String>>,
-}
-
-impl StringListBuilder {
-    // rustdoc-stripper-ignore-next
-    /// Create a new [`StringListBuilder`].
-    pub fn new() -> Self {
-        Self::default()
-    }
-
-    // rustdoc-stripper-ignore-next
-    /// Build the [`StringList`].
-    #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
-    pub fn build(self) -> StringList {
-        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
-        #[cfg(any(feature = "v4_10", feature = "dox"))]
-        if let Some(ref strings) = self.strings {
-            properties.push(("strings", strings));
-        }
-        glib::Object::new::<StringList>(&properties)
-    }
-
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
-    pub fn strings(mut self, strings: Vec<String>) -> Self {
-        self.strings = Some(strings);
-        self
     }
 }
 
