@@ -119,8 +119,6 @@ generate = [
     "Gtk.FontChooserDialog",
     "Gtk.FontChooserLevel",
     "Gtk.FontChooserWidget",
-    "Gtk.FontDialog",
-    "Gtk.FontDialogButton",
     "Gtk.FontLevel",
     "Gtk.Frame",
     "Gtk.GestureDrag",
@@ -1233,6 +1231,32 @@ manual_traits = ["FontChooserExtManual"]
         [[object.function.parameter]]
         name = "filter"
         nullable = false # use a separate unset_filter_func
+
+[[object]]
+name = "Gtk.FontDialog"
+status = "generate"
+    [[object.function]]
+    name = "choose_font"
+        [[object.function.parameter]]
+        name = "initial_value"
+        const = true
+    [[object.function]]
+    name = "choose_font_and_features"
+    manual = true # incorrect usage of the Uninitialized trait
+    [[object.function]]
+    name = "set_language"
+        [[object.function.parameter]]
+        name = "language"
+        const = true
+
+[[object]]
+name = "Gtk.FontDialogButton"
+status = "generate"
+    [[object.function]]
+    name = "set_language"
+        [[object.function.parameter]]
+        name = "language"
+        const = true
 
 [[object]]
 name = "Gtk.Gesture"

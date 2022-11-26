@@ -145,11 +145,11 @@ impl FontDialogButton {
     }
 
     #[doc(alias = "gtk_font_dialog_button_set_language")]
-    pub fn set_language(&self, language: Option<&mut pango::Language>) {
+    pub fn set_language(&self, language: Option<&pango::Language>) {
         unsafe {
             ffi::gtk_font_dialog_button_set_language(
                 self.to_glib_none().0,
-                language.to_glib_none_mut().0,
+                mut_override(language.to_glib_none().0),
             );
         }
     }
