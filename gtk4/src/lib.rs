@@ -149,6 +149,9 @@ mod file_chooser;
 mod file_chooser_dialog;
 mod flow_box;
 mod font_chooser;
+#[cfg(any(feature = "v4_10", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+mod font_dialog;
 mod functions;
 mod gesture_stylus;
 mod icon_theme;
