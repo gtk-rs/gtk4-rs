@@ -168,6 +168,7 @@ impl ToValue for BlendMode {
 impl From<BlendMode> for glib::Value {
     #[inline]
     fn from(v: BlendMode) -> Self {
+        skip_assert_initialized!();
         ToValue::to_value(&v)
     }
 }
@@ -269,6 +270,7 @@ impl ToValue for Corner {
 impl From<Corner> for glib::Value {
     #[inline]
     fn from(v: Corner) -> Self {
+        skip_assert_initialized!();
         ToValue::to_value(&v)
     }
 }
@@ -390,6 +392,7 @@ impl ToValue for GLUniformType {
 impl From<GLUniformType> for glib::Value {
     #[inline]
     fn from(v: GLUniformType) -> Self {
+        skip_assert_initialized!();
         ToValue::to_value(&v)
     }
 }
@@ -601,6 +604,7 @@ impl ToValue for RenderNodeType {
 impl From<RenderNodeType> for glib::Value {
     #[inline]
     fn from(v: RenderNodeType) -> Self {
+        skip_assert_initialized!();
         ToValue::to_value(&v)
     }
 }
@@ -697,6 +701,7 @@ impl ToValue for ScalingFilter {
 impl From<ScalingFilter> for glib::Value {
     #[inline]
     fn from(v: ScalingFilter) -> Self {
+        skip_assert_initialized!();
         ToValue::to_value(&v)
     }
 }
@@ -815,6 +820,7 @@ impl ToValue for SerializationError {
 impl From<SerializationError> for glib::Value {
     #[inline]
     fn from(v: SerializationError) -> Self {
+        skip_assert_initialized!();
         ToValue::to_value(&v)
     }
 }
@@ -931,6 +937,7 @@ impl ToValue for TransformCategory {
 impl From<TransformCategory> for glib::Value {
     #[inline]
     fn from(v: TransformCategory) -> Self {
+        skip_assert_initialized!();
         ToValue::to_value(&v)
     }
 }

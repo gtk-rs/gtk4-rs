@@ -93,6 +93,7 @@ impl ToValue for AnchorHints {
 impl From<AnchorHints> for glib::Value {
     #[inline]
     fn from(v: AnchorHints) -> Self {
+        skip_assert_initialized!();
         ToValue::to_value(&v)
     }
 }
@@ -184,6 +185,7 @@ impl ToValue for AxisFlags {
 impl From<AxisFlags> for glib::Value {
     #[inline]
     fn from(v: AxisFlags) -> Self {
+        skip_assert_initialized!();
         ToValue::to_value(&v)
     }
 }
@@ -269,6 +271,7 @@ impl ToValue for DragAction {
 impl From<DragAction> for glib::Value {
     #[inline]
     fn from(v: DragAction) -> Self {
+        skip_assert_initialized!();
         ToValue::to_value(&v)
     }
 }
@@ -354,6 +357,7 @@ impl ToValue for FrameClockPhase {
 impl From<FrameClockPhase> for glib::Value {
     #[inline]
     fn from(v: FrameClockPhase) -> Self {
+        skip_assert_initialized!();
         ToValue::to_value(&v)
     }
 }
@@ -445,6 +449,7 @@ impl ToValue for GLAPI {
 impl From<GLAPI> for glib::Value {
     #[inline]
     fn from(v: GLAPI) -> Self {
+        skip_assert_initialized!();
         ToValue::to_value(&v)
     }
 }
@@ -538,6 +543,7 @@ impl ToValue for ModifierType {
 impl From<ModifierType> for glib::Value {
     #[inline]
     fn from(v: ModifierType) -> Self {
+        skip_assert_initialized!();
         ToValue::to_value(&v)
     }
 }
@@ -611,6 +617,7 @@ impl ToValue for PaintableFlags {
 impl From<PaintableFlags> for glib::Value {
     #[inline]
     fn from(v: PaintableFlags) -> Self {
+        skip_assert_initialized!();
         ToValue::to_value(&v)
     }
 }
@@ -696,6 +703,7 @@ impl ToValue for SeatCapabilities {
 impl From<SeatCapabilities> for glib::Value {
     #[inline]
     fn from(v: SeatCapabilities) -> Self {
+        skip_assert_initialized!();
         ToValue::to_value(&v)
     }
 }
@@ -797,6 +805,7 @@ impl ToValue for ToplevelState {
 impl From<ToplevelState> for glib::Value {
     #[inline]
     fn from(v: ToplevelState) -> Self {
+        skip_assert_initialized!();
         ToValue::to_value(&v)
     }
 }

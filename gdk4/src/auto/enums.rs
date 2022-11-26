@@ -148,6 +148,7 @@ impl ToValue for AxisUse {
 impl From<AxisUse> for glib::Value {
     #[inline]
     fn from(v: AxisUse) -> Self {
+        skip_assert_initialized!();
         ToValue::to_value(&v)
     }
 }
@@ -274,6 +275,7 @@ impl ToValue for CrossingMode {
 impl From<CrossingMode> for glib::Value {
     #[inline]
     fn from(v: CrossingMode) -> Self {
+        skip_assert_initialized!();
         ToValue::to_value(&v)
     }
 }
@@ -370,6 +372,7 @@ impl ToValue for DevicePadFeature {
 impl From<DevicePadFeature> for glib::Value {
     #[inline]
     fn from(v: DevicePadFeature) -> Self {
+        skip_assert_initialized!();
         ToValue::to_value(&v)
     }
 }
@@ -491,6 +494,7 @@ impl ToValue for DeviceToolType {
 impl From<DeviceToolType> for glib::Value {
     #[inline]
     fn from(v: DeviceToolType) -> Self {
+        skip_assert_initialized!();
         ToValue::to_value(&v)
     }
 }
@@ -587,6 +591,7 @@ impl ToValue for DragCancelReason {
 impl From<DragCancelReason> for glib::Value {
     #[inline]
     fn from(v: DragCancelReason) -> Self {
+        skip_assert_initialized!();
         ToValue::to_value(&v)
     }
 }
@@ -818,6 +823,7 @@ impl ToValue for EventType {
 impl From<EventType> for glib::Value {
     #[inline]
     fn from(v: EventType) -> Self {
+        skip_assert_initialized!();
         ToValue::to_value(&v)
     }
 }
@@ -909,6 +915,7 @@ impl ToValue for FullscreenMode {
 impl From<FullscreenMode> for glib::Value {
     #[inline]
     fn from(v: FullscreenMode) -> Self {
+        skip_assert_initialized!();
         ToValue::to_value(&v)
     }
 }
@@ -1039,6 +1046,7 @@ impl ToValue for GLError {
 impl From<GLError> for glib::Value {
     #[inline]
     fn from(v: GLError) -> Self {
+        skip_assert_initialized!();
         ToValue::to_value(&v)
     }
 }
@@ -1170,6 +1178,7 @@ impl ToValue for Gravity {
 impl From<Gravity> for glib::Value {
     #[inline]
     fn from(v: Gravity) -> Self {
+        skip_assert_initialized!();
         ToValue::to_value(&v)
     }
 }
@@ -1286,6 +1295,7 @@ impl ToValue for InputSource {
 impl From<InputSource> for glib::Value {
     #[inline]
     fn from(v: InputSource) -> Self {
+        skip_assert_initialized!();
         ToValue::to_value(&v)
     }
 }
@@ -1382,6 +1392,7 @@ impl ToValue for KeyMatch {
 impl From<KeyMatch> for glib::Value {
     #[inline]
     fn from(v: KeyMatch) -> Self {
+        skip_assert_initialized!();
         ToValue::to_value(&v)
     }
 }
@@ -1606,6 +1617,7 @@ impl ToValue for MemoryFormat {
 impl From<MemoryFormat> for glib::Value {
     #[inline]
     fn from(v: MemoryFormat) -> Self {
+        skip_assert_initialized!();
         ToValue::to_value(&v)
     }
 }
@@ -1717,6 +1729,7 @@ impl ToValue for NotifyType {
 impl From<NotifyType> for glib::Value {
     #[inline]
     fn from(v: NotifyType) -> Self {
+        skip_assert_initialized!();
         ToValue::to_value(&v)
     }
 }
@@ -1823,6 +1836,7 @@ impl ToValue for ScrollDirection {
 impl From<ScrollDirection> for glib::Value {
     #[inline]
     fn from(v: ScrollDirection) -> Self {
+        skip_assert_initialized!();
         ToValue::to_value(&v)
     }
 }
@@ -1932,6 +1946,7 @@ impl ToValue for ScrollUnit {
 impl From<ScrollUnit> for glib::Value {
     #[inline]
     fn from(v: ScrollUnit) -> Self {
+        skip_assert_initialized!();
         ToValue::to_value(&v)
     }
 }
@@ -2043,6 +2058,7 @@ impl ToValue for SubpixelLayout {
 impl From<SubpixelLayout> for glib::Value {
     #[inline]
     fn from(v: SubpixelLayout) -> Self {
+        skip_assert_initialized!();
         ToValue::to_value(&v)
     }
 }
@@ -2164,6 +2180,7 @@ impl ToValue for SurfaceEdge {
 impl From<SurfaceEdge> for glib::Value {
     #[inline]
     fn from(v: SurfaceEdge) -> Self {
+        skip_assert_initialized!();
         ToValue::to_value(&v)
     }
 }
@@ -2308,6 +2325,7 @@ impl ToValue for TextureError {
 impl From<TextureError> for glib::Value {
     #[inline]
     fn from(v: TextureError) -> Self {
+        skip_assert_initialized!();
         ToValue::to_value(&v)
     }
 }
@@ -2422,6 +2440,7 @@ impl ToValue for TitlebarGesture {
 impl From<TitlebarGesture> for glib::Value {
     #[inline]
     fn from(v: TitlebarGesture) -> Self {
+        skip_assert_initialized!();
         ToValue::to_value(&v)
     }
 }
@@ -2523,6 +2542,7 @@ impl ToValue for TouchpadGesturePhase {
 impl From<TouchpadGesturePhase> for glib::Value {
     #[inline]
     fn from(v: TouchpadGesturePhase) -> Self {
+        skip_assert_initialized!();
         ToValue::to_value(&v)
     }
 }
@@ -2635,6 +2655,7 @@ impl ToValue for VulkanError {
 impl From<VulkanError> for glib::Value {
     #[inline]
     fn from(v: VulkanError) -> Self {
+        skip_assert_initialized!();
         ToValue::to_value(&v)
     }
 }
