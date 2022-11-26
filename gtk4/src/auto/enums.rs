@@ -108,6 +108,7 @@ impl ToValue for AccessibleAutocomplete {
 impl From<AccessibleAutocomplete> for glib::Value {
     #[inline]
     fn from(v: AccessibleAutocomplete) -> Self {
+        skip_assert_initialized!();
         ToValue::to_value(&v)
     }
 }
@@ -209,6 +210,7 @@ impl ToValue for AccessibleInvalidState {
 impl From<AccessibleInvalidState> for glib::Value {
     #[inline]
     fn from(v: AccessibleInvalidState) -> Self {
+        skip_assert_initialized!();
         ToValue::to_value(&v)
     }
 }
@@ -395,6 +397,7 @@ impl ToValue for AccessibleProperty {
 impl From<AccessibleProperty> for glib::Value {
     #[inline]
     fn from(v: AccessibleProperty) -> Self {
+        skip_assert_initialized!();
         ToValue::to_value(&v)
     }
 }
@@ -576,6 +579,7 @@ impl ToValue for AccessibleRelation {
 impl From<AccessibleRelation> for glib::Value {
     #[inline]
     fn from(v: AccessibleRelation) -> Self {
+        skip_assert_initialized!();
         ToValue::to_value(&v)
     }
 }
@@ -1047,6 +1051,7 @@ impl ToValue for AccessibleRole {
 impl From<AccessibleRole> for glib::Value {
     #[inline]
     fn from(v: AccessibleRole) -> Self {
+        skip_assert_initialized!();
         ToValue::to_value(&v)
     }
 }
@@ -1148,6 +1153,7 @@ impl ToValue for AccessibleSort {
 impl From<AccessibleSort> for glib::Value {
     #[inline]
     fn from(v: AccessibleSort) -> Self {
+        skip_assert_initialized!();
         ToValue::to_value(&v)
     }
 }
@@ -1279,6 +1285,7 @@ impl ToValue for AccessibleState {
 impl From<AccessibleState> for glib::Value {
     #[inline]
     fn from(v: AccessibleState) -> Self {
+        skip_assert_initialized!();
         ToValue::to_value(&v)
     }
 }
@@ -1375,6 +1382,7 @@ impl ToValue for AccessibleTristate {
 impl From<AccessibleTristate> for glib::Value {
     #[inline]
     fn from(v: AccessibleTristate) -> Self {
+        skip_assert_initialized!();
         ToValue::to_value(&v)
     }
 }
@@ -1481,6 +1489,7 @@ impl ToValue for Align {
 impl From<Align> for glib::Value {
     #[inline]
     fn from(v: Align) -> Self {
+        skip_assert_initialized!();
         ToValue::to_value(&v)
     }
 }
@@ -1587,6 +1596,7 @@ impl ToValue for ArrowType {
 impl From<ArrowType> for glib::Value {
     #[inline]
     fn from(v: ArrowType) -> Self {
+        skip_assert_initialized!();
         ToValue::to_value(&v)
     }
 }
@@ -1698,6 +1708,7 @@ impl ToValue for AssistantPageType {
 impl From<AssistantPageType> for glib::Value {
     #[inline]
     fn from(v: AssistantPageType) -> Self {
+        skip_assert_initialized!();
         ToValue::to_value(&v)
     }
 }
@@ -1794,6 +1805,7 @@ impl ToValue for BaselinePosition {
 impl From<BaselinePosition> for glib::Value {
     #[inline]
     fn from(v: BaselinePosition) -> Self {
+        skip_assert_initialized!();
         ToValue::to_value(&v)
     }
 }
@@ -1925,6 +1937,7 @@ impl ToValue for BorderStyle {
 impl From<BorderStyle> for glib::Value {
     #[inline]
     fn from(v: BorderStyle) -> Self {
+        skip_assert_initialized!();
         ToValue::to_value(&v)
     }
 }
@@ -2115,6 +2128,7 @@ impl ToValue for BuilderError {
 impl From<BuilderError> for glib::Value {
     #[inline]
     fn from(v: BuilderError) -> Self {
+        skip_assert_initialized!();
         ToValue::to_value(&v)
     }
 }
@@ -2226,6 +2240,7 @@ impl ToValue for ButtonsType {
 impl From<ButtonsType> for glib::Value {
     #[inline]
     fn from(v: ButtonsType) -> Self {
+        skip_assert_initialized!();
         ToValue::to_value(&v)
     }
 }
@@ -2317,6 +2332,7 @@ impl ToValue for CellRendererAccelMode {
 impl From<CellRendererAccelMode> for glib::Value {
     #[inline]
     fn from(v: CellRendererAccelMode) -> Self {
+        skip_assert_initialized!();
         ToValue::to_value(&v)
     }
 }
@@ -2413,6 +2429,7 @@ impl ToValue for CellRendererMode {
 impl From<CellRendererMode> for glib::Value {
     #[inline]
     fn from(v: CellRendererMode) -> Self {
+        skip_assert_initialized!();
         ToValue::to_value(&v)
     }
 }
@@ -2527,6 +2544,7 @@ impl ToValue for Collation {
 impl From<Collation> for glib::Value {
     #[inline]
     fn from(v: Collation) -> Self {
+        skip_assert_initialized!();
         ToValue::to_value(&v)
     }
 }
@@ -2668,6 +2686,7 @@ impl ToValue for ConstraintAttribute {
 impl From<ConstraintAttribute> for glib::Value {
     #[inline]
     fn from(v: ConstraintAttribute) -> Self {
+        skip_assert_initialized!();
         ToValue::to_value(&v)
     }
 }
@@ -2764,6 +2783,7 @@ impl ToValue for ConstraintRelation {
 impl From<ConstraintRelation> for glib::Value {
     #[inline]
     fn from(v: ConstraintRelation) -> Self {
+        skip_assert_initialized!();
         ToValue::to_value(&v)
     }
 }
@@ -2865,6 +2885,7 @@ impl ToValue for ConstraintStrength {
 impl From<ConstraintStrength> for glib::Value {
     #[inline]
     fn from(v: ConstraintStrength) -> Self {
+        skip_assert_initialized!();
         ToValue::to_value(&v)
     }
 }
@@ -3001,6 +3022,7 @@ impl ToValue for ConstraintVflParserError {
 impl From<ConstraintVflParserError> for glib::Value {
     #[inline]
     fn from(v: ConstraintVflParserError) -> Self {
+        skip_assert_initialized!();
         ToValue::to_value(&v)
     }
 }
@@ -3120,6 +3142,7 @@ impl ToValue for ContentFit {
 impl From<ContentFit> for glib::Value {
     #[inline]
     fn from(v: ContentFit) -> Self {
+        skip_assert_initialized!();
         ToValue::to_value(&v)
     }
 }
@@ -3221,6 +3244,7 @@ impl ToValue for CornerType {
 impl From<CornerType> for glib::Value {
     #[inline]
     fn from(v: CornerType) -> Self {
+        skip_assert_initialized!();
         ToValue::to_value(&v)
     }
 }
@@ -3488,6 +3512,7 @@ impl ToValue for DeleteType {
 impl From<DeleteType> for glib::Value {
     #[inline]
     fn from(v: DeleteType) -> Self {
+        skip_assert_initialized!();
         ToValue::to_value(&v)
     }
 }
@@ -3626,6 +3651,7 @@ impl ToValue for DialogError {
 impl From<DialogError> for glib::Value {
     #[inline]
     fn from(v: DialogError) -> Self {
+        skip_assert_initialized!();
         ToValue::to_value(&v)
     }
 }
@@ -3737,6 +3763,7 @@ impl ToValue for DirectionType {
 impl From<DirectionType> for glib::Value {
     #[inline]
     fn from(v: DirectionType) -> Self {
+        skip_assert_initialized!();
         ToValue::to_value(&v)
     }
 }
@@ -3863,6 +3890,7 @@ impl ToValue for EditableProperties {
 impl From<EditableProperties> for glib::Value {
     #[inline]
     fn from(v: EditableProperties) -> Self {
+        skip_assert_initialized!();
         ToValue::to_value(&v)
     }
 }
@@ -3954,6 +3982,7 @@ impl ToValue for EntryIconPosition {
 impl From<EntryIconPosition> for glib::Value {
     #[inline]
     fn from(v: EntryIconPosition) -> Self {
+        skip_assert_initialized!();
         ToValue::to_value(&v)
     }
 }
@@ -4050,6 +4079,7 @@ impl ToValue for EventSequenceState {
 impl From<EventSequenceState> for glib::Value {
     #[inline]
     fn from(v: EventSequenceState) -> Self {
+        skip_assert_initialized!();
         ToValue::to_value(&v)
     }
 }
@@ -4146,6 +4176,7 @@ impl ToValue for FileChooserAction {
 impl From<FileChooserAction> for glib::Value {
     #[inline]
     fn from(v: FileChooserAction) -> Self {
+        skip_assert_initialized!();
         ToValue::to_value(&v)
     }
 }
@@ -4270,6 +4301,7 @@ impl ToValue for FileChooserError {
 impl From<FileChooserError> for glib::Value {
     #[inline]
     fn from(v: FileChooserError) -> Self {
+        skip_assert_initialized!();
         ToValue::to_value(&v)
     }
 }
@@ -4366,6 +4398,7 @@ impl ToValue for FilterChange {
 impl From<FilterChange> for glib::Value {
     #[inline]
     fn from(v: FilterChange) -> Self {
+        skip_assert_initialized!();
         ToValue::to_value(&v)
     }
 }
@@ -4462,6 +4495,7 @@ impl ToValue for FilterMatch {
 impl From<FilterMatch> for glib::Value {
     #[inline]
     fn from(v: FilterMatch) -> Self {
+        skip_assert_initialized!();
         ToValue::to_value(&v)
     }
 }
@@ -4563,6 +4597,7 @@ impl ToValue for FontLevel {
 impl From<FontLevel> for glib::Value {
     #[inline]
     fn from(v: FontLevel) -> Self {
+        skip_assert_initialized!();
         ToValue::to_value(&v)
     }
 }
@@ -4659,6 +4694,7 @@ impl ToValue for IconSize {
 impl From<IconSize> for glib::Value {
     #[inline]
     fn from(v: IconSize) -> Self {
+        skip_assert_initialized!();
         ToValue::to_value(&v)
     }
 }
@@ -4771,6 +4807,7 @@ impl ToValue for IconThemeError {
 impl From<IconThemeError> for glib::Value {
     #[inline]
     fn from(v: IconThemeError) -> Self {
+        skip_assert_initialized!();
         ToValue::to_value(&v)
     }
 }
@@ -4882,6 +4919,7 @@ impl ToValue for IconViewDropPosition {
 impl From<IconViewDropPosition> for glib::Value {
     #[inline]
     fn from(v: IconViewDropPosition) -> Self {
+        skip_assert_initialized!();
         ToValue::to_value(&v)
     }
 }
@@ -4983,6 +5021,7 @@ impl ToValue for ImageType {
 impl From<ImageType> for glib::Value {
     #[inline]
     fn from(v: ImageType) -> Self {
+        skip_assert_initialized!();
         ToValue::to_value(&v)
     }
 }
@@ -5119,6 +5158,7 @@ impl ToValue for InputPurpose {
 impl From<InputPurpose> for glib::Value {
     #[inline]
     fn from(v: InputPurpose) -> Self {
+        skip_assert_initialized!();
         ToValue::to_value(&v)
     }
 }
@@ -5238,6 +5278,7 @@ impl ToValue for InscriptionOverflow {
 impl From<InscriptionOverflow> for glib::Value {
     #[inline]
     fn from(v: InscriptionOverflow) -> Self {
+        skip_assert_initialized!();
         ToValue::to_value(&v)
     }
 }
@@ -5339,6 +5380,7 @@ impl ToValue for Justification {
 impl From<Justification> for glib::Value {
     #[inline]
     fn from(v: Justification) -> Self {
+        skip_assert_initialized!();
         ToValue::to_value(&v)
     }
 }
@@ -5430,6 +5472,7 @@ impl ToValue for LevelBarMode {
 impl From<LevelBarMode> for glib::Value {
     #[inline]
     fn from(v: LevelBarMode) -> Self {
+        skip_assert_initialized!();
         ToValue::to_value(&v)
     }
 }
@@ -5601,6 +5644,7 @@ impl ToValue for License {
 impl From<License> for glib::Value {
     #[inline]
     fn from(v: License) -> Self {
+        skip_assert_initialized!();
         ToValue::to_value(&v)
     }
 }
@@ -5707,6 +5751,7 @@ impl ToValue for MessageType {
 impl From<MessageType> for glib::Value {
     #[inline]
     fn from(v: MessageType) -> Self {
+        skip_assert_initialized!();
         ToValue::to_value(&v)
     }
 }
@@ -5838,6 +5883,7 @@ impl ToValue for MovementStep {
 impl From<MovementStep> for glib::Value {
     #[inline]
     fn from(v: MovementStep) -> Self {
+        skip_assert_initialized!();
         ToValue::to_value(&v)
     }
 }
@@ -5952,6 +5998,7 @@ impl ToValue for NaturalWrapMode {
 impl From<NaturalWrapMode> for glib::Value {
     #[inline]
     fn from(v: NaturalWrapMode) -> Self {
+        skip_assert_initialized!();
         ToValue::to_value(&v)
     }
 }
@@ -6043,6 +6090,7 @@ impl ToValue for NotebookTab {
 impl From<NotebookTab> for glib::Value {
     #[inline]
     fn from(v: NotebookTab) -> Self {
+        skip_assert_initialized!();
         ToValue::to_value(&v)
     }
 }
@@ -6164,6 +6212,7 @@ impl ToValue for NumberUpLayout {
 impl From<NumberUpLayout> for glib::Value {
     #[inline]
     fn from(v: NumberUpLayout) -> Self {
+        skip_assert_initialized!();
         ToValue::to_value(&v)
     }
 }
@@ -6260,6 +6309,7 @@ impl ToValue for Ordering {
 impl From<Ordering> for glib::Value {
     #[inline]
     fn from(v: Ordering) -> Self {
+        skip_assert_initialized!();
         ToValue::to_value(&v)
     }
 }
@@ -6351,6 +6401,7 @@ impl ToValue for Orientation {
 impl From<Orientation> for glib::Value {
     #[inline]
     fn from(v: Orientation) -> Self {
+        skip_assert_initialized!();
         ToValue::to_value(&v)
     }
 }
@@ -6442,6 +6493,7 @@ impl ToValue for Overflow {
 impl From<Overflow> for glib::Value {
     #[inline]
     fn from(v: Overflow) -> Self {
+        skip_assert_initialized!();
         ToValue::to_value(&v)
     }
 }
@@ -6533,6 +6585,7 @@ impl ToValue for PackType {
 impl From<PackType> for glib::Value {
     #[inline]
     fn from(v: PackType) -> Self {
+        skip_assert_initialized!();
         ToValue::to_value(&v)
     }
 }
@@ -6629,6 +6682,7 @@ impl ToValue for PadActionType {
 impl From<PadActionType> for glib::Value {
     #[inline]
     fn from(v: PadActionType) -> Self {
+        skip_assert_initialized!();
         ToValue::to_value(&v)
     }
 }
@@ -6730,6 +6784,7 @@ impl ToValue for PageOrientation {
 impl From<PageOrientation> for glib::Value {
     #[inline]
     fn from(v: PageOrientation) -> Self {
+        skip_assert_initialized!();
         ToValue::to_value(&v)
     }
 }
@@ -6826,6 +6881,7 @@ impl ToValue for PageSet {
 impl From<PageSet> for glib::Value {
     #[inline]
     fn from(v: PageSet) -> Self {
+        skip_assert_initialized!();
         ToValue::to_value(&v)
     }
 }
@@ -6927,6 +6983,7 @@ impl ToValue for PanDirection {
 impl From<PanDirection> for glib::Value {
     #[inline]
     fn from(v: PanDirection) -> Self {
+        skip_assert_initialized!();
         ToValue::to_value(&v)
     }
 }
@@ -7028,6 +7085,7 @@ impl ToValue for PolicyType {
 impl From<PolicyType> for glib::Value {
     #[inline]
     fn from(v: PolicyType) -> Self {
+        skip_assert_initialized!();
         ToValue::to_value(&v)
     }
 }
@@ -7129,6 +7187,7 @@ impl ToValue for PositionType {
 impl From<PositionType> for glib::Value {
     #[inline]
     fn from(v: PositionType) -> Self {
+        skip_assert_initialized!();
         ToValue::to_value(&v)
     }
 }
@@ -7225,6 +7284,7 @@ impl ToValue for PrintDuplex {
 impl From<PrintDuplex> for glib::Value {
     #[inline]
     fn from(v: PrintDuplex) -> Self {
+        skip_assert_initialized!();
         ToValue::to_value(&v)
     }
 }
@@ -7349,6 +7409,7 @@ impl ToValue for PrintError {
 impl From<PrintError> for glib::Value {
     #[inline]
     fn from(v: PrintError) -> Self {
+        skip_assert_initialized!();
         ToValue::to_value(&v)
     }
 }
@@ -7450,6 +7511,7 @@ impl ToValue for PrintOperationAction {
 impl From<PrintOperationAction> for glib::Value {
     #[inline]
     fn from(v: PrintOperationAction) -> Self {
+        skip_assert_initialized!();
         ToValue::to_value(&v)
     }
 }
@@ -7551,6 +7613,7 @@ impl ToValue for PrintOperationResult {
 impl From<PrintOperationResult> for glib::Value {
     #[inline]
     fn from(v: PrintOperationResult) -> Self {
+        skip_assert_initialized!();
         ToValue::to_value(&v)
     }
 }
@@ -7652,6 +7715,7 @@ impl ToValue for PrintPages {
 impl From<PrintPages> for glib::Value {
     #[inline]
     fn from(v: PrintPages) -> Self {
+        skip_assert_initialized!();
         ToValue::to_value(&v)
     }
 }
@@ -7753,6 +7817,7 @@ impl ToValue for PrintQuality {
 impl From<PrintQuality> for glib::Value {
     #[inline]
     fn from(v: PrintQuality) -> Self {
+        skip_assert_initialized!();
         ToValue::to_value(&v)
     }
 }
@@ -7879,6 +7944,7 @@ impl ToValue for PrintStatus {
 impl From<PrintStatus> for glib::Value {
     #[inline]
     fn from(v: PrintStatus) -> Self {
+        skip_assert_initialized!();
         ToValue::to_value(&v)
     }
 }
@@ -7970,6 +8036,7 @@ impl ToValue for PropagationLimit {
 impl From<PropagationLimit> for glib::Value {
     #[inline]
     fn from(v: PropagationLimit) -> Self {
+        skip_assert_initialized!();
         ToValue::to_value(&v)
     }
 }
@@ -8071,6 +8138,7 @@ impl ToValue for PropagationPhase {
 impl From<PropagationPhase> for glib::Value {
     #[inline]
     fn from(v: PropagationPhase) -> Self {
+        skip_assert_initialized!();
         ToValue::to_value(&v)
     }
 }
@@ -8213,6 +8281,7 @@ impl ToValue for RecentManagerError {
 impl From<RecentManagerError> for glib::Value {
     #[inline]
     fn from(v: RecentManagerError) -> Self {
+        skip_assert_initialized!();
         ToValue::to_value(&v)
     }
 }
@@ -8344,6 +8413,7 @@ impl ToValue for RevealerTransitionType {
 impl From<RevealerTransitionType> for glib::Value {
     #[inline]
     fn from(v: RevealerTransitionType) -> Self {
+        skip_assert_initialized!();
         ToValue::to_value(&v)
     }
 }
@@ -8455,6 +8525,7 @@ impl ToValue for ScrollStep {
 impl From<ScrollStep> for glib::Value {
     #[inline]
     fn from(v: ScrollStep) -> Self {
+        skip_assert_initialized!();
         ToValue::to_value(&v)
     }
 }
@@ -8616,6 +8687,7 @@ impl ToValue for ScrollType {
 impl From<ScrollType> for glib::Value {
     #[inline]
     fn from(v: ScrollType) -> Self {
+        skip_assert_initialized!();
         ToValue::to_value(&v)
     }
 }
@@ -8707,6 +8779,7 @@ impl ToValue for ScrollablePolicy {
 impl From<ScrollablePolicy> for glib::Value {
     #[inline]
     fn from(v: ScrollablePolicy) -> Self {
+        skip_assert_initialized!();
         ToValue::to_value(&v)
     }
 }
@@ -8808,6 +8881,7 @@ impl ToValue for SelectionMode {
 impl From<SelectionMode> for glib::Value {
     #[inline]
     fn from(v: SelectionMode) -> Self {
+        skip_assert_initialized!();
         ToValue::to_value(&v)
     }
 }
@@ -8904,6 +8978,7 @@ impl ToValue for SensitivityType {
 impl From<SensitivityType> for glib::Value {
     #[inline]
     fn from(v: SensitivityType) -> Self {
+        skip_assert_initialized!();
         ToValue::to_value(&v)
     }
 }
@@ -9000,6 +9075,7 @@ impl ToValue for ShortcutScope {
 impl From<ShortcutScope> for glib::Value {
     #[inline]
     fn from(v: ShortcutScope) -> Self {
+        skip_assert_initialized!();
         ToValue::to_value(&v)
     }
 }
@@ -9135,6 +9211,7 @@ impl ToValue for ShortcutType {
 impl From<ShortcutType> for glib::Value {
     #[inline]
     fn from(v: ShortcutType) -> Self {
+        skip_assert_initialized!();
         ToValue::to_value(&v)
     }
 }
@@ -9236,6 +9313,7 @@ impl ToValue for SizeGroupMode {
 impl From<SizeGroupMode> for glib::Value {
     #[inline]
     fn from(v: SizeGroupMode) -> Self {
+        skip_assert_initialized!();
         ToValue::to_value(&v)
     }
 }
@@ -9332,6 +9410,7 @@ impl ToValue for SizeRequestMode {
 impl From<SizeRequestMode> for glib::Value {
     #[inline]
     fn from(v: SizeRequestMode) -> Self {
+        skip_assert_initialized!();
         ToValue::to_value(&v)
     }
 }
@@ -9423,6 +9502,7 @@ impl ToValue for SortType {
 impl From<SortType> for glib::Value {
     #[inline]
     fn from(v: SortType) -> Self {
+        skip_assert_initialized!();
         ToValue::to_value(&v)
     }
 }
@@ -9524,6 +9604,7 @@ impl ToValue for SorterChange {
 impl From<SorterChange> for glib::Value {
     #[inline]
     fn from(v: SorterChange) -> Self {
+        skip_assert_initialized!();
         ToValue::to_value(&v)
     }
 }
@@ -9620,6 +9701,7 @@ impl ToValue for SorterOrder {
 impl From<SorterOrder> for glib::Value {
     #[inline]
     fn from(v: SorterOrder) -> Self {
+        skip_assert_initialized!();
         ToValue::to_value(&v)
     }
 }
@@ -9711,6 +9793,7 @@ impl ToValue for SpinButtonUpdatePolicy {
 impl From<SpinButtonUpdatePolicy> for glib::Value {
     #[inline]
     fn from(v: SpinButtonUpdatePolicy) -> Self {
+        skip_assert_initialized!();
         ToValue::to_value(&v)
     }
 }
@@ -9827,6 +9910,7 @@ impl ToValue for SpinType {
 impl From<SpinType> for glib::Value {
     #[inline]
     fn from(v: SpinType) -> Self {
+        skip_assert_initialized!();
         ToValue::to_value(&v)
     }
 }
@@ -10023,6 +10107,7 @@ impl ToValue for StackTransitionType {
 impl From<StackTransitionType> for glib::Value {
     #[inline]
     fn from(v: StackTransitionType) -> Self {
+        skip_assert_initialized!();
         ToValue::to_value(&v)
     }
 }
@@ -10119,6 +10204,7 @@ impl ToValue for StringFilterMatchMode {
 impl From<StringFilterMatchMode> for glib::Value {
     #[inline]
     fn from(v: StringFilterMatchMode) -> Self {
+        skip_assert_initialized!();
         ToValue::to_value(&v)
     }
 }
@@ -10238,6 +10324,7 @@ impl ToValue for SymbolicColor {
 impl From<SymbolicColor> for glib::Value {
     #[inline]
     fn from(v: SymbolicColor) -> Self {
+        skip_assert_initialized!();
         ToValue::to_value(&v)
     }
 }
@@ -10344,6 +10431,7 @@ impl ToValue for SystemSetting {
 impl From<SystemSetting> for glib::Value {
     #[inline]
     fn from(v: SystemSetting) -> Self {
+        skip_assert_initialized!();
         ToValue::to_value(&v)
     }
 }
@@ -10440,6 +10528,7 @@ impl ToValue for TextDirection {
 impl From<TextDirection> for glib::Value {
     #[inline]
     fn from(v: TextDirection) -> Self {
+        skip_assert_initialized!();
         ToValue::to_value(&v)
     }
 }
@@ -10531,6 +10620,7 @@ impl ToValue for TextExtendSelection {
 impl From<TextExtendSelection> for glib::Value {
     #[inline]
     fn from(v: TextExtendSelection) -> Self {
+        skip_assert_initialized!();
         ToValue::to_value(&v)
     }
 }
@@ -10622,6 +10712,7 @@ impl ToValue for TextViewLayer {
 impl From<TextViewLayer> for glib::Value {
     #[inline]
     fn from(v: TextViewLayer) -> Self {
+        skip_assert_initialized!();
         ToValue::to_value(&v)
     }
 }
@@ -10733,6 +10824,7 @@ impl ToValue for TextWindowType {
 impl From<TextWindowType> for glib::Value {
     #[inline]
     fn from(v: TextWindowType) -> Self {
+        skip_assert_initialized!();
         ToValue::to_value(&v)
     }
 }
@@ -10829,6 +10921,7 @@ impl ToValue for TreeViewColumnSizing {
 impl From<TreeViewColumnSizing> for glib::Value {
     #[inline]
     fn from(v: TreeViewColumnSizing) -> Self {
+        skip_assert_initialized!();
         ToValue::to_value(&v)
     }
 }
@@ -10930,6 +11023,7 @@ impl ToValue for TreeViewDropPosition {
 impl From<TreeViewDropPosition> for glib::Value {
     #[inline]
     fn from(v: TreeViewDropPosition) -> Self {
+        skip_assert_initialized!();
         ToValue::to_value(&v)
     }
 }
@@ -11031,6 +11125,7 @@ impl ToValue for TreeViewGridLines {
 impl From<TreeViewGridLines> for glib::Value {
     #[inline]
     fn from(v: TreeViewGridLines) -> Self {
+        skip_assert_initialized!();
         ToValue::to_value(&v)
     }
 }
@@ -11132,6 +11227,7 @@ impl ToValue for Unit {
 impl From<Unit> for glib::Value {
     #[inline]
     fn from(v: Unit) -> Self {
+        skip_assert_initialized!();
         ToValue::to_value(&v)
     }
 }
@@ -11233,6 +11329,7 @@ impl ToValue for WrapMode {
 impl From<WrapMode> for glib::Value {
     #[inline]
     fn from(v: WrapMode) -> Self {
+        skip_assert_initialized!();
         ToValue::to_value(&v)
     }
 }
