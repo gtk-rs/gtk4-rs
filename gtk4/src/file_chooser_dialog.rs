@@ -9,6 +9,7 @@ use std::ptr;
 
 impl FileChooserDialog {
     #[doc(alias = "gtk_file_chooser_dialog_new")]
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     pub fn new(
         title: Option<&str>,
         parent: Option<&impl IsA<Window>>,

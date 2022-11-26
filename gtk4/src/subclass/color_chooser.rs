@@ -9,6 +9,7 @@ use gdk::RGBA;
 use glib::translate::*;
 use glib::Cast;
 
+#[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 pub trait ColorChooserImpl: ObjectImpl {
     fn add_palette(&self, orientation: Orientation, colors_per_line: i32, colors: &[RGBA]) {
         self.parent_add_palette(orientation, colors_per_line, colors);
@@ -23,6 +24,7 @@ pub trait ColorChooserImpl: ObjectImpl {
     fn set_rgba(&self, rgba: RGBA);
 }
 
+#[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 pub trait ColorChooserImplExt: ObjectSubclass {
     fn parent_add_palette(&self, orientation: Orientation, colors_per_line: i32, colors: &[RGBA]);
     fn parent_color_activated(&self, rgba: RGBA);

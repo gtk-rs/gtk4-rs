@@ -7,6 +7,7 @@ use glib::{value::FromValue, IsA, ToValue};
 
 // rustdoc-stripper-ignore-next
 /// Trait containing manually implemented methods of [`CellArea`](crate::CellArea).
+#[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 pub trait CellAreaExtManual {
     #[doc(alias = "gtk_cell_area_add_with_properties")]
     fn add_with_properties(
