@@ -1493,7 +1493,6 @@ pub mod builders {
     pub use super::stack_switcher::StackSwitcherBuilder;
     pub use super::statusbar::StatusbarBuilder;
     pub use super::string_filter::StringFilterBuilder;
-    pub use super::string_list::StringListBuilder;
     pub use super::string_sorter::StringSorterBuilder;
     pub use super::switch::SwitchBuilder;
     pub use super::text::TextBuilder;
