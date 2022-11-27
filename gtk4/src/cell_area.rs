@@ -3,7 +3,7 @@
 use crate::prelude::*;
 use crate::{CellArea, CellRenderer};
 use glib::translate::*;
-use glib::{value::FromValue, IsA, ToValue};
+use glib::{value::FromValue, IsA, Value};
 
 // rustdoc-stripper-ignore-next
 /// Trait containing manually implemented methods of [`CellArea`](crate::CellArea).
@@ -32,7 +32,12 @@ pub trait CellAreaExtManual {
 
     #[doc(alias = "gtk_cell_area_cell_set_valist")]
     #[doc(alias = "gtk_cell_area_cell_set_property")]
-    fn cell_set(&self, renderer: &impl IsA<CellRenderer>, property_name: &str, value: &dyn ToValue);
+    fn cell_set(
+        &self,
+        renderer: &impl IsA<CellRenderer>,
+        property_name: &str,
+        value: impl Into<Value>,
+    );
 }
 
 impl<O: IsA<CellArea>> CellAreaExtManual for O {
@@ -87,7 +92,7 @@ impl<O: IsA<CellArea>> CellAreaExtManual for O {
         &self,
         renderer: &impl IsA<CellRenderer>,
         property_name: &str,
-        value: &dyn ToValue,
+        value: impl Into<Value>,
     ) {
         unsafe {
             let cell_class = glib::Class::<CellArea>::from_type(O::static_type()).unwrap();
@@ -99,18 +104,19 @@ impl<O: IsA<CellArea>> CellAreaExtManual for O {
             let pspec = pspec
                 .unwrap_or_else(|| panic!("The CellArea property {property_name} doesn't exists"));
 
+            let value = value.into();
             assert!(
-                pspec.value_type().is_a(value.value_type()),
+                pspec.value_type().is_a(value.type_()),
                 "The CellArea property's value is of wrong type. Expected '{}' but got '{}'",
                 pspec.value_type(),
-                value.value_type()
+                value.type_()
             );
 
             ffi::gtk_cell_area_cell_set_property(
                 self.as_ref().to_glib_none().0,
                 renderer.as_ref().to_glib_none().0,
                 property_name.to_glib_none().0,
-                value.to_value().to_glib_none().0,
+                value.to_glib_none().0,
             );
         }
     }

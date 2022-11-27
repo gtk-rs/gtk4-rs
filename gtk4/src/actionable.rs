@@ -2,22 +2,22 @@
 
 use crate::Actionable;
 use glib::translate::*;
-use glib::{IsA, ToVariant};
+use glib::{IsA, Variant};
 
 // rustdoc-stripper-ignore-next
 /// Trait containing manually implemented methods of [`Actionable`](crate::Actionable).
 pub trait ActionableExtManual: 'static {
     #[doc(alias = "gtk_actionable_set_action_target")]
     #[doc(alias = "gtk_actionable_set_action_target_value")]
-    fn set_action_target(&self, target: Option<&impl ToVariant>);
+    fn set_action_target(&self, target: Option<impl Into<Variant>>);
 }
 
 impl<O: IsA<Actionable>> ActionableExtManual for O {
-    fn set_action_target(&self, target: Option<&impl ToVariant>) {
+    fn set_action_target(&self, target: Option<impl Into<Variant>>) {
         unsafe {
             ffi::gtk_actionable_set_action_target_value(
                 self.as_ref().to_glib_none().0,
-                target.map(|v| v.to_variant()).to_glib_none().0,
+                target.map(|v| v.into()).to_glib_none().0,
             );
         }
     }
