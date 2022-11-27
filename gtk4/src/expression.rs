@@ -184,6 +184,15 @@ impl glib::value::ToValueOptional for Expression {
     }
 }
 
+impl From<Expression> for glib::Value {
+    fn from(e: Expression) -> Self {
+        skip_assert_initialized!();
+        let mut value = glib::Value::for_value_type::<Expression>();
+        unsafe { ffi::gtk_value_take_expression(value.to_glib_none_mut().0, e.into_glib_ptr()) }
+        value
+    }
+}
+
 // rustdoc-stripper-ignore-next
 /// Trait containing convenience methods in creating
 /// [`PropertyExpression`](crate::PropertyExpression) that
@@ -261,6 +270,63 @@ macro_rules! define_expression {
         }
 
         #[doc(hidden)]
+        impl<'a> ToGlibPtr<'a, *const ffi::GtkExpression> for $rust_type {
+            type Storage = &'a $crate::glib::shared::Shared<$ffi_type, $rust_type>;
+
+            #[inline]
+            fn to_glib_none(
+                &'a self,
+            ) -> $crate::glib::translate::Stash<'a, *const ffi::GtkExpression, Self> {
+                let stash =
+                    $crate::glib::translate::ToGlibPtr::<*const $ffi_type>::to_glib_none(self);
+                $crate::glib::translate::Stash(stash.0 as *const _, stash.1)
+            }
+
+            #[inline]
+            fn to_glib_full(&self) -> *const ffi::GtkExpression {
+                $crate::glib::translate::ToGlibPtr::<*const $ffi_type>::to_glib_full(self)
+                    as *const _
+            }
+        }
+
+        #[doc(hidden)]
+        impl<'a> ToGlibPtr<'a, *mut ffi::GtkExpression> for $rust_type {
+            type Storage = &'a $crate::glib::shared::Shared<$ffi_type, $rust_type>;
+
+            #[inline]
+            fn to_glib_none(
+                &'a self,
+            ) -> $crate::glib::translate::Stash<'a, *mut ffi::GtkExpression, Self> {
+                let stash =
+                    $crate::glib::translate::ToGlibPtr::<*mut $ffi_type>::to_glib_none(self);
+                $crate::glib::translate::Stash(stash.0 as *mut _, stash.1)
+            }
+
+            #[inline]
+            fn to_glib_full(&self) -> *mut ffi::GtkExpression {
+                $crate::glib::translate::ToGlibPtr::<*mut $ffi_type>::to_glib_full(self) as *mut _
+            }
+        }
+
+        #[doc(hidden)]
+        impl IntoGlibPtr<*mut ffi::GtkExpression> for $rust_type {
+            #[inline]
+            unsafe fn into_glib_ptr(self) -> *mut ffi::GtkExpression {
+                let s = std::mem::ManuallyDrop::new(self);
+                s.to_glib_none().0
+            }
+        }
+
+        #[doc(hidden)]
+        impl IntoGlibPtr<*const ffi::GtkExpression> for $rust_type {
+            #[inline]
+            unsafe fn into_glib_ptr(self) -> *const ffi::GtkExpression {
+                let s = std::mem::ManuallyDrop::new(self);
+                s.to_glib_none().0
+            }
+        }
+
+        #[doc(hidden)]
         impl FromGlibPtrFull<*mut ffi::GtkExpression> for $rust_type {
             unsafe fn from_glib_full(ptr: *mut ffi::GtkExpression) -> Self {
                 from_glib_full(ptr as *mut $ffi_type)
@@ -309,6 +375,17 @@ macro_rules! define_expression {
                         value.to_glib_none_mut().0,
                         s.map(|s| s.as_ptr()).unwrap_or(std::ptr::null_mut()) as *mut _,
                     )
+                }
+                value
+            }
+        }
+
+        impl From<$rust_type> for glib::Value {
+            fn from(e: $rust_type) -> Self {
+                skip_assert_initialized!();
+                let mut value = glib::Value::for_value_type::<$rust_type>();
+                unsafe {
+                    ffi::gtk_value_take_expression(value.to_glib_none_mut().0, e.into_glib_ptr())
                 }
                 value
             }
