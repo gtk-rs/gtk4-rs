@@ -29,7 +29,7 @@ win32 = ["windows"]
 [dependencies]
 libc = "0.2"
 khronos-egl = {version = "4.1.0", optional = true}
-windows = { version = "0.41.0", features = [
+windows = { version = "0.43.0", features = [
     "Win32_Foundation",
     "Win32_UI_WindowsAndMessaging",
 ], optional = true }
