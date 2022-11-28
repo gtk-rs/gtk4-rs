@@ -4500,6 +4500,8 @@ impl From<FilterMatch> for glib::Value {
     }
 }
 
+#[cfg(any(feature = "v4_10", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
 #[doc(alias = "GtkFontLevel")]
@@ -4516,6 +4518,8 @@ pub enum FontLevel {
     __Unknown(i32),
 }
 
+#[cfg(any(feature = "v4_10", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
 impl fmt::Display for FontLevel {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
@@ -4532,6 +4536,8 @@ impl fmt::Display for FontLevel {
     }
 }
 
+#[cfg(any(feature = "v4_10", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
 #[doc(hidden)]
 impl IntoGlib for FontLevel {
     type GlibType = ffi::GtkFontLevel;
@@ -4547,6 +4553,8 @@ impl IntoGlib for FontLevel {
     }
 }
 
+#[cfg(any(feature = "v4_10", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
 #[doc(hidden)]
 impl FromGlib<ffi::GtkFontLevel> for FontLevel {
     unsafe fn from_glib(value: ffi::GtkFontLevel) -> Self {
@@ -4561,16 +4569,22 @@ impl FromGlib<ffi::GtkFontLevel> for FontLevel {
     }
 }
 
+#[cfg(any(feature = "v4_10", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
 impl StaticType for FontLevel {
     fn static_type() -> Type {
         unsafe { from_glib(ffi::gtk_font_level_get_type()) }
     }
 }
 
+#[cfg(any(feature = "v4_10", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
 impl glib::value::ValueType for FontLevel {
     type Type = Self;
 }
 
+#[cfg(any(feature = "v4_10", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
 unsafe impl<'a> FromValue<'a> for FontLevel {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
@@ -4580,6 +4594,8 @@ unsafe impl<'a> FromValue<'a> for FontLevel {
     }
 }
 
+#[cfg(any(feature = "v4_10", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
 impl ToValue for FontLevel {
     fn to_value(&self) -> glib::Value {
         let mut value = glib::Value::for_value_type::<Self>();
@@ -4594,6 +4610,8 @@ impl ToValue for FontLevel {
     }
 }
 
+#[cfg(any(feature = "v4_10", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
 impl From<FontLevel> for glib::Value {
     #[inline]
     fn from(v: FontLevel) -> Self {

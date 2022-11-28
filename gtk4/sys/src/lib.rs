@@ -9210,6 +9210,8 @@ extern "C" {
     //=========================================================================
     // GtkFontLevel
     //=========================================================================
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
     pub fn gtk_font_level_get_type() -> GType;
 
     //=========================================================================
@@ -11774,6 +11776,8 @@ extern "C" {
     //=========================================================================
     // GtkColumnViewSorter
     //=========================================================================
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
     pub fn gtk_column_view_sorter_get_type() -> GType;
     #[cfg(any(feature = "v4_10", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
