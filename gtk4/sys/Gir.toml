@@ -29,8 +29,23 @@ gdk4 = "Gdk"
 gsk4 = "Gsk"
 
 [[object]]
+name = "Gtk.ColumnViewSorter"
+status = "generate"
+    [[object.function]]
+    name = "get_type"
+    version = "4.10"
+
+[[object]]
 name = "Gtk.ExpressionWatch"
 status = "generate"
     [[object.function]]
     name = "get_type"
     version = "4.2"
+
+[[object]]
+name = "Gtk.FontLevel"
+status = "generate"
+    [[object.function]]
+    name = "get_type"
+    version = "4.10"
+    
