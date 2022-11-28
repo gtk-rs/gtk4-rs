@@ -62,10 +62,9 @@ cd libadwaita
 meson setup builddir -Dprefix=C:/gnome -Dintrospection=disabled -Dvapi=false
 meson install -C builddir
 
-# A workaround for https://gitlab.gnome.org/GNOME/gtk/-/issues/5303, which may
-# not be necessary in the future.
-#
+# This is a workaround for https://gitlab.gnome.org/GNOME/gtk/-/issues/5303.
+# NOTE: The cache must be rebuilt every time you add new icons. 
 
-xcopy /s C:\gnome\share\icons\hicolor\scalable\apps C:\gnome\share\icons\hicolor\scalable\actions
+xcopy /s /i C:\gnome\share\icons\hicolor\scalable\apps C:\gnome\share\icons\hicolor\scalable\actions
 gtk4-update-icon-cache.exe -t -f C:\gnome\share\icons\hicolor
 ```
