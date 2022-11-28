@@ -239,7 +239,11 @@ pub use self::column_view::ColumnView;
 mod column_view_column;
 pub use self::column_view_column::ColumnViewColumn;
 
+#[cfg(any(feature = "v4_10", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
 mod column_view_sorter;
+#[cfg(any(feature = "v4_10", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
 pub use self::column_view_sorter::ColumnViewSorter;
 
 #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
@@ -1061,6 +1065,8 @@ pub use self::enums::FileChooserAction;
 pub use self::enums::FileChooserError;
 pub use self::enums::FilterChange;
 pub use self::enums::FilterMatch;
+#[cfg(any(feature = "v4_10", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
 pub use self::enums::FontLevel;
 pub use self::enums::IconSize;
 pub use self::enums::IconThemeError;

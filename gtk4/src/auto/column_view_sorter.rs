@@ -2,34 +2,16 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-#[cfg(any(feature = "v4_10", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
 use crate::ColumnViewColumn;
-#[cfg(any(feature = "v4_10", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
 use crate::SortType;
 use crate::Sorter;
-#[cfg(any(feature = "v4_10", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
 use glib::object::ObjectType as ObjectType_;
-#[cfg(any(feature = "v4_10", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
 use glib::signal::connect_raw;
-#[cfg(any(feature = "v4_10", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
 use glib::signal::SignalHandlerId;
-#[cfg(any(feature = "v4_10", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
 use glib::translate::*;
-#[cfg(any(feature = "v4_10", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
 use std::boxed::Box as Box_;
 use std::fmt;
-#[cfg(any(feature = "v4_10", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
 use std::mem;
-#[cfg(any(feature = "v4_10", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
 use std::mem::transmute;
 
 glib::wrapper! {
@@ -42,16 +24,12 @@ glib::wrapper! {
 }
 
 impl ColumnViewSorter {
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
     #[doc(alias = "gtk_column_view_sorter_get_n_sort_columns")]
     #[doc(alias = "get_n_sort_columns")]
     pub fn n_sort_columns(&self) -> u32 {
         unsafe { ffi::gtk_column_view_sorter_get_n_sort_columns(self.to_glib_none().0) }
     }
 
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
     #[doc(alias = "gtk_column_view_sorter_get_nth_sort_column")]
     #[doc(alias = "get_nth_sort_column")]
     pub fn nth_sort_column(&self, position: u32) -> (Option<ColumnViewColumn>, SortType) {
@@ -66,8 +44,6 @@ impl ColumnViewSorter {
         }
     }
 
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
     #[doc(alias = "gtk_column_view_sorter_get_primary_sort_column")]
     #[doc(alias = "get_primary_sort_column")]
     pub fn primary_sort_column(&self) -> Option<ColumnViewColumn> {
@@ -78,8 +54,6 @@ impl ColumnViewSorter {
         }
     }
 
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
     #[doc(alias = "gtk_column_view_sorter_get_primary_sort_order")]
     #[doc(alias = "get_primary_sort_order")]
     pub fn primary_sort_order(&self) -> SortType {
