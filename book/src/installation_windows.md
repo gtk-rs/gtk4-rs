@@ -54,6 +54,9 @@ pip install meson ninja
 
 ### Gettext 0.21
 
+> **Warning**
+> **To avoid any potential problems, we strongly recommend the static version.**
+
 Download Gettext 0.21 from [mlocati.github.io](https://mlocati.github.io/articles/gettext-iconv-windows.html).
 
 
