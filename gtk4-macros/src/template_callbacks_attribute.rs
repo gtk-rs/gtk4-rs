@@ -248,9 +248,8 @@ pub fn impl_template_callbacks(mut input: syn::ItemImpl, args: Args) -> TokenStr
                         (None, syn::ReturnType::Type(_, _)) => quote! {
                             #(#value_unpacks)*
                             let ret = #call;
-                            ::std::option::Option::Some(
-                                #crate_ident::glib::value::ToValue::to_value(&ret)
-                            )
+                            let ret: #crate_ident::glib::Value = ::std::convert::From::from(ret);
+                            ::std::option::Option::Some(ret)
                         },
                         (Some(_), syn::ReturnType::Default) => quote! {
                             let values = values.to_vec();

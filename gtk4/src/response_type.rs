@@ -135,6 +135,13 @@ impl ToValue for ResponseType {
     }
 }
 
+impl From<ResponseType> for Value {
+    fn from(t: ResponseType) -> Self {
+        skip_assert_initialized!();
+        t.to_value()
+    }
+}
+
 impl PartialEq<i32> for ResponseType {
     fn eq(&self, other: &i32) -> bool {
         self.into_glib().eq(other)

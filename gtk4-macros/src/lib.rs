@@ -143,18 +143,19 @@ pub fn composite_template_derive(input: TokenStream) -> TokenStream {
 /// with `swapped="true"`.
 ///
 /// The `rest` attribute can be placed on the last argument of a template callback. This attribute
-/// must be used on an argument of type `&[glib::Value]` and will pass in the remaining arguments.
-/// The first and last values will be omitted from the slice if this callback is a `function`.
+/// must be used on an argument of type <code>&\[[glib::Value]\]</code> and will pass in the
+/// remaining arguments. The first and last values will be omitted from the slice if this callback
+/// is a `function`.
 ///
 /// Arguments and return types in template callbacks have some special restrictions, similar to the
-/// restrictions on [`glib::closure`]. Each argument's type must implement [`glib::ToValue`]. The
-/// last argument can also be `&[glib::Value]` annotated with `#[rest]` as described above. The
-/// return type of a callback, if present, must implement [`glib::FromValue`]. Type-checking of
-/// inputs and outputs is done at run-time; if the argument types or return type do not match the
-/// type of the signal or closure then the callback will panic. To implement your own type checking
-/// or to use dynamic typing, an argument's type can be left as a [`&glib::Value`].
-/// This can also be used if you need custom unboxing, such as if the target type does not
-/// implement `FromValue`.
+/// restrictions on [`glib::closure`]. Each argument's type must implement
+/// <code>[From]&lt;Type> for [glib::Value]</code>. The last argument can also be
+/// <code>&\[[glib::Value]\]</code> annotated with `#[rest]` as described above. The return type of
+/// a callback, if present, must implement [`glib::FromValue`]. Type-checking of inputs and outputs
+/// is done at run-time; if the argument types or return type do not match the type of the signal
+/// or closure then the callback will panic. To implement your own type checking or to use dynamic
+/// typing, an argument's type can be left as a <code>&[glib::Value]</code>. This can also be used
+/// if you need custom unboxing, such as if the target type does not implement `FromValue`.
 ///
 /// [`glib::closure`]: ../glib/macro.closure.html
 /// [`glib::wrapper`]: ../glib/macro.wrapper.html
@@ -165,7 +166,7 @@ pub fn composite_template_derive(input: TokenStream) -> TokenStream {
 /// [`T::bind_template_callbacks`]: ../gtk4/subclass/widget/trait.CompositeTemplateCallbacks.html#method.bind_template_callbacks
 /// [`glib::FromValue`]: ../glib/value/trait.FromValue.html
 /// [`glib::ToValue`]: ../glib/value/trait.ToValue.html
-/// [`&glib::Value`]: ../glib/value/struct.Value.html
+/// [glib::Value]: ../glib/value/struct.Value.html
 /// [`glib::MainContext::spawn_local`]: ../glib/struct.MainContext.html#method.spawn_local
 /// [`Spinner`]: ../gtk4/struct.Spinner.html
 ///

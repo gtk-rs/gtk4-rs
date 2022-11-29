@@ -4,6 +4,7 @@ use crate::ParamSpecExpression;
 
 use glib::gobject_ffi;
 use glib::prelude::*;
+use glib::shared::Shared;
 use glib::translate::*;
 use glib::{ParamSpec, StaticType, Value};
 
@@ -22,6 +23,56 @@ impl std::ops::Deref for ParamSpecExpression {
 }
 
 unsafe impl glib::ParamSpecType for ParamSpecExpression {}
+
+#[doc(hidden)]
+impl<'a> ToGlibPtr<'a, *const gobject_ffi::GParamSpec> for ParamSpecExpression {
+    type Storage = &'a Shared<ffi::GtkParamSpecExpression, ParamSpecExpression>;
+
+    #[inline]
+    fn to_glib_none(&'a self) -> Stash<'a, *const gobject_ffi::GParamSpec, Self> {
+        let stash = ToGlibPtr::<*const ffi::GtkParamSpecExpression>::to_glib_none(self);
+        Stash(stash.0 as *const _, stash.1)
+    }
+
+    #[inline]
+    fn to_glib_full(&self) -> *const gobject_ffi::GParamSpec {
+        ToGlibPtr::<*const ffi::GtkParamSpecExpression>::to_glib_full(self) as *const _
+    }
+}
+
+#[doc(hidden)]
+impl<'a> ToGlibPtr<'a, *mut gobject_ffi::GParamSpec> for ParamSpecExpression {
+    type Storage = &'a Shared<ffi::GtkParamSpecExpression, ParamSpecExpression>;
+
+    #[inline]
+    fn to_glib_none(&'a self) -> Stash<'a, *mut gobject_ffi::GParamSpec, Self> {
+        let stash = ToGlibPtr::<*mut ffi::GtkParamSpecExpression>::to_glib_none(self);
+        Stash(stash.0 as *mut _, stash.1)
+    }
+
+    #[inline]
+    fn to_glib_full(&self) -> *mut gobject_ffi::GParamSpec {
+        ToGlibPtr::<*mut ffi::GtkParamSpecExpression>::to_glib_full(self) as *mut _
+    }
+}
+
+#[doc(hidden)]
+impl IntoGlibPtr<*mut gobject_ffi::GParamSpec> for ParamSpecExpression {
+    #[inline]
+    unsafe fn into_glib_ptr(self) -> *mut gobject_ffi::GParamSpec {
+        let s = std::mem::ManuallyDrop::new(self);
+        s.to_glib_none().0
+    }
+}
+
+#[doc(hidden)]
+impl IntoGlibPtr<*const gobject_ffi::GParamSpec> for ParamSpecExpression {
+    #[inline]
+    unsafe fn into_glib_ptr(self) -> *const gobject_ffi::GParamSpec {
+        let s = std::mem::ManuallyDrop::new(self);
+        s.to_glib_none().0
+    }
+}
 
 #[doc(hidden)]
 impl FromGlibPtrFull<*mut gobject_ffi::GParamSpec> for ParamSpecExpression {
@@ -178,6 +229,18 @@ impl glib::value::ToValueOptional for ParamSpecExpression {
         }
 
         value
+    }
+}
+
+#[doc(hidden)]
+impl From<ParamSpecExpression> for Value {
+    fn from(s: ParamSpecExpression) -> Self {
+        assert_initialized_main_thread!();
+        unsafe {
+            let mut value = Value::from_type(ParamSpecExpression::static_type());
+            gobject_ffi::g_value_take_param(value.to_glib_none_mut().0, s.into_glib_ptr());
+            value
+        }
     }
 }
 

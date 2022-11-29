@@ -9,11 +9,11 @@ define_expression!(ConstantExpression, ffi::GtkConstantExpression);
 impl ConstantExpression {
     #[doc(alias = "gtk_constant_expression_new")]
     #[doc(alias = "gtk_constant_expression_new_for_value")]
-    pub fn new<V: ToValue>(value: &V) -> Self {
+    pub fn new(value: impl Into<glib::Value>) -> Self {
         assert_initialized_main_thread!();
         unsafe {
             from_glib_full(ffi::gtk_constant_expression_new_for_value(
-                value.to_value().to_glib_none().0,
+                value.into().to_glib_none().0,
             ))
         }
     }
@@ -47,11 +47,11 @@ mod tests {
 
     #[test]
     fn test_expressions() {
-        let expr1 = ConstantExpression::new(&23);
+        let expr1 = ConstantExpression::new(23);
         assert_eq!(expr1.value().get::<i32>().unwrap(), 23);
         let expr2 = ConstantExpression::for_value(&"hello".to_value());
         assert_eq!(expr2.value().get::<String>().unwrap(), "hello");
-        let expr1 = ConstantExpression::new(&23);
+        let expr1 = ConstantExpression::new(23);
         assert_eq!(expr1.value().get::<i32>().unwrap(), 23);
         assert_eq!(expr1.value_as::<i32>(), 23);
         let expr2 = ConstantExpression::for_value(&"hello".to_value());

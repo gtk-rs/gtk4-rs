@@ -4692,6 +4692,13 @@ impl ToValue for Key {
     }
 }
 
+impl From<Key> for Value {
+    fn from(k: Key) -> Self {
+        skip_assert_initialized!();
+        k.to_value()
+    }
+}
+
 // TODO: Drop once https://github.com/gtk-rs/gtk-rs-core/issues/612
 impl glib::StaticType for Key {
     fn static_type() -> Type {
