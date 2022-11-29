@@ -66,7 +66,7 @@ Download pkg-config-lite from [sourceforge.net](https://sourceforge.net/projects
 Then extract and unpack it in `C:/`, so that the executable is in `C:\pkg-config-lite-0.28-1\bin`.
 
 
-### Update `Path` environment variable
+### Update environment variables
 
 1. Go to settings -> Search and open `Advanced system settings` -> Click on `Environment variables`
 2. Select `Path` -> Click on `Edit` -> Add the following entries:
