@@ -9,7 +9,7 @@ license = "MIT"
 name = "gdk4-win32"
 readme = "README.md"
 repository = "https://github.com/gtk-rs/gtk4-rs"
-version = "0.5.2"
+version = "0.5.3"
 rust-version = "1.63"
 build = "build.rs"
 
@@ -27,8 +27,8 @@ egl = ["khronos-egl"]
 win32 = ["windows"]
 
 [dependencies]
-ffi = {path = "./sys", package = "gdk4-win32-sys", version = "0.5.2"}
-gdk = {path = "../gdk4", package = "gdk4", version = "0.5.2"}
+ffi = {path = "./sys", package = "gdk4-win32-sys", version = "0.5.3"}
+gdk = {path = "../gdk4", package = "gdk4", version = "0.5.3"}
 gio = {git = "https://github.com/gtk-rs/gtk-rs-core", branch = "0.16", version = "0.16", features = ["v2_66"]}
 glib = {git = "https://github.com/gtk-rs/gtk-rs-core", branch = "0.16", version = "0.16", features = ["v2_66"]}
 libc = "0.2"

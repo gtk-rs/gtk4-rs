@@ -9,7 +9,7 @@ keywords = ["gsk", "ffi", "gtk-rs", "gnome"]
 license = "MIT"
 name = "gsk4-sys"
 repository = "https://github.com/gtk-rs/gtk4-rs"
-version = "0.5.2"
+version = "0.5.3"
 rust-version = "1.63"
 [package.metadata.docs.rs]
 features = ["dox"]
@@ -47,7 +47,7 @@ branch = "0.16"
 [dependencies.gdk]
 package = "gdk4-sys"
 path = "../../gdk4/sys"
-version = "0.5.2"
+version = "0.5.3"
 
 [dependencies.glib]
 package = "glib-sys"
