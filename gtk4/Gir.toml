@@ -73,6 +73,7 @@ generate = [
     "Gtk.ColorDialogButton",
     "Gtk.ColumnView",
     "Gtk.ColumnViewColumn",
+    "Gtk.ColumnViewSorter",
     "Gtk.ComboBoxText",
     "Gtk.Constraint",
     "Gtk.ConstraintAttribute",
@@ -117,6 +118,7 @@ generate = [
     "Gtk.FontChooserDialog",
     "Gtk.FontChooserLevel",
     "Gtk.FontChooserWidget",
+    "Gtk.FontLevel",
     "Gtk.Frame",
     "Gtk.GestureDrag",
     "Gtk.GestureLongPress",
@@ -843,11 +845,6 @@ manual_traits = ["ColorChooserExtManual"]
     doc_trait_name = "ColorChooserExtManual"
 
 [[object]]
-name = "Gtk.ColumnViewSorter"
-status = "generate"
-version = "4.10"
-
-[[object]]
 name = "Gtk.ComboBox"
 status = "generate"
 manual_traits = ["ComboBoxExtManual"]
@@ -1266,11 +1263,6 @@ status = "generate"
         [[object.function.parameter]]
         name = "language"
         const = true
-
-[[object]]
-name = "Gtk.FontLevel"
-status = "generate"
-version = "4.10"
 
 [[object]]
 name = "Gtk.Gesture"
