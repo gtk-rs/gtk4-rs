@@ -20,6 +20,7 @@ glib::wrapper! {
 
 impl TreeRowReference {
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
+    #[allow(deprecated)]
     #[doc(alias = "gtk_tree_row_reference_new")]
     pub fn new(model: &impl IsA<TreeModel>, path: &TreePath) -> Option<TreeRowReference> {
         skip_assert_initialized!();
@@ -32,6 +33,7 @@ impl TreeRowReference {
     }
 
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
+    #[allow(deprecated)]
     #[doc(alias = "gtk_tree_row_reference_new_proxy")]
     pub fn new_proxy(
         proxy: &impl IsA<glib::Object>,
@@ -49,6 +51,7 @@ impl TreeRowReference {
     }
 
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
+    #[allow(deprecated)]
     #[doc(alias = "gtk_tree_row_reference_get_model")]
     #[doc(alias = "get_model")]
     pub fn model(&self) -> TreeModel {
@@ -60,6 +63,7 @@ impl TreeRowReference {
     }
 
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
+    #[allow(deprecated)]
     #[doc(alias = "gtk_tree_row_reference_get_path")]
     #[doc(alias = "get_path")]
     pub fn path(&self) -> Option<TreePath> {
@@ -71,6 +75,7 @@ impl TreeRowReference {
     }
 
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
+    #[allow(deprecated)]
     #[doc(alias = "gtk_tree_row_reference_valid")]
     pub fn valid(&self) -> bool {
         unsafe {
@@ -81,6 +86,7 @@ impl TreeRowReference {
     }
 
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
+    #[allow(deprecated)]
     #[doc(alias = "gtk_tree_row_reference_deleted")]
     pub fn deleted(proxy: &impl IsA<glib::Object>, path: &TreePath) {
         assert_initialized_main_thread!();
@@ -93,6 +99,7 @@ impl TreeRowReference {
     }
 
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
+    #[allow(deprecated)]
     #[doc(alias = "gtk_tree_row_reference_inserted")]
     pub fn inserted(proxy: &impl IsA<glib::Object>, path: &TreePath) {
         assert_initialized_main_thread!();

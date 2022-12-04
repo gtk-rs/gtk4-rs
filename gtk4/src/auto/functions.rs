@@ -208,6 +208,7 @@ pub fn print_run_page_setup_dialog_async<P: FnOnce(&PageSetup) + Send + Sync + '
 }
 
 #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
+#[allow(deprecated)]
 #[doc(alias = "gtk_render_activity")]
 pub fn render_activity(
     context: &impl IsA<StyleContext>,
@@ -231,6 +232,7 @@ pub fn render_activity(
 }
 
 #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
+#[allow(deprecated)]
 #[doc(alias = "gtk_render_arrow")]
 pub fn render_arrow(
     context: &impl IsA<StyleContext>,
@@ -254,6 +256,7 @@ pub fn render_arrow(
 }
 
 #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
+#[allow(deprecated)]
 #[doc(alias = "gtk_render_background")]
 pub fn render_background(
     context: &impl IsA<StyleContext>,
@@ -277,6 +280,7 @@ pub fn render_background(
 }
 
 #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
+#[allow(deprecated)]
 #[doc(alias = "gtk_render_check")]
 pub fn render_check(
     context: &impl IsA<StyleContext>,
@@ -300,6 +304,7 @@ pub fn render_check(
 }
 
 #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
+#[allow(deprecated)]
 #[doc(alias = "gtk_render_expander")]
 pub fn render_expander(
     context: &impl IsA<StyleContext>,
@@ -323,6 +328,7 @@ pub fn render_expander(
 }
 
 #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
+#[allow(deprecated)]
 #[doc(alias = "gtk_render_focus")]
 pub fn render_focus(
     context: &impl IsA<StyleContext>,
@@ -346,6 +352,7 @@ pub fn render_focus(
 }
 
 #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
+#[allow(deprecated)]
 #[doc(alias = "gtk_render_frame")]
 pub fn render_frame(
     context: &impl IsA<StyleContext>,
@@ -369,6 +376,7 @@ pub fn render_frame(
 }
 
 #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
+#[allow(deprecated)]
 #[doc(alias = "gtk_render_handle")]
 pub fn render_handle(
     context: &impl IsA<StyleContext>,
@@ -392,6 +400,7 @@ pub fn render_handle(
 }
 
 #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
+#[allow(deprecated)]
 #[doc(alias = "gtk_render_icon")]
 pub fn render_icon(
     context: &impl IsA<StyleContext>,
@@ -413,6 +422,7 @@ pub fn render_icon(
 }
 
 #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
+#[allow(deprecated)]
 #[doc(alias = "gtk_render_layout")]
 pub fn render_layout(
     context: &impl IsA<StyleContext>,
@@ -434,6 +444,7 @@ pub fn render_layout(
 }
 
 #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
+#[allow(deprecated)]
 #[doc(alias = "gtk_render_line")]
 pub fn render_line(
     context: &impl IsA<StyleContext>,
@@ -457,6 +468,7 @@ pub fn render_line(
 }
 
 #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
+#[allow(deprecated)]
 #[doc(alias = "gtk_render_option")]
 pub fn render_option(
     context: &impl IsA<StyleContext>,
@@ -612,6 +624,7 @@ pub fn test_widget_wait_for_draw(widget: &impl IsA<Widget>) {
 }
 
 #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
+#[allow(deprecated)]
 #[doc(alias = "gtk_tree_create_row_drag_content")]
 pub fn tree_create_row_drag_content(
     tree_model: &impl IsA<TreeModel>,
@@ -627,6 +640,7 @@ pub fn tree_create_row_drag_content(
 }
 
 #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
+#[allow(deprecated)]
 #[doc(alias = "gtk_tree_get_row_drag_data")]
 pub fn tree_get_row_drag_data(
     value: &glib::Value,
