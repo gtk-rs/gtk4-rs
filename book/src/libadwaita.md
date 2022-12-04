@@ -51,6 +51,27 @@ brew install libadwaita
 
 ## Windows
 
+If you used `gvsbuild` to build GTK 4:
+
+```
+gvsbuild build libadwaita librsvg
+```
+
+##### Work around missing icons
+
+[This workaround is needed for GTK < 4.10](https://gitlab.gnome.org/GNOME/gtk/-/blob/34b9ec5be2f3a38e1e72c4d96f130a2b14734121/NEWS#L60)
+due to [this issue](https://gitlab.gnome.org/GNOME/gtk/-/issues/5303).
+
+From a command prompt:
+
+```
+xcopy /s /i C:\gtk-build\gtk\x64\release\share\icons\hicolor\scalable\apps C:\gtk-build\gtk\x64\release\share\icons\hicolor\scalable\actions
+# NOTE: The cache must be rebuilt every time you add new icons. 
+gtk4-update-icon-cache.exe -t -f C:\gtk-build\gtk\x64\release\share\icons\hicolor
+```
+
+### If you built GTK 4 manually:
+
 From the Windows start menu, search for `x64 Native Tools Command Prompt for VS 2019`.
 That will open a terminal configured to use MSVC x64 tools.
 From there, run the following commands:
@@ -61,9 +82,6 @@ git clone https://gitlab.gnome.org/GNOME/libadwaita.git --depth 1
 cd libadwaita
 meson setup builddir -Dprefix=C:/gnome -Dintrospection=disabled -Dvapi=false
 meson install -C builddir
-
-# This is a workaround for https://gitlab.gnome.org/GNOME/gtk/-/issues/5303.
-# NOTE: The cache must be rebuilt every time you add new icons. 
 
 xcopy /s /i C:\gnome\share\icons\hicolor\scalable\apps C:\gnome\share\icons\hicolor\scalable\actions
 gtk4-update-icon-cache.exe -t -f C:\gnome\share\icons\hicolor

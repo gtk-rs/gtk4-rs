@@ -21,29 +21,42 @@ Also set the rust toolchain back to msvc by executing:
 rustup default stable-msvc
 ```
 
-### Visual Studio
+### Build GTK 4
+
+1. Follow [the `gvsbuild` docs to build GTK4](https://github.com/wingtk/gvsbuild#development-environment)
+   * When choosing the GTK version to build, select `gtk4` instead of `gtk3`: `gvsbuild build gtk4`
+2. Update your `Path` environment variable to include the GTK4 libraries:
+   1. Go to settings -> Search and open `Advanced system settings` -> Click on `Environment variables`
+   2. Select `Path` -> Click on `Edit` -> Add `C:\gtk-build\gtk\x64\release\bin`
+
+#### Build GTK 4 manually instead
+
+If it's not possible to build with `gvsbuild` (or you want to customize your build), you
+can build GTK 4 and the minimum dependencies you need manually:
+
+##### Visual Studio
 
 Install Visual Studio Community from [visualstudio.microsoft.com](https://visualstudio.microsoft.com/de/vs/community/).
 Make sure to check the box "Desktop development with C++" during the installation process.
 
 <div style="text-align:center"><img src="img/vs-install.png" /></div>
 
-### Git
+##### Git
 
 Download git from [gitforwindows.org](https://gitforwindows.org/).
 
 
-### CMake
+##### CMake
 Download CMake from [https://cmake.org/download/](https://cmake.org/download/)
 
 
-### Python
+##### Python
 
 Download python from [python.org](https://www.python.org/downloads).
 Make sure to opt-in to adding Python to your Path during the installation process.
 
 
-### Meson
+##### Meson
 
 Install meson by executing:
 
@@ -52,38 +65,37 @@ pip install meson ninja
 ```
 
 
-### Gettext 0.21
+##### Gettext 0.21
 
 > **Warning**
 > **To avoid any potential problems, we strongly recommend the static version.**
-
 Download Gettext 0.21 from [mlocati.github.io](https://mlocati.github.io/articles/gettext-iconv-windows.html).
 
 
-### Pkg-config
+##### Pkg-config
 
 Download pkg-config-lite from [sourceforge.net](https://sourceforge.net/projects/pkgconfiglite/).
 Then extract and unpack it in `C:/`, so that the executable is in `C:\pkg-config-lite-0.28-1\bin`.
 
 
-### Update environment variables
+##### Update environment variables
 
 1. Go to settings -> Search and open `Advanced system settings` -> Click on `Environment variables`
 2. Select `Path` -> Click on `Edit` -> Add the following entries:
- 
+
 ```
 C:\pkg-config-lite-0.28-1\bin
 C:\gnome\bin
 ```
 
-3. Go back to `Environment variables` 
+3. Go back to `Environment variables`
 4. Under `User variables` click on `New` and add:
 
 - Variable name: `PKG_CONFIG_PATH`
 - Variable value: `C:\gnome\lib\pkgconfig`
 
 
-### Compile and install GTK 4
+##### Compile and install GTK 4
 
 From the Windows start menu, search for `x64 Native Tools Command Prompt for VS 2019`.
 That will open a terminal configured to use MSVC x64 tools.
@@ -113,7 +125,6 @@ xcopy /s C:\gnome\include\cairo C:\gnome\include
 nmake /f Makefile.vc CFG=release install PREFIX=C:\gnome
 cd /
 ```
-
 
 ## GNU toolchain
 
