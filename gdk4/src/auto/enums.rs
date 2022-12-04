@@ -145,14 +145,6 @@ impl ToValue for AxisUse {
     }
 }
 
-impl From<AxisUse> for glib::Value {
-    #[inline]
-    fn from(v: AxisUse) -> Self {
-        skip_assert_initialized!();
-        ToValue::to_value(&v)
-    }
-}
-
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
 #[doc(alias = "GdkCrossingMode")]
@@ -272,14 +264,6 @@ impl ToValue for CrossingMode {
     }
 }
 
-impl From<CrossingMode> for glib::Value {
-    #[inline]
-    fn from(v: CrossingMode) -> Self {
-        skip_assert_initialized!();
-        ToValue::to_value(&v)
-    }
-}
-
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
 #[doc(alias = "GdkDevicePadFeature")]
@@ -366,14 +350,6 @@ impl ToValue for DevicePadFeature {
 
     fn value_type(&self) -> glib::Type {
         Self::static_type()
-    }
-}
-
-impl From<DevicePadFeature> for glib::Value {
-    #[inline]
-    fn from(v: DevicePadFeature) -> Self {
-        skip_assert_initialized!();
-        ToValue::to_value(&v)
     }
 }
 
@@ -491,14 +467,6 @@ impl ToValue for DeviceToolType {
     }
 }
 
-impl From<DeviceToolType> for glib::Value {
-    #[inline]
-    fn from(v: DeviceToolType) -> Self {
-        skip_assert_initialized!();
-        ToValue::to_value(&v)
-    }
-}
-
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
 #[doc(alias = "GdkDragCancelReason")]
@@ -585,14 +553,6 @@ impl ToValue for DragCancelReason {
 
     fn value_type(&self) -> glib::Type {
         Self::static_type()
-    }
-}
-
-impl From<DragCancelReason> for glib::Value {
-    #[inline]
-    fn from(v: DragCancelReason) -> Self {
-        skip_assert_initialized!();
-        ToValue::to_value(&v)
     }
 }
 
@@ -820,14 +780,6 @@ impl ToValue for EventType {
     }
 }
 
-impl From<EventType> for glib::Value {
-    #[inline]
-    fn from(v: EventType) -> Self {
-        skip_assert_initialized!();
-        ToValue::to_value(&v)
-    }
-}
-
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
 #[doc(alias = "GdkFullscreenMode")]
@@ -909,14 +861,6 @@ impl ToValue for FullscreenMode {
 
     fn value_type(&self) -> glib::Type {
         Self::static_type()
-    }
-}
-
-impl From<FullscreenMode> for glib::Value {
-    #[inline]
-    fn from(v: FullscreenMode) -> Self {
-        skip_assert_initialized!();
-        ToValue::to_value(&v)
     }
 }
 
@@ -1040,14 +984,6 @@ impl ToValue for GLError {
 
     fn value_type(&self) -> glib::Type {
         Self::static_type()
-    }
-}
-
-impl From<GLError> for glib::Value {
-    #[inline]
-    fn from(v: GLError) -> Self {
-        skip_assert_initialized!();
-        ToValue::to_value(&v)
     }
 }
 
@@ -1175,14 +1111,6 @@ impl ToValue for Gravity {
     }
 }
 
-impl From<Gravity> for glib::Value {
-    #[inline]
-    fn from(v: Gravity) -> Self {
-        skip_assert_initialized!();
-        ToValue::to_value(&v)
-    }
-}
-
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
 #[doc(alias = "GdkInputSource")]
@@ -1292,14 +1220,6 @@ impl ToValue for InputSource {
     }
 }
 
-impl From<InputSource> for glib::Value {
-    #[inline]
-    fn from(v: InputSource) -> Self {
-        skip_assert_initialized!();
-        ToValue::to_value(&v)
-    }
-}
-
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
 #[doc(alias = "GdkKeyMatch")]
@@ -1386,14 +1306,6 @@ impl ToValue for KeyMatch {
 
     fn value_type(&self) -> glib::Type {
         Self::static_type()
-    }
-}
-
-impl From<KeyMatch> for glib::Value {
-    #[inline]
-    fn from(v: KeyMatch) -> Self {
-        skip_assert_initialized!();
-        ToValue::to_value(&v)
     }
 }
 
@@ -1614,14 +1526,6 @@ impl ToValue for MemoryFormat {
     }
 }
 
-impl From<MemoryFormat> for glib::Value {
-    #[inline]
-    fn from(v: MemoryFormat) -> Self {
-        skip_assert_initialized!();
-        ToValue::to_value(&v)
-    }
-}
-
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
 #[doc(alias = "GdkNotifyType")]
@@ -1726,14 +1630,6 @@ impl ToValue for NotifyType {
     }
 }
 
-impl From<NotifyType> for glib::Value {
-    #[inline]
-    fn from(v: NotifyType) -> Self {
-        skip_assert_initialized!();
-        ToValue::to_value(&v)
-    }
-}
-
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
 #[doc(alias = "GdkScrollDirection")]
@@ -1830,14 +1726,6 @@ impl ToValue for ScrollDirection {
 
     fn value_type(&self) -> glib::Type {
         Self::static_type()
-    }
-}
-
-impl From<ScrollDirection> for glib::Value {
-    #[inline]
-    fn from(v: ScrollDirection) -> Self {
-        skip_assert_initialized!();
-        ToValue::to_value(&v)
     }
 }
 
@@ -1938,16 +1826,6 @@ impl ToValue for ScrollUnit {
 
     fn value_type(&self) -> glib::Type {
         Self::static_type()
-    }
-}
-
-#[cfg(any(feature = "v4_8", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
-impl From<ScrollUnit> for glib::Value {
-    #[inline]
-    fn from(v: ScrollUnit) -> Self {
-        skip_assert_initialized!();
-        ToValue::to_value(&v)
     }
 }
 
@@ -2052,14 +1930,6 @@ impl ToValue for SubpixelLayout {
 
     fn value_type(&self) -> glib::Type {
         Self::static_type()
-    }
-}
-
-impl From<SubpixelLayout> for glib::Value {
-    #[inline]
-    fn from(v: SubpixelLayout) -> Self {
-        skip_assert_initialized!();
-        ToValue::to_value(&v)
     }
 }
 
@@ -2174,14 +2044,6 @@ impl ToValue for SurfaceEdge {
 
     fn value_type(&self) -> glib::Type {
         Self::static_type()
-    }
-}
-
-impl From<SurfaceEdge> for glib::Value {
-    #[inline]
-    fn from(v: SurfaceEdge) -> Self {
-        skip_assert_initialized!();
-        ToValue::to_value(&v)
     }
 }
 
@@ -2320,16 +2182,6 @@ impl ToValue for TextureError {
     }
 }
 
-#[cfg(any(feature = "v4_6", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
-impl From<TextureError> for glib::Value {
-    #[inline]
-    fn from(v: TextureError) -> Self {
-        skip_assert_initialized!();
-        ToValue::to_value(&v)
-    }
-}
-
 #[cfg(any(feature = "v4_4", feature = "dox"))]
 #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_4")))]
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
@@ -2435,16 +2287,6 @@ impl ToValue for TitlebarGesture {
     }
 }
 
-#[cfg(any(feature = "v4_4", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_4")))]
-impl From<TitlebarGesture> for glib::Value {
-    #[inline]
-    fn from(v: TitlebarGesture) -> Self {
-        skip_assert_initialized!();
-        ToValue::to_value(&v)
-    }
-}
-
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
 #[doc(alias = "GdkTouchpadGesturePhase")]
@@ -2536,14 +2378,6 @@ impl ToValue for TouchpadGesturePhase {
 
     fn value_type(&self) -> glib::Type {
         Self::static_type()
-    }
-}
-
-impl From<TouchpadGesturePhase> for glib::Value {
-    #[inline]
-    fn from(v: TouchpadGesturePhase) -> Self {
-        skip_assert_initialized!();
-        ToValue::to_value(&v)
     }
 }
 
@@ -2649,13 +2483,5 @@ impl ToValue for VulkanError {
 
     fn value_type(&self) -> glib::Type {
         Self::static_type()
-    }
-}
-
-impl From<VulkanError> for glib::Value {
-    #[inline]
-    fn from(v: VulkanError) -> Self {
-        skip_assert_initialized!();
-        ToValue::to_value(&v)
     }
 }
