@@ -105,14 +105,6 @@ impl ToValue for AccessibleAutocomplete {
     }
 }
 
-impl From<AccessibleAutocomplete> for glib::Value {
-    #[inline]
-    fn from(v: AccessibleAutocomplete) -> Self {
-        skip_assert_initialized!();
-        ToValue::to_value(&v)
-    }
-}
-
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
 #[doc(alias = "GtkAccessibleInvalidState")]
@@ -204,14 +196,6 @@ impl ToValue for AccessibleInvalidState {
 
     fn value_type(&self) -> glib::Type {
         Self::static_type()
-    }
-}
-
-impl From<AccessibleInvalidState> for glib::Value {
-    #[inline]
-    fn from(v: AccessibleInvalidState) -> Self {
-        skip_assert_initialized!();
-        ToValue::to_value(&v)
     }
 }
 
@@ -394,14 +378,6 @@ impl ToValue for AccessibleProperty {
     }
 }
 
-impl From<AccessibleProperty> for glib::Value {
-    #[inline]
-    fn from(v: AccessibleProperty) -> Self {
-        skip_assert_initialized!();
-        ToValue::to_value(&v)
-    }
-}
-
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
 #[doc(alias = "GtkAccessibleRelation")]
@@ -573,14 +549,6 @@ impl ToValue for AccessibleRelation {
 
     fn value_type(&self) -> glib::Type {
         Self::static_type()
-    }
-}
-
-impl From<AccessibleRelation> for glib::Value {
-    #[inline]
-    fn from(v: AccessibleRelation) -> Self {
-        skip_assert_initialized!();
-        ToValue::to_value(&v)
     }
 }
 
@@ -1048,14 +1016,6 @@ impl ToValue for AccessibleRole {
     }
 }
 
-impl From<AccessibleRole> for glib::Value {
-    #[inline]
-    fn from(v: AccessibleRole) -> Self {
-        skip_assert_initialized!();
-        ToValue::to_value(&v)
-    }
-}
-
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
 #[doc(alias = "GtkAccessibleSort")]
@@ -1147,14 +1107,6 @@ impl ToValue for AccessibleSort {
 
     fn value_type(&self) -> glib::Type {
         Self::static_type()
-    }
-}
-
-impl From<AccessibleSort> for glib::Value {
-    #[inline]
-    fn from(v: AccessibleSort) -> Self {
-        skip_assert_initialized!();
-        ToValue::to_value(&v)
     }
 }
 
@@ -1282,14 +1234,6 @@ impl ToValue for AccessibleState {
     }
 }
 
-impl From<AccessibleState> for glib::Value {
-    #[inline]
-    fn from(v: AccessibleState) -> Self {
-        skip_assert_initialized!();
-        ToValue::to_value(&v)
-    }
-}
-
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
 #[doc(alias = "GtkAccessibleTristate")]
@@ -1376,14 +1320,6 @@ impl ToValue for AccessibleTristate {
 
     fn value_type(&self) -> glib::Type {
         Self::static_type()
-    }
-}
-
-impl From<AccessibleTristate> for glib::Value {
-    #[inline]
-    fn from(v: AccessibleTristate) -> Self {
-        skip_assert_initialized!();
-        ToValue::to_value(&v)
     }
 }
 
@@ -1486,14 +1422,6 @@ impl ToValue for Align {
     }
 }
 
-impl From<Align> for glib::Value {
-    #[inline]
-    fn from(v: Align) -> Self {
-        skip_assert_initialized!();
-        ToValue::to_value(&v)
-    }
-}
-
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
 #[doc(alias = "GtkArrowType")]
@@ -1590,14 +1518,6 @@ impl ToValue for ArrowType {
 
     fn value_type(&self) -> glib::Type {
         Self::static_type()
-    }
-}
-
-impl From<ArrowType> for glib::Value {
-    #[inline]
-    fn from(v: ArrowType) -> Self {
-        skip_assert_initialized!();
-        ToValue::to_value(&v)
     }
 }
 
@@ -1705,14 +1625,6 @@ impl ToValue for AssistantPageType {
     }
 }
 
-impl From<AssistantPageType> for glib::Value {
-    #[inline]
-    fn from(v: AssistantPageType) -> Self {
-        skip_assert_initialized!();
-        ToValue::to_value(&v)
-    }
-}
-
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
 #[doc(alias = "GtkBaselinePosition")]
@@ -1799,14 +1711,6 @@ impl ToValue for BaselinePosition {
 
     fn value_type(&self) -> glib::Type {
         Self::static_type()
-    }
-}
-
-impl From<BaselinePosition> for glib::Value {
-    #[inline]
-    fn from(v: BaselinePosition) -> Self {
-        skip_assert_initialized!();
-        ToValue::to_value(&v)
     }
 }
 
@@ -1931,14 +1835,6 @@ impl ToValue for BorderStyle {
 
     fn value_type(&self) -> glib::Type {
         Self::static_type()
-    }
-}
-
-impl From<BorderStyle> for glib::Value {
-    #[inline]
-    fn from(v: BorderStyle) -> Self {
-        skip_assert_initialized!();
-        ToValue::to_value(&v)
     }
 }
 
@@ -2125,14 +2021,6 @@ impl ToValue for BuilderError {
     }
 }
 
-impl From<BuilderError> for glib::Value {
-    #[inline]
-    fn from(v: BuilderError) -> Self {
-        skip_assert_initialized!();
-        ToValue::to_value(&v)
-    }
-}
-
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
 #[doc(alias = "GtkButtonsType")]
@@ -2237,14 +2125,6 @@ impl ToValue for ButtonsType {
     }
 }
 
-impl From<ButtonsType> for glib::Value {
-    #[inline]
-    fn from(v: ButtonsType) -> Self {
-        skip_assert_initialized!();
-        ToValue::to_value(&v)
-    }
-}
-
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
 #[doc(alias = "GtkCellRendererAccelMode")]
@@ -2326,14 +2206,6 @@ impl ToValue for CellRendererAccelMode {
 
     fn value_type(&self) -> glib::Type {
         Self::static_type()
-    }
-}
-
-impl From<CellRendererAccelMode> for glib::Value {
-    #[inline]
-    fn from(v: CellRendererAccelMode) -> Self {
-        skip_assert_initialized!();
-        ToValue::to_value(&v)
     }
 }
 
@@ -2423,14 +2295,6 @@ impl ToValue for CellRendererMode {
 
     fn value_type(&self) -> glib::Type {
         Self::static_type()
-    }
-}
-
-impl From<CellRendererMode> for glib::Value {
-    #[inline]
-    fn from(v: CellRendererMode) -> Self {
-        skip_assert_initialized!();
-        ToValue::to_value(&v)
     }
 }
 
@@ -2536,16 +2400,6 @@ impl ToValue for Collation {
 
     fn value_type(&self) -> glib::Type {
         Self::static_type()
-    }
-}
-
-#[cfg(any(feature = "v4_10", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
-impl From<Collation> for glib::Value {
-    #[inline]
-    fn from(v: Collation) -> Self {
-        skip_assert_initialized!();
-        ToValue::to_value(&v)
     }
 }
 
@@ -2683,14 +2537,6 @@ impl ToValue for ConstraintAttribute {
     }
 }
 
-impl From<ConstraintAttribute> for glib::Value {
-    #[inline]
-    fn from(v: ConstraintAttribute) -> Self {
-        skip_assert_initialized!();
-        ToValue::to_value(&v)
-    }
-}
-
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
 #[doc(alias = "GtkConstraintRelation")]
@@ -2777,14 +2623,6 @@ impl ToValue for ConstraintRelation {
 
     fn value_type(&self) -> glib::Type {
         Self::static_type()
-    }
-}
-
-impl From<ConstraintRelation> for glib::Value {
-    #[inline]
-    fn from(v: ConstraintRelation) -> Self {
-        skip_assert_initialized!();
-        ToValue::to_value(&v)
     }
 }
 
@@ -2879,14 +2717,6 @@ impl ToValue for ConstraintStrength {
 
     fn value_type(&self) -> glib::Type {
         Self::static_type()
-    }
-}
-
-impl From<ConstraintStrength> for glib::Value {
-    #[inline]
-    fn from(v: ConstraintStrength) -> Self {
-        skip_assert_initialized!();
-        ToValue::to_value(&v)
     }
 }
 
@@ -3019,14 +2849,6 @@ impl ToValue for ConstraintVflParserError {
     }
 }
 
-impl From<ConstraintVflParserError> for glib::Value {
-    #[inline]
-    fn from(v: ConstraintVflParserError) -> Self {
-        skip_assert_initialized!();
-        ToValue::to_value(&v)
-    }
-}
-
 #[cfg(any(feature = "v4_8", feature = "dox"))]
 #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
@@ -3137,16 +2959,6 @@ impl ToValue for ContentFit {
     }
 }
 
-#[cfg(any(feature = "v4_8", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
-impl From<ContentFit> for glib::Value {
-    #[inline]
-    fn from(v: ContentFit) -> Self {
-        skip_assert_initialized!();
-        ToValue::to_value(&v)
-    }
-}
-
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
 #[doc(alias = "GtkCornerType")]
@@ -3238,14 +3050,6 @@ impl ToValue for CornerType {
 
     fn value_type(&self) -> glib::Type {
         Self::static_type()
-    }
-}
-
-impl From<CornerType> for glib::Value {
-    #[inline]
-    fn from(v: CornerType) -> Self {
-        skip_assert_initialized!();
-        ToValue::to_value(&v)
     }
 }
 
@@ -3509,14 +3313,6 @@ impl ToValue for DeleteType {
     }
 }
 
-impl From<DeleteType> for glib::Value {
-    #[inline]
-    fn from(v: DeleteType) -> Self {
-        skip_assert_initialized!();
-        ToValue::to_value(&v)
-    }
-}
-
 #[cfg(any(feature = "v4_10", feature = "dox"))]
 #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
@@ -3646,16 +3442,6 @@ impl ToValue for DialogError {
     }
 }
 
-#[cfg(any(feature = "v4_10", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
-impl From<DialogError> for glib::Value {
-    #[inline]
-    fn from(v: DialogError) -> Self {
-        skip_assert_initialized!();
-        ToValue::to_value(&v)
-    }
-}
-
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
 #[doc(alias = "GtkDirectionType")]
@@ -3757,14 +3543,6 @@ impl ToValue for DirectionType {
 
     fn value_type(&self) -> glib::Type {
         Self::static_type()
-    }
-}
-
-impl From<DirectionType> for glib::Value {
-    #[inline]
-    fn from(v: DirectionType) -> Self {
-        skip_assert_initialized!();
-        ToValue::to_value(&v)
     }
 }
 
@@ -3887,14 +3665,6 @@ impl ToValue for EditableProperties {
     }
 }
 
-impl From<EditableProperties> for glib::Value {
-    #[inline]
-    fn from(v: EditableProperties) -> Self {
-        skip_assert_initialized!();
-        ToValue::to_value(&v)
-    }
-}
-
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
 #[doc(alias = "GtkEntryIconPosition")]
@@ -3976,14 +3746,6 @@ impl ToValue for EntryIconPosition {
 
     fn value_type(&self) -> glib::Type {
         Self::static_type()
-    }
-}
-
-impl From<EntryIconPosition> for glib::Value {
-    #[inline]
-    fn from(v: EntryIconPosition) -> Self {
-        skip_assert_initialized!();
-        ToValue::to_value(&v)
     }
 }
 
@@ -4076,14 +3838,6 @@ impl ToValue for EventSequenceState {
     }
 }
 
-impl From<EventSequenceState> for glib::Value {
-    #[inline]
-    fn from(v: EventSequenceState) -> Self {
-        skip_assert_initialized!();
-        ToValue::to_value(&v)
-    }
-}
-
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
 #[doc(alias = "GtkFileChooserAction")]
@@ -4170,14 +3924,6 @@ impl ToValue for FileChooserAction {
 
     fn value_type(&self) -> glib::Type {
         Self::static_type()
-    }
-}
-
-impl From<FileChooserAction> for glib::Value {
-    #[inline]
-    fn from(v: FileChooserAction) -> Self {
-        skip_assert_initialized!();
-        ToValue::to_value(&v)
     }
 }
 
@@ -4298,14 +4044,6 @@ impl ToValue for FileChooserError {
     }
 }
 
-impl From<FileChooserError> for glib::Value {
-    #[inline]
-    fn from(v: FileChooserError) -> Self {
-        skip_assert_initialized!();
-        ToValue::to_value(&v)
-    }
-}
-
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
 #[doc(alias = "GtkFilterChange")]
@@ -4395,14 +4133,6 @@ impl ToValue for FilterChange {
     }
 }
 
-impl From<FilterChange> for glib::Value {
-    #[inline]
-    fn from(v: FilterChange) -> Self {
-        skip_assert_initialized!();
-        ToValue::to_value(&v)
-    }
-}
-
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
 #[doc(alias = "GtkFilterMatch")]
@@ -4489,14 +4219,6 @@ impl ToValue for FilterMatch {
 
     fn value_type(&self) -> glib::Type {
         Self::static_type()
-    }
-}
-
-impl From<FilterMatch> for glib::Value {
-    #[inline]
-    fn from(v: FilterMatch) -> Self {
-        skip_assert_initialized!();
-        ToValue::to_value(&v)
     }
 }
 
@@ -4610,16 +4332,6 @@ impl ToValue for FontLevel {
     }
 }
 
-#[cfg(any(feature = "v4_10", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
-impl From<FontLevel> for glib::Value {
-    #[inline]
-    fn from(v: FontLevel) -> Self {
-        skip_assert_initialized!();
-        ToValue::to_value(&v)
-    }
-}
-
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
 #[doc(alias = "GtkIconSize")]
@@ -4706,14 +4418,6 @@ impl ToValue for IconSize {
 
     fn value_type(&self) -> glib::Type {
         Self::static_type()
-    }
-}
-
-impl From<IconSize> for glib::Value {
-    #[inline]
-    fn from(v: IconSize) -> Self {
-        skip_assert_initialized!();
-        ToValue::to_value(&v)
     }
 }
 
@@ -4822,14 +4526,6 @@ impl ToValue for IconThemeError {
     }
 }
 
-impl From<IconThemeError> for glib::Value {
-    #[inline]
-    fn from(v: IconThemeError) -> Self {
-        skip_assert_initialized!();
-        ToValue::to_value(&v)
-    }
-}
-
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
 #[doc(alias = "GtkIconViewDropPosition")]
@@ -4934,14 +4630,6 @@ impl ToValue for IconViewDropPosition {
     }
 }
 
-impl From<IconViewDropPosition> for glib::Value {
-    #[inline]
-    fn from(v: IconViewDropPosition) -> Self {
-        skip_assert_initialized!();
-        ToValue::to_value(&v)
-    }
-}
-
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
 #[doc(alias = "GtkImageType")]
@@ -5033,14 +4721,6 @@ impl ToValue for ImageType {
 
     fn value_type(&self) -> glib::Type {
         Self::static_type()
-    }
-}
-
-impl From<ImageType> for glib::Value {
-    #[inline]
-    fn from(v: ImageType) -> Self {
-        skip_assert_initialized!();
-        ToValue::to_value(&v)
     }
 }
 
@@ -5173,14 +4853,6 @@ impl ToValue for InputPurpose {
     }
 }
 
-impl From<InputPurpose> for glib::Value {
-    #[inline]
-    fn from(v: InputPurpose) -> Self {
-        skip_assert_initialized!();
-        ToValue::to_value(&v)
-    }
-}
-
 #[cfg(any(feature = "v4_8", feature = "dox"))]
 #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
@@ -5291,16 +4963,6 @@ impl ToValue for InscriptionOverflow {
     }
 }
 
-#[cfg(any(feature = "v4_8", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
-impl From<InscriptionOverflow> for glib::Value {
-    #[inline]
-    fn from(v: InscriptionOverflow) -> Self {
-        skip_assert_initialized!();
-        ToValue::to_value(&v)
-    }
-}
-
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
 #[doc(alias = "GtkJustification")]
@@ -5395,14 +5057,6 @@ impl ToValue for Justification {
     }
 }
 
-impl From<Justification> for glib::Value {
-    #[inline]
-    fn from(v: Justification) -> Self {
-        skip_assert_initialized!();
-        ToValue::to_value(&v)
-    }
-}
-
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
 #[doc(alias = "GtkLevelBarMode")]
@@ -5484,14 +5138,6 @@ impl ToValue for LevelBarMode {
 
     fn value_type(&self) -> glib::Type {
         Self::static_type()
-    }
-}
-
-impl From<LevelBarMode> for glib::Value {
-    #[inline]
-    fn from(v: LevelBarMode) -> Self {
-        skip_assert_initialized!();
-        ToValue::to_value(&v)
     }
 }
 
@@ -5659,14 +5305,6 @@ impl ToValue for License {
     }
 }
 
-impl From<License> for glib::Value {
-    #[inline]
-    fn from(v: License) -> Self {
-        skip_assert_initialized!();
-        ToValue::to_value(&v)
-    }
-}
-
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
 #[doc(alias = "GtkMessageType")]
@@ -5763,14 +5401,6 @@ impl ToValue for MessageType {
 
     fn value_type(&self) -> glib::Type {
         Self::static_type()
-    }
-}
-
-impl From<MessageType> for glib::Value {
-    #[inline]
-    fn from(v: MessageType) -> Self {
-        skip_assert_initialized!();
-        ToValue::to_value(&v)
     }
 }
 
@@ -5898,14 +5528,6 @@ impl ToValue for MovementStep {
     }
 }
 
-impl From<MovementStep> for glib::Value {
-    #[inline]
-    fn from(v: MovementStep) -> Self {
-        skip_assert_initialized!();
-        ToValue::to_value(&v)
-    }
-}
-
 #[cfg(any(feature = "v4_6", feature = "dox"))]
 #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
@@ -6011,16 +5633,6 @@ impl ToValue for NaturalWrapMode {
     }
 }
 
-#[cfg(any(feature = "v4_6", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
-impl From<NaturalWrapMode> for glib::Value {
-    #[inline]
-    fn from(v: NaturalWrapMode) -> Self {
-        skip_assert_initialized!();
-        ToValue::to_value(&v)
-    }
-}
-
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
 #[doc(alias = "GtkNotebookTab")]
@@ -6102,14 +5714,6 @@ impl ToValue for NotebookTab {
 
     fn value_type(&self) -> glib::Type {
         Self::static_type()
-    }
-}
-
-impl From<NotebookTab> for glib::Value {
-    #[inline]
-    fn from(v: NotebookTab) -> Self {
-        skip_assert_initialized!();
-        ToValue::to_value(&v)
     }
 }
 
@@ -6227,14 +5831,6 @@ impl ToValue for NumberUpLayout {
     }
 }
 
-impl From<NumberUpLayout> for glib::Value {
-    #[inline]
-    fn from(v: NumberUpLayout) -> Self {
-        skip_assert_initialized!();
-        ToValue::to_value(&v)
-    }
-}
-
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
 #[doc(alias = "GtkOrdering")]
@@ -6324,14 +5920,6 @@ impl ToValue for Ordering {
     }
 }
 
-impl From<Ordering> for glib::Value {
-    #[inline]
-    fn from(v: Ordering) -> Self {
-        skip_assert_initialized!();
-        ToValue::to_value(&v)
-    }
-}
-
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
 #[doc(alias = "GtkOrientation")]
@@ -6413,14 +6001,6 @@ impl ToValue for Orientation {
 
     fn value_type(&self) -> glib::Type {
         Self::static_type()
-    }
-}
-
-impl From<Orientation> for glib::Value {
-    #[inline]
-    fn from(v: Orientation) -> Self {
-        skip_assert_initialized!();
-        ToValue::to_value(&v)
     }
 }
 
@@ -6508,14 +6088,6 @@ impl ToValue for Overflow {
     }
 }
 
-impl From<Overflow> for glib::Value {
-    #[inline]
-    fn from(v: Overflow) -> Self {
-        skip_assert_initialized!();
-        ToValue::to_value(&v)
-    }
-}
-
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
 #[doc(alias = "GtkPackType")]
@@ -6597,14 +6169,6 @@ impl ToValue for PackType {
 
     fn value_type(&self) -> glib::Type {
         Self::static_type()
-    }
-}
-
-impl From<PackType> for glib::Value {
-    #[inline]
-    fn from(v: PackType) -> Self {
-        skip_assert_initialized!();
-        ToValue::to_value(&v)
     }
 }
 
@@ -6694,14 +6258,6 @@ impl ToValue for PadActionType {
 
     fn value_type(&self) -> glib::Type {
         Self::static_type()
-    }
-}
-
-impl From<PadActionType> for glib::Value {
-    #[inline]
-    fn from(v: PadActionType) -> Self {
-        skip_assert_initialized!();
-        ToValue::to_value(&v)
     }
 }
 
@@ -6799,14 +6355,6 @@ impl ToValue for PageOrientation {
     }
 }
 
-impl From<PageOrientation> for glib::Value {
-    #[inline]
-    fn from(v: PageOrientation) -> Self {
-        skip_assert_initialized!();
-        ToValue::to_value(&v)
-    }
-}
-
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
 #[doc(alias = "GtkPageSet")]
@@ -6893,14 +6441,6 @@ impl ToValue for PageSet {
 
     fn value_type(&self) -> glib::Type {
         Self::static_type()
-    }
-}
-
-impl From<PageSet> for glib::Value {
-    #[inline]
-    fn from(v: PageSet) -> Self {
-        skip_assert_initialized!();
-        ToValue::to_value(&v)
     }
 }
 
@@ -6998,14 +6538,6 @@ impl ToValue for PanDirection {
     }
 }
 
-impl From<PanDirection> for glib::Value {
-    #[inline]
-    fn from(v: PanDirection) -> Self {
-        skip_assert_initialized!();
-        ToValue::to_value(&v)
-    }
-}
-
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
 #[doc(alias = "GtkPolicyType")]
@@ -7097,14 +6629,6 @@ impl ToValue for PolicyType {
 
     fn value_type(&self) -> glib::Type {
         Self::static_type()
-    }
-}
-
-impl From<PolicyType> for glib::Value {
-    #[inline]
-    fn from(v: PolicyType) -> Self {
-        skip_assert_initialized!();
-        ToValue::to_value(&v)
     }
 }
 
@@ -7202,14 +6726,6 @@ impl ToValue for PositionType {
     }
 }
 
-impl From<PositionType> for glib::Value {
-    #[inline]
-    fn from(v: PositionType) -> Self {
-        skip_assert_initialized!();
-        ToValue::to_value(&v)
-    }
-}
-
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
 #[doc(alias = "GtkPrintDuplex")]
@@ -7296,14 +6812,6 @@ impl ToValue for PrintDuplex {
 
     fn value_type(&self) -> glib::Type {
         Self::static_type()
-    }
-}
-
-impl From<PrintDuplex> for glib::Value {
-    #[inline]
-    fn from(v: PrintDuplex) -> Self {
-        skip_assert_initialized!();
-        ToValue::to_value(&v)
     }
 }
 
@@ -7424,14 +6932,6 @@ impl ToValue for PrintError {
     }
 }
 
-impl From<PrintError> for glib::Value {
-    #[inline]
-    fn from(v: PrintError) -> Self {
-        skip_assert_initialized!();
-        ToValue::to_value(&v)
-    }
-}
-
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
 #[doc(alias = "GtkPrintOperationAction")]
@@ -7523,14 +7023,6 @@ impl ToValue for PrintOperationAction {
 
     fn value_type(&self) -> glib::Type {
         Self::static_type()
-    }
-}
-
-impl From<PrintOperationAction> for glib::Value {
-    #[inline]
-    fn from(v: PrintOperationAction) -> Self {
-        skip_assert_initialized!();
-        ToValue::to_value(&v)
     }
 }
 
@@ -7628,14 +7120,6 @@ impl ToValue for PrintOperationResult {
     }
 }
 
-impl From<PrintOperationResult> for glib::Value {
-    #[inline]
-    fn from(v: PrintOperationResult) -> Self {
-        skip_assert_initialized!();
-        ToValue::to_value(&v)
-    }
-}
-
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
 #[doc(alias = "GtkPrintPages")]
@@ -7730,14 +7214,6 @@ impl ToValue for PrintPages {
     }
 }
 
-impl From<PrintPages> for glib::Value {
-    #[inline]
-    fn from(v: PrintPages) -> Self {
-        skip_assert_initialized!();
-        ToValue::to_value(&v)
-    }
-}
-
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
 #[doc(alias = "GtkPrintQuality")]
@@ -7829,14 +7305,6 @@ impl ToValue for PrintQuality {
 
     fn value_type(&self) -> glib::Type {
         Self::static_type()
-    }
-}
-
-impl From<PrintQuality> for glib::Value {
-    #[inline]
-    fn from(v: PrintQuality) -> Self {
-        skip_assert_initialized!();
-        ToValue::to_value(&v)
     }
 }
 
@@ -7959,14 +7427,6 @@ impl ToValue for PrintStatus {
     }
 }
 
-impl From<PrintStatus> for glib::Value {
-    #[inline]
-    fn from(v: PrintStatus) -> Self {
-        skip_assert_initialized!();
-        ToValue::to_value(&v)
-    }
-}
-
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
 #[doc(alias = "GtkPropagationLimit")]
@@ -8048,14 +7508,6 @@ impl ToValue for PropagationLimit {
 
     fn value_type(&self) -> glib::Type {
         Self::static_type()
-    }
-}
-
-impl From<PropagationLimit> for glib::Value {
-    #[inline]
-    fn from(v: PropagationLimit) -> Self {
-        skip_assert_initialized!();
-        ToValue::to_value(&v)
     }
 }
 
@@ -8150,14 +7602,6 @@ impl ToValue for PropagationPhase {
 
     fn value_type(&self) -> glib::Type {
         Self::static_type()
-    }
-}
-
-impl From<PropagationPhase> for glib::Value {
-    #[inline]
-    fn from(v: PropagationPhase) -> Self {
-        skip_assert_initialized!();
-        ToValue::to_value(&v)
     }
 }
 
@@ -8296,14 +7740,6 @@ impl ToValue for RecentManagerError {
     }
 }
 
-impl From<RecentManagerError> for glib::Value {
-    #[inline]
-    fn from(v: RecentManagerError) -> Self {
-        skip_assert_initialized!();
-        ToValue::to_value(&v)
-    }
-}
-
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
 #[doc(alias = "GtkRevealerTransitionType")]
@@ -8428,14 +7864,6 @@ impl ToValue for RevealerTransitionType {
     }
 }
 
-impl From<RevealerTransitionType> for glib::Value {
-    #[inline]
-    fn from(v: RevealerTransitionType) -> Self {
-        skip_assert_initialized!();
-        ToValue::to_value(&v)
-    }
-}
-
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
 #[doc(alias = "GtkScrollStep")]
@@ -8537,14 +7965,6 @@ impl ToValue for ScrollStep {
 
     fn value_type(&self) -> glib::Type {
         Self::static_type()
-    }
-}
-
-impl From<ScrollStep> for glib::Value {
-    #[inline]
-    fn from(v: ScrollStep) -> Self {
-        skip_assert_initialized!();
-        ToValue::to_value(&v)
     }
 }
 
@@ -8702,14 +8122,6 @@ impl ToValue for ScrollType {
     }
 }
 
-impl From<ScrollType> for glib::Value {
-    #[inline]
-    fn from(v: ScrollType) -> Self {
-        skip_assert_initialized!();
-        ToValue::to_value(&v)
-    }
-}
-
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
 #[doc(alias = "GtkScrollablePolicy")]
@@ -8791,14 +8203,6 @@ impl ToValue for ScrollablePolicy {
 
     fn value_type(&self) -> glib::Type {
         Self::static_type()
-    }
-}
-
-impl From<ScrollablePolicy> for glib::Value {
-    #[inline]
-    fn from(v: ScrollablePolicy) -> Self {
-        skip_assert_initialized!();
-        ToValue::to_value(&v)
     }
 }
 
@@ -8896,14 +8300,6 @@ impl ToValue for SelectionMode {
     }
 }
 
-impl From<SelectionMode> for glib::Value {
-    #[inline]
-    fn from(v: SelectionMode) -> Self {
-        skip_assert_initialized!();
-        ToValue::to_value(&v)
-    }
-}
-
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
 #[doc(alias = "GtkSensitivityType")]
@@ -8993,14 +8389,6 @@ impl ToValue for SensitivityType {
     }
 }
 
-impl From<SensitivityType> for glib::Value {
-    #[inline]
-    fn from(v: SensitivityType) -> Self {
-        skip_assert_initialized!();
-        ToValue::to_value(&v)
-    }
-}
-
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
 #[doc(alias = "GtkShortcutScope")]
@@ -9087,14 +8475,6 @@ impl ToValue for ShortcutScope {
 
     fn value_type(&self) -> glib::Type {
         Self::static_type()
-    }
-}
-
-impl From<ShortcutScope> for glib::Value {
-    #[inline]
-    fn from(v: ShortcutScope) -> Self {
-        skip_assert_initialized!();
-        ToValue::to_value(&v)
     }
 }
 
@@ -9226,14 +8606,6 @@ impl ToValue for ShortcutType {
     }
 }
 
-impl From<ShortcutType> for glib::Value {
-    #[inline]
-    fn from(v: ShortcutType) -> Self {
-        skip_assert_initialized!();
-        ToValue::to_value(&v)
-    }
-}
-
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
 #[doc(alias = "GtkSizeGroupMode")]
@@ -9328,14 +8700,6 @@ impl ToValue for SizeGroupMode {
     }
 }
 
-impl From<SizeGroupMode> for glib::Value {
-    #[inline]
-    fn from(v: SizeGroupMode) -> Self {
-        skip_assert_initialized!();
-        ToValue::to_value(&v)
-    }
-}
-
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
 #[doc(alias = "GtkSizeRequestMode")]
@@ -9425,14 +8789,6 @@ impl ToValue for SizeRequestMode {
     }
 }
 
-impl From<SizeRequestMode> for glib::Value {
-    #[inline]
-    fn from(v: SizeRequestMode) -> Self {
-        skip_assert_initialized!();
-        ToValue::to_value(&v)
-    }
-}
-
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
 #[doc(alias = "GtkSortType")]
@@ -9514,14 +8870,6 @@ impl ToValue for SortType {
 
     fn value_type(&self) -> glib::Type {
         Self::static_type()
-    }
-}
-
-impl From<SortType> for glib::Value {
-    #[inline]
-    fn from(v: SortType) -> Self {
-        skip_assert_initialized!();
-        ToValue::to_value(&v)
     }
 }
 
@@ -9619,14 +8967,6 @@ impl ToValue for SorterChange {
     }
 }
 
-impl From<SorterChange> for glib::Value {
-    #[inline]
-    fn from(v: SorterChange) -> Self {
-        skip_assert_initialized!();
-        ToValue::to_value(&v)
-    }
-}
-
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
 #[doc(alias = "GtkSorterOrder")]
@@ -9716,14 +9056,6 @@ impl ToValue for SorterOrder {
     }
 }
 
-impl From<SorterOrder> for glib::Value {
-    #[inline]
-    fn from(v: SorterOrder) -> Self {
-        skip_assert_initialized!();
-        ToValue::to_value(&v)
-    }
-}
-
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
 #[doc(alias = "GtkSpinButtonUpdatePolicy")]
@@ -9805,14 +9137,6 @@ impl ToValue for SpinButtonUpdatePolicy {
 
     fn value_type(&self) -> glib::Type {
         Self::static_type()
-    }
-}
-
-impl From<SpinButtonUpdatePolicy> for glib::Value {
-    #[inline]
-    fn from(v: SpinButtonUpdatePolicy) -> Self {
-        skip_assert_initialized!();
-        ToValue::to_value(&v)
     }
 }
 
@@ -9922,14 +9246,6 @@ impl ToValue for SpinType {
 
     fn value_type(&self) -> glib::Type {
         Self::static_type()
-    }
-}
-
-impl From<SpinType> for glib::Value {
-    #[inline]
-    fn from(v: SpinType) -> Self {
-        skip_assert_initialized!();
-        ToValue::to_value(&v)
     }
 }
 
@@ -10122,14 +9438,6 @@ impl ToValue for StackTransitionType {
     }
 }
 
-impl From<StackTransitionType> for glib::Value {
-    #[inline]
-    fn from(v: StackTransitionType) -> Self {
-        skip_assert_initialized!();
-        ToValue::to_value(&v)
-    }
-}
-
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
 #[doc(alias = "GtkStringFilterMatchMode")]
@@ -10216,14 +9524,6 @@ impl ToValue for StringFilterMatchMode {
 
     fn value_type(&self) -> glib::Type {
         Self::static_type()
-    }
-}
-
-impl From<StringFilterMatchMode> for glib::Value {
-    #[inline]
-    fn from(v: StringFilterMatchMode) -> Self {
-        skip_assert_initialized!();
-        ToValue::to_value(&v)
     }
 }
 
@@ -10337,16 +9637,6 @@ impl ToValue for SymbolicColor {
     }
 }
 
-#[cfg(any(feature = "v4_6", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
-impl From<SymbolicColor> for glib::Value {
-    #[inline]
-    fn from(v: SymbolicColor) -> Self {
-        skip_assert_initialized!();
-        ToValue::to_value(&v)
-    }
-}
-
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
 #[doc(alias = "GtkSystemSetting")]
@@ -10446,14 +9736,6 @@ impl ToValue for SystemSetting {
     }
 }
 
-impl From<SystemSetting> for glib::Value {
-    #[inline]
-    fn from(v: SystemSetting) -> Self {
-        skip_assert_initialized!();
-        ToValue::to_value(&v)
-    }
-}
-
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
 #[doc(alias = "GtkTextDirection")]
@@ -10543,14 +9825,6 @@ impl ToValue for TextDirection {
     }
 }
 
-impl From<TextDirection> for glib::Value {
-    #[inline]
-    fn from(v: TextDirection) -> Self {
-        skip_assert_initialized!();
-        ToValue::to_value(&v)
-    }
-}
-
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
 #[doc(alias = "GtkTextExtendSelection")]
@@ -10635,14 +9909,6 @@ impl ToValue for TextExtendSelection {
     }
 }
 
-impl From<TextExtendSelection> for glib::Value {
-    #[inline]
-    fn from(v: TextExtendSelection) -> Self {
-        skip_assert_initialized!();
-        ToValue::to_value(&v)
-    }
-}
-
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
 #[doc(alias = "GtkTextViewLayer")]
@@ -10724,14 +9990,6 @@ impl ToValue for TextViewLayer {
 
     fn value_type(&self) -> glib::Type {
         Self::static_type()
-    }
-}
-
-impl From<TextViewLayer> for glib::Value {
-    #[inline]
-    fn from(v: TextViewLayer) -> Self {
-        skip_assert_initialized!();
-        ToValue::to_value(&v)
     }
 }
 
@@ -10839,14 +10097,6 @@ impl ToValue for TextWindowType {
     }
 }
 
-impl From<TextWindowType> for glib::Value {
-    #[inline]
-    fn from(v: TextWindowType) -> Self {
-        skip_assert_initialized!();
-        ToValue::to_value(&v)
-    }
-}
-
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
 #[doc(alias = "GtkTreeViewColumnSizing")]
@@ -10933,14 +10183,6 @@ impl ToValue for TreeViewColumnSizing {
 
     fn value_type(&self) -> glib::Type {
         Self::static_type()
-    }
-}
-
-impl From<TreeViewColumnSizing> for glib::Value {
-    #[inline]
-    fn from(v: TreeViewColumnSizing) -> Self {
-        skip_assert_initialized!();
-        ToValue::to_value(&v)
     }
 }
 
@@ -11038,14 +10280,6 @@ impl ToValue for TreeViewDropPosition {
     }
 }
 
-impl From<TreeViewDropPosition> for glib::Value {
-    #[inline]
-    fn from(v: TreeViewDropPosition) -> Self {
-        skip_assert_initialized!();
-        ToValue::to_value(&v)
-    }
-}
-
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
 #[doc(alias = "GtkTreeViewGridLines")]
@@ -11137,14 +10371,6 @@ impl ToValue for TreeViewGridLines {
 
     fn value_type(&self) -> glib::Type {
         Self::static_type()
-    }
-}
-
-impl From<TreeViewGridLines> for glib::Value {
-    #[inline]
-    fn from(v: TreeViewGridLines) -> Self {
-        skip_assert_initialized!();
-        ToValue::to_value(&v)
     }
 }
 
@@ -11242,14 +10468,6 @@ impl ToValue for Unit {
     }
 }
 
-impl From<Unit> for glib::Value {
-    #[inline]
-    fn from(v: Unit) -> Self {
-        skip_assert_initialized!();
-        ToValue::to_value(&v)
-    }
-}
-
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
 #[doc(alias = "GtkWrapMode")]
@@ -11341,13 +10559,5 @@ impl ToValue for WrapMode {
 
     fn value_type(&self) -> glib::Type {
         Self::static_type()
-    }
-}
-
-impl From<WrapMode> for glib::Value {
-    #[inline]
-    fn from(v: WrapMode) -> Self {
-        skip_assert_initialized!();
-        ToValue::to_value(&v)
     }
 }

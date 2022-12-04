@@ -80,14 +80,6 @@ impl ToValue for ApplicationInhibitFlags {
     }
 }
 
-impl From<ApplicationInhibitFlags> for glib::Value {
-    #[inline]
-    fn from(v: ApplicationInhibitFlags) -> Self {
-        skip_assert_initialized!();
-        ToValue::to_value(&v)
-    }
-}
-
 bitflags! {
     #[doc(alias = "GtkBuilderClosureFlags")]
     pub struct BuilderClosureFlags: u32 {
@@ -149,14 +141,6 @@ impl ToValue for BuilderClosureFlags {
 
     fn value_type(&self) -> glib::Type {
         Self::static_type()
-    }
-}
-
-impl From<BuilderClosureFlags> for glib::Value {
-    #[inline]
-    fn from(v: BuilderClosureFlags) -> Self {
-        skip_assert_initialized!();
-        ToValue::to_value(&v)
     }
 }
 
@@ -233,14 +217,6 @@ impl ToValue for CellRendererState {
 
     fn value_type(&self) -> glib::Type {
         Self::static_type()
-    }
-}
-
-impl From<CellRendererState> for glib::Value {
-    #[inline]
-    fn from(v: CellRendererState) -> Self {
-        skip_assert_initialized!();
-        ToValue::to_value(&v)
     }
 }
 
@@ -348,14 +324,6 @@ impl ToValue for DebugFlags {
     }
 }
 
-impl From<DebugFlags> for glib::Value {
-    #[inline]
-    fn from(v: DebugFlags) -> Self {
-        skip_assert_initialized!();
-        ToValue::to_value(&v)
-    }
-}
-
 bitflags! {
     #[doc(alias = "GtkDialogFlags")]
     pub struct DialogFlags: u32 {
@@ -421,14 +389,6 @@ impl ToValue for DialogFlags {
 
     fn value_type(&self) -> glib::Type {
         Self::static_type()
-    }
-}
-
-impl From<DialogFlags> for glib::Value {
-    #[inline]
-    fn from(v: DialogFlags) -> Self {
-        skip_assert_initialized!();
-        ToValue::to_value(&v)
     }
 }
 
@@ -506,14 +466,6 @@ impl ToValue for EventControllerScrollFlags {
     }
 }
 
-impl From<EventControllerScrollFlags> for glib::Value {
-    #[inline]
-    fn from(v: EventControllerScrollFlags) -> Self {
-        skip_assert_initialized!();
-        ToValue::to_value(&v)
-    }
-}
-
 bitflags! {
     #[doc(alias = "GtkFontChooserLevel")]
     pub struct FontChooserLevel: u32 {
@@ -586,14 +538,6 @@ impl ToValue for FontChooserLevel {
     }
 }
 
-impl From<FontChooserLevel> for glib::Value {
-    #[inline]
-    fn from(v: FontChooserLevel) -> Self {
-        skip_assert_initialized!();
-        ToValue::to_value(&v)
-    }
-}
-
 bitflags! {
     #[doc(alias = "GtkIconLookupFlags")]
     pub struct IconLookupFlags: u32 {
@@ -659,14 +603,6 @@ impl ToValue for IconLookupFlags {
 
     fn value_type(&self) -> glib::Type {
         Self::static_type()
-    }
-}
-
-impl From<IconLookupFlags> for glib::Value {
-    #[inline]
-    fn from(v: IconLookupFlags) -> Self {
-        skip_assert_initialized!();
-        ToValue::to_value(&v)
     }
 }
 
@@ -758,14 +694,6 @@ impl ToValue for InputHints {
     }
 }
 
-impl From<InputHints> for glib::Value {
-    #[inline]
-    fn from(v: InputHints) -> Self {
-        skip_assert_initialized!();
-        ToValue::to_value(&v)
-    }
-}
-
 bitflags! {
     #[doc(alias = "GtkPickFlags")]
     pub struct PickFlags: u32 {
@@ -834,14 +762,6 @@ impl ToValue for PickFlags {
     }
 }
 
-impl From<PickFlags> for glib::Value {
-    #[inline]
-    fn from(v: PickFlags) -> Self {
-        skip_assert_initialized!();
-        ToValue::to_value(&v)
-    }
-}
-
 bitflags! {
     #[doc(alias = "GtkPopoverMenuFlags")]
     pub struct PopoverMenuFlags: u32 {
@@ -903,14 +823,6 @@ impl ToValue for PopoverMenuFlags {
 
     fn value_type(&self) -> glib::Type {
         Self::static_type()
-    }
-}
-
-impl From<PopoverMenuFlags> for glib::Value {
-    #[inline]
-    fn from(v: PopoverMenuFlags) -> Self {
-        skip_assert_initialized!();
-        ToValue::to_value(&v)
     }
 }
 
@@ -1005,15 +917,6 @@ impl ToValue for PrintCapabilities {
     }
 }
 
-#[cfg(any(target_os = "linux", feature = "dox"))]
-impl From<PrintCapabilities> for glib::Value {
-    #[inline]
-    fn from(v: PrintCapabilities) -> Self {
-        skip_assert_initialized!();
-        ToValue::to_value(&v)
-    }
-}
-
 bitflags! {
     #[doc(alias = "GtkShortcutActionFlags")]
     pub struct ShortcutActionFlags: u32 {
@@ -1075,14 +978,6 @@ impl ToValue for ShortcutActionFlags {
 
     fn value_type(&self) -> glib::Type {
         Self::static_type()
-    }
-}
-
-impl From<ShortcutActionFlags> for glib::Value {
-    #[inline]
-    fn from(v: ShortcutActionFlags) -> Self {
-        skip_assert_initialized!();
-        ToValue::to_value(&v)
     }
 }
 
@@ -1180,14 +1075,6 @@ impl ToValue for StateFlags {
     }
 }
 
-impl From<StateFlags> for glib::Value {
-    #[inline]
-    fn from(v: StateFlags) -> Self {
-        skip_assert_initialized!();
-        ToValue::to_value(&v)
-    }
-}
-
 bitflags! {
     #[doc(alias = "GtkStyleContextPrintFlags")]
     pub struct StyleContextPrintFlags: u32 {
@@ -1255,14 +1142,6 @@ impl ToValue for StyleContextPrintFlags {
 
     fn value_type(&self) -> glib::Type {
         Self::static_type()
-    }
-}
-
-impl From<StyleContextPrintFlags> for glib::Value {
-    #[inline]
-    fn from(v: StyleContextPrintFlags) -> Self {
-        skip_assert_initialized!();
-        ToValue::to_value(&v)
     }
 }
 
@@ -1334,14 +1213,6 @@ impl ToValue for TextSearchFlags {
     }
 }
 
-impl From<TextSearchFlags> for glib::Value {
-    #[inline]
-    fn from(v: TextSearchFlags) -> Self {
-        skip_assert_initialized!();
-        ToValue::to_value(&v)
-    }
-}
-
 bitflags! {
     #[doc(alias = "GtkTreeModelFlags")]
     pub struct TreeModelFlags: u32 {
@@ -1405,13 +1276,5 @@ impl ToValue for TreeModelFlags {
 
     fn value_type(&self) -> glib::Type {
         Self::static_type()
-    }
-}
-
-impl From<TreeModelFlags> for glib::Value {
-    #[inline]
-    fn from(v: TreeModelFlags) -> Self {
-        skip_assert_initialized!();
-        ToValue::to_value(&v)
     }
 }
