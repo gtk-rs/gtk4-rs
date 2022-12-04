@@ -3121,11 +3121,11 @@ pub struct GtkIMContextClass {
             *mut c_int,
         ) -> gboolean,
     >,
+    pub activate_osk: Option<unsafe extern "C" fn(*mut GtkIMContext)>,
     pub _gtk_reserved1: Option<unsafe extern "C" fn()>,
     pub _gtk_reserved2: Option<unsafe extern "C" fn()>,
     pub _gtk_reserved3: Option<unsafe extern "C" fn()>,
     pub _gtk_reserved4: Option<unsafe extern "C" fn()>,
-    pub _gtk_reserved5: Option<unsafe extern "C" fn()>,
 }
 
 impl ::std::fmt::Debug for GtkIMContextClass {
@@ -3155,11 +3155,11 @@ impl ::std::fmt::Debug for GtkIMContextClass {
                 "get_surrounding_with_selection",
                 &self.get_surrounding_with_selection,
             )
+            .field("activate_osk", &self.activate_osk)
             .field("_gtk_reserved1", &self._gtk_reserved1)
             .field("_gtk_reserved2", &self._gtk_reserved2)
             .field("_gtk_reserved3", &self._gtk_reserved3)
             .field("_gtk_reserved4", &self._gtk_reserved4)
-            .field("_gtk_reserved5", &self._gtk_reserved5)
             .finish()
     }
 }
@@ -17512,12 +17512,30 @@ extern "C" {
     pub fn gtk_tree_expander_get_type() -> GType;
     pub fn gtk_tree_expander_new() -> *mut GtkWidget;
     pub fn gtk_tree_expander_get_child(self_: *mut GtkTreeExpander) -> *mut GtkWidget;
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gtk_tree_expander_get_hide_expander(self_: *mut GtkTreeExpander) -> gboolean;
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gtk_tree_expander_get_indent_for_depth(self_: *mut GtkTreeExpander) -> gboolean;
     #[cfg(any(feature = "v4_6", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
     pub fn gtk_tree_expander_get_indent_for_icon(self_: *mut GtkTreeExpander) -> gboolean;
     pub fn gtk_tree_expander_get_item(self_: *mut GtkTreeExpander) -> *mut gobject::GObject;
     pub fn gtk_tree_expander_get_list_row(self_: *mut GtkTreeExpander) -> *mut GtkTreeListRow;
     pub fn gtk_tree_expander_set_child(self_: *mut GtkTreeExpander, child: *mut GtkWidget);
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gtk_tree_expander_set_hide_expander(
+        self_: *mut GtkTreeExpander,
+        hide_expander: gboolean,
+    );
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gtk_tree_expander_set_indent_for_depth(
+        self_: *mut GtkTreeExpander,
+        indent_for_depth: gboolean,
+    );
     #[cfg(any(feature = "v4_6", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
     pub fn gtk_tree_expander_set_indent_for_icon(
