@@ -61,6 +61,10 @@ pub trait IMContextImpl: IMContextImplExt + ObjectImpl {
     fn set_use_preedit(&self, use_preedit: bool) {
         self.parent_set_use_preedit(use_preedit)
     }
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    fn activate_osk(&self) {
+        self.parent_activate_osk()
+    }
 }
 
 #[allow(clippy::upper_case_acronyms)]
@@ -81,6 +85,8 @@ pub trait IMContextImplExt: ObjectSubclass {
     fn parent_set_cursor_location(&self, area: &gdk::Rectangle);
     fn parent_set_surrounding(&self, text: &str, cursor_index: i32);
     fn parent_set_use_preedit(&self, use_preedit: bool);
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    fn parent_activate_osk(&self);
 }
 
 impl<T: IMContextImpl> IMContextImplExt for T {
@@ -304,6 +310,17 @@ impl<T: IMContextImpl> IMContextImplExt for T {
             }
         }
     }
+
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    fn parent_activate_osk(&self) {
+        unsafe {
+            let data = T::type_data();
+            let parent_class = data.as_ref().parent_class() as *mut ffi::GtkIMContextClass;
+            if let Some(f) = (*parent_class).activate_osk {
+                f(self.obj().unsafe_cast_ref::<IMContext>().to_glib_none().0)
+            }
+        }
+    }
 }
 
 unsafe impl<T: IMContextImpl> IsSubclassable<T> for IMContext {
@@ -332,6 +349,10 @@ unsafe impl<T: IMContextImpl> IsSubclassable<T> for IMContext {
         klass.set_cursor_location = Some(im_context_set_cursor_location::<T>);
         klass.set_surrounding = Some(im_context_set_surrounding::<T>);
         klass.set_use_preedit = Some(im_context_set_use_preedit::<T>);
+        #[cfg(any(feature = "v4_10", feature = "dox"))]
+        {
+            klass.activate_osk = Some(im_context_activate_osk::<T>);
+        };
     }
 }
 
@@ -503,4 +524,12 @@ unsafe extern "C" fn im_context_set_use_preedit<T: IMContextImpl>(
     let imp = instance.imp();
 
     imp.set_use_preedit(from_glib(use_preedit))
+}
+
+#[cfg(any(feature = "v4_10", feature = "dox"))]
+unsafe extern "C" fn im_context_activate_osk<T: IMContextImpl>(ptr: *mut ffi::GtkIMContext) {
+    let instance = &*(ptr as *mut T::Instance);
+    let imp = instance.imp();
+
+    imp.activate_osk()
 }
