@@ -53,6 +53,30 @@ impl TreeExpander {
         unsafe { from_glib_none(ffi::gtk_tree_expander_get_child(self.to_glib_none().0)) }
     }
 
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    #[doc(alias = "gtk_tree_expander_get_hide_expander")]
+    #[doc(alias = "get_hide_expander")]
+    pub fn hides_expander(&self) -> bool {
+        unsafe {
+            from_glib(ffi::gtk_tree_expander_get_hide_expander(
+                self.to_glib_none().0,
+            ))
+        }
+    }
+
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    #[doc(alias = "gtk_tree_expander_get_indent_for_depth")]
+    #[doc(alias = "get_indent_for_depth")]
+    pub fn is_indent_for_depth(&self) -> bool {
+        unsafe {
+            from_glib(ffi::gtk_tree_expander_get_indent_for_depth(
+                self.to_glib_none().0,
+            ))
+        }
+    }
+
     #[cfg(any(feature = "v4_6", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
     #[doc(alias = "gtk_tree_expander_get_indent_for_icon")]
@@ -83,6 +107,30 @@ impl TreeExpander {
             ffi::gtk_tree_expander_set_child(
                 self.to_glib_none().0,
                 child.map(|p| p.as_ref()).to_glib_none().0,
+            );
+        }
+    }
+
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    #[doc(alias = "gtk_tree_expander_set_hide_expander")]
+    pub fn set_hide_expander(&self, hide_expander: bool) {
+        unsafe {
+            ffi::gtk_tree_expander_set_hide_expander(
+                self.to_glib_none().0,
+                hide_expander.into_glib(),
+            );
+        }
+    }
+
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    #[doc(alias = "gtk_tree_expander_set_indent_for_depth")]
+    pub fn set_indent_for_depth(&self, indent_for_depth: bool) {
+        unsafe {
+            ffi::gtk_tree_expander_set_indent_for_depth(
+                self.to_glib_none().0,
+                indent_for_depth.into_glib(),
             );
         }
     }
@@ -123,6 +171,56 @@ impl TreeExpander {
                 b"notify::child\0".as_ptr() as *const _,
                 Some(transmute::<_, unsafe extern "C" fn()>(
                     notify_child_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    #[doc(alias = "hide-expander")]
+    pub fn connect_hide_expander_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_hide_expander_trampoline<F: Fn(&TreeExpander) + 'static>(
+            this: *mut ffi::GtkTreeExpander,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::hide-expander\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_hide_expander_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    #[doc(alias = "indent-for-depth")]
+    pub fn connect_indent_for_depth_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_indent_for_depth_trampoline<F: Fn(&TreeExpander) + 'static>(
+            this: *mut ffi::GtkTreeExpander,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::indent-for-depth\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_indent_for_depth_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
@@ -215,6 +313,12 @@ impl Default for TreeExpander {
 #[must_use = "The builder must be built to be used"]
 pub struct TreeExpanderBuilder {
     child: Option<Widget>,
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    hide_expander: Option<bool>,
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    indent_for_depth: Option<bool>,
     #[cfg(any(feature = "v4_6", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
     indent_for_icon: Option<bool>,
@@ -265,6 +369,14 @@ impl TreeExpanderBuilder {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref child) = self.child {
             properties.push(("child", child));
+        }
+        #[cfg(any(feature = "v4_10", feature = "dox"))]
+        if let Some(ref hide_expander) = self.hide_expander {
+            properties.push(("hide-expander", hide_expander));
+        }
+        #[cfg(any(feature = "v4_10", feature = "dox"))]
+        if let Some(ref indent_for_depth) = self.indent_for_depth {
+            properties.push(("indent-for-depth", indent_for_depth));
         }
         #[cfg(any(feature = "v4_6", feature = "dox"))]
         if let Some(ref indent_for_icon) = self.indent_for_icon {
@@ -368,6 +480,20 @@ impl TreeExpanderBuilder {
 
     pub fn child(mut self, child: &impl IsA<Widget>) -> Self {
         self.child = Some(child.clone().upcast());
+        self
+    }
+
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn hide_expander(mut self, hide_expander: bool) -> Self {
+        self.hide_expander = Some(hide_expander);
+        self
+    }
+
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn indent_for_depth(mut self, indent_for_depth: bool) -> Self {
+        self.indent_for_depth = Some(indent_for_depth);
         self
     }
 
