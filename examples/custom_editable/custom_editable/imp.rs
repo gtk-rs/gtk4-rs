@@ -5,20 +5,11 @@ use gtk::subclass::prelude::*;
 use once_cell::sync::Lazy;
 use std::cell::{Cell, RefCell};
 
+#[derive(Default)]
 pub struct CustomEditable {
     text: gtk::Text,
     pub spinner: RefCell<Option<gtk::Spinner>>,
     pub show_spinner: Cell<bool>,
-}
-
-impl Default for CustomEditable {
-    fn default() -> Self {
-        Self {
-            text: gtk::Text::new(),
-            spinner: RefCell::default(),
-            show_spinner: Cell::new(false),
-        }
-    }
 }
 
 #[glib::object_subclass]
@@ -70,6 +61,7 @@ impl ObjectImpl for CustomEditable {
     }
 
     fn constructed(&self) {
+        self.parent_constructed();
         let editable = self.obj();
         // Most of the times when implementing Editable, you just want to embed something like
         // `gtk::Text` inside a more complex widget. In such case, your implementation most forward the `gtk::Text`

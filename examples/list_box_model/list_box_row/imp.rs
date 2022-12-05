@@ -50,6 +50,7 @@ impl ObjectImpl for ListBoxRow {
     }
 
     fn constructed(&self) {
+        self.parent_constructed();
         let obj = self.obj();
 
         let item = self.row_data.borrow();
@@ -68,16 +69,13 @@ impl ObjectImpl for ListBoxRow {
         // the item.
         let label = gtk::Label::new(None);
         item.bind_property("name", &label, "label")
-            .flags(glib::BindingFlags::DEFAULT | glib::BindingFlags::SYNC_CREATE)
+            .sync_create()
             .build();
         hbox.append(&label);
         let spin_button = gtk::SpinButton::with_range(0.0, 100.0, 1.0);
         item.bind_property("count", &spin_button, "value")
-            .flags(
-                glib::BindingFlags::DEFAULT
-                    | glib::BindingFlags::SYNC_CREATE
-                    | glib::BindingFlags::BIDIRECTIONAL,
-            )
+            .sync_create()
+            .bidirectional()
             .build();
         hbox.append(&spin_button);
 
@@ -103,7 +101,7 @@ impl ObjectImpl for ListBoxRow {
             // by the listbox
             let entry = gtk::Entry::new();
             item.bind_property("name", &entry, "text")
-                .flags(glib::BindingFlags::DEFAULT | glib::BindingFlags::SYNC_CREATE | glib::BindingFlags::BIDIRECTIONAL)
+                .sync_create().bidirectional()
                 .build();
 
             // Activating the entry (enter) will send response `ResponseType::Close` to the dialog
@@ -114,7 +112,7 @@ impl ObjectImpl for ListBoxRow {
 
             let spin_button = gtk::SpinButton::with_range(0.0, 100.0, 1.0);
             item.bind_property("count", &spin_button, "value")
-                .flags(glib::BindingFlags::DEFAULT | glib::BindingFlags::SYNC_CREATE | glib::BindingFlags::BIDIRECTIONAL)
+                .sync_create().bidirectional()
                 .build();
             content_area.append(&spin_button);
 

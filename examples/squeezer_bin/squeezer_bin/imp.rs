@@ -70,14 +70,13 @@ impl ObjectImpl for SqueezerBin {
     }
 
     fn constructed(&self) {
+        self.parent_constructed();
         let obj = self.obj();
 
         obj.set_halign(gtk::Align::Fill);
         obj.set_valign(gtk::Align::Fill);
         obj.set_hexpand(true);
         obj.set_vexpand(true);
-
-        self.parent_constructed();
     }
 
     fn dispose(&self) {

@@ -14,7 +14,6 @@ impl ObjectSubclass for ScaleBin {
     const NAME: &'static str = "ScaleBin";
     type ParentType = gtk::Widget;
     type Type = super::ScaleBin;
-    type Interfaces = ();
 
     fn new() -> Self {
         Self {

@@ -78,8 +78,8 @@ impl UtilityCallbacks {
 
 impl ObjectImpl for ExApplicationWindow {
     fn constructed(&self) {
-        self.obj().init_label();
         self.parent_constructed();
+        self.obj().init_label();
     }
 }
 

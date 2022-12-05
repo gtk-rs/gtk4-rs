@@ -35,8 +35,8 @@ impl ObjectSubclass for CustomOrientable {
 
 impl ObjectImpl for CustomOrientable {
     fn constructed(&self) {
-        let obj = self.obj();
         self.parent_constructed();
+        let obj = self.obj();
 
         // Create the children labels.
         let first_label = gtk::Label::new(Some("Hello"));
