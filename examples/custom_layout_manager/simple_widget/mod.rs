@@ -50,8 +50,7 @@ impl SimpleWidget {
 
         let layout_manager = self
             .layout_manager()
-            .unwrap()
-            .downcast::<CustomLayout>()
+            .and_downcast::<CustomLayout>()
             .unwrap();
 
         let duration_diff = now.duration_since(start_time);

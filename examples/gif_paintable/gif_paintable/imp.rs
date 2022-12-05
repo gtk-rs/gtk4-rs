@@ -44,7 +44,6 @@ impl PaintableImpl for GifPaintable {
         if let Some(texture) = &*self.next_frame.borrow() {
             texture.snapshot(snapshot, width, height);
         } else {
-            let snapshot = snapshot.downcast_ref::<gtk::Snapshot>().unwrap();
             snapshot.append_color(
                 &gdk::RGBA::BLACK,
                 &graphene::Rect::new(0f32, 0f32, width as f32, height as f32),

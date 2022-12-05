@@ -85,7 +85,7 @@ impl ObjectImpl for ListBoxRow {
         // the corresponding row
         let edit_button = gtk::Button::with_label("Edit");
         edit_button.connect_clicked(clone!(@weak item, @weak obj => move |_| {
-            let parent_window = obj.root().map(|root| root.downcast::<gtk::Window>().unwrap());
+            let parent_window = obj.root().and_downcast::<gtk::Window>();
             let dialog = gtk::Dialog::with_buttons(
                 Some("Edit Item"),
                 parent_window.as_ref(),

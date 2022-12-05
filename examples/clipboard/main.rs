@@ -100,7 +100,7 @@ fn build_ui(application: &gtk::Application) {
         .valign(gtk::Align::Center)
         .build();
     copy_texture_btn.connect_clicked(clone!(@weak clipboard, @weak image_from => move |_btn| {
-        let texture = image_from.paintable().unwrap().downcast::<gdk::Texture>().unwrap();
+        let texture = image_from.paintable().and_downcast::<gdk::Texture>().unwrap();
         clipboard.set_texture(&texture);
     }));
     texture_container.append(&copy_texture_btn);

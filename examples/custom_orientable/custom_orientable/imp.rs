@@ -43,8 +43,7 @@ impl ObjectImpl for CustomOrientable {
         let second_label = gtk::Label::new(Some("World!"));
         let layout_manager = obj
             .layout_manager()
-            .unwrap()
-            .downcast::<gtk::BoxLayout>()
+            .and_downcast::<gtk::BoxLayout>()
             .unwrap();
         layout_manager.set_spacing(6);
         first_label.set_parent(&*obj);
@@ -94,8 +93,7 @@ impl ObjectImpl for CustomOrientable {
                 let layout_manager = self
                     .obj()
                     .layout_manager()
-                    .unwrap()
-                    .downcast::<gtk::BoxLayout>()
+                    .and_downcast::<gtk::BoxLayout>()
                     .unwrap();
                 layout_manager.set_orientation(orientation);
             }
