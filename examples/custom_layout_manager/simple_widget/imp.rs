@@ -5,21 +5,11 @@ use gtk::prelude::*;
 use gtk::subclass::prelude::*;
 use std::cell::{Cell, RefCell};
 
-#[derive(Debug)]
+#[derive(Default, Debug)]
 pub struct SimpleWidget {
     pub backward: Cell<bool>,
     pub tick_id: RefCell<Option<gtk::TickCallbackId>>,
     pub start_time: RefCell<Option<std::time::Instant>>,
-}
-
-impl Default for SimpleWidget {
-    fn default() -> Self {
-        Self {
-            backward: Cell::new(false),
-            tick_id: RefCell::default(),
-            start_time: RefCell::default(),
-        }
-    }
 }
 
 #[glib::object_subclass]
@@ -36,6 +26,7 @@ impl ObjectSubclass for SimpleWidget {
 
 impl ObjectImpl for SimpleWidget {
     fn constructed(&self) {
+        self.parent_constructed();
         let gesture = gtk::GestureClick::new();
         // Trigger a transition on click
         let obj = self.obj();
