@@ -53,8 +53,8 @@ fn build_ui(application: &gtk::Application) {
 
     col1factory.connect_bind(move |_factory, item| {
         let item = item.downcast_ref::<gtk::ListItem>().unwrap();
-        let child = item.child().unwrap().downcast::<GridCell>().unwrap();
-        let entry = item.item().unwrap().downcast::<BoxedAnyObject>().unwrap();
+        let child = item.child().and_downcast::<GridCell>().unwrap();
+        let entry = item.item().and_downcast::<BoxedAnyObject>().unwrap();
         let r: Ref<Row> = entry.borrow();
         let ent = Entry {
             name: r.col1.to_string(),
@@ -69,8 +69,8 @@ fn build_ui(application: &gtk::Application) {
 
     col2factory.connect_bind(move |_factory, item| {
         let item = item.downcast_ref::<gtk::ListItem>().unwrap();
-        let child = item.child().unwrap().downcast::<GridCell>().unwrap();
-        let entry = item.item().unwrap().downcast::<BoxedAnyObject>().unwrap();
+        let child = item.child().and_downcast::<GridCell>().unwrap();
+        let entry = item.item().and_downcast::<BoxedAnyObject>().unwrap();
         let r: Ref<Row> = entry.borrow();
         let ent = Entry {
             name: r.col2.to_string(),

@@ -43,9 +43,9 @@ fn build_ui(app: &gtk::Application) {
         // as gtk used to pass GtkListItem directly. In order to make that API
         // generic for potentially future new APIs, it was switched to taking a GObject in 4.8
         let item = item.downcast_ref::<gtk::ListItem>().unwrap();
-        let app_info = item.item().unwrap().downcast::<gio::AppInfo>().unwrap();
+        let app_info = item.item().and_downcast::<gio::AppInfo>().unwrap();
 
-        let child = item.child().unwrap().downcast::<ApplicationRow>().unwrap();
+        let child = item.child().and_downcast::<ApplicationRow>().unwrap();
         child.set_app_info(&app_info);
     });
 
@@ -67,15 +67,11 @@ fn build_ui(app: &gtk::Application) {
     // Launch the application when an item of the list is activated
     list_view.connect_activate(move |list_view, position| {
         let model = list_view.model().unwrap();
-        let app_info = model
-            .item(position)
-            .unwrap()
-            .downcast::<gio::AppInfo>()
-            .unwrap();
+        let app_info = model.item(position).and_downcast::<gio::AppInfo>().unwrap();
 
         let context = list_view.display().app_launch_context();
         if let Err(err) = app_info.launch(&[], Some(&context)) {
-            let parent_window = list_view.root().unwrap().downcast::<gtk::Window>().unwrap();
+            let parent_window = list_view.root().and_downcast::<gtk::Window>().unwrap();
 
             gtk::MessageDialog::builder()
                 .text(&format!("Failed to start {}", app_info.name()))
