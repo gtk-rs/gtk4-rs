@@ -130,11 +130,6 @@ pub trait WidgetExt: 'static {
     #[doc(alias = "gtk_widget_create_pango_layout")]
     fn create_pango_layout(&self, text: Option<&str>) -> pango::Layout;
 
-    #[cfg(any(feature = "v4_8", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
-    #[doc(alias = "gtk_widget_dispose_template")]
-    fn dispose_template(&self, widget_type: glib::types::Type);
-
     #[doc(alias = "gtk_drag_check_threshold")]
     fn drag_check_threshold(
         &self,
@@ -980,17 +975,6 @@ impl<O: IsA<Widget>> WidgetExt for O {
                 self.as_ref().to_glib_none().0,
                 text.to_glib_none().0,
             ))
-        }
-    }
-
-    #[cfg(any(feature = "v4_8", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
-    fn dispose_template(&self, widget_type: glib::types::Type) {
-        unsafe {
-            ffi::gtk_widget_dispose_template(
-                self.as_ref().to_glib_none().0,
-                widget_type.into_glib(),
-            );
         }
     }
 
