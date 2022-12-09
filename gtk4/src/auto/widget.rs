@@ -429,9 +429,6 @@ pub trait WidgetExt: 'static {
     #[doc(alias = "gtk_widget_in_destruction")]
     fn in_destruction(&self) -> bool;
 
-    #[doc(alias = "gtk_widget_init_template")]
-    fn init_template(&self);
-
     #[doc(alias = "gtk_widget_insert_action_group")]
     fn insert_action_group(&self, name: &str, group: Option<&impl IsA<gio::ActionGroup>>);
 
@@ -1468,12 +1465,6 @@ impl<O: IsA<Widget>> WidgetExt for O {
             from_glib(ffi::gtk_widget_in_destruction(
                 self.as_ref().to_glib_none().0,
             ))
-        }
-    }
-
-    fn init_template(&self) {
-        unsafe {
-            ffi::gtk_widget_init_template(self.as_ref().to_glib_none().0);
         }
     }
 

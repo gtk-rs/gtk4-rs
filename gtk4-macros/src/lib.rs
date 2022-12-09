@@ -35,7 +35,7 @@ use syn::{parse_macro_input, DeriveInput};
 /// [`ObjectSubclass`]: ../glib/subclass/types/trait.ObjectSubclass.html
 /// [`bind_template`]: ../gtk4/subclass/widget/trait.CompositeTemplate.html#tymethod.bind_template
 /// [`class_init`]: ../glib/subclass/types/trait.ObjectSubclass.html#method.class_init
-/// [`init_template`]: ../gtk4/prelude/trait.InitializingWidgetExt.html#tymethod.init_template
+/// [`init_template`]: ../gtk4/subclass/prelude/trait.CompositeTemplateInitializingExt.html#tymethod.init_template
 /// [`instance_init`]: ../glib/subclass/types/trait.ObjectSubclass.html#method.instance_init
 ///
 /// ```no_run

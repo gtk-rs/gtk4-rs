@@ -163,6 +163,6 @@ pub mod prelude {
     pub use super::widget::CompositeTemplateInstanceCallbacksClass;
     pub use super::widget::TemplateChild;
     pub use super::widget::WidgetClassSubclassExt;
-    pub use super::widget::{WidgetImpl, WidgetImplExt};
+    pub use super::widget::{CompositeTemplateInitializingExt, WidgetImpl, WidgetImplExt};
     pub use super::window::{WindowImpl, WindowImplExt};
 }

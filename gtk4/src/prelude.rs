@@ -29,7 +29,7 @@ pub use crate::tree_model::TreeModelExtManual;
 pub use crate::tree_model_filter::TreeModelFilterExtManual;
 pub use crate::tree_sortable::TreeSortableExtManual;
 pub use crate::tree_view::TreeViewExtManual;
-pub use crate::widget::{InitializingWidgetExt, WidgetExtManual};
+pub use crate::widget::WidgetExtManual;
 
 #[doc(hidden)]
 pub use gdk::prelude::*;

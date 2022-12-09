@@ -1,7 +1,6 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
 use crate::prelude::*;
-use crate::subclass::prelude::*;
 use crate::Widget;
 
 use glib::object::{Cast, IsA, WeakRef};
@@ -87,24 +86,5 @@ impl TickCallbackId {
                 ffi::gtk_widget_remove_tick_callback(widget.to_glib_none().0, self.id);
             }
         }
-    }
-}
-
-pub trait InitializingWidgetExt {
-    fn init_template(&self);
-}
-
-impl<T> InitializingWidgetExt for glib::subclass::InitializingObject<T>
-where
-    T: WidgetImpl + CompositeTemplate,
-    <T as ObjectSubclass>::Type: IsA<Widget>,
-{
-    fn init_template(&self) {
-        let widget = unsafe {
-            self.as_ref()
-                .unsafe_cast_ref::<<T as ObjectSubclass>::Type>()
-        };
-        widget.init_template();
-        <T as CompositeTemplate>::check_template_children(widget);
     }
 }

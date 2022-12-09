@@ -1399,3 +1399,24 @@ where
         <V as CompositeTemplateCallbacks>::bind_template_callbacks(self);
     }
 }
+
+pub trait CompositeTemplateInitializingExt {
+    fn init_template(&self);
+}
+
+impl<T> CompositeTemplateInitializingExt for glib::subclass::InitializingObject<T>
+where
+    T: WidgetImpl + CompositeTemplate,
+    <T as ObjectSubclass>::Type: IsA<Widget>,
+{
+    fn init_template(&self) {
+        unsafe {
+            let widget = self
+                .as_ref()
+                .unsafe_cast_ref::<<T as ObjectSubclass>::Type>();
+            ffi::gtk_widget_init_template(widget.as_ref().to_glib_none().0);
+
+            <T as CompositeTemplate>::check_template_children(widget);
+        }
+    }
+}
