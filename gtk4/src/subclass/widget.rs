@@ -1026,8 +1026,8 @@ pub unsafe trait WidgetClassSubclassExt: ClassStruct {
         arguments: Option<&glib::Variant>,
     ) {
         let shortcut = crate::Shortcut::new(
-            Some(&crate::KeyvalTrigger::new(keyval, mods)),
-            Some(&crate::CallbackAction::new(move |widget, args| -> bool {
+            Some(crate::KeyvalTrigger::new(keyval, mods)),
+            Some(crate::CallbackAction::new(move |widget, args| -> bool {
                 unsafe { callback(widget.unsafe_cast_ref(), args) }
             })),
         );
@@ -1044,8 +1044,8 @@ pub unsafe trait WidgetClassSubclassExt: ClassStruct {
         arguments: Option<&glib::Variant>,
     ) {
         let shortcut = crate::Shortcut::new(
-            Some(&crate::KeyvalTrigger::new(keyval, mods)),
-            Some(&crate::NamedAction::new(action_name)),
+            Some(crate::KeyvalTrigger::new(keyval, mods)),
+            Some(crate::NamedAction::new(action_name)),
         );
         shortcut.set_arguments(arguments);
         self.add_shortcut(&shortcut);
@@ -1068,8 +1068,8 @@ pub unsafe trait WidgetClassSubclassExt: ClassStruct {
         );
 
         let shortcut = crate::Shortcut::new(
-            Some(&crate::KeyvalTrigger::new(keyval, mods)),
-            Some(&crate::SignalAction::new(signal_name)),
+            Some(crate::KeyvalTrigger::new(keyval, mods)),
+            Some(crate::SignalAction::new(signal_name)),
         );
         shortcut.set_arguments(arguments);
         self.add_shortcut(&shortcut);
