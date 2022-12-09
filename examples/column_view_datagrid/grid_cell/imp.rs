@@ -1,11 +1,7 @@
 use gtk::glib;
-use gtk::prelude::*;
 use gtk::subclass::prelude::*;
 
-use gtk::BinLayout;
-use gtk::CompositeTemplate;
-
-#[derive(Debug, Default, CompositeTemplate)]
+#[derive(Debug, Default, gtk::CompositeTemplate)]
 #[template(file = "grid_cell.ui")]
 pub struct GridCell {
     #[template_child]
@@ -24,7 +20,7 @@ impl ObjectSubclass for GridCell {
     fn class_init(klass: &mut Self::Class) {
         // When inheriting from GtkWidget directly, you have to either override the size_allocate/measure
         // functions of WidgetImpl trait or use a layout manager which provides those functions for your widgets like below.
-        klass.set_layout_manager_type::<BinLayout>();
+        klass.set_layout_manager_type::<gtk::BinLayout>();
         klass.bind_template();
     }
 
@@ -35,7 +31,7 @@ impl ObjectSubclass for GridCell {
 
 impl ObjectImpl for GridCell {
     fn dispose(&self) {
-        self.name.unparent();
+        self.dispose_template();
     }
 }
 impl WidgetImpl for GridCell {}

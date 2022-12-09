@@ -46,9 +46,7 @@ impl ObjectImpl for ExMenuButton {
     // Here you need to unparent all direct children
     // of your template.
     fn dispose(&self) {
-        while let Some(child) = self.obj().first_child() {
-            child.unparent();
-        }
+        self.dispose_template();
     }
 }
 
