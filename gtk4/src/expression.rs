@@ -23,6 +23,14 @@ pub unsafe trait IsExpression:
 }
 
 impl Expression {
+    pub fn upcast(self) -> Self {
+        self
+    }
+
+    pub fn upcast_ref(&self) -> &Self {
+        self
+    }
+
     pub fn is<E: IsExpression>(&self) -> bool {
         self.type_().is_a(E::static_type())
     }
