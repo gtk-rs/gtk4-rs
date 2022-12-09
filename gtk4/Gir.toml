@@ -2579,6 +2579,9 @@ manual_traits = ["WidgetExtManual"]
     pattern = "(init|dispose)_template"
     ignore = true # We manually bind this one as part of CompositeTemplatExt
     [[object.function]]
+    name = "get_template_child"
+    ignore = true # Not useful for Rust bindings
+    [[object.function]]
     name = "get_name"
     rename = "widget_name"
     [[object.function]]
