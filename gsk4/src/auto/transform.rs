@@ -3,6 +3,7 @@
 // DO NOT EDIT
 
 use crate::TransformCategory;
+use glib::object::Cast;
 use glib::translate::*;
 use std::fmt;
 use std::mem;
@@ -43,10 +44,10 @@ impl Transform {
 
     #[doc(alias = "gsk_transform_matrix")]
     #[must_use]
-    pub fn matrix(&self, matrix: &graphene::Matrix) -> Transform {
+    pub fn matrix(self, matrix: &graphene::Matrix) -> Transform {
         unsafe {
             from_glib_full(ffi::gsk_transform_matrix(
-                self.to_glib_full(),
+                self.into_glib_ptr(),
                 matrix.to_glib_none().0,
             ))
         }
@@ -54,8 +55,8 @@ impl Transform {
 
     #[doc(alias = "gsk_transform_perspective")]
     #[must_use]
-    pub fn perspective(&self, depth: f32) -> Transform {
-        unsafe { from_glib_full(ffi::gsk_transform_perspective(self.to_glib_full(), depth)) }
+    pub fn perspective(self, depth: f32) -> Transform {
+        unsafe { from_glib_full(ffi::gsk_transform_perspective(self.into_glib_ptr(), depth)) }
     }
 
     #[doc(alias = "gsk_transform_to_2d")]

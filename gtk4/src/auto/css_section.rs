@@ -3,6 +3,7 @@
 // DO NOT EDIT
 
 use crate::CssLocation;
+use glib::object::Cast;
 use glib::object::IsA;
 use glib::translate::*;
 use std::fmt;

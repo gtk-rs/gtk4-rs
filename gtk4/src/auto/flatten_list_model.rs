@@ -2,6 +2,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+use glib::object::Cast;
 use glib::object::IsA;
 use glib::object::ObjectType as ObjectType_;
 use glib::signal::connect_raw;
@@ -22,11 +23,11 @@ glib::wrapper! {
 
 impl FlattenListModel {
     #[doc(alias = "gtk_flatten_list_model_new")]
-    pub fn new(model: Option<&impl IsA<gio::ListModel>>) -> FlattenListModel {
+    pub fn new(model: Option<impl IsA<gio::ListModel>>) -> FlattenListModel {
         assert_initialized_main_thread!();
         unsafe {
             from_glib_full(ffi::gtk_flatten_list_model_new(
-                model.map(|p| p.as_ref()).to_glib_full(),
+                model.map(|p| p.upcast()).into_glib_ptr(),
             ))
         }
     }

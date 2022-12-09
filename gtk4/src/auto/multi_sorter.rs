@@ -4,6 +4,7 @@
 
 use crate::Buildable;
 use crate::Sorter;
+use glib::object::Cast;
 use glib::object::IsA;
 use glib::translate::*;
 use std::fmt;
@@ -25,9 +26,9 @@ impl MultiSorter {
     }
 
     #[doc(alias = "gtk_multi_sorter_append")]
-    pub fn append(&self, sorter: &impl IsA<Sorter>) {
+    pub fn append(&self, sorter: impl IsA<Sorter>) {
         unsafe {
-            ffi::gtk_multi_sorter_append(self.to_glib_none().0, sorter.as_ref().to_glib_full());
+            ffi::gtk_multi_sorter_append(self.to_glib_none().0, sorter.upcast().into_glib_ptr());
         }
     }
 

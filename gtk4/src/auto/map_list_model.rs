@@ -2,6 +2,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+use glib::object::Cast;
 use glib::object::IsA;
 use glib::object::ObjectType as ObjectType_;
 use glib::signal::connect_raw;
@@ -23,7 +24,7 @@ glib::wrapper! {
 impl MapListModel {
     #[doc(alias = "gtk_map_list_model_new")]
     pub fn new<P: Fn(&glib::Object) -> glib::Object + 'static>(
-        model: Option<&impl IsA<gio::ListModel>>,
+        model: Option<impl IsA<gio::ListModel>>,
         map_func: P,
     ) -> MapListModel {
         assert_initialized_main_thread!();
@@ -47,7 +48,7 @@ impl MapListModel {
         let super_callback0: Box_<P> = map_func_data;
         unsafe {
             from_glib_full(ffi::gtk_map_list_model_new(
-                model.map(|p| p.as_ref()).to_glib_full(),
+                model.map(|p| p.upcast()).into_glib_ptr(),
                 map_func,
                 Box_::into_raw(super_callback0) as *mut _,
                 destroy_call3,

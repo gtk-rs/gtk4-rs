@@ -3,6 +3,7 @@
 // DO NOT EDIT
 
 use crate::Sorter;
+use glib::object::Cast;
 use glib::object::IsA;
 use glib::object::ObjectType as ObjectType_;
 use glib::signal::connect_raw;
@@ -23,11 +24,11 @@ glib::wrapper! {
 
 impl TreeListRowSorter {
     #[doc(alias = "gtk_tree_list_row_sorter_new")]
-    pub fn new(sorter: Option<&impl IsA<Sorter>>) -> TreeListRowSorter {
+    pub fn new(sorter: Option<impl IsA<Sorter>>) -> TreeListRowSorter {
         assert_initialized_main_thread!();
         unsafe {
             from_glib_full(ffi::gtk_tree_list_row_sorter_new(
-                sorter.map(|p| p.as_ref()).to_glib_full(),
+                sorter.map(|p| p.upcast()).into_glib_ptr(),
             ))
         }
     }

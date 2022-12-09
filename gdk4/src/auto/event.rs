@@ -12,6 +12,7 @@ use crate::ModifierType;
 use crate::Seat;
 use crate::Surface;
 use crate::TimeCoord;
+use glib::object::Cast;
 use glib::translate::*;
 use glib::StaticType;
 use std::fmt;

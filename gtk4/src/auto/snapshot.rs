@@ -152,7 +152,7 @@ pub trait SnapshotExt: 'static {
         &self,
         shader: &gsk::GLShader,
         bounds: &graphene::Rect,
-        take_args: &glib::Bytes,
+        take_args: glib::Bytes,
     );
 
     #[doc(alias = "gtk_snapshot_push_opacity")]
@@ -525,14 +525,14 @@ impl<O: IsA<Snapshot>> SnapshotExt for O {
         &self,
         shader: &gsk::GLShader,
         bounds: &graphene::Rect,
-        take_args: &glib::Bytes,
+        take_args: glib::Bytes,
     ) {
         unsafe {
             ffi::gtk_snapshot_push_gl_shader(
                 self.as_ref().to_glib_none().0,
                 shader.to_glib_none().0,
                 bounds.to_glib_none().0,
-                take_args.to_glib_full(),
+                take_args.into_glib_ptr(),
             );
         }
     }

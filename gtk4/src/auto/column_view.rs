@@ -40,11 +40,11 @@ glib::wrapper! {
 
 impl ColumnView {
     #[doc(alias = "gtk_column_view_new")]
-    pub fn new(model: Option<&impl IsA<SelectionModel>>) -> ColumnView {
+    pub fn new(model: Option<impl IsA<SelectionModel>>) -> ColumnView {
         assert_initialized_main_thread!();
         unsafe {
             Widget::from_glib_none(ffi::gtk_column_view_new(
-                model.map(|p| p.as_ref()).to_glib_full(),
+                model.map(|p| p.upcast()).into_glib_ptr(),
             ))
             .unsafe_cast()
         }

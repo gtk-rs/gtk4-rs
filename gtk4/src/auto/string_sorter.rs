@@ -34,7 +34,9 @@ impl StringSorter {
         assert_initialized_main_thread!();
         unsafe {
             from_glib_full(ffi::gtk_string_sorter_new(
-                expression.as_ref().map(|p| p.as_ref()).to_glib_full(),
+                expression
+                    .map(|p| p.as_ref().clone().upcast())
+                    .into_glib_ptr(),
             ))
         }
     }

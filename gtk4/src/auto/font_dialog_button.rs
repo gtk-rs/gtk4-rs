@@ -35,10 +35,10 @@ glib::wrapper! {
 
 impl FontDialogButton {
     #[doc(alias = "gtk_font_dialog_button_new")]
-    pub fn new(dialog: Option<&FontDialog>) -> FontDialogButton {
+    pub fn new(dialog: Option<FontDialog>) -> FontDialogButton {
         assert_initialized_main_thread!();
         unsafe {
-            Widget::from_glib_none(ffi::gtk_font_dialog_button_new(dialog.to_glib_full()))
+            Widget::from_glib_none(ffi::gtk_font_dialog_button_new(dialog.into_glib_ptr()))
                 .unsafe_cast()
         }
     }

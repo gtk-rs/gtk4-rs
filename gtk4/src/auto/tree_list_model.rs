@@ -3,6 +3,7 @@
 // DO NOT EDIT
 
 use crate::TreeListRow;
+use glib::object::Cast;
 use glib::object::IsA;
 use glib::object::ObjectType as ObjectType_;
 use glib::signal::connect_raw;
@@ -24,7 +25,7 @@ glib::wrapper! {
 impl TreeListModel {
     #[doc(alias = "gtk_tree_list_model_new")]
     pub fn new<P: Fn(&glib::Object) -> Option<gio::ListModel> + 'static>(
-        root: &impl IsA<gio::ListModel>,
+        root: impl IsA<gio::ListModel>,
         passthrough: bool,
         autoexpand: bool,
         create_func: P,
@@ -54,7 +55,7 @@ impl TreeListModel {
         let super_callback0: Box_<P> = create_func_data;
         unsafe {
             from_glib_full(ffi::gtk_tree_list_model_new(
-                root.as_ref().to_glib_full(),
+                root.upcast().into_glib_ptr(),
                 passthrough.into_glib(),
                 autoexpand.into_glib(),
                 create_func,

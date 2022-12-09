@@ -4,6 +4,7 @@
 
 use crate::Buildable;
 use crate::Filter;
+use glib::object::Cast;
 use glib::object::IsA;
 use glib::translate::*;
 use std::fmt;
@@ -23,18 +24,18 @@ impl MultiFilter {
 
 pub trait MultiFilterExt: 'static {
     #[doc(alias = "gtk_multi_filter_append")]
-    fn append(&self, filter: &impl IsA<Filter>);
+    fn append(&self, filter: impl IsA<Filter>);
 
     #[doc(alias = "gtk_multi_filter_remove")]
     fn remove(&self, position: u32);
 }
 
 impl<O: IsA<MultiFilter>> MultiFilterExt for O {
-    fn append(&self, filter: &impl IsA<Filter>) {
+    fn append(&self, filter: impl IsA<Filter>) {
         unsafe {
             ffi::gtk_multi_filter_append(
                 self.as_ref().to_glib_none().0,
-                filter.as_ref().to_glib_full(),
+                filter.upcast().into_glib_ptr(),
             );
         }
     }

@@ -42,14 +42,14 @@ glib::wrapper! {
 impl ListView {
     #[doc(alias = "gtk_list_view_new")]
     pub fn new(
-        model: Option<&impl IsA<SelectionModel>>,
-        factory: Option<&impl IsA<ListItemFactory>>,
+        model: Option<impl IsA<SelectionModel>>,
+        factory: Option<impl IsA<ListItemFactory>>,
     ) -> ListView {
         assert_initialized_main_thread!();
         unsafe {
             Widget::from_glib_none(ffi::gtk_list_view_new(
-                model.map(|p| p.as_ref()).to_glib_full(),
-                factory.map(|p| p.as_ref()).to_glib_full(),
+                model.map(|p| p.upcast()).into_glib_ptr(),
+                factory.map(|p| p.upcast()).into_glib_ptr(),
             ))
             .unsafe_cast()
         }

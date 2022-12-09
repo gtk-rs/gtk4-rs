@@ -28,14 +28,14 @@ glib::wrapper! {
 impl Shortcut {
     #[doc(alias = "gtk_shortcut_new")]
     pub fn new(
-        trigger: Option<&impl IsA<ShortcutTrigger>>,
-        action: Option<&impl IsA<ShortcutAction>>,
+        trigger: Option<impl IsA<ShortcutTrigger>>,
+        action: Option<impl IsA<ShortcutAction>>,
     ) -> Shortcut {
         assert_initialized_main_thread!();
         unsafe {
             from_glib_full(ffi::gtk_shortcut_new(
-                trigger.map(|p| p.as_ref()).to_glib_full(),
-                action.map(|p| p.as_ref()).to_glib_full(),
+                trigger.map(|p| p.upcast()).into_glib_ptr(),
+                action.map(|p| p.upcast()).into_glib_ptr(),
             ))
         }
     }
@@ -67,11 +67,11 @@ impl Shortcut {
     }
 
     #[doc(alias = "gtk_shortcut_set_action")]
-    pub fn set_action(&self, action: Option<&impl IsA<ShortcutAction>>) {
+    pub fn set_action(&self, action: Option<impl IsA<ShortcutAction>>) {
         unsafe {
             ffi::gtk_shortcut_set_action(
                 self.to_glib_none().0,
-                action.map(|p| p.as_ref()).to_glib_full(),
+                action.map(|p| p.upcast()).into_glib_ptr(),
             );
         }
     }
@@ -84,11 +84,11 @@ impl Shortcut {
     }
 
     #[doc(alias = "gtk_shortcut_set_trigger")]
-    pub fn set_trigger(&self, trigger: Option<&impl IsA<ShortcutTrigger>>) {
+    pub fn set_trigger(&self, trigger: Option<impl IsA<ShortcutTrigger>>) {
         unsafe {
             ffi::gtk_shortcut_set_trigger(
                 self.to_glib_none().0,
-                trigger.map(|p| p.as_ref()).to_glib_full(),
+                trigger.map(|p| p.upcast()).into_glib_ptr(),
             );
         }
     }

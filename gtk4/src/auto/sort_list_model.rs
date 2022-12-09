@@ -27,14 +27,14 @@ glib::wrapper! {
 impl SortListModel {
     #[doc(alias = "gtk_sort_list_model_new")]
     pub fn new(
-        model: Option<&impl IsA<gio::ListModel>>,
-        sorter: Option<&impl IsA<Sorter>>,
+        model: Option<impl IsA<gio::ListModel>>,
+        sorter: Option<impl IsA<Sorter>>,
     ) -> SortListModel {
         assert_initialized_main_thread!();
         unsafe {
             from_glib_full(ffi::gtk_sort_list_model_new(
-                model.map(|p| p.as_ref()).to_glib_full(),
-                sorter.map(|p| p.as_ref()).to_glib_full(),
+                model.map(|p| p.upcast()).into_glib_ptr(),
+                sorter.map(|p| p.upcast()).into_glib_ptr(),
             ))
         }
     }

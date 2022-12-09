@@ -47,11 +47,11 @@ impl ShortcutController {
     }
 
     #[doc(alias = "gtk_shortcut_controller_add_shortcut")]
-    pub fn add_shortcut(&self, shortcut: &Shortcut) {
+    pub fn add_shortcut(&self, shortcut: Shortcut) {
         unsafe {
             ffi::gtk_shortcut_controller_add_shortcut(
                 self.to_glib_none().0,
-                shortcut.to_glib_full(),
+                shortcut.into_glib_ptr(),
             );
         }
     }

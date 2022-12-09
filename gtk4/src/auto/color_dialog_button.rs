@@ -34,10 +34,10 @@ glib::wrapper! {
 
 impl ColorDialogButton {
     #[doc(alias = "gtk_color_dialog_button_new")]
-    pub fn new(dialog: Option<&ColorDialog>) -> ColorDialogButton {
+    pub fn new(dialog: Option<ColorDialog>) -> ColorDialogButton {
         assert_initialized_main_thread!();
         unsafe {
-            Widget::from_glib_none(ffi::gtk_color_dialog_button_new(dialog.to_glib_full()))
+            Widget::from_glib_none(ffi::gtk_color_dialog_button_new(dialog.into_glib_ptr()))
                 .unsafe_cast()
         }
     }
