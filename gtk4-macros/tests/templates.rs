@@ -155,7 +155,7 @@ async fn async_callbacks() {
 }
 
 mod imp3 {
-    use gtk::glib;
+    use super::*;
 
     #[derive(Debug, Default)]
     struct TemplateChild<T>(T);
@@ -183,7 +183,6 @@ mod imp3 {
             klass.bind_template();
         }
         fn instance_init(obj: &glib::subclass::InitializingObject<Self>) {
-            use gtk::prelude::InitializingWidgetExt;
             obj.init_template();
         }
     }
