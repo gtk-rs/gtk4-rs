@@ -1420,3 +1420,26 @@ where
         }
     }
 }
+
+pub trait CompositeTemplateDisposeExt {
+    #[cfg(any(feature = "v4_8", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+    fn dispose_template(&self);
+}
+
+impl<T> CompositeTemplateDisposeExt for T
+where
+    T: WidgetImpl + CompositeTemplate,
+    <T as ObjectSubclass>::Type: IsA<Widget>,
+{
+    #[cfg(any(feature = "v4_8", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+    fn dispose_template(&self) {
+        unsafe {
+            ffi::gtk_widget_dispose_template(
+                self.obj().upcast_ref::<Widget>().to_glib_none().0,
+                <T as ObjectSubclass>::Type::static_type().into_glib(),
+            );
+        }
+    }
+}

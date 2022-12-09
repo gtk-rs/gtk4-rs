@@ -2576,7 +2576,7 @@ manual_traits = ["WidgetExtManual"]
         name = "region"
         const = true
     [[object.function]]
-    name = "init_template"
+    pattern = "(init|dispose)_template"
     ignore = true # We manually bind this one as part of CompositeTemplatExt
     [[object.function]]
     name = "get_name"
