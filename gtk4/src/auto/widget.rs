@@ -372,10 +372,6 @@ pub trait WidgetExt: 'static {
     #[doc(alias = "get_style_context")]
     fn style_context(&self) -> StyleContext;
 
-    #[doc(alias = "gtk_widget_get_template_child")]
-    #[doc(alias = "get_template_child")]
-    fn template_child(&self, widget_type: glib::types::Type, name: &str) -> glib::Object;
-
     #[doc(alias = "gtk_widget_get_tooltip_markup")]
     #[doc(alias = "get_tooltip_markup")]
     fn tooltip_markup(&self) -> Option<glib::GString>;
@@ -1355,16 +1351,6 @@ impl<O: IsA<Widget>> WidgetExt for O {
         unsafe {
             from_glib_none(ffi::gtk_widget_get_style_context(
                 self.as_ref().to_glib_none().0,
-            ))
-        }
-    }
-
-    fn template_child(&self, widget_type: glib::types::Type, name: &str) -> glib::Object {
-        unsafe {
-            from_glib_none(ffi::gtk_widget_get_template_child(
-                self.as_ref().to_glib_none().0,
-                widget_type.into_glib(),
-                name.to_glib_none().0,
             ))
         }
     }
