@@ -3,6 +3,7 @@
 // DO NOT EDIT
 
 use crate::Expression;
+use glib::object::Cast;
 use glib::translate::*;
 use glib::StaticType;
 use std::fmt;
@@ -34,7 +35,9 @@ impl PropertyExpression {
         unsafe {
             from_glib_full(ffi::gtk_property_expression_new(
                 this_type.into_glib(),
-                expression.as_ref().map(|p| p.as_ref()).to_glib_full(),
+                expression
+                    .map(|p| p.as_ref().clone().upcast())
+                    .into_glib_ptr(),
                 property_name.to_glib_none().0,
             ))
         }
@@ -49,7 +52,9 @@ impl PropertyExpression {
         assert_initialized_main_thread!();
         unsafe {
             from_glib_full(ffi::gtk_property_expression_new_for_pspec(
-                expression.as_ref().map(|p| p.as_ref()).to_glib_full(),
+                expression
+                    .map(|p| p.as_ref().clone().upcast())
+                    .into_glib_ptr(),
                 pspec.as_ref().to_glib_none().0,
             ))
         }

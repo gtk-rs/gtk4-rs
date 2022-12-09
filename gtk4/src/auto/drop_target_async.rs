@@ -27,11 +27,11 @@ glib::wrapper! {
 
 impl DropTargetAsync {
     #[doc(alias = "gtk_drop_target_async_new")]
-    pub fn new(formats: Option<&gdk::ContentFormats>, actions: gdk::DragAction) -> DropTargetAsync {
+    pub fn new(formats: Option<gdk::ContentFormats>, actions: gdk::DragAction) -> DropTargetAsync {
         assert_initialized_main_thread!();
         unsafe {
             from_glib_full(ffi::gtk_drop_target_async_new(
-                formats.to_glib_full(),
+                formats.into_glib_ptr(),
                 actions.into_glib(),
             ))
         }

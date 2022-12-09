@@ -39,14 +39,16 @@ glib::wrapper! {
 impl DropDown {
     #[doc(alias = "gtk_drop_down_new")]
     pub fn new(
-        model: Option<&impl IsA<gio::ListModel>>,
+        model: Option<impl IsA<gio::ListModel>>,
         expression: Option<impl AsRef<Expression>>,
     ) -> DropDown {
         assert_initialized_main_thread!();
         unsafe {
             Widget::from_glib_none(ffi::gtk_drop_down_new(
-                model.map(|p| p.as_ref()).to_glib_full(),
-                expression.as_ref().map(|p| p.as_ref()).to_glib_full(),
+                model.map(|p| p.upcast()).into_glib_ptr(),
+                expression
+                    .map(|p| p.as_ref().clone().upcast())
+                    .into_glib_ptr(),
             ))
             .unsafe_cast()
         }

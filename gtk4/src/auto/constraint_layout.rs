@@ -27,19 +27,19 @@ impl ConstraintLayout {
     }
 
     #[doc(alias = "gtk_constraint_layout_add_constraint")]
-    pub fn add_constraint(&self, constraint: &Constraint) {
+    pub fn add_constraint(&self, constraint: Constraint) {
         unsafe {
             ffi::gtk_constraint_layout_add_constraint(
                 self.to_glib_none().0,
-                constraint.to_glib_full(),
+                constraint.into_glib_ptr(),
             );
         }
     }
 
     #[doc(alias = "gtk_constraint_layout_add_guide")]
-    pub fn add_guide(&self, guide: &ConstraintGuide) {
+    pub fn add_guide(&self, guide: ConstraintGuide) {
         unsafe {
-            ffi::gtk_constraint_layout_add_guide(self.to_glib_none().0, guide.to_glib_full());
+            ffi::gtk_constraint_layout_add_guide(self.to_glib_none().0, guide.into_glib_ptr());
         }
     }
 

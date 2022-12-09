@@ -22,14 +22,14 @@ glib::wrapper! {
 impl AlternativeTrigger {
     #[doc(alias = "gtk_alternative_trigger_new")]
     pub fn new(
-        first: &impl IsA<ShortcutTrigger>,
-        second: &impl IsA<ShortcutTrigger>,
+        first: impl IsA<ShortcutTrigger>,
+        second: impl IsA<ShortcutTrigger>,
     ) -> AlternativeTrigger {
         skip_assert_initialized!();
         unsafe {
             ShortcutTrigger::from_glib_full(ffi::gtk_alternative_trigger_new(
-                first.as_ref().to_glib_full(),
-                second.as_ref().to_glib_full(),
+                first.upcast().into_glib_ptr(),
+                second.upcast().into_glib_ptr(),
             ))
             .unsafe_cast()
         }

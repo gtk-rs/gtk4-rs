@@ -91,7 +91,7 @@ pub trait WidgetExt: 'static {
     fn activate_default(&self);
 
     #[doc(alias = "gtk_widget_add_controller")]
-    fn add_controller(&self, controller: &impl IsA<EventController>);
+    fn add_controller(&self, controller: impl IsA<EventController>);
 
     #[doc(alias = "gtk_widget_add_css_class")]
     fn add_css_class(&self, css_class: &str);
@@ -100,7 +100,7 @@ pub trait WidgetExt: 'static {
     fn add_mnemonic_label(&self, label: &impl IsA<Widget>);
 
     #[doc(alias = "gtk_widget_allocate")]
-    fn allocate(&self, width: i32, height: i32, baseline: i32, transform: Option<&gsk::Transform>);
+    fn allocate(&self, width: i32, height: i32, baseline: i32, transform: Option<gsk::Transform>);
 
     #[doc(alias = "gtk_widget_child_focus")]
     fn child_focus(&self, direction: DirectionType) -> bool;
@@ -539,7 +539,7 @@ pub trait WidgetExt: 'static {
     fn set_hexpand_set(&self, set: bool);
 
     #[doc(alias = "gtk_widget_set_layout_manager")]
-    fn set_layout_manager(&self, layout_manager: Option<&impl IsA<LayoutManager>>);
+    fn set_layout_manager(&self, layout_manager: Option<impl IsA<LayoutManager>>);
 
     #[doc(alias = "gtk_widget_set_margin_bottom")]
     fn set_margin_bottom(&self, margin: i32);
@@ -837,11 +837,11 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    fn add_controller(&self, controller: &impl IsA<EventController>) {
+    fn add_controller(&self, controller: impl IsA<EventController>) {
         unsafe {
             ffi::gtk_widget_add_controller(
                 self.as_ref().to_glib_none().0,
-                controller.as_ref().to_glib_full(),
+                controller.upcast().into_glib_ptr(),
             );
         }
     }
@@ -864,14 +864,14 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    fn allocate(&self, width: i32, height: i32, baseline: i32, transform: Option<&gsk::Transform>) {
+    fn allocate(&self, width: i32, height: i32, baseline: i32, transform: Option<gsk::Transform>) {
         unsafe {
             ffi::gtk_widget_allocate(
                 self.as_ref().to_glib_none().0,
                 width,
                 height,
                 baseline,
-                transform.to_glib_full(),
+                transform.into_glib_ptr(),
             );
         }
     }
@@ -1747,11 +1747,11 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    fn set_layout_manager(&self, layout_manager: Option<&impl IsA<LayoutManager>>) {
+    fn set_layout_manager(&self, layout_manager: Option<impl IsA<LayoutManager>>) {
         unsafe {
             ffi::gtk_widget_set_layout_manager(
                 self.as_ref().to_glib_none().0,
-                layout_manager.map(|p| p.as_ref()).to_glib_full(),
+                layout_manager.map(|p| p.upcast()).into_glib_ptr(),
             );
         }
     }

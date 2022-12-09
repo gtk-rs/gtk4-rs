@@ -3,6 +3,7 @@
 // DO NOT EDIT
 
 use crate::SelectionModel;
+use glib::object::Cast;
 use glib::object::IsA;
 use glib::object::ObjectType as ObjectType_;
 use glib::signal::connect_raw;
@@ -23,11 +24,11 @@ glib::wrapper! {
 
 impl NoSelection {
     #[doc(alias = "gtk_no_selection_new")]
-    pub fn new(model: Option<&impl IsA<gio::ListModel>>) -> NoSelection {
+    pub fn new(model: Option<impl IsA<gio::ListModel>>) -> NoSelection {
         assert_initialized_main_thread!();
         unsafe {
             from_glib_full(ffi::gtk_no_selection_new(
-                model.map(|p| p.as_ref()).to_glib_full(),
+                model.map(|p| p.upcast()).into_glib_ptr(),
             ))
         }
     }

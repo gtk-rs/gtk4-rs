@@ -30,13 +30,13 @@ impl ColumnViewColumn {
     #[doc(alias = "gtk_column_view_column_new")]
     pub fn new(
         title: Option<&str>,
-        factory: Option<&impl IsA<ListItemFactory>>,
+        factory: Option<impl IsA<ListItemFactory>>,
     ) -> ColumnViewColumn {
         assert_initialized_main_thread!();
         unsafe {
             from_glib_full(ffi::gtk_column_view_column_new(
                 title.to_glib_none().0,
-                factory.map(|p| p.as_ref()).to_glib_full(),
+                factory.map(|p| p.upcast()).into_glib_ptr(),
             ))
         }
     }

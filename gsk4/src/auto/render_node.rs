@@ -3,6 +3,7 @@
 // DO NOT EDIT
 
 use crate::RenderNodeType;
+use glib::object::Cast;
 use glib::translate::*;
 use glib::StaticType;
 use std::fmt;

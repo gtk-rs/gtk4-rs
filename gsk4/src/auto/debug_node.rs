@@ -3,6 +3,7 @@
 // DO NOT EDIT
 
 use crate::RenderNode;
+use glib::object::Cast;
 use glib::translate::*;
 use glib::StaticType;
 use std::fmt;
@@ -25,12 +26,12 @@ impl glib::StaticType for DebugNode {
 
 impl DebugNode {
     #[doc(alias = "gsk_debug_node_new")]
-    pub fn new(child: impl AsRef<RenderNode>, message: &str) -> DebugNode {
+    pub fn new(child: impl AsRef<RenderNode>, message: glib::GString) -> DebugNode {
         skip_assert_initialized!();
         unsafe {
             from_glib_full(ffi::gsk_debug_node_new(
                 child.as_ref().to_glib_none().0,
-                message.to_glib_full(),
+                message.into_glib_ptr(),
             ))
         }
     }

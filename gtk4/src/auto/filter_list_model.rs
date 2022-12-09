@@ -27,14 +27,14 @@ glib::wrapper! {
 impl FilterListModel {
     #[doc(alias = "gtk_filter_list_model_new")]
     pub fn new(
-        model: Option<&impl IsA<gio::ListModel>>,
-        filter: Option<&impl IsA<Filter>>,
+        model: Option<impl IsA<gio::ListModel>>,
+        filter: Option<impl IsA<Filter>>,
     ) -> FilterListModel {
         assert_initialized_main_thread!();
         unsafe {
             from_glib_full(ffi::gtk_filter_list_model_new(
-                model.map(|p| p.as_ref()).to_glib_full(),
-                filter.map(|p| p.as_ref()).to_glib_full(),
+                model.map(|p| p.upcast()).into_glib_ptr(),
+                filter.map(|p| p.upcast()).into_glib_ptr(),
             ))
         }
     }
