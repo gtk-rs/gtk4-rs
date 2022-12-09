@@ -7,8 +7,8 @@ impl Shortcut {
     #[doc(alias = "gtk_shortcut_new_with_arguments")]
     #[doc(alias = "new_with_arguments")]
     pub fn with_arguments(
-        trigger: Option<&impl IsA<ShortcutTrigger>>,
-        action: Option<&impl IsA<ShortcutAction>>,
+        trigger: Option<impl IsA<ShortcutTrigger>>,
+        action: Option<impl IsA<ShortcutAction>>,
         args: &glib::Variant,
     ) -> Self {
         assert_initialized_main_thread!();
