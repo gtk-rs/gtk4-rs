@@ -1014,19 +1014,6 @@ pub unsafe trait WidgetClassSubclassExt: ClassStruct {
         }
     }
 
-    #[doc(alias = "gtk_widget_class_bind_template_child_full")]
-    fn bind_template_child(&mut self, name: &str) {
-        unsafe {
-            let widget_class = self as *mut _ as *mut ffi::GtkWidgetClass;
-            ffi::gtk_widget_class_bind_template_child_full(
-                widget_class,
-                name.to_glib_none().0,
-                false as glib::ffi::gboolean,
-                0,
-            );
-        }
-    }
-
     #[doc(alias = "gtk_widget_class_add_binding")]
     fn add_binding<
         F: Fn(&<<Self as ClassStruct>::Type as ObjectSubclass>::Type, Option<&Variant>) -> bool
