@@ -6,11 +6,11 @@
 use libc::{c_char, c_int};
 use std::mem;
 
-use crate::subclass::prelude::*;
-use crate::{CellEditable, CellRenderer, CellRendererState, SizeRequestMode, Snapshot, Widget};
-use glib::object::IsA;
-use glib::translate::*;
-use glib::{Cast, GString};
+use crate::{
+    prelude::*, subclass::prelude::*, CellEditable, CellRenderer, CellRendererState,
+    SizeRequestMode, Snapshot, Widget,
+};
+use glib::{translate::*, GString};
 
 #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 pub trait CellRendererImpl: CellRendererImplExt + ObjectImpl {

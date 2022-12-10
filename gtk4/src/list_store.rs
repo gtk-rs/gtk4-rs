@@ -1,9 +1,7 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::{ListStore, TreeIter, TreeModel};
-use glib::object::Cast;
-use glib::translate::*;
-use glib::{ToValue, Type, Value};
+use crate::{prelude::*, ListStore, TreeIter, TreeModel};
+use glib::{translate::*, ToValue, Type, Value};
 use libc::c_int;
 use std::ptr;
 

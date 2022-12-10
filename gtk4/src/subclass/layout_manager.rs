@@ -3,12 +3,12 @@
 // rustdoc-stripper-ignore-next
 //! Traits intended for subclassing [`LayoutManager`](crate::LayoutManager).
 
-use crate::subclass::prelude::*;
+use crate::{
+    prelude::*, subclass::prelude::*, LayoutChild, LayoutManager, Orientation, SizeRequestMode,
+    Widget,
+};
 use glib::translate::*;
-use glib::Cast;
 use libc::c_int;
-
-use crate::{LayoutChild, LayoutManager, Orientation, SizeRequestMode, Widget};
 
 pub trait LayoutManagerImpl: LayoutManagerImplExt + ObjectImpl {
     fn allocate(&self, widget: &Widget, width: i32, height: i32, baseline: i32) {

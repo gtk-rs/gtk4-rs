@@ -3,8 +3,7 @@
 // rustdoc-stripper-ignore-next
 //! Traits intended for implementing the [`Root`](crate::Root) interface.
 
-use crate::subclass::prelude::*;
-use crate::Root;
+use crate::{subclass::prelude::*, Root};
 
 pub trait RootImpl: NativeImpl {}
 

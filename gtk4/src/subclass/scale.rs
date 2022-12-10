@@ -3,10 +3,8 @@
 // rustdoc-stripper-ignore-next
 //! Traits intended for subclassing [`Scale`](crate::Scale).
 
-use crate::subclass::prelude::*;
-use crate::Scale;
+use crate::{prelude::*, subclass::prelude::*, Scale};
 use glib::translate::*;
-use glib::Cast;
 
 pub trait ScaleImpl: ScaleImplExt + RangeImpl {
     #[doc(alias = "get_layout_offsets")]

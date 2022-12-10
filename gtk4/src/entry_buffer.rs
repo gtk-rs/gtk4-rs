@@ -1,7 +1,6 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::EntryBuffer;
-use glib::object::IsA;
+use crate::{prelude::*, EntryBuffer};
 use glib::translate::*;
 use libc::{c_int, c_uint};
 

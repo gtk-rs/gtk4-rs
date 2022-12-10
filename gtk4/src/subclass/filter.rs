@@ -3,10 +3,8 @@
 // rustdoc-stripper-ignore-next
 //! Traits intended for subclassing [`Filter`](crate::Filter).
 
-use crate::subclass::prelude::*;
-use crate::{Filter, FilterMatch};
-use glib::translate::*;
-use glib::{Cast, Object};
+use crate::{prelude::*, subclass::prelude::*, Filter, FilterMatch};
+use glib::{translate::*, Object};
 
 pub trait FilterImpl: FilterImplExt + ObjectImpl {
     #[doc(alias = "get_strictness")]

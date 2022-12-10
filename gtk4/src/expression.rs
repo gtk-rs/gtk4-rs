@@ -1,8 +1,8 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::Expression;
+use crate::{prelude::*, Expression};
 use glib::translate::*;
-use glib::{value::FromValue, IsA, Object, StaticType, Type, Value};
+use glib::{value::FromValue, Object, StaticType, Type, Value};
 
 #[doc(hidden)]
 impl AsRef<Expression> for Expression {

@@ -1,7 +1,6 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::CustomSorter;
-use crate::Ordering;
+use crate::{CustomSorter, Ordering};
 use glib::translate::*;
 use std::ptr;
 

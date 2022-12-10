@@ -1,10 +1,8 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
 use crate::{Event, EventType};
-use glib::translate::*;
-use glib::StaticType;
-use std::fmt;
-use std::mem;
+use glib::{translate::*, StaticType};
+use std::{fmt, mem};
 
 impl Event {
     pub fn is<T: EventKind>(&self) -> bool {

@@ -3,10 +3,8 @@
 // rustdoc-stripper-ignore-next
 //! Traits intended for subclassing [`Window`](crate::Window).
 
-use crate::subclass::prelude::*;
-use crate::Window;
+use crate::{prelude::*, subclass::prelude::*, Window};
 use glib::translate::*;
-use glib::Cast;
 
 pub trait WindowImpl: WindowImplExt + WidgetImpl {
     fn activate_focus(&self) {

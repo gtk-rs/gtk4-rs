@@ -3,18 +3,15 @@
 // rustdoc-stripper-ignore-next
 //! Traits intended for subclassing [`Widget`](crate::Widget).
 
-use crate::prelude::*;
-use crate::subclass::prelude::*;
 use crate::{
-    AccessibleRole, BuilderRustScope, BuilderScope, DirectionType, LayoutManager, Orientation,
-    Shortcut, SizeRequestMode, Snapshot, StateFlags, SystemSetting, TextDirection, Tooltip, Widget,
+    prelude::*, subclass::prelude::*, AccessibleRole, BuilderRustScope, BuilderScope,
+    DirectionType, LayoutManager, Orientation, Shortcut, SizeRequestMode, Snapshot, StateFlags,
+    SystemSetting, TextDirection, Tooltip, Widget,
 };
-use glib::subclass::SignalId;
-use glib::translate::*;
-use glib::{Cast, GString, IsA, Variant};
-use std::collections::HashMap;
-use std::fmt;
-use std::{boxed::Box as Box_, future::Future};
+use glib::{subclass::SignalId, translate::*, GString, Variant};
+
+use std::{boxed::Box as Box_, collections::HashMap, fmt, future::Future};
+
 #[derive(Debug, Default)]
 struct Internal {
     pub(crate) actions: HashMap<String, glib::ffi::gpointer>,

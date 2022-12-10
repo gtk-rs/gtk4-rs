@@ -1,11 +1,13 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::DropTarget;
-use glib::signal::connect_raw;
-use glib::Type;
-use glib::{translate::*, value::FromValue, ObjectType, SignalHandlerId};
-use std::boxed::Box as Box_;
-use std::mem::transmute;
+use crate::{prelude::*, DropTarget};
+use glib::{
+    signal::{connect_raw, SignalHandlerId},
+    translate::*,
+    value::FromValue,
+    Type,
+};
+use std::{boxed::Box as Box_, mem::transmute};
 
 impl DropTarget {
     #[doc(alias = "gtk_drop_target_set_gtypes")]

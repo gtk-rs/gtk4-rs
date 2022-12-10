@@ -1,8 +1,10 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use glib::translate::{from_glib, FromGlib, IntoGlib, ToGlibPtr, ToGlibPtrMut};
-use glib::value::{FromValue, ToValue, ValueType};
-use glib::{StaticType, Type, Value};
+use glib::translate::*;
+use glib::{
+    value::{FromValue, ToValue, ValueType},
+    StaticType, Type, Value,
+};
 use std::fmt;
 
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]

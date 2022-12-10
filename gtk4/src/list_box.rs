@@ -2,8 +2,7 @@
 
 use crate::{ListBox, ListBoxRow, Ordering};
 use glib::translate::*;
-use std::boxed::Box as Box_;
-use std::ptr;
+use std::{boxed::Box as Box_, ptr};
 
 impl ListBox {
     #[doc(alias = "gtk_list_box_bind_model")]

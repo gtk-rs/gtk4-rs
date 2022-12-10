@@ -3,10 +3,8 @@
 // rustdoc-stripper-ignore-next
 //! Traits intended for implementing the [`FontChooser`](crate::FontChooser) interface.
 
-use crate::subclass::prelude::*;
-use crate::FontChooser;
-use glib::translate::*;
-use glib::{Cast, GString, IsA, ObjectExt, Quark};
+use crate::{prelude::*, subclass::prelude::*, FontChooser};
+use glib::{translate::*, GString, Quark};
 use once_cell::sync::Lazy;
 use pango::{FontFace, FontFamily, FontMap};
 

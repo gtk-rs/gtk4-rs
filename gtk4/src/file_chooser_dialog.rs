@@ -1,8 +1,6 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::prelude::*;
-use crate::{FileChooserAction, FileChooserDialog, ResponseType, Widget, Window};
-use glib::object::{Cast, IsA};
+use crate::{prelude::*, FileChooserAction, FileChooserDialog, ResponseType, Widget, Window};
 use glib::translate::*;
 use libc::c_char;
 use std::ptr;

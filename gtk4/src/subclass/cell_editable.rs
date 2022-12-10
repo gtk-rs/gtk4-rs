@@ -3,10 +3,8 @@
 // rustdoc-stripper-ignore-next
 //! Traits intended for implementing the [`CellEditable`](crate::CellEditable) interface.
 
-use crate::subclass::prelude::*;
-use crate::CellEditable;
+use crate::{prelude::*, subclass::prelude::*, CellEditable};
 use glib::translate::*;
-use glib::Cast;
 
 #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 pub trait CellEditableImpl: ObjectImpl {

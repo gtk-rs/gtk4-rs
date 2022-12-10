@@ -3,10 +3,8 @@
 // rustdoc-stripper-ignore-next
 //! Traits intended for subclassing [`DrawingA£rea`](crate::DrawingA£rea).
 
-use crate::subclass::prelude::*;
-use crate::DrawingArea;
+use crate::{prelude::*, subclass::prelude::*, DrawingArea};
 use glib::translate::*;
-use glib::Cast;
 
 pub trait DrawingAreaImpl: DrawingAreaImplExt + WidgetImpl {
     fn resize(&self, width: i32, height: i32) {

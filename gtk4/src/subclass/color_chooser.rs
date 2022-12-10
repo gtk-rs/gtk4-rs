@@ -3,11 +3,9 @@
 // rustdoc-stripper-ignore-next
 //! Traits intended for implementing the [`ColorChooser`](crate::ColorChooser) interface.
 
-use crate::subclass::prelude::*;
-use crate::{ColorChooser, Orientation};
+use crate::{prelude::*, subclass::prelude::*, ColorChooser, Orientation};
 use gdk::RGBA;
 use glib::translate::*;
-use glib::Cast;
 
 #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 pub trait ColorChooserImpl: ObjectImpl {

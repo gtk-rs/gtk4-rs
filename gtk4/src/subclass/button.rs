@@ -3,10 +3,8 @@
 // rustdoc-stripper-ignore-next
 //! Traits intended for subclassing [`Button`](crate::Button).
 
-use crate::subclass::prelude::*;
-use crate::Button;
+use crate::{prelude::*, subclass::prelude::*, Button};
 use glib::translate::*;
-use glib::Cast;
 
 pub trait ButtonImpl: ButtonImplExt + WidgetImpl {
     fn activate(&self) {

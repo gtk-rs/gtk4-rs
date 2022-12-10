@@ -1,14 +1,9 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::prelude::*;
-use crate::{AboutDialog, Window};
-use glib::translate::*;
-use glib::{IsA, Quark, Slice, ToValue};
+use crate::{prelude::*, AboutDialog, Window};
+use glib::{translate::*, Quark, Slice, ToValue};
 use once_cell::sync::Lazy;
-use std::boxed::Box as Box_;
-use std::mem;
-use std::pin::Pin;
-use std::ptr;
+use std::{boxed::Box as Box_, mem, pin::Pin, ptr};
 
 #[doc(alias = "gtk_accelerator_valid")]
 pub fn accelerator_valid(keyval: gdk::Key, modifiers: gdk::ModifierType) -> bool {

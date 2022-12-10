@@ -1,11 +1,8 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::{ContentDeserializer, ContentSerializer};
-use glib::object::IsA;
+use crate::{prelude::*, ContentDeserializer, ContentSerializer};
 use glib::translate::*;
-use std::future;
-use std::pin::Pin;
-use std::ptr;
+use std::{future, pin::Pin, ptr};
 
 #[repr(packed)]
 pub struct GRange(pub i32, pub i32);

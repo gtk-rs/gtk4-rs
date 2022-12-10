@@ -2,8 +2,7 @@
 
 use crate::RGBA;
 use glib::translate::*;
-use std::fmt;
-use std::str::FromStr;
+use std::{fmt, str::FromStr};
 
 #[derive(Debug, Default)]
 // rustdoc-stripper-ignore-next

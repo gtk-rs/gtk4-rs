@@ -1,10 +1,9 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use glib::object::{Cast, IsA};
 use glib::translate::*;
 use std::boxed::Box as Box_;
 
-use crate::{TreeIter, TreeModel, TreeModelFilter, TreePath};
+use crate::{prelude::*, TreeIter, TreeModel, TreeModelFilter, TreePath};
 
 impl TreeModelFilter {
     #[doc(alias = "gtk_tree_model_filter_new")]

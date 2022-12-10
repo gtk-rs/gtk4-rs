@@ -3,8 +3,7 @@
 // rustdoc-stripper-ignore-next
 //! Traits intended for implementing the [`ConstraintTarget`](crate::ConstraintTarget) interface.
 
-use crate::subclass::prelude::*;
-use crate::ConstraintTarget;
+use crate::{subclass::prelude::*, ConstraintTarget};
 
 pub trait ConstraintTargetImpl: ObjectImpl {}
 

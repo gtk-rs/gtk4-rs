@@ -1,22 +1,17 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
 #[cfg(not(any(feature = "v4_8", feature = "dox")))]
-use crate::ListItem;
+use crate::{prelude::*, ListItem};
 
 use crate::SignalListItemFactory;
 
 #[cfg(not(any(feature = "v4_8", feature = "dox")))]
-use glib::object::ObjectType as ObjectType_;
+use glib::{
+    signal::{connect_raw, SignalHandlerId},
+    translate::*,
+};
 #[cfg(not(any(feature = "v4_8", feature = "dox")))]
-use glib::signal::connect_raw;
-#[cfg(not(any(feature = "v4_8", feature = "dox")))]
-use glib::signal::SignalHandlerId;
-#[cfg(not(any(feature = "v4_8", feature = "dox")))]
-use glib::translate::*;
-#[cfg(not(any(feature = "v4_8", feature = "dox")))]
-use std::boxed::Box as Box_;
-#[cfg(not(any(feature = "v4_8", feature = "dox")))]
-use std::mem::transmute;
+use std::{boxed::Box as Box_, mem::transmute};
 
 impl SignalListItemFactory {
     #[doc(alias = "bind")]

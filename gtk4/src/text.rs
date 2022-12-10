@@ -1,12 +1,11 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::prelude::*;
-use crate::{DeleteType, MovementStep, Text, Widget};
-use glib::object::ObjectType;
-use glib::signal::connect_raw;
-use glib::signal::SignalHandlerId;
-use glib::translate::*;
-use glib::GString;
+use crate::{prelude::*, DeleteType, MovementStep, Text, Widget};
+use glib::{
+    signal::{connect_raw, SignalHandlerId},
+    translate::*,
+    GString,
+};
 use std::mem::transmute;
 
 impl Text {

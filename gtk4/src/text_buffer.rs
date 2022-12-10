@@ -1,14 +1,12 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::prelude::*;
-use crate::{TextBuffer, TextIter, TextTag};
-use glib::object::{Cast, IsA};
-use glib::signal::{connect_raw, SignalHandlerId};
-use glib::translate::*;
+use crate::{prelude::*, TextBuffer, TextIter, TextTag};
+use glib::{
+    signal::{connect_raw, SignalHandlerId},
+    translate::*,
+};
 use libc::{c_char, c_int};
-use std::boxed::Box as Box_;
-use std::mem::transmute;
-use std::{slice, str};
+use std::{boxed::Box as Box_, mem::transmute, slice, str};
 
 // rustdoc-stripper-ignore-next
 /// Trait containing manually implemented methods of [`TextBuffer`](crate::TextBuffer).

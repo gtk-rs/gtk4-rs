@@ -1,9 +1,7 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
 use crate::{CssParserWarning, Ordering};
-use glib::error::ErrorDomain;
-use glib::translate::*;
-use glib::Quark;
+use glib::{error::ErrorDomain, translate::*, Quark};
 use std::cmp;
 
 impl From<cmp::Ordering> for Ordering {

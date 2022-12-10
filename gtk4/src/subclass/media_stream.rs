@@ -3,10 +3,8 @@
 // rustdoc-stripper-ignore-next
 //! Traits intended for subclassing [`MediaStream`](crate::MediaStream).
 
-use crate::subclass::prelude::*;
-use crate::MediaStream;
+use crate::{prelude::*, subclass::prelude::*, MediaStream};
 use glib::translate::*;
-use glib::Cast;
 
 pub trait MediaStreamImpl: MediaStreamImplExt + ObjectImpl {
     fn pause(&self) {

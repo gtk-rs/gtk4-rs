@@ -3,10 +3,8 @@
 // rustdoc-stripper-ignore-next
 //! Traits intended for subclassing [`RecentManager`](crate::RecentManager).
 
-use crate::subclass::prelude::*;
-use crate::RecentManager;
+use crate::{prelude::*, subclass::prelude::*, RecentManager};
 use glib::translate::*;
-use glib::Cast;
 
 pub trait RecentManagerImpl: RecentManagerImplExt + ObjectImpl {
     fn changed(&self) {

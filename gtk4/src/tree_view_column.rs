@@ -1,8 +1,7 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::{CellRenderer, TreeViewColumn};
+use crate::{prelude::*, CellRenderer, TreeViewColumn};
 use glib::translate::*;
-use glib::IsA;
 
 impl TreeViewColumn {
     #[doc(alias = "gtk_tree_view_column_new_with_attributes")]

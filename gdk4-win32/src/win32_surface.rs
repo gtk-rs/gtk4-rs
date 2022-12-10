@@ -1,8 +1,7 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::{Win32Surface, HWND};
+use crate::{prelude::*, Win32Surface, HWND};
 
-use glib::object::IsA;
 use glib::translate::*;
 
 impl Win32Surface {

@@ -3,10 +3,8 @@
 // rustdoc-stripper-ignore-next
 //! Traits intended for implementing the [`SelectionModel`](crate::SelectionModel) interface.
 
-use crate::{Bitset, SelectionModel};
-use gio::subclass::prelude::*;
+use crate::{prelude::*, subclass::prelude::*, Bitset, SelectionModel};
 use glib::translate::*;
-use glib::Cast;
 
 pub trait SelectionModelImpl: ListModelImpl {
     #[doc(alias = "get_selection_in_range")]

@@ -3,10 +3,8 @@
 // rustdoc-stripper-ignore-next
 //! Traits intended for implementing the [`TreeDragSource`](crate::TreeDragSource) interface.
 
-use crate::subclass::prelude::*;
-use crate::{TreeDragSource, TreePath};
+use crate::{prelude::*, subclass::prelude::*, TreeDragSource, TreePath};
 use glib::translate::*;
-use glib::Cast;
 
 #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 pub trait TreeDragSourceImpl: ObjectImpl {

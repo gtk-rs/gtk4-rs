@@ -3,10 +3,8 @@
 // rustdoc-stripper-ignore-next
 //! Traits intended for subclassing [`CheckButton`](crate::CheckButton).
 
-use crate::subclass::prelude::*;
-use crate::CheckButton;
+use crate::{prelude::*, subclass::prelude::*, CheckButton};
 use glib::translate::*;
-use glib::Cast;
 
 pub trait CheckButtonImpl: CheckButtonImplExt + WidgetImpl {
     fn toggled(&self) {

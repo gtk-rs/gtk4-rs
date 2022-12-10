@@ -11,8 +11,7 @@ use syn::Data;
 use std::collections::HashMap;
 use std::string::ToString;
 
-use crate::attribute_parser::*;
-use crate::util::*;
+use crate::{attribute_parser::*, util::*};
 
 fn gen_set_template(source: &TemplateSource, crate_ident: &proc_macro2::Ident) -> TokenStream {
     match source {

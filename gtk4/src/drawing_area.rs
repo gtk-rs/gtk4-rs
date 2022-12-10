@@ -1,10 +1,8 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::DrawingArea;
-use glib::object::IsA;
+use crate::{prelude::*, DrawingArea};
 use glib::translate::*;
-use std::cell::RefCell;
-use std::ptr;
+use std::{cell::RefCell, ptr};
 
 // rustdoc-stripper-ignore-next
 /// Trait containing manually implemented methods of [`DrawingArea`](crate::DrawingArea).

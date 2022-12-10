@@ -1,7 +1,6 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::{Win32HCursor, HCURSOR};
-use glib::object::IsA;
+use crate::{prelude::*, Win32HCursor, HCURSOR};
 use glib::{translate::*, types::Pointee};
 use std::ptr::NonNull;
 

@@ -1,9 +1,7 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::prelude::*;
-use crate::{CellArea, CellRenderer};
-use glib::translate::*;
-use glib::{value::FromValue, IsA, Value};
+use crate::{prelude::*, CellArea, CellRenderer};
+use glib::{translate::*, value::FromValue, Value};
 
 // rustdoc-stripper-ignore-next
 /// Trait containing manually implemented methods of [`CellArea`](crate::CellArea).

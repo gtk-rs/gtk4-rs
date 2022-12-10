@@ -1,8 +1,7 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::ShortcutTrigger;
+use crate::{prelude::*, ShortcutTrigger};
 use gdk::Key;
-use glib::object::Cast;
 use glib::translate::*;
 use std::fmt;
 

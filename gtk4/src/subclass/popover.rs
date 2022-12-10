@@ -3,10 +3,8 @@
 // rustdoc-stripper-ignore-next
 //! Traits intended for subclassing [`Popover`](crate::Popover).
 
-use crate::subclass::prelude::*;
-use crate::Popover;
+use crate::{prelude::*, subclass::prelude::*, Popover};
 use glib::translate::*;
-use glib::Cast;
 
 pub trait PopoverImpl: PopoverImplExt + WidgetImpl {
     fn activate_default(&self) {

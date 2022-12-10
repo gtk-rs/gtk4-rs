@@ -3,11 +3,9 @@
 // rustdoc-stripper-ignore-next
 //! Traits intended for implementing the [`Buildable`](crate::Buildable) interface.
 
-use crate::prelude::*;
-use crate::subclass::prelude::*;
-use crate::{Buildable, Builder};
+use crate::{prelude::*, subclass::prelude::*, Buildable, Builder};
 use glib::translate::*;
-use glib::{Cast, GString, Object, Quark, Value};
+use glib::{GString, Object, Quark, Value};
 use once_cell::sync::Lazy;
 
 use super::PtrHolder;

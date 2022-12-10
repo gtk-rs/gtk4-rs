@@ -2,11 +2,9 @@
 
 use anyhow::{bail, Result};
 use proc_macro2::Span;
-use syn::parse::Error;
-use syn::spanned::Spanned;
 use syn::{
-    Attribute, DeriveInput, Field, Fields, Ident, Lit, Meta, MetaList, MetaNameValue, NestedMeta,
-    Type,
+    parse::Error, spanned::Spanned, Attribute, DeriveInput, Field, Fields, Ident, Lit, Meta,
+    MetaList, MetaNameValue, NestedMeta, Type,
 };
 
 pub struct Template {

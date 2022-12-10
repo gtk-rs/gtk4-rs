@@ -3,8 +3,7 @@
 // rustdoc-stripper-ignore-next
 //! Traits intended for subclassing [`Box`](crate::Box).
 
-use crate::subclass::prelude::*;
-use crate::Box;
+use crate::{subclass::prelude::*, Box};
 
 pub trait BoxImpl: WidgetImpl {}
 

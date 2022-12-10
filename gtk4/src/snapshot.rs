@@ -2,10 +2,8 @@
 
 use std::borrow::Borrow;
 
-use crate::Snapshot;
-use glib::object::IsA;
+use crate::{prelude::*, Snapshot};
 use glib::translate::*;
-use glib::Cast;
 
 pub trait SnapshotExtManual {
     #[doc(alias = "gtk_snapshot_append_border")]

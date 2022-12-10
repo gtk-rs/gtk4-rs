@@ -3,10 +3,8 @@
 // rustdoc-stripper-ignore-next
 //! Traits intended for implementing the [`TreeDragDest`](crate::TreeDragDest) interface.
 
-use crate::subclass::prelude::*;
-use crate::{TreeDragDest, TreePath};
-use glib::translate::*;
-use glib::{Cast, Value};
+use crate::{prelude::*, subclass::prelude::*, TreeDragDest, TreePath};
+use glib::{translate::*, Value};
 
 #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 pub trait TreeDragDestImpl: ObjectImpl {

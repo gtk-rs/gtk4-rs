@@ -3,10 +3,8 @@
 // rustdoc-stripper-ignore-next
 //! Traits intended for implementing the [`PrintOperationPreview`](crate::PrintOperationPreview) interface.
 
-use crate::subclass::prelude::*;
-use crate::{PageSetup, PrintContext, PrintOperationPreview};
+use crate::{prelude::*, subclass::prelude::*, PageSetup, PrintContext, PrintOperationPreview};
 use glib::translate::*;
-use glib::Cast;
 
 pub trait PrintOperationPreviewImpl: ObjectImpl {
     fn ready(&self, context: &PrintContext) {
