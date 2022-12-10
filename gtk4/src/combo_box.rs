@@ -1,7 +1,6 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::ComboBox;
-use glib::object::IsA;
+use crate::{prelude::*, ComboBox};
 use glib::translate::*;
 
 // rustdoc-stripper-ignore-next

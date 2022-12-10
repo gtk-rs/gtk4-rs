@@ -1,8 +1,7 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::{Constraint, ConstraintLayout, Widget};
+use crate::{prelude::*, Constraint, ConstraintLayout, Widget};
 use glib::translate::*;
-use glib::IsA;
 use std::collections::HashMap;
 
 impl ConstraintLayout {

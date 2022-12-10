@@ -2,7 +2,6 @@
 
 use crate::TreePath;
 use glib::translate::*;
-use std::slice;
 
 impl TreePath {
     #[doc(alias = "gtk_tree_path_get_indices_with_depth")]
@@ -18,7 +17,7 @@ impl TreePath {
             if ptr.is_null() || count == 0 {
                 vec![]
             } else {
-                slice::from_raw_parts(ptr, count as usize).to_owned()
+                std::slice::from_raw_parts(ptr, count as usize).to_owned()
             }
         }
     }

@@ -1,15 +1,12 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::Editable;
-use glib::object::Cast;
-use glib::signal::{connect_raw, SignalHandlerId};
-use glib::translate::*;
-use glib::IsA;
+use crate::{prelude::*, Editable};
+use glib::{
+    signal::{connect_raw, SignalHandlerId},
+    translate::*,
+};
 use libc::{c_char, c_int, c_uchar};
-use std::ffi::CStr;
-use std::mem::transmute;
-use std::slice;
-use std::str;
+use std::{ffi::CStr, mem::transmute, slice, str};
 
 // rustdoc-stripper-ignore-next
 /// Trait containing manually implemented methods of [`Editable`](crate::Editable).

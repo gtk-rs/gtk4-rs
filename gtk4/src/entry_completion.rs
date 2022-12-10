@@ -1,8 +1,7 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::{Entry, EntryCompletion, Widget};
+use crate::{prelude::*, Entry, EntryCompletion, Widget};
 use glib::translate::*;
-use glib::Cast;
 
 impl EntryCompletion {
     #[doc(alias = "gtk_entry_completion_get_entry")]

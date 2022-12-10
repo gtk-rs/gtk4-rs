@@ -3,10 +3,8 @@
 // rustdoc-stripper-ignore-next
 //! Traits intended for implementing the [`Scrollable`](crate::Scrollable) interface.
 
-use crate::subclass::prelude::*;
-use crate::{Border, Scrollable};
+use crate::{prelude::*, subclass::prelude::*, Border, Scrollable};
 use glib::translate::*;
-use glib::Cast;
 
 pub trait ScrollableImpl: ObjectImpl {
     #[doc(alias = "get_border")]

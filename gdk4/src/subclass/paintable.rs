@@ -3,10 +3,8 @@
 // rustdoc-stripper-ignore-next
 //! Traits intended for implementing the [`Paintable`](crate::Paintable) interface.
 
-use crate::subclass::prelude::*;
-use crate::{Paintable, PaintableFlags, Snapshot};
+use crate::{prelude::*, subclass::prelude::*, Paintable, PaintableFlags, Snapshot};
 use glib::translate::*;
-use glib::Cast;
 
 pub trait PaintableImpl: ObjectImpl {
     #[doc(alias = "get_current_image")]

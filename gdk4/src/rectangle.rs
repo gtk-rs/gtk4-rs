@@ -3,7 +3,6 @@
 use crate::Rectangle;
 use cairo::RectangleInt;
 use glib::translate::*;
-use std::convert::{AsRef, From};
 use std::fmt;
 
 impl Rectangle {

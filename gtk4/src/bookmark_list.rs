@@ -1,8 +1,7 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
 use crate::BookmarkList;
-use glib::translate::*;
-use glib::ToValue;
+use glib::{translate::*, ToValue};
 
 impl BookmarkList {
     #[doc(alias = "gtk_bookmark_list_get_io_priority")]

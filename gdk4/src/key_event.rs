@@ -2,8 +2,7 @@
 
 use crate::{EventType, Key, KeyEvent, KeyMatch, ModifierType};
 use glib::translate::*;
-use std::fmt;
-use std::mem;
+use std::{fmt, mem};
 
 define_event! {
     KeyEvent,

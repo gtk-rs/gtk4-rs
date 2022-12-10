@@ -3,10 +3,8 @@
 // rustdoc-stripper-ignore-next
 //! Traits intended for subclassing [`EntryBuffer`](crate::EntryBuffer).
 
-use crate::subclass::prelude::*;
-use crate::EntryBuffer;
-use glib::translate::*;
-use glib::{Cast, GString, ObjectExt};
+use crate::{prelude::*, subclass::prelude::*, EntryBuffer};
+use glib::{translate::*, GString};
 use once_cell::sync::Lazy;
 
 use super::PtrHolder;

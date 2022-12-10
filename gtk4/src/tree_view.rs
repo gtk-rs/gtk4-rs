@@ -1,9 +1,7 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::prelude::*;
-use crate::{CellRenderer, TreeView, TreeViewColumn, TreeViewColumnSizing};
+use crate::{prelude::*, CellRenderer, TreeView, TreeViewColumn, TreeViewColumnSizing};
 use glib::translate::*;
-use glib::IsA;
 
 // rustdoc-stripper-ignore-next
 /// Trait containing manually implemented methods of [`TreeView`](crate::TreeView).

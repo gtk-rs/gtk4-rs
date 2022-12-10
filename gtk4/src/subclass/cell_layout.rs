@@ -3,10 +3,10 @@
 // rustdoc-stripper-ignore-next
 //! Traits intended for implementing the [`CellLayout`](crate::CellLayout) interface.
 
-use crate::subclass::prelude::*;
-use crate::{CellArea, CellLayout, CellRenderer, TreeIter, TreeModel};
-use glib::translate::*;
-use glib::{Cast, IsA, ObjectExt, Quark};
+use crate::{
+    prelude::*, subclass::prelude::*, CellArea, CellLayout, CellRenderer, TreeIter, TreeModel,
+};
+use glib::{translate::*, Quark};
 use once_cell::sync::Lazy;
 
 #[derive(Debug)]

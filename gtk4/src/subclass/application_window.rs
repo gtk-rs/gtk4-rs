@@ -3,8 +3,7 @@
 // rustdoc-stripper-ignore-next
 //! Traits intended for subclassing [`ApplicationWindow`](crate::ApplicationWindow).
 
-use crate::subclass::prelude::*;
-use crate::ApplicationWindow;
+use crate::{subclass::prelude::*, ApplicationWindow};
 
 pub trait ApplicationWindowImpl: WindowImpl + 'static {}
 

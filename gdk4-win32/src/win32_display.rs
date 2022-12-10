@@ -1,11 +1,8 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::{ffi, glib, Win32Display, Win32MessageFilterReturn, MSG};
+use crate::{Win32Display, Win32MessageFilterReturn, MSG};
 use glib::translate::*;
 
-#[cfg(any(all(feature = "v4_4", feature = "egl"), feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(all(feature = "v4_4", feature = "egl"))))]
-use glib::translate::ToGlibPtr;
 #[cfg(any(all(feature = "v4_4", feature = "egl"), feature = "dox"))]
 #[cfg_attr(feature = "dox", doc(cfg(all(feature = "v4_4", feature = "egl"))))]
 use khronos_egl as egl;

@@ -3,10 +3,8 @@
 // rustdoc-stripper-ignore-next
 //! Traits intended for subclassing [`Frame`](crate::Frame).
 
-use crate::subclass::prelude::*;
-use crate::{Allocation, Frame};
+use crate::{prelude::*, subclass::prelude::*, Allocation, Frame};
 use glib::translate::*;
-use glib::Cast;
 
 pub trait FrameImpl: FrameImplExt + WidgetImpl {
     fn compute_child_allocation(&self) -> Allocation {

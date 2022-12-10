@@ -2,8 +2,7 @@
 
 use crate::{FlowBox, FlowBoxChild, Ordering};
 use glib::translate::*;
-use std::boxed::Box as Box_;
-use std::ptr;
+use std::{boxed::Box as Box_, ptr};
 
 impl FlowBox {
     #[doc(alias = "gtk_flow_box_bind_model")]

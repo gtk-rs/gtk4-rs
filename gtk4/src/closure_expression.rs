@@ -1,8 +1,7 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
 use crate::{ClosureExpression, Expression};
-use glib::translate::*;
-use glib::{value::ValueType, StaticType, Value};
+use glib::{translate::*, value::ValueType, StaticType, Value};
 
 define_expression!(ClosureExpression, ffi::GtkClosureExpression);
 

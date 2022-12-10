@@ -3,10 +3,8 @@
 // rustdoc-stripper-ignore-next
 //! Traits intended for implementing the [`ShortcutManager`](crate::ShortcutManager) interface.
 
-use crate::subclass::prelude::*;
-use crate::{ShortcutController, ShortcutManager};
+use crate::{prelude::*, subclass::prelude::*, ShortcutController, ShortcutManager};
 use glib::translate::*;
-use glib::Cast;
 
 pub trait ShortcutManagerImpl: ObjectImpl {
     fn add_controller(&self, controller: &ShortcutController) {

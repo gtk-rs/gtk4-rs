@@ -1,8 +1,7 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::ShortcutTrigger;
+use crate::{prelude::*, ShortcutTrigger};
 use glib::translate::*;
-use glib::IsA;
 
 // rustdoc-stripper-ignore-next
 /// Trait containing manually implemented methods of [`ShortcutTrigger`](crate::ShortcutTrigger).

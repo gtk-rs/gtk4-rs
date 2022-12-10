@@ -1,10 +1,8 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::Ordering;
-use glib::object::{Cast, IsA};
+use crate::{prelude::*, Ordering};
 use glib::translate::*;
-use std::fmt;
-use std::mem;
+use std::{fmt, mem};
 
 use crate::{SortType, TreeIter, TreeModel, TreeSortable};
 

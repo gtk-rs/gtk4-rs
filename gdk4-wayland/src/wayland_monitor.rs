@@ -3,7 +3,7 @@
 use crate::WaylandMonitor;
 #[cfg(any(feature = "wayland_crate", feature = "dox"))]
 #[cfg_attr(feature = "dox", doc(cfg(feature = "wayland_crate")))]
-use {gdk::prelude::*, glib::translate::ToGlibPtr};
+use {crate::prelude::*, glib::translate::*};
 
 #[cfg(any(feature = "wayland_crate", feature = "dox"))]
 #[cfg_attr(feature = "dox", doc(cfg(feature = "wayland_crate")))]

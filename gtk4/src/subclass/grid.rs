@@ -3,8 +3,7 @@
 // rustdoc-stripper-ignore-next
 //! Traits intended for subclassing [`Grid`](crate::Grid).
 
-use crate::subclass::prelude::*;
-use crate::Grid;
+use crate::{subclass::prelude::*, Grid};
 
 pub trait GridImpl: WidgetImpl {}
 

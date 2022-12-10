@@ -3,8 +3,7 @@
 // rustdoc-stripper-ignore-next
 //! Traits intended for subclassing [`Fixed`](crate::Fixed).
 
-use crate::subclass::prelude::*;
-use crate::Fixed;
+use crate::{subclass::prelude::*, Fixed};
 
 pub trait FixedImpl: WidgetImpl {}
 

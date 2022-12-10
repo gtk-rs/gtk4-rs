@@ -3,10 +3,10 @@
 // rustdoc-stripper-ignore-next
 //! Traits intended for subclassing [`TreeView`](crate::TreeView).
 
-use crate::subclass::prelude::*;
-use crate::{MovementStep, TreeIter, TreePath, TreeView, TreeViewColumn};
+use crate::{
+    prelude::*, subclass::prelude::*, MovementStep, TreeIter, TreePath, TreeView, TreeViewColumn,
+};
 use glib::translate::*;
-use glib::Cast;
 
 #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 pub trait TreeViewImpl: TreeViewImplExt + WidgetImpl {

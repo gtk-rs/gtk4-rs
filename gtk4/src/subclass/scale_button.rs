@@ -3,10 +3,8 @@
 // rustdoc-stripper-ignore-next
 //! Traits intended for subclassing [`ScaleButton`](crate::ScaleButton).
 
-use crate::subclass::prelude::*;
-use crate::ScaleButton;
+use crate::{prelude::*, subclass::prelude::*, ScaleButton};
 use glib::translate::*;
-use glib::Cast;
 
 pub trait ScaleButtonImpl: ScaleButtonImplExt + WidgetImpl {
     fn value_changed(&self, new_value: f64) {

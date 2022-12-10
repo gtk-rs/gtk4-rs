@@ -3,10 +3,8 @@
 // rustdoc-stripper-ignore-next
 //! Traits intended for subclassing [`StyleContext`](crate::StyleContext).
 
-use crate::subclass::prelude::*;
-use crate::StyleContext;
+use crate::{prelude::*, subclass::prelude::*, StyleContext};
 use glib::translate::*;
-use glib::Cast;
 
 #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 pub trait StyleContextImpl: StyleContextImplExt + ObjectImpl {

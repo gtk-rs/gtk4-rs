@@ -1,8 +1,10 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
 use glib::translate::*;
-use std::cell::Cell;
-use std::sync::atomic::{AtomicBool, Ordering};
+use std::{
+    cell::Cell,
+    sync::atomic::{AtomicBool, Ordering},
+};
 
 #[cfg(target_os = "macos")]
 extern "C" {

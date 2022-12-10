@@ -1,19 +1,15 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::X11Display;
-use glib::Cast;
+use crate::{prelude::*, X11Display};
 #[cfg(any(feature = "xlib", feature = "dox"))]
 #[cfg_attr(feature = "dox", doc(cfg(feature = "xlib")))]
-use glib::{signal::connect_raw, signal::SignalHandlerId, ObjectType};
+use glib::signal::{connect_raw, SignalHandlerId};
 #[cfg(any(all(feature = "v4_4", feature = "egl"), feature = "dox"))]
 #[cfg_attr(feature = "dox", doc(cfg(all(feature = "v4_4", feature = "egl"))))]
 use khronos_egl as egl;
 #[cfg(any(feature = "xlib", feature = "dox"))]
 #[cfg_attr(feature = "dox", doc(cfg(feature = "xlib")))]
-use std::boxed::Box as Box_;
-#[cfg(any(feature = "xlib", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "xlib")))]
-use std::mem::transmute;
+use std::{boxed::Box as Box_, mem::transmute};
 #[cfg(any(feature = "xlib", feature = "dox"))]
 #[cfg_attr(feature = "dox", doc(cfg(feature = "xlib")))]
 use x11::xlib;

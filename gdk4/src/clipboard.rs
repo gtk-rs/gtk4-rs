@@ -1,12 +1,9 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::Clipboard;
-use glib::object::IsA;
+use crate::{prelude::*, Clipboard};
 use glib::translate::*;
 use glib::GString;
-use std::future;
-use std::pin::Pin;
-use std::ptr;
+use std::{future, pin::Pin, ptr};
 
 impl Clipboard {
     #[doc(alias = "gdk_clipboard_read_async")]

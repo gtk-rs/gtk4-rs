@@ -3,11 +3,9 @@
 // rustdoc-stripper-ignore-next
 //! Traits intended for subclassing [`Application`](crate::Application).
 
-use gio::subclass::prelude::*;
 use glib::translate::*;
-use glib::Cast;
 
-use crate::{Application, Window};
+use crate::{prelude::*, subclass::prelude::*, Application, Window};
 
 pub trait GtkApplicationImpl: ObjectImpl + GtkApplicationImplExt + ApplicationImpl {
     fn window_added(&self, window: &Window) {

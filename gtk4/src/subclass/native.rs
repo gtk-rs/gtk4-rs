@@ -3,8 +3,7 @@
 // rustdoc-stripper-ignore-next
 //! Traits intended for implementing the [`Native`](crate::Native) interface.
 
-use crate::subclass::prelude::*;
-use crate::Native;
+use crate::{subclass::prelude::*, Native};
 
 pub trait NativeImpl: WidgetImpl {}
 

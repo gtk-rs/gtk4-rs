@@ -1,15 +1,14 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::prelude::*;
-use crate::{Dialog, DialogFlags, ResponseType, Widget, Window};
-use glib::object::Cast;
+use crate::{prelude::*, Dialog, DialogFlags, ResponseType, Widget, Window};
 use glib::translate::*;
-use glib::{IsA, ObjectExt};
-use std::cell::{Cell, RefCell};
-use std::future::Future;
-use std::pin::Pin;
-use std::ptr;
-use std::rc::Rc;
+use std::{
+    cell::{Cell, RefCell},
+    future::Future,
+    pin::Pin,
+    ptr,
+    rc::Rc,
+};
 
 impl Dialog {
     #[doc(alias = "gtk_dialog_new_with_buttons")]

@@ -3,7 +3,7 @@
 use crate::WaylandDisplay;
 #[cfg(any(feature = "wayland_crate", feature = "dox"))]
 #[cfg_attr(feature = "dox", doc(cfg(feature = "wayland_crate")))]
-use glib::{once_cell::sync::Lazy, translate::ToGlibPtr, ObjectExt, Quark};
+use glib::{once_cell::sync::Lazy, prelude::*, translate::*, Quark};
 
 #[cfg(any(all(feature = "v4_4", feature = "egl"), feature = "dox"))]
 #[cfg_attr(feature = "dox", doc(cfg(all(feature = "v4_4", feature = "egl"))))]

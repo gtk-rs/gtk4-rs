@@ -3,10 +3,8 @@
 // rustdoc-stripper-ignore-next
 //! Traits intended for implementing the [`AccessibleRange`](crate::AccessibleRange) interface.
 
-use crate::subclass::prelude::*;
-use crate::AccessibleRange;
+use crate::{prelude::*, subclass::prelude::*, AccessibleRange};
 use glib::translate::*;
-use glib::Cast;
 
 pub trait AccessibleRangeImpl: WidgetImpl {
     fn set_current_value(&self, accessible_range: &Self::Type, value: f64) -> bool {

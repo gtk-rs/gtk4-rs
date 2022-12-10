@@ -1,8 +1,7 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::MediaStream;
+use crate::{prelude::*, MediaStream};
 use glib::translate::*;
-use glib::IsA;
 
 pub trait MediaStreamExtManual: 'static {
     #[doc(alias = "gtk_media_stream_gerror")]

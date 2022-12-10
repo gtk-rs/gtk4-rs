@@ -1,12 +1,12 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::prelude::*;
-use crate::NativeDialog;
-use crate::ResponseType;
-use std::cell::{Cell, RefCell};
-use std::future::Future;
-use std::pin::Pin;
-use std::rc::Rc;
+use crate::{prelude::*, NativeDialog, ResponseType};
+use std::{
+    cell::{Cell, RefCell},
+    future::Future,
+    pin::Pin,
+    rc::Rc,
+};
 
 // rustdoc-stripper-ignore-next
 /// Trait containing manually implemented methods of [`NativeDialog`](crate::NativeDialog).

@@ -2,11 +2,7 @@
 
 use crate::ParamSpecExpression;
 
-use glib::gobject_ffi;
-use glib::prelude::*;
-use glib::shared::Shared;
-use glib::translate::*;
-use glib::{ParamSpec, StaticType, Value};
+use glib::{gobject_ffi, prelude::*, shared::Shared, translate::*, ParamSpec, StaticType, Value};
 
 impl std::fmt::Debug for ParamSpecExpression {
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {

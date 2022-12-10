@@ -3,8 +3,7 @@
 // rustdoc-stripper-ignore-next
 //! Traits intended for implementing the [`Orientable`](crate::Orientable) interface.
 
-use crate::subclass::prelude::*;
-use crate::Orientable;
+use crate::{subclass::prelude::*, Orientable};
 
 pub trait OrientableImpl: ObjectImpl {}
 

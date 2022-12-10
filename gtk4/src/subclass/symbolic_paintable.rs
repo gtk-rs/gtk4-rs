@@ -3,11 +3,8 @@
 // rustdoc-stripper-ignore-next
 //! Traits intended for implementing the [`SymbolicPaintable`](crate::SymbolicPaintable) interface.
 
-use crate::subclass::prelude::*;
-use crate::SymbolicPaintable;
-use gdk::subclass::prelude::PaintableImpl;
+use crate::{prelude::*, subclass::prelude::*, SymbolicPaintable};
 use glib::translate::*;
-use glib::Cast;
 
 pub trait SymbolicPaintableImpl: PaintableImpl {
     fn snapshot_symbolic(

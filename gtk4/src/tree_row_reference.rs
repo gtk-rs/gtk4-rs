@@ -1,9 +1,7 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::prelude::*;
-use crate::{TreeIter, TreePath, TreeRowReference};
+use crate::{prelude::*, TreeIter, TreePath, TreeRowReference};
 use glib::translate::*;
-use glib::IsA;
 
 impl TreeRowReference {
     #[doc(alias = "gtk_tree_row_reference_reordered")]

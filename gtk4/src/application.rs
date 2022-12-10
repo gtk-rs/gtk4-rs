@@ -1,14 +1,10 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::prelude::*;
-use crate::rt;
-use crate::Application;
+use crate::{prelude::*, rt, Application};
 use gio::ApplicationFlags;
-use glib::signal::SignalHandlerId;
-use glib::translate::*;
+use glib::{signal::SignalHandlerId, translate::*};
 
-use std::cell::RefCell;
-use std::rc::Rc;
+use std::{cell::RefCell, rc::Rc};
 
 impl Application {
     #[doc(alias = "gtk_application_new")]

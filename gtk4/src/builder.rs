@@ -1,9 +1,7 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::Builder;
-use glib::object::{Cast, IsA};
-use glib::translate::*;
-use glib::Object;
+use crate::{prelude::*, Builder};
+use glib::{translate::*, Object};
 use std::path::Path;
 
 impl Builder {
@@ -20,7 +18,7 @@ impl Builder {
 
     #[doc(alias = "gtk_builder_get_current_object")]
     #[doc(alias = "get_current_object")]
-    pub fn current_object(&self) -> Option<glib::Object> {
+    pub fn current_object(&self) -> Option<Object> {
         unsafe {
             let ptr = ffi::gtk_builder_get_current_object(self.to_glib_none().0);
             if ptr.is_null() {

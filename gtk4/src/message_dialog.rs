@@ -1,11 +1,10 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use glib::object::{Cast, IsA};
 use glib::translate::*;
 use libc::c_char;
 use std::ptr;
 
-use crate::{ButtonsType, DialogFlags, MessageDialog, MessageType, Widget, Window};
+use crate::{prelude::*, ButtonsType, DialogFlags, MessageDialog, MessageType, Widget, Window};
 
 impl MessageDialog {
     #[doc(alias = "gtk_message_dialog_new")]

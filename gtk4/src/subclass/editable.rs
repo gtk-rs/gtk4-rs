@@ -3,10 +3,8 @@
 // rustdoc-stripper-ignore-next
 //! Traits intended for implementing the [`Editable`](crate::Editable) interface.
 
-use crate::subclass::prelude::*;
-use crate::Editable;
-use glib::translate::*;
-use glib::{Cast, GString, ObjectExt, Quark};
+use crate::{prelude::*, subclass::prelude::*, Editable};
+use glib::{translate::*, GString, Quark};
 use libc::{c_char, c_int};
 use once_cell::sync::Lazy;
 
