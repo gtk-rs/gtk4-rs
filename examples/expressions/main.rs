@@ -64,8 +64,8 @@ fn build_ui(app: &gtk::Application) {
         item.set_child(Some(&hbox));
     });
 
-    let model = gtk::NoSelection::new(Some(&data()));
-    let list_view = gtk::ListView::new(Some(&model), Some(&factory));
+    let model = gtk::NoSelection::new(Some(data()));
+    let list_view = gtk::ListView::new(Some(model), Some(factory));
 
     let scrolled_window = gtk::ScrolledWindow::builder()
         .child(&list_view)

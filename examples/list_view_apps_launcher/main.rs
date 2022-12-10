@@ -60,10 +60,10 @@ fn build_ui(app: &gtk::Application) {
             .cmp(&app_info2.name().to_lowercase())
             .into()
     });
-    let sorted_model = gtk::SortListModel::new(Some(&model), Some(&sorter));
-    let selection_model = gtk::SingleSelection::new(Some(&sorted_model));
+    let sorted_model = gtk::SortListModel::new(Some(model), Some(sorter));
+    let selection_model = gtk::SingleSelection::new(Some(sorted_model));
 
-    let list_view = gtk::ListView::new(Some(&selection_model), Some(&factory));
+    let list_view = gtk::ListView::new(Some(selection_model), Some(factory));
     // Launch the application when an item of the list is activated
     list_view.connect_activate(move |list_view, position| {
         let model = list_view.model().unwrap();

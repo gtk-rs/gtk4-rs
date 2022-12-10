@@ -71,7 +71,7 @@ impl WidgetImpl for ScaleBin {
             (width as f32 / zoom) as i32,
             (height as f32 / zoom) as i32,
             baseline,
-            Some(&transform),
+            Some(transform),
         );
     }
 }

@@ -177,7 +177,7 @@ impl WidgetImpl for RotationBin {
             .rotate(self.rotation(&widget).into())
             // Revert the move of the origin point once our rotation is done.
             .translate(&Point::new(-w as f32 / 2.0, -h as f32 / 2.0));
-        child.allocate(w, h, baseline, Some(&transform))
+        child.allocate(w, h, baseline, Some(transform))
     }
 }
 

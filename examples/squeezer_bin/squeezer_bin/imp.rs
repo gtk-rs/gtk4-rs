@@ -111,7 +111,7 @@ impl WidgetImpl for SqueezerBin {
                 (width as f32 / horizontal_zoom) as i32,
                 (height as f32 / vertical_zoom) as i32,
                 baseline,
-                Some(&transform),
+                Some(transform),
             );
         }
     }
