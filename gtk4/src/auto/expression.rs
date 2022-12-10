@@ -31,14 +31,14 @@ impl Expression {
 
     #[doc(alias = "gtk_expression_bind")]
     pub fn bind(
-        self,
+        &self,
         target: &impl IsA<glib::Object>,
         property: &str,
         this_: Option<&impl IsA<glib::Object>>,
     ) -> ExpressionWatch {
         unsafe {
             from_glib_none(ffi::gtk_expression_bind(
-                self.upcast().into_glib_ptr(),
+                self.as_ref().to_glib_full(),
                 target.as_ref().to_glib_none().0,
                 property.to_glib_none().0,
                 this_.map(|p| p.as_ref()).to_glib_none().0,

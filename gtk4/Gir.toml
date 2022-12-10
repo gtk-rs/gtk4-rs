@@ -1161,6 +1161,11 @@ status = "generate"
     [[object.function]]
     name = "evaluate"
     manual = true
+    [[object.function]]
+    name = "bind"
+        [[object.function.parameter]]
+        name = "self"
+        move = false # passing by value here fails with the chain_* helpers we have
 
 [[object]]
 name = "Gtk.FileChooser"
