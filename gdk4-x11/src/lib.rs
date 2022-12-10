@@ -22,6 +22,7 @@ mod rt;
 mod auto;
 
 pub mod builders;
+pub mod prelude;
 
 mod functions;
 mod x11_display;
