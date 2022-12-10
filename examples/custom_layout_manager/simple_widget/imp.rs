@@ -33,7 +33,7 @@ impl ObjectImpl for SimpleWidget {
         gesture.connect_pressed(clone!(@strong obj as this => move |_, _, _, _| {
             this.do_transition();
         }));
-        self.obj().add_controller(&gesture);
+        self.obj().add_controller(gesture);
     }
 
     fn dispose(&self) {

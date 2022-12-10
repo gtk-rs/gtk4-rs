@@ -29,8 +29,8 @@ fn build_ui(application: &gtk::Application) {
 
     // To listen to click events, we need to add a `GestureClick` controller to our `ConfettiWidget`
     let ev_ctrl = gtk::GestureClick::new();
-    confetti.add_controller(&ev_ctrl);
-    ev_ctrl.connect_pressed(move |_, _, x, y| {
+    ev_ctrl.connect_pressed(move |event, _, x, y| {
+        let confetti = event.widget().downcast::<ConfettiWidget>().unwrap();
         let params = ExplosionParameters {
             quantity: 25,
             acceleration: Vec2::new(0.0, 1.0 / 1000.0),
@@ -46,5 +46,6 @@ fn build_ui(application: &gtk::Application) {
         let duration = 3000.0;
         confetti.explode(params, duration);
     });
+    confetti.add_controller(ev_ctrl);
     window.show();
 }

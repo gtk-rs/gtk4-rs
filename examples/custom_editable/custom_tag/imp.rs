@@ -86,7 +86,7 @@ impl ObjectImpl for CustomTag {
         gesture.connect_released(clone!(@weak tag => move |_gesture, _n_press, _x, _y| {
             tag.emit_by_name::<()>("clicked", &[]);
         }));
-        tag.add_controller(&gesture);
+        tag.add_controller(gesture);
     }
 
     fn dispose(&self) {

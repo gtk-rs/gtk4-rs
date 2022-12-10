@@ -60,7 +60,7 @@ impl ObjectImpl for ExButton {
             gesture.set_state(gtk::EventSequenceState::Claimed);
             println!("Button pressed!");
         });
-        obj.add_controller(&gesture);
+        obj.add_controller(gesture);
     }
 
     fn dispose(&self) {

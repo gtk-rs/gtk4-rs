@@ -38,13 +38,11 @@ fn build_ui(application: &gtk::Application) {
             col2: format!("col2 {}", i),
         }))
     });
-    let sel = gtk::SingleSelection::new(Some(&store));
-    let columnview = gtk::ColumnView::new(Some(&sel));
+    let sel = gtk::SingleSelection::new(Some(store));
+    let columnview = gtk::ColumnView::new(Some(sel));
 
     let col1factory = gtk::SignalListItemFactory::new();
     let col2factory = gtk::SignalListItemFactory::new();
-    let col1 = gtk::ColumnViewColumn::new(Some("Column 1"), Some(&col1factory));
-    let col2 = gtk::ColumnViewColumn::new(Some("Column 2"), Some(&col2factory));
     col1factory.connect_setup(move |_factory, item| {
         let item = item.downcast_ref::<gtk::ListItem>().unwrap();
         let row = GridCell::new();
@@ -77,6 +75,8 @@ fn build_ui(application: &gtk::Application) {
         };
         child.set_entry(&ent);
     });
+    let col1 = gtk::ColumnViewColumn::new(Some("Column 1"), Some(col1factory));
+    let col2 = gtk::ColumnViewColumn::new(Some("Column 2"), Some(col2factory));
     columnview.append_column(&col1);
     columnview.append_column(&col2);
 
