@@ -5,10 +5,7 @@
 use crate::Renderer;
 #[cfg(any(feature = "v4_2", feature = "dox"))]
 #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_2")))]
-use glib::object::Cast;
-#[cfg(any(feature = "v4_2", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_2")))]
-use glib::translate::*;
+use glib::{prelude::*, translate::*};
 use std::fmt;
 
 glib::wrapper! {

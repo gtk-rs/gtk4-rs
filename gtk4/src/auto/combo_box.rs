@@ -3,31 +3,16 @@
 // DO NOT EDIT
 #![allow(deprecated)]
 
-use crate::Accessible;
-use crate::AccessibleRole;
-use crate::Align;
-use crate::Buildable;
-use crate::CellEditable;
-use crate::CellLayout;
-use crate::ConstraintTarget;
-use crate::LayoutManager;
-use crate::Overflow;
-use crate::ScrollType;
-use crate::SensitivityType;
-use crate::TreeIter;
-use crate::TreeModel;
-use crate::Widget;
-use glib::object::Cast;
-use glib::object::IsA;
-use glib::object::ObjectExt;
-use glib::signal::connect_raw;
-use glib::signal::SignalHandlerId;
-use glib::translate::*;
-use glib::StaticType;
-use glib::ToValue;
-use std::boxed::Box as Box_;
-use std::fmt;
-use std::mem::transmute;
+use crate::{
+    Accessible, AccessibleRole, Align, Buildable, CellEditable, CellLayout, ConstraintTarget,
+    LayoutManager, Overflow, ScrollType, SensitivityType, TreeIter, TreeModel, Widget,
+};
+use glib::{
+    prelude::*,
+    signal::{connect_raw, SignalHandlerId},
+    translate::*,
+};
+use std::{boxed::Box as Box_, fmt, mem::transmute};
 
 glib::wrapper! {
     #[doc(alias = "GtkComboBox")]

@@ -2,13 +2,8 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use crate::IMContext;
-use crate::InputHints;
-use crate::InputPurpose;
-use glib::object::Cast;
-use glib::translate::*;
-use glib::StaticType;
-use glib::ToValue;
+use crate::{IMContext, InputHints, InputPurpose};
+use glib::{prelude::*, translate::*};
 use std::fmt;
 
 glib::wrapper! {

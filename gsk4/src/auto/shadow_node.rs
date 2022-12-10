@@ -2,10 +2,8 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use crate::RenderNode;
-use crate::Shadow;
-use glib::translate::*;
-use glib::StaticType;
+use crate::{RenderNode, Shadow};
+use glib::{prelude::*, translate::*};
 use std::fmt;
 
 glib::wrapper! {

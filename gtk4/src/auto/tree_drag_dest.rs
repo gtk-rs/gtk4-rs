@@ -4,8 +4,7 @@
 #![allow(deprecated)]
 
 use crate::TreePath;
-use glib::object::IsA;
-use glib::translate::*;
+use glib::{prelude::*, translate::*};
 use std::fmt;
 
 glib::wrapper! {

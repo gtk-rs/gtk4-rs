@@ -3,27 +3,12 @@
 // DO NOT EDIT
 #![allow(deprecated)]
 
-use crate::Accessible;
-use crate::AccessibleRole;
-use crate::Align;
-use crate::Application;
-use crate::Buildable;
-use crate::ConstraintTarget;
-use crate::Dialog;
-use crate::FontChooser;
-use crate::FontChooserLevel;
-use crate::LayoutManager;
-use crate::Native;
-use crate::Overflow;
-use crate::Root;
-use crate::ShortcutManager;
-use crate::Widget;
-use crate::Window;
-use glib::object::Cast;
-use glib::object::IsA;
-use glib::translate::*;
-use glib::StaticType;
-use glib::ToValue;
+use crate::{
+    Accessible, AccessibleRole, Align, Application, Buildable, ConstraintTarget, Dialog,
+    FontChooser, FontChooserLevel, LayoutManager, Native, Overflow, Root, ShortcutManager, Widget,
+    Window,
+};
+use glib::{prelude::*, translate::*};
 use std::fmt;
 
 glib::wrapper! {

@@ -2,22 +2,12 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use crate::AxisUse;
-use crate::Device;
-use crate::DeviceTool;
-use crate::Display;
-use crate::EventSequence;
-use crate::EventType;
-use crate::ModifierType;
-use crate::Seat;
-use crate::Surface;
-use crate::TimeCoord;
-use glib::object::Cast;
-use glib::translate::*;
-use glib::StaticType;
-use std::fmt;
-use std::mem;
-use std::ptr;
+use crate::{
+    AxisUse, Device, DeviceTool, Display, EventSequence, EventType, ModifierType, Seat, Surface,
+    TimeCoord,
+};
+use glib::{prelude::*, translate::*};
+use std::{fmt, mem, ptr};
 
 glib::wrapper! {
     #[doc(alias = "GdkEvent")]

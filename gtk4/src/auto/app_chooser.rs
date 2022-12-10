@@ -3,12 +3,8 @@
 // DO NOT EDIT
 #![allow(deprecated)]
 
-use crate::Accessible;
-use crate::Buildable;
-use crate::ConstraintTarget;
-use crate::Widget;
-use glib::object::IsA;
-use glib::translate::*;
+use crate::{Accessible, Buildable, ConstraintTarget, Widget};
+use glib::{prelude::*, translate::*};
 use std::fmt;
 
 glib::wrapper! {

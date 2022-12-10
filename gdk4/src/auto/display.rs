@@ -2,28 +2,19 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use crate::AppLaunchContext;
-use crate::Clipboard;
-use crate::Device;
-use crate::Event;
 #[cfg(any(feature = "v4_6", feature = "dox"))]
 #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
 use crate::GLContext;
-use crate::Monitor;
-use crate::Seat;
-use crate::Surface;
-use glib::object::Cast;
-use glib::object::IsA;
-use glib::signal::connect_raw;
-use glib::signal::SignalHandlerId;
-use glib::translate::*;
-use glib::StaticType;
-use std::boxed::Box as Box_;
-use std::fmt;
-use std::mem::transmute;
+use crate::{AppLaunchContext, Clipboard, Device, Event, Monitor, Seat, Surface};
+use glib::{
+    prelude::*,
+    signal::{connect_raw, SignalHandlerId},
+    translate::*,
+};
 #[cfg(any(feature = "v4_4", feature = "dox"))]
 #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_4")))]
 use std::ptr;
+use std::{boxed::Box as Box_, fmt, mem::transmute};
 
 glib::wrapper! {
     #[doc(alias = "GdkDisplay")]

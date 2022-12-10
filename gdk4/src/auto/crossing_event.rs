@@ -2,11 +2,8 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use crate::CrossingMode;
-use crate::Event;
-use crate::NotifyType;
-use glib::translate::*;
-use glib::StaticType;
+use crate::{CrossingMode, Event, NotifyType};
+use glib::{prelude::*, translate::*};
 use std::fmt;
 
 glib::wrapper! {

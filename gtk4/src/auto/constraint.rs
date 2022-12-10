@@ -2,14 +2,8 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use crate::ConstraintAttribute;
-use crate::ConstraintRelation;
-use crate::ConstraintTarget;
-use glib::object::Cast;
-use glib::object::IsA;
-use glib::translate::*;
-use glib::StaticType;
-use glib::ToValue;
+use crate::{ConstraintAttribute, ConstraintRelation, ConstraintTarget};
+use glib::{prelude::*, translate::*};
 use std::fmt;
 
 glib::wrapper! {

@@ -3,14 +3,9 @@
 // DO NOT EDIT
 #![allow(deprecated)]
 
-use crate::CellArea;
-use crate::CellRenderer;
-use crate::TreeIter;
-use crate::TreeModel;
-use glib::object::IsA;
-use glib::translate::*;
-use std::boxed::Box as Box_;
-use std::fmt;
+use crate::{CellArea, CellRenderer, TreeIter, TreeModel};
+use glib::{prelude::*, translate::*};
+use std::{boxed::Box as Box_, fmt};
 
 glib::wrapper! {
     #[doc(alias = "GtkCellLayout")]

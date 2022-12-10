@@ -2,12 +2,9 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use crate::Event;
-use crate::TouchpadGesturePhase;
-use glib::translate::*;
-use glib::StaticType;
-use std::fmt;
-use std::mem;
+use crate::{Event, TouchpadGesturePhase};
+use glib::{prelude::*, translate::*};
+use std::{fmt, mem};
 
 glib::wrapper! {
     #[doc(alias = "GdkTouchpadEvent")]

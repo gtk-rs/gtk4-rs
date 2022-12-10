@@ -2,19 +2,12 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use crate::NumberUpLayout;
-use crate::PageOrientation;
-use crate::PageRange;
-use crate::PageSet;
-use crate::PaperSize;
-use crate::PrintDuplex;
-use crate::PrintPages;
-use crate::PrintQuality;
-use crate::Unit;
+use crate::{
+    NumberUpLayout, PageOrientation, PageRange, PageSet, PaperSize, PrintDuplex, PrintPages,
+    PrintQuality, Unit,
+};
 use glib::translate::*;
-use std::fmt;
-use std::mem;
-use std::ptr;
+use std::{fmt, mem, ptr};
 
 glib::wrapper! {
     #[doc(alias = "GtkPrintSettings")]

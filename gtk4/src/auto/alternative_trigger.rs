@@ -3,11 +3,7 @@
 // DO NOT EDIT
 
 use crate::ShortcutTrigger;
-use glib::object::Cast;
-use glib::object::IsA;
-use glib::translate::*;
-use glib::StaticType;
-use glib::ToValue;
+use glib::{prelude::*, translate::*};
 use std::fmt;
 
 glib::wrapper! {

@@ -2,35 +2,17 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use crate::Accessible;
-use crate::AccessibleRole;
-use crate::Align;
-use crate::Application;
-use crate::Buildable;
-use crate::ConstraintTarget;
-use crate::Dialog;
-use crate::LayoutManager;
-use crate::Native;
-use crate::Overflow;
-use crate::PageSetup;
-use crate::PrintCapabilities;
-use crate::PrintSettings;
-use crate::Printer;
-use crate::Root;
-use crate::ShortcutManager;
-use crate::Widget;
-use crate::Window;
-use glib::object::Cast;
-use glib::object::IsA;
-use glib::object::ObjectType as ObjectType_;
-use glib::signal::connect_raw;
-use glib::signal::SignalHandlerId;
-use glib::translate::*;
-use glib::StaticType;
-use glib::ToValue;
-use std::boxed::Box as Box_;
-use std::fmt;
-use std::mem::transmute;
+use crate::{
+    Accessible, AccessibleRole, Align, Application, Buildable, ConstraintTarget, Dialog,
+    LayoutManager, Native, Overflow, PageSetup, PrintCapabilities, PrintSettings, Printer, Root,
+    ShortcutManager, Widget, Window,
+};
+use glib::{
+    prelude::*,
+    signal::{connect_raw, SignalHandlerId},
+    translate::*,
+};
+use std::{boxed::Box as Box_, fmt, mem::transmute};
 
 glib::wrapper! {
     #[doc(alias = "GtkPrintUnixDialog")]

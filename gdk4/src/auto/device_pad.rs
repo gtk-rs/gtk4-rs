@@ -2,10 +2,8 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use crate::Device;
-use crate::DevicePadFeature;
-use glib::object::IsA;
-use glib::translate::*;
+use crate::{Device, DevicePadFeature};
+use glib::{prelude::*, translate::*};
 use std::fmt;
 
 glib::wrapper! {

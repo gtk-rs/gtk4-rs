@@ -2,23 +2,11 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use crate::Accessible;
-use crate::AccessibleRole;
-use crate::Align;
-use crate::Buildable;
-use crate::ConstraintTarget;
-use crate::Editable;
-use crate::LayoutManager;
-use crate::Overflow;
-use crate::Widget;
-use glib::object::Cast;
-use glib::object::IsA;
-#[cfg(any(feature = "v4_8", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
-use glib::object::ObjectType as ObjectType_;
-use glib::translate::*;
-use glib::StaticType;
-use glib::ToValue;
+use crate::{
+    Accessible, AccessibleRole, Align, Buildable, ConstraintTarget, Editable, LayoutManager,
+    Overflow, Widget,
+};
+use glib::{prelude::*, translate::*};
 use std::fmt;
 
 glib::wrapper! {

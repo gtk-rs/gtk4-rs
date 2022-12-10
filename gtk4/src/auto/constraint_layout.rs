@@ -2,12 +2,8 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use crate::Buildable;
-use crate::Constraint;
-use crate::ConstraintGuide;
-use crate::LayoutManager;
-use glib::object::Cast;
-use glib::translate::*;
+use crate::{Buildable, Constraint, ConstraintGuide, LayoutManager};
+use glib::{prelude::*, translate::*};
 use std::fmt;
 
 glib::wrapper! {

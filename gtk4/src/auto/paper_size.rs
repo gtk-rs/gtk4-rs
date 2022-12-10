@@ -4,8 +4,7 @@
 
 use crate::Unit;
 use glib::translate::*;
-use std::fmt;
-use std::ptr;
+use std::{fmt, ptr};
 
 glib::wrapper! {
     #[derive(Debug, PartialOrd, Ord, Hash)]

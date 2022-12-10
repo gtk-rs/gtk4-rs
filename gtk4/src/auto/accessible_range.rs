@@ -3,7 +3,7 @@
 // DO NOT EDIT
 
 use crate::Accessible;
-use glib::object::IsA;
+use glib::prelude::*;
 use std::fmt;
 
 glib::wrapper! {

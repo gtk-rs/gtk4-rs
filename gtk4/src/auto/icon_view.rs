@@ -3,42 +3,17 @@
 // DO NOT EDIT
 #![allow(deprecated)]
 
-use crate::Accessible;
-use crate::AccessibleRole;
-use crate::Adjustment;
-use crate::Align;
-use crate::Buildable;
-use crate::CellArea;
-use crate::CellLayout;
-use crate::CellRenderer;
-use crate::ConstraintTarget;
-use crate::IconViewDropPosition;
-use crate::LayoutManager;
-use crate::MovementStep;
-use crate::Orientation;
-use crate::Overflow;
-use crate::Scrollable;
-use crate::ScrollablePolicy;
-use crate::SelectionMode;
-use crate::Tooltip;
-use crate::TreeIter;
-use crate::TreeModel;
-use crate::TreePath;
-use crate::Widget;
-use glib::object::Cast;
-use glib::object::IsA;
-use glib::object::ObjectExt;
-use glib::object::ObjectType as ObjectType_;
-use glib::signal::connect_raw;
-use glib::signal::SignalHandlerId;
-use glib::translate::*;
-use glib::StaticType;
-use glib::ToValue;
-use std::boxed::Box as Box_;
-use std::fmt;
-use std::mem;
-use std::mem::transmute;
-use std::ptr;
+use crate::{
+    Accessible, AccessibleRole, Adjustment, Align, Buildable, CellArea, CellLayout, CellRenderer,
+    ConstraintTarget, IconViewDropPosition, LayoutManager, MovementStep, Orientation, Overflow,
+    Scrollable, ScrollablePolicy, SelectionMode, Tooltip, TreeIter, TreeModel, TreePath, Widget,
+};
+use glib::{
+    prelude::*,
+    signal::{connect_raw, SignalHandlerId},
+    translate::*,
+};
+use std::{boxed::Box as Box_, fmt, mem, mem::transmute, ptr};
 
 glib::wrapper! {
     #[doc(alias = "GtkIconView")]

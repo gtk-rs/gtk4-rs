@@ -2,10 +2,8 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use crate::TreeModel;
-use crate::TreePath;
-use glib::object::IsA;
-use glib::translate::*;
+use crate::{TreeModel, TreePath};
+use glib::{prelude::*, translate::*};
 
 glib::wrapper! {
     #[derive(Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]

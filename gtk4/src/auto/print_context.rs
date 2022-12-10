@@ -4,8 +4,7 @@
 
 use crate::PageSetup;
 use glib::translate::*;
-use std::fmt;
-use std::mem;
+use std::{fmt, mem};
 
 glib::wrapper! {
     #[doc(alias = "GtkPrintContext")]

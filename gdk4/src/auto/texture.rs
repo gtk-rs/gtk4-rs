@@ -3,10 +3,8 @@
 // DO NOT EDIT
 
 use crate::Paintable;
-use glib::object::IsA;
-use glib::translate::*;
-use std::fmt;
-use std::ptr;
+use glib::{prelude::*, translate::*};
+use std::{fmt, ptr};
 
 glib::wrapper! {
     #[doc(alias = "GdkTexture")]

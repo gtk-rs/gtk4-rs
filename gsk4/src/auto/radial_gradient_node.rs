@@ -2,12 +2,9 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use crate::ColorStop;
-use crate::RenderNode;
-use glib::translate::*;
-use glib::StaticType;
-use std::fmt;
-use std::mem;
+use crate::{ColorStop, RenderNode};
+use glib::{prelude::*, translate::*};
+use std::{fmt, mem};
 
 glib::wrapper! {
     #[doc(alias = "GskRadialGradientNode")]

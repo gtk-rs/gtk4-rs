@@ -3,10 +3,8 @@
 // DO NOT EDIT
 
 use crate::Win32HCursor;
-use glib::object::IsA;
-use glib::translate::*;
-use std::fmt;
-use std::mem;
+use glib::{prelude::*, translate::*};
+use std::{fmt, mem};
 
 glib::wrapper! {
     #[doc(alias = "GdkWin32Display")]

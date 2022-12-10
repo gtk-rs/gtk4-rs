@@ -2,9 +2,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use crate::X11DeviceManagerXI2;
-use crate::X11DeviceXI2;
-use crate::X11Surface;
+use crate::{X11DeviceManagerXI2, X11DeviceXI2, X11Surface};
 use glib::translate::*;
 
 #[doc(alias = "gdk_x11_device_get_id")]

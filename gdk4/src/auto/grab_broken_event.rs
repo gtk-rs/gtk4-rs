@@ -2,10 +2,8 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use crate::Event;
-use crate::Surface;
-use glib::translate::*;
-use glib::StaticType;
+use crate::{Event, Surface};
+use glib::{prelude::*, translate::*};
 use std::fmt;
 
 glib::wrapper! {

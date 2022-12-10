@@ -2,26 +2,16 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use crate::CairoContext;
-use crate::Cursor;
-use crate::Device;
-use crate::Display;
-use crate::Event;
-use crate::FrameClock;
-use crate::GLContext;
-use crate::ModifierType;
-use crate::Monitor;
-use crate::VulkanContext;
-use glib::object::Cast;
-use glib::object::IsA;
-use glib::signal::connect_raw;
-use glib::signal::SignalHandlerId;
-use glib::translate::*;
-use std::boxed::Box as Box_;
-use std::fmt;
-use std::mem;
-use std::mem::transmute;
-use std::ptr;
+use crate::{
+    CairoContext, Cursor, Device, Display, Event, FrameClock, GLContext, ModifierType, Monitor,
+    VulkanContext,
+};
+use glib::{
+    prelude::*,
+    signal::{connect_raw, SignalHandlerId},
+    translate::*,
+};
+use std::{boxed::Box as Box_, fmt, mem, mem::transmute, ptr};
 
 glib::wrapper! {
     #[doc(alias = "GdkSurface")]

@@ -2,12 +2,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use crate::Accessible;
-use crate::Buildable;
-use crate::ConstraintTarget;
-use crate::Orientable;
-use crate::Scrollable;
-use crate::Widget;
+use crate::{Accessible, Buildable, ConstraintTarget, Orientable, Scrollable, Widget};
 use std::fmt;
 
 glib::wrapper! {

@@ -2,22 +2,13 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use crate::ContentFormats;
-use crate::Device;
-use crate::Display;
-use crate::Drag;
-use crate::DragAction;
-use crate::Surface;
-use glib::object::IsA;
-use glib::object::ObjectType as ObjectType_;
-use glib::signal::connect_raw;
-use glib::signal::SignalHandlerId;
-use glib::translate::*;
-use std::boxed::Box as Box_;
-use std::fmt;
-use std::mem::transmute;
-use std::pin::Pin;
-use std::ptr;
+use crate::{ContentFormats, Device, Display, Drag, DragAction, Surface};
+use glib::{
+    prelude::*,
+    signal::{connect_raw, SignalHandlerId},
+    translate::*,
+};
+use std::{boxed::Box as Box_, fmt, mem::transmute, pin::Pin, ptr};
 
 glib::wrapper! {
     #[doc(alias = "GdkDrop")]
