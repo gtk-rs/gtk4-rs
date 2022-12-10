@@ -3,24 +3,11 @@
 // DO NOT EDIT
 #![allow(deprecated)]
 
-use crate::Accessible;
-use crate::AccessibleRole;
-use crate::Align;
-use crate::Buildable;
-use crate::CellEditable;
-use crate::CellLayout;
-use crate::ComboBox;
-use crate::ConstraintTarget;
-use crate::LayoutManager;
-use crate::Overflow;
-use crate::SensitivityType;
-use crate::TreeModel;
-use crate::Widget;
-use glib::object::Cast;
-use glib::object::IsA;
-use glib::translate::*;
-use glib::StaticType;
-use glib::ToValue;
+use crate::{
+    Accessible, AccessibleRole, Align, Buildable, CellEditable, CellLayout, ComboBox,
+    ConstraintTarget, LayoutManager, Overflow, SensitivityType, TreeModel, Widget,
+};
+use glib::{prelude::*, translate::*};
 use std::fmt;
 
 glib::wrapper! {

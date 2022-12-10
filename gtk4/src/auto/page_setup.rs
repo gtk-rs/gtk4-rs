@@ -2,12 +2,9 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use crate::PageOrientation;
-use crate::PaperSize;
-use crate::Unit;
+use crate::{PageOrientation, PaperSize, Unit};
 use glib::translate::*;
-use std::fmt;
-use std::ptr;
+use std::{fmt, ptr};
 
 glib::wrapper! {
     #[doc(alias = "GtkPageSetup")]

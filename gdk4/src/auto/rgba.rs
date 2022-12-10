@@ -3,8 +3,7 @@
 // DO NOT EDIT
 
 use glib::translate::*;
-use std::fmt;
-use std::hash;
+use std::{fmt, hash};
 
 glib::wrapper! {
     pub struct RGBA(BoxedInline<ffi::GdkRGBA>);

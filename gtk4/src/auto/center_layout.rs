@@ -2,13 +2,8 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use crate::BaselinePosition;
-use crate::LayoutManager;
-use crate::Orientation;
-use crate::Widget;
-use glib::object::Cast;
-use glib::object::IsA;
-use glib::translate::*;
+use crate::{BaselinePosition, LayoutManager, Orientation, Widget};
+use glib::{prelude::*, translate::*};
 use std::fmt;
 
 glib::wrapper! {

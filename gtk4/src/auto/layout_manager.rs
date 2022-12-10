@@ -2,14 +2,9 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use crate::LayoutChild;
-use crate::Orientation;
-use crate::SizeRequestMode;
-use crate::Widget;
-use glib::object::IsA;
-use glib::translate::*;
-use std::fmt;
-use std::mem;
+use crate::{LayoutChild, Orientation, SizeRequestMode, Widget};
+use glib::{prelude::*, translate::*};
+use std::{fmt, mem};
 
 glib::wrapper! {
     #[doc(alias = "GtkLayoutManager")]

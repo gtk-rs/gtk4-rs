@@ -2,9 +2,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use crate::MemoryFormat;
-use crate::Paintable;
-use crate::Texture;
+use crate::{MemoryFormat, Paintable, Texture};
 use glib::translate::*;
 use std::fmt;
 

@@ -2,7 +2,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use glib::object::IsA;
+use glib::prelude::*;
 use std::fmt;
 
 glib::wrapper! {

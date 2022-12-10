@@ -3,8 +3,7 @@
 // DO NOT EDIT
 
 use crate::Monitor;
-use glib::object::IsA;
-use glib::translate::*;
+use glib::{prelude::*, translate::*};
 use std::mem;
 
 glib::wrapper! {

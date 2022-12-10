@@ -3,12 +3,7 @@
 // DO NOT EDIT
 #![allow(deprecated)]
 
-use crate::Buildable;
-use crate::TreeDragDest;
-use crate::TreeDragSource;
-use crate::TreeIter;
-use crate::TreeModel;
-use crate::TreeSortable;
+use crate::{Buildable, TreeDragDest, TreeDragSource, TreeIter, TreeModel, TreeSortable};
 use glib::translate::*;
 use std::fmt;
 

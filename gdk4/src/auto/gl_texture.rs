@@ -2,8 +2,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use crate::Paintable;
-use crate::Texture;
+use crate::{Paintable, Texture};
 use glib::translate::*;
 use std::fmt;
 

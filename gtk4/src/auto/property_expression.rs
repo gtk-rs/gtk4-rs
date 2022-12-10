@@ -3,9 +3,7 @@
 // DO NOT EDIT
 
 use crate::Expression;
-use glib::object::Cast;
-use glib::translate::*;
-use glib::StaticType;
+use glib::{prelude::*, translate::*};
 use std::fmt;
 
 glib::wrapper! {

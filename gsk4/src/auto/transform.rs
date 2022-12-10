@@ -3,10 +3,8 @@
 // DO NOT EDIT
 
 use crate::TransformCategory;
-use glib::object::Cast;
-use glib::translate::*;
-use std::fmt;
-use std::mem;
+use glib::{prelude::*, translate::*};
+use std::{fmt, mem};
 
 glib::wrapper! {
     #[derive(Debug, PartialOrd, Ord, Hash)]

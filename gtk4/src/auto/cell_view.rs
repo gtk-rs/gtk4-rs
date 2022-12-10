@@ -3,32 +3,17 @@
 // DO NOT EDIT
 #![allow(deprecated)]
 
-use crate::Accessible;
-use crate::AccessibleRole;
-use crate::Align;
-use crate::Buildable;
-use crate::CellArea;
-use crate::CellAreaContext;
-use crate::CellLayout;
-use crate::ConstraintTarget;
-use crate::LayoutManager;
-use crate::Orientable;
-use crate::Orientation;
-use crate::Overflow;
-use crate::TreeModel;
-use crate::TreePath;
-use crate::Widget;
-use glib::object::Cast;
-use glib::object::IsA;
-use glib::object::ObjectType as ObjectType_;
-use glib::signal::connect_raw;
-use glib::signal::SignalHandlerId;
-use glib::translate::*;
-use glib::StaticType;
-use glib::ToValue;
-use std::boxed::Box as Box_;
-use std::fmt;
-use std::mem::transmute;
+use crate::{
+    Accessible, AccessibleRole, Align, Buildable, CellArea, CellAreaContext, CellLayout,
+    ConstraintTarget, LayoutManager, Orientable, Orientation, Overflow, TreeModel, TreePath,
+    Widget,
+};
+use glib::{
+    prelude::*,
+    signal::{connect_raw, SignalHandlerId},
+    translate::*,
+};
+use std::{boxed::Box as Box_, fmt, mem::transmute};
 
 glib::wrapper! {
     #[doc(alias = "GtkCellView")]

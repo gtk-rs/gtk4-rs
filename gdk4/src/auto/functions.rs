@@ -3,8 +3,7 @@
 // DO NOT EDIT
 
 use crate::Texture;
-use glib::object::IsA;
-use glib::translate::*;
+use glib::{prelude::*, translate::*};
 
 #[doc(alias = "gdk_intern_mime_type")]
 pub fn intern_mime_type(string: &str) -> Option<glib::GString> {

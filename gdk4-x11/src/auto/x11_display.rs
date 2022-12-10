@@ -4,9 +4,7 @@
 
 use crate::X11Screen;
 use glib::translate::*;
-use std::fmt;
-use std::mem;
-use std::ptr;
+use std::{fmt, mem, ptr};
 
 glib::wrapper! {
     #[doc(alias = "GdkX11Display")]

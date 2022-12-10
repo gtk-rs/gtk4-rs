@@ -3,29 +3,16 @@
 // DO NOT EDIT
 #![allow(deprecated)]
 
-use crate::Buildable;
-use crate::CellAreaContext;
-use crate::CellEditable;
-use crate::CellLayout;
-use crate::CellRenderer;
-use crate::CellRendererState;
-use crate::DirectionType;
-use crate::Orientation;
-use crate::SizeRequestMode;
-use crate::Snapshot;
-use crate::TreeIter;
-use crate::TreeModel;
-use crate::TreePath;
-use crate::Widget;
-use glib::object::Cast;
-use glib::object::IsA;
-use glib::signal::connect_raw;
-use glib::signal::SignalHandlerId;
-use glib::translate::*;
-use std::boxed::Box as Box_;
-use std::fmt;
-use std::mem;
-use std::mem::transmute;
+use crate::{
+    Buildable, CellAreaContext, CellEditable, CellLayout, CellRenderer, CellRendererState,
+    DirectionType, Orientation, SizeRequestMode, Snapshot, TreeIter, TreeModel, TreePath, Widget,
+};
+use glib::{
+    prelude::*,
+    signal::{connect_raw, SignalHandlerId},
+    translate::*,
+};
+use std::{boxed::Box as Box_, fmt, mem, mem::transmute};
 
 glib::wrapper! {
     #[doc(alias = "GtkCellArea")]

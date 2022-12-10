@@ -2,30 +2,16 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use crate::Accessible;
-use crate::AccessibleRole;
-use crate::Align;
-use crate::BaselinePosition;
-use crate::Box;
-use crate::Buildable;
-use crate::ConstraintTarget;
-use crate::LayoutManager;
-use crate::Orientable;
-use crate::Orientation;
-use crate::Overflow;
-use crate::SizeGroup;
-use crate::Widget;
-use glib::object::Cast;
-use glib::object::IsA;
-use glib::object::ObjectType as ObjectType_;
-use glib::signal::connect_raw;
-use glib::signal::SignalHandlerId;
-use glib::translate::*;
-use glib::StaticType;
-use glib::ToValue;
-use std::boxed::Box as Box_;
-use std::fmt;
-use std::mem::transmute;
+use crate::{
+    Accessible, AccessibleRole, Align, BaselinePosition, Box, Buildable, ConstraintTarget,
+    LayoutManager, Orientable, Orientation, Overflow, SizeGroup, Widget,
+};
+use glib::{
+    prelude::*,
+    signal::{connect_raw, SignalHandlerId},
+    translate::*,
+};
+use std::{boxed::Box as Box_, fmt, mem::transmute};
 
 glib::wrapper! {
     #[doc(alias = "GtkShortcutsGroup")]

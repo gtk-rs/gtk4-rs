@@ -3,39 +3,17 @@
 // DO NOT EDIT
 #![allow(deprecated)]
 
-use crate::Accessible;
-use crate::Align;
-use crate::Allocation;
-use crate::Buildable;
-use crate::ConstraintTarget;
-use crate::DirectionType;
-use crate::EventController;
-use crate::LayoutManager;
-use crate::Native;
-use crate::Orientation;
-use crate::Overflow;
-use crate::PickFlags;
-use crate::Requisition;
-use crate::Root;
-use crate::Settings;
-use crate::SizeRequestMode;
-use crate::Snapshot;
-use crate::StateFlags;
-use crate::StyleContext;
-use crate::TextDirection;
-use crate::Tooltip;
-use glib::object::Cast;
-use glib::object::IsA;
-use glib::object::ObjectExt;
-use glib::signal::connect_raw;
-use glib::signal::SignalHandlerId;
-use glib::translate::*;
-use glib::StaticType;
-use glib::ToValue;
-use std::boxed::Box as Box_;
-use std::fmt;
-use std::mem;
-use std::mem::transmute;
+use crate::{
+    Accessible, Align, Allocation, Buildable, ConstraintTarget, DirectionType, EventController,
+    LayoutManager, Native, Orientation, Overflow, PickFlags, Requisition, Root, Settings,
+    SizeRequestMode, Snapshot, StateFlags, StyleContext, TextDirection, Tooltip,
+};
+use glib::{
+    prelude::*,
+    signal::{connect_raw, SignalHandlerId},
+    translate::*,
+};
+use std::{boxed::Box as Box_, fmt, mem, mem::transmute};
 
 glib::wrapper! {
     #[doc(alias = "GtkWidget")]

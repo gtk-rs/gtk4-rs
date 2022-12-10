@@ -3,15 +3,9 @@
 // DO NOT EDIT
 #![allow(deprecated)]
 
-use crate::TreeDragSource;
-use crate::TreeIter;
-use crate::TreeModel;
-use crate::TreePath;
-use glib::object::IsA;
-use glib::translate::*;
-use glib::StaticType;
-use std::boxed::Box as Box_;
-use std::fmt;
+use crate::{TreeDragSource, TreeIter, TreeModel, TreePath};
+use glib::{prelude::*, translate::*};
+use std::{boxed::Box as Box_, fmt};
 
 glib::wrapper! {
     #[doc(alias = "GtkTreeModelFilter")]

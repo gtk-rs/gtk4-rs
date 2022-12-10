@@ -4,8 +4,7 @@
 
 use crate::WaylandSurface;
 use glib::translate::*;
-use std::boxed::Box as Box_;
-use std::fmt;
+use std::{boxed::Box as Box_, fmt};
 
 glib::wrapper! {
     #[doc(alias = "GdkWaylandToplevel")]

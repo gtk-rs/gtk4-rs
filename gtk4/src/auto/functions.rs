@@ -2,28 +2,16 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use crate::Accessible;
-use crate::AccessibleProperty;
-use crate::AccessibleRelation;
-use crate::AccessibleRole;
-use crate::AccessibleState;
-use crate::DebugFlags;
-use crate::PageSetup;
-use crate::PrintSettings;
 #[cfg(any(target_os = "linux", feature = "dox"))]
 #[cfg_attr(feature = "dox", doc(cfg(target_os = "linux")))]
 use crate::Printer;
-use crate::StyleContext;
-use crate::TextDirection;
-use crate::TreeModel;
-use crate::TreePath;
-use crate::Widget;
-use crate::Window;
-use glib::object::IsA;
-use glib::translate::*;
-use std::boxed::Box as Box_;
-use std::mem;
-use std::ptr;
+use crate::{
+    Accessible, AccessibleProperty, AccessibleRelation, AccessibleRole, AccessibleState,
+    DebugFlags, PageSetup, PrintSettings, StyleContext, TextDirection, TreeModel, TreePath, Widget,
+    Window,
+};
+use glib::{prelude::*, translate::*};
+use std::{boxed::Box as Box_, mem, ptr};
 
 #[doc(alias = "gtk_accelerator_get_default_mod_mask")]
 pub fn accelerator_get_default_mod_mask() -> gdk::ModifierType {

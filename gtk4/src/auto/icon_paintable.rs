@@ -5,8 +5,7 @@
 #[cfg(any(feature = "v4_6", feature = "dox"))]
 #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
 use crate::SymbolicPaintable;
-use glib::object::IsA;
-use glib::translate::*;
+use glib::{prelude::*, translate::*};
 use std::fmt;
 
 #[cfg(any(feature = "v4_6", feature = "dox"))]

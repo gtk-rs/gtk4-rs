@@ -2,9 +2,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use crate::Buildable;
-use crate::Filter;
-use crate::MultiFilter;
+use crate::{Buildable, Filter, MultiFilter};
 use glib::translate::*;
 use std::fmt;
 

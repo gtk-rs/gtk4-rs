@@ -2,21 +2,11 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use crate::Accessible;
-use crate::AccessibleRole;
-use crate::Align;
-use crate::Buildable;
-use crate::ConstraintTarget;
-use crate::LayoutManager;
-use crate::Overflow;
-use crate::Widget;
-use glib::object::Cast;
-use glib::object::IsA;
-use glib::translate::*;
-use glib::StaticType;
-use glib::ToValue;
-use std::fmt;
-use std::mem;
+use crate::{
+    Accessible, AccessibleRole, Align, Buildable, ConstraintTarget, LayoutManager, Overflow, Widget,
+};
+use glib::{prelude::*, translate::*};
+use std::{fmt, mem};
 
 glib::wrapper! {
     #[doc(alias = "GtkFixed")]

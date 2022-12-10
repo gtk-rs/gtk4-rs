@@ -2,27 +2,18 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use crate::Device;
-use crate::Event;
-use crate::FullscreenMode;
-use crate::Surface;
-use crate::SurfaceEdge;
-use crate::Texture;
 #[cfg(any(feature = "v4_4", feature = "dox"))]
 #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_4")))]
 use crate::TitlebarGesture;
-use crate::ToplevelLayout;
-use crate::ToplevelState;
-use glib::object::Cast;
-use glib::object::IsA;
-use glib::signal::connect_raw;
-use glib::signal::SignalHandlerId;
-use glib::translate::*;
-use glib::StaticType;
-use glib::ToValue;
-use std::boxed::Box as Box_;
-use std::fmt;
-use std::mem::transmute;
+use crate::{
+    Device, Event, FullscreenMode, Surface, SurfaceEdge, Texture, ToplevelLayout, ToplevelState,
+};
+use glib::{
+    prelude::*,
+    signal::{connect_raw, SignalHandlerId},
+    translate::*,
+};
+use std::{boxed::Box as Box_, fmt, mem::transmute};
 
 glib::wrapper! {
     #[doc(alias = "GdkToplevel")]

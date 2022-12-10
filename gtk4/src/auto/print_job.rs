@@ -2,24 +2,15 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use crate::NumberUpLayout;
-use crate::PageRange;
-use crate::PageSet;
-use crate::PageSetup;
-use crate::PrintPages;
-use crate::PrintSettings;
-use crate::PrintStatus;
-use crate::Printer;
-use glib::object::ObjectType as ObjectType_;
-use glib::signal::connect_raw;
-use glib::signal::SignalHandlerId;
-use glib::translate::*;
-use glib::StaticType;
-use std::boxed::Box as Box_;
-use std::fmt;
-use std::mem;
-use std::mem::transmute;
-use std::ptr;
+use crate::{
+    NumberUpLayout, PageRange, PageSet, PageSetup, PrintPages, PrintSettings, PrintStatus, Printer,
+};
+use glib::{
+    prelude::*,
+    signal::{connect_raw, SignalHandlerId},
+    translate::*,
+};
+use std::{boxed::Box as Box_, fmt, mem, mem::transmute, ptr};
 
 glib::wrapper! {
     #[doc(alias = "GtkPrintJob")]

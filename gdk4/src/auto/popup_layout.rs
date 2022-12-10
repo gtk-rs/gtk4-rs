@@ -2,9 +2,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use crate::AnchorHints;
-use crate::Gravity;
-use crate::Rectangle;
+use crate::{AnchorHints, Gravity, Rectangle};
 use glib::translate::*;
 #[cfg(any(feature = "v4_2", feature = "dox"))]
 #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_2")))]

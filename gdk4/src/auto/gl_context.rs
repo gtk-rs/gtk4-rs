@@ -3,32 +3,18 @@
 // DO NOT EDIT
 #![allow(deprecated)]
 
-use crate::Display;
-use crate::DrawContext;
-use crate::Surface;
 #[cfg(any(feature = "v4_6", feature = "dox"))]
 #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
 use crate::GLAPI;
+use crate::{Display, DrawContext, Surface};
 #[cfg(any(feature = "v4_6", feature = "dox"))]
 #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
-use glib::object::Cast;
-use glib::object::IsA;
+use glib::signal::{connect_raw, SignalHandlerId};
+use glib::{prelude::*, translate::*};
 #[cfg(any(feature = "v4_6", feature = "dox"))]
 #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
-use glib::signal::connect_raw;
-#[cfg(any(feature = "v4_6", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
-use glib::signal::SignalHandlerId;
-use glib::translate::*;
-#[cfg(any(feature = "v4_6", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
-use std::boxed::Box as Box_;
-use std::fmt;
-use std::mem;
-#[cfg(any(feature = "v4_6", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
-use std::mem::transmute;
-use std::ptr;
+use std::{boxed::Box as Box_, mem::transmute};
+use std::{fmt, mem, ptr};
 
 glib::wrapper! {
     #[doc(alias = "GdkGLContext")]

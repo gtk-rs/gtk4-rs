@@ -3,8 +3,7 @@
 // DO NOT EDIT
 
 use crate::GLShader;
-use glib::object::Cast;
-use glib::translate::*;
+use glib::{prelude::*, translate::*};
 
 glib::wrapper! {
     #[derive(Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]

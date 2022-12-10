@@ -2,13 +2,8 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use crate::TextBuffer;
-use crate::TextChildAnchor;
-use crate::TextMark;
-use crate::TextSearchFlags;
-use crate::TextTag;
-use glib::object::IsA;
-use glib::translate::*;
+use crate::{TextBuffer, TextChildAnchor, TextMark, TextSearchFlags, TextTag};
+use glib::{prelude::*, translate::*};
 use std::cmp;
 
 glib::wrapper! {

@@ -3,10 +3,7 @@
 // DO NOT EDIT
 
 use crate::EntryBuffer;
-use glib::object::Cast;
-use glib::translate::*;
-use glib::StaticType;
-use glib::ToValue;
+use glib::{prelude::*, translate::*};
 use std::fmt;
 
 glib::wrapper! {

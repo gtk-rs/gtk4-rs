@@ -2,27 +2,16 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use crate::PageSetup;
-use crate::PrintContext;
-use crate::PrintOperationAction;
-use crate::PrintOperationPreview;
-use crate::PrintOperationResult;
-use crate::PrintSettings;
-use crate::PrintStatus;
-use crate::Unit;
-use crate::Widget;
-use crate::Window;
-use glib::object::Cast;
-use glib::object::IsA;
-use glib::signal::connect_raw;
-use glib::signal::SignalHandlerId;
-use glib::translate::*;
-use glib::StaticType;
-use glib::ToValue;
-use std::boxed::Box as Box_;
-use std::fmt;
-use std::mem::transmute;
-use std::ptr;
+use crate::{
+    PageSetup, PrintContext, PrintOperationAction, PrintOperationPreview, PrintOperationResult,
+    PrintSettings, PrintStatus, Unit, Widget, Window,
+};
+use glib::{
+    prelude::*,
+    signal::{connect_raw, SignalHandlerId},
+    translate::*,
+};
+use std::{boxed::Box as Box_, fmt, mem::transmute, ptr};
 
 glib::wrapper! {
     #[doc(alias = "GtkPrintOperation")]

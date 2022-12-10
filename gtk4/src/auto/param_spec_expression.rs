@@ -2,8 +2,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use glib::translate::*;
-use glib::StaticType;
+use glib::{prelude::*, translate::*};
 use std::fmt;
 
 glib::wrapper! {
