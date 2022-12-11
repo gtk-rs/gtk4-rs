@@ -100,7 +100,7 @@ pub mod prelude {
     pub use super::application_window::ApplicationWindowImpl;
     pub use super::box_::BoxImpl;
     pub use super::buildable::{BuildableImpl, BuildableImplExt};
-    pub use super::builder_scope::{BuilderScopeImpl, BuilderScopeImplExt};
+    pub use super::builder_scope::{BuilderCScopeImpl, BuilderScopeImpl, BuilderScopeImplExt};
     pub use super::button::{ButtonImpl, ButtonImplExt};
     pub use super::cell_area::{CellAreaClassSubclassExt, CellAreaImpl, CellAreaImplExt};
     pub use super::cell_area_context::{CellAreaContextImpl, CellAreaContextImplExt};
