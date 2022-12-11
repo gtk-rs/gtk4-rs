@@ -121,6 +121,7 @@ mod bitset_iter;
 mod bookmark_list;
 mod border;
 mod builder;
+mod builder_cscope;
 mod builder_rust_scope;
 mod cell_area;
 mod cell_layout;
@@ -206,6 +207,7 @@ mod widget;
 
 pub use bitset_iter::BitsetIter;
 pub use border::Border;
+pub use builder_cscope::BuilderCScope;
 pub use builder_rust_scope::BuilderRustScope;
 pub use css_location::CssLocation;
 pub use expression_watch::ExpressionWatch;

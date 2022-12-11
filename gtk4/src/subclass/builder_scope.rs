@@ -3,10 +3,14 @@
 // rustdoc-stripper-ignore-next
 //! Traits intended for implementing the [`BuilderScope`](crate::BuilderScope) interface.
 
-use crate::subclass::prelude::*;
-use crate::{Builder, BuilderClosureFlags, BuilderScope};
-use glib::translate::*;
-use glib::{Cast, GString};
+use crate::{
+    prelude::*, subclass::prelude::*, Builder, BuilderCScope, BuilderClosureFlags, BuilderScope,
+};
+use glib::{translate::*, GString};
+
+pub trait BuilderCScopeImpl: BuilderScopeImpl {}
+
+unsafe impl<T: BuilderCScopeImpl> IsSubclassable<T> for BuilderCScope {}
 
 pub trait BuilderScopeImpl: ObjectImpl {
     #[doc(alias = "get_type_from_name")]
