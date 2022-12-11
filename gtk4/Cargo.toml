@@ -10,7 +10,7 @@ license = "MIT"
 name = "gtk4"
 readme = "README.md"
 repository = "https://github.com/gtk-rs/gtk4-rs"
-version = "0.5.3"
+version = "0.5.4"
 rust-version = "1.63"
 [lib]
 name = "gtk4"
@@ -37,16 +37,16 @@ features = ["dox"]
 [dependencies]
 bitflags = "1.0"
 cairo-rs = {git = "https://github.com/gtk-rs/gtk-rs-core", branch = "0.16", version = "0.16"}
-ffi = {package = "gtk4-sys", path = "./sys", version = "0.5.3"}
+ffi = {package = "gtk4-sys", path = "./sys", version = "0.5.4"}
 field-offset = "0.3"
 futures-channel = "0.3"
-gdk = {package = "gdk4", path = "../gdk4", version = "0.5.3"}
+gdk = {package = "gdk4", path = "../gdk4", version = "0.5.4"}
 gdk-pixbuf = {git = "https://github.com/gtk-rs/gtk-rs-core", branch = "0.16", version = "0.16"}
 gio = {git = "https://github.com/gtk-rs/gtk-rs-core", branch = "0.16", version = "0.16", features = ["v2_66"]}
 glib = {git = "https://github.com/gtk-rs/gtk-rs-core", branch = "0.16", version = "0.16.2", features = ["v2_66"]}
 graphene = {package = "graphene-rs", git = "https://github.com/gtk-rs/gtk-rs-core", branch = "0.16", version = "0.16"}
-gsk = {package = "gsk4", path = "../gsk4", version = "0.5.3"}
-gtk4-macros = {path = "../gtk4-macros", version = "0.5.3"}
+gsk = {package = "gsk4", path = "../gsk4", version = "0.5.4"}
+gtk4-macros = {path = "../gtk4-macros", version = "0.5.4"}
 libc = "0.2"
 once_cell = "1.0"
 pango = {git = "https://github.com/gtk-rs/gtk-rs-core", branch = "0.16", version = "0.16", features = ["v1_46"]}

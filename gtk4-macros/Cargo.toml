@@ -9,7 +9,7 @@ keywords = ["gtk", "gtk4", "gtk-rs", "gnome", "GUI"]
 license = "MIT"
 name = "gtk4-macros"
 repository = "https://github.com/gtk-rs/gtk4-rs"
-version = "0.5.3"
+version = "0.5.4"
 rust-version = "1.63"
 [lib]
 proc-macro = true
@@ -29,5 +29,5 @@ syn = {version = "1.0", default-features = false, features = ["full"]}
 [dev-dependencies]
 futures-channel = "0.3"
 futures-util = "0.3"
-gtk = { path = "../gtk4", package = "gtk4", version = "0.5.3" }
+gtk = { path = "../gtk4", package = "gtk4", version = "0.5.4" }
 trybuild2 = "1.0"
