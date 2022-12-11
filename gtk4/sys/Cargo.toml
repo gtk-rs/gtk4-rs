@@ -64,7 +64,7 @@ version = "0.17"
 [dependencies.gdk]
 package = "gdk4-sys"
 path = "../../gdk4/sys"
-version = "0.6.0"
+version = "0.6"
 
 [dependencies.gio]
 package = "gio-sys"
@@ -89,7 +89,7 @@ version = "0.17"
 [dependencies.gsk]
 package = "gsk4-sys"
 path = "../../gsk4/sys"
-version = "0.6.0"
+version = "0.6"
 
 [dependencies.pango]
 package = "pango-sys"

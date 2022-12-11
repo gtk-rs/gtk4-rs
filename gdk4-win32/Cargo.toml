@@ -37,12 +37,12 @@ windows = { version = "0.43.0", features = [
 [dependencies.ffi]
 path = "./sys"
 package = "gdk4-win32-sys"
-version = "0.6.0"
+version = "0.6"
 
 [dependencies.gdk]
 path = "../gdk4"
 package = "gdk4"
-version = "0.6.0"
+version = "0.6"
 
 [dependencies.gio]
 git = "https://github.com/gtk-rs/gtk-rs-core"

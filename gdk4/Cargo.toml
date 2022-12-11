@@ -27,7 +27,7 @@ features = ["dox"]
 [dependencies]
 bitflags = "1.0"
 cairo-rs = {git = "https://github.com/gtk-rs/gtk-rs-core", version = "0.17"}
-ffi = {package = "gdk4-sys", path = "./sys", version = "0.6.0"}
+ffi = {package = "gdk4-sys", path = "./sys", version = "0.6"}
 gdk-pixbuf = {git = "https://github.com/gtk-rs/gtk-rs-core", version = "0.17"}
 gio = {git = "https://github.com/gtk-rs/gtk-rs-core", version = "0.17", features = ["v2_66"]}
 glib = {git = "https://github.com/gtk-rs/gtk-rs-core", version = "0.17", features = ["v2_66"]}
