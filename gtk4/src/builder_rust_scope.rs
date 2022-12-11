@@ -1,7 +1,6 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::subclass::prelude::*;
-use crate::BuilderScope;
+use crate::{subclass::prelude::*, BuilderCScope, BuilderScope};
 use std::rc::Rc;
 
 glib::wrapper! {
@@ -36,6 +35,7 @@ glib::wrapper! {
     /// # }
     /// ```
     pub struct BuilderRustScope(ObjectSubclass<imp::BuilderRustScope>)
+        @extends BuilderCScope,
         @implements BuilderScope;
 }
 
@@ -66,12 +66,10 @@ impl BuilderRustScope {
 }
 
 mod imp {
-    use crate::prelude::*;
-    use crate::subclass::prelude::*;
-    use crate::{Builder, BuilderClosureFlags, BuilderError, BuilderScope};
-    use glib::translate::*;
-    use glib::{Closure, RustClosure};
-    use std::{cell::RefCell, collections::HashMap, rc::Rc};
+    use super::*;
+    use crate::{prelude::*, Builder, BuilderClosureFlags, BuilderError};
+    use glib::{translate::*, Closure, RustClosure};
+    use std::{cell::RefCell, collections::HashMap};
 
     type Callback = dyn Fn(&[glib::Value]) -> Option<glib::Value>;
 
@@ -84,12 +82,20 @@ mod imp {
     impl ObjectSubclass for BuilderRustScope {
         const NAME: &'static str = "GtkBuilderRustScope";
         type Type = super::BuilderRustScope;
+        type ParentType = BuilderCScope;
         type Interfaces = (BuilderScope,);
     }
 
     impl ObjectImpl for BuilderRustScope {}
+    impl BuilderCScopeImpl for BuilderRustScope {}
 
     impl BuilderScopeImpl for BuilderRustScope {
+        fn type_from_function(&self, _builder: &Builder, _function_name: &str) -> glib::Type {
+            // Override the implementation provided by BuilderCScope and default to the interface
+            // default implementation
+            glib::Type::INVALID
+        }
+
         fn create_closure(
             &self,
             builder: &Builder,
