@@ -837,6 +837,7 @@ pub trait GtkWindowExt: 'static {
 
     fn emit_enable_debugging(&self, toggle: bool) -> bool;
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "keys-changed")]
     fn connect_keys_changed<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
