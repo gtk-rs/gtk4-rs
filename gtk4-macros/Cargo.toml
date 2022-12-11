@@ -29,5 +29,5 @@ syn = {version = "1.0", default-features = false, features = ["full"]}
 [dev-dependencies]
 futures-channel = "0.3"
 futures-util = "0.3"
-gtk = { path = "../gtk4", package = "gtk4", version = "0.6.0" }
+gtk = { path = "../gtk4", package = "gtk4", version = "0.6" }
 trybuild2 = "1.0"

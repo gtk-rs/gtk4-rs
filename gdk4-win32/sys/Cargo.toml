@@ -37,7 +37,7 @@ libc = "0.2"
 [dependencies.gdk]
 package = "gdk4-sys"
 path = "../../gdk4/sys"
-version = "0.6.0"
+version = "0.6"
 
 [dependencies.glib]
 package = "glib-sys"
