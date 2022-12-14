@@ -34,8 +34,8 @@ fn build_ui(application: &gtk::Application) {
 
     (0..10000).for_each(|i| {
         store.append(&BoxedAnyObject::new(Row {
-            col1: format!("col1 {}", i),
-            col2: format!("col2 {}", i),
+            col1: format!("col1 {i}"),
+            col2: format!("col2 {i}"),
         }))
     });
     let sel = gtk::SingleSelection::new(Some(&store));

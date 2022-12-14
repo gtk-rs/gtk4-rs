@@ -3,6 +3,6 @@
 #[test]
 fn check_gir_file() {
     let res = gir_format_check::check_gir_file("Gir.toml");
-    println!("{}", res);
+    println!("{res}");
     assert_eq!(res.nb_errors, 0);
 }
