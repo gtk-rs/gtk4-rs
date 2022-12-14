@@ -65,7 +65,7 @@ impl UtilityCallbacks {
         let mut res = String::new();
         for (index, value) in values.iter().enumerate() {
             res.push_str(value.get::<&str>().unwrap_or_else(|e| {
-                panic!("Expected string value for argument {}: {}", index, e);
+                panic!("Expected string value for argument {index}: {e}");
             }));
         }
         res

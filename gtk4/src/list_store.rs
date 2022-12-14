@@ -40,16 +40,13 @@ impl ListStore {
                     as u32;
             assert!(
                 columns_and_values.len() <= n_columns as usize,
-                "got values for {} columns but only {} columns exist",
+                "got values for {} columns but only {n_columns} columns exist",
                 columns_and_values.len(),
-                n_columns
             );
             for (column, value) in columns_and_values {
                 assert!(
                     *column < n_columns,
-                    "got column {} which is higher than the number of columns {}",
-                    *column,
-                    n_columns
+                    "got column {column} which is higher than the number of columns {n_columns}",
                 );
                 let type_ = from_glib(ffi::gtk_tree_model_get_column_type(
                     self.upcast_ref::<TreeModel>().to_glib_none().0,
@@ -57,9 +54,7 @@ impl ListStore {
                 ));
                 assert!(
                     Value::type_transformable(value.value_type(), type_),
-                    "column {} is of type {} but found value of type {}",
-                    *column,
-                    type_,
+                    "column {column} is of type {type_} but found value of type {}",
                     value.value_type()
                 );
             }
@@ -96,8 +91,7 @@ impl ListStore {
             let safe_count = count as usize == new_order.len();
             debug_assert!(
                 safe_count,
-                "Incorrect `new_order` slice length. Expected `{}`, found `{}`.",
-                count,
+                "Incorrect `new_order` slice length. Expected `{count}`, found `{}`.",
                 new_order.len()
             );
             let safe_values = new_order.iter().max().map_or(true, |&max| {
@@ -107,9 +101,8 @@ impl ListStore {
             debug_assert!(
                 safe_values,
                 "Some `new_order` slice values are out of range. Maximum safe value: \
-                 `{}`. The slice contents: `{:?}`",
+                 `{}`. The slice contents: `{new_order:?}`",
                 count - 1,
-                new_order
             );
             if safe_count && safe_values {
                 ffi::gtk_list_store_reorder(
@@ -130,16 +123,13 @@ impl ListStore {
                     as u32;
             assert!(
                 columns_and_values.len() <= n_columns as usize,
-                "got values for {} columns but only {} columns exist",
+                "got values for {} columns but only {n_columns} columns exist",
                 columns_and_values.len(),
-                n_columns
             );
             for (column, value) in columns_and_values {
                 assert!(
                     *column < n_columns,
-                    "got column {} which is higher than the number of columns {}",
-                    *column,
-                    n_columns
+                    "got column {column} which is higher than the number of columns {n_columns}",
                 );
                 let type_ = from_glib(ffi::gtk_tree_model_get_column_type(
                     self.upcast_ref::<TreeModel>().to_glib_none().0,
@@ -147,9 +137,7 @@ impl ListStore {
                 ));
                 assert!(
                     Value::type_transformable(value.value_type(), type_),
-                    "column {} is of type {} but found value of type {}",
-                    *column,
-                    type_,
+                    "column {column} is of type {type_} but found value of type {}",
                     value.value_type()
                 );
             }
@@ -193,9 +181,7 @@ impl ListStore {
                     as u32;
             assert!(
                 column < columns,
-                "got column {} which is higher than the number of columns {}",
-                column,
-                columns
+                "got column {column} which is higher than the number of columns {columns}",
             );
 
             let type_ = from_glib(ffi::gtk_tree_model_get_column_type(
@@ -204,9 +190,7 @@ impl ListStore {
             ));
             assert!(
                 Value::type_transformable(value.type_(), type_),
-                "column {} is of type {} but found value of type {}",
-                column,
-                type_,
+                "column {column} is of type {type_} but found value of type {}",
                 value.type_()
             );
 

@@ -19,7 +19,7 @@ impl ButtonImpl for DerivedButton {}
 impl BaseButtonImpl for DerivedButton {
     fn sync_method(&self, obj: &BaseButton, extra_text: Option<String>) {
         if let Some(text) = extra_text {
-            obj.set_label(&format!("DerivedButton sync {}", text));
+            obj.set_label(&format!("DerivedButton sync {text}"));
         } else {
             obj.set_label("DerivedButton sync");
         }
