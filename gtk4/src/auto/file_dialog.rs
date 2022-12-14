@@ -83,7 +83,7 @@ impl FileDialog {
     }
 
     #[doc(alias = "gtk_file_dialog_open")]
-    pub fn open<P: FnOnce(Result<Option<gio::File>, glib::Error>) + 'static>(
+    pub fn open<P: FnOnce(Result<gio::File, glib::Error>) + 'static>(
         &self,
         parent: Option<&impl IsA<Window>>,
         current_file: Option<&impl IsA<gio::File>>,
@@ -103,7 +103,7 @@ impl FileDialog {
         let user_data: Box_<glib::thread_guard::ThreadGuard<P>> =
             Box_::new(glib::thread_guard::ThreadGuard::new(callback));
         unsafe extern "C" fn open_trampoline<
-            P: FnOnce(Result<Option<gio::File>, glib::Error>) + 'static,
+            P: FnOnce(Result<gio::File, glib::Error>) + 'static,
         >(
             _source_object: *mut glib::gobject_ffi::GObject,
             res: *mut gio::ffi::GAsyncResult,
@@ -138,8 +138,7 @@ impl FileDialog {
         &self,
         parent: Option<&(impl IsA<Window> + Clone + 'static)>,
         current_file: Option<&(impl IsA<gio::File> + Clone + 'static)>,
-    ) -> Pin<Box_<dyn std::future::Future<Output = Result<Option<gio::File>, glib::Error>> + 'static>>
-    {
+    ) -> Pin<Box_<dyn std::future::Future<Output = Result<gio::File, glib::Error>> + 'static>> {
         let parent = parent.map(ToOwned::to_owned);
         let current_file = current_file.map(ToOwned::to_owned);
         Box_::pin(gio::GioFuture::new(self, move |obj, cancellable, send| {
@@ -155,7 +154,7 @@ impl FileDialog {
     }
 
     #[doc(alias = "gtk_file_dialog_open_multiple")]
-    pub fn open_multiple<P: FnOnce(Result<Option<gio::ListModel>, glib::Error>) + 'static>(
+    pub fn open_multiple<P: FnOnce(Result<gio::ListModel, glib::Error>) + 'static>(
         &self,
         parent: Option<&impl IsA<Window>>,
         cancellable: Option<&impl IsA<gio::Cancellable>>,
@@ -174,7 +173,7 @@ impl FileDialog {
         let user_data: Box_<glib::thread_guard::ThreadGuard<P>> =
             Box_::new(glib::thread_guard::ThreadGuard::new(callback));
         unsafe extern "C" fn open_multiple_trampoline<
-            P: FnOnce(Result<Option<gio::ListModel>, glib::Error>) + 'static,
+            P: FnOnce(Result<gio::ListModel, glib::Error>) + 'static,
         >(
             _source_object: *mut glib::gobject_ffi::GObject,
             res: *mut gio::ffi::GAsyncResult,
@@ -211,11 +210,8 @@ impl FileDialog {
     pub fn open_multiple_future(
         &self,
         parent: Option<&(impl IsA<Window> + Clone + 'static)>,
-    ) -> Pin<
-        Box_<
-            dyn std::future::Future<Output = Result<Option<gio::ListModel>, glib::Error>> + 'static,
-        >,
-    > {
+    ) -> Pin<Box_<dyn std::future::Future<Output = Result<gio::ListModel, glib::Error>> + 'static>>
+    {
         let parent = parent.map(ToOwned::to_owned);
         Box_::pin(gio::GioFuture::new(self, move |obj, cancellable, send| {
             obj.open_multiple(
@@ -229,7 +225,7 @@ impl FileDialog {
     }
 
     #[doc(alias = "gtk_file_dialog_save")]
-    pub fn save<P: FnOnce(Result<Option<gio::File>, glib::Error>) + 'static>(
+    pub fn save<P: FnOnce(Result<gio::File, glib::Error>) + 'static>(
         &self,
         parent: Option<&impl IsA<Window>>,
         current_file: Option<&impl IsA<gio::File>>,
@@ -250,7 +246,7 @@ impl FileDialog {
         let user_data: Box_<glib::thread_guard::ThreadGuard<P>> =
             Box_::new(glib::thread_guard::ThreadGuard::new(callback));
         unsafe extern "C" fn save_trampoline<
-            P: FnOnce(Result<Option<gio::File>, glib::Error>) + 'static,
+            P: FnOnce(Result<gio::File, glib::Error>) + 'static,
         >(
             _source_object: *mut glib::gobject_ffi::GObject,
             res: *mut gio::ffi::GAsyncResult,
@@ -287,8 +283,7 @@ impl FileDialog {
         parent: Option<&(impl IsA<Window> + Clone + 'static)>,
         current_file: Option<&(impl IsA<gio::File> + Clone + 'static)>,
         current_name: Option<&str>,
-    ) -> Pin<Box_<dyn std::future::Future<Output = Result<Option<gio::File>, glib::Error>> + 'static>>
-    {
+    ) -> Pin<Box_<dyn std::future::Future<Output = Result<gio::File, glib::Error>> + 'static>> {
         let parent = parent.map(ToOwned::to_owned);
         let current_file = current_file.map(ToOwned::to_owned);
         let current_name = current_name.map(ToOwned::to_owned);
@@ -306,7 +301,7 @@ impl FileDialog {
     }
 
     #[doc(alias = "gtk_file_dialog_select_folder")]
-    pub fn select_folder<P: FnOnce(Result<Option<gio::File>, glib::Error>) + 'static>(
+    pub fn select_folder<P: FnOnce(Result<gio::File, glib::Error>) + 'static>(
         &self,
         parent: Option<&impl IsA<Window>>,
         current_folder: Option<&impl IsA<gio::File>>,
@@ -326,7 +321,7 @@ impl FileDialog {
         let user_data: Box_<glib::thread_guard::ThreadGuard<P>> =
             Box_::new(glib::thread_guard::ThreadGuard::new(callback));
         unsafe extern "C" fn select_folder_trampoline<
-            P: FnOnce(Result<Option<gio::File>, glib::Error>) + 'static,
+            P: FnOnce(Result<gio::File, glib::Error>) + 'static,
         >(
             _source_object: *mut glib::gobject_ffi::GObject,
             res: *mut gio::ffi::GAsyncResult,
@@ -365,8 +360,7 @@ impl FileDialog {
         &self,
         parent: Option<&(impl IsA<Window> + Clone + 'static)>,
         current_folder: Option<&(impl IsA<gio::File> + Clone + 'static)>,
-    ) -> Pin<Box_<dyn std::future::Future<Output = Result<Option<gio::File>, glib::Error>> + 'static>>
-    {
+    ) -> Pin<Box_<dyn std::future::Future<Output = Result<gio::File, glib::Error>> + 'static>> {
         let parent = parent.map(ToOwned::to_owned);
         let current_folder = current_folder.map(ToOwned::to_owned);
         Box_::pin(gio::GioFuture::new(self, move |obj, cancellable, send| {

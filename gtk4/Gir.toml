@@ -70,7 +70,6 @@ generate = [
     "Gtk.ColorButton",
     "Gtk.ColorChooserDialog",
     "Gtk.ColorChooserWidget",
-    "Gtk.ColorDialog",
     "Gtk.ColorDialogButton",
     "Gtk.ColumnView",
     "Gtk.ColumnViewColumn",
@@ -108,7 +107,6 @@ generate = [
     "Gtk.FileChooserError",
     "Gtk.FileChooserNative",
     "Gtk.FileChooserWidget",
-    "Gtk.FileDialog",
     "Gtk.Filter",
     "Gtk.FilterChange",
     "Gtk.FilterMatch",
@@ -839,6 +837,14 @@ manual_traits = ["ColorChooserExtManual"]
     doc_trait_name = "ColorChooserExtManual"
 
 [[object]]
+name = "Gtk.ColorDialog"
+status = "generate"
+    [[object.function]]
+    name = "choose_rgba"
+        [object.function.return]
+        nullable = false
+
+[[object]]
 name = "Gtk.ComboBox"
 status = "generate"
 manual_traits = ["ComboBoxExtManual"]
@@ -1186,6 +1192,14 @@ status = "generate"
     manual = true
 
 [[object]]
+name = "Gtk.FileDialog"
+status = "generate"
+    [[object.function]]
+    pattern = "(open|save|open_multiple|select_folder)"
+        [object.function.return]
+        nullable = false
+
+[[object]]
 name = "Gtk.FileFilter"
 status = "generate"
 generate_builder = false
@@ -1245,6 +1259,8 @@ status = "generate"
         [[object.function.parameter]]
         name = "initial_value"
         const = true
+        [object.function.return]
+        nullable = false
     [[object.function]]
     name = "choose_font_and_features"
     manual = true # incorrect usage of the Uninitialized trait
@@ -1253,6 +1269,10 @@ status = "generate"
         [[object.function.parameter]]
         name = "language"
         const = true
+    [[object.function]]
+    pattern = "choose_(family|face)"
+        [object.function.return]
+        nullable = false
 
 [[object]]
 name = "Gtk.FontDialogButton"
