@@ -50,7 +50,7 @@ pub(super) fn base_button_async_method(this: &BaseButtonInstance) -> PinnedFutur
 impl BaseButton {
     fn sync_method(&self, obj: &super::BaseButton, extra_text: Option<String>) {
         if let Some(text) = extra_text {
-            obj.set_label(&format!("BaseButton sync: {}", text));
+            obj.set_label(&format!("BaseButton sync: {text}"));
         } else {
             obj.set_label("BaseButton sync");
         }
