@@ -25,9 +25,7 @@ impl<O: IsA<TreeModel>> TreeModelExtManual for O {
         let total_columns = self.as_ref().n_columns();
         assert!(
             column < total_columns,
-            "TreeModel has {} columns but TreeModelExt::get got {} passed as a column number",
-            total_columns,
-            column
+            "TreeModel has {total_columns} columns but TreeModelExt::get got {column} passed as a column number",
         );
         unsafe {
             let mut value = glib::Value::uninitialized();

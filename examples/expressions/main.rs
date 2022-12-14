@@ -45,7 +45,7 @@ fn build_ui(app: &gtk::Application) {
             .chain_property::<Metadata>("title")
             .chain_closure_with_callback(|args| {
                 let title: String = args[1].get().unwrap();
-                format!("Title: {}", title)
+                format!("Title: {title}")
             })
             .bind(&title_label, "label", gtk::Widget::NONE);
 
@@ -87,7 +87,7 @@ fn data() -> gio::ListStore {
 
     for i in 0..=100 {
         let metadata = Metadata::new();
-        metadata.set_property("title", format!("Note ({})", i));
+        metadata.set_property("title", format!("Note ({i})"));
 
         let note = Note::new(&metadata);
         vector.push(note);

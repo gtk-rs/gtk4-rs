@@ -163,9 +163,7 @@ pub fn impl_template_callbacks(mut input: syn::ItemImpl, args: Args) -> TokenStr
                 arg_names.push(name.clone());
                 let unwrap_value = |ty, err_msg| {
                     let index_err_msg = format!(
-                        "Failed to get argument `{}` at index {}: Closure invoked with only {{}} arguments",
-                        ident,
-                        index
+                        "Failed to get argument `{ident}` at index {index}: Closure invoked with only {{}} arguments",
                     );
                     quote! {
                         let #name = <[#crate_ident::glib::Value]>::get(&values, #index)
@@ -177,8 +175,7 @@ pub fn impl_template_callbacks(mut input: syn::ItemImpl, args: Args) -> TokenStr
                 match arg {
                     syn::FnArg::Receiver(receiver) => {
                         let err_msg = format!(
-                            "Wrong type for `self` in template callback `{}`: {{:?}}",
-                            ident
+                            "Wrong type for `self` in template callback `{ident}`: {{:?}}",
                         );
                         if receiver.reference.is_none() {
                             Some(unwrap_value(quote! { #self_ty }, err_msg))
@@ -226,9 +223,7 @@ pub fn impl_template_callbacks(mut input: syn::ItemImpl, args: Args) -> TokenStr
                         } else {
                             let ty = typed.ty.as_ref();
                             let err_msg = format!(
-                                "Wrong type for argument {} in template callback `{}`: {{:?}}",
-                                index,
-                                ident
+                                "Wrong type for argument {index} in template callback `{ident}`: {{:?}}",
                             );
                             Some(unwrap_value(ty.to_token_stream(), err_msg))
                         }

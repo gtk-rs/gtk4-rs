@@ -1059,9 +1059,7 @@ pub unsafe trait WidgetClassSubclassExt: ClassStruct {
         let type_ = <Self::Type as ObjectSubclassType>::type_();
         assert!(
             SignalId::lookup(signal_name, type_).is_some(),
-            "Signal '{}' doesn't exists for type '{}'",
-            signal_name,
-            type_
+            "Signal '{signal_name}' doesn't exists for type '{type_}'",
         );
 
         let shortcut = crate::Shortcut::new(
@@ -1119,9 +1117,7 @@ pub unsafe trait WidgetClassSubclassExt: ClassStruct {
         let type_ = <Self::Type as ObjectSubclassType>::type_();
         assert!(
             SignalId::lookup(signal_name, type_).is_some(),
-            "Signal '{}' doesn't exists for type '{}'",
-            signal_name,
-            type_
+            "Signal '{signal_name}' doesn't exists for type '{type_}'",
         );
 
         unsafe {
