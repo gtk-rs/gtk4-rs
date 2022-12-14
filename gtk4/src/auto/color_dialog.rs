@@ -35,7 +35,7 @@ impl ColorDialog {
     }
 
     #[doc(alias = "gtk_color_dialog_choose_rgba")]
-    pub fn choose_rgba<P: FnOnce(Result<Option<gdk::RGBA>, glib::Error>) + 'static>(
+    pub fn choose_rgba<P: FnOnce(Result<gdk::RGBA, glib::Error>) + 'static>(
         &self,
         parent: Option<&impl IsA<Window>>,
         initial_color: Option<&gdk::RGBA>,
@@ -55,7 +55,7 @@ impl ColorDialog {
         let user_data: Box_<glib::thread_guard::ThreadGuard<P>> =
             Box_::new(glib::thread_guard::ThreadGuard::new(callback));
         unsafe extern "C" fn choose_rgba_trampoline<
-            P: FnOnce(Result<Option<gdk::RGBA>, glib::Error>) + 'static,
+            P: FnOnce(Result<gdk::RGBA, glib::Error>) + 'static,
         >(
             _source_object: *mut glib::gobject_ffi::GObject,
             res: *mut gio::ffi::GAsyncResult,
@@ -91,8 +91,7 @@ impl ColorDialog {
         &self,
         parent: Option<&(impl IsA<Window> + Clone + 'static)>,
         initial_color: Option<&gdk::RGBA>,
-    ) -> Pin<Box_<dyn std::future::Future<Output = Result<Option<gdk::RGBA>, glib::Error>> + 'static>>
-    {
+    ) -> Pin<Box_<dyn std::future::Future<Output = Result<gdk::RGBA, glib::Error>> + 'static>> {
         let parent = parent.map(ToOwned::to_owned);
         let initial_color = initial_color.map(ToOwned::to_owned);
         Box_::pin(gio::GioFuture::new(self, move |obj, cancellable, send| {
