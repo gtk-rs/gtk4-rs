@@ -43,7 +43,7 @@ impl FontDialog {
     }
 
     #[doc(alias = "gtk_font_dialog_choose_face")]
-    pub fn choose_face<P: FnOnce(Result<Option<pango::FontFace>, glib::Error>) + 'static>(
+    pub fn choose_face<P: FnOnce(Result<pango::FontFace, glib::Error>) + 'static>(
         &self,
         parent: Option<&impl IsA<Window>>,
         initial_value: Option<&impl IsA<pango::FontFace>>,
@@ -63,7 +63,7 @@ impl FontDialog {
         let user_data: Box_<glib::thread_guard::ThreadGuard<P>> =
             Box_::new(glib::thread_guard::ThreadGuard::new(callback));
         unsafe extern "C" fn choose_face_trampoline<
-            P: FnOnce(Result<Option<pango::FontFace>, glib::Error>) + 'static,
+            P: FnOnce(Result<pango::FontFace, glib::Error>) + 'static,
         >(
             _source_object: *mut glib::gobject_ffi::GObject,
             res: *mut gio::ffi::GAsyncResult,
@@ -99,12 +99,8 @@ impl FontDialog {
         &self,
         parent: Option<&(impl IsA<Window> + Clone + 'static)>,
         initial_value: Option<&(impl IsA<pango::FontFace> + Clone + 'static)>,
-    ) -> Pin<
-        Box_<
-            dyn std::future::Future<Output = Result<Option<pango::FontFace>, glib::Error>>
-                + 'static,
-        >,
-    > {
+    ) -> Pin<Box_<dyn std::future::Future<Output = Result<pango::FontFace, glib::Error>> + 'static>>
+    {
         let parent = parent.map(ToOwned::to_owned);
         let initial_value = initial_value.map(ToOwned::to_owned);
         Box_::pin(gio::GioFuture::new(self, move |obj, cancellable, send| {
@@ -120,7 +116,7 @@ impl FontDialog {
     }
 
     #[doc(alias = "gtk_font_dialog_choose_family")]
-    pub fn choose_family<P: FnOnce(Result<Option<pango::FontFamily>, glib::Error>) + 'static>(
+    pub fn choose_family<P: FnOnce(Result<pango::FontFamily, glib::Error>) + 'static>(
         &self,
         parent: Option<&impl IsA<Window>>,
         initial_value: Option<&impl IsA<pango::FontFamily>>,
@@ -140,7 +136,7 @@ impl FontDialog {
         let user_data: Box_<glib::thread_guard::ThreadGuard<P>> =
             Box_::new(glib::thread_guard::ThreadGuard::new(callback));
         unsafe extern "C" fn choose_family_trampoline<
-            P: FnOnce(Result<Option<pango::FontFamily>, glib::Error>) + 'static,
+            P: FnOnce(Result<pango::FontFamily, glib::Error>) + 'static,
         >(
             _source_object: *mut glib::gobject_ffi::GObject,
             res: *mut gio::ffi::GAsyncResult,
@@ -179,12 +175,8 @@ impl FontDialog {
         &self,
         parent: Option<&(impl IsA<Window> + Clone + 'static)>,
         initial_value: Option<&(impl IsA<pango::FontFamily> + Clone + 'static)>,
-    ) -> Pin<
-        Box_<
-            dyn std::future::Future<Output = Result<Option<pango::FontFamily>, glib::Error>>
-                + 'static,
-        >,
-    > {
+    ) -> Pin<Box_<dyn std::future::Future<Output = Result<pango::FontFamily, glib::Error>> + 'static>>
+    {
         let parent = parent.map(ToOwned::to_owned);
         let initial_value = initial_value.map(ToOwned::to_owned);
         Box_::pin(gio::GioFuture::new(self, move |obj, cancellable, send| {
@@ -200,7 +192,7 @@ impl FontDialog {
     }
 
     #[doc(alias = "gtk_font_dialog_choose_font")]
-    pub fn choose_font<P: FnOnce(Result<Option<pango::FontDescription>, glib::Error>) + 'static>(
+    pub fn choose_font<P: FnOnce(Result<pango::FontDescription, glib::Error>) + 'static>(
         &self,
         parent: Option<&impl IsA<Window>>,
         initial_value: Option<&pango::FontDescription>,
@@ -220,7 +212,7 @@ impl FontDialog {
         let user_data: Box_<glib::thread_guard::ThreadGuard<P>> =
             Box_::new(glib::thread_guard::ThreadGuard::new(callback));
         unsafe extern "C" fn choose_font_trampoline<
-            P: FnOnce(Result<Option<pango::FontDescription>, glib::Error>) + 'static,
+            P: FnOnce(Result<pango::FontDescription, glib::Error>) + 'static,
         >(
             _source_object: *mut glib::gobject_ffi::GObject,
             res: *mut gio::ffi::GAsyncResult,
@@ -258,8 +250,7 @@ impl FontDialog {
         initial_value: Option<&pango::FontDescription>,
     ) -> Pin<
         Box_<
-            dyn std::future::Future<Output = Result<Option<pango::FontDescription>, glib::Error>>
-                + 'static,
+            dyn std::future::Future<Output = Result<pango::FontDescription, glib::Error>> + 'static,
         >,
     > {
         let parent = parent.map(ToOwned::to_owned);
