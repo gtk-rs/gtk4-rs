@@ -954,6 +954,13 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         },
     ),
     (
+        "GtkFileLauncherClass",
+        Layout {
+            size: size_of::<GtkFileLauncherClass>(),
+            alignment: align_of::<GtkFileLauncherClass>(),
+        },
+    ),
+    (
         "GtkFilter",
         Layout {
             size: size_of::<GtkFilter>(),

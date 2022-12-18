@@ -115,6 +115,7 @@ int main() {
     printf("%s;%zu;%zu\n", "GtkFileChooserError", sizeof(GtkFileChooserError), alignof(GtkFileChooserError));
     printf("%s;%zu;%zu\n", "GtkFileChooserNativeClass", sizeof(GtkFileChooserNativeClass), alignof(GtkFileChooserNativeClass));
     printf("%s;%zu;%zu\n", "GtkFileDialogClass", sizeof(GtkFileDialogClass), alignof(GtkFileDialogClass));
+    printf("%s;%zu;%zu\n", "GtkFileLauncherClass", sizeof(GtkFileLauncherClass), alignof(GtkFileLauncherClass));
     printf("%s;%zu;%zu\n", "GtkFilter", sizeof(GtkFilter), alignof(GtkFilter));
     printf("%s;%zu;%zu\n", "GtkFilterChange", sizeof(GtkFilterChange), alignof(GtkFilterChange));
     printf("%s;%zu;%zu\n", "GtkFilterClass", sizeof(GtkFilterClass), alignof(GtkFilterClass));

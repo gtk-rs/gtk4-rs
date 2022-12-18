@@ -84,6 +84,27 @@ impl GestureStylus {
         }
     }
 
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    #[doc(alias = "gtk_gesture_stylus_get_stylus_only")]
+    #[doc(alias = "get_stylus_only")]
+    pub fn is_stylus_only(&self) -> bool {
+        unsafe {
+            from_glib(ffi::gtk_gesture_stylus_get_stylus_only(
+                self.to_glib_none().0,
+            ))
+        }
+    }
+
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    #[doc(alias = "gtk_gesture_stylus_set_stylus_only")]
+    pub fn set_stylus_only(&self, stylus_only: bool) {
+        unsafe {
+            ffi::gtk_gesture_stylus_set_stylus_only(self.to_glib_none().0, stylus_only.into_glib());
+        }
+    }
+
     #[doc(alias = "down")]
     pub fn connect_down<F: Fn(&Self, f64, f64) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn down_trampoline<F: Fn(&GestureStylus, f64, f64) + 'static>(
@@ -179,6 +200,31 @@ impl GestureStylus {
             )
         }
     }
+
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    #[doc(alias = "stylus-only")]
+    pub fn connect_stylus_only_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_stylus_only_trampoline<F: Fn(&GestureStylus) + 'static>(
+            this: *mut ffi::GtkGestureStylus,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::stylus-only\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_stylus_only_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
 }
 
 impl Default for GestureStylus {
@@ -194,6 +240,9 @@ impl Default for GestureStylus {
 /// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 #[must_use = "The builder must be built to be used"]
 pub struct GestureStylusBuilder {
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    stylus_only: Option<bool>,
     button: Option<u32>,
     exclusive: Option<bool>,
     touch_only: Option<bool>,
@@ -215,6 +264,10 @@ impl GestureStylusBuilder {
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> GestureStylus {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
+        #[cfg(any(feature = "v4_10", feature = "dox"))]
+        if let Some(ref stylus_only) = self.stylus_only {
+            properties.push(("stylus-only", stylus_only));
+        }
         if let Some(ref button) = self.button {
             properties.push(("button", button));
         }
@@ -237,6 +290,13 @@ impl GestureStylusBuilder {
             properties.push(("propagation-phase", propagation_phase));
         }
         glib::Object::new::<GestureStylus>(&properties)
+    }
+
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn stylus_only(mut self, stylus_only: bool) -> Self {
+        self.stylus_only = Some(stylus_only);
+        self
     }
 
     pub fn button(mut self, button: u32) -> Self {
