@@ -145,6 +145,8 @@ pub fn accelerator_parse_with_keycode(
 
 #[doc(alias = "gtk_show_uri_full")]
 #[doc(alias = "gtk_show_uri_full_finish")]
+#[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
+#[allow(deprecated)]
 pub fn show_uri_full<P: FnOnce(Result<(), glib::Error>) + 'static>(
     parent: Option<&impl IsA<Window>>,
     uri: &str,
@@ -195,6 +197,8 @@ pub fn show_uri_full<P: FnOnce(Result<(), glib::Error>) + 'static>(
     }
 }
 
+#[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
+#[allow(deprecated)]
 pub fn show_uri_full_future(
     parent: Option<&(impl IsA<Window> + Clone + 'static)>,
     uri: &str,
