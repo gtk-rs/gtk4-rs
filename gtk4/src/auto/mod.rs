@@ -387,6 +387,13 @@ pub use self::file_dialog::FileDialog;
 mod file_filter;
 pub use self::file_filter::FileFilter;
 
+#[cfg(any(feature = "v4_10", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+mod file_launcher;
+#[cfg(any(feature = "v4_10", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+pub use self::file_launcher::FileLauncher;
+
 mod filter;
 pub use self::filter::Filter;
 
