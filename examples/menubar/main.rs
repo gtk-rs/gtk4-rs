@@ -2,9 +2,11 @@ use gtk::prelude::*;
 use gtk::{gio, glib};
 
 fn main() {
-     // Create a new application
-    let application =
-        gtk::Application::new(Some("com.github.gtk-rs.examples.menubar"), Default::default());
+    // Create a new application
+    let application = gtk::Application::new(
+        Some("com.github.gtk-rs.examples.menubar"),
+        Default::default(),
+    );
     application.connect_startup(configure_application);
     application.connect_activate(build_ui);
     application.run();
@@ -12,17 +14,15 @@ fn main() {
 
 fn configure_application(app: &gtk::Application) {
     let about = gio::SimpleAction::new("about", None);
-    about.connect_activate(|_,_| {
+    about.connect_activate(|_, _| {
         println!("About was pressed");
     });
     app.add_action(&about);
 
     let quit = gio::SimpleAction::new("quit", None);
-    quit.connect_activate(
-        glib::clone!(@weak app => move |_action, _parameter| {
-            app.quit();
-        }),
-    );
+    quit.connect_activate(glib::clone!(@weak app => move |_action, _parameter| {
+        app.quit();
+    }));
     app.add_action(&quit);
 
     // About menu item
