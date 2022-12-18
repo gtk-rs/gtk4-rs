@@ -2726,6 +2726,20 @@ impl ::std::fmt::Debug for GtkFileDialogClass {
 
 #[derive(Copy, Clone)]
 #[repr(C)]
+pub struct GtkFileLauncherClass {
+    pub parent_class: gobject::GObjectClass,
+}
+
+impl ::std::fmt::Debug for GtkFileLauncherClass {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("GtkFileLauncherClass @ {self:p}"))
+            .field("parent_class", &self.parent_class)
+            .finish()
+    }
+}
+
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkFilterClass {
     pub parent_class: gobject::GObjectClass,
     pub match_: Option<unsafe extern "C" fn(*mut GtkFilter, *mut gobject::GObject) -> gboolean>,
@@ -6520,6 +6534,19 @@ pub struct GtkFileFilter {
 impl ::std::fmt::Debug for GtkFileFilter {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("GtkFileFilter @ {self:p}"))
+            .finish()
+    }
+}
+
+#[repr(C)]
+pub struct GtkFileLauncher {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
+
+impl ::std::fmt::Debug for GtkFileLauncher {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("GtkFileLauncher @ {self:p}"))
             .finish()
     }
 }
@@ -12919,6 +12946,54 @@ extern "C" {
     pub fn gtk_file_filter_to_gvariant(filter: *mut GtkFileFilter) -> *mut glib::GVariant;
 
     //=========================================================================
+    // GtkFileLauncher
+    //=========================================================================
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gtk_file_launcher_get_type() -> GType;
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gtk_file_launcher_new(file: *mut gio::GFile) -> *mut GtkFileLauncher;
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gtk_file_launcher_get_file(self_: *mut GtkFileLauncher) -> *mut gio::GFile;
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gtk_file_launcher_launch(
+        self_: *mut GtkFileLauncher,
+        parent: *mut GtkWindow,
+        cancellable: *mut gio::GCancellable,
+        callback: gio::GAsyncReadyCallback,
+        user_data: gpointer,
+    );
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gtk_file_launcher_launch_finish(
+        self_: *mut GtkFileLauncher,
+        result: *mut gio::GAsyncResult,
+        error: *mut *mut glib::GError,
+    ) -> gboolean;
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gtk_file_launcher_open_containing_folder(
+        self_: *mut GtkFileLauncher,
+        parent: *mut GtkWindow,
+        cancellable: *mut gio::GCancellable,
+        callback: gio::GAsyncReadyCallback,
+        user_data: gpointer,
+    );
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gtk_file_launcher_open_containing_folder_finish(
+        self_: *mut GtkFileLauncher,
+        result: *mut gio::GAsyncResult,
+        error: *mut *mut glib::GError,
+    ) -> gboolean;
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gtk_file_launcher_set_file(self_: *mut GtkFileLauncher, file: *mut gio::GFile);
+
+    //=========================================================================
     // GtkFilter
     //=========================================================================
     pub fn gtk_filter_get_type() -> GType;
@@ -13490,6 +13565,15 @@ extern "C" {
     pub fn gtk_gesture_stylus_get_device_tool(
         gesture: *mut GtkGestureStylus,
     ) -> *mut gdk::GdkDeviceTool;
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gtk_gesture_stylus_get_stylus_only(gesture: *mut GtkGestureStylus) -> gboolean;
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gtk_gesture_stylus_set_stylus_only(
+        gesture: *mut GtkGestureStylus,
+        stylus_only: gboolean,
+    );
 
     //=========================================================================
     // GtkGestureSwipe

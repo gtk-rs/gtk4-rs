@@ -499,6 +499,8 @@ pub fn set_debug_flags(flags: DebugFlags) {
     }
 }
 
+#[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
+#[allow(deprecated)]
 #[doc(alias = "gtk_show_uri")]
 pub fn show_uri(parent: Option<&impl IsA<Window>>, uri: &str, timestamp: u32) {
     assert_initialized_main_thread!();
