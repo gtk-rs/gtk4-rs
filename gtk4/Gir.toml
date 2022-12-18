@@ -1205,6 +1205,11 @@ status = "generate"
 generate_builder = false
 
 [[object]]
+name = "Gtk.FileLauncher"
+status = "generate"
+generate_builder = false
+
+[[object]]
 name = "Gtk.FilterListModel"
 status = "generate"
     [[object.property]]
