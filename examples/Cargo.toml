@@ -139,6 +139,10 @@ name = "list_view_apps_launcher"
 path = "list_view_apps_launcher/main.rs"
 
 [[bin]]
+name = "menubar"
+path = "menubar/main.rs"
+
+[[bin]]
 name = "rotation_bin"
 path = "rotation_bin/main.rs"
 
