@@ -1,5 +1,5 @@
+use gtk::gio;
 use gtk::prelude::*;
-use gtk::{gio, glib};
 
 fn main() {
     // Create a new application
@@ -13,44 +13,44 @@ fn main() {
 }
 
 fn configure_application(app: &gtk::Application) {
-    let about = gio::SimpleAction::new("about", None);
-    about.connect_activate(|_, _| {
-        println!("About was pressed");
-    });
-    app.add_action(&about);
+    let about = gio::ActionEntry::builder("about")
+        .activate(|_, _, _| println!("About was pressed"))
+        .build();
 
-    let quit = gio::SimpleAction::new("quit", None);
-    quit.connect_activate(glib::clone!(@weak app => move |_action, _parameter| {
-        app.quit();
-    }));
-    app.add_action(&quit);
+    let quit = gio::ActionEntry::builder("quit")
+        .activate(|app: &gtk::Application, _, _| app.quit())
+        .build();
 
-    // About menu item
-    let about_menu = gio::MenuItem::new(Some("About"), Some("app.about"));
+    app.add_action_entries([about, quit]).unwrap();
 
-    // Quit menu item
-    let quit_menu = gio::MenuItem::new(Some("Quit"), Some("app.quit"));
+    let menubar = {
+        let file_menu = {
+            let about_menu_item = gio::MenuItem::new(Some("About"), Some("app.about"));
+            let quit_menu_item = gio::MenuItem::new(Some("Quit"), Some("app.quit"));
 
-    // File Menu
-    let file_menu = gio::Menu::new();
-    file_menu.append_item(&about_menu);
-    file_menu.append_item(&quit_menu);
+            let file_menu = gio::Menu::new();
+            file_menu.append_item(&about_menu_item);
+            file_menu.append_item(&quit_menu_item);
+            file_menu
+        };
 
-    // Menubar
-    let menubar = gio::Menu::new();
-    menubar.append_submenu(Some("File"), &file_menu);
+        let menubar = gio::Menu::new();
+        menubar.append_submenu(Some("File"), &file_menu);
 
-    // Put menubar into application
+        menubar
+    };
+
     app.set_menubar(Some(&menubar));
 }
 
 fn build_ui(application: &gtk::Application) {
-    let window = gtk::ApplicationWindow::new(application);
-
-    window.set_title(Some("Menubar Example"));
-    window.set_default_size(350, 70);
-
-    window.set_show_menubar(true);
+    let window = gtk::ApplicationWindow::builder()
+        .application(application)
+        .title("Menubar Example")
+        .default_width(350)
+        .default_height(70)
+        .show_menubar(true)
+        .build();
 
     window.show();
 }
