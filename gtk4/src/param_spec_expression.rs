@@ -1,5 +1,7 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
+use std::marker::PhantomData;
+
 use crate::ParamSpecExpression;
 
 use glib::{gobject_ffi, prelude::*, shared::Shared, translate::*, ParamSpec, StaticType, Value};
@@ -22,7 +24,7 @@ unsafe impl glib::ParamSpecType for ParamSpecExpression {}
 
 #[doc(hidden)]
 impl<'a> ToGlibPtr<'a, *const gobject_ffi::GParamSpec> for ParamSpecExpression {
-    type Storage = &'a Shared<ffi::GtkParamSpecExpression, ParamSpecExpression>;
+    type Storage = PhantomData<&'a Shared<ffi::GtkParamSpecExpression, ParamSpecExpression>>;
 
     #[inline]
     fn to_glib_none(&'a self) -> Stash<'a, *const gobject_ffi::GParamSpec, Self> {
@@ -38,7 +40,7 @@ impl<'a> ToGlibPtr<'a, *const gobject_ffi::GParamSpec> for ParamSpecExpression {
 
 #[doc(hidden)]
 impl<'a> ToGlibPtr<'a, *mut gobject_ffi::GParamSpec> for ParamSpecExpression {
-    type Storage = &'a Shared<ffi::GtkParamSpecExpression, ParamSpecExpression>;
+    type Storage = PhantomData<&'a Shared<ffi::GtkParamSpecExpression, ParamSpecExpression>>;
 
     #[inline]
     fn to_glib_none(&'a self) -> Stash<'a, *mut gobject_ffi::GParamSpec, Self> {

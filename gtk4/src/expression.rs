@@ -279,7 +279,8 @@ macro_rules! define_expression {
 
         #[doc(hidden)]
         impl<'a> ToGlibPtr<'a, *const ffi::GtkExpression> for $rust_type {
-            type Storage = &'a $crate::glib::shared::Shared<$ffi_type, $rust_type>;
+            type Storage =
+                ::std::marker::PhantomData<&'a $crate::glib::shared::Shared<$ffi_type, $rust_type>>;
 
             #[inline]
             fn to_glib_none(
@@ -299,7 +300,8 @@ macro_rules! define_expression {
 
         #[doc(hidden)]
         impl<'a> ToGlibPtr<'a, *mut ffi::GtkExpression> for $rust_type {
-            type Storage = &'a $crate::glib::shared::Shared<$ffi_type, $rust_type>;
+            type Storage =
+                ::std::marker::PhantomData<&'a $crate::glib::shared::Shared<$ffi_type, $rust_type>>;
 
             #[inline]
             fn to_glib_none(
