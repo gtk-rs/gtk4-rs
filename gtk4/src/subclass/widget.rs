@@ -910,7 +910,11 @@ pub unsafe trait WidgetClassSubclassExt: ClassStruct {
         parameter_type: Option<&str>,
         activate: F,
     ) where
-        F: Fn(<<Self as ClassStruct>::Type as ObjectSubclass>::Type, &str, Option<&Variant>) -> Fut
+        F: Fn(
+                <<Self as ClassStruct>::Type as ObjectSubclass>::Type,
+                String,
+                Option<Variant>,
+            ) -> Fut
             + 'static
             + Clone,
         Fut: Future<Output = ()>,
@@ -923,7 +927,7 @@ pub unsafe trait WidgetClassSubclassExt: ClassStruct {
                 let action_name = action_name.to_owned();
                 let parameter_type = parameter_type.map(ToOwned::to_owned);
                 ctx.spawn_local(glib::clone!(@strong this, @strong action_name, @strong parameter_type, @strong activate => async move {
-                    activate(this, &action_name, parameter_type.as_ref()).await;
+                    activate(this, action_name, parameter_type).await;
                 }));
             },
         );
