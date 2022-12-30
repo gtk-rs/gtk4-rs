@@ -34,7 +34,7 @@ impl AlertDialog {
     }
 
     #[doc(alias = "gtk_alert_dialog_choose")]
-    pub fn choose<P: FnOnce(i32) + 'static>(
+    pub fn choose<P: FnOnce(Result<i32, glib::Error>) + 'static>(
         &self,
         parent: Option<&impl IsA<Window>>,
         cancellable: Option<&impl IsA<gio::Cancellable>>,
@@ -52,12 +52,19 @@ impl AlertDialog {
 
         let user_data: Box_<glib::thread_guard::ThreadGuard<P>> =
             Box_::new(glib::thread_guard::ThreadGuard::new(callback));
-        unsafe extern "C" fn choose_trampoline<P: FnOnce(i32) + 'static>(
+        unsafe extern "C" fn choose_trampoline<P: FnOnce(Result<i32, glib::Error>) + 'static>(
             _source_object: *mut glib::gobject_ffi::GObject,
             res: *mut gio::ffi::GAsyncResult,
             user_data: glib::ffi::gpointer,
         ) {
-            let result = ffi::gtk_alert_dialog_choose_finish(_source_object as *mut _, res);
+            let mut error = ptr::null_mut();
+            let ret =
+                ffi::gtk_alert_dialog_choose_finish(_source_object as *mut _, res, &mut error);
+            let result = if error.is_null() {
+                Ok(ret)
+            } else {
+                Err(from_glib_full(error))
+            };
             let callback: Box_<glib::thread_guard::ThreadGuard<P>> =
                 Box_::from_raw(user_data as *mut _);
             let callback: P = callback.into_inner();
@@ -78,7 +85,7 @@ impl AlertDialog {
     pub fn choose_future(
         &self,
         parent: Option<&(impl IsA<Window> + Clone + 'static)>,
-    ) -> Pin<Box_<dyn std::future::Future<Output = i32> + 'static>> {
+    ) -> Pin<Box_<dyn std::future::Future<Output = Result<i32, glib::Error>> + 'static>> {
         let parent = parent.map(ToOwned::to_owned);
         Box_::pin(gio::GioFuture::new(self, move |obj, cancellable, send| {
             obj.choose(
