@@ -67,6 +67,7 @@ impl fmt::Display for AxisUse {
 impl IntoGlib for AxisUse {
     type GlibType = ffi::GdkAxisUse;
 
+    #[inline]
     fn into_glib(self) -> ffi::GdkAxisUse {
         match self {
             Self::Ignore => ffi::GDK_AXIS_IGNORE,
@@ -88,6 +89,7 @@ impl IntoGlib for AxisUse {
 
 #[doc(hidden)]
 impl FromGlib<ffi::GdkAxisUse> for AxisUse {
+    #[inline]
     unsafe fn from_glib(value: ffi::GdkAxisUse) -> Self {
         skip_assert_initialized!();
         match value {
@@ -109,6 +111,7 @@ impl FromGlib<ffi::GdkAxisUse> for AxisUse {
 }
 
 impl StaticType for AxisUse {
+    #[inline]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::gdk_axis_use_get_type()) }
     }
@@ -121,6 +124,7 @@ impl glib::value::ValueType for AxisUse {
 unsafe impl<'a> FromValue<'a> for AxisUse {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
+    #[inline]
     unsafe fn from_value(value: &'a glib::Value) -> Self {
         skip_assert_initialized!();
         from_glib(glib::gobject_ffi::g_value_get_enum(value.to_glib_none().0))
@@ -128,6 +132,7 @@ unsafe impl<'a> FromValue<'a> for AxisUse {
 }
 
 impl ToValue for AxisUse {
+    #[inline]
     fn to_value(&self) -> glib::Value {
         let mut value = glib::Value::for_value_type::<Self>();
         unsafe {
@@ -136,6 +141,7 @@ impl ToValue for AxisUse {
         value
     }
 
+    #[inline]
     fn value_type(&self) -> glib::Type {
         Self::static_type()
     }
@@ -200,6 +206,7 @@ impl fmt::Display for CrossingMode {
 impl IntoGlib for CrossingMode {
     type GlibType = ffi::GdkCrossingMode;
 
+    #[inline]
     fn into_glib(self) -> ffi::GdkCrossingMode {
         match self {
             Self::Normal => ffi::GDK_CROSSING_NORMAL,
@@ -218,6 +225,7 @@ impl IntoGlib for CrossingMode {
 
 #[doc(hidden)]
 impl FromGlib<ffi::GdkCrossingMode> for CrossingMode {
+    #[inline]
     unsafe fn from_glib(value: ffi::GdkCrossingMode) -> Self {
         skip_assert_initialized!();
         match value {
@@ -236,6 +244,7 @@ impl FromGlib<ffi::GdkCrossingMode> for CrossingMode {
 }
 
 impl StaticType for CrossingMode {
+    #[inline]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::gdk_crossing_mode_get_type()) }
     }
@@ -248,6 +257,7 @@ impl glib::value::ValueType for CrossingMode {
 unsafe impl<'a> FromValue<'a> for CrossingMode {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
+    #[inline]
     unsafe fn from_value(value: &'a glib::Value) -> Self {
         skip_assert_initialized!();
         from_glib(glib::gobject_ffi::g_value_get_enum(value.to_glib_none().0))
@@ -255,6 +265,7 @@ unsafe impl<'a> FromValue<'a> for CrossingMode {
 }
 
 impl ToValue for CrossingMode {
+    #[inline]
     fn to_value(&self) -> glib::Value {
         let mut value = glib::Value::for_value_type::<Self>();
         unsafe {
@@ -263,6 +274,7 @@ impl ToValue for CrossingMode {
         value
     }
 
+    #[inline]
     fn value_type(&self) -> glib::Type {
         Self::static_type()
     }
@@ -309,6 +321,7 @@ impl fmt::Display for DevicePadFeature {
 impl IntoGlib for DevicePadFeature {
     type GlibType = ffi::GdkDevicePadFeature;
 
+    #[inline]
     fn into_glib(self) -> ffi::GdkDevicePadFeature {
         match self {
             Self::Button => ffi::GDK_DEVICE_PAD_FEATURE_BUTTON,
@@ -321,6 +334,7 @@ impl IntoGlib for DevicePadFeature {
 
 #[doc(hidden)]
 impl FromGlib<ffi::GdkDevicePadFeature> for DevicePadFeature {
+    #[inline]
     unsafe fn from_glib(value: ffi::GdkDevicePadFeature) -> Self {
         skip_assert_initialized!();
         match value {
@@ -333,6 +347,7 @@ impl FromGlib<ffi::GdkDevicePadFeature> for DevicePadFeature {
 }
 
 impl StaticType for DevicePadFeature {
+    #[inline]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::gdk_device_pad_feature_get_type()) }
     }
@@ -345,6 +360,7 @@ impl glib::value::ValueType for DevicePadFeature {
 unsafe impl<'a> FromValue<'a> for DevicePadFeature {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
+    #[inline]
     unsafe fn from_value(value: &'a glib::Value) -> Self {
         skip_assert_initialized!();
         from_glib(glib::gobject_ffi::g_value_get_enum(value.to_glib_none().0))
@@ -352,6 +368,7 @@ unsafe impl<'a> FromValue<'a> for DevicePadFeature {
 }
 
 impl ToValue for DevicePadFeature {
+    #[inline]
     fn to_value(&self) -> glib::Value {
         let mut value = glib::Value::for_value_type::<Self>();
         unsafe {
@@ -360,6 +377,7 @@ impl ToValue for DevicePadFeature {
         value
     }
 
+    #[inline]
     fn value_type(&self) -> glib::Type {
         Self::static_type()
     }
@@ -421,6 +439,7 @@ impl fmt::Display for DeviceToolType {
 impl IntoGlib for DeviceToolType {
     type GlibType = ffi::GdkDeviceToolType;
 
+    #[inline]
     fn into_glib(self) -> ffi::GdkDeviceToolType {
         match self {
             Self::Unknown => ffi::GDK_DEVICE_TOOL_TYPE_UNKNOWN,
@@ -438,6 +457,7 @@ impl IntoGlib for DeviceToolType {
 
 #[doc(hidden)]
 impl FromGlib<ffi::GdkDeviceToolType> for DeviceToolType {
+    #[inline]
     unsafe fn from_glib(value: ffi::GdkDeviceToolType) -> Self {
         skip_assert_initialized!();
         match value {
@@ -455,6 +475,7 @@ impl FromGlib<ffi::GdkDeviceToolType> for DeviceToolType {
 }
 
 impl StaticType for DeviceToolType {
+    #[inline]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::gdk_device_tool_type_get_type()) }
     }
@@ -467,6 +488,7 @@ impl glib::value::ValueType for DeviceToolType {
 unsafe impl<'a> FromValue<'a> for DeviceToolType {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
+    #[inline]
     unsafe fn from_value(value: &'a glib::Value) -> Self {
         skip_assert_initialized!();
         from_glib(glib::gobject_ffi::g_value_get_enum(value.to_glib_none().0))
@@ -474,6 +496,7 @@ unsafe impl<'a> FromValue<'a> for DeviceToolType {
 }
 
 impl ToValue for DeviceToolType {
+    #[inline]
     fn to_value(&self) -> glib::Value {
         let mut value = glib::Value::for_value_type::<Self>();
         unsafe {
@@ -482,6 +505,7 @@ impl ToValue for DeviceToolType {
         value
     }
 
+    #[inline]
     fn value_type(&self) -> glib::Type {
         Self::static_type()
     }
@@ -528,6 +552,7 @@ impl fmt::Display for DragCancelReason {
 impl IntoGlib for DragCancelReason {
     type GlibType = ffi::GdkDragCancelReason;
 
+    #[inline]
     fn into_glib(self) -> ffi::GdkDragCancelReason {
         match self {
             Self::NoTarget => ffi::GDK_DRAG_CANCEL_NO_TARGET,
@@ -540,6 +565,7 @@ impl IntoGlib for DragCancelReason {
 
 #[doc(hidden)]
 impl FromGlib<ffi::GdkDragCancelReason> for DragCancelReason {
+    #[inline]
     unsafe fn from_glib(value: ffi::GdkDragCancelReason) -> Self {
         skip_assert_initialized!();
         match value {
@@ -552,6 +578,7 @@ impl FromGlib<ffi::GdkDragCancelReason> for DragCancelReason {
 }
 
 impl StaticType for DragCancelReason {
+    #[inline]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::gdk_drag_cancel_reason_get_type()) }
     }
@@ -564,6 +591,7 @@ impl glib::value::ValueType for DragCancelReason {
 unsafe impl<'a> FromValue<'a> for DragCancelReason {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
+    #[inline]
     unsafe fn from_value(value: &'a glib::Value) -> Self {
         skip_assert_initialized!();
         from_glib(glib::gobject_ffi::g_value_get_enum(value.to_glib_none().0))
@@ -571,6 +599,7 @@ unsafe impl<'a> FromValue<'a> for DragCancelReason {
 }
 
 impl ToValue for DragCancelReason {
+    #[inline]
     fn to_value(&self) -> glib::Value {
         let mut value = glib::Value::for_value_type::<Self>();
         unsafe {
@@ -579,6 +608,7 @@ impl ToValue for DragCancelReason {
         value
     }
 
+    #[inline]
     fn value_type(&self) -> glib::Type {
         Self::static_type()
     }
@@ -784,6 +814,7 @@ impl FromGlib<ffi::GdkEventType> for EventType {
 }
 
 impl StaticType for EventType {
+    #[inline]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::gdk_event_type_get_type()) }
     }
@@ -796,6 +827,7 @@ impl glib::value::ValueType for EventType {
 unsafe impl<'a> FromValue<'a> for EventType {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
+    #[inline]
     unsafe fn from_value(value: &'a glib::Value) -> Self {
         skip_assert_initialized!();
         from_glib(glib::gobject_ffi::g_value_get_enum(value.to_glib_none().0))
@@ -803,6 +835,7 @@ unsafe impl<'a> FromValue<'a> for EventType {
 }
 
 impl ToValue for EventType {
+    #[inline]
     fn to_value(&self) -> glib::Value {
         let mut value = glib::Value::for_value_type::<Self>();
         unsafe {
@@ -811,6 +844,7 @@ impl ToValue for EventType {
         value
     }
 
+    #[inline]
     fn value_type(&self) -> glib::Type {
         Self::static_type()
     }
@@ -854,6 +888,7 @@ impl fmt::Display for FullscreenMode {
 impl IntoGlib for FullscreenMode {
     type GlibType = ffi::GdkFullscreenMode;
 
+    #[inline]
     fn into_glib(self) -> ffi::GdkFullscreenMode {
         match self {
             Self::CurrentMonitor => ffi::GDK_FULLSCREEN_ON_CURRENT_MONITOR,
@@ -865,6 +900,7 @@ impl IntoGlib for FullscreenMode {
 
 #[doc(hidden)]
 impl FromGlib<ffi::GdkFullscreenMode> for FullscreenMode {
+    #[inline]
     unsafe fn from_glib(value: ffi::GdkFullscreenMode) -> Self {
         skip_assert_initialized!();
         match value {
@@ -876,6 +912,7 @@ impl FromGlib<ffi::GdkFullscreenMode> for FullscreenMode {
 }
 
 impl StaticType for FullscreenMode {
+    #[inline]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::gdk_fullscreen_mode_get_type()) }
     }
@@ -888,6 +925,7 @@ impl glib::value::ValueType for FullscreenMode {
 unsafe impl<'a> FromValue<'a> for FullscreenMode {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
+    #[inline]
     unsafe fn from_value(value: &'a glib::Value) -> Self {
         skip_assert_initialized!();
         from_glib(glib::gobject_ffi::g_value_get_enum(value.to_glib_none().0))
@@ -895,6 +933,7 @@ unsafe impl<'a> FromValue<'a> for FullscreenMode {
 }
 
 impl ToValue for FullscreenMode {
+    #[inline]
     fn to_value(&self) -> glib::Value {
         let mut value = glib::Value::for_value_type::<Self>();
         unsafe {
@@ -903,6 +942,7 @@ impl ToValue for FullscreenMode {
         value
     }
 
+    #[inline]
     fn value_type(&self) -> glib::Type {
         Self::static_type()
     }
@@ -955,6 +995,7 @@ impl fmt::Display for GLError {
 impl IntoGlib for GLError {
     type GlibType = ffi::GdkGLError;
 
+    #[inline]
     fn into_glib(self) -> ffi::GdkGLError {
         match self {
             Self::NotAvailable => ffi::GDK_GL_ERROR_NOT_AVAILABLE,
@@ -969,6 +1010,7 @@ impl IntoGlib for GLError {
 
 #[doc(hidden)]
 impl FromGlib<ffi::GdkGLError> for GLError {
+    #[inline]
     unsafe fn from_glib(value: ffi::GdkGLError) -> Self {
         skip_assert_initialized!();
         match value {
@@ -983,30 +1025,30 @@ impl FromGlib<ffi::GdkGLError> for GLError {
 }
 
 impl ErrorDomain for GLError {
+    #[inline]
     fn domain() -> Quark {
         skip_assert_initialized!();
 
         unsafe { from_glib(ffi::gdk_gl_error_quark()) }
     }
 
+    #[inline]
     fn code(self) -> i32 {
         self.into_glib()
     }
 
+    #[inline]
+    #[allow(clippy::match_single_binding)]
     fn from(code: i32) -> Option<Self> {
         skip_assert_initialized!();
-        match code {
-            ffi::GDK_GL_ERROR_NOT_AVAILABLE => Some(Self::NotAvailable),
-            ffi::GDK_GL_ERROR_UNSUPPORTED_FORMAT => Some(Self::UnsupportedFormat),
-            ffi::GDK_GL_ERROR_UNSUPPORTED_PROFILE => Some(Self::UnsupportedProfile),
-            ffi::GDK_GL_ERROR_COMPILATION_FAILED => Some(Self::CompilationFailed),
-            ffi::GDK_GL_ERROR_LINK_FAILED => Some(Self::LinkFailed),
-            value => Some(Self::__Unknown(value)),
+        match unsafe { from_glib(code) } {
+            value => Some(value),
         }
     }
 }
 
 impl StaticType for GLError {
+    #[inline]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::gdk_gl_error_get_type()) }
     }
@@ -1019,6 +1061,7 @@ impl glib::value::ValueType for GLError {
 unsafe impl<'a> FromValue<'a> for GLError {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
+    #[inline]
     unsafe fn from_value(value: &'a glib::Value) -> Self {
         skip_assert_initialized!();
         from_glib(glib::gobject_ffi::g_value_get_enum(value.to_glib_none().0))
@@ -1026,6 +1069,7 @@ unsafe impl<'a> FromValue<'a> for GLError {
 }
 
 impl ToValue for GLError {
+    #[inline]
     fn to_value(&self) -> glib::Value {
         let mut value = glib::Value::for_value_type::<Self>();
         unsafe {
@@ -1034,6 +1078,7 @@ impl ToValue for GLError {
         value
     }
 
+    #[inline]
     fn value_type(&self) -> glib::Type {
         Self::static_type()
     }
@@ -1101,6 +1146,7 @@ impl fmt::Display for Gravity {
 impl IntoGlib for Gravity {
     type GlibType = ffi::GdkGravity;
 
+    #[inline]
     fn into_glib(self) -> ffi::GdkGravity {
         match self {
             Self::NorthWest => ffi::GDK_GRAVITY_NORTH_WEST,
@@ -1120,6 +1166,7 @@ impl IntoGlib for Gravity {
 
 #[doc(hidden)]
 impl FromGlib<ffi::GdkGravity> for Gravity {
+    #[inline]
     unsafe fn from_glib(value: ffi::GdkGravity) -> Self {
         skip_assert_initialized!();
         match value {
@@ -1139,6 +1186,7 @@ impl FromGlib<ffi::GdkGravity> for Gravity {
 }
 
 impl StaticType for Gravity {
+    #[inline]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::gdk_gravity_get_type()) }
     }
@@ -1151,6 +1199,7 @@ impl glib::value::ValueType for Gravity {
 unsafe impl<'a> FromValue<'a> for Gravity {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
+    #[inline]
     unsafe fn from_value(value: &'a glib::Value) -> Self {
         skip_assert_initialized!();
         from_glib(glib::gobject_ffi::g_value_get_enum(value.to_glib_none().0))
@@ -1158,6 +1207,7 @@ unsafe impl<'a> FromValue<'a> for Gravity {
 }
 
 impl ToValue for Gravity {
+    #[inline]
     fn to_value(&self) -> glib::Value {
         let mut value = glib::Value::for_value_type::<Self>();
         unsafe {
@@ -1166,6 +1216,7 @@ impl ToValue for Gravity {
         value
     }
 
+    #[inline]
     fn value_type(&self) -> glib::Type {
         Self::static_type()
     }
@@ -1224,6 +1275,7 @@ impl fmt::Display for InputSource {
 impl IntoGlib for InputSource {
     type GlibType = ffi::GdkInputSource;
 
+    #[inline]
     fn into_glib(self) -> ffi::GdkInputSource {
         match self {
             Self::Mouse => ffi::GDK_SOURCE_MOUSE,
@@ -1240,6 +1292,7 @@ impl IntoGlib for InputSource {
 
 #[doc(hidden)]
 impl FromGlib<ffi::GdkInputSource> for InputSource {
+    #[inline]
     unsafe fn from_glib(value: ffi::GdkInputSource) -> Self {
         skip_assert_initialized!();
         match value {
@@ -1256,6 +1309,7 @@ impl FromGlib<ffi::GdkInputSource> for InputSource {
 }
 
 impl StaticType for InputSource {
+    #[inline]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::gdk_input_source_get_type()) }
     }
@@ -1268,6 +1322,7 @@ impl glib::value::ValueType for InputSource {
 unsafe impl<'a> FromValue<'a> for InputSource {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
+    #[inline]
     unsafe fn from_value(value: &'a glib::Value) -> Self {
         skip_assert_initialized!();
         from_glib(glib::gobject_ffi::g_value_get_enum(value.to_glib_none().0))
@@ -1275,6 +1330,7 @@ unsafe impl<'a> FromValue<'a> for InputSource {
 }
 
 impl ToValue for InputSource {
+    #[inline]
     fn to_value(&self) -> glib::Value {
         let mut value = glib::Value::for_value_type::<Self>();
         unsafe {
@@ -1283,6 +1339,7 @@ impl ToValue for InputSource {
         value
     }
 
+    #[inline]
     fn value_type(&self) -> glib::Type {
         Self::static_type()
     }
@@ -1329,6 +1386,7 @@ impl fmt::Display for KeyMatch {
 impl IntoGlib for KeyMatch {
     type GlibType = ffi::GdkKeyMatch;
 
+    #[inline]
     fn into_glib(self) -> ffi::GdkKeyMatch {
         match self {
             Self::None => ffi::GDK_KEY_MATCH_NONE,
@@ -1341,6 +1399,7 @@ impl IntoGlib for KeyMatch {
 
 #[doc(hidden)]
 impl FromGlib<ffi::GdkKeyMatch> for KeyMatch {
+    #[inline]
     unsafe fn from_glib(value: ffi::GdkKeyMatch) -> Self {
         skip_assert_initialized!();
         match value {
@@ -1353,6 +1412,7 @@ impl FromGlib<ffi::GdkKeyMatch> for KeyMatch {
 }
 
 impl StaticType for KeyMatch {
+    #[inline]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::gdk_key_match_get_type()) }
     }
@@ -1365,6 +1425,7 @@ impl glib::value::ValueType for KeyMatch {
 unsafe impl<'a> FromValue<'a> for KeyMatch {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
+    #[inline]
     unsafe fn from_value(value: &'a glib::Value) -> Self {
         skip_assert_initialized!();
         from_glib(glib::gobject_ffi::g_value_get_enum(value.to_glib_none().0))
@@ -1372,6 +1433,7 @@ unsafe impl<'a> FromValue<'a> for KeyMatch {
 }
 
 impl ToValue for KeyMatch {
+    #[inline]
     fn to_value(&self) -> glib::Value {
         let mut value = glib::Value::for_value_type::<Self>();
         unsafe {
@@ -1380,6 +1442,7 @@ impl ToValue for KeyMatch {
         value
     }
 
+    #[inline]
     fn value_type(&self) -> glib::Type {
         Self::static_type()
     }
@@ -1578,6 +1641,7 @@ impl FromGlib<ffi::GdkMemoryFormat> for MemoryFormat {
 }
 
 impl StaticType for MemoryFormat {
+    #[inline]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::gdk_memory_format_get_type()) }
     }
@@ -1590,6 +1654,7 @@ impl glib::value::ValueType for MemoryFormat {
 unsafe impl<'a> FromValue<'a> for MemoryFormat {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
+    #[inline]
     unsafe fn from_value(value: &'a glib::Value) -> Self {
         skip_assert_initialized!();
         from_glib(glib::gobject_ffi::g_value_get_enum(value.to_glib_none().0))
@@ -1597,6 +1662,7 @@ unsafe impl<'a> FromValue<'a> for MemoryFormat {
 }
 
 impl ToValue for MemoryFormat {
+    #[inline]
     fn to_value(&self) -> glib::Value {
         let mut value = glib::Value::for_value_type::<Self>();
         unsafe {
@@ -1605,6 +1671,7 @@ impl ToValue for MemoryFormat {
         value
     }
 
+    #[inline]
     fn value_type(&self) -> glib::Type {
         Self::static_type()
     }
@@ -1660,6 +1727,7 @@ impl fmt::Display for NotifyType {
 impl IntoGlib for NotifyType {
     type GlibType = ffi::GdkNotifyType;
 
+    #[inline]
     fn into_glib(self) -> ffi::GdkNotifyType {
         match self {
             Self::Ancestor => ffi::GDK_NOTIFY_ANCESTOR,
@@ -1675,6 +1743,7 @@ impl IntoGlib for NotifyType {
 
 #[doc(hidden)]
 impl FromGlib<ffi::GdkNotifyType> for NotifyType {
+    #[inline]
     unsafe fn from_glib(value: ffi::GdkNotifyType) -> Self {
         skip_assert_initialized!();
         match value {
@@ -1690,6 +1759,7 @@ impl FromGlib<ffi::GdkNotifyType> for NotifyType {
 }
 
 impl StaticType for NotifyType {
+    #[inline]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::gdk_notify_type_get_type()) }
     }
@@ -1702,6 +1772,7 @@ impl glib::value::ValueType for NotifyType {
 unsafe impl<'a> FromValue<'a> for NotifyType {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
+    #[inline]
     unsafe fn from_value(value: &'a glib::Value) -> Self {
         skip_assert_initialized!();
         from_glib(glib::gobject_ffi::g_value_get_enum(value.to_glib_none().0))
@@ -1709,6 +1780,7 @@ unsafe impl<'a> FromValue<'a> for NotifyType {
 }
 
 impl ToValue for NotifyType {
+    #[inline]
     fn to_value(&self) -> glib::Value {
         let mut value = glib::Value::for_value_type::<Self>();
         unsafe {
@@ -1717,6 +1789,7 @@ impl ToValue for NotifyType {
         value
     }
 
+    #[inline]
     fn value_type(&self) -> glib::Type {
         Self::static_type()
     }
@@ -1769,6 +1842,7 @@ impl fmt::Display for ScrollDirection {
 impl IntoGlib for ScrollDirection {
     type GlibType = ffi::GdkScrollDirection;
 
+    #[inline]
     fn into_glib(self) -> ffi::GdkScrollDirection {
         match self {
             Self::Up => ffi::GDK_SCROLL_UP,
@@ -1783,6 +1857,7 @@ impl IntoGlib for ScrollDirection {
 
 #[doc(hidden)]
 impl FromGlib<ffi::GdkScrollDirection> for ScrollDirection {
+    #[inline]
     unsafe fn from_glib(value: ffi::GdkScrollDirection) -> Self {
         skip_assert_initialized!();
         match value {
@@ -1797,6 +1872,7 @@ impl FromGlib<ffi::GdkScrollDirection> for ScrollDirection {
 }
 
 impl StaticType for ScrollDirection {
+    #[inline]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::gdk_scroll_direction_get_type()) }
     }
@@ -1809,6 +1885,7 @@ impl glib::value::ValueType for ScrollDirection {
 unsafe impl<'a> FromValue<'a> for ScrollDirection {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
+    #[inline]
     unsafe fn from_value(value: &'a glib::Value) -> Self {
         skip_assert_initialized!();
         from_glib(glib::gobject_ffi::g_value_get_enum(value.to_glib_none().0))
@@ -1816,6 +1893,7 @@ unsafe impl<'a> FromValue<'a> for ScrollDirection {
 }
 
 impl ToValue for ScrollDirection {
+    #[inline]
     fn to_value(&self) -> glib::Value {
         let mut value = glib::Value::for_value_type::<Self>();
         unsafe {
@@ -1824,6 +1902,7 @@ impl ToValue for ScrollDirection {
         value
     }
 
+    #[inline]
     fn value_type(&self) -> glib::Type {
         Self::static_type()
     }
@@ -1873,6 +1952,7 @@ impl fmt::Display for ScrollUnit {
 impl IntoGlib for ScrollUnit {
     type GlibType = ffi::GdkScrollUnit;
 
+    #[inline]
     fn into_glib(self) -> ffi::GdkScrollUnit {
         match self {
             Self::Wheel => ffi::GDK_SCROLL_UNIT_WHEEL,
@@ -1886,6 +1966,7 @@ impl IntoGlib for ScrollUnit {
 #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
 #[doc(hidden)]
 impl FromGlib<ffi::GdkScrollUnit> for ScrollUnit {
+    #[inline]
     unsafe fn from_glib(value: ffi::GdkScrollUnit) -> Self {
         skip_assert_initialized!();
         match value {
@@ -1899,6 +1980,7 @@ impl FromGlib<ffi::GdkScrollUnit> for ScrollUnit {
 #[cfg(any(feature = "v4_8", feature = "dox"))]
 #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
 impl StaticType for ScrollUnit {
+    #[inline]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::gdk_scroll_unit_get_type()) }
     }
@@ -1915,6 +1997,7 @@ impl glib::value::ValueType for ScrollUnit {
 unsafe impl<'a> FromValue<'a> for ScrollUnit {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
+    #[inline]
     unsafe fn from_value(value: &'a glib::Value) -> Self {
         skip_assert_initialized!();
         from_glib(glib::gobject_ffi::g_value_get_enum(value.to_glib_none().0))
@@ -1924,6 +2007,7 @@ unsafe impl<'a> FromValue<'a> for ScrollUnit {
 #[cfg(any(feature = "v4_8", feature = "dox"))]
 #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
 impl ToValue for ScrollUnit {
+    #[inline]
     fn to_value(&self) -> glib::Value {
         let mut value = glib::Value::for_value_type::<Self>();
         unsafe {
@@ -1932,6 +2016,7 @@ impl ToValue for ScrollUnit {
         value
     }
 
+    #[inline]
     fn value_type(&self) -> glib::Type {
         Self::static_type()
     }
@@ -1989,6 +2074,7 @@ impl fmt::Display for SubpixelLayout {
 impl IntoGlib for SubpixelLayout {
     type GlibType = ffi::GdkSubpixelLayout;
 
+    #[inline]
     fn into_glib(self) -> ffi::GdkSubpixelLayout {
         match self {
             Self::Unknown => ffi::GDK_SUBPIXEL_LAYOUT_UNKNOWN,
@@ -2004,6 +2090,7 @@ impl IntoGlib for SubpixelLayout {
 
 #[doc(hidden)]
 impl FromGlib<ffi::GdkSubpixelLayout> for SubpixelLayout {
+    #[inline]
     unsafe fn from_glib(value: ffi::GdkSubpixelLayout) -> Self {
         skip_assert_initialized!();
         match value {
@@ -2019,6 +2106,7 @@ impl FromGlib<ffi::GdkSubpixelLayout> for SubpixelLayout {
 }
 
 impl StaticType for SubpixelLayout {
+    #[inline]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::gdk_subpixel_layout_get_type()) }
     }
@@ -2031,6 +2119,7 @@ impl glib::value::ValueType for SubpixelLayout {
 unsafe impl<'a> FromValue<'a> for SubpixelLayout {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
+    #[inline]
     unsafe fn from_value(value: &'a glib::Value) -> Self {
         skip_assert_initialized!();
         from_glib(glib::gobject_ffi::g_value_get_enum(value.to_glib_none().0))
@@ -2038,6 +2127,7 @@ unsafe impl<'a> FromValue<'a> for SubpixelLayout {
 }
 
 impl ToValue for SubpixelLayout {
+    #[inline]
     fn to_value(&self) -> glib::Value {
         let mut value = glib::Value::for_value_type::<Self>();
         unsafe {
@@ -2046,6 +2136,7 @@ impl ToValue for SubpixelLayout {
         value
     }
 
+    #[inline]
     fn value_type(&self) -> glib::Type {
         Self::static_type()
     }
@@ -2107,6 +2198,7 @@ impl fmt::Display for SurfaceEdge {
 impl IntoGlib for SurfaceEdge {
     type GlibType = ffi::GdkSurfaceEdge;
 
+    #[inline]
     fn into_glib(self) -> ffi::GdkSurfaceEdge {
         match self {
             Self::NorthWest => ffi::GDK_SURFACE_EDGE_NORTH_WEST,
@@ -2124,6 +2216,7 @@ impl IntoGlib for SurfaceEdge {
 
 #[doc(hidden)]
 impl FromGlib<ffi::GdkSurfaceEdge> for SurfaceEdge {
+    #[inline]
     unsafe fn from_glib(value: ffi::GdkSurfaceEdge) -> Self {
         skip_assert_initialized!();
         match value {
@@ -2141,6 +2234,7 @@ impl FromGlib<ffi::GdkSurfaceEdge> for SurfaceEdge {
 }
 
 impl StaticType for SurfaceEdge {
+    #[inline]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::gdk_surface_edge_get_type()) }
     }
@@ -2153,6 +2247,7 @@ impl glib::value::ValueType for SurfaceEdge {
 unsafe impl<'a> FromValue<'a> for SurfaceEdge {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
+    #[inline]
     unsafe fn from_value(value: &'a glib::Value) -> Self {
         skip_assert_initialized!();
         from_glib(glib::gobject_ffi::g_value_get_enum(value.to_glib_none().0))
@@ -2160,6 +2255,7 @@ unsafe impl<'a> FromValue<'a> for SurfaceEdge {
 }
 
 impl ToValue for SurfaceEdge {
+    #[inline]
     fn to_value(&self) -> glib::Value {
         let mut value = glib::Value::for_value_type::<Self>();
         unsafe {
@@ -2168,6 +2264,7 @@ impl ToValue for SurfaceEdge {
         value
     }
 
+    #[inline]
     fn value_type(&self) -> glib::Type {
         Self::static_type()
     }
@@ -2223,6 +2320,7 @@ impl fmt::Display for TextureError {
 impl IntoGlib for TextureError {
     type GlibType = ffi::GdkTextureError;
 
+    #[inline]
     fn into_glib(self) -> ffi::GdkTextureError {
         match self {
             Self::TooLarge => ffi::GDK_TEXTURE_ERROR_TOO_LARGE,
@@ -2238,6 +2336,7 @@ impl IntoGlib for TextureError {
 #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
 #[doc(hidden)]
 impl FromGlib<ffi::GdkTextureError> for TextureError {
+    #[inline]
     unsafe fn from_glib(value: ffi::GdkTextureError) -> Self {
         skip_assert_initialized!();
         match value {
@@ -2253,24 +2352,24 @@ impl FromGlib<ffi::GdkTextureError> for TextureError {
 #[cfg(any(feature = "v4_6", feature = "dox"))]
 #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
 impl ErrorDomain for TextureError {
+    #[inline]
     fn domain() -> Quark {
         skip_assert_initialized!();
 
         unsafe { from_glib(ffi::gdk_texture_error_quark()) }
     }
 
+    #[inline]
     fn code(self) -> i32 {
         self.into_glib()
     }
 
+    #[inline]
+    #[allow(clippy::match_single_binding)]
     fn from(code: i32) -> Option<Self> {
         skip_assert_initialized!();
-        match code {
-            ffi::GDK_TEXTURE_ERROR_TOO_LARGE => Some(Self::TooLarge),
-            ffi::GDK_TEXTURE_ERROR_CORRUPT_IMAGE => Some(Self::CorruptImage),
-            ffi::GDK_TEXTURE_ERROR_UNSUPPORTED_CONTENT => Some(Self::UnsupportedContent),
-            ffi::GDK_TEXTURE_ERROR_UNSUPPORTED_FORMAT => Some(Self::UnsupportedFormat),
-            value => Some(Self::__Unknown(value)),
+        match unsafe { from_glib(code) } {
+            value => Some(value),
         }
     }
 }
@@ -2278,6 +2377,7 @@ impl ErrorDomain for TextureError {
 #[cfg(any(feature = "v4_6", feature = "dox"))]
 #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
 impl StaticType for TextureError {
+    #[inline]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::gdk_texture_error_get_type()) }
     }
@@ -2294,6 +2394,7 @@ impl glib::value::ValueType for TextureError {
 unsafe impl<'a> FromValue<'a> for TextureError {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
+    #[inline]
     unsafe fn from_value(value: &'a glib::Value) -> Self {
         skip_assert_initialized!();
         from_glib(glib::gobject_ffi::g_value_get_enum(value.to_glib_none().0))
@@ -2303,6 +2404,7 @@ unsafe impl<'a> FromValue<'a> for TextureError {
 #[cfg(any(feature = "v4_6", feature = "dox"))]
 #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
 impl ToValue for TextureError {
+    #[inline]
     fn to_value(&self) -> glib::Value {
         let mut value = glib::Value::for_value_type::<Self>();
         unsafe {
@@ -2311,6 +2413,7 @@ impl ToValue for TextureError {
         value
     }
 
+    #[inline]
     fn value_type(&self) -> glib::Type {
         Self::static_type()
     }
@@ -2365,6 +2468,7 @@ impl fmt::Display for TitlebarGesture {
 impl IntoGlib for TitlebarGesture {
     type GlibType = ffi::GdkTitlebarGesture;
 
+    #[inline]
     fn into_glib(self) -> ffi::GdkTitlebarGesture {
         match self {
             Self::DoubleClick => ffi::GDK_TITLEBAR_GESTURE_DOUBLE_CLICK,
@@ -2379,6 +2483,7 @@ impl IntoGlib for TitlebarGesture {
 #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_4")))]
 #[doc(hidden)]
 impl FromGlib<ffi::GdkTitlebarGesture> for TitlebarGesture {
+    #[inline]
     unsafe fn from_glib(value: ffi::GdkTitlebarGesture) -> Self {
         skip_assert_initialized!();
         match value {
@@ -2393,6 +2498,7 @@ impl FromGlib<ffi::GdkTitlebarGesture> for TitlebarGesture {
 #[cfg(any(feature = "v4_4", feature = "dox"))]
 #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_4")))]
 impl StaticType for TitlebarGesture {
+    #[inline]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::gdk_titlebar_gesture_get_type()) }
     }
@@ -2409,6 +2515,7 @@ impl glib::value::ValueType for TitlebarGesture {
 unsafe impl<'a> FromValue<'a> for TitlebarGesture {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
+    #[inline]
     unsafe fn from_value(value: &'a glib::Value) -> Self {
         skip_assert_initialized!();
         from_glib(glib::gobject_ffi::g_value_get_enum(value.to_glib_none().0))
@@ -2418,6 +2525,7 @@ unsafe impl<'a> FromValue<'a> for TitlebarGesture {
 #[cfg(any(feature = "v4_4", feature = "dox"))]
 #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_4")))]
 impl ToValue for TitlebarGesture {
+    #[inline]
     fn to_value(&self) -> glib::Value {
         let mut value = glib::Value::for_value_type::<Self>();
         unsafe {
@@ -2426,6 +2534,7 @@ impl ToValue for TitlebarGesture {
         value
     }
 
+    #[inline]
     fn value_type(&self) -> glib::Type {
         Self::static_type()
     }
@@ -2477,6 +2586,7 @@ impl fmt::Display for TouchpadGesturePhase {
 impl IntoGlib for TouchpadGesturePhase {
     type GlibType = ffi::GdkTouchpadGesturePhase;
 
+    #[inline]
     fn into_glib(self) -> ffi::GdkTouchpadGesturePhase {
         match self {
             Self::Begin => ffi::GDK_TOUCHPAD_GESTURE_PHASE_BEGIN,
@@ -2490,6 +2600,7 @@ impl IntoGlib for TouchpadGesturePhase {
 
 #[doc(hidden)]
 impl FromGlib<ffi::GdkTouchpadGesturePhase> for TouchpadGesturePhase {
+    #[inline]
     unsafe fn from_glib(value: ffi::GdkTouchpadGesturePhase) -> Self {
         skip_assert_initialized!();
         match value {
@@ -2503,6 +2614,7 @@ impl FromGlib<ffi::GdkTouchpadGesturePhase> for TouchpadGesturePhase {
 }
 
 impl StaticType for TouchpadGesturePhase {
+    #[inline]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::gdk_touchpad_gesture_phase_get_type()) }
     }
@@ -2515,6 +2627,7 @@ impl glib::value::ValueType for TouchpadGesturePhase {
 unsafe impl<'a> FromValue<'a> for TouchpadGesturePhase {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
+    #[inline]
     unsafe fn from_value(value: &'a glib::Value) -> Self {
         skip_assert_initialized!();
         from_glib(glib::gobject_ffi::g_value_get_enum(value.to_glib_none().0))
@@ -2522,6 +2635,7 @@ unsafe impl<'a> FromValue<'a> for TouchpadGesturePhase {
 }
 
 impl ToValue for TouchpadGesturePhase {
+    #[inline]
     fn to_value(&self) -> glib::Value {
         let mut value = glib::Value::for_value_type::<Self>();
         unsafe {
@@ -2530,6 +2644,7 @@ impl ToValue for TouchpadGesturePhase {
         value
     }
 
+    #[inline]
     fn value_type(&self) -> glib::Type {
         Self::static_type()
     }
@@ -2573,6 +2688,7 @@ impl fmt::Display for VulkanError {
 impl IntoGlib for VulkanError {
     type GlibType = ffi::GdkVulkanError;
 
+    #[inline]
     fn into_glib(self) -> ffi::GdkVulkanError {
         match self {
             Self::Unsupported => ffi::GDK_VULKAN_ERROR_UNSUPPORTED,
@@ -2584,6 +2700,7 @@ impl IntoGlib for VulkanError {
 
 #[doc(hidden)]
 impl FromGlib<ffi::GdkVulkanError> for VulkanError {
+    #[inline]
     unsafe fn from_glib(value: ffi::GdkVulkanError) -> Self {
         skip_assert_initialized!();
         match value {
@@ -2595,27 +2712,30 @@ impl FromGlib<ffi::GdkVulkanError> for VulkanError {
 }
 
 impl ErrorDomain for VulkanError {
+    #[inline]
     fn domain() -> Quark {
         skip_assert_initialized!();
 
         unsafe { from_glib(ffi::gdk_vulkan_error_quark()) }
     }
 
+    #[inline]
     fn code(self) -> i32 {
         self.into_glib()
     }
 
+    #[inline]
+    #[allow(clippy::match_single_binding)]
     fn from(code: i32) -> Option<Self> {
         skip_assert_initialized!();
-        match code {
-            ffi::GDK_VULKAN_ERROR_UNSUPPORTED => Some(Self::Unsupported),
-            ffi::GDK_VULKAN_ERROR_NOT_AVAILABLE => Some(Self::NotAvailable),
-            value => Some(Self::__Unknown(value)),
+        match unsafe { from_glib(code) } {
+            value => Some(value),
         }
     }
 }
 
 impl StaticType for VulkanError {
+    #[inline]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::gdk_vulkan_error_get_type()) }
     }
@@ -2628,6 +2748,7 @@ impl glib::value::ValueType for VulkanError {
 unsafe impl<'a> FromValue<'a> for VulkanError {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
+    #[inline]
     unsafe fn from_value(value: &'a glib::Value) -> Self {
         skip_assert_initialized!();
         from_glib(glib::gobject_ffi::g_value_get_enum(value.to_glib_none().0))
@@ -2635,6 +2756,7 @@ unsafe impl<'a> FromValue<'a> for VulkanError {
 }
 
 impl ToValue for VulkanError {
+    #[inline]
     fn to_value(&self) -> glib::Value {
         let mut value = glib::Value::for_value_type::<Self>();
         unsafe {
@@ -2643,6 +2765,7 @@ impl ToValue for VulkanError {
         value
     }
 
+    #[inline]
     fn value_type(&self) -> glib::Type {
         Self::static_type()
     }
