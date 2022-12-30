@@ -38,6 +38,7 @@ impl fmt::Display for X11DeviceType {
 impl IntoGlib for X11DeviceType {
     type GlibType = ffi::GdkX11DeviceType;
 
+    #[inline]
     fn into_glib(self) -> ffi::GdkX11DeviceType {
         match self {
             Self::Logical => ffi::GDK_X11_DEVICE_TYPE_LOGICAL,
@@ -50,6 +51,7 @@ impl IntoGlib for X11DeviceType {
 
 #[doc(hidden)]
 impl FromGlib<ffi::GdkX11DeviceType> for X11DeviceType {
+    #[inline]
     unsafe fn from_glib(value: ffi::GdkX11DeviceType) -> Self {
         skip_assert_initialized!();
         match value {

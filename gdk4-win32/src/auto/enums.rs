@@ -35,6 +35,7 @@ impl fmt::Display for Win32MessageFilterReturn {
 impl IntoGlib for Win32MessageFilterReturn {
     type GlibType = ffi::GdkWin32MessageFilterReturn;
 
+    #[inline]
     fn into_glib(self) -> ffi::GdkWin32MessageFilterReturn {
         match self {
             Self::Continue => ffi::GDK_WIN32_MESSAGE_FILTER_CONTINUE,
@@ -46,6 +47,7 @@ impl IntoGlib for Win32MessageFilterReturn {
 
 #[doc(hidden)]
 impl FromGlib<ffi::GdkWin32MessageFilterReturn> for Win32MessageFilterReturn {
+    #[inline]
     unsafe fn from_glib(value: ffi::GdkWin32MessageFilterReturn) -> Self {
         skip_assert_initialized!();
         match value {
