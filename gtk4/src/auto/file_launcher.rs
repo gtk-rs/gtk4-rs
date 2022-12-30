@@ -171,9 +171,12 @@ impl FileLauncher {
     }
 
     #[doc(alias = "gtk_file_launcher_set_file")]
-    pub fn set_file(&self, file: &impl IsA<gio::File>) {
+    pub fn set_file(&self, file: Option<&impl IsA<gio::File>>) {
         unsafe {
-            ffi::gtk_file_launcher_set_file(self.to_glib_none().0, file.as_ref().to_glib_none().0);
+            ffi::gtk_file_launcher_set_file(
+                self.to_glib_none().0,
+                file.map(|p| p.as_ref()).to_glib_none().0,
+            );
         }
     }
 

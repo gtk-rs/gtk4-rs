@@ -392,6 +392,8 @@ pub trait WidgetExt: 'static {
     #[doc(alias = "gtk_widget_has_visible_focus")]
     fn has_visible_focus(&self) -> bool;
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
+    #[allow(deprecated)]
     #[doc(alias = "gtk_widget_hide")]
     fn hide(&self);
 
@@ -577,6 +579,8 @@ pub trait WidgetExt: 'static {
     #[doc(alias = "gtk_widget_should_layout")]
     fn should_layout(&self) -> bool;
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
+    #[allow(deprecated)]
     #[doc(alias = "gtk_widget_show")]
     fn show(&self);
 
@@ -1402,6 +1406,7 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn hide(&self) {
         unsafe {
             ffi::gtk_widget_hide(self.as_ref().to_glib_none().0);
@@ -1863,6 +1868,7 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn show(&self) {
         unsafe {
             ffi::gtk_widget_show(self.as_ref().to_glib_none().0);

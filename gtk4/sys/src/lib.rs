@@ -327,8 +327,8 @@ pub const GTK_DELETE_WHITESPACE: GtkDeleteType = 7;
 
 pub type GtkDialogError = c_int;
 pub const GTK_DIALOG_ERROR_FAILED: GtkDialogError = 0;
-pub const GTK_DIALOG_ERROR_ABORTED: GtkDialogError = 1;
-pub const GTK_DIALOG_ERROR_CANCELLED: GtkDialogError = 2;
+pub const GTK_DIALOG_ERROR_CANCELLED: GtkDialogError = 1;
+pub const GTK_DIALOG_ERROR_DISMISSED: GtkDialogError = 2;
 
 pub type GtkDirectionType = c_int;
 pub const GTK_DIR_TAB_FORWARD: GtkDirectionType = 0;
@@ -10442,6 +10442,7 @@ extern "C" {
     pub fn gtk_alert_dialog_choose_finish(
         self_: *mut GtkAlertDialog,
         result: *mut gio::GAsyncResult,
+        error: *mut *mut glib::GError,
     ) -> c_int;
     #[cfg(any(feature = "v4_10", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
@@ -12803,13 +12804,22 @@ extern "C" {
     pub fn gtk_file_dialog_new() -> *mut GtkFileDialog;
     #[cfg(any(feature = "v4_10", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
-    pub fn gtk_file_dialog_get_current_filter(self_: *mut GtkFileDialog) -> *mut GtkFileFilter;
+    pub fn gtk_file_dialog_get_accept_label(self_: *mut GtkFileDialog) -> *const c_char;
     #[cfg(any(feature = "v4_10", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
-    pub fn gtk_file_dialog_get_current_folder(self_: *mut GtkFileDialog) -> *mut gio::GFile;
+    pub fn gtk_file_dialog_get_default_filter(self_: *mut GtkFileDialog) -> *mut GtkFileFilter;
     #[cfg(any(feature = "v4_10", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
     pub fn gtk_file_dialog_get_filters(self_: *mut GtkFileDialog) -> *mut gio::GListModel;
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gtk_file_dialog_get_initial_file(self_: *mut GtkFileDialog) -> *mut gio::GFile;
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gtk_file_dialog_get_initial_folder(self_: *mut GtkFileDialog) -> *mut gio::GFile;
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gtk_file_dialog_get_initial_name(self_: *mut GtkFileDialog) -> *const c_char;
     #[cfg(any(feature = "v4_10", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
     pub fn gtk_file_dialog_get_modal(self_: *mut GtkFileDialog) -> gboolean;
@@ -12824,7 +12834,6 @@ extern "C" {
     pub fn gtk_file_dialog_open(
         self_: *mut GtkFileDialog,
         parent: *mut GtkWindow,
-        current_file: *mut gio::GFile,
         cancellable: *mut gio::GCancellable,
         callback: gio::GAsyncReadyCallback,
         user_data: gpointer,
@@ -12857,8 +12866,6 @@ extern "C" {
     pub fn gtk_file_dialog_save(
         self_: *mut GtkFileDialog,
         parent: *mut GtkWindow,
-        current_file: *mut gio::GFile,
-        current_name: *const c_char,
         cancellable: *mut gio::GCancellable,
         callback: gio::GAsyncReadyCallback,
         user_data: gpointer,
@@ -12875,7 +12882,6 @@ extern "C" {
     pub fn gtk_file_dialog_select_folder(
         self_: *mut GtkFileDialog,
         parent: *mut GtkWindow,
-        current_folder: *mut gio::GFile,
         cancellable: *mut gio::GCancellable,
         callback: gio::GAsyncReadyCallback,
         user_data: gpointer,
@@ -12905,16 +12911,25 @@ extern "C" {
     ) -> *mut gio::GListModel;
     #[cfg(any(feature = "v4_10", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
-    pub fn gtk_file_dialog_set_current_filter(
+    pub fn gtk_file_dialog_set_accept_label(self_: *mut GtkFileDialog, accept_label: *const c_char);
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gtk_file_dialog_set_default_filter(
         self_: *mut GtkFileDialog,
         filter: *mut GtkFileFilter,
     );
     #[cfg(any(feature = "v4_10", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
-    pub fn gtk_file_dialog_set_current_folder(self_: *mut GtkFileDialog, folder: *mut gio::GFile);
+    pub fn gtk_file_dialog_set_filters(self_: *mut GtkFileDialog, filters: *mut gio::GListModel);
     #[cfg(any(feature = "v4_10", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
-    pub fn gtk_file_dialog_set_filters(self_: *mut GtkFileDialog, filters: *mut gio::GListModel);
+    pub fn gtk_file_dialog_set_initial_file(self_: *mut GtkFileDialog, file: *mut gio::GFile);
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gtk_file_dialog_set_initial_folder(self_: *mut GtkFileDialog, folder: *mut gio::GFile);
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gtk_file_dialog_set_initial_name(self_: *mut GtkFileDialog, name: *const c_char);
     #[cfg(any(feature = "v4_10", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
     pub fn gtk_file_dialog_set_modal(self_: *mut GtkFileDialog, modal: gboolean);
