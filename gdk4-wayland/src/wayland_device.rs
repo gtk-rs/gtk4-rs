@@ -1,9 +1,15 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::WaylandDevice;
 #[cfg(any(feature = "wayland_crate", feature = "dox"))]
 #[cfg_attr(feature = "dox", doc(cfg(feature = "wayland_crate")))]
-use {crate::prelude::*, glib::translate::*};
+use crate::prelude::*;
+use crate::WaylandDevice;
+#[cfg(any(feature = "wayland_crate", feature = "dox", feature = "xkb_crate"))]
+#[cfg_attr(
+    feature = "dox",
+    doc(cfg(any(feature = "wayland_crate", feature = "xkb_crate")))
+)]
+use glib::translate::*;
 
 #[cfg(any(feature = "wayland_crate", feature = "dox"))]
 #[cfg_attr(feature = "dox", doc(cfg(feature = "wayland_crate")))]
@@ -92,7 +98,7 @@ impl WaylandDevice {
             if ptr.is_null() {
                 None
             } else {
-                Some(Keymap::from_ptr(ptr))
+                Some(Keymap::from_ptr(ptr as _))
             }
         }
     }
