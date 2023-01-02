@@ -17,26 +17,30 @@ pub trait FileChooserExtManual: 'static {
 impl<O: IsA<FileChooser>> FileChooserExtManual for O {
     fn add_choice(&self, id: &str, label: &str, options: &[(&str, &str)]) {
         unsafe {
-            let stashes_ids = options
-                .iter()
-                .map(|o| o.0.to_glib_none())
-                .collect::<Vec<_>>();
-            let stashes_labels = options
-                .iter()
-                .map(|o| o.1.to_glib_none())
-                .collect::<Vec<_>>();
-            let (options_ids, options_labels) = (
-                stashes_ids
+            let (options_ids, options_labels) = if options.is_empty() {
+                (std::ptr::null(), std::ptr::null())
+            } else {
+                let stashes_ids = options
                     .iter()
-                    .map(|o| o.0)
-                    .collect::<Vec<*const libc::c_char>>()
-                    .as_ptr(),
-                stashes_labels
+                    .map(|o| o.0.to_glib_none())
+                    .collect::<Vec<_>>();
+                let stashes_labels = options
                     .iter()
-                    .map(|o| o.0)
-                    .collect::<Vec<*const libc::c_char>>()
-                    .as_ptr(),
-            );
+                    .map(|o| o.1.to_glib_none())
+                    .collect::<Vec<_>>();
+                (
+                    stashes_ids
+                        .iter()
+                        .map(|o| o.0)
+                        .collect::<Vec<*const libc::c_char>>()
+                        .as_ptr(),
+                    stashes_labels
+                        .iter()
+                        .map(|o| o.0)
+                        .collect::<Vec<*const libc::c_char>>()
+                        .as_ptr(),
+                )
+            };
 
             ffi::gtk_file_chooser_add_choice(
                 self.as_ref().to_glib_none().0,
