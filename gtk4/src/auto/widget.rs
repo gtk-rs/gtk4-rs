@@ -421,6 +421,7 @@ pub trait WidgetExt: 'static {
     #[doc(alias = "gtk_widget_has_visible_focus")]
     fn has_visible_focus(&self) -> bool;
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_widget_hide")]
     fn hide(&self);
 
@@ -609,6 +610,7 @@ pub trait WidgetExt: 'static {
     #[doc(alias = "gtk_widget_should_layout")]
     fn should_layout(&self) -> bool;
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "gtk_widget_show")]
     fn show(&self);
 

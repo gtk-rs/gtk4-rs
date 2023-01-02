@@ -3321,10 +3321,10 @@ impl ToValue for DeleteType {
 pub enum DialogError {
     #[doc(alias = "GTK_DIALOG_ERROR_FAILED")]
     Failed,
-    #[doc(alias = "GTK_DIALOG_ERROR_ABORTED")]
-    Aborted,
     #[doc(alias = "GTK_DIALOG_ERROR_CANCELLED")]
     Cancelled,
+    #[doc(alias = "GTK_DIALOG_ERROR_DISMISSED")]
+    Dismissed,
     #[doc(hidden)]
     __Unknown(i32),
 }
@@ -3338,8 +3338,8 @@ impl fmt::Display for DialogError {
             "DialogError::{}",
             match *self {
                 Self::Failed => "Failed",
-                Self::Aborted => "Aborted",
                 Self::Cancelled => "Cancelled",
+                Self::Dismissed => "Dismissed",
                 _ => "Unknown",
             }
         )
@@ -3355,8 +3355,8 @@ impl IntoGlib for DialogError {
     fn into_glib(self) -> ffi::GtkDialogError {
         match self {
             Self::Failed => ffi::GTK_DIALOG_ERROR_FAILED,
-            Self::Aborted => ffi::GTK_DIALOG_ERROR_ABORTED,
             Self::Cancelled => ffi::GTK_DIALOG_ERROR_CANCELLED,
+            Self::Dismissed => ffi::GTK_DIALOG_ERROR_DISMISSED,
             Self::__Unknown(value) => value,
         }
     }
@@ -3370,8 +3370,8 @@ impl FromGlib<ffi::GtkDialogError> for DialogError {
         skip_assert_initialized!();
         match value {
             ffi::GTK_DIALOG_ERROR_FAILED => Self::Failed,
-            ffi::GTK_DIALOG_ERROR_ABORTED => Self::Aborted,
             ffi::GTK_DIALOG_ERROR_CANCELLED => Self::Cancelled,
+            ffi::GTK_DIALOG_ERROR_DISMISSED => Self::Dismissed,
             value => Self::__Unknown(value),
         }
     }
@@ -3394,8 +3394,8 @@ impl ErrorDomain for DialogError {
         skip_assert_initialized!();
         match code {
             ffi::GTK_DIALOG_ERROR_FAILED => Some(Self::Failed),
-            ffi::GTK_DIALOG_ERROR_ABORTED => Some(Self::Aborted),
             ffi::GTK_DIALOG_ERROR_CANCELLED => Some(Self::Cancelled),
+            ffi::GTK_DIALOG_ERROR_DISMISSED => Some(Self::Dismissed),
             _ => Some(Self::Failed),
         }
     }
