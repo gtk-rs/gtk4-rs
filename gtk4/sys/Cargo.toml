@@ -11,7 +11,7 @@ links = "gtk-4"
 name = "gtk4-sys"
 repository = "https://github.com/gtk-rs/gtk4-rs"
 version = "0.6.0"
-rust-version = "1.63"
+rust-version = "1.64"
 [package.metadata.docs.rs]
 features = ["dox"]
 [package.metadata.system-deps.gtk4]
