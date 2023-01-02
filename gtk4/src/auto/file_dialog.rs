@@ -42,21 +42,17 @@ impl FileDialog {
         FileDialogBuilder::default()
     }
 
-    #[doc(alias = "gtk_file_dialog_get_current_filter")]
-    #[doc(alias = "get_current_filter")]
-    pub fn current_filter(&self) -> Option<FileFilter> {
-        unsafe {
-            from_glib_none(ffi::gtk_file_dialog_get_current_filter(
-                self.to_glib_none().0,
-            ))
-        }
+    #[doc(alias = "gtk_file_dialog_get_accept_label")]
+    #[doc(alias = "get_accept_label")]
+    pub fn accept_label(&self) -> Option<glib::GString> {
+        unsafe { from_glib_none(ffi::gtk_file_dialog_get_accept_label(self.to_glib_none().0)) }
     }
 
-    #[doc(alias = "gtk_file_dialog_get_current_folder")]
-    #[doc(alias = "get_current_folder")]
-    pub fn current_folder(&self) -> Option<gio::File> {
+    #[doc(alias = "gtk_file_dialog_get_default_filter")]
+    #[doc(alias = "get_default_filter")]
+    pub fn default_filter(&self) -> Option<FileFilter> {
         unsafe {
-            from_glib_none(ffi::gtk_file_dialog_get_current_folder(
+            from_glib_none(ffi::gtk_file_dialog_get_default_filter(
                 self.to_glib_none().0,
             ))
         }
@@ -66,6 +62,28 @@ impl FileDialog {
     #[doc(alias = "get_filters")]
     pub fn filters(&self) -> Option<gio::ListModel> {
         unsafe { from_glib_none(ffi::gtk_file_dialog_get_filters(self.to_glib_none().0)) }
+    }
+
+    #[doc(alias = "gtk_file_dialog_get_initial_file")]
+    #[doc(alias = "get_initial_file")]
+    pub fn initial_file(&self) -> Option<gio::File> {
+        unsafe { from_glib_none(ffi::gtk_file_dialog_get_initial_file(self.to_glib_none().0)) }
+    }
+
+    #[doc(alias = "gtk_file_dialog_get_initial_folder")]
+    #[doc(alias = "get_initial_folder")]
+    pub fn initial_folder(&self) -> Option<gio::File> {
+        unsafe {
+            from_glib_none(ffi::gtk_file_dialog_get_initial_folder(
+                self.to_glib_none().0,
+            ))
+        }
+    }
+
+    #[doc(alias = "gtk_file_dialog_get_initial_name")]
+    #[doc(alias = "get_initial_name")]
+    pub fn initial_name(&self) -> Option<glib::GString> {
+        unsafe { from_glib_none(ffi::gtk_file_dialog_get_initial_name(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_file_dialog_get_modal")]
@@ -94,7 +112,6 @@ impl FileDialog {
     pub fn open<P: FnOnce(Result<gio::File, glib::Error>) + 'static>(
         &self,
         parent: Option<&impl IsA<Window>>,
-        current_file: Option<&impl IsA<gio::File>>,
         cancellable: Option<&impl IsA<gio::Cancellable>>,
         callback: P,
     ) {
@@ -134,7 +151,6 @@ impl FileDialog {
             ffi::gtk_file_dialog_open(
                 self.to_glib_none().0,
                 parent.map(|p| p.as_ref()).to_glib_none().0,
-                current_file.map(|p| p.as_ref()).to_glib_none().0,
                 cancellable.map(|p| p.as_ref()).to_glib_none().0,
                 Some(callback),
                 Box_::into_raw(user_data) as *mut _,
@@ -145,14 +161,11 @@ impl FileDialog {
     pub fn open_future(
         &self,
         parent: Option<&(impl IsA<Window> + Clone + 'static)>,
-        current_file: Option<&(impl IsA<gio::File> + Clone + 'static)>,
     ) -> Pin<Box_<dyn std::future::Future<Output = Result<gio::File, glib::Error>> + 'static>> {
         let parent = parent.map(ToOwned::to_owned);
-        let current_file = current_file.map(ToOwned::to_owned);
         Box_::pin(gio::GioFuture::new(self, move |obj, cancellable, send| {
             obj.open(
                 parent.as_ref().map(::std::borrow::Borrow::borrow),
-                current_file.as_ref().map(::std::borrow::Borrow::borrow),
                 Some(cancellable),
                 move |res| {
                     send.resolve(res);
@@ -236,8 +249,6 @@ impl FileDialog {
     pub fn save<P: FnOnce(Result<gio::File, glib::Error>) + 'static>(
         &self,
         parent: Option<&impl IsA<Window>>,
-        current_file: Option<&impl IsA<gio::File>>,
-        current_name: Option<&str>,
         cancellable: Option<&impl IsA<gio::Cancellable>>,
         callback: P,
     ) {
@@ -277,8 +288,6 @@ impl FileDialog {
             ffi::gtk_file_dialog_save(
                 self.to_glib_none().0,
                 parent.map(|p| p.as_ref()).to_glib_none().0,
-                current_file.map(|p| p.as_ref()).to_glib_none().0,
-                current_name.to_glib_none().0,
                 cancellable.map(|p| p.as_ref()).to_glib_none().0,
                 Some(callback),
                 Box_::into_raw(user_data) as *mut _,
@@ -289,17 +298,11 @@ impl FileDialog {
     pub fn save_future(
         &self,
         parent: Option<&(impl IsA<Window> + Clone + 'static)>,
-        current_file: Option<&(impl IsA<gio::File> + Clone + 'static)>,
-        current_name: Option<&str>,
     ) -> Pin<Box_<dyn std::future::Future<Output = Result<gio::File, glib::Error>> + 'static>> {
         let parent = parent.map(ToOwned::to_owned);
-        let current_file = current_file.map(ToOwned::to_owned);
-        let current_name = current_name.map(ToOwned::to_owned);
         Box_::pin(gio::GioFuture::new(self, move |obj, cancellable, send| {
             obj.save(
                 parent.as_ref().map(::std::borrow::Borrow::borrow),
-                current_file.as_ref().map(::std::borrow::Borrow::borrow),
-                current_name.as_ref().map(::std::borrow::Borrow::borrow),
                 Some(cancellable),
                 move |res| {
                     send.resolve(res);
@@ -312,7 +315,6 @@ impl FileDialog {
     pub fn select_folder<P: FnOnce(Result<gio::File, glib::Error>) + 'static>(
         &self,
         parent: Option<&impl IsA<Window>>,
-        current_folder: Option<&impl IsA<gio::File>>,
         cancellable: Option<&impl IsA<gio::Cancellable>>,
         callback: P,
     ) {
@@ -356,7 +358,6 @@ impl FileDialog {
             ffi::gtk_file_dialog_select_folder(
                 self.to_glib_none().0,
                 parent.map(|p| p.as_ref()).to_glib_none().0,
-                current_folder.map(|p| p.as_ref()).to_glib_none().0,
                 cancellable.map(|p| p.as_ref()).to_glib_none().0,
                 Some(callback),
                 Box_::into_raw(user_data) as *mut _,
@@ -367,14 +368,11 @@ impl FileDialog {
     pub fn select_folder_future(
         &self,
         parent: Option<&(impl IsA<Window> + Clone + 'static)>,
-        current_folder: Option<&(impl IsA<gio::File> + Clone + 'static)>,
     ) -> Pin<Box_<dyn std::future::Future<Output = Result<gio::File, glib::Error>> + 'static>> {
         let parent = parent.map(ToOwned::to_owned);
-        let current_folder = current_folder.map(ToOwned::to_owned);
         Box_::pin(gio::GioFuture::new(self, move |obj, cancellable, send| {
             obj.select_folder(
                 parent.as_ref().map(::std::borrow::Borrow::borrow),
-                current_folder.as_ref().map(::std::borrow::Borrow::borrow),
                 Some(cancellable),
                 move |res| {
                     send.resolve(res);
@@ -459,20 +457,20 @@ impl FileDialog {
         }))
     }
 
-    #[doc(alias = "gtk_file_dialog_set_current_filter")]
-    pub fn set_current_filter(&self, filter: Option<&FileFilter>) {
+    #[doc(alias = "gtk_file_dialog_set_accept_label")]
+    pub fn set_accept_label(&self, accept_label: Option<&str>) {
         unsafe {
-            ffi::gtk_file_dialog_set_current_filter(self.to_glib_none().0, filter.to_glib_none().0);
+            ffi::gtk_file_dialog_set_accept_label(
+                self.to_glib_none().0,
+                accept_label.to_glib_none().0,
+            );
         }
     }
 
-    #[doc(alias = "gtk_file_dialog_set_current_folder")]
-    pub fn set_current_folder(&self, folder: Option<&impl IsA<gio::File>>) {
+    #[doc(alias = "gtk_file_dialog_set_default_filter")]
+    pub fn set_default_filter(&self, filter: Option<&FileFilter>) {
         unsafe {
-            ffi::gtk_file_dialog_set_current_folder(
-                self.to_glib_none().0,
-                folder.map(|p| p.as_ref()).to_glib_none().0,
-            );
+            ffi::gtk_file_dialog_set_default_filter(self.to_glib_none().0, filter.to_glib_none().0);
         }
     }
 
@@ -483,6 +481,33 @@ impl FileDialog {
                 self.to_glib_none().0,
                 filters.as_ref().to_glib_none().0,
             );
+        }
+    }
+
+    #[doc(alias = "gtk_file_dialog_set_initial_file")]
+    pub fn set_initial_file(&self, file: Option<&impl IsA<gio::File>>) {
+        unsafe {
+            ffi::gtk_file_dialog_set_initial_file(
+                self.to_glib_none().0,
+                file.map(|p| p.as_ref()).to_glib_none().0,
+            );
+        }
+    }
+
+    #[doc(alias = "gtk_file_dialog_set_initial_folder")]
+    pub fn set_initial_folder(&self, folder: Option<&impl IsA<gio::File>>) {
+        unsafe {
+            ffi::gtk_file_dialog_set_initial_folder(
+                self.to_glib_none().0,
+                folder.map(|p| p.as_ref()).to_glib_none().0,
+            );
+        }
+    }
+
+    #[doc(alias = "gtk_file_dialog_set_initial_name")]
+    pub fn set_initial_name(&self, name: Option<&str>) {
+        unsafe {
+            ffi::gtk_file_dialog_set_initial_name(self.to_glib_none().0, name.to_glib_none().0);
         }
     }
 
@@ -512,9 +537,9 @@ impl FileDialog {
 
     #[cfg(any(feature = "v4_10", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
-    #[doc(alias = "current-filter")]
-    pub fn connect_current_filter_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_current_filter_trampoline<F: Fn(&FileDialog) + 'static>(
+    #[doc(alias = "accept-label")]
+    pub fn connect_accept_label_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_accept_label_trampoline<F: Fn(&FileDialog) + 'static>(
             this: *mut ffi::GtkFileDialog,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
@@ -526,9 +551,9 @@ impl FileDialog {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::current-filter\0".as_ptr() as *const _,
+                b"notify::accept-label\0".as_ptr() as *const _,
                 Some(transmute::<_, unsafe extern "C" fn()>(
-                    notify_current_filter_trampoline::<F> as *const (),
+                    notify_accept_label_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
@@ -537,9 +562,9 @@ impl FileDialog {
 
     #[cfg(any(feature = "v4_10", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
-    #[doc(alias = "current-folder")]
-    pub fn connect_current_folder_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_current_folder_trampoline<F: Fn(&FileDialog) + 'static>(
+    #[doc(alias = "default-filter")]
+    pub fn connect_default_filter_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_default_filter_trampoline<F: Fn(&FileDialog) + 'static>(
             this: *mut ffi::GtkFileDialog,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
@@ -551,9 +576,9 @@ impl FileDialog {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::current-folder\0".as_ptr() as *const _,
+                b"notify::default-filter\0".as_ptr() as *const _,
                 Some(transmute::<_, unsafe extern "C" fn()>(
-                    notify_current_folder_trampoline::<F> as *const (),
+                    notify_default_filter_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
@@ -579,6 +604,81 @@ impl FileDialog {
                 b"notify::filters\0".as_ptr() as *const _,
                 Some(transmute::<_, unsafe extern "C" fn()>(
                     notify_filters_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    #[doc(alias = "initial-file")]
+    pub fn connect_initial_file_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_initial_file_trampoline<F: Fn(&FileDialog) + 'static>(
+            this: *mut ffi::GtkFileDialog,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::initial-file\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_initial_file_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    #[doc(alias = "initial-folder")]
+    pub fn connect_initial_folder_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_initial_folder_trampoline<F: Fn(&FileDialog) + 'static>(
+            this: *mut ffi::GtkFileDialog,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::initial-folder\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_initial_folder_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    #[doc(alias = "initial-name")]
+    pub fn connect_initial_name_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_initial_name_trampoline<F: Fn(&FileDialog) + 'static>(
+            this: *mut ffi::GtkFileDialog,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::initial-name\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_initial_name_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
@@ -678,13 +778,22 @@ impl Default for FileDialog {
 pub struct FileDialogBuilder {
     #[cfg(any(feature = "v4_10", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
-    current_filter: Option<FileFilter>,
+    accept_label: Option<String>,
     #[cfg(any(feature = "v4_10", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
-    current_folder: Option<gio::File>,
+    default_filter: Option<FileFilter>,
     #[cfg(any(feature = "v4_10", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
     filters: Option<gio::ListModel>,
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    initial_file: Option<gio::File>,
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    initial_folder: Option<gio::File>,
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    initial_name: Option<String>,
     #[cfg(any(feature = "v4_10", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
     modal: Option<bool>,
@@ -709,16 +818,28 @@ impl FileDialogBuilder {
     pub fn build(self) -> FileDialog {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         #[cfg(any(feature = "v4_10", feature = "dox"))]
-        if let Some(ref current_filter) = self.current_filter {
-            properties.push(("current-filter", current_filter));
+        if let Some(ref accept_label) = self.accept_label {
+            properties.push(("accept-label", accept_label));
         }
         #[cfg(any(feature = "v4_10", feature = "dox"))]
-        if let Some(ref current_folder) = self.current_folder {
-            properties.push(("current-folder", current_folder));
+        if let Some(ref default_filter) = self.default_filter {
+            properties.push(("default-filter", default_filter));
         }
         #[cfg(any(feature = "v4_10", feature = "dox"))]
         if let Some(ref filters) = self.filters {
             properties.push(("filters", filters));
+        }
+        #[cfg(any(feature = "v4_10", feature = "dox"))]
+        if let Some(ref initial_file) = self.initial_file {
+            properties.push(("initial-file", initial_file));
+        }
+        #[cfg(any(feature = "v4_10", feature = "dox"))]
+        if let Some(ref initial_folder) = self.initial_folder {
+            properties.push(("initial-folder", initial_folder));
+        }
+        #[cfg(any(feature = "v4_10", feature = "dox"))]
+        if let Some(ref initial_name) = self.initial_name {
+            properties.push(("initial-name", initial_name));
         }
         #[cfg(any(feature = "v4_10", feature = "dox"))]
         if let Some(ref modal) = self.modal {
@@ -737,15 +858,15 @@ impl FileDialogBuilder {
 
     #[cfg(any(feature = "v4_10", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
-    pub fn current_filter(mut self, current_filter: &FileFilter) -> Self {
-        self.current_filter = Some(current_filter.clone());
+    pub fn accept_label(mut self, accept_label: &str) -> Self {
+        self.accept_label = Some(accept_label.to_string());
         self
     }
 
     #[cfg(any(feature = "v4_10", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
-    pub fn current_folder(mut self, current_folder: &impl IsA<gio::File>) -> Self {
-        self.current_folder = Some(current_folder.clone().upcast());
+    pub fn default_filter(mut self, default_filter: &FileFilter) -> Self {
+        self.default_filter = Some(default_filter.clone());
         self
     }
 
@@ -753,6 +874,27 @@ impl FileDialogBuilder {
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
     pub fn filters(mut self, filters: &impl IsA<gio::ListModel>) -> Self {
         self.filters = Some(filters.clone().upcast());
+        self
+    }
+
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn initial_file(mut self, initial_file: &impl IsA<gio::File>) -> Self {
+        self.initial_file = Some(initial_file.clone().upcast());
+        self
+    }
+
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn initial_folder(mut self, initial_folder: &impl IsA<gio::File>) -> Self {
+        self.initial_folder = Some(initial_folder.clone().upcast());
+        self
+    }
+
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn initial_name(mut self, initial_name: &str) -> Self {
+        self.initial_name = Some(initial_name.to_string());
         self
     }
 

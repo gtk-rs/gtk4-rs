@@ -954,6 +954,13 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         },
     ),
     (
+        "GtkFileLauncherClass",
+        Layout {
+            size: size_of::<GtkFileLauncherClass>(),
+            alignment: align_of::<GtkFileLauncherClass>(),
+        },
+    ),
+    (
         "GtkFilter",
         Layout {
             size: size_of::<GtkFilter>(),
@@ -2728,8 +2735,8 @@ const RUST_CONSTANTS: &[(&str, &str)] = &[
     ("(gint) GTK_DELETE_WORDS", "2"),
     ("(gint) GTK_DELETE_WORD_ENDS", "1"),
     ("(guint) GTK_DIALOG_DESTROY_WITH_PARENT", "2"),
-    ("(gint) GTK_DIALOG_ERROR_ABORTED", "1"),
-    ("(gint) GTK_DIALOG_ERROR_CANCELLED", "2"),
+    ("(gint) GTK_DIALOG_ERROR_CANCELLED", "1"),
+    ("(gint) GTK_DIALOG_ERROR_DISMISSED", "2"),
     ("(gint) GTK_DIALOG_ERROR_FAILED", "0"),
     ("(guint) GTK_DIALOG_MODAL", "1"),
     ("(guint) GTK_DIALOG_USE_HEADER_BAR", "4"),
