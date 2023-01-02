@@ -10,7 +10,7 @@ name = "gdk4-x11"
 readme = "README.md"
 repository = "https://github.com/gtk-rs/gtk4-rs"
 version = "0.6.0"
-rust-version = "1.63"
+rust-version = "1.64"
 [features]
 v4_4 = ["ffi/v4_4"]
 dox = ["ffi/dox", "gdk/dox", "gio/dox", "glib/dox", "egl", "xlib"]

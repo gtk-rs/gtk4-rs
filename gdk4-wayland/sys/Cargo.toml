@@ -10,7 +10,7 @@ license = "MIT"
 name = "gdk4-wayland-sys"
 repository = "https://github.com/gtk-rs/gtk4-rs"
 version = "0.6.0"
-rust-version = "1.63"
+rust-version = "1.64"
 [package.metadata.system-deps.gtk4_wayland]
 name = "gtk4-wayland"
 version = "4.0.0"
