@@ -9,7 +9,7 @@ license = "MIT"
 name = "gsk4"
 readme = "README.md"
 repository = "https://github.com/gtk-rs/gtk4-rs"
-version = "0.5.4"
+version = "0.5.5"
 rust-version = "1.63"
 [lib]
 name = "gsk4"
@@ -27,8 +27,8 @@ features = ["dox"]
 [dependencies]
 bitflags = "1.0"
 cairo-rs = {git = "https://github.com/gtk-rs/gtk-rs-core", branch = "0.16", version = "0.16"}
-ffi = {package = "gsk4-sys", path = "./sys", version = "0.5.4"}
-gdk = {package = "gdk4", path = "../gdk4", version = "0.5.4"}
+ffi = {package = "gsk4-sys", path = "./sys", version = "0.5.5"}
+gdk = {package = "gdk4", path = "../gdk4", version = "0.5.5"}
 glib = {git = "https://github.com/gtk-rs/gtk-rs-core", branch = "0.16", version = "0.16", features = ["v2_66"]}
 graphene = {package = "graphene-rs", git = "https://github.com/gtk-rs/gtk-rs-core", branch = "0.16", version = "0.16"}
 libc = "0.2"
