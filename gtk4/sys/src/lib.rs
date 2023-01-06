@@ -828,78 +828,53 @@ pub const GTK_WRAP_WORD_CHAR: GtkWrapMode = 3;
 
 // Constants
 pub const GTK_ACCESSIBLE_VALUE_UNDEFINED: c_int = -1;
-pub const GTK_IM_MODULE_EXTENSION_POINT_NAME: *const c_char =
-    b"gtk-im-module\0" as *const u8 as *const c_char;
+pub const GTK_IM_MODULE_EXTENSION_POINT_NAME: &[u8] = b"gtk-im-module\0";
 pub const GTK_INPUT_ERROR: c_int = -1;
 pub const GTK_INVALID_LIST_POSITION: c_uint = 4294967295;
-pub const GTK_LEVEL_BAR_OFFSET_FULL: *const c_char = b"full\0" as *const u8 as *const c_char;
-pub const GTK_LEVEL_BAR_OFFSET_HIGH: *const c_char = b"high\0" as *const u8 as *const c_char;
-pub const GTK_LEVEL_BAR_OFFSET_LOW: *const c_char = b"low\0" as *const u8 as *const c_char;
+pub const GTK_LEVEL_BAR_OFFSET_FULL: &[u8] = b"full\0";
+pub const GTK_LEVEL_BAR_OFFSET_HIGH: &[u8] = b"high\0";
+pub const GTK_LEVEL_BAR_OFFSET_LOW: &[u8] = b"low\0";
 pub const GTK_MAX_COMPOSE_LEN: c_int = 7;
-pub const GTK_MEDIA_FILE_EXTENSION_POINT_NAME: *const c_char =
-    b"gtk-media-file\0" as *const u8 as *const c_char;
-pub const GTK_PAPER_NAME_A3: *const c_char = b"iso_a3\0" as *const u8 as *const c_char;
-pub const GTK_PAPER_NAME_A4: *const c_char = b"iso_a4\0" as *const u8 as *const c_char;
-pub const GTK_PAPER_NAME_A5: *const c_char = b"iso_a5\0" as *const u8 as *const c_char;
-pub const GTK_PAPER_NAME_B5: *const c_char = b"iso_b5\0" as *const u8 as *const c_char;
-pub const GTK_PAPER_NAME_EXECUTIVE: *const c_char = b"na_executive\0" as *const u8 as *const c_char;
-pub const GTK_PAPER_NAME_LEGAL: *const c_char = b"na_legal\0" as *const u8 as *const c_char;
-pub const GTK_PAPER_NAME_LETTER: *const c_char = b"na_letter\0" as *const u8 as *const c_char;
-pub const GTK_PRINT_SETTINGS_COLLATE: *const c_char = b"collate\0" as *const u8 as *const c_char;
-pub const GTK_PRINT_SETTINGS_DEFAULT_SOURCE: *const c_char =
-    b"default-source\0" as *const u8 as *const c_char;
-pub const GTK_PRINT_SETTINGS_DITHER: *const c_char = b"dither\0" as *const u8 as *const c_char;
-pub const GTK_PRINT_SETTINGS_DUPLEX: *const c_char = b"duplex\0" as *const u8 as *const c_char;
-pub const GTK_PRINT_SETTINGS_FINISHINGS: *const c_char =
-    b"finishings\0" as *const u8 as *const c_char;
-pub const GTK_PRINT_SETTINGS_MEDIA_TYPE: *const c_char =
-    b"media-type\0" as *const u8 as *const c_char;
-pub const GTK_PRINT_SETTINGS_NUMBER_UP: *const c_char =
-    b"number-up\0" as *const u8 as *const c_char;
-pub const GTK_PRINT_SETTINGS_NUMBER_UP_LAYOUT: *const c_char =
-    b"number-up-layout\0" as *const u8 as *const c_char;
-pub const GTK_PRINT_SETTINGS_N_COPIES: *const c_char = b"n-copies\0" as *const u8 as *const c_char;
-pub const GTK_PRINT_SETTINGS_ORIENTATION: *const c_char =
-    b"orientation\0" as *const u8 as *const c_char;
-pub const GTK_PRINT_SETTINGS_OUTPUT_BASENAME: *const c_char =
-    b"output-basename\0" as *const u8 as *const c_char;
-pub const GTK_PRINT_SETTINGS_OUTPUT_BIN: *const c_char =
-    b"output-bin\0" as *const u8 as *const c_char;
-pub const GTK_PRINT_SETTINGS_OUTPUT_DIR: *const c_char =
-    b"output-dir\0" as *const u8 as *const c_char;
-pub const GTK_PRINT_SETTINGS_OUTPUT_FILE_FORMAT: *const c_char =
-    b"output-file-format\0" as *const u8 as *const c_char;
-pub const GTK_PRINT_SETTINGS_OUTPUT_URI: *const c_char =
-    b"output-uri\0" as *const u8 as *const c_char;
-pub const GTK_PRINT_SETTINGS_PAGE_RANGES: *const c_char =
-    b"page-ranges\0" as *const u8 as *const c_char;
-pub const GTK_PRINT_SETTINGS_PAGE_SET: *const c_char = b"page-set\0" as *const u8 as *const c_char;
-pub const GTK_PRINT_SETTINGS_PAPER_FORMAT: *const c_char =
-    b"paper-format\0" as *const u8 as *const c_char;
-pub const GTK_PRINT_SETTINGS_PAPER_HEIGHT: *const c_char =
-    b"paper-height\0" as *const u8 as *const c_char;
-pub const GTK_PRINT_SETTINGS_PAPER_WIDTH: *const c_char =
-    b"paper-width\0" as *const u8 as *const c_char;
-pub const GTK_PRINT_SETTINGS_PRINTER: *const c_char = b"printer\0" as *const u8 as *const c_char;
-pub const GTK_PRINT_SETTINGS_PRINTER_LPI: *const c_char =
-    b"printer-lpi\0" as *const u8 as *const c_char;
-pub const GTK_PRINT_SETTINGS_PRINT_PAGES: *const c_char =
-    b"print-pages\0" as *const u8 as *const c_char;
-pub const GTK_PRINT_SETTINGS_QUALITY: *const c_char = b"quality\0" as *const u8 as *const c_char;
-pub const GTK_PRINT_SETTINGS_RESOLUTION: *const c_char =
-    b"resolution\0" as *const u8 as *const c_char;
-pub const GTK_PRINT_SETTINGS_RESOLUTION_X: *const c_char =
-    b"resolution-x\0" as *const u8 as *const c_char;
-pub const GTK_PRINT_SETTINGS_RESOLUTION_Y: *const c_char =
-    b"resolution-y\0" as *const u8 as *const c_char;
-pub const GTK_PRINT_SETTINGS_REVERSE: *const c_char = b"reverse\0" as *const u8 as *const c_char;
-pub const GTK_PRINT_SETTINGS_SCALE: *const c_char = b"scale\0" as *const u8 as *const c_char;
-pub const GTK_PRINT_SETTINGS_USE_COLOR: *const c_char =
-    b"use-color\0" as *const u8 as *const c_char;
-pub const GTK_PRINT_SETTINGS_WIN32_DRIVER_EXTRA: *const c_char =
-    b"win32-driver-extra\0" as *const u8 as *const c_char;
-pub const GTK_PRINT_SETTINGS_WIN32_DRIVER_VERSION: *const c_char =
-    b"win32-driver-version\0" as *const u8 as *const c_char;
+pub const GTK_MEDIA_FILE_EXTENSION_POINT_NAME: &[u8] = b"gtk-media-file\0";
+pub const GTK_PAPER_NAME_A3: &[u8] = b"iso_a3\0";
+pub const GTK_PAPER_NAME_A4: &[u8] = b"iso_a4\0";
+pub const GTK_PAPER_NAME_A5: &[u8] = b"iso_a5\0";
+pub const GTK_PAPER_NAME_B5: &[u8] = b"iso_b5\0";
+pub const GTK_PAPER_NAME_EXECUTIVE: &[u8] = b"na_executive\0";
+pub const GTK_PAPER_NAME_LEGAL: &[u8] = b"na_legal\0";
+pub const GTK_PAPER_NAME_LETTER: &[u8] = b"na_letter\0";
+pub const GTK_PRINT_SETTINGS_COLLATE: &[u8] = b"collate\0";
+pub const GTK_PRINT_SETTINGS_DEFAULT_SOURCE: &[u8] = b"default-source\0";
+pub const GTK_PRINT_SETTINGS_DITHER: &[u8] = b"dither\0";
+pub const GTK_PRINT_SETTINGS_DUPLEX: &[u8] = b"duplex\0";
+pub const GTK_PRINT_SETTINGS_FINISHINGS: &[u8] = b"finishings\0";
+pub const GTK_PRINT_SETTINGS_MEDIA_TYPE: &[u8] = b"media-type\0";
+pub const GTK_PRINT_SETTINGS_NUMBER_UP: &[u8] = b"number-up\0";
+pub const GTK_PRINT_SETTINGS_NUMBER_UP_LAYOUT: &[u8] = b"number-up-layout\0";
+pub const GTK_PRINT_SETTINGS_N_COPIES: &[u8] = b"n-copies\0";
+pub const GTK_PRINT_SETTINGS_ORIENTATION: &[u8] = b"orientation\0";
+pub const GTK_PRINT_SETTINGS_OUTPUT_BASENAME: &[u8] = b"output-basename\0";
+pub const GTK_PRINT_SETTINGS_OUTPUT_BIN: &[u8] = b"output-bin\0";
+pub const GTK_PRINT_SETTINGS_OUTPUT_DIR: &[u8] = b"output-dir\0";
+pub const GTK_PRINT_SETTINGS_OUTPUT_FILE_FORMAT: &[u8] = b"output-file-format\0";
+pub const GTK_PRINT_SETTINGS_OUTPUT_URI: &[u8] = b"output-uri\0";
+pub const GTK_PRINT_SETTINGS_PAGE_RANGES: &[u8] = b"page-ranges\0";
+pub const GTK_PRINT_SETTINGS_PAGE_SET: &[u8] = b"page-set\0";
+pub const GTK_PRINT_SETTINGS_PAPER_FORMAT: &[u8] = b"paper-format\0";
+pub const GTK_PRINT_SETTINGS_PAPER_HEIGHT: &[u8] = b"paper-height\0";
+pub const GTK_PRINT_SETTINGS_PAPER_WIDTH: &[u8] = b"paper-width\0";
+pub const GTK_PRINT_SETTINGS_PRINTER: &[u8] = b"printer\0";
+pub const GTK_PRINT_SETTINGS_PRINTER_LPI: &[u8] = b"printer-lpi\0";
+pub const GTK_PRINT_SETTINGS_PRINT_PAGES: &[u8] = b"print-pages\0";
+pub const GTK_PRINT_SETTINGS_QUALITY: &[u8] = b"quality\0";
+pub const GTK_PRINT_SETTINGS_RESOLUTION: &[u8] = b"resolution\0";
+pub const GTK_PRINT_SETTINGS_RESOLUTION_X: &[u8] = b"resolution-x\0";
+pub const GTK_PRINT_SETTINGS_RESOLUTION_Y: &[u8] = b"resolution-y\0";
+pub const GTK_PRINT_SETTINGS_REVERSE: &[u8] = b"reverse\0";
+pub const GTK_PRINT_SETTINGS_SCALE: &[u8] = b"scale\0";
+pub const GTK_PRINT_SETTINGS_USE_COLOR: &[u8] = b"use-color\0";
+pub const GTK_PRINT_SETTINGS_WIN32_DRIVER_EXTRA: &[u8] = b"win32-driver-extra\0";
+pub const GTK_PRINT_SETTINGS_WIN32_DRIVER_VERSION: &[u8] = b"win32-driver-version\0";
 pub const GTK_PRIORITY_RESIZE: c_int = 110;
 pub const GTK_STYLE_PROVIDER_PRIORITY_APPLICATION: c_int = 600;
 pub const GTK_STYLE_PROVIDER_PRIORITY_FALLBACK: c_int = 1;
