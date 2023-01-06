@@ -6,6 +6,8 @@ use glib::translate::*;
 impl EntryCompletion {
     #[doc(alias = "gtk_entry_completion_get_entry")]
     #[doc(alias = "get_entry")]
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
+    #[allow(deprecated)]
     pub fn entry(&self) -> Option<Entry> {
         unsafe {
             Option::<Widget>::from_glib_none(ffi::gtk_entry_completion_get_entry(

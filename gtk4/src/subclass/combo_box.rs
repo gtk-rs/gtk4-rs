@@ -7,6 +7,7 @@ use crate::{prelude::*, subclass::prelude::*, ComboBox};
 use glib::{translate::*, GString};
 
 #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
+#[allow(deprecated)]
 pub trait ComboBoxImpl: ComboBoxImplExt + WidgetImpl {
     #[cfg(any(feature = "v4_6", feature = "dox"))]
     fn activate(&self) {
@@ -21,6 +22,7 @@ pub trait ComboBoxImpl: ComboBoxImplExt + WidgetImpl {
 }
 
 #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
+#[allow(deprecated)]
 pub trait ComboBoxImplExt: ObjectSubclass {
     #[cfg(any(feature = "v4_6", feature = "dox"))]
     fn parent_activate(&self);

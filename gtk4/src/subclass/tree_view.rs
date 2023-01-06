@@ -9,6 +9,7 @@ use crate::{
 use glib::translate::*;
 
 #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
+#[allow(deprecated)]
 pub trait TreeViewImpl: TreeViewImplExt + WidgetImpl {
     fn columns_changed(&self) {
         self.parent_columns_changed()
@@ -72,6 +73,7 @@ pub trait TreeViewImpl: TreeViewImplExt + WidgetImpl {
 }
 
 #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
+#[allow(deprecated)]
 pub trait TreeViewImplExt: ObjectSubclass {
     fn parent_columns_changed(&self);
     fn parent_cursor_changed(&self);

@@ -8,6 +8,7 @@ use crate::{prelude::*, TreeIter, TreeModel, TreeModelFilter, TreePath};
 impl TreeModelFilter {
     #[doc(alias = "gtk_tree_model_filter_new")]
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
+    #[allow(deprecated)]
     pub fn new(child_model: &impl IsA<TreeModel>, root: Option<&TreePath>) -> Self {
         skip_assert_initialized!();
         unsafe {
@@ -23,6 +24,7 @@ impl TreeModelFilter {
 // rustdoc-stripper-ignore-next
 /// Trait containing manually implemented methods of [`TreeModelFilter`](crate::TreeModelFilter).
 #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
+#[allow(deprecated)]
 pub trait TreeModelFilterExtManual: 'static {
     #[doc(alias = "gtk_tree_model_filter_set_modify_func")]
     fn set_modify_func<F: Fn(&TreeModel, &TreeIter, i32) -> glib::Value + 'static>(

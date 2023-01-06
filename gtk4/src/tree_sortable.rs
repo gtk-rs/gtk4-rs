@@ -7,6 +7,8 @@ use std::{fmt, mem};
 use crate::{SortType, TreeIter, TreeModel, TreeSortable};
 
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
+#[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
+#[allow(deprecated)]
 pub enum SortColumn {
     #[doc(alias = "GTK_TREE_SORTABLE_DEFAULT_SORT_COLUMN_ID")]
     Default,
@@ -60,6 +62,7 @@ impl fmt::Display for SortColumn {
 // rustdoc-stripper-ignore-next
 /// Trait containing manually implemented methods of [`TreeSortable`](crate::TreeSortable).
 #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
+#[allow(deprecated)]
 pub trait TreeSortableExtManual: 'static {
     #[doc(alias = "gtk_tree_sortable_set_default_sort_func")]
     fn set_default_sort_func<F>(&self, sort_func: F)

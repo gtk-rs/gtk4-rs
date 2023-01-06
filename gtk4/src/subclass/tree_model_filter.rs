@@ -7,6 +7,7 @@ use crate::{prelude::*, subclass::prelude::*, TreeIter, TreeModel, TreeModelFilt
 use glib::{translate::*, Value};
 
 #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
+#[allow(deprecated)]
 pub trait TreeModelFilterImpl: TreeModelFilterImplExt + ObjectImpl {
     fn visible<M: IsA<TreeModel>>(&self, child_model: &M, iter: &TreeIter) -> bool {
         self.parent_visible(child_model, iter)
@@ -24,6 +25,7 @@ pub trait TreeModelFilterImpl: TreeModelFilterImplExt + ObjectImpl {
 }
 
 #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
+#[allow(deprecated)]
 pub trait TreeModelFilterImplExt: ObjectSubclass {
     fn parent_visible<M: IsA<TreeModel>>(&self, child_model: &M, iter: &TreeIter) -> bool;
 

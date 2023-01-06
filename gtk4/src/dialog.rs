@@ -13,6 +13,8 @@ use std::{
 impl Dialog {
     #[doc(alias = "gtk_dialog_new_with_buttons")]
     #[doc(alias = "new_with_buttons")]
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
+    #[allow(deprecated)]
     pub fn with_buttons<T: IsA<Window>>(
         title: Option<&str>,
         parent: Option<&T>,
@@ -37,6 +39,8 @@ impl Dialog {
 
 // rustdoc-stripper-ignore-next
 /// Trait containing manually implemented methods of [`Dialog`](crate::Dialog).
+#[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
+#[allow(deprecated)]
 pub trait DialogExtManual: 'static {
     #[doc(alias = "gtk_dialog_add_buttons")]
     fn add_buttons(&self, buttons: &[(&str, ResponseType)]);

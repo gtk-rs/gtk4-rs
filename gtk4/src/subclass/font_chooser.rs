@@ -45,6 +45,7 @@ impl Drop for FilterCallback {
 }
 
 #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
+#[allow(deprecated)]
 pub trait FontChooserImpl: ObjectImpl {
     fn font_family(&self) -> Option<FontFamily> {
         self.parent_font_family()
@@ -76,6 +77,7 @@ pub trait FontChooserImpl: ObjectImpl {
 }
 
 #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
+#[allow(deprecated)]
 pub trait FontChooserImplExt: ObjectSubclass {
     fn parent_font_family(&self) -> Option<FontFamily>;
     fn parent_font_face(&self) -> Option<FontFace>;

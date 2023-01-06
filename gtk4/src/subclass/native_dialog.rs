@@ -7,6 +7,7 @@ use crate::{prelude::*, subclass::prelude::*, NativeDialog, ResponseType};
 use glib::translate::*;
 
 #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
+#[allow(deprecated)]
 pub trait NativeDialogImpl: NativeDialogImplExt + ObjectImpl {
     fn response(&self, response: ResponseType) {
         self.parent_response(response)
@@ -22,6 +23,7 @@ pub trait NativeDialogImpl: NativeDialogImplExt + ObjectImpl {
 }
 
 #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
+#[allow(deprecated)]
 pub trait NativeDialogImplExt: ObjectSubclass {
     fn parent_response(&self, response: ResponseType);
     fn parent_show(&self);
