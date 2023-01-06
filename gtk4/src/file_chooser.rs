@@ -6,6 +6,7 @@ use glib::translate::*;
 // rustdoc-stripper-ignore-next
 /// Trait containing manually implemented methods of [`FileChooser`](crate::FileChooser).
 #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
+#[allow(deprecated)]
 pub trait FileChooserExtManual: 'static {
     #[doc(alias = "gtk_file_chooser_add_choice")]
     fn add_choice(&self, id: &str, label: &str, options: &[(&str, &str)]);

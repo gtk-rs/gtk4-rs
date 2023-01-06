@@ -7,6 +7,7 @@ use crate::{prelude::*, subclass::prelude::*, CellRendererText};
 use glib::{translate::*, GString};
 
 #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
+#[allow(deprecated)]
 pub trait CellRendererTextImpl: CellRendererTextImplExt + CellRendererImpl {
     fn edited(&self, path: &str, new_text: &str) {
         self.parent_edited(path, new_text);
@@ -14,6 +15,7 @@ pub trait CellRendererTextImpl: CellRendererTextImplExt + CellRendererImpl {
 }
 
 #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
+#[allow(deprecated)]
 pub trait CellRendererTextImplExt: ObjectSubclass {
     fn parent_edited(&self, path: &str, new_text: &str);
 }

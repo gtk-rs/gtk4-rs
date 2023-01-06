@@ -9,6 +9,7 @@ use crate::{prelude::*, ButtonsType, DialogFlags, MessageDialog, MessageType, Wi
 impl MessageDialog {
     #[doc(alias = "gtk_message_dialog_new")]
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
+    #[allow(deprecated)]
     pub fn new(
         parent: Option<&impl IsA<Window>>,
         flags: DialogFlags,
@@ -35,6 +36,7 @@ impl MessageDialog {
     #[doc(alias = "gtk_message_dialog_new_with_markup")]
     #[doc(alias = "new_with_markup")]
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
+    #[allow(deprecated)]
     pub fn with_markup(
         parent: Option<&impl IsA<Window>>,
         flags: DialogFlags,
@@ -57,6 +59,7 @@ impl MessageDialog {
 
     #[doc(alias = "gtk_message_dialog_format_secondary_markup")]
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
+    #[allow(deprecated)]
     pub fn format_secondary_markup(&self, message: Option<&str>) {
         unsafe {
             ffi::gtk_message_dialog_format_secondary_markup(
@@ -68,6 +71,7 @@ impl MessageDialog {
 
     #[doc(alias = "gtk_message_dialog_format_secondary_text")]
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
+    #[allow(deprecated)]
     pub fn format_secondary_text(&self, message: Option<&str>) {
         unsafe {
             ffi::gtk_message_dialog_format_secondary_text(

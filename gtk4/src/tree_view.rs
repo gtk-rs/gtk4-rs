@@ -6,6 +6,7 @@ use glib::translate::*;
 // rustdoc-stripper-ignore-next
 /// Trait containing manually implemented methods of [`TreeView`](crate::TreeView).
 #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
+#[allow(deprecated)]
 pub trait TreeViewExtManual: 'static {
     #[doc(alias = "gtk_tree_view_insert_column_with_attributes")]
     fn insert_column_with_attributes(

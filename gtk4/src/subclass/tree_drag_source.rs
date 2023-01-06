@@ -7,6 +7,7 @@ use crate::{prelude::*, subclass::prelude::*, TreeDragSource, TreePath};
 use glib::translate::*;
 
 #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
+#[allow(deprecated)]
 pub trait TreeDragSourceImpl: ObjectImpl {
     fn row_draggable(&self, path: &TreePath) -> bool {
         self.parent_row_draggable(path)
@@ -16,6 +17,7 @@ pub trait TreeDragSourceImpl: ObjectImpl {
 }
 
 #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
+#[allow(deprecated)]
 pub trait TreeDragSourceImplExt: ObjectSubclass {
     fn parent_row_draggable(&self, _path: &TreePath) -> bool;
     fn parent_drag_data_get(&self, path: &TreePath) -> gdk::ContentProvider;

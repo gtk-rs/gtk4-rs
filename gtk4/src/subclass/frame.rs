@@ -6,12 +6,16 @@
 use crate::{prelude::*, subclass::prelude::*, Allocation, Frame};
 use glib::translate::*;
 
+#[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
+#[allow(deprecated)]
 pub trait FrameImpl: FrameImplExt + WidgetImpl {
     fn compute_child_allocation(&self) -> Allocation {
         self.parent_compute_child_allocation()
     }
 }
 
+#[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
+#[allow(deprecated)]
 pub trait FrameImplExt: ObjectSubclass {
     fn parent_compute_child_allocation(&self) -> Allocation;
 }

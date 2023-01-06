@@ -8,6 +8,7 @@ use libc::c_int;
 // rustdoc-stripper-ignore-next
 /// Trait containing manually implemented methods of [`ColorChooser`](crate::ColorChooser).
 #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
+#[allow(deprecated)]
 pub trait ColorChooserExtManual: 'static {
     #[doc(alias = "gtk_color_chooser_add_palette")]
     fn add_palette(&self, orientation: Orientation, colors_per_line: i32, colors: &[RGBA]);

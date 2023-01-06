@@ -7,6 +7,7 @@ use crate::{prelude::*, subclass::prelude::*, StyleContext};
 use glib::translate::*;
 
 #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
+#[allow(deprecated)]
 pub trait StyleContextImpl: StyleContextImplExt + ObjectImpl {
     fn changed(&self) {
         self.parent_changed()
@@ -14,6 +15,7 @@ pub trait StyleContextImpl: StyleContextImplExt + ObjectImpl {
 }
 
 #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
+#[allow(deprecated)]
 pub trait StyleContextImplExt: ObjectSubclass {
     fn parent_changed(&self);
 }

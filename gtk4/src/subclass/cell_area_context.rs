@@ -8,6 +8,7 @@ use glib::translate::*;
 use std::mem::MaybeUninit;
 
 #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
+#[allow(deprecated)]
 pub trait CellAreaContextImpl: CellAreaContextImplExt + ObjectImpl {
     fn reset(&self) {
         self.parent_reset()
@@ -27,6 +28,7 @@ pub trait CellAreaContextImpl: CellAreaContextImplExt + ObjectImpl {
 }
 
 #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
+#[allow(deprecated)]
 pub trait CellAreaContextImplExt: ObjectSubclass {
     fn parent_reset(&self);
     fn parent_preferred_height_for_width(&self, width: i32) -> (i32, i32);

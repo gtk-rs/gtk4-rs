@@ -11,6 +11,7 @@ use std::{
 // rustdoc-stripper-ignore-next
 /// Trait containing manually implemented methods of [`NativeDialog`](crate::NativeDialog).
 #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
+#[allow(deprecated)]
 pub trait NativeDialogExtManual {
     // rustdoc-stripper-ignore-next
     /// Shows the dialog and returns a `Future` that resolves to the

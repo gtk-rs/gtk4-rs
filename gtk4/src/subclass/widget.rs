@@ -129,6 +129,8 @@ pub trait WidgetImpl: WidgetImplExt + ObjectImpl {
         self.parent_grab_focus()
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
+    #[allow(deprecated)]
     fn hide(&self) {
         self.parent_hide()
     }
@@ -169,6 +171,8 @@ pub trait WidgetImpl: WidgetImplExt + ObjectImpl {
         self.parent_set_focus_child(child)
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
+    #[allow(deprecated)]
     fn show(&self) {
         self.parent_show()
     }
@@ -209,6 +213,8 @@ pub trait WidgetImplExt: ObjectSubclass {
     fn parent_focus(&self, direction_type: DirectionType) -> bool;
     fn parent_request_mode(&self) -> SizeRequestMode;
     fn parent_grab_focus(&self) -> bool;
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
+    #[allow(deprecated)]
     fn parent_hide(&self);
     fn parent_keynav_failed(&self, direction_type: DirectionType) -> bool;
     fn parent_map(&self);
@@ -225,6 +231,8 @@ pub trait WidgetImplExt: ObjectSubclass {
     fn parent_realize(&self);
     fn parent_root(&self);
     fn parent_set_focus_child(&self, child: Option<&Widget>);
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
+    #[allow(deprecated)]
     fn parent_show(&self);
     fn parent_size_allocate(&self, width: i32, height: i32, baseline: i32);
     fn parent_snapshot(&self, snapshot: &Snapshot);

@@ -7,6 +7,7 @@ impl TreePath {
     #[doc(alias = "gtk_tree_path_get_indices_with_depth")]
     #[doc(alias = "get_indices")]
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
+    #[allow(deprecated)]
     pub fn indices(&self) -> Vec<i32> {
         unsafe {
             let mut count = 0;

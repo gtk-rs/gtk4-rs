@@ -53,6 +53,8 @@ pub trait IMContextImpl: IMContextImplExt + ObjectImpl {
     fn set_cursor_location(&self, area: &gdk::Rectangle) {
         self.parent_set_cursor_location(area)
     }
+    #[cfg_attr(feature = "v4_2", deprecated = "Since 4.2")]
+    #[allow(deprecated)]
     fn set_surrounding(&self, text: &str, cursor_index: i32) {
         self.parent_set_surrounding(text, cursor_index)
     }
@@ -81,6 +83,8 @@ pub trait IMContextImplExt: ObjectSubclass {
     fn parent_retrieve_surrounding(&self) -> bool;
     fn parent_set_client_widget<P: IsA<Widget>>(&self, widget: Option<&P>);
     fn parent_set_cursor_location(&self, area: &gdk::Rectangle);
+    #[cfg_attr(feature = "v4_2", deprecated = "Since 4.2")]
+    #[allow(deprecated)]
     fn parent_set_surrounding(&self, text: &str, cursor_index: i32);
     fn parent_set_use_preedit(&self, use_preedit: bool);
     #[cfg(any(feature = "v4_10", feature = "dox"))]
