@@ -23,8 +23,10 @@ impl TemplateSource {
     fn from_string_source(source: String) -> Result<Self> {
         for c in source.chars() {
             if c.is_ascii_alphabetic() {
+                // blueprint code starts with some alphabetic letters
                 return Ok(Self::Blueprint(source));
             } else if c == '<' {
+                // xml tags starts with '<' symbol
                 return Ok(Self::Xml(source));
             }
         }
