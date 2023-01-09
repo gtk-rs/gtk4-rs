@@ -15,7 +15,21 @@ pub struct Template {
 pub enum TemplateSource {
     File(String),
     Resource(String),
-    String(String),
+    Xml(String),
+    Blueprint(String),
+}
+
+impl TemplateSource {
+    fn from_string_source(source: String) -> Result<Self> {
+        for c in source.chars() {
+            if c.is_ascii_alphabetic() {
+                return Ok(Self::Blueprint(source));
+            } else if c == '<' {
+                return Ok(Self::Xml(source));
+            }
+        }
+        bail!("Unknown lanuage")
+    }
 }
 
 pub fn parse_template_source(input: &DeriveInput) -> Result<Template> {
@@ -68,7 +82,7 @@ pub fn parse_template_source(input: &DeriveInput) -> Result<Template> {
     let source = match ident.as_ref() {
         "file" => TemplateSource::File(v),
         "resource" => TemplateSource::Resource(v),
-        "string" => TemplateSource::String(v),
+        "string" => TemplateSource::from_string_source(v)?,
         s => bail!("Unknown enum meta {}", s),
     };
     Ok(Template {

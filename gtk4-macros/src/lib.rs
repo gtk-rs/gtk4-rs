@@ -5,6 +5,7 @@
 //! The crate aims to provide useful macros to use with the GTK 4 Rust bindings.
 
 mod attribute_parser;
+mod blueprint;
 mod composite_template_derive;
 mod template_callbacks_attribute;
 mod util;

@@ -11,7 +11,7 @@ use syn::Data;
 use std::collections::HashMap;
 use std::string::ToString;
 
-use crate::{attribute_parser::*, util::*};
+use crate::{attribute_parser::*, blueprint::*, util::*};
 
 fn gen_set_template(source: &TemplateSource, crate_ident: &proc_macro2::Ident) -> TokenStream {
     match source {
@@ -27,12 +27,23 @@ fn gen_set_template(source: &TemplateSource, crate_ident: &proc_macro2::Ident) -
                 &#resource,
             );
         },
-        TemplateSource::String(template) => quote! {
+        TemplateSource::Xml(template) => quote! {
             #crate_ident::subclass::widget::WidgetClassSubclassExt::set_template_static(
                 klass,
                 #template.as_bytes(),
             );
         },
+        TemplateSource::Blueprint(blueprint) => {
+            let template =
+                compile_blueprint(blueprint.as_bytes()).expect("can't compile blueprint");
+
+            quote! {
+                #crate_ident::subclass::widget::WidgetClassSubclassExt::set_template_static(
+                    klass,
+                    #template.as_bytes(),
+                );
+            }
+        }
     }
 }
 
@@ -40,7 +51,7 @@ fn gen_set_template(source: &TemplateSource, crate_ident: &proc_macro2::Ident) -
 fn check_template_fields(source: &TemplateSource, fields: &[AttributedField]) {
     #[allow(unused_assignments)]
     let xml = match source {
-        TemplateSource::String(template) => template,
+        TemplateSource::Xml(template) => template,
         _ => return,
     };
 
