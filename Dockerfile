@@ -2,7 +2,7 @@ FROM ghcr.io/gtk-rs/gtk-rs-core/core:latest
 
 RUN dnf update -y && \
     dnf install xorg-x11-server-Xvfb procps-ng clang-devel \
-    libxkbcommon-devel wayland-devel mesa-libEGL-devel \
+    libxkbcommon-devel wayland-devel mesa-libEGL-devel blueprint-compiler \
     libXi-devel libXrandr-devel libXcursor-devel libXdamage-devel libXinerama-devel -y && \
     dnf clean all -y
 
