@@ -123,7 +123,7 @@ we can use the [`Cell`](https://doc.rust-lang.org/std/cell/struct.Cell.html) typ
 
 > The `Cell` class is only suitable for objects that implement the [`Copy`](https://doc.rust-lang.org/core/marker/trait.Copy.html) trait.
 > For other objects, [`RefCell`](https://doc.rust-lang.org/std/cell/struct.RefCell.html) is the way to go.
-> You can learn more about the two cell types in this [section](https://doc.rust-lang.org/1.30.0/book/first-edition/choosing-your-guarantees.html#cell-types) of an older edition of the Rust book.
+> You can learn more about interior mutability in this [section](https://marabos.nl/atomics/basics.html#interior-mutability) of the book _Rust Atomics and Locks_.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/g_object_memory_management/1/main.rs">listings/g_object_memory_management/1/main.rs</a>
 
