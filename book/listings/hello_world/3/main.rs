@@ -32,7 +32,7 @@ fn build_ui(app: &Application) {
 
     // ANCHOR: callback
     // Connect to "clicked" signal of `button`
-    button.connect_clicked(move |button| {
+    button.connect_clicked(|button| {
         // Set the label to "Hello World!" after the button has been clicked on
         button.set_label("Hello World!");
     });
