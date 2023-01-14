@@ -171,6 +171,7 @@ generate = [
     "Gtk.OverlayLayout",
     "Gtk.PackType",
     "Gtk.PadActionType",
+    "Gtk.PadController",
     "Gtk.PageOrientation",
     "Gtk.PageSet",
     "Gtk.PanDirection",
@@ -1697,13 +1698,6 @@ status = "generate"
 name = "Gtk.OverlayLayoutChild"
 status = "generate"
 generate_builder = false
-
-[[object]]
-name = "Gtk.PadController"
-status = "generate"
-    [[object.function]]
-    name = "set_action_entries"
-    manual = true
 
 [[object]]
 name = "Gtk.PageSetup"

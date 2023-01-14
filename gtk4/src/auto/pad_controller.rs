@@ -2,7 +2,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use crate::{EventController, PadActionType, PropagationLimit, PropagationPhase};
+use crate::{EventController, PadActionEntry, PadActionType, PropagationLimit, PropagationPhase};
 use glib::{prelude::*, translate::*};
 use std::fmt;
 
@@ -52,6 +52,18 @@ impl PadController {
                 mode,
                 label.to_glib_none().0,
                 action_name.to_glib_none().0,
+            );
+        }
+    }
+
+    #[doc(alias = "gtk_pad_controller_set_action_entries")]
+    pub fn set_action_entries(&self, entries: &[PadActionEntry]) {
+        let n_entries = entries.len() as _;
+        unsafe {
+            ffi::gtk_pad_controller_set_action_entries(
+                self.to_glib_none().0,
+                entries.to_glib_none().0,
+                n_entries,
             );
         }
     }
