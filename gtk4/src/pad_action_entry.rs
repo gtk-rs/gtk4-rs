@@ -2,14 +2,18 @@
 
 use crate::PadActionType;
 
-#[derive(Debug, Clone)]
-#[doc(alias = "GtkPadActionEntry")]
-pub struct PadActionEntry {
-    type_: PadActionType,
-    index: i32,
-    mode: i32,
-    label: String,
-    action_name: String,
+use glib::translate::*;
+use std::ffi::CStr;
+
+glib::wrapper! {
+    #[doc(alias = "GtkPadActionEntry")]
+    pub struct PadActionEntry(BoxedInline<ffi::GtkPadActionEntry>);
+
+    match fn {
+        init => |ptr| init_action_entry(ptr),
+        copy_into => |dest, src| copy_into_action_entry(dest, src),
+        clear => |ptr| clear_action_entry(ptr),
+    }
 }
 
 impl PadActionEntry {
@@ -21,32 +25,54 @@ impl PadActionEntry {
         action_name: &str,
     ) -> Self {
         assert_initialized_main_thread!();
-        Self {
-            type_,
-            index,
-            mode,
-            label: label.to_owned(),
-            action_name: action_name.to_owned(),
+        unsafe {
+            Self::unsafe_from(ffi::GtkPadActionEntry {
+                type_: type_.into_glib(),
+                index,
+                mode,
+                label: label.to_glib_full(),
+                action_name: action_name.to_glib_full(),
+            })
         }
     }
 
     pub fn type_(&self) -> PadActionType {
-        self.type_
+        unsafe { from_glib(self.inner.type_) }
     }
 
     pub fn index(&self) -> i32 {
-        self.index
+        self.inner.index
     }
 
     pub fn mode(&self) -> i32 {
-        self.mode
+        self.inner.mode
     }
 
     pub fn label(&self) -> &str {
-        &self.label
+        unsafe { CStr::from_ptr(self.inner.label).to_str().unwrap() }
     }
 
     pub fn action_name(&self) -> &str {
-        &self.action_name
+        unsafe { CStr::from_ptr(self.inner.action_name).to_str().unwrap() }
     }
+}
+unsafe fn init_action_entry(action_entry: *mut ffi::GtkPadActionEntry) {
+    std::ptr::write(action_entry, std::mem::zeroed());
+}
+
+unsafe fn copy_into_action_entry(
+    dest: *mut ffi::GtkPadActionEntry,
+    src: *const ffi::GtkPadActionEntry,
+) {
+    init_action_entry(dest);
+    (*dest).action_name = glib::ffi::g_strdup((*src).action_name);
+    (*dest).label = glib::ffi::g_strdup((*src).label);
+    (*dest).type_ = (*src).type_;
+    (*dest).index = (*src).index;
+    (*dest).mode = (*src).mode;
+}
+
+unsafe fn clear_action_entry(action_entry: *mut ffi::GtkPadActionEntry) {
+    glib::ffi::g_free((*action_entry).label as *mut _);
+    glib::ffi::g_free((*action_entry).action_name as *mut _);
 }

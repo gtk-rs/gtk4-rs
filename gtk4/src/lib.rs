@@ -172,7 +172,6 @@ mod notebook;
 mod object_expression;
 mod overlay;
 mod pad_action_entry;
-mod pad_controller;
 mod page_range;
 mod param_spec_expression;
 #[cfg(any(target_os = "linux", feature = "dox"))]
