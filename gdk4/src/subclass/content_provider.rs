@@ -401,7 +401,7 @@ unsafe extern "C" fn content_provider_write_mime_type_finish<T: ContentProviderI
     let ret = t.propagate();
     match ret {
         Ok(v) => {
-            assert!(v);
+            debug_assert!(v);
             true.into_glib()
         }
         Err(e) => {

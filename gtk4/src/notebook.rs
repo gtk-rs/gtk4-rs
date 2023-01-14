@@ -17,7 +17,7 @@ impl Notebook {
                 child.as_ref().to_glib_none().0,
                 tab_label.map(|p| p.as_ref()).to_glib_none().0,
             );
-            assert!(ret >= 0);
+            debug_assert!(ret >= 0);
             ret as u32
         }
     }
@@ -36,7 +36,7 @@ impl Notebook {
                 tab_label.map(|p| p.as_ref()).to_glib_none().0,
                 menu_label.map(|p| p.as_ref()).to_glib_none().0,
             );
-            assert!(ret >= 0);
+            debug_assert!(ret >= 0);
             ret as u32
         }
     }
@@ -59,7 +59,7 @@ impl Notebook {
     pub fn n_pages(&self) -> u32 {
         unsafe {
             let ret = ffi::gtk_notebook_get_n_pages(self.to_glib_none().0);
-            assert!(ret >= 0);
+            debug_assert!(ret >= 0);
             ret as u32
         }
     }
@@ -89,7 +89,7 @@ impl Notebook {
                 tab_label.map(|p| p.as_ref()).to_glib_none().0,
                 position.map_or(-1, |n| n as c_int),
             );
-            assert!(ret >= 0);
+            debug_assert!(ret >= 0);
             ret as u32
         }
     }
@@ -110,7 +110,7 @@ impl Notebook {
                 menu_label.map(|p| p.as_ref()).to_glib_none().0,
                 position.map_or(-1, |n| n as c_int),
             );
-            assert!(ret >= 0);
+            debug_assert!(ret >= 0);
             ret as u32
         }
     }
@@ -138,7 +138,7 @@ impl Notebook {
                 child.as_ref().to_glib_none().0,
                 tab_label.map(|p| p.as_ref()).to_glib_none().0,
             );
-            assert!(ret >= 0);
+            debug_assert!(ret >= 0);
             ret as u32
         }
     }
@@ -157,7 +157,7 @@ impl Notebook {
                 tab_label.map(|p| p.as_ref()).to_glib_none().0,
                 menu_label.map(|p| p.as_ref()).to_glib_none().0,
             );
-            assert!(ret >= 0);
+            debug_assert!(ret >= 0);
             ret as u32
         }
     }
