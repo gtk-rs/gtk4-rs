@@ -6,6 +6,7 @@ use std::marker::PhantomData;
 
 #[derive(Copy, Clone)]
 #[doc(alias = "GtkBitsetIter")]
+#[repr(transparent)]
 pub struct BitsetIter<'a>(ffi::GtkBitsetIter, PhantomData<&'a Bitset>);
 
 impl<'a> BitsetIter<'a> {
