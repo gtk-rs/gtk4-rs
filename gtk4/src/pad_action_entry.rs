@@ -17,6 +17,7 @@ glib::wrapper! {
 }
 
 impl PadActionEntry {
+    #[inline]
     pub fn new(
         type_: PadActionType,
         index: i32,
@@ -36,22 +37,27 @@ impl PadActionEntry {
         }
     }
 
+    #[inline]
     pub fn type_(&self) -> PadActionType {
         unsafe { from_glib(self.inner.type_) }
     }
 
+    #[inline]
     pub fn index(&self) -> i32 {
         self.inner.index
     }
 
+    #[inline]
     pub fn mode(&self) -> i32 {
         self.inner.mode
     }
 
+    #[inline]
     pub fn label(&self) -> &str {
         unsafe { CStr::from_ptr(self.inner.label).to_str().unwrap() }
     }
 
+    #[inline]
     pub fn action_name(&self) -> &str {
         unsafe { CStr::from_ptr(self.inner.action_name).to_str().unwrap() }
     }

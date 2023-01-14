@@ -1261,6 +1261,7 @@ where
 {
     type Target = T;
 
+    #[inline]
     fn deref(&self) -> &Self::Target {
         unsafe {
             if !self.is_bound() {

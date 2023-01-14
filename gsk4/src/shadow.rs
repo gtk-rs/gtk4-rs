@@ -10,6 +10,7 @@ glib::wrapper! {
 }
 
 impl Shadow {
+    #[inline]
     pub fn new(color: RGBA, dx: f32, dy: f32, radius: f32) -> Self {
         assert_initialized_main_thread!();
         unsafe {
@@ -22,18 +23,22 @@ impl Shadow {
         }
     }
 
+    #[inline]
     pub fn color(&self) -> &RGBA {
         unsafe { &*(&self.inner.color as *const gdk::ffi::GdkRGBA as *const RGBA) }
     }
 
+    #[inline]
     pub fn dx(&self) -> f32 {
         self.inner.dx
     }
 
+    #[inline]
     pub fn dy(&self) -> f32 {
         self.inner.dy
     }
 
+    #[inline]
     pub fn radius(&self) -> f32 {
         self.inner.radius
     }

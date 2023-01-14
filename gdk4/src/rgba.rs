@@ -66,7 +66,8 @@ impl RGBABuilder {
 }
 
 impl RGBA {
-    pub fn new(red: f32, green: f32, blue: f32, alpha: f32) -> RGBA {
+    #[inline]
+    pub fn new(red: f32, green: f32, blue: f32, alpha: f32) -> Self {
         skip_assert_initialized!();
         unsafe {
             Self::unsafe_from(ffi::GdkRGBA {
@@ -86,34 +87,42 @@ impl RGBA {
         RGBABuilder::default()
     }
 
+    #[inline]
     pub fn red(&self) -> f32 {
         self.inner.red
     }
 
+    #[inline]
     pub fn set_red(&mut self, red: f32) {
         self.inner.red = red;
     }
 
+    #[inline]
     pub fn green(&self) -> f32 {
         self.inner.green
     }
 
+    #[inline]
     pub fn set_green(&mut self, green: f32) {
         self.inner.green = green;
     }
 
+    #[inline]
     pub fn blue(&self) -> f32 {
         self.inner.blue
     }
 
+    #[inline]
     pub fn set_blue(&mut self, blue: f32) {
         self.inner.blue = blue;
     }
 
+    #[inline]
     pub fn alpha(&self) -> f32 {
         self.inner.alpha
     }
 
+    #[inline]
     pub fn set_alpha(&mut self, alpha: f32) {
         self.inner.alpha = alpha;
     }

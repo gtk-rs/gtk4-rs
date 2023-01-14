@@ -9,6 +9,7 @@ glib::wrapper! {
 }
 
 impl KeymapKey {
+    #[inline]
     pub fn new(keycode: u32, group: i32, level: i32) -> Self {
         assert_initialized_main_thread!();
         unsafe {
@@ -20,14 +21,17 @@ impl KeymapKey {
         }
     }
 
+    #[inline]
     pub fn keycode(&self) -> u32 {
         self.inner.keycode
     }
 
+    #[inline]
     pub fn group(&self) -> i32 {
         self.inner.group
     }
 
+    #[inline]
     pub fn level(&self) -> i32 {
         self.inner.level
     }

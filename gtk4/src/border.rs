@@ -29,34 +29,42 @@ impl Border {
         BorderBuilder::default()
     }
 
+    #[inline]
     pub fn left(&self) -> i16 {
         self.inner.left
     }
 
+    #[inline]
     pub fn set_left(&mut self, left: i16) {
         self.inner.left = left;
     }
 
+    #[inline]
     pub fn right(&self) -> i16 {
         self.inner.right
     }
 
+    #[inline]
     pub fn set_right(&mut self, right: i16) {
         self.inner.right = right;
     }
 
+    #[inline]
     pub fn top(&self) -> i16 {
         self.inner.top
     }
 
+    #[inline]
     pub fn set_top(&mut self, top: i16) {
         self.inner.top = top;
     }
 
+    #[inline]
     pub fn bottom(&self) -> i16 {
         self.inner.bottom
     }
 
+    #[inline]
     pub fn set_bottom(&mut self, bottom: i16) {
         self.inner.bottom = bottom;
     }
@@ -80,6 +88,7 @@ impl fmt::Debug for Border {
 }
 
 impl PartialEq for Border {
+    #[inline]
     fn eq(&self, other: &Self) -> bool {
         self.left() == other.left()
             && self.right() == other.right()

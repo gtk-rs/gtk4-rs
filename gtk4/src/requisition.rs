@@ -4,10 +4,12 @@ use crate::Requisition;
 use std::fmt;
 
 impl Requisition {
+    #[inline]
     pub fn width(&self) -> i32 {
         self.inner.width
     }
 
+    #[inline]
     pub fn height(&self) -> i32 {
         self.inner.height
     }

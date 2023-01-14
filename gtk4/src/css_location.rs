@@ -9,6 +9,7 @@ glib::wrapper! {
 }
 
 impl CssLocation {
+    #[inline]
     pub fn new(
         bytes: usize,
         chars: usize,
@@ -28,22 +29,27 @@ impl CssLocation {
         }
     }
 
+    #[inline]
     pub fn bytes(&self) -> usize {
         self.inner.bytes
     }
 
+    #[inline]
     pub fn chars(&self) -> usize {
         self.inner.chars
     }
 
+    #[inline]
     pub fn lines(&self) -> usize {
         self.inner.lines
     }
 
+    #[inline]
     pub fn line_bytes(&self) -> usize {
         self.inner.line_bytes
     }
 
+    #[inline]
     pub fn line_chars(&self) -> usize {
         self.inner.line_chars
     }

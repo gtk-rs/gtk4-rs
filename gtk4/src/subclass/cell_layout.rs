@@ -39,6 +39,7 @@ impl CellLayoutDataCallback {
 }
 
 impl Drop for CellLayoutDataCallback {
+    #[inline]
     fn drop(&mut self) {
         unsafe {
             if let Some(destroy_notify) = self.destroy_notify {

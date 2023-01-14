@@ -35,6 +35,7 @@ impl FilterCallback {
 }
 
 impl Drop for FilterCallback {
+    #[inline]
     fn drop(&mut self) {
         unsafe {
             if let Some(destroy_notify) = self.destroy_notify {
