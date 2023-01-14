@@ -188,10 +188,7 @@ unsafe impl<T: LayoutManagerImpl> IsSubclassable<T> for LayoutManager {
     fn class_init(class: &mut glib::Class<Self>) {
         Self::parent_class_init::<T>(class);
 
-        assert!(
-            crate::rt::is_initialized(),
-            "GTK has to be initialized first"
-        );
+        assert_initialized_main_thread!();
 
         let klass = class.as_mut();
         klass.allocate = Some(layout_manager_allocate::<T>);

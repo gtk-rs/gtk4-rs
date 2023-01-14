@@ -61,10 +61,7 @@ unsafe impl<T: SymbolicPaintableImpl> IsImplementable<T> for SymbolicPaintable {
     fn interface_init(iface: &mut glib::Interface<Self>) {
         let iface = iface.as_mut();
 
-        assert!(
-            crate::rt::is_initialized(),
-            "GTK has to be initialized first"
-        );
+        assert_initialized_main_thread!();
 
         iface.snapshot_symbolic = Some(symbolic_paintable_snapshot_symbolic::<T>);
     }

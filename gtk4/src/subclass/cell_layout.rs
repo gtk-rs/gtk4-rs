@@ -280,10 +280,7 @@ unsafe impl<T: CellLayoutImpl> IsImplementable<T> for CellLayout {
     fn interface_init(iface: &mut glib::Interface<Self>) {
         let iface = iface.as_mut();
 
-        assert!(
-            crate::rt::is_initialized(),
-            "GTK has to be initialized first"
-        );
+        assert_initialized_main_thread!();
 
         iface.get_area = Some(cell_layout_get_area::<T>);
         iface.pack_start = Some(cell_layout_pack_start::<T>);

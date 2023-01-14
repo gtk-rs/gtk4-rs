@@ -267,10 +267,7 @@ unsafe impl<T: TextBufferImpl> IsSubclassable<T> for TextBuffer {
     fn class_init(class: &mut glib::Class<Self>) {
         Self::parent_class_init::<T>(class);
 
-        assert!(
-            crate::rt::is_initialized(),
-            "GTK has to be initialized first"
-        );
+        assert_initialized_main_thread!();
 
         let klass = class.as_mut();
         klass.apply_tag = Some(text_buffer_apply_tag::<T>);

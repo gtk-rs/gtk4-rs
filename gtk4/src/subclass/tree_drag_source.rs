@@ -91,10 +91,7 @@ unsafe impl<T: TreeDragSourceImpl> IsImplementable<T> for TreeDragSource {
     fn interface_init(iface: &mut glib::Interface<Self>) {
         let iface = iface.as_mut();
 
-        assert!(
-            crate::rt::is_initialized(),
-            "GTK has to be initialized first"
-        );
+        assert_initialized_main_thread!();
 
         iface.row_draggable = Some(tree_drag_source_row_draggable::<T>);
         iface.drag_data_get = Some(tree_drag_source_drag_data_get::<T>);

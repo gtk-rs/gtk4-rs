@@ -135,10 +135,7 @@ unsafe impl<T: PrintOperationPreviewImpl> IsImplementable<T> for PrintOperationP
     fn interface_init(iface: &mut glib::Interface<Self>) {
         let iface = iface.as_mut();
 
-        assert!(
-            crate::rt::is_initialized(),
-            "GTK has to be initialized first"
-        );
+        assert_initialized_main_thread!();
 
         iface.ready = Some(print_operation_preview_ready::<T>);
         iface.got_page_size = Some(print_operation_preview_got_page_size::<T>);

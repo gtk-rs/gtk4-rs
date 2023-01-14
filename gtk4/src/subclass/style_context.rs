@@ -40,10 +40,7 @@ unsafe impl<T: StyleContextImpl> IsSubclassable<T> for StyleContext {
     fn class_init(class: &mut glib::Class<Self>) {
         Self::parent_class_init::<T>(class);
 
-        assert!(
-            crate::rt::is_initialized(),
-            "GTK has to be initialized first"
-        );
+        assert_initialized_main_thread!();
         let klass = class.as_mut();
         klass.changed = Some(style_context_changed::<T>);
     }
