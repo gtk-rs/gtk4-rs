@@ -6,7 +6,7 @@
 use crate::{prelude::*, subclass::prelude::*, Border, Scrollable};
 use glib::translate::*;
 
-pub trait ScrollableImpl: ObjectImpl {
+pub trait ScrollableImpl: WidgetImpl {
     #[doc(alias = "get_border")]
     fn border(&self) -> Option<Border> {
         self.parent_border()
@@ -41,11 +41,6 @@ impl<T: ScrollableImpl> ScrollableImplExt for T {
 unsafe impl<T: ScrollableImpl> IsImplementable<T> for Scrollable {
     fn interface_init(iface: &mut glib::Interface<Self>) {
         let iface = iface.as_mut();
-
-        assert!(
-            crate::rt::is_initialized(),
-            "GTK has to be initialized first"
-        );
 
         iface.get_border = Some(scrollable_get_border::<T>);
     }

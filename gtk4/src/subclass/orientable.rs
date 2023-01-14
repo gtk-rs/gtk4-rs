@@ -5,13 +5,6 @@
 
 use crate::{subclass::prelude::*, Orientable};
 
-pub trait OrientableImpl: ObjectImpl {}
+pub trait OrientableImpl: WidgetImpl {}
 
-unsafe impl<T: OrientableImpl> IsImplementable<T> for Orientable {
-    fn interface_init(_iface: &mut glib::Interface<Self>) {
-        assert!(
-            crate::rt::is_initialized(),
-            "GTK has to be initialized first"
-        );
-    }
-}
+unsafe impl<T: OrientableImpl> IsImplementable<T> for Orientable {}
