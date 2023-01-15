@@ -204,7 +204,7 @@ impl glib::value::ToValue for ParamSpecExpression {
     #[inline]
     fn to_value(&self) -> Value {
         unsafe {
-            let mut value = Value::from_type(Self::static_type());
+            let mut value = Value::for_value_type::<Self>();
             gobject_ffi::g_value_take_param(
                 value.to_glib_none_mut().0,
                 ToGlibPtr::<*mut _>::to_glib_full(self) as *mut _,
