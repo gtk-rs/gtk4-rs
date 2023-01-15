@@ -107,7 +107,7 @@ unsafe extern "C" fn actionable_get_action_name<T: ActionableImpl>(
     let instance = &*(actionable as *mut T::Instance);
     let imp = instance.imp();
 
-    imp.action_name().to_glib_full()
+    imp.action_name().into_glib_ptr()
 }
 
 unsafe extern "C" fn actionable_get_action_target_value<T: ActionableImpl>(
@@ -116,7 +116,7 @@ unsafe extern "C" fn actionable_get_action_target_value<T: ActionableImpl>(
     let instance = &*(actionable as *mut T::Instance);
     let imp = instance.imp();
 
-    imp.action_target_value().to_glib_full()
+    imp.action_target_value().into_glib_ptr()
 }
 
 unsafe extern "C" fn actionable_set_action_name<T: ActionableImpl>(

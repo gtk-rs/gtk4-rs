@@ -54,7 +54,7 @@ unsafe extern "C" fn scrollable_get_border<T: ScrollableImpl>(
     let imp = instance.imp();
 
     if let Some(border) = imp.border() {
-        *borderptr = *border.to_glib_full();
+        *borderptr = *IntoGlibPtr::<*mut _>::into_glib_ptr(border);
         true.into_glib()
     } else {
         *borderptr = ffi::GtkBorder {

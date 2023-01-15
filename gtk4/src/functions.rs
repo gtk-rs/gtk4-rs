@@ -239,10 +239,10 @@ pub fn show_about_dialog<P: IsA<Window>>(parent: Option<&P>, properties: &[(&str
 }
 
 #[doc(alias = "gtk_test_list_all_types")]
-pub fn test_list_all_types() -> Vec<glib::Type> {
+pub fn test_list_all_types() -> Slice<glib::Type> {
     unsafe {
         let mut n_types = std::mem::MaybeUninit::uninit();
         let types = ffi::gtk_test_list_all_types(n_types.as_mut_ptr());
-        FromGlibContainer::from_glib_container_num(types, n_types.assume_init() as usize)
+        Slice::from_glib_container_num(types as *mut _, n_types.assume_init() as usize)
     }
 }

@@ -66,7 +66,7 @@ impl RenderNode {
     pub fn downcast<T: IsRenderNode>(self) -> Result<T, Self> {
         unsafe {
             if self.is::<T>() {
-                Ok(from_glib_full(self.to_glib_full()))
+                Ok(from_glib_full(self.into_glib_ptr()))
             } else {
                 Err(self)
             }
@@ -144,7 +144,7 @@ macro_rules! define_render_node {
             fn upcast(self) -> crate::RenderNode {
                 unsafe {
                     glib::translate::from_glib_full(
-                        glib::translate::ToGlibPtr::<*mut $ffi_type>::to_glib_full(&self)
+                        glib::translate::IntoGlibPtr::<*mut $ffi_type>::into_glib_ptr(self)
                             as *mut ffi::GskRenderNode,
                     )
                 }

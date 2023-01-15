@@ -269,7 +269,7 @@ unsafe extern "C" fn model_get_selection_in_range<T: SelectionModelImpl>(
     let instance = &*(model as *mut T::Instance);
     let imp = instance.imp();
 
-    imp.selection_in_range(position, n_items).to_glib_full()
+    imp.selection_in_range(position, n_items).into_glib_ptr()
 }
 
 unsafe extern "C" fn model_is_selected<T: SelectionModelImpl>(

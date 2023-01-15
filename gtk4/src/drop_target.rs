@@ -5,7 +5,7 @@ use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
     value::FromValue,
-    Type,
+    Slice, Type,
 };
 use std::{boxed::Box as Box_, mem::transmute};
 
@@ -35,13 +35,13 @@ impl DropTarget {
 
     #[doc(alias = "gtk_drop_target_get_gtypes")]
     #[doc(alias = "get_gtypes")]
-    pub fn types(&self) -> Vec<Type> {
+    pub fn types(&self) -> Slice<Type> {
         unsafe {
             let mut n_types = std::mem::MaybeUninit::uninit();
             let types =
                 ffi::gtk_drop_target_get_gtypes(self.to_glib_none().0, n_types.as_mut_ptr());
 
-            FromGlibContainer::from_glib_none_num(types, n_types.assume_init() as _)
+            Slice::from_glib_none_num(types, n_types.assume_init() as _)
         }
     }
 

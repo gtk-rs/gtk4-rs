@@ -15,7 +15,7 @@ impl<O: IsA<MediaStream>> MediaStreamExtManual for O {
         unsafe {
             ffi::gtk_media_stream_gerror(
                 self.as_ref().to_glib_none().0,
-                mut_override(error.to_glib_full()),
+                mut_override(error.into_glib_ptr()),
             );
         }
     }

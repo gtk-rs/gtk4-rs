@@ -119,7 +119,7 @@ unsafe extern "C" fn tree_drag_source_drag_data_get<T: TreeDragSourceImpl>(
     let imp = instance.imp();
     let path: Borrowed<TreePath> = from_glib_borrow(pathptr);
 
-    imp.drag_data_get(&path).to_glib_full()
+    imp.drag_data_get(&path).into_glib_ptr()
 }
 
 unsafe extern "C" fn tree_drag_source_drag_data_delete<T: TreeDragSourceImpl>(

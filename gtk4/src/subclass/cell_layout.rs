@@ -301,7 +301,7 @@ unsafe extern "C" fn cell_layout_get_area<T: CellLayoutImpl>(
     let instance = &*(cell_layout as *mut T::Instance);
     let imp = instance.imp();
 
-    imp.area().to_glib_full()
+    imp.area().into_glib_ptr()
 }
 
 unsafe extern "C" fn cell_layout_pack_start<T: CellLayoutImpl>(

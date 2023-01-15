@@ -231,7 +231,7 @@ unsafe extern "C" fn buildable_get_id<T: BuildableImpl>(
     let instance = &*(buildable as *mut T::Instance);
     let imp = instance.imp();
 
-    imp.id().to_glib_full()
+    imp.id().into_glib_ptr()
 }
 
 unsafe extern "C" fn buildable_add_child<T: BuildableImpl>(
@@ -278,7 +278,7 @@ unsafe extern "C" fn buildable_construct_child<T: BuildableImpl>(
     let name = from_glib_borrow::<_, GString>(nameptr);
 
     imp.construct_child(&from_glib_borrow(builderptr), &name)
-        .to_glib_full()
+        .into_glib_ptr()
 }
 
 unsafe extern "C" fn buildable_parser_finished<T: BuildableImpl>(
@@ -305,7 +305,7 @@ unsafe extern "C" fn buildable_get_internal_child<T: BuildableImpl>(
     let ret = imp.internal_child(&from_glib_borrow(builderptr), &name);
 
     // transfer none: ensure the internal child stays alive for as long as the object building it
-    let ret = ret.to_glib_full();
+    let ret = ret.into_glib_ptr();
     imp.obj().set_qdata(
         *BUILDABLE_GET_INTERNAL_CHILD_QUARK,
         PtrHolder(ret, |ptr| {

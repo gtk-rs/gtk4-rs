@@ -40,7 +40,7 @@ impl ContentDeserializer {
         unsafe {
             ffi::gdk_content_deserializer_return_error(
                 self.to_glib_none().0,
-                mut_override(error.to_glib_full()),
+                mut_override(error.into_glib_ptr()),
             );
         }
     }
