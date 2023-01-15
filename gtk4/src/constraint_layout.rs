@@ -2,18 +2,17 @@
 
 use crate::{prelude::*, Constraint, ConstraintLayout, Widget};
 use glib::{translate::*, IntoStrV};
-use std::collections::HashMap;
 
 impl ConstraintLayout {
     #[doc(alias = "gtk_constraint_layout_add_constraints_from_descriptionv")]
     #[doc(alias = "gtk_constraint_layout_add_constraints_from_description")]
     #[doc(alias = "add_constraints_from_descriptionv")]
-    pub fn add_constraints_from_description<W: IsA<Widget>>(
+    pub fn add_constraints_from_description<'a, W: IsA<Widget>>(
         &self,
         lines: impl IntoStrV,
         hspacing: i32,
         vspacing: i32,
-        views: &HashMap<&str, &W>,
+        views: impl IntoIterator<Item = (&'a str, &'a W)>,
     ) -> Result<Vec<Constraint>, glib::Error> {
         unsafe {
             let mut err = std::ptr::null_mut();
