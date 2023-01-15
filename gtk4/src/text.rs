@@ -4,7 +4,7 @@ use crate::{prelude::*, DeleteType, MovementStep, Text, Widget};
 use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
-    GString,
+    GString, IntoGStr,
 };
 use std::mem::transmute;
 
@@ -280,8 +280,10 @@ impl Text {
         self.emit_by_name::<()>("delete-from-cursor", &[&type_, &count]);
     }
 
-    pub fn emit_insert_at_cursor(&self, string: &str) {
-        self.emit_by_name::<()>("insert-at-cursor", &[&string]);
+    pub fn emit_insert_at_cursor(&self, string: impl IntoGStr) {
+        string.run_with_gstr(|string| {
+            self.emit_by_name::<()>("insert-at-cursor", &[&string]);
+        });
     }
 
     pub fn emit_insert_emoji(&self) {
@@ -296,8 +298,10 @@ impl Text {
         self.emit_by_name::<()>("paste-clipboard", &[]);
     }
 
-    pub fn emit_preedit_changed(&self, preedit: &str) {
-        self.emit_by_name::<()>("preedit-changed", &[&preedit]);
+    pub fn emit_preedit_changed(&self, preedit: impl IntoGStr) {
+        preedit.run_with_gstr(|preedit| {
+            self.emit_by_name::<()>("preedit-changed", &[&preedit]);
+        });
     }
 
     pub fn emit_toggle_overwrite(&self) {

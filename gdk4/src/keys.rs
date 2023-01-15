@@ -1,7 +1,6 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use glib::translate::*;
-use glib::{value::*, GString, Type, Value};
+use glib::{translate::*, value::*, GString, IntoGStr, Type, Value};
 
 #[derive(Clone, Copy, Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
 // rustdoc-stripper-ignore-next
@@ -11,15 +10,17 @@ pub struct Key(u32);
 #[allow(non_upper_case_globals)]
 impl Key {
     #[doc(alias = "gdk_keyval_from_name")]
-    pub fn from_name(name: &str) -> Option<Self> {
+    pub fn from_name(name: impl IntoGStr) -> Option<Self> {
         skip_assert_initialized!();
         unsafe {
-            let key: Self = from_glib(ffi::gdk_keyval_from_name(name.to_glib_none().0));
-            if key == Self::VoidSymbol {
-                None
-            } else {
-                Some(key)
-            }
+            name.run_with_gstr(|name| {
+                let key: Self = from_glib(ffi::gdk_keyval_from_name(name.as_ptr()));
+                if key == Self::VoidSymbol {
+                    None
+                } else {
+                    Some(key)
+                }
+            })
         }
     }
 

@@ -1,7 +1,7 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
 use crate::{prelude::*, EntryBuffer};
-use glib::translate::*;
+use glib::{translate::*, IntoGStr};
 use libc::{c_int, c_uint};
 
 impl EntryBuffer {
@@ -40,13 +40,13 @@ pub trait EntryBufferExtManual: 'static {
     fn text(&self) -> String;
 
     #[doc(alias = "gtk_entry_buffer_insert_text")]
-    fn insert_text(&self, position: u16, chars: &str) -> u16;
+    fn insert_text(&self, position: u16, chars: impl IntoGStr) -> u16;
 
     #[doc(alias = "gtk_entry_buffer_set_max_length")]
     fn set_max_length(&self, max_length: Option<u16>);
 
     #[doc(alias = "gtk_entry_buffer_set_text")]
-    fn set_text(&self, chars: &str);
+    fn set_text(&self, chars: impl IntoGStr);
 }
 
 macro_rules! to_u16 {
@@ -100,14 +100,16 @@ impl<O: IsA<EntryBuffer>> EntryBufferExtManual for O {
         }
     }
 
-    fn insert_text(&self, position: u16, chars: &str) -> u16 {
+    fn insert_text(&self, position: u16, chars: impl IntoGStr) -> u16 {
         unsafe {
-            to_u16!(ffi::gtk_entry_buffer_insert_text(
-                self.as_ref().to_glib_none().0,
-                position as c_uint,
-                chars.to_glib_none().0,
-                -1
-            ))
+            chars.run_with_gstr(|chars| {
+                to_u16!(ffi::gtk_entry_buffer_insert_text(
+                    self.as_ref().to_glib_none().0,
+                    position as c_uint,
+                    chars.as_ptr(),
+                    -1
+                ))
+            })
         }
     }
 
@@ -121,13 +123,11 @@ impl<O: IsA<EntryBuffer>> EntryBufferExtManual for O {
         }
     }
 
-    fn set_text(&self, chars: &str) {
+    fn set_text(&self, chars: impl IntoGStr) {
         unsafe {
-            ffi::gtk_entry_buffer_set_text(
-                self.as_ref().to_glib_none().0,
-                chars.to_glib_none().0,
-                -1,
-            );
+            chars.run_with_gstr(|chars| {
+                ffi::gtk_entry_buffer_set_text(self.as_ref().to_glib_none().0, chars.as_ptr(), -1);
+            })
         }
     }
 }

@@ -1,7 +1,7 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
 use crate::{ContentFormats, ContentFormatsBuilder};
-use glib::translate::*;
+use glib::{translate::*, IntoGStr};
 
 impl ContentFormatsBuilder {
     #[doc(alias = "gdk_content_formats_builder_add_formats")]
@@ -29,12 +29,14 @@ impl ContentFormatsBuilder {
 
     #[doc(alias = "gdk_content_formats_builder_add_mime_type")]
     #[must_use]
-    pub fn add_mime_type(self, mime_type: &str) -> Self {
+    pub fn add_mime_type(self, mime_type: impl IntoGStr) -> Self {
         unsafe {
-            ffi::gdk_content_formats_builder_add_mime_type(
-                self.to_glib_none().0,
-                mime_type.to_glib_none().0,
-            );
+            mime_type.run_with_gstr(|mime_type| {
+                ffi::gdk_content_formats_builder_add_mime_type(
+                    self.to_glib_none().0,
+                    mime_type.as_ptr(),
+                );
+            });
         }
 
         self

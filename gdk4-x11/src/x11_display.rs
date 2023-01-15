@@ -16,7 +16,7 @@ use x11::xlib;
 
 #[cfg(not(feature = "xlib"))]
 use crate::{XCursor, XWindow};
-use glib::translate::*;
+use glib::{translate::*, IntoGStr};
 #[cfg(any(feature = "xlib", feature = "dox"))]
 #[cfg_attr(feature = "dox", doc(cfg(feature = "xlib")))]
 use x11::xlib::{Cursor as XCursor, Window as XWindow};
@@ -94,13 +94,15 @@ impl X11Display {
     }
 
     #[doc(alias = "gdk_x11_display_set_program_class")]
-    pub fn set_program_class(&self, program_class: &str) {
+    pub fn set_program_class(&self, program_class: impl IntoGStr) {
         assert_initialized_main_thread!();
         unsafe {
-            ffi::gdk_x11_display_set_program_class(
-                self.upcast_ref::<gdk::Display>().to_glib_none().0,
-                program_class.to_glib_none().0,
-            );
+            program_class.run_with_gstr(|program_class| {
+                ffi::gdk_x11_display_set_program_class(
+                    self.upcast_ref::<gdk::Display>().to_glib_none().0,
+                    program_class.as_ptr(),
+                );
+            });
         }
     }
 }

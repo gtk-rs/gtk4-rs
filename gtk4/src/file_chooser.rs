@@ -1,7 +1,7 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
 use crate::{prelude::*, FileChooser};
-use glib::translate::*;
+use glib::{translate::*, IntoGStr};
 
 // rustdoc-stripper-ignore-next
 /// Trait containing manually implemented methods of [`FileChooser`](crate::FileChooser).
@@ -9,14 +9,14 @@ use glib::translate::*;
 #[allow(deprecated)]
 pub trait FileChooserExtManual: 'static {
     #[doc(alias = "gtk_file_chooser_add_choice")]
-    fn add_choice(&self, id: &str, label: &str, options: &[(&str, &str)]);
+    fn add_choice(&self, id: impl IntoGStr, label: impl IntoGStr, options: &[(&str, &str)]);
 
     #[doc(alias = "gtk_file_chooser_set_current_folder")]
     fn set_current_folder(&self, file: Option<&impl IsA<gio::File>>) -> Result<bool, glib::Error>;
 }
 
 impl<O: IsA<FileChooser>> FileChooserExtManual for O {
-    fn add_choice(&self, id: &str, label: &str, options: &[(&str, &str)]) {
+    fn add_choice(&self, id: impl IntoGStr, label: impl IntoGStr, options: &[(&str, &str)]) {
         unsafe {
             let (options_ids, options_labels) = if options.is_empty() {
                 (std::ptr::null(), std::ptr::null())
@@ -43,13 +43,17 @@ impl<O: IsA<FileChooser>> FileChooserExtManual for O {
                 )
             };
 
-            ffi::gtk_file_chooser_add_choice(
-                self.as_ref().to_glib_none().0,
-                id.to_glib_none().0,
-                label.to_glib_none().0,
-                mut_override(options_ids),
-                mut_override(options_labels),
-            );
+            id.run_with_gstr(|id| {
+                label.run_with_gstr(|label| {
+                    ffi::gtk_file_chooser_add_choice(
+                        self.as_ref().to_glib_none().0,
+                        id.as_ptr(),
+                        label.as_ptr(),
+                        mut_override(options_ids),
+                        mut_override(options_labels),
+                    );
+                });
+            });
         }
     }
 
