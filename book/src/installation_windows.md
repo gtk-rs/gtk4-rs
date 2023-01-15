@@ -30,7 +30,7 @@ When choosing the GTK version to build, select `gtk4` instead of `gtk3`:
 gvsbuild build gtk4
 ```
 
-### Update `Path` environment varialbe
+### Update `Path` environment variable
 
 2. Update your `Path` environment variable to include the GTK 4 libraries:
    1. Go to settings -> Search and open `Advanced system settings` -> Click on `Environment variables`
