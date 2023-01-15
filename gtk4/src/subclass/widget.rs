@@ -1219,18 +1219,19 @@ pub unsafe trait WidgetClassSubclassExt: ClassStruct {
 
     fn rust_template_scope(&mut self) -> BuilderRustScope {
         assert_initialized_main_thread!();
-        let mut data = <Self::Type as ObjectSubclassType>::type_data();
-        let internal = unsafe {
-            data.as_mut()
+        unsafe {
+            let mut data = <Self::Type as ObjectSubclassType>::type_data();
+            let internal = data
+                .as_mut()
                 .class_data_mut::<Internal>(<Self::Type as ObjectSubclassType>::type_())
-                .expect("Something bad happened at class_init, the internal class_data is missing")
-        };
-        let scope = internal.scope.get_or_insert_with(|| {
-            let scope = BuilderRustScope::new();
-            self.set_template_scope(&scope);
-            scope.to_glib_full()
-        });
-        unsafe { from_glib_none(*scope) }
+                .expect("Something bad happened at class_init, the internal class_data is missing");
+            let scope = internal.scope.get_or_insert_with(|| {
+                let scope = BuilderRustScope::new();
+                self.set_template_scope(&scope);
+                scope.into_glib_ptr()
+            });
+            from_glib_none(*scope)
+        }
     }
 }
 

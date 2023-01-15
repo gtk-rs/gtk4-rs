@@ -96,7 +96,7 @@ unsafe extern "C" fn combo_box_format_entry_text<T: ComboBoxImpl>(
     let imp = instance.imp();
     let path: Borrowed<GString> = from_glib_borrow(pathptr);
 
-    imp.format_entry_text(path.as_str()).to_glib_full()
+    imp.format_entry_text(path.as_str()).into_glib_ptr()
 }
 
 #[cfg(any(feature = "v4_6", feature = "dox"))]

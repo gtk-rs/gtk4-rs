@@ -936,7 +936,7 @@ unsafe extern "C" fn cell_area_create_context<T: CellAreaImpl>(
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
 
-    imp.create_context().to_glib_full()
+    imp.create_context().into_glib_ptr()
 }
 
 unsafe extern "C" fn cell_area_copy_context<T: CellAreaImpl>(
@@ -947,7 +947,7 @@ unsafe extern "C" fn cell_area_copy_context<T: CellAreaImpl>(
     let imp = instance.imp();
     let context: Borrowed<CellAreaContext> = from_glib_borrow(contextptr);
 
-    imp.copy_context(&*context).to_glib_full()
+    imp.copy_context(&*context).into_glib_ptr()
 }
 
 unsafe extern "C" fn cell_area_event<T: CellAreaImpl>(

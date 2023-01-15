@@ -415,9 +415,9 @@ unsafe extern "C" fn im_context_get_preedit_string<T: IMContextImpl>(
 
     let (text, attrs, cursor_idx) = imp.preedit_string();
 
-    *text_ptr = text.to_glib_full();
+    *text_ptr = text.into_glib_ptr();
     *cursor_index_ptr = cursor_idx;
-    *attrs_ptr = attrs.to_glib_full();
+    *attrs_ptr = attrs.into_glib_ptr();
 }
 
 unsafe extern "C" fn im_context_get_surrounding<T: IMContextImpl>(
@@ -429,7 +429,7 @@ unsafe extern "C" fn im_context_get_surrounding<T: IMContextImpl>(
     let imp = instance.imp();
 
     if let Some((text, cursor_idx)) = imp.surrounding() {
-        *text_ptr = text.to_glib_full();
+        *text_ptr = text.into_glib_ptr();
         *cursor_index_ptr = cursor_idx;
         true.into_glib()
     } else {

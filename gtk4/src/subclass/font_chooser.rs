@@ -244,7 +244,7 @@ unsafe extern "C" fn font_chooser_get_font_family<T: FontChooserImpl>(
 
     let ret = imp.font_family();
     if let Some(font_family) = ret {
-        let font_family = font_family.to_glib_full();
+        let font_family = font_family.into_glib_ptr();
         imp.obj().set_qdata(
             *FONT_CHOOSER_GET_FONT_FAMILY_QUARK,
             PtrHolder(font_family, |ptr| {
@@ -267,7 +267,7 @@ unsafe extern "C" fn font_chooser_get_font_face<T: FontChooserImpl>(
 
     let ret = imp.font_face();
     if let Some(font_face) = ret {
-        let font_face = font_face.to_glib_full();
+        let font_face = font_face.into_glib_ptr();
         imp.obj().set_qdata(
             *FONT_CHOOSER_GET_FONT_FACE_QUARK,
             PtrHolder(font_face, |ptr| {
@@ -317,7 +317,7 @@ unsafe extern "C" fn font_chooser_get_font_map<T: FontChooserImpl>(
     let instance = &*(font_chooser as *mut T::Instance);
     let imp = instance.imp();
 
-    imp.font_map().to_glib_full()
+    imp.font_map().into_glib_ptr()
 }
 
 unsafe extern "C" fn font_chooser_set_filter_func<T: FontChooserImpl>(

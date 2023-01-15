@@ -318,7 +318,7 @@ unsafe extern "C" fn print_operation_create_custom_widget<T: PrintOperationImpl>
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
 
-    imp.create_custom_widget().to_glib_full()
+    imp.create_custom_widget().into_glib_ptr()
 }
 
 unsafe extern "C" fn print_operation_custom_widget_apply<T: PrintOperationImpl>(

@@ -19,7 +19,7 @@ impl Event {
     pub fn downcast<T: EventKind>(self) -> Result<T, Event> {
         unsafe {
             if self.is::<T>() {
-                Ok(from_glib_full(self.to_glib_full()))
+                Ok(from_glib_full(self.into_glib_ptr()))
             } else {
                 Err(self)
             }

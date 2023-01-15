@@ -338,7 +338,7 @@ unsafe extern "C" fn content_provider_formats<T: ContentProviderImpl>(
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
 
-    imp.formats().to_glib_full()
+    imp.formats().into_glib_ptr()
 }
 
 unsafe extern "C" fn content_provider_storable_formats<T: ContentProviderImpl>(
@@ -347,7 +347,7 @@ unsafe extern "C" fn content_provider_storable_formats<T: ContentProviderImpl>(
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
 
-    imp.storable_formats().to_glib_full()
+    imp.storable_formats().into_glib_ptr()
 }
 
 unsafe extern "C" fn content_provider_write_mime_type_async<T: ContentProviderImpl>(

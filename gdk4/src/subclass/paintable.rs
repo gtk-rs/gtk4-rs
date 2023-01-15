@@ -152,7 +152,7 @@ unsafe extern "C" fn paintable_get_current_image<T: PaintableImpl>(
     let instance = &*(paintable as *mut T::Instance);
     let imp = instance.imp();
 
-    imp.current_image().to_glib_full()
+    imp.current_image().into_glib_ptr()
 }
 
 unsafe extern "C" fn paintable_get_flags<T: PaintableImpl>(

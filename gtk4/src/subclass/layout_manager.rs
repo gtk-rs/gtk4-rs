@@ -231,7 +231,7 @@ unsafe extern "C" fn layout_manager_create_layout_child<T: LayoutManagerImpl>(
     let widget: Borrowed<Widget> = from_glib_borrow(widgetptr);
     let for_child: Borrowed<Widget> = from_glib_borrow(for_childptr);
 
-    imp.create_layout_child(&widget, &for_child).to_glib_full()
+    imp.create_layout_child(&widget, &for_child).into_glib_ptr()
 }
 
 unsafe extern "C" fn layout_manager_get_request_mode<T: LayoutManagerImpl>(

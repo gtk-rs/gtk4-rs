@@ -204,7 +204,7 @@ unsafe extern "C" fn entry_buffer_get_text<T: EntryBufferImpl>(
     }
     // Ensures that the returned text stays alive for as long as
     // the entry buffer instance
-    let fullptr = ret.to_glib_full();
+    let fullptr = ret.into_glib_ptr();
     imp.obj().set_qdata(
         *GET_TEXT_QUARK,
         PtrHolder(fullptr, |ptr| {

@@ -91,7 +91,7 @@ unsafe extern "C" fn gl_area_create_context<T: GLAreaImpl>(
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
 
-    imp.create_context().to_glib_full()
+    imp.create_context().into_glib_ptr()
 }
 
 unsafe extern "C" fn gl_area_render<T: GLAreaImpl>(

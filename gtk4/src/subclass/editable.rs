@@ -320,7 +320,7 @@ unsafe extern "C" fn editable_get_text<T: EditableImpl>(
     let instance = &*(editable as *mut T::Instance);
     let imp = instance.imp();
 
-    imp.text().to_glib_full()
+    imp.text().into_glib_ptr()
 }
 
 static EDITABLE_GET_DELEGATE_QUARK: Lazy<Quark> =

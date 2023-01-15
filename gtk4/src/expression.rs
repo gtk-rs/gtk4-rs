@@ -38,7 +38,7 @@ impl Expression {
     pub fn downcast<E: IsExpression>(self) -> Result<E, Expression> {
         unsafe {
             if self.is::<E>() {
-                Ok(from_glib_full(self.to_glib_full()))
+                Ok(from_glib_full(self.into_glib_ptr()))
             } else {
                 Err(self)
             }
