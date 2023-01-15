@@ -1,7 +1,7 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
 use crate::RGBA;
-use glib::translate::*;
+use glib::{translate::*, IntoGStr};
 use std::{fmt, str::FromStr};
 
 #[derive(Debug, Default)]
@@ -128,15 +128,17 @@ impl RGBA {
     }
 
     #[doc(alias = "gdk_rgba_parse")]
-    pub fn parse(s: &str) -> Result<RGBA, glib::error::BoolError> {
+    pub fn parse(s: impl IntoGStr) -> Result<RGBA, glib::error::BoolError> {
         skip_assert_initialized!();
         unsafe {
-            let mut res = RGBA::uninitialized();
-            glib::result_from_gboolean!(
-                ffi::gdk_rgba_parse(res.to_glib_none_mut().0, s.to_glib_none().0),
-                "Can't parse RGBA"
-            )
-            .map(|_| res)
+            s.run_with_gstr(|s| {
+                let mut res = RGBA::uninitialized();
+                glib::result_from_gboolean!(
+                    ffi::gdk_rgba_parse(res.to_glib_none_mut().0, s.as_ptr()),
+                    "Can't parse RGBA"
+                )
+                .map(|_| res)
+            })
         }
     }
 

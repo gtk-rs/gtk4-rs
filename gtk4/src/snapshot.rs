@@ -3,7 +3,7 @@
 use std::borrow::Borrow;
 
 use crate::{prelude::*, Snapshot};
-use glib::translate::*;
+use glib::{translate::*, IntoGStr};
 
 pub trait SnapshotExtManual {
     #[doc(alias = "gtk_snapshot_append_border")]
@@ -15,7 +15,7 @@ pub trait SnapshotExtManual {
     );
 
     #[doc(alias = "gtk_snapshot_push_debug")]
-    fn push_debug(&self, message: &str);
+    fn push_debug(&self, message: impl IntoGStr);
 }
 
 impl<T: IsA<Snapshot>> SnapshotExtManual for T {
@@ -37,9 +37,11 @@ impl<T: IsA<Snapshot>> SnapshotExtManual for T {
         }
     }
 
-    fn push_debug(&self, message: &str) {
+    fn push_debug(&self, message: impl IntoGStr) {
         unsafe {
-            ffi::gtk_snapshot_push_debug(self.as_ref().to_glib_none().0, message.to_glib_none().0)
+            message.run_with_gstr(|message| {
+                ffi::gtk_snapshot_push_debug(self.as_ref().to_glib_none().0, message.as_ptr())
+            })
         }
     }
 }

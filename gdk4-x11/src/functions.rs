@@ -1,7 +1,7 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
 use crate::X11Display;
-use glib::translate::*;
+use glib::{translate::*, IntoGStr};
 
 #[cfg(not(feature = "xlib"))]
 use crate::XAtom;
@@ -10,13 +10,12 @@ use crate::XAtom;
 use x11::xlib::Atom as XAtom;
 
 #[doc(alias = "gdk_x11_get_xatom_by_name_for_display")]
-pub fn x11_get_xatom_by_name_for_display(display: &X11Display, atom_name: &str) -> XAtom {
+pub fn x11_get_xatom_by_name_for_display(display: &X11Display, atom_name: impl IntoGStr) -> XAtom {
     skip_assert_initialized!();
     unsafe {
-        ffi::gdk_x11_get_xatom_by_name_for_display(
-            display.to_glib_none().0,
-            atom_name.to_glib_none().0,
-        )
+        atom_name.run_with_gstr(|atom_name| {
+            ffi::gdk_x11_get_xatom_by_name_for_display(display.to_glib_none().0, atom_name.as_ptr())
+        })
     }
 }
 

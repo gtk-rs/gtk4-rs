@@ -4,7 +4,9 @@ use std::marker::PhantomData;
 
 use crate::ParamSpecExpression;
 
-use glib::{gobject_ffi, prelude::*, shared::Shared, translate::*, ParamSpec, StaticType, Value};
+use glib::{
+    gobject_ffi, prelude::*, shared::Shared, translate::*, IntoGStr, ParamSpec, StaticType, Value,
+};
 
 impl std::fmt::Debug for ParamSpecExpression {
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
@@ -84,15 +86,26 @@ impl FromGlibPtrFull<*mut gobject_ffi::GParamSpec> for ParamSpecExpression {
 impl ParamSpecExpression {
     #[allow(clippy::new_ret_no_self)]
     #[doc(alias = "gtk_param_spec_expression")]
-    pub fn new(name: &str, nick: &str, blurb: &str, flags: glib::ParamFlags) -> ParamSpec {
+    pub fn new(
+        name: impl IntoGStr,
+        nick: impl IntoGStr,
+        blurb: impl IntoGStr,
+        flags: glib::ParamFlags,
+    ) -> ParamSpec {
         assert_initialized_main_thread!();
         unsafe {
-            from_glib_none(ffi::gtk_param_spec_expression(
-                name.to_glib_none().0,
-                nick.to_glib_none().0,
-                blurb.to_glib_none().0,
-                flags.into_glib(),
-            ))
+            name.run_with_gstr(|name| {
+                nick.run_with_gstr(|nick| {
+                    blurb.run_with_gstr(|blurb| {
+                        from_glib_none(ffi::gtk_param_spec_expression(
+                            name.as_ptr(),
+                            nick.as_ptr(),
+                            blurb.as_ptr(),
+                            flags.into_glib(),
+                        ))
+                    })
+                })
+            })
         }
     }
 

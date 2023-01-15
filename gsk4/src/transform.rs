@@ -1,23 +1,25 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
 use crate::Transform;
-use glib::translate::*;
+use glib::{translate::*, IntoGStr};
 
 impl Transform {
     #[doc(alias = "gsk_transform_parse")]
-    pub fn parse(string: &str) -> Result<Self, glib::BoolError> {
+    pub fn parse(string: impl IntoGStr) -> Result<Self, glib::BoolError> {
         assert_initialized_main_thread!();
         unsafe {
-            let mut out_transform = std::ptr::null_mut();
-            let ret = from_glib(ffi::gsk_transform_parse(
-                string.to_glib_none().0,
-                &mut out_transform,
-            ));
-            if ret {
-                Ok(from_glib_full(out_transform))
-            } else {
-                Err(glib::bool_error!("Can't parse Transform"))
-            }
+            string.run_with_gstr(|string| {
+                let mut out_transform = std::ptr::null_mut();
+                let ret = from_glib(ffi::gsk_transform_parse(
+                    string.as_ptr(),
+                    &mut out_transform,
+                ));
+                if ret {
+                    Ok(from_glib_full(out_transform))
+                } else {
+                    Err(glib::bool_error!("Can't parse Transform"))
+                }
+            })
         }
     }
 

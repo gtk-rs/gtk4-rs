@@ -1,6 +1,6 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use glib::translate::*;
+use glib::{translate::*, IntoGStr};
 use libc::c_char;
 use std::ptr;
 
@@ -15,21 +15,22 @@ impl MessageDialog {
         flags: DialogFlags,
         type_: MessageType,
         buttons: ButtonsType,
-        message: &str,
+        message: impl IntoGStr,
     ) -> Self {
         assert_initialized_main_thread!();
         unsafe {
-            let message: Stash<*const c_char, _> = message.to_glib_none();
-            Widget::from_glib_none(ffi::gtk_message_dialog_new(
-                parent.map(|p| p.as_ref()).to_glib_none().0,
-                flags.into_glib(),
-                type_.into_glib(),
-                buttons.into_glib(),
-                b"%s\0".as_ptr() as *const c_char,
-                message.0,
-                ptr::null::<c_char>(),
-            ))
-            .unsafe_cast()
+            message.run_with_gstr(|message| {
+                Widget::from_glib_none(ffi::gtk_message_dialog_new(
+                    parent.map(|p| p.as_ref()).to_glib_none().0,
+                    flags.into_glib(),
+                    type_.into_glib(),
+                    buttons.into_glib(),
+                    b"%s\0".as_ptr() as *const c_char,
+                    message.as_ptr(),
+                    ptr::null::<c_char>(),
+                ))
+                .unsafe_cast()
+            })
         }
     }
 

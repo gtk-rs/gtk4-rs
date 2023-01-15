@@ -1,7 +1,7 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
 use crate::{prelude::*, AboutDialog, Window};
-use glib::{translate::*, Quark, Slice, ToValue};
+use glib::{translate::*, IntoGStr, Quark, Slice, ToValue};
 use once_cell::sync::Lazy;
 use std::{boxed::Box as Box_, mem, pin::Pin, ptr};
 
@@ -81,60 +81,64 @@ pub fn accelerator_name_with_keycode(
 }
 
 #[doc(alias = "gtk_accelerator_parse")]
-pub fn accelerator_parse(accelerator: &str) -> Option<(gdk::Key, gdk::ModifierType)> {
+pub fn accelerator_parse(accelerator: impl IntoGStr) -> Option<(gdk::Key, gdk::ModifierType)> {
     assert_initialized_main_thread!();
     unsafe {
-        let mut accelerator_key = mem::MaybeUninit::uninit();
-        let mut accelerator_mods = mem::MaybeUninit::uninit();
-        let ret = from_glib(ffi::gtk_accelerator_parse(
-            accelerator.to_glib_none().0,
-            accelerator_key.as_mut_ptr(),
-            accelerator_mods.as_mut_ptr(),
-        ));
-        if ret {
-            Some((
-                gdk::Key::from_glib(accelerator_key.assume_init()),
-                from_glib(accelerator_mods.assume_init()),
-            ))
-        } else {
-            None
-        }
+        accelerator.run_with_gstr(|accelerator| {
+            let mut accelerator_key = mem::MaybeUninit::uninit();
+            let mut accelerator_mods = mem::MaybeUninit::uninit();
+            let ret = from_glib(ffi::gtk_accelerator_parse(
+                accelerator.as_ptr(),
+                accelerator_key.as_mut_ptr(),
+                accelerator_mods.as_mut_ptr(),
+            ));
+            if ret {
+                Some((
+                    gdk::Key::from_glib(accelerator_key.assume_init()),
+                    from_glib(accelerator_mods.assume_init()),
+                ))
+            } else {
+                None
+            }
+        })
     }
 }
 
 #[doc(alias = "gtk_accelerator_parse_with_keycode")]
 pub fn accelerator_parse_with_keycode(
-    accelerator: &str,
+    accelerator: impl IntoGStr,
     display: Option<&impl IsA<gdk::Display>>,
 ) -> Option<(gdk::Key, Slice<u32>, gdk::ModifierType)> {
     assert_initialized_main_thread!();
     unsafe {
-        let mut accelerator_key = std::mem::MaybeUninit::uninit();
-        let mut accelerator_codes_ptr = ptr::null_mut();
-        let mut accelerator_mods = std::mem::MaybeUninit::uninit();
-        let success = from_glib(ffi::gtk_accelerator_parse_with_keycode(
-            accelerator.to_glib_none().0,
-            display.map(|p| p.as_ref()).to_glib_none().0,
-            accelerator_key.as_mut_ptr(),
-            &mut accelerator_codes_ptr,
-            accelerator_mods.as_mut_ptr(),
-        ));
-        if success {
-            let mut len = 0;
-            if !accelerator_codes_ptr.is_null() {
-                while ptr::read(accelerator_codes_ptr.add(len)) != 0 {
-                    len += 1;
+        accelerator.run_with_gstr(|accelerator| {
+            let mut accelerator_key = std::mem::MaybeUninit::uninit();
+            let mut accelerator_codes_ptr = ptr::null_mut();
+            let mut accelerator_mods = std::mem::MaybeUninit::uninit();
+            let success = from_glib(ffi::gtk_accelerator_parse_with_keycode(
+                accelerator.as_ptr(),
+                display.map(|p| p.as_ref()).to_glib_none().0,
+                accelerator_key.as_mut_ptr(),
+                &mut accelerator_codes_ptr,
+                accelerator_mods.as_mut_ptr(),
+            ));
+            if success {
+                let mut len = 0;
+                if !accelerator_codes_ptr.is_null() {
+                    while ptr::read(accelerator_codes_ptr.add(len)) != 0 {
+                        len += 1;
+                    }
                 }
+                let accelerator_codes = Slice::from_glib_full_num(accelerator_codes_ptr, len);
+                Some((
+                    gdk::Key::from_glib(accelerator_key.assume_init()),
+                    accelerator_codes,
+                    from_glib(accelerator_mods.assume_init()),
+                ))
+            } else {
+                None
             }
-            let accelerator_codes = Slice::from_glib_full_num(accelerator_codes_ptr, len);
-            Some((
-                gdk::Key::from_glib(accelerator_key.assume_init()),
-                accelerator_codes,
-                from_glib(accelerator_mods.assume_init()),
-            ))
-        } else {
-            None
-        }
+        })
     }
 }
 
