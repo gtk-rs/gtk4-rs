@@ -1,18 +1,20 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
 use crate::{prelude::*, EntryBuffer};
-use glib::{translate::*, IntoGStr};
+use glib::{translate::*, GString, IntoGStr, IntoOptionalGStr};
 use libc::{c_int, c_uint};
 
 impl EntryBuffer {
     #[doc(alias = "gtk_entry_buffer_new")]
-    pub fn new(initial_chars: Option<&str>) -> Self {
+    pub fn new(initial_chars: impl IntoOptionalGStr) -> Self {
         assert_initialized_main_thread!();
         unsafe {
-            from_glib_full(ffi::gtk_entry_buffer_new(
-                initial_chars.to_glib_none().0,
-                -1,
-            ))
+            initial_chars.run_with_gstr(|initial_chars| {
+                from_glib_full(ffi::gtk_entry_buffer_new(
+                    initial_chars.to_glib_none().0,
+                    -1,
+                ))
+            })
         }
     }
 }
@@ -37,7 +39,7 @@ pub trait EntryBufferExtManual: 'static {
 
     #[doc(alias = "gtk_entry_buffer_get_text")]
     #[doc(alias = "get_text")]
-    fn text(&self) -> String;
+    fn text(&self) -> GString;
 
     #[doc(alias = "gtk_entry_buffer_insert_text")]
     fn insert_text(&self, position: u16, chars: impl IntoGStr) -> u16;
@@ -92,7 +94,7 @@ impl<O: IsA<EntryBuffer>> EntryBufferExtManual for O {
         }
     }
 
-    fn text(&self) -> String {
+    fn text(&self) -> GString {
         unsafe {
             from_glib_none(ffi::gtk_entry_buffer_get_text(
                 self.as_ref().to_glib_none().0,

@@ -1,7 +1,7 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
 use crate::{prelude::*, Dialog, DialogFlags, ResponseType, Widget, Window};
-use glib::translate::*;
+use glib::{translate::*, IntoOptionalGStr};
 use std::{
     cell::{Cell, RefCell},
     future::Future,
@@ -16,20 +16,22 @@ impl Dialog {
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
     pub fn with_buttons<T: IsA<Window>>(
-        title: Option<&str>,
+        title: impl IntoOptionalGStr,
         parent: Option<&T>,
         flags: DialogFlags,
         buttons: &[(&str, ResponseType)],
     ) -> Self {
         assert_initialized_main_thread!();
         let ret: Self = unsafe {
-            Widget::from_glib_none(ffi::gtk_dialog_new_with_buttons(
-                title.to_glib_none().0,
-                parent.map(|p| p.as_ref()).to_glib_none().0,
-                flags.into_glib(),
-                ptr::null_mut(),
-            ))
-            .unsafe_cast()
+            title.run_with_gstr(|title| {
+                Widget::from_glib_none(ffi::gtk_dialog_new_with_buttons(
+                    title.to_glib_none().0,
+                    parent.map(|p| p.as_ref()).to_glib_none().0,
+                    flags.into_glib(),
+                    ptr::null_mut(),
+                ))
+                .unsafe_cast()
+            })
         };
 
         ret.add_buttons(buttons);
