@@ -2,19 +2,21 @@
 
 use crate::{prelude::*, rt, Application};
 use gio::ApplicationFlags;
-use glib::{signal::SignalHandlerId, translate::*};
+use glib::{signal::SignalHandlerId, translate::*, IntoOptionalGStr};
 
 use std::{cell::RefCell, rc::Rc};
 
 impl Application {
     #[doc(alias = "gtk_application_new")]
-    pub fn new(application_id: Option<&str>, flags: ApplicationFlags) -> Self {
+    pub fn new(application_id: impl IntoOptionalGStr, flags: ApplicationFlags) -> Self {
         skip_assert_initialized!();
         let app: Application = unsafe {
-            from_glib_full(ffi::gtk_application_new(
-                application_id.to_glib_none().0,
-                flags.into_glib(),
-            ))
+            application_id.run_with_gstr(|application_id| {
+                from_glib_full(ffi::gtk_application_new(
+                    application_id.to_glib_none().0,
+                    flags.into_glib(),
+                ))
+            })
         };
         Self::register_startup_hook(&app);
         app
