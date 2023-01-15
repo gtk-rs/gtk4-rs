@@ -7,11 +7,4 @@ use crate::{subclass::prelude::*, Native};
 
 pub trait NativeImpl: WidgetImpl {}
 
-unsafe impl<T: NativeImpl> IsImplementable<T> for Native {
-    fn interface_init(_iface: &mut glib::Interface<Self>) {
-        assert!(
-            crate::rt::is_initialized(),
-            "GTK has to be initialized first"
-        );
-    }
-}
+unsafe impl<T: NativeImpl> IsImplementable<T> for Native {}

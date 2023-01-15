@@ -130,10 +130,7 @@ unsafe impl<T: BuilderScopeImpl> IsImplementable<T> for BuilderScope {
     fn interface_init(iface: &mut glib::Interface<Self>) {
         let iface = iface.as_mut();
 
-        assert!(
-            crate::rt::is_initialized(),
-            "GTK has to be initialized first"
-        );
+        assert_initialized_main_thread!();
 
         iface.get_type_from_name = Some(builder_scope_get_type_from_name::<T>);
         iface.get_type_from_function = Some(builder_scope_get_type_from_function::<T>);

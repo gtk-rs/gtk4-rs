@@ -4649,6 +4649,7 @@ impl ::std::fmt::Display for Key {
 }
 
 impl FromGlib<u32> for Key {
+    #[inline]
     unsafe fn from_glib(value: u32) -> Self {
         skip_assert_initialized!();
         Self(value)
@@ -4658,6 +4659,7 @@ impl FromGlib<u32> for Key {
 impl IntoGlib for Key {
     type GlibType = u32;
 
+    #[inline]
     fn into_glib(self) -> u32 {
         self.0
     }
@@ -4670,6 +4672,7 @@ impl ValueType for Key {
 unsafe impl<'a> FromValue<'a> for Key {
     type Checker = glib::value::GenericValueTypeChecker<Key>;
 
+    #[inline]
     unsafe fn from_value(value: &'a Value) -> Self {
         let res: u32 = glib::gobject_ffi::g_value_get_uint(value.to_glib_none().0);
         // As most of gdk_keyval_ apis don't really do any check for the input value (the key number)
@@ -4679,6 +4682,7 @@ unsafe impl<'a> FromValue<'a> for Key {
 }
 
 impl ToValue for Key {
+    #[inline]
     fn to_value(&self) -> Value {
         let value = Value::for_value_type::<Self>();
         unsafe {
@@ -4687,12 +4691,14 @@ impl ToValue for Key {
         value
     }
 
+    #[inline]
     fn value_type(&self) -> Type {
         Type::U32
     }
 }
 
 impl From<Key> for Value {
+    #[inline]
     fn from(k: Key) -> Self {
         skip_assert_initialized!();
         k.to_value()
@@ -4701,6 +4707,7 @@ impl From<Key> for Value {
 
 // TODO: Drop once https://github.com/gtk-rs/gtk-rs-core/issues/612
 impl glib::StaticType for Key {
+    #[inline]
     fn static_type() -> Type {
         Type::U32
     }

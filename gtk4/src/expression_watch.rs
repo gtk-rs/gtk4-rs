@@ -50,6 +50,7 @@ impl ExpressionWatch {
 #[cfg(any(feature = "v4_2", feature = "dox"))]
 impl glib::StaticType for ExpressionWatch {
     #[doc(alias = "gtk_expression_watch_get_type")]
+    #[inline]
     fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gtk_expression_watch_get_type()) }
     }

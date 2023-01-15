@@ -41,6 +41,7 @@ pub enum ResponseType {
 impl IntoGlib for ResponseType {
     type GlibType = ffi::GtkResponseType;
 
+    #[inline]
     fn into_glib(self) -> ffi::GtkResponseType {
         match self {
             Self::None => ffi::GTK_RESPONSE_NONE,
@@ -62,6 +63,7 @@ impl IntoGlib for ResponseType {
 
 #[doc(hidden)]
 impl FromGlib<ffi::GtkResponseType> for ResponseType {
+    #[inline]
     unsafe fn from_glib(value: ffi::GtkResponseType) -> Self {
         skip_assert_initialized!();
         match value {
@@ -107,6 +109,7 @@ impl fmt::Display for ResponseType {
 }
 
 impl StaticType for ResponseType {
+    #[inline]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::gtk_response_type_get_type()) }
     }
@@ -119,6 +122,7 @@ impl ValueType for ResponseType {
 unsafe impl<'a> FromValue<'a> for ResponseType {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
+    #[inline]
     unsafe fn from_value(value: &glib::Value) -> Self {
         skip_assert_initialized!();
         from_glib(glib::gobject_ffi::g_value_get_enum(value.to_glib_none().0))
@@ -126,18 +130,21 @@ unsafe impl<'a> FromValue<'a> for ResponseType {
 }
 
 impl ToValue for ResponseType {
+    #[inline]
     fn to_value(&self) -> Value {
         let mut value = glib::Value::for_value_type::<Self>();
         unsafe { glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.into_glib()) }
         value
     }
 
+    #[inline]
     fn value_type(&self) -> Type {
         Self::static_type()
     }
 }
 
 impl From<ResponseType> for Value {
+    #[inline]
     fn from(t: ResponseType) -> Self {
         skip_assert_initialized!();
         t.to_value()
@@ -145,18 +152,21 @@ impl From<ResponseType> for Value {
 }
 
 impl PartialEq<i32> for ResponseType {
+    #[inline]
     fn eq(&self, other: &i32) -> bool {
         self.into_glib().eq(other)
     }
 }
 
 impl PartialEq<ResponseType> for i32 {
+    #[inline]
     fn eq(&self, other: &ResponseType) -> bool {
         other.into_glib().eq(self)
     }
 }
 
 impl From<i32> for ResponseType {
+    #[inline]
     fn from(response: i32) -> Self {
         skip_assert_initialized!();
         unsafe { Self::from_glib(response) }
@@ -164,6 +174,7 @@ impl From<i32> for ResponseType {
 }
 
 impl From<ResponseType> for i32 {
+    #[inline]
     fn from(r: ResponseType) -> Self {
         skip_assert_initialized!();
         r.into_glib()

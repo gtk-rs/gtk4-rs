@@ -8,6 +8,7 @@
 pub(crate) struct PtrHolder<T, F: Fn(*mut T) + 'static>(*mut T, F);
 
 impl<T, F: Fn(*mut T) + 'static> Drop for PtrHolder<T, F> {
+    #[inline]
     fn drop(&mut self) {
         (self.1)(self.0)
     }

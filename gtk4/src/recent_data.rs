@@ -18,6 +18,7 @@ glib::wrapper! {
 }
 
 impl RecentData {
+    #[inline]
     pub fn new(
         display_name: Option<&str>,
         description: Option<&str>,
@@ -41,6 +42,7 @@ impl RecentData {
         }
     }
 
+    #[inline]
     pub fn display_name(&self) -> Option<&str> {
         unsafe {
             if self.inner.display_name.is_null() {
@@ -51,6 +53,7 @@ impl RecentData {
         }
     }
 
+    #[inline]
     pub fn description(&self) -> Option<&str> {
         unsafe {
             if self.inner.description.is_null() {
@@ -61,22 +64,27 @@ impl RecentData {
         }
     }
 
+    #[inline]
     pub fn mime_type(&self) -> &str {
         unsafe { CStr::from_ptr(self.inner.mime_type).to_str().unwrap() }
     }
 
+    #[inline]
     pub fn app_name(&self) -> &str {
         unsafe { CStr::from_ptr(self.inner.app_name).to_str().unwrap() }
     }
 
+    #[inline]
     pub fn app_exec(&self) -> &str {
         unsafe { CStr::from_ptr(self.inner.app_exec).to_str().unwrap() }
     }
 
+    #[inline]
     pub fn groups<'a>(&self) -> &'a [StrVItem] {
         unsafe { StrV::from_glib_borrow(self.inner.groups as *const _) }
     }
 
+    #[inline]
     pub fn is_private(&self) -> bool {
         unsafe { from_glib(self.inner.is_private) }
     }

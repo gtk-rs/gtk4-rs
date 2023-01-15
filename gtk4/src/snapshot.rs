@@ -45,12 +45,14 @@ impl<T: IsA<Snapshot>> SnapshotExtManual for T {
 }
 
 impl AsRef<Snapshot> for gdk::Snapshot {
+    #[inline]
     fn as_ref(&self) -> &Snapshot {
         self.downcast_ref().unwrap()
     }
 }
 
 impl From<gdk::Snapshot> for Snapshot {
+    #[inline]
     fn from(e: gdk::Snapshot) -> Snapshot {
         assert_initialized_main_thread!();
         e.downcast().unwrap()
@@ -58,6 +60,7 @@ impl From<gdk::Snapshot> for Snapshot {
 }
 
 impl Borrow<Snapshot> for gdk::Snapshot {
+    #[inline]
     fn borrow(&self) -> &Snapshot {
         self.downcast_ref().unwrap()
     }

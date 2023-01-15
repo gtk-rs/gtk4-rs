@@ -10,6 +10,7 @@ glib::wrapper! {
 }
 
 impl ColorStop {
+    #[inline]
     pub fn new(offset: f32, color: RGBA) -> Self {
         assert_initialized_main_thread!();
         unsafe {
@@ -28,10 +29,12 @@ impl ColorStop {
         ColorStopBuilder::default()
     }
 
+    #[inline]
     pub fn offset(&self) -> f32 {
         self.inner.offset
     }
 
+    #[inline]
     pub fn color(&self) -> &RGBA {
         unsafe { &*(&self.inner.color as *const gdk::ffi::GdkRGBA as *const RGBA) }
     }

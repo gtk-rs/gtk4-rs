@@ -6,6 +6,7 @@ use glib::translate::*;
 use std::fmt;
 
 impl Rectangle {
+    #[inline]
     pub fn new(x: i32, y: i32, width: i32, height: i32) -> Self {
         skip_assert_initialized!();
         unsafe {
@@ -18,34 +19,42 @@ impl Rectangle {
         }
     }
 
+    #[inline]
     pub fn x(&self) -> i32 {
         self.inner.x
     }
 
+    #[inline]
     pub fn set_x(&mut self, x: i32) {
         self.inner.x = x;
     }
 
+    #[inline]
     pub fn y(&self) -> i32 {
         self.inner.y
     }
 
+    #[inline]
     pub fn set_y(&mut self, y: i32) {
         self.inner.y = y;
     }
 
+    #[inline]
     pub fn width(&self) -> i32 {
         self.inner.width
     }
 
+    #[inline]
     pub fn set_width(&mut self, width: i32) {
         self.inner.width = width;
     }
 
+    #[inline]
     pub fn height(&self) -> i32 {
         self.inner.height
     }
 
+    #[inline]
     pub fn set_height(&mut self, height: i32) {
         self.inner.height = height;
     }
@@ -63,12 +72,14 @@ impl fmt::Debug for Rectangle {
 }
 
 impl AsRef<RectangleInt> for Rectangle {
+    #[inline]
     fn as_ref(&self) -> &RectangleInt {
         unsafe { &*(self as *const _ as *const _) }
     }
 }
 
 impl From<RectangleInt> for Rectangle {
+    #[inline]
     fn from(r: RectangleInt) -> Self {
         skip_assert_initialized!();
         unsafe { *(&r as *const _ as *const _) }
@@ -76,6 +87,7 @@ impl From<RectangleInt> for Rectangle {
 }
 
 impl From<Rectangle> for RectangleInt {
+    #[inline]
     fn from(r: Rectangle) -> Self {
         skip_assert_initialized!();
         unsafe { *(&r as *const _ as *const _) }
@@ -86,6 +98,7 @@ impl From<cairo::Rectangle> for Rectangle {
     // rustdoc-stripper-ignore-next
     /// Note that converting between a [`cairo::Rectangle`] and [`Rectangle`]
     /// will probably lead to precisison errors. Use cautiously.
+    #[inline]
     fn from(r: cairo::Rectangle) -> Self {
         skip_assert_initialized!();
         Self::new(
@@ -98,6 +111,7 @@ impl From<cairo::Rectangle> for Rectangle {
 }
 
 impl From<Rectangle> for cairo::Rectangle {
+    #[inline]
     fn from(r: Rectangle) -> Self {
         skip_assert_initialized!();
         cairo::Rectangle::new(
@@ -110,6 +124,7 @@ impl From<Rectangle> for cairo::Rectangle {
 }
 
 impl From<pango::Rectangle> for Rectangle {
+    #[inline]
     fn from(r: pango::Rectangle) -> Self {
         skip_assert_initialized!();
         Self::new(r.x(), r.y(), r.width(), r.height())
@@ -117,6 +132,7 @@ impl From<pango::Rectangle> for Rectangle {
 }
 
 impl From<Rectangle> for pango::Rectangle {
+    #[inline]
     fn from(r: Rectangle) -> Self {
         skip_assert_initialized!();
         Self::new(r.x(), r.y(), r.width(), r.height())

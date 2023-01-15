@@ -6,6 +6,7 @@ use glib::{value::FromValue, Object, StaticType, Type, Value};
 
 #[doc(hidden)]
 impl AsRef<Expression> for Expression {
+    #[inline]
     fn as_ref(&self) -> &Expression {
         self
     }
@@ -23,18 +24,22 @@ pub unsafe trait IsExpression:
 }
 
 impl Expression {
+    #[inline]
     pub fn upcast(self) -> Self {
         self
     }
 
+    #[inline]
     pub fn upcast_ref(&self) -> &Self {
         self
     }
 
+    #[inline]
     pub fn is<E: IsExpression>(&self) -> bool {
         self.type_().is_a(E::static_type())
     }
 
+    #[inline]
     pub fn downcast<E: IsExpression>(self) -> Result<E, Expression> {
         unsafe {
             if self.is::<E>() {
@@ -45,6 +50,7 @@ impl Expression {
         }
     }
 
+    #[inline]
     pub fn downcast_ref<E: IsExpression>(&self) -> Option<&E> {
         unsafe {
             if self.is::<E>() {
@@ -55,6 +61,7 @@ impl Expression {
         }
     }
 
+    #[inline]
     pub fn type_(&self) -> Type {
         unsafe {
             let ptr = self.as_ptr();
@@ -165,6 +172,7 @@ impl glib::value::ValueType for Expression {
 unsafe impl<'a> glib::value::FromValue<'a> for Expression {
     type Checker = glib::value::GenericValueTypeOrNoneChecker<Self>;
 
+    #[inline]
     unsafe fn from_value(value: &'a glib::Value) -> Self {
         skip_assert_initialized!();
         from_glib_full(ffi::gtk_value_dup_expression(value.to_glib_none().0))
@@ -172,12 +180,14 @@ unsafe impl<'a> glib::value::FromValue<'a> for Expression {
 }
 
 impl glib::value::ToValue for Expression {
+    #[inline]
     fn to_value(&self) -> glib::Value {
         let mut value = glib::Value::for_value_type::<Self>();
         unsafe { ffi::gtk_value_set_expression(value.to_glib_none_mut().0, self.to_glib_none().0) }
         value
     }
 
+    #[inline]
     fn value_type(&self) -> glib::Type {
         Self::static_type()
     }
@@ -256,22 +266,26 @@ macro_rules! define_expression {
         impl std::ops::Deref for $rust_type {
             type Target = crate::Expression;
 
+            #[inline]
             fn deref(&self) -> &Self::Target {
                 unsafe { &*(self as *const $rust_type as *const crate::Expression) }
             }
         }
 
         impl AsRef<crate::Expression> for $rust_type {
+            #[inline]
             fn as_ref(&self) -> &crate::Expression {
                 self.upcast_ref()
             }
         }
 
         impl $rust_type {
+            #[inline]
             pub fn upcast(self) -> crate::Expression {
                 unsafe { std::mem::transmute(self) }
             }
 
+            #[inline]
             pub fn upcast_ref(&self) -> &crate::Expression {
                 self
             }
@@ -338,6 +352,7 @@ macro_rules! define_expression {
 
         #[doc(hidden)]
         impl FromGlibPtrFull<*mut ffi::GtkExpression> for $rust_type {
+            #[inline]
             unsafe fn from_glib_full(ptr: *mut ffi::GtkExpression) -> Self {
                 from_glib_full(ptr as *mut $ffi_type)
             }
@@ -352,6 +367,7 @@ macro_rules! define_expression {
         unsafe impl<'a> glib::value::FromValue<'a> for $rust_type {
             type Checker = glib::value::GenericValueTypeOrNoneChecker<Self>;
 
+            #[inline]
             unsafe fn from_value(value: &'a glib::Value) -> Self {
                 skip_assert_initialized!();
                 from_glib_full(ffi::gtk_value_dup_expression(value.to_glib_none().0))
@@ -359,6 +375,7 @@ macro_rules! define_expression {
         }
 
         impl glib::value::ToValue for $rust_type {
+            #[inline]
             fn to_value(&self) -> glib::Value {
                 let mut value = glib::Value::for_value_type::<Self>();
                 unsafe {
@@ -370,6 +387,7 @@ macro_rules! define_expression {
                 value
             }
 
+            #[inline]
             fn value_type(&self) -> glib::Type {
                 use glib::StaticType;
                 Self::static_type()
@@ -377,6 +395,7 @@ macro_rules! define_expression {
         }
 
         impl glib::value::ToValueOptional for $rust_type {
+            #[inline]
             fn to_value_optional(s: Option<&Self>) -> glib::Value {
                 skip_assert_initialized!();
                 let mut value = glib::Value::for_value_type::<Self>();

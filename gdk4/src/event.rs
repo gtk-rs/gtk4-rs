@@ -5,10 +5,12 @@ use glib::{translate::*, StaticType};
 use std::{fmt, mem};
 
 impl Event {
+    #[inline]
     pub fn is<T: EventKind>(&self) -> bool {
         T::event_types().contains(&self.event_type())
     }
 
+    #[inline]
     pub fn type_(&self) -> glib::Type {
         unsafe {
             let ptr = self.as_ptr();
@@ -16,6 +18,7 @@ impl Event {
         }
     }
 
+    #[inline]
     pub fn downcast<T: EventKind>(self) -> Result<T, Event> {
         unsafe {
             if self.is::<T>() {
@@ -26,6 +29,7 @@ impl Event {
         }
     }
 
+    #[inline]
     pub fn downcast_ref<T: EventKind>(&self) -> Option<&T> {
         unsafe {
             if self.is::<T>() {
@@ -116,6 +120,7 @@ impl fmt::Debug for Event {
 
 #[doc(hidden)]
 impl AsRef<Event> for Event {
+    #[inline]
     fn as_ref(&self) -> &Self {
         self
     }
@@ -136,6 +141,7 @@ pub unsafe trait EventKind:
 macro_rules! define_event {
     ($rust_type:ident, $ffi_type:path,$event_event_types:expr) => {
         unsafe impl crate::event::EventKind for $rust_type {
+            #[inline]
             fn event_types() -> &'static [crate::EventType] {
                 $event_event_types
             }
@@ -144,12 +150,14 @@ macro_rules! define_event {
         impl std::ops::Deref for $rust_type {
             type Target = crate::Event;
 
+            #[inline]
             fn deref(&self) -> &Self::Target {
                 unsafe { &*(self as *const $rust_type as *const crate::Event) }
             }
         }
 
         impl AsRef<crate::Event> for $rust_type {
+            #[inline]
             fn as_ref(&self) -> &crate::Event {
                 self.upcast_ref()
             }
@@ -157,16 +165,19 @@ macro_rules! define_event {
 
         #[doc(hidden)]
         impl glib::translate::FromGlibPtrFull<*mut ffi::GdkEvent> for $rust_type {
+            #[inline]
             unsafe fn from_glib_full(ptr: *mut ffi::GdkEvent) -> Self {
                 glib::translate::FromGlibPtrFull::from_glib_full(ptr as *mut $ffi_type)
             }
         }
 
         impl $rust_type {
+            #[inline]
             pub fn upcast(self) -> crate::Event {
                 unsafe { std::mem::transmute(self) }
             }
 
+            #[inline]
             pub fn upcast_ref(&self) -> &crate::Event {
                 self
             }

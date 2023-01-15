@@ -71,7 +71,7 @@ unsafe impl<T: GtkApplicationImpl> IsSubclassable<T> for Application {
             ONCE.call_once(|| unsafe {
                 let base_klass =
                     glib::gobject_ffi::g_type_class_ref(ffi::gtk_application_get_type());
-                assert!(!base_klass.is_null());
+                debug_assert!(!base_klass.is_null());
 
                 let app_klass = &mut *(base_klass as *mut gio::ffi::GApplicationClass);
                 OLD_STARTUP = app_klass.startup.map(WrapFn);

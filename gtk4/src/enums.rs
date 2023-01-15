@@ -5,6 +5,7 @@ use glib::{error::ErrorDomain, translate::*, Quark};
 use std::cmp;
 
 impl From<cmp::Ordering> for Ordering {
+    #[inline]
     fn from(o: cmp::Ordering) -> Self {
         skip_assert_initialized!();
         match o {
@@ -16,6 +17,7 @@ impl From<cmp::Ordering> for Ordering {
 }
 
 impl From<Ordering> for cmp::Ordering {
+    #[inline]
     fn from(o: Ordering) -> Self {
         skip_assert_initialized!();
         match o {
@@ -28,15 +30,18 @@ impl From<Ordering> for cmp::Ordering {
 }
 
 impl ErrorDomain for CssParserWarning {
+    #[inline]
     fn domain() -> Quark {
         skip_assert_initialized!();
         unsafe { from_glib(ffi::gtk_css_parser_warning_quark()) }
     }
 
+    #[inline]
     fn code(self) -> i32 {
         self.into_glib()
     }
 
+    #[inline]
     fn from(code: i32) -> Option<Self> {
         skip_assert_initialized!();
         match code {

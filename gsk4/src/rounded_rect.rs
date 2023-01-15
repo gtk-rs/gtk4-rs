@@ -104,12 +104,14 @@ impl RoundedRect {
         }
     }
 
+    #[inline]
     pub fn bounds(&self) -> &graphene::Rect {
         unsafe {
             &*(&self.inner.bounds as *const graphene::ffi::graphene_rect_t as *const graphene::Rect)
         }
     }
 
+    #[inline]
     pub fn corner(&self) -> &[graphene::Size; 4] {
         unsafe {
             &*(&self.inner.corner as *const [graphene::ffi::graphene_size_t; 4]

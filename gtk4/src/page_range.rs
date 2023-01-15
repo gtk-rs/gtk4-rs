@@ -9,15 +9,18 @@ glib::wrapper! {
 }
 
 impl PageRange {
+    #[inline]
     pub fn new(start: i32, end: i32) -> Self {
         skip_assert_initialized!();
         unsafe { Self::unsafe_from(ffi::GtkPageRange { start, end }) }
     }
 
+    #[inline]
     pub fn start(&self) -> i32 {
         self.inner.start
     }
 
+    #[inline]
     pub fn end(&self) -> i32 {
         self.inner.end
     }

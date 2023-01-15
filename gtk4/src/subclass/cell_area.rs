@@ -646,10 +646,7 @@ unsafe impl<T: CellAreaImpl> IsSubclassable<T> for CellArea {
         Self::parent_class_init::<T>(class);
         let klass = class.as_mut();
 
-        assert!(
-            crate::rt::is_initialized(),
-            "GTK has to be initialized first"
-        );
+        assert_initialized_main_thread!();
 
         let pspecs = <T as CellAreaImpl>::cell_properties();
         if !pspecs.is_empty() {

@@ -119,10 +119,7 @@ unsafe impl<T: ColorChooserImpl> IsImplementable<T> for ColorChooser {
     fn interface_init(iface: &mut glib::Interface<Self>) {
         let iface = iface.as_mut();
 
-        assert!(
-            crate::rt::is_initialized(),
-            "GTK has to be initialized first"
-        );
+        assert_initialized_main_thread!();
 
         iface.add_palette = Some(color_chooser_add_palette::<T>);
         iface.color_activated = Some(color_chooser_color_activated::<T>);

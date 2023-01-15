@@ -81,6 +81,7 @@ pub struct Win32DisplayFilterHandle {
 }
 
 impl Drop for Win32DisplayFilterHandle {
+    #[inline]
     fn drop(&mut self) {
         unsafe {
             if let Some(display) = self.display.upgrade() {

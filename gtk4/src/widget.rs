@@ -69,6 +69,7 @@ pub struct TickCallbackId {
 }
 
 impl PartialEq for TickCallbackId {
+    #[inline]
     fn eq(&self, other: &Self) -> bool {
         self.id == other.id
     }

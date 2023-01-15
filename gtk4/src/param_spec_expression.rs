@@ -15,6 +15,7 @@ impl std::fmt::Debug for ParamSpecExpression {
 impl std::ops::Deref for ParamSpecExpression {
     type Target = ParamSpec;
 
+    #[inline]
     fn deref(&self) -> &Self::Target {
         unsafe { &*(self as *const ParamSpecExpression as *const ParamSpec) }
     }
@@ -74,6 +75,7 @@ impl IntoGlibPtr<*const gobject_ffi::GParamSpec> for ParamSpecExpression {
 
 #[doc(hidden)]
 impl FromGlibPtrFull<*mut gobject_ffi::GParamSpec> for ParamSpecExpression {
+    #[inline]
     unsafe fn from_glib_full(ptr: *mut gobject_ffi::GParamSpec) -> Self {
         from_glib_full(ptr as *mut ffi::GtkParamSpecExpression)
     }
@@ -189,15 +191,17 @@ impl glib::value::ValueTypeOptional for ParamSpecExpression {}
 unsafe impl<'a> glib::value::FromValue<'a> for ParamSpecExpression {
     type Checker = glib::value::GenericValueTypeOrNoneChecker<Self>;
 
+    #[inline]
     unsafe fn from_value(value: &'a Value) -> Self {
         let ptr = gobject_ffi::g_value_dup_param(value.to_glib_none().0);
-        assert!(!ptr.is_null());
+        debug_assert!(!ptr.is_null());
         from_glib_full(ptr as *mut gobject_ffi::GParamSpec)
     }
 }
 
 #[doc(hidden)]
 impl glib::value::ToValue for ParamSpecExpression {
+    #[inline]
     fn to_value(&self) -> Value {
         unsafe {
             let mut value = Value::from_type(Self::static_type());
@@ -209,6 +213,7 @@ impl glib::value::ToValue for ParamSpecExpression {
         }
     }
 
+    #[inline]
     fn value_type(&self) -> glib::Type {
         Self::static_type()
     }
@@ -216,6 +221,7 @@ impl glib::value::ToValue for ParamSpecExpression {
 
 #[doc(hidden)]
 impl glib::value::ToValueOptional for ParamSpecExpression {
+    #[inline]
     fn to_value_optional(s: Option<&Self>) -> Value {
         assert_initialized_main_thread!();
         let mut value = Value::for_value_type::<Self>();

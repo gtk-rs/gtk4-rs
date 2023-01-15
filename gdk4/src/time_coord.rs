@@ -10,6 +10,7 @@ glib::wrapper! {
 }
 
 impl TimeCoord {
+    #[inline]
     pub fn new(time: u32, axes: [f64; 12], flags: AxisFlags) -> Self {
         assert_initialized_main_thread!();
         unsafe {
@@ -21,14 +22,17 @@ impl TimeCoord {
         }
     }
 
+    #[inline]
     pub fn time(&self) -> u32 {
         self.inner.time
     }
 
+    #[inline]
     pub fn axes(&self) -> &[f64; 12] {
         &self.inner.axes
     }
 
+    #[inline]
     pub fn flags(&self) -> AxisFlags {
         unsafe { from_glib(self.inner.flags) }
     }

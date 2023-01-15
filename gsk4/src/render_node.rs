@@ -5,10 +5,12 @@ use glib::translate::*;
 use glib::StaticType;
 
 impl RenderNode {
+    #[inline]
     pub fn is<T: IsRenderNode>(&self) -> bool {
         T::NODE_TYPE == self.node_type()
     }
 
+    #[inline]
     pub fn type_(&self) -> glib::Type {
         unsafe {
             let ptr = self.as_ptr();
@@ -60,6 +62,7 @@ impl RenderNode {
         }
     }
 
+    #[inline]
     pub fn downcast<T: IsRenderNode>(self) -> Result<T, Self> {
         unsafe {
             if self.is::<T>() {
@@ -70,6 +73,7 @@ impl RenderNode {
         }
     }
 
+    #[inline]
     pub fn downcast_ref<T: IsRenderNode>(&self) -> Option<&T> {
         unsafe {
             if self.is::<T>() {
@@ -109,6 +113,7 @@ pub unsafe trait IsRenderNode:
 
 #[doc(hidden)]
 impl AsRef<RenderNode> for RenderNode {
+    #[inline]
     fn as_ref(&self) -> &Self {
         self
     }
@@ -117,6 +122,7 @@ impl AsRef<RenderNode> for RenderNode {
 macro_rules! define_render_node {
     ($rust_type:ident, $ffi_type:path, $node_type:path) => {
         impl std::convert::AsRef<crate::RenderNode> for $rust_type {
+            #[inline]
             fn as_ref(&self) -> &crate::RenderNode {
                 self
             }
@@ -125,6 +131,7 @@ macro_rules! define_render_node {
         impl std::ops::Deref for $rust_type {
             type Target = crate::RenderNode;
 
+            #[inline]
             fn deref(&self) -> &Self::Target {
                 unsafe { &*(self as *const $rust_type as *const crate::RenderNode) }
             }
@@ -133,6 +140,7 @@ macro_rules! define_render_node {
         unsafe impl crate::render_node::IsRenderNode for $rust_type {
             const NODE_TYPE: RenderNodeType = $node_type;
 
+            #[inline]
             fn upcast(self) -> crate::RenderNode {
                 unsafe {
                     glib::translate::from_glib_full(
@@ -142,6 +150,7 @@ macro_rules! define_render_node {
                 }
             }
 
+            #[inline]
             fn upcast_ref(&self) -> &crate::RenderNode {
                 self
             }
@@ -149,6 +158,7 @@ macro_rules! define_render_node {
 
         #[doc(hidden)]
         impl glib::translate::FromGlibPtrFull<*mut ffi::GskRenderNode> for $rust_type {
+            #[inline]
             unsafe fn from_glib_full(ptr: *mut ffi::GskRenderNode) -> Self {
                 glib::translate::from_glib_full(ptr as *mut $ffi_type)
             }
@@ -165,6 +175,7 @@ macro_rules! define_render_node {
         unsafe impl<'a> glib::value::FromValue<'a> for $rust_type {
             type Checker = glib::value::GenericValueTypeOrNoneChecker<Self>;
 
+            #[inline]
             unsafe fn from_value(value: &'a glib::Value) -> Self {
                 skip_assert_initialized!();
                 glib::translate::from_glib_full(ffi::gsk_value_dup_render_node(
@@ -176,6 +187,7 @@ macro_rules! define_render_node {
         #[cfg(any(feature = "v4_6", feature = "dox"))]
         #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
         impl glib::value::ToValue for $rust_type {
+            #[inline]
             fn to_value(&self) -> glib::Value {
                 let mut value = glib::Value::for_value_type::<Self>();
                 unsafe {
@@ -187,6 +199,7 @@ macro_rules! define_render_node {
                 value
             }
 
+            #[inline]
             fn value_type(&self) -> glib::Type {
                 use glib::StaticType;
                 Self::static_type()
@@ -196,6 +209,7 @@ macro_rules! define_render_node {
         #[cfg(any(feature = "v4_6", feature = "dox"))]
         #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
         impl glib::value::ToValueOptional for $rust_type {
+            #[inline]
             fn to_value_optional(s: Option<&Self>) -> glib::Value {
                 skip_assert_initialized!();
                 let mut value = glib::Value::for_value_type::<Self>();

@@ -9,9 +9,6 @@ pub trait ConstraintTargetImpl: ObjectImpl {}
 
 unsafe impl<T: ConstraintTargetImpl> IsImplementable<T> for ConstraintTarget {
     fn interface_init(_iface: &mut glib::Interface<Self>) {
-        assert!(
-            crate::rt::is_initialized(),
-            "GTK has to be initialized first"
-        );
+        assert_initialized_main_thread!();
     }
 }
