@@ -1,7 +1,7 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
 use crate::{prelude::*, Constraint, ConstraintLayout, Widget};
-use glib::translate::*;
+use glib::{translate::*, IntoStrV};
 use std::collections::HashMap;
 
 impl ConstraintLayout {
@@ -10,7 +10,7 @@ impl ConstraintLayout {
     #[doc(alias = "add_constraints_from_descriptionv")]
     pub fn add_constraints_from_description<W: IsA<Widget>>(
         &self,
-        lines: &[&str],
+        lines: impl IntoStrV,
         hspacing: i32,
         vspacing: i32,
         views: &HashMap<&str, &W>,
@@ -33,20 +33,22 @@ impl ConstraintLayout {
                 );
             }
 
-            let out = ffi::gtk_constraint_layout_add_constraints_from_descriptionv(
-                self.to_glib_none().0,
-                lines.to_glib_none().0,
-                lines.len() as _,
-                hspacing,
-                vspacing,
-                hash_table,
-                &mut err,
-            );
-            if !err.is_null() {
-                Err(from_glib_full(err))
-            } else {
-                Ok(FromGlibPtrContainer::from_glib_container(out))
-            }
+            lines.run_with_strv(|lines| {
+                let out = ffi::gtk_constraint_layout_add_constraints_from_descriptionv(
+                    self.to_glib_none().0,
+                    lines.as_ptr() as *const _,
+                    lines.len() as _,
+                    hspacing,
+                    vspacing,
+                    hash_table,
+                    &mut err,
+                );
+                if !err.is_null() {
+                    Err(from_glib_full(err))
+                } else {
+                    Ok(FromGlibPtrContainer::from_glib_container(out))
+                }
+            })
         }
     }
 }
