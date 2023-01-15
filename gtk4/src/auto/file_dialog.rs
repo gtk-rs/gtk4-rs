@@ -84,16 +84,6 @@ impl FileDialog {
         unsafe { from_glib(ffi::gtk_file_dialog_get_modal(self.to_glib_none().0)) }
     }
 
-    #[doc(alias = "gtk_file_dialog_get_shortcut_folders")]
-    #[doc(alias = "get_shortcut_folders")]
-    pub fn shortcut_folders(&self) -> Option<gio::ListModel> {
-        unsafe {
-            from_glib_none(ffi::gtk_file_dialog_get_shortcut_folders(
-                self.to_glib_none().0,
-            ))
-        }
-    }
-
     #[doc(alias = "gtk_file_dialog_get_title")]
     #[doc(alias = "get_title")]
     pub fn title(&self) -> glib::GString {
@@ -510,16 +500,6 @@ impl FileDialog {
         }
     }
 
-    #[doc(alias = "gtk_file_dialog_set_shortcut_folders")]
-    pub fn set_shortcut_folders(&self, shortcut_folders: &impl IsA<gio::ListModel>) {
-        unsafe {
-            ffi::gtk_file_dialog_set_shortcut_folders(
-                self.to_glib_none().0,
-                shortcut_folders.as_ref().to_glib_none().0,
-            );
-        }
-    }
-
     #[doc(alias = "gtk_file_dialog_set_title")]
     pub fn set_title(&self, title: &str) {
         unsafe {
@@ -704,31 +684,6 @@ impl FileDialog {
 
     #[cfg(any(feature = "v4_10", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
-    #[doc(alias = "shortcut-folders")]
-    pub fn connect_shortcut_folders_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_shortcut_folders_trampoline<F: Fn(&FileDialog) + 'static>(
-            this: *mut ffi::GtkFileDialog,
-            _param_spec: glib::ffi::gpointer,
-            f: glib::ffi::gpointer,
-        ) {
-            let f: &F = &*(f as *const F);
-            f(&from_glib_borrow(this))
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"notify::shortcut-folders\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
-                    notify_shortcut_folders_trampoline::<F> as *const (),
-                )),
-                Box_::into_raw(f),
-            )
-        }
-    }
-
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
     #[doc(alias = "title")]
     pub fn connect_title_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_title_trampoline<F: Fn(&FileDialog) + 'static>(
@@ -791,9 +746,6 @@ pub struct FileDialogBuilder {
     modal: Option<bool>,
     #[cfg(any(feature = "v4_10", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
-    shortcut_folders: Option<gio::ListModel>,
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
     title: Option<String>,
 }
 
@@ -836,10 +788,6 @@ impl FileDialogBuilder {
         #[cfg(any(feature = "v4_10", feature = "dox"))]
         if let Some(ref modal) = self.modal {
             properties.push(("modal", modal));
-        }
-        #[cfg(any(feature = "v4_10", feature = "dox"))]
-        if let Some(ref shortcut_folders) = self.shortcut_folders {
-            properties.push(("shortcut-folders", shortcut_folders));
         }
         #[cfg(any(feature = "v4_10", feature = "dox"))]
         if let Some(ref title) = self.title {
@@ -894,13 +842,6 @@ impl FileDialogBuilder {
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
     pub fn modal(mut self, modal: bool) -> Self {
         self.modal = Some(modal);
-        self
-    }
-
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
-    pub fn shortcut_folders(mut self, shortcut_folders: &impl IsA<gio::ListModel>) -> Self {
-        self.shortcut_folders = Some(shortcut_folders.clone().upcast());
         self
     }
 

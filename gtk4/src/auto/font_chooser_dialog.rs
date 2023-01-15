@@ -57,6 +57,7 @@ impl Default for FontChooserDialog {
 /// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 #[must_use = "The builder must be built to be used"]
 pub struct FontChooserDialogBuilder {
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     use_header_bar: Option<i32>,
     application: Option<Application>,
     child: Option<Widget>,
@@ -326,6 +327,7 @@ impl FontChooserDialogBuilder {
         glib::Object::new::<FontChooserDialog>(&properties)
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     pub fn use_header_bar(mut self, use_header_bar: i32) -> Self {
         self.use_header_bar = Some(use_header_bar);
         self

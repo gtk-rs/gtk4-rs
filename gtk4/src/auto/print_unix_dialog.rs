@@ -437,6 +437,7 @@ pub struct PrintUnixDialogBuilder {
     page_setup: Option<PageSetup>,
     print_settings: Option<PrintSettings>,
     support_selection: Option<bool>,
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     use_header_bar: Option<i32>,
     application: Option<Application>,
     child: Option<Widget>,
@@ -732,6 +733,7 @@ impl PrintUnixDialogBuilder {
         self
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     pub fn use_header_bar(mut self, use_header_bar: i32) -> Self {
         self.use_header_bar = Some(use_header_bar);
         self
