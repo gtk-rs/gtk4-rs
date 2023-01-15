@@ -12800,9 +12800,6 @@ extern "C" {
     pub fn gtk_file_dialog_get_modal(self_: *mut GtkFileDialog) -> gboolean;
     #[cfg(any(feature = "v4_10", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
-    pub fn gtk_file_dialog_get_shortcut_folders(self_: *mut GtkFileDialog) -> *mut gio::GListModel;
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
     pub fn gtk_file_dialog_get_title(self_: *mut GtkFileDialog) -> *const c_char;
     #[cfg(any(feature = "v4_10", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
@@ -12908,12 +12905,6 @@ extern "C" {
     #[cfg(any(feature = "v4_10", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
     pub fn gtk_file_dialog_set_modal(self_: *mut GtkFileDialog, modal: gboolean);
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
-    pub fn gtk_file_dialog_set_shortcut_folders(
-        self_: *mut GtkFileDialog,
-        shortcut_folders: *mut gio::GListModel,
-    );
     #[cfg(any(feature = "v4_10", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
     pub fn gtk_file_dialog_set_title(self_: *mut GtkFileDialog, title: *const c_char);

@@ -3,7 +3,9 @@
 // DO NOT EDIT
 
 pub fn version() -> &'static str {
-if cfg!(feature = "v4_8") {
+if cfg!(feature = "v4_10") {
+        "4.10"
+    } else if cfg!(feature = "v4_8") {
         "4.8"
     } else if cfg!(feature = "v4_6") {
         "4.6"

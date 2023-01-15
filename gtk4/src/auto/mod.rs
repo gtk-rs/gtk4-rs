@@ -283,7 +283,9 @@ pub use self::custom_filter::CustomFilter;
 mod custom_sorter;
 pub use self::custom_sorter::CustomSorter;
 
+#[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 mod dialog;
+#[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 pub use self::dialog::Dialog;
 
 mod directory_list;
@@ -1249,6 +1251,7 @@ pub mod traits {
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     pub use super::combo_box::ComboBoxExt;
     pub use super::constraint_target::ConstraintTargetExt;
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     pub use super::dialog::DialogExt;
     pub use super::drawing_area::DrawingAreaExt;
     pub use super::editable::EditableExt;
@@ -1389,6 +1392,7 @@ pub mod builders {
     pub use super::combo_box_text::ComboBoxTextBuilder;
     pub use super::constraint::ConstraintBuilder;
     pub use super::constraint_guide::ConstraintGuideBuilder;
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     pub use super::dialog::DialogBuilder;
     pub use super::drag_source::DragSourceBuilder;
     pub use super::drawing_area::DrawingAreaBuilder;
