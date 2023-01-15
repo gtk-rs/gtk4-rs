@@ -62,6 +62,9 @@ Download Gettext 0.21 from [mlocati.github.io](https://mlocati.github.io/article
 
 ### Pkg-config
 
+> **Warning**
+> **To avoid any potential problems, we strongly recommend that you make sure that nothing takes precedence over pkg-config-lite. You can use `where pkg-config` (legacy cmd) in that regards. https://github.com/gtk-rs/gtk4-rs/issues/1257**
+
 Download pkg-config-lite from [sourceforge.net](https://sourceforge.net/projects/pkgconfiglite/).
 Then extract and unpack it in `C:/`, so that the executable is in `C:\pkg-config-lite-0.28-1\bin`.
 
