@@ -5,7 +5,8 @@ use std::marker::PhantomData;
 use crate::ParamSpecExpression;
 
 use glib::{
-    gobject_ffi, prelude::*, shared::Shared, translate::*, IntoGStr, ParamSpec, StaticType, Value,
+    gobject_ffi, prelude::*, shared::Shared, translate::*, IntoGStr, IntoOptionalGStr, ParamSpec,
+    StaticType, Value,
 };
 
 impl std::fmt::Debug for ParamSpecExpression {
@@ -88,8 +89,8 @@ impl ParamSpecExpression {
     #[doc(alias = "gtk_param_spec_expression")]
     pub fn new(
         name: impl IntoGStr,
-        nick: impl IntoGStr,
-        blurb: impl IntoGStr,
+        nick: impl IntoOptionalGStr,
+        blurb: impl IntoOptionalGStr,
         flags: glib::ParamFlags,
     ) -> ParamSpec {
         assert_initialized_main_thread!();
@@ -99,8 +100,8 @@ impl ParamSpecExpression {
                     blurb.run_with_gstr(|blurb| {
                         from_glib_none(ffi::gtk_param_spec_expression(
                             name.as_ptr(),
-                            nick.as_ptr(),
-                            blurb.as_ptr(),
+                            nick.to_glib_none().0,
+                            blurb.to_glib_none().0,
                             flags.into_glib(),
                         ))
                     })
@@ -183,12 +184,7 @@ impl<'a> ParamSpecExpressionBuilder<'a> {
     // rustdoc-stripper-ignore-next
     /// Build the [`ParamSpecExpression`].
     pub fn build(self) -> ParamSpec {
-        ParamSpecExpression::new(
-            self.name,
-            self.nick.unwrap_or(self.name),
-            self.blurb.unwrap_or(self.name),
-            self.flags,
-        )
+        ParamSpecExpression::new(self.name, self.nick, self.blurb, self.flags)
     }
 }
 
@@ -270,8 +266,8 @@ mod tests {
     fn paramspec_expression() {
         let pspec = ParamSpecExpression::new(
             "expression",
-            "Expression",
-            "Some Expression",
+            None::<&str>,
+            None::<&str>,
             glib::ParamFlags::CONSTRUCT_ONLY | glib::ParamFlags::READABLE,
         );
 
