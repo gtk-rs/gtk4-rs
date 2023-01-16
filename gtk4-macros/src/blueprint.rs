@@ -1,6 +1,6 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use anyhow::Result;
+use anyhow::{bail, Result};
 use std::io::{Read, Write};
 use std::process::{Command, Stdio};
 
@@ -19,6 +19,10 @@ pub(crate) fn compile_blueprint(blueprint: &[u8]) -> Result<String> {
 
     let mut buf = String::new();
     compiler.stdout.unwrap().read_to_string(&mut buf)?;
+
+    if !buf.starts_with('<') {
+        bail!(buf);
+    }
 
     Ok(buf)
 }
