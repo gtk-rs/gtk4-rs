@@ -23,7 +23,7 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 
 Both `property` and `set_property` panic if the property does not exist, has the wrong type or has the wrong permissions.
 This is fine in most situations where these cases are hard-coded within the program.
-If this does not apply for your program you might want to use [`try_property`](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/object/trait.ObjectExt.html#tymethod.try_property) and [`try_set_property`](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/object/trait.ObjectExt.html#tymethod.try_set_property) instead.
+(Note: `try_property` and `try_set_properties` have been removed because the only way how this could potentially fail was via a programming error: properties that don’t exist were tried to be passed, or values of the wrong type were set for a property. By returning a Result, the impression was given that this can also fail in a normal way that is supposed to be handled by the caller.)
 
 Properties can not only be accessed via getters & setters, they can also be bound to each other.
 Let's see how that would look like for two `Switch` instances.
