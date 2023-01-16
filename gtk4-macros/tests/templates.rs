@@ -199,3 +199,60 @@ glib::wrapper! {
 fn template_child_without_attribute() {
     let _: MyWidget3 = glib::Object::new(&[]);
 }
+
+#[cfg(target_os = "linux")]
+mod imp4 {
+    use super::*;
+
+    #[derive(Debug, Default, CompositeTemplate)]
+    #[template(string = "
+    template MyWidget4 : Widget {
+        Label label {
+            label: 'foobar';
+        }
+
+        Label my_label2 {
+            label: 'foobaz';
+        }
+    }
+    ")]
+    pub struct MyWidget4 {
+        #[template_child]
+        pub label: TemplateChild<gtk::Label>,
+        #[template_child(id = "my_label2")]
+        pub label2: gtk::TemplateChild<gtk::Label>,
+    }
+
+    #[glib::object_subclass]
+    impl ObjectSubclass for MyWidget4 {
+        const NAME: &'static str = "MyWidget4";
+        type Type = super::MyWidget4;
+        type ParentType = gtk::Widget;
+        fn class_init(klass: &mut Self::Class) {
+            klass.bind_template();
+        }
+        fn instance_init(obj: &glib::subclass::InitializingObject<Self>) {
+            obj.init_template();
+        }
+    }
+
+    impl ObjectImpl for MyWidget4 {
+        fn dispose(&self) {
+            while let Some(child) = self.obj().first_child() {
+                child.unparent();
+            }
+        }
+    }
+    impl WidgetImpl for MyWidget4 {}
+}
+
+#[cfg(target_os = "linux")]
+glib::wrapper! {
+    pub struct MyWidget4(ObjectSubclass<imp4::MyWidget4>) @extends gtk::Widget;
+}
+
+#[gtk::test]
+#[cfg(target_os = "linux")]
+fn blueprint_template() {
+    let _: MyWidget4 = glib::Object::new(&[]);
+}
