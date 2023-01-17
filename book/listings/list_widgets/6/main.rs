@@ -1,4 +1,4 @@
-use gtk::prelude::*;
+use gtk::{prelude::*, ListItem};
 use gtk::{
     Application, ApplicationWindow, Label, ListView, NoSelection, PolicyType,
     ScrolledWindow, SignalListItemFactory, StringList, StringObject, Widget,
@@ -32,7 +32,10 @@ fn build_ui(app: &Application) {
     factory.connect_setup(move |_, list_item| {
         // Create label
         let label = Label::new(None);
-        list_item.set_child(Some(&label));
+        list_item
+            .downcast_ref::<ListItem>()
+            .expect("Needs to be ListItem")
+            .set_child(Some(&label));
 
         // Bind `list_item->item->string` to `label->label`
         list_item
