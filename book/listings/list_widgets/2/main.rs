@@ -51,8 +51,7 @@ fn build_ui(app: &Application) {
             .downcast_ref::<ListItem>()
             .expect("Needs to be ListItem")
             .item()
-            .expect("The item has to exist.")
-            .downcast::<IntegerObject>()
+            .and_downcast::<IntegerObject>()
             .expect("The item has to be an `IntegerObject`.");
 
         // Get `i32` from `IntegerObject`
@@ -63,8 +62,7 @@ fn build_ui(app: &Application) {
             .downcast_ref::<ListItem>()
             .expect("Needs to be ListItem")
             .child()
-            .expect("The child has to exist.")
-            .downcast::<Label>()
+            .and_downcast::<Label>()
             .expect("The child has to be a `Label`.");
 
         // Set "label" to "number"

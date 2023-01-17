@@ -95,8 +95,7 @@ fn build_ui(app: &Application) {
         let model = list_view.model().expect("The model has to exist.");
         let integer_object = model
             .item(position)
-            .expect("The item has to exist.")
-            .downcast::<IntegerObject>()
+            .and_downcast::<IntegerObject>()
             .expect("The item has to be an `IntegerObject`.");
 
         // Increase "number" of `IntegerObject`
