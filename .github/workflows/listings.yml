@@ -1,0 +1,40 @@
+name: listings
+
+on:
+  pull_request:
+    paths:
+      - "book/listings/**"
+  push:
+    branches:
+      - "master"
+    paths:
+      - "book/listings/**"
+  release:
+    types: [published]
+
+jobs:
+  test:
+    runs-on: ubuntu-22.04
+    name: listings build
+    container:
+      image: ghcr.io/gtk-rs/gtk4-rs/gtk4:latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions-rs/toolchain@v1
+        with:
+          profile: minimal
+          toolchain: stable
+          override: true
+          components: rustfmt, clippy
+
+      - run: cargo build
+        name: "Build"
+        working-directory: book/listings
+
+      - run: cargo clippy
+        name: "Clippy"
+        working-directory: book/listings
+
+      - run: cargo fmt --check
+        name: "Format"
+        working-directory: book/listings
