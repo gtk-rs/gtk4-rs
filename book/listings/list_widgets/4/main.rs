@@ -1,10 +1,10 @@
 mod integer_object;
 
-use gtk::prelude::*;
 use gtk::{
     gio, Application, ApplicationWindow, Label, ListView, PolicyType, ScrolledWindow,
     SignalListItemFactory, SingleSelection, Widget,
 };
+use gtk::{prelude::*, ListItem};
 use integer_object::IntegerObject;
 
 const APP_ID: &str = "org.gtk_rs.ListWidgets4";
@@ -36,7 +36,10 @@ fn build_ui(app: &Application) {
     factory.connect_setup(move |_, list_item| {
         // Create label
         let label = Label::new(None);
-        list_item.set_child(Some(&label));
+        list_item
+            .downcast_ref::<ListItem>()
+            .expect("Needs to be ListItem")
+            .set_child(Some(&label));
 
         // Bind `list_item->item->number` to `label->label`
         list_item

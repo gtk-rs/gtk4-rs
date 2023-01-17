@@ -1,10 +1,10 @@
 mod integer_object;
 
-use gtk::prelude::*;
 use gtk::{
     gio, Application, ApplicationWindow, Label, ListView, PolicyType, ScrolledWindow,
     SignalListItemFactory, SingleSelection,
 };
+use gtk::{prelude::*, ListItem};
 use integer_object::IntegerObject;
 
 const APP_ID: &str = "org.gtk_rs.ListWidgets2";
@@ -37,7 +37,10 @@ fn build_ui(app: &Application) {
     let factory = SignalListItemFactory::new();
     factory.connect_setup(move |_, list_item| {
         let label = Label::new(None);
-        list_item.set_child(Some(&label));
+        list_item
+            .downcast_ref::<ListItem>()
+            .expect("Needs to be ListItem")
+            .set_child(Some(&label));
     });
     // ANCHOR_END: factory_setup
 
@@ -45,6 +48,8 @@ fn build_ui(app: &Application) {
     factory.connect_bind(move |_, list_item| {
         // Get `IntegerObject` from `ListItem`
         let integer_object = list_item
+            .downcast_ref::<ListItem>()
+            .expect("Needs to be ListItem")
             .item()
             .expect("The item has to exist.")
             .downcast::<IntegerObject>()
@@ -55,6 +60,8 @@ fn build_ui(app: &Application) {
 
         // Get `Label` from `ListItem`
         let label = list_item
+            .downcast_ref::<ListItem>()
+            .expect("Needs to be ListItem")
             .child()
             .expect("The child has to exist.")
             .downcast::<Label>()

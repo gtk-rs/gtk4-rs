@@ -4,12 +4,12 @@ use std::fs::File;
 
 use gio::Settings;
 use glib::{clone, Object};
-use gtk::prelude::*;
 use gtk::subclass::prelude::*;
 use gtk::{
     gio, glib, Application, CustomFilter, FilterListModel, NoSelection,
     SignalListItemFactory,
 };
+use gtk::{prelude::*, ListItem};
 
 use crate::task_object::{TaskData, TaskObject};
 use crate::task_row::TaskRow;
@@ -163,13 +163,18 @@ impl Window {
         factory.connect_setup(move |_, list_item| {
             // Create `TaskRow`
             let task_row = TaskRow::new();
-            list_item.set_child(Some(&task_row));
+            list_item
+                .downcast_ref::<ListItem>()
+                .expect("Needs to be ListItem")
+                .set_child(Some(&task_row));
         });
 
         // Tell factory how to bind `TaskRow` to a `TaskObject`
         factory.connect_bind(move |_, list_item| {
             // Get `TaskObject` from `ListItem`
             let task_object = list_item
+                .downcast_ref::<ListItem>()
+                .expect("Needs to be ListItem")
                 .item()
                 .expect("The item has to exist.")
                 .downcast::<TaskObject>()
@@ -177,6 +182,8 @@ impl Window {
 
             // Get `TaskRow` from `ListItem`
             let task_row = list_item
+                .downcast_ref::<ListItem>()
+                .expect("Needs to be ListItem")
                 .child()
                 .expect("The child has to exist.")
                 .downcast::<TaskRow>()
@@ -189,6 +196,8 @@ impl Window {
         factory.connect_unbind(move |_, list_item| {
             // Get `TaskRow` from `ListItem`
             let task_row = list_item
+                .downcast_ref::<ListItem>()
+                .expect("Needs to be ListItem")
                 .child()
                 .expect("The child has to exist.")
                 .downcast::<TaskRow>()
