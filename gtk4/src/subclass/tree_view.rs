@@ -183,7 +183,7 @@ impl<T: TreeViewImpl> TreeViewImplExt for T {
             if let Some(f) = (*parent_class).row_activated {
                 f(
                     self.obj().unsafe_cast_ref::<TreeView>().to_glib_none().0,
-                    path.to_glib_none().0 as *mut _,
+                    path.to_glib_none().0,
                     column.to_glib_none().0,
                 );
             }
@@ -199,7 +199,7 @@ impl<T: TreeViewImpl> TreeViewImplExt for T {
                 f(
                     self.obj().unsafe_cast_ref::<TreeView>().to_glib_none().0,
                     iter.to_glib_none().0 as *mut _,
-                    path.to_glib_none().0 as *mut _,
+                    path.to_glib_none().0,
                 )
             }
         }
@@ -214,7 +214,7 @@ impl<T: TreeViewImpl> TreeViewImplExt for T {
                 f(
                     self.obj().unsafe_cast_ref::<TreeView>().to_glib_none().0,
                     iter.to_glib_none().0 as *mut _,
-                    path.to_glib_none().0 as *mut _,
+                    path.to_glib_none().0,
                 )
             }
         }
@@ -284,7 +284,7 @@ impl<T: TreeViewImpl> TreeViewImplExt for T {
                 from_glib(f(
                     self.obj().unsafe_cast_ref::<TreeView>().to_glib_none().0,
                     iter.to_glib_none().0 as *mut _,
-                    path.to_glib_none().0 as *mut _,
+                    path.to_glib_none().0,
                 ))
             } else {
                 // false to allow collapsing, true to reject it
@@ -302,7 +302,7 @@ impl<T: TreeViewImpl> TreeViewImplExt for T {
                 from_glib(f(
                     self.obj().unsafe_cast_ref::<TreeView>().to_glib_none().0,
                     iter.to_glib_none().0 as *mut _,
-                    path.to_glib_none().0 as *mut _,
+                    path.to_glib_none().0,
                 ))
             } else {
                 // false to allow expanding, true to reject it
