@@ -48,8 +48,7 @@ fn build_ui(app: &Application) {
             .downcast_ref::<ListItem>()
             .expect("Needs to be ListItem")
             .item()
-            .expect("The item has to exist.")
-            .downcast::<IntegerObject>()
+            .and_downcast::<IntegerObject>()
             .expect("The item has to be an `IntegerObject`.");
 
         // Get `Label` from `ListItem`
@@ -57,8 +56,7 @@ fn build_ui(app: &Application) {
             .downcast_ref::<ListItem>()
             .expect("Needs to be ListItem")
             .child()
-            .expect("The child has to exist.")
-            .downcast::<Label>()
+            .and_downcast::<Label>()
             .expect("The child has to be a `Label`.");
 
         // Bind "label" to "number"
@@ -78,8 +76,7 @@ fn build_ui(app: &Application) {
         let model = list_view.model().expect("The model has to exist.");
         let integer_object = model
             .item(position)
-            .expect("The item has to exist.")
-            .downcast::<IntegerObject>()
+            .and_downcast::<IntegerObject>()
             .expect("The item has to be an `IntegerObject`.");
 
         // Increase "number" of `IntegerObject`

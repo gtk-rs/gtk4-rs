@@ -189,8 +189,7 @@ impl Window {
                 .downcast_ref::<ListItem>()
                 .expect("Needs to be ListItem")
                 .item()
-                .expect("The item has to exist.")
-                .downcast::<TaskObject>()
+                .and_downcast::<TaskObject>()
                 .expect("The item has to be an `TaskObject`.");
 
             // Get `TaskRow` from `ListItem`
@@ -198,8 +197,7 @@ impl Window {
                 .downcast_ref::<ListItem>()
                 .expect("Needs to be ListItem")
                 .child()
-                .expect("The child has to exist.")
-                .downcast::<TaskRow>()
+                .and_downcast::<TaskRow>()
                 .expect("The child has to be a `TaskRow`.");
 
             task_row.bind(&task_object);
@@ -212,8 +210,7 @@ impl Window {
                 .downcast_ref::<ListItem>()
                 .expect("Needs to be ListItem")
                 .child()
-                .expect("The child has to exist.")
-                .downcast::<TaskRow>()
+                .and_downcast::<TaskRow>()
                 .expect("The child has to be a `TaskRow`.");
 
             task_row.unbind();
