@@ -36,10 +36,10 @@ fn build_ui(app: &Application) {
     factory.connect_setup(move |_, list_item| {
         // Create label
         let label = Label::new(None);
-        list_item
+        let list_item = list_item
             .downcast_ref::<ListItem>()
-            .expect("Needs to be ListItem")
-            .set_child(Some(&label));
+            .expect("Needs to be ListItem");
+        list_item.set_child(Some(&label));
 
         // Bind `list_item->item->number` to `label->label`
         list_item
