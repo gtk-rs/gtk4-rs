@@ -27,7 +27,7 @@ impl ObjectImpl for RotationBin {
                 glib::ParamSpecObject::builder::<gtk::Widget>("child")
                     .explicit_notify()
                     .build(),
-                glib::ParamSpecEnum::builder::<Rotation>("rotation", Rotation::default())
+                glib::ParamSpecEnum::builder::<Rotation>("rotation")
                     .explicit_notify()
                     .build(),
             ]

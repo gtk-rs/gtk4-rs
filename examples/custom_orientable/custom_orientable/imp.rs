@@ -74,7 +74,7 @@ impl ObjectImpl for CustomOrientable {
     fn properties() -> &'static [glib::ParamSpec] {
         use once_cell::sync::Lazy;
         static PROPERTIES: Lazy<Vec<glib::ParamSpec>> = Lazy::new(|| {
-            vec![glib::ParamSpecEnum::builder::<gtk::Orientation>(
+            vec![glib::ParamSpecEnum::builder_with_default(
                 "orientation",
                 gtk::Orientation::Horizontal,
             )
