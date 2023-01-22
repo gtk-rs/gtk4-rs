@@ -17,7 +17,7 @@ impl Default for CustomEditable {
 
 impl CustomEditable {
     pub fn new() -> Self {
-        glib::Object::new(&[])
+        glib::Object::new_default()
     }
 
     pub fn add_tag(&self, tag: &CustomTag) {

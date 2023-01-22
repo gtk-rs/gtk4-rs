@@ -11,7 +11,7 @@ glib::wrapper! {
 impl SqueezerBin {
     #[allow(clippy::new_without_default)]
     pub fn new() -> Self {
-        glib::Object::new(&[])
+        glib::Object::new_default()
     }
 
     pub fn keep_aspect_ratio(&self) -> bool {

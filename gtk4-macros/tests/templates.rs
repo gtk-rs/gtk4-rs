@@ -60,7 +60,7 @@ glib::wrapper! {
 
 #[gtk::test]
 fn template_string() {
-    let widget: MyWidget = glib::Object::new(&[]);
+    let widget: MyWidget = glib::Object::new_default();
     assert_eq!(widget.imp().label.label(), "foobar");
     assert_eq!(widget.imp().label2.label(), "foobaz");
 }
@@ -150,7 +150,7 @@ glib::wrapper! {
 
 #[gtk::test]
 async fn async_callbacks() {
-    let widget: MyWidget2 = glib::Object::new(&[]);
+    let widget: MyWidget2 = glib::Object::new_default();
     assert_eq!(widget.click_button().await, Some(42));
 }
 
@@ -197,7 +197,7 @@ glib::wrapper! {
 
 #[gtk::test]
 fn template_child_without_attribute() {
-    let _: MyWidget3 = glib::Object::new(&[]);
+    let _: MyWidget3 = glib::Object::new_default();
 }
 
 #[cfg(target_os = "linux")]
@@ -254,5 +254,5 @@ glib::wrapper! {
 #[gtk::test]
 #[cfg(target_os = "linux")]
 fn blueprint_template() {
-    let _: MyWidget4 = glib::Object::new(&[]);
+    let _: MyWidget4 = glib::Object::new_default();
 }

@@ -16,6 +16,8 @@ impl Default for Note {
 
 impl Note {
     pub fn new(metadata: &Metadata) -> Self {
-        glib::Object::new(&[("metadata", metadata)])
+        glib::Object::builder()
+            .property("metadata", metadata)
+            .build()
     }
 }

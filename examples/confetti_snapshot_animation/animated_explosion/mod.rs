@@ -11,7 +11,7 @@ glib::wrapper! {
 
 impl AnimatedExplosion {
     pub(super) fn new(parameters: ExplosionParameters) -> Self {
-        let this: Self = glib::Object::new(&[]);
+        let this: Self = glib::Object::new_default();
         let imp = this.imp();
         imp.explosion.replace(Some(Explosion::new(parameters)));
         this

@@ -34,6 +34,6 @@ impl FileChooserDialog {
 
 impl Default for FileChooserDialog {
     fn default() -> Self {
-        glib::Object::new(&[])
+        glib::Object::new_default()
     }
 }
