@@ -14,6 +14,6 @@ impl Default for Metadata {
 
 impl Metadata {
     pub fn new() -> Self {
-        glib::Object::new(&[])
+        glib::Object::new_default()
     }
 }

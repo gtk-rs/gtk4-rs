@@ -19,7 +19,7 @@ impl Default for SimpleWidget {
 
 impl SimpleWidget {
     pub fn new() -> Self {
-        glib::Object::new(&[])
+        glib::Object::new_default()
     }
 
     pub fn add_child<W: IsA<gtk::Widget>>(&self, widget: &W) {

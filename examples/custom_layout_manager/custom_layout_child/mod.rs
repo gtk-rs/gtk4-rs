@@ -9,6 +9,6 @@ glib::wrapper! {
 
 impl CustomLayoutChild {
     pub fn new(color: gdk::RGBA) -> Self {
-        glib::Object::new(&[("color", &color)])
+        glib::Object::builder().property("color", color).build()
     }
 }

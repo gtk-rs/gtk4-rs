@@ -11,7 +11,10 @@ glib::wrapper! {
 
 impl CustomTag {
     pub fn new(label: &str) -> Self {
-        glib::Object::new(&[("label", &label), ("has-close-button", &true)])
+        glib::Object::builder()
+            .property("label", label)
+            .property("has-close-button", true)
+            .build()
     }
 
     pub fn set_has_close_button(&self, has_close_button: bool) {

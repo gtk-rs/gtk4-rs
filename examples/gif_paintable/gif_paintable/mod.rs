@@ -15,7 +15,7 @@ glib::wrapper! {
 
 impl GifPaintable {
     pub fn new() -> Self {
-        glib::Object::new(&[])
+        glib::Object::new_default()
     }
 
     /// Loads the bytes of a GIF into the paintable.

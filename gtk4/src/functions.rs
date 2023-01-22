@@ -228,7 +228,11 @@ pub fn show_about_dialog<P: IsA<Window>>(parent: Option<&P>, properties: &[(&str
         if let Some(d) = parent.and_then(|p| p.qdata::<AboutDialog>(*SHOW_ABOUT_DIALOG_QUARK)) {
             d.as_ref().show();
         } else {
-            let about_dialog = glib::Object::new::<AboutDialog>(properties);
+            let mut builder = glib::Object::builder::<AboutDialog>();
+            for (key, value) in properties {
+                builder = builder.property(key, *value);
+            }
+            let about_dialog = builder.build();
             about_dialog.set_transient_for(parent);
             about_dialog.set_modal(true);
             about_dialog.set_destroy_with_parent(true);

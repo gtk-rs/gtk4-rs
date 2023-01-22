@@ -48,7 +48,7 @@ fn build_ui(application: &gtk::Application) {
         .vexpand(true)
         .halign(gtk::Align::Center)
         .valign(gtk::Align::Center)
-        .css_classes(vec!["large-title".to_string()])
+        .css_classes(["large-title"])
         .build();
 
     container.append(&label);

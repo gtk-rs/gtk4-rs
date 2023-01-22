@@ -91,6 +91,6 @@ impl MessageDialog {
 
 impl Default for MessageDialog {
     fn default() -> Self {
-        glib::Object::new(&[])
+        glib::Object::new_default()
     }
 }

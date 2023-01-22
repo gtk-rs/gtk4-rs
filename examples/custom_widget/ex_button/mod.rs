@@ -16,6 +16,6 @@ impl Default for ExButton {
 
 impl ExButton {
     pub fn new() -> Self {
-        glib::Object::new(&[])
+        glib::Object::new_default()
     }
 }

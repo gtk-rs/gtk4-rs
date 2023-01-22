@@ -64,7 +64,7 @@ impl Default for RotationBin {
 
 impl RotationBin {
     pub fn new() -> Self {
-        glib::Object::new(&[])
+        glib::Object::new_default()
     }
 
     pub fn child(&self) -> Option<impl IsA<gtk::Widget>> {

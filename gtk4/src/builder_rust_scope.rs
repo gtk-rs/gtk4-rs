@@ -47,7 +47,7 @@ impl Default for BuilderRustScope {
 
 impl BuilderRustScope {
     pub fn new() -> Self {
-        glib::Object::new(&[])
+        glib::Object::new_default()
     }
     // rustdoc-stripper-ignore-next
     /// Adds a Rust callback to the scope with the given `name`. The callback can then be accessed

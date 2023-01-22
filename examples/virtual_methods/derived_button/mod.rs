@@ -9,7 +9,7 @@ glib::wrapper! {
 
 impl DerivedButton {
     pub fn new() -> Self {
-        glib::Object::new(&[])
+        glib::Object::new_default()
     }
 }
 
