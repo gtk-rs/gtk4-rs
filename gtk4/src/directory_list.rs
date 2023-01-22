@@ -26,63 +26,53 @@ impl DirectoryList {
     ///
     /// This method returns an instance of [`DirectoryListBuilder`](crate::builders::DirectoryListBuilder) which can be used to create [`DirectoryList`] objects.
     pub fn builder() -> DirectoryListBuilder {
-        DirectoryListBuilder::default()
+        DirectoryListBuilder::new()
     }
 }
 
-#[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
 /// A [builder-pattern] type to construct [`DirectoryList`] objects.
 ///
 /// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 #[must_use = "The builder must be built to be used"]
 pub struct DirectoryListBuilder {
-    attributes: Option<String>,
-    file: Option<gio::File>,
-    io_priority: Option<i32>,
-    monitored: Option<bool>,
+    builder: glib::object::ObjectBuilder<'static, DirectoryList>,
 }
 
 impl DirectoryListBuilder {
-    pub fn new() -> Self {
-        Self::default()
+    fn new() -> Self {
+        Self {
+            builder: glib::object::Object::builder(),
+        }
     }
-
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> DirectoryList {
-        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
-        if let Some(ref attributes) = self.attributes {
-            properties.push(("attributes", attributes));
-        }
-        if let Some(ref file) = self.file {
-            properties.push(("file", file));
-        }
-        if let Some(ref io_priority) = self.io_priority {
-            properties.push(("io-priority", io_priority));
-        }
-        if let Some(ref monitored) = self.monitored {
-            properties.push(("monitored", monitored));
-        }
-        glib::Object::new::<DirectoryList>(&properties)
+        self.builder.build()
     }
 
-    pub fn attributes(mut self, attributes: &str) -> Self {
-        self.attributes = Some(attributes.to_string());
-        self
+    pub fn attributes(self, attributes: &str) -> Self {
+        Self {
+            builder: self.builder.property("attributes", attributes),
+        }
     }
 
-    pub fn file(mut self, file: &impl IsA<gio::File>) -> Self {
-        self.file = Some(file.clone().upcast());
-        self
+    pub fn file(self, file: &impl IsA<gio::File>) -> Self {
+        Self {
+            builder: self.builder.property("file", file),
+        }
     }
 
-    pub fn io_priority(mut self, io_priority: glib::Priority) -> Self {
-        self.io_priority = Some(io_priority.into_glib());
-        self
+    pub fn io_priority(self, io_priority: glib::Priority) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("io-priority", io_priority.into_glib()),
+        }
     }
 
-    pub fn monitored(mut self, monitored: bool) -> Self {
-        self.monitored = Some(monitored);
-        self
+    pub fn monitored(self, monitored: bool) -> Self {
+        Self {
+            builder: self.builder.property("monitored", monitored),
+        }
     }
 }
