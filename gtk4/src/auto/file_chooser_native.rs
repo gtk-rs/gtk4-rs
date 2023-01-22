@@ -48,7 +48,7 @@ impl FileChooserNative {
     ///
     /// This method returns an instance of [`FileChooserNativeBuilder`](crate::builders::FileChooserNativeBuilder) which can be used to create [`FileChooserNative`] objects.
     pub fn builder() -> FileChooserNativeBuilder {
-        FileChooserNativeBuilder::default()
+        FileChooserNativeBuilder::new()
     }
 
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
@@ -148,130 +148,97 @@ impl FileChooserNative {
 
 impl Default for FileChooserNative {
     fn default() -> Self {
-        glib::object::Object::new::<Self>(&[])
+        glib::object::Object::new_default::<Self>()
     }
 }
 
-#[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
 /// A [builder-pattern] type to construct [`FileChooserNative`] objects.
 ///
 /// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 #[must_use = "The builder must be built to be used"]
 pub struct FileChooserNativeBuilder {
-    accept_label: Option<String>,
-    cancel_label: Option<String>,
-    modal: Option<bool>,
-    title: Option<String>,
-    transient_for: Option<Window>,
-    visible: Option<bool>,
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    action: Option<FileChooserAction>,
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    create_folders: Option<bool>,
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    filter: Option<FileFilter>,
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    select_multiple: Option<bool>,
+    builder: glib::object::ObjectBuilder<'static, FileChooserNative>,
 }
 
 impl FileChooserNativeBuilder {
-    // rustdoc-stripper-ignore-next
-    /// Create a new [`FileChooserNativeBuilder`].
-    pub fn new() -> Self {
-        Self::default()
+    fn new() -> Self {
+        Self {
+            builder: glib::object::Object::builder(),
+        }
+    }
+
+    pub fn accept_label(self, accept_label: impl Into<glib::GString>) -> Self {
+        Self {
+            builder: self.builder.property("accept-label", accept_label.into()),
+        }
+    }
+
+    pub fn cancel_label(self, cancel_label: impl Into<glib::GString>) -> Self {
+        Self {
+            builder: self.builder.property("cancel-label", cancel_label.into()),
+        }
+    }
+
+    pub fn modal(self, modal: bool) -> Self {
+        Self {
+            builder: self.builder.property("modal", modal),
+        }
+    }
+
+    pub fn title(self, title: impl Into<glib::GString>) -> Self {
+        Self {
+            builder: self.builder.property("title", title.into()),
+        }
+    }
+
+    pub fn transient_for(self, transient_for: &impl IsA<Window>) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("transient-for", transient_for.clone().upcast()),
+        }
+    }
+
+    pub fn visible(self, visible: bool) -> Self {
+        Self {
+            builder: self.builder.property("visible", visible),
+        }
+    }
+
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
+    pub fn action(self, action: FileChooserAction) -> Self {
+        Self {
+            builder: self.builder.property("action", action),
+        }
+    }
+
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
+    pub fn create_folders(self, create_folders: bool) -> Self {
+        Self {
+            builder: self.builder.property("create-folders", create_folders),
+        }
+    }
+
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
+    pub fn filter(self, filter: &FileFilter) -> Self {
+        Self {
+            builder: self.builder.property("filter", filter.clone()),
+        }
+    }
+
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
+    pub fn select_multiple(self, select_multiple: bool) -> Self {
+        Self {
+            builder: self.builder.property("select-multiple", select_multiple),
+        }
     }
 
     // rustdoc-stripper-ignore-next
     /// Build the [`FileChooserNative`].
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> FileChooserNative {
-        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
-        if let Some(ref accept_label) = self.accept_label {
-            properties.push(("accept-label", accept_label));
-        }
-        if let Some(ref cancel_label) = self.cancel_label {
-            properties.push(("cancel-label", cancel_label));
-        }
-        if let Some(ref modal) = self.modal {
-            properties.push(("modal", modal));
-        }
-        if let Some(ref title) = self.title {
-            properties.push(("title", title));
-        }
-        if let Some(ref transient_for) = self.transient_for {
-            properties.push(("transient-for", transient_for));
-        }
-        if let Some(ref visible) = self.visible {
-            properties.push(("visible", visible));
-        }
-        if let Some(ref action) = self.action {
-            properties.push(("action", action));
-        }
-        if let Some(ref create_folders) = self.create_folders {
-            properties.push(("create-folders", create_folders));
-        }
-        if let Some(ref filter) = self.filter {
-            properties.push(("filter", filter));
-        }
-        if let Some(ref select_multiple) = self.select_multiple {
-            properties.push(("select-multiple", select_multiple));
-        }
-        glib::Object::new::<FileChooserNative>(&properties)
-    }
-
-    pub fn accept_label(mut self, accept_label: &str) -> Self {
-        self.accept_label = Some(accept_label.to_string());
-        self
-    }
-
-    pub fn cancel_label(mut self, cancel_label: &str) -> Self {
-        self.cancel_label = Some(cancel_label.to_string());
-        self
-    }
-
-    pub fn modal(mut self, modal: bool) -> Self {
-        self.modal = Some(modal);
-        self
-    }
-
-    pub fn title(mut self, title: &str) -> Self {
-        self.title = Some(title.to_string());
-        self
-    }
-
-    pub fn transient_for(mut self, transient_for: &impl IsA<Window>) -> Self {
-        self.transient_for = Some(transient_for.clone().upcast());
-        self
-    }
-
-    pub fn visible(mut self, visible: bool) -> Self {
-        self.visible = Some(visible);
-        self
-    }
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    pub fn action(mut self, action: FileChooserAction) -> Self {
-        self.action = Some(action);
-        self
-    }
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    pub fn create_folders(mut self, create_folders: bool) -> Self {
-        self.create_folders = Some(create_folders);
-        self
-    }
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    pub fn filter(mut self, filter: &FileFilter) -> Self {
-        self.filter = Some(filter.clone());
-        self
-    }
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    pub fn select_multiple(mut self, select_multiple: bool) -> Self {
-        self.select_multiple = Some(select_multiple);
-        self
+        self.builder.build()
     }
 }
 

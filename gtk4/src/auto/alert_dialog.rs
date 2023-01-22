@@ -30,7 +30,7 @@ impl AlertDialog {
     ///
     /// This method returns an instance of [`AlertDialogBuilder`](crate::builders::AlertDialogBuilder) which can be used to create [`AlertDialog`] objects.
     pub fn builder() -> AlertDialogBuilder {
-        AlertDialogBuilder::default()
+        AlertDialogBuilder::new()
     }
 
     #[doc(alias = "gtk_alert_dialog_choose")]
@@ -345,116 +345,79 @@ impl AlertDialog {
 #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
 impl Default for AlertDialog {
     fn default() -> Self {
-        glib::object::Object::new::<Self>(&[])
+        glib::object::Object::new_default::<Self>()
     }
 }
 
-#[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
 /// A [builder-pattern] type to construct [`AlertDialog`] objects.
 ///
 /// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 #[must_use = "The builder must be built to be used"]
 pub struct AlertDialogBuilder {
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
-    buttons: Option<Vec<String>>,
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
-    cancel_button: Option<i32>,
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
-    default_button: Option<i32>,
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
-    detail: Option<String>,
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
-    message: Option<String>,
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
-    modal: Option<bool>,
+    builder: glib::object::ObjectBuilder<'static, AlertDialog>,
 }
 
 impl AlertDialogBuilder {
-    // rustdoc-stripper-ignore-next
-    /// Create a new [`AlertDialogBuilder`].
-    pub fn new() -> Self {
-        Self::default()
+    fn new() -> Self {
+        Self {
+            builder: glib::object::Object::builder(),
+        }
+    }
+
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn buttons(self, buttons: impl Into<glib::StrV>) -> Self {
+        Self {
+            builder: self.builder.property("buttons", buttons.into()),
+        }
+    }
+
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn cancel_button(self, cancel_button: i32) -> Self {
+        Self {
+            builder: self.builder.property("cancel-button", cancel_button),
+        }
+    }
+
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn default_button(self, default_button: i32) -> Self {
+        Self {
+            builder: self.builder.property("default-button", default_button),
+        }
+    }
+
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn detail(self, detail: impl Into<glib::GString>) -> Self {
+        Self {
+            builder: self.builder.property("detail", detail.into()),
+        }
+    }
+
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn message(self, message: impl Into<glib::GString>) -> Self {
+        Self {
+            builder: self.builder.property("message", message.into()),
+        }
+    }
+
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn modal(self, modal: bool) -> Self {
+        Self {
+            builder: self.builder.property("modal", modal),
+        }
     }
 
     // rustdoc-stripper-ignore-next
     /// Build the [`AlertDialog`].
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> AlertDialog {
-        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
-        #[cfg(any(feature = "v4_10", feature = "dox"))]
-        if let Some(ref buttons) = self.buttons {
-            properties.push(("buttons", buttons));
-        }
-        #[cfg(any(feature = "v4_10", feature = "dox"))]
-        if let Some(ref cancel_button) = self.cancel_button {
-            properties.push(("cancel-button", cancel_button));
-        }
-        #[cfg(any(feature = "v4_10", feature = "dox"))]
-        if let Some(ref default_button) = self.default_button {
-            properties.push(("default-button", default_button));
-        }
-        #[cfg(any(feature = "v4_10", feature = "dox"))]
-        if let Some(ref detail) = self.detail {
-            properties.push(("detail", detail));
-        }
-        #[cfg(any(feature = "v4_10", feature = "dox"))]
-        if let Some(ref message) = self.message {
-            properties.push(("message", message));
-        }
-        #[cfg(any(feature = "v4_10", feature = "dox"))]
-        if let Some(ref modal) = self.modal {
-            properties.push(("modal", modal));
-        }
-        glib::Object::new::<AlertDialog>(&properties)
-    }
-
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
-    pub fn buttons(mut self, buttons: Vec<String>) -> Self {
-        self.buttons = Some(buttons);
-        self
-    }
-
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
-    pub fn cancel_button(mut self, cancel_button: i32) -> Self {
-        self.cancel_button = Some(cancel_button);
-        self
-    }
-
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
-    pub fn default_button(mut self, default_button: i32) -> Self {
-        self.default_button = Some(default_button);
-        self
-    }
-
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
-    pub fn detail(mut self, detail: &str) -> Self {
-        self.detail = Some(detail.to_string());
-        self
-    }
-
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
-    pub fn message(mut self, message: &str) -> Self {
-        self.message = Some(message.to_string());
-        self
-    }
-
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
-    pub fn modal(mut self, modal: bool) -> Self {
-        self.modal = Some(modal);
-        self
+        self.builder.build()
     }
 }
 

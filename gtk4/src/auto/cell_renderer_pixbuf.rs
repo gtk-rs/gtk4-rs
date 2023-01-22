@@ -34,7 +34,7 @@ impl CellRendererPixbuf {
     ///
     /// This method returns an instance of [`CellRendererPixbufBuilder`](crate::builders::CellRendererPixbufBuilder) which can be used to create [`CellRendererPixbuf`] objects.
     pub fn builder() -> CellRendererPixbufBuilder {
-        CellRendererPixbufBuilder::default()
+        CellRendererPixbufBuilder::new()
     }
 
     pub fn gicon(&self) -> Option<gio::Icon> {
@@ -275,217 +275,163 @@ impl Default for CellRendererPixbuf {
     }
 }
 
-#[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
 /// A [builder-pattern] type to construct [`CellRendererPixbuf`] objects.
 ///
 /// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 #[must_use = "The builder must be built to be used"]
 pub struct CellRendererPixbufBuilder {
-    gicon: Option<gio::Icon>,
-    icon_name: Option<String>,
-    icon_size: Option<IconSize>,
-    pixbuf: Option<gdk_pixbuf::Pixbuf>,
-    pixbuf_expander_closed: Option<gdk_pixbuf::Pixbuf>,
-    pixbuf_expander_open: Option<gdk_pixbuf::Pixbuf>,
-    texture: Option<gdk::Texture>,
-    cell_background: Option<String>,
-    cell_background_rgba: Option<gdk::RGBA>,
-    cell_background_set: Option<bool>,
-    height: Option<i32>,
-    is_expanded: Option<bool>,
-    is_expander: Option<bool>,
-    mode: Option<CellRendererMode>,
-    sensitive: Option<bool>,
-    visible: Option<bool>,
-    width: Option<i32>,
-    xalign: Option<f32>,
-    xpad: Option<u32>,
-    yalign: Option<f32>,
-    ypad: Option<u32>,
+    builder: glib::object::ObjectBuilder<'static, CellRendererPixbuf>,
 }
 
 impl CellRendererPixbufBuilder {
-    // rustdoc-stripper-ignore-next
-    /// Create a new [`CellRendererPixbufBuilder`].
-    pub fn new() -> Self {
-        Self::default()
+    fn new() -> Self {
+        Self {
+            builder: glib::object::Object::builder(),
+        }
+    }
+
+    pub fn gicon(self, gicon: &impl IsA<gio::Icon>) -> Self {
+        Self {
+            builder: self.builder.property("gicon", gicon.clone().upcast()),
+        }
+    }
+
+    pub fn icon_name(self, icon_name: impl Into<glib::GString>) -> Self {
+        Self {
+            builder: self.builder.property("icon-name", icon_name.into()),
+        }
+    }
+
+    pub fn icon_size(self, icon_size: IconSize) -> Self {
+        Self {
+            builder: self.builder.property("icon-size", icon_size),
+        }
+    }
+
+    pub fn pixbuf(self, pixbuf: &gdk_pixbuf::Pixbuf) -> Self {
+        Self {
+            builder: self.builder.property("pixbuf", pixbuf.clone()),
+        }
+    }
+
+    pub fn pixbuf_expander_closed(self, pixbuf_expander_closed: &gdk_pixbuf::Pixbuf) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("pixbuf-expander-closed", pixbuf_expander_closed.clone()),
+        }
+    }
+
+    pub fn pixbuf_expander_open(self, pixbuf_expander_open: &gdk_pixbuf::Pixbuf) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("pixbuf-expander-open", pixbuf_expander_open.clone()),
+        }
+    }
+
+    pub fn texture(self, texture: &impl IsA<gdk::Texture>) -> Self {
+        Self {
+            builder: self.builder.property("texture", texture.clone().upcast()),
+        }
+    }
+
+    pub fn cell_background(self, cell_background: impl Into<glib::GString>) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("cell-background", cell_background.into()),
+        }
+    }
+
+    pub fn cell_background_rgba(self, cell_background_rgba: &gdk::RGBA) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("cell-background-rgba", cell_background_rgba.clone()),
+        }
+    }
+
+    pub fn cell_background_set(self, cell_background_set: bool) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("cell-background-set", cell_background_set),
+        }
+    }
+
+    pub fn height(self, height: i32) -> Self {
+        Self {
+            builder: self.builder.property("height", height),
+        }
+    }
+
+    pub fn is_expanded(self, is_expanded: bool) -> Self {
+        Self {
+            builder: self.builder.property("is-expanded", is_expanded),
+        }
+    }
+
+    pub fn is_expander(self, is_expander: bool) -> Self {
+        Self {
+            builder: self.builder.property("is-expander", is_expander),
+        }
+    }
+
+    pub fn mode(self, mode: CellRendererMode) -> Self {
+        Self {
+            builder: self.builder.property("mode", mode),
+        }
+    }
+
+    pub fn sensitive(self, sensitive: bool) -> Self {
+        Self {
+            builder: self.builder.property("sensitive", sensitive),
+        }
+    }
+
+    pub fn visible(self, visible: bool) -> Self {
+        Self {
+            builder: self.builder.property("visible", visible),
+        }
+    }
+
+    pub fn width(self, width: i32) -> Self {
+        Self {
+            builder: self.builder.property("width", width),
+        }
+    }
+
+    pub fn xalign(self, xalign: f32) -> Self {
+        Self {
+            builder: self.builder.property("xalign", xalign),
+        }
+    }
+
+    pub fn xpad(self, xpad: u32) -> Self {
+        Self {
+            builder: self.builder.property("xpad", xpad),
+        }
+    }
+
+    pub fn yalign(self, yalign: f32) -> Self {
+        Self {
+            builder: self.builder.property("yalign", yalign),
+        }
+    }
+
+    pub fn ypad(self, ypad: u32) -> Self {
+        Self {
+            builder: self.builder.property("ypad", ypad),
+        }
     }
 
     // rustdoc-stripper-ignore-next
     /// Build the [`CellRendererPixbuf`].
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> CellRendererPixbuf {
-        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
-        if let Some(ref gicon) = self.gicon {
-            properties.push(("gicon", gicon));
-        }
-        if let Some(ref icon_name) = self.icon_name {
-            properties.push(("icon-name", icon_name));
-        }
-        if let Some(ref icon_size) = self.icon_size {
-            properties.push(("icon-size", icon_size));
-        }
-        if let Some(ref pixbuf) = self.pixbuf {
-            properties.push(("pixbuf", pixbuf));
-        }
-        if let Some(ref pixbuf_expander_closed) = self.pixbuf_expander_closed {
-            properties.push(("pixbuf-expander-closed", pixbuf_expander_closed));
-        }
-        if let Some(ref pixbuf_expander_open) = self.pixbuf_expander_open {
-            properties.push(("pixbuf-expander-open", pixbuf_expander_open));
-        }
-        if let Some(ref texture) = self.texture {
-            properties.push(("texture", texture));
-        }
-        if let Some(ref cell_background) = self.cell_background {
-            properties.push(("cell-background", cell_background));
-        }
-        if let Some(ref cell_background_rgba) = self.cell_background_rgba {
-            properties.push(("cell-background-rgba", cell_background_rgba));
-        }
-        if let Some(ref cell_background_set) = self.cell_background_set {
-            properties.push(("cell-background-set", cell_background_set));
-        }
-        if let Some(ref height) = self.height {
-            properties.push(("height", height));
-        }
-        if let Some(ref is_expanded) = self.is_expanded {
-            properties.push(("is-expanded", is_expanded));
-        }
-        if let Some(ref is_expander) = self.is_expander {
-            properties.push(("is-expander", is_expander));
-        }
-        if let Some(ref mode) = self.mode {
-            properties.push(("mode", mode));
-        }
-        if let Some(ref sensitive) = self.sensitive {
-            properties.push(("sensitive", sensitive));
-        }
-        if let Some(ref visible) = self.visible {
-            properties.push(("visible", visible));
-        }
-        if let Some(ref width) = self.width {
-            properties.push(("width", width));
-        }
-        if let Some(ref xalign) = self.xalign {
-            properties.push(("xalign", xalign));
-        }
-        if let Some(ref xpad) = self.xpad {
-            properties.push(("xpad", xpad));
-        }
-        if let Some(ref yalign) = self.yalign {
-            properties.push(("yalign", yalign));
-        }
-        if let Some(ref ypad) = self.ypad {
-            properties.push(("ypad", ypad));
-        }
-        glib::Object::new::<CellRendererPixbuf>(&properties)
-    }
-
-    pub fn gicon(mut self, gicon: &impl IsA<gio::Icon>) -> Self {
-        self.gicon = Some(gicon.clone().upcast());
-        self
-    }
-
-    pub fn icon_name(mut self, icon_name: &str) -> Self {
-        self.icon_name = Some(icon_name.to_string());
-        self
-    }
-
-    pub fn icon_size(mut self, icon_size: IconSize) -> Self {
-        self.icon_size = Some(icon_size);
-        self
-    }
-
-    pub fn pixbuf(mut self, pixbuf: &gdk_pixbuf::Pixbuf) -> Self {
-        self.pixbuf = Some(pixbuf.clone());
-        self
-    }
-
-    pub fn pixbuf_expander_closed(mut self, pixbuf_expander_closed: &gdk_pixbuf::Pixbuf) -> Self {
-        self.pixbuf_expander_closed = Some(pixbuf_expander_closed.clone());
-        self
-    }
-
-    pub fn pixbuf_expander_open(mut self, pixbuf_expander_open: &gdk_pixbuf::Pixbuf) -> Self {
-        self.pixbuf_expander_open = Some(pixbuf_expander_open.clone());
-        self
-    }
-
-    pub fn texture(mut self, texture: &impl IsA<gdk::Texture>) -> Self {
-        self.texture = Some(texture.clone().upcast());
-        self
-    }
-
-    pub fn cell_background(mut self, cell_background: &str) -> Self {
-        self.cell_background = Some(cell_background.to_string());
-        self
-    }
-
-    pub fn cell_background_rgba(mut self, cell_background_rgba: &gdk::RGBA) -> Self {
-        self.cell_background_rgba = Some(cell_background_rgba.clone());
-        self
-    }
-
-    pub fn cell_background_set(mut self, cell_background_set: bool) -> Self {
-        self.cell_background_set = Some(cell_background_set);
-        self
-    }
-
-    pub fn height(mut self, height: i32) -> Self {
-        self.height = Some(height);
-        self
-    }
-
-    pub fn is_expanded(mut self, is_expanded: bool) -> Self {
-        self.is_expanded = Some(is_expanded);
-        self
-    }
-
-    pub fn is_expander(mut self, is_expander: bool) -> Self {
-        self.is_expander = Some(is_expander);
-        self
-    }
-
-    pub fn mode(mut self, mode: CellRendererMode) -> Self {
-        self.mode = Some(mode);
-        self
-    }
-
-    pub fn sensitive(mut self, sensitive: bool) -> Self {
-        self.sensitive = Some(sensitive);
-        self
-    }
-
-    pub fn visible(mut self, visible: bool) -> Self {
-        self.visible = Some(visible);
-        self
-    }
-
-    pub fn width(mut self, width: i32) -> Self {
-        self.width = Some(width);
-        self
-    }
-
-    pub fn xalign(mut self, xalign: f32) -> Self {
-        self.xalign = Some(xalign);
-        self
-    }
-
-    pub fn xpad(mut self, xpad: u32) -> Self {
-        self.xpad = Some(xpad);
-        self
-    }
-
-    pub fn yalign(mut self, yalign: f32) -> Self {
-        self.yalign = Some(yalign);
-        self
-    }
-
-    pub fn ypad(mut self, ypad: u32) -> Self {
-        self.ypad = Some(ypad);
-        self
+        self.builder.build()
     }
 }
 

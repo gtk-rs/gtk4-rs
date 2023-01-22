@@ -31,7 +31,7 @@ impl GridLayout {
     ///
     /// This method returns an instance of [`GridLayoutBuilder`](crate::builders::GridLayoutBuilder) which can be used to create [`GridLayout`] objects.
     pub fn builder() -> GridLayoutBuilder {
-        GridLayoutBuilder::default()
+        GridLayoutBuilder::new()
     }
 
     #[doc(alias = "gtk_grid_layout_get_baseline_row")]
@@ -260,73 +260,59 @@ impl Default for GridLayout {
     }
 }
 
-#[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
 /// A [builder-pattern] type to construct [`GridLayout`] objects.
 ///
 /// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 #[must_use = "The builder must be built to be used"]
 pub struct GridLayoutBuilder {
-    baseline_row: Option<i32>,
-    column_homogeneous: Option<bool>,
-    column_spacing: Option<i32>,
-    row_homogeneous: Option<bool>,
-    row_spacing: Option<i32>,
+    builder: glib::object::ObjectBuilder<'static, GridLayout>,
 }
 
 impl GridLayoutBuilder {
-    // rustdoc-stripper-ignore-next
-    /// Create a new [`GridLayoutBuilder`].
-    pub fn new() -> Self {
-        Self::default()
+    fn new() -> Self {
+        Self {
+            builder: glib::object::Object::builder(),
+        }
+    }
+
+    pub fn baseline_row(self, baseline_row: i32) -> Self {
+        Self {
+            builder: self.builder.property("baseline-row", baseline_row),
+        }
+    }
+
+    pub fn column_homogeneous(self, column_homogeneous: bool) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("column-homogeneous", column_homogeneous),
+        }
+    }
+
+    pub fn column_spacing(self, column_spacing: i32) -> Self {
+        Self {
+            builder: self.builder.property("column-spacing", column_spacing),
+        }
+    }
+
+    pub fn row_homogeneous(self, row_homogeneous: bool) -> Self {
+        Self {
+            builder: self.builder.property("row-homogeneous", row_homogeneous),
+        }
+    }
+
+    pub fn row_spacing(self, row_spacing: i32) -> Self {
+        Self {
+            builder: self.builder.property("row-spacing", row_spacing),
+        }
     }
 
     // rustdoc-stripper-ignore-next
     /// Build the [`GridLayout`].
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> GridLayout {
-        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
-        if let Some(ref baseline_row) = self.baseline_row {
-            properties.push(("baseline-row", baseline_row));
-        }
-        if let Some(ref column_homogeneous) = self.column_homogeneous {
-            properties.push(("column-homogeneous", column_homogeneous));
-        }
-        if let Some(ref column_spacing) = self.column_spacing {
-            properties.push(("column-spacing", column_spacing));
-        }
-        if let Some(ref row_homogeneous) = self.row_homogeneous {
-            properties.push(("row-homogeneous", row_homogeneous));
-        }
-        if let Some(ref row_spacing) = self.row_spacing {
-            properties.push(("row-spacing", row_spacing));
-        }
-        glib::Object::new::<GridLayout>(&properties)
-    }
-
-    pub fn baseline_row(mut self, baseline_row: i32) -> Self {
-        self.baseline_row = Some(baseline_row);
-        self
-    }
-
-    pub fn column_homogeneous(mut self, column_homogeneous: bool) -> Self {
-        self.column_homogeneous = Some(column_homogeneous);
-        self
-    }
-
-    pub fn column_spacing(mut self, column_spacing: i32) -> Self {
-        self.column_spacing = Some(column_spacing);
-        self
-    }
-
-    pub fn row_homogeneous(mut self, row_homogeneous: bool) -> Self {
-        self.row_homogeneous = Some(row_homogeneous);
-        self
-    }
-
-    pub fn row_spacing(mut self, row_spacing: i32) -> Self {
-        self.row_spacing = Some(row_spacing);
-        self
+        self.builder.build()
     }
 }
 

@@ -36,7 +36,7 @@ impl SliceListModel {
     ///
     /// This method returns an instance of [`SliceListModelBuilder`](crate::builders::SliceListModelBuilder) which can be used to create [`SliceListModel`] objects.
     pub fn builder() -> SliceListModelBuilder {
-        SliceListModelBuilder::default()
+        SliceListModelBuilder::new()
     }
 
     #[doc(alias = "gtk_slice_list_model_get_model")]
@@ -153,59 +153,49 @@ impl SliceListModel {
 
 impl Default for SliceListModel {
     fn default() -> Self {
-        glib::object::Object::new::<Self>(&[])
+        glib::object::Object::new_default::<Self>()
     }
 }
 
-#[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
 /// A [builder-pattern] type to construct [`SliceListModel`] objects.
 ///
 /// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 #[must_use = "The builder must be built to be used"]
 pub struct SliceListModelBuilder {
-    model: Option<gio::ListModel>,
-    offset: Option<u32>,
-    size: Option<u32>,
+    builder: glib::object::ObjectBuilder<'static, SliceListModel>,
 }
 
 impl SliceListModelBuilder {
-    // rustdoc-stripper-ignore-next
-    /// Create a new [`SliceListModelBuilder`].
-    pub fn new() -> Self {
-        Self::default()
+    fn new() -> Self {
+        Self {
+            builder: glib::object::Object::builder(),
+        }
+    }
+
+    pub fn model(self, model: &impl IsA<gio::ListModel>) -> Self {
+        Self {
+            builder: self.builder.property("model", model.clone().upcast()),
+        }
+    }
+
+    pub fn offset(self, offset: u32) -> Self {
+        Self {
+            builder: self.builder.property("offset", offset),
+        }
+    }
+
+    pub fn size(self, size: u32) -> Self {
+        Self {
+            builder: self.builder.property("size", size),
+        }
     }
 
     // rustdoc-stripper-ignore-next
     /// Build the [`SliceListModel`].
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> SliceListModel {
-        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
-        if let Some(ref model) = self.model {
-            properties.push(("model", model));
-        }
-        if let Some(ref offset) = self.offset {
-            properties.push(("offset", offset));
-        }
-        if let Some(ref size) = self.size {
-            properties.push(("size", size));
-        }
-        glib::Object::new::<SliceListModel>(&properties)
-    }
-
-    pub fn model(mut self, model: &impl IsA<gio::ListModel>) -> Self {
-        self.model = Some(model.clone().upcast());
-        self
-    }
-
-    pub fn offset(mut self, offset: u32) -> Self {
-        self.offset = Some(offset);
-        self
-    }
-
-    pub fn size(mut self, size: u32) -> Self {
-        self.size = Some(size);
-        self
+        self.builder.build()
     }
 }
 

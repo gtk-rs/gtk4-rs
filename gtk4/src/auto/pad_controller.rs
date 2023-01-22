@@ -32,7 +32,7 @@ impl PadController {
     ///
     /// This method returns an instance of [`PadControllerBuilder`](crate::builders::PadControllerBuilder) which can be used to create [`PadController`] objects.
     pub fn builder() -> PadControllerBuilder {
-        PadControllerBuilder::default()
+        PadControllerBuilder::new()
     }
 
     #[doc(alias = "gtk_pad_controller_set_action")]
@@ -80,77 +80,67 @@ impl PadController {
 
 impl Default for PadController {
     fn default() -> Self {
-        glib::object::Object::new::<Self>(&[])
+        glib::object::Object::new_default::<Self>()
     }
 }
 
-#[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
 /// A [builder-pattern] type to construct [`PadController`] objects.
 ///
 /// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 #[must_use = "The builder must be built to be used"]
 pub struct PadControllerBuilder {
-    action_group: Option<gio::ActionGroup>,
-    pad: Option<gdk::Device>,
-    name: Option<String>,
-    propagation_limit: Option<PropagationLimit>,
-    propagation_phase: Option<PropagationPhase>,
+    builder: glib::object::ObjectBuilder<'static, PadController>,
 }
 
 impl PadControllerBuilder {
-    // rustdoc-stripper-ignore-next
-    /// Create a new [`PadControllerBuilder`].
-    pub fn new() -> Self {
-        Self::default()
+    fn new() -> Self {
+        Self {
+            builder: glib::object::Object::builder(),
+        }
+    }
+
+    pub fn action_group(self, action_group: &impl IsA<gio::ActionGroup>) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("action-group", action_group.clone().upcast()),
+        }
+    }
+
+    pub fn pad(self, pad: &gdk::Device) -> Self {
+        Self {
+            builder: self.builder.property("pad", pad.clone()),
+        }
+    }
+
+    pub fn name(self, name: impl Into<glib::GString>) -> Self {
+        Self {
+            builder: self.builder.property("name", name.into()),
+        }
+    }
+
+    pub fn propagation_limit(self, propagation_limit: PropagationLimit) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("propagation-limit", propagation_limit),
+        }
+    }
+
+    pub fn propagation_phase(self, propagation_phase: PropagationPhase) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("propagation-phase", propagation_phase),
+        }
     }
 
     // rustdoc-stripper-ignore-next
     /// Build the [`PadController`].
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> PadController {
-        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
-        if let Some(ref action_group) = self.action_group {
-            properties.push(("action-group", action_group));
-        }
-        if let Some(ref pad) = self.pad {
-            properties.push(("pad", pad));
-        }
-        if let Some(ref name) = self.name {
-            properties.push(("name", name));
-        }
-        if let Some(ref propagation_limit) = self.propagation_limit {
-            properties.push(("propagation-limit", propagation_limit));
-        }
-        if let Some(ref propagation_phase) = self.propagation_phase {
-            properties.push(("propagation-phase", propagation_phase));
-        }
-        glib::Object::new::<PadController>(&properties)
-    }
-
-    pub fn action_group(mut self, action_group: &impl IsA<gio::ActionGroup>) -> Self {
-        self.action_group = Some(action_group.clone().upcast());
-        self
-    }
-
-    pub fn pad(mut self, pad: &gdk::Device) -> Self {
-        self.pad = Some(pad.clone());
-        self
-    }
-
-    pub fn name(mut self, name: &str) -> Self {
-        self.name = Some(name.to_string());
-        self
-    }
-
-    pub fn propagation_limit(mut self, propagation_limit: PropagationLimit) -> Self {
-        self.propagation_limit = Some(propagation_limit);
-        self
-    }
-
-    pub fn propagation_phase(mut self, propagation_phase: PropagationPhase) -> Self {
-        self.propagation_phase = Some(propagation_phase);
-        self
+        self.builder.build()
     }
 }
 

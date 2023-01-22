@@ -37,7 +37,7 @@ impl BoolFilter {
     ///
     /// This method returns an instance of [`BoolFilterBuilder`](crate::builders::BoolFilterBuilder) which can be used to create [`BoolFilter`] objects.
     pub fn builder() -> BoolFilterBuilder {
-        BoolFilterBuilder::default()
+        BoolFilterBuilder::new()
     }
 
     #[doc(alias = "gtk_bool_filter_get_expression")]
@@ -118,50 +118,45 @@ impl BoolFilter {
 
 impl Default for BoolFilter {
     fn default() -> Self {
-        glib::object::Object::new::<Self>(&[])
+        glib::object::Object::new_default::<Self>()
     }
 }
 
-#[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
 /// A [builder-pattern] type to construct [`BoolFilter`] objects.
 ///
 /// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 #[must_use = "The builder must be built to be used"]
 pub struct BoolFilterBuilder {
-    expression: Option<Expression>,
-    invert: Option<bool>,
+    builder: glib::object::ObjectBuilder<'static, BoolFilter>,
 }
 
 impl BoolFilterBuilder {
-    // rustdoc-stripper-ignore-next
-    /// Create a new [`BoolFilterBuilder`].
-    pub fn new() -> Self {
-        Self::default()
+    fn new() -> Self {
+        Self {
+            builder: glib::object::Object::builder(),
+        }
+    }
+
+    pub fn expression(self, expression: impl AsRef<Expression>) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("expression", expression.as_ref().clone()),
+        }
+    }
+
+    pub fn invert(self, invert: bool) -> Self {
+        Self {
+            builder: self.builder.property("invert", invert),
+        }
     }
 
     // rustdoc-stripper-ignore-next
     /// Build the [`BoolFilter`].
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> BoolFilter {
-        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
-        if let Some(ref expression) = self.expression {
-            properties.push(("expression", expression));
-        }
-        if let Some(ref invert) = self.invert {
-            properties.push(("invert", invert));
-        }
-        glib::Object::new::<BoolFilter>(&properties)
-    }
-
-    pub fn expression(mut self, expression: impl AsRef<Expression>) -> Self {
-        self.expression = Some(expression.as_ref().clone());
-        self
-    }
-
-    pub fn invert(mut self, invert: bool) -> Self {
-        self.invert = Some(invert);
-        self
+        self.builder.build()
     }
 }
 

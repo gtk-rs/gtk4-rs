@@ -37,7 +37,7 @@ impl NumericSorter {
     ///
     /// This method returns an instance of [`NumericSorterBuilder`](crate::builders::NumericSorterBuilder) which can be used to create [`NumericSorter`] objects.
     pub fn builder() -> NumericSorterBuilder {
-        NumericSorterBuilder::default()
+        NumericSorterBuilder::new()
     }
 
     #[doc(alias = "gtk_numeric_sorter_get_expression")]
@@ -126,50 +126,45 @@ impl NumericSorter {
 
 impl Default for NumericSorter {
     fn default() -> Self {
-        glib::object::Object::new::<Self>(&[])
+        glib::object::Object::new_default::<Self>()
     }
 }
 
-#[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
 /// A [builder-pattern] type to construct [`NumericSorter`] objects.
 ///
 /// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 #[must_use = "The builder must be built to be used"]
 pub struct NumericSorterBuilder {
-    expression: Option<Expression>,
-    sort_order: Option<SortType>,
+    builder: glib::object::ObjectBuilder<'static, NumericSorter>,
 }
 
 impl NumericSorterBuilder {
-    // rustdoc-stripper-ignore-next
-    /// Create a new [`NumericSorterBuilder`].
-    pub fn new() -> Self {
-        Self::default()
+    fn new() -> Self {
+        Self {
+            builder: glib::object::Object::builder(),
+        }
+    }
+
+    pub fn expression(self, expression: impl AsRef<Expression>) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("expression", expression.as_ref().clone()),
+        }
+    }
+
+    pub fn sort_order(self, sort_order: SortType) -> Self {
+        Self {
+            builder: self.builder.property("sort-order", sort_order),
+        }
     }
 
     // rustdoc-stripper-ignore-next
     /// Build the [`NumericSorter`].
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> NumericSorter {
-        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
-        if let Some(ref expression) = self.expression {
-            properties.push(("expression", expression));
-        }
-        if let Some(ref sort_order) = self.sort_order {
-            properties.push(("sort-order", sort_order));
-        }
-        glib::Object::new::<NumericSorter>(&properties)
-    }
-
-    pub fn expression(mut self, expression: impl AsRef<Expression>) -> Self {
-        self.expression = Some(expression.as_ref().clone());
-        self
-    }
-
-    pub fn sort_order(mut self, sort_order: SortType) -> Self {
-        self.sort_order = Some(sort_order);
-        self
+        self.builder.build()
     }
 }
 

@@ -31,7 +31,7 @@ impl GestureZoom {
     ///
     /// This method returns an instance of [`GestureZoomBuilder`](crate::builders::GestureZoomBuilder) which can be used to create [`GestureZoom`] objects.
     pub fn builder() -> GestureZoomBuilder {
-        GestureZoomBuilder::default()
+        GestureZoomBuilder::new()
     }
 
     #[doc(alias = "gtk_gesture_zoom_get_scale_delta")]
@@ -70,64 +70,55 @@ impl Default for GestureZoom {
     }
 }
 
-#[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
 /// A [builder-pattern] type to construct [`GestureZoom`] objects.
 ///
 /// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 #[must_use = "The builder must be built to be used"]
 pub struct GestureZoomBuilder {
-    n_points: Option<u32>,
-    name: Option<String>,
-    propagation_limit: Option<PropagationLimit>,
-    propagation_phase: Option<PropagationPhase>,
+    builder: glib::object::ObjectBuilder<'static, GestureZoom>,
 }
 
 impl GestureZoomBuilder {
-    // rustdoc-stripper-ignore-next
-    /// Create a new [`GestureZoomBuilder`].
-    pub fn new() -> Self {
-        Self::default()
+    fn new() -> Self {
+        Self {
+            builder: glib::object::Object::builder(),
+        }
+    }
+
+    pub fn n_points(self, n_points: u32) -> Self {
+        Self {
+            builder: self.builder.property("n-points", n_points),
+        }
+    }
+
+    pub fn name(self, name: impl Into<glib::GString>) -> Self {
+        Self {
+            builder: self.builder.property("name", name.into()),
+        }
+    }
+
+    pub fn propagation_limit(self, propagation_limit: PropagationLimit) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("propagation-limit", propagation_limit),
+        }
+    }
+
+    pub fn propagation_phase(self, propagation_phase: PropagationPhase) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("propagation-phase", propagation_phase),
+        }
     }
 
     // rustdoc-stripper-ignore-next
     /// Build the [`GestureZoom`].
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> GestureZoom {
-        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
-        if let Some(ref n_points) = self.n_points {
-            properties.push(("n-points", n_points));
-        }
-        if let Some(ref name) = self.name {
-            properties.push(("name", name));
-        }
-        if let Some(ref propagation_limit) = self.propagation_limit {
-            properties.push(("propagation-limit", propagation_limit));
-        }
-        if let Some(ref propagation_phase) = self.propagation_phase {
-            properties.push(("propagation-phase", propagation_phase));
-        }
-        glib::Object::new::<GestureZoom>(&properties)
-    }
-
-    pub fn n_points(mut self, n_points: u32) -> Self {
-        self.n_points = Some(n_points);
-        self
-    }
-
-    pub fn name(mut self, name: &str) -> Self {
-        self.name = Some(name.to_string());
-        self
-    }
-
-    pub fn propagation_limit(mut self, propagation_limit: PropagationLimit) -> Self {
-        self.propagation_limit = Some(propagation_limit);
-        self
-    }
-
-    pub fn propagation_phase(mut self, propagation_phase: PropagationPhase) -> Self {
-        self.propagation_phase = Some(propagation_phase);
-        self
+        self.builder.build()
     }
 }
 

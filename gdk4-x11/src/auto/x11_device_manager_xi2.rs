@@ -20,7 +20,7 @@ impl X11DeviceManagerXI2 {
     ///
     /// This method returns an instance of [`X11DeviceManagerXI2Builder`](crate::builders::X11DeviceManagerXI2Builder) which can be used to create [`X11DeviceManagerXI2`] objects.
     pub fn builder() -> X11DeviceManagerXI2Builder {
-        X11DeviceManagerXI2Builder::default()
+        X11DeviceManagerXI2Builder::new()
     }
 
     pub fn display(&self) -> Option<gdk::Display> {
@@ -40,64 +40,51 @@ impl X11DeviceManagerXI2 {
     }
 }
 
-#[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
 /// A [builder-pattern] type to construct [`X11DeviceManagerXI2`] objects.
 ///
 /// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 #[must_use = "The builder must be built to be used"]
 pub struct X11DeviceManagerXI2Builder {
-    display: Option<gdk::Display>,
-    major: Option<i32>,
-    minor: Option<i32>,
-    opcode: Option<i32>,
+    builder: glib::object::ObjectBuilder<'static, X11DeviceManagerXI2>,
 }
 
 impl X11DeviceManagerXI2Builder {
-    // rustdoc-stripper-ignore-next
-    /// Create a new [`X11DeviceManagerXI2Builder`].
-    pub fn new() -> Self {
-        Self::default()
+    fn new() -> Self {
+        Self {
+            builder: glib::object::Object::builder(),
+        }
+    }
+
+    pub fn display(self, display: &impl IsA<gdk::Display>) -> Self {
+        Self {
+            builder: self.builder.property("display", display.clone().upcast()),
+        }
+    }
+
+    pub fn major(self, major: i32) -> Self {
+        Self {
+            builder: self.builder.property("major", major),
+        }
+    }
+
+    pub fn minor(self, minor: i32) -> Self {
+        Self {
+            builder: self.builder.property("minor", minor),
+        }
+    }
+
+    pub fn opcode(self, opcode: i32) -> Self {
+        Self {
+            builder: self.builder.property("opcode", opcode),
+        }
     }
 
     // rustdoc-stripper-ignore-next
     /// Build the [`X11DeviceManagerXI2`].
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> X11DeviceManagerXI2 {
-        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
-        if let Some(ref display) = self.display {
-            properties.push(("display", display));
-        }
-        if let Some(ref major) = self.major {
-            properties.push(("major", major));
-        }
-        if let Some(ref minor) = self.minor {
-            properties.push(("minor", minor));
-        }
-        if let Some(ref opcode) = self.opcode {
-            properties.push(("opcode", opcode));
-        }
-        glib::Object::new::<X11DeviceManagerXI2>(&properties)
-    }
-
-    pub fn display(mut self, display: &impl IsA<gdk::Display>) -> Self {
-        self.display = Some(display.clone().upcast());
-        self
-    }
-
-    pub fn major(mut self, major: i32) -> Self {
-        self.major = Some(major);
-        self
-    }
-
-    pub fn minor(mut self, minor: i32) -> Self {
-        self.minor = Some(minor);
-        self
-    }
-
-    pub fn opcode(mut self, opcode: i32) -> Self {
-        self.opcode = Some(opcode);
-        self
+        self.builder.build()
     }
 }
 

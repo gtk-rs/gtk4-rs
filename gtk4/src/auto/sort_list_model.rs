@@ -39,7 +39,7 @@ impl SortListModel {
     ///
     /// This method returns an instance of [`SortListModelBuilder`](crate::builders::SortListModelBuilder) which can be used to create [`SortListModel`] objects.
     pub fn builder() -> SortListModelBuilder {
-        SortListModelBuilder::default()
+        SortListModelBuilder::new()
     }
 
     #[doc(alias = "gtk_sort_list_model_get_incremental")]
@@ -195,59 +195,49 @@ impl SortListModel {
 
 impl Default for SortListModel {
     fn default() -> Self {
-        glib::object::Object::new::<Self>(&[])
+        glib::object::Object::new_default::<Self>()
     }
 }
 
-#[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
 /// A [builder-pattern] type to construct [`SortListModel`] objects.
 ///
 /// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 #[must_use = "The builder must be built to be used"]
 pub struct SortListModelBuilder {
-    incremental: Option<bool>,
-    model: Option<gio::ListModel>,
-    sorter: Option<Sorter>,
+    builder: glib::object::ObjectBuilder<'static, SortListModel>,
 }
 
 impl SortListModelBuilder {
-    // rustdoc-stripper-ignore-next
-    /// Create a new [`SortListModelBuilder`].
-    pub fn new() -> Self {
-        Self::default()
+    fn new() -> Self {
+        Self {
+            builder: glib::object::Object::builder(),
+        }
+    }
+
+    pub fn incremental(self, incremental: bool) -> Self {
+        Self {
+            builder: self.builder.property("incremental", incremental),
+        }
+    }
+
+    pub fn model(self, model: &impl IsA<gio::ListModel>) -> Self {
+        Self {
+            builder: self.builder.property("model", model.clone().upcast()),
+        }
+    }
+
+    pub fn sorter(self, sorter: &impl IsA<Sorter>) -> Self {
+        Self {
+            builder: self.builder.property("sorter", sorter.clone().upcast()),
+        }
     }
 
     // rustdoc-stripper-ignore-next
     /// Build the [`SortListModel`].
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> SortListModel {
-        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
-        if let Some(ref incremental) = self.incremental {
-            properties.push(("incremental", incremental));
-        }
-        if let Some(ref model) = self.model {
-            properties.push(("model", model));
-        }
-        if let Some(ref sorter) = self.sorter {
-            properties.push(("sorter", sorter));
-        }
-        glib::Object::new::<SortListModel>(&properties)
-    }
-
-    pub fn incremental(mut self, incremental: bool) -> Self {
-        self.incremental = Some(incremental);
-        self
-    }
-
-    pub fn model(mut self, model: &impl IsA<gio::ListModel>) -> Self {
-        self.model = Some(model.clone().upcast());
-        self
-    }
-
-    pub fn sorter(mut self, sorter: &impl IsA<Sorter>) -> Self {
-        self.sorter = Some(sorter.clone().upcast());
-        self
+        self.builder.build()
     }
 }
 

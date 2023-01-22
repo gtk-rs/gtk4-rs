@@ -39,7 +39,7 @@ impl ColumnViewColumn {
     ///
     /// This method returns an instance of [`ColumnViewColumnBuilder`](crate::builders::ColumnViewColumnBuilder) which can be used to create [`ColumnViewColumn`] objects.
     pub fn builder() -> ColumnViewColumnBuilder {
-        ColumnViewColumnBuilder::default()
+        ColumnViewColumnBuilder::new()
     }
 
     #[doc(alias = "gtk_column_view_column_get_column_view")]
@@ -441,118 +441,89 @@ impl ColumnViewColumn {
 
 impl Default for ColumnViewColumn {
     fn default() -> Self {
-        glib::object::Object::new::<Self>(&[])
+        glib::object::Object::new_default::<Self>()
     }
 }
 
-#[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
 /// A [builder-pattern] type to construct [`ColumnViewColumn`] objects.
 ///
 /// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 #[must_use = "The builder must be built to be used"]
 pub struct ColumnViewColumnBuilder {
-    expand: Option<bool>,
-    factory: Option<ListItemFactory>,
-    fixed_width: Option<i32>,
-    header_menu: Option<gio::MenuModel>,
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
-    id: Option<String>,
-    resizable: Option<bool>,
-    sorter: Option<Sorter>,
-    title: Option<String>,
-    visible: Option<bool>,
+    builder: glib::object::ObjectBuilder<'static, ColumnViewColumn>,
 }
 
 impl ColumnViewColumnBuilder {
-    // rustdoc-stripper-ignore-next
-    /// Create a new [`ColumnViewColumnBuilder`].
-    pub fn new() -> Self {
-        Self::default()
+    fn new() -> Self {
+        Self {
+            builder: glib::object::Object::builder(),
+        }
+    }
+
+    pub fn expand(self, expand: bool) -> Self {
+        Self {
+            builder: self.builder.property("expand", expand),
+        }
+    }
+
+    pub fn factory(self, factory: &impl IsA<ListItemFactory>) -> Self {
+        Self {
+            builder: self.builder.property("factory", factory.clone().upcast()),
+        }
+    }
+
+    pub fn fixed_width(self, fixed_width: i32) -> Self {
+        Self {
+            builder: self.builder.property("fixed-width", fixed_width),
+        }
+    }
+
+    pub fn header_menu(self, header_menu: &impl IsA<gio::MenuModel>) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("header-menu", header_menu.clone().upcast()),
+        }
+    }
+
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn id(self, id: impl Into<glib::GString>) -> Self {
+        Self {
+            builder: self.builder.property("id", id.into()),
+        }
+    }
+
+    pub fn resizable(self, resizable: bool) -> Self {
+        Self {
+            builder: self.builder.property("resizable", resizable),
+        }
+    }
+
+    pub fn sorter(self, sorter: &impl IsA<Sorter>) -> Self {
+        Self {
+            builder: self.builder.property("sorter", sorter.clone().upcast()),
+        }
+    }
+
+    pub fn title(self, title: impl Into<glib::GString>) -> Self {
+        Self {
+            builder: self.builder.property("title", title.into()),
+        }
+    }
+
+    pub fn visible(self, visible: bool) -> Self {
+        Self {
+            builder: self.builder.property("visible", visible),
+        }
     }
 
     // rustdoc-stripper-ignore-next
     /// Build the [`ColumnViewColumn`].
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> ColumnViewColumn {
-        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
-        if let Some(ref expand) = self.expand {
-            properties.push(("expand", expand));
-        }
-        if let Some(ref factory) = self.factory {
-            properties.push(("factory", factory));
-        }
-        if let Some(ref fixed_width) = self.fixed_width {
-            properties.push(("fixed-width", fixed_width));
-        }
-        if let Some(ref header_menu) = self.header_menu {
-            properties.push(("header-menu", header_menu));
-        }
-        #[cfg(any(feature = "v4_10", feature = "dox"))]
-        if let Some(ref id) = self.id {
-            properties.push(("id", id));
-        }
-        if let Some(ref resizable) = self.resizable {
-            properties.push(("resizable", resizable));
-        }
-        if let Some(ref sorter) = self.sorter {
-            properties.push(("sorter", sorter));
-        }
-        if let Some(ref title) = self.title {
-            properties.push(("title", title));
-        }
-        if let Some(ref visible) = self.visible {
-            properties.push(("visible", visible));
-        }
-        glib::Object::new::<ColumnViewColumn>(&properties)
-    }
-
-    pub fn expand(mut self, expand: bool) -> Self {
-        self.expand = Some(expand);
-        self
-    }
-
-    pub fn factory(mut self, factory: &impl IsA<ListItemFactory>) -> Self {
-        self.factory = Some(factory.clone().upcast());
-        self
-    }
-
-    pub fn fixed_width(mut self, fixed_width: i32) -> Self {
-        self.fixed_width = Some(fixed_width);
-        self
-    }
-
-    pub fn header_menu(mut self, header_menu: &impl IsA<gio::MenuModel>) -> Self {
-        self.header_menu = Some(header_menu.clone().upcast());
-        self
-    }
-
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
-    pub fn id(mut self, id: &str) -> Self {
-        self.id = Some(id.to_string());
-        self
-    }
-
-    pub fn resizable(mut self, resizable: bool) -> Self {
-        self.resizable = Some(resizable);
-        self
-    }
-
-    pub fn sorter(mut self, sorter: &impl IsA<Sorter>) -> Self {
-        self.sorter = Some(sorter.clone().upcast());
-        self
-    }
-
-    pub fn title(mut self, title: &str) -> Self {
-        self.title = Some(title.to_string());
-        self
-    }
-
-    pub fn visible(mut self, visible: bool) -> Self {
-        self.visible = Some(visible);
-        self
+        self.builder.build()
     }
 }
 

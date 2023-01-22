@@ -31,7 +31,7 @@ impl ColorDialog {
     ///
     /// This method returns an instance of [`ColorDialogBuilder`](crate::builders::ColorDialogBuilder) which can be used to create [`ColorDialog`] objects.
     pub fn builder() -> ColorDialogBuilder {
-        ColorDialogBuilder::default()
+        ColorDialogBuilder::new()
     }
 
     #[doc(alias = "gtk_color_dialog_choose_rgba")]
@@ -229,70 +229,51 @@ impl Default for ColorDialog {
     }
 }
 
-#[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
 /// A [builder-pattern] type to construct [`ColorDialog`] objects.
 ///
 /// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 #[must_use = "The builder must be built to be used"]
 pub struct ColorDialogBuilder {
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
-    modal: Option<bool>,
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
-    title: Option<String>,
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
-    with_alpha: Option<bool>,
+    builder: glib::object::ObjectBuilder<'static, ColorDialog>,
 }
 
 impl ColorDialogBuilder {
-    // rustdoc-stripper-ignore-next
-    /// Create a new [`ColorDialogBuilder`].
-    pub fn new() -> Self {
-        Self::default()
+    fn new() -> Self {
+        Self {
+            builder: glib::object::Object::builder(),
+        }
+    }
+
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn modal(self, modal: bool) -> Self {
+        Self {
+            builder: self.builder.property("modal", modal),
+        }
+    }
+
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn title(self, title: impl Into<glib::GString>) -> Self {
+        Self {
+            builder: self.builder.property("title", title.into()),
+        }
+    }
+
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn with_alpha(self, with_alpha: bool) -> Self {
+        Self {
+            builder: self.builder.property("with-alpha", with_alpha),
+        }
     }
 
     // rustdoc-stripper-ignore-next
     /// Build the [`ColorDialog`].
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> ColorDialog {
-        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
-        #[cfg(any(feature = "v4_10", feature = "dox"))]
-        if let Some(ref modal) = self.modal {
-            properties.push(("modal", modal));
-        }
-        #[cfg(any(feature = "v4_10", feature = "dox"))]
-        if let Some(ref title) = self.title {
-            properties.push(("title", title));
-        }
-        #[cfg(any(feature = "v4_10", feature = "dox"))]
-        if let Some(ref with_alpha) = self.with_alpha {
-            properties.push(("with-alpha", with_alpha));
-        }
-        glib::Object::new::<ColorDialog>(&properties)
-    }
-
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
-    pub fn modal(mut self, modal: bool) -> Self {
-        self.modal = Some(modal);
-        self
-    }
-
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
-    pub fn title(mut self, title: &str) -> Self {
-        self.title = Some(title.to_string());
-        self
-    }
-
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
-    pub fn with_alpha(mut self, with_alpha: bool) -> Self {
-        self.with_alpha = Some(with_alpha);
-        self
+        self.builder.build()
     }
 }
 

@@ -35,7 +35,7 @@ impl SingleSelection {
     ///
     /// This method returns an instance of [`SingleSelectionBuilder`](crate::builders::SingleSelectionBuilder) which can be used to create [`SingleSelection`] objects.
     pub fn builder() -> SingleSelectionBuilder {
-        SingleSelectionBuilder::default()
+        SingleSelectionBuilder::new()
     }
 
     #[doc(alias = "gtk_single_selection_get_autoselect")]
@@ -232,68 +232,55 @@ impl SingleSelection {
 
 impl Default for SingleSelection {
     fn default() -> Self {
-        glib::object::Object::new::<Self>(&[])
+        glib::object::Object::new_default::<Self>()
     }
 }
 
-#[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
 /// A [builder-pattern] type to construct [`SingleSelection`] objects.
 ///
 /// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 #[must_use = "The builder must be built to be used"]
 pub struct SingleSelectionBuilder {
-    autoselect: Option<bool>,
-    can_unselect: Option<bool>,
-    model: Option<gio::ListModel>,
-    selected: Option<u32>,
+    builder: glib::object::ObjectBuilder<'static, SingleSelection>,
 }
 
 impl SingleSelectionBuilder {
-    // rustdoc-stripper-ignore-next
-    /// Create a new [`SingleSelectionBuilder`].
-    pub fn new() -> Self {
-        Self::default()
+    fn new() -> Self {
+        Self {
+            builder: glib::object::Object::builder(),
+        }
+    }
+
+    pub fn autoselect(self, autoselect: bool) -> Self {
+        Self {
+            builder: self.builder.property("autoselect", autoselect),
+        }
+    }
+
+    pub fn can_unselect(self, can_unselect: bool) -> Self {
+        Self {
+            builder: self.builder.property("can-unselect", can_unselect),
+        }
+    }
+
+    pub fn model(self, model: &impl IsA<gio::ListModel>) -> Self {
+        Self {
+            builder: self.builder.property("model", model.clone().upcast()),
+        }
+    }
+
+    pub fn selected(self, selected: u32) -> Self {
+        Self {
+            builder: self.builder.property("selected", selected),
+        }
     }
 
     // rustdoc-stripper-ignore-next
     /// Build the [`SingleSelection`].
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> SingleSelection {
-        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
-        if let Some(ref autoselect) = self.autoselect {
-            properties.push(("autoselect", autoselect));
-        }
-        if let Some(ref can_unselect) = self.can_unselect {
-            properties.push(("can-unselect", can_unselect));
-        }
-        if let Some(ref model) = self.model {
-            properties.push(("model", model));
-        }
-        if let Some(ref selected) = self.selected {
-            properties.push(("selected", selected));
-        }
-        glib::Object::new::<SingleSelection>(&properties)
-    }
-
-    pub fn autoselect(mut self, autoselect: bool) -> Self {
-        self.autoselect = Some(autoselect);
-        self
-    }
-
-    pub fn can_unselect(mut self, can_unselect: bool) -> Self {
-        self.can_unselect = Some(can_unselect);
-        self
-    }
-
-    pub fn model(mut self, model: &impl IsA<gio::ListModel>) -> Self {
-        self.model = Some(model.clone().upcast());
-        self
-    }
-
-    pub fn selected(mut self, selected: u32) -> Self {
-        self.selected = Some(selected);
-        self
+        self.builder.build()
     }
 }
 

@@ -33,65 +33,55 @@ impl TextBuffer {
     ///
     /// This method returns an instance of [`TextBufferBuilder`](crate::builders::TextBufferBuilder) which can be used to create [`TextBuffer`] objects.
     pub fn builder() -> TextBufferBuilder {
-        TextBufferBuilder::default()
+        TextBufferBuilder::new()
     }
 }
 
 impl Default for TextBuffer {
     fn default() -> Self {
-        glib::object::Object::new::<Self>(&[])
+        glib::object::Object::new_default::<Self>()
     }
 }
 
-#[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
 /// A [builder-pattern] type to construct [`TextBuffer`] objects.
 ///
 /// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 #[must_use = "The builder must be built to be used"]
 pub struct TextBufferBuilder {
-    enable_undo: Option<bool>,
-    tag_table: Option<TextTagTable>,
-    text: Option<String>,
+    builder: glib::object::ObjectBuilder<'static, TextBuffer>,
 }
 
 impl TextBufferBuilder {
-    // rustdoc-stripper-ignore-next
-    /// Create a new [`TextBufferBuilder`].
-    pub fn new() -> Self {
-        Self::default()
+    fn new() -> Self {
+        Self {
+            builder: glib::object::Object::builder(),
+        }
+    }
+
+    pub fn enable_undo(self, enable_undo: bool) -> Self {
+        Self {
+            builder: self.builder.property("enable-undo", enable_undo),
+        }
+    }
+
+    pub fn tag_table(self, tag_table: &TextTagTable) -> Self {
+        Self {
+            builder: self.builder.property("tag-table", tag_table.clone()),
+        }
+    }
+
+    pub fn text(self, text: impl Into<glib::GString>) -> Self {
+        Self {
+            builder: self.builder.property("text", text.into()),
+        }
     }
 
     // rustdoc-stripper-ignore-next
     /// Build the [`TextBuffer`].
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> TextBuffer {
-        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
-        if let Some(ref enable_undo) = self.enable_undo {
-            properties.push(("enable-undo", enable_undo));
-        }
-        if let Some(ref tag_table) = self.tag_table {
-            properties.push(("tag-table", tag_table));
-        }
-        if let Some(ref text) = self.text {
-            properties.push(("text", text));
-        }
-        glib::Object::new::<TextBuffer>(&properties)
-    }
-
-    pub fn enable_undo(mut self, enable_undo: bool) -> Self {
-        self.enable_undo = Some(enable_undo);
-        self
-    }
-
-    pub fn tag_table(mut self, tag_table: &TextTagTable) -> Self {
-        self.tag_table = Some(tag_table.clone());
-        self
-    }
-
-    pub fn text(mut self, text: &str) -> Self {
-        self.text = Some(text.to_string());
-        self
+        self.builder.build()
     }
 }
 
