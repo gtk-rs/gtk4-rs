@@ -39,7 +39,7 @@ impl FilterListModel {
     ///
     /// This method returns an instance of [`FilterListModelBuilder`](crate::builders::FilterListModelBuilder) which can be used to create [`FilterListModel`] objects.
     pub fn builder() -> FilterListModelBuilder {
-        FilterListModelBuilder::default()
+        FilterListModelBuilder::new()
     }
 
     #[doc(alias = "gtk_filter_list_model_get_filter")]
@@ -195,59 +195,49 @@ impl FilterListModel {
 
 impl Default for FilterListModel {
     fn default() -> Self {
-        glib::object::Object::new::<Self>(&[])
+        glib::object::Object::new_default::<Self>()
     }
 }
 
-#[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
 /// A [builder-pattern] type to construct [`FilterListModel`] objects.
 ///
 /// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 #[must_use = "The builder must be built to be used"]
 pub struct FilterListModelBuilder {
-    filter: Option<Filter>,
-    incremental: Option<bool>,
-    model: Option<gio::ListModel>,
+    builder: glib::object::ObjectBuilder<'static, FilterListModel>,
 }
 
 impl FilterListModelBuilder {
-    // rustdoc-stripper-ignore-next
-    /// Create a new [`FilterListModelBuilder`].
-    pub fn new() -> Self {
-        Self::default()
+    fn new() -> Self {
+        Self {
+            builder: glib::object::Object::builder(),
+        }
+    }
+
+    pub fn filter(self, filter: &impl IsA<Filter>) -> Self {
+        Self {
+            builder: self.builder.property("filter", filter.clone().upcast()),
+        }
+    }
+
+    pub fn incremental(self, incremental: bool) -> Self {
+        Self {
+            builder: self.builder.property("incremental", incremental),
+        }
+    }
+
+    pub fn model(self, model: &impl IsA<gio::ListModel>) -> Self {
+        Self {
+            builder: self.builder.property("model", model.clone().upcast()),
+        }
     }
 
     // rustdoc-stripper-ignore-next
     /// Build the [`FilterListModel`].
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> FilterListModel {
-        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
-        if let Some(ref filter) = self.filter {
-            properties.push(("filter", filter));
-        }
-        if let Some(ref incremental) = self.incremental {
-            properties.push(("incremental", incremental));
-        }
-        if let Some(ref model) = self.model {
-            properties.push(("model", model));
-        }
-        glib::Object::new::<FilterListModel>(&properties)
-    }
-
-    pub fn filter(mut self, filter: &impl IsA<Filter>) -> Self {
-        self.filter = Some(filter.clone().upcast());
-        self
-    }
-
-    pub fn incremental(mut self, incremental: bool) -> Self {
-        self.incremental = Some(incremental);
-        self
-    }
-
-    pub fn model(mut self, model: &impl IsA<gio::ListModel>) -> Self {
-        self.model = Some(model.clone().upcast());
-        self
+        self.builder.build()
     }
 }
 

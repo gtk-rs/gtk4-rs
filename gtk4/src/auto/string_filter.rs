@@ -37,7 +37,7 @@ impl StringFilter {
     ///
     /// This method returns an instance of [`StringFilterBuilder`](crate::builders::StringFilterBuilder) which can be used to create [`StringFilter`] objects.
     pub fn builder() -> StringFilterBuilder {
-        StringFilterBuilder::default()
+        StringFilterBuilder::new()
     }
 
     #[doc(alias = "gtk_string_filter_get_expression")]
@@ -194,68 +194,57 @@ impl StringFilter {
 
 impl Default for StringFilter {
     fn default() -> Self {
-        glib::object::Object::new::<Self>(&[])
+        glib::object::Object::new_default::<Self>()
     }
 }
 
-#[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
 /// A [builder-pattern] type to construct [`StringFilter`] objects.
 ///
 /// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 #[must_use = "The builder must be built to be used"]
 pub struct StringFilterBuilder {
-    expression: Option<Expression>,
-    ignore_case: Option<bool>,
-    match_mode: Option<StringFilterMatchMode>,
-    search: Option<String>,
+    builder: glib::object::ObjectBuilder<'static, StringFilter>,
 }
 
 impl StringFilterBuilder {
-    // rustdoc-stripper-ignore-next
-    /// Create a new [`StringFilterBuilder`].
-    pub fn new() -> Self {
-        Self::default()
+    fn new() -> Self {
+        Self {
+            builder: glib::object::Object::builder(),
+        }
+    }
+
+    pub fn expression(self, expression: impl AsRef<Expression>) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("expression", expression.as_ref().clone()),
+        }
+    }
+
+    pub fn ignore_case(self, ignore_case: bool) -> Self {
+        Self {
+            builder: self.builder.property("ignore-case", ignore_case),
+        }
+    }
+
+    pub fn match_mode(self, match_mode: StringFilterMatchMode) -> Self {
+        Self {
+            builder: self.builder.property("match-mode", match_mode),
+        }
+    }
+
+    pub fn search(self, search: impl Into<glib::GString>) -> Self {
+        Self {
+            builder: self.builder.property("search", search.into()),
+        }
     }
 
     // rustdoc-stripper-ignore-next
     /// Build the [`StringFilter`].
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> StringFilter {
-        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
-        if let Some(ref expression) = self.expression {
-            properties.push(("expression", expression));
-        }
-        if let Some(ref ignore_case) = self.ignore_case {
-            properties.push(("ignore-case", ignore_case));
-        }
-        if let Some(ref match_mode) = self.match_mode {
-            properties.push(("match-mode", match_mode));
-        }
-        if let Some(ref search) = self.search {
-            properties.push(("search", search));
-        }
-        glib::Object::new::<StringFilter>(&properties)
-    }
-
-    pub fn expression(mut self, expression: impl AsRef<Expression>) -> Self {
-        self.expression = Some(expression.as_ref().clone());
-        self
-    }
-
-    pub fn ignore_case(mut self, ignore_case: bool) -> Self {
-        self.ignore_case = Some(ignore_case);
-        self
-    }
-
-    pub fn match_mode(mut self, match_mode: StringFilterMatchMode) -> Self {
-        self.match_mode = Some(match_mode);
-        self
-    }
-
-    pub fn search(mut self, search: &str) -> Self {
-        self.search = Some(search.to_string());
-        self
+        self.builder.build()
     }
 }
 

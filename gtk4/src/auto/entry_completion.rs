@@ -47,7 +47,7 @@ impl EntryCompletion {
     ///
     /// This method returns an instance of [`EntryCompletionBuilder`](crate::builders::EntryCompletionBuilder) which can be used to create [`EntryCompletion`] objects.
     pub fn builder() -> EntryCompletionBuilder {
-        EntryCompletionBuilder::default()
+        EntryCompletionBuilder::new()
     }
 
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
@@ -652,109 +652,89 @@ impl Default for EntryCompletion {
     }
 }
 
-#[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
 /// A [builder-pattern] type to construct [`EntryCompletion`] objects.
 ///
 /// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 #[must_use = "The builder must be built to be used"]
 pub struct EntryCompletionBuilder {
-    cell_area: Option<CellArea>,
-    inline_completion: Option<bool>,
-    inline_selection: Option<bool>,
-    minimum_key_length: Option<i32>,
-    model: Option<TreeModel>,
-    popup_completion: Option<bool>,
-    popup_set_width: Option<bool>,
-    popup_single_match: Option<bool>,
-    text_column: Option<i32>,
+    builder: glib::object::ObjectBuilder<'static, EntryCompletion>,
 }
 
 impl EntryCompletionBuilder {
-    // rustdoc-stripper-ignore-next
-    /// Create a new [`EntryCompletionBuilder`].
-    pub fn new() -> Self {
-        Self::default()
+    fn new() -> Self {
+        Self {
+            builder: glib::object::Object::builder(),
+        }
+    }
+
+    pub fn cell_area(self, cell_area: &impl IsA<CellArea>) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("cell-area", cell_area.clone().upcast()),
+        }
+    }
+
+    pub fn inline_completion(self, inline_completion: bool) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("inline-completion", inline_completion),
+        }
+    }
+
+    pub fn inline_selection(self, inline_selection: bool) -> Self {
+        Self {
+            builder: self.builder.property("inline-selection", inline_selection),
+        }
+    }
+
+    pub fn minimum_key_length(self, minimum_key_length: i32) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("minimum-key-length", minimum_key_length),
+        }
+    }
+
+    pub fn model(self, model: &impl IsA<TreeModel>) -> Self {
+        Self {
+            builder: self.builder.property("model", model.clone().upcast()),
+        }
+    }
+
+    pub fn popup_completion(self, popup_completion: bool) -> Self {
+        Self {
+            builder: self.builder.property("popup-completion", popup_completion),
+        }
+    }
+
+    pub fn popup_set_width(self, popup_set_width: bool) -> Self {
+        Self {
+            builder: self.builder.property("popup-set-width", popup_set_width),
+        }
+    }
+
+    pub fn popup_single_match(self, popup_single_match: bool) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("popup-single-match", popup_single_match),
+        }
+    }
+
+    pub fn text_column(self, text_column: i32) -> Self {
+        Self {
+            builder: self.builder.property("text-column", text_column),
+        }
     }
 
     // rustdoc-stripper-ignore-next
     /// Build the [`EntryCompletion`].
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> EntryCompletion {
-        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
-        if let Some(ref cell_area) = self.cell_area {
-            properties.push(("cell-area", cell_area));
-        }
-        if let Some(ref inline_completion) = self.inline_completion {
-            properties.push(("inline-completion", inline_completion));
-        }
-        if let Some(ref inline_selection) = self.inline_selection {
-            properties.push(("inline-selection", inline_selection));
-        }
-        if let Some(ref minimum_key_length) = self.minimum_key_length {
-            properties.push(("minimum-key-length", minimum_key_length));
-        }
-        if let Some(ref model) = self.model {
-            properties.push(("model", model));
-        }
-        if let Some(ref popup_completion) = self.popup_completion {
-            properties.push(("popup-completion", popup_completion));
-        }
-        if let Some(ref popup_set_width) = self.popup_set_width {
-            properties.push(("popup-set-width", popup_set_width));
-        }
-        if let Some(ref popup_single_match) = self.popup_single_match {
-            properties.push(("popup-single-match", popup_single_match));
-        }
-        if let Some(ref text_column) = self.text_column {
-            properties.push(("text-column", text_column));
-        }
-        glib::Object::new::<EntryCompletion>(&properties)
-    }
-
-    pub fn cell_area(mut self, cell_area: &impl IsA<CellArea>) -> Self {
-        self.cell_area = Some(cell_area.clone().upcast());
-        self
-    }
-
-    pub fn inline_completion(mut self, inline_completion: bool) -> Self {
-        self.inline_completion = Some(inline_completion);
-        self
-    }
-
-    pub fn inline_selection(mut self, inline_selection: bool) -> Self {
-        self.inline_selection = Some(inline_selection);
-        self
-    }
-
-    pub fn minimum_key_length(mut self, minimum_key_length: i32) -> Self {
-        self.minimum_key_length = Some(minimum_key_length);
-        self
-    }
-
-    pub fn model(mut self, model: &impl IsA<TreeModel>) -> Self {
-        self.model = Some(model.clone().upcast());
-        self
-    }
-
-    pub fn popup_completion(mut self, popup_completion: bool) -> Self {
-        self.popup_completion = Some(popup_completion);
-        self
-    }
-
-    pub fn popup_set_width(mut self, popup_set_width: bool) -> Self {
-        self.popup_set_width = Some(popup_set_width);
-        self
-    }
-
-    pub fn popup_single_match(mut self, popup_single_match: bool) -> Self {
-        self.popup_single_match = Some(popup_single_match);
-        self
-    }
-
-    pub fn text_column(mut self, text_column: i32) -> Self {
-        self.text_column = Some(text_column);
-        self
+        self.builder.build()
     }
 }
 

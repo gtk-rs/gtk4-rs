@@ -34,7 +34,7 @@ impl BoxLayout {
     ///
     /// This method returns an instance of [`BoxLayoutBuilder`](crate::builders::BoxLayoutBuilder) which can be used to create [`BoxLayout`] objects.
     pub fn builder() -> BoxLayoutBuilder {
-        BoxLayoutBuilder::default()
+        BoxLayoutBuilder::new()
     }
 
     #[doc(alias = "gtk_box_layout_get_baseline_position")]
@@ -155,68 +155,57 @@ impl BoxLayout {
 
 impl Default for BoxLayout {
     fn default() -> Self {
-        glib::object::Object::new::<Self>(&[])
+        glib::object::Object::new_default::<Self>()
     }
 }
 
-#[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
 /// A [builder-pattern] type to construct [`BoxLayout`] objects.
 ///
 /// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 #[must_use = "The builder must be built to be used"]
 pub struct BoxLayoutBuilder {
-    baseline_position: Option<BaselinePosition>,
-    homogeneous: Option<bool>,
-    spacing: Option<i32>,
-    orientation: Option<Orientation>,
+    builder: glib::object::ObjectBuilder<'static, BoxLayout>,
 }
 
 impl BoxLayoutBuilder {
-    // rustdoc-stripper-ignore-next
-    /// Create a new [`BoxLayoutBuilder`].
-    pub fn new() -> Self {
-        Self::default()
+    fn new() -> Self {
+        Self {
+            builder: glib::object::Object::builder(),
+        }
+    }
+
+    pub fn baseline_position(self, baseline_position: BaselinePosition) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("baseline-position", baseline_position),
+        }
+    }
+
+    pub fn homogeneous(self, homogeneous: bool) -> Self {
+        Self {
+            builder: self.builder.property("homogeneous", homogeneous),
+        }
+    }
+
+    pub fn spacing(self, spacing: i32) -> Self {
+        Self {
+            builder: self.builder.property("spacing", spacing),
+        }
+    }
+
+    pub fn orientation(self, orientation: Orientation) -> Self {
+        Self {
+            builder: self.builder.property("orientation", orientation),
+        }
     }
 
     // rustdoc-stripper-ignore-next
     /// Build the [`BoxLayout`].
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> BoxLayout {
-        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
-        if let Some(ref baseline_position) = self.baseline_position {
-            properties.push(("baseline-position", baseline_position));
-        }
-        if let Some(ref homogeneous) = self.homogeneous {
-            properties.push(("homogeneous", homogeneous));
-        }
-        if let Some(ref spacing) = self.spacing {
-            properties.push(("spacing", spacing));
-        }
-        if let Some(ref orientation) = self.orientation {
-            properties.push(("orientation", orientation));
-        }
-        glib::Object::new::<BoxLayout>(&properties)
-    }
-
-    pub fn baseline_position(mut self, baseline_position: BaselinePosition) -> Self {
-        self.baseline_position = Some(baseline_position);
-        self
-    }
-
-    pub fn homogeneous(mut self, homogeneous: bool) -> Self {
-        self.homogeneous = Some(homogeneous);
-        self
-    }
-
-    pub fn spacing(mut self, spacing: i32) -> Self {
-        self.spacing = Some(spacing);
-        self
-    }
-
-    pub fn orientation(mut self, orientation: Orientation) -> Self {
-        self.orientation = Some(orientation);
-        self
+        self.builder.build()
     }
 }
 

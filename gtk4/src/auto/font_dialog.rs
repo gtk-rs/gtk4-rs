@@ -31,7 +31,7 @@ impl FontDialog {
     ///
     /// This method returns an instance of [`FontDialogBuilder`](crate::builders::FontDialogBuilder) which can be used to create [`FontDialog`] objects.
     pub fn builder() -> FontDialogBuilder {
-        FontDialogBuilder::default()
+        FontDialogBuilder::new()
     }
 
     #[doc(alias = "gtk_font_dialog_choose_face")]
@@ -467,98 +467,67 @@ impl Default for FontDialog {
     }
 }
 
-#[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
 /// A [builder-pattern] type to construct [`FontDialog`] objects.
 ///
 /// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 #[must_use = "The builder must be built to be used"]
 pub struct FontDialogBuilder {
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
-    filter: Option<Filter>,
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
-    font_map: Option<pango::FontMap>,
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
-    language: Option<pango::Language>,
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
-    modal: Option<bool>,
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
-    title: Option<String>,
+    builder: glib::object::ObjectBuilder<'static, FontDialog>,
 }
 
 impl FontDialogBuilder {
-    // rustdoc-stripper-ignore-next
-    /// Create a new [`FontDialogBuilder`].
-    pub fn new() -> Self {
-        Self::default()
+    fn new() -> Self {
+        Self {
+            builder: glib::object::Object::builder(),
+        }
+    }
+
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn filter(self, filter: &impl IsA<Filter>) -> Self {
+        Self {
+            builder: self.builder.property("filter", filter.clone().upcast()),
+        }
+    }
+
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn font_map(self, font_map: &impl IsA<pango::FontMap>) -> Self {
+        Self {
+            builder: self.builder.property("font-map", font_map.clone().upcast()),
+        }
+    }
+
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn language(self, language: &pango::Language) -> Self {
+        Self {
+            builder: self.builder.property("language", language.clone()),
+        }
+    }
+
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn modal(self, modal: bool) -> Self {
+        Self {
+            builder: self.builder.property("modal", modal),
+        }
+    }
+
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn title(self, title: impl Into<glib::GString>) -> Self {
+        Self {
+            builder: self.builder.property("title", title.into()),
+        }
     }
 
     // rustdoc-stripper-ignore-next
     /// Build the [`FontDialog`].
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> FontDialog {
-        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
-        #[cfg(any(feature = "v4_10", feature = "dox"))]
-        if let Some(ref filter) = self.filter {
-            properties.push(("filter", filter));
-        }
-        #[cfg(any(feature = "v4_10", feature = "dox"))]
-        if let Some(ref font_map) = self.font_map {
-            properties.push(("font-map", font_map));
-        }
-        #[cfg(any(feature = "v4_10", feature = "dox"))]
-        if let Some(ref language) = self.language {
-            properties.push(("language", language));
-        }
-        #[cfg(any(feature = "v4_10", feature = "dox"))]
-        if let Some(ref modal) = self.modal {
-            properties.push(("modal", modal));
-        }
-        #[cfg(any(feature = "v4_10", feature = "dox"))]
-        if let Some(ref title) = self.title {
-            properties.push(("title", title));
-        }
-        glib::Object::new::<FontDialog>(&properties)
-    }
-
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
-    pub fn filter(mut self, filter: &impl IsA<Filter>) -> Self {
-        self.filter = Some(filter.clone().upcast());
-        self
-    }
-
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
-    pub fn font_map(mut self, font_map: &impl IsA<pango::FontMap>) -> Self {
-        self.font_map = Some(font_map.clone().upcast());
-        self
-    }
-
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
-    pub fn language(mut self, language: &pango::Language) -> Self {
-        self.language = Some(language.clone());
-        self
-    }
-
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
-    pub fn modal(mut self, modal: bool) -> Self {
-        self.modal = Some(modal);
-        self
-    }
-
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
-    pub fn title(mut self, title: &str) -> Self {
-        self.title = Some(title.to_string());
-        self
+        self.builder.build()
     }
 }
 

@@ -29,7 +29,7 @@ impl IMMulticontext {
     ///
     /// This method returns an instance of [`IMMulticontextBuilder`](crate::builders::IMMulticontextBuilder) which can be used to create [`IMMulticontext`] objects.
     pub fn builder() -> IMMulticontextBuilder {
-        IMMulticontextBuilder::default()
+        IMMulticontextBuilder::new()
     }
 }
 
@@ -39,46 +39,39 @@ impl Default for IMMulticontext {
     }
 }
 
-#[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
 /// A [builder-pattern] type to construct [`IMMulticontext`] objects.
 ///
 /// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 #[must_use = "The builder must be built to be used"]
 pub struct IMMulticontextBuilder {
-    input_hints: Option<InputHints>,
-    input_purpose: Option<InputPurpose>,
+    builder: glib::object::ObjectBuilder<'static, IMMulticontext>,
 }
 
 impl IMMulticontextBuilder {
-    // rustdoc-stripper-ignore-next
-    /// Create a new [`IMMulticontextBuilder`].
-    pub fn new() -> Self {
-        Self::default()
+    fn new() -> Self {
+        Self {
+            builder: glib::object::Object::builder(),
+        }
+    }
+
+    pub fn input_hints(self, input_hints: InputHints) -> Self {
+        Self {
+            builder: self.builder.property("input-hints", input_hints),
+        }
+    }
+
+    pub fn input_purpose(self, input_purpose: InputPurpose) -> Self {
+        Self {
+            builder: self.builder.property("input-purpose", input_purpose),
+        }
     }
 
     // rustdoc-stripper-ignore-next
     /// Build the [`IMMulticontext`].
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> IMMulticontext {
-        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
-        if let Some(ref input_hints) = self.input_hints {
-            properties.push(("input-hints", input_hints));
-        }
-        if let Some(ref input_purpose) = self.input_purpose {
-            properties.push(("input-purpose", input_purpose));
-        }
-        glib::Object::new::<IMMulticontext>(&properties)
-    }
-
-    pub fn input_hints(mut self, input_hints: InputHints) -> Self {
-        self.input_hints = Some(input_hints);
-        self
-    }
-
-    pub fn input_purpose(mut self, input_purpose: InputPurpose) -> Self {
-        self.input_purpose = Some(input_purpose);
-        self
+        self.builder.build()
     }
 }
 

@@ -31,7 +31,7 @@ impl IconTheme {
     ///
     /// This method returns an instance of [`IconThemeBuilder`](crate::builders::IconThemeBuilder) which can be used to create [`IconTheme`] objects.
     pub fn builder() -> IconThemeBuilder {
-        IconThemeBuilder::default()
+        IconThemeBuilder::new()
     }
 
     #[doc(alias = "gtk_icon_theme_add_resource_path")]
@@ -339,64 +339,51 @@ impl Default for IconTheme {
     }
 }
 
-#[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
 /// A [builder-pattern] type to construct [`IconTheme`] objects.
 ///
 /// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 #[must_use = "The builder must be built to be used"]
 pub struct IconThemeBuilder {
-    display: Option<gdk::Display>,
-    resource_path: Option<Vec<String>>,
-    search_path: Option<Vec<String>>,
-    theme_name: Option<String>,
+    builder: glib::object::ObjectBuilder<'static, IconTheme>,
 }
 
 impl IconThemeBuilder {
-    // rustdoc-stripper-ignore-next
-    /// Create a new [`IconThemeBuilder`].
-    pub fn new() -> Self {
-        Self::default()
+    fn new() -> Self {
+        Self {
+            builder: glib::object::Object::builder(),
+        }
+    }
+
+    pub fn display(self, display: &impl IsA<gdk::Display>) -> Self {
+        Self {
+            builder: self.builder.property("display", display.clone().upcast()),
+        }
+    }
+
+    pub fn resource_path(self, resource_path: impl Into<glib::StrV>) -> Self {
+        Self {
+            builder: self.builder.property("resource-path", resource_path.into()),
+        }
+    }
+
+    pub fn search_path(self, search_path: impl Into<glib::StrV>) -> Self {
+        Self {
+            builder: self.builder.property("search-path", search_path.into()),
+        }
+    }
+
+    pub fn theme_name(self, theme_name: impl Into<glib::GString>) -> Self {
+        Self {
+            builder: self.builder.property("theme-name", theme_name.into()),
+        }
     }
 
     // rustdoc-stripper-ignore-next
     /// Build the [`IconTheme`].
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> IconTheme {
-        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
-        if let Some(ref display) = self.display {
-            properties.push(("display", display));
-        }
-        if let Some(ref resource_path) = self.resource_path {
-            properties.push(("resource-path", resource_path));
-        }
-        if let Some(ref search_path) = self.search_path {
-            properties.push(("search-path", search_path));
-        }
-        if let Some(ref theme_name) = self.theme_name {
-            properties.push(("theme-name", theme_name));
-        }
-        glib::Object::new::<IconTheme>(&properties)
-    }
-
-    pub fn display(mut self, display: &impl IsA<gdk::Display>) -> Self {
-        self.display = Some(display.clone().upcast());
-        self
-    }
-
-    pub fn resource_path(mut self, resource_path: Vec<String>) -> Self {
-        self.resource_path = Some(resource_path);
-        self
-    }
-
-    pub fn search_path(mut self, search_path: Vec<String>) -> Self {
-        self.search_path = Some(search_path);
-        self
-    }
-
-    pub fn theme_name(mut self, theme_name: &str) -> Self {
-        self.theme_name = Some(theme_name.to_string());
-        self
+        self.builder.build()
     }
 }
 

@@ -34,7 +34,7 @@ impl CellAreaBox {
     ///
     /// This method returns an instance of [`CellAreaBoxBuilder`](crate::builders::CellAreaBoxBuilder) which can be used to create [`CellAreaBox`] objects.
     pub fn builder() -> CellAreaBoxBuilder {
-        CellAreaBoxBuilder::default()
+        CellAreaBoxBuilder::new()
     }
 
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
@@ -126,55 +126,47 @@ impl Default for CellAreaBox {
     }
 }
 
-#[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
 /// A [builder-pattern] type to construct [`CellAreaBox`] objects.
 ///
 /// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 #[must_use = "The builder must be built to be used"]
 pub struct CellAreaBoxBuilder {
-    spacing: Option<i32>,
-    focus_cell: Option<CellRenderer>,
-    orientation: Option<Orientation>,
+    builder: glib::object::ObjectBuilder<'static, CellAreaBox>,
 }
 
 impl CellAreaBoxBuilder {
-    // rustdoc-stripper-ignore-next
-    /// Create a new [`CellAreaBoxBuilder`].
-    pub fn new() -> Self {
-        Self::default()
+    fn new() -> Self {
+        Self {
+            builder: glib::object::Object::builder(),
+        }
+    }
+
+    pub fn spacing(self, spacing: i32) -> Self {
+        Self {
+            builder: self.builder.property("spacing", spacing),
+        }
+    }
+
+    pub fn focus_cell(self, focus_cell: &impl IsA<CellRenderer>) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("focus-cell", focus_cell.clone().upcast()),
+        }
+    }
+
+    pub fn orientation(self, orientation: Orientation) -> Self {
+        Self {
+            builder: self.builder.property("orientation", orientation),
+        }
     }
 
     // rustdoc-stripper-ignore-next
     /// Build the [`CellAreaBox`].
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> CellAreaBox {
-        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
-        if let Some(ref spacing) = self.spacing {
-            properties.push(("spacing", spacing));
-        }
-        if let Some(ref focus_cell) = self.focus_cell {
-            properties.push(("focus-cell", focus_cell));
-        }
-        if let Some(ref orientation) = self.orientation {
-            properties.push(("orientation", orientation));
-        }
-        glib::Object::new::<CellAreaBox>(&properties)
-    }
-
-    pub fn spacing(mut self, spacing: i32) -> Self {
-        self.spacing = Some(spacing);
-        self
-    }
-
-    pub fn focus_cell(mut self, focus_cell: &impl IsA<CellRenderer>) -> Self {
-        self.focus_cell = Some(focus_cell.clone().upcast());
-        self
-    }
-
-    pub fn orientation(mut self, orientation: Orientation) -> Self {
-        self.orientation = Some(orientation);
-        self
+        self.builder.build()
     }
 }
 

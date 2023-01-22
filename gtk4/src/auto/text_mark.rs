@@ -34,56 +34,49 @@ impl TextMark {
     ///
     /// This method returns an instance of [`TextMarkBuilder`](crate::builders::TextMarkBuilder) which can be used to create [`TextMark`] objects.
     pub fn builder() -> TextMarkBuilder {
-        TextMarkBuilder::default()
+        TextMarkBuilder::new()
     }
 }
 
 impl Default for TextMark {
     fn default() -> Self {
-        glib::object::Object::new::<Self>(&[])
+        glib::object::Object::new_default::<Self>()
     }
 }
 
-#[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
 /// A [builder-pattern] type to construct [`TextMark`] objects.
 ///
 /// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 #[must_use = "The builder must be built to be used"]
 pub struct TextMarkBuilder {
-    left_gravity: Option<bool>,
-    name: Option<String>,
+    builder: glib::object::ObjectBuilder<'static, TextMark>,
 }
 
 impl TextMarkBuilder {
-    // rustdoc-stripper-ignore-next
-    /// Create a new [`TextMarkBuilder`].
-    pub fn new() -> Self {
-        Self::default()
+    fn new() -> Self {
+        Self {
+            builder: glib::object::Object::builder(),
+        }
+    }
+
+    pub fn left_gravity(self, left_gravity: bool) -> Self {
+        Self {
+            builder: self.builder.property("left-gravity", left_gravity),
+        }
+    }
+
+    pub fn name(self, name: impl Into<glib::GString>) -> Self {
+        Self {
+            builder: self.builder.property("name", name.into()),
+        }
     }
 
     // rustdoc-stripper-ignore-next
     /// Build the [`TextMark`].
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> TextMark {
-        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
-        if let Some(ref left_gravity) = self.left_gravity {
-            properties.push(("left-gravity", left_gravity));
-        }
-        if let Some(ref name) = self.name {
-            properties.push(("name", name));
-        }
-        glib::Object::new::<TextMark>(&properties)
-    }
-
-    pub fn left_gravity(mut self, left_gravity: bool) -> Self {
-        self.left_gravity = Some(left_gravity);
-        self
-    }
-
-    pub fn name(mut self, name: &str) -> Self {
-        self.name = Some(name.to_string());
-        self
+        self.builder.build()
     }
 }
 

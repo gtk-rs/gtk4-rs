@@ -25,7 +25,7 @@ impl Settings {
     ///
     /// This method returns an instance of [`SettingsBuilder`](crate::builders::SettingsBuilder) which can be used to create [`Settings`] objects.
     pub fn builder() -> SettingsBuilder {
-        SettingsBuilder::default()
+        SettingsBuilder::new()
     }
 
     #[doc(alias = "gtk_settings_reset_property")]
@@ -1932,505 +1932,435 @@ impl Settings {
     }
 }
 
-#[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
 /// A [builder-pattern] type to construct [`Settings`] objects.
 ///
 /// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 #[must_use = "The builder must be built to be used"]
 pub struct SettingsBuilder {
-    gtk_alternative_button_order: Option<bool>,
-    gtk_alternative_sort_arrows: Option<bool>,
-    gtk_application_prefer_dark_theme: Option<bool>,
-    gtk_cursor_aspect_ratio: Option<f64>,
-    gtk_cursor_blink: Option<bool>,
-    gtk_cursor_blink_time: Option<i32>,
-    gtk_cursor_blink_timeout: Option<i32>,
-    gtk_cursor_theme_name: Option<String>,
-    gtk_cursor_theme_size: Option<i32>,
-    gtk_decoration_layout: Option<String>,
-    gtk_dialogs_use_header: Option<bool>,
-    gtk_dnd_drag_threshold: Option<i32>,
-    gtk_double_click_distance: Option<i32>,
-    gtk_double_click_time: Option<i32>,
-    gtk_enable_accels: Option<bool>,
-    gtk_enable_animations: Option<bool>,
-    gtk_enable_event_sounds: Option<bool>,
-    gtk_enable_input_feedback_sounds: Option<bool>,
-    gtk_enable_primary_paste: Option<bool>,
-    gtk_entry_password_hint_timeout: Option<u32>,
-    gtk_entry_select_on_focus: Option<bool>,
-    gtk_error_bell: Option<bool>,
-    gtk_font_name: Option<String>,
-    gtk_fontconfig_timestamp: Option<u32>,
-    #[cfg(any(feature = "v4_6", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
-    gtk_hint_font_metrics: Option<bool>,
-    gtk_icon_theme_name: Option<String>,
-    gtk_im_module: Option<String>,
-    gtk_keynav_use_caret: Option<bool>,
-    gtk_label_select_on_focus: Option<bool>,
-    gtk_long_press_time: Option<u32>,
-    gtk_overlay_scrolling: Option<bool>,
-    gtk_primary_button_warps_slider: Option<bool>,
-    gtk_print_backends: Option<String>,
-    gtk_print_preview_command: Option<String>,
-    gtk_recent_files_enabled: Option<bool>,
-    gtk_recent_files_max_age: Option<i32>,
-    gtk_shell_shows_app_menu: Option<bool>,
-    gtk_shell_shows_desktop: Option<bool>,
-    gtk_shell_shows_menubar: Option<bool>,
-    gtk_sound_theme_name: Option<String>,
-    gtk_split_cursor: Option<bool>,
-    gtk_theme_name: Option<String>,
-    gtk_titlebar_double_click: Option<String>,
-    gtk_titlebar_middle_click: Option<String>,
-    gtk_titlebar_right_click: Option<String>,
-    gtk_xft_antialias: Option<i32>,
-    gtk_xft_dpi: Option<i32>,
-    gtk_xft_hinting: Option<i32>,
-    gtk_xft_hintstyle: Option<String>,
-    gtk_xft_rgba: Option<String>,
+    builder: glib::object::ObjectBuilder<'static, Settings>,
 }
 
 impl SettingsBuilder {
-    // rustdoc-stripper-ignore-next
-    /// Create a new [`SettingsBuilder`].
-    pub fn new() -> Self {
-        Self::default()
+    fn new() -> Self {
+        Self {
+            builder: glib::object::Object::builder(),
+        }
+    }
+
+    pub fn gtk_alternative_button_order(self, gtk_alternative_button_order: bool) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("gtk-alternative-button-order", gtk_alternative_button_order),
+        }
+    }
+
+    pub fn gtk_alternative_sort_arrows(self, gtk_alternative_sort_arrows: bool) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("gtk-alternative-sort-arrows", gtk_alternative_sort_arrows),
+        }
+    }
+
+    pub fn gtk_application_prefer_dark_theme(
+        self,
+        gtk_application_prefer_dark_theme: bool,
+    ) -> Self {
+        Self {
+            builder: self.builder.property(
+                "gtk-application-prefer-dark-theme",
+                gtk_application_prefer_dark_theme,
+            ),
+        }
+    }
+
+    pub fn gtk_cursor_aspect_ratio(self, gtk_cursor_aspect_ratio: f64) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("gtk-cursor-aspect-ratio", gtk_cursor_aspect_ratio),
+        }
+    }
+
+    pub fn gtk_cursor_blink(self, gtk_cursor_blink: bool) -> Self {
+        Self {
+            builder: self.builder.property("gtk-cursor-blink", gtk_cursor_blink),
+        }
+    }
+
+    pub fn gtk_cursor_blink_time(self, gtk_cursor_blink_time: i32) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("gtk-cursor-blink-time", gtk_cursor_blink_time),
+        }
+    }
+
+    pub fn gtk_cursor_blink_timeout(self, gtk_cursor_blink_timeout: i32) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("gtk-cursor-blink-timeout", gtk_cursor_blink_timeout),
+        }
+    }
+
+    pub fn gtk_cursor_theme_name(self, gtk_cursor_theme_name: impl Into<glib::GString>) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("gtk-cursor-theme-name", gtk_cursor_theme_name.into()),
+        }
+    }
+
+    pub fn gtk_cursor_theme_size(self, gtk_cursor_theme_size: i32) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("gtk-cursor-theme-size", gtk_cursor_theme_size),
+        }
+    }
+
+    pub fn gtk_decoration_layout(self, gtk_decoration_layout: impl Into<glib::GString>) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("gtk-decoration-layout", gtk_decoration_layout.into()),
+        }
+    }
+
+    pub fn gtk_dialogs_use_header(self, gtk_dialogs_use_header: bool) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("gtk-dialogs-use-header", gtk_dialogs_use_header),
+        }
+    }
+
+    pub fn gtk_dnd_drag_threshold(self, gtk_dnd_drag_threshold: i32) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("gtk-dnd-drag-threshold", gtk_dnd_drag_threshold),
+        }
+    }
+
+    pub fn gtk_double_click_distance(self, gtk_double_click_distance: i32) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("gtk-double-click-distance", gtk_double_click_distance),
+        }
+    }
+
+    pub fn gtk_double_click_time(self, gtk_double_click_time: i32) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("gtk-double-click-time", gtk_double_click_time),
+        }
+    }
+
+    pub fn gtk_enable_accels(self, gtk_enable_accels: bool) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("gtk-enable-accels", gtk_enable_accels),
+        }
+    }
+
+    pub fn gtk_enable_animations(self, gtk_enable_animations: bool) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("gtk-enable-animations", gtk_enable_animations),
+        }
+    }
+
+    pub fn gtk_enable_event_sounds(self, gtk_enable_event_sounds: bool) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("gtk-enable-event-sounds", gtk_enable_event_sounds),
+        }
+    }
+
+    pub fn gtk_enable_input_feedback_sounds(self, gtk_enable_input_feedback_sounds: bool) -> Self {
+        Self {
+            builder: self.builder.property(
+                "gtk-enable-input-feedback-sounds",
+                gtk_enable_input_feedback_sounds,
+            ),
+        }
+    }
+
+    pub fn gtk_enable_primary_paste(self, gtk_enable_primary_paste: bool) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("gtk-enable-primary-paste", gtk_enable_primary_paste),
+        }
+    }
+
+    pub fn gtk_entry_password_hint_timeout(self, gtk_entry_password_hint_timeout: u32) -> Self {
+        Self {
+            builder: self.builder.property(
+                "gtk-entry-password-hint-timeout",
+                gtk_entry_password_hint_timeout,
+            ),
+        }
+    }
+
+    pub fn gtk_entry_select_on_focus(self, gtk_entry_select_on_focus: bool) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("gtk-entry-select-on-focus", gtk_entry_select_on_focus),
+        }
+    }
+
+    pub fn gtk_error_bell(self, gtk_error_bell: bool) -> Self {
+        Self {
+            builder: self.builder.property("gtk-error-bell", gtk_error_bell),
+        }
+    }
+
+    pub fn gtk_font_name(self, gtk_font_name: impl Into<glib::GString>) -> Self {
+        Self {
+            builder: self.builder.property("gtk-font-name", gtk_font_name.into()),
+        }
+    }
+
+    pub fn gtk_fontconfig_timestamp(self, gtk_fontconfig_timestamp: u32) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("gtk-fontconfig-timestamp", gtk_fontconfig_timestamp),
+        }
+    }
+
+    #[cfg(any(feature = "v4_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    pub fn gtk_hint_font_metrics(self, gtk_hint_font_metrics: bool) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("gtk-hint-font-metrics", gtk_hint_font_metrics),
+        }
+    }
+
+    pub fn gtk_icon_theme_name(self, gtk_icon_theme_name: impl Into<glib::GString>) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("gtk-icon-theme-name", gtk_icon_theme_name.into()),
+        }
+    }
+
+    pub fn gtk_im_module(self, gtk_im_module: impl Into<glib::GString>) -> Self {
+        Self {
+            builder: self.builder.property("gtk-im-module", gtk_im_module.into()),
+        }
+    }
+
+    pub fn gtk_keynav_use_caret(self, gtk_keynav_use_caret: bool) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("gtk-keynav-use-caret", gtk_keynav_use_caret),
+        }
+    }
+
+    pub fn gtk_label_select_on_focus(self, gtk_label_select_on_focus: bool) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("gtk-label-select-on-focus", gtk_label_select_on_focus),
+        }
+    }
+
+    pub fn gtk_long_press_time(self, gtk_long_press_time: u32) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("gtk-long-press-time", gtk_long_press_time),
+        }
+    }
+
+    pub fn gtk_overlay_scrolling(self, gtk_overlay_scrolling: bool) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("gtk-overlay-scrolling", gtk_overlay_scrolling),
+        }
+    }
+
+    pub fn gtk_primary_button_warps_slider(self, gtk_primary_button_warps_slider: bool) -> Self {
+        Self {
+            builder: self.builder.property(
+                "gtk-primary-button-warps-slider",
+                gtk_primary_button_warps_slider,
+            ),
+        }
+    }
+
+    pub fn gtk_print_backends(self, gtk_print_backends: impl Into<glib::GString>) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("gtk-print-backends", gtk_print_backends.into()),
+        }
+    }
+
+    pub fn gtk_print_preview_command(
+        self,
+        gtk_print_preview_command: impl Into<glib::GString>,
+    ) -> Self {
+        Self {
+            builder: self.builder.property(
+                "gtk-print-preview-command",
+                gtk_print_preview_command.into(),
+            ),
+        }
+    }
+
+    pub fn gtk_recent_files_enabled(self, gtk_recent_files_enabled: bool) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("gtk-recent-files-enabled", gtk_recent_files_enabled),
+        }
+    }
+
+    pub fn gtk_recent_files_max_age(self, gtk_recent_files_max_age: i32) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("gtk-recent-files-max-age", gtk_recent_files_max_age),
+        }
+    }
+
+    pub fn gtk_shell_shows_app_menu(self, gtk_shell_shows_app_menu: bool) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("gtk-shell-shows-app-menu", gtk_shell_shows_app_menu),
+        }
+    }
+
+    pub fn gtk_shell_shows_desktop(self, gtk_shell_shows_desktop: bool) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("gtk-shell-shows-desktop", gtk_shell_shows_desktop),
+        }
+    }
+
+    pub fn gtk_shell_shows_menubar(self, gtk_shell_shows_menubar: bool) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("gtk-shell-shows-menubar", gtk_shell_shows_menubar),
+        }
+    }
+
+    pub fn gtk_sound_theme_name(self, gtk_sound_theme_name: impl Into<glib::GString>) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("gtk-sound-theme-name", gtk_sound_theme_name.into()),
+        }
+    }
+
+    pub fn gtk_split_cursor(self, gtk_split_cursor: bool) -> Self {
+        Self {
+            builder: self.builder.property("gtk-split-cursor", gtk_split_cursor),
+        }
+    }
+
+    pub fn gtk_theme_name(self, gtk_theme_name: impl Into<glib::GString>) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("gtk-theme-name", gtk_theme_name.into()),
+        }
+    }
+
+    pub fn gtk_titlebar_double_click(
+        self,
+        gtk_titlebar_double_click: impl Into<glib::GString>,
+    ) -> Self {
+        Self {
+            builder: self.builder.property(
+                "gtk-titlebar-double-click",
+                gtk_titlebar_double_click.into(),
+            ),
+        }
+    }
+
+    pub fn gtk_titlebar_middle_click(
+        self,
+        gtk_titlebar_middle_click: impl Into<glib::GString>,
+    ) -> Self {
+        Self {
+            builder: self.builder.property(
+                "gtk-titlebar-middle-click",
+                gtk_titlebar_middle_click.into(),
+            ),
+        }
+    }
+
+    pub fn gtk_titlebar_right_click(
+        self,
+        gtk_titlebar_right_click: impl Into<glib::GString>,
+    ) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("gtk-titlebar-right-click", gtk_titlebar_right_click.into()),
+        }
+    }
+
+    pub fn gtk_xft_antialias(self, gtk_xft_antialias: i32) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("gtk-xft-antialias", gtk_xft_antialias),
+        }
+    }
+
+    pub fn gtk_xft_dpi(self, gtk_xft_dpi: i32) -> Self {
+        Self {
+            builder: self.builder.property("gtk-xft-dpi", gtk_xft_dpi),
+        }
+    }
+
+    pub fn gtk_xft_hinting(self, gtk_xft_hinting: i32) -> Self {
+        Self {
+            builder: self.builder.property("gtk-xft-hinting", gtk_xft_hinting),
+        }
+    }
+
+    pub fn gtk_xft_hintstyle(self, gtk_xft_hintstyle: impl Into<glib::GString>) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("gtk-xft-hintstyle", gtk_xft_hintstyle.into()),
+        }
+    }
+
+    pub fn gtk_xft_rgba(self, gtk_xft_rgba: impl Into<glib::GString>) -> Self {
+        Self {
+            builder: self.builder.property("gtk-xft-rgba", gtk_xft_rgba.into()),
+        }
     }
 
     // rustdoc-stripper-ignore-next
     /// Build the [`Settings`].
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> Settings {
-        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
-        if let Some(ref gtk_alternative_button_order) = self.gtk_alternative_button_order {
-            properties.push(("gtk-alternative-button-order", gtk_alternative_button_order));
-        }
-        if let Some(ref gtk_alternative_sort_arrows) = self.gtk_alternative_sort_arrows {
-            properties.push(("gtk-alternative-sort-arrows", gtk_alternative_sort_arrows));
-        }
-        if let Some(ref gtk_application_prefer_dark_theme) = self.gtk_application_prefer_dark_theme
-        {
-            properties.push((
-                "gtk-application-prefer-dark-theme",
-                gtk_application_prefer_dark_theme,
-            ));
-        }
-        if let Some(ref gtk_cursor_aspect_ratio) = self.gtk_cursor_aspect_ratio {
-            properties.push(("gtk-cursor-aspect-ratio", gtk_cursor_aspect_ratio));
-        }
-        if let Some(ref gtk_cursor_blink) = self.gtk_cursor_blink {
-            properties.push(("gtk-cursor-blink", gtk_cursor_blink));
-        }
-        if let Some(ref gtk_cursor_blink_time) = self.gtk_cursor_blink_time {
-            properties.push(("gtk-cursor-blink-time", gtk_cursor_blink_time));
-        }
-        if let Some(ref gtk_cursor_blink_timeout) = self.gtk_cursor_blink_timeout {
-            properties.push(("gtk-cursor-blink-timeout", gtk_cursor_blink_timeout));
-        }
-        if let Some(ref gtk_cursor_theme_name) = self.gtk_cursor_theme_name {
-            properties.push(("gtk-cursor-theme-name", gtk_cursor_theme_name));
-        }
-        if let Some(ref gtk_cursor_theme_size) = self.gtk_cursor_theme_size {
-            properties.push(("gtk-cursor-theme-size", gtk_cursor_theme_size));
-        }
-        if let Some(ref gtk_decoration_layout) = self.gtk_decoration_layout {
-            properties.push(("gtk-decoration-layout", gtk_decoration_layout));
-        }
-        if let Some(ref gtk_dialogs_use_header) = self.gtk_dialogs_use_header {
-            properties.push(("gtk-dialogs-use-header", gtk_dialogs_use_header));
-        }
-        if let Some(ref gtk_dnd_drag_threshold) = self.gtk_dnd_drag_threshold {
-            properties.push(("gtk-dnd-drag-threshold", gtk_dnd_drag_threshold));
-        }
-        if let Some(ref gtk_double_click_distance) = self.gtk_double_click_distance {
-            properties.push(("gtk-double-click-distance", gtk_double_click_distance));
-        }
-        if let Some(ref gtk_double_click_time) = self.gtk_double_click_time {
-            properties.push(("gtk-double-click-time", gtk_double_click_time));
-        }
-        if let Some(ref gtk_enable_accels) = self.gtk_enable_accels {
-            properties.push(("gtk-enable-accels", gtk_enable_accels));
-        }
-        if let Some(ref gtk_enable_animations) = self.gtk_enable_animations {
-            properties.push(("gtk-enable-animations", gtk_enable_animations));
-        }
-        if let Some(ref gtk_enable_event_sounds) = self.gtk_enable_event_sounds {
-            properties.push(("gtk-enable-event-sounds", gtk_enable_event_sounds));
-        }
-        if let Some(ref gtk_enable_input_feedback_sounds) = self.gtk_enable_input_feedback_sounds {
-            properties.push((
-                "gtk-enable-input-feedback-sounds",
-                gtk_enable_input_feedback_sounds,
-            ));
-        }
-        if let Some(ref gtk_enable_primary_paste) = self.gtk_enable_primary_paste {
-            properties.push(("gtk-enable-primary-paste", gtk_enable_primary_paste));
-        }
-        if let Some(ref gtk_entry_password_hint_timeout) = self.gtk_entry_password_hint_timeout {
-            properties.push((
-                "gtk-entry-password-hint-timeout",
-                gtk_entry_password_hint_timeout,
-            ));
-        }
-        if let Some(ref gtk_entry_select_on_focus) = self.gtk_entry_select_on_focus {
-            properties.push(("gtk-entry-select-on-focus", gtk_entry_select_on_focus));
-        }
-        if let Some(ref gtk_error_bell) = self.gtk_error_bell {
-            properties.push(("gtk-error-bell", gtk_error_bell));
-        }
-        if let Some(ref gtk_font_name) = self.gtk_font_name {
-            properties.push(("gtk-font-name", gtk_font_name));
-        }
-        if let Some(ref gtk_fontconfig_timestamp) = self.gtk_fontconfig_timestamp {
-            properties.push(("gtk-fontconfig-timestamp", gtk_fontconfig_timestamp));
-        }
-        #[cfg(any(feature = "v4_6", feature = "dox"))]
-        if let Some(ref gtk_hint_font_metrics) = self.gtk_hint_font_metrics {
-            properties.push(("gtk-hint-font-metrics", gtk_hint_font_metrics));
-        }
-        if let Some(ref gtk_icon_theme_name) = self.gtk_icon_theme_name {
-            properties.push(("gtk-icon-theme-name", gtk_icon_theme_name));
-        }
-        if let Some(ref gtk_im_module) = self.gtk_im_module {
-            properties.push(("gtk-im-module", gtk_im_module));
-        }
-        if let Some(ref gtk_keynav_use_caret) = self.gtk_keynav_use_caret {
-            properties.push(("gtk-keynav-use-caret", gtk_keynav_use_caret));
-        }
-        if let Some(ref gtk_label_select_on_focus) = self.gtk_label_select_on_focus {
-            properties.push(("gtk-label-select-on-focus", gtk_label_select_on_focus));
-        }
-        if let Some(ref gtk_long_press_time) = self.gtk_long_press_time {
-            properties.push(("gtk-long-press-time", gtk_long_press_time));
-        }
-        if let Some(ref gtk_overlay_scrolling) = self.gtk_overlay_scrolling {
-            properties.push(("gtk-overlay-scrolling", gtk_overlay_scrolling));
-        }
-        if let Some(ref gtk_primary_button_warps_slider) = self.gtk_primary_button_warps_slider {
-            properties.push((
-                "gtk-primary-button-warps-slider",
-                gtk_primary_button_warps_slider,
-            ));
-        }
-        if let Some(ref gtk_print_backends) = self.gtk_print_backends {
-            properties.push(("gtk-print-backends", gtk_print_backends));
-        }
-        if let Some(ref gtk_print_preview_command) = self.gtk_print_preview_command {
-            properties.push(("gtk-print-preview-command", gtk_print_preview_command));
-        }
-        if let Some(ref gtk_recent_files_enabled) = self.gtk_recent_files_enabled {
-            properties.push(("gtk-recent-files-enabled", gtk_recent_files_enabled));
-        }
-        if let Some(ref gtk_recent_files_max_age) = self.gtk_recent_files_max_age {
-            properties.push(("gtk-recent-files-max-age", gtk_recent_files_max_age));
-        }
-        if let Some(ref gtk_shell_shows_app_menu) = self.gtk_shell_shows_app_menu {
-            properties.push(("gtk-shell-shows-app-menu", gtk_shell_shows_app_menu));
-        }
-        if let Some(ref gtk_shell_shows_desktop) = self.gtk_shell_shows_desktop {
-            properties.push(("gtk-shell-shows-desktop", gtk_shell_shows_desktop));
-        }
-        if let Some(ref gtk_shell_shows_menubar) = self.gtk_shell_shows_menubar {
-            properties.push(("gtk-shell-shows-menubar", gtk_shell_shows_menubar));
-        }
-        if let Some(ref gtk_sound_theme_name) = self.gtk_sound_theme_name {
-            properties.push(("gtk-sound-theme-name", gtk_sound_theme_name));
-        }
-        if let Some(ref gtk_split_cursor) = self.gtk_split_cursor {
-            properties.push(("gtk-split-cursor", gtk_split_cursor));
-        }
-        if let Some(ref gtk_theme_name) = self.gtk_theme_name {
-            properties.push(("gtk-theme-name", gtk_theme_name));
-        }
-        if let Some(ref gtk_titlebar_double_click) = self.gtk_titlebar_double_click {
-            properties.push(("gtk-titlebar-double-click", gtk_titlebar_double_click));
-        }
-        if let Some(ref gtk_titlebar_middle_click) = self.gtk_titlebar_middle_click {
-            properties.push(("gtk-titlebar-middle-click", gtk_titlebar_middle_click));
-        }
-        if let Some(ref gtk_titlebar_right_click) = self.gtk_titlebar_right_click {
-            properties.push(("gtk-titlebar-right-click", gtk_titlebar_right_click));
-        }
-        if let Some(ref gtk_xft_antialias) = self.gtk_xft_antialias {
-            properties.push(("gtk-xft-antialias", gtk_xft_antialias));
-        }
-        if let Some(ref gtk_xft_dpi) = self.gtk_xft_dpi {
-            properties.push(("gtk-xft-dpi", gtk_xft_dpi));
-        }
-        if let Some(ref gtk_xft_hinting) = self.gtk_xft_hinting {
-            properties.push(("gtk-xft-hinting", gtk_xft_hinting));
-        }
-        if let Some(ref gtk_xft_hintstyle) = self.gtk_xft_hintstyle {
-            properties.push(("gtk-xft-hintstyle", gtk_xft_hintstyle));
-        }
-        if let Some(ref gtk_xft_rgba) = self.gtk_xft_rgba {
-            properties.push(("gtk-xft-rgba", gtk_xft_rgba));
-        }
-        glib::Object::new::<Settings>(&properties)
-    }
-
-    pub fn gtk_alternative_button_order(mut self, gtk_alternative_button_order: bool) -> Self {
-        self.gtk_alternative_button_order = Some(gtk_alternative_button_order);
-        self
-    }
-
-    pub fn gtk_alternative_sort_arrows(mut self, gtk_alternative_sort_arrows: bool) -> Self {
-        self.gtk_alternative_sort_arrows = Some(gtk_alternative_sort_arrows);
-        self
-    }
-
-    pub fn gtk_application_prefer_dark_theme(
-        mut self,
-        gtk_application_prefer_dark_theme: bool,
-    ) -> Self {
-        self.gtk_application_prefer_dark_theme = Some(gtk_application_prefer_dark_theme);
-        self
-    }
-
-    pub fn gtk_cursor_aspect_ratio(mut self, gtk_cursor_aspect_ratio: f64) -> Self {
-        self.gtk_cursor_aspect_ratio = Some(gtk_cursor_aspect_ratio);
-        self
-    }
-
-    pub fn gtk_cursor_blink(mut self, gtk_cursor_blink: bool) -> Self {
-        self.gtk_cursor_blink = Some(gtk_cursor_blink);
-        self
-    }
-
-    pub fn gtk_cursor_blink_time(mut self, gtk_cursor_blink_time: i32) -> Self {
-        self.gtk_cursor_blink_time = Some(gtk_cursor_blink_time);
-        self
-    }
-
-    pub fn gtk_cursor_blink_timeout(mut self, gtk_cursor_blink_timeout: i32) -> Self {
-        self.gtk_cursor_blink_timeout = Some(gtk_cursor_blink_timeout);
-        self
-    }
-
-    pub fn gtk_cursor_theme_name(mut self, gtk_cursor_theme_name: &str) -> Self {
-        self.gtk_cursor_theme_name = Some(gtk_cursor_theme_name.to_string());
-        self
-    }
-
-    pub fn gtk_cursor_theme_size(mut self, gtk_cursor_theme_size: i32) -> Self {
-        self.gtk_cursor_theme_size = Some(gtk_cursor_theme_size);
-        self
-    }
-
-    pub fn gtk_decoration_layout(mut self, gtk_decoration_layout: &str) -> Self {
-        self.gtk_decoration_layout = Some(gtk_decoration_layout.to_string());
-        self
-    }
-
-    pub fn gtk_dialogs_use_header(mut self, gtk_dialogs_use_header: bool) -> Self {
-        self.gtk_dialogs_use_header = Some(gtk_dialogs_use_header);
-        self
-    }
-
-    pub fn gtk_dnd_drag_threshold(mut self, gtk_dnd_drag_threshold: i32) -> Self {
-        self.gtk_dnd_drag_threshold = Some(gtk_dnd_drag_threshold);
-        self
-    }
-
-    pub fn gtk_double_click_distance(mut self, gtk_double_click_distance: i32) -> Self {
-        self.gtk_double_click_distance = Some(gtk_double_click_distance);
-        self
-    }
-
-    pub fn gtk_double_click_time(mut self, gtk_double_click_time: i32) -> Self {
-        self.gtk_double_click_time = Some(gtk_double_click_time);
-        self
-    }
-
-    pub fn gtk_enable_accels(mut self, gtk_enable_accels: bool) -> Self {
-        self.gtk_enable_accels = Some(gtk_enable_accels);
-        self
-    }
-
-    pub fn gtk_enable_animations(mut self, gtk_enable_animations: bool) -> Self {
-        self.gtk_enable_animations = Some(gtk_enable_animations);
-        self
-    }
-
-    pub fn gtk_enable_event_sounds(mut self, gtk_enable_event_sounds: bool) -> Self {
-        self.gtk_enable_event_sounds = Some(gtk_enable_event_sounds);
-        self
-    }
-
-    pub fn gtk_enable_input_feedback_sounds(
-        mut self,
-        gtk_enable_input_feedback_sounds: bool,
-    ) -> Self {
-        self.gtk_enable_input_feedback_sounds = Some(gtk_enable_input_feedback_sounds);
-        self
-    }
-
-    pub fn gtk_enable_primary_paste(mut self, gtk_enable_primary_paste: bool) -> Self {
-        self.gtk_enable_primary_paste = Some(gtk_enable_primary_paste);
-        self
-    }
-
-    pub fn gtk_entry_password_hint_timeout(mut self, gtk_entry_password_hint_timeout: u32) -> Self {
-        self.gtk_entry_password_hint_timeout = Some(gtk_entry_password_hint_timeout);
-        self
-    }
-
-    pub fn gtk_entry_select_on_focus(mut self, gtk_entry_select_on_focus: bool) -> Self {
-        self.gtk_entry_select_on_focus = Some(gtk_entry_select_on_focus);
-        self
-    }
-
-    pub fn gtk_error_bell(mut self, gtk_error_bell: bool) -> Self {
-        self.gtk_error_bell = Some(gtk_error_bell);
-        self
-    }
-
-    pub fn gtk_font_name(mut self, gtk_font_name: &str) -> Self {
-        self.gtk_font_name = Some(gtk_font_name.to_string());
-        self
-    }
-
-    pub fn gtk_fontconfig_timestamp(mut self, gtk_fontconfig_timestamp: u32) -> Self {
-        self.gtk_fontconfig_timestamp = Some(gtk_fontconfig_timestamp);
-        self
-    }
-
-    #[cfg(any(feature = "v4_6", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
-    pub fn gtk_hint_font_metrics(mut self, gtk_hint_font_metrics: bool) -> Self {
-        self.gtk_hint_font_metrics = Some(gtk_hint_font_metrics);
-        self
-    }
-
-    pub fn gtk_icon_theme_name(mut self, gtk_icon_theme_name: &str) -> Self {
-        self.gtk_icon_theme_name = Some(gtk_icon_theme_name.to_string());
-        self
-    }
-
-    pub fn gtk_im_module(mut self, gtk_im_module: &str) -> Self {
-        self.gtk_im_module = Some(gtk_im_module.to_string());
-        self
-    }
-
-    pub fn gtk_keynav_use_caret(mut self, gtk_keynav_use_caret: bool) -> Self {
-        self.gtk_keynav_use_caret = Some(gtk_keynav_use_caret);
-        self
-    }
-
-    pub fn gtk_label_select_on_focus(mut self, gtk_label_select_on_focus: bool) -> Self {
-        self.gtk_label_select_on_focus = Some(gtk_label_select_on_focus);
-        self
-    }
-
-    pub fn gtk_long_press_time(mut self, gtk_long_press_time: u32) -> Self {
-        self.gtk_long_press_time = Some(gtk_long_press_time);
-        self
-    }
-
-    pub fn gtk_overlay_scrolling(mut self, gtk_overlay_scrolling: bool) -> Self {
-        self.gtk_overlay_scrolling = Some(gtk_overlay_scrolling);
-        self
-    }
-
-    pub fn gtk_primary_button_warps_slider(
-        mut self,
-        gtk_primary_button_warps_slider: bool,
-    ) -> Self {
-        self.gtk_primary_button_warps_slider = Some(gtk_primary_button_warps_slider);
-        self
-    }
-
-    pub fn gtk_print_backends(mut self, gtk_print_backends: &str) -> Self {
-        self.gtk_print_backends = Some(gtk_print_backends.to_string());
-        self
-    }
-
-    pub fn gtk_print_preview_command(mut self, gtk_print_preview_command: &str) -> Self {
-        self.gtk_print_preview_command = Some(gtk_print_preview_command.to_string());
-        self
-    }
-
-    pub fn gtk_recent_files_enabled(mut self, gtk_recent_files_enabled: bool) -> Self {
-        self.gtk_recent_files_enabled = Some(gtk_recent_files_enabled);
-        self
-    }
-
-    pub fn gtk_recent_files_max_age(mut self, gtk_recent_files_max_age: i32) -> Self {
-        self.gtk_recent_files_max_age = Some(gtk_recent_files_max_age);
-        self
-    }
-
-    pub fn gtk_shell_shows_app_menu(mut self, gtk_shell_shows_app_menu: bool) -> Self {
-        self.gtk_shell_shows_app_menu = Some(gtk_shell_shows_app_menu);
-        self
-    }
-
-    pub fn gtk_shell_shows_desktop(mut self, gtk_shell_shows_desktop: bool) -> Self {
-        self.gtk_shell_shows_desktop = Some(gtk_shell_shows_desktop);
-        self
-    }
-
-    pub fn gtk_shell_shows_menubar(mut self, gtk_shell_shows_menubar: bool) -> Self {
-        self.gtk_shell_shows_menubar = Some(gtk_shell_shows_menubar);
-        self
-    }
-
-    pub fn gtk_sound_theme_name(mut self, gtk_sound_theme_name: &str) -> Self {
-        self.gtk_sound_theme_name = Some(gtk_sound_theme_name.to_string());
-        self
-    }
-
-    pub fn gtk_split_cursor(mut self, gtk_split_cursor: bool) -> Self {
-        self.gtk_split_cursor = Some(gtk_split_cursor);
-        self
-    }
-
-    pub fn gtk_theme_name(mut self, gtk_theme_name: &str) -> Self {
-        self.gtk_theme_name = Some(gtk_theme_name.to_string());
-        self
-    }
-
-    pub fn gtk_titlebar_double_click(mut self, gtk_titlebar_double_click: &str) -> Self {
-        self.gtk_titlebar_double_click = Some(gtk_titlebar_double_click.to_string());
-        self
-    }
-
-    pub fn gtk_titlebar_middle_click(mut self, gtk_titlebar_middle_click: &str) -> Self {
-        self.gtk_titlebar_middle_click = Some(gtk_titlebar_middle_click.to_string());
-        self
-    }
-
-    pub fn gtk_titlebar_right_click(mut self, gtk_titlebar_right_click: &str) -> Self {
-        self.gtk_titlebar_right_click = Some(gtk_titlebar_right_click.to_string());
-        self
-    }
-
-    pub fn gtk_xft_antialias(mut self, gtk_xft_antialias: i32) -> Self {
-        self.gtk_xft_antialias = Some(gtk_xft_antialias);
-        self
-    }
-
-    pub fn gtk_xft_dpi(mut self, gtk_xft_dpi: i32) -> Self {
-        self.gtk_xft_dpi = Some(gtk_xft_dpi);
-        self
-    }
-
-    pub fn gtk_xft_hinting(mut self, gtk_xft_hinting: i32) -> Self {
-        self.gtk_xft_hinting = Some(gtk_xft_hinting);
-        self
-    }
-
-    pub fn gtk_xft_hintstyle(mut self, gtk_xft_hintstyle: &str) -> Self {
-        self.gtk_xft_hintstyle = Some(gtk_xft_hintstyle.to_string());
-        self
-    }
-
-    pub fn gtk_xft_rgba(mut self, gtk_xft_rgba: &str) -> Self {
-        self.gtk_xft_rgba = Some(gtk_xft_rgba.to_string());
-        self
+        self.builder.build()
     }
 }
 

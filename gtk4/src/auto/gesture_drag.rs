@@ -33,7 +33,7 @@ impl GestureDrag {
     ///
     /// This method returns an instance of [`GestureDragBuilder`](crate::builders::GestureDragBuilder) which can be used to create [`GestureDrag`] objects.
     pub fn builder() -> GestureDragBuilder {
-        GestureDragBuilder::default()
+        GestureDragBuilder::new()
     }
 }
 
@@ -43,91 +43,73 @@ impl Default for GestureDrag {
     }
 }
 
-#[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
 /// A [builder-pattern] type to construct [`GestureDrag`] objects.
 ///
 /// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 #[must_use = "The builder must be built to be used"]
 pub struct GestureDragBuilder {
-    button: Option<u32>,
-    exclusive: Option<bool>,
-    touch_only: Option<bool>,
-    n_points: Option<u32>,
-    name: Option<String>,
-    propagation_limit: Option<PropagationLimit>,
-    propagation_phase: Option<PropagationPhase>,
+    builder: glib::object::ObjectBuilder<'static, GestureDrag>,
 }
 
 impl GestureDragBuilder {
-    // rustdoc-stripper-ignore-next
-    /// Create a new [`GestureDragBuilder`].
-    pub fn new() -> Self {
-        Self::default()
+    fn new() -> Self {
+        Self {
+            builder: glib::object::Object::builder(),
+        }
+    }
+
+    pub fn button(self, button: u32) -> Self {
+        Self {
+            builder: self.builder.property("button", button),
+        }
+    }
+
+    pub fn exclusive(self, exclusive: bool) -> Self {
+        Self {
+            builder: self.builder.property("exclusive", exclusive),
+        }
+    }
+
+    pub fn touch_only(self, touch_only: bool) -> Self {
+        Self {
+            builder: self.builder.property("touch-only", touch_only),
+        }
+    }
+
+    pub fn n_points(self, n_points: u32) -> Self {
+        Self {
+            builder: self.builder.property("n-points", n_points),
+        }
+    }
+
+    pub fn name(self, name: impl Into<glib::GString>) -> Self {
+        Self {
+            builder: self.builder.property("name", name.into()),
+        }
+    }
+
+    pub fn propagation_limit(self, propagation_limit: PropagationLimit) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("propagation-limit", propagation_limit),
+        }
+    }
+
+    pub fn propagation_phase(self, propagation_phase: PropagationPhase) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("propagation-phase", propagation_phase),
+        }
     }
 
     // rustdoc-stripper-ignore-next
     /// Build the [`GestureDrag`].
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> GestureDrag {
-        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
-        if let Some(ref button) = self.button {
-            properties.push(("button", button));
-        }
-        if let Some(ref exclusive) = self.exclusive {
-            properties.push(("exclusive", exclusive));
-        }
-        if let Some(ref touch_only) = self.touch_only {
-            properties.push(("touch-only", touch_only));
-        }
-        if let Some(ref n_points) = self.n_points {
-            properties.push(("n-points", n_points));
-        }
-        if let Some(ref name) = self.name {
-            properties.push(("name", name));
-        }
-        if let Some(ref propagation_limit) = self.propagation_limit {
-            properties.push(("propagation-limit", propagation_limit));
-        }
-        if let Some(ref propagation_phase) = self.propagation_phase {
-            properties.push(("propagation-phase", propagation_phase));
-        }
-        glib::Object::new::<GestureDrag>(&properties)
-    }
-
-    pub fn button(mut self, button: u32) -> Self {
-        self.button = Some(button);
-        self
-    }
-
-    pub fn exclusive(mut self, exclusive: bool) -> Self {
-        self.exclusive = Some(exclusive);
-        self
-    }
-
-    pub fn touch_only(mut self, touch_only: bool) -> Self {
-        self.touch_only = Some(touch_only);
-        self
-    }
-
-    pub fn n_points(mut self, n_points: u32) -> Self {
-        self.n_points = Some(n_points);
-        self
-    }
-
-    pub fn name(mut self, name: &str) -> Self {
-        self.name = Some(name.to_string());
-        self
-    }
-
-    pub fn propagation_limit(mut self, propagation_limit: PropagationLimit) -> Self {
-        self.propagation_limit = Some(propagation_limit);
-        self
-    }
-
-    pub fn propagation_phase(mut self, propagation_phase: PropagationPhase) -> Self {
-        self.propagation_phase = Some(propagation_phase);
-        self
+        self.builder.build()
     }
 }
 

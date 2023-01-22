@@ -43,7 +43,7 @@ impl GLShader {
     ///
     /// This method returns an instance of [`GLShaderBuilder`](crate::builders::GLShaderBuilder) which can be used to create [`GLShader`] objects.
     pub fn builder() -> GLShaderBuilder {
-        GLShaderBuilder::default()
+        GLShaderBuilder::new()
     }
 
     #[doc(alias = "gsk_gl_shader_compile")]
@@ -164,46 +164,39 @@ impl GLShader {
     }
 }
 
-#[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
 /// A [builder-pattern] type to construct [`GLShader`] objects.
 ///
 /// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 #[must_use = "The builder must be built to be used"]
 pub struct GLShaderBuilder {
-    resource: Option<String>,
-    source: Option<glib::Bytes>,
+    builder: glib::object::ObjectBuilder<'static, GLShader>,
 }
 
 impl GLShaderBuilder {
-    // rustdoc-stripper-ignore-next
-    /// Create a new [`GLShaderBuilder`].
-    pub fn new() -> Self {
-        Self::default()
+    fn new() -> Self {
+        Self {
+            builder: glib::object::Object::builder(),
+        }
+    }
+
+    pub fn resource(self, resource: impl Into<glib::GString>) -> Self {
+        Self {
+            builder: self.builder.property("resource", resource.into()),
+        }
+    }
+
+    pub fn source(self, source: &glib::Bytes) -> Self {
+        Self {
+            builder: self.builder.property("source", source.clone()),
+        }
     }
 
     // rustdoc-stripper-ignore-next
     /// Build the [`GLShader`].
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> GLShader {
-        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
-        if let Some(ref resource) = self.resource {
-            properties.push(("resource", resource));
-        }
-        if let Some(ref source) = self.source {
-            properties.push(("source", source));
-        }
-        glib::Object::new::<GLShader>(&properties)
-    }
-
-    pub fn resource(mut self, resource: &str) -> Self {
-        self.resource = Some(resource.to_string());
-        self
-    }
-
-    pub fn source(mut self, source: &glib::Bytes) -> Self {
-        self.source = Some(source.clone());
-        self
+        self.builder.build()
     }
 }
 

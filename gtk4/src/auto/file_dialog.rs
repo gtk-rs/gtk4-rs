@@ -31,7 +31,7 @@ impl FileDialog {
     ///
     /// This method returns an instance of [`FileDialogBuilder`](crate::builders::FileDialogBuilder) which can be used to create [`FileDialog`] objects.
     pub fn builder() -> FileDialogBuilder {
-        FileDialogBuilder::default()
+        FileDialogBuilder::new()
     }
 
     #[doc(alias = "gtk_file_dialog_get_accept_label")]
@@ -716,140 +716,97 @@ impl Default for FileDialog {
     }
 }
 
-#[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
 /// A [builder-pattern] type to construct [`FileDialog`] objects.
 ///
 /// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 #[must_use = "The builder must be built to be used"]
 pub struct FileDialogBuilder {
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
-    accept_label: Option<String>,
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
-    default_filter: Option<FileFilter>,
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
-    filters: Option<gio::ListModel>,
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
-    initial_file: Option<gio::File>,
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
-    initial_folder: Option<gio::File>,
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
-    initial_name: Option<String>,
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
-    modal: Option<bool>,
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
-    title: Option<String>,
+    builder: glib::object::ObjectBuilder<'static, FileDialog>,
 }
 
 impl FileDialogBuilder {
-    // rustdoc-stripper-ignore-next
-    /// Create a new [`FileDialogBuilder`].
-    pub fn new() -> Self {
-        Self::default()
+    fn new() -> Self {
+        Self {
+            builder: glib::object::Object::builder(),
+        }
+    }
+
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn accept_label(self, accept_label: impl Into<glib::GString>) -> Self {
+        Self {
+            builder: self.builder.property("accept-label", accept_label.into()),
+        }
+    }
+
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn default_filter(self, default_filter: &FileFilter) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("default-filter", default_filter.clone()),
+        }
+    }
+
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn filters(self, filters: &impl IsA<gio::ListModel>) -> Self {
+        Self {
+            builder: self.builder.property("filters", filters.clone().upcast()),
+        }
+    }
+
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn initial_file(self, initial_file: &impl IsA<gio::File>) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("initial-file", initial_file.clone().upcast()),
+        }
+    }
+
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn initial_folder(self, initial_folder: &impl IsA<gio::File>) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("initial-folder", initial_folder.clone().upcast()),
+        }
+    }
+
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn initial_name(self, initial_name: impl Into<glib::GString>) -> Self {
+        Self {
+            builder: self.builder.property("initial-name", initial_name.into()),
+        }
+    }
+
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn modal(self, modal: bool) -> Self {
+        Self {
+            builder: self.builder.property("modal", modal),
+        }
+    }
+
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn title(self, title: impl Into<glib::GString>) -> Self {
+        Self {
+            builder: self.builder.property("title", title.into()),
+        }
     }
 
     // rustdoc-stripper-ignore-next
     /// Build the [`FileDialog`].
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> FileDialog {
-        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
-        #[cfg(any(feature = "v4_10", feature = "dox"))]
-        if let Some(ref accept_label) = self.accept_label {
-            properties.push(("accept-label", accept_label));
-        }
-        #[cfg(any(feature = "v4_10", feature = "dox"))]
-        if let Some(ref default_filter) = self.default_filter {
-            properties.push(("default-filter", default_filter));
-        }
-        #[cfg(any(feature = "v4_10", feature = "dox"))]
-        if let Some(ref filters) = self.filters {
-            properties.push(("filters", filters));
-        }
-        #[cfg(any(feature = "v4_10", feature = "dox"))]
-        if let Some(ref initial_file) = self.initial_file {
-            properties.push(("initial-file", initial_file));
-        }
-        #[cfg(any(feature = "v4_10", feature = "dox"))]
-        if let Some(ref initial_folder) = self.initial_folder {
-            properties.push(("initial-folder", initial_folder));
-        }
-        #[cfg(any(feature = "v4_10", feature = "dox"))]
-        if let Some(ref initial_name) = self.initial_name {
-            properties.push(("initial-name", initial_name));
-        }
-        #[cfg(any(feature = "v4_10", feature = "dox"))]
-        if let Some(ref modal) = self.modal {
-            properties.push(("modal", modal));
-        }
-        #[cfg(any(feature = "v4_10", feature = "dox"))]
-        if let Some(ref title) = self.title {
-            properties.push(("title", title));
-        }
-        glib::Object::new::<FileDialog>(&properties)
-    }
-
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
-    pub fn accept_label(mut self, accept_label: &str) -> Self {
-        self.accept_label = Some(accept_label.to_string());
-        self
-    }
-
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
-    pub fn default_filter(mut self, default_filter: &FileFilter) -> Self {
-        self.default_filter = Some(default_filter.clone());
-        self
-    }
-
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
-    pub fn filters(mut self, filters: &impl IsA<gio::ListModel>) -> Self {
-        self.filters = Some(filters.clone().upcast());
-        self
-    }
-
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
-    pub fn initial_file(mut self, initial_file: &impl IsA<gio::File>) -> Self {
-        self.initial_file = Some(initial_file.clone().upcast());
-        self
-    }
-
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
-    pub fn initial_folder(mut self, initial_folder: &impl IsA<gio::File>) -> Self {
-        self.initial_folder = Some(initial_folder.clone().upcast());
-        self
-    }
-
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
-    pub fn initial_name(mut self, initial_name: &str) -> Self {
-        self.initial_name = Some(initial_name.to_string());
-        self
-    }
-
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
-    pub fn modal(mut self, modal: bool) -> Self {
-        self.modal = Some(modal);
-        self
-    }
-
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
-    pub fn title(mut self, title: &str) -> Self {
-        self.title = Some(title.to_string());
-        self
+        self.builder.build()
     }
 }
 

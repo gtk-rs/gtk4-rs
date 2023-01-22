@@ -48,92 +48,73 @@ impl Adjustment {
     ///
     /// This method returns an instance of [`AdjustmentBuilder`](crate::builders::AdjustmentBuilder) which can be used to create [`Adjustment`] objects.
     pub fn builder() -> AdjustmentBuilder {
-        AdjustmentBuilder::default()
+        AdjustmentBuilder::new()
     }
 }
 
 impl Default for Adjustment {
     fn default() -> Self {
-        glib::object::Object::new::<Self>(&[])
+        glib::object::Object::new_default::<Self>()
     }
 }
 
-#[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
 /// A [builder-pattern] type to construct [`Adjustment`] objects.
 ///
 /// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 #[must_use = "The builder must be built to be used"]
 pub struct AdjustmentBuilder {
-    lower: Option<f64>,
-    page_increment: Option<f64>,
-    page_size: Option<f64>,
-    step_increment: Option<f64>,
-    upper: Option<f64>,
-    value: Option<f64>,
+    builder: glib::object::ObjectBuilder<'static, Adjustment>,
 }
 
 impl AdjustmentBuilder {
-    // rustdoc-stripper-ignore-next
-    /// Create a new [`AdjustmentBuilder`].
-    pub fn new() -> Self {
-        Self::default()
+    fn new() -> Self {
+        Self {
+            builder: glib::object::Object::builder(),
+        }
+    }
+
+    pub fn lower(self, lower: f64) -> Self {
+        Self {
+            builder: self.builder.property("lower", lower),
+        }
+    }
+
+    pub fn page_increment(self, page_increment: f64) -> Self {
+        Self {
+            builder: self.builder.property("page-increment", page_increment),
+        }
+    }
+
+    pub fn page_size(self, page_size: f64) -> Self {
+        Self {
+            builder: self.builder.property("page-size", page_size),
+        }
+    }
+
+    pub fn step_increment(self, step_increment: f64) -> Self {
+        Self {
+            builder: self.builder.property("step-increment", step_increment),
+        }
+    }
+
+    pub fn upper(self, upper: f64) -> Self {
+        Self {
+            builder: self.builder.property("upper", upper),
+        }
+    }
+
+    pub fn value(self, value: f64) -> Self {
+        Self {
+            builder: self.builder.property("value", value),
+        }
     }
 
     // rustdoc-stripper-ignore-next
     /// Build the [`Adjustment`].
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> Adjustment {
-        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
-        if let Some(ref lower) = self.lower {
-            properties.push(("lower", lower));
-        }
-        if let Some(ref page_increment) = self.page_increment {
-            properties.push(("page-increment", page_increment));
-        }
-        if let Some(ref page_size) = self.page_size {
-            properties.push(("page-size", page_size));
-        }
-        if let Some(ref step_increment) = self.step_increment {
-            properties.push(("step-increment", step_increment));
-        }
-        if let Some(ref upper) = self.upper {
-            properties.push(("upper", upper));
-        }
-        if let Some(ref value) = self.value {
-            properties.push(("value", value));
-        }
-        glib::Object::new::<Adjustment>(&properties)
-    }
-
-    pub fn lower(mut self, lower: f64) -> Self {
-        self.lower = Some(lower);
-        self
-    }
-
-    pub fn page_increment(mut self, page_increment: f64) -> Self {
-        self.page_increment = Some(page_increment);
-        self
-    }
-
-    pub fn page_size(mut self, page_size: f64) -> Self {
-        self.page_size = Some(page_size);
-        self
-    }
-
-    pub fn step_increment(mut self, step_increment: f64) -> Self {
-        self.step_increment = Some(step_increment);
-        self
-    }
-
-    pub fn upper(mut self, upper: f64) -> Self {
-        self.upper = Some(upper);
-        self
-    }
-
-    pub fn value(mut self, value: f64) -> Self {
-        self.value = Some(value);
-        self
+        self.builder.build()
     }
 }
 

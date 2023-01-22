@@ -31,7 +31,7 @@ impl ConstraintGuide {
     ///
     /// This method returns an instance of [`ConstraintGuideBuilder`](crate::builders::ConstraintGuideBuilder) which can be used to create [`ConstraintGuide`] objects.
     pub fn builder() -> ConstraintGuideBuilder {
-        ConstraintGuideBuilder::default()
+        ConstraintGuideBuilder::new()
     }
 
     #[doc(alias = "gtk_constraint_guide_get_name")]
@@ -336,100 +336,75 @@ impl Default for ConstraintGuide {
     }
 }
 
-#[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
 /// A [builder-pattern] type to construct [`ConstraintGuide`] objects.
 ///
 /// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 #[must_use = "The builder must be built to be used"]
 pub struct ConstraintGuideBuilder {
-    max_height: Option<i32>,
-    max_width: Option<i32>,
-    min_height: Option<i32>,
-    min_width: Option<i32>,
-    name: Option<String>,
-    nat_height: Option<i32>,
-    nat_width: Option<i32>,
-    strength: Option<ConstraintStrength>,
+    builder: glib::object::ObjectBuilder<'static, ConstraintGuide>,
 }
 
 impl ConstraintGuideBuilder {
-    // rustdoc-stripper-ignore-next
-    /// Create a new [`ConstraintGuideBuilder`].
-    pub fn new() -> Self {
-        Self::default()
+    fn new() -> Self {
+        Self {
+            builder: glib::object::Object::builder(),
+        }
+    }
+
+    pub fn max_height(self, max_height: i32) -> Self {
+        Self {
+            builder: self.builder.property("max-height", max_height),
+        }
+    }
+
+    pub fn max_width(self, max_width: i32) -> Self {
+        Self {
+            builder: self.builder.property("max-width", max_width),
+        }
+    }
+
+    pub fn min_height(self, min_height: i32) -> Self {
+        Self {
+            builder: self.builder.property("min-height", min_height),
+        }
+    }
+
+    pub fn min_width(self, min_width: i32) -> Self {
+        Self {
+            builder: self.builder.property("min-width", min_width),
+        }
+    }
+
+    pub fn name(self, name: impl Into<glib::GString>) -> Self {
+        Self {
+            builder: self.builder.property("name", name.into()),
+        }
+    }
+
+    pub fn nat_height(self, nat_height: i32) -> Self {
+        Self {
+            builder: self.builder.property("nat-height", nat_height),
+        }
+    }
+
+    pub fn nat_width(self, nat_width: i32) -> Self {
+        Self {
+            builder: self.builder.property("nat-width", nat_width),
+        }
+    }
+
+    pub fn strength(self, strength: ConstraintStrength) -> Self {
+        Self {
+            builder: self.builder.property("strength", strength),
+        }
     }
 
     // rustdoc-stripper-ignore-next
     /// Build the [`ConstraintGuide`].
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> ConstraintGuide {
-        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
-        if let Some(ref max_height) = self.max_height {
-            properties.push(("max-height", max_height));
-        }
-        if let Some(ref max_width) = self.max_width {
-            properties.push(("max-width", max_width));
-        }
-        if let Some(ref min_height) = self.min_height {
-            properties.push(("min-height", min_height));
-        }
-        if let Some(ref min_width) = self.min_width {
-            properties.push(("min-width", min_width));
-        }
-        if let Some(ref name) = self.name {
-            properties.push(("name", name));
-        }
-        if let Some(ref nat_height) = self.nat_height {
-            properties.push(("nat-height", nat_height));
-        }
-        if let Some(ref nat_width) = self.nat_width {
-            properties.push(("nat-width", nat_width));
-        }
-        if let Some(ref strength) = self.strength {
-            properties.push(("strength", strength));
-        }
-        glib::Object::new::<ConstraintGuide>(&properties)
-    }
-
-    pub fn max_height(mut self, max_height: i32) -> Self {
-        self.max_height = Some(max_height);
-        self
-    }
-
-    pub fn max_width(mut self, max_width: i32) -> Self {
-        self.max_width = Some(max_width);
-        self
-    }
-
-    pub fn min_height(mut self, min_height: i32) -> Self {
-        self.min_height = Some(min_height);
-        self
-    }
-
-    pub fn min_width(mut self, min_width: i32) -> Self {
-        self.min_width = Some(min_width);
-        self
-    }
-
-    pub fn name(mut self, name: &str) -> Self {
-        self.name = Some(name.to_string());
-        self
-    }
-
-    pub fn nat_height(mut self, nat_height: i32) -> Self {
-        self.nat_height = Some(nat_height);
-        self
-    }
-
-    pub fn nat_width(mut self, nat_width: i32) -> Self {
-        self.nat_width = Some(nat_width);
-        self
-    }
-
-    pub fn strength(mut self, strength: ConstraintStrength) -> Self {
-        self.strength = Some(strength);
-        self
+        self.builder.build()
     }
 }
 

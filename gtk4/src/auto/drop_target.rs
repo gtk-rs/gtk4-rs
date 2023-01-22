@@ -37,7 +37,7 @@ impl DropTarget {
     ///
     /// This method returns an instance of [`DropTargetBuilder`](crate::builders::DropTargetBuilder) which can be used to create [`DropTarget`] objects.
     pub fn builder() -> DropTargetBuilder {
-        DropTargetBuilder::default()
+        DropTargetBuilder::new()
     }
 
     #[doc(alias = "gtk_drop_target_get_actions")]
@@ -328,86 +328,71 @@ impl DropTarget {
 
 impl Default for DropTarget {
     fn default() -> Self {
-        glib::object::Object::new::<Self>(&[])
+        glib::object::Object::new_default::<Self>()
     }
 }
 
-#[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
 /// A [builder-pattern] type to construct [`DropTarget`] objects.
 ///
 /// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 #[must_use = "The builder must be built to be used"]
 pub struct DropTargetBuilder {
-    actions: Option<gdk::DragAction>,
-    formats: Option<gdk::ContentFormats>,
-    preload: Option<bool>,
-    name: Option<String>,
-    propagation_limit: Option<PropagationLimit>,
-    propagation_phase: Option<PropagationPhase>,
+    builder: glib::object::ObjectBuilder<'static, DropTarget>,
 }
 
 impl DropTargetBuilder {
-    // rustdoc-stripper-ignore-next
-    /// Create a new [`DropTargetBuilder`].
-    pub fn new() -> Self {
-        Self::default()
+    fn new() -> Self {
+        Self {
+            builder: glib::object::Object::builder(),
+        }
+    }
+
+    pub fn actions(self, actions: gdk::DragAction) -> Self {
+        Self {
+            builder: self.builder.property("actions", actions),
+        }
+    }
+
+    pub fn formats(self, formats: &gdk::ContentFormats) -> Self {
+        Self {
+            builder: self.builder.property("formats", formats.clone()),
+        }
+    }
+
+    pub fn preload(self, preload: bool) -> Self {
+        Self {
+            builder: self.builder.property("preload", preload),
+        }
+    }
+
+    pub fn name(self, name: impl Into<glib::GString>) -> Self {
+        Self {
+            builder: self.builder.property("name", name.into()),
+        }
+    }
+
+    pub fn propagation_limit(self, propagation_limit: PropagationLimit) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("propagation-limit", propagation_limit),
+        }
+    }
+
+    pub fn propagation_phase(self, propagation_phase: PropagationPhase) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("propagation-phase", propagation_phase),
+        }
     }
 
     // rustdoc-stripper-ignore-next
     /// Build the [`DropTarget`].
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> DropTarget {
-        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
-        if let Some(ref actions) = self.actions {
-            properties.push(("actions", actions));
-        }
-        if let Some(ref formats) = self.formats {
-            properties.push(("formats", formats));
-        }
-        if let Some(ref preload) = self.preload {
-            properties.push(("preload", preload));
-        }
-        if let Some(ref name) = self.name {
-            properties.push(("name", name));
-        }
-        if let Some(ref propagation_limit) = self.propagation_limit {
-            properties.push(("propagation-limit", propagation_limit));
-        }
-        if let Some(ref propagation_phase) = self.propagation_phase {
-            properties.push(("propagation-phase", propagation_phase));
-        }
-        glib::Object::new::<DropTarget>(&properties)
-    }
-
-    pub fn actions(mut self, actions: gdk::DragAction) -> Self {
-        self.actions = Some(actions);
-        self
-    }
-
-    pub fn formats(mut self, formats: &gdk::ContentFormats) -> Self {
-        self.formats = Some(formats.clone());
-        self
-    }
-
-    pub fn preload(mut self, preload: bool) -> Self {
-        self.preload = Some(preload);
-        self
-    }
-
-    pub fn name(mut self, name: &str) -> Self {
-        self.name = Some(name.to_string());
-        self
-    }
-
-    pub fn propagation_limit(mut self, propagation_limit: PropagationLimit) -> Self {
-        self.propagation_limit = Some(propagation_limit);
-        self
-    }
-
-    pub fn propagation_phase(mut self, propagation_phase: PropagationPhase) -> Self {
-        self.propagation_phase = Some(propagation_phase);
-        self
+        self.builder.build()
     }
 }
 

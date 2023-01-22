@@ -39,7 +39,7 @@ impl Shortcut {
     ///
     /// This method returns an instance of [`ShortcutBuilder`](crate::builders::ShortcutBuilder) which can be used to create [`Shortcut`] objects.
     pub fn builder() -> ShortcutBuilder {
-        ShortcutBuilder::default()
+        ShortcutBuilder::new()
     }
 
     #[doc(alias = "gtk_shortcut_get_action")]
@@ -159,59 +159,49 @@ impl Shortcut {
 
 impl Default for Shortcut {
     fn default() -> Self {
-        glib::object::Object::new::<Self>(&[])
+        glib::object::Object::new_default::<Self>()
     }
 }
 
-#[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
 /// A [builder-pattern] type to construct [`Shortcut`] objects.
 ///
 /// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 #[must_use = "The builder must be built to be used"]
 pub struct ShortcutBuilder {
-    action: Option<ShortcutAction>,
-    arguments: Option<glib::Variant>,
-    trigger: Option<ShortcutTrigger>,
+    builder: glib::object::ObjectBuilder<'static, Shortcut>,
 }
 
 impl ShortcutBuilder {
-    // rustdoc-stripper-ignore-next
-    /// Create a new [`ShortcutBuilder`].
-    pub fn new() -> Self {
-        Self::default()
+    fn new() -> Self {
+        Self {
+            builder: glib::object::Object::builder(),
+        }
+    }
+
+    pub fn action(self, action: &impl IsA<ShortcutAction>) -> Self {
+        Self {
+            builder: self.builder.property("action", action.clone().upcast()),
+        }
+    }
+
+    pub fn arguments(self, arguments: &glib::Variant) -> Self {
+        Self {
+            builder: self.builder.property("arguments", arguments.clone()),
+        }
+    }
+
+    pub fn trigger(self, trigger: &impl IsA<ShortcutTrigger>) -> Self {
+        Self {
+            builder: self.builder.property("trigger", trigger.clone().upcast()),
+        }
     }
 
     // rustdoc-stripper-ignore-next
     /// Build the [`Shortcut`].
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> Shortcut {
-        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
-        if let Some(ref action) = self.action {
-            properties.push(("action", action));
-        }
-        if let Some(ref arguments) = self.arguments {
-            properties.push(("arguments", arguments));
-        }
-        if let Some(ref trigger) = self.trigger {
-            properties.push(("trigger", trigger));
-        }
-        glib::Object::new::<Shortcut>(&properties)
-    }
-
-    pub fn action(mut self, action: &impl IsA<ShortcutAction>) -> Self {
-        self.action = Some(action.clone().upcast());
-        self
-    }
-
-    pub fn arguments(mut self, arguments: &glib::Variant) -> Self {
-        self.arguments = Some(arguments.clone());
-        self
-    }
-
-    pub fn trigger(mut self, trigger: &impl IsA<ShortcutTrigger>) -> Self {
-        self.trigger = Some(trigger.clone().upcast());
-        self
+        self.builder.build()
     }
 }
 

@@ -26,50 +26,43 @@ impl EntryBuffer {
     ///
     /// This method returns an instance of [`EntryBufferBuilder`](crate::builders::EntryBufferBuilder) which can be used to create [`EntryBuffer`] objects.
     pub fn builder() -> EntryBufferBuilder {
-        EntryBufferBuilder::default()
+        EntryBufferBuilder::new()
     }
 }
 
-#[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
 /// A [builder-pattern] type to construct [`EntryBuffer`] objects.
 ///
 /// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 #[must_use = "The builder must be built to be used"]
 pub struct EntryBufferBuilder {
-    max_length: Option<i32>,
-    text: Option<String>,
+    builder: glib::object::ObjectBuilder<'static, EntryBuffer>,
 }
 
 impl EntryBufferBuilder {
-    // rustdoc-stripper-ignore-next
-    /// Create a new [`EntryBufferBuilder`].
-    pub fn new() -> Self {
-        Self::default()
+    fn new() -> Self {
+        Self {
+            builder: glib::object::Object::builder(),
+        }
+    }
+
+    pub fn max_length(self, max_length: i32) -> Self {
+        Self {
+            builder: self.builder.property("max-length", max_length),
+        }
+    }
+
+    pub fn text(self, text: impl Into<glib::GString>) -> Self {
+        Self {
+            builder: self.builder.property("text", text.into()),
+        }
     }
 
     // rustdoc-stripper-ignore-next
     /// Build the [`EntryBuffer`].
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> EntryBuffer {
-        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
-        if let Some(ref max_length) = self.max_length {
-            properties.push(("max-length", max_length));
-        }
-        if let Some(ref text) = self.text {
-            properties.push(("text", text));
-        }
-        glib::Object::new::<EntryBuffer>(&properties)
-    }
-
-    pub fn max_length(mut self, max_length: i32) -> Self {
-        self.max_length = Some(max_length);
-        self
-    }
-
-    pub fn text(mut self, text: &str) -> Self {
-        self.text = Some(text.to_string());
-        self
+        self.builder.build()
     }
 }
 

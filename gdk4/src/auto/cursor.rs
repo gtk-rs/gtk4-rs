@@ -52,7 +52,7 @@ impl Cursor {
     ///
     /// This method returns an instance of [`CursorBuilder`](crate::builders::CursorBuilder) which can be used to create [`Cursor`] objects.
     pub fn builder() -> CursorBuilder {
-        CursorBuilder::default()
+        CursorBuilder::new()
     }
 
     #[doc(alias = "gdk_cursor_get_fallback")]
@@ -87,73 +87,57 @@ impl Cursor {
     }
 }
 
-#[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
 /// A [builder-pattern] type to construct [`Cursor`] objects.
 ///
 /// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 #[must_use = "The builder must be built to be used"]
 pub struct CursorBuilder {
-    fallback: Option<Cursor>,
-    hotspot_x: Option<i32>,
-    hotspot_y: Option<i32>,
-    name: Option<String>,
-    texture: Option<Texture>,
+    builder: glib::object::ObjectBuilder<'static, Cursor>,
 }
 
 impl CursorBuilder {
-    // rustdoc-stripper-ignore-next
-    /// Create a new [`CursorBuilder`].
-    pub fn new() -> Self {
-        Self::default()
+    fn new() -> Self {
+        Self {
+            builder: glib::object::Object::builder(),
+        }
+    }
+
+    pub fn fallback(self, fallback: &Cursor) -> Self {
+        Self {
+            builder: self.builder.property("fallback", fallback.clone()),
+        }
+    }
+
+    pub fn hotspot_x(self, hotspot_x: i32) -> Self {
+        Self {
+            builder: self.builder.property("hotspot-x", hotspot_x),
+        }
+    }
+
+    pub fn hotspot_y(self, hotspot_y: i32) -> Self {
+        Self {
+            builder: self.builder.property("hotspot-y", hotspot_y),
+        }
+    }
+
+    pub fn name(self, name: impl Into<glib::GString>) -> Self {
+        Self {
+            builder: self.builder.property("name", name.into()),
+        }
+    }
+
+    pub fn texture(self, texture: &impl IsA<Texture>) -> Self {
+        Self {
+            builder: self.builder.property("texture", texture.clone().upcast()),
+        }
     }
 
     // rustdoc-stripper-ignore-next
     /// Build the [`Cursor`].
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> Cursor {
-        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
-        if let Some(ref fallback) = self.fallback {
-            properties.push(("fallback", fallback));
-        }
-        if let Some(ref hotspot_x) = self.hotspot_x {
-            properties.push(("hotspot-x", hotspot_x));
-        }
-        if let Some(ref hotspot_y) = self.hotspot_y {
-            properties.push(("hotspot-y", hotspot_y));
-        }
-        if let Some(ref name) = self.name {
-            properties.push(("name", name));
-        }
-        if let Some(ref texture) = self.texture {
-            properties.push(("texture", texture));
-        }
-        glib::Object::new::<Cursor>(&properties)
-    }
-
-    pub fn fallback(mut self, fallback: &Cursor) -> Self {
-        self.fallback = Some(fallback.clone());
-        self
-    }
-
-    pub fn hotspot_x(mut self, hotspot_x: i32) -> Self {
-        self.hotspot_x = Some(hotspot_x);
-        self
-    }
-
-    pub fn hotspot_y(mut self, hotspot_y: i32) -> Self {
-        self.hotspot_y = Some(hotspot_y);
-        self
-    }
-
-    pub fn name(mut self, name: &str) -> Self {
-        self.name = Some(name.to_string());
-        self
-    }
-
-    pub fn texture(mut self, texture: &impl IsA<Texture>) -> Self {
-        self.texture = Some(texture.clone().upcast());
-        self
+        self.builder.build()
     }
 }
 

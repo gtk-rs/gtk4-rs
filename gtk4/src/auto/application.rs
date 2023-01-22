@@ -27,99 +27,85 @@ impl Application {
     ///
     /// This method returns an instance of [`ApplicationBuilder`](crate::builders::ApplicationBuilder) which can be used to create [`Application`] objects.
     pub fn builder() -> ApplicationBuilder {
-        ApplicationBuilder::default()
+        ApplicationBuilder::new()
     }
 }
 
-#[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
 /// A [builder-pattern] type to construct [`Application`] objects.
 ///
 /// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 #[must_use = "The builder must be built to be used"]
 pub struct ApplicationBuilder {
-    menubar: Option<gio::MenuModel>,
-    register_session: Option<bool>,
-    action_group: Option<gio::ActionGroup>,
-    application_id: Option<String>,
-    flags: Option<gio::ApplicationFlags>,
-    inactivity_timeout: Option<u32>,
-    resource_base_path: Option<String>,
+    builder: glib::object::ObjectBuilder<'static, Application>,
 }
 
 impl ApplicationBuilder {
-    // rustdoc-stripper-ignore-next
-    /// Create a new [`ApplicationBuilder`].
-    pub fn new() -> Self {
-        Self::default()
+    fn new() -> Self {
+        Self {
+            builder: glib::object::Object::builder(),
+        }
+    }
+
+    pub fn menubar(self, menubar: &impl IsA<gio::MenuModel>) -> Self {
+        Self {
+            builder: self.builder.property("menubar", menubar.clone().upcast()),
+        }
+    }
+
+    pub fn register_session(self, register_session: bool) -> Self {
+        Self {
+            builder: self.builder.property("register-session", register_session),
+        }
+    }
+
+    pub fn action_group(self, action_group: &impl IsA<gio::ActionGroup>) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("action-group", action_group.clone().upcast()),
+        }
+    }
+
+    pub fn application_id(self, application_id: impl Into<glib::GString>) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("application-id", application_id.into()),
+        }
+    }
+
+    pub fn flags(self, flags: gio::ApplicationFlags) -> Self {
+        Self {
+            builder: self.builder.property("flags", flags),
+        }
+    }
+
+    pub fn inactivity_timeout(self, inactivity_timeout: u32) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("inactivity-timeout", inactivity_timeout),
+        }
+    }
+
+    pub fn resource_base_path(self, resource_base_path: impl Into<glib::GString>) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("resource-base-path", resource_base_path.into()),
+        }
     }
 
     // rustdoc-stripper-ignore-next
     /// Build the [`Application`].
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> Application {
-        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
-        if let Some(ref menubar) = self.menubar {
-            properties.push(("menubar", menubar));
-        }
-        if let Some(ref register_session) = self.register_session {
-            properties.push(("register-session", register_session));
-        }
-        if let Some(ref action_group) = self.action_group {
-            properties.push(("action-group", action_group));
-        }
-        if let Some(ref application_id) = self.application_id {
-            properties.push(("application-id", application_id));
-        }
-        if let Some(ref flags) = self.flags {
-            properties.push(("flags", flags));
-        }
-        if let Some(ref inactivity_timeout) = self.inactivity_timeout {
-            properties.push(("inactivity-timeout", inactivity_timeout));
-        }
-        if let Some(ref resource_base_path) = self.resource_base_path {
-            properties.push(("resource-base-path", resource_base_path));
-        }
-        let ret = glib::Object::new::<Application>(&properties);
+        let ret = self.builder.build();
         {
             Application::register_startup_hook(&ret);
         }
         ret
-    }
-
-    pub fn menubar(mut self, menubar: &impl IsA<gio::MenuModel>) -> Self {
-        self.menubar = Some(menubar.clone().upcast());
-        self
-    }
-
-    pub fn register_session(mut self, register_session: bool) -> Self {
-        self.register_session = Some(register_session);
-        self
-    }
-
-    pub fn action_group(mut self, action_group: &impl IsA<gio::ActionGroup>) -> Self {
-        self.action_group = Some(action_group.clone().upcast());
-        self
-    }
-
-    pub fn application_id(mut self, application_id: &str) -> Self {
-        self.application_id = Some(application_id.to_string());
-        self
-    }
-
-    pub fn flags(mut self, flags: gio::ApplicationFlags) -> Self {
-        self.flags = Some(flags);
-        self
-    }
-
-    pub fn inactivity_timeout(mut self, inactivity_timeout: u32) -> Self {
-        self.inactivity_timeout = Some(inactivity_timeout);
-        self
-    }
-
-    pub fn resource_base_path(mut self, resource_base_path: &str) -> Self {
-        self.resource_base_path = Some(resource_base_path.to_string());
-        self
     }
 }
 
