@@ -87,6 +87,7 @@ impl FromGlibPtrFull<*mut gobject_ffi::GParamSpec> for ParamSpecExpression {
 impl ParamSpecExpression {
     #[allow(clippy::new_ret_no_self)]
     #[doc(alias = "gtk_param_spec_expression")]
+    #[deprecated = "Use builder() instead"]
     pub fn new(
         name: impl IntoGStr,
         nick: impl IntoOptionalGStr,
