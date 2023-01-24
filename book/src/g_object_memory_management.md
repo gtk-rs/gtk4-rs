@@ -168,7 +168,7 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 
 The reference cycle is broken.
 Every time the button is clicked, `glib::clone` tries to upgrade the weak reference.
-If we now for example click on one button and the other button is not there anymore, `upgrade` will return `None`.
+If we now for example click on one button and the other button is not there anymore, the callback will be skipped.
 Per default, it immediately returns from the closure with `()` as return value.
 In case the closure expects a different return value `@default-return` can be specified.
 
