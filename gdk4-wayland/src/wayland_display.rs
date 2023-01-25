@@ -74,7 +74,7 @@ impl WaylandDisplay {
         }
     }
 
-    #[cfg(any(feature = "wayland_crate", feature = "dox"))]
+    #[cfg(feature = "wayland_crate")]
     pub(crate) fn connection(&self) -> wayland_client::Connection {
         unsafe {
             match self
