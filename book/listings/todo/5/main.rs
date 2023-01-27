@@ -3,14 +3,14 @@ mod task_row;
 mod utils;
 mod window;
 
-use gtk::gio;
 use gtk::prelude::*;
+use gtk::{gio, glib};
 use window::Window;
 
 static APP_ID: &str = "org.gtk_rs.Todo5";
 
 // ANCHOR: main
-fn main() {
+fn main() -> glib::ExitCode {
     gio::resources_register_include!("todo_5.gresource")
         .expect("Failed to register resources.");
 
@@ -23,7 +23,7 @@ fn main() {
     app.connect_activate(build_ui);
 
     // Run the application
-    app.run();
+    app.run()
 }
 
 //                       👇 changed

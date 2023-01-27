@@ -1,11 +1,13 @@
 use gdk::Display;
 use gtk::prelude::*;
-use gtk::{gdk, Application, ApplicationWindow, Button, CssProvider, StyleContext};
+use gtk::{
+    gdk, glib, Application, ApplicationWindow, Button, CssProvider, StyleContext,
+};
 
 // ANCHOR: main
 const APP_ID: &str = "org.gtk_rs.Css1";
 
-fn main() {
+fn main() -> glib::ExitCode {
     // Create a new application
     let app = Application::builder().application_id(APP_ID).build();
 
@@ -14,7 +16,7 @@ fn main() {
     app.connect_activate(build_ui);
 
     // Run the application
-    app.run();
+    app.run()
 }
 
 fn load_css() {

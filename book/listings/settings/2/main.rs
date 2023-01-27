@@ -1,10 +1,10 @@
 use gio::{Settings, SettingsBindFlags};
 use gtk::prelude::*;
-use gtk::{gio, Align, Application, ApplicationWindow, Switch};
+use gtk::{gio, glib, Align, Application, ApplicationWindow, Switch};
 
 const APP_ID: &str = "org.gtk_rs.Settings2";
 
-fn main() {
+fn main() -> glib::ExitCode {
     // Create a new application
     let app = Application::builder().application_id(APP_ID).build();
 
@@ -12,7 +12,7 @@ fn main() {
     app.connect_activate(build_ui);
 
     // Run the application
-    app.run();
+    app.run()
 }
 
 fn build_ui(app: &Application) {

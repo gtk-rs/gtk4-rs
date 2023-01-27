@@ -1,8 +1,8 @@
 mod integer_object;
 
 use gtk::{
-    gio, Application, ApplicationWindow, CustomFilter, CustomSorter, FilterChange,
-    FilterListModel, Label, ListView, PolicyType, ScrolledWindow,
+    gio, glib, Application, ApplicationWindow, CustomFilter, CustomSorter,
+    FilterChange, FilterListModel, Label, ListView, PolicyType, ScrolledWindow,
     SignalListItemFactory, SingleSelection, SortListModel, SorterChange, Widget,
 };
 use gtk::{prelude::*, ListItem};
@@ -10,7 +10,7 @@ use integer_object::IntegerObject;
 
 const APP_ID: &str = "org.gtk_rs.ListWidgets5";
 
-fn main() {
+fn main() -> glib::ExitCode {
     // Create a new application
     let app = Application::builder().application_id(APP_ID).build();
 
@@ -18,7 +18,7 @@ fn main() {
     app.connect_activate(build_ui);
 
     // Run the application
-    app.run();
+    app.run()
 }
 
 fn build_ui(app: &Application) {
