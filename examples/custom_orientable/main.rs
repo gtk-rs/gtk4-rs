@@ -4,7 +4,7 @@ use custom_orientable::CustomOrientable;
 use gtk::glib;
 use gtk::prelude::*;
 
-fn main() {
+fn main() -> glib::ExitCode {
     let application = gtk::Application::new(
         Some("com.github.gtk-rs.examples.orientable_subclass"),
         Default::default(),
@@ -35,5 +35,5 @@ fn main() {
         window.show();
     });
 
-    application.run();
+    application.run()
 }

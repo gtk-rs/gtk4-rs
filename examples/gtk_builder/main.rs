@@ -1,13 +1,13 @@
 use gtk::prelude::*;
-use gtk::{Application, ApplicationWindow, Builder, Button, MessageDialog, ResponseType};
+use gtk::{glib, Application, ApplicationWindow, Builder, Button, MessageDialog, ResponseType};
 
-fn main() {
+fn main() -> glib::ExitCode {
     let application = gtk::Application::new(
         Some("com.github.gtk-rs.examples.builder_basics"),
         Default::default(),
     );
     application.connect_activate(build_ui);
-    application.run();
+    application.run()
 }
 
 fn build_ui(application: &Application) {

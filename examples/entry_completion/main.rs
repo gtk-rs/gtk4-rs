@@ -5,7 +5,7 @@ use glib::Type;
 use gtk::gio::SimpleAction;
 use gtk::{Application, Entry, EntryCompletion, Label, ListStore, Orientation};
 
-fn main() {
+fn main() -> glib::ExitCode {
     let application = Application::new(
         Some("com.github.gtk-rs.examples.entry-completion"),
         Default::default(),
@@ -23,7 +23,7 @@ fn main() {
     application.add_action(&quit);
 
     // Run the application
-    application.run();
+    application.run()
 }
 
 fn build_ui(application: &Application) {

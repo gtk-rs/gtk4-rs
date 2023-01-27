@@ -8,7 +8,7 @@ use gtk::prelude::*;
 use gtk::subclass::prelude::*;
 use gtk::{gdk, glib};
 
-fn main() {
+fn main() -> glib::ExitCode {
     let application = gtk::Application::new(
         Some("com.github.gtk-rs.examples.editable"),
         Default::default(),
@@ -25,7 +25,7 @@ fn main() {
     });
 
     application.connect_activate(build_ui);
-    application.run();
+    application.run()
 }
 
 fn build_ui(application: &gtk::Application) {

@@ -1,16 +1,16 @@
-use gtk::glib::clone;
 use gtk::glib::signal::Inhibit;
+use gtk::glib::{self, clone};
 use gtk::prelude::*;
 
 use std::rc::Rc;
 
-fn main() {
+fn main() -> glib::ExitCode {
     let application = gtk::Application::builder()
         .application_id("com.github.gtk-rs.examples.dialog")
         .build();
 
     application.connect_activate(build_ui);
-    application.run();
+    application.run()
 }
 
 fn build_ui(application: &gtk::Application) {

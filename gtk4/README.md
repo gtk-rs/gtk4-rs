@@ -38,7 +38,7 @@ use gtk4 as gtk;
 use gtk::prelude::*;
 use gtk::{Application, ApplicationWindow};
 
-fn main() {
+fn main() -> glib::ExitCode {
     let app = Application::builder()
         .application_id("org.example.HelloWorld")
         .build();
@@ -56,7 +56,7 @@ fn main() {
         window.show();
     });
 
-    app.run();
+    app.run()
 }
 ```
 
@@ -70,7 +70,7 @@ use gtk4 as gtk;
 use gtk::prelude::*;
 use gtk::{Application, ApplicationWindow, Button};
 
-fn main() {
+fn main() -> glib::ExitCode {
     let application = Application::builder()
         .application_id("com.example.FirstGtkApp")
         .build();
@@ -92,7 +92,7 @@ fn main() {
         window.show();
     });
 
-    application.run();
+    application.run()
 }
 ```
 

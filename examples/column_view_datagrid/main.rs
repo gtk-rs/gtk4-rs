@@ -2,9 +2,9 @@ mod grid_cell;
 
 use crate::grid_cell::Entry;
 use crate::grid_cell::GridCell;
-use gtk::gio;
 use gtk::glib::BoxedAnyObject;
 use gtk::prelude::*;
+use gtk::{gio, glib};
 
 struct Row {
     col1: String,
@@ -13,13 +13,13 @@ struct Row {
 
 use std::cell::Ref;
 
-fn main() {
+fn main() -> glib::ExitCode {
     let app = gtk::Application::new(
         Some("com.github.gtk-rs.examples.columnview-example"),
         Default::default(),
     );
     app.connect_activate(build_ui);
-    app.run();
+    app.run()
 }
 
 fn build_ui(application: &gtk::Application) {

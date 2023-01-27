@@ -1,9 +1,10 @@
 mod scale_bin;
 
+use gtk::glib;
 use gtk::prelude::*;
 use scale_bin::ScaleBin;
 
-fn main() {
+fn main() -> glib::ExitCode {
     let application = gtk::Application::builder()
         .application_id("com.github.gtk-rs.examples.scale_bin")
         .build();
@@ -15,5 +16,5 @@ fn main() {
         window.show();
     });
 
-    application.run();
+    application.run()
 }

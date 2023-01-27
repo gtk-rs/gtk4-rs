@@ -1,17 +1,17 @@
 mod data_set;
 use std::str::FromStr;
 
-use gtk::gdk;
 use gtk::prelude::*;
+use gtk::{gdk, glib};
 
-fn main() {
+fn main() -> glib::ExitCode {
     let application = gtk::Application::new(
         Some("com.github.gtk-rs.examples.flowbox"),
         Default::default(),
     );
 
     application.connect_activate(build_ui);
-    application.run();
+    application.run()
 }
 
 fn build_ui(app: &gtk::Application) {

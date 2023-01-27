@@ -1,11 +1,12 @@
 use std::ptr;
 
+use gtk::glib;
 use gtk::prelude::*;
 
 mod glium_gl_area;
 use glium_gl_area::GliumGLArea;
 
-fn main() {
+fn main() -> glib::ExitCode {
     // Load GL pointers from epoxy (GL context management library used by GTK).
     {
         #[cfg(target_os = "macos")]
@@ -29,7 +30,7 @@ fn main() {
         Default::default(),
     );
     application.connect_activate(build_ui);
-    application.run();
+    application.run()
 }
 
 fn build_ui(application: &gtk::Application) {

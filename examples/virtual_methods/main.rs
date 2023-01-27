@@ -7,7 +7,7 @@ use gtk::{
     prelude::*,
 };
 
-fn main() {
+fn main() -> glib::ExitCode {
     let application = gtk::Application::new(
         Some("com.github.gtk-rs.examples.virtual_methods"),
         Default::default(),
@@ -38,5 +38,5 @@ fn main() {
         win.show();
     });
 
-    application.run();
+    application.run()
 }

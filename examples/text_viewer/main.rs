@@ -1,4 +1,3 @@
-use gtk::glib;
 use gtk::prelude::*;
 
 use std::fs::File;
@@ -6,17 +5,17 @@ use std::io::prelude::*;
 use std::io::BufReader;
 
 use gtk::{
-    Application, ApplicationWindow, Builder, Button, FileChooserAction, FileChooserDialog,
+    glib, Application, ApplicationWindow, Builder, Button, FileChooserAction, FileChooserDialog,
     ResponseType, TextView,
 };
 
-fn main() {
+fn main() -> glib::ExitCode {
     let application = Application::new(
         Some("com.github.gtk-rs.examples.text_viewer"),
         Default::default(),
     );
     application.connect_activate(build_ui);
-    application.run();
+    application.run()
 }
 
 pub fn build_ui(application: &Application) {

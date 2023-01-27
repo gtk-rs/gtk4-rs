@@ -4,10 +4,10 @@ use content_provider::ContentProvider;
 use gtk::glib;
 use gtk::prelude::*;
 
-fn main() {
+fn main() -> glib::ExitCode {
     let app = gtk::Application::new(Some("org.gtk.content-provider"), Default::default());
     app.connect_activate(on_activate);
-    app.run();
+    app.run()
 }
 
 fn on_activate(application: &gtk::Application) {

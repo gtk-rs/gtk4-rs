@@ -3,11 +3,11 @@ use gtk::glib;
 use gtk::prelude::*;
 use gtk::{Application, ApplicationWindow, Label};
 
-fn main() {
+fn main() -> glib::ExitCode {
     let application =
         Application::new(Some("com.github.gtk-rs.examples.clock"), Default::default());
     application.connect_activate(build_ui);
-    application.run();
+    application.run()
 }
 
 fn build_ui(application: &Application) {
