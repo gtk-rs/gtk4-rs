@@ -3,8 +3,8 @@ mod custom_layout_child;
 mod simple_widget;
 use std::str::FromStr;
 
-use gtk::gdk;
 use gtk::prelude::*;
+use gtk::{gdk, glib};
 
 const COLORS: [&str; 16] = [
     "red",
@@ -26,7 +26,7 @@ const COLORS: [&str; 16] = [
 ];
 const TOTAL_COLORS: i32 = COLORS.len() as i32;
 
-fn main() {
+fn main() -> glib::ExitCode {
     let application = gtk::Application::new(
         Some("com.github.gtk-rs.examples.custom_layout"),
         Default::default(),
@@ -51,5 +51,5 @@ fn main() {
         window.show();
     });
 
-    application.run();
+    application.run()
 }

@@ -2,13 +2,13 @@ use glib::clone;
 use gtk::prelude::*;
 use gtk::{gdk, gio, glib};
 
-fn main() {
+fn main() -> glib::ExitCode {
     let application = gtk::Application::new(
         Some("com.github.gtk-rs.examples.clipboard"),
         Default::default(),
     );
     application.connect_activate(build_ui);
-    application.run();
+    application.run()
 }
 
 fn build_ui(application: &gtk::Application) {

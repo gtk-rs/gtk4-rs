@@ -10,14 +10,14 @@ use gtk::prelude::*;
 use self::metadata::Metadata;
 use self::note::Note;
 
-fn main() {
+fn main() -> glib::ExitCode {
     let application = gtk::Application::new(
         Some("com.github.gtk-rs.examples.expressions"),
         Default::default(),
     );
 
     application.connect_activate(build_ui);
-    application.run();
+    application.run()
 }
 
 fn build_ui(app: &gtk::Application) {

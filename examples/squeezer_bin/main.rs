@@ -1,9 +1,10 @@
 mod squeezer_bin;
 
+use gtk::glib;
 use gtk::prelude::*;
 use squeezer_bin::SqueezerBin;
 
-fn main() {
+fn main() -> glib::ExitCode {
     let application = gtk::Application::builder()
         .application_id("com.github.gtk-rs.examples.squeezer_bin")
         .build();
@@ -28,5 +29,5 @@ fn main() {
         window.show();
     });
 
-    application.run();
+    application.run()
 }

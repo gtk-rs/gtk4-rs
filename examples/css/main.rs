@@ -1,3 +1,4 @@
+use gtk::glib;
 use gtk::prelude::*;
 
 use gtk::gdk::Display;
@@ -6,7 +7,7 @@ use gtk::{
     Orientation, StyleContext, STYLE_PROVIDER_PRIORITY_APPLICATION,
 };
 
-fn main() {
+fn main() -> glib::ExitCode {
     let application = Application::new(Some("com.github.css"), Default::default());
     application.connect_startup(|app| {
         // The CSS "magic" happens here.
@@ -23,7 +24,7 @@ fn main() {
         // We build the application UI.
         build_ui(app);
     });
-    application.run();
+    application.run()
 }
 
 fn build_ui(application: &Application) {

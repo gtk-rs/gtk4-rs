@@ -10,7 +10,7 @@ use gtk::{
 use list_box_row::ListBoxRow;
 use row_data::RowData;
 
-fn main() {
+fn main() -> glib::ExitCode {
     let application = gtk::Application::new(
         Some("com.github.gtk-rs.examples.listbox-model"),
         Default::default(),
@@ -18,7 +18,7 @@ fn main() {
 
     application.connect_activate(build_ui);
 
-    application.run();
+    application.run()
 }
 
 fn build_ui(application: &gtk::Application) {

@@ -1,9 +1,10 @@
 mod ex_button;
 
 use ex_button::ExButton;
+use gtk::glib;
 use gtk::prelude::*;
 
-fn main() {
+fn main() -> glib::ExitCode {
     let application = gtk::Application::new(
         Some("com.github.gtk-rs.examples.widget_subclass"),
         Default::default(),
@@ -19,5 +20,5 @@ fn main() {
         window.show();
     });
 
-    application.run();
+    application.run()
 }

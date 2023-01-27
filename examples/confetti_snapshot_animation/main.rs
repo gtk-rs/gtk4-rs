@@ -6,16 +6,16 @@ pub use animated_explosion::*;
 pub use confetti_widget::*;
 pub use explosion::*;
 use graphene::Vec2;
-use gtk::graphene;
 use gtk::prelude::*;
+use gtk::{glib, graphene};
 
-fn main() {
+fn main() -> glib::ExitCode {
     let application = gtk::Application::new(
         Some("com.github.gtk-rs.examples.confetti_snapshot_animation"),
         Default::default(),
     );
     application.connect_activate(build_ui);
-    application.run();
+    application.run()
 }
 
 fn build_ui(application: &gtk::Application) {

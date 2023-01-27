@@ -1,13 +1,13 @@
 use gtk::prelude::*;
-use gtk::{Align, Application, ApplicationWindow, Button};
+use gtk::{glib, Align, Application, ApplicationWindow, Button};
 
-fn main() {
+fn main() -> glib::ExitCode {
     let application = Application::new(
         Some("com.github.gtk-rs.examples.builder_pattern"),
         Default::default(),
     );
     application.connect_activate(build_ui);
-    application.run();
+    application.run()
 }
 
 fn build_ui(application: &Application) {

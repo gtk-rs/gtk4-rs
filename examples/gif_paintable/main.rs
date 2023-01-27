@@ -7,9 +7,10 @@ mod gif_paintable;
 mod gif_paintable_window;
 
 use gif_paintable_window::GifPaintableWindow;
+use gtk::glib;
 use gtk::prelude::*;
 
-fn main() {
+fn main() -> glib::ExitCode {
     let application = gtk::Application::new(
         Some("com.github.gtk-rs.examples.gif_paintable"),
         Default::default(),
@@ -20,5 +21,5 @@ fn main() {
         win.show();
     });
 
-    application.run();
+    application.run()
 }

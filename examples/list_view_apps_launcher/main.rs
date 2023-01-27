@@ -1,16 +1,16 @@
 mod application_row;
 use crate::application_row::ApplicationRow;
-use gtk::gio;
 use gtk::prelude::*;
+use gtk::{gio, glib};
 
-fn main() {
+fn main() -> glib::ExitCode {
     let application = gtk::Application::new(
         Some("com.github.gtk-rs.examples.apps_launcher"),
         Default::default(),
     );
 
     application.connect_activate(build_ui);
-    application.run();
+    application.run()
 }
 
 fn build_ui(app: &gtk::Application) {
