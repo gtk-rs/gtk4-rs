@@ -3,12 +3,12 @@ mod utils;
 mod window;
 
 use adw::prelude::*;
-use gtk::gio;
+use gtk::{gio, glib};
 use window::Window;
 
 static APP_ID: &str = "org.gtk_rs.Todo6";
 
-fn main() {
+fn main() -> glib::ExitCode {
     gio::resources_register_include!("todo_6.gresource")
         .expect("Failed to register resources.");
 
@@ -20,7 +20,7 @@ fn main() {
     app.connect_activate(build_ui);
 
     // Run the application
-    app.run();
+    app.run()
 }
 
 fn setup_shortcuts(app: &adw::Application) {

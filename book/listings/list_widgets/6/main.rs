@@ -1,4 +1,4 @@
-use gtk::{prelude::*, ListItem};
+use gtk::{glib, prelude::*, ListItem};
 use gtk::{
     Application, ApplicationWindow, Label, ListView, NoSelection, PolicyType,
     ScrolledWindow, SignalListItemFactory, StringList, StringObject, Widget,
@@ -6,7 +6,7 @@ use gtk::{
 
 const APP_ID: &str = "org.gtk_rs.ListWidgets6";
 
-fn main() {
+fn main() -> glib::ExitCode {
     // Create a new application
     let app = Application::builder().application_id(APP_ID).build();
 
@@ -14,7 +14,7 @@ fn main() {
     app.connect_activate(build_ui);
 
     // Run the application
-    app.run();
+    app.run()
 }
 
 fn build_ui(app: &Application) {

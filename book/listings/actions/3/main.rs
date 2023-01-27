@@ -7,7 +7,7 @@ use gtk::{
 
 const APP_ID: &str = "org.gtk_rs.Actions3";
 
-fn main() {
+fn main() -> glib::ExitCode {
     // Create a new application
     let app = Application::builder().application_id(APP_ID).build();
 
@@ -15,7 +15,7 @@ fn main() {
     app.connect_activate(build_ui);
 
     // Run the application
-    app.run();
+    app.run()
 }
 
 // ANCHOR: build_ui

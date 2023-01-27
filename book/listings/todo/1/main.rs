@@ -3,11 +3,11 @@ mod task_row;
 mod window;
 
 use gtk::prelude::*;
-use gtk::{gio, Application};
+use gtk::{gio, glib, Application};
 use window::Window;
 
 // ANCHOR: main
-fn main() {
+fn main() -> glib::ExitCode {
     // Register and include resources
     gio::resources_register_include!("todo_1.gresource")
         .expect("Failed to register resources.");
@@ -21,7 +21,7 @@ fn main() {
     app.connect_activate(build_ui);
 
     // Run the application
-    app.run();
+    app.run()
 }
 
 fn build_ui(app: &Application) {

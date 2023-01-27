@@ -2,11 +2,11 @@ use std::cell::Cell;
 use std::rc::Rc;
 
 use gtk::prelude::*;
-use gtk::{self, Application, ApplicationWindow, Button, Orientation};
+use gtk::{self, glib, Application, ApplicationWindow, Button, Orientation};
 
 const APP_ID: &str = "org.gtk_rs.GObjectMemoryManagement1";
 
-fn main() {
+fn main() -> glib::ExitCode {
     // Create a new application
     let app = Application::builder().application_id(APP_ID).build();
 
@@ -14,7 +14,7 @@ fn main() {
     app.connect_activate(build_ui);
 
     // Run the application
-    app.run();
+    app.run()
 }
 fn build_ui(app: &Application) {
     // Create two buttons

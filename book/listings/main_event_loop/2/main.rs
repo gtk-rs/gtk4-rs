@@ -2,11 +2,11 @@ use std::thread;
 use std::time::Duration;
 
 use gtk::prelude::*;
-use gtk::{self, Application, ApplicationWindow, Button};
+use gtk::{self, glib, Application, ApplicationWindow, Button};
 
 const APP_ID: &str = "org.gtk_rs.MainEventLoop2";
 
-fn main() {
+fn main() -> glib::ExitCode {
     // Create a new application
     let app = Application::builder().application_id(APP_ID).build();
 
@@ -14,7 +14,7 @@ fn main() {
     app.connect_activate(build_ui);
 
     // Run the application
-    app.run();
+    app.run()
 }
 
 fn build_ui(app: &Application) {

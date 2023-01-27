@@ -6,7 +6,7 @@ use gtk::{gio, glib, Application, ApplicationWindow};
 // ANCHOR: main
 const APP_ID: &str = "org.gtk_rs.Actions1";
 
-fn main() {
+fn main() -> glib::ExitCode {
     // Create a new application
     let app = Application::builder().application_id(APP_ID).build();
 
@@ -17,7 +17,7 @@ fn main() {
     app.set_accels_for_action("win.close", &["<Ctrl>W"]);
 
     // Run the application
-    app.run();
+    app.run()
 }
 // ANCHOR_END: main
 

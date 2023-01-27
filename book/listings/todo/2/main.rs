@@ -4,13 +4,13 @@ mod utils;
 mod window;
 
 use gtk::prelude::*;
-use gtk::{gio, Application};
+use gtk::{gio, glib, Application};
 use window::Window;
 
 const APP_ID: &str = "org.gtk_rs.Todo2";
 
 // ANCHOR: main
-fn main() {
+fn main() -> glib::ExitCode {
     // Register and include resources
     gio::resources_register_include!("todo_2.gresource")
         .expect("Failed to register resources.");
@@ -23,7 +23,7 @@ fn main() {
     app.connect_activate(build_ui);
 
     // Run the application
-    app.run();
+    app.run()
 }
 
 fn setup_shortcuts(app: &Application) {

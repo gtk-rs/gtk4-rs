@@ -5,12 +5,12 @@ mod window;
 
 use gdk::Display;
 use gtk::prelude::*;
-use gtk::{gdk, gio, Application, CssProvider, StyleContext};
+use gtk::{gdk, gio, glib, Application, CssProvider, StyleContext};
 use window::Window;
 
 const APP_ID: &str = "org.gtk_rs.Todo3";
 
-fn main() {
+fn main() -> glib::ExitCode {
     gio::resources_register_include!("todo_3.gresource")
         .expect("Failed to register resources.");
 
@@ -25,7 +25,7 @@ fn main() {
     app.connect_activate(build_ui);
 
     // Run the application
-    app.run();
+    app.run()
 }
 
 fn setup_shortcuts(app: &Application) {
