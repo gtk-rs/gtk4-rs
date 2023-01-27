@@ -4,10 +4,11 @@ use gtk::glib;
 use gtk::prelude::*;
 use gtk::subclass::prelude::*;
 
-#[derive(Debug, Clone, Copy, Eq, PartialEq, glib::Enum)]
+#[derive(Debug, Default, Clone, Copy, Eq, PartialEq, glib::Enum)]
 #[repr(i32)]
 #[enum_type(name = "Rotation")]
 pub enum Rotation {
+    #[default]
     Normal = 0,
     Deg90 = 90,
     Deg180 = 180,
@@ -42,12 +43,6 @@ impl From<Rotation> for f32 {
             Rotation::Deg180 => 180.0,
             Rotation::Deg270 => 270.0,
         }
-    }
-}
-
-impl Default for Rotation {
-    fn default() -> Self {
-        Rotation::Normal
     }
 }
 
