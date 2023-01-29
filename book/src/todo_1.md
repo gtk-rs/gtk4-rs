@@ -7,7 +7,7 @@ For now, we would already be satisfied with a minimal version.
 An entry to input new tasks and a list view to display them will suffice.
 Something like this:
 
-<div style="text-align:center"><img src="img/todo_1_mockup.png" /></div>
+<div style="text-align:center"><img src="img/todo_1_mockup.png" alt="To-Do App with a couple of tasks, some of them crossed-off"/></div>
 
 ## Window
 
@@ -68,7 +68,7 @@ Also, where would the input go?
 We haven't even set up the list model yet.
 Let's do that!
 
-<div style="text-align:center"><img src="img/todo_1_empty.png" /></div>
+<div style="text-align:center"><img src="img/todo_1_empty.png" alt="To-Do app without any content"/></div>
 
 As discussed in the [list widgets chapter](./list_widgets.html),
 we start out by creating a custom GObject.
@@ -106,7 +106,7 @@ Let's move on to the individual tasks.
 The row of a task should look like this:
 
 
-<div style="text-align:center"><img src="img/task_row.png" /></div>
+<div style="text-align:center"><img src="img/task_row.png" alt="A single task widget"/></div>
 
 Again, we describe the mockup with a composite template.
 
@@ -212,6 +212,6 @@ We will extend it with additional functionality in the following chapters.
 <div style="text-align:center">
  <video autoplay muted loop>
   <source src="vid/todo_1_animation.webm" type="video/webm">
-Your browser does not support the video tag.
+  <p>A video which shows how to enter tasks to the To-Do app</p>
  </video>
 </div>

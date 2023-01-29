@@ -4,7 +4,7 @@ We now got comfortable using callbacks, but how do they actually work?
 All of this happens asynchronously, so there must be something managing the events and scheduling the responses.
 Unsurprisingly, this is called the main event loop.
 
-<div style="text-align:center"><img src="img/main_event_loop.png" /></div>
+<div style="text-align:center"><img src="img/main_event_loop.png" alt="Diagram showing the main event loop"/></div>
 
 The main loop manages all kinds of events — from mouse clicks and keyboard presses to file events.
 It does all of that within the same thread.
@@ -40,7 +40,7 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 <div style="text-align:center">
  <video autoplay muted loop>
   <source src="vid/main_event_loop_2.webm" type="video/webm">
-Your browser does not support the video tag.
+  <p>A video which shows that after pressing the button, the window can still be moved</p>
  </video>
 </div>
 
@@ -65,7 +65,7 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 <div style="text-align:center">
  <video autoplay muted loop>
   <source src="vid/main_event_loop_3.webm" type="video/webm">
-Your browser does not support the video tag.
+  <p>The button now stops being responsive for 10 seconds after being pressed</p>
  </video>
 </div>
 

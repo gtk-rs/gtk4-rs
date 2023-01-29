@@ -70,7 +70,7 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 <div style="text-align:center">
  <video autoplay muted loop>
   <source src="vid/settings_1.webm" type="video/webm">
-Your browser does not support the video tag.
+  <p>A video which shows that the app can now store the app state</p>
  </video>
 </div>
 
