@@ -11,7 +11,7 @@ This is how we want this to work in the end:
 <div style="text-align:center">
  <video autoplay muted loop>
   <source src="vid/todo_2_animation.webm" type="video/webm">
-Your browser does not support the video tag.
+  <p>A video which shows a more featureful To-Do app/p>
  </video>
 </div>
 
@@ -182,7 +182,7 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 {{#rustdoc_include ../listings/todo/2/resources/resources.gresource.xml}}
 ```
 
-<div style="text-align:center"><img src="img/todo_2_shortcuts.png"/></div>
+<div style="text-align:center"><img src="img/todo_2_shortcuts.png" alt="The shortcut window"/></div>
 
 
 ## Saving and Restoring Tasks

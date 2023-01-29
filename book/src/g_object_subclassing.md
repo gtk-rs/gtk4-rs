@@ -74,7 +74,7 @@ Every time we click on the button, the number displayed by the label increases b
 <div style="text-align:center">
  <video autoplay muted loop>
   <source src="vid/g_object_subclassing.webm" type="video/webm">
-Your browser does not support the video tag.
+  <p>A video showing that pressing on a button increases the number</p>
  </video>
 </div>
 

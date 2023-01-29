@@ -11,7 +11,7 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 <div style="text-align:center">
  <video autoplay muted loop>
   <source src="vid/hello_world_button.webm" type="video/webm">
-Your browser does not support the video tag.
+  <p>A video which shows that pressing on a button changes its label</p>
  </video>
 </div>
 

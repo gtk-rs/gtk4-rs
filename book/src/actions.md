@@ -69,7 +69,7 @@ This is how our app works:
 <div style="text-align:center">
  <video autoplay muted loop>
   <source src="vid/actions_counter.webm" type="video/webm">
-Your browser does not support the video tag.
+  <p>A video which shows that pressing on one button also changes the label below</p>
  </video>
 </div>
 
@@ -229,7 +229,7 @@ This is how the app looks in action:
 <div style="text-align:center">
  <video autoplay muted loop>
   <source src="vid/actions_menu.webm" type="video/webm">
-Your browser does not support the video tag.
+  <p>A video which now also shows the menu</p>
  </video>
 </div>
 

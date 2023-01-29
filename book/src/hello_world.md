@@ -29,7 +29,7 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 ```
 That is better!
 
-<div style="text-align:center"><img src="img/hello_world_empty.png" /></div>
+<div style="text-align:center"><img src="img/hello_world_empty.png" alt="An empty window with a header bar with label 'My GTK App'"/></div>
 
 Normally we expect to be able to interact with the user interface.
 Also, the name of the chapter suggests that the phrase "Hello World!" will be involved.
@@ -51,7 +51,7 @@ There is now a button and if we click on it, its label becomes "Hello World!".
 <div style="text-align:center">
  <video autoplay muted loop>
   <source src="vid/hello_world_button.webm" type="video/webm">
-Your browser does not support the video tag.
+  <p>A video which shows that pressing on the button changes it's label</p>
  </video>
 </div>
 

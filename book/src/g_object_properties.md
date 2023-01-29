@@ -48,7 +48,7 @@ Now when we click on one of the two switches, the other one is toggled as well.
 <div style="text-align:center">
  <video autoplay muted loop>
     <source src="vid/g_object_properties_switches.webm">
-    Your browser does not support the video tag.
+    <p>A video which shows that toggling one button also toggles the other one </p>
  </video>
 </div>
 
@@ -110,7 +110,7 @@ Now if we click on one button, the "number" and "label" properties of the other 
 <div style="text-align:center">
  <video autoplay muted loop>
     <source src="vid/g_object_properties_buttons.webm">
-    Your browser does not support the video tag.
+    <p>A video which shows that pressing on one button also changes the number on the other one</p>
  </video>
 </div>
 

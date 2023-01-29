@@ -30,7 +30,7 @@ When we now run the app, we notice that our button *and* the "close" button are 
 Probably not what we wanted, but that is what our CSS snippet does.
 We did not specify for which button the rule should apply, so it was applied to both of them.
 
-<div style="text-align:center"><img src="img/css_1.png"/></div>
+<div style="text-align:center"><img src="img/css_1.png" alt="Window with magenta text"/></div>
 
 >The `GtkInspector` comes in quite handy (not only) when playing with CSS.
 >Make sure that the window of your app is focused and press <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>D</kbd>.
@@ -59,7 +59,7 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 
 Now only the font of our button becomes magenta.
 
-<div style="text-align:center"><img src="img/css_2.png"/></div>
+<div style="text-align:center"><img src="img/css_2.png" alt="Now only the text of the button is magenta"/></div>
 
 ## Adding Your Own Style Class
 
@@ -85,7 +85,7 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 
 We can see that this way only the first button gets colored magenta.
 
-<div style="text-align:center"><img src="img/css_3.png"/></div>
+<div style="text-align:center"><img src="img/css_3.png" alt="Two buttons and only the left one has magenta font"/></div>
 
 
 ## Specifying Name of a Widget
@@ -115,7 +115,7 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 
 Again, the style rule only applies to the first button.
 
-<div style="text-align:center"><img src="img/css_4.png"/></div>
+<div style="text-align:center"><img src="img/css_4.png" alt="Two buttons and only the left one has magenta font"/></div>
 
 
 ## CSS Rules Provided by GTK
@@ -131,7 +131,7 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 {{#rustdoc_include ../listings/css/5/main.rs:buttons}}
 ```
 
-<div style="text-align:center"><img src="img/css_5.png"/></div>
+<div style="text-align:center"><img src="img/css_5.png" alt="The left button is red, the right one is blue"/></div>
 
 ## Interface Builder
 
@@ -173,7 +173,7 @@ After we removed the cursor, the button returns to its original state.
 <div style="text-align:center">
  <video autoplay muted loop>
   <source src="vid/css_6.webm" type="video/webm">
-Your browser does not support the video tag.
+  <p>A video which shows that hovering over one button makes its background yellow and text red</p>
  </video>
 </div>
 
@@ -215,7 +215,7 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 
 Indeed, we get a `MenuButton` with a magenta arrow.
 
-<div style="text-align:center"><img src="img/css_8.png"/></div>
+<div style="text-align:center"><img src="img/css_8.png" alt="Button with a magenta symbol in it"/></div>
 
 
 ## Set CSS Name and Use Exported Colors 
@@ -255,7 +255,7 @@ We can then access the pre-defined color by adding an `@` in front of its name.
 And that is how the task rows look like after the change.
 Probably better to revert this immediately again.
 
-<div style="text-align:center"><img src="img/todo_3.png"/></div>
+<div style="text-align:center"><img src="img/todo_3.png" alt="To-Do app with green background for its task widget"/></div>
 
 ## Adapt Todo App
 
@@ -275,7 +275,7 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 </object>
 ```
 
-<div style="text-align:center"><img src="img/todo_4.png"/></div>
+<div style="text-align:center"><img src="img/todo_4.png" alt="To-Do app with borders for its task widget"/></div>
 
 
 ## Conclusion

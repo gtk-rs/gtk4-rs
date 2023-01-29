@@ -23,14 +23,14 @@ It also loads stylesheets automatically from resources as long as they are named
 Looking at our To-Do app we can see that the looks of its widgets changed.
 This is because the `Default` stylesheet provided by GTK has been replaced with the `Adwaita` stylesheet provided by Libadwaita.
 
-<div style="text-align:center"><img src="img/todo_change_4_5.png"/></div>
+<div style="text-align:center"><img src="img/todo_change_4_5.png" alt="Transformation of To-Do app"/></div>
 
 Also, our app now switches to the dark style together with the rest of the system.
 
 <div style="text-align:center">
  <video autoplay muted loop>
   <source src="vid/todo_dark.webm" type="video/webm">
-Your browser does not support the video tag.
+   <p>A video which shows how the To-Do app changes color scheme from light to dark</p>
  </video>
 </div>
 
@@ -151,4 +151,4 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 
 This is how the boxed list style looks like in our app.
 
-<div style="text-align:center"><img src="img/todo_6.png"/></div>
+<div style="text-align:center"><img src="img/todo_6.png" alt="The To-Do app using libadwaita"/></div>

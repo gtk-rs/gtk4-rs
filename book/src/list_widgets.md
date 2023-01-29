@@ -23,7 +23,7 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 {{#rustdoc_include ../listings/list_widgets/1/main.rs:scrolled_window}}
 ```
 
-<div style="text-align:center"><img src="img/lists_list_box.png"/></div>
+<div style="text-align:center"><img src="img/lists_list_box.png" alt="Window with a list of integers"/></div>
 
 ## Views
 
@@ -43,7 +43,7 @@ What makes this concept scalable is that GTK only has to create slightly more wi
 As we scroll through our elements, the widgets which become invisible will be reused.
 The following figure demonstrates how this works in practice.
 
-<div style="text-align:center"><img src="img/scalable_lists_concept.png"/></div>
+<div style="text-align:center"><img src="img/scalable_lists_concept.png" alt="Diagram showing how list widgets are being recycled"/></div>
 
 100 000 elements is something `ListBox` will struggle with, so let's use this to demonstrate scalable lists.
 
@@ -117,7 +117,7 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 
 We can now easily scroll through our long list of integers.
 
-<div style="text-align:center"><img src="img/lists_list_view_1.png"/></div>
+<div style="text-align:center"><img src="img/lists_list_view_1.png" alt="Window with a list of 100 000 integers"/></div>
 
 Let's see what else we can do.
 We might want to increase the number every time we activate its row.
@@ -207,7 +207,7 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 
 After our changes, the application looks like this:
 
-<div style="text-align:center"><img src="img/lists_list_view_2.png"/></div>
+<div style="text-align:center"><img src="img/lists_list_view_2.png" alt="Window with a list of 100 000 integers, starting from 100 000"/></div>
 
 ### String List
 

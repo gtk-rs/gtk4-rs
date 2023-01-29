@@ -7,7 +7,7 @@ Let us go one step further by adding a way to group tasks into collections.
 These collections will get their own sidebar on the left of the app.
 We will start by adding an empty sidebar without any functionality.
 
-<div style="text-align:center"><img src="img/todo_7_sidebar.png"/></div>
+<div style="text-align:center"><img src="img/todo_7_sidebar.png" alt="To-Do app with an empty sidebar"/></div>
 
 There are a couple of steps we have to go through to get to this state.
 First, we have to replace [`gtk::ApplicationWindow`](../docs/gtk4/struct.ApplicationWindow.html) with [`adw::ApplicationWindow`](https://world.pages.gitlab.gnome.org/Rust/libadwaita-rs/stable/latest/docs/libadwaita/struct.ApplicationWindow.html).
@@ -68,7 +68,7 @@ The adaptive behavior of the leaflet allows the To-Do app to work on smaller scr
 <div style="text-align:center">
  <video autoplay muted loop>
   <source src="vid/todo_7_leaflet.webm" type="video/webm">
-Your browser does not support the video tag.
+   <p>A video which shows that reduzing the width of the app let's the sidebar collapse</p>
  </video>
 </div>
 
@@ -192,7 +192,7 @@ Users will have to add a collection first, and we have to make that clear.
 The GNOME HIG suggests to use a [placeholder page](https://developer.gnome.org/hig/patterns/feedback/placeholders.html) for that.
 In our case, this placeholder page will be presented to the user if they open the app without any collections present.
 
-<div style="text-align:center"><img src="img/todo_8_placeholder_page.png"/></div>
+<div style="text-align:center"><img src="img/todo_8_placeholder_page.png" alt="The placeholder page"/></div>
 
 We now wrap our UI in a [`gtk::Stack`](../docs/gtk4/struct.Stack.html).
 One stack page describes the placeholder page, the other describes the main page.
@@ -423,7 +423,7 @@ Let us start with the most important one: adding a new collection.
 <div style="text-align:center">
  <video autoplay muted loop>
   <source src="vid/todo_8_dialog.webm" type="video/webm">
-Your browser does not support the video tag.
+   <p>A video which shows the new dialog</p>
  </video>
 </div>
 
@@ -488,7 +488,7 @@ Now we can enjoy the final result.
 <div style="text-align:center">
  <video autoplay muted loop>
   <source src="vid/todo_8_adaptive_sidebar.webm" type="video/webm">
-Your browser does not support the video tag.
+   <p>A video which shows the final To-Do app</p>
  </video>
 </div>
 
