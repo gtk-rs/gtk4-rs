@@ -64,8 +64,10 @@ jobs:
 
       - run: rustup component add clippy
         if: matrix.rust == 'beta' || matrix.rust == 'stable'
+      - run: cargo clippy --manifest-path ${{ matrix.conf.name }}/Cargo.toml --features "${{ matrix.conf.features }}" --all-targets
+        if: matrix.rust == 'beta'
       - run: cargo clippy --manifest-path ${{ matrix.conf.name }}/Cargo.toml --features "${{ matrix.conf.features }}" --all-targets -- -D warnings
-        if: matrix.rust == 'beta' || matrix.rust == 'stable'
+        if: matrix.rust == 'stable'
 
       - uses: bcomnes/cleanup-xvfb@v1
 
