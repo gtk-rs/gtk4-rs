@@ -12,8 +12,10 @@ name = "gtk4-sys"
 repository = "https://github.com/gtk-rs/gtk4-rs"
 version = "0.6.0"
 rust-version = "1.64"
+
 [package.metadata.docs.rs]
 features = ["dox"]
+
 [package.metadata.system-deps.gtk4]
 name = "gtk4"
 version = "4.0.0"

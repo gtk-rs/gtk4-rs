@@ -50,6 +50,7 @@ impl FromGlib<ffi::GdkWin32MessageFilterReturn> for Win32MessageFilterReturn {
     #[inline]
     unsafe fn from_glib(value: ffi::GdkWin32MessageFilterReturn) -> Self {
         skip_assert_initialized!();
+
         match value {
             ffi::GDK_WIN32_MESSAGE_FILTER_CONTINUE => Self::Continue,
             ffi::GDK_WIN32_MESSAGE_FILTER_REMOVE => Self::Remove,

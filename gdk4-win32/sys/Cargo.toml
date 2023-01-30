@@ -11,6 +11,7 @@ name = "gdk4-win32-sys"
 repository = "https://github.com/gtk-rs/gtk4-rs"
 version = "0.6.0"
 rust-version = "1.57"
+
 [package.metadata.system-deps.gtk4_win32]
 name = "gtk4-win32"
 version = "4.0.0"
@@ -20,6 +21,7 @@ version = "4.4"
 
 [package.metadata.system-deps.gtk4_win32.v4_8]
 version = "4.8"
+
 [package.metadata.docs.rs]
 features = ["dox"]
 
