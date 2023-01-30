@@ -1,14 +1,14 @@
-use glib::{ParamSpec, ParamSpecBoolean};
-use gtk::glib;
+use gtk::glib::{self, ParamSpec, Properties};
 use gtk::prelude::*;
 use gtk::subclass::prelude::*;
-use once_cell::sync::Lazy;
 use std::cell::{Cell, RefCell};
 
-#[derive(Default)]
+#[derive(Default, Properties)]
+#[properties(wrapper_type = super::CustomEditable)]
 pub struct CustomEditable {
     text: gtk::Text,
     pub spinner: RefCell<Option<gtk::Spinner>>,
+    #[property(get, set = Self::set_show_spinner)]
     pub show_spinner: Cell<bool>,
 }
 
@@ -29,22 +29,13 @@ impl ObjectSubclass for CustomEditable {
 
 impl ObjectImpl for CustomEditable {
     fn properties() -> &'static [ParamSpec] {
-        static PROPERTIES: Lazy<Vec<ParamSpec>> =
-            Lazy::new(|| vec![ParamSpecBoolean::builder("show-spinner").build()]);
-        PROPERTIES.as_ref()
+        Self::derived_properties()
     }
 
     fn set_property(&self, id: usize, value: &glib::Value, pspec: &glib::ParamSpec) {
-        let editable = self.obj();
-
         // In case this is a property that's automatically added for Editable implementations.
         if !self.delegate_set_property(id, value, pspec) {
-            match pspec.name() {
-                "show-spinner" => {
-                    editable.set_show_spinner(value.get().unwrap());
-                }
-                _ => unimplemented!(),
-            }
+            self.derived_set_property(id, value, pspec)
         }
     }
 
@@ -53,10 +44,7 @@ impl ObjectImpl for CustomEditable {
         if let Some(value) = self.delegate_get_property(id, pspec) {
             value
         } else {
-            match pspec.name() {
-                "show-spinner" => self.show_spinner.get().to_value(),
-                _ => unimplemented!(),
-            }
+            self.derived_property(id, pspec)
         }
     }
 
@@ -98,5 +86,27 @@ impl WidgetImpl for CustomEditable {
 impl EditableImpl for CustomEditable {
     fn delegate(&self) -> Option<gtk::Editable> {
         Some(self.text.clone().upcast())
+    }
+}
+
+impl CustomEditable {
+    pub fn set_show_spinner(&self, show_spinner: bool) {
+        if self.show_spinner.get() == show_spinner {
+            return;
+        }
+
+        if show_spinner {
+            let spinner = gtk::Spinner::builder()
+                .halign(gtk::Align::Center)
+                .valign(gtk::Align::Center)
+                .build();
+            spinner.start();
+
+            spinner.set_parent(self.obj().as_ref());
+            self.spinner.replace(Some(spinner));
+        } else if let Some(spinner) = self.spinner.borrow_mut().take() {
+            spinner.unparent();
+        }
+        self.show_spinner.set(show_spinner);
     }
 }

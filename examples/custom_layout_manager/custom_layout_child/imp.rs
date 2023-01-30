@@ -1,12 +1,13 @@
-use glib::{ParamSpec, Value};
+use glib::{ParamSpec, Properties, Value};
 use gtk::prelude::*;
 use gtk::subclass::prelude::*;
 use gtk::{gdk, glib, graphene};
-use once_cell::sync::Lazy;
 use std::cell::RefCell;
 
-#[derive(Debug)]
+#[derive(Debug, Properties)]
+#[properties(wrapper_type = super::CustomLayoutChild)]
 pub struct CustomLayoutChild {
+    #[property(get, set, construct_only)]
     pub color: RefCell<gdk::RGBA>,
 }
 
@@ -27,26 +28,15 @@ impl ObjectSubclass for CustomLayoutChild {
 
 impl ObjectImpl for CustomLayoutChild {
     fn properties() -> &'static [ParamSpec] {
-        static PROPERTIES: Lazy<Vec<ParamSpec>> = Lazy::new(|| {
-            vec![glib::ParamSpecBoxed::builder::<gdk::RGBA>("color")
-                .construct_only()
-                .build()]
-        });
-        PROPERTIES.as_ref()
+        Self::derived_properties()
     }
 
-    fn property(&self, _id: usize, pspec: &ParamSpec) -> Value {
-        match pspec.name() {
-            "color" => self.color.borrow().to_value(),
-            _ => unreachable!(),
-        }
+    fn property(&self, id: usize, pspec: &ParamSpec) -> Value {
+        self.derived_property(id, pspec)
     }
 
-    fn set_property(&self, _id: usize, value: &Value, pspec: &ParamSpec) {
-        match pspec.name() {
-            "color" => self.color.replace(value.get().unwrap()),
-            _ => unreachable!(),
-        };
+    fn set_property(&self, id: usize, value: &Value, pspec: &ParamSpec) {
+        self.derived_set_property(id, value, pspec)
     }
 
     fn constructed(&self) {

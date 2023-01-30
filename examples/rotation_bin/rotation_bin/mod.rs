@@ -1,8 +1,6 @@
 mod imp;
 
-use gtk::glib;
-use gtk::prelude::*;
-use gtk::subclass::prelude::*;
+use gtk::{glib, prelude::*, subclass::prelude::*};
 
 #[derive(Debug, Default, Clone, Copy, Eq, PartialEq, glib::Enum)]
 #[repr(i32)]
@@ -62,27 +60,43 @@ impl RotationBin {
         glib::Object::new_default()
     }
 
-    pub fn child(&self) -> Option<impl IsA<gtk::Widget>> {
-        self.imp().child(self)
+    pub(super) fn rotate_clockwise(&self) {
+        let r = self.rotation();
+        self.set_rotation(r.rotate_clockwise());
+        self.notify("rotation");
     }
 
-    pub fn rotation(&self) -> Rotation {
-        self.imp().rotation(self)
+    pub(super) fn rotate_counter_clockwise(&self) {
+        let r = self.rotation();
+        self.set_rotation(r.rotate_counter_clockwise());
+        self.notify("rotation");
     }
 
-    pub fn set_child(&self, widget: Option<&impl IsA<gtk::Widget>>) {
-        self.imp().set_child(self, widget);
+    pub(super) fn set_rotation(&self, rotation: Rotation) {
+        if self.imp().rotation.get() != rotation {
+            self.imp().rotation.replace(rotation);
+            self.queue_resize();
+            self.notify("rotation");
+        }
     }
 
-    pub fn set_rotation(&self, rotation: Rotation) {
-        self.imp().set_rotation(self, rotation);
-    }
+    pub(super) fn set_child(&self, widget: Option<&impl IsA<gtk::Widget>>) {
+        let imp = self.imp();
+        let widget = widget.map(|w| w.upcast_ref());
+        if widget == imp.child.borrow().as_ref() {
+            return;
+        }
 
-    pub fn rotate_clockwise(&self) {
-        self.imp().rotate_clockwise(self);
-    }
+        if let Some(child) = imp.child.borrow_mut().take() {
+            child.unparent();
+        }
 
-    pub fn rotate_counter_clockwise(&self) {
-        self.imp().rotate_counter_clockwise(self);
+        if let Some(w) = widget {
+            imp.child.replace(Some(w.clone()));
+            w.set_parent(self);
+        }
+
+        self.queue_resize();
+        self.notify("child")
     }
 }
