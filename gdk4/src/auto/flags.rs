@@ -62,6 +62,16 @@ impl StaticType for AnchorHints {
     }
 }
 
+impl glib::HasParamSpec for AnchorHints {
+    type ParamSpec = glib::ParamSpecFlags;
+    type SetValue = Self;
+    type BuilderFn = fn(&str) -> glib::ParamSpecFlagsBuilder<Self>;
+
+    fn param_spec_builder() -> Self::BuilderFn {
+        |name| Self::ParamSpec::builder(name)
+    }
+}
+
 impl glib::value::ValueType for AnchorHints {
     type Type = Self;
 }
@@ -160,6 +170,16 @@ impl StaticType for AxisFlags {
     }
 }
 
+impl glib::HasParamSpec for AxisFlags {
+    type ParamSpec = glib::ParamSpecFlags;
+    type SetValue = Self;
+    type BuilderFn = fn(&str) -> glib::ParamSpecFlagsBuilder<Self>;
+
+    fn param_spec_builder() -> Self::BuilderFn {
+        |name| Self::ParamSpec::builder(name)
+    }
+}
+
 impl glib::value::ValueType for AxisFlags {
     type Type = Self;
 }
@@ -249,6 +269,16 @@ impl StaticType for DragAction {
     #[inline]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::gdk_drag_action_get_type()) }
+    }
+}
+
+impl glib::HasParamSpec for DragAction {
+    type ParamSpec = glib::ParamSpecFlags;
+    type SetValue = Self;
+    type BuilderFn = fn(&str) -> glib::ParamSpecFlagsBuilder<Self>;
+
+    fn param_spec_builder() -> Self::BuilderFn {
+        |name| Self::ParamSpec::builder(name)
     }
 }
 
@@ -344,6 +374,16 @@ impl StaticType for FrameClockPhase {
     }
 }
 
+impl glib::HasParamSpec for FrameClockPhase {
+    type ParamSpec = glib::ParamSpecFlags;
+    type SetValue = Self;
+    type BuilderFn = fn(&str) -> glib::ParamSpecFlagsBuilder<Self>;
+
+    fn param_spec_builder() -> Self::BuilderFn {
+        |name| Self::ParamSpec::builder(name)
+    }
+}
+
 impl glib::value::ValueType for FrameClockPhase {
     type Type = Self;
 }
@@ -431,6 +471,18 @@ impl StaticType for GLAPI {
     #[inline]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::gdk_gl_api_get_type()) }
+    }
+}
+
+#[cfg(any(feature = "v4_6", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+impl glib::HasParamSpec for GLAPI {
+    type ParamSpec = glib::ParamSpecFlags;
+    type SetValue = Self;
+    type BuilderFn = fn(&str) -> glib::ParamSpecFlagsBuilder<Self>;
+
+    fn param_spec_builder() -> Self::BuilderFn {
+        |name| Self::ParamSpec::builder(name)
     }
 }
 
@@ -542,6 +594,16 @@ impl StaticType for ModifierType {
     }
 }
 
+impl glib::HasParamSpec for ModifierType {
+    type ParamSpec = glib::ParamSpecFlags;
+    type SetValue = Self;
+    type BuilderFn = fn(&str) -> glib::ParamSpecFlagsBuilder<Self>;
+
+    fn param_spec_builder() -> Self::BuilderFn {
+        |name| Self::ParamSpec::builder(name)
+    }
+}
+
 impl glib::value::ValueType for ModifierType {
     type Type = Self;
 }
@@ -619,6 +681,16 @@ impl StaticType for PaintableFlags {
     #[inline]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::gdk_paintable_flags_get_type()) }
+    }
+}
+
+impl glib::HasParamSpec for PaintableFlags {
+    type ParamSpec = glib::ParamSpecFlags;
+    type SetValue = Self;
+    type BuilderFn = fn(&str) -> glib::ParamSpecFlagsBuilder<Self>;
+
+    fn param_spec_builder() -> Self::BuilderFn {
+        |name| Self::ParamSpec::builder(name)
     }
 }
 
@@ -711,6 +783,16 @@ impl StaticType for SeatCapabilities {
     #[inline]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::gdk_seat_capabilities_get_type()) }
+    }
+}
+
+impl glib::HasParamSpec for SeatCapabilities {
+    type ParamSpec = glib::ParamSpecFlags;
+    type SetValue = Self;
+    type BuilderFn = fn(&str) -> glib::ParamSpecFlagsBuilder<Self>;
+
+    fn param_spec_builder() -> Self::BuilderFn {
+        |name| Self::ParamSpec::builder(name)
     }
 }
 
@@ -819,6 +901,16 @@ impl StaticType for ToplevelState {
     #[inline]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::gdk_toplevel_state_get_type()) }
+    }
+}
+
+impl glib::HasParamSpec for ToplevelState {
+    type ParamSpec = glib::ParamSpecFlags;
+    type SetValue = Self;
+    type BuilderFn = fn(&str) -> glib::ParamSpecFlagsBuilder<Self>;
+
+    fn param_spec_builder() -> Self::BuilderFn {
+        |name| Self::ParamSpec::builder(name)
     }
 }
 

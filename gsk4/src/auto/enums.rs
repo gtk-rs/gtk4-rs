@@ -106,6 +106,7 @@ impl IntoGlib for BlendMode {
 impl FromGlib<ffi::GskBlendMode> for BlendMode {
     unsafe fn from_glib(value: ffi::GskBlendMode) -> Self {
         skip_assert_initialized!();
+
         match value {
             ffi::GSK_BLEND_MODE_DEFAULT => Self::Default,
             ffi::GSK_BLEND_MODE_MULTIPLY => Self::Multiply,
@@ -132,6 +133,16 @@ impl StaticType for BlendMode {
     #[inline]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::gsk_blend_mode_get_type()) }
+    }
+}
+
+impl glib::HasParamSpec for BlendMode {
+    type ParamSpec = glib::ParamSpecEnum;
+    type SetValue = Self;
+    type BuilderFn = fn(&str, Self) -> glib::ParamSpecEnumBuilder<Self>;
+
+    fn param_spec_builder() -> Self::BuilderFn {
+        |name, default_value| Self::ParamSpec::builder_with_default(name, default_value)
     }
 }
 
@@ -226,6 +237,7 @@ impl FromGlib<ffi::GskCorner> for Corner {
     #[inline]
     unsafe fn from_glib(value: ffi::GskCorner) -> Self {
         skip_assert_initialized!();
+
         match value {
             ffi::GSK_CORNER_TOP_LEFT => Self::TopLeft,
             ffi::GSK_CORNER_TOP_RIGHT => Self::TopRight,
@@ -240,6 +252,16 @@ impl StaticType for Corner {
     #[inline]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::gsk_corner_get_type()) }
+    }
+}
+
+impl glib::HasParamSpec for Corner {
+    type ParamSpec = glib::ParamSpecEnum;
+    type SetValue = Self;
+    type BuilderFn = fn(&str, Self) -> glib::ParamSpecEnumBuilder<Self>;
+
+    fn param_spec_builder() -> Self::BuilderFn {
+        |name, default_value| Self::ParamSpec::builder_with_default(name, default_value)
     }
 }
 
@@ -350,6 +372,7 @@ impl FromGlib<ffi::GskGLUniformType> for GLUniformType {
     #[inline]
     unsafe fn from_glib(value: ffi::GskGLUniformType) -> Self {
         skip_assert_initialized!();
+
         match value {
             ffi::GSK_GL_UNIFORM_TYPE_NONE => Self::None,
             ffi::GSK_GL_UNIFORM_TYPE_FLOAT => Self::Float,
@@ -368,6 +391,16 @@ impl StaticType for GLUniformType {
     #[inline]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::gsk_gl_uniform_type_get_type()) }
+    }
+}
+
+impl glib::HasParamSpec for GLUniformType {
+    type ParamSpec = glib::ParamSpecEnum;
+    type SetValue = Self;
+    type BuilderFn = fn(&str, Self) -> glib::ParamSpecEnumBuilder<Self>;
+
+    fn param_spec_builder() -> Self::BuilderFn {
+        |name, default_value| Self::ParamSpec::builder_with_default(name, default_value)
     }
 }
 
@@ -548,6 +581,7 @@ impl IntoGlib for RenderNodeType {
 impl FromGlib<ffi::GskRenderNodeType> for RenderNodeType {
     unsafe fn from_glib(value: ffi::GskRenderNodeType) -> Self {
         skip_assert_initialized!();
+
         match value {
             ffi::GSK_NOT_A_RENDER_NODE => Self::NotARenderNode,
             ffi::GSK_CONTAINER_NODE => Self::ContainerNode,
@@ -584,6 +618,16 @@ impl StaticType for RenderNodeType {
     #[inline]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::gsk_render_node_type_get_type()) }
+    }
+}
+
+impl glib::HasParamSpec for RenderNodeType {
+    type ParamSpec = glib::ParamSpecEnum;
+    type SetValue = Self;
+    type BuilderFn = fn(&str, Self) -> glib::ParamSpecEnumBuilder<Self>;
+
+    fn param_spec_builder() -> Self::BuilderFn {
+        |name, default_value| Self::ParamSpec::builder_with_default(name, default_value)
     }
 }
 
@@ -674,6 +718,7 @@ impl FromGlib<ffi::GskScalingFilter> for ScalingFilter {
     #[inline]
     unsafe fn from_glib(value: ffi::GskScalingFilter) -> Self {
         skip_assert_initialized!();
+
         match value {
             ffi::GSK_SCALING_FILTER_LINEAR => Self::Linear,
             ffi::GSK_SCALING_FILTER_NEAREST => Self::Nearest,
@@ -687,6 +732,16 @@ impl StaticType for ScalingFilter {
     #[inline]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::gsk_scaling_filter_get_type()) }
+    }
+}
+
+impl glib::HasParamSpec for ScalingFilter {
+    type ParamSpec = glib::ParamSpecEnum;
+    type SetValue = Self;
+    type BuilderFn = fn(&str, Self) -> glib::ParamSpecEnumBuilder<Self>;
+
+    fn param_spec_builder() -> Self::BuilderFn {
+        |name, default_value| Self::ParamSpec::builder_with_default(name, default_value)
     }
 }
 
@@ -777,6 +832,7 @@ impl FromGlib<ffi::GskSerializationError> for SerializationError {
     #[inline]
     unsafe fn from_glib(value: ffi::GskSerializationError) -> Self {
         skip_assert_initialized!();
+
         match value {
             ffi::GSK_SERIALIZATION_UNSUPPORTED_FORMAT => Self::UnsupportedFormat,
             ffi::GSK_SERIALIZATION_UNSUPPORTED_VERSION => Self::UnsupportedVersion,
@@ -813,6 +869,16 @@ impl StaticType for SerializationError {
     #[inline]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::gsk_serialization_error_get_type()) }
+    }
+}
+
+impl glib::HasParamSpec for SerializationError {
+    type ParamSpec = glib::ParamSpecEnum;
+    type SetValue = Self;
+    type BuilderFn = fn(&str, Self) -> glib::ParamSpecEnumBuilder<Self>;
+
+    fn param_spec_builder() -> Self::BuilderFn {
+        |name, default_value| Self::ParamSpec::builder_with_default(name, default_value)
     }
 }
 
@@ -919,6 +985,7 @@ impl FromGlib<ffi::GskTransformCategory> for TransformCategory {
     #[inline]
     unsafe fn from_glib(value: ffi::GskTransformCategory) -> Self {
         skip_assert_initialized!();
+
         match value {
             ffi::GSK_TRANSFORM_CATEGORY_UNKNOWN => Self::Unknown,
             ffi::GSK_TRANSFORM_CATEGORY_ANY => Self::Any,
@@ -936,6 +1003,16 @@ impl StaticType for TransformCategory {
     #[inline]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::gsk_transform_category_get_type()) }
+    }
+}
+
+impl glib::HasParamSpec for TransformCategory {
+    type ParamSpec = glib::ParamSpecEnum;
+    type SetValue = Self;
+    type BuilderFn = fn(&str, Self) -> glib::ParamSpecEnumBuilder<Self>;
+
+    fn param_spec_builder() -> Self::BuilderFn {
+        |name, default_value| Self::ParamSpec::builder_with_default(name, default_value)
     }
 }
 
