@@ -1,13 +1,15 @@
 use glib::prelude::*;
 use glib::subclass::prelude::*;
-use gtk::glib;
+use gtk::glib::{self, Properties};
 
 use once_cell::unsync::OnceCell;
 
 use super::Metadata;
 
-#[derive(Debug, Default)]
+#[derive(Debug, Properties, Default)]
+#[properties(wrapper_type = super::Note)]
 pub struct Note {
+    #[property(get, set, construct_only)]
     pub metadata: OnceCell<Metadata>,
 }
 
@@ -19,30 +21,14 @@ impl ObjectSubclass for Note {
 
 impl ObjectImpl for Note {
     fn properties() -> &'static [glib::ParamSpec] {
-        use once_cell::sync::Lazy;
-        static PROPERTIES: Lazy<Vec<glib::ParamSpec>> = Lazy::new(|| {
-            vec![glib::ParamSpecObject::builder::<Metadata>("metadata")
-                .construct_only()
-                .build()]
-        });
-
-        PROPERTIES.as_ref()
+        Self::derived_properties()
     }
 
-    fn set_property(&self, _id: usize, value: &glib::Value, pspec: &glib::ParamSpec) {
-        match pspec.name() {
-            "metadata" => {
-                let metadata = value.get().unwrap();
-                self.metadata.set(metadata).unwrap();
-            }
-            _ => unimplemented!(),
-        }
+    fn set_property(&self, id: usize, value: &glib::Value, pspec: &glib::ParamSpec) {
+        self.derived_set_property(id, value, pspec)
     }
 
-    fn property(&self, _id: usize, pspec: &glib::ParamSpec) -> glib::Value {
-        match pspec.name() {
-            "metadata" => self.metadata.get().unwrap().to_value(),
-            _ => unimplemented!(),
-        }
+    fn property(&self, id: usize, pspec: &glib::ParamSpec) -> glib::Value {
+        self.derived_property(id, pspec)
     }
 }

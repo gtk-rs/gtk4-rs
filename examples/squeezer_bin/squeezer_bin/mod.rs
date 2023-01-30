@@ -14,19 +14,35 @@ impl SqueezerBin {
         glib::Object::new_default()
     }
 
-    pub fn keep_aspect_ratio(&self) -> bool {
-        self.imp().keep_aspect_ratio(self)
+    pub fn set_child(&self, widget: Option<&impl IsA<gtk::Widget>>) {
+        let imp = self.imp();
+        let widget = widget.map(|w| w.as_ref());
+        if widget == imp.child.borrow().as_ref() {
+            return;
+        }
+
+        if let Some(child) = imp.child.borrow_mut().take() {
+            child.unparent();
+        }
+
+        if let Some(w) = widget {
+            imp.child.replace(Some(w.clone()));
+            w.set_parent(self);
+        }
+
+        self.queue_resize();
+        self.notify("child")
     }
 
     pub fn set_keep_aspect_ratio(&self, keep_aspect_ratio: bool) {
-        self.imp().set_keep_aspect_ratio(self, keep_aspect_ratio)
-    }
+        let imp = self.imp();
+        if imp.keep_aspect_ratio.get() == keep_aspect_ratio {
+            return;
+        }
 
-    pub fn child(&self) -> Option<gtk::Widget> {
-        self.imp().child(self)
-    }
+        imp.keep_aspect_ratio.set(keep_aspect_ratio);
 
-    pub fn set_child(&self, widget: Option<&impl IsA<gtk::Widget>>) {
-        self.imp().set_child(self, widget);
+        self.queue_resize();
+        self.notify("keep-aspect-ratio")
     }
 }

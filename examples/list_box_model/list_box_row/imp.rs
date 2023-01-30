@@ -1,7 +1,7 @@
 use std::cell::RefCell;
 
 use gtk::{
-    glib::{self, clone, ParamSpec, ParamSpecObject, Value},
+    glib::{self, clone, ParamSpec, Properties, Value},
     prelude::*,
     subclass::prelude::*,
     ResponseType,
@@ -9,8 +9,10 @@ use gtk::{
 
 use crate::row_data::RowData;
 
-#[derive(Default, Debug)]
+#[derive(Default, Properties, Debug)]
+#[properties(wrapper_type = super::ListBoxRow)]
 pub struct ListBoxRow {
+    #[property(get, set, construct_only)]
     row_data: RefCell<Option<RowData>>,
 }
 
@@ -23,30 +25,15 @@ impl ObjectSubclass for ListBoxRow {
 
 impl ObjectImpl for ListBoxRow {
     fn properties() -> &'static [ParamSpec] {
-        use once_cell::sync::Lazy;
-        static PROPERTIES: Lazy<Vec<ParamSpec>> = Lazy::new(|| {
-            vec![ParamSpecObject::builder::<RowData>("row-data")
-                .construct_only()
-                .build()]
-        });
-        PROPERTIES.as_ref()
+        Self::derived_properties()
     }
 
-    fn set_property(&self, _id: usize, value: &Value, pspec: &ParamSpec) {
-        match pspec.name() {
-            "row-data" => {
-                let row_data = value.get().unwrap();
-                self.row_data.replace(row_data);
-            }
-            _ => unimplemented!(),
-        }
+    fn set_property(&self, id: usize, value: &Value, pspec: &ParamSpec) {
+        self.derived_set_property(id, value, pspec)
     }
 
-    fn property(&self, _id: usize, pspec: &ParamSpec) -> Value {
-        match pspec.name() {
-            "row-data" => self.row_data.borrow().to_value(),
-            _ => unimplemented!(),
-        }
+    fn property(&self, id: usize, pspec: &ParamSpec) -> Value {
+        self.derived_property(id, pspec)
     }
 
     fn constructed(&self) {

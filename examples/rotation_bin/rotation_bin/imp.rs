@@ -1,16 +1,18 @@
 use graphene::Point;
-use gtk::prelude::*;
 use gtk::subclass::prelude::*;
 use gtk::{glib, graphene, gsk, SizeRequestMode};
+use gtk::{glib::Properties, prelude::*};
 
 use super::Rotation;
-use once_cell::sync::Lazy;
 use std::cell::{Cell, RefCell};
 
-#[derive(Debug, Default)]
+#[derive(Debug, Properties, Default)]
+#[properties(wrapper_type = super::RotationBin)]
 pub struct RotationBin {
-    child: RefCell<Option<gtk::Widget>>,
-    rotation: Cell<Rotation>,
+    #[property(get, explicit_notify)]
+    pub(super) child: RefCell<Option<gtk::Widget>>,
+    #[property(get, explicit_notify, builder(Rotation::Normal))]
+    pub(super) rotation: Cell<Rotation>,
 }
 
 #[glib::object_subclass]
@@ -22,42 +24,15 @@ impl ObjectSubclass for RotationBin {
 
 impl ObjectImpl for RotationBin {
     fn properties() -> &'static [glib::ParamSpec] {
-        static PROPERTIES: Lazy<Vec<glib::ParamSpec>> = Lazy::new(|| {
-            vec![
-                glib::ParamSpecObject::builder::<gtk::Widget>("child")
-                    .explicit_notify()
-                    .build(),
-                glib::ParamSpecEnum::builder::<Rotation>("rotation")
-                    .explicit_notify()
-                    .build(),
-            ]
-        });
-
-        PROPERTIES.as_ref()
+        Self::derived_properties()
     }
 
-    fn property(&self, _id: usize, pspec: &glib::ParamSpec) -> glib::Value {
-        let obj = self.obj();
-
-        match pspec.name() {
-            "child" => self.child(&obj).to_value(),
-            "rotation" => self.rotation(&obj).to_value(),
-            _ => unimplemented!(),
-        }
+    fn property(&self, id: usize, pspec: &glib::ParamSpec) -> glib::Value {
+        self.derived_property(id, pspec)
     }
 
-    fn set_property(&self, _id: usize, value: &glib::Value, pspec: &glib::ParamSpec) {
-        let obj = self.obj();
-
-        match pspec.name() {
-            "child" => {
-                self.set_child(&obj, value.get::<gtk::Widget>().ok().as_ref());
-            }
-            "rotation" => {
-                self.set_rotation(&obj, value.get().unwrap());
-            }
-            _ => unimplemented!(),
-        }
+    fn set_property(&self, id: usize, value: &glib::Value, pspec: &glib::ParamSpec) {
+        self.derived_set_property(id, value, pspec)
     }
 
     fn dispose(&self) {
@@ -79,7 +54,7 @@ impl WidgetImpl for RotationBin {
 
         let mode = child.request_mode();
 
-        match self.rotation(&widget) {
+        match widget.rotation() {
             Rotation::Normal | Rotation::Deg180 => return mode,
             _ => (),
         }
@@ -105,7 +80,7 @@ impl WidgetImpl for RotationBin {
             }
         };
 
-        match self.rotation(&self.obj()) {
+        match self.obj().rotation() {
             Rotation::Normal | Rotation::Deg180 => {
                 *hexpand = child.compute_expand(gtk::Orientation::Horizontal);
                 *vexpand = child.compute_expand(gtk::Orientation::Vertical);
@@ -126,7 +101,7 @@ impl WidgetImpl for RotationBin {
         };
 
         // Swap the Orientation for 90 or 270 degrees
-        let orientation = match self.rotation(&widget) {
+        let orientation = match widget.rotation() {
             Rotation::Deg90 | Rotation::Deg270 => {
                 if orientation == gtk::Orientation::Horizontal {
                     gtk::Orientation::Vertical
@@ -142,7 +117,7 @@ impl WidgetImpl for RotationBin {
         //
         // Otherwise return child's measure but discard minimum_baseline and natural_baseline
         // as baseline is only useful for vertical orientations
-        match (orientation, self.rotation(&widget)) {
+        match (orientation, widget.rotation()) {
             (gtk::Orientation::Horizontal, Rotation::Normal | Rotation::Deg180) => {
                 child.measure(orientation, for_size)
             }
@@ -162,7 +137,7 @@ impl WidgetImpl for RotationBin {
         };
 
         // Swap height and width for 90 or 270 degrees
-        let (w, h) = match self.rotation(&widget) {
+        let (w, h) = match widget.rotation() {
             Rotation::Deg90 | Rotation::Deg270 => (height, width),
             _ => (width, height),
         };
@@ -174,60 +149,9 @@ impl WidgetImpl for RotationBin {
         let transform = transform
             .translate(&Point::new(width as f32 / 2.0, height as f32 / 2.0))
             // Rotate by the desired angle
-            .rotate(self.rotation(&widget).into())
+            .rotate(widget.rotation().into())
             // Revert the move of the origin point once our rotation is done.
             .translate(&Point::new(-w as f32 / 2.0, -h as f32 / 2.0));
         child.allocate(w, h, baseline, Some(transform))
-    }
-}
-
-impl RotationBin {
-    pub(super) fn child(&self, _obj: &super::RotationBin) -> Option<gtk::Widget> {
-        self.child.borrow().clone()
-    }
-
-    pub(super) fn rotation(&self, _obj: &super::RotationBin) -> Rotation {
-        self.rotation.get()
-    }
-
-    pub(super) fn set_child(
-        &self,
-        obj: &super::RotationBin,
-        widget: Option<&impl IsA<gtk::Widget>>,
-    ) {
-        let widget = widget.map(|w| w.upcast_ref());
-        if widget == self.child.borrow().as_ref() {
-            return;
-        }
-
-        if let Some(child) = self.child.borrow_mut().take() {
-            child.unparent();
-        }
-
-        if let Some(w) = widget {
-            self.child.replace(Some(w.clone()));
-            w.set_parent(obj);
-        }
-
-        obj.queue_resize();
-        obj.notify("child")
-    }
-
-    pub(super) fn set_rotation(&self, obj: &super::RotationBin, rotation: Rotation) {
-        if self.rotation.get() != rotation {
-            self.rotation.replace(rotation);
-            obj.queue_resize();
-            obj.notify("rotation");
-        }
-    }
-
-    pub(super) fn rotate_clockwise(&self, obj: &super::RotationBin) {
-        let r = self.rotation(obj);
-        self.set_rotation(obj, r.rotate_clockwise());
-    }
-
-    pub(super) fn rotate_counter_clockwise(&self, obj: &super::RotationBin) {
-        let r = self.rotation(obj);
-        self.set_rotation(obj, r.rotate_counter_clockwise());
     }
 }

@@ -1,15 +1,18 @@
 use glib::subclass::prelude::*;
 use gtk::{
-    glib::{self, ParamSpec, Value},
+    glib::{self, ParamSpec, Properties, Value},
     prelude::*,
 };
 use std::cell::{Cell, RefCell};
 
 // The actual data structure that stores our values. This is not accessible
 // directly from the outside.
-#[derive(Default)]
+#[derive(Default, Properties)]
+#[properties(wrapper_type = super::RowData)]
 pub struct RowData {
+    #[property(get, set)]
     name: RefCell<Option<String>>,
+    #[property(get, set, builder().maximum(100))]
     count: Cell<u32>,
 }
 
@@ -28,36 +31,14 @@ impl ObjectSubclass for RowData {
 // corresponding values of the properties.
 impl ObjectImpl for RowData {
     fn properties() -> &'static [ParamSpec] {
-        use once_cell::sync::Lazy;
-        static PROPERTIES: Lazy<Vec<ParamSpec>> = Lazy::new(|| {
-            vec![
-                glib::ParamSpecString::builder("name").build(),
-                glib::ParamSpecUInt::builder("count").maximum(100).build(),
-            ]
-        });
-
-        PROPERTIES.as_ref()
+        Self::derived_properties()
     }
 
-    fn set_property(&self, _id: usize, value: &Value, pspec: &ParamSpec) {
-        match pspec.name() {
-            "name" => {
-                let name = value.get().unwrap();
-                self.name.replace(name);
-            }
-            "count" => {
-                let count = value.get().unwrap();
-                self.count.replace(count);
-            }
-            _ => unimplemented!(),
-        }
+    fn set_property(&self, id: usize, value: &Value, pspec: &ParamSpec) {
+        self.derived_set_property(id, value, pspec)
     }
 
-    fn property(&self, _id: usize, pspec: &ParamSpec) -> Value {
-        match pspec.name() {
-            "name" => self.name.borrow().to_value(),
-            "count" => self.count.get().to_value(),
-            _ => unimplemented!(),
-        }
+    fn property(&self, id: usize, pspec: &ParamSpec) -> Value {
+        self.derived_property(id, pspec)
     }
 }
