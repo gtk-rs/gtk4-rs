@@ -44,7 +44,7 @@ impl MountOperation {
 
 impl Default for MountOperation {
     fn default() -> Self {
-        glib::object::Object::new_default::<Self>()
+        glib::object::Object::new::<Self>()
     }
 }
 

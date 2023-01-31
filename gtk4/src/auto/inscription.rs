@@ -460,7 +460,7 @@ impl Inscription {
 #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
 impl Default for Inscription {
     fn default() -> Self {
-        glib::object::Object::new_default::<Self>()
+        glib::object::Object::new::<Self>()
     }
 }
 

@@ -118,7 +118,7 @@ impl BoolFilter {
 
 impl Default for BoolFilter {
     fn default() -> Self {
-        glib::object::Object::new_default::<Self>()
+        glib::object::Object::new::<Self>()
     }
 }
 

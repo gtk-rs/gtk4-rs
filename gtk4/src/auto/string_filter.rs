@@ -194,7 +194,7 @@ impl StringFilter {
 
 impl Default for StringFilter {
     fn default() -> Self {
-        glib::object::Object::new_default::<Self>()
+        glib::object::Object::new::<Self>()
     }
 }
 

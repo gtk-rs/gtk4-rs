@@ -338,7 +338,7 @@ impl Expander {
 
 impl Default for Expander {
     fn default() -> Self {
-        glib::object::Object::new_default::<Self>()
+        glib::object::Object::new::<Self>()
     }
 }
 

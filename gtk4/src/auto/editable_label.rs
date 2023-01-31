@@ -64,7 +64,7 @@ impl EditableLabel {
 
 impl Default for EditableLabel {
     fn default() -> Self {
-        glib::object::Object::new_default::<Self>()
+        glib::object::Object::new::<Self>()
     }
 }
 

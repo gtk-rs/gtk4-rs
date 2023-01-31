@@ -360,7 +360,7 @@ impl AppChooserButton {
 
 impl Default for AppChooserButton {
     fn default() -> Self {
-        glib::object::Object::new_default::<Self>()
+        glib::object::Object::new::<Self>()
     }
 }
 
