@@ -11,7 +11,7 @@ glib::wrapper! {
 impl SqueezerBin {
     #[allow(clippy::new_without_default)]
     pub fn new() -> Self {
-        glib::Object::new_default()
+        glib::Object::new()
     }
 
     pub fn set_child(&self, widget: Option<&impl IsA<gtk::Widget>>) {

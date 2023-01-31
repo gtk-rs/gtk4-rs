@@ -12,10 +12,10 @@ glib::wrapper! {
     pub struct Model(ObjectSubclass<imp::Model>) @implements gio::ListModel;
 }
 
-// Constructor for new instances. This simply calls glib::Object::new_default()
+// Constructor for new instances. This simply calls glib::Object::new()
 impl Model {
     pub fn new() -> Model {
-        glib::Object::new_default()
+        glib::Object::new()
     }
 
     pub fn append(&self, obj: &RowData) {

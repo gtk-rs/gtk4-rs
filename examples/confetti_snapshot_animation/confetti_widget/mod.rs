@@ -18,7 +18,7 @@ impl Default for ConfettiWidget {
 
 impl ConfettiWidget {
     pub fn new() -> Self {
-        glib::Object::new_default()
+        glib::Object::new()
     }
     pub fn explode(&self, params: ExplosionParameters, duration: f64) -> AnimatedExplosion {
         let exp = AnimatedExplosion::new(params);

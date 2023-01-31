@@ -15,7 +15,7 @@ glib::wrapper! {
 
 impl BaseButton {
     pub fn new() -> Self {
-        glib::Object::new_default()
+        glib::Object::new()
     }
 }
 

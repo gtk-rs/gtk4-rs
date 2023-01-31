@@ -136,6 +136,6 @@ impl<O: IsA<EntryBuffer>> EntryBufferExtManual for O {
 
 impl Default for EntryBuffer {
     fn default() -> Self {
-        glib::Object::new_default()
+        glib::Object::new()
     }
 }
