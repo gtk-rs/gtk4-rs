@@ -17,7 +17,7 @@ impl Default for CustomLayout {
 
 impl CustomLayout {
     pub fn new() -> Self {
-        glib::Object::new_default()
+        glib::Object::new()
     }
 
     pub fn set_position(&self, position: f64) {

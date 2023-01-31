@@ -15,6 +15,6 @@ impl Default for CustomOrientable {
 
 impl CustomOrientable {
     pub fn new() -> Self {
-        glib::Object::new_default()
+        glib::Object::new()
     }
 }
