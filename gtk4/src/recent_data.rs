@@ -1,9 +1,6 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use glib::{
-    collections::{StrV, StrVItem},
-    translate::*,
-};
+use glib::{collections::StrV, translate::*, GStrPtr};
 use std::ffi::CStr;
 
 glib::wrapper! {
@@ -80,7 +77,7 @@ impl RecentData {
     }
 
     #[inline]
-    pub fn groups<'a>(&self) -> &'a [StrVItem] {
+    pub fn groups<'a>(&self) -> &'a [GStrPtr] {
         unsafe { StrV::from_glib_borrow(self.inner.groups as *const _) }
     }
 
