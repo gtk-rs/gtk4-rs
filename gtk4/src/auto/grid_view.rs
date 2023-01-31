@@ -315,7 +315,7 @@ impl GridView {
 
 impl Default for GridView {
     fn default() -> Self {
-        glib::object::Object::new_default::<Self>()
+        glib::object::Object::new::<Self>()
     }
 }
 

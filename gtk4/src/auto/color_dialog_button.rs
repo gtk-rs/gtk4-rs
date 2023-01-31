@@ -125,7 +125,7 @@ impl ColorDialogButton {
 #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
 impl Default for ColorDialogButton {
     fn default() -> Self {
-        glib::object::Object::new_default::<Self>()
+        glib::object::Object::new::<Self>()
     }
 }
 

@@ -39,7 +39,7 @@ impl TextBuffer {
 
 impl Default for TextBuffer {
     fn default() -> Self {
-        glib::object::Object::new_default::<Self>()
+        glib::object::Object::new::<Self>()
     }
 }
 

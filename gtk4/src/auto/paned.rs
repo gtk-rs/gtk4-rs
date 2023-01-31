@@ -612,7 +612,7 @@ impl Paned {
 
 impl Default for Paned {
     fn default() -> Self {
-        glib::object::Object::new_default::<Self>()
+        glib::object::Object::new::<Self>()
     }
 }
 

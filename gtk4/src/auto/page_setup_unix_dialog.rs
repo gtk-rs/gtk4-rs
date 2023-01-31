@@ -83,7 +83,7 @@ impl PageSetupUnixDialog {
 
 impl Default for PageSetupUnixDialog {
     fn default() -> Self {
-        glib::object::Object::new_default::<Self>()
+        glib::object::Object::new::<Self>()
     }
 }
 

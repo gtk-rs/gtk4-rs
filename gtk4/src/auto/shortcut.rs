@@ -159,7 +159,7 @@ impl Shortcut {
 
 impl Default for Shortcut {
     fn default() -> Self {
-        glib::object::Object::new_default::<Self>()
+        glib::object::Object::new::<Self>()
     }
 }
 

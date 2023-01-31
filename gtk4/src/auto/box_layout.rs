@@ -155,7 +155,7 @@ impl BoxLayout {
 
 impl Default for BoxLayout {
     fn default() -> Self {
-        glib::object::Object::new_default::<Self>()
+        glib::object::Object::new::<Self>()
     }
 }
 

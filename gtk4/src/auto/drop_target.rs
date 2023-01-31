@@ -328,7 +328,7 @@ impl DropTarget {
 
 impl Default for DropTarget {
     fn default() -> Self {
-        glib::object::Object::new_default::<Self>()
+        glib::object::Object::new::<Self>()
     }
 }
 

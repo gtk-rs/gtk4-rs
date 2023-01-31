@@ -82,7 +82,7 @@ impl ColorChooserDialog {
 
 impl Default for ColorChooserDialog {
     fn default() -> Self {
-        glib::object::Object::new_default::<Self>()
+        glib::object::Object::new::<Self>()
     }
 }
 

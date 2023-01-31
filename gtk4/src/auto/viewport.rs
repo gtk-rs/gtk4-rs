@@ -127,7 +127,7 @@ impl Viewport {
 
 impl Default for Viewport {
     fn default() -> Self {
-        glib::object::Object::new_default::<Self>()
+        glib::object::Object::new::<Self>()
     }
 }
 

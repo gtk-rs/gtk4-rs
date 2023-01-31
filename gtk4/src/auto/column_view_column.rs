@@ -441,7 +441,7 @@ impl ColumnViewColumn {
 
 impl Default for ColumnViewColumn {
     fn default() -> Self {
-        glib::object::Object::new_default::<Self>()
+        glib::object::Object::new::<Self>()
     }
 }
 
