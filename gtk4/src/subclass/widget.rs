@@ -1266,7 +1266,8 @@ where
     fn deref(&self) -> &Self::Target {
         unsafe {
             if !self.is_bound() {
-                panic!("Failed to retrieve template child. Please check that it has been bound and has a #[template_child] attribute.");
+                let name = Self::name();
+                panic!("Failed to retrieve template child. Please check that all fields of type `{name}` have been bound and have a #[template_child] attribute.");
             }
             &*(&self.ptr as *const _ as *const T)
         }
@@ -1277,10 +1278,17 @@ impl<T> TemplateChild<T>
 where
     T: ObjectType + FromGlibPtrNone<*mut <T as ObjectType>::GlibType>,
 {
+    pub(crate) fn name<'a>() -> &'a str {
+        T::static_type().name()
+    }
+
     #[track_caller]
     pub fn get(&self) -> T {
         self.try_get()
-            .expect("Failed to retrieve template child. Please check that it has been bound and has a #[template_child] attribute.")
+            .unwrap_or_else(|| {
+                let name = Self::name();
+                panic!("Failed to retrieve template child. Please check that all fields of type `{name}` have been bound and have a #[template_child] attribute.");
+            })
     }
 
     // rustdoc-stripper-ignore-next
