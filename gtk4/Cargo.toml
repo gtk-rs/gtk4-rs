@@ -10,7 +10,7 @@ license = "MIT"
 name = "gtk4"
 readme = "README.md"
 repository = "https://github.com/gtk-rs/gtk4-rs"
-version = "0.4.8"
+version = "0.4.9"
 rust-version = "1.56"
 
 [lib]
@@ -38,7 +38,7 @@ gio = {features = ["v2_66"], version = "0.15.2", git = "https://github.com/gtk-r
 glib = {features = ["v2_66"], version = "0.15.3", git = "https://github.com/gtk-rs/gtk-rs-core", branch = "0.15"}
 graphene = {package = "graphene-rs", version = "0.15.1", git = "https://github.com/gtk-rs/gtk-rs-core", branch = "0.15"}
 gsk = {package = "gsk4", path = "../gsk4", version = "0.4.8"}
-gtk4-macros = {path = "../gtk4-macros", version = "0.4.8"}
+gtk4-macros = {path = "../gtk4-macros", version = "0.4.9"}
 libc = "0.2"
 once_cell = "1.0"
 pango = {features = ["v1_46"], version = "0.15.2", git = "https://github.com/gtk-rs/gtk-rs-core", branch = "0.15"}
