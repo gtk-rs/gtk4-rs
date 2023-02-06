@@ -15,7 +15,6 @@ pub use windows;
 mod rt;
 
 #[allow(clippy::upper_case_acronyms)]
-#[allow(unused_imports)]
 mod auto;
 
 pub mod prelude;

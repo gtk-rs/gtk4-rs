@@ -20,7 +20,6 @@ macro_rules! skip_assert_initialized {
     () => {};
 }
 
-#[allow(unused_imports)]
 #[allow(clippy::derive_hash_xor_eq)]
 mod auto;
 

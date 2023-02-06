@@ -89,10 +89,7 @@ static TEST_THREAD_WORKER: once_cell::sync::Lazy<glib::ThreadPool> =
         pool
     });
 
-#[allow(clippy::let_and_return)]
-#[allow(clippy::clone_on_copy)]
 #[allow(clippy::type_complexity)]
-#[allow(unused_imports)]
 #[allow(clippy::derive_hash_xor_eq)]
 mod auto;
 
