@@ -156,6 +156,7 @@ impl<T: ContentProviderImpl> ContentProviderImplExt for T {
         }
     }
 
+    #[allow(clippy::type_complexity)]
     fn parent_write_mime_type_async<
         Q: IsA<gio::Cancellable>,
         R: FnOnce(Result<(), glib::Error>) + 'static,

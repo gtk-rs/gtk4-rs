@@ -196,6 +196,7 @@ pub trait CellAreaImpl: CellAreaImplExt + ObjectImpl {
         self.parent_preferred_height_for_width(context, widget, width)
     }
 
+    #[allow(clippy::too_many_arguments)]
     fn snapshot<P: IsA<CellAreaContext>, W: IsA<Widget>>(
         &self,
         context: &P,
@@ -297,6 +298,7 @@ pub trait CellAreaImplExt: ObjectSubclass {
         width: i32,
     ) -> (i32, i32);
 
+    #[allow(clippy::too_many_arguments)]
     fn parent_snapshot<P: IsA<CellAreaContext>, W: IsA<Widget>>(
         &self,
         context: &P,
