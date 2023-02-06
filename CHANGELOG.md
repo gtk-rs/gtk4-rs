@@ -2,9 +2,14 @@
 
 ## [Unreleased]
 
+Bilal Elmoussaoui:
 - Add support for the to be released `gtk::UriLauncher`
+- [Improve the API of `gtk::WidgetExt::dispose_template`](https://github.com/gtk-rs/gtk4-rs/pull/1212)
+- [Mention the failed to retrieve template child name](https://github.com/gtk-rs/gtk4-rs/pull/1290)
+- [Add a macos job](https://github.com/gtk-rs/gtk4-rs/pull/1237)
 
-* [Add blueprint support](https://github.com/gtk-rs/gtk4-rs/pull/1238)
+yuraiz:
+- [Add blueprint support](https://github.com/gtk-rs/gtk4-rs/pull/1238)
 ```rust
 #[derive(Debug, Default, gtk::CompositeTemplate)]
 #[template(string = "
@@ -24,8 +29,6 @@ pub struct MyWidget {
     pub label2: gtk::TemplateChild<gtk::Label>,
 }
 ```
-* [Mention the failed to retrieve template child name](https://github.com/gtk-rs/gtk4-rs/pull/1290)
-* [Add a macos job](https://github.com/gtk-rs/gtk4-rs/pull/1237)
 
 
 ## 0.5.5
