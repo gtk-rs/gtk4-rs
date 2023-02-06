@@ -12,7 +12,7 @@ use std::cell::{Cell, RefCell};
 pub struct CustomTag {
     pub container: gtk::Box,
     pub button: RefCell<Option<gtk::Button>>,
-    #[property(get = Self::label, set = Self::set_label, type=String)]
+    #[property(get = Self::label, set = Self::set_label, type=glib::GString)]
     label: gtk::Label,
     #[property(get, set = Self::set_has_close_button)]
     pub has_close_button: Cell<bool>,

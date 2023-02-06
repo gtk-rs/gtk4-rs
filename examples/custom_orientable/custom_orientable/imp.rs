@@ -9,7 +9,7 @@ use gtk::subclass::prelude::*;
 pub struct CustomOrientable {
     first_label: RefCell<Option<gtk::Widget>>,
     second_label: RefCell<Option<gtk::Widget>>,
-    #[property(get, set=Self::set_orientation, readwrite, builder(gtk::Orientation::Horizontal))]
+    #[property(get, set=Self::set_orientation, builder(gtk::Orientation::Horizontal))]
     orientation: RefCell<gtk::Orientation>,
 }
 

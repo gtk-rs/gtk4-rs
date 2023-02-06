@@ -12,7 +12,7 @@ use std::cell::{Cell, RefCell};
 pub struct RowData {
     #[property(get, set)]
     name: RefCell<Option<String>>,
-    #[property(get, set, builder().maximum(100))]
+    #[property(get, set, maximum = 100)]
     count: Cell<u32>,
 }
 
