@@ -1,10 +1,7 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
 #![cfg_attr(feature = "dox", feature(doc_cfg))]
-#![allow(clippy::derive_hash_xor_eq)]
-#![allow(clippy::non_send_fields_in_send_ty)]
 #![allow(clippy::too_many_arguments)]
-#![allow(clippy::wrong_self_convention)]
 #![allow(deprecated)]
 #![doc = include_str!("../README.md")]
 
@@ -93,12 +90,10 @@ static TEST_THREAD_WORKER: once_cell::sync::Lazy<glib::ThreadPool> =
     });
 
 #[allow(clippy::let_and_return)]
-#[allow(clippy::wrong_self_convention)]
 #[allow(clippy::clone_on_copy)]
-#[allow(clippy::many_single_char_names)]
-#[allow(clippy::upper_case_acronyms)]
 #[allow(clippy::type_complexity)]
 #[allow(unused_imports)]
+#[allow(clippy::derive_hash_xor_eq)]
 mod auto;
 
 #[macro_use]

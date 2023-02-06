@@ -31,6 +31,7 @@ pub trait GdkCairoContextExt {
     /// It's the responsibility of the caller to ensure that source
     /// is a valid GL resource.
     #[doc(alias = "gdk_cairo_draw_from_gl")]
+    #[allow(clippy::too_many_arguments)]
     unsafe fn draw_from_gl(
         &self,
         surface: &Surface,

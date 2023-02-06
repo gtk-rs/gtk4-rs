@@ -2,9 +2,6 @@
 
 #![cfg_attr(feature = "dox", feature(doc_cfg))]
 #![allow(clippy::type_complexity)]
-#![allow(clippy::derive_hash_xor_eq)]
-#![allow(clippy::non_send_fields_in_send_ty)]
-#![allow(clippy::too_many_arguments)]
 #![doc = include_str!("../README.md")]
 
 pub use cairo;
@@ -51,9 +48,8 @@ macro_rules! skip_assert_initialized {
     () => {};
 }
 
-#[allow(clippy::wrong_self_convention)]
-#[allow(clippy::upper_case_acronyms)]
 #[allow(unused_imports)]
+#[allow(clippy::derive_hash_xor_eq)]
 mod auto;
 
 #[macro_use]
