@@ -2,8 +2,8 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use crate::{Event, TouchpadGesturePhase};
-use glib::{prelude::*, translate::*};
+use crate::TouchpadGesturePhase;
+use glib::translate::*;
 use std::{fmt, mem};
 
 glib::wrapper! {

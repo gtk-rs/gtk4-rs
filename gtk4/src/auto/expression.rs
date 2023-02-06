@@ -70,7 +70,7 @@ impl Expression {
         let notify_data: Box_<P> = Box_::new(notify);
         unsafe extern "C" fn notify_func<P: Fn() + 'static>(user_data: glib::ffi::gpointer) {
             let callback: &P = &*(user_data as *mut _);
-            (*callback)();
+            (*callback)()
         }
         let notify = Some(notify_func::<P> as _);
         unsafe extern "C" fn user_destroy_func<P: Fn() + 'static>(data: glib::ffi::gpointer) {

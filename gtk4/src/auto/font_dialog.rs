@@ -503,7 +503,7 @@ impl FontDialogBuilder {
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
     pub fn language(self, language: &pango::Language) -> Self {
         Self {
-            builder: self.builder.property("language", language.clone()),
+            builder: self.builder.property("language", language),
         }
     }
 

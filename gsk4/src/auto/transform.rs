@@ -3,7 +3,7 @@
 // DO NOT EDIT
 
 use crate::TransformCategory;
-use glib::{prelude::*, translate::*};
+use glib::translate::*;
 use std::{fmt, mem};
 
 glib::wrapper! {

@@ -288,7 +288,7 @@ impl CellRendererToggleBuilder {
         Self {
             builder: self
                 .builder
-                .property("cell-background-rgba", cell_background_rgba.clone()),
+                .property("cell-background-rgba", cell_background_rgba),
         }
     }
 

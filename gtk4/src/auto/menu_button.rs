@@ -158,7 +158,7 @@ impl MenuButton {
         ) {
             let menu_button = from_glib_borrow(menu_button);
             let callback: &P = &*(user_data as *mut _);
-            (*callback)(&menu_button);
+            (*callback)(&menu_button)
         }
         let func = Some(func_func::<P> as _);
         unsafe extern "C" fn destroy_notify_func<P: Fn(&MenuButton) + 'static>(

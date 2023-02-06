@@ -279,8 +279,7 @@ impl<O: IsA<FontChooser>> FontChooserExt for O {
             let family = from_glib_borrow(family);
             let face = from_glib_borrow(face);
             let callback: &P = &*(data as *mut _);
-            let res = (*callback)(&family, &face);
-            res.into_glib()
+            (*callback)(&family, &face).into_glib()
         }
         let filter = Some(filter_func::<P> as _);
         unsafe extern "C" fn destroy_func<

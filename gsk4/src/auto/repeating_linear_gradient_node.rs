@@ -2,8 +2,8 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use crate::{ColorStop, RenderNode};
-use glib::{prelude::*, translate::*};
+use crate::ColorStop;
+use glib::translate::*;
 use std::fmt;
 
 glib::wrapper! {

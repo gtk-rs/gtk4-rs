@@ -286,7 +286,7 @@ impl ColorChooserWidgetBuilder {
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     pub fn rgba(self, rgba: &gdk::RGBA) -> Self {
         Self {
-            builder: self.builder.property("rgba", rgba.clone()),
+            builder: self.builder.property("rgba", rgba),
         }
     }
 

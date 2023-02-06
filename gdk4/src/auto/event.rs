@@ -6,7 +6,7 @@ use crate::{
     AxisUse, Device, DeviceTool, Display, EventSequence, EventType, ModifierType, Seat, Surface,
     TimeCoord,
 };
-use glib::{prelude::*, translate::*};
+use glib::translate::*;
 use std::{fmt, mem, ptr};
 
 glib::wrapper! {

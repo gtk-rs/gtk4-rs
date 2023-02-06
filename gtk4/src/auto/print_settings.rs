@@ -93,7 +93,7 @@ impl PrintSettings {
             let key: Borrowed<glib::GString> = from_glib_borrow(key);
             let value: Borrowed<glib::GString> = from_glib_borrow(value);
             let callback: *mut P = user_data as *const _ as usize as *mut P;
-            (*callback)(key.as_str(), value.as_str());
+            (*callback)(key.as_str(), value.as_str())
         }
         let func = Some(func_func::<P> as _);
         let super_callback0: &P = &func_data;

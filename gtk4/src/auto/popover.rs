@@ -104,7 +104,7 @@ impl PopoverBuilder {
 
     pub fn pointing_to(self, pointing_to: &gdk::Rectangle) -> Self {
         Self {
-            builder: self.builder.property("pointing-to", pointing_to.clone()),
+            builder: self.builder.property("pointing-to", pointing_to),
         }
     }
 

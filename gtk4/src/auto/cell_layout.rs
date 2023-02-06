@@ -175,7 +175,7 @@ impl<O: IsA<CellLayout>> CellLayoutExt for O {
             let tree_model = from_glib_borrow(tree_model);
             let iter = from_glib_borrow(iter);
             let callback: &P = &*(data as *mut _);
-            (*callback)(&cell_layout, &cell, &tree_model, &iter);
+            (*callback)(&cell_layout, &cell, &tree_model, &iter)
         }
         let func = Some(func_func::<P> as _);
         unsafe extern "C" fn destroy_func<

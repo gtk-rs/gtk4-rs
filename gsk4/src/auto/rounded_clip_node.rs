@@ -3,7 +3,7 @@
 // DO NOT EDIT
 
 use crate::{RenderNode, RoundedRect};
-use glib::{prelude::*, translate::*};
+use glib::translate::*;
 use std::fmt;
 
 glib::wrapper! {

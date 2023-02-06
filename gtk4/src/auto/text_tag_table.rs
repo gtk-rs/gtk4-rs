@@ -45,7 +45,7 @@ impl TextTagTable {
         ) {
             let tag = from_glib_borrow(tag);
             let callback: *mut P = data as *const _ as usize as *mut P;
-            (*callback)(&tag);
+            (*callback)(&tag)
         }
         let func = Some(func_func::<P> as _);
         let super_callback0: &P = &func_data;

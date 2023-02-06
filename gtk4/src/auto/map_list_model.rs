@@ -32,8 +32,7 @@ impl MapListModel {
         ) -> *mut glib::gobject_ffi::GObject {
             let item = from_glib_full(item);
             let callback: &P = &*(user_data as *mut _);
-            let res = (*callback)(&item);
-            res.to_glib_full()
+            (*callback)(&item).to_glib_full()
         }
         let map_func = Some(map_func_func::<P> as _);
         unsafe extern "C" fn user_destroy_func<P: Fn(&glib::Object) -> glib::Object + 'static>(
@@ -73,8 +72,7 @@ impl MapListModel {
         ) -> *mut glib::gobject_ffi::GObject {
             let item = from_glib_full(item);
             let callback: &P = &*(user_data as *mut _);
-            let res = (*callback)(&item);
-            res.to_glib_full()
+            (*callback)(&item).to_glib_full()
         }
         let map_func = Some(map_func_func::<P> as _);
         unsafe extern "C" fn user_destroy_func<P: Fn(&glib::Object) -> glib::Object + 'static>(

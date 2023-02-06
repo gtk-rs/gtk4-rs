@@ -59,8 +59,7 @@ impl FlowBox {
         ) -> *mut ffi::GtkWidget {
             let item = from_glib_borrow(item);
             let callback: &P = &*(user_data as *mut _);
-            let res = (*callback)(&item);
-            res.to_glib_full()
+            (*callback)(&item).to_glib_full()
         }
         let create_widget_func = Some(create_widget_func_func::<P> as _);
         unsafe extern "C" fn user_data_free_func_func<P: Fn(&glib::Object) -> Widget + 'static>(
@@ -226,7 +225,7 @@ impl FlowBox {
             let box_ = from_glib_borrow(box_);
             let child = from_glib_borrow(child);
             let callback: *mut P = user_data as *const _ as usize as *mut P;
-            (*callback)(&box_, &child);
+            (*callback)(&box_, &child)
         }
         let func = Some(func_func::<P> as _);
         let super_callback0: &P = &func_data;
@@ -265,8 +264,7 @@ impl FlowBox {
         ) -> glib::ffi::gboolean {
             let child = from_glib_borrow(child);
             let callback: &P = &*(user_data as *mut _);
-            let res = (*callback)(&child);
-            res.into_glib()
+            (*callback)(&child).into_glib()
         }
         let filter_func = Some(filter_func_func::<P> as _);
         unsafe extern "C" fn destroy_func<P: Fn(&FlowBoxChild) -> bool + 'static>(

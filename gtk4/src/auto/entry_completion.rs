@@ -220,8 +220,7 @@ impl EntryCompletion {
             let key: Borrowed<glib::GString> = from_glib_borrow(key);
             let iter = from_glib_borrow(iter);
             let callback: &P = &*(user_data as *mut _);
-            let res = (*callback)(&completion, key.as_str(), &iter);
-            res.into_glib()
+            (*callback)(&completion, key.as_str(), &iter).into_glib()
         }
         let func = Some(func_func::<P> as _);
         unsafe extern "C" fn func_notify_func<

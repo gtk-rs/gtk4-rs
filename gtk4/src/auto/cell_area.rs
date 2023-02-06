@@ -532,8 +532,7 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
         ) -> glib::ffi::gboolean {
             let renderer = from_glib_borrow(renderer);
             let callback: *mut P = data as *const _ as usize as *mut P;
-            let res = (*callback)(&renderer);
-            res.into_glib()
+            (*callback)(&renderer).into_glib()
         }
         let callback = Some(callback_func::<P> as _);
         let super_callback0: &P = &callback_data;
@@ -567,8 +566,7 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
             let cell_area = from_glib_borrow(cell_area);
             let cell_background = from_glib_borrow(cell_background);
             let callback: *mut P = data as *const _ as usize as *mut P;
-            let res = (*callback)(&renderer, &cell_area, &cell_background);
-            res.into_glib()
+            (*callback)(&renderer, &cell_area, &cell_background).into_glib()
         }
         let callback = Some(callback_func::<P> as _);
         let super_callback0: &P = &callback_data;

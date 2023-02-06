@@ -194,7 +194,7 @@ impl TextViewBuilder {
 
     pub fn tabs(self, tabs: &pango::TabArray) -> Self {
         Self {
-            builder: self.builder.property("tabs", tabs.clone()),
+            builder: self.builder.property("tabs", tabs),
         }
     }
 

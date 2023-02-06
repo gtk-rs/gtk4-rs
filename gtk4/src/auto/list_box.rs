@@ -57,8 +57,7 @@ impl ListBox {
         ) -> *mut ffi::GtkWidget {
             let item = from_glib_borrow(item);
             let callback: &P = &*(user_data as *mut _);
-            let res = (*callback)(&item);
-            res.to_glib_full()
+            (*callback)(&item).to_glib_full()
         }
         let create_widget_func = Some(create_widget_func_func::<P> as _);
         unsafe extern "C" fn user_data_free_func_func<P: Fn(&glib::Object) -> Widget + 'static>(
@@ -231,7 +230,7 @@ impl ListBox {
             let box_ = from_glib_borrow(box_);
             let row = from_glib_borrow(row);
             let callback: *mut P = user_data as *const _ as usize as *mut P;
-            (*callback)(&box_, &row);
+            (*callback)(&box_, &row)
         }
         let func = Some(func_func::<P> as _);
         let super_callback0: &P = &func_data;
@@ -273,8 +272,7 @@ impl ListBox {
         ) -> glib::ffi::gboolean {
             let row = from_glib_borrow(row);
             let callback: &P = &*(user_data as *mut _);
-            let res = (*callback)(&row);
-            res.into_glib()
+            (*callback)(&row).into_glib()
         }
         let filter_func = Some(filter_func_func::<P> as _);
         unsafe extern "C" fn destroy_func<P: Fn(&ListBoxRow) -> bool + 'static>(
@@ -310,7 +308,7 @@ impl ListBox {
             let row = from_glib_borrow(row);
             let before: Borrowed<Option<ListBoxRow>> = from_glib_borrow(before);
             let callback: &P = &*(user_data as *mut _);
-            (*callback)(&row, before.as_ref().as_ref());
+            (*callback)(&row, before.as_ref().as_ref())
         }
         let update_header = Some(update_header_func::<P> as _);
         unsafe extern "C" fn destroy_func<P: Fn(&ListBoxRow, Option<&ListBoxRow>) + 'static>(

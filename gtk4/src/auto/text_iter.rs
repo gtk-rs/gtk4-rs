@@ -73,8 +73,7 @@ impl TextIter {
             let ch = std::convert::TryFrom::try_from(ch)
                 .expect("conversion from an invalid Unicode value attempted");
             let callback: *mut P = user_data as *const _ as usize as *mut P;
-            let res = (*callback)(ch);
-            res.into_glib()
+            (*callback)(ch).into_glib()
         }
         let pred = Some(pred_func::<P> as _);
         let super_callback0: &P = &pred_data;
@@ -342,8 +341,7 @@ impl TextIter {
             let ch = std::convert::TryFrom::try_from(ch)
                 .expect("conversion from an invalid Unicode value attempted");
             let callback: *mut P = user_data as *const _ as usize as *mut P;
-            let res = (*callback)(ch);
-            res.into_glib()
+            (*callback)(ch).into_glib()
         }
         let pred = Some(pred_func::<P> as _);
         let super_callback0: &P = &pred_data;

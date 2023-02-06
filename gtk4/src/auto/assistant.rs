@@ -198,8 +198,7 @@ impl Assistant {
             data: glib::ffi::gpointer,
         ) -> libc::c_int {
             let callback: &P = &*(data as *mut _);
-            let res = (*callback)(current_page);
-            res
+            (*callback)(current_page)
         }
         let page_func = Some(page_func_func::<P> as _);
         unsafe extern "C" fn destroy_func<P: Fn(i32) -> i32 + 'static>(data: glib::ffi::gpointer) {
