@@ -16,7 +16,7 @@ fn main() -> glib::ExitCode {
 
     application.connect_startup(|_| {
         let provider = gtk::CssProvider::new();
-        provider.load_from_data(include_bytes!("style.css"));
+        provider.load_from_data(include_str!("style.css"));
         gtk::StyleContext::add_provider_for_display(
             &gdk::Display::default().unwrap(),
             &provider,
