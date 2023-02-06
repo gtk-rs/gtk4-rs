@@ -5115,6 +5115,20 @@ impl ::std::fmt::Debug for GtkTreeViewClass {
 
 #[derive(Copy, Clone)]
 #[repr(C)]
+pub struct GtkUriLauncherClass {
+    pub parent_class: gobject::GObjectClass,
+}
+
+impl ::std::fmt::Debug for GtkUriLauncherClass {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("GtkUriLauncherClass @ {self:p}"))
+            .field("parent_class", &self.parent_class)
+            .finish()
+    }
+}
+
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkVideoClass {
     pub parent_class: GtkWidgetClass,
 }
@@ -8581,6 +8595,19 @@ impl ::std::fmt::Debug for GtkTreeViewColumn {
 }
 
 #[repr(C)]
+pub struct GtkUriLauncher {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
+
+impl ::std::fmt::Debug for GtkUriLauncher {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("GtkUriLauncher @ {self:p}"))
+            .finish()
+    }
+}
+
+#[repr(C)]
 pub struct GtkVideo {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -12039,7 +12066,7 @@ extern "C" {
     pub fn gtk_css_provider_new() -> *mut GtkCssProvider;
     pub fn gtk_css_provider_load_from_data(
         css_provider: *mut GtkCssProvider,
-        data: *const u8,
+        data: *const c_char,
         length: ssize_t,
     );
     pub fn gtk_css_provider_load_from_file(
@@ -18369,6 +18396,38 @@ extern "C" {
         tree_column: *mut GtkTreeViewColumn,
         widget: *mut GtkWidget,
     );
+
+    //=========================================================================
+    // GtkUriLauncher
+    //=========================================================================
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gtk_uri_launcher_get_type() -> GType;
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gtk_uri_launcher_new(uri: *const c_char) -> *mut GtkUriLauncher;
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gtk_uri_launcher_get_uri(self_: *mut GtkUriLauncher) -> *const c_char;
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gtk_uri_launcher_launch(
+        self_: *mut GtkUriLauncher,
+        parent: *mut GtkWindow,
+        cancellable: *mut gio::GCancellable,
+        callback: gio::GAsyncReadyCallback,
+        user_data: gpointer,
+    );
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gtk_uri_launcher_launch_finish(
+        self_: *mut GtkUriLauncher,
+        result: *mut gio::GAsyncResult,
+        error: *mut *mut glib::GError,
+    ) -> gboolean;
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gtk_uri_launcher_set_uri(self_: *mut GtkUriLauncher, uri: *const c_char);
 
     //=========================================================================
     // GtkVideo

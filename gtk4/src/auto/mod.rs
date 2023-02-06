@@ -977,6 +977,13 @@ mod tree_view_column;
 #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 pub use self::tree_view_column::TreeViewColumn;
 
+#[cfg(any(feature = "v4_10", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+mod uri_launcher;
+#[cfg(any(feature = "v4_10", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+pub use self::uri_launcher::UriLauncher;
+
 mod video;
 pub use self::video::Video;
 
@@ -1533,6 +1540,9 @@ pub mod builders {
     pub use super::tree_view::TreeViewBuilder;
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     pub use super::tree_view_column::TreeViewColumnBuilder;
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub use super::uri_launcher::UriLauncherBuilder;
     pub use super::video::VideoBuilder;
     pub use super::viewport::ViewportBuilder;
     pub use super::volume_button::VolumeButtonBuilder;
