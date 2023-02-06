@@ -316,6 +316,7 @@ int main() {
     printf("%s;%zu;%zu\n", "GtkTreeViewDropPosition", sizeof(GtkTreeViewDropPosition), alignof(GtkTreeViewDropPosition));
     printf("%s;%zu;%zu\n", "GtkTreeViewGridLines", sizeof(GtkTreeViewGridLines), alignof(GtkTreeViewGridLines));
     printf("%s;%zu;%zu\n", "GtkUnit", sizeof(GtkUnit), alignof(GtkUnit));
+    printf("%s;%zu;%zu\n", "GtkUriLauncherClass", sizeof(GtkUriLauncherClass), alignof(GtkUriLauncherClass));
     printf("%s;%zu;%zu\n", "GtkVideoClass", sizeof(GtkVideoClass), alignof(GtkVideoClass));
     printf("%s;%zu;%zu\n", "GtkVolumeButton", sizeof(GtkVolumeButton), alignof(GtkVolumeButton));
     printf("%s;%zu;%zu\n", "GtkWidget", sizeof(GtkWidget), alignof(GtkWidget));

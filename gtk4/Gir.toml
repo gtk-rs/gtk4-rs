@@ -2573,6 +2573,15 @@ status = "generate"
     manual = true
 
 [[object]]
+name = "Gtk.UriLauncher"
+status = "generate"
+    [[object.function]]
+    name = "new"
+        [[object.function.parameter]]
+        name = "uri" # we have Default for creating instances without "uri" 
+        nullable = false
+
+[[object]]
 name = "Gtk.Widget"
 status = "generate"
 manual_traits = ["WidgetExtManual"]

@@ -2361,6 +2361,13 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         },
     ),
     (
+        "GtkUriLauncherClass",
+        Layout {
+            size: size_of::<GtkUriLauncherClass>(),
+            alignment: align_of::<GtkUriLauncherClass>(),
+        },
+    ),
+    (
         "GtkVideoClass",
         Layout {
             size: size_of::<GtkVideoClass>(),
