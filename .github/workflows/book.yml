@@ -9,8 +9,6 @@ on:
       - "master"
     paths:
       - "book/**"
-  release:
-    types: [published]
 
 jobs:
   build-deploy:
