@@ -191,7 +191,8 @@ gtk = { git = "https://github.com/gtk-rs/gtk4-rs.git", package = "gtk4" }
 | `gnome_43` | Enable all version feature flags of this crate and its dependencies to match the GNOME 43 SDK |
 | `gnome_42` | Enable all version feature flags of this crate and its dependencies to match the GNOME 42 SDK |
 | `unsafe-assume-initialized` | Disable checks that gtk is initialized, for use in C ABI libraries |
-| `xml_validation` | Enable `xml_validation` feature of gtk4-macros 
+| `xml_validation` | Enable `xml_validation` feature of gtk4-macros |
+| `blueprint` | Enable `blueprint` feature of gtk4-macros |
 
 ### See Also
 

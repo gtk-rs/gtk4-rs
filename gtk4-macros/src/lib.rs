@@ -5,6 +5,7 @@
 //! The crate aims to provide useful macros to use with the GTK 4 Rust bindings.
 
 mod attribute_parser;
+#[cfg(feature = "blueprint")]
 mod blueprint;
 mod composite_template_derive;
 mod template_callbacks_attribute;
@@ -41,15 +42,12 @@ use syn::{parse_macro_input, DeriveInput};
 ///
 /// ```no_run
 /// # fn main() {}
-/// use gtk::prelude::*;
-/// use gtk::glib;
-/// use gtk::CompositeTemplate;
-/// use gtk::subclass::prelude::*;
+/// use gtk::{glib, prelude::*, subclass::prelude::*};
 ///
 /// mod imp {
 ///     use super::*;
 ///
-///     #[derive(Debug, Default, CompositeTemplate)]
+///     #[derive(Debug, Default, gtk::CompositeTemplate)]
 ///     #[template(file = "test/template.ui")]
 ///     pub struct MyWidget {
 ///         #[template_child]
@@ -90,17 +88,16 @@ use syn::{parse_macro_input, DeriveInput};
 /// ```
 ///
 /// The [`CompositeTemplate`] macro can also be used with [Blueprint](https://jwestman.pages.gitlab.gnome.org/blueprint-compiler/)
+/// if the feature `blueprint` is enabled.
 ///
-/// ```rust
-/// ```no_run
+/// ```ignore
 /// # fn main() {}
-/// use gtk::prelude::*;
-/// use gtk::glib;
-/// use gtk::CompositeTemplate;
-/// use gtk::subclass::prelude::*;
+/// use gtk::{glib, prelude::*, subclass::prelude::*};
 ///
 /// mod imp {
-///     #[derive(Debug, Default, CompositeTemplate)]
+///     use super::*;
+///
+///     #[derive(Debug, Default, gtk::CompositeTemplate)]
 ///     #[template(string = "
 ///     template MyWidget : Widget {
 ///         Label label {
@@ -234,15 +231,12 @@ pub fn composite_template_derive(input: TokenStream) -> TokenStream {
 ///
 /// ```no_run
 /// # fn main() {}
-/// use gtk::prelude::*;
-/// use gtk::glib;
-/// use gtk::CompositeTemplate;
-/// use gtk::subclass::prelude::*;
+/// use gtk::{glib, prelude::*, subclass::prelude::*};
 ///
 /// mod imp {
 ///     use super::*;
 ///
-///     #[derive(Debug, Default, CompositeTemplate)]
+///     #[derive(Debug, Default, gtk::CompositeTemplate)]
 ///     #[template(file = "test/template_callbacks.ui")]
 ///     pub struct MyWidget {
 ///         #[template_child]

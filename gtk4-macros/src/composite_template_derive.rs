@@ -11,7 +11,9 @@ use syn::Data;
 use std::collections::HashMap;
 use std::string::ToString;
 
-use crate::{attribute_parser::*, blueprint::*, util::*};
+#[cfg(feature = "blueprint")]
+use crate::blueprint::*;
+use crate::{attribute_parser::*, util::*};
 
 fn gen_set_template(source: &TemplateSource, crate_ident: &proc_macro2::Ident) -> TokenStream {
     match source {
@@ -33,6 +35,7 @@ fn gen_set_template(source: &TemplateSource, crate_ident: &proc_macro2::Ident) -
                 #template.as_bytes(),
             );
         },
+        #[cfg(feature = "blueprint")]
         TemplateSource::Blueprint(blueprint) => {
             let template =
                 compile_blueprint(blueprint.as_bytes()).expect("can't compile blueprint");

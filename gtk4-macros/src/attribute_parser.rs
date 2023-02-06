@@ -16,16 +16,23 @@ pub enum TemplateSource {
     File(String),
     Resource(String),
     Xml(String),
+    #[cfg(feature = "blueprint")]
     Blueprint(String),
 }
 
 impl TemplateSource {
     fn from_string_source(source: String) -> Result<Self> {
         for c in source.chars() {
+            #[cfg(feature = "blueprint")]
             if c.is_ascii_alphabetic() {
                 // blueprint code starts with some alphabetic letters
                 return Ok(Self::Blueprint(source));
             } else if c == '<' {
+                // xml tags starts with '<' symbol
+                return Ok(Self::Xml(source));
+            }
+            #[cfg(not(feature = "blueprint"))]
+            if c == '<' {
                 // xml tags starts with '<' symbol
                 return Ok(Self::Xml(source));
             }
