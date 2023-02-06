@@ -22,7 +22,7 @@ fn child_size(child: &impl IsA<gtk::Widget>) -> ((i32, i32), (i32, i32)) {
 pub struct SqueezerBin {
     #[property(get, explicit_notify)]
     pub(super) child: RefCell<Option<gtk::Widget>>,
-    #[property(get, readwrite, explicit_notify)]
+    #[property(get, explicit_notify)]
     pub(super) keep_aspect_ratio: Cell<bool>,
 }
 
