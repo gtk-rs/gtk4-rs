@@ -64,6 +64,7 @@ impl Clipboard {
         }
     }
 
+    #[allow(clippy::type_complexity)]
     pub fn read_future(
         &self,
         mime_types: &[&str],

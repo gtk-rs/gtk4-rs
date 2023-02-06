@@ -1,7 +1,6 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
 #![cfg_attr(feature = "dox", feature(doc_cfg))]
-#![allow(clippy::too_many_arguments)]
 #![allow(deprecated)]
 #![doc = include_str!("../README.md")]
 
@@ -89,8 +88,9 @@ static TEST_THREAD_WORKER: once_cell::sync::Lazy<glib::ThreadPool> =
         pool
     });
 
-#[allow(clippy::type_complexity)]
 #[allow(clippy::derive_hash_xor_eq)]
+#[allow(clippy::too_many_arguments)]
+#[allow(clippy::type_complexity)]
 mod auto;
 
 #[macro_use]

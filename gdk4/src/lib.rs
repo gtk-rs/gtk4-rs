@@ -1,7 +1,6 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
 #![cfg_attr(feature = "dox", feature(doc_cfg))]
-#![allow(clippy::type_complexity)]
 #![doc = include_str!("../README.md")]
 
 pub use cairo;
@@ -49,6 +48,7 @@ macro_rules! skip_assert_initialized {
 }
 
 #[allow(clippy::derive_hash_xor_eq)]
+#[allow(clippy::type_complexity)]
 mod auto;
 
 #[macro_use]
