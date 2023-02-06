@@ -10,12 +10,12 @@ cargo xtask install
 
 Then execute the following to run one of the listings.
 
-```bash
+```
 cargo run --bin [example_name]_[number]
 ```
 
 For example, if you want to run the listing in subfolder "hello_world/3", execute:
 
-```bash
+```
 cargo run --bin hello_world_3
 ```
