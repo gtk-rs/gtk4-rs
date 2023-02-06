@@ -164,7 +164,7 @@ impl TreeSelection {
             let path = from_glib_borrow(path);
             let iter = from_glib_borrow(iter);
             let callback: *mut P = data as *const _ as usize as *mut P;
-            (*callback)(&model, &path, &iter);
+            (*callback)(&model, &path, &iter)
         }
         let func = Some(func_func::<P> as _);
         let super_callback0: &P = &func_data;
@@ -210,8 +210,7 @@ impl TreeSelection {
             let path = from_glib_borrow(path);
             let path_currently_selected = from_glib(path_currently_selected);
             let callback: &P = &*(data as *mut _);
-            let res = (*callback)(&selection, &model, &path, path_currently_selected);
-            res.into_glib()
+            (*callback)(&selection, &model, &path, path_currently_selected).into_glib()
         }
         let func = Some(func_func::<P> as _);
         unsafe extern "C" fn destroy_func<

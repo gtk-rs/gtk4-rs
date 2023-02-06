@@ -445,7 +445,7 @@ impl TreeViewColumn {
             let tree_model = from_glib_borrow(tree_model);
             let iter = from_glib_borrow(iter);
             let callback: &P = &*(data as *mut _);
-            (*callback)(&tree_column, &cell, &tree_model, &iter);
+            (*callback)(&tree_column, &cell, &tree_model, &iter)
         }
         let func = Some(func_func::<P> as _);
         unsafe extern "C" fn destroy_func<

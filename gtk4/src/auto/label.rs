@@ -1092,7 +1092,7 @@ impl LabelBuilder {
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
     pub fn tabs(self, tabs: &pango::TabArray) -> Self {
         Self {
-            builder: self.builder.property("tabs", tabs.clone()),
+            builder: self.builder.property("tabs", tabs),
         }
     }
 

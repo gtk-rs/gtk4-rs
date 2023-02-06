@@ -398,7 +398,7 @@ impl FontDialogButtonBuilder {
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
     pub fn font_desc(self, font_desc: &pango::FontDescription) -> Self {
         Self {
-            builder: self.builder.property("font-desc", font_desc.clone()),
+            builder: self.builder.property("font-desc", font_desc),
         }
     }
 
@@ -414,7 +414,7 @@ impl FontDialogButtonBuilder {
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
     pub fn language(self, language: &pango::Language) -> Self {
         Self {
-            builder: self.builder.property("language", language.clone()),
+            builder: self.builder.property("language", language),
         }
     }
 

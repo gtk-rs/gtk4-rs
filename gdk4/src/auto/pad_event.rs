@@ -2,8 +2,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use crate::Event;
-use glib::{prelude::*, translate::*};
+use glib::translate::*;
 use std::{fmt, mem};
 
 glib::wrapper! {

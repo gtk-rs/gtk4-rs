@@ -3,7 +3,7 @@
 // DO NOT EDIT
 
 use crate::RenderNodeType;
-use glib::{prelude::*, translate::*};
+use glib::translate::*;
 use std::{fmt, ptr};
 
 glib::wrapper! {

@@ -423,7 +423,7 @@ impl FontChooserDialogBuilder {
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     pub fn font_desc(self, font_desc: &pango::FontDescription) -> Self {
         Self {
-            builder: self.builder.property("font-desc", font_desc.clone()),
+            builder: self.builder.property("font-desc", font_desc),
         }
     }
 

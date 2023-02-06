@@ -37,8 +37,7 @@ impl TreeListModel {
         ) -> *mut gio::ffi::GListModel {
             let item = from_glib_borrow(item);
             let callback: &P = &*(user_data as *mut _);
-            let res = (*callback)(&item);
-            res.to_glib_full()
+            (*callback)(&item).to_glib_full()
         }
         let create_func = Some(create_func_func::<P> as _);
         unsafe extern "C" fn user_destroy_func<

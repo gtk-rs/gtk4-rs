@@ -88,9 +88,7 @@ impl CellRendererTextBuilder {
 
     pub fn background_rgba(self, background_rgba: &gdk::RGBA) -> Self {
         Self {
-            builder: self
-                .builder
-                .property("background-rgba", background_rgba.clone()),
+            builder: self.builder.property("background-rgba", background_rgba),
         }
     }
 
@@ -144,7 +142,7 @@ impl CellRendererTextBuilder {
 
     pub fn font_desc(self, font_desc: &pango::FontDescription) -> Self {
         Self {
-            builder: self.builder.property("font-desc", font_desc.clone()),
+            builder: self.builder.property("font-desc", font_desc),
         }
     }
 
@@ -156,9 +154,7 @@ impl CellRendererTextBuilder {
 
     pub fn foreground_rgba(self, foreground_rgba: &gdk::RGBA) -> Self {
         Self {
-            builder: self
-                .builder
-                .property("foreground-rgba", foreground_rgba.clone()),
+            builder: self.builder.property("foreground-rgba", foreground_rgba),
         }
     }
 
@@ -360,7 +356,7 @@ impl CellRendererTextBuilder {
         Self {
             builder: self
                 .builder
-                .property("cell-background-rgba", cell_background_rgba.clone()),
+                .property("cell-background-rgba", cell_background_rgba),
         }
     }
 

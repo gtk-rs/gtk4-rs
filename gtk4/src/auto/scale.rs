@@ -499,8 +499,7 @@ impl<O: IsA<Scale>> ScaleExt for O {
         ) -> *mut libc::c_char {
             let scale = from_glib_borrow(scale);
             let callback: &P = &*(user_data as *mut _);
-            let res = (*callback)(&scale, value);
-            res.to_glib_full()
+            (*callback)(&scale, value).to_glib_full()
         }
         let func = Some(func_func::<P> as _);
         unsafe extern "C" fn destroy_notify_func<P: Fn(&Scale, f64) -> String + 'static>(

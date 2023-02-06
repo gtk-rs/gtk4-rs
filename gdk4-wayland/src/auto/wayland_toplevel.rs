@@ -27,7 +27,7 @@ impl WaylandToplevel {
             let toplevel = from_glib_borrow(toplevel);
             let handle: Borrowed<glib::GString> = from_glib_borrow(handle);
             let callback: &P = &*(user_data as *mut _);
-            (*callback)(&toplevel, handle.as_str());
+            (*callback)(&toplevel, handle.as_str())
         }
         let callback = Some(callback_func::<P> as _);
         unsafe extern "C" fn destroy_func_func<P: Fn(&WaylandToplevel, &str) + 'static>(
