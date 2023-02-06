@@ -2,12 +2,24 @@
 
 use std::marker::PhantomData;
 
-use crate::ParamSpecExpression;
+use crate::{Expression, ParamSpecExpression};
 
 use glib::{
     gobject_ffi, prelude::*, shared::Shared, translate::*, IntoGStr, IntoOptionalGStr, ParamSpec,
     StaticType, Value,
 };
+
+impl glib::HasParamSpec for Expression {
+    type ParamSpec = ParamSpecExpression;
+
+    type SetValue = Expression;
+
+    type BuilderFn = for<'a> fn(&'a str) -> ParamSpecExpressionBuilder<'a>;
+
+    fn param_spec_builder() -> Self::BuilderFn {
+        Self::ParamSpec::builder
+    }
+}
 
 impl std::fmt::Debug for ParamSpecExpression {
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {

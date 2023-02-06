@@ -419,5 +419,17 @@ macro_rules! define_expression {
                 value
             }
         }
+
+        impl glib::HasParamSpec for $rust_type {
+            type ParamSpec = crate::ParamSpecExpression;
+
+            type SetValue = $rust_type;
+
+            type BuilderFn = for<'a> fn(&'a str) -> crate::builders::ParamSpecExpressionBuilder<'a>;
+
+            fn param_spec_builder() -> Self::BuilderFn {
+                Self::ParamSpec::builder
+            }
+        }
     };
 }
