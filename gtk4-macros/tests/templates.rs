@@ -200,7 +200,7 @@ fn template_child_without_attribute() {
     let _: MyWidget3 = glib::Object::new();
 }
 
-#[cfg(target_os = "linux")]
+#[cfg(feature = "blueprint")]
 mod imp4 {
     use super::*;
 
@@ -246,13 +246,13 @@ mod imp4 {
     impl WidgetImpl for MyWidget4 {}
 }
 
-#[cfg(target_os = "linux")]
+#[cfg(feature = "blueprint")]
 glib::wrapper! {
     pub struct MyWidget4(ObjectSubclass<imp4::MyWidget4>) @extends gtk::Widget;
 }
 
 #[gtk::test]
-#[cfg(target_os = "linux")]
+#[cfg(feature = "blueprint")]
 fn blueprint_template() {
     let _: MyWidget4 = glib::Object::new();
 }

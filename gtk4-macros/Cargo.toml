@@ -15,7 +15,9 @@ rust-version = "1.64"
 proc-macro = true
 
 [features]
+default = []
 xml_validation = ["quick-xml"]
+blueprint = []
 
 [dependencies]
 anyhow = "1.0"
