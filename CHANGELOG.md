@@ -1,6 +1,6 @@
 # Change Log
 
-## 0.0.6
+## [Unreleased]
 
 - Add support for the to be released `gtk::UriLauncher`
 
