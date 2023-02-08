@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+## [0.6.0]
+
 Bilal Elmoussaoui:
 - Add support for the to be released `gtk::UriLauncher`
 - [Improve the API of `gtk::WidgetExt::dispose_template`](https://github.com/gtk-rs/gtk4-rs/pull/1212)
