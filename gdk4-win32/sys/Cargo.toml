@@ -9,7 +9,7 @@ keywords = ["gdk4", "gdk4-win32", "ffi", "gtk-rs", "gnome"]
 license = "MIT"
 name = "gdk4-win32-sys"
 repository = "https://github.com/gtk-rs/gtk4-rs"
-version = "0.6.0"
+version = "0.7.0"
 rust-version = "1.57"
 
 [package.metadata.system-deps.gtk4_win32]
@@ -39,17 +39,17 @@ libc = "0.2"
 [dependencies.gdk]
 package = "gdk4-sys"
 path = "../../gdk4/sys"
-version = "0.6"
+version = "0.7"
 
 [dependencies.glib]
 package = "glib-sys"
 git = "https://github.com/gtk-rs/gtk-rs-core.git"
-version = "0.17"
+version = "0.18"
 
 [dependencies.gdk-pixbuf]
 package = "gdk-pixbuf-sys"
 git = "https://github.com/gtk-rs/gtk-rs-core"
-version = "0.17"
+version = "0.18"
 
 [build-dependencies]
 system-deps = "6"
