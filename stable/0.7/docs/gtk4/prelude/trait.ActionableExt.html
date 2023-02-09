@@ -1,0 +1,139 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Trait containing all `struct@Actionable` methods."><title>ActionableExt in gtk4::prelude - Rust</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Bold-a2c9cd1067f8b328.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-fa3bb1812debf86c.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.74.0-nightly (e4133ba9b 2023-09-22)" data-channel="nightly" data-search-js="search-8be46b629f5f14a8.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="sidebar-items.js"></script><script defer src="../../static.files/main-c5bd66d33317d69f.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc trait"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
+
+    function checkDocsLatestStable() {
+        function popup(msg, url) { return `
+            <style scoped="scoped">
+                .popup {
+                    max-width: 16em;
+                    background-color: #fff;
+                    position: fixed;
+                    z-index: 1;
+                    margin-left: auto;
+                    bottom: 1em;
+                    right: 1em;
+                    border-radius: 5px;
+                    box-shadow: 1px 1px 4px #777;
+                }
+
+                .popup a.version {
+                    color: #e57300;
+                    padding: 0.6em 1em;
+                    display: block;
+                }
+                .popup a.version:hover {
+                    color: #b25900;
+                }
+
+                .popup a.close {
+                    color: white;
+                    background: grey;
+                    border-radius: 99px;
+                    display: inline-block;
+                    width: 19px;
+                    line-height: 19px;
+                    font-weight: bold;
+                    text-align: center;
+                    margin: 0.6em;
+                    float: right;
+                }
+                .popup a.close:hover {
+                    background: black;
+                }
+            </style>
+            <section class="popup" id="gir_docs_popup">
+                <a class="close" href="#" onclick="document.getElementById('gir_docs_popup').remove(); return false">×</a>
+                <a class="version" href="https://gtk-rs.org/gtk4-rs/stable/latest/docs">
+                    ⚠ ${msg}
+                </a>
+            </section>
+        ` };
+
+        if ("0.7" == "master") {
+            document.body.insertAdjacentHTML(
+                'beforeend',
+                popup("This is the development version. Go to latest stable version.", "stable/latest")
+            );
+        } else {
+            fetch('https://gtk-rs.org/gtk4-rs/LATEST_RELEASE_BRANCH')
+                .then(response => response.text())
+                .then(latest_branch => {
+                    if (latest_branch.trim() != "0.7") {
+                        document.body.insertAdjacentHTML(
+                            'beforeend',
+                            popup("This version is outdated. Go to latest version.", "stable/latest")
+                        );
+                    }
+                });
+        }
+    }
+</script>
+
+
+<nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="logo-container" href="../../gtk4/index.html"><img class="rust-logo" src="../../static.files/rust-logo-151179464ae7ed46.svg" alt="logo"></a></nav><nav class="sidebar"><a class="logo-container" href="../../gtk4/index.html"><img class="rust-logo" src="../../static.files/rust-logo-151179464ae7ed46.svg" alt="logo"></a><h2 class="location"><a href="#">ActionableExt</a></h2><div class="sidebar-elems"><section><h3><a href="#provided-methods">Provided Methods</a></h3><ul class="block"><li><a href="#method.action_name">action_name</a></li><li><a href="#method.action_target_value">action_target_value</a></li><li><a href="#method.connect_action_name_notify">connect_action_name_notify</a></li><li><a href="#method.connect_action_target_notify">connect_action_target_notify</a></li><li><a href="#method.set_action_name">set_action_name</a></li><li><a href="#method.set_action_target_value">set_action_target_value</a></li><li><a href="#method.set_detailed_action_name">set_detailed_action_name</a></li></ul><h3><a href="#implementors">Implementors</a></h3></section><h2><a href="index.html">In gtk4::prelude</a></h2></div></nav><main><div class="width-limiter"><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="main-heading"><h1>Trait <a href="../index.html">gtk4</a>::<wbr><a href="index.html">prelude</a>::<wbr><a class="trait" href="#">ActionableExt</a><button id="copy-path" title="Copy item path to clipboard"><img src="../../static.files/clipboard-7571035ce49a181d.svg" width="19" height="18" alt="Copy item path"></button></h1><span class="out-of-band"><a class="src" href="../../src/gtk4/auto/actionable.rs.html#350-504">source</a> · <button id="toggle-all-docs" title="collapse all docs">[<span>&#x2212;</span>]</button></span></div><pre class="rust item-decl"><code>pub trait ActionableExt: <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Actionable.html" title="struct gtk4::Actionable">Actionable</a>&gt; + Sealed + 'static {
+    // Provided methods
+    fn <a href="#method.action_name" class="fn">action_name</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/gstring/struct.GString.html" title="struct glib::gstring::GString">GString</a>&gt; { ... }
+<span class="item-spacer"></span>    fn <a href="#method.action_target_value" class="fn">action_target_value</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/variant/struct.Variant.html" title="struct glib::variant::Variant">Variant</a>&gt; { ... }
+<span class="item-spacer"></span>    fn <a href="#method.set_action_name" class="fn">set_action_name</a>(&amp;self, action_name: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>&gt;) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.set_action_target_value" class="fn">set_action_target_value</a>(&amp;self, target_value: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/variant/struct.Variant.html" title="struct glib::variant::Variant">Variant</a>&gt;) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.set_detailed_action_name" class="fn">set_detailed_action_name</a>(&amp;self, detailed_action_name: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_action_name_notify" class="fn">connect_action_name_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
+        &amp;self,
+        f: F
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_action_target_notify" class="fn">connect_action_target_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
+        &amp;self,
+        f: F
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+}</code></pre><details class="toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>Trait containing all <a href="../struct.Actionable.html" title="struct gtk4::Actionable"><code>Actionable</code></a> methods.</p>
+<h2 id="implementors-1"><a href="#implementors-1">Implementors</a></h2>
+<p><a href="../struct.Actionable.html" title="struct gtk4::Actionable"><code>Actionable</code></a>, <a href="../struct.Button.html" title="struct gtk4::Button"><code>Button</code></a>, <a href="../struct.CheckButton.html" title="struct gtk4::CheckButton"><code>CheckButton</code></a>, <a href="../struct.LinkButton.html" title="struct gtk4::LinkButton"><code>LinkButton</code></a>, <a href="../struct.ListBoxRow.html" title="struct gtk4::ListBoxRow"><code>ListBoxRow</code></a>, <a href="../struct.LockButton.html" title="struct gtk4::LockButton"><code>LockButton</code></a>, <a href="../struct.Switch.html" title="struct gtk4::Switch"><code>Switch</code></a>, <a href="../struct.ToggleButton.html" title="struct gtk4::ToggleButton"><code>ToggleButton</code></a></p>
+</div></details><h2 id="provided-methods" class="small-section-header">Provided Methods<a href="#provided-methods" class="anchor">§</a></h2><div class="methods"><details class="toggle method-toggle" open><summary><section id="method.action_name" class="method"><a class="src rightside" href="../../src/gtk4/auto/actionable.rs.html#358-364">source</a><h4 class="code-header">fn <a href="#method.action_name" class="fn">action_name</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/gstring/struct.GString.html" title="struct glib::gstring::GString">GString</a>&gt;</h4></section></summary><div class="docblock"><p>Gets the action name for @self.</p>
+<h5 id="returns"><a href="#returns">Returns</a></h5>
+<p>the action name</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.action_target_value" class="method"><a class="src rightside" href="../../src/gtk4/auto/actionable.rs.html#373-379">source</a><h4 class="code-header">fn <a href="#method.action_target_value" class="fn">action_target_value</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/variant/struct.Variant.html" title="struct glib::variant::Variant">Variant</a>&gt;</h4></section></summary><div class="docblock"><p>Gets the current target value of @self.</p>
+<h5 id="returns-1"><a href="#returns-1">Returns</a></h5>
+<p>the current target value</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.set_action_name" class="method"><a class="src rightside" href="../../src/gtk4/auto/actionable.rs.html#397-404">source</a><h4 class="code-header">fn <a href="#method.set_action_name" class="fn">set_action_name</a>(&amp;self, action_name: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>&gt;)</h4></section></summary><div class="docblock"><p>Specifies the name of the action with which this widget should be
+associated.</p>
+<p>If @action_name is <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="variant core::option::Option::None"><code>None</code></a> then the widget will be unassociated from
+any previous action.</p>
+<p>Usually this function is used when the widget is located (or will be
+located) within the hierarchy of a <a href="../struct.ApplicationWindow.html" title="struct gtk4::ApplicationWindow"><code>ApplicationWindow</code></a>.</p>
+<p>Names are of the form “win.save” or “app.quit” for actions on the
+containing <a href="../struct.ApplicationWindow.html" title="struct gtk4::ApplicationWindow"><code>ApplicationWindow</code></a> or its associated <a href="../struct.Application.html" title="struct gtk4::Application"><code>Application</code></a>,
+respectively. This is the same form used for actions in the <a href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/gio/auto/menu/struct.Menu.html" title="struct gio::auto::menu::Menu"><code>gio::Menu</code></a>
+associated with the window.</p>
+<h6 id="action_name"><a href="#action_name"><code>action_name</code></a></h6>
+<p>an action name</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.set_action_target_value" class="method"><a class="src rightside" href="../../src/gtk4/auto/actionable.rs.html#427-434">source</a><h4 class="code-header">fn <a href="#method.set_action_target_value" class="fn">set_action_target_value</a>(&amp;self, target_value: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/variant/struct.Variant.html" title="struct glib::variant::Variant">Variant</a>&gt;)</h4></section></summary><div class="docblock"><p>Sets the target value of an actionable widget.</p>
+<p>If @target_value is <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="variant core::option::Option::None"><code>None</code></a> then the target value is unset.</p>
+<p>The target value has two purposes. First, it is used as the parameter
+to activation of the action associated with the <a href="../struct.Actionable.html" title="struct gtk4::Actionable"><code>Actionable</code></a> widget.
+Second, it is used to determine if the widget should be rendered as
+“active” — the widget is active if the state is equal to the given target.</p>
+<p>Consider the example of associating a set of buttons with a <a href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/gio/auto/action/struct.Action.html" title="struct gio::auto::action::Action"><code>gio::Action</code></a>
+with string state in a typical “radio button” situation. Each button
+will be associated with the same action, but with a different target
+value for that action. Clicking on a particular button will activate
+the action with the target of that button, which will typically cause
+the action’s state to change to that value. Since the action’s state
+is now equal to the target value of the button, the button will now
+be rendered as active (and the other buttons, with different targets,
+rendered inactive).</p>
+<h6 id="target_value"><a href="#target_value"><code>target_value</code></a></h6>
+<p>a <a href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/variant/struct.Variant.html" title="struct glib::variant::Variant"><code>glib::Variant</code></a> to set as the target value</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.set_detailed_action_name" class="method"><a class="src rightside" href="../../src/gtk4/auto/actionable.rs.html#444-451">source</a><h4 class="code-header">fn <a href="#method.set_detailed_action_name" class="fn">set_detailed_action_name</a>(&amp;self, detailed_action_name: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>)</h4></section></summary><div class="docblock"><p>Sets the action-name and associated string target value of an
+actionable widget.</p>
+<p>@detailed_action_name is a string in the format accepted by
+<a href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/gio/auto/action/struct.Action.html#method.parse_detailed_name" title="associated function gio::auto::action::Action::parse_detailed_name"><code>gio::Action::parse_detailed_name()</code></a>.</p>
+<h6 id="detailed_action_name"><a href="#detailed_action_name"><code>detailed_action_name</code></a></h6>
+<p>the detailed action name</p>
+</div></details><section id="method.connect_action_name_notify" class="method"><a class="src rightside" href="../../src/gtk4/auto/actionable.rs.html#454-477">source</a><h4 class="code-header">fn <a href="#method.connect_action_name_notify" class="fn">connect_action_name_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
+    &amp;self,
+    f: F
+) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><section id="method.connect_action_target_notify" class="method"><a class="src rightside" href="../../src/gtk4/auto/actionable.rs.html#480-503">source</a><h4 class="code-header">fn <a href="#method.connect_action_target_notify" class="fn">connect_action_target_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
+    &amp;self,
+    f: F
+) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section></div><h2 id="implementors" class="small-section-header">Implementors<a href="#implementors" class="anchor">§</a></h2><div id="implementors-list"><section id="impl-ActionableExt-for-O" class="impl"><a class="src rightside" href="../../src/gtk4/auto/actionable.rs.html#506">source</a><a href="#impl-ActionableExt-for-O" class="anchor">§</a><h3 class="code-header">impl&lt;O: <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Actionable.html" title="struct gtk4::Actionable">Actionable</a>&gt;&gt; <a class="trait" href="trait.ActionableExt.html" title="trait gtk4::prelude::ActionableExt">ActionableExt</a> for O</h3></section></div><script src="../../implementors/gtk4/auto/actionable/trait.ActionableExt.js" async></script></section></div></main></body></html>

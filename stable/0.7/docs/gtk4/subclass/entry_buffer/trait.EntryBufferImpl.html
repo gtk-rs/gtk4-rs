@@ -1,0 +1,114 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="API documentation for the Rust `EntryBufferImpl` trait in crate `gtk4`."><title>EntryBufferImpl in gtk4::subclass::entry_buffer - Rust</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Bold-a2c9cd1067f8b328.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../static.files/rustdoc-fa3bb1812debf86c.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.74.0-nightly (e4133ba9b 2023-09-22)" data-channel="nightly" data-search-js="search-8be46b629f5f14a8.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="sidebar-items.js"></script><script defer src="../../../static.files/main-c5bd66d33317d69f.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc trait"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
+
+    function checkDocsLatestStable() {
+        function popup(msg, url) { return `
+            <style scoped="scoped">
+                .popup {
+                    max-width: 16em;
+                    background-color: #fff;
+                    position: fixed;
+                    z-index: 1;
+                    margin-left: auto;
+                    bottom: 1em;
+                    right: 1em;
+                    border-radius: 5px;
+                    box-shadow: 1px 1px 4px #777;
+                }
+
+                .popup a.version {
+                    color: #e57300;
+                    padding: 0.6em 1em;
+                    display: block;
+                }
+                .popup a.version:hover {
+                    color: #b25900;
+                }
+
+                .popup a.close {
+                    color: white;
+                    background: grey;
+                    border-radius: 99px;
+                    display: inline-block;
+                    width: 19px;
+                    line-height: 19px;
+                    font-weight: bold;
+                    text-align: center;
+                    margin: 0.6em;
+                    float: right;
+                }
+                .popup a.close:hover {
+                    background: black;
+                }
+            </style>
+            <section class="popup" id="gir_docs_popup">
+                <a class="close" href="#" onclick="document.getElementById('gir_docs_popup').remove(); return false">×</a>
+                <a class="version" href="https://gtk-rs.org/gtk4-rs/stable/latest/docs">
+                    ⚠ ${msg}
+                </a>
+            </section>
+        ` };
+
+        if ("0.7" == "master") {
+            document.body.insertAdjacentHTML(
+                'beforeend',
+                popup("This is the development version. Go to latest stable version.", "stable/latest")
+            );
+        } else {
+            fetch('https://gtk-rs.org/gtk4-rs/LATEST_RELEASE_BRANCH')
+                .then(response => response.text())
+                .then(latest_branch => {
+                    if (latest_branch.trim() != "0.7") {
+                        document.body.insertAdjacentHTML(
+                            'beforeend',
+                            popup("This version is outdated. Go to latest version.", "stable/latest")
+                        );
+                    }
+                });
+        }
+    }
+</script>
+
+
+<nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="logo-container" href="../../../gtk4/index.html"><img class="rust-logo" src="../../../static.files/rust-logo-151179464ae7ed46.svg" alt="logo"></a></nav><nav class="sidebar"><a class="logo-container" href="../../../gtk4/index.html"><img class="rust-logo" src="../../../static.files/rust-logo-151179464ae7ed46.svg" alt="logo"></a><h2 class="location"><a href="#">EntryBufferImpl</a></h2><div class="sidebar-elems"><section><h3><a href="#provided-methods">Provided Methods</a></h3><ul class="block"><li><a href="#method.delete_text">delete_text</a></li><li><a href="#method.deleted_text">deleted_text</a></li><li><a href="#method.insert_text">insert_text</a></li><li><a href="#method.inserted_text">inserted_text</a></li><li><a href="#method.length">length</a></li><li><a href="#method.text">text</a></li></ul><h3><a href="#implementors">Implementors</a></h3></section><h2><a href="index.html">In gtk4::subclass::entry_buffer</a></h2></div></nav><main><div class="width-limiter"><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="main-heading"><h1>Trait <a href="../../index.html">gtk4</a>::<wbr><a href="../index.html">subclass</a>::<wbr><a href="index.html">entry_buffer</a>::<wbr><a class="trait" href="#">EntryBufferImpl</a><button id="copy-path" title="Copy item path to clipboard"><img src="../../../static.files/clipboard-7571035ce49a181d.svg" width="19" height="18" alt="Copy item path"></button></h1><span class="out-of-band"><a class="src" href="../../../src/gtk4/subclass/entry_buffer.rs.html#11-79">source</a> · <button id="toggle-all-docs" title="collapse all docs">[<span>&#x2212;</span>]</button></span></div><pre class="rust item-decl"><code>pub trait EntryBufferImpl: <a class="trait" href="trait.EntryBufferImplExt.html" title="trait gtk4::subclass::entry_buffer::EntryBufferImplExt">EntryBufferImplExt</a> + <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/subclass/object/trait.ObjectImpl.html" title="trait glib::subclass::object::ObjectImpl">ObjectImpl</a> {
+    // Provided methods
+    fn <a href="#method.delete_text" class="fn">delete_text</a>(&amp;self, position: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>, n_chars: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>&gt;) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.deleted_text" class="fn">deleted_text</a>(&amp;self, position: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>, n_chars: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>&gt;) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.length" class="fn">length</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.text" class="fn">text</a>(&amp;self) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/gstring/struct.GString.html" title="struct glib::gstring::GString">GString</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.insert_text" class="fn">insert_text</a>(&amp;self, position: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>, chars: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.inserted_text" class="fn">inserted_text</a>(&amp;self, position: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>, chars: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>) { ... }
+}</code></pre><h2 id="provided-methods" class="small-section-header">Provided Methods<a href="#provided-methods" class="anchor">§</a></h2><div class="methods"><details class="toggle method-toggle" open><summary><section id="method.delete_text" class="method"><a class="src rightside" href="../../../src/gtk4/subclass/entry_buffer.rs.html#31-33">source</a><h4 class="code-header">fn <a href="#method.delete_text" class="fn">delete_text</a>(&amp;self, position: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>, n_chars: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>&gt;) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a></h4></section></summary><div class="docblock"><p>Deletes a sequence of characters from the buffer.</p>
+<p>@n_chars characters are deleted starting at @position.
+If @n_chars is negative, then all characters until the
+end of the text are deleted.</p>
+<p>If @position or @n_chars are out of bounds, then they
+are coerced to sane values.</p>
+<p>Note that the positions are specified in characters,
+not bytes.</p>
+<h6 id="position"><a href="#position"><code>position</code></a></h6>
+<p>position at which to delete text</p>
+<h6 id="n_chars"><a href="#n_chars"><code>n_chars</code></a></h6>
+<p>number of characters to delete</p>
+<h5 id="returns"><a href="#returns">Returns</a></h5>
+<p>The number of characters deleted.</p>
+</div></details><section id="method.deleted_text" class="method"><a class="src rightside" href="../../../src/gtk4/subclass/entry_buffer.rs.html#35-37">source</a><h4 class="code-header">fn <a href="#method.deleted_text" class="fn">deleted_text</a>(&amp;self, position: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>, n_chars: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>&gt;)</h4></section><details class="toggle method-toggle" open><summary><section id="method.length" class="method"><a class="src rightside" href="../../../src/gtk4/subclass/entry_buffer.rs.html#45-47">source</a><h4 class="code-header">fn <a href="#method.length" class="fn">length</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a></h4></section></summary><div class="docblock"><p>Retrieves the length in characters of the buffer.</p>
+<h5 id="returns-1"><a href="#returns-1">Returns</a></h5>
+<p>The number of characters in the buffer.</p>
+</div></details><section id="method.text" class="method"><a class="src rightside" href="../../../src/gtk4/subclass/entry_buffer.rs.html#50-52">source</a><h4 class="code-header">fn <a href="#method.text" class="fn">text</a>(&amp;self) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/gstring/struct.GString.html" title="struct glib::gstring::GString">GString</a></h4></section><details class="toggle method-toggle" open><summary><section id="method.insert_text" class="method"><a class="src rightside" href="../../../src/gtk4/subclass/entry_buffer.rs.html#72-74">source</a><h4 class="code-header">fn <a href="#method.insert_text" class="fn">insert_text</a>(&amp;self, position: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>, chars: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a></h4></section></summary><div class="docblock"><p>Inserts @n_chars characters of @chars into the contents of the
+buffer, at position @position.</p>
+<p>If @n_chars is negative, then characters from chars will be inserted
+until a null-terminator is found. If @position or @n_chars are out of
+bounds, or the maximum buffer text length is exceeded, then they are
+coerced to sane values.</p>
+<p>Note that the position and length are in characters, not in bytes.</p>
+<h6 id="position-1"><a href="#position-1"><code>position</code></a></h6>
+<p>the position at which to insert text.</p>
+<h6 id="chars"><a href="#chars"><code>chars</code></a></h6>
+<p>the text to insert into the buffer.</p>
+<h6 id="n_chars-1"><a href="#n_chars-1"><code>n_chars</code></a></h6>
+<p>the length of the text in characters, or -1</p>
+<h5 id="returns-2"><a href="#returns-2">Returns</a></h5>
+<p>The number of characters actually inserted.</p>
+</div></details><section id="method.inserted_text" class="method"><a class="src rightside" href="../../../src/gtk4/subclass/entry_buffer.rs.html#76-78">source</a><h4 class="code-header">fn <a href="#method.inserted_text" class="fn">inserted_text</a>(&amp;self, position: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>, chars: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>)</h4></section></div><h2 id="implementors" class="small-section-header">Implementors<a href="#implementors" class="anchor">§</a></h2><div id="implementors-list"></div><script src="../../../implementors/gtk4/subclass/entry_buffer/trait.EntryBufferImpl.js" async></script></section></div></main></body></html>

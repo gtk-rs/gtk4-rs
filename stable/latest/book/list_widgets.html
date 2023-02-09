@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html lang="en" class="sidebar-visible no-js rust">
+<html lang="en" class="rust sidebar-visible" dir="ltr">
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
@@ -7,10 +7,10 @@
 
 
         <!-- Custom HTML head -->
-        
+
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="theme-color" content="#ffffff" />
+        <meta name="theme-color" content="#ffffff">
 
         <link rel="icon" href="favicon.svg">
         <link rel="shortcut icon" href="favicon.png">
@@ -24,26 +24,41 @@
         <link rel="stylesheet" href="fonts/fonts.css">
 
         <!-- Highlight.js Stylesheets -->
-        <link rel="stylesheet" href="highlight.css">
-        <link rel="stylesheet" href="tomorrow-night.css">
-        <link rel="stylesheet" href="ayu-highlight.css">
+        <link rel="stylesheet" id="highlight-css" href="highlight.css">
+        <link rel="stylesheet" id="tomorrow-night-css" href="tomorrow-night.css">
+        <link rel="stylesheet" id="ayu-highlight-css" href="ayu-highlight.css">
 
         <!-- Custom theme stylesheets -->
         <link rel="stylesheet" href="theme/style.css">
 
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "";
+            const default_light_theme = "rust";
+            const default_dark_theme = "navy";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="toc.js"></script>
     </head>
     <body>
-        <!-- Provide site root to javascript -->
-        <script>
-            var path_to_root = "";
-            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "rust";
-        </script>
-
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="body-container">
         <!-- Work around some values being stored in localStorage wrapped in quotes -->
         <script>
             try {
-                var theme = localStorage.getItem('mdbook-theme');
-                var sidebar = localStorage.getItem('mdbook-sidebar');
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
 
                 if (theme.startsWith('"') && theme.endsWith('"')) {
                     localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
@@ -57,55 +72,65 @@
 
         <!-- Set the theme before any content is loaded, prevents flash -->
         <script>
-            var theme;
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
             try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
             if (theme === null || theme === undefined) { theme = default_theme; }
-            var html = document.querySelector('html');
-            html.classList.remove('no-js')
+            const html = document.documentElement;
             html.classList.remove('rust')
             html.classList.add(theme);
-            html.classList.add('js');
+            html.classList.add("js");
         </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
 
         <!-- Hide / unhide sidebar before it is displayed -->
         <script>
-            var html = document.querySelector('html');
-            var sidebar = 'hidden';
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
             }
+            sidebar_toggle.checked = sidebar === 'visible';
             html.classList.remove('sidebar-visible');
             html.classList.add("sidebar-" + sidebar);
         </script>
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
-            <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="introduction.html">Introduction</a></li><li class="chapter-item expanded "><a href="installation.html"><strong aria-hidden="true">1.</strong> Installation</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="installation_linux.html"><strong aria-hidden="true">1.1.</strong> Linux</a></li><li class="chapter-item expanded "><a href="installation_macos.html"><strong aria-hidden="true">1.2.</strong> macOS</a></li><li class="chapter-item expanded "><a href="installation_windows.html"><strong aria-hidden="true">1.3.</strong> Windows</a></li></ol></li><li class="chapter-item expanded "><a href="project_setup.html"><strong aria-hidden="true">2.</strong> Project Setup</a></li><li class="chapter-item expanded "><a href="hello_world.html"><strong aria-hidden="true">3.</strong> Hello World!</a></li><li class="chapter-item expanded "><a href="widgets.html"><strong aria-hidden="true">4.</strong> Widgets</a></li><li class="chapter-item expanded "><a href="g_object_concepts.html"><strong aria-hidden="true">5.</strong> GObject Concepts</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="g_object_memory_management.html"><strong aria-hidden="true">5.1.</strong> Memory Management</a></li><li class="chapter-item expanded "><a href="g_object_subclassing.html"><strong aria-hidden="true">5.2.</strong> Subclassing</a></li><li class="chapter-item expanded "><a href="g_object_values.html"><strong aria-hidden="true">5.3.</strong> Generic Values</a></li><li class="chapter-item expanded "><a href="g_object_properties.html"><strong aria-hidden="true">5.4.</strong> Properties</a></li><li class="chapter-item expanded "><a href="g_object_signals.html"><strong aria-hidden="true">5.5.</strong> Signals</a></li></ol></li><li class="chapter-item expanded "><a href="main_event_loop.html"><strong aria-hidden="true">6.</strong> The Main Event Loop</a></li><li class="chapter-item expanded "><a href="settings.html"><strong aria-hidden="true">7.</strong> Settings</a></li><li class="chapter-item expanded "><a href="saving_window_state.html"><strong aria-hidden="true">8.</strong> Saving Window State</a></li><li class="chapter-item expanded "><a href="list_widgets.html" class="active"><strong aria-hidden="true">9.</strong> List Widgets</a></li><li class="chapter-item expanded "><a href="composite_templates.html"><strong aria-hidden="true">10.</strong> Composite Templates</a></li><li class="chapter-item expanded "><a href="todo_1.html"><strong aria-hidden="true">11.</strong> Building a Simple To-Do App</a></li><li class="chapter-item expanded "><a href="actions.html"><strong aria-hidden="true">12.</strong> Actions</a></li><li class="chapter-item expanded "><a href="todo_2.html"><strong aria-hidden="true">13.</strong> Manipulating State of To-Do App</a></li><li class="chapter-item expanded "><a href="css.html"><strong aria-hidden="true">14.</strong> CSS</a></li><li class="chapter-item expanded "><a href="libadwaita.html"><strong aria-hidden="true">15.</strong> Libadwaita</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="todo_3.html"><strong aria-hidden="true">15.1.</strong> Let To-Do App use Libadwaita</a></li><li class="chapter-item expanded "><a href="todo_4.html"><strong aria-hidden="true">15.2.</strong> Adding Collections</a></li></ol></li></ol>
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="toc.html"></iframe>
+            </noscript>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
             </div>
-            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
 
         <div id="page-wrapper" class="page-wrapper">
 
             <div class="page">
-                                <div id="menu-bar-hover-placeholder"></div>
-                <div id="menu-bar" class="menu-bar sticky bordered">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
                     <div class="left-buttons">
-                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
                             <i class="fa fa-bars"></i>
-                        </button>
+                        </label>
                         <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
                             <i class="fa fa-paint-brush"></i>
                         </button>
                         <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="default_theme">Auto</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
                         </ul>
-                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                        <button id="search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="searchbar">
                             <i class="fa fa-search"></i>
                         </button>
                     </div>
@@ -116,7 +141,7 @@
                         <a href="print.html" title="Print this book" aria-label="Print this book">
                             <i id="print-button" class="fa fa-print"></i>
                         </a>
-                        <a href="https://github.com/gtk-rs/gtk4-rs/tree/master/book" title="Git repository" aria-label="Git repository">
+                        <a href="https://github.com/gtk-rs/gtk4-rs/tree/main/book" title="Git repository" aria-label="Git repository">
                             <i id="git-repository-button" class="fa fa-github"></i>
                         </a>
 
@@ -147,25 +172,27 @@
                     <main>
                         <h1 id="list-widgets"><a class="header" href="#list-widgets">List Widgets</a></h1>
 <p>Sometimes you want to display a list of elements in a certain arrangement.
-<a href="../docs/gtk4/struct.ListBox.html"><code>gtk::ListBox</code></a> and <a href="../docs/gtk4/struct.FlowBox.html"><code>gtk::FlowBox</code></a> are two container widgets which allow you to do this.
+<a href="https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/struct.ListBox.html"><code>gtk::ListBox</code></a> and <a href="https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/struct.FlowBox.html"><code>gtk::FlowBox</code></a> are two container widgets which allow you to do this.
 <code>ListBox</code> describes a vertical list and <code>FlowBox</code> describes a grid.</p>
 <p>Let's explore this concept by adding labels to a <code>ListBox</code>.
 Each label will display an integer starting from 0 and ranging up to 100.</p>
-<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/list_widgets/1/main.rs">listings/list_widgets/1/main.rs</a></p>
-<pre><code class="language-rust  no_run noplayground"><span class="boring">use gtk::prelude::*;
-</span><span class="boring">use gtk::{Application, ApplicationWindow, Label, ListBox, PolicyType, ScrolledWindow};
+<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/list_widgets/1/main.rs">listings/list_widgets/1/main.rs</a></p>
+<pre><code class="language-rust"><span class="boring">use gtk::prelude::*;
+</span><span class="boring">use gtk::{
+</span><span class="boring">    glib, Application, ApplicationWindow, Label, ListBox, PolicyType, ScrolledWindow,
+</span><span class="boring">};
 </span><span class="boring">
-</span><span class="boring">const APP_ID: &amp;str = &quot;org.gtk_rs.ListWidgets1&quot;;
+</span><span class="boring">const APP_ID: &amp;str = "org.gtk_rs.ListWidgets1";
 </span><span class="boring">
-</span><span class="boring">fn main() {
+</span><span class="boring">fn main() -&gt; glib::ExitCode {
 </span><span class="boring">    // Create a new application
 </span><span class="boring">    let app = Application::builder().application_id(APP_ID).build();
 </span><span class="boring">
-</span><span class="boring">    // Connect to &quot;activate&quot; signal of `app`
+</span><span class="boring">    // Connect to "activate" signal of `app`
 </span><span class="boring">    app.connect_activate(build_ui);
 </span><span class="boring">
 </span><span class="boring">    // Run the application
-</span><span class="boring">    app.run();
+</span><span class="boring">    app.run()
 </span><span class="boring">}
 </span><span class="boring">
 </span><span class="boring">fn build_ui(app: &amp;Application) {
@@ -185,7 +212,7 @@ Each label will display an integer starting from 0 and ranging up to 100.</p>
 </span><span class="boring">    // Create a window
 </span><span class="boring">    let window = ApplicationWindow::builder()
 </span><span class="boring">        .application(app)
-</span><span class="boring">        .title(&quot;My GTK App&quot;)
+</span><span class="boring">        .title("My GTK App")
 </span><span class="boring">        .default_width(600)
 </span><span class="boring">        .default_height(300)
 </span><span class="boring">        .child(&amp;scrolled_window)
@@ -195,23 +222,25 @@ Each label will display an integer starting from 0 and ranging up to 100.</p>
 </span><span class="boring">    window.present();
 </span><span class="boring">}</span></code></pre>
 <p>We cannot display so many widgets at once.
-Therefore, we add <code>ListBox</code> to a <a href="../docs/gtk4/struct.ScrolledWindow.html"><code>gtk::ScrolledWindow</code></a>.
+Therefore, we add <code>ListBox</code> to a <a href="https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/struct.ScrolledWindow.html"><code>gtk::ScrolledWindow</code></a>.
 Now we can scroll through our elements.</p>
-<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/list_widgets/1/main.rs">listings/list_widgets/1/main.rs</a></p>
-<pre><code class="language-rust  no_run noplayground"><span class="boring">use gtk::prelude::*;
-</span><span class="boring">use gtk::{Application, ApplicationWindow, Label, ListBox, PolicyType, ScrolledWindow};
+<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/list_widgets/1/main.rs">listings/list_widgets/1/main.rs</a></p>
+<pre><code class="language-rust"><span class="boring">use gtk::prelude::*;
+</span><span class="boring">use gtk::{
+</span><span class="boring">    glib, Application, ApplicationWindow, Label, ListBox, PolicyType, ScrolledWindow,
+</span><span class="boring">};
 </span><span class="boring">
-</span><span class="boring">const APP_ID: &amp;str = &quot;org.gtk_rs.ListWidgets1&quot;;
+</span><span class="boring">const APP_ID: &amp;str = "org.gtk_rs.ListWidgets1";
 </span><span class="boring">
-</span><span class="boring">fn main() {
+</span><span class="boring">fn main() -&gt; glib::ExitCode {
 </span><span class="boring">    // Create a new application
 </span><span class="boring">    let app = Application::builder().application_id(APP_ID).build();
 </span><span class="boring">
-</span><span class="boring">    // Connect to &quot;activate&quot; signal of `app`
+</span><span class="boring">    // Connect to "activate" signal of `app`
 </span><span class="boring">    app.connect_activate(build_ui);
 </span><span class="boring">
 </span><span class="boring">    // Run the application
-</span><span class="boring">    app.run();
+</span><span class="boring">    app.run()
 </span><span class="boring">}
 </span><span class="boring">
 </span><span class="boring">fn build_ui(app: &amp;Application) {
@@ -231,7 +260,7 @@ Now we can scroll through our elements.</p>
     // Create a window
     let window = ApplicationWindow::builder()
         .application(app)
-        .title(&quot;My GTK App&quot;)
+        .title("My GTK App")
         .default_width(600)
         .default_height(300)
         .child(&amp;scrolled_window)
@@ -261,9 +290,9 @@ The following figure demonstrates how this works in practice.</p>
 <p>We start by defining and filling up our model.
 The model is an instance of <a href="https://gtk-rs.org/gtk-rs-core/stable/latest/docs/gio/struct.ListStore.html"><code>gio::ListStore</code></a>.
 The main limitation here is that <code>gio::ListStore</code> only accepts GObjects.
-So let's create a custom GObject <code>IntegerObject</code> that which is initialized with a number.</p>
-<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/list_widgets/2/integer_object/mod.rs">listings/list_widgets/2/integer_object/mod.rs</a></p>
-<pre><code class="language-rust  no_run noplayground"><span class="boring">mod imp;
+So let's create a custom GObject <code>IntegerObject</code> that is initialized with a number.</p>
+<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/list_widgets/2/integer_object/mod.rs">listings/list_widgets/2/integer_object/mod.rs</a></p>
+<pre><code class="language-rust"><span class="boring">mod imp;
 </span><span class="boring">
 </span><span class="boring">use glib::Object;
 </span><span class="boring">use gtk::glib;
@@ -274,93 +303,70 @@ So let's create a custom GObject <code>IntegerObject</code> that which is initia
 
 impl IntegerObject {
     pub fn new(number: i32) -&gt; Self {
-        Object::builder().property(&quot;number&quot;, number).build()
+        Object::builder().property("number", number).build()
     }
 }
 <span class="boring"></span></code></pre>
 <p>This number represents the internal state of <code>IntegerObject</code>.</p>
-<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/list_widgets/2/integer_object/imp.rs">listings/list_widgets/2/integer_object/imp.rs</a></p>
-<pre><code class="language-rust  no_run noplayground"><span class="boring">use std::cell::Cell;
+<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/list_widgets/2/integer_object/imp.rs">listings/list_widgets/2/integer_object/imp.rs</a></p>
+<pre><code class="language-rust"><span class="boring">use std::cell::Cell;
 </span><span class="boring">
-</span><span class="boring">use glib::{ParamSpec, ParamSpecInt, Value};
+</span><span class="boring">use glib::Properties;
 </span><span class="boring">use gtk::glib;
 </span><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::subclass::prelude::*;
-</span><span class="boring">use once_cell::sync::Lazy;
 </span><span class="boring">
 </span>// Object holding the state
-#[derive(Default)]
+#[derive(Properties, Default)]
+#[properties(wrapper_type = super::IntegerObject)]
 pub struct IntegerObject {
+    #[property(get, set)]
     number: Cell&lt;i32&gt;,
 }
 <span class="boring">
 </span><span class="boring">// The central trait for subclassing a GObject
 </span><span class="boring">#[glib::object_subclass]
 </span><span class="boring">impl ObjectSubclass for IntegerObject {
-</span><span class="boring">    const NAME: &amp;'static str = &quot;MyGtkAppIntegerObject&quot;;
+</span><span class="boring">    const NAME: &amp;'static str = "MyGtkAppIntegerObject";
 </span><span class="boring">    type Type = super::IntegerObject;
 </span><span class="boring">}
 </span><span class="boring">
 </span><span class="boring">// Trait shared by all GObjects
-</span><span class="boring">impl ObjectImpl for IntegerObject {
-</span><span class="boring">    fn properties() -&gt; &amp;'static [ParamSpec] {
-</span><span class="boring">        static PROPERTIES: Lazy&lt;Vec&lt;ParamSpec&gt;&gt; =
-</span><span class="boring">            Lazy::new(|| vec![ParamSpecInt::builder(&quot;number&quot;).build()]);
-</span><span class="boring">        PROPERTIES.as_ref()
-</span><span class="boring">    }
-</span><span class="boring">
-</span><span class="boring">    fn set_property(&amp;self, _id: usize, value: &amp;Value, pspec: &amp;ParamSpec) {
-</span><span class="boring">        match pspec.name() {
-</span><span class="boring">            &quot;number&quot; =&gt; {
-</span><span class="boring">                let input_number =
-</span><span class="boring">                    value.get().expect(&quot;The value needs to be of type `i32`.&quot;);
-</span><span class="boring">                self.number.replace(input_number);
-</span><span class="boring">            }
-</span><span class="boring">            _ =&gt; unimplemented!(),
-</span><span class="boring">        }
-</span><span class="boring">    }
-</span><span class="boring">
-</span><span class="boring">    fn property(&amp;self, _id: usize, pspec: &amp;ParamSpec) -&gt; Value {
-</span><span class="boring">        match pspec.name() {
-</span><span class="boring">            &quot;number&quot; =&gt; self.number.get().to_value(),
-</span><span class="boring">            _ =&gt; unimplemented!(),
-</span><span class="boring">        }
-</span><span class="boring">    }
-</span><span class="boring">}
+</span><span class="boring">#[glib::derived_properties]
+</span><span class="boring">impl ObjectImpl for IntegerObject {}
 </span><span class="boring"></span></code></pre>
 <p>We now fill the model with integers from 0 to 100 000.
 Please note that models only takes care of the data.
 Neither <code>Label</code> nor any other widget is mentioned here.</p>
-<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/list_widgets/2/main.rs">listings/list_widgets/2/main.rs</a></p>
-<pre><code class="language-rust  no_run noplayground"><span class="boring">mod integer_object;
+<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/list_widgets/2/main.rs">listings/list_widgets/2/main.rs</a></p>
+<pre><code class="language-rust"><span class="boring">mod integer_object;
 </span><span class="boring">
 </span><span class="boring">use gtk::{
-</span><span class="boring">    gio, Application, ApplicationWindow, Label, ListView, PolicyType, ScrolledWindow,
-</span><span class="boring">    SignalListItemFactory, SingleSelection,
+</span><span class="boring">    gio, glib, Application, ApplicationWindow, Label, ListView, PolicyType,
+</span><span class="boring">    ScrolledWindow, SignalListItemFactory, SingleSelection,
 </span><span class="boring">};
 </span><span class="boring">use gtk::{prelude::*, ListItem};
 </span><span class="boring">use integer_object::IntegerObject;
 </span><span class="boring">
-</span><span class="boring">const APP_ID: &amp;str = &quot;org.gtk_rs.ListWidgets2&quot;;
+</span><span class="boring">const APP_ID: &amp;str = "org.gtk_rs.ListWidgets2";
 </span><span class="boring">
-</span><span class="boring">fn main() {
+</span><span class="boring">fn main() -&gt; glib::ExitCode {
 </span><span class="boring">    // Create a new application
 </span><span class="boring">    let app = Application::builder().application_id(APP_ID).build();
 </span><span class="boring">
-</span><span class="boring">    // Connect to &quot;activate&quot; signal of `app`
+</span><span class="boring">    // Connect to "activate" signal of `app`
 </span><span class="boring">    app.connect_activate(build_ui);
 </span><span class="boring">
 </span><span class="boring">    // Run the application
-</span><span class="boring">    app.run();
+</span><span class="boring">    app.run()
 </span><span class="boring">}
 </span><span class="boring">
 </span><span class="boring">fn build_ui(app: &amp;Application) {
 </span>    // Create a `Vec&lt;IntegerObject&gt;` with numbers from 0 to 100_000
-    let vector: Vec&lt;IntegerObject&gt; =
-        (0..=100_000).into_iter().map(IntegerObject::new).collect();
+    let vector: Vec&lt;IntegerObject&gt; = (0..=100_000).map(IntegerObject::new).collect();
 
     // Create new model
-    let model = gio::ListStore::new(IntegerObject::static_type());
+    let model = gio::ListStore::new::&lt;IntegerObject&gt;();
 
     // Add the vector to the model
     model.extend_from_slice(&amp;vector);
@@ -370,7 +376,7 @@ Neither <code>Label</code> nor any other widget is mentioned here.</p>
 </span><span class="boring">        let label = Label::new(None);
 </span><span class="boring">        list_item
 </span><span class="boring">            .downcast_ref::&lt;ListItem&gt;()
-</span><span class="boring">            .expect(&quot;Needs to be ListItem&quot;)
+</span><span class="boring">            .expect("Needs to be ListItem")
 </span><span class="boring">            .set_child(Some(&amp;label));
 </span><span class="boring">    });
 </span><span class="boring">
@@ -378,28 +384,25 @@ Neither <code>Label</code> nor any other widget is mentioned here.</p>
 </span><span class="boring">        // Get `IntegerObject` from `ListItem`
 </span><span class="boring">        let integer_object = list_item
 </span><span class="boring">            .downcast_ref::&lt;ListItem&gt;()
-</span><span class="boring">            .expect(&quot;Needs to be ListItem&quot;)
+</span><span class="boring">            .expect("Needs to be ListItem")
 </span><span class="boring">            .item()
 </span><span class="boring">            .and_downcast::&lt;IntegerObject&gt;()
-</span><span class="boring">            .expect(&quot;The item has to be an `IntegerObject`.&quot;);
-</span><span class="boring">
-</span><span class="boring">        // Get `i32` from `IntegerObject`
-</span><span class="boring">        let number = integer_object.property::&lt;i32&gt;(&quot;number&quot;);
+</span><span class="boring">            .expect("The item has to be an `IntegerObject`.");
 </span><span class="boring">
 </span><span class="boring">        // Get `Label` from `ListItem`
 </span><span class="boring">        let label = list_item
 </span><span class="boring">            .downcast_ref::&lt;ListItem&gt;()
-</span><span class="boring">            .expect(&quot;Needs to be ListItem&quot;)
+</span><span class="boring">            .expect("Needs to be ListItem")
 </span><span class="boring">            .child()
 </span><span class="boring">            .and_downcast::&lt;Label&gt;()
-</span><span class="boring">            .expect(&quot;The child has to be a `Label`.&quot;);
+</span><span class="boring">            .expect("The child has to be a `Label`.");
 </span><span class="boring">
-</span><span class="boring">        // Set &quot;label&quot; to &quot;number&quot;
-</span><span class="boring">        label.set_label(&amp;number.to_string());
+</span><span class="boring">        // Set "label" to "number"
+</span><span class="boring">        label.set_label(&amp;integer_object.number().to_string());
 </span><span class="boring">    });
 </span><span class="boring">
-</span><span class="boring">    let selection_model = SingleSelection::new(Some(&amp;model));
-</span><span class="boring">    let list_view = ListView::new(Some(&amp;selection_model), Some(&amp;factory));
+</span><span class="boring">    let selection_model = SingleSelection::new(Some(model));
+</span><span class="boring">    let list_view = ListView::new(Some(selection_model), Some(factory));
 </span><span class="boring">
 </span><span class="boring">    let scrolled_window = ScrolledWindow::builder()
 </span><span class="boring">        .hscrollbar_policy(PolicyType::Never) // Disable horizontal scrolling
@@ -410,7 +413,7 @@ Neither <code>Label</code> nor any other widget is mentioned here.</p>
 </span><span class="boring">    // Create a window
 </span><span class="boring">    let window = ApplicationWindow::builder()
 </span><span class="boring">        .application(app)
-</span><span class="boring">        .title(&quot;My GTK App&quot;)
+</span><span class="boring">        .title("My GTK App")
 </span><span class="boring">        .default_width(600)
 </span><span class="boring">        .default_height(300)
 </span><span class="boring">        .child(&amp;scrolled_window)
@@ -420,39 +423,38 @@ Neither <code>Label</code> nor any other widget is mentioned here.</p>
 </span><span class="boring">    window.present();
 </span><span class="boring">}</span></code></pre>
 <p>The <code>ListItemFactory</code> takes care of the widgets as well as their relationship to the model.
-Here, we use the <a href="../docs/gtk4/struct.SignalListItemFactory.html"><code>SignalListItemFactory</code></a> which emits a signal for every relevant step in the life of a <a href="../docs/gtk4/struct.ListItem.html"><code>ListItem</code></a>.
-The &quot;setup&quot; signal will be emitted when new widgets have to be created.
+Here, we use the <a href="https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/struct.SignalListItemFactory.html"><code>SignalListItemFactory</code></a> which emits a signal for every relevant step in the life of a <a href="https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/struct.ListItem.html"><code>ListItem</code></a>.
+The "setup" signal will be emitted when new widgets have to be created.
 We connect to it to create a <code>Label</code> for every requested widget.</p>
-<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/list_widgets/2/main.rs">listings/list_widgets/2/main.rs</a></p>
-<pre><code class="language-rust  no_run noplayground"><span class="boring">mod integer_object;
+<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/list_widgets/2/main.rs">listings/list_widgets/2/main.rs</a></p>
+<pre><code class="language-rust"><span class="boring">mod integer_object;
 </span><span class="boring">
 </span><span class="boring">use gtk::{
-</span><span class="boring">    gio, Application, ApplicationWindow, Label, ListView, PolicyType, ScrolledWindow,
-</span><span class="boring">    SignalListItemFactory, SingleSelection,
+</span><span class="boring">    gio, glib, Application, ApplicationWindow, Label, ListView, PolicyType,
+</span><span class="boring">    ScrolledWindow, SignalListItemFactory, SingleSelection,
 </span><span class="boring">};
 </span><span class="boring">use gtk::{prelude::*, ListItem};
 </span><span class="boring">use integer_object::IntegerObject;
 </span><span class="boring">
-</span><span class="boring">const APP_ID: &amp;str = &quot;org.gtk_rs.ListWidgets2&quot;;
+</span><span class="boring">const APP_ID: &amp;str = "org.gtk_rs.ListWidgets2";
 </span><span class="boring">
-</span><span class="boring">fn main() {
+</span><span class="boring">fn main() -&gt; glib::ExitCode {
 </span><span class="boring">    // Create a new application
 </span><span class="boring">    let app = Application::builder().application_id(APP_ID).build();
 </span><span class="boring">
-</span><span class="boring">    // Connect to &quot;activate&quot; signal of `app`
+</span><span class="boring">    // Connect to "activate" signal of `app`
 </span><span class="boring">    app.connect_activate(build_ui);
 </span><span class="boring">
 </span><span class="boring">    // Run the application
-</span><span class="boring">    app.run();
+</span><span class="boring">    app.run()
 </span><span class="boring">}
 </span><span class="boring">
 </span><span class="boring">fn build_ui(app: &amp;Application) {
 </span><span class="boring">    // Create a `Vec&lt;IntegerObject&gt;` with numbers from 0 to 100_000
-</span><span class="boring">    let vector: Vec&lt;IntegerObject&gt; =
-</span><span class="boring">        (0..=100_000).into_iter().map(IntegerObject::new).collect();
+</span><span class="boring">    let vector: Vec&lt;IntegerObject&gt; = (0..=100_000).map(IntegerObject::new).collect();
 </span><span class="boring">
 </span><span class="boring">    // Create new model
-</span><span class="boring">    let model = gio::ListStore::new(IntegerObject::static_type());
+</span><span class="boring">    let model = gio::ListStore::new::&lt;IntegerObject&gt;();
 </span><span class="boring">
 </span><span class="boring">    // Add the vector to the model
 </span><span class="boring">    model.extend_from_slice(&amp;vector);
@@ -462,7 +464,7 @@ We connect to it to create a <code>Label</code> for every requested widget.</p>
         let label = Label::new(None);
         list_item
             .downcast_ref::&lt;ListItem&gt;()
-            .expect(&quot;Needs to be ListItem&quot;)
+            .expect("Needs to be ListItem")
             .set_child(Some(&amp;label));
     });
 <span class="boring">
@@ -470,28 +472,25 @@ We connect to it to create a <code>Label</code> for every requested widget.</p>
 </span><span class="boring">        // Get `IntegerObject` from `ListItem`
 </span><span class="boring">        let integer_object = list_item
 </span><span class="boring">            .downcast_ref::&lt;ListItem&gt;()
-</span><span class="boring">            .expect(&quot;Needs to be ListItem&quot;)
+</span><span class="boring">            .expect("Needs to be ListItem")
 </span><span class="boring">            .item()
 </span><span class="boring">            .and_downcast::&lt;IntegerObject&gt;()
-</span><span class="boring">            .expect(&quot;The item has to be an `IntegerObject`.&quot;);
-</span><span class="boring">
-</span><span class="boring">        // Get `i32` from `IntegerObject`
-</span><span class="boring">        let number = integer_object.property::&lt;i32&gt;(&quot;number&quot;);
+</span><span class="boring">            .expect("The item has to be an `IntegerObject`.");
 </span><span class="boring">
 </span><span class="boring">        // Get `Label` from `ListItem`
 </span><span class="boring">        let label = list_item
 </span><span class="boring">            .downcast_ref::&lt;ListItem&gt;()
-</span><span class="boring">            .expect(&quot;Needs to be ListItem&quot;)
+</span><span class="boring">            .expect("Needs to be ListItem")
 </span><span class="boring">            .child()
 </span><span class="boring">            .and_downcast::&lt;Label&gt;()
-</span><span class="boring">            .expect(&quot;The child has to be a `Label`.&quot;);
+</span><span class="boring">            .expect("The child has to be a `Label`.");
 </span><span class="boring">
-</span><span class="boring">        // Set &quot;label&quot; to &quot;number&quot;
-</span><span class="boring">        label.set_label(&amp;number.to_string());
+</span><span class="boring">        // Set "label" to "number"
+</span><span class="boring">        label.set_label(&amp;integer_object.number().to_string());
 </span><span class="boring">    });
 </span><span class="boring">
-</span><span class="boring">    let selection_model = SingleSelection::new(Some(&amp;model));
-</span><span class="boring">    let list_view = ListView::new(Some(&amp;selection_model), Some(&amp;factory));
+</span><span class="boring">    let selection_model = SingleSelection::new(Some(model));
+</span><span class="boring">    let list_view = ListView::new(Some(selection_model), Some(factory));
 </span><span class="boring">
 </span><span class="boring">    let scrolled_window = ScrolledWindow::builder()
 </span><span class="boring">        .hscrollbar_policy(PolicyType::Never) // Disable horizontal scrolling
@@ -502,7 +501,7 @@ We connect to it to create a <code>Label</code> for every requested widget.</p>
 </span><span class="boring">    // Create a window
 </span><span class="boring">    let window = ApplicationWindow::builder()
 </span><span class="boring">        .application(app)
-</span><span class="boring">        .title(&quot;My GTK App&quot;)
+</span><span class="boring">        .title("My GTK App")
 </span><span class="boring">        .default_width(600)
 </span><span class="boring">        .default_height(300)
 </span><span class="boring">        .child(&amp;scrolled_window)
@@ -511,37 +510,36 @@ We connect to it to create a <code>Label</code> for every requested widget.</p>
 </span><span class="boring">    // Present window
 </span><span class="boring">    window.present();
 </span><span class="boring">}</span></code></pre>
-<p>In the &quot;bind&quot; step we bind the data in our model to the individual list items.</p>
-<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/list_widgets/2/main.rs">listings/list_widgets/2/main.rs</a></p>
-<pre><code class="language-rust  no_run noplayground"><span class="boring">mod integer_object;
+<p>In the "bind" step we bind the data in our model to the individual list items.</p>
+<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/list_widgets/2/main.rs">listings/list_widgets/2/main.rs</a></p>
+<pre><code class="language-rust"><span class="boring">mod integer_object;
 </span><span class="boring">
 </span><span class="boring">use gtk::{
-</span><span class="boring">    gio, Application, ApplicationWindow, Label, ListView, PolicyType, ScrolledWindow,
-</span><span class="boring">    SignalListItemFactory, SingleSelection,
+</span><span class="boring">    gio, glib, Application, ApplicationWindow, Label, ListView, PolicyType,
+</span><span class="boring">    ScrolledWindow, SignalListItemFactory, SingleSelection,
 </span><span class="boring">};
 </span><span class="boring">use gtk::{prelude::*, ListItem};
 </span><span class="boring">use integer_object::IntegerObject;
 </span><span class="boring">
-</span><span class="boring">const APP_ID: &amp;str = &quot;org.gtk_rs.ListWidgets2&quot;;
+</span><span class="boring">const APP_ID: &amp;str = "org.gtk_rs.ListWidgets2";
 </span><span class="boring">
-</span><span class="boring">fn main() {
+</span><span class="boring">fn main() -&gt; glib::ExitCode {
 </span><span class="boring">    // Create a new application
 </span><span class="boring">    let app = Application::builder().application_id(APP_ID).build();
 </span><span class="boring">
-</span><span class="boring">    // Connect to &quot;activate&quot; signal of `app`
+</span><span class="boring">    // Connect to "activate" signal of `app`
 </span><span class="boring">    app.connect_activate(build_ui);
 </span><span class="boring">
 </span><span class="boring">    // Run the application
-</span><span class="boring">    app.run();
+</span><span class="boring">    app.run()
 </span><span class="boring">}
 </span><span class="boring">
 </span><span class="boring">fn build_ui(app: &amp;Application) {
 </span><span class="boring">    // Create a `Vec&lt;IntegerObject&gt;` with numbers from 0 to 100_000
-</span><span class="boring">    let vector: Vec&lt;IntegerObject&gt; =
-</span><span class="boring">        (0..=100_000).into_iter().map(IntegerObject::new).collect();
+</span><span class="boring">    let vector: Vec&lt;IntegerObject&gt; = (0..=100_000).map(IntegerObject::new).collect();
 </span><span class="boring">
 </span><span class="boring">    // Create new model
-</span><span class="boring">    let model = gio::ListStore::new(IntegerObject::static_type());
+</span><span class="boring">    let model = gio::ListStore::new::&lt;IntegerObject&gt;();
 </span><span class="boring">
 </span><span class="boring">    // Add the vector to the model
 </span><span class="boring">    model.extend_from_slice(&amp;vector);
@@ -551,7 +549,7 @@ We connect to it to create a <code>Label</code> for every requested widget.</p>
 </span><span class="boring">        let label = Label::new(None);
 </span><span class="boring">        list_item
 </span><span class="boring">            .downcast_ref::&lt;ListItem&gt;()
-</span><span class="boring">            .expect(&quot;Needs to be ListItem&quot;)
+</span><span class="boring">            .expect("Needs to be ListItem")
 </span><span class="boring">            .set_child(Some(&amp;label));
 </span><span class="boring">    });
 </span><span class="boring">
@@ -559,28 +557,25 @@ We connect to it to create a <code>Label</code> for every requested widget.</p>
         // Get `IntegerObject` from `ListItem`
         let integer_object = list_item
             .downcast_ref::&lt;ListItem&gt;()
-            .expect(&quot;Needs to be ListItem&quot;)
+            .expect("Needs to be ListItem")
             .item()
             .and_downcast::&lt;IntegerObject&gt;()
-            .expect(&quot;The item has to be an `IntegerObject`.&quot;);
-
-        // Get `i32` from `IntegerObject`
-        let number = integer_object.property::&lt;i32&gt;(&quot;number&quot;);
+            .expect("The item has to be an `IntegerObject`.");
 
         // Get `Label` from `ListItem`
         let label = list_item
             .downcast_ref::&lt;ListItem&gt;()
-            .expect(&quot;Needs to be ListItem&quot;)
+            .expect("Needs to be ListItem")
             .child()
             .and_downcast::&lt;Label&gt;()
-            .expect(&quot;The child has to be a `Label`.&quot;);
+            .expect("The child has to be a `Label`.");
 
-        // Set &quot;label&quot; to &quot;number&quot;
-        label.set_label(&amp;number.to_string());
+        // Set "label" to "number"
+        label.set_label(&amp;integer_object.number().to_string());
     });
 <span class="boring">
-</span><span class="boring">    let selection_model = SingleSelection::new(Some(&amp;model));
-</span><span class="boring">    let list_view = ListView::new(Some(&amp;selection_model), Some(&amp;factory));
+</span><span class="boring">    let selection_model = SingleSelection::new(Some(model));
+</span><span class="boring">    let list_view = ListView::new(Some(selection_model), Some(factory));
 </span><span class="boring">
 </span><span class="boring">    let scrolled_window = ScrolledWindow::builder()
 </span><span class="boring">        .hscrollbar_policy(PolicyType::Never) // Disable horizontal scrolling
@@ -591,7 +586,7 @@ We connect to it to create a <code>Label</code> for every requested widget.</p>
 </span><span class="boring">    // Create a window
 </span><span class="boring">    let window = ApplicationWindow::builder()
 </span><span class="boring">        .application(app)
-</span><span class="boring">        .title(&quot;My GTK App&quot;)
+</span><span class="boring">        .title("My GTK App")
 </span><span class="boring">        .default_width(600)
 </span><span class="boring">        .default_height(300)
 </span><span class="boring">        .child(&amp;scrolled_window)
@@ -600,39 +595,38 @@ We connect to it to create a <code>Label</code> for every requested widget.</p>
 </span><span class="boring">    // Present window
 </span><span class="boring">    window.present();
 </span><span class="boring">}</span></code></pre>
-<p>We only want single items to be selectable, so we choose <a href="../docs/gtk4/struct.SingleSelection.html"><code>SingleSelection</code></a>.
-The other options would have been <a href="../docs/gtk4/struct.MultiSelection.html"><code>MultiSelection</code></a> or <a href="../docs/gtk4/struct.NoSelection.html"><code>NoSelection</code></a>.
-Then we pass the model and the factory to the <a href="../docs/gtk4/struct.ListView.html"><code>ListView</code></a>.</p>
-<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/list_widgets/2/main.rs">listings/list_widgets/2/main.rs</a></p>
-<pre><code class="language-rust  no_run noplayground"><span class="boring">mod integer_object;
+<p>We only want single items to be selectable, so we choose <a href="https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/struct.SingleSelection.html"><code>SingleSelection</code></a>.
+The other options would have been <a href="https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/struct.MultiSelection.html"><code>MultiSelection</code></a> or <a href="https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/struct.NoSelection.html"><code>NoSelection</code></a>.
+Then we pass the model and the factory to the <a href="https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/struct.ListView.html"><code>ListView</code></a>.</p>
+<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/list_widgets/2/main.rs">listings/list_widgets/2/main.rs</a></p>
+<pre><code class="language-rust"><span class="boring">mod integer_object;
 </span><span class="boring">
 </span><span class="boring">use gtk::{
-</span><span class="boring">    gio, Application, ApplicationWindow, Label, ListView, PolicyType, ScrolledWindow,
-</span><span class="boring">    SignalListItemFactory, SingleSelection,
+</span><span class="boring">    gio, glib, Application, ApplicationWindow, Label, ListView, PolicyType,
+</span><span class="boring">    ScrolledWindow, SignalListItemFactory, SingleSelection,
 </span><span class="boring">};
 </span><span class="boring">use gtk::{prelude::*, ListItem};
 </span><span class="boring">use integer_object::IntegerObject;
 </span><span class="boring">
-</span><span class="boring">const APP_ID: &amp;str = &quot;org.gtk_rs.ListWidgets2&quot;;
+</span><span class="boring">const APP_ID: &amp;str = "org.gtk_rs.ListWidgets2";
 </span><span class="boring">
-</span><span class="boring">fn main() {
+</span><span class="boring">fn main() -&gt; glib::ExitCode {
 </span><span class="boring">    // Create a new application
 </span><span class="boring">    let app = Application::builder().application_id(APP_ID).build();
 </span><span class="boring">
-</span><span class="boring">    // Connect to &quot;activate&quot; signal of `app`
+</span><span class="boring">    // Connect to "activate" signal of `app`
 </span><span class="boring">    app.connect_activate(build_ui);
 </span><span class="boring">
 </span><span class="boring">    // Run the application
-</span><span class="boring">    app.run();
+</span><span class="boring">    app.run()
 </span><span class="boring">}
 </span><span class="boring">
 </span><span class="boring">fn build_ui(app: &amp;Application) {
 </span><span class="boring">    // Create a `Vec&lt;IntegerObject&gt;` with numbers from 0 to 100_000
-</span><span class="boring">    let vector: Vec&lt;IntegerObject&gt; =
-</span><span class="boring">        (0..=100_000).into_iter().map(IntegerObject::new).collect();
+</span><span class="boring">    let vector: Vec&lt;IntegerObject&gt; = (0..=100_000).map(IntegerObject::new).collect();
 </span><span class="boring">
 </span><span class="boring">    // Create new model
-</span><span class="boring">    let model = gio::ListStore::new(IntegerObject::static_type());
+</span><span class="boring">    let model = gio::ListStore::new::&lt;IntegerObject&gt;();
 </span><span class="boring">
 </span><span class="boring">    // Add the vector to the model
 </span><span class="boring">    model.extend_from_slice(&amp;vector);
@@ -642,7 +636,7 @@ Then we pass the model and the factory to the <a href="../docs/gtk4/struct.ListV
 </span><span class="boring">        let label = Label::new(None);
 </span><span class="boring">        list_item
 </span><span class="boring">            .downcast_ref::&lt;ListItem&gt;()
-</span><span class="boring">            .expect(&quot;Needs to be ListItem&quot;)
+</span><span class="boring">            .expect("Needs to be ListItem")
 </span><span class="boring">            .set_child(Some(&amp;label));
 </span><span class="boring">    });
 </span><span class="boring">
@@ -650,28 +644,25 @@ Then we pass the model and the factory to the <a href="../docs/gtk4/struct.ListV
 </span><span class="boring">        // Get `IntegerObject` from `ListItem`
 </span><span class="boring">        let integer_object = list_item
 </span><span class="boring">            .downcast_ref::&lt;ListItem&gt;()
-</span><span class="boring">            .expect(&quot;Needs to be ListItem&quot;)
+</span><span class="boring">            .expect("Needs to be ListItem")
 </span><span class="boring">            .item()
 </span><span class="boring">            .and_downcast::&lt;IntegerObject&gt;()
-</span><span class="boring">            .expect(&quot;The item has to be an `IntegerObject`.&quot;);
-</span><span class="boring">
-</span><span class="boring">        // Get `i32` from `IntegerObject`
-</span><span class="boring">        let number = integer_object.property::&lt;i32&gt;(&quot;number&quot;);
+</span><span class="boring">            .expect("The item has to be an `IntegerObject`.");
 </span><span class="boring">
 </span><span class="boring">        // Get `Label` from `ListItem`
 </span><span class="boring">        let label = list_item
 </span><span class="boring">            .downcast_ref::&lt;ListItem&gt;()
-</span><span class="boring">            .expect(&quot;Needs to be ListItem&quot;)
+</span><span class="boring">            .expect("Needs to be ListItem")
 </span><span class="boring">            .child()
 </span><span class="boring">            .and_downcast::&lt;Label&gt;()
-</span><span class="boring">            .expect(&quot;The child has to be a `Label`.&quot;);
+</span><span class="boring">            .expect("The child has to be a `Label`.");
 </span><span class="boring">
-</span><span class="boring">        // Set &quot;label&quot; to &quot;number&quot;
-</span><span class="boring">        label.set_label(&amp;number.to_string());
+</span><span class="boring">        // Set "label" to "number"
+</span><span class="boring">        label.set_label(&amp;integer_object.number().to_string());
 </span><span class="boring">    });
 </span><span class="boring">
-</span>    let selection_model = SingleSelection::new(Some(&amp;model));
-    let list_view = ListView::new(Some(&amp;selection_model), Some(&amp;factory));
+</span>    let selection_model = SingleSelection::new(Some(model));
+    let list_view = ListView::new(Some(selection_model), Some(factory));
 <span class="boring">
 </span><span class="boring">    let scrolled_window = ScrolledWindow::builder()
 </span><span class="boring">        .hscrollbar_policy(PolicyType::Never) // Disable horizontal scrolling
@@ -682,7 +673,7 @@ Then we pass the model and the factory to the <a href="../docs/gtk4/struct.ListV
 </span><span class="boring">    // Create a window
 </span><span class="boring">    let window = ApplicationWindow::builder()
 </span><span class="boring">        .application(app)
-</span><span class="boring">        .title(&quot;My GTK App&quot;)
+</span><span class="boring">        .title("My GTK App")
 </span><span class="boring">        .default_width(600)
 </span><span class="boring">        .default_height(300)
 </span><span class="boring">        .child(&amp;scrolled_window)
@@ -692,36 +683,35 @@ Then we pass the model and the factory to the <a href="../docs/gtk4/struct.ListV
 </span><span class="boring">    window.present();
 </span><span class="boring">}</span></code></pre>
 <p>Every <code>ListView</code> has to be a direct child of a <code>ScrolledWindow</code>, so we are adding it to one.</p>
-<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/list_widgets/2/main.rs">listings/list_widgets/2/main.rs</a></p>
-<pre><code class="language-rust  no_run noplayground"><span class="boring">mod integer_object;
+<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/list_widgets/2/main.rs">listings/list_widgets/2/main.rs</a></p>
+<pre><code class="language-rust"><span class="boring">mod integer_object;
 </span><span class="boring">
 </span><span class="boring">use gtk::{
-</span><span class="boring">    gio, Application, ApplicationWindow, Label, ListView, PolicyType, ScrolledWindow,
-</span><span class="boring">    SignalListItemFactory, SingleSelection,
+</span><span class="boring">    gio, glib, Application, ApplicationWindow, Label, ListView, PolicyType,
+</span><span class="boring">    ScrolledWindow, SignalListItemFactory, SingleSelection,
 </span><span class="boring">};
 </span><span class="boring">use gtk::{prelude::*, ListItem};
 </span><span class="boring">use integer_object::IntegerObject;
 </span><span class="boring">
-</span><span class="boring">const APP_ID: &amp;str = &quot;org.gtk_rs.ListWidgets2&quot;;
+</span><span class="boring">const APP_ID: &amp;str = "org.gtk_rs.ListWidgets2";
 </span><span class="boring">
-</span><span class="boring">fn main() {
+</span><span class="boring">fn main() -&gt; glib::ExitCode {
 </span><span class="boring">    // Create a new application
 </span><span class="boring">    let app = Application::builder().application_id(APP_ID).build();
 </span><span class="boring">
-</span><span class="boring">    // Connect to &quot;activate&quot; signal of `app`
+</span><span class="boring">    // Connect to "activate" signal of `app`
 </span><span class="boring">    app.connect_activate(build_ui);
 </span><span class="boring">
 </span><span class="boring">    // Run the application
-</span><span class="boring">    app.run();
+</span><span class="boring">    app.run()
 </span><span class="boring">}
 </span><span class="boring">
 </span><span class="boring">fn build_ui(app: &amp;Application) {
 </span><span class="boring">    // Create a `Vec&lt;IntegerObject&gt;` with numbers from 0 to 100_000
-</span><span class="boring">    let vector: Vec&lt;IntegerObject&gt; =
-</span><span class="boring">        (0..=100_000).into_iter().map(IntegerObject::new).collect();
+</span><span class="boring">    let vector: Vec&lt;IntegerObject&gt; = (0..=100_000).map(IntegerObject::new).collect();
 </span><span class="boring">
 </span><span class="boring">    // Create new model
-</span><span class="boring">    let model = gio::ListStore::new(IntegerObject::static_type());
+</span><span class="boring">    let model = gio::ListStore::new::&lt;IntegerObject&gt;();
 </span><span class="boring">
 </span><span class="boring">    // Add the vector to the model
 </span><span class="boring">    model.extend_from_slice(&amp;vector);
@@ -731,7 +721,7 @@ Then we pass the model and the factory to the <a href="../docs/gtk4/struct.ListV
 </span><span class="boring">        let label = Label::new(None);
 </span><span class="boring">        list_item
 </span><span class="boring">            .downcast_ref::&lt;ListItem&gt;()
-</span><span class="boring">            .expect(&quot;Needs to be ListItem&quot;)
+</span><span class="boring">            .expect("Needs to be ListItem")
 </span><span class="boring">            .set_child(Some(&amp;label));
 </span><span class="boring">    });
 </span><span class="boring">
@@ -739,28 +729,25 @@ Then we pass the model and the factory to the <a href="../docs/gtk4/struct.ListV
 </span><span class="boring">        // Get `IntegerObject` from `ListItem`
 </span><span class="boring">        let integer_object = list_item
 </span><span class="boring">            .downcast_ref::&lt;ListItem&gt;()
-</span><span class="boring">            .expect(&quot;Needs to be ListItem&quot;)
+</span><span class="boring">            .expect("Needs to be ListItem")
 </span><span class="boring">            .item()
 </span><span class="boring">            .and_downcast::&lt;IntegerObject&gt;()
-</span><span class="boring">            .expect(&quot;The item has to be an `IntegerObject`.&quot;);
-</span><span class="boring">
-</span><span class="boring">        // Get `i32` from `IntegerObject`
-</span><span class="boring">        let number = integer_object.property::&lt;i32&gt;(&quot;number&quot;);
+</span><span class="boring">            .expect("The item has to be an `IntegerObject`.");
 </span><span class="boring">
 </span><span class="boring">        // Get `Label` from `ListItem`
 </span><span class="boring">        let label = list_item
 </span><span class="boring">            .downcast_ref::&lt;ListItem&gt;()
-</span><span class="boring">            .expect(&quot;Needs to be ListItem&quot;)
+</span><span class="boring">            .expect("Needs to be ListItem")
 </span><span class="boring">            .child()
 </span><span class="boring">            .and_downcast::&lt;Label&gt;()
-</span><span class="boring">            .expect(&quot;The child has to be a `Label`.&quot;);
+</span><span class="boring">            .expect("The child has to be a `Label`.");
 </span><span class="boring">
-</span><span class="boring">        // Set &quot;label&quot; to &quot;number&quot;
-</span><span class="boring">        label.set_label(&amp;number.to_string());
+</span><span class="boring">        // Set "label" to "number"
+</span><span class="boring">        label.set_label(&amp;integer_object.number().to_string());
 </span><span class="boring">    });
 </span><span class="boring">
-</span><span class="boring">    let selection_model = SingleSelection::new(Some(&amp;model));
-</span><span class="boring">    let list_view = ListView::new(Some(&amp;selection_model), Some(&amp;factory));
+</span><span class="boring">    let selection_model = SingleSelection::new(Some(model));
+</span><span class="boring">    let list_view = ListView::new(Some(selection_model), Some(factory));
 </span><span class="boring">
 </span>    let scrolled_window = ScrolledWindow::builder()
         .hscrollbar_policy(PolicyType::Never) // Disable horizontal scrolling
@@ -771,7 +758,7 @@ Then we pass the model and the factory to the <a href="../docs/gtk4/struct.ListV
     // Create a window
     let window = ApplicationWindow::builder()
         .application(app)
-        .title(&quot;My GTK App&quot;)
+        .title("My GTK App")
         .default_width(600)
         .default_height(300)
         .child(&amp;scrolled_window)
@@ -785,12 +772,11 @@ Then we pass the model and the factory to the <a href="../docs/gtk4/struct.ListV
 <p>Let's see what else we can do.
 We might want to increase the number every time we activate its row.
 For that we first add the method <code>increase_number</code> to our <code>IntegerObject</code>.</p>
-<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/list_widgets/3/integer_object/mod.rs">listings/list_widgets/3/integer_object/mod.rs</a></p>
-<pre><code class="language-rust  no_run noplayground"><span class="boring">mod imp;
+<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/list_widgets/3/integer_object/mod.rs">listings/list_widgets/3/integer_object/mod.rs</a></p>
+<pre><code class="language-rust"><span class="boring">mod imp;
 </span><span class="boring">
 </span><span class="boring">use glib::Object;
 </span><span class="boring">use gtk::glib;
-</span><span class="boring">use gtk::prelude::*;
 </span><span class="boring">
 </span><span class="boring">glib::wrapper! {
 </span><span class="boring">    pub struct IntegerObject(ObjectSubclass&lt;imp::IntegerObject&gt;);
@@ -798,19 +784,17 @@ For that we first add the method <code>increase_number</code> to our <code>Integ
 </span><span class="boring">
 </span>impl IntegerObject {
     pub fn new(number: i32) -&gt; Self {
-        Object::builder().property(&quot;number&quot;, number).build()
+        Object::builder().property("number", number).build()
     }
 
     pub fn increase_number(self) {
-        let old_number = self.property::&lt;i32&gt;(&quot;number&quot;);
-        self.set_property(&quot;number&quot;, old_number + 1);
+        self.set_number(self.number() + 1);
     }
 }</code></pre>
-<p>In order to interact with our <code>ListView</code>, we connect to its &quot;activate&quot; signal.</p>
-<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/list_widgets/3/main.rs">listings/list_widgets/3/main.rs</a></p>
-<pre><code class="language-rust  no_run noplayground"><span class="boring">mod integer_object;
+<p>In order to interact with our <code>ListView</code>, we connect to its "activate" signal.</p>
+<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/list_widgets/3/main.rs">listings/list_widgets/3/main.rs</a></p>
+<pre><code class="language-rust"><span class="boring">mod integer_object;
 </span><span class="boring">
-</span><span class="boring">use glib::BindingFlags;
 </span><span class="boring">use gtk::{
 </span><span class="boring">    gio, glib, Application, ApplicationWindow, Label, ListView, PolicyType,
 </span><span class="boring">    ScrolledWindow, SignalListItemFactory, SingleSelection,
@@ -818,26 +802,25 @@ For that we first add the method <code>increase_number</code> to our <code>Integ
 </span><span class="boring">use gtk::{prelude::*, ListItem};
 </span><span class="boring">use integer_object::IntegerObject;
 </span><span class="boring">
-</span><span class="boring">const APP_ID: &amp;str = &quot;org.gtk_rs.ListWidgets3&quot;;
+</span><span class="boring">const APP_ID: &amp;str = "org.gtk_rs.ListWidgets3";
 </span><span class="boring">
-</span><span class="boring">fn main() {
+</span><span class="boring">fn main() -&gt; glib::ExitCode {
 </span><span class="boring">    // Create a new application
 </span><span class="boring">    let app = Application::builder().application_id(APP_ID).build();
 </span><span class="boring">
-</span><span class="boring">    // Connect to &quot;activate&quot; signal of `app`
+</span><span class="boring">    // Connect to "activate" signal of `app`
 </span><span class="boring">    app.connect_activate(build_ui);
 </span><span class="boring">
 </span><span class="boring">    // Run the application
-</span><span class="boring">    app.run();
+</span><span class="boring">    app.run()
 </span><span class="boring">}
 </span><span class="boring">
 </span><span class="boring">fn build_ui(app: &amp;Application) {
 </span><span class="boring">    // Create a `Vec&lt;IntegerObject&gt;` with numbers from 0 to 100_000
-</span><span class="boring">    let vector: Vec&lt;IntegerObject&gt; =
-</span><span class="boring">        (0..=100_000).into_iter().map(IntegerObject::new).collect();
+</span><span class="boring">    let vector: Vec&lt;IntegerObject&gt; = (0..=100_000).map(IntegerObject::new).collect();
 </span><span class="boring">
 </span><span class="boring">    // Create new model
-</span><span class="boring">    let model = gio::ListStore::new(IntegerObject::static_type());
+</span><span class="boring">    let model = gio::ListStore::new::&lt;IntegerObject&gt;();
 </span><span class="boring">
 </span><span class="boring">    // Add the vector to the model
 </span><span class="boring">    model.extend_from_slice(&amp;vector);
@@ -847,7 +830,7 @@ For that we first add the method <code>increase_number</code> to our <code>Integ
 </span><span class="boring">        let label = Label::new(None);
 </span><span class="boring">        list_item
 </span><span class="boring">            .downcast_ref::&lt;ListItem&gt;()
-</span><span class="boring">            .expect(&quot;Needs to be ListItem&quot;)
+</span><span class="boring">            .expect("Needs to be ListItem")
 </span><span class="boring">            .set_child(Some(&amp;label));
 </span><span class="boring">    });
 </span><span class="boring">
@@ -855,38 +838,38 @@ For that we first add the method <code>increase_number</code> to our <code>Integ
 </span><span class="boring">        // Get `IntegerObject` from `ListItem`
 </span><span class="boring">        let integer_object = list_item
 </span><span class="boring">            .downcast_ref::&lt;ListItem&gt;()
-</span><span class="boring">            .expect(&quot;Needs to be ListItem&quot;)
+</span><span class="boring">            .expect("Needs to be ListItem")
 </span><span class="boring">            .item()
 </span><span class="boring">            .and_downcast::&lt;IntegerObject&gt;()
-</span><span class="boring">            .expect(&quot;The item has to be an `IntegerObject`.&quot;);
+</span><span class="boring">            .expect("The item has to be an `IntegerObject`.");
 </span><span class="boring">
 </span><span class="boring">        // Get `Label` from `ListItem`
 </span><span class="boring">        let label = list_item
 </span><span class="boring">            .downcast_ref::&lt;ListItem&gt;()
-</span><span class="boring">            .expect(&quot;Needs to be ListItem&quot;)
+</span><span class="boring">            .expect("Needs to be ListItem")
 </span><span class="boring">            .child()
 </span><span class="boring">            .and_downcast::&lt;Label&gt;()
-</span><span class="boring">            .expect(&quot;The child has to be a `Label`.&quot;);
+</span><span class="boring">            .expect("The child has to be a `Label`.");
 </span><span class="boring">
-</span><span class="boring">        // Bind &quot;label&quot; to &quot;number&quot;
+</span><span class="boring">        // Bind "label" to "number"
 </span><span class="boring">        integer_object
-</span><span class="boring">            .bind_property(&quot;number&quot;, &amp;label, &quot;label&quot;)
-</span><span class="boring">            .flags(BindingFlags::SYNC_CREATE)
+</span><span class="boring">            .bind_property("number", &amp;label, "label")
+</span><span class="boring">            .sync_create()
 </span><span class="boring">            .build();
 </span><span class="boring">    });
 </span><span class="boring">
-</span><span class="boring">    let selection_model = SingleSelection::new(Some(&amp;model));
-</span><span class="boring">    let list_view = ListView::new(Some(&amp;selection_model), Some(&amp;factory));
+</span><span class="boring">    let selection_model = SingleSelection::new(Some(model));
+</span><span class="boring">    let list_view = ListView::new(Some(selection_model), Some(factory));
 </span><span class="boring">
 </span>    list_view.connect_activate(move |list_view, position| {
         // Get `IntegerObject` from model
-        let model = list_view.model().expect(&quot;The model has to exist.&quot;);
+        let model = list_view.model().expect("The model has to exist.");
         let integer_object = model
             .item(position)
             .and_downcast::&lt;IntegerObject&gt;()
-            .expect(&quot;The item has to be an `IntegerObject`.&quot;);
+            .expect("The item has to be an `IntegerObject`.");
 
-        // Increase &quot;number&quot; of `IntegerObject`
+        // Increase "number" of `IntegerObject`
         integer_object.increase_number();
     });
 <span class="boring">
@@ -899,7 +882,7 @@ For that we first add the method <code>increase_number</code> to our <code>Integ
 </span><span class="boring">    // Create a window
 </span><span class="boring">    let window = ApplicationWindow::builder()
 </span><span class="boring">        .application(app)
-</span><span class="boring">        .title(&quot;My GTK App&quot;)
+</span><span class="boring">        .title("My GTK App")
 </span><span class="boring">        .default_width(600)
 </span><span class="boring">        .default_height(300)
 </span><span class="boring">        .child(&amp;scrolled_window)
@@ -909,13 +892,12 @@ For that we first add the method <code>increase_number</code> to our <code>Integ
 </span><span class="boring">    window.present();
 </span><span class="boring">}</span></code></pre>
 <p>Now every time we activate an element, for example by double-clicking on it,
-the corresponding &quot;number&quot; property of the <code>IntegerObject</code> in the model will be increased by 1.
+the corresponding "number" property of the <code>IntegerObject</code> in the model will be increased by 1.
 However, just because the <code>IntegerObject</code> has been modified the corresponding <code>Label</code> does not immediately change.
-One naive approach would be to bind the properties in the &quot;bind&quot; step of the <code>SignalListItemFactory</code>.</p>
-<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/list_widgets/3/main.rs">listings/list_widgets/3/main.rs</a></p>
-<pre><code class="language-rust  no_run noplayground"><span class="boring">mod integer_object;
+One naive approach would be to bind the properties in the "bind" step of the <code>SignalListItemFactory</code>.</p>
+<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/list_widgets/3/main.rs">listings/list_widgets/3/main.rs</a></p>
+<pre><code class="language-rust"><span class="boring">mod integer_object;
 </span><span class="boring">
-</span><span class="boring">use glib::BindingFlags;
 </span><span class="boring">use gtk::{
 </span><span class="boring">    gio, glib, Application, ApplicationWindow, Label, ListView, PolicyType,
 </span><span class="boring">    ScrolledWindow, SignalListItemFactory, SingleSelection,
@@ -923,26 +905,25 @@ One naive approach would be to bind the properties in the &quot;bind&quot; step 
 </span><span class="boring">use gtk::{prelude::*, ListItem};
 </span><span class="boring">use integer_object::IntegerObject;
 </span><span class="boring">
-</span><span class="boring">const APP_ID: &amp;str = &quot;org.gtk_rs.ListWidgets3&quot;;
+</span><span class="boring">const APP_ID: &amp;str = "org.gtk_rs.ListWidgets3";
 </span><span class="boring">
-</span><span class="boring">fn main() {
+</span><span class="boring">fn main() -&gt; glib::ExitCode {
 </span><span class="boring">    // Create a new application
 </span><span class="boring">    let app = Application::builder().application_id(APP_ID).build();
 </span><span class="boring">
-</span><span class="boring">    // Connect to &quot;activate&quot; signal of `app`
+</span><span class="boring">    // Connect to "activate" signal of `app`
 </span><span class="boring">    app.connect_activate(build_ui);
 </span><span class="boring">
 </span><span class="boring">    // Run the application
-</span><span class="boring">    app.run();
+</span><span class="boring">    app.run()
 </span><span class="boring">}
 </span><span class="boring">
 </span><span class="boring">fn build_ui(app: &amp;Application) {
 </span><span class="boring">    // Create a `Vec&lt;IntegerObject&gt;` with numbers from 0 to 100_000
-</span><span class="boring">    let vector: Vec&lt;IntegerObject&gt; =
-</span><span class="boring">        (0..=100_000).into_iter().map(IntegerObject::new).collect();
+</span><span class="boring">    let vector: Vec&lt;IntegerObject&gt; = (0..=100_000).map(IntegerObject::new).collect();
 </span><span class="boring">
 </span><span class="boring">    // Create new model
-</span><span class="boring">    let model = gio::ListStore::new(IntegerObject::static_type());
+</span><span class="boring">    let model = gio::ListStore::new::&lt;IntegerObject&gt;();
 </span><span class="boring">
 </span><span class="boring">    // Add the vector to the model
 </span><span class="boring">    model.extend_from_slice(&amp;vector);
@@ -952,7 +933,7 @@ One naive approach would be to bind the properties in the &quot;bind&quot; step 
 </span><span class="boring">        let label = Label::new(None);
 </span><span class="boring">        list_item
 </span><span class="boring">            .downcast_ref::&lt;ListItem&gt;()
-</span><span class="boring">            .expect(&quot;Needs to be ListItem&quot;)
+</span><span class="boring">            .expect("Needs to be ListItem")
 </span><span class="boring">            .set_child(Some(&amp;label));
 </span><span class="boring">    });
 </span><span class="boring">
@@ -960,38 +941,38 @@ One naive approach would be to bind the properties in the &quot;bind&quot; step 
         // Get `IntegerObject` from `ListItem`
         let integer_object = list_item
             .downcast_ref::&lt;ListItem&gt;()
-            .expect(&quot;Needs to be ListItem&quot;)
+            .expect("Needs to be ListItem")
             .item()
             .and_downcast::&lt;IntegerObject&gt;()
-            .expect(&quot;The item has to be an `IntegerObject`.&quot;);
+            .expect("The item has to be an `IntegerObject`.");
 
         // Get `Label` from `ListItem`
         let label = list_item
             .downcast_ref::&lt;ListItem&gt;()
-            .expect(&quot;Needs to be ListItem&quot;)
+            .expect("Needs to be ListItem")
             .child()
             .and_downcast::&lt;Label&gt;()
-            .expect(&quot;The child has to be a `Label`.&quot;);
+            .expect("The child has to be a `Label`.");
 
-        // Bind &quot;label&quot; to &quot;number&quot;
+        // Bind "label" to "number"
         integer_object
-            .bind_property(&quot;number&quot;, &amp;label, &quot;label&quot;)
-            .flags(BindingFlags::SYNC_CREATE)
+            .bind_property("number", &amp;label, "label")
+            .sync_create()
             .build();
     });
 <span class="boring">
-</span><span class="boring">    let selection_model = SingleSelection::new(Some(&amp;model));
-</span><span class="boring">    let list_view = ListView::new(Some(&amp;selection_model), Some(&amp;factory));
+</span><span class="boring">    let selection_model = SingleSelection::new(Some(model));
+</span><span class="boring">    let list_view = ListView::new(Some(selection_model), Some(factory));
 </span><span class="boring">
 </span><span class="boring">    list_view.connect_activate(move |list_view, position| {
 </span><span class="boring">        // Get `IntegerObject` from model
-</span><span class="boring">        let model = list_view.model().expect(&quot;The model has to exist.&quot;);
+</span><span class="boring">        let model = list_view.model().expect("The model has to exist.");
 </span><span class="boring">        let integer_object = model
 </span><span class="boring">            .item(position)
 </span><span class="boring">            .and_downcast::&lt;IntegerObject&gt;()
-</span><span class="boring">            .expect(&quot;The item has to be an `IntegerObject`.&quot;);
+</span><span class="boring">            .expect("The item has to be an `IntegerObject`.");
 </span><span class="boring">
-</span><span class="boring">        // Increase &quot;number&quot; of `IntegerObject`
+</span><span class="boring">        // Increase "number" of `IntegerObject`
 </span><span class="boring">        integer_object.increase_number();
 </span><span class="boring">    });
 </span><span class="boring">
@@ -1004,7 +985,7 @@ One naive approach would be to bind the properties in the &quot;bind&quot; step 
 </span><span class="boring">    // Create a window
 </span><span class="boring">    let window = ApplicationWindow::builder()
 </span><span class="boring">        .application(app)
-</span><span class="boring">        .title(&quot;My GTK App&quot;)
+</span><span class="boring">        .title("My GTK App")
 </span><span class="boring">        .default_width(600)
 </span><span class="boring">        .default_height(300)
 </span><span class="boring">        .child(&amp;scrolled_window)
@@ -1020,39 +1001,38 @@ This relates to how the view works internally.
 Not every model item belongs to a single widget, but the widgets get recycled instead as you scroll through the view.
 That also means that in our case, multiple numbers will be bound to the same widget.</p>
 <h3 id="expressions"><a class="header" href="#expressions">Expressions</a></h3>
-<p>Situations like these are so common that GTK offers an alternative to property binding: <a href="../docs/gtk4/struct.Expression.html">expressions</a>.
-As a first step it allows us to remove the &quot;bind&quot; step.
-Let's see how the &quot;setup&quot; step now works.</p>
-<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/list_widgets/4/main.rs">listings/list_widgets/4/main.rs</a></p>
-<pre><code class="language-rust  no_run noplayground"><span class="boring">mod integer_object;
+<p>Situations like these are so common that GTK offers an alternative to property binding: <a href="https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/struct.Expression.html">expressions</a>.
+As a first step it allows us to remove the "bind" step.
+Let's see how the "setup" step now works.</p>
+<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/list_widgets/4/main.rs">listings/list_widgets/4/main.rs</a></p>
+<pre><code class="language-rust"><span class="boring">mod integer_object;
 </span><span class="boring">
 </span><span class="boring">use gtk::{
-</span><span class="boring">    gio, Application, ApplicationWindow, Label, ListView, PolicyType, ScrolledWindow,
-</span><span class="boring">    SignalListItemFactory, SingleSelection, Widget,
+</span><span class="boring">    gio, glib, Application, ApplicationWindow, Label, ListView, PolicyType,
+</span><span class="boring">    ScrolledWindow, SignalListItemFactory, SingleSelection, Widget,
 </span><span class="boring">};
 </span><span class="boring">use gtk::{prelude::*, ListItem};
 </span><span class="boring">use integer_object::IntegerObject;
 </span><span class="boring">
-</span><span class="boring">const APP_ID: &amp;str = &quot;org.gtk_rs.ListWidgets4&quot;;
+</span><span class="boring">const APP_ID: &amp;str = "org.gtk_rs.ListWidgets4";
 </span><span class="boring">
-</span><span class="boring">fn main() {
+</span><span class="boring">fn main() -&gt; glib::ExitCode {
 </span><span class="boring">    // Create a new application
 </span><span class="boring">    let app = Application::builder().application_id(APP_ID).build();
 </span><span class="boring">
-</span><span class="boring">    // Connect to &quot;activate&quot; signal of `app`
+</span><span class="boring">    // Connect to "activate" signal of `app`
 </span><span class="boring">    app.connect_activate(build_ui);
 </span><span class="boring">
 </span><span class="boring">    // Run the application
-</span><span class="boring">    app.run();
+</span><span class="boring">    app.run()
 </span><span class="boring">}
 </span><span class="boring">
 </span><span class="boring">fn build_ui(app: &amp;Application) {
 </span><span class="boring">    // Create a `Vec&lt;IntegerObject&gt;` with numbers from 0 to 100_000
-</span><span class="boring">    let vector: Vec&lt;IntegerObject&gt; =
-</span><span class="boring">        (0..=100_000).into_iter().map(IntegerObject::new).collect();
+</span><span class="boring">    let vector: Vec&lt;IntegerObject&gt; = (0..=100_000).map(IntegerObject::new).collect();
 </span><span class="boring">
 </span><span class="boring">    // Create new model
-</span><span class="boring">    let model = gio::ListStore::new(IntegerObject::static_type());
+</span><span class="boring">    let model = gio::ListStore::new::&lt;IntegerObject&gt;();
 </span><span class="boring">
 </span><span class="boring">    // Add the vector to the model
 </span><span class="boring">    model.extend_from_slice(&amp;vector);
@@ -1063,28 +1043,28 @@ Let's see how the &quot;setup&quot; step now works.</p>
         let label = Label::new(None);
         let list_item = list_item
             .downcast_ref::&lt;ListItem&gt;()
-            .expect(&quot;Needs to be ListItem&quot;);
+            .expect("Needs to be ListItem");
         list_item.set_child(Some(&amp;label));
 
         // Bind `list_item-&gt;item-&gt;number` to `label-&gt;label`
         list_item
-            .property_expression(&quot;item&quot;)
-            .chain_property::&lt;IntegerObject&gt;(&quot;number&quot;)
-            .bind(&amp;label, &quot;label&quot;, Widget::NONE);
+            .property_expression("item")
+            .chain_property::&lt;IntegerObject&gt;("number")
+            .bind(&amp;label, "label", Widget::NONE);
     });
 <span class="boring">
-</span><span class="boring">    let selection_model = SingleSelection::new(Some(&amp;model));
-</span><span class="boring">    let list_view = ListView::new(Some(&amp;selection_model), Some(&amp;factory));
+</span><span class="boring">    let selection_model = SingleSelection::new(Some(model));
+</span><span class="boring">    let list_view = ListView::new(Some(selection_model), Some(factory));
 </span><span class="boring">
 </span><span class="boring">    list_view.connect_activate(move |list_view, position| {
 </span><span class="boring">        // Get `IntegerObject` from model
-</span><span class="boring">        let model = list_view.model().expect(&quot;The model has to exist.&quot;);
+</span><span class="boring">        let model = list_view.model().expect("The model has to exist.");
 </span><span class="boring">        let integer_object = model
 </span><span class="boring">            .item(position)
 </span><span class="boring">            .and_downcast::&lt;IntegerObject&gt;()
-</span><span class="boring">            .expect(&quot;The item has to be an `IntegerObject`.&quot;);
+</span><span class="boring">            .expect("The item has to be an `IntegerObject`.");
 </span><span class="boring">
-</span><span class="boring">        // Increase &quot;number&quot; of `IntegerObject`
+</span><span class="boring">        // Increase "number" of `IntegerObject`
 </span><span class="boring">        integer_object.increase_number();
 </span><span class="boring">    });
 </span><span class="boring">
@@ -1097,7 +1077,7 @@ Let's see how the &quot;setup&quot; step now works.</p>
 </span><span class="boring">    // Create a window
 </span><span class="boring">    let window = ApplicationWindow::builder()
 </span><span class="boring">        .application(app)
-</span><span class="boring">        .title(&quot;My GTK App&quot;)
+</span><span class="boring">        .title("My GTK App")
 </span><span class="boring">        .default_width(600)
 </span><span class="boring">        .default_height(300)
 </span><span class="boring">        .child(&amp;scrolled_window)
@@ -1108,8 +1088,8 @@ Let's see how the &quot;setup&quot; step now works.</p>
 </span><span class="boring">}</span></code></pre>
 <p>An expression provides a way to describe references to values.
 One interesting part here is that these references can be several steps away.
-This allowed us in the snippet above to bind the property &quot;number&quot; of the property &quot;item&quot; of <code>list_item</code> to the property &quot;label&quot; of <code>label</code>.</p>
-<p>It is also worth noting that at the &quot;setup&quot; stage there is no way of knowing which list item belongs to which label, simply because this changes as we scroll through the list.
+This allowed us in the snippet above to bind the property "number" of the property "item" of <code>list_item</code> to the property "label" of <code>label</code>.</p>
+<p>It is also worth noting that at the "setup" stage there is no way of knowing which list item belongs to which label, simply because this changes as we scroll through the list.
 Here, another power of expressions becomes evident.
 Expressions allow us to describe relationships between objects or properties that might not even exist yet.
 We just had to tell it to change the label whenever the number that belongs to it changes.
@@ -1117,38 +1097,37 @@ That way, we also don't face the problem that multiple labels are bound to the s
 When we now activate a label, only the corresponding number visibly changes.</p>
 <p>Let's extend our app a bit more.
 We can, for example, filter our model to only allow even numbers.
-We do that by passing it to a <a href="../docs/gtk4/struct.FilterListModel.html"><code>gtk::FilterListModel</code></a> together with a <a href="../docs/gtk4/struct.CustomFilter.html"><code>gtk::CustomFilter</code></a> </p>
-<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/list_widgets/5/main.rs">listings/list_widgets/5/main.rs</a></p>
-<pre><code class="language-rust  no_run noplayground"><span class="boring">mod integer_object;
+We do that by passing it to a <a href="https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/struct.FilterListModel.html"><code>gtk::FilterListModel</code></a> together with a <a href="https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/struct.CustomFilter.html"><code>gtk::CustomFilter</code></a></p>
+<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/list_widgets/5/main.rs">listings/list_widgets/5/main.rs</a></p>
+<pre><code class="language-rust"><span class="boring">mod integer_object;
 </span><span class="boring">
 </span><span class="boring">use gtk::{
-</span><span class="boring">    gio, Application, ApplicationWindow, CustomFilter, CustomSorter, FilterChange,
-</span><span class="boring">    FilterListModel, Label, ListView, PolicyType, ScrolledWindow,
+</span><span class="boring">    gio, glib, Application, ApplicationWindow, CustomFilter, CustomSorter,
+</span><span class="boring">    FilterChange, FilterListModel, Label, ListView, PolicyType, ScrolledWindow,
 </span><span class="boring">    SignalListItemFactory, SingleSelection, SortListModel, SorterChange, Widget,
 </span><span class="boring">};
 </span><span class="boring">use gtk::{prelude::*, ListItem};
 </span><span class="boring">use integer_object::IntegerObject;
 </span><span class="boring">
-</span><span class="boring">const APP_ID: &amp;str = &quot;org.gtk_rs.ListWidgets5&quot;;
+</span><span class="boring">const APP_ID: &amp;str = "org.gtk_rs.ListWidgets5";
 </span><span class="boring">
-</span><span class="boring">fn main() {
+</span><span class="boring">fn main() -&gt; glib::ExitCode {
 </span><span class="boring">    // Create a new application
 </span><span class="boring">    let app = Application::builder().application_id(APP_ID).build();
 </span><span class="boring">
-</span><span class="boring">    // Connect to &quot;activate&quot; signal of `app`
+</span><span class="boring">    // Connect to "activate" signal of `app`
 </span><span class="boring">    app.connect_activate(build_ui);
 </span><span class="boring">
 </span><span class="boring">    // Run the application
-</span><span class="boring">    app.run();
+</span><span class="boring">    app.run()
 </span><span class="boring">}
 </span><span class="boring">
 </span><span class="boring">fn build_ui(app: &amp;Application) {
 </span><span class="boring">    // Create a `Vec&lt;IntegerObject&gt;` with numbers from 0 to 100_000
-</span><span class="boring">    let vector: Vec&lt;IntegerObject&gt; =
-</span><span class="boring">        (0..=100_000).into_iter().map(IntegerObject::new).collect();
+</span><span class="boring">    let vector: Vec&lt;IntegerObject&gt; = (0..=100_000).map(IntegerObject::new).collect();
 </span><span class="boring">
 </span><span class="boring">    // Create new model
-</span><span class="boring">    let model = gio::ListStore::new(IntegerObject::static_type());
+</span><span class="boring">    let model = gio::ListStore::new::&lt;IntegerObject&gt;();
 </span><span class="boring">
 </span><span class="boring">    // Add the vector to the model
 </span><span class="boring">    model.extend_from_slice(&amp;vector);
@@ -1159,60 +1138,57 @@ We do that by passing it to a <a href="../docs/gtk4/struct.FilterListModel.html"
 </span><span class="boring">        let label = Label::new(None);
 </span><span class="boring">        let list_item = list_item
 </span><span class="boring">            .downcast_ref::&lt;ListItem&gt;()
-</span><span class="boring">            .expect(&quot;Needs to be ListItem&quot;);
+</span><span class="boring">            .expect("Needs to be ListItem");
 </span><span class="boring">        list_item.set_child(Some(&amp;label));
 </span><span class="boring">
 </span><span class="boring">        // Bind `list_item-&gt;item-&gt;number` to `label-&gt;label`
 </span><span class="boring">        list_item
-</span><span class="boring">            .property_expression(&quot;item&quot;)
-</span><span class="boring">            .chain_property::&lt;IntegerObject&gt;(&quot;number&quot;)
-</span><span class="boring">            .bind(&amp;label, &quot;label&quot;, Widget::NONE);
+</span><span class="boring">            .property_expression("item")
+</span><span class="boring">            .chain_property::&lt;IntegerObject&gt;("number")
+</span><span class="boring">            .bind(&amp;label, "label", Widget::NONE);
 </span><span class="boring">    });
 </span><span class="boring">
 </span>    let filter = CustomFilter::new(move |obj| {
         // Get `IntegerObject` from `glib::Object`
         let integer_object = obj
             .downcast_ref::&lt;IntegerObject&gt;()
-            .expect(&quot;The object needs to be of type `IntegerObject`.&quot;);
-
-        // Get property &quot;number&quot; from `IntegerObject`
-        let number = integer_object.property::&lt;i32&gt;(&quot;number&quot;);
+            .expect("The object needs to be of type `IntegerObject`.");
 
         // Only allow even numbers
-        number % 2 == 0
+        integer_object.number() % 2 == 0
     });
-    let filter_model = FilterListModel::new(Some(&amp;model), Some(&amp;filter));
+    let filter_model = FilterListModel::new(Some(model), Some(filter.clone()));
 <span class="boring">
 </span><span class="boring">    let sorter = CustomSorter::new(move |obj1, obj2| {
 </span><span class="boring">        // Get `IntegerObject` from `glib::Object`
 </span><span class="boring">        let integer_object_1 = obj1
 </span><span class="boring">            .downcast_ref::&lt;IntegerObject&gt;()
-</span><span class="boring">            .expect(&quot;The object needs to be of type `IntegerObject`.&quot;);
+</span><span class="boring">            .expect("The object needs to be of type `IntegerObject`.");
 </span><span class="boring">        let integer_object_2 = obj2
 </span><span class="boring">            .downcast_ref::&lt;IntegerObject&gt;()
-</span><span class="boring">            .expect(&quot;The object needs to be of type `IntegerObject`.&quot;);
+</span><span class="boring">            .expect("The object needs to be of type `IntegerObject`.");
 </span><span class="boring">
-</span><span class="boring">        // Get property &quot;number&quot; from `IntegerObject`
-</span><span class="boring">        let number_1 = integer_object_1.property::&lt;i32&gt;(&quot;number&quot;);
-</span><span class="boring">        let number_2 = integer_object_2.property::&lt;i32&gt;(&quot;number&quot;);
+</span><span class="boring">        // Get property "number" from `IntegerObject`
+</span><span class="boring">        let number_1 = integer_object_1.number();
+</span><span class="boring">        let number_2 = integer_object_2.number();
 </span><span class="boring">
 </span><span class="boring">        // Reverse sorting order -&gt; large numbers come first
 </span><span class="boring">        number_2.cmp(&amp;number_1).into()
 </span><span class="boring">    });
-</span><span class="boring">    let sort_model = SortListModel::new(Some(&amp;filter_model), Some(&amp;sorter));
+</span><span class="boring">    let sort_model = SortListModel::new(Some(filter_model), Some(sorter.clone()));
 </span><span class="boring">
-</span><span class="boring">    let selection_model = SingleSelection::new(Some(&amp;sort_model));
-</span><span class="boring">    let list_view = ListView::new(Some(&amp;selection_model), Some(&amp;factory));
+</span><span class="boring">    let selection_model = SingleSelection::new(Some(sort_model));
+</span><span class="boring">    let list_view = ListView::new(Some(selection_model), Some(factory));
 </span><span class="boring">
 </span><span class="boring">    list_view.connect_activate(move |list_view, position| {
 </span><span class="boring">        // Get `IntegerObject` from model
-</span><span class="boring">        let model = list_view.model().expect(&quot;The model has to exist.&quot;);
+</span><span class="boring">        let model = list_view.model().expect("The model has to exist.");
 </span><span class="boring">        let integer_object = model
 </span><span class="boring">            .item(position)
 </span><span class="boring">            .and_downcast::&lt;IntegerObject&gt;()
-</span><span class="boring">            .expect(&quot;The item has to be an `IntegerObject`.&quot;);
+</span><span class="boring">            .expect("The item has to be an `IntegerObject`.");
 </span><span class="boring">
-</span><span class="boring">        // Increase &quot;number&quot; of `IntegerObject`
+</span><span class="boring">        // Increase "number" of `IntegerObject`
 </span><span class="boring">        integer_object.increase_number();
 </span><span class="boring">
 </span><span class="boring">        // Notify that the filter and sorter have been changed
@@ -1229,7 +1205,7 @@ We do that by passing it to a <a href="../docs/gtk4/struct.FilterListModel.html"
 </span><span class="boring">    // Create a window
 </span><span class="boring">    let window = ApplicationWindow::builder()
 </span><span class="boring">        .application(app)
-</span><span class="boring">        .title(&quot;My GTK App&quot;)
+</span><span class="boring">        .title("My GTK App")
 </span><span class="boring">        .default_width(600)
 </span><span class="boring">        .default_height(300)
 </span><span class="boring">        .child(&amp;scrolled_window)
@@ -1239,38 +1215,37 @@ We do that by passing it to a <a href="../docs/gtk4/struct.FilterListModel.html"
 </span><span class="boring">    window.present();
 </span><span class="boring">}</span></code></pre>
 <p>Additionally, we can reverse the order of our model.
-Now we pass the filtered model to <a href="../docs/gtk4/struct.SortListModel.html"><code>gtk::SortListModel</code></a> together with <a href="../docs/gtk4/struct.CustomSorter.html"><code>gtk::CustomSorter</code></a>.</p>
-<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/list_widgets/5/main.rs">listings/list_widgets/5/main.rs</a></p>
-<pre><code class="language-rust  no_run noplayground"><span class="boring">mod integer_object;
+Now we pass the filtered model to <a href="https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/struct.SortListModel.html"><code>gtk::SortListModel</code></a> together with <a href="https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/struct.CustomSorter.html"><code>gtk::CustomSorter</code></a>.</p>
+<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/list_widgets/5/main.rs">listings/list_widgets/5/main.rs</a></p>
+<pre><code class="language-rust"><span class="boring">mod integer_object;
 </span><span class="boring">
 </span><span class="boring">use gtk::{
-</span><span class="boring">    gio, Application, ApplicationWindow, CustomFilter, CustomSorter, FilterChange,
-</span><span class="boring">    FilterListModel, Label, ListView, PolicyType, ScrolledWindow,
+</span><span class="boring">    gio, glib, Application, ApplicationWindow, CustomFilter, CustomSorter,
+</span><span class="boring">    FilterChange, FilterListModel, Label, ListView, PolicyType, ScrolledWindow,
 </span><span class="boring">    SignalListItemFactory, SingleSelection, SortListModel, SorterChange, Widget,
 </span><span class="boring">};
 </span><span class="boring">use gtk::{prelude::*, ListItem};
 </span><span class="boring">use integer_object::IntegerObject;
 </span><span class="boring">
-</span><span class="boring">const APP_ID: &amp;str = &quot;org.gtk_rs.ListWidgets5&quot;;
+</span><span class="boring">const APP_ID: &amp;str = "org.gtk_rs.ListWidgets5";
 </span><span class="boring">
-</span><span class="boring">fn main() {
+</span><span class="boring">fn main() -&gt; glib::ExitCode {
 </span><span class="boring">    // Create a new application
 </span><span class="boring">    let app = Application::builder().application_id(APP_ID).build();
 </span><span class="boring">
-</span><span class="boring">    // Connect to &quot;activate&quot; signal of `app`
+</span><span class="boring">    // Connect to "activate" signal of `app`
 </span><span class="boring">    app.connect_activate(build_ui);
 </span><span class="boring">
 </span><span class="boring">    // Run the application
-</span><span class="boring">    app.run();
+</span><span class="boring">    app.run()
 </span><span class="boring">}
 </span><span class="boring">
 </span><span class="boring">fn build_ui(app: &amp;Application) {
 </span><span class="boring">    // Create a `Vec&lt;IntegerObject&gt;` with numbers from 0 to 100_000
-</span><span class="boring">    let vector: Vec&lt;IntegerObject&gt; =
-</span><span class="boring">        (0..=100_000).into_iter().map(IntegerObject::new).collect();
+</span><span class="boring">    let vector: Vec&lt;IntegerObject&gt; = (0..=100_000).map(IntegerObject::new).collect();
 </span><span class="boring">
 </span><span class="boring">    // Create new model
-</span><span class="boring">    let model = gio::ListStore::new(IntegerObject::static_type());
+</span><span class="boring">    let model = gio::ListStore::new::&lt;IntegerObject&gt;();
 </span><span class="boring">
 </span><span class="boring">    // Add the vector to the model
 </span><span class="boring">    model.extend_from_slice(&amp;vector);
@@ -1281,60 +1256,57 @@ Now we pass the filtered model to <a href="../docs/gtk4/struct.SortListModel.htm
 </span><span class="boring">        let label = Label::new(None);
 </span><span class="boring">        let list_item = list_item
 </span><span class="boring">            .downcast_ref::&lt;ListItem&gt;()
-</span><span class="boring">            .expect(&quot;Needs to be ListItem&quot;);
+</span><span class="boring">            .expect("Needs to be ListItem");
 </span><span class="boring">        list_item.set_child(Some(&amp;label));
 </span><span class="boring">
 </span><span class="boring">        // Bind `list_item-&gt;item-&gt;number` to `label-&gt;label`
 </span><span class="boring">        list_item
-</span><span class="boring">            .property_expression(&quot;item&quot;)
-</span><span class="boring">            .chain_property::&lt;IntegerObject&gt;(&quot;number&quot;)
-</span><span class="boring">            .bind(&amp;label, &quot;label&quot;, Widget::NONE);
+</span><span class="boring">            .property_expression("item")
+</span><span class="boring">            .chain_property::&lt;IntegerObject&gt;("number")
+</span><span class="boring">            .bind(&amp;label, "label", Widget::NONE);
 </span><span class="boring">    });
 </span><span class="boring">
 </span><span class="boring">    let filter = CustomFilter::new(move |obj| {
 </span><span class="boring">        // Get `IntegerObject` from `glib::Object`
 </span><span class="boring">        let integer_object = obj
 </span><span class="boring">            .downcast_ref::&lt;IntegerObject&gt;()
-</span><span class="boring">            .expect(&quot;The object needs to be of type `IntegerObject`.&quot;);
-</span><span class="boring">
-</span><span class="boring">        // Get property &quot;number&quot; from `IntegerObject`
-</span><span class="boring">        let number = integer_object.property::&lt;i32&gt;(&quot;number&quot;);
+</span><span class="boring">            .expect("The object needs to be of type `IntegerObject`.");
 </span><span class="boring">
 </span><span class="boring">        // Only allow even numbers
-</span><span class="boring">        number % 2 == 0
+</span><span class="boring">        integer_object.number() % 2 == 0
 </span><span class="boring">    });
-</span><span class="boring">    let filter_model = FilterListModel::new(Some(&amp;model), Some(&amp;filter));
+</span><span class="boring">    let filter_model = FilterListModel::new(Some(model), Some(filter.clone()));
 </span><span class="boring">
 </span>    let sorter = CustomSorter::new(move |obj1, obj2| {
         // Get `IntegerObject` from `glib::Object`
         let integer_object_1 = obj1
             .downcast_ref::&lt;IntegerObject&gt;()
-            .expect(&quot;The object needs to be of type `IntegerObject`.&quot;);
+            .expect("The object needs to be of type `IntegerObject`.");
         let integer_object_2 = obj2
             .downcast_ref::&lt;IntegerObject&gt;()
-            .expect(&quot;The object needs to be of type `IntegerObject`.&quot;);
+            .expect("The object needs to be of type `IntegerObject`.");
 
-        // Get property &quot;number&quot; from `IntegerObject`
-        let number_1 = integer_object_1.property::&lt;i32&gt;(&quot;number&quot;);
-        let number_2 = integer_object_2.property::&lt;i32&gt;(&quot;number&quot;);
+        // Get property "number" from `IntegerObject`
+        let number_1 = integer_object_1.number();
+        let number_2 = integer_object_2.number();
 
         // Reverse sorting order -&gt; large numbers come first
         number_2.cmp(&amp;number_1).into()
     });
-    let sort_model = SortListModel::new(Some(&amp;filter_model), Some(&amp;sorter));
+    let sort_model = SortListModel::new(Some(filter_model), Some(sorter.clone()));
 <span class="boring">
-</span><span class="boring">    let selection_model = SingleSelection::new(Some(&amp;sort_model));
-</span><span class="boring">    let list_view = ListView::new(Some(&amp;selection_model), Some(&amp;factory));
+</span><span class="boring">    let selection_model = SingleSelection::new(Some(sort_model));
+</span><span class="boring">    let list_view = ListView::new(Some(selection_model), Some(factory));
 </span><span class="boring">
 </span><span class="boring">    list_view.connect_activate(move |list_view, position| {
 </span><span class="boring">        // Get `IntegerObject` from model
-</span><span class="boring">        let model = list_view.model().expect(&quot;The model has to exist.&quot;);
+</span><span class="boring">        let model = list_view.model().expect("The model has to exist.");
 </span><span class="boring">        let integer_object = model
 </span><span class="boring">            .item(position)
 </span><span class="boring">            .and_downcast::&lt;IntegerObject&gt;()
-</span><span class="boring">            .expect(&quot;The item has to be an `IntegerObject`.&quot;);
+</span><span class="boring">            .expect("The item has to be an `IntegerObject`.");
 </span><span class="boring">
-</span><span class="boring">        // Increase &quot;number&quot; of `IntegerObject`
+</span><span class="boring">        // Increase "number" of `IntegerObject`
 </span><span class="boring">        integer_object.increase_number();
 </span><span class="boring">
 </span><span class="boring">        // Notify that the filter and sorter have been changed
@@ -1351,7 +1323,7 @@ Now we pass the filtered model to <a href="../docs/gtk4/struct.SortListModel.htm
 </span><span class="boring">    // Create a window
 </span><span class="boring">    let window = ApplicationWindow::builder()
 </span><span class="boring">        .application(app)
-</span><span class="boring">        .title(&quot;My GTK App&quot;)
+</span><span class="boring">        .title("My GTK App")
 </span><span class="boring">        .default_width(600)
 </span><span class="boring">        .default_height(300)
 </span><span class="boring">        .child(&amp;scrolled_window)
@@ -1361,37 +1333,36 @@ Now we pass the filtered model to <a href="../docs/gtk4/struct.SortListModel.htm
 </span><span class="boring">    window.present();
 </span><span class="boring">}</span></code></pre>
 <p>To ensure that our filter and sorter get updated when we modify the numbers, we call the <code>changed</code> method on them.</p>
-<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/list_widgets/5/main.rs">listings/list_widgets/5/main.rs</a></p>
-<pre><code class="language-rust  no_run noplayground"><span class="boring">mod integer_object;
+<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/list_widgets/5/main.rs">listings/list_widgets/5/main.rs</a></p>
+<pre><code class="language-rust"><span class="boring">mod integer_object;
 </span><span class="boring">
 </span><span class="boring">use gtk::{
-</span><span class="boring">    gio, Application, ApplicationWindow, CustomFilter, CustomSorter, FilterChange,
-</span><span class="boring">    FilterListModel, Label, ListView, PolicyType, ScrolledWindow,
+</span><span class="boring">    gio, glib, Application, ApplicationWindow, CustomFilter, CustomSorter,
+</span><span class="boring">    FilterChange, FilterListModel, Label, ListView, PolicyType, ScrolledWindow,
 </span><span class="boring">    SignalListItemFactory, SingleSelection, SortListModel, SorterChange, Widget,
 </span><span class="boring">};
 </span><span class="boring">use gtk::{prelude::*, ListItem};
 </span><span class="boring">use integer_object::IntegerObject;
 </span><span class="boring">
-</span><span class="boring">const APP_ID: &amp;str = &quot;org.gtk_rs.ListWidgets5&quot;;
+</span><span class="boring">const APP_ID: &amp;str = "org.gtk_rs.ListWidgets5";
 </span><span class="boring">
-</span><span class="boring">fn main() {
+</span><span class="boring">fn main() -&gt; glib::ExitCode {
 </span><span class="boring">    // Create a new application
 </span><span class="boring">    let app = Application::builder().application_id(APP_ID).build();
 </span><span class="boring">
-</span><span class="boring">    // Connect to &quot;activate&quot; signal of `app`
+</span><span class="boring">    // Connect to "activate" signal of `app`
 </span><span class="boring">    app.connect_activate(build_ui);
 </span><span class="boring">
 </span><span class="boring">    // Run the application
-</span><span class="boring">    app.run();
+</span><span class="boring">    app.run()
 </span><span class="boring">}
 </span><span class="boring">
 </span><span class="boring">fn build_ui(app: &amp;Application) {
 </span><span class="boring">    // Create a `Vec&lt;IntegerObject&gt;` with numbers from 0 to 100_000
-</span><span class="boring">    let vector: Vec&lt;IntegerObject&gt; =
-</span><span class="boring">        (0..=100_000).into_iter().map(IntegerObject::new).collect();
+</span><span class="boring">    let vector: Vec&lt;IntegerObject&gt; = (0..=100_000).map(IntegerObject::new).collect();
 </span><span class="boring">
 </span><span class="boring">    // Create new model
-</span><span class="boring">    let model = gio::ListStore::new(IntegerObject::static_type());
+</span><span class="boring">    let model = gio::ListStore::new::&lt;IntegerObject&gt;();
 </span><span class="boring">
 </span><span class="boring">    // Add the vector to the model
 </span><span class="boring">    model.extend_from_slice(&amp;vector);
@@ -1402,60 +1373,57 @@ Now we pass the filtered model to <a href="../docs/gtk4/struct.SortListModel.htm
 </span><span class="boring">        let label = Label::new(None);
 </span><span class="boring">        let list_item = list_item
 </span><span class="boring">            .downcast_ref::&lt;ListItem&gt;()
-</span><span class="boring">            .expect(&quot;Needs to be ListItem&quot;);
+</span><span class="boring">            .expect("Needs to be ListItem");
 </span><span class="boring">        list_item.set_child(Some(&amp;label));
 </span><span class="boring">
 </span><span class="boring">        // Bind `list_item-&gt;item-&gt;number` to `label-&gt;label`
 </span><span class="boring">        list_item
-</span><span class="boring">            .property_expression(&quot;item&quot;)
-</span><span class="boring">            .chain_property::&lt;IntegerObject&gt;(&quot;number&quot;)
-</span><span class="boring">            .bind(&amp;label, &quot;label&quot;, Widget::NONE);
+</span><span class="boring">            .property_expression("item")
+</span><span class="boring">            .chain_property::&lt;IntegerObject&gt;("number")
+</span><span class="boring">            .bind(&amp;label, "label", Widget::NONE);
 </span><span class="boring">    });
 </span><span class="boring">
 </span><span class="boring">    let filter = CustomFilter::new(move |obj| {
 </span><span class="boring">        // Get `IntegerObject` from `glib::Object`
 </span><span class="boring">        let integer_object = obj
 </span><span class="boring">            .downcast_ref::&lt;IntegerObject&gt;()
-</span><span class="boring">            .expect(&quot;The object needs to be of type `IntegerObject`.&quot;);
-</span><span class="boring">
-</span><span class="boring">        // Get property &quot;number&quot; from `IntegerObject`
-</span><span class="boring">        let number = integer_object.property::&lt;i32&gt;(&quot;number&quot;);
+</span><span class="boring">            .expect("The object needs to be of type `IntegerObject`.");
 </span><span class="boring">
 </span><span class="boring">        // Only allow even numbers
-</span><span class="boring">        number % 2 == 0
+</span><span class="boring">        integer_object.number() % 2 == 0
 </span><span class="boring">    });
-</span><span class="boring">    let filter_model = FilterListModel::new(Some(&amp;model), Some(&amp;filter));
+</span><span class="boring">    let filter_model = FilterListModel::new(Some(model), Some(filter.clone()));
 </span><span class="boring">
 </span><span class="boring">    let sorter = CustomSorter::new(move |obj1, obj2| {
 </span><span class="boring">        // Get `IntegerObject` from `glib::Object`
 </span><span class="boring">        let integer_object_1 = obj1
 </span><span class="boring">            .downcast_ref::&lt;IntegerObject&gt;()
-</span><span class="boring">            .expect(&quot;The object needs to be of type `IntegerObject`.&quot;);
+</span><span class="boring">            .expect("The object needs to be of type `IntegerObject`.");
 </span><span class="boring">        let integer_object_2 = obj2
 </span><span class="boring">            .downcast_ref::&lt;IntegerObject&gt;()
-</span><span class="boring">            .expect(&quot;The object needs to be of type `IntegerObject`.&quot;);
+</span><span class="boring">            .expect("The object needs to be of type `IntegerObject`.");
 </span><span class="boring">
-</span><span class="boring">        // Get property &quot;number&quot; from `IntegerObject`
-</span><span class="boring">        let number_1 = integer_object_1.property::&lt;i32&gt;(&quot;number&quot;);
-</span><span class="boring">        let number_2 = integer_object_2.property::&lt;i32&gt;(&quot;number&quot;);
+</span><span class="boring">        // Get property "number" from `IntegerObject`
+</span><span class="boring">        let number_1 = integer_object_1.number();
+</span><span class="boring">        let number_2 = integer_object_2.number();
 </span><span class="boring">
 </span><span class="boring">        // Reverse sorting order -&gt; large numbers come first
 </span><span class="boring">        number_2.cmp(&amp;number_1).into()
 </span><span class="boring">    });
-</span><span class="boring">    let sort_model = SortListModel::new(Some(&amp;filter_model), Some(&amp;sorter));
+</span><span class="boring">    let sort_model = SortListModel::new(Some(filter_model), Some(sorter.clone()));
 </span><span class="boring">
-</span><span class="boring">    let selection_model = SingleSelection::new(Some(&amp;sort_model));
-</span><span class="boring">    let list_view = ListView::new(Some(&amp;selection_model), Some(&amp;factory));
+</span><span class="boring">    let selection_model = SingleSelection::new(Some(sort_model));
+</span><span class="boring">    let list_view = ListView::new(Some(selection_model), Some(factory));
 </span><span class="boring">
 </span>    list_view.connect_activate(move |list_view, position| {
         // Get `IntegerObject` from model
-        let model = list_view.model().expect(&quot;The model has to exist.&quot;);
+        let model = list_view.model().expect("The model has to exist.");
         let integer_object = model
             .item(position)
             .and_downcast::&lt;IntegerObject&gt;()
-            .expect(&quot;The item has to be an `IntegerObject`.&quot;);
+            .expect("The item has to be an `IntegerObject`.");
 
-        // Increase &quot;number&quot; of `IntegerObject`
+        // Increase "number" of `IntegerObject`
         integer_object.increase_number();
 
         // Notify that the filter and sorter have been changed
@@ -1472,7 +1440,7 @@ Now we pass the filtered model to <a href="../docs/gtk4/struct.SortListModel.htm
 </span><span class="boring">    // Create a window
 </span><span class="boring">    let window = ApplicationWindow::builder()
 </span><span class="boring">        .application(app)
-</span><span class="boring">        .title(&quot;My GTK App&quot;)
+</span><span class="boring">        .title("My GTK App")
 </span><span class="boring">        .default_width(600)
 </span><span class="boring">        .default_height(300)
 </span><span class="boring">        .child(&amp;scrolled_window)
@@ -1486,38 +1454,35 @@ Now we pass the filtered model to <a href="../docs/gtk4/struct.SortListModel.htm
 <h3 id="string-list"><a class="header" href="#string-list">String List</a></h3>
 <p>Often, all you want is to display a list of strings.
 However, if you either need to filter and sort your displayed data or have too many elements to be displayed by <code>ListBox</code>, you will still want to use a view.
-GTK provides a convenient model for this use case: <a href="../docs/gtk4/struct.StringList.html"><code>gtk::StringList</code></a>.</p>
+GTK provides a convenient model for this use case: <a href="https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/struct.StringList.html"><code>gtk::StringList</code></a>.</p>
 <p>Let's see with a small example how to use this API.
 Filter and sorter is controlled by the factory, so nothing changes here.
 This is why we will skip this topic here.</p>
 <p>First, we add a bunch of strings to our model.</p>
-<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/list_widgets/6/main.rs">listings/list_widgets/6/main.rs</a></p>
-<pre><code class="language-rust  no_run noplayground"><span class="boring">use gtk::{prelude::*, ListItem};
+<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/list_widgets/6/main.rs">listings/list_widgets/6/main.rs</a></p>
+<pre><code class="language-rust"><span class="boring">use gtk::{glib, prelude::*, ListItem};
 </span><span class="boring">use gtk::{
 </span><span class="boring">    Application, ApplicationWindow, Label, ListView, NoSelection, PolicyType,
 </span><span class="boring">    ScrolledWindow, SignalListItemFactory, StringList, StringObject, Widget,
 </span><span class="boring">};
 </span><span class="boring">
-</span><span class="boring">const APP_ID: &amp;str = &quot;org.gtk_rs.ListWidgets6&quot;;
+</span><span class="boring">const APP_ID: &amp;str = "org.gtk_rs.ListWidgets6";
 </span><span class="boring">
-</span><span class="boring">fn main() {
+</span><span class="boring">fn main() -&gt; glib::ExitCode {
 </span><span class="boring">    // Create a new application
 </span><span class="boring">    let app = Application::builder().application_id(APP_ID).build();
 </span><span class="boring">
-</span><span class="boring">    // Connect to &quot;activate&quot; signal of `app`
+</span><span class="boring">    // Connect to "activate" signal of `app`
 </span><span class="boring">    app.connect_activate(build_ui);
 </span><span class="boring">
 </span><span class="boring">    // Run the application
-</span><span class="boring">    app.run();
+</span><span class="boring">    app.run()
 </span><span class="boring">}
 </span><span class="boring">
 </span><span class="boring">fn build_ui(app: &amp;Application) {
 </span>    // Create a `StringList` with number from 0 to 100_000
     // `StringList` implements FromIterator&lt;String&gt;
-    let model: StringList = (0..=100_000)
-        .into_iter()
-        .map(|number| number.to_string())
-        .collect();
+    let model: StringList = (0..=100_000).map(|number| number.to_string()).collect();
 <span class="boring">
 </span><span class="boring">    let factory = SignalListItemFactory::new();
 </span><span class="boring">    factory.connect_setup(move |_, list_item| {
@@ -1525,18 +1490,18 @@ This is why we will skip this topic here.</p>
 </span><span class="boring">        let label = Label::new(None);
 </span><span class="boring">        let list_item = list_item
 </span><span class="boring">            .downcast_ref::&lt;ListItem&gt;()
-</span><span class="boring">            .expect(&quot;Needs to be ListItem&quot;);
+</span><span class="boring">            .expect("Needs to be ListItem");
 </span><span class="boring">        list_item.set_child(Some(&amp;label));
 </span><span class="boring">
 </span><span class="boring">        // Bind `list_item-&gt;item-&gt;string` to `label-&gt;label`
 </span><span class="boring">        list_item
-</span><span class="boring">            .property_expression(&quot;item&quot;)
-</span><span class="boring">            .chain_property::&lt;StringObject&gt;(&quot;string&quot;)
-</span><span class="boring">            .bind(&amp;label, &quot;label&quot;, Widget::NONE);
+</span><span class="boring">            .property_expression("item")
+</span><span class="boring">            .chain_property::&lt;StringObject&gt;("string")
+</span><span class="boring">            .bind(&amp;label, "label", Widget::NONE);
 </span><span class="boring">    });
 </span><span class="boring">
-</span><span class="boring">    let selection_model = NoSelection::new(Some(&amp;model));
-</span><span class="boring">    let list_view = ListView::new(Some(&amp;selection_model), Some(&amp;factory));
+</span><span class="boring">    let selection_model = NoSelection::new(Some(model));
+</span><span class="boring">    let list_view = ListView::new(Some(selection_model), Some(factory));
 </span><span class="boring">
 </span><span class="boring">    let scrolled_window = ScrolledWindow::builder()
 </span><span class="boring">        .hscrollbar_policy(PolicyType::Never) // Disable horizontal scrolling
@@ -1547,7 +1512,7 @@ This is why we will skip this topic here.</p>
 </span><span class="boring">    // Create a window
 </span><span class="boring">    let window = ApplicationWindow::builder()
 </span><span class="boring">        .application(app)
-</span><span class="boring">        .title(&quot;My GTK App&quot;)
+</span><span class="boring">        .title("My GTK App")
 </span><span class="boring">        .default_width(600)
 </span><span class="boring">        .default_height(300)
 </span><span class="boring">        .child(&amp;scrolled_window)
@@ -1559,34 +1524,31 @@ This is why we will skip this topic here.</p>
 <p>Note that we can create a <code>StringList</code> directly from an iterator over strings.
 This means we don't have to create a custom GObject for our model anymore.</p>
 <p>As usual, we connect the label to the list item via an expression.
-Here we can use <a href="../docs/gtk4/struct.StringObject.html"><code>StringObject</code></a>, which exposes its content via the <a href="https://docs.gtk.org/gtk4/property.StringObject.string.html">property &quot;string&quot;</a>.</p>
-<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/list_widgets/6/main.rs">listings/list_widgets/6/main.rs</a></p>
-<pre><code class="language-rust  no_run noplayground"><span class="boring">use gtk::{prelude::*, ListItem};
+Here we can use <a href="https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/struct.StringObject.html"><code>StringObject</code></a>, which exposes its content via the <a href="https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/struct.StringObject.html#string">property "string"</a>.</p>
+<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/list_widgets/6/main.rs">listings/list_widgets/6/main.rs</a></p>
+<pre><code class="language-rust"><span class="boring">use gtk::{glib, prelude::*, ListItem};
 </span><span class="boring">use gtk::{
 </span><span class="boring">    Application, ApplicationWindow, Label, ListView, NoSelection, PolicyType,
 </span><span class="boring">    ScrolledWindow, SignalListItemFactory, StringList, StringObject, Widget,
 </span><span class="boring">};
 </span><span class="boring">
-</span><span class="boring">const APP_ID: &amp;str = &quot;org.gtk_rs.ListWidgets6&quot;;
+</span><span class="boring">const APP_ID: &amp;str = "org.gtk_rs.ListWidgets6";
 </span><span class="boring">
-</span><span class="boring">fn main() {
+</span><span class="boring">fn main() -&gt; glib::ExitCode {
 </span><span class="boring">    // Create a new application
 </span><span class="boring">    let app = Application::builder().application_id(APP_ID).build();
 </span><span class="boring">
-</span><span class="boring">    // Connect to &quot;activate&quot; signal of `app`
+</span><span class="boring">    // Connect to "activate" signal of `app`
 </span><span class="boring">    app.connect_activate(build_ui);
 </span><span class="boring">
 </span><span class="boring">    // Run the application
-</span><span class="boring">    app.run();
+</span><span class="boring">    app.run()
 </span><span class="boring">}
 </span><span class="boring">
 </span><span class="boring">fn build_ui(app: &amp;Application) {
 </span><span class="boring">    // Create a `StringList` with number from 0 to 100_000
 </span><span class="boring">    // `StringList` implements FromIterator&lt;String&gt;
-</span><span class="boring">    let model: StringList = (0..=100_000)
-</span><span class="boring">        .into_iter()
-</span><span class="boring">        .map(|number| number.to_string())
-</span><span class="boring">        .collect();
+</span><span class="boring">    let model: StringList = (0..=100_000).map(|number| number.to_string()).collect();
 </span><span class="boring">
 </span><span class="boring">    let factory = SignalListItemFactory::new();
 </span>    factory.connect_setup(move |_, list_item| {
@@ -1594,18 +1556,18 @@ Here we can use <a href="../docs/gtk4/struct.StringObject.html"><code>StringObje
         let label = Label::new(None);
         let list_item = list_item
             .downcast_ref::&lt;ListItem&gt;()
-            .expect(&quot;Needs to be ListItem&quot;);
+            .expect("Needs to be ListItem");
         list_item.set_child(Some(&amp;label));
 
         // Bind `list_item-&gt;item-&gt;string` to `label-&gt;label`
         list_item
-            .property_expression(&quot;item&quot;)
-            .chain_property::&lt;StringObject&gt;(&quot;string&quot;)
-            .bind(&amp;label, &quot;label&quot;, Widget::NONE);
+            .property_expression("item")
+            .chain_property::&lt;StringObject&gt;("string")
+            .bind(&amp;label, "label", Widget::NONE);
     });
 <span class="boring">
-</span><span class="boring">    let selection_model = NoSelection::new(Some(&amp;model));
-</span><span class="boring">    let list_view = ListView::new(Some(&amp;selection_model), Some(&amp;factory));
+</span><span class="boring">    let selection_model = NoSelection::new(Some(model));
+</span><span class="boring">    let list_view = ListView::new(Some(selection_model), Some(factory));
 </span><span class="boring">
 </span><span class="boring">    let scrolled_window = ScrolledWindow::builder()
 </span><span class="boring">        .hscrollbar_policy(PolicyType::Never) // Disable horizontal scrolling
@@ -1616,7 +1578,7 @@ Here we can use <a href="../docs/gtk4/struct.StringObject.html"><code>StringObje
 </span><span class="boring">    // Create a window
 </span><span class="boring">    let window = ApplicationWindow::builder()
 </span><span class="boring">        .application(app)
-</span><span class="boring">        .title(&quot;My GTK App&quot;)
+</span><span class="boring">        .title("My GTK App")
 </span><span class="boring">        .default_width(600)
 </span><span class="boring">        .default_height(300)
 </span><span class="boring">        .child(&amp;scrolled_window)
@@ -1630,7 +1592,7 @@ Here we can use <a href="../docs/gtk4/struct.StringObject.html"><code>StringObje
 Small amount of elements can be handled by <code>ListBox</code> or <code>FlowBox</code>.
 These widgets are easy to use and can, if necessary, be bound to a model such as <a href="https://gtk-rs.org/gtk-rs-core/stable/latest/docs/gio/struct.ListStore.html"><code>gio::ListStore</code></a>.
 Their data can then be modified, sorted and filtered more easily.
-However, if we need the widgets to be scalable, we still need to use <a href="../docs/gtk4/struct.ListView.html"><code>ListView</code></a>, <a href="../docs/gtk4/struct.ColumnView.html"><code>ColumnView</code></a> or <a href="../docs/gtk4/struct.GridView.html"><code>GridView</code></a> instead.</p>
+However, if we need the widgets to be scalable, we still need to use <a href="https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/struct.ListView.html"><code>ListView</code></a>, <a href="https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/struct.ColumnView.html"><code>ColumnView</code></a> or <a href="https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/struct.GridView.html"><code>GridView</code></a> instead.</p>
 
                     </main>
 
@@ -1640,7 +1602,7 @@ However, if we need the widgets to be scalable, we still need to use <a href="..
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next" href="composite_templates.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="composite_templates.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -1654,7 +1616,7 @@ However, if we need the widgets to be scalable, we still need to use <a href="..
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next" href="composite_templates.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="composite_templates.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>
@@ -1680,5 +1642,6 @@ However, if we need the widgets to be scalable, we still need to use <a href="..
         <!-- Custom JS scripts -->
 
 
+    </div>
     </body>
 </html>

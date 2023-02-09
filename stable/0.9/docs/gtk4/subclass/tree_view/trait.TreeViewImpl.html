@@ -1,0 +1,120 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="API documentation for the Rust `TreeViewImpl` trait in crate `gtk4`."><title>TreeViewImpl in gtk4::subclass::tree_view - Rust</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../static.files/rustdoc-84e720fa.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.89.0-nightly (5526a2f47 2025-06-20)" data-channel="nightly" data-search-js="search-343419c9.js" data-settings-js="settings-5514c975.js" ><script src="../../../static.files/storage-4e99c027.js"></script><script defer src="sidebar-items.js"></script><script defer src="../../../static.files/main-fd3af306.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-32bb7600.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-6580c154.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-044be391.svg"></head><body class="rustdoc trait"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
+
+    function checkDocsLatestStable() {
+        function popup(msg, url) { return `
+            <style scoped="scoped">
+                .popup {
+                    max-width: 16em;
+                    background-color: #fff;
+                    position: fixed;
+                    z-index: 1;
+                    margin-left: auto;
+                    bottom: 1em;
+                    right: 1em;
+                    border-radius: 5px;
+                    box-shadow: 1px 1px 4px #777;
+                }
+
+                .popup a.version {
+                    color: #e57300;
+                    padding: 0.6em 1em;
+                    display: block;
+                }
+                .popup a.version:hover {
+                    color: #b25900;
+                }
+
+                .popup a.close {
+                    color: white;
+                    background: grey;
+                    border-radius: 99px;
+                    display: inline-block;
+                    width: 19px;
+                    line-height: 19px;
+                    font-weight: bold;
+                    text-align: center;
+                    margin: 0.6em;
+                    float: right;
+                }
+                .popup a.close:hover {
+                    background: black;
+                }
+            </style>
+            <section class="popup" id="gir_docs_popup">
+                <a class="close" href="#" onclick="document.getElementById('gir_docs_popup').remove(); return false">×</a>
+                <a class="version" href="https://gtk-rs.org/gtk4-rs/stable/latest/docs">
+                    ⚠ ${msg}
+                </a>
+            </section>
+        ` };
+
+        if ("0.9" == "main") {
+            document.body.insertAdjacentHTML(
+                'beforeend',
+                popup("This is the development version. Go to latest stable version.", "stable/latest")
+            );
+        } else {
+            fetch('https://gtk-rs.org/gtk4-rs/LATEST_RELEASE_BRANCH')
+                .then(response => response.text())
+                .then(latest_branch => {
+                    if (latest_branch.trim() != "0.9") {
+                        document.body.insertAdjacentHTML(
+                            'beforeend',
+                            popup("This version is outdated. Go to latest version.", "stable/latest")
+                        );
+                    }
+                });
+        }
+    }
+</script>
+
+
+<nav class="mobile-topbar"><button class="sidebar-menu-toggle" title="show sidebar"></button></nav><nav class="sidebar"><div class="sidebar-crate"><h2><a href="../../../gtk4/index.html">gtk4</a><span class="version">0.9.7</span></h2></div><div class="sidebar-elems"><section id="rustdoc-toc"><h2 class="location"><a href="#">Tree<wbr>View<wbr>Impl</a></h2><h3><a href="#provided-methods">Provided Methods</a></h3><ul class="block"><li><a href="#method.columns_changed" title="columns_changed">columns_changed</a></li><li><a href="#method.cursor_changed" title="cursor_changed">cursor_changed</a></li><li><a href="#method.expand_collapse_cursor_row" title="expand_collapse_cursor_row">expand_collapse_cursor_row</a></li><li><a href="#method.move_cursor" title="move_cursor">move_cursor</a></li><li><a href="#method.row_activated" title="row_activated">row_activated</a></li><li><a href="#method.row_collapsed" title="row_collapsed">row_collapsed</a></li><li><a href="#method.row_expanded" title="row_expanded">row_expanded</a></li><li><a href="#method.select_all" title="select_all">select_all</a></li><li><a href="#method.select_cursor_parent" title="select_cursor_parent">select_cursor_parent</a></li><li><a href="#method.select_cursor_row" title="select_cursor_row">select_cursor_row</a></li><li><a href="#method.start_interactive_search" title="start_interactive_search">start_interactive_search</a></li><li><a href="#method.test_collapse_row" title="test_collapse_row">test_collapse_row</a></li><li><a href="#method.test_expand_row" title="test_expand_row">test_expand_row</a></li><li><a href="#method.toggle_cursor_row" title="toggle_cursor_row">toggle_cursor_row</a></li><li><a href="#method.unselect_all" title="unselect_all">unselect_all</a></li></ul><h3><a href="#dyn-compatibility">Dyn Compatibility</a></h3><h3><a href="#implementors">Implementors</a></h3></section><div id="rustdoc-modnav"><h2><a href="index.html">In gtk4::<wbr>subclass::<wbr>tree_<wbr>view</a></h2></div></div></nav><div class="sidebar-resizer" title="Drag to resize sidebar"></div><main><div class="width-limiter"><rustdoc-search></rustdoc-search><section id="main-content" class="content"><div class="main-heading"><div class="rustdoc-breadcrumbs"><a href="../../index.html">gtk4</a>::<wbr><a href="../index.html">subclass</a>::<wbr><a href="index.html">tree_view</a></div><h1>Trait <span class="trait">TreeViewImpl</span><button id="copy-path" title="Copy item path to clipboard">Copy item path</button></h1><rustdoc-toolbar></rustdoc-toolbar><span class="sub-heading"><a class="src" href="../../../src/gtk4/subclass/tree_view.rs.html#15-84">Source</a> </span></div><pre class="rust item-decl"><code>pub trait TreeViewImpl: <a class="trait" href="trait.TreeViewImplExt.html" title="trait gtk4::subclass::tree_view::TreeViewImplExt">TreeViewImplExt</a> + <a class="trait" href="../widget/trait.WidgetImpl.html" title="trait gtk4::subclass::widget::WidgetImpl">WidgetImpl</a> {
+<details class="toggle type-contents-toggle"><summary class="hideme"><span>Show 15 methods</span></summary>    // Provided methods
+    fn <a href="#method.columns_changed" class="fn">columns_changed</a>(&amp;self) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.cursor_changed" class="fn">cursor_changed</a>(&amp;self) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.expand_collapse_cursor_row" class="fn">expand_collapse_cursor_row</a>(
+        &amp;self,
+        logical: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>,
+        expand: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>,
+        open_all: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>,
+    ) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.move_cursor" class="fn">move_cursor</a>(
+        &amp;self,
+        step: <a class="enum" href="../../enum.MovementStep.html" title="enum gtk4::MovementStep">MovementStep</a>,
+        count: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>,
+        expand: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>,
+        modify: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>,
+    ) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.row_activated" class="fn">row_activated</a>(&amp;self, path: &amp;<a class="struct" href="../../struct.TreePath.html" title="struct gtk4::TreePath">TreePath</a>, column: &amp;<a class="struct" href="../../struct.TreeViewColumn.html" title="struct gtk4::TreeViewColumn">TreeViewColumn</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.row_collapsed" class="fn">row_collapsed</a>(&amp;self, iter: &amp;<a class="struct" href="../../struct.TreeIter.html" title="struct gtk4::TreeIter">TreeIter</a>, path: &amp;<a class="struct" href="../../struct.TreePath.html" title="struct gtk4::TreePath">TreePath</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.row_expanded" class="fn">row_expanded</a>(&amp;self, iter: &amp;<a class="struct" href="../../struct.TreeIter.html" title="struct gtk4::TreeIter">TreeIter</a>, path: &amp;<a class="struct" href="../../struct.TreePath.html" title="struct gtk4::TreePath">TreePath</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.select_all" class="fn">select_all</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.select_cursor_parent" class="fn">select_cursor_parent</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.select_cursor_row" class="fn">select_cursor_row</a>(&amp;self, start_editing: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.start_interactive_search" class="fn">start_interactive_search</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.test_collapse_row" class="fn">test_collapse_row</a>(&amp;self, iter: &amp;<a class="struct" href="../../struct.TreeIter.html" title="struct gtk4::TreeIter">TreeIter</a>, path: &amp;<a class="struct" href="../../struct.TreePath.html" title="struct gtk4::TreePath">TreePath</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.test_expand_row" class="fn">test_expand_row</a>(&amp;self, iter: &amp;<a class="struct" href="../../struct.TreeIter.html" title="struct gtk4::TreeIter">TreeIter</a>, path: &amp;<a class="struct" href="../../struct.TreePath.html" title="struct gtk4::TreePath">TreePath</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.toggle_cursor_row" class="fn">toggle_cursor_row</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.unselect_all" class="fn">unselect_all</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> { ... }
+</details>}</code></pre><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span><h2 id="provided-methods" class="section-header">Provided Methods<a href="#provided-methods" class="anchor">§</a></h2><div class="methods"><section id="method.columns_changed" class="method"><a class="src rightside" href="../../../src/gtk4/subclass/tree_view.rs.html#16-18">Source</a><h4 class="code-header">fn <a href="#method.columns_changed" class="fn">columns_changed</a>(&amp;self)</h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span><section id="method.cursor_changed" class="method"><a class="src rightside" href="../../../src/gtk4/subclass/tree_view.rs.html#20-22">Source</a><h4 class="code-header">fn <a href="#method.cursor_changed" class="fn">cursor_changed</a>(&amp;self)</h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span><section id="method.expand_collapse_cursor_row" class="method"><a class="src rightside" href="../../../src/gtk4/subclass/tree_view.rs.html#24-26">Source</a><h4 class="code-header">fn <a href="#method.expand_collapse_cursor_row" class="fn">expand_collapse_cursor_row</a>(
+    &amp;self,
+    logical: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>,
+    expand: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>,
+    open_all: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>,
+) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span><section id="method.move_cursor" class="method"><a class="src rightside" href="../../../src/gtk4/subclass/tree_view.rs.html#28-30">Source</a><h4 class="code-header">fn <a href="#method.move_cursor" class="fn">move_cursor</a>(
+    &amp;self,
+    step: <a class="enum" href="../../enum.MovementStep.html" title="enum gtk4::MovementStep">MovementStep</a>,
+    count: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>,
+    expand: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>,
+    modify: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>,
+) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span><details class="toggle method-toggle" open><summary><section id="method.row_activated" class="method"><a class="src rightside" href="../../../src/gtk4/subclass/tree_view.rs.html#41-43">Source</a><h4 class="code-header">fn <a href="#method.row_activated" class="fn">row_activated</a>(&amp;self, path: &amp;<a class="struct" href="../../struct.TreePath.html" title="struct gtk4::TreePath">TreePath</a>, column: &amp;<a class="struct" href="../../struct.TreeViewColumn.html" title="struct gtk4::TreeViewColumn">TreeViewColumn</a>)</h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span></summary><div class="docblock"><p>Activates the cell determined by @path and @column.</p>
+<h5 id="deprecated-since-410"><a class="doc-anchor" href="#deprecated-since-410">§</a>Deprecated since 4.10</h5>
+<p>Use <a href="../../struct.ListView.html" title="struct gtk4::ListView"><code>ListView</code></a> or <a href="../../struct.ColumnView.html" title="struct gtk4::ColumnView"><code>ColumnView</code></a> instead</p>
+<h6 id="path"><a class="doc-anchor" href="#path">§</a><code>path</code></h6>
+<p>The <a href="../../struct.TreePath.html" title="struct gtk4::TreePath"><code>TreePath</code></a> to be activated.</p>
+<h6 id="column"><a class="doc-anchor" href="#column">§</a><code>column</code></h6>
+<p>The <a href="../../struct.TreeViewColumn.html" title="struct gtk4::TreeViewColumn"><code>TreeViewColumn</code></a> to be activated.</p>
+</div></details><section id="method.row_collapsed" class="method"><a class="src rightside" href="../../../src/gtk4/subclass/tree_view.rs.html#45-47">Source</a><h4 class="code-header">fn <a href="#method.row_collapsed" class="fn">row_collapsed</a>(&amp;self, iter: &amp;<a class="struct" href="../../struct.TreeIter.html" title="struct gtk4::TreeIter">TreeIter</a>, path: &amp;<a class="struct" href="../../struct.TreePath.html" title="struct gtk4::TreePath">TreePath</a>)</h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span><section id="method.row_expanded" class="method"><a class="src rightside" href="../../../src/gtk4/subclass/tree_view.rs.html#49-51">Source</a><h4 class="code-header">fn <a href="#method.row_expanded" class="fn">row_expanded</a>(&amp;self, iter: &amp;<a class="struct" href="../../struct.TreeIter.html" title="struct gtk4::TreeIter">TreeIter</a>, path: &amp;<a class="struct" href="../../struct.TreePath.html" title="struct gtk4::TreePath">TreePath</a>)</h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span><section id="method.select_all" class="method"><a class="src rightside" href="../../../src/gtk4/subclass/tree_view.rs.html#53-55">Source</a><h4 class="code-header">fn <a href="#method.select_all" class="fn">select_all</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span><section id="method.select_cursor_parent" class="method"><a class="src rightside" href="../../../src/gtk4/subclass/tree_view.rs.html#57-59">Source</a><h4 class="code-header">fn <a href="#method.select_cursor_parent" class="fn">select_cursor_parent</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span><section id="method.select_cursor_row" class="method"><a class="src rightside" href="../../../src/gtk4/subclass/tree_view.rs.html#61-63">Source</a><h4 class="code-header">fn <a href="#method.select_cursor_row" class="fn">select_cursor_row</a>(&amp;self, start_editing: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span><section id="method.start_interactive_search" class="method"><a class="src rightside" href="../../../src/gtk4/subclass/tree_view.rs.html#65-67">Source</a><h4 class="code-header">fn <a href="#method.start_interactive_search" class="fn">start_interactive_search</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span><section id="method.test_collapse_row" class="method"><a class="src rightside" href="../../../src/gtk4/subclass/tree_view.rs.html#69-71">Source</a><h4 class="code-header">fn <a href="#method.test_collapse_row" class="fn">test_collapse_row</a>(&amp;self, iter: &amp;<a class="struct" href="../../struct.TreeIter.html" title="struct gtk4::TreeIter">TreeIter</a>, path: &amp;<a class="struct" href="../../struct.TreePath.html" title="struct gtk4::TreePath">TreePath</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span><section id="method.test_expand_row" class="method"><a class="src rightside" href="../../../src/gtk4/subclass/tree_view.rs.html#73-75">Source</a><h4 class="code-header">fn <a href="#method.test_expand_row" class="fn">test_expand_row</a>(&amp;self, iter: &amp;<a class="struct" href="../../struct.TreeIter.html" title="struct gtk4::TreeIter">TreeIter</a>, path: &amp;<a class="struct" href="../../struct.TreePath.html" title="struct gtk4::TreePath">TreePath</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span><section id="method.toggle_cursor_row" class="method"><a class="src rightside" href="../../../src/gtk4/subclass/tree_view.rs.html#77-79">Source</a><h4 class="code-header">fn <a href="#method.toggle_cursor_row" class="fn">toggle_cursor_row</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span><section id="method.unselect_all" class="method"><a class="src rightside" href="../../../src/gtk4/subclass/tree_view.rs.html#81-83">Source</a><h4 class="code-header">fn <a href="#method.unselect_all" class="fn">unselect_all</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span></div><h2 id="dyn-compatibility" class="section-header">Dyn Compatibility<a href="#dyn-compatibility" class="anchor">§</a></h2><div class="dyn-compatibility-info"><p>This trait is <b>not</b> <a href="https://doc.rust-lang.org/nightly/reference/items/traits.html#dyn-compatibility">dyn compatible</a>.</p><p><i>In older versions of Rust, dyn compatibility was called "object safety", so this trait is not object safe.</i></p></div><h2 id="implementors" class="section-header">Implementors<a href="#implementors" class="anchor">§</a></h2><div id="implementors-list"></div><script src="../../../trait.impl/gtk4/subclass/tree_view/trait.TreeViewImpl.js" async></script></section></div></main></body></html>

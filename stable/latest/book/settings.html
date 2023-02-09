@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html lang="en" class="sidebar-visible no-js rust">
+<html lang="en" class="rust sidebar-visible" dir="ltr">
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
@@ -7,10 +7,10 @@
 
 
         <!-- Custom HTML head -->
-        
+
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="theme-color" content="#ffffff" />
+        <meta name="theme-color" content="#ffffff">
 
         <link rel="icon" href="favicon.svg">
         <link rel="shortcut icon" href="favicon.png">
@@ -24,26 +24,41 @@
         <link rel="stylesheet" href="fonts/fonts.css">
 
         <!-- Highlight.js Stylesheets -->
-        <link rel="stylesheet" href="highlight.css">
-        <link rel="stylesheet" href="tomorrow-night.css">
-        <link rel="stylesheet" href="ayu-highlight.css">
+        <link rel="stylesheet" id="highlight-css" href="highlight.css">
+        <link rel="stylesheet" id="tomorrow-night-css" href="tomorrow-night.css">
+        <link rel="stylesheet" id="ayu-highlight-css" href="ayu-highlight.css">
 
         <!-- Custom theme stylesheets -->
         <link rel="stylesheet" href="theme/style.css">
 
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "";
+            const default_light_theme = "rust";
+            const default_dark_theme = "navy";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="toc.js"></script>
     </head>
     <body>
-        <!-- Provide site root to javascript -->
-        <script>
-            var path_to_root = "";
-            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "rust";
-        </script>
-
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="body-container">
         <!-- Work around some values being stored in localStorage wrapped in quotes -->
         <script>
             try {
-                var theme = localStorage.getItem('mdbook-theme');
-                var sidebar = localStorage.getItem('mdbook-sidebar');
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
 
                 if (theme.startsWith('"') && theme.endsWith('"')) {
                     localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
@@ -57,55 +72,65 @@
 
         <!-- Set the theme before any content is loaded, prevents flash -->
         <script>
-            var theme;
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
             try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
             if (theme === null || theme === undefined) { theme = default_theme; }
-            var html = document.querySelector('html');
-            html.classList.remove('no-js')
+            const html = document.documentElement;
             html.classList.remove('rust')
             html.classList.add(theme);
-            html.classList.add('js');
+            html.classList.add("js");
         </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
 
         <!-- Hide / unhide sidebar before it is displayed -->
         <script>
-            var html = document.querySelector('html');
-            var sidebar = 'hidden';
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
             }
+            sidebar_toggle.checked = sidebar === 'visible';
             html.classList.remove('sidebar-visible');
             html.classList.add("sidebar-" + sidebar);
         </script>
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
-            <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="introduction.html">Introduction</a></li><li class="chapter-item expanded "><a href="installation.html"><strong aria-hidden="true">1.</strong> Installation</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="installation_linux.html"><strong aria-hidden="true">1.1.</strong> Linux</a></li><li class="chapter-item expanded "><a href="installation_macos.html"><strong aria-hidden="true">1.2.</strong> macOS</a></li><li class="chapter-item expanded "><a href="installation_windows.html"><strong aria-hidden="true">1.3.</strong> Windows</a></li></ol></li><li class="chapter-item expanded "><a href="project_setup.html"><strong aria-hidden="true">2.</strong> Project Setup</a></li><li class="chapter-item expanded "><a href="hello_world.html"><strong aria-hidden="true">3.</strong> Hello World!</a></li><li class="chapter-item expanded "><a href="widgets.html"><strong aria-hidden="true">4.</strong> Widgets</a></li><li class="chapter-item expanded "><a href="g_object_concepts.html"><strong aria-hidden="true">5.</strong> GObject Concepts</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="g_object_memory_management.html"><strong aria-hidden="true">5.1.</strong> Memory Management</a></li><li class="chapter-item expanded "><a href="g_object_subclassing.html"><strong aria-hidden="true">5.2.</strong> Subclassing</a></li><li class="chapter-item expanded "><a href="g_object_values.html"><strong aria-hidden="true">5.3.</strong> Generic Values</a></li><li class="chapter-item expanded "><a href="g_object_properties.html"><strong aria-hidden="true">5.4.</strong> Properties</a></li><li class="chapter-item expanded "><a href="g_object_signals.html"><strong aria-hidden="true">5.5.</strong> Signals</a></li></ol></li><li class="chapter-item expanded "><a href="main_event_loop.html"><strong aria-hidden="true">6.</strong> The Main Event Loop</a></li><li class="chapter-item expanded "><a href="settings.html" class="active"><strong aria-hidden="true">7.</strong> Settings</a></li><li class="chapter-item expanded "><a href="saving_window_state.html"><strong aria-hidden="true">8.</strong> Saving Window State</a></li><li class="chapter-item expanded "><a href="list_widgets.html"><strong aria-hidden="true">9.</strong> List Widgets</a></li><li class="chapter-item expanded "><a href="composite_templates.html"><strong aria-hidden="true">10.</strong> Composite Templates</a></li><li class="chapter-item expanded "><a href="todo_1.html"><strong aria-hidden="true">11.</strong> Building a Simple To-Do App</a></li><li class="chapter-item expanded "><a href="actions.html"><strong aria-hidden="true">12.</strong> Actions</a></li><li class="chapter-item expanded "><a href="todo_2.html"><strong aria-hidden="true">13.</strong> Manipulating State of To-Do App</a></li><li class="chapter-item expanded "><a href="css.html"><strong aria-hidden="true">14.</strong> CSS</a></li><li class="chapter-item expanded "><a href="libadwaita.html"><strong aria-hidden="true">15.</strong> Libadwaita</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="todo_3.html"><strong aria-hidden="true">15.1.</strong> Let To-Do App use Libadwaita</a></li><li class="chapter-item expanded "><a href="todo_4.html"><strong aria-hidden="true">15.2.</strong> Adding Collections</a></li></ol></li></ol>
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="toc.html"></iframe>
+            </noscript>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
             </div>
-            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
 
         <div id="page-wrapper" class="page-wrapper">
 
             <div class="page">
-                                <div id="menu-bar-hover-placeholder"></div>
-                <div id="menu-bar" class="menu-bar sticky bordered">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
                     <div class="left-buttons">
-                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
                             <i class="fa fa-bars"></i>
-                        </button>
+                        </label>
                         <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
                             <i class="fa fa-paint-brush"></i>
                         </button>
                         <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="default_theme">Auto</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
                         </ul>
-                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                        <button id="search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="searchbar">
                             <i class="fa fa-search"></i>
                         </button>
                     </div>
@@ -116,7 +141,7 @@
                         <a href="print.html" title="Print this book" aria-label="Print this book">
                             <i id="print-button" class="fa fa-print"></i>
                         </a>
-                        <a href="https://github.com/gtk-rs/gtk4-rs/tree/master/book" title="Git repository" aria-label="Git repository">
+                        <a href="https://github.com/gtk-rs/gtk4-rs/tree/main/book" title="Git repository" aria-label="Git repository">
                             <i id="git-repository-button" class="fa fa-github"></i>
                         </a>
 
@@ -148,13 +173,13 @@
                         <h1 id="settings"><a class="header" href="#settings">Settings</a></h1>
 <p>We have now learned multiple ways to handle states.
 However, every time we close the application all of it is gone.
-Let's learn how to use <a href="https://gtk-rs.org/gtk-rs-core/stable/latest/docs/gio/struct.Settings.html"><code>gio::Settings</code></a> by storing the state of a <a href="../docs/gtk4/struct.Switch.html"><code>Switch</code></a> in it.</p>
+Let's learn how to use <a href="https://gtk-rs.org/gtk-rs-core/stable/latest/docs/gio/struct.Settings.html"><code>gio::Settings</code></a> by storing the state of a <a href="https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/struct.Switch.html"><code>Switch</code></a> in it.</p>
 <p>At the very beginning we have to create a <code>GSchema</code> xml file in order to describe the kind of data our application plans to store in the settings.</p>
-<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/settings/1/org.gtk_rs.Settings1.gschema.xml">listings/settings/1/org.gtk_rs.Settings1.gschema.xml</a></p>
-<pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/settings/1/org.gtk_rs.Settings1.gschema.xml">listings/settings/1/org.gtk_rs.Settings1.gschema.xml</a></p>
+<pre><code class="language-xml">&lt;?xml version="1.0" encoding="utf-8"?&gt;
 &lt;schemalist&gt;
-  &lt;schema id=&quot;org.gtk_rs.Settings1&quot; path=&quot;/org/gtk_rs/Settings1/&quot;&gt;
-    &lt;key name=&quot;is-switch-enabled&quot; type=&quot;b&quot;&gt;
+  &lt;schema id="org.gtk_rs.Settings1" path="/org/gtk_rs/Settings1/"&gt;
+    &lt;key name="is-switch-enabled" type="b"&gt;
       &lt;default&gt;false&lt;/default&gt;
       &lt;summary&gt;Default switch state&lt;/summary&gt;
     &lt;/key&gt;
@@ -163,23 +188,22 @@ Let's learn how to use <a href="https://gtk-rs.org/gtk-rs-core/stable/latest/doc
 </code></pre>
 <p>Let's get through it step by step.
 The <code>id</code> is the same application id we used when we created our application.</p>
-<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/settings/1/main.rs">listings/settings/1/main.rs</a></p>
-<pre><code class="language-rust  no_run noplayground"><span class="boring">use gio::Settings;
-</span><span class="boring">use gtk::glib::signal::Inhibit;
+<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/settings/1/main.rs">listings/settings/1/main.rs</a></p>
+<pre><code class="language-rust"><span class="boring">use gio::Settings;
 </span><span class="boring">use gtk::prelude::*;
-</span><span class="boring">use gtk::{gio, Align, Application, ApplicationWindow, Switch};
+</span><span class="boring">use gtk::{gio, glib, Align, Application, ApplicationWindow, Switch};
 </span><span class="boring">
-</span><span class="boring">const APP_ID: &amp;str = &quot;org.gtk_rs.Settings1&quot;;
+</span><span class="boring">const APP_ID: &amp;str = "org.gtk_rs.Settings1";
 </span><span class="boring">
-</span><span class="boring">fn main() {
+</span><span class="boring">fn main() -&gt; glib::ExitCode {
 </span>    // Create a new application
     let app = Application::builder().application_id(APP_ID).build();
 <span class="boring">
-</span><span class="boring">    // Connect to &quot;activate&quot; signal of `app`
+</span><span class="boring">    // Connect to "activate" signal of `app`
 </span><span class="boring">    app.connect_activate(build_ui);
 </span><span class="boring">
 </span><span class="boring">    // Run the application
-</span><span class="boring">    app.run();
+</span><span class="boring">    app.run()
 </span><span class="boring">}
 </span><span class="boring">
 </span><span class="boring">fn build_ui(app: &amp;Application) {
@@ -187,7 +211,7 @@ The <code>id</code> is the same application id we used when we created our appli
 </span><span class="boring">    let settings = Settings::new(APP_ID);
 </span><span class="boring">
 </span><span class="boring">    // Get the last switch state from the settings
-</span><span class="boring">    let is_switch_enabled = settings.boolean(&quot;is-switch-enabled&quot;);
+</span><span class="boring">    let is_switch_enabled = settings.boolean("is-switch-enabled");
 </span><span class="boring">
 </span><span class="boring">    // Create a switch
 </span><span class="boring">    let switch = Switch::builder()
@@ -203,16 +227,16 @@ The <code>id</code> is the same application id we used when we created our appli
 </span><span class="boring">    switch.connect_state_set(move |_, is_enabled| {
 </span><span class="boring">        // Save changed switch state in the settings
 </span><span class="boring">        settings
-</span><span class="boring">            .set_boolean(&quot;is-switch-enabled&quot;, is_enabled)
-</span><span class="boring">            .expect(&quot;Could not set setting.&quot;);
-</span><span class="boring">        // Don't inhibit the default handler
-</span><span class="boring">        Inhibit(false)
+</span><span class="boring">            .set_boolean("is-switch-enabled", is_enabled)
+</span><span class="boring">            .expect("Could not set setting.");
+</span><span class="boring">        // Allow to invoke other event handlers
+</span><span class="boring">        glib::Propagation::Proceed
 </span><span class="boring">    });
 </span><span class="boring">
 </span><span class="boring">    // Create a window
 </span><span class="boring">    let window = ApplicationWindow::builder()
 </span><span class="boring">        .application(app)
-</span><span class="boring">        .title(&quot;My GTK App&quot;)
+</span><span class="boring">        .title("My GTK App")
 </span><span class="boring">        .child(&amp;switch)
 </span><span class="boring">        .build();
 </span><span class="boring">
@@ -221,9 +245,9 @@ The <code>id</code> is the same application id we used when we created our appli
 </span><span class="boring">}</span></code></pre>
 <p>The <code>path</code> must start and end with a forward slash character ('/') and must not contain two sequential slash characters.
 When creating a <code>path</code>, we advise to take the <code>id</code>, replace the '.' with '/' and add '/' at the front and end of it.</p>
-<p>We only want to store a single key with the <code>name</code> &quot;is-switch-enabled&quot;.
-This is a boolean value so its <code>type</code> is &quot;b&quot; (see <a href="https://docs.gtk.org/glib/gvariant-format-strings.html">GVariant Format Strings</a> for the other options).
-We also set its default value to <code>false</code> (see <a href="https://docs.gtk.org/glib/gvariant-text.html">GVariant Text Format</a> for the full syntax).
+<p>We only want to store a single key with the <code>name</code> "is-switch-enabled".
+This is a boolean value so its <code>type</code> is "b" (see <a href="https://docs.gtk.org/glib/gvariant-format-strings.html">GVariant Format Strings</a> for the other options).
+We also set its default value to <code>false</code> (see <a href="https://docs.gtk.org/glib/gvariant-text-format.html">GVariant Text Format</a> for the full syntax).
 Finally, we add a summary.</p>
 <p>Now we need to copy and compile the schema.</p>
 <blockquote>
@@ -239,23 +263,22 @@ glib-compile-schemas C:/ProgramData/glib-2.0/schemas/
 </code></pre>
 </blockquote>
 <p>We initialize the <code>Settings</code> object by specifying the application id.</p>
-<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/settings/1/main.rs">listings/settings/1/main.rs</a></p>
-<pre><code class="language-rust  no_run noplayground"><span class="boring">use gio::Settings;
-</span><span class="boring">use gtk::glib::signal::Inhibit;
+<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/settings/1/main.rs">listings/settings/1/main.rs</a></p>
+<pre><code class="language-rust"><span class="boring">use gio::Settings;
 </span><span class="boring">use gtk::prelude::*;
-</span><span class="boring">use gtk::{gio, Align, Application, ApplicationWindow, Switch};
+</span><span class="boring">use gtk::{gio, glib, Align, Application, ApplicationWindow, Switch};
 </span><span class="boring">
-</span><span class="boring">const APP_ID: &amp;str = &quot;org.gtk_rs.Settings1&quot;;
+</span><span class="boring">const APP_ID: &amp;str = "org.gtk_rs.Settings1";
 </span><span class="boring">
-</span><span class="boring">fn main() {
+</span><span class="boring">fn main() -&gt; glib::ExitCode {
 </span><span class="boring">    // Create a new application
 </span><span class="boring">    let app = Application::builder().application_id(APP_ID).build();
 </span><span class="boring">
-</span><span class="boring">    // Connect to &quot;activate&quot; signal of `app`
+</span><span class="boring">    // Connect to "activate" signal of `app`
 </span><span class="boring">    app.connect_activate(build_ui);
 </span><span class="boring">
 </span><span class="boring">    // Run the application
-</span><span class="boring">    app.run();
+</span><span class="boring">    app.run()
 </span><span class="boring">}
 </span><span class="boring">
 </span><span class="boring">fn build_ui(app: &amp;Application) {
@@ -263,7 +286,7 @@ glib-compile-schemas C:/ProgramData/glib-2.0/schemas/
     let settings = Settings::new(APP_ID);
 <span class="boring">
 </span><span class="boring">    // Get the last switch state from the settings
-</span><span class="boring">    let is_switch_enabled = settings.boolean(&quot;is-switch-enabled&quot;);
+</span><span class="boring">    let is_switch_enabled = settings.boolean("is-switch-enabled");
 </span><span class="boring">
 </span><span class="boring">    // Create a switch
 </span><span class="boring">    let switch = Switch::builder()
@@ -279,16 +302,16 @@ glib-compile-schemas C:/ProgramData/glib-2.0/schemas/
 </span><span class="boring">    switch.connect_state_set(move |_, is_enabled| {
 </span><span class="boring">        // Save changed switch state in the settings
 </span><span class="boring">        settings
-</span><span class="boring">            .set_boolean(&quot;is-switch-enabled&quot;, is_enabled)
-</span><span class="boring">            .expect(&quot;Could not set setting.&quot;);
-</span><span class="boring">        // Don't inhibit the default handler
-</span><span class="boring">        Inhibit(false)
+</span><span class="boring">            .set_boolean("is-switch-enabled", is_enabled)
+</span><span class="boring">            .expect("Could not set setting.");
+</span><span class="boring">        // Allow to invoke other event handlers
+</span><span class="boring">        glib::Propagation::Proceed
 </span><span class="boring">    });
 </span><span class="boring">
 </span><span class="boring">    // Create a window
 </span><span class="boring">    let window = ApplicationWindow::builder()
 </span><span class="boring">        .application(app)
-</span><span class="boring">        .title(&quot;My GTK App&quot;)
+</span><span class="boring">        .title("My GTK App")
 </span><span class="boring">        .child(&amp;switch)
 </span><span class="boring">        .build();
 </span><span class="boring">
@@ -296,23 +319,22 @@ glib-compile-schemas C:/ProgramData/glib-2.0/schemas/
 </span><span class="boring">    window.present();
 </span><span class="boring">}</span></code></pre>
 <p>Then we get the settings key and use it when we create our <code>Switch</code>.</p>
-<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/settings/1/main.rs">listings/settings/1/main.rs</a></p>
-<pre><code class="language-rust  no_run noplayground"><span class="boring">use gio::Settings;
-</span><span class="boring">use gtk::glib::signal::Inhibit;
+<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/settings/1/main.rs">listings/settings/1/main.rs</a></p>
+<pre><code class="language-rust"><span class="boring">use gio::Settings;
 </span><span class="boring">use gtk::prelude::*;
-</span><span class="boring">use gtk::{gio, Align, Application, ApplicationWindow, Switch};
+</span><span class="boring">use gtk::{gio, glib, Align, Application, ApplicationWindow, Switch};
 </span><span class="boring">
-</span><span class="boring">const APP_ID: &amp;str = &quot;org.gtk_rs.Settings1&quot;;
+</span><span class="boring">const APP_ID: &amp;str = "org.gtk_rs.Settings1";
 </span><span class="boring">
-</span><span class="boring">fn main() {
+</span><span class="boring">fn main() -&gt; glib::ExitCode {
 </span><span class="boring">    // Create a new application
 </span><span class="boring">    let app = Application::builder().application_id(APP_ID).build();
 </span><span class="boring">
-</span><span class="boring">    // Connect to &quot;activate&quot; signal of `app`
+</span><span class="boring">    // Connect to "activate" signal of `app`
 </span><span class="boring">    app.connect_activate(build_ui);
 </span><span class="boring">
 </span><span class="boring">    // Run the application
-</span><span class="boring">    app.run();
+</span><span class="boring">    app.run()
 </span><span class="boring">}
 </span><span class="boring">
 </span><span class="boring">fn build_ui(app: &amp;Application) {
@@ -320,7 +342,7 @@ glib-compile-schemas C:/ProgramData/glib-2.0/schemas/
 </span><span class="boring">    let settings = Settings::new(APP_ID);
 </span><span class="boring">
 </span>    // Get the last switch state from the settings
-    let is_switch_enabled = settings.boolean(&quot;is-switch-enabled&quot;);
+    let is_switch_enabled = settings.boolean("is-switch-enabled");
 
     // Create a switch
     let switch = Switch::builder()
@@ -336,16 +358,16 @@ glib-compile-schemas C:/ProgramData/glib-2.0/schemas/
 </span><span class="boring">    switch.connect_state_set(move |_, is_enabled| {
 </span><span class="boring">        // Save changed switch state in the settings
 </span><span class="boring">        settings
-</span><span class="boring">            .set_boolean(&quot;is-switch-enabled&quot;, is_enabled)
-</span><span class="boring">            .expect(&quot;Could not set setting.&quot;);
-</span><span class="boring">        // Don't inhibit the default handler
-</span><span class="boring">        Inhibit(false)
+</span><span class="boring">            .set_boolean("is-switch-enabled", is_enabled)
+</span><span class="boring">            .expect("Could not set setting.");
+</span><span class="boring">        // Allow to invoke other event handlers
+</span><span class="boring">        glib::Propagation::Proceed
 </span><span class="boring">    });
 </span><span class="boring">
 </span><span class="boring">    // Create a window
 </span><span class="boring">    let window = ApplicationWindow::builder()
 </span><span class="boring">        .application(app)
-</span><span class="boring">        .title(&quot;My GTK App&quot;)
+</span><span class="boring">        .title("My GTK App")
 </span><span class="boring">        .child(&amp;switch)
 </span><span class="boring">        .build();
 </span><span class="boring">
@@ -353,23 +375,22 @@ glib-compile-schemas C:/ProgramData/glib-2.0/schemas/
 </span><span class="boring">    window.present();
 </span><span class="boring">}</span></code></pre>
 <p>Finally, we assure that the switch state is stored in the settings whenever we click on it.</p>
-<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/settings/1/main.rs">listings/settings/1/main.rs</a></p>
-<pre><code class="language-rust  no_run noplayground"><span class="boring">use gio::Settings;
-</span><span class="boring">use gtk::glib::signal::Inhibit;
+<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/settings/1/main.rs">listings/settings/1/main.rs</a></p>
+<pre><code class="language-rust"><span class="boring">use gio::Settings;
 </span><span class="boring">use gtk::prelude::*;
-</span><span class="boring">use gtk::{gio, Align, Application, ApplicationWindow, Switch};
+</span><span class="boring">use gtk::{gio, glib, Align, Application, ApplicationWindow, Switch};
 </span><span class="boring">
-</span><span class="boring">const APP_ID: &amp;str = &quot;org.gtk_rs.Settings1&quot;;
+</span><span class="boring">const APP_ID: &amp;str = "org.gtk_rs.Settings1";
 </span><span class="boring">
-</span><span class="boring">fn main() {
+</span><span class="boring">fn main() -&gt; glib::ExitCode {
 </span><span class="boring">    // Create a new application
 </span><span class="boring">    let app = Application::builder().application_id(APP_ID).build();
 </span><span class="boring">
-</span><span class="boring">    // Connect to &quot;activate&quot; signal of `app`
+</span><span class="boring">    // Connect to "activate" signal of `app`
 </span><span class="boring">    app.connect_activate(build_ui);
 </span><span class="boring">
 </span><span class="boring">    // Run the application
-</span><span class="boring">    app.run();
+</span><span class="boring">    app.run()
 </span><span class="boring">}
 </span><span class="boring">
 </span><span class="boring">fn build_ui(app: &amp;Application) {
@@ -377,7 +398,7 @@ glib-compile-schemas C:/ProgramData/glib-2.0/schemas/
 </span><span class="boring">    let settings = Settings::new(APP_ID);
 </span><span class="boring">
 </span><span class="boring">    // Get the last switch state from the settings
-</span><span class="boring">    let is_switch_enabled = settings.boolean(&quot;is-switch-enabled&quot;);
+</span><span class="boring">    let is_switch_enabled = settings.boolean("is-switch-enabled");
 </span><span class="boring">
 </span><span class="boring">    // Create a switch
 </span><span class="boring">    let switch = Switch::builder()
@@ -393,16 +414,16 @@ glib-compile-schemas C:/ProgramData/glib-2.0/schemas/
 </span>    switch.connect_state_set(move |_, is_enabled| {
         // Save changed switch state in the settings
         settings
-            .set_boolean(&quot;is-switch-enabled&quot;, is_enabled)
-            .expect(&quot;Could not set setting.&quot;);
-        // Don't inhibit the default handler
-        Inhibit(false)
+            .set_boolean("is-switch-enabled", is_enabled)
+            .expect("Could not set setting.");
+        // Allow to invoke other event handlers
+        glib::Propagation::Proceed
     });
 <span class="boring">
 </span><span class="boring">    // Create a window
 </span><span class="boring">    let window = ApplicationWindow::builder()
 </span><span class="boring">        .application(app)
-</span><span class="boring">        .title(&quot;My GTK App&quot;)
+</span><span class="boring">        .title("My GTK App")
 </span><span class="boring">        .child(&amp;switch)
 </span><span class="boring">        .build();
 </span><span class="boring">
@@ -417,27 +438,26 @@ glib-compile-schemas C:/ProgramData/glib-2.0/schemas/
 </div>
 <p>The <code>Switch</code> now retains its state even after closing the application.
 But we can make this even better.
-The <code>Switch</code> has a property &quot;state&quot; and <code>Settings</code> allows us to bind properties to a specific setting.
+The <code>Switch</code> has a property "active" and <code>Settings</code> allows us to bind properties to a specific setting.
 So let's do exactly that.</p>
-<p>We can remove the <a href="https://gtk-rs.org/gtk-rs-core/stable/latest/docs/gio/prelude/trait.SettingsExt.html#tymethod.boolean"><code>boolean</code></a> call before initializing the <code>Switch</code> as well as the <a href="../docs/gtk4/struct.Switch.html#method.connect_state_set"><code>connect_state_set</code></a> call.
+<p>We can remove the <a href="https://gtk-rs.org/gtk-rs-core/stable/latest/docs/gio/prelude/trait.SettingsExt.html#tymethod.boolean"><code>boolean</code></a> call before initializing the <code>Switch</code> as well as the <a href="https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/struct.Switch.html#method.connect_state_set"><code>connect_state_set</code></a> call.
 We then bind the setting to the property by specifying the key, object and name of the property.
-Additionally, we specify <a href="https://gtk-rs.org/gtk-rs-core/stable/latest/docs/gio/struct.SettingsBindFlags.html"><code>SettingsBindFlags</code></a> to control the direction in which the binding works.</p>
-<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/settings/2/main.rs">listings/settings/2/main.rs</a></p>
-<pre><code class="language-rust  no_run noplayground"><span class="boring">use gio::{Settings, SettingsBindFlags};
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/settings/2/main.rs">listings/settings/2/main.rs</a></p>
+<pre><code class="language-rust"><span class="boring">use gio::Settings;
 </span><span class="boring">use gtk::prelude::*;
-</span><span class="boring">use gtk::{gio, Align, Application, ApplicationWindow, Switch};
+</span><span class="boring">use gtk::{gio, glib, Align, Application, ApplicationWindow, Switch};
 </span><span class="boring">
-</span><span class="boring">const APP_ID: &amp;str = &quot;org.gtk_rs.Settings2&quot;;
+</span><span class="boring">const APP_ID: &amp;str = "org.gtk_rs.Settings2";
 </span><span class="boring">
-</span><span class="boring">fn main() {
+</span><span class="boring">fn main() -&gt; glib::ExitCode {
 </span><span class="boring">    // Create a new application
 </span><span class="boring">    let app = Application::builder().application_id(APP_ID).build();
 </span><span class="boring">
-</span><span class="boring">    // Connect to &quot;activate&quot; signal of `app`
+</span><span class="boring">    // Connect to "activate" signal of `app`
 </span><span class="boring">    app.connect_activate(build_ui);
 </span><span class="boring">
 </span><span class="boring">    // Run the application
-</span><span class="boring">    app.run();
+</span><span class="boring">    app.run()
 </span><span class="boring">}
 </span><span class="boring">
 </span><span class="boring">fn build_ui(app: &amp;Application) {
@@ -455,14 +475,13 @@ Additionally, we specify <a href="https://gtk-rs.org/gtk-rs-core/stable/latest/d
 </span><span class="boring">        .build();
 </span><span class="boring">
 </span>    settings
-        .bind(&quot;is-switch-enabled&quot;, &amp;switch, &quot;state&quot;)
-        .flags(SettingsBindFlags::DEFAULT)
+        .bind("is-switch-enabled", &amp;switch, "active")
         .build();
 <span class="boring">
 </span><span class="boring">    // Create a window
 </span><span class="boring">    let window = ApplicationWindow::builder()
 </span><span class="boring">        .application(app)
-</span><span class="boring">        .title(&quot;My GTK App&quot;)
+</span><span class="boring">        .title("My GTK App")
 </span><span class="boring">        .child(&amp;switch)
 </span><span class="boring">        .build();
 </span><span class="boring">
@@ -480,7 +499,7 @@ In other cases, interacting with the settings via the getter and setter methods 
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next" href="saving_window_state.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="saving_window_state.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -494,7 +513,7 @@ In other cases, interacting with the settings via the getter and setter methods 
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next" href="saving_window_state.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="saving_window_state.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>
@@ -520,5 +539,6 @@ In other cases, interacting with the settings via the getter and setter methods 
         <!-- Custom JS scripts -->
 
 
+    </div>
     </body>
 </html>

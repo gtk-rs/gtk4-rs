@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"enum":["Win32MessageFilterReturn"],"mod":["prelude"],"struct":["HANDLE","HCURSOR","HICON","HWND","MSG","Win32Display","Win32DisplayFilterHandle","Win32DisplayManager","Win32Drag","Win32GLContext","Win32HCursor","Win32Monitor","Win32Screen","Win32Surface"]};

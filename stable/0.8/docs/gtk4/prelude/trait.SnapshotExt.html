@@ -1,0 +1,721 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Trait containing all `struct@Snapshot` methods."><title>SnapshotExt in gtk4::prelude - Rust</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-46f98efaafac5295.ttf.woff2,FiraSans-Regular-018c141bf0843ffd.woff2,FiraSans-Medium-8f9a781e4970d388.woff2,SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2,SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-081576b923113409.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.79.0-nightly (3a36386dc 2024-04-25)" data-channel="nightly" data-search-js="search-bf21c90c8c1d92b1.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../static.files/storage-e32f0c247825364d.js"></script><script defer src="sidebar-items.js"></script><script defer src="../../static.files/main-20a3ad099b048cf2.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-09095024cf37855e.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc trait"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
+
+    function checkDocsLatestStable() {
+        function popup(msg, url) { return `
+            <style scoped="scoped">
+                .popup {
+                    max-width: 16em;
+                    background-color: #fff;
+                    position: fixed;
+                    z-index: 1;
+                    margin-left: auto;
+                    bottom: 1em;
+                    right: 1em;
+                    border-radius: 5px;
+                    box-shadow: 1px 1px 4px #777;
+                }
+
+                .popup a.version {
+                    color: #e57300;
+                    padding: 0.6em 1em;
+                    display: block;
+                }
+                .popup a.version:hover {
+                    color: #b25900;
+                }
+
+                .popup a.close {
+                    color: white;
+                    background: grey;
+                    border-radius: 99px;
+                    display: inline-block;
+                    width: 19px;
+                    line-height: 19px;
+                    font-weight: bold;
+                    text-align: center;
+                    margin: 0.6em;
+                    float: right;
+                }
+                .popup a.close:hover {
+                    background: black;
+                }
+            </style>
+            <section class="popup" id="gir_docs_popup">
+                <a class="close" href="#" onclick="document.getElementById('gir_docs_popup').remove(); return false">×</a>
+                <a class="version" href="https://gtk-rs.org/gtk4-rs/stable/latest/docs">
+                    ⚠ ${msg}
+                </a>
+            </section>
+        ` };
+
+        if ("0.8" == "master") {
+            document.body.insertAdjacentHTML(
+                'beforeend',
+                popup("This is the development version. Go to latest stable version.", "stable/latest")
+            );
+        } else {
+            fetch('https://gtk-rs.org/gtk4-rs/LATEST_RELEASE_BRANCH')
+                .then(response => response.text())
+                .then(latest_branch => {
+                    if (latest_branch.trim() != "0.8") {
+                        document.body.insertAdjacentHTML(
+                            'beforeend',
+                            popup("This version is outdated. Go to latest version.", "stable/latest")
+                        );
+                    }
+                });
+        }
+    }
+</script>
+
+
+<nav class="mobile-topbar"><button class="sidebar-menu-toggle" title="show sidebar"></button></nav><nav class="sidebar"><div class="sidebar-crate"><h2><a href="../../gtk4/index.html">gtk4</a><span class="version">0.8.2</span></h2></div><h2 class="location"><a href="#">SnapshotExt</a></h2><div class="sidebar-elems"><section><h3><a href="#provided-methods">Provided Methods</a></h3><ul class="block"><li><a href="#method.append_cairo">append_cairo</a></li><li><a href="#method.append_color">append_color</a></li><li><a href="#method.append_conic_gradient">append_conic_gradient</a></li><li><a href="#method.append_fill">append_fill</a></li><li><a href="#method.append_inset_shadow">append_inset_shadow</a></li><li><a href="#method.append_layout">append_layout</a></li><li><a href="#method.append_linear_gradient">append_linear_gradient</a></li><li><a href="#method.append_node">append_node</a></li><li><a href="#method.append_outset_shadow">append_outset_shadow</a></li><li><a href="#method.append_radial_gradient">append_radial_gradient</a></li><li><a href="#method.append_repeating_linear_gradient">append_repeating_linear_gradient</a></li><li><a href="#method.append_repeating_radial_gradient">append_repeating_radial_gradient</a></li><li><a href="#method.append_scaled_texture">append_scaled_texture</a></li><li><a href="#method.append_stroke">append_stroke</a></li><li><a href="#method.append_texture">append_texture</a></li><li><a href="#method.gl_shader_pop_texture">gl_shader_pop_texture</a></li><li><a href="#method.perspective">perspective</a></li><li><a href="#method.pop">pop</a></li><li><a href="#method.push_blend">push_blend</a></li><li><a href="#method.push_blur">push_blur</a></li><li><a href="#method.push_clip">push_clip</a></li><li><a href="#method.push_color_matrix">push_color_matrix</a></li><li><a href="#method.push_cross_fade">push_cross_fade</a></li><li><a href="#method.push_fill">push_fill</a></li><li><a href="#method.push_gl_shader">push_gl_shader</a></li><li><a href="#method.push_mask">push_mask</a></li><li><a href="#method.push_opacity">push_opacity</a></li><li><a href="#method.push_repeat">push_repeat</a></li><li><a href="#method.push_rounded_clip">push_rounded_clip</a></li><li><a href="#method.push_shadow">push_shadow</a></li><li><a href="#method.push_stroke">push_stroke</a></li><li><a href="#method.render_background">render_background</a></li><li><a href="#method.render_focus">render_focus</a></li><li><a href="#method.render_frame">render_frame</a></li><li><a href="#method.render_insertion_cursor">render_insertion_cursor</a></li><li><a href="#method.render_layout">render_layout</a></li><li><a href="#method.restore">restore</a></li><li><a href="#method.rotate">rotate</a></li><li><a href="#method.rotate_3d">rotate_3d</a></li><li><a href="#method.save">save</a></li><li><a href="#method.scale">scale</a></li><li><a href="#method.scale_3d">scale_3d</a></li><li><a href="#method.to_node">to_node</a></li><li><a href="#method.to_paintable">to_paintable</a></li><li><a href="#method.transform">transform</a></li><li><a href="#method.transform_matrix">transform_matrix</a></li><li><a href="#method.translate">translate</a></li><li><a href="#method.translate_3d">translate_3d</a></li></ul><h3><a href="#object-safety">Object Safety</a></h3><h3><a href="#implementors">Implementors</a></h3></section><h2><a href="index.html">In gtk4::prelude</a></h2></div></nav><div class="sidebar-resizer"></div><main><div class="width-limiter"><nav class="sub"><form class="search-form"><span></span><div id="sidebar-button" tabindex="-1"><a href="../../gtk4/all.html" title="show sidebar"></a></div><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Type ‘S’ or ‘/’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings">Settings</a></div></form></nav><section id="main-content" class="content"><div class="main-heading"><h1>Trait <a href="../index.html">gtk4</a>::<wbr><a href="index.html">prelude</a>::<wbr><a class="trait" href="#">SnapshotExt</a><button id="copy-path" title="Copy item path to clipboard">Copy item path</button></h1><span class="out-of-band"><a class="src" href="../../src/gtk4/auto/snapshot.rs.html#65-1168">source</a> · <button id="toggle-all-docs" title="collapse all docs">[<span>&#x2212;</span>]</button></span></div><pre class="rust item-decl"><code>pub trait SnapshotExt: <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Snapshot.html" title="struct gtk4::Snapshot">Snapshot</a>&gt; + Sealed + 'static {
+<details class="toggle type-contents-toggle"><summary class="hideme"><span>Show 48 methods</span></summary>    // Provided methods
+    fn <a href="#method.append_cairo" class="fn">append_cairo</a>(&amp;self, bounds: &amp;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/graphene/auto/rect/struct.Rect.html" title="struct graphene::auto::rect::Rect">Rect</a>) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/cairo/context/struct.Context.html" title="struct cairo::context::Context">Context</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.append_color" class="fn">append_color</a>(&amp;self, color: &amp;<a class="struct" href="../../gdk4/auto/rgba/struct.RGBA.html" title="struct gdk4::auto::rgba::RGBA">RGBA</a>, bounds: &amp;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/graphene/auto/rect/struct.Rect.html" title="struct graphene::auto::rect::Rect">Rect</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.append_conic_gradient" class="fn">append_conic_gradient</a>(
+        &amp;self,
+        bounds: &amp;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/graphene/auto/rect/struct.Rect.html" title="struct graphene::auto::rect::Rect">Rect</a>,
+        center: &amp;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/graphene/auto/point/struct.Point.html" title="struct graphene::auto::point::Point">Point</a>,
+        rotation: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f32.html">f32</a>,
+        stops: &amp;[<a class="struct" href="../../gsk4/color_stop/struct.ColorStop.html" title="struct gsk4::color_stop::ColorStop">ColorStop</a>]
+    ) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.append_fill" class="fn">append_fill</a>(&amp;self, path: &amp;<a class="struct" href="../../gsk4/auto/path/struct.Path.html" title="struct gsk4::auto::path::Path">Path</a>, fill_rule: <a class="enum" href="../../gsk4/auto/enums/enum.FillRule.html" title="enum gsk4::auto::enums::FillRule">FillRule</a>, color: &amp;<a class="struct" href="../../gdk4/auto/rgba/struct.RGBA.html" title="struct gdk4::auto::rgba::RGBA">RGBA</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.append_inset_shadow" class="fn">append_inset_shadow</a>(
+        &amp;self,
+        outline: &amp;<a class="struct" href="../../gsk4/rounded_rect/struct.RoundedRect.html" title="struct gsk4::rounded_rect::RoundedRect">RoundedRect</a>,
+        color: &amp;<a class="struct" href="../../gdk4/auto/rgba/struct.RGBA.html" title="struct gdk4::auto::rgba::RGBA">RGBA</a>,
+        dx: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f32.html">f32</a>,
+        dy: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f32.html">f32</a>,
+        spread: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f32.html">f32</a>,
+        blur_radius: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f32.html">f32</a>
+    ) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.append_layout" class="fn">append_layout</a>(&amp;self, layout: &amp;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/pango/auto/layout/struct.Layout.html" title="struct pango::auto::layout::Layout">Layout</a>, color: &amp;<a class="struct" href="../../gdk4/auto/rgba/struct.RGBA.html" title="struct gdk4::auto::rgba::RGBA">RGBA</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.append_linear_gradient" class="fn">append_linear_gradient</a>(
+        &amp;self,
+        bounds: &amp;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/graphene/auto/rect/struct.Rect.html" title="struct graphene::auto::rect::Rect">Rect</a>,
+        start_point: &amp;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/graphene/auto/point/struct.Point.html" title="struct graphene::auto::point::Point">Point</a>,
+        end_point: &amp;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/graphene/auto/point/struct.Point.html" title="struct graphene::auto::point::Point">Point</a>,
+        stops: &amp;[<a class="struct" href="../../gsk4/color_stop/struct.ColorStop.html" title="struct gsk4::color_stop::ColorStop">ColorStop</a>]
+    ) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.append_node" class="fn">append_node</a>(&amp;self, node: impl <a class="trait" href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html" title="trait core::convert::AsRef">AsRef</a>&lt;<a class="struct" href="../../gsk4/auto/render_node/struct.RenderNode.html" title="struct gsk4::auto::render_node::RenderNode">RenderNode</a>&gt;) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.append_outset_shadow" class="fn">append_outset_shadow</a>(
+        &amp;self,
+        outline: &amp;<a class="struct" href="../../gsk4/rounded_rect/struct.RoundedRect.html" title="struct gsk4::rounded_rect::RoundedRect">RoundedRect</a>,
+        color: &amp;<a class="struct" href="../../gdk4/auto/rgba/struct.RGBA.html" title="struct gdk4::auto::rgba::RGBA">RGBA</a>,
+        dx: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f32.html">f32</a>,
+        dy: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f32.html">f32</a>,
+        spread: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f32.html">f32</a>,
+        blur_radius: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f32.html">f32</a>
+    ) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.append_radial_gradient" class="fn">append_radial_gradient</a>(
+        &amp;self,
+        bounds: &amp;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/graphene/auto/rect/struct.Rect.html" title="struct graphene::auto::rect::Rect">Rect</a>,
+        center: &amp;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/graphene/auto/point/struct.Point.html" title="struct graphene::auto::point::Point">Point</a>,
+        hradius: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f32.html">f32</a>,
+        vradius: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f32.html">f32</a>,
+        start: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f32.html">f32</a>,
+        end: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f32.html">f32</a>,
+        stops: &amp;[<a class="struct" href="../../gsk4/color_stop/struct.ColorStop.html" title="struct gsk4::color_stop::ColorStop">ColorStop</a>]
+    ) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.append_repeating_linear_gradient" class="fn">append_repeating_linear_gradient</a>(
+        &amp;self,
+        bounds: &amp;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/graphene/auto/rect/struct.Rect.html" title="struct graphene::auto::rect::Rect">Rect</a>,
+        start_point: &amp;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/graphene/auto/point/struct.Point.html" title="struct graphene::auto::point::Point">Point</a>,
+        end_point: &amp;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/graphene/auto/point/struct.Point.html" title="struct graphene::auto::point::Point">Point</a>,
+        stops: &amp;[<a class="struct" href="../../gsk4/color_stop/struct.ColorStop.html" title="struct gsk4::color_stop::ColorStop">ColorStop</a>]
+    ) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.append_repeating_radial_gradient" class="fn">append_repeating_radial_gradient</a>(
+        &amp;self,
+        bounds: &amp;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/graphene/auto/rect/struct.Rect.html" title="struct graphene::auto::rect::Rect">Rect</a>,
+        center: &amp;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/graphene/auto/point/struct.Point.html" title="struct graphene::auto::point::Point">Point</a>,
+        hradius: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f32.html">f32</a>,
+        vradius: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f32.html">f32</a>,
+        start: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f32.html">f32</a>,
+        end: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f32.html">f32</a>,
+        stops: &amp;[<a class="struct" href="../../gsk4/color_stop/struct.ColorStop.html" title="struct gsk4::color_stop::ColorStop">ColorStop</a>]
+    ) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.append_scaled_texture" class="fn">append_scaled_texture</a>(
+        &amp;self,
+        texture: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../../gdk4/auto/texture/struct.Texture.html" title="struct gdk4::auto::texture::Texture">Texture</a>&gt;,
+        filter: <a class="enum" href="../../gsk4/auto/enums/enum.ScalingFilter.html" title="enum gsk4::auto::enums::ScalingFilter">ScalingFilter</a>,
+        bounds: &amp;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/graphene/auto/rect/struct.Rect.html" title="struct graphene::auto::rect::Rect">Rect</a>
+    ) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.append_stroke" class="fn">append_stroke</a>(&amp;self, path: &amp;<a class="struct" href="../../gsk4/auto/path/struct.Path.html" title="struct gsk4::auto::path::Path">Path</a>, stroke: &amp;<a class="struct" href="../../gsk4/auto/stroke/struct.Stroke.html" title="struct gsk4::auto::stroke::Stroke">Stroke</a>, color: &amp;<a class="struct" href="../../gdk4/auto/rgba/struct.RGBA.html" title="struct gdk4::auto::rgba::RGBA">RGBA</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.append_texture" class="fn">append_texture</a>(&amp;self, texture: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../../gdk4/auto/texture/struct.Texture.html" title="struct gdk4::auto::texture::Texture">Texture</a>&gt;, bounds: &amp;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/graphene/auto/rect/struct.Rect.html" title="struct graphene::auto::rect::Rect">Rect</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.gl_shader_pop_texture" class="fn">gl_shader_pop_texture</a>(&amp;self) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.perspective" class="fn">perspective</a>(&amp;self, depth: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f32.html">f32</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.pop" class="fn">pop</a>(&amp;self) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.push_blend" class="fn">push_blend</a>(&amp;self, blend_mode: <a class="enum" href="../../gsk4/auto/enums/enum.BlendMode.html" title="enum gsk4::auto::enums::BlendMode">BlendMode</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.push_blur" class="fn">push_blur</a>(&amp;self, radius: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.push_clip" class="fn">push_clip</a>(&amp;self, bounds: &amp;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/graphene/auto/rect/struct.Rect.html" title="struct graphene::auto::rect::Rect">Rect</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.push_color_matrix" class="fn">push_color_matrix</a>(&amp;self, color_matrix: &amp;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/graphene/auto/matrix/struct.Matrix.html" title="struct graphene::auto::matrix::Matrix">Matrix</a>, color_offset: &amp;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/graphene/auto/vec4/struct.Vec4.html" title="struct graphene::auto::vec4::Vec4">Vec4</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.push_cross_fade" class="fn">push_cross_fade</a>(&amp;self, progress: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.push_fill" class="fn">push_fill</a>(&amp;self, path: &amp;<a class="struct" href="../../gsk4/auto/path/struct.Path.html" title="struct gsk4::auto::path::Path">Path</a>, fill_rule: <a class="enum" href="../../gsk4/auto/enums/enum.FillRule.html" title="enum gsk4::auto::enums::FillRule">FillRule</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.push_gl_shader" class="fn">push_gl_shader</a>(&amp;self, shader: &amp;<a class="struct" href="../../gsk4/auto/gl_shader/struct.GLShader.html" title="struct gsk4::auto::gl_shader::GLShader">GLShader</a>, bounds: &amp;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/graphene/auto/rect/struct.Rect.html" title="struct graphene::auto::rect::Rect">Rect</a>, take_args: <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/glib/bytes/struct.Bytes.html" title="struct glib::bytes::Bytes">Bytes</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.push_mask" class="fn">push_mask</a>(&amp;self, mask_mode: <a class="enum" href="../../gsk4/auto/enums/enum.MaskMode.html" title="enum gsk4::auto::enums::MaskMode">MaskMode</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.push_opacity" class="fn">push_opacity</a>(&amp;self, opacity: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.push_repeat" class="fn">push_repeat</a>(&amp;self, bounds: &amp;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/graphene/auto/rect/struct.Rect.html" title="struct graphene::auto::rect::Rect">Rect</a>, child_bounds: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/graphene/auto/rect/struct.Rect.html" title="struct graphene::auto::rect::Rect">Rect</a>&gt;) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.push_rounded_clip" class="fn">push_rounded_clip</a>(&amp;self, bounds: &amp;<a class="struct" href="../../gsk4/rounded_rect/struct.RoundedRect.html" title="struct gsk4::rounded_rect::RoundedRect">RoundedRect</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.push_shadow" class="fn">push_shadow</a>(&amp;self, shadow: &amp;[<a class="struct" href="../../gsk4/shadow/struct.Shadow.html" title="struct gsk4::shadow::Shadow">Shadow</a>]) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.push_stroke" class="fn">push_stroke</a>(&amp;self, path: &amp;<a class="struct" href="../../gsk4/auto/path/struct.Path.html" title="struct gsk4::auto::path::Path">Path</a>, stroke: &amp;<a class="struct" href="../../gsk4/auto/stroke/struct.Stroke.html" title="struct gsk4::auto::stroke::Stroke">Stroke</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.render_background" class="fn">render_background</a>(
+        &amp;self,
+        context: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.StyleContext.html" title="struct gtk4::StyleContext">StyleContext</a>&gt;,
+        x: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>,
+        y: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>,
+        width: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>,
+        height: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>
+    ) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.render_focus" class="fn">render_focus</a>(
+        &amp;self,
+        context: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.StyleContext.html" title="struct gtk4::StyleContext">StyleContext</a>&gt;,
+        x: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>,
+        y: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>,
+        width: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>,
+        height: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>
+    ) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.render_frame" class="fn">render_frame</a>(
+        &amp;self,
+        context: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.StyleContext.html" title="struct gtk4::StyleContext">StyleContext</a>&gt;,
+        x: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>,
+        y: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>,
+        width: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>,
+        height: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>
+    ) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.render_insertion_cursor" class="fn">render_insertion_cursor</a>(
+        &amp;self,
+        context: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.StyleContext.html" title="struct gtk4::StyleContext">StyleContext</a>&gt;,
+        x: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>,
+        y: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>,
+        layout: &amp;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/pango/auto/layout/struct.Layout.html" title="struct pango::auto::layout::Layout">Layout</a>,
+        index: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>,
+        direction: <a class="enum" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/pango/auto/enums/enum.Direction.html" title="enum pango::auto::enums::Direction">Direction</a>
+    ) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.render_layout" class="fn">render_layout</a>(
+        &amp;self,
+        context: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.StyleContext.html" title="struct gtk4::StyleContext">StyleContext</a>&gt;,
+        x: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>,
+        y: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>,
+        layout: &amp;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/pango/auto/layout/struct.Layout.html" title="struct pango::auto::layout::Layout">Layout</a>
+    ) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.restore" class="fn">restore</a>(&amp;self) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.rotate" class="fn">rotate</a>(&amp;self, angle: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f32.html">f32</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.rotate_3d" class="fn">rotate_3d</a>(&amp;self, angle: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f32.html">f32</a>, axis: &amp;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/graphene/auto/vec3/struct.Vec3.html" title="struct graphene::auto::vec3::Vec3">Vec3</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.save" class="fn">save</a>(&amp;self) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.scale" class="fn">scale</a>(&amp;self, factor_x: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f32.html">f32</a>, factor_y: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f32.html">f32</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.scale_3d" class="fn">scale_3d</a>(&amp;self, factor_x: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f32.html">f32</a>, factor_y: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f32.html">f32</a>, factor_z: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f32.html">f32</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.to_node" class="fn">to_node</a>(self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../../gsk4/auto/render_node/struct.RenderNode.html" title="struct gsk4::auto::render_node::RenderNode">RenderNode</a>&gt; { ... }
+<span class="item-spacer"></span>    fn <a href="#method.to_paintable" class="fn">to_paintable</a>(self, size: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/graphene/auto/size/struct.Size.html" title="struct graphene::auto::size::Size">Size</a>&gt;) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../../gdk4/auto/paintable/struct.Paintable.html" title="struct gdk4::auto::paintable::Paintable">Paintable</a>&gt; { ... }
+<span class="item-spacer"></span>    fn <a href="#method.transform" class="fn">transform</a>(&amp;self, transform: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;<a class="struct" href="../../gsk4/auto/transform/struct.Transform.html" title="struct gsk4::auto::transform::Transform">Transform</a>&gt;) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.transform_matrix" class="fn">transform_matrix</a>(&amp;self, matrix: &amp;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/graphene/auto/matrix/struct.Matrix.html" title="struct graphene::auto::matrix::Matrix">Matrix</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.translate" class="fn">translate</a>(&amp;self, point: &amp;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/graphene/auto/point/struct.Point.html" title="struct graphene::auto::point::Point">Point</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.translate_3d" class="fn">translate_3d</a>(&amp;self, point: &amp;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/graphene/auto/point3_d/struct.Point3D.html" title="struct graphene::auto::point3_d::Point3D">Point3D</a>) { ... }
+</details>}</code></pre><details class="toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>Trait containing all <a href="../struct.Snapshot.html" title="struct gtk4::Snapshot"><code>Snapshot</code></a> methods.</p>
+<h2 id="implementors-1"><a class="doc-anchor" href="#implementors-1">§</a>Implementors</h2>
+<p><a href="../struct.Snapshot.html" title="struct gtk4::Snapshot"><code>Snapshot</code></a></p>
+</div></details><h2 id="provided-methods" class="section-header">Provided Methods<a href="#provided-methods" class="anchor">§</a></h2><div class="methods"><details class="toggle method-toggle" open><summary><section id="method.append_cairo" class="method"><a class="src rightside" href="../../src/gtk4/auto/snapshot.rs.html#76-83">source</a><h4 class="code-header">fn <a href="#method.append_cairo" class="fn">append_cairo</a>(&amp;self, bounds: &amp;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/graphene/auto/rect/struct.Rect.html" title="struct graphene::auto::rect::Rect">Rect</a>) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/cairo/context/struct.Context.html" title="struct cairo::context::Context">Context</a></h4></section></summary><div class="docblock"><p>Creates a new <a href="../../gsk4/auto/cairo_node/struct.CairoNode.html" title="struct gsk4::auto::cairo_node::CairoNode"><code>gsk::CairoNode</code></a> and appends it to the current
+render node of @self, without changing the current node.</p>
+<h6 id="bounds"><a class="doc-anchor" href="#bounds">§</a><code>bounds</code></h6>
+<p>the bounds for the new node</p>
+<h5 id="returns"><a class="doc-anchor" href="#returns">§</a>Returns</h5>
+<p>a <a href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/cairo/context/struct.Context.html" title="struct cairo::context::Context"><code>cairo::Context</code></a> suitable for drawing the contents of
+the newly created render node</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.append_color" class="method"><a class="src rightside" href="../../src/gtk4/auto/snapshot.rs.html#96-104">source</a><h4 class="code-header">fn <a href="#method.append_color" class="fn">append_color</a>(&amp;self, color: &amp;<a class="struct" href="../../gdk4/auto/rgba/struct.RGBA.html" title="struct gdk4::auto::rgba::RGBA">RGBA</a>, bounds: &amp;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/graphene/auto/rect/struct.Rect.html" title="struct graphene::auto::rect::Rect">Rect</a>)</h4></section></summary><div class="docblock"><p>Creates a new render node drawing the @color into the
+given @bounds and appends it to the current render node
+of @self.</p>
+<p>You should try to avoid calling this function if
+@color is transparent.</p>
+<h6 id="color"><a class="doc-anchor" href="#color">§</a><code>color</code></h6>
+<p>the color to draw</p>
+<h6 id="bounds-1"><a class="doc-anchor" href="#bounds-1">§</a><code>bounds</code></h6>
+<p>the bounds for the new node</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.append_conic_gradient" class="method"><a class="src rightside" href="../../src/gtk4/auto/snapshot.rs.html#117-135">source</a><h4 class="code-header">fn <a href="#method.append_conic_gradient" class="fn">append_conic_gradient</a>(
+    &amp;self,
+    bounds: &amp;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/graphene/auto/rect/struct.Rect.html" title="struct graphene::auto::rect::Rect">Rect</a>,
+    center: &amp;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/graphene/auto/point/struct.Point.html" title="struct graphene::auto::point::Point">Point</a>,
+    rotation: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f32.html">f32</a>,
+    stops: &amp;[<a class="struct" href="../../gsk4/color_stop/struct.ColorStop.html" title="struct gsk4::color_stop::ColorStop">ColorStop</a>]
+)</h4></section></summary><div class="docblock"><p>Appends a conic gradient node with the given stops to @self.</p>
+<h6 id="bounds-2"><a class="doc-anchor" href="#bounds-2">§</a><code>bounds</code></h6>
+<p>the rectangle to render the gradient into</p>
+<h6 id="center"><a class="doc-anchor" href="#center">§</a><code>center</code></h6>
+<p>the center point of the conic gradient</p>
+<h6 id="rotation"><a class="doc-anchor" href="#rotation">§</a><code>rotation</code></h6>
+<p>the clockwise rotation in degrees of the starting angle.
+0 means the starting angle is the top.</p>
+<h6 id="stops"><a class="doc-anchor" href="#stops">§</a><code>stops</code></h6>
+<p>the color stops defining the gradient</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.append_fill" class="method"><a class="src rightside" href="../../src/gtk4/auto/snapshot.rs.html#151-160">source</a><h4 class="code-header">fn <a href="#method.append_fill" class="fn">append_fill</a>(&amp;self, path: &amp;<a class="struct" href="../../gsk4/auto/path/struct.Path.html" title="struct gsk4::auto::path::Path">Path</a>, fill_rule: <a class="enum" href="../../gsk4/auto/enums/enum.FillRule.html" title="enum gsk4::auto::enums::FillRule">FillRule</a>, color: &amp;<a class="struct" href="../../gdk4/auto/rgba/struct.RGBA.html" title="struct gdk4::auto::rgba::RGBA">RGBA</a>)</h4></section><span class="item-info"><div class="stab portability">Available on <strong>crate feature <code>v4_14</code></strong> only.</div></span></summary><div class="docblock"><p>A convenience method to fill a path with a color.</p>
+<p>See <a href="trait.SnapshotExt.html#method.push_fill"><code>push_fill()</code></a> if you need
+to fill a path with more complex content than
+a color.</p>
+<h6 id="path"><a class="doc-anchor" href="#path">§</a><code>path</code></h6>
+<p>The path describing the area to fill</p>
+<h6 id="fill_rule"><a class="doc-anchor" href="#fill_rule">§</a><code>fill_rule</code></h6>
+<p>The fill rule to use</p>
+<h6 id="color-1"><a class="doc-anchor" href="#color-1">§</a><code>color</code></h6>
+<p>the color to fill the path with</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.append_inset_shadow" class="method"><a class="src rightside" href="../../src/gtk4/auto/snapshot.rs.html#176-196">source</a><h4 class="code-header">fn <a href="#method.append_inset_shadow" class="fn">append_inset_shadow</a>(
+    &amp;self,
+    outline: &amp;<a class="struct" href="../../gsk4/rounded_rect/struct.RoundedRect.html" title="struct gsk4::rounded_rect::RoundedRect">RoundedRect</a>,
+    color: &amp;<a class="struct" href="../../gdk4/auto/rgba/struct.RGBA.html" title="struct gdk4::auto::rgba::RGBA">RGBA</a>,
+    dx: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f32.html">f32</a>,
+    dy: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f32.html">f32</a>,
+    spread: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f32.html">f32</a>,
+    blur_radius: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f32.html">f32</a>
+)</h4></section></summary><div class="docblock"><p>Appends an inset shadow into the box given by @outline.</p>
+<h6 id="outline"><a class="doc-anchor" href="#outline">§</a><code>outline</code></h6>
+<p>outline of the region surrounded by shadow</p>
+<h6 id="color-2"><a class="doc-anchor" href="#color-2">§</a><code>color</code></h6>
+<p>color of the shadow</p>
+<h6 id="dx"><a class="doc-anchor" href="#dx">§</a><code>dx</code></h6>
+<p>horizontal offset of shadow</p>
+<h6 id="dy"><a class="doc-anchor" href="#dy">§</a><code>dy</code></h6>
+<p>vertical offset of shadow</p>
+<h6 id="spread"><a class="doc-anchor" href="#spread">§</a><code>spread</code></h6>
+<p>how far the shadow spreads towards the inside</p>
+<h6 id="blur_radius"><a class="doc-anchor" href="#blur_radius">§</a><code>blur_radius</code></h6>
+<p>how much blur to apply to the shadow</p>
+</div></details><section id="method.append_layout" class="method"><a class="src rightside" href="../../src/gtk4/auto/snapshot.rs.html#199-207">source</a><h4 class="code-header">fn <a href="#method.append_layout" class="fn">append_layout</a>(&amp;self, layout: &amp;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/pango/auto/layout/struct.Layout.html" title="struct pango::auto::layout::Layout">Layout</a>, color: &amp;<a class="struct" href="../../gdk4/auto/rgba/struct.RGBA.html" title="struct gdk4::auto::rgba::RGBA">RGBA</a>)</h4></section><details class="toggle method-toggle" open><summary><section id="method.append_linear_gradient" class="method"><a class="src rightside" href="../../src/gtk4/auto/snapshot.rs.html#219-237">source</a><h4 class="code-header">fn <a href="#method.append_linear_gradient" class="fn">append_linear_gradient</a>(
+    &amp;self,
+    bounds: &amp;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/graphene/auto/rect/struct.Rect.html" title="struct graphene::auto::rect::Rect">Rect</a>,
+    start_point: &amp;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/graphene/auto/point/struct.Point.html" title="struct graphene::auto::point::Point">Point</a>,
+    end_point: &amp;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/graphene/auto/point/struct.Point.html" title="struct graphene::auto::point::Point">Point</a>,
+    stops: &amp;[<a class="struct" href="../../gsk4/color_stop/struct.ColorStop.html" title="struct gsk4::color_stop::ColorStop">ColorStop</a>]
+)</h4></section></summary><div class="docblock"><p>Appends a linear gradient node with the given stops to @self.</p>
+<h6 id="bounds-3"><a class="doc-anchor" href="#bounds-3">§</a><code>bounds</code></h6>
+<p>the rectangle to render the linear gradient into</p>
+<h6 id="start_point"><a class="doc-anchor" href="#start_point">§</a><code>start_point</code></h6>
+<p>the point at which the linear gradient will begin</p>
+<h6 id="end_point"><a class="doc-anchor" href="#end_point">§</a><code>end_point</code></h6>
+<p>the point at which the linear gradient will finish</p>
+<h6 id="stops-1"><a class="doc-anchor" href="#stops-1">§</a><code>stops</code></h6>
+<p>the color stops defining the gradient</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.append_node" class="method"><a class="src rightside" href="../../src/gtk4/auto/snapshot.rs.html#247-254">source</a><h4 class="code-header">fn <a href="#method.append_node" class="fn">append_node</a>(&amp;self, node: impl <a class="trait" href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html" title="trait core::convert::AsRef">AsRef</a>&lt;<a class="struct" href="../../gsk4/auto/render_node/struct.RenderNode.html" title="struct gsk4::auto::render_node::RenderNode">RenderNode</a>&gt;)</h4></section></summary><div class="docblock"><p>Appends @node to the current render node of @self,
+without changing the current node.</p>
+<p>If @self does not have a current node yet, @node
+will become the initial node.</p>
+<h6 id="node"><a class="doc-anchor" href="#node">§</a><code>node</code></h6>
+<p>a <a href="../../gsk4/auto/render_node/struct.RenderNode.html" title="struct gsk4::auto::render_node::RenderNode"><code>gsk::RenderNode</code></a></p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.append_outset_shadow" class="method"><a class="src rightside" href="../../src/gtk4/auto/snapshot.rs.html#270-290">source</a><h4 class="code-header">fn <a href="#method.append_outset_shadow" class="fn">append_outset_shadow</a>(
+    &amp;self,
+    outline: &amp;<a class="struct" href="../../gsk4/rounded_rect/struct.RoundedRect.html" title="struct gsk4::rounded_rect::RoundedRect">RoundedRect</a>,
+    color: &amp;<a class="struct" href="../../gdk4/auto/rgba/struct.RGBA.html" title="struct gdk4::auto::rgba::RGBA">RGBA</a>,
+    dx: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f32.html">f32</a>,
+    dy: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f32.html">f32</a>,
+    spread: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f32.html">f32</a>,
+    blur_radius: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f32.html">f32</a>
+)</h4></section></summary><div class="docblock"><p>Appends an outset shadow node around the box given by @outline.</p>
+<h6 id="outline-1"><a class="doc-anchor" href="#outline-1">§</a><code>outline</code></h6>
+<p>outline of the region surrounded by shadow</p>
+<h6 id="color-3"><a class="doc-anchor" href="#color-3">§</a><code>color</code></h6>
+<p>color of the shadow</p>
+<h6 id="dx-1"><a class="doc-anchor" href="#dx-1">§</a><code>dx</code></h6>
+<p>horizontal offset of shadow</p>
+<h6 id="dy-1"><a class="doc-anchor" href="#dy-1">§</a><code>dy</code></h6>
+<p>vertical offset of shadow</p>
+<h6 id="spread-1"><a class="doc-anchor" href="#spread-1">§</a><code>spread</code></h6>
+<p>how far the shadow spreads towards the outside</p>
+<h6 id="blur_radius-1"><a class="doc-anchor" href="#blur_radius-1">§</a><code>blur_radius</code></h6>
+<p>how much blur to apply to the shadow</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.append_radial_gradient" class="method"><a class="src rightside" href="../../src/gtk4/auto/snapshot.rs.html#308-332">source</a><h4 class="code-header">fn <a href="#method.append_radial_gradient" class="fn">append_radial_gradient</a>(
+    &amp;self,
+    bounds: &amp;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/graphene/auto/rect/struct.Rect.html" title="struct graphene::auto::rect::Rect">Rect</a>,
+    center: &amp;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/graphene/auto/point/struct.Point.html" title="struct graphene::auto::point::Point">Point</a>,
+    hradius: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f32.html">f32</a>,
+    vradius: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f32.html">f32</a>,
+    start: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f32.html">f32</a>,
+    end: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f32.html">f32</a>,
+    stops: &amp;[<a class="struct" href="../../gsk4/color_stop/struct.ColorStop.html" title="struct gsk4::color_stop::ColorStop">ColorStop</a>]
+)</h4></section></summary><div class="docblock"><p>Appends a radial gradient node with the given stops to @self.</p>
+<h6 id="bounds-4"><a class="doc-anchor" href="#bounds-4">§</a><code>bounds</code></h6>
+<p>the rectangle to render the readial gradient into</p>
+<h6 id="center-1"><a class="doc-anchor" href="#center-1">§</a><code>center</code></h6>
+<p>the center point for the radial gradient</p>
+<h6 id="hradius"><a class="doc-anchor" href="#hradius">§</a><code>hradius</code></h6>
+<p>the horizontal radius</p>
+<h6 id="vradius"><a class="doc-anchor" href="#vradius">§</a><code>vradius</code></h6>
+<p>the vertical radius</p>
+<h6 id="start"><a class="doc-anchor" href="#start">§</a><code>start</code></h6>
+<p>the start position (on the horizontal axis)</p>
+<h6 id="end"><a class="doc-anchor" href="#end">§</a><code>end</code></h6>
+<p>the end position (on the horizontal axis)</p>
+<h6 id="stops-2"><a class="doc-anchor" href="#stops-2">§</a><code>stops</code></h6>
+<p>the color stops defining the gradient</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.append_repeating_linear_gradient" class="method"><a class="src rightside" href="../../src/gtk4/auto/snapshot.rs.html#344-362">source</a><h4 class="code-header">fn <a href="#method.append_repeating_linear_gradient" class="fn">append_repeating_linear_gradient</a>(
+    &amp;self,
+    bounds: &amp;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/graphene/auto/rect/struct.Rect.html" title="struct graphene::auto::rect::Rect">Rect</a>,
+    start_point: &amp;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/graphene/auto/point/struct.Point.html" title="struct graphene::auto::point::Point">Point</a>,
+    end_point: &amp;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/graphene/auto/point/struct.Point.html" title="struct graphene::auto::point::Point">Point</a>,
+    stops: &amp;[<a class="struct" href="../../gsk4/color_stop/struct.ColorStop.html" title="struct gsk4::color_stop::ColorStop">ColorStop</a>]
+)</h4></section></summary><div class="docblock"><p>Appends a repeating linear gradient node with the given stops to @self.</p>
+<h6 id="bounds-5"><a class="doc-anchor" href="#bounds-5">§</a><code>bounds</code></h6>
+<p>the rectangle to render the linear gradient into</p>
+<h6 id="start_point-1"><a class="doc-anchor" href="#start_point-1">§</a><code>start_point</code></h6>
+<p>the point at which the linear gradient will begin</p>
+<h6 id="end_point-1"><a class="doc-anchor" href="#end_point-1">§</a><code>end_point</code></h6>
+<p>the point at which the linear gradient will finish</p>
+<h6 id="stops-3"><a class="doc-anchor" href="#stops-3">§</a><code>stops</code></h6>
+<p>the color stops defining the gradient</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.append_repeating_radial_gradient" class="method"><a class="src rightside" href="../../src/gtk4/auto/snapshot.rs.html#380-404">source</a><h4 class="code-header">fn <a href="#method.append_repeating_radial_gradient" class="fn">append_repeating_radial_gradient</a>(
+    &amp;self,
+    bounds: &amp;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/graphene/auto/rect/struct.Rect.html" title="struct graphene::auto::rect::Rect">Rect</a>,
+    center: &amp;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/graphene/auto/point/struct.Point.html" title="struct graphene::auto::point::Point">Point</a>,
+    hradius: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f32.html">f32</a>,
+    vradius: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f32.html">f32</a>,
+    start: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f32.html">f32</a>,
+    end: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f32.html">f32</a>,
+    stops: &amp;[<a class="struct" href="../../gsk4/color_stop/struct.ColorStop.html" title="struct gsk4::color_stop::ColorStop">ColorStop</a>]
+)</h4></section></summary><div class="docblock"><p>Appends a repeating radial gradient node with the given stops to @self.</p>
+<h6 id="bounds-6"><a class="doc-anchor" href="#bounds-6">§</a><code>bounds</code></h6>
+<p>the rectangle to render the readial gradient into</p>
+<h6 id="center-2"><a class="doc-anchor" href="#center-2">§</a><code>center</code></h6>
+<p>the center point for the radial gradient</p>
+<h6 id="hradius-1"><a class="doc-anchor" href="#hradius-1">§</a><code>hradius</code></h6>
+<p>the horizontal radius</p>
+<h6 id="vradius-1"><a class="doc-anchor" href="#vradius-1">§</a><code>vradius</code></h6>
+<p>the vertical radius</p>
+<h6 id="start-1"><a class="doc-anchor" href="#start-1">§</a><code>start</code></h6>
+<p>the start position (on the horizontal axis)</p>
+<h6 id="end-1"><a class="doc-anchor" href="#end-1">§</a><code>end</code></h6>
+<p>the end position (on the horizontal axis)</p>
+<h6 id="stops-4"><a class="doc-anchor" href="#stops-4">§</a><code>stops</code></h6>
+<p>the color stops defining the gradient</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.append_scaled_texture" class="method"><a class="src rightside" href="../../src/gtk4/auto/snapshot.rs.html#422-436">source</a><h4 class="code-header">fn <a href="#method.append_scaled_texture" class="fn">append_scaled_texture</a>(
+    &amp;self,
+    texture: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../../gdk4/auto/texture/struct.Texture.html" title="struct gdk4::auto::texture::Texture">Texture</a>&gt;,
+    filter: <a class="enum" href="../../gsk4/auto/enums/enum.ScalingFilter.html" title="enum gsk4::auto::enums::ScalingFilter">ScalingFilter</a>,
+    bounds: &amp;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/graphene/auto/rect/struct.Rect.html" title="struct graphene::auto::rect::Rect">Rect</a>
+)</h4></section><span class="item-info"><div class="stab portability">Available on <strong>crate feature <code>v4_10</code></strong> only.</div></span></summary><div class="docblock"><p>Creates a new render node drawing the @texture
+into the given @bounds and appends it to the
+current render node of @self.</p>
+<p>In contrast to <a href="trait.SnapshotExt.html#method.append_texture"><code>append_texture()</code></a>,
+this function provides control about how the filter
+that is used when scaling.</p>
+<h6 id="texture"><a class="doc-anchor" href="#texture">§</a><code>texture</code></h6>
+<p>the texture to render</p>
+<h6 id="filter"><a class="doc-anchor" href="#filter">§</a><code>filter</code></h6>
+<p>the filter to use</p>
+<h6 id="bounds-7"><a class="doc-anchor" href="#bounds-7">§</a><code>bounds</code></h6>
+<p>the bounds for the new node</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.append_stroke" class="method"><a class="src rightside" href="../../src/gtk4/auto/snapshot.rs.html#452-461">source</a><h4 class="code-header">fn <a href="#method.append_stroke" class="fn">append_stroke</a>(&amp;self, path: &amp;<a class="struct" href="../../gsk4/auto/path/struct.Path.html" title="struct gsk4::auto::path::Path">Path</a>, stroke: &amp;<a class="struct" href="../../gsk4/auto/stroke/struct.Stroke.html" title="struct gsk4::auto::stroke::Stroke">Stroke</a>, color: &amp;<a class="struct" href="../../gdk4/auto/rgba/struct.RGBA.html" title="struct gdk4::auto::rgba::RGBA">RGBA</a>)</h4></section><span class="item-info"><div class="stab portability">Available on <strong>crate feature <code>v4_14</code></strong> only.</div></span></summary><div class="docblock"><p>A convenience method to stroke a path with a color.</p>
+<p>See <a href="trait.SnapshotExt.html#method.push_stroke"><code>push_stroke()</code></a> if you need
+to stroke a path with more complex content than
+a color.</p>
+<h6 id="path-1"><a class="doc-anchor" href="#path-1">§</a><code>path</code></h6>
+<p>The path describing the area to fill</p>
+<h6 id="stroke"><a class="doc-anchor" href="#stroke">§</a><code>stroke</code></h6>
+<p>The stroke attributes</p>
+<h6 id="color-4"><a class="doc-anchor" href="#color-4">§</a><code>color</code></h6>
+<p>the color to fill the path with</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.append_texture" class="method"><a class="src rightside" href="../../src/gtk4/auto/snapshot.rs.html#475-483">source</a><h4 class="code-header">fn <a href="#method.append_texture" class="fn">append_texture</a>(&amp;self, texture: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../../gdk4/auto/texture/struct.Texture.html" title="struct gdk4::auto::texture::Texture">Texture</a>&gt;, bounds: &amp;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/graphene/auto/rect/struct.Rect.html" title="struct graphene::auto::rect::Rect">Rect</a>)</h4></section></summary><div class="docblock"><p>Creates a new render node drawing the @texture
+into the given @bounds and appends it to the
+current render node of @self.</p>
+<p>If the texture needs to be scaled to fill @bounds,
+linear filtering is used. See <a href="trait.SnapshotExt.html#method.append_scaled_texture"><code>append_scaled_texture()</code></a>
+if you need other filtering, such as nearest-neighbour.</p>
+<h6 id="texture-1"><a class="doc-anchor" href="#texture-1">§</a><code>texture</code></h6>
+<p>the texture to render</p>
+<h6 id="bounds-8"><a class="doc-anchor" href="#bounds-8">§</a><code>bounds</code></h6>
+<p>the bounds for the new node</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.gl_shader_pop_texture" class="method"><a class="src rightside" href="../../src/gtk4/auto/snapshot.rs.html#492-496">source</a><h4 class="code-header">fn <a href="#method.gl_shader_pop_texture" class="fn">gl_shader_pop_texture</a>(&amp;self)</h4></section></summary><div class="docblock"><p>Removes the top element from the stack of render nodes and
+adds it to the nearest <a href="../../gsk4/auto/gl_shader_node/struct.GLShaderNode.html" title="struct gsk4::auto::gl_shader_node::GLShaderNode"><code>gsk::GLShaderNode</code></a> below it.</p>
+<p>This must be called the same number of times as the number
+of textures is needed for the shader in
+<a href="trait.SnapshotExt.html#method.push_gl_shader"><code>push_gl_shader()</code></a>.</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.perspective" class="method"><a class="src rightside" href="../../src/gtk4/auto/snapshot.rs.html#504-508">source</a><h4 class="code-header">fn <a href="#method.perspective" class="fn">perspective</a>(&amp;self, depth: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f32.html">f32</a>)</h4></section></summary><div class="docblock"><p>Applies a perspective projection transform.</p>
+<p>See <a href="../../gsk4/auto/transform/struct.Transform.html#method.perspective" title="method gsk4::auto::transform::Transform::perspective"><code>gsk::Transform::perspective()</code></a> for a discussion on the details.</p>
+<h6 id="depth"><a class="doc-anchor" href="#depth">§</a><code>depth</code></h6>
+<p>distance of the z=0 plane</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.pop" class="method"><a class="src rightside" href="../../src/gtk4/auto/snapshot.rs.html#513-517">source</a><h4 class="code-header">fn <a href="#method.pop" class="fn">pop</a>(&amp;self)</h4></section></summary><div class="docblock"><p>Removes the top element from the stack of render nodes,
+and appends it to the node underneath it.</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.push_blend" class="method"><a class="src rightside" href="../../src/gtk4/auto/snapshot.rs.html#531-535">source</a><h4 class="code-header">fn <a href="#method.push_blend" class="fn">push_blend</a>(&amp;self, blend_mode: <a class="enum" href="../../gsk4/auto/enums/enum.BlendMode.html" title="enum gsk4::auto::enums::BlendMode">BlendMode</a>)</h4></section></summary><div class="docblock"><p>Blends together two images with the given blend mode.</p>
+<p>Until the first call to <a href="trait.SnapshotExt.html#method.pop"><code>pop()</code></a>, the
+bottom image for the blend operation will be recorded.
+After that call, the top image to be blended will be
+recorded until the second call to <a href="trait.SnapshotExt.html#method.pop"><code>pop()</code></a>.</p>
+<p>Calling this function requires two subsequent calls
+to <a href="trait.SnapshotExt.html#method.pop"><code>pop()</code></a>.</p>
+<h6 id="blend_mode"><a class="doc-anchor" href="#blend_mode">§</a><code>blend_mode</code></h6>
+<p>blend mode to use</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.push_blur" class="method"><a class="src rightside" href="../../src/gtk4/auto/snapshot.rs.html#543-547">source</a><h4 class="code-header">fn <a href="#method.push_blur" class="fn">push_blur</a>(&amp;self, radius: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>)</h4></section></summary><div class="docblock"><p>Blurs an image.</p>
+<p>The image is recorded until the next call to <a href="trait.SnapshotExt.html#method.pop"><code>pop()</code></a>.</p>
+<h6 id="radius"><a class="doc-anchor" href="#radius">§</a><code>radius</code></h6>
+<p>the blur radius to use. Must be positive</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.push_clip" class="method"><a class="src rightside" href="../../src/gtk4/auto/snapshot.rs.html#555-559">source</a><h4 class="code-header">fn <a href="#method.push_clip" class="fn">push_clip</a>(&amp;self, bounds: &amp;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/graphene/auto/rect/struct.Rect.html" title="struct graphene::auto::rect::Rect">Rect</a>)</h4></section></summary><div class="docblock"><p>Clips an image to a rectangle.</p>
+<p>The image is recorded until the next call to <a href="trait.SnapshotExt.html#method.pop"><code>pop()</code></a>.</p>
+<h6 id="bounds-9"><a class="doc-anchor" href="#bounds-9">§</a><code>bounds</code></h6>
+<p>the rectangle to clip to</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.push_color_matrix" class="method"><a class="src rightside" href="../../src/gtk4/auto/snapshot.rs.html#577-585">source</a><h4 class="code-header">fn <a href="#method.push_color_matrix" class="fn">push_color_matrix</a>(&amp;self, color_matrix: &amp;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/graphene/auto/matrix/struct.Matrix.html" title="struct graphene::auto::matrix::Matrix">Matrix</a>, color_offset: &amp;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/graphene/auto/vec4/struct.Vec4.html" title="struct graphene::auto::vec4::Vec4">Vec4</a>)</h4></section></summary><div class="docblock"><p>Modifies the colors of an image by applying an affine transformation
+in RGB space.</p>
+<p>In particular, the colors will be transformed by applying</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code>pixel = transpose(color_matrix) * pixel + color_offset</code></pre></div>
+<p>for every pixel. The transformation operates on unpremultiplied
+colors, with color components ordered R, G, B, A.</p>
+<p>The image is recorded until the next call to <a href="trait.SnapshotExt.html#method.pop"><code>pop()</code></a>.</p>
+<h6 id="color_matrix"><a class="doc-anchor" href="#color_matrix">§</a><code>color_matrix</code></h6>
+<p>the color matrix to use</p>
+<h6 id="color_offset"><a class="doc-anchor" href="#color_offset">§</a><code>color_offset</code></h6>
+<p>the color offset to use</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.push_cross_fade" class="method"><a class="src rightside" href="../../src/gtk4/auto/snapshot.rs.html#599-603">source</a><h4 class="code-header">fn <a href="#method.push_cross_fade" class="fn">push_cross_fade</a>(&amp;self, progress: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>)</h4></section></summary><div class="docblock"><p>Snapshots a cross-fade operation between two images with the
+given @progress.</p>
+<p>Until the first call to <a href="trait.SnapshotExt.html#method.pop"><code>pop()</code></a>, the start image
+will be snapshot. After that call, the end image will be recorded
+until the second call to <a href="trait.SnapshotExt.html#method.pop"><code>pop()</code></a>.</p>
+<p>Calling this function requires two subsequent calls
+to <a href="trait.SnapshotExt.html#method.pop"><code>pop()</code></a>.</p>
+<h6 id="progress"><a class="doc-anchor" href="#progress">§</a><code>progress</code></h6>
+<p>progress between 0.0 and 1.0</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.push_fill" class="method"><a class="src rightside" href="../../src/gtk4/auto/snapshot.rs.html#619-627">source</a><h4 class="code-header">fn <a href="#method.push_fill" class="fn">push_fill</a>(&amp;self, path: &amp;<a class="struct" href="../../gsk4/auto/path/struct.Path.html" title="struct gsk4::auto::path::Path">Path</a>, fill_rule: <a class="enum" href="../../gsk4/auto/enums/enum.FillRule.html" title="enum gsk4::auto::enums::FillRule">FillRule</a>)</h4></section><span class="item-info"><div class="stab portability">Available on <strong>crate feature <code>v4_14</code></strong> only.</div></span></summary><div class="docblock"><p>Fills the area given by @path and @fill_rule with an image and discards everything
+outside of it.</p>
+<p>The image is recorded until the next call to <a href="trait.SnapshotExt.html#method.pop"><code>pop()</code></a>.</p>
+<p>If you want to fill the path with a color, <a href="trait.SnapshotExt.html#method.append_fill"><code>append_fill()</code></a>
+may be more convenient.</p>
+<h6 id="path-2"><a class="doc-anchor" href="#path-2">§</a><code>path</code></h6>
+<p>The path describing the area to fill</p>
+<h6 id="fill_rule-1"><a class="doc-anchor" href="#fill_rule-1">§</a><code>fill_rule</code></h6>
+<p>The fill rule to use</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.push_gl_shader" class="method"><a class="src rightside" href="../../src/gtk4/auto/snapshot.rs.html#670-684">source</a><h4 class="code-header">fn <a href="#method.push_gl_shader" class="fn">push_gl_shader</a>(&amp;self, shader: &amp;<a class="struct" href="../../gsk4/auto/gl_shader/struct.GLShader.html" title="struct gsk4::auto::gl_shader::GLShader">GLShader</a>, bounds: &amp;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/graphene/auto/rect/struct.Rect.html" title="struct graphene::auto::rect::Rect">Rect</a>, take_args: <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/glib/bytes/struct.Bytes.html" title="struct glib::bytes::Bytes">Bytes</a>)</h4></section></summary><div class="docblock"><p>Push a <a href="../../gsk4/auto/gl_shader_node/struct.GLShaderNode.html" title="struct gsk4::auto::gl_shader_node::GLShaderNode"><code>gsk::GLShaderNode</code></a>.</p>
+<p>The node uses the given <a href="../../gsk4/auto/gl_shader/struct.GLShader.html" title="struct gsk4::auto::gl_shader::GLShader"><code>gsk::GLShader</code></a> and uniform values
+Additionally this takes a list of @n_children other nodes
+which will be passed to the <a href="../../gsk4/auto/gl_shader_node/struct.GLShaderNode.html" title="struct gsk4::auto::gl_shader_node::GLShaderNode"><code>gsk::GLShaderNode</code></a>.</p>
+<p>The @take_args argument is a block of data to use for uniform
+arguments, as per types and offsets defined by the @shader.
+Normally this is generated by <code>Gsk::GLShader::format_args()</code>
+or <code>Gsk::ShaderArgsBuilder</code>.</p>
+<p>The snapshotter takes ownership of @take_args, so the caller should
+not free it after this.</p>
+<p>If the renderer doesn’t support GL shaders, or if there is any
+problem when compiling the shader, then the node will draw pink.
+You should use <a href="../../gsk4/auto/gl_shader/struct.GLShader.html#method.compile" title="method gsk4::auto::gl_shader::GLShader::compile"><code>GLShader::compile()</code></a> to ensure the @shader
+will work for the renderer before using it.</p>
+<p>If the shader requires textures (see <a href="../../gsk4/auto/gl_shader/struct.GLShader.html#method.n_textures" title="method gsk4::auto::gl_shader::GLShader::n_textures"><code>GLShader::n_textures()</code></a>),
+then it is expected that you call <a href="trait.SnapshotExt.html#method.gl_shader_pop_texture"><code>gl_shader_pop_texture()</code></a>
+the number of times that are required. Each of these calls will generate
+a node that is added as a child to the <a href="../../gsk4/auto/gl_shader_node/struct.GLShaderNode.html" title="struct gsk4::auto::gl_shader_node::GLShaderNode"><code>gsk::GLShaderNode</code></a>, which in turn
+will render these offscreen and pass as a texture to the shader.</p>
+<p>Once all textures (if any) are pop:ed, you must call the regular
+<a href="trait.SnapshotExt.html#method.pop"><code>pop()</code></a>.</p>
+<p>If you want to use pre-existing textures as input to the shader rather
+than rendering new ones, use <a href="trait.SnapshotExt.html#method.append_texture"><code>append_texture()</code></a> to
+push a texture node. These will be used directly rather than being
+re-rendered.</p>
+<p>For details on how to write shaders, see <a href="../../gsk4/auto/gl_shader/struct.GLShader.html" title="struct gsk4::auto::gl_shader::GLShader"><code>gsk::GLShader</code></a>.</p>
+<h6 id="shader"><a class="doc-anchor" href="#shader">§</a><code>shader</code></h6>
+<p>The code to run</p>
+<h6 id="bounds-10"><a class="doc-anchor" href="#bounds-10">§</a><code>bounds</code></h6>
+<p>the rectangle to render into</p>
+<h6 id="take_args"><a class="doc-anchor" href="#take_args">§</a><code>take_args</code></h6>
+<p>Data block with arguments for the shader.</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.push_mask" class="method"><a class="src rightside" href="../../src/gtk4/auto/snapshot.rs.html#698-702">source</a><h4 class="code-header">fn <a href="#method.push_mask" class="fn">push_mask</a>(&amp;self, mask_mode: <a class="enum" href="../../gsk4/auto/enums/enum.MaskMode.html" title="enum gsk4::auto::enums::MaskMode">MaskMode</a>)</h4></section><span class="item-info"><div class="stab portability">Available on <strong>crate feature <code>v4_10</code></strong> only.</div></span></summary><div class="docblock"><p>Until the first call to <a href="trait.SnapshotExt.html#method.pop"><code>pop()</code></a>, the
+mask image for the mask operation will be recorded.</p>
+<p>After that call, the source image will be recorded until
+the second call to <a href="trait.SnapshotExt.html#method.pop"><code>pop()</code></a>.</p>
+<p>Calling this function requires 2 subsequent calls to gtk_snapshot_pop().</p>
+<h6 id="mask_mode"><a class="doc-anchor" href="#mask_mode">§</a><code>mask_mode</code></h6>
+<p>mask mode to use</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.push_opacity" class="method"><a class="src rightside" href="../../src/gtk4/auto/snapshot.rs.html#710-714">source</a><h4 class="code-header">fn <a href="#method.push_opacity" class="fn">push_opacity</a>(&amp;self, opacity: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>)</h4></section></summary><div class="docblock"><p>Modifies the opacity of an image.</p>
+<p>The image is recorded until the next call to <a href="trait.SnapshotExt.html#method.pop"><code>pop()</code></a>.</p>
+<h6 id="opacity"><a class="doc-anchor" href="#opacity">§</a><code>opacity</code></h6>
+<p>the opacity to use</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.push_repeat" class="method"><a class="src rightside" href="../../src/gtk4/auto/snapshot.rs.html#725-733">source</a><h4 class="code-header">fn <a href="#method.push_repeat" class="fn">push_repeat</a>(&amp;self, bounds: &amp;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/graphene/auto/rect/struct.Rect.html" title="struct graphene::auto::rect::Rect">Rect</a>, child_bounds: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/graphene/auto/rect/struct.Rect.html" title="struct graphene::auto::rect::Rect">Rect</a>&gt;)</h4></section></summary><div class="docblock"><p>Creates a node that repeats the child node.</p>
+<p>The child is recorded until the next call to <a href="trait.SnapshotExt.html#method.pop"><code>pop()</code></a>.</p>
+<h6 id="bounds-11"><a class="doc-anchor" href="#bounds-11">§</a><code>bounds</code></h6>
+<p>the bounds within which to repeat</p>
+<h6 id="child_bounds"><a class="doc-anchor" href="#child_bounds">§</a><code>child_bounds</code></h6>
+<p>the bounds of the child or <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="variant core::option::Option::None"><code>None</code></a>
+to use the full size of the collected child node</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.push_rounded_clip" class="method"><a class="src rightside" href="../../src/gtk4/auto/snapshot.rs.html#741-748">source</a><h4 class="code-header">fn <a href="#method.push_rounded_clip" class="fn">push_rounded_clip</a>(&amp;self, bounds: &amp;<a class="struct" href="../../gsk4/rounded_rect/struct.RoundedRect.html" title="struct gsk4::rounded_rect::RoundedRect">RoundedRect</a>)</h4></section></summary><div class="docblock"><p>Clips an image to a rounded rectangle.</p>
+<p>The image is recorded until the next call to <a href="trait.SnapshotExt.html#method.pop"><code>pop()</code></a>.</p>
+<h6 id="bounds-12"><a class="doc-anchor" href="#bounds-12">§</a><code>bounds</code></h6>
+<p>the rounded rectangle to clip to</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.push_shadow" class="method"><a class="src rightside" href="../../src/gtk4/auto/snapshot.rs.html#756-765">source</a><h4 class="code-header">fn <a href="#method.push_shadow" class="fn">push_shadow</a>(&amp;self, shadow: &amp;[<a class="struct" href="../../gsk4/shadow/struct.Shadow.html" title="struct gsk4::shadow::Shadow">Shadow</a>])</h4></section></summary><div class="docblock"><p>Applies a shadow to an image.</p>
+<p>The image is recorded until the next call to <a href="trait.SnapshotExt.html#method.pop"><code>pop()</code></a>.</p>
+<h6 id="shadow"><a class="doc-anchor" href="#shadow">§</a><code>shadow</code></h6>
+<p>the first shadow specification</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.push_stroke" class="method"><a class="src rightside" href="../../src/gtk4/auto/snapshot.rs.html#785-793">source</a><h4 class="code-header">fn <a href="#method.push_stroke" class="fn">push_stroke</a>(&amp;self, path: &amp;<a class="struct" href="../../gsk4/auto/path/struct.Path.html" title="struct gsk4::auto::path::Path">Path</a>, stroke: &amp;<a class="struct" href="../../gsk4/auto/stroke/struct.Stroke.html" title="struct gsk4::auto::stroke::Stroke">Stroke</a>)</h4></section><span class="item-info"><div class="stab portability">Available on <strong>crate feature <code>v4_14</code></strong> only.</div></span></summary><div class="docblock"><p>Strokes the given @path with the attributes given by @stroke and
+an image.</p>
+<p>The image is recorded until the next call to <a href="trait.SnapshotExt.html#method.pop"><code>pop()</code></a>.</p>
+<p>Note that the strokes are subject to the same transformation as
+everything else, so uneven scaling will cause horizontal and vertical
+strokes to have different widths.</p>
+<p>If you want to stroke the path with a color, <a href="trait.SnapshotExt.html#method.append_stroke"><code>append_stroke()</code></a>
+may be more convenient.</p>
+<h6 id="path-3"><a class="doc-anchor" href="#path-3">§</a><code>path</code></h6>
+<p>The path to stroke</p>
+<h6 id="stroke-1"><a class="doc-anchor" href="#stroke-1">§</a><code>stroke</code></h6>
+<p>The stroke attributes</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.render_background" class="method"><a class="src rightside" href="../../src/gtk4/auto/snapshot.rs.html#814-832">source</a><h4 class="code-header">fn <a href="#method.render_background" class="fn">render_background</a>(
+    &amp;self,
+    context: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.StyleContext.html" title="struct gtk4::StyleContext">StyleContext</a>&gt;,
+    x: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>,
+    y: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>,
+    width: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>,
+    height: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>
+)</h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span></summary><div class="docblock"><p>Creates a render node for the CSS background according to @context,
+and appends it to the current node of @self, without changing
+the current node.</p>
+<h5 id="deprecated-since-410"><a class="doc-anchor" href="#deprecated-since-410">§</a>Deprecated since 4.10</h5><h6 id="context"><a class="doc-anchor" href="#context">§</a><code>context</code></h6>
+<p>the style context that defines the background</p>
+<h6 id="x"><a class="doc-anchor" href="#x">§</a><code>x</code></h6>
+<p>X origin of the rectangle</p>
+<h6 id="y"><a class="doc-anchor" href="#y">§</a><code>y</code></h6>
+<p>Y origin of the rectangle</p>
+<h6 id="width"><a class="doc-anchor" href="#width">§</a><code>width</code></h6>
+<p>rectangle width</p>
+<h6 id="height"><a class="doc-anchor" href="#height">§</a><code>height</code></h6>
+<p>rectangle height</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.render_focus" class="method"><a class="src rightside" href="../../src/gtk4/auto/snapshot.rs.html#853-871">source</a><h4 class="code-header">fn <a href="#method.render_focus" class="fn">render_focus</a>(
+    &amp;self,
+    context: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.StyleContext.html" title="struct gtk4::StyleContext">StyleContext</a>&gt;,
+    x: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>,
+    y: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>,
+    width: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>,
+    height: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>
+)</h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span></summary><div class="docblock"><p>Creates a render node for the focus outline according to @context,
+and appends it to the current node of @self, without changing
+the current node.</p>
+<h5 id="deprecated-since-410-1"><a class="doc-anchor" href="#deprecated-since-410-1">§</a>Deprecated since 4.10</h5><h6 id="context-1"><a class="doc-anchor" href="#context-1">§</a><code>context</code></h6>
+<p>the style context that defines the focus ring</p>
+<h6 id="x-1"><a class="doc-anchor" href="#x-1">§</a><code>x</code></h6>
+<p>X origin of the rectangle</p>
+<h6 id="y-1"><a class="doc-anchor" href="#y-1">§</a><code>y</code></h6>
+<p>Y origin of the rectangle</p>
+<h6 id="width-1"><a class="doc-anchor" href="#width-1">§</a><code>width</code></h6>
+<p>rectangle width</p>
+<h6 id="height-1"><a class="doc-anchor" href="#height-1">§</a><code>height</code></h6>
+<p>rectangle height</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.render_frame" class="method"><a class="src rightside" href="../../src/gtk4/auto/snapshot.rs.html#892-910">source</a><h4 class="code-header">fn <a href="#method.render_frame" class="fn">render_frame</a>(
+    &amp;self,
+    context: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.StyleContext.html" title="struct gtk4::StyleContext">StyleContext</a>&gt;,
+    x: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>,
+    y: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>,
+    width: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>,
+    height: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>
+)</h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span></summary><div class="docblock"><p>Creates a render node for the CSS border according to @context,
+and appends it to the current node of @self, without changing
+the current node.</p>
+<h5 id="deprecated-since-410-2"><a class="doc-anchor" href="#deprecated-since-410-2">§</a>Deprecated since 4.10</h5><h6 id="context-2"><a class="doc-anchor" href="#context-2">§</a><code>context</code></h6>
+<p>the style context that defines the frame</p>
+<h6 id="x-2"><a class="doc-anchor" href="#x-2">§</a><code>x</code></h6>
+<p>X origin of the rectangle</p>
+<h6 id="y-2"><a class="doc-anchor" href="#y-2">§</a><code>y</code></h6>
+<p>Y origin of the rectangle</p>
+<h6 id="width-2"><a class="doc-anchor" href="#width-2">§</a><code>width</code></h6>
+<p>rectangle width</p>
+<h6 id="height-2"><a class="doc-anchor" href="#height-2">§</a><code>height</code></h6>
+<p>rectangle height</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.render_insertion_cursor" class="method"><a class="src rightside" href="../../src/gtk4/auto/snapshot.rs.html#931-951">source</a><h4 class="code-header">fn <a href="#method.render_insertion_cursor" class="fn">render_insertion_cursor</a>(
+    &amp;self,
+    context: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.StyleContext.html" title="struct gtk4::StyleContext">StyleContext</a>&gt;,
+    x: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>,
+    y: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>,
+    layout: &amp;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/pango/auto/layout/struct.Layout.html" title="struct pango::auto::layout::Layout">Layout</a>,
+    index: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>,
+    direction: <a class="enum" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/pango/auto/enums/enum.Direction.html" title="enum pango::auto::enums::Direction">Direction</a>
+)</h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span></summary><div class="docblock"><p>Draws a text caret using @self at the specified index of @layout.</p>
+<h5 id="deprecated-since-410-3"><a class="doc-anchor" href="#deprecated-since-410-3">§</a>Deprecated since 4.10</h5><h6 id="context-3"><a class="doc-anchor" href="#context-3">§</a><code>context</code></h6>
+<p>a <a href="../struct.StyleContext.html" title="struct gtk4::StyleContext"><code>StyleContext</code></a></p>
+<h6 id="x-3"><a class="doc-anchor" href="#x-3">§</a><code>x</code></h6>
+<p>X origin</p>
+<h6 id="y-3"><a class="doc-anchor" href="#y-3">§</a><code>y</code></h6>
+<p>Y origin</p>
+<h6 id="layout-1"><a class="doc-anchor" href="#layout-1">§</a><code>layout</code></h6>
+<p>the <a href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/pango/auto/layout/struct.Layout.html" title="struct pango::auto::layout::Layout"><code>pango::Layout</code></a> of the text</p>
+<h6 id="index"><a class="doc-anchor" href="#index">§</a><code>index</code></h6>
+<p>the index in the <a href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/pango/auto/layout/struct.Layout.html" title="struct pango::auto::layout::Layout"><code>pango::Layout</code></a></p>
+<h6 id="direction"><a class="doc-anchor" href="#direction">§</a><code>direction</code></h6>
+<p>the <a href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/pango/auto/enums/enum.Direction.html" title="enum pango::auto::enums::Direction"><code>pango::Direction</code></a> of the text</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.render_layout" class="method"><a class="src rightside" href="../../src/gtk4/auto/snapshot.rs.html#970-986">source</a><h4 class="code-header">fn <a href="#method.render_layout" class="fn">render_layout</a>(
+    &amp;self,
+    context: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.StyleContext.html" title="struct gtk4::StyleContext">StyleContext</a>&gt;,
+    x: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>,
+    y: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>,
+    layout: &amp;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/pango/auto/layout/struct.Layout.html" title="struct pango::auto::layout::Layout">Layout</a>
+)</h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span></summary><div class="docblock"><p>Creates a render node for rendering @layout according to the style
+information in @context, and appends it to the current node of @self,
+without changing the current node.</p>
+<h5 id="deprecated-since-410-4"><a class="doc-anchor" href="#deprecated-since-410-4">§</a>Deprecated since 4.10</h5><h6 id="context-4"><a class="doc-anchor" href="#context-4">§</a><code>context</code></h6>
+<p>the style context that defines the text</p>
+<h6 id="x-4"><a class="doc-anchor" href="#x-4">§</a><code>x</code></h6>
+<p>X origin of the rectangle</p>
+<h6 id="y-4"><a class="doc-anchor" href="#y-4">§</a><code>y</code></h6>
+<p>Y origin of the rectangle</p>
+<h6 id="layout-2"><a class="doc-anchor" href="#layout-2">§</a><code>layout</code></h6>
+<p>the <a href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/pango/auto/layout/struct.Layout.html" title="struct pango::auto::layout::Layout"><code>pango::Layout</code></a> to render</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.restore" class="method"><a class="src rightside" href="../../src/gtk4/auto/snapshot.rs.html#992-996">source</a><h4 class="code-header">fn <a href="#method.restore" class="fn">restore</a>(&amp;self)</h4></section></summary><div class="docblock"><p>Restores @self to the state saved by a preceding call to
+<a href="trait.SnapshotExt.html#method.save"><code>save()</code></a> and removes that state from the stack of
+saved states.</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.rotate" class="method"><a class="src rightside" href="../../src/gtk4/auto/snapshot.rs.html#1006-1010">source</a><h4 class="code-header">fn <a href="#method.rotate" class="fn">rotate</a>(&amp;self, angle: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f32.html">f32</a>)</h4></section></summary><div class="docblock"><p>Rotates @@self’s coordinate system by @angle degrees in 2D space -
+or in 3D speak, rotates around the Z axis. The rotation happens around
+the origin point of (0, 0) in the @self’s current coordinate system.</p>
+<p>To rotate around axes other than the Z axis, use <a href="../../gsk4/auto/transform/struct.Transform.html#method.rotate_3d" title="method gsk4::auto::transform::Transform::rotate_3d"><code>gsk::Transform::rotate_3d()</code></a>.</p>
+<h6 id="angle"><a class="doc-anchor" href="#angle">§</a><code>angle</code></h6>
+<p>the rotation angle, in degrees (clockwise)</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.rotate_3d" class="method"><a class="src rightside" href="../../src/gtk4/auto/snapshot.rs.html#1020-1028">source</a><h4 class="code-header">fn <a href="#method.rotate_3d" class="fn">rotate_3d</a>(&amp;self, angle: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f32.html">f32</a>, axis: &amp;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/graphene/auto/vec3/struct.Vec3.html" title="struct graphene::auto::vec3::Vec3">Vec3</a>)</h4></section></summary><div class="docblock"><p>Rotates @self’s coordinate system by @angle degrees around @axis.</p>
+<p>For a rotation in 2D space, use <a href="../../gsk4/auto/transform/struct.Transform.html#method.rotate" title="method gsk4::auto::transform::Transform::rotate"><code>gsk::Transform::rotate()</code></a>.</p>
+<h6 id="angle-1"><a class="doc-anchor" href="#angle-1">§</a><code>angle</code></h6>
+<p>the rotation angle, in degrees (clockwise)</p>
+<h6 id="axis"><a class="doc-anchor" href="#axis">§</a><code>axis</code></h6>
+<p>The rotation axis</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.save" class="method"><a class="src rightside" href="../../src/gtk4/auto/snapshot.rs.html#1043-1047">source</a><h4 class="code-header">fn <a href="#method.save" class="fn">save</a>(&amp;self)</h4></section></summary><div class="docblock"><p>Makes a copy of the current state of @self and saves it
+on an internal stack.</p>
+<p>When <a href="trait.SnapshotExt.html#method.restore"><code>restore()</code></a> is called, @self will
+be restored to the saved state.</p>
+<p>Multiple calls to <a href="trait.SnapshotExt.html#method.save"><code>save()</code></a> and <a href="trait.SnapshotExt.html#method.restore"><code>restore()</code></a>
+can be nested; each call to <code>gtk_snapshot_restore()</code> restores the state from
+the matching paired <code>gtk_snapshot_save()</code>.</p>
+<p>It is necessary to clear all saved states with corresponding
+calls to <code>gtk_snapshot_restore()</code>.</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.scale" class="method"><a class="src rightside" href="../../src/gtk4/auto/snapshot.rs.html#1058-1062">source</a><h4 class="code-header">fn <a href="#method.scale" class="fn">scale</a>(&amp;self, factor_x: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f32.html">f32</a>, factor_y: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f32.html">f32</a>)</h4></section></summary><div class="docblock"><p>Scales @self’s coordinate system in 2-dimensional space by
+the given factors.</p>
+<p>Use <a href="trait.SnapshotExt.html#method.scale_3d"><code>scale_3d()</code></a> to scale in all 3 dimensions.</p>
+<h6 id="factor_x"><a class="doc-anchor" href="#factor_x">§</a><code>factor_x</code></h6>
+<p>scaling factor on the X axis</p>
+<h6 id="factor_y"><a class="doc-anchor" href="#factor_y">§</a><code>factor_y</code></h6>
+<p>scaling factor on the Y axis</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.scale_3d" class="method"><a class="src rightside" href="../../src/gtk4/auto/snapshot.rs.html#1072-1081">source</a><h4 class="code-header">fn <a href="#method.scale_3d" class="fn">scale_3d</a>(&amp;self, factor_x: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f32.html">f32</a>, factor_y: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f32.html">f32</a>, factor_z: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f32.html">f32</a>)</h4></section></summary><div class="docblock"><p>Scales @self’s coordinate system by the given factors.</p>
+<h6 id="factor_x-1"><a class="doc-anchor" href="#factor_x-1">§</a><code>factor_x</code></h6>
+<p>scaling factor on the X axis</p>
+<h6 id="factor_y-1"><a class="doc-anchor" href="#factor_y-1">§</a><code>factor_y</code></h6>
+<p>scaling factor on the Y axis</p>
+<h6 id="factor_z"><a class="doc-anchor" href="#factor_z">§</a><code>factor_z</code></h6>
+<p>scaling factor on the Z axis</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.to_node" class="method"><a class="src rightside" href="../../src/gtk4/auto/snapshot.rs.html#1099-1101">source</a><h4 class="code-header">fn <a href="#method.to_node" class="fn">to_node</a>(self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../../gsk4/auto/render_node/struct.RenderNode.html" title="struct gsk4::auto::render_node::RenderNode">RenderNode</a>&gt;</h4></section></summary><div class="docblock"><p>Returns the render node that was constructed
+by @self.</p>
+<p>Note that this function may return <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="variant core::option::Option::None"><code>None</code></a> if nothing has been
+added to the snapshot or if its content does not produce pixels
+to be rendered.</p>
+<p>After calling this function, it is no longer possible to
+add more nodes to @self. The only function that should
+be called after this is <code>GObject::Object::unref()</code>.</p>
+<h5 id="returns-1"><a class="doc-anchor" href="#returns-1">§</a>Returns</h5>
+<p>the constructed <a href="../../gsk4/auto/render_node/struct.RenderNode.html" title="struct gsk4::auto::render_node::RenderNode"><code>gsk::RenderNode</code></a> or
+<a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="variant core::option::Option::None"><code>None</code></a> if there are no nodes to render.</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.to_paintable" class="method"><a class="src rightside" href="../../src/gtk4/auto/snapshot.rs.html#1117-1124">source</a><h4 class="code-header">fn <a href="#method.to_paintable" class="fn">to_paintable</a>(self, size: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/graphene/auto/size/struct.Size.html" title="struct graphene::auto::size::Size">Size</a>&gt;) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../../gdk4/auto/paintable/struct.Paintable.html" title="struct gdk4::auto::paintable::Paintable">Paintable</a>&gt;</h4></section></summary><div class="docblock"><p>Returns a paintable encapsulating the render node
+that was constructed by @self.</p>
+<p>After calling this function, it is no longer possible to
+add more nodes to @self. The only function that should
+be called after this is <code>GObject::Object::unref()</code>.</p>
+<h6 id="size"><a class="doc-anchor" href="#size">§</a><code>size</code></h6>
+<p>The size of the resulting paintable
+or <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="variant core::option::Option::None"><code>None</code></a> to use the bounds of the snapshot</p>
+<h5 id="returns-2"><a class="doc-anchor" href="#returns-2">§</a>Returns</h5>
+<p>a new <a href="../../gdk4/auto/paintable/struct.Paintable.html" title="struct gdk4::auto::paintable::Paintable"><code>gdk::Paintable</code></a></p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.transform" class="method"><a class="src rightside" href="../../src/gtk4/auto/snapshot.rs.html#1130-1134">source</a><h4 class="code-header">fn <a href="#method.transform" class="fn">transform</a>(&amp;self, transform: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;<a class="struct" href="../../gsk4/auto/transform/struct.Transform.html" title="struct gsk4::auto::transform::Transform">Transform</a>&gt;)</h4></section></summary><div class="docblock"><p>Transforms @self’s coordinate system with the given @transform.</p>
+<h6 id="transform"><a class="doc-anchor" href="#transform">§</a><code>transform</code></h6>
+<p>the transform to apply</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.transform_matrix" class="method"><a class="src rightside" href="../../src/gtk4/auto/snapshot.rs.html#1140-1147">source</a><h4 class="code-header">fn <a href="#method.transform_matrix" class="fn">transform_matrix</a>(&amp;self, matrix: &amp;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/graphene/auto/matrix/struct.Matrix.html" title="struct graphene::auto::matrix::Matrix">Matrix</a>)</h4></section></summary><div class="docblock"><p>Transforms @self’s coordinate system with the given @matrix.</p>
+<h6 id="matrix"><a class="doc-anchor" href="#matrix">§</a><code>matrix</code></h6>
+<p>the matrix to multiply the transform with</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.translate" class="method"><a class="src rightside" href="../../src/gtk4/auto/snapshot.rs.html#1153-1157">source</a><h4 class="code-header">fn <a href="#method.translate" class="fn">translate</a>(&amp;self, point: &amp;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/graphene/auto/point/struct.Point.html" title="struct graphene::auto::point::Point">Point</a>)</h4></section></summary><div class="docblock"><p>Translates @self’s coordinate system by @point in 2-dimensional space.</p>
+<h6 id="point"><a class="doc-anchor" href="#point">§</a><code>point</code></h6>
+<p>the point to translate the snapshot by</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.translate_3d" class="method"><a class="src rightside" href="../../src/gtk4/auto/snapshot.rs.html#1163-1167">source</a><h4 class="code-header">fn <a href="#method.translate_3d" class="fn">translate_3d</a>(&amp;self, point: &amp;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/graphene/auto/point3_d/struct.Point3D.html" title="struct graphene::auto::point3_d::Point3D">Point3D</a>)</h4></section></summary><div class="docblock"><p>Translates @self’s coordinate system by @point.</p>
+<h6 id="point-1"><a class="doc-anchor" href="#point-1">§</a><code>point</code></h6>
+<p>the point to translate the snapshot by</p>
+</div></details></div><h2 id="object-safety" class="section-header">Object Safety<a href="#object-safety" class="anchor">§</a></h2><div class="object-safety-info">This trait is <b>not</b> <a href="https://doc.rust-lang.org/nightly/reference/items/traits.html#object-safety">object safe</a>.</div><h2 id="implementors" class="section-header">Implementors<a href="#implementors" class="anchor">§</a></h2><div id="implementors-list"><section id="impl-SnapshotExt-for-O" class="impl"><a class="src rightside" href="../../src/gtk4/auto/snapshot.rs.html#1170">source</a><a href="#impl-SnapshotExt-for-O" class="anchor">§</a><h3 class="code-header">impl&lt;O: <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Snapshot.html" title="struct gtk4::Snapshot">Snapshot</a>&gt;&gt; <a class="trait" href="trait.SnapshotExt.html" title="trait gtk4::prelude::SnapshotExt">SnapshotExt</a> for O</h3></section></div><script src="../../trait.impl/gtk4/auto/snapshot/trait.SnapshotExt.js" async></script></section></div></main></body></html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Trait containing all `struct@CellEditable` methods."><title>CellEditableExt in gtk4::prelude - Rust</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../static.files/rustdoc-aa0817cf.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.90.0-nightly (a00149764 2025-07-14)" data-channel="nightly" data-search-js="search-179e01a3.js" data-settings-js="settings-5514c975.js" ><script src="../../static.files/storage-4e99c027.js"></script><script defer src="sidebar-items.js"></script><script defer src="../../static.files/main-673ee1e0.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-32bb7600.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-6580c154.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-044be391.svg"></head><body class="rustdoc trait"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
+
+    function checkDocsLatestStable() {
+        function popup(msg, url) { return `
+            <style scoped="scoped">
+                .popup {
+                    max-width: 16em;
+                    background-color: #fff;
+                    position: fixed;
+                    z-index: 1;
+                    margin-left: auto;
+                    bottom: 1em;
+                    right: 1em;
+                    border-radius: 5px;
+                    box-shadow: 1px 1px 4px #777;
+                }
+
+                .popup a.version {
+                    color: #e57300;
+                    padding: 0.6em 1em;
+                    display: block;
+                }
+                .popup a.version:hover {
+                    color: #b25900;
+                }
+
+                .popup a.close {
+                    color: white;
+                    background: grey;
+                    border-radius: 99px;
+                    display: inline-block;
+                    width: 19px;
+                    line-height: 19px;
+                    font-weight: bold;
+                    text-align: center;
+                    margin: 0.6em;
+                    float: right;
+                }
+                .popup a.close:hover {
+                    background: black;
+                }
+            </style>
+            <section class="popup" id="gir_docs_popup">
+                <a class="close" href="#" onclick="document.getElementById('gir_docs_popup').remove(); return false">×</a>
+                <a class="version" href="https://gtk-rs.org/gtk4-rs/stable/latest/docs">
+                    ⚠ ${msg}
+                </a>
+            </section>
+        ` };
+
+        if ("0.10" == "main") {
+            document.body.insertAdjacentHTML(
+                'beforeend',
+                popup("This is the development version. Go to latest stable version.", "stable/latest")
+            );
+        } else {
+            fetch('https://gtk-rs.org/gtk4-rs/LATEST_RELEASE_BRANCH')
+                .then(response => response.text())
+                .then(latest_branch => {
+                    if (latest_branch.trim() != "0.10") {
+                        document.body.insertAdjacentHTML(
+                            'beforeend',
+                            popup("This version is outdated. Go to latest version.", "stable/latest")
+                        );
+                    }
+                });
+        }
+    }
+</script>
+
+
+<nav class="mobile-topbar"><button class="sidebar-menu-toggle" title="show sidebar"></button></nav><nav class="sidebar"><div class="sidebar-crate"><h2><a href="../../gtk4/index.html">gtk4</a><span class="version">0.10.0</span></h2></div><div class="sidebar-elems"><section id="rustdoc-toc"><h2 class="location"><a href="#">Cell<wbr>Editable<wbr>Ext</a></h2><h3><a href="#">Sections</a></h3><ul class="block top-toc"><li><a href="#implementors-1" title="Implementors">Implementors</a></li></ul><h3><a href="#provided-methods">Provided Methods</a></h3><ul class="block"><li><a href="#method.connect_editing_canceled_notify" title="connect_editing_canceled_notify">connect_editing_canceled_notify</a></li><li><a href="#method.connect_editing_done" title="connect_editing_done">connect_editing_done</a></li><li><a href="#method.connect_remove_widget" title="connect_remove_widget">connect_remove_widget</a></li><li><a href="#method.editing_done" title="editing_done">editing_done</a></li><li><a href="#method.is_editing_canceled" title="is_editing_canceled">is_editing_canceled</a></li><li><a href="#method.remove_widget" title="remove_widget">remove_widget</a></li><li><a href="#method.set_editing_canceled" title="set_editing_canceled">set_editing_canceled</a></li><li><a href="#method.start_editing" title="start_editing">start_editing</a></li></ul><h3><a href="#dyn-compatibility">Dyn Compatibility</a></h3><h3><a href="#implementors">Implementors</a></h3></section><div id="rustdoc-modnav"><h2><a href="index.html">In gtk4::<wbr>prelude</a></h2></div></div></nav><div class="sidebar-resizer" title="Drag to resize sidebar"></div><main><div class="width-limiter"><rustdoc-search></rustdoc-search><section id="main-content" class="content"><div class="main-heading"><div class="rustdoc-breadcrumbs"><a href="../index.html">gtk4</a>::<wbr><a href="index.html">prelude</a></div><h1>Trait <span class="trait">CellEditableExt</span><button id="copy-path" title="Copy item path to clipboard">Copy item path</button></h1><rustdoc-toolbar></rustdoc-toolbar><span class="sub-heading"><a class="src" href="../../src/gtk4/auto/cell_editable.rs.html#515-669">Source</a> </span></div><pre class="rust item-decl"><code>pub trait CellEditableExt: <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.CellEditable.html" title="struct gtk4::CellEditable">CellEditable</a>&gt; + 'static {
+    // Provided methods
+    fn <a href="#method.editing_done" class="fn">editing_done</a>(&amp;self) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.remove_widget" class="fn">remove_widget</a>(&amp;self) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.start_editing" class="fn">start_editing</a>(&amp;self, event: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;impl <a class="trait" href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html" title="trait core::convert::AsRef">AsRef</a>&lt;<a class="struct" href="../../gdk4/auto/event/struct.Event.html" title="struct gdk4::auto::event::Event">Event</a>&gt;&gt;) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.is_editing_canceled" class="fn">is_editing_canceled</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.set_editing_canceled" class="fn">set_editing_canceled</a>(&amp;self, editing_canceled: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_editing_done" class="fn">connect_editing_done</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;Self) + 'static&gt;(
+        &amp;self,
+        f: F,
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_remove_widget" class="fn">connect_remove_widget</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;Self) + 'static&gt;(
+        &amp;self,
+        f: F,
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_editing_canceled_notify" class="fn">connect_editing_canceled_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;Self) + 'static&gt;(
+        &amp;self,
+        f: F,
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+}</code></pre><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span><details class="toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>Trait containing all <a href="../struct.CellEditable.html" title="struct gtk4::CellEditable"><code>CellEditable</code></a> methods.</p>
+<h2 id="implementors-1"><a class="doc-anchor" href="#implementors-1">§</a>Implementors</h2>
+<p><a href="../struct.CellEditable.html" title="struct gtk4::CellEditable"><code>CellEditable</code></a>, <a href="../struct.ComboBoxText.html" title="struct gtk4::ComboBoxText"><code>ComboBoxText</code></a>, <a href="../struct.ComboBox.html" title="struct gtk4::ComboBox"><code>ComboBox</code></a>, <a href="../struct.Entry.html" title="struct gtk4::Entry"><code>Entry</code></a>, <a href="../struct.SpinButton.html" title="struct gtk4::SpinButton"><code>SpinButton</code></a></p>
+</div></details><h2 id="provided-methods" class="section-header">Provided Methods<a href="#provided-methods" class="anchor">§</a></h2><div class="methods"><details class="toggle method-toggle" open><summary><section id="method.editing_done" class="method"><a class="src rightside" href="../../src/gtk4/auto/cell_editable.rs.html#523-527">Source</a><h4 class="code-header">fn <a href="#method.editing_done" class="fn">editing_done</a>(&amp;self)</h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span></summary><div class="docblock"><p>Emits the <code>GtkCellEditable::editing-done</code> signal.</p>
+<h5 id="deprecated-since-410"><a class="doc-anchor" href="#deprecated-since-410">§</a>Deprecated since 4.10</h5></div></details><details class="toggle method-toggle" open><summary><section id="method.remove_widget" class="method"><a class="src rightside" href="../../src/gtk4/auto/cell_editable.rs.html#536-540">Source</a><h4 class="code-header">fn <a href="#method.remove_widget" class="fn">remove_widget</a>(&amp;self)</h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span></summary><div class="docblock"><p>Emits the <code>GtkCellEditable::remove-widget</code> signal.</p>
+<h5 id="deprecated-since-410-1"><a class="doc-anchor" href="#deprecated-since-410-1">§</a>Deprecated since 4.10</h5></div></details><details class="toggle method-toggle" open><summary><section id="method.start_editing" class="method"><a class="src rightside" href="../../src/gtk4/auto/cell_editable.rs.html#556-563">Source</a><h4 class="code-header">fn <a href="#method.start_editing" class="fn">start_editing</a>(&amp;self, event: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;impl <a class="trait" href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html" title="trait core::convert::AsRef">AsRef</a>&lt;<a class="struct" href="../../gdk4/auto/event/struct.Event.html" title="struct gdk4::auto::event::Event">Event</a>&gt;&gt;)</h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span></summary><div class="docblock"><p>Begins editing on a @self.</p>
+<p>The <a href="../struct.CellRenderer.html" title="struct gtk4::CellRenderer"><code>CellRenderer</code></a> for the cell creates and returns a <a href="../struct.CellEditable.html" title="struct gtk4::CellEditable"><code>CellEditable</code></a> from
+gtk_cell_renderer_start_editing(), configured for the <a href="../struct.CellRenderer.html" title="struct gtk4::CellRenderer"><code>CellRenderer</code></a> type.</p>
+<p>gtk_cell_editable_start_editing() can then set up @self suitably for
+editing a cell, e.g. making the Esc key emit <code>GtkCellEditable::editing-done</code>.</p>
+<p>Note that the @self is created on-demand for the current edit; its
+lifetime is temporary and does not persist across other edits and/or cells.</p>
+<h6 id="event"><a class="doc-anchor" href="#event">§</a><code>event</code></h6>
+<p>The <a href="../../gdk4/auto/event/struct.Event.html" title="struct gdk4::auto::event::Event"><code>gdk::Event</code></a> that began the editing process, or
+<a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="variant core::option::Option::None"><code>None</code></a> if editing was initiated programmatically</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.is_editing_canceled" class="method"><a class="src rightside" href="../../src/gtk4/auto/cell_editable.rs.html#567-569">Source</a><h4 class="code-header">fn <a href="#method.is_editing_canceled" class="fn">is_editing_canceled</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span></summary><div class="docblock"><p>Indicates whether editing on the cell has been canceled.</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.set_editing_canceled" class="method"><a class="src rightside" href="../../src/gtk4/auto/cell_editable.rs.html#573-575">Source</a><h4 class="code-header">fn <a href="#method.set_editing_canceled" class="fn">set_editing_canceled</a>(&amp;self, editing_canceled: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>)</h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span></summary><div class="docblock"><p>Indicates whether editing on the cell has been canceled.</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.connect_editing_done" class="method"><a class="src rightside" href="../../src/gtk4/auto/cell_editable.rs.html#589-608">Source</a><h4 class="code-header">fn <a href="#method.connect_editing_done" class="fn">connect_editing_done</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;Self) + 'static&gt;(&amp;self, f: F) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span></summary><div class="docblock"><p>This signal is a sign for the cell renderer to update its
+value from the @cell_editable.</p>
+<p>Implementations of <a href="../struct.CellEditable.html" title="struct gtk4::CellEditable"><code>CellEditable</code></a> are responsible for
+emitting this signal when they are done editing, e.g.
+<a href="../struct.Entry.html" title="struct gtk4::Entry"><code>Entry</code></a> emits this signal when the user presses Enter. Typical things to
+do in a handler for ::editing-done are to capture the edited value,
+disconnect the @cell_editable from signals on the <a href="../struct.CellRenderer.html" title="struct gtk4::CellRenderer"><code>CellRenderer</code></a>, etc.</p>
+<p>gtk_cell_editable_editing_done() is a convenience method
+for emitting <code>GtkCellEditable::editing-done</code>.</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.connect_remove_widget" class="method"><a class="src rightside" href="../../src/gtk4/auto/cell_editable.rs.html#623-642">Source</a><h4 class="code-header">fn <a href="#method.connect_remove_widget" class="fn">connect_remove_widget</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;Self) + 'static&gt;(&amp;self, f: F) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span></summary><div class="docblock"><p>This signal is meant to indicate that the cell is finished
+editing, and the @cell_editable widget is being removed and may
+subsequently be destroyed.</p>
+<p>Implementations of <a href="../struct.CellEditable.html" title="struct gtk4::CellEditable"><code>CellEditable</code></a> are responsible for
+emitting this signal when they are done editing. It must
+be emitted after the <code>GtkCellEditable::editing-done</code> signal,
+to give the cell renderer a chance to update the cell’s value
+before the widget is removed.</p>
+<p>gtk_cell_editable_remove_widget() is a convenience method
+for emitting <code>GtkCellEditable::remove-widget</code>.</p>
+</div></details><section id="method.connect_editing_canceled_notify" class="method"><a class="src rightside" href="../../src/gtk4/auto/cell_editable.rs.html#645-668">Source</a><h4 class="code-header">fn <a href="#method.connect_editing_canceled_notify" class="fn">connect_editing_canceled_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;Self) + 'static&gt;(
+    &amp;self,
+    f: F,
+) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span></div><h2 id="dyn-compatibility" class="section-header">Dyn Compatibility<a href="#dyn-compatibility" class="anchor">§</a></h2><div class="dyn-compatibility-info"><p>This trait is <b>not</b> <a href="https://doc.rust-lang.org/nightly/reference/items/traits.html#dyn-compatibility">dyn compatible</a>.</p><p><i>In older versions of Rust, dyn compatibility was called "object safety", so this trait is not object safe.</i></p></div><h2 id="implementors" class="section-header">Implementors<a href="#implementors" class="anchor">§</a></h2><div id="implementors-list"><section id="impl-CellEditableExt-for-O" class="impl"><a class="src rightside" href="../../src/gtk4/auto/cell_editable.rs.html#671">Source</a><a href="#impl-CellEditableExt-for-O" class="anchor">§</a><h3 class="code-header">impl&lt;O: <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.CellEditable.html" title="struct gtk4::CellEditable">CellEditable</a>&gt;&gt; <a class="trait" href="trait.CellEditableExt.html" title="trait gtk4::prelude::CellEditableExt">CellEditableExt</a> for O</h3></section></div><script src="../../trait.impl/gtk4/auto/cell_editable/trait.CellEditableExt.js" async></script></section></div></main></body></html>

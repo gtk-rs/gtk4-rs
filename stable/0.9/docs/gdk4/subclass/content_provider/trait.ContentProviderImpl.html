@@ -1,0 +1,114 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="API documentation for the Rust `ContentProviderImpl` trait in crate `gdk4`."><title>ContentProviderImpl in gdk4::subclass::content_provider - Rust</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../static.files/rustdoc-84e720fa.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="gdk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.89.0-nightly (5526a2f47 2025-06-20)" data-channel="nightly" data-search-js="search-343419c9.js" data-settings-js="settings-5514c975.js" ><script src="../../../static.files/storage-4e99c027.js"></script><script defer src="sidebar-items.js"></script><script defer src="../../../static.files/main-fd3af306.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-32bb7600.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-6580c154.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-044be391.svg"></head><body class="rustdoc trait"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
+
+    function checkDocsLatestStable() {
+        function popup(msg, url) { return `
+            <style scoped="scoped">
+                .popup {
+                    max-width: 16em;
+                    background-color: #fff;
+                    position: fixed;
+                    z-index: 1;
+                    margin-left: auto;
+                    bottom: 1em;
+                    right: 1em;
+                    border-radius: 5px;
+                    box-shadow: 1px 1px 4px #777;
+                }
+
+                .popup a.version {
+                    color: #e57300;
+                    padding: 0.6em 1em;
+                    display: block;
+                }
+                .popup a.version:hover {
+                    color: #b25900;
+                }
+
+                .popup a.close {
+                    color: white;
+                    background: grey;
+                    border-radius: 99px;
+                    display: inline-block;
+                    width: 19px;
+                    line-height: 19px;
+                    font-weight: bold;
+                    text-align: center;
+                    margin: 0.6em;
+                    float: right;
+                }
+                .popup a.close:hover {
+                    background: black;
+                }
+            </style>
+            <section class="popup" id="gir_docs_popup">
+                <a class="close" href="#" onclick="document.getElementById('gir_docs_popup').remove(); return false">×</a>
+                <a class="version" href="https://gtk-rs.org/gtk4-rs/stable/latest/docs">
+                    ⚠ ${msg}
+                </a>
+            </section>
+        ` };
+
+        if ("0.9" == "main") {
+            document.body.insertAdjacentHTML(
+                'beforeend',
+                popup("This is the development version. Go to latest stable version.", "stable/latest")
+            );
+        } else {
+            fetch('https://gtk-rs.org/gtk4-rs/LATEST_RELEASE_BRANCH')
+                .then(response => response.text())
+                .then(latest_branch => {
+                    if (latest_branch.trim() != "0.9") {
+                        document.body.insertAdjacentHTML(
+                            'beforeend',
+                            popup("This version is outdated. Go to latest version.", "stable/latest")
+                        );
+                    }
+                });
+        }
+    }
+</script>
+
+
+<nav class="mobile-topbar"><button class="sidebar-menu-toggle" title="show sidebar"></button></nav><nav class="sidebar"><div class="sidebar-crate"><h2><a href="../../../gdk4/index.html">gdk4</a><span class="version">0.9.7</span></h2></div><div class="sidebar-elems"><section id="rustdoc-toc"><h2 class="location"><a href="#">Content<wbr>Provider<wbr>Impl</a></h2><h3><a href="#provided-methods">Provided Methods</a></h3><ul class="block"><li><a href="#method.attach_clipboard" title="attach_clipboard">attach_clipboard</a></li><li><a href="#method.content_changed" title="content_changed">content_changed</a></li><li><a href="#method.detach_clipboard" title="detach_clipboard">detach_clipboard</a></li><li><a href="#method.formats" title="formats">formats</a></li><li><a href="#method.storable_formats" title="storable_formats">storable_formats</a></li><li><a href="#method.value" title="value">value</a></li><li><a href="#method.write_mime_type_future" title="write_mime_type_future">write_mime_type_future</a></li></ul><h3><a href="#dyn-compatibility">Dyn Compatibility</a></h3><h3><a href="#implementors">Implementors</a></h3></section><div id="rustdoc-modnav"><h2><a href="index.html">In gdk4::<wbr>subclass::<wbr>content_<wbr>provider</a></h2></div></div></nav><div class="sidebar-resizer" title="Drag to resize sidebar"></div><main><div class="width-limiter"><rustdoc-search></rustdoc-search><section id="main-content" class="content"><div class="main-heading"><div class="rustdoc-breadcrumbs"><a href="../../index.html">gdk4</a>::<wbr><a href="../index.html">subclass</a>::<wbr><a href="index.html">content_provider</a></div><h1>Trait <span class="trait">ContentProviderImpl</span><button id="copy-path" title="Copy item path to clipboard">Copy item path</button></h1><rustdoc-toolbar></rustdoc-toolbar><span class="sub-heading"><a class="src" href="../../../src/gdk4/subclass/content_provider.rs.html#12-76">Source</a> </span></div><pre class="rust item-decl"><code>pub trait ContentProviderImpl: <a class="trait" href="trait.ContentProviderImplExt.html" title="trait gdk4::subclass::content_provider::ContentProviderImplExt">ContentProviderImplExt</a> + <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/subclass/object/trait.ObjectImpl.html" title="trait glib::subclass::object::ObjectImpl">ObjectImpl</a> {
+    // Provided methods
+    fn <a href="#method.content_changed" class="fn">content_changed</a>(&amp;self) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.attach_clipboard" class="fn">attach_clipboard</a>(&amp;self, clipboard: &amp;<a class="struct" href="../../struct.Clipboard.html" title="struct gdk4::Clipboard">Clipboard</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.detach_clipboard" class="fn">detach_clipboard</a>(&amp;self, clipboard: &amp;<a class="struct" href="../../struct.Clipboard.html" title="struct gdk4::Clipboard">Clipboard</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.formats" class="fn">formats</a>(&amp;self) -&gt; <a class="struct" href="../../struct.ContentFormats.html" title="struct gdk4::ContentFormats">ContentFormats</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.storable_formats" class="fn">storable_formats</a>(&amp;self) -&gt; <a class="struct" href="../../struct.ContentFormats.html" title="struct gdk4::ContentFormats">ContentFormats</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.write_mime_type_future" class="fn">write_mime_type_future</a>(
+        &amp;self,
+        mime_type: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>,
+        stream: &amp;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/gio/auto/output_stream/struct.OutputStream.html" title="struct gio::auto::output_stream::OutputStream">OutputStream</a>,
+        io_priority: <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/source/struct.Priority.html" title="struct glib::source::Priority">Priority</a>,
+    ) -&gt; <a class="struct" href="https://doc.rust-lang.org/nightly/core/pin/struct.Pin.html" title="struct core::pin::Pin">Pin</a>&lt;<a class="struct" href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html" title="struct alloc::boxed::Box">Box</a>&lt;dyn <a class="trait" href="https://doc.rust-lang.org/nightly/core/future/future/trait.Future.html" title="trait core::future::future::Future">Future</a>&lt;Output = <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.unit.html">()</a>, <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/error/struct.Error.html" title="struct glib::error::Error">Error</a>&gt;&gt; + 'static&gt;&gt; { ... }
+<span class="item-spacer"></span>    fn <a href="#method.value" class="fn">value</a>(&amp;self, type_: <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/types/struct.Type.html" title="struct glib::types::Type">Type</a>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/value/struct.Value.html" title="struct glib::value::Value">Value</a>, <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/error/struct.Error.html" title="struct glib::error::Error">Error</a>&gt; { ... }
+}</code></pre><h2 id="provided-methods" class="section-header">Provided Methods<a href="#provided-methods" class="anchor">§</a></h2><div class="methods"><details class="toggle method-toggle" open><summary><section id="method.content_changed" class="method"><a class="src rightside" href="../../../src/gdk4/subclass/content_provider.rs.html#14-16">Source</a><h4 class="code-header">fn <a href="#method.content_changed" class="fn">content_changed</a>(&amp;self)</h4></section></summary><div class="docblock"><p>Emits the ::content-changed signal.</p>
+</div></details><section id="method.attach_clipboard" class="method"><a class="src rightside" href="../../../src/gdk4/subclass/content_provider.rs.html#18-20">Source</a><h4 class="code-header">fn <a href="#method.attach_clipboard" class="fn">attach_clipboard</a>(&amp;self, clipboard: &amp;<a class="struct" href="../../struct.Clipboard.html" title="struct gdk4::Clipboard">Clipboard</a>)</h4></section><section id="method.detach_clipboard" class="method"><a class="src rightside" href="../../../src/gdk4/subclass/content_provider.rs.html#22-24">Source</a><h4 class="code-header">fn <a href="#method.detach_clipboard" class="fn">detach_clipboard</a>(&amp;self, clipboard: &amp;<a class="struct" href="../../struct.Clipboard.html" title="struct gdk4::Clipboard">Clipboard</a>)</h4></section><details class="toggle method-toggle" open><summary><section id="method.formats" class="method"><a class="src rightside" href="../../../src/gdk4/subclass/content_provider.rs.html#31-33">Source</a><h4 class="code-header">fn <a href="#method.formats" class="fn">formats</a>(&amp;self) -&gt; <a class="struct" href="../../struct.ContentFormats.html" title="struct gdk4::ContentFormats">ContentFormats</a></h4></section></summary><div class="docblock"><p>Gets the formats that the provider can provide its current contents in.</p>
+<h5 id="returns"><a class="doc-anchor" href="#returns">§</a>Returns</h5>
+<p>The formats of the provider</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.storable_formats" class="method"><a class="src rightside" href="../../../src/gdk4/subclass/content_provider.rs.html#45-47">Source</a><h4 class="code-header">fn <a href="#method.storable_formats" class="fn">storable_formats</a>(&amp;self) -&gt; <a class="struct" href="../../struct.ContentFormats.html" title="struct gdk4::ContentFormats">ContentFormats</a></h4></section></summary><div class="docblock"><p>Gets the formats that the provider suggests other applications to store
+the data in.</p>
+<p>An example of such an application would be a clipboard manager.</p>
+<p>This can be assumed to be a subset of <a href="../../prelude/trait.ContentProviderExt.html#method.formats" title="method gdk4::prelude::ContentProviderExt::formats"><code>ContentProviderExt::formats()</code></a>.</p>
+<h5 id="returns-1"><a class="doc-anchor" href="#returns-1">§</a>Returns</h5>
+<p>The storable formats of the provider</p>
+</div></details><section id="method.write_mime_type_future" class="method"><a class="src rightside" href="../../../src/gdk4/subclass/content_provider.rs.html#49-56">Source</a><h4 class="code-header">fn <a href="#method.write_mime_type_future" class="fn">write_mime_type_future</a>(
+    &amp;self,
+    mime_type: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>,
+    stream: &amp;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/gio/auto/output_stream/struct.OutputStream.html" title="struct gio::auto::output_stream::OutputStream">OutputStream</a>,
+    io_priority: <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/source/struct.Priority.html" title="struct glib::source::Priority">Priority</a>,
+) -&gt; <a class="struct" href="https://doc.rust-lang.org/nightly/core/pin/struct.Pin.html" title="struct core::pin::Pin">Pin</a>&lt;<a class="struct" href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html" title="struct alloc::boxed::Box">Box</a>&lt;dyn <a class="trait" href="https://doc.rust-lang.org/nightly/core/future/future/trait.Future.html" title="trait core::future::future::Future">Future</a>&lt;Output = <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.unit.html">()</a>, <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/error/struct.Error.html" title="struct glib::error::Error">Error</a>&gt;&gt; + 'static&gt;&gt;</h4></section><details class="toggle method-toggle" open><summary><section id="method.value" class="method"><a class="src rightside" href="../../../src/gdk4/subclass/content_provider.rs.html#73-75">Source</a><h4 class="code-header">fn <a href="#method.value" class="fn">value</a>(&amp;self, type_: <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/types/struct.Type.html" title="struct glib::types::Type">Type</a>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/value/struct.Value.html" title="struct glib::value::Value">Value</a>, <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/error/struct.Error.html" title="struct glib::error::Error">Error</a>&gt;</h4></section></summary><div class="docblock"><p>Gets the contents of @self stored in @value.</p>
+<p>The @value will have been initialized to the <code>GType</code> the value should be
+provided in. This given <code>GType</code> does not need to be listed in the formats
+returned by <a href="../../prelude/trait.ContentProviderExt.html#method.formats" title="method gdk4::prelude::ContentProviderExt::formats"><code>ContentProviderExt::formats()</code></a>. However, if the
+given <code>GType</code> is not supported, this operation can fail and
+<code>G_IO_ERROR_NOT_SUPPORTED</code> will be reported.</p>
+<h5 id="returns-2"><a class="doc-anchor" href="#returns-2">§</a>Returns</h5>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>true</code></a> if the value was set successfully. Otherwise
+@error will be set to describe the failure.</p>
+<h6 id="value"><a class="doc-anchor" href="#value">§</a><code>value</code></h6>
+<p>the <code>GValue</code> to fill</p>
+</div></details></div><h2 id="dyn-compatibility" class="section-header">Dyn Compatibility<a href="#dyn-compatibility" class="anchor">§</a></h2><div class="dyn-compatibility-info"><p>This trait is <b>not</b> <a href="https://doc.rust-lang.org/nightly/reference/items/traits.html#dyn-compatibility">dyn compatible</a>.</p><p><i>In older versions of Rust, dyn compatibility was called "object safety", so this trait is not object safe.</i></p></div><h2 id="implementors" class="section-header">Implementors<a href="#implementors" class="anchor">§</a></h2><div id="implementors-list"></div><script src="../../../trait.impl/gdk4/subclass/content_provider/trait.ContentProviderImpl.js" async></script></section></div></main></body></html>

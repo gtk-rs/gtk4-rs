@@ -1,0 +1,113 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Trait containing all `struct@AccessibleText` methods."><title>AccessibleTextExt in gtk4::prelude - Rust</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../static.files/rustdoc-aa0817cf.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.90.0-nightly (a00149764 2025-07-14)" data-channel="nightly" data-search-js="search-179e01a3.js" data-settings-js="settings-5514c975.js" ><script src="../../static.files/storage-4e99c027.js"></script><script defer src="sidebar-items.js"></script><script defer src="../../static.files/main-673ee1e0.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-32bb7600.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-6580c154.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-044be391.svg"></head><body class="rustdoc trait"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
+
+    function checkDocsLatestStable() {
+        function popup(msg, url) { return `
+            <style scoped="scoped">
+                .popup {
+                    max-width: 16em;
+                    background-color: #fff;
+                    position: fixed;
+                    z-index: 1;
+                    margin-left: auto;
+                    bottom: 1em;
+                    right: 1em;
+                    border-radius: 5px;
+                    box-shadow: 1px 1px 4px #777;
+                }
+
+                .popup a.version {
+                    color: #e57300;
+                    padding: 0.6em 1em;
+                    display: block;
+                }
+                .popup a.version:hover {
+                    color: #b25900;
+                }
+
+                .popup a.close {
+                    color: white;
+                    background: grey;
+                    border-radius: 99px;
+                    display: inline-block;
+                    width: 19px;
+                    line-height: 19px;
+                    font-weight: bold;
+                    text-align: center;
+                    margin: 0.6em;
+                    float: right;
+                }
+                .popup a.close:hover {
+                    background: black;
+                }
+            </style>
+            <section class="popup" id="gir_docs_popup">
+                <a class="close" href="#" onclick="document.getElementById('gir_docs_popup').remove(); return false">×</a>
+                <a class="version" href="https://gtk-rs.org/gtk4-rs/stable/latest/docs">
+                    ⚠ ${msg}
+                </a>
+            </section>
+        ` };
+
+        if ("main" == "main") {
+            document.body.insertAdjacentHTML(
+                'beforeend',
+                popup("This is the development version. Go to latest stable version.", "stable/latest")
+            );
+        } else {
+            fetch('https://gtk-rs.org/gtk4-rs/LATEST_RELEASE_BRANCH')
+                .then(response => response.text())
+                .then(latest_branch => {
+                    if (latest_branch.trim() != "main") {
+                        document.body.insertAdjacentHTML(
+                            'beforeend',
+                            popup("This version is outdated. Go to latest version.", "stable/latest")
+                        );
+                    }
+                });
+        }
+    }
+</script>
+
+
+<nav class="mobile-topbar"><button class="sidebar-menu-toggle" title="show sidebar"></button></nav><nav class="sidebar"><div class="sidebar-crate"><h2><a href="../../gtk4/index.html">gtk4</a><span class="version">0.10.0</span></h2></div><div class="sidebar-elems"><section id="rustdoc-toc"><h2 class="location"><a href="#">Accessible<wbr>Text<wbr>Ext</a></h2><h3><a href="#">Sections</a></h3><ul class="block top-toc"><li><a href="#implementors-1" title="Implementors">Implementors</a></li></ul><h3><a href="#provided-methods">Provided Methods</a></h3><ul class="block"><li><a href="#method.update_caret_position" title="update_caret_position">update_caret_position</a></li><li><a href="#method.update_contents" title="update_contents">update_contents</a></li><li><a href="#method.update_selection_bound" title="update_selection_bound">update_selection_bound</a></li></ul><h3><a href="#dyn-compatibility">Dyn Compatibility</a></h3><h3><a href="#implementors">Implementors</a></h3></section><div id="rustdoc-modnav"><h2><a href="index.html">In gtk4::<wbr>prelude</a></h2></div></div></nav><div class="sidebar-resizer" title="Drag to resize sidebar"></div><main><div class="width-limiter"><rustdoc-search></rustdoc-search><section id="main-content" class="content"><div class="main-heading"><div class="rustdoc-breadcrumbs"><a href="../index.html">gtk4</a>::<wbr><a href="index.html">prelude</a></div><h1>Trait <span class="trait">AccessibleTextExt</span><button id="copy-path" title="Copy item path to clipboard">Copy item path</button></h1><rustdoc-toolbar></rustdoc-toolbar><span class="sub-heading"><a class="src" href="../../src/gtk4/auto/accessible_text.rs.html#38-89">Source</a> </span></div><pre class="rust item-decl"><code>pub trait AccessibleTextExt: <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.AccessibleText.html" title="struct gtk4::AccessibleText">AccessibleText</a>&gt; + 'static {
+    // Provided methods
+    fn <a href="#method.update_caret_position" class="fn">update_caret_position</a>(&amp;self) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.update_contents" class="fn">update_contents</a>(
+        &amp;self,
+        change: <a class="enum" href="../enum.AccessibleTextContentChange.html" title="enum gtk4::AccessibleTextContentChange">AccessibleTextContentChange</a>,
+        start: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>,
+        end: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>,
+    ) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.update_selection_bound" class="fn">update_selection_bound</a>(&amp;self) { ... }
+}</code></pre><span class="item-info"><div class="stab portability">Available on <strong>crate feature <code>v4_14</code></strong> only.</div></span><details class="toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>Trait containing all <a href="../struct.AccessibleText.html" title="struct gtk4::AccessibleText"><code>AccessibleText</code></a> methods.</p>
+<h2 id="implementors-1"><a class="doc-anchor" href="#implementors-1">§</a>Implementors</h2>
+<p><a href="../struct.AccessibleText.html" title="struct gtk4::AccessibleText"><code>AccessibleText</code></a>, <a href="../struct.Inscription.html" title="struct gtk4::Inscription"><code>Inscription</code></a>, <a href="../struct.Label.html" title="struct gtk4::Label"><code>Label</code></a>, <a href="../struct.TextView.html" title="struct gtk4::TextView"><code>TextView</code></a>, <a href="../struct.Text.html" title="struct gtk4::Text"><code>Text</code></a></p>
+</div></details><h2 id="provided-methods" class="section-header">Provided Methods<a href="#provided-methods" class="anchor">§</a></h2><div class="methods"><details class="toggle method-toggle" open><summary><section id="method.update_caret_position" class="method"><a class="src rightside" href="../../src/gtk4/auto/accessible_text.rs.html#45-49">Source</a><h4 class="code-header">fn <a href="#method.update_caret_position" class="fn">update_caret_position</a>(&amp;self)</h4></section></summary><div class="docblock"><p>Updates the position of the caret.</p>
+<p>Implementations of the <a href="../struct.AccessibleText.html" title="struct gtk4::AccessibleText"><code>AccessibleText</code></a> interface should call this
+function every time the caret has moved, in order to notify assistive
+technologies.</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.update_contents" class="method"><a class="src rightside" href="../../src/gtk4/auto/accessible_text.rs.html#67-76">Source</a><h4 class="code-header">fn <a href="#method.update_contents" class="fn">update_contents</a>(
+    &amp;self,
+    change: <a class="enum" href="../enum.AccessibleTextContentChange.html" title="enum gtk4::AccessibleTextContentChange">AccessibleTextContentChange</a>,
+    start: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>,
+    end: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>,
+)</h4></section></summary><div class="docblock"><p>Notifies assistive technologies of a change in contents.</p>
+<p>Implementations of the <a href="../struct.AccessibleText.html" title="struct gtk4::AccessibleText"><code>AccessibleText</code></a> interface should call this
+function every time their contents change as the result of an operation,
+like an insertion or a removal.</p>
+<p>Note: If the change is a deletion, this function must be called <em>before</em>
+removing the contents, if it is an insertion, it must be called <em>after</em>
+inserting the new contents.</p>
+<h6 id="change"><a class="doc-anchor" href="#change">§</a><code>change</code></h6>
+<p>the type of change in the contents</p>
+<h6 id="start"><a class="doc-anchor" href="#start">§</a><code>start</code></h6>
+<p>the starting offset of the change, in characters</p>
+<h6 id="end"><a class="doc-anchor" href="#end">§</a><code>end</code></h6>
+<p>the end offset of the change, in characters</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.update_selection_bound" class="method"><a class="src rightside" href="../../src/gtk4/auto/accessible_text.rs.html#84-88">Source</a><h4 class="code-header">fn <a href="#method.update_selection_bound" class="fn">update_selection_bound</a>(&amp;self)</h4></section></summary><div class="docblock"><p>Updates the boundary of the selection.</p>
+<p>Implementations of the <a href="../struct.AccessibleText.html" title="struct gtk4::AccessibleText"><code>AccessibleText</code></a> interface should call this
+function every time the selection has moved, in order to notify assistive
+technologies.</p>
+</div></details></div><h2 id="dyn-compatibility" class="section-header">Dyn Compatibility<a href="#dyn-compatibility" class="anchor">§</a></h2><div class="dyn-compatibility-info"><p>This trait is <b>not</b> <a href="https://doc.rust-lang.org/nightly/reference/items/traits.html#dyn-compatibility">dyn compatible</a>.</p><p><i>In older versions of Rust, dyn compatibility was called "object safety", so this trait is not object safe.</i></p></div><h2 id="implementors" class="section-header">Implementors<a href="#implementors" class="anchor">§</a></h2><div id="implementors-list"><section id="impl-AccessibleTextExt-for-O" class="impl"><a class="src rightside" href="../../src/gtk4/auto/accessible_text.rs.html#91">Source</a><a href="#impl-AccessibleTextExt-for-O" class="anchor">§</a><h3 class="code-header">impl&lt;O: <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.AccessibleText.html" title="struct gtk4::AccessibleText">AccessibleText</a>&gt;&gt; <a class="trait" href="trait.AccessibleTextExt.html" title="trait gtk4::prelude::AccessibleTextExt">AccessibleTextExt</a> for O</h3></section></div><script src="../../trait.impl/gtk4/auto/accessible_text/trait.AccessibleTextExt.js" async></script></section></div></main></body></html>

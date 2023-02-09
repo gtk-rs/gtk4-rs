@@ -1,0 +1,101 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Trait containing all `struct@Root` methods."><title>RootExt in gtk4::prelude - Rust</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-46f98efaafac5295.ttf.woff2,FiraSans-Regular-018c141bf0843ffd.woff2,FiraSans-Medium-8f9a781e4970d388.woff2,SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2,SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-081576b923113409.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.79.0-nightly (3a36386dc 2024-04-25)" data-channel="nightly" data-search-js="search-bf21c90c8c1d92b1.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../static.files/storage-e32f0c247825364d.js"></script><script defer src="sidebar-items.js"></script><script defer src="../../static.files/main-20a3ad099b048cf2.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-09095024cf37855e.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc trait"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
+
+    function checkDocsLatestStable() {
+        function popup(msg, url) { return `
+            <style scoped="scoped">
+                .popup {
+                    max-width: 16em;
+                    background-color: #fff;
+                    position: fixed;
+                    z-index: 1;
+                    margin-left: auto;
+                    bottom: 1em;
+                    right: 1em;
+                    border-radius: 5px;
+                    box-shadow: 1px 1px 4px #777;
+                }
+
+                .popup a.version {
+                    color: #e57300;
+                    padding: 0.6em 1em;
+                    display: block;
+                }
+                .popup a.version:hover {
+                    color: #b25900;
+                }
+
+                .popup a.close {
+                    color: white;
+                    background: grey;
+                    border-radius: 99px;
+                    display: inline-block;
+                    width: 19px;
+                    line-height: 19px;
+                    font-weight: bold;
+                    text-align: center;
+                    margin: 0.6em;
+                    float: right;
+                }
+                .popup a.close:hover {
+                    background: black;
+                }
+            </style>
+            <section class="popup" id="gir_docs_popup">
+                <a class="close" href="#" onclick="document.getElementById('gir_docs_popup').remove(); return false">×</a>
+                <a class="version" href="https://gtk-rs.org/gtk4-rs/stable/latest/docs">
+                    ⚠ ${msg}
+                </a>
+            </section>
+        ` };
+
+        if ("0.8" == "master") {
+            document.body.insertAdjacentHTML(
+                'beforeend',
+                popup("This is the development version. Go to latest stable version.", "stable/latest")
+            );
+        } else {
+            fetch('https://gtk-rs.org/gtk4-rs/LATEST_RELEASE_BRANCH')
+                .then(response => response.text())
+                .then(latest_branch => {
+                    if (latest_branch.trim() != "0.8") {
+                        document.body.insertAdjacentHTML(
+                            'beforeend',
+                            popup("This version is outdated. Go to latest version.", "stable/latest")
+                        );
+                    }
+                });
+        }
+    }
+</script>
+
+
+<nav class="mobile-topbar"><button class="sidebar-menu-toggle" title="show sidebar"></button></nav><nav class="sidebar"><div class="sidebar-crate"><h2><a href="../../gtk4/index.html">gtk4</a><span class="version">0.8.2</span></h2></div><h2 class="location"><a href="#">RootExt</a></h2><div class="sidebar-elems"><section><h3><a href="#provided-methods">Provided Methods</a></h3><ul class="block"><li><a href="#method.display">display</a></li><li><a href="#method.focus">focus</a></li><li><a href="#method.set_focus">set_focus</a></li></ul><h3><a href="#object-safety">Object Safety</a></h3><h3><a href="#implementors">Implementors</a></h3></section><h2><a href="index.html">In gtk4::prelude</a></h2></div></nav><div class="sidebar-resizer"></div><main><div class="width-limiter"><nav class="sub"><form class="search-form"><span></span><div id="sidebar-button" tabindex="-1"><a href="../../gtk4/all.html" title="show sidebar"></a></div><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Type ‘S’ or ‘/’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings">Settings</a></div></form></nav><section id="main-content" class="content"><div class="main-heading"><h1>Trait <a href="../index.html">gtk4</a>::<wbr><a href="index.html">prelude</a>::<wbr><a class="trait" href="#">RootExt</a><button id="copy-path" title="Copy item path to clipboard">Copy item path</button></h1><span class="out-of-band"><a class="src" href="../../src/gtk4/auto/root.rs.html#48-96">source</a> · <button id="toggle-all-docs" title="collapse all docs">[<span>&#x2212;</span>]</button></span></div><pre class="rust item-decl"><code>pub trait RootExt: <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Root.html" title="struct gtk4::Root">Root</a>&gt; + Sealed + 'static {
+    // Provided methods
+    fn <a href="#method.display" class="fn">display</a>(&amp;self) -&gt; <a class="struct" href="../../gdk4/auto/display/struct.Display.html" title="struct gdk4::auto::display::Display">Display</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.focus" class="fn">focus</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt; { ... }
+<span class="item-spacer"></span>    fn <a href="#method.set_focus" class="fn">set_focus</a>(&amp;self, focus: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;&gt;) { ... }
+}</code></pre><details class="toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>Trait containing all <a href="../struct.Root.html" title="struct gtk4::Root"><code>Root</code></a> methods.</p>
+<h2 id="implementors-1"><a class="doc-anchor" href="#implementors-1">§</a>Implementors</h2>
+<p><a href="../struct.AboutDialog.html" title="struct gtk4::AboutDialog"><code>AboutDialog</code></a>, <a href="../struct.AppChooserDialog.html" title="struct gtk4::AppChooserDialog"><code>AppChooserDialog</code></a>, <a href="../struct.ApplicationWindow.html" title="struct gtk4::ApplicationWindow"><code>ApplicationWindow</code></a>, <a href="../struct.Assistant.html" title="struct gtk4::Assistant"><code>Assistant</code></a>, <a href="../struct.ColorChooserDialog.html" title="struct gtk4::ColorChooserDialog"><code>ColorChooserDialog</code></a>, <a href="../struct.Dialog.html" title="struct gtk4::Dialog"><code>Dialog</code></a>, <a href="../struct.DragIcon.html" title="struct gtk4::DragIcon"><code>DragIcon</code></a>, <a href="../struct.FileChooserDialog.html" title="struct gtk4::FileChooserDialog"><code>FileChooserDialog</code></a>, <a href="../struct.FontChooserDialog.html" title="struct gtk4::FontChooserDialog"><code>FontChooserDialog</code></a>, <a href="../struct.MessageDialog.html" title="struct gtk4::MessageDialog"><code>MessageDialog</code></a>, <a href="../struct.PageSetupUnixDialog.html" title="struct gtk4::PageSetupUnixDialog"><code>PageSetupUnixDialog</code></a>, <a href="../struct.PrintUnixDialog.html" title="struct gtk4::PrintUnixDialog"><code>PrintUnixDialog</code></a>, <a href="../struct.Root.html" title="struct gtk4::Root"><code>Root</code></a>, <a href="../struct.ShortcutsWindow.html" title="struct gtk4::ShortcutsWindow"><code>ShortcutsWindow</code></a>, <a href="../struct.Window.html" title="struct gtk4::Window"><code>Window</code></a></p>
+</div></details><h2 id="provided-methods" class="section-header">Provided Methods<a href="#provided-methods" class="anchor">§</a></h2><div class="methods"><details class="toggle method-toggle" open><summary><section id="method.display" class="method"><a class="src rightside" href="../../src/gtk4/auto/root.rs.html#56-58">source</a><h4 class="code-header">fn <a href="#method.display" class="fn">display</a>(&amp;self) -&gt; <a class="struct" href="../../gdk4/auto/display/struct.Display.html" title="struct gdk4::auto::display::Display">Display</a></h4></section></summary><div class="docblock"><p>Returns the display that this <a href="../struct.Root.html" title="struct gtk4::Root"><code>Root</code></a> is on.</p>
+<h5 id="returns"><a class="doc-anchor" href="#returns">§</a>Returns</h5>
+<p>the display of @root</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.focus" class="method"><a class="src rightside" href="../../src/gtk4/auto/root.rs.html#72-74">source</a><h4 class="code-header">fn <a href="#method.focus" class="fn">focus</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;</h4></section></summary><div class="docblock"><p>Retrieves the current focused widget within the root.</p>
+<p>Note that this is the widget that would have the focus
+if the root is active; if the root is not focused then
+<code>gtk_widget_has_focus (widget)</code> will be <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>false</code></a> for the
+widget.</p>
+<h5 id="returns-1"><a class="doc-anchor" href="#returns-1">§</a>Returns</h5>
+<p>the currently focused widget</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.set_focus" class="method"><a class="src rightside" href="../../src/gtk4/auto/root.rs.html#88-95">source</a><h4 class="code-header">fn <a href="#method.set_focus" class="fn">set_focus</a>(&amp;self, focus: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;&gt;)</h4></section></summary><div class="docblock"><p>If @focus is not the current focus widget, and is focusable, sets
+it as the focus widget for the root.</p>
+<p>If @focus is <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="variant core::option::Option::None"><code>None</code></a>, unsets the focus widget for the root.</p>
+<p>To set the focus to a particular widget in the root, it is usually
+more convenient to use <a href="trait.WidgetExt.html#method.grab_focus" title="method gtk4::prelude::WidgetExt::grab_focus"><code>WidgetExt::grab_focus()</code></a> instead of
+this function.</p>
+<h6 id="focus"><a class="doc-anchor" href="#focus">§</a><code>focus</code></h6>
+<p>widget to be the new focus widget, or <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="variant core::option::Option::None"><code>None</code></a>
+to unset the focus widget</p>
+</div></details></div><h2 id="object-safety" class="section-header">Object Safety<a href="#object-safety" class="anchor">§</a></h2><div class="object-safety-info">This trait is <b>not</b> <a href="https://doc.rust-lang.org/nightly/reference/items/traits.html#object-safety">object safe</a>.</div><h2 id="implementors" class="section-header">Implementors<a href="#implementors" class="anchor">§</a></h2><div id="implementors-list"><section id="impl-RootExt-for-O" class="impl"><a class="src rightside" href="../../src/gtk4/auto/root.rs.html#98">source</a><a href="#impl-RootExt-for-O" class="anchor">§</a><h3 class="code-header">impl&lt;O: <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Root.html" title="struct gtk4::Root">Root</a>&gt;&gt; <a class="trait" href="trait.RootExt.html" title="trait gtk4::prelude::RootExt">RootExt</a> for O</h3></section></div><script src="../../trait.impl/gtk4/auto/root/trait.RootExt.js" async></script></section></div></main></body></html>

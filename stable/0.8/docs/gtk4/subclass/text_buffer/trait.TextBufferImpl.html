@@ -1,0 +1,167 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="API documentation for the Rust `TextBufferImpl` trait in crate `gtk4`."><title>TextBufferImpl in gtk4::subclass::text_buffer - Rust</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-46f98efaafac5295.ttf.woff2,FiraSans-Regular-018c141bf0843ffd.woff2,FiraSans-Medium-8f9a781e4970d388.woff2,SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2,SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../static.files/rustdoc-081576b923113409.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.79.0-nightly (3a36386dc 2024-04-25)" data-channel="nightly" data-search-js="search-bf21c90c8c1d92b1.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../../static.files/storage-e32f0c247825364d.js"></script><script defer src="sidebar-items.js"></script><script defer src="../../../static.files/main-20a3ad099b048cf2.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-09095024cf37855e.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc trait"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
+
+    function checkDocsLatestStable() {
+        function popup(msg, url) { return `
+            <style scoped="scoped">
+                .popup {
+                    max-width: 16em;
+                    background-color: #fff;
+                    position: fixed;
+                    z-index: 1;
+                    margin-left: auto;
+                    bottom: 1em;
+                    right: 1em;
+                    border-radius: 5px;
+                    box-shadow: 1px 1px 4px #777;
+                }
+
+                .popup a.version {
+                    color: #e57300;
+                    padding: 0.6em 1em;
+                    display: block;
+                }
+                .popup a.version:hover {
+                    color: #b25900;
+                }
+
+                .popup a.close {
+                    color: white;
+                    background: grey;
+                    border-radius: 99px;
+                    display: inline-block;
+                    width: 19px;
+                    line-height: 19px;
+                    font-weight: bold;
+                    text-align: center;
+                    margin: 0.6em;
+                    float: right;
+                }
+                .popup a.close:hover {
+                    background: black;
+                }
+            </style>
+            <section class="popup" id="gir_docs_popup">
+                <a class="close" href="#" onclick="document.getElementById('gir_docs_popup').remove(); return false">×</a>
+                <a class="version" href="https://gtk-rs.org/gtk4-rs/stable/latest/docs">
+                    ⚠ ${msg}
+                </a>
+            </section>
+        ` };
+
+        if ("0.8" == "master") {
+            document.body.insertAdjacentHTML(
+                'beforeend',
+                popup("This is the development version. Go to latest stable version.", "stable/latest")
+            );
+        } else {
+            fetch('https://gtk-rs.org/gtk4-rs/LATEST_RELEASE_BRANCH')
+                .then(response => response.text())
+                .then(latest_branch => {
+                    if (latest_branch.trim() != "0.8") {
+                        document.body.insertAdjacentHTML(
+                            'beforeend',
+                            popup("This version is outdated. Go to latest version.", "stable/latest")
+                        );
+                    }
+                });
+        }
+    }
+</script>
+
+
+<nav class="mobile-topbar"><button class="sidebar-menu-toggle" title="show sidebar"></button></nav><nav class="sidebar"><div class="sidebar-crate"><h2><a href="../../../gtk4/index.html">gtk4</a><span class="version">0.8.2</span></h2></div><h2 class="location"><a href="#">TextBufferImpl</a></h2><div class="sidebar-elems"><section><h3><a href="#provided-methods">Provided Methods</a></h3><ul class="block"><li><a href="#method.apply_tag">apply_tag</a></li><li><a href="#method.begin_user_action">begin_user_action</a></li><li><a href="#method.changed">changed</a></li><li><a href="#method.delete_range">delete_range</a></li><li><a href="#method.end_user_action">end_user_action</a></li><li><a href="#method.insert_child_anchor">insert_child_anchor</a></li><li><a href="#method.insert_paintable">insert_paintable</a></li><li><a href="#method.insert_text">insert_text</a></li><li><a href="#method.mark_deleted">mark_deleted</a></li><li><a href="#method.mark_set">mark_set</a></li><li><a href="#method.modified_changed">modified_changed</a></li><li><a href="#method.paste_done">paste_done</a></li><li><a href="#method.redo">redo</a></li><li><a href="#method.remove_tag">remove_tag</a></li><li><a href="#method.undo">undo</a></li></ul><h3><a href="#object-safety">Object Safety</a></h3><h3><a href="#implementors">Implementors</a></h3></section><h2><a href="index.html">In gtk4::subclass::text_buffer</a></h2></div></nav><div class="sidebar-resizer"></div><main><div class="width-limiter"><nav class="sub"><form class="search-form"><span></span><div id="sidebar-button" tabindex="-1"><a href="../../../gtk4/all.html" title="show sidebar"></a></div><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Type ‘S’ or ‘/’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings">Settings</a></div></form></nav><section id="main-content" class="content"><div class="main-heading"><h1>Trait <a href="../../index.html">gtk4</a>::<wbr><a href="../index.html">subclass</a>::<wbr><a href="index.html">text_buffer</a>::<wbr><a class="trait" href="#">TextBufferImpl</a><button id="copy-path" title="Copy item path to clipboard">Copy item path</button></h1><span class="out-of-band"><a class="src" href="../../../src/gtk4/subclass/text_buffer.rs.html#12-142">source</a> · <button id="toggle-all-docs" title="collapse all docs">[<span>&#x2212;</span>]</button></span></div><pre class="rust item-decl"><code>pub trait TextBufferImpl: <a class="trait" href="trait.TextBufferImplExt.html" title="trait gtk4::subclass::text_buffer::TextBufferImplExt">TextBufferImplExt</a> + <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/glib/subclass/object/trait.ObjectImpl.html" title="trait glib::subclass::object::ObjectImpl">ObjectImpl</a> {
+<details class="toggle type-contents-toggle"><summary class="hideme"><span>Show 15 methods</span></summary>    // Provided methods
+    fn <a href="#method.apply_tag" class="fn">apply_tag</a>(&amp;self, tag: &amp;<a class="struct" href="../../struct.TextTag.html" title="struct gtk4::TextTag">TextTag</a>, start: &amp;<a class="struct" href="../../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>, end: &amp;<a class="struct" href="../../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.begin_user_action" class="fn">begin_user_action</a>(&amp;self) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.changed" class="fn">changed</a>(&amp;self) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.delete_range" class="fn">delete_range</a>(&amp;self, start: &amp;mut <a class="struct" href="../../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>, end: &amp;mut <a class="struct" href="../../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.end_user_action" class="fn">end_user_action</a>(&amp;self) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.insert_child_anchor" class="fn">insert_child_anchor</a>(&amp;self, iter: &amp;mut <a class="struct" href="../../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>, anchor: &amp;<a class="struct" href="../../struct.TextChildAnchor.html" title="struct gtk4::TextChildAnchor">TextChildAnchor</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.insert_paintable" class="fn">insert_paintable</a>(&amp;self, iter: &amp;mut <a class="struct" href="../../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>, paintable: &amp;<a class="struct" href="../../../gdk4/auto/paintable/struct.Paintable.html" title="struct gdk4::auto::paintable::Paintable">Paintable</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.insert_text" class="fn">insert_text</a>(&amp;self, iter: &amp;mut <a class="struct" href="../../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>, new_text: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.mark_deleted" class="fn">mark_deleted</a>(&amp;self, mark: &amp;<a class="struct" href="../../struct.TextMark.html" title="struct gtk4::TextMark">TextMark</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.mark_set" class="fn">mark_set</a>(&amp;self, location: &amp;<a class="struct" href="../../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>, mark: &amp;<a class="struct" href="../../struct.TextMark.html" title="struct gtk4::TextMark">TextMark</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.modified_changed" class="fn">modified_changed</a>(&amp;self) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.paste_done" class="fn">paste_done</a>(&amp;self, clipboard: &amp;<a class="struct" href="../../../gdk4/auto/clipboard/struct.Clipboard.html" title="struct gdk4::auto::clipboard::Clipboard">Clipboard</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.redo" class="fn">redo</a>(&amp;self) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.remove_tag" class="fn">remove_tag</a>(&amp;self, tag: &amp;<a class="struct" href="../../struct.TextTag.html" title="struct gtk4::TextTag">TextTag</a>, start: &amp;<a class="struct" href="../../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>, end: &amp;<a class="struct" href="../../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.undo" class="fn">undo</a>(&amp;self) { ... }
+</details>}</code></pre><h2 id="provided-methods" class="section-header">Provided Methods<a href="#provided-methods" class="anchor">§</a></h2><div class="methods"><details class="toggle method-toggle" open><summary><section id="method.apply_tag" class="method"><a class="src rightside" href="../../../src/gtk4/subclass/text_buffer.rs.html#24-26">source</a><h4 class="code-header">fn <a href="#method.apply_tag" class="fn">apply_tag</a>(&amp;self, tag: &amp;<a class="struct" href="../../struct.TextTag.html" title="struct gtk4::TextTag">TextTag</a>, start: &amp;<a class="struct" href="../../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>, end: &amp;<a class="struct" href="../../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>)</h4></section></summary><div class="docblock"><p>Emits the “apply-tag” signal on @self.</p>
+<p>The default handler for the signal applies
+@tag to the given range. @start and @end do
+not have to be in order.</p>
+<h6 id="tag"><a class="doc-anchor" href="#tag">§</a><code>tag</code></h6>
+<p>a <a href="../../struct.TextTag.html" title="struct gtk4::TextTag"><code>TextTag</code></a></p>
+<h6 id="start"><a class="doc-anchor" href="#start">§</a><code>start</code></h6>
+<p>one bound of range to be tagged</p>
+<h6 id="end"><a class="doc-anchor" href="#end">§</a><code>end</code></h6>
+<p>other bound of range to be tagged</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.begin_user_action" class="method"><a class="src rightside" href="../../../src/gtk4/subclass/text_buffer.rs.html#45-47">source</a><h4 class="code-header">fn <a href="#method.begin_user_action" class="fn">begin_user_action</a>(&amp;self)</h4></section></summary><div class="docblock"><p>Called to indicate that the buffer operations between here and a
+call to gtk_text_buffer_end_user_action() are part of a single
+user-visible operation.</p>
+<p>The operations between gtk_text_buffer_begin_user_action() and
+gtk_text_buffer_end_user_action() can then be grouped when creating
+an undo stack. <a href="../../struct.TextBuffer.html" title="struct gtk4::TextBuffer"><code>TextBuffer</code></a> maintains a count of calls to
+gtk_text_buffer_begin_user_action() that have not been closed with
+a call to gtk_text_buffer_end_user_action(), and emits the
+“begin-user-action” and “end-user-action” signals only for the
+outermost pair of calls. This allows you to build user actions
+from other user actions.</p>
+<p>The “interactive” buffer mutation functions, such as
+<a href="../../prelude/trait.TextBufferExt.html#method.insert_interactive" title="method gtk4::prelude::TextBufferExt::insert_interactive"><code>TextBufferExt::insert_interactive()</code></a>, automatically call
+begin/end user action around the buffer operations they perform,
+so there’s no need to add extra calls if you user action consists
+solely of a single call to one of those functions.</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.changed" class="method"><a class="src rightside" href="../../../src/gtk4/subclass/text_buffer.rs.html#49-51">source</a><h4 class="code-header">fn <a href="#method.changed" class="fn">changed</a>(&amp;self)</h4></section></summary><div class="docblock"><p>The class handler for the <code>GtkTextBuffer::changed</code> signal.</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.delete_range" class="method"><a class="src rightside" href="../../../src/gtk4/subclass/text_buffer.rs.html#53-55">source</a><h4 class="code-header">fn <a href="#method.delete_range" class="fn">delete_range</a>(&amp;self, start: &amp;mut <a class="struct" href="../../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>, end: &amp;mut <a class="struct" href="../../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>)</h4></section></summary><div class="docblock"><p>The class handler for the <code>GtkTextBuffer::delete-range</code> signal.</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.end_user_action" class="method"><a class="src rightside" href="../../../src/gtk4/subclass/text_buffer.rs.html#61-63">source</a><h4 class="code-header">fn <a href="#method.end_user_action" class="fn">end_user_action</a>(&amp;self)</h4></section></summary><div class="docblock"><p>Ends a user-visible operation.</p>
+<p>Should be paired with a call to
+<a href="../../prelude/trait.TextBufferExt.html#method.begin_user_action" title="method gtk4::prelude::TextBufferExt::begin_user_action"><code>TextBufferExt::begin_user_action()</code></a>.
+See that function for a full explanation.</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.insert_child_anchor" class="method"><a class="src rightside" href="../../../src/gtk4/subclass/text_buffer.rs.html#81-83">source</a><h4 class="code-header">fn <a href="#method.insert_child_anchor" class="fn">insert_child_anchor</a>(&amp;self, iter: &amp;mut <a class="struct" href="../../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>, anchor: &amp;<a class="struct" href="../../struct.TextChildAnchor.html" title="struct gtk4::TextChildAnchor">TextChildAnchor</a>)</h4></section></summary><div class="docblock"><p>Inserts a child widget anchor into the text buffer at @iter.</p>
+<p>The anchor will be counted as one character in character counts, and
+when obtaining the buffer contents as a string, will be represented
+by the Unicode “object replacement character” 0xFFFC. Note that the
+“slice” variants for obtaining portions of the buffer as a string
+include this character for child anchors, but the “text” variants do
+not. E.g. see <a href="../../prelude/trait.TextBufferExt.html#method.slice" title="method gtk4::prelude::TextBufferExt::slice"><code>TextBufferExt::slice()</code></a> and
+<a href="../../prelude/trait.TextBufferExt.html#method.text" title="method gtk4::prelude::TextBufferExt::text"><code>TextBufferExt::text()</code></a>.</p>
+<p>Consider <a href="../../prelude/trait.TextBufferExt.html#method.create_child_anchor" title="method gtk4::prelude::TextBufferExt::create_child_anchor"><code>TextBufferExt::create_child_anchor()</code></a> as a more
+convenient alternative to this function. The buffer will add a
+reference to the anchor, so you can unref it after insertion.</p>
+<h6 id="iter"><a class="doc-anchor" href="#iter">§</a><code>iter</code></h6>
+<p>location to insert the anchor</p>
+<h6 id="anchor"><a class="doc-anchor" href="#anchor">§</a><code>anchor</code></h6>
+<p>a <a href="../../struct.TextChildAnchor.html" title="struct gtk4::TextChildAnchor"><code>TextChildAnchor</code></a></p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.insert_paintable" class="method"><a class="src rightside" href="../../../src/gtk4/subclass/text_buffer.rs.html#97-99">source</a><h4 class="code-header">fn <a href="#method.insert_paintable" class="fn">insert_paintable</a>(&amp;self, iter: &amp;mut <a class="struct" href="../../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>, paintable: &amp;<a class="struct" href="../../../gdk4/auto/paintable/struct.Paintable.html" title="struct gdk4::auto::paintable::Paintable">Paintable</a>)</h4></section></summary><div class="docblock"><p>Inserts an image into the text buffer at @iter.</p>
+<p>The image will be counted as one character in character counts,
+and when obtaining the buffer contents as a string, will be
+represented by the Unicode “object replacement character” 0xFFFC.
+Note that the “slice” variants for obtaining portions of the buffer
+as a string include this character for paintable, but the “text”
+variants do not. e.g. see <a href="../../prelude/trait.TextBufferExt.html#method.slice" title="method gtk4::prelude::TextBufferExt::slice"><code>TextBufferExt::slice()</code></a> and
+<a href="../../prelude/trait.TextBufferExt.html#method.text" title="method gtk4::prelude::TextBufferExt::text"><code>TextBufferExt::text()</code></a>.</p>
+<h6 id="iter-1"><a class="doc-anchor" href="#iter-1">§</a><code>iter</code></h6>
+<p>location to insert the paintable</p>
+<h6 id="paintable"><a class="doc-anchor" href="#paintable">§</a><code>paintable</code></h6>
+<p>a <a href="../../../gdk4/auto/paintable/struct.Paintable.html" title="struct gdk4::auto::paintable::Paintable"><code>gdk::Paintable</code></a></p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.insert_text" class="method"><a class="src rightside" href="../../../src/gtk4/subclass/text_buffer.rs.html#101-103">source</a><h4 class="code-header">fn <a href="#method.insert_text" class="fn">insert_text</a>(&amp;self, iter: &amp;mut <a class="struct" href="../../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>, new_text: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>)</h4></section></summary><div class="docblock"><p>The class handler for the <code>GtkTextBuffer::insert-text</code> signal.</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.mark_deleted" class="method"><a class="src rightside" href="../../../src/gtk4/subclass/text_buffer.rs.html#105-107">source</a><h4 class="code-header">fn <a href="#method.mark_deleted" class="fn">mark_deleted</a>(&amp;self, mark: &amp;<a class="struct" href="../../struct.TextMark.html" title="struct gtk4::TextMark">TextMark</a>)</h4></section></summary><div class="docblock"><p>The class handler for the <code>GtkTextBuffer::mark-deleted</code> signal.</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.mark_set" class="method"><a class="src rightside" href="../../../src/gtk4/subclass/text_buffer.rs.html#109-111">source</a><h4 class="code-header">fn <a href="#method.mark_set" class="fn">mark_set</a>(&amp;self, location: &amp;<a class="struct" href="../../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>, mark: &amp;<a class="struct" href="../../struct.TextMark.html" title="struct gtk4::TextMark">TextMark</a>)</h4></section></summary><div class="docblock"><p>The class handler for the <code>GtkTextBuffer::mark-set</code> signal.</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.modified_changed" class="method"><a class="src rightside" href="../../../src/gtk4/subclass/text_buffer.rs.html#113-115">source</a><h4 class="code-header">fn <a href="#method.modified_changed" class="fn">modified_changed</a>(&amp;self)</h4></section></summary><div class="docblock"><p>The class handler for the <code>GtkTextBuffer::modified-changed</code> signal.</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.paste_done" class="method"><a class="src rightside" href="../../../src/gtk4/subclass/text_buffer.rs.html#117-119">source</a><h4 class="code-header">fn <a href="#method.paste_done" class="fn">paste_done</a>(&amp;self, clipboard: &amp;<a class="struct" href="../../../gdk4/auto/clipboard/struct.Clipboard.html" title="struct gdk4::auto::clipboard::Clipboard">Clipboard</a>)</h4></section></summary><div class="docblock"><p>The class handler for the <code>GtkTextBuffer::paste-done</code> signal.</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.redo" class="method"><a class="src rightside" href="../../../src/gtk4/subclass/text_buffer.rs.html#121-123">source</a><h4 class="code-header">fn <a href="#method.redo" class="fn">redo</a>(&amp;self)</h4></section></summary><div class="docblock"><p>Redoes the next redoable action on the buffer, if there is one.</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.remove_tag" class="method"><a class="src rightside" href="../../../src/gtk4/subclass/text_buffer.rs.html#135-137">source</a><h4 class="code-header">fn <a href="#method.remove_tag" class="fn">remove_tag</a>(&amp;self, tag: &amp;<a class="struct" href="../../struct.TextTag.html" title="struct gtk4::TextTag">TextTag</a>, start: &amp;<a class="struct" href="../../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>, end: &amp;<a class="struct" href="../../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>)</h4></section></summary><div class="docblock"><p>Emits the “remove-tag” signal.</p>
+<p>The default handler for the signal removes all occurrences
+of @tag from the given range. @start and @end don’t have
+to be in order.</p>
+<h6 id="tag-1"><a class="doc-anchor" href="#tag-1">§</a><code>tag</code></h6>
+<p>a <a href="../../struct.TextTag.html" title="struct gtk4::TextTag"><code>TextTag</code></a></p>
+<h6 id="start-1"><a class="doc-anchor" href="#start-1">§</a><code>start</code></h6>
+<p>one bound of range to be untagged</p>
+<h6 id="end-1"><a class="doc-anchor" href="#end-1">§</a><code>end</code></h6>
+<p>other bound of range to be untagged</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.undo" class="method"><a class="src rightside" href="../../../src/gtk4/subclass/text_buffer.rs.html#139-141">source</a><h4 class="code-header">fn <a href="#method.undo" class="fn">undo</a>(&amp;self)</h4></section></summary><div class="docblock"><p>Undoes the last undoable action on the buffer, if there is one.</p>
+</div></details></div><h2 id="object-safety" class="section-header">Object Safety<a href="#object-safety" class="anchor">§</a></h2><div class="object-safety-info">This trait is <b>not</b> <a href="https://doc.rust-lang.org/nightly/reference/items/traits.html#object-safety">object safe</a>.</div><h2 id="implementors" class="section-header">Implementors<a href="#implementors" class="anchor">§</a></h2><div id="implementors-list"></div><script src="../../../trait.impl/gtk4/subclass/text_buffer/trait.TextBufferImpl.js" async></script></section></div></main></body></html>

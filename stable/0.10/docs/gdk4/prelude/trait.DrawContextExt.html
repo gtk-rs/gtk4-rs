@@ -1,0 +1,134 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Trait containing all `struct@DrawContext` methods."><title>DrawContextExt in gdk4::prelude - Rust</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../static.files/rustdoc-aa0817cf.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="gdk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.90.0-nightly (a00149764 2025-07-14)" data-channel="nightly" data-search-js="search-179e01a3.js" data-settings-js="settings-5514c975.js" ><script src="../../static.files/storage-4e99c027.js"></script><script defer src="sidebar-items.js"></script><script defer src="../../static.files/main-673ee1e0.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-32bb7600.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-6580c154.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-044be391.svg"></head><body class="rustdoc trait"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
+
+    function checkDocsLatestStable() {
+        function popup(msg, url) { return `
+            <style scoped="scoped">
+                .popup {
+                    max-width: 16em;
+                    background-color: #fff;
+                    position: fixed;
+                    z-index: 1;
+                    margin-left: auto;
+                    bottom: 1em;
+                    right: 1em;
+                    border-radius: 5px;
+                    box-shadow: 1px 1px 4px #777;
+                }
+
+                .popup a.version {
+                    color: #e57300;
+                    padding: 0.6em 1em;
+                    display: block;
+                }
+                .popup a.version:hover {
+                    color: #b25900;
+                }
+
+                .popup a.close {
+                    color: white;
+                    background: grey;
+                    border-radius: 99px;
+                    display: inline-block;
+                    width: 19px;
+                    line-height: 19px;
+                    font-weight: bold;
+                    text-align: center;
+                    margin: 0.6em;
+                    float: right;
+                }
+                .popup a.close:hover {
+                    background: black;
+                }
+            </style>
+            <section class="popup" id="gir_docs_popup">
+                <a class="close" href="#" onclick="document.getElementById('gir_docs_popup').remove(); return false">×</a>
+                <a class="version" href="https://gtk-rs.org/gtk4-rs/stable/latest/docs">
+                    ⚠ ${msg}
+                </a>
+            </section>
+        ` };
+
+        if ("0.10" == "main") {
+            document.body.insertAdjacentHTML(
+                'beforeend',
+                popup("This is the development version. Go to latest stable version.", "stable/latest")
+            );
+        } else {
+            fetch('https://gtk-rs.org/gtk4-rs/LATEST_RELEASE_BRANCH')
+                .then(response => response.text())
+                .then(latest_branch => {
+                    if (latest_branch.trim() != "0.10") {
+                        document.body.insertAdjacentHTML(
+                            'beforeend',
+                            popup("This version is outdated. Go to latest version.", "stable/latest")
+                        );
+                    }
+                });
+        }
+    }
+</script>
+
+
+<nav class="mobile-topbar"><button class="sidebar-menu-toggle" title="show sidebar"></button></nav><nav class="sidebar"><div class="sidebar-crate"><h2><a href="../../gdk4/index.html">gdk4</a><span class="version">0.10.0</span></h2></div><div class="sidebar-elems"><section id="rustdoc-toc"><h2 class="location"><a href="#">Draw<wbr>Context<wbr>Ext</a></h2><h3><a href="#">Sections</a></h3><ul class="block top-toc"><li><a href="#implementors-1" title="Implementors">Implementors</a></li></ul><h3><a href="#provided-methods">Provided Methods</a></h3><ul class="block"><li><a href="#method.begin_frame" title="begin_frame">begin_frame</a></li><li><a href="#method.display" title="display">display</a></li><li><a href="#method.end_frame" title="end_frame">end_frame</a></li><li><a href="#method.is_in_frame" title="is_in_frame">is_in_frame</a></li><li><a href="#method.surface" title="surface">surface</a></li></ul><h3><a href="#dyn-compatibility">Dyn Compatibility</a></h3><h3><a href="#implementors">Implementors</a></h3></section><div id="rustdoc-modnav"><h2><a href="index.html">In gdk4::<wbr>prelude</a></h2></div></div></nav><div class="sidebar-resizer" title="Drag to resize sidebar"></div><main><div class="width-limiter"><rustdoc-search></rustdoc-search><section id="main-content" class="content"><div class="main-heading"><div class="rustdoc-breadcrumbs"><a href="../index.html">gdk4</a>::<wbr><a href="index.html">prelude</a></div><h1>Trait <span class="trait">DrawContextExt</span><button id="copy-path" title="Copy item path to clipboard">Copy item path</button></h1><rustdoc-toolbar></rustdoc-toolbar><span class="sub-heading"><a class="src" href="../../src/gdk4/auto/draw_context.rs.html#56-177">Source</a> </span></div><pre class="rust item-decl"><code>pub trait DrawContextExt: <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.DrawContext.html" title="struct gdk4::DrawContext">DrawContext</a>&gt; + 'static {
+    // Provided methods
+    fn <a href="#method.begin_frame" class="fn">begin_frame</a>(&amp;self, region: &amp;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/cairo/region/struct.Region.html" title="struct cairo::region::Region">Region</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.end_frame" class="fn">end_frame</a>(&amp;self) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.display" class="fn">display</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../struct.Display.html" title="struct gdk4::Display">Display</a>&gt; { ... }
+<span class="item-spacer"></span>    fn <a href="#method.surface" class="fn">surface</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../struct.Surface.html" title="struct gdk4::Surface">Surface</a>&gt; { ... }
+<span class="item-spacer"></span>    fn <a href="#method.is_in_frame" class="fn">is_in_frame</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> { ... }
+}</code></pre><details class="toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>Trait containing all <a href="../struct.DrawContext.html" title="struct gdk4::DrawContext"><code>DrawContext</code></a> methods.</p>
+<h2 id="implementors-1"><a class="doc-anchor" href="#implementors-1">§</a>Implementors</h2>
+<p><a href="../struct.CairoContext.html" title="struct gdk4::CairoContext"><code>CairoContext</code></a>, <a href="../struct.DrawContext.html" title="struct gdk4::DrawContext"><code>DrawContext</code></a>, <a href="../struct.GLContext.html" title="struct gdk4::GLContext"><code>GLContext</code></a>, <a href="../struct.VulkanContext.html" title="struct gdk4::VulkanContext"><code>VulkanContext</code></a></p>
+</div></details><h2 id="provided-methods" class="section-header">Provided Methods<a href="#provided-methods" class="anchor">§</a></h2><div class="methods"><details class="toggle method-toggle" open><summary><section id="method.begin_frame" class="method"><a class="src rightside" href="../../src/gdk4/auto/draw_context.rs.html#91-98">Source</a><h4 class="code-header">fn <a href="#method.begin_frame" class="fn">begin_frame</a>(&amp;self, region: &amp;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/cairo/region/struct.Region.html" title="struct cairo::region::Region">Region</a>)</h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.16</span></div></span></summary><div class="docblock"><p>Indicates that you are beginning the process of redrawing @region
+on the @self’s surface.</p>
+<p>Calling this function begins a drawing operation using @self on the
+surface that @self was created from. The actual requirements and
+guarantees for the drawing operation vary for different implementations
+of drawing, so a <a href="../struct.CairoContext.html" title="struct gdk4::CairoContext"><code>CairoContext</code></a> and a <a href="../struct.GLContext.html" title="struct gdk4::GLContext"><code>GLContext</code></a>
+need to be treated differently.</p>
+<p>A call to this function is a requirement for drawing and must be
+followed by a call to <a href="trait.DrawContextExt.html#method.end_frame"><code>end_frame()</code></a>, which will
+complete the drawing operation and ensure the contents become visible
+on screen.</p>
+<p>Note that the @region passed to this function is the minimum region that
+needs to be drawn and depending on implementation, windowing system and
+hardware in use, it might be necessary to draw a larger region. Drawing
+implementation must use <a href="trait.DrawContextExtManual.html#method.frame_region" title="method gdk4::prelude::DrawContextExtManual::frame_region"><code>DrawContextExtManual::frame_region()</code></a> to
+query the region that must be drawn.</p>
+<p>When using GTK, the widget system automatically places calls to
+gdk_draw_context_begin_frame() and gdk_draw_context_end_frame() via the
+use of <a href="../gsk4/class.Renderer.html">GskRenderer</a>s, so application code
+does not need to call these functions explicitly.</p>
+<h5 id="deprecated-since-416"><a class="doc-anchor" href="#deprecated-since-416">§</a>Deprecated since 4.16</h5>
+<p>Drawing directly to the surface is no longer recommended.
+Use <code>GskRenderNode</code> and <code>GskRenderer</code>.</p>
+<h6 id="region"><a class="doc-anchor" href="#region">§</a><code>region</code></h6>
+<p>minimum region that should be drawn</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.end_frame" class="method"><a class="src rightside" href="../../src/gdk4/auto/draw_context.rs.html#116-120">Source</a><h4 class="code-header">fn <a href="#method.end_frame" class="fn">end_frame</a>(&amp;self)</h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.16</span></div></span></summary><div class="docblock"><p>Ends a drawing operation started with gdk_draw_context_begin_frame().</p>
+<p>This makes the drawing available on screen.
+See <a href="trait.DrawContextExt.html#method.begin_frame"><code>begin_frame()</code></a> for more details about drawing.</p>
+<p>When using a <a href="../struct.GLContext.html" title="struct gdk4::GLContext"><code>GLContext</code></a>, this function may call <code>glFlush()</code>
+implicitly before returning; it is not recommended to call <code>glFlush()</code>
+explicitly before calling this function.</p>
+<h5 id="deprecated-since-416-1"><a class="doc-anchor" href="#deprecated-since-416-1">§</a>Deprecated since 4.16</h5>
+<p>Drawing directly to the surface is no longer recommended.
+Use <code>GskRenderNode</code> and <code>GskRenderer</code>.</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.display" class="method"><a class="src rightside" href="../../src/gdk4/auto/draw_context.rs.html#129-135">Source</a><h4 class="code-header">fn <a href="#method.display" class="fn">display</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../struct.Display.html" title="struct gdk4::Display">Display</a>&gt;</h4></section></summary><div class="docblock"><p>Retrieves the <a href="../struct.Display.html" title="struct gdk4::Display"><code>Display</code></a> the @self is created for</p>
+<h5 id="returns"><a class="doc-anchor" href="#returns">§</a>Returns</h5>
+<p>the <a href="../struct.Display.html" title="struct gdk4::Display"><code>Display</code></a></p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.surface" class="method"><a class="src rightside" href="../../src/gdk4/auto/draw_context.rs.html#144-150">Source</a><h4 class="code-header">fn <a href="#method.surface" class="fn">surface</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../struct.Surface.html" title="struct gdk4::Surface">Surface</a>&gt;</h4></section></summary><div class="docblock"><p>Retrieves the surface that @self is bound to.</p>
+<h5 id="returns-1"><a class="doc-anchor" href="#returns-1">§</a>Returns</h5>
+<p>a <a href="../struct.Surface.html" title="struct gdk4::Surface"><code>Surface</code></a></p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.is_in_frame" class="method"><a class="src rightside" href="../../src/gdk4/auto/draw_context.rs.html#170-176">Source</a><h4 class="code-header">fn <a href="#method.is_in_frame" class="fn">is_in_frame</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.16</span></div></span></summary><div class="docblock"><p>Returns <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>true</code></a> if @self is in the process of drawing to its surface.</p>
+<p>This is the case between calls to <a href="trait.DrawContextExt.html#method.begin_frame"><code>begin_frame()</code></a>
+and <a href="trait.DrawContextExt.html#method.end_frame"><code>end_frame()</code></a>. In this situation, drawing commands
+may be effecting the contents of the @self’s surface.</p>
+<h5 id="deprecated-since-416-2"><a class="doc-anchor" href="#deprecated-since-416-2">§</a>Deprecated since 4.16</h5>
+<p>Drawing directly to the surface is no longer recommended.
+Use <code>GskRenderNode</code> and <code>GskRenderer</code>.</p>
+<h5 id="returns-2"><a class="doc-anchor" href="#returns-2">§</a>Returns</h5>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>true</code></a> if the context is between <a href="trait.DrawContextExt.html#method.begin_frame"><code>begin_frame()</code></a>
+and <a href="trait.DrawContextExt.html#method.end_frame"><code>end_frame()</code></a> calls.</p>
+</div></details></div><h2 id="dyn-compatibility" class="section-header">Dyn Compatibility<a href="#dyn-compatibility" class="anchor">§</a></h2><div class="dyn-compatibility-info"><p>This trait is <b>not</b> <a href="https://doc.rust-lang.org/nightly/reference/items/traits.html#dyn-compatibility">dyn compatible</a>.</p><p><i>In older versions of Rust, dyn compatibility was called "object safety", so this trait is not object safe.</i></p></div><h2 id="implementors" class="section-header">Implementors<a href="#implementors" class="anchor">§</a></h2><div id="implementors-list"><section id="impl-DrawContextExt-for-O" class="impl"><a class="src rightside" href="../../src/gdk4/auto/draw_context.rs.html#179">Source</a><a href="#impl-DrawContextExt-for-O" class="anchor">§</a><h3 class="code-header">impl&lt;O: <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.DrawContext.html" title="struct gdk4::DrawContext">DrawContext</a>&gt;&gt; <a class="trait" href="trait.DrawContextExt.html" title="trait gdk4::prelude::DrawContextExt">DrawContextExt</a> for O</h3></section></div><script src="../../trait.impl/gdk4/auto/draw_context/trait.DrawContextExt.js" async></script></section></div></main></body></html>

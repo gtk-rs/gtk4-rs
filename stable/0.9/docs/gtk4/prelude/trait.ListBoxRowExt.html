@@ -1,0 +1,171 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Trait containing all `struct@ListBoxRow` methods."><title>ListBoxRowExt in gtk4::prelude - Rust</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../static.files/rustdoc-84e720fa.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.89.0-nightly (5526a2f47 2025-06-20)" data-channel="nightly" data-search-js="search-343419c9.js" data-settings-js="settings-5514c975.js" ><script src="../../static.files/storage-4e99c027.js"></script><script defer src="sidebar-items.js"></script><script defer src="../../static.files/main-fd3af306.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-32bb7600.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-6580c154.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-044be391.svg"></head><body class="rustdoc trait"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
+
+    function checkDocsLatestStable() {
+        function popup(msg, url) { return `
+            <style scoped="scoped">
+                .popup {
+                    max-width: 16em;
+                    background-color: #fff;
+                    position: fixed;
+                    z-index: 1;
+                    margin-left: auto;
+                    bottom: 1em;
+                    right: 1em;
+                    border-radius: 5px;
+                    box-shadow: 1px 1px 4px #777;
+                }
+
+                .popup a.version {
+                    color: #e57300;
+                    padding: 0.6em 1em;
+                    display: block;
+                }
+                .popup a.version:hover {
+                    color: #b25900;
+                }
+
+                .popup a.close {
+                    color: white;
+                    background: grey;
+                    border-radius: 99px;
+                    display: inline-block;
+                    width: 19px;
+                    line-height: 19px;
+                    font-weight: bold;
+                    text-align: center;
+                    margin: 0.6em;
+                    float: right;
+                }
+                .popup a.close:hover {
+                    background: black;
+                }
+            </style>
+            <section class="popup" id="gir_docs_popup">
+                <a class="close" href="#" onclick="document.getElementById('gir_docs_popup').remove(); return false">×</a>
+                <a class="version" href="https://gtk-rs.org/gtk4-rs/stable/latest/docs">
+                    ⚠ ${msg}
+                </a>
+            </section>
+        ` };
+
+        if ("0.9" == "main") {
+            document.body.insertAdjacentHTML(
+                'beforeend',
+                popup("This is the development version. Go to latest stable version.", "stable/latest")
+            );
+        } else {
+            fetch('https://gtk-rs.org/gtk4-rs/LATEST_RELEASE_BRANCH')
+                .then(response => response.text())
+                .then(latest_branch => {
+                    if (latest_branch.trim() != "0.9") {
+                        document.body.insertAdjacentHTML(
+                            'beforeend',
+                            popup("This version is outdated. Go to latest version.", "stable/latest")
+                        );
+                    }
+                });
+        }
+    }
+</script>
+
+
+<nav class="mobile-topbar"><button class="sidebar-menu-toggle" title="show sidebar"></button></nav><nav class="sidebar"><div class="sidebar-crate"><h2><a href="../../gtk4/index.html">gtk4</a><span class="version">0.9.7</span></h2></div><div class="sidebar-elems"><section id="rustdoc-toc"><h2 class="location"><a href="#">List<wbr>BoxRow<wbr>Ext</a></h2><h3><a href="#">Sections</a></h3><ul class="block top-toc"><li><a href="#implementors-1" title="Implementors">Implementors</a></li></ul><h3><a href="#provided-methods">Provided Methods</a></h3><ul class="block"><li><a href="#method.changed" title="changed">changed</a></li><li><a href="#method.child" title="child">child</a></li><li><a href="#method.connect_activatable_notify" title="connect_activatable_notify">connect_activatable_notify</a></li><li><a href="#method.connect_activate" title="connect_activate">connect_activate</a></li><li><a href="#method.connect_child_notify" title="connect_child_notify">connect_child_notify</a></li><li><a href="#method.connect_selectable_notify" title="connect_selectable_notify">connect_selectable_notify</a></li><li><a href="#method.emit_activate" title="emit_activate">emit_activate</a></li><li><a href="#method.header" title="header">header</a></li><li><a href="#method.index" title="index">index</a></li><li><a href="#method.is_activatable" title="is_activatable">is_activatable</a></li><li><a href="#method.is_selectable" title="is_selectable">is_selectable</a></li><li><a href="#method.is_selected" title="is_selected">is_selected</a></li><li><a href="#method.set_activatable" title="set_activatable">set_activatable</a></li><li><a href="#method.set_child" title="set_child">set_child</a></li><li><a href="#method.set_header" title="set_header">set_header</a></li><li><a href="#method.set_selectable" title="set_selectable">set_selectable</a></li></ul><h3><a href="#dyn-compatibility">Dyn Compatibility</a></h3><h3><a href="#implementors">Implementors</a></h3></section><div id="rustdoc-modnav"><h2><a href="index.html">In gtk4::<wbr>prelude</a></h2></div></div></nav><div class="sidebar-resizer" title="Drag to resize sidebar"></div><main><div class="width-limiter"><rustdoc-search></rustdoc-search><section id="main-content" class="content"><div class="main-heading"><div class="rustdoc-breadcrumbs"><a href="../index.html">gtk4</a>::<wbr><a href="index.html">prelude</a></div><h1>Trait <span class="trait">ListBoxRowExt</span><button id="copy-path" title="Copy item path to clipboard">Copy item path</button></h1><rustdoc-toolbar></rustdoc-toolbar><span class="sub-heading"><a class="src" href="../../src/gtk4/auto/list_box_row.rs.html#908-1192">Source</a> </span></div><pre class="rust item-decl"><code>pub trait ListBoxRowExt:
+    <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.ListBoxRow.html" title="struct gtk4::ListBoxRow">ListBoxRow</a>&gt;
+    + Sealed
+    + 'static {
+<details class="toggle type-contents-toggle"><summary class="hideme"><span>Show 16 methods</span></summary>    // Provided methods
+    fn <a href="#method.changed" class="fn">changed</a>(&amp;self) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.is_activatable" class="fn">is_activatable</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.child" class="fn">child</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt; { ... }
+<span class="item-spacer"></span>    fn <a href="#method.header" class="fn">header</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt; { ... }
+<span class="item-spacer"></span>    fn <a href="#method.index" class="fn">index</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.is_selectable" class="fn">is_selectable</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.is_selected" class="fn">is_selected</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.set_activatable" class="fn">set_activatable</a>(&amp;self, activatable: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.set_child" class="fn">set_child</a>(&amp;self, child: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;&gt;) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.set_header" class="fn">set_header</a>(&amp;self, header: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;&gt;) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.set_selectable" class="fn">set_selectable</a>(&amp;self, selectable: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_activate" class="fn">connect_activate</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;Self) + 'static&gt;(&amp;self, f: F) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.emit_activate" class="fn">emit_activate</a>(&amp;self) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_activatable_notify" class="fn">connect_activatable_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;Self) + 'static&gt;(
+        &amp;self,
+        f: F,
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_child_notify" class="fn">connect_child_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;Self) + 'static&gt;(
+        &amp;self,
+        f: F,
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_selectable_notify" class="fn">connect_selectable_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;Self) + 'static&gt;(
+        &amp;self,
+        f: F,
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+</details>}</code></pre><details class="toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>Trait containing all <a href="../struct.ListBoxRow.html" title="struct gtk4::ListBoxRow"><code>ListBoxRow</code></a> methods.</p>
+<h2 id="implementors-1"><a class="doc-anchor" href="#implementors-1">§</a>Implementors</h2>
+<p><a href="../struct.ListBoxRow.html" title="struct gtk4::ListBoxRow"><code>ListBoxRow</code></a></p>
+</div></details><h2 id="provided-methods" class="section-header">Provided Methods<a href="#provided-methods" class="anchor">§</a></h2><div class="methods"><details class="toggle method-toggle" open><summary><section id="method.changed" class="method"><a class="src rightside" href="../../src/gtk4/auto/list_box_row.rs.html#928-932">Source</a><h4 class="code-header">fn <a href="#method.changed" class="fn">changed</a>(&amp;self)</h4></section></summary><div class="docblock"><p>Marks @self as changed, causing any state that depends on this
+to be updated.</p>
+<p>This affects sorting, filtering and headers.</p>
+<p>Note that calls to this method must be in sync with the data
+used for the row functions. For instance, if the list is
+mirroring some external data set, and <em>two</em> rows changed in the
+external data set then when you call gtk_list_box_row_changed()
+on the first row the sort function must only read the new data
+for the first of the two changed rows, otherwise the resorting
+of the rows will be wrong.</p>
+<p>This generally means that if you don’t fully control the data
+model you have to duplicate the data that affects the listbox
+row functions into the row widgets themselves. Another alternative
+is to call <a href="../struct.ListBox.html#method.invalidate_sort" title="method gtk4::ListBox::invalidate_sort"><code>ListBox::invalidate_sort()</code></a> on any model change,
+but that is more expensive.</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.is_activatable" class="method"><a class="src rightside" href="../../src/gtk4/auto/list_box_row.rs.html#942-948">Source</a><h4 class="code-header">fn <a href="#method.is_activatable" class="fn">is_activatable</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></section></summary><div class="docblock"><p>Gets whether the row is activatable.</p>
+<h5 id="returns"><a class="doc-anchor" href="#returns">§</a>Returns</h5>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>true</code></a> if the row is activatable</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.child" class="method"><a class="src rightside" href="../../src/gtk4/auto/list_box_row.rs.html#957-963">Source</a><h4 class="code-header">fn <a href="#method.child" class="fn">child</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;</h4></section></summary><div class="docblock"><p>Gets the child widget of @self.</p>
+<h5 id="returns-1"><a class="doc-anchor" href="#returns-1">§</a>Returns</h5>
+<p>the child widget of @self</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.header" class="method"><a class="src rightside" href="../../src/gtk4/auto/list_box_row.rs.html#977-983">Source</a><h4 class="code-header">fn <a href="#method.header" class="fn">header</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;</h4></section></summary><div class="docblock"><p>Returns the current header of the @self.</p>
+<p>This can be used
+in a `callback::Gtk::ListBoxUpdateHeaderFunc to see if
+there is a header set already, and if so to update
+the state of it.</p>
+<h5 id="returns-2"><a class="doc-anchor" href="#returns-2">§</a>Returns</h5>
+<p>the current header</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.index" class="method"><a class="src rightside" href="../../src/gtk4/auto/list_box_row.rs.html#992-994">Source</a><h4 class="code-header">fn <a href="#method.index" class="fn">index</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a></h4></section></summary><div class="docblock"><p>Gets the current index of the @self in its <a href="../struct.ListBox.html" title="struct gtk4::ListBox"><code>ListBox</code></a> container.</p>
+<h5 id="returns-3"><a class="doc-anchor" href="#returns-3">§</a>Returns</h5>
+<p>the index of the @self, or -1 if the @self is not in a listbox</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.is_selectable" class="method"><a class="src rightside" href="../../src/gtk4/auto/list_box_row.rs.html#1004-1010">Source</a><h4 class="code-header">fn <a href="#method.is_selectable" class="fn">is_selectable</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></section></summary><div class="docblock"><p>Gets whether the row can be selected.</p>
+<h5 id="returns-4"><a class="doc-anchor" href="#returns-4">§</a>Returns</h5>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>true</code></a> if the row is selectable</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.is_selected" class="method"><a class="src rightside" href="../../src/gtk4/auto/list_box_row.rs.html#1019-1025">Source</a><h4 class="code-header">fn <a href="#method.is_selected" class="fn">is_selected</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></section></summary><div class="docblock"><p>Returns whether the child is currently selected in its
+<a href="../struct.ListBox.html" title="struct gtk4::ListBox"><code>ListBox</code></a> container.</p>
+<h5 id="returns-5"><a class="doc-anchor" href="#returns-5">§</a>Returns</h5>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>true</code></a> if @self is selected</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.set_activatable" class="method"><a class="src rightside" href="../../src/gtk4/auto/list_box_row.rs.html#1032-1039">Source</a><h4 class="code-header">fn <a href="#method.set_activatable" class="fn">set_activatable</a>(&amp;self, activatable: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>)</h4></section></summary><div class="docblock"><p>Set whether the row is activatable.</p>
+<h6 id="activatable"><a class="doc-anchor" href="#activatable">§</a><code>activatable</code></h6>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>true</code></a> to mark the row as activatable</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.set_child" class="method"><a class="src rightside" href="../../src/gtk4/auto/list_box_row.rs.html#1046-1053">Source</a><h4 class="code-header">fn <a href="#method.set_child" class="fn">set_child</a>(&amp;self, child: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;&gt;)</h4></section></summary><div class="docblock"><p>Sets the child widget of @self_.</p>
+<h6 id="child"><a class="doc-anchor" href="#child">§</a><code>child</code></h6>
+<p>the child widget</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.set_header" class="method"><a class="src rightside" href="../../src/gtk4/auto/list_box_row.rs.html#1064-1071">Source</a><h4 class="code-header">fn <a href="#method.set_header" class="fn">set_header</a>(&amp;self, header: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;&gt;)</h4></section></summary><div class="docblock"><p>Sets the current header of the @self.</p>
+<p>This is only allowed to be called
+from a `callback::Gtk::ListBoxUpdateHeaderFunc.
+It will replace any existing header in the row,
+and be shown in front of the row in the listbox.</p>
+<h6 id="header"><a class="doc-anchor" href="#header">§</a><code>header</code></h6>
+<p>the header</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.set_selectable" class="method"><a class="src rightside" href="../../src/gtk4/auto/list_box_row.rs.html#1078-1085">Source</a><h4 class="code-header">fn <a href="#method.set_selectable" class="fn">set_selectable</a>(&amp;self, selectable: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>)</h4></section></summary><div class="docblock"><p>Set whether the row can be selected.</p>
+<h6 id="selectable"><a class="doc-anchor" href="#selectable">§</a><code>selectable</code></h6>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>true</code></a> to mark the row as selectable</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.connect_activate" class="method"><a class="src rightside" href="../../src/gtk4/auto/list_box_row.rs.html#1093-1112">Source</a><h4 class="code-header">fn <a href="#method.connect_activate" class="fn">connect_activate</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;Self) + 'static&gt;(&amp;self, f: F) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section></summary><div class="docblock"><p>This is a keybinding signal, which will cause this row to be activated.</p>
+<p>If you want to be notified when the user activates a row (by key or not),
+use the <a href="../struct.ListBox.html#row-activated" title="struct gtk4::ListBox"><code>row-activated</code></a> signal on the row’s parent
+<a href="../struct.ListBox.html" title="struct gtk4::ListBox"><code>ListBox</code></a>.</p>
+</div></details><section id="method.emit_activate" class="method"><a class="src rightside" href="../../src/gtk4/auto/list_box_row.rs.html#1114-1116">Source</a><h4 class="code-header">fn <a href="#method.emit_activate" class="fn">emit_activate</a>(&amp;self)</h4></section><section id="method.connect_activatable_notify" class="method"><a class="src rightside" href="../../src/gtk4/auto/list_box_row.rs.html#1119-1142">Source</a><h4 class="code-header">fn <a href="#method.connect_activatable_notify" class="fn">connect_activatable_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;Self) + 'static&gt;(
+    &amp;self,
+    f: F,
+) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><section id="method.connect_child_notify" class="method"><a class="src rightside" href="../../src/gtk4/auto/list_box_row.rs.html#1145-1165">Source</a><h4 class="code-header">fn <a href="#method.connect_child_notify" class="fn">connect_child_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;Self) + 'static&gt;(&amp;self, f: F) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><section id="method.connect_selectable_notify" class="method"><a class="src rightside" href="../../src/gtk4/auto/list_box_row.rs.html#1168-1191">Source</a><h4 class="code-header">fn <a href="#method.connect_selectable_notify" class="fn">connect_selectable_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;Self) + 'static&gt;(
+    &amp;self,
+    f: F,
+) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section></div><h2 id="dyn-compatibility" class="section-header">Dyn Compatibility<a href="#dyn-compatibility" class="anchor">§</a></h2><div class="dyn-compatibility-info"><p>This trait is <b>not</b> <a href="https://doc.rust-lang.org/nightly/reference/items/traits.html#dyn-compatibility">dyn compatible</a>.</p><p><i>In older versions of Rust, dyn compatibility was called "object safety", so this trait is not object safe.</i></p></div><h2 id="implementors" class="section-header">Implementors<a href="#implementors" class="anchor">§</a></h2><div id="implementors-list"><section id="impl-ListBoxRowExt-for-O" class="impl"><a class="src rightside" href="../../src/gtk4/auto/list_box_row.rs.html#1194">Source</a><a href="#impl-ListBoxRowExt-for-O" class="anchor">§</a><h3 class="code-header">impl&lt;O: <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.ListBoxRow.html" title="struct gtk4::ListBoxRow">ListBoxRow</a>&gt;&gt; <a class="trait" href="trait.ListBoxRowExt.html" title="trait gtk4::prelude::ListBoxRowExt">ListBoxRowExt</a> for O</h3></section></div><script src="../../trait.impl/gtk4/auto/list_box_row/trait.ListBoxRowExt.js" async></script></section></div></main></body></html>

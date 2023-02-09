@@ -1,0 +1,150 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gsk4/src/border_node.rs`."><title>border_node.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../static.files/rustdoc-aa0817cf.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="gsk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.90.0-nightly (a00149764 2025-07-14)" data-channel="nightly" data-search-js="search-179e01a3.js" data-settings-js="settings-5514c975.js" ><script src="../../static.files/storage-4e99c027.js"></script><script defer src="../../static.files/src-script-813739b1.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-673ee1e0.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-32bb7600.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-6580c154.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
+
+    function checkDocsLatestStable() {
+        function popup(msg, url) { return `
+            <style scoped="scoped">
+                .popup {
+                    max-width: 16em;
+                    background-color: #fff;
+                    position: fixed;
+                    z-index: 1;
+                    margin-left: auto;
+                    bottom: 1em;
+                    right: 1em;
+                    border-radius: 5px;
+                    box-shadow: 1px 1px 4px #777;
+                }
+
+                .popup a.version {
+                    color: #e57300;
+                    padding: 0.6em 1em;
+                    display: block;
+                }
+                .popup a.version:hover {
+                    color: #b25900;
+                }
+
+                .popup a.close {
+                    color: white;
+                    background: grey;
+                    border-radius: 99px;
+                    display: inline-block;
+                    width: 19px;
+                    line-height: 19px;
+                    font-weight: bold;
+                    text-align: center;
+                    margin: 0.6em;
+                    float: right;
+                }
+                .popup a.close:hover {
+                    background: black;
+                }
+            </style>
+            <section class="popup" id="gir_docs_popup">
+                <a class="close" href="#" onclick="document.getElementById('gir_docs_popup').remove(); return false">×</a>
+                <a class="version" href="https://gtk-rs.org/gtk4-rs/stable/latest/docs">
+                    ⚠ ${msg}
+                </a>
+            </section>
+        ` };
+
+        if ("0.10" == "main") {
+            document.body.insertAdjacentHTML(
+                'beforeend',
+                popup("This is the development version. Go to latest stable version.", "stable/latest")
+            );
+        } else {
+            fetch('https://gtk-rs.org/gtk4-rs/LATEST_RELEASE_BRANCH')
+                .then(response => response.text())
+                .then(latest_branch => {
+                    if (latest_branch.trim() != "0.10") {
+                        document.body.insertAdjacentHTML(
+                            'beforeend',
+                            popup("This version is outdated. Go to latest version.", "stable/latest")
+                        );
+                    }
+                });
+        }
+    }
+</script>
+
+
+<nav class="sidebar"><div class="src-sidebar-title"><h2>Files</h2></div></nav><div class="sidebar-resizer" title="Drag to resize sidebar"></div><main><rustdoc-search></rustdoc-search><section id="main-content" class="content"><div class="main-heading"><h1><div class="sub-heading">gsk4/</div>border_node.rs</h1><rustdoc-toolbar></rustdoc-toolbar></div><div class="example-wrap digits-2"><pre class="rust"><code><a href=#1 id=1 data-nosnippet>1</a><span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.
+<a href=#2 id=2 data-nosnippet>2</a>
+<a href=#3 id=3 data-nosnippet>3</a></span><span class="kw">use </span><a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/index.html">glib::translate</a>::<span class="kw-2">*</span>;
+<a href=#4 id=4 data-nosnippet>4</a>
+<a href=#5 id=5 data-nosnippet>5</a><span class="kw">use crate</span>::{<a href="../../gsk4_sys/index.html">ffi</a>, <a href="auto/border_node.rs.html#8-17">BorderNode</a>, <a href="auto/enums.rs.html#1395-1501">RenderNodeType</a>, <a href="rounded_rect.rs.html#9-25">RoundedRect</a>};
+<a href=#6 id=6 data-nosnippet>6</a>
+<a href=#7 id=7 data-nosnippet>7</a><a class="macro" href="render_node.rs.html#134-238">define_render_node!</a>(BorderNode, ffi::GskBorderNode, RenderNodeType::BorderNode);
+<a href=#8 id=8 data-nosnippet>8</a>
+<a href=#9 id=9 data-nosnippet>9</a><span class="kw">impl </span><a href="auto/border_node.rs.html#8-17">BorderNode</a> {
+<a href=#10 id=10 data-nosnippet>10</a>    <span class="doccomment">/// Creates a [`RenderNode`][crate::RenderNode] that will stroke a border rectangle inside the
+<a href=#11 id=11 data-nosnippet>11</a>    /// given @outline.
+<a href=#12 id=12 data-nosnippet>12</a>    ///
+<a href=#13 id=13 data-nosnippet>13</a>    /// The 4 sides of the border can have different widths and colors.
+<a href=#14 id=14 data-nosnippet>14</a>    /// ## `outline`
+<a href=#15 id=15 data-nosnippet>15</a>    /// a [`RoundedRect`][crate::RoundedRect] describing the outline of the border
+<a href=#16 id=16 data-nosnippet>16</a>    /// ## `border_width`
+<a href=#17 id=17 data-nosnippet>17</a>    /// the stroke width of the border on
+<a href=#18 id=18 data-nosnippet>18</a>    ///     the top, right, bottom and left side respectively.
+<a href=#19 id=19 data-nosnippet>19</a>    /// ## `border_color`
+<a href=#20 id=20 data-nosnippet>20</a>    /// the color used on the top, right,
+<a href=#21 id=21 data-nosnippet>21</a>    ///     bottom and left side.
+<a href=#22 id=22 data-nosnippet>22</a>    ///
+<a href=#23 id=23 data-nosnippet>23</a>    /// # Returns
+<a href=#24 id=24 data-nosnippet>24</a>    ///
+<a href=#25 id=25 data-nosnippet>25</a>    /// A new [`RenderNode`][crate::RenderNode]
+<a href=#26 id=26 data-nosnippet>26</a>    </span><span class="attr">#[doc(alias = <span class="string">"gsk_border_node_new"</span>)]
+<a href=#27 id=27 data-nosnippet>27</a>    </span><span class="kw">pub fn </span>new(
+<a href=#28 id=28 data-nosnippet>28</a>        outline: <span class="kw-2">&amp;</span><a href="rounded_rect.rs.html#9-25">RoundedRect</a>,
+<a href=#29 id=29 data-nosnippet>29</a>        border_width: <span class="kw-2">&amp;</span>[<a href="https://doc.rust-lang.org/nightly/std/primitive.f32.html">f32</a>; <span class="number">4</span>],
+<a href=#30 id=30 data-nosnippet>30</a>        border_color: <span class="kw-2">&amp;</span>[<a href="../../gdk4/auto/rgba/struct.RGBA.html">gdk::RGBA</a>; <span class="number">4</span>],
+<a href=#31 id=31 data-nosnippet>31</a>    ) -&gt; <span class="self">Self </span>{
+<a href=#32 id=32 data-nosnippet>32</a>        <span class="kw">unsafe </span>{
+<a href=#33 id=33 data-nosnippet>33</a>            <a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/fn.from_glib_full.html">from_glib_full</a>(<a href="../../gsk4_sys/fn.gsk_border_node_new.html">ffi::gsk_border_node_new</a>(
+<a href=#34 id=34 data-nosnippet>34</a>                <a href="#28">outline</a>.<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
+<a href=#35 id=35 data-nosnippet>35</a>                <a href="#29">border_width</a>.<a href="https://doc.rust-lang.org/nightly/core/foreigntype.slice.html#method.as_ptr">as_ptr</a>() <span class="kw">as </span><span class="kw-2">*const </span>[<a href="https://doc.rust-lang.org/nightly/std/primitive.f32.html">f32</a>; <span class="number">4</span>],
+<a href=#36 id=36 data-nosnippet>36</a>                <a href="#30">border_color</a>.<a href="https://doc.rust-lang.org/nightly/core/foreigntype.slice.html#method.as_ptr">as_ptr</a>() <span class="kw">as </span><span class="kw-2">*const </span>[<a href="../../gdk4_sys/struct.GdkRGBA.html">gdk::ffi::GdkRGBA</a>; <span class="number">4</span>],
+<a href=#37 id=37 data-nosnippet>37</a>            ))
+<a href=#38 id=38 data-nosnippet>38</a>        }
+<a href=#39 id=39 data-nosnippet>39</a>    }
+<a href=#40 id=40 data-nosnippet>40</a>
+<a href=#41 id=41 data-nosnippet>41</a>    <span class="doccomment">/// Retrieves the colors of the border.
+<a href=#42 id=42 data-nosnippet>42</a>    ///
+<a href=#43 id=43 data-nosnippet>43</a>    /// # Returns
+<a href=#44 id=44 data-nosnippet>44</a>    ///
+<a href=#45 id=45 data-nosnippet>45</a>    /// an array of 4 [`gdk::RGBA`][crate::gdk::RGBA]
+<a href=#46 id=46 data-nosnippet>46</a>    ///   structs for the top, right, bottom and left color of the border
+<a href=#47 id=47 data-nosnippet>47</a>    </span><span class="attr">#[doc(alias = <span class="string">"gsk_border_node_get_colors"</span>)]
+<a href=#48 id=48 data-nosnippet>48</a>    #[doc(alias = <span class="string">"get_colors"</span>)]
+<a href=#49 id=49 data-nosnippet>49</a>    </span><span class="kw">pub fn </span>colors(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span>[<a href="../../gdk4/auto/rgba/struct.RGBA.html">gdk::RGBA</a>; <span class="number">4</span>] {
+<a href=#50 id=50 data-nosnippet>50</a>        <span class="kw">unsafe </span>{
+<a href=#51 id=51 data-nosnippet>51</a>            <span class="kw-2">&amp;*</span>(<a href="../../gsk4_sys/fn.gsk_border_node_get_colors.html">ffi::gsk_border_node_get_colors</a>(<a class="self" href="#49">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>) <span class="kw">as </span><span class="kw-2">*const </span>[<a href="../../gdk4/auto/rgba/struct.RGBA.html">gdk::RGBA</a>; <span class="number">4</span>])
+<a href=#52 id=52 data-nosnippet>52</a>        }
+<a href=#53 id=53 data-nosnippet>53</a>    }
+<a href=#54 id=54 data-nosnippet>54</a>
+<a href=#55 id=55 data-nosnippet>55</a>    <span class="doccomment">/// Retrieves the stroke widths of the border.
+<a href=#56 id=56 data-nosnippet>56</a>    ///
+<a href=#57 id=57 data-nosnippet>57</a>    /// # Returns
+<a href=#58 id=58 data-nosnippet>58</a>    ///
+<a href=#59 id=59 data-nosnippet>59</a>    /// an array of 4 floats
+<a href=#60 id=60 data-nosnippet>60</a>    ///   for the top, right, bottom and left stroke width of the border,
+<a href=#61 id=61 data-nosnippet>61</a>    ///   respectively
+<a href=#62 id=62 data-nosnippet>62</a>    </span><span class="attr">#[doc(alias = <span class="string">"gsk_border_node_get_widths"</span>)]
+<a href=#63 id=63 data-nosnippet>63</a>    #[doc(alias = <span class="string">"get_widths"</span>)]
+<a href=#64 id=64 data-nosnippet>64</a>    </span><span class="kw">pub fn </span>widths(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span>[<a href="https://doc.rust-lang.org/nightly/std/primitive.f32.html">f32</a>; <span class="number">4</span>] {
+<a href=#65 id=65 data-nosnippet>65</a>        <span class="kw">unsafe </span>{ <span class="kw-2">&amp;*</span><a href="../../gsk4_sys/fn.gsk_border_node_get_widths.html">ffi::gsk_border_node_get_widths</a>(<a class="self" href="#64">self</a>.<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>) }
+<a href=#66 id=66 data-nosnippet>66</a>    }
+<a href=#67 id=67 data-nosnippet>67</a>}
+<a href=#68 id=68 data-nosnippet>68</a>
+<a href=#69 id=69 data-nosnippet>69</a><span class="kw">impl </span><a href="https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html">std::fmt::Debug</a> <span class="kw">for </span><a href="auto/border_node.rs.html#8-17">BorderNode</a> {
+<a href=#70 id=70 data-nosnippet>70</a>    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span><a href="https://doc.rust-lang.org/nightly/core/fmt/struct.Formatter.html">std::fmt::Formatter</a>) -&gt; <a href="https://doc.rust-lang.org/nightly/core/fmt/type.Result.html">std::fmt::Result</a> {
+<a href=#71 id=71 data-nosnippet>71</a>        <a href="#70">f</a>.<a href="https://doc.rust-lang.org/nightly/core/fmt/struct.Formatter.html#method.debug_struct">debug_struct</a>(<span class="string">"BorderNode"</span>)
+<a href=#72 id=72 data-nosnippet>72</a>            .<a href="https://doc.rust-lang.org/nightly/core/fmt/builders/struct.DebugStruct.html#method.field">field</a>(<span class="string">"colors"</span>, <span class="kw-2">&amp;</span><a class="self" href="#70">self</a>.<a href="#49-53">colors</a>())
+<a href=#73 id=73 data-nosnippet>73</a>            .<a href="https://doc.rust-lang.org/nightly/core/fmt/builders/struct.DebugStruct.html#method.field">field</a>(<span class="string">"widths"</span>, <span class="kw-2">&amp;</span><a class="self" href="#70">self</a>.<a href="#64-66">widths</a>())
+<a href=#74 id=74 data-nosnippet>74</a>            .<a href="https://doc.rust-lang.org/nightly/core/fmt/builders/struct.DebugStruct.html#method.field">field</a>(<span class="string">"outline"</span>, <span class="kw-2">&amp;</span><a class="self" href="#70">self</a>.<a href="auto/border_node.rs.html#33-35">outline</a>())
+<a href=#75 id=75 data-nosnippet>75</a>            .<a href="https://doc.rust-lang.org/nightly/core/fmt/builders/struct.DebugStruct.html#method.finish">finish</a>()
+<a href=#76 id=76 data-nosnippet>76</a>    }
+<a href=#77 id=77 data-nosnippet>77</a>}</code></pre></div></section></main></body></html>

@@ -1,0 +1,416 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Trait containing all `struct@ComboBox` methods."><title>ComboBoxExt in gtk4::prelude - Rust</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-46f98efaafac5295.ttf.woff2,FiraSans-Regular-018c141bf0843ffd.woff2,FiraSans-Medium-8f9a781e4970d388.woff2,SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2,SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-081576b923113409.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.79.0-nightly (3a36386dc 2024-04-25)" data-channel="nightly" data-search-js="search-bf21c90c8c1d92b1.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../static.files/storage-e32f0c247825364d.js"></script><script defer src="sidebar-items.js"></script><script defer src="../../static.files/main-20a3ad099b048cf2.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-09095024cf37855e.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc trait"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
+
+    function checkDocsLatestStable() {
+        function popup(msg, url) { return `
+            <style scoped="scoped">
+                .popup {
+                    max-width: 16em;
+                    background-color: #fff;
+                    position: fixed;
+                    z-index: 1;
+                    margin-left: auto;
+                    bottom: 1em;
+                    right: 1em;
+                    border-radius: 5px;
+                    box-shadow: 1px 1px 4px #777;
+                }
+
+                .popup a.version {
+                    color: #e57300;
+                    padding: 0.6em 1em;
+                    display: block;
+                }
+                .popup a.version:hover {
+                    color: #b25900;
+                }
+
+                .popup a.close {
+                    color: white;
+                    background: grey;
+                    border-radius: 99px;
+                    display: inline-block;
+                    width: 19px;
+                    line-height: 19px;
+                    font-weight: bold;
+                    text-align: center;
+                    margin: 0.6em;
+                    float: right;
+                }
+                .popup a.close:hover {
+                    background: black;
+                }
+            </style>
+            <section class="popup" id="gir_docs_popup">
+                <a class="close" href="#" onclick="document.getElementById('gir_docs_popup').remove(); return false">×</a>
+                <a class="version" href="https://gtk-rs.org/gtk4-rs/stable/latest/docs">
+                    ⚠ ${msg}
+                </a>
+            </section>
+        ` };
+
+        if ("0.8" == "master") {
+            document.body.insertAdjacentHTML(
+                'beforeend',
+                popup("This is the development version. Go to latest stable version.", "stable/latest")
+            );
+        } else {
+            fetch('https://gtk-rs.org/gtk4-rs/LATEST_RELEASE_BRANCH')
+                .then(response => response.text())
+                .then(latest_branch => {
+                    if (latest_branch.trim() != "0.8") {
+                        document.body.insertAdjacentHTML(
+                            'beforeend',
+                            popup("This version is outdated. Go to latest version.", "stable/latest")
+                        );
+                    }
+                });
+        }
+    }
+</script>
+
+
+<nav class="mobile-topbar"><button class="sidebar-menu-toggle" title="show sidebar"></button></nav><nav class="sidebar"><div class="sidebar-crate"><h2><a href="../../gtk4/index.html">gtk4</a><span class="version">0.8.2</span></h2></div><h2 class="location"><a href="#">ComboBoxExt</a></h2><div class="sidebar-elems"><section><h3><a href="#provided-methods">Provided Methods</a></h3><ul class="block"><li><a href="#method.active_id">active_id</a></li><li><a href="#method.active_iter">active_iter</a></li><li><a href="#method.button_sensitivity">button_sensitivity</a></li><li><a href="#method.child">child</a></li><li><a href="#method.connect_activate">connect_activate</a></li><li><a href="#method.connect_active_id_notify">connect_active_id_notify</a></li><li><a href="#method.connect_active_notify">connect_active_notify</a></li><li><a href="#method.connect_button_sensitivity_notify">connect_button_sensitivity_notify</a></li><li><a href="#method.connect_changed">connect_changed</a></li><li><a href="#method.connect_child_notify">connect_child_notify</a></li><li><a href="#method.connect_entry_text_column_notify">connect_entry_text_column_notify</a></li><li><a href="#method.connect_format_entry_text">connect_format_entry_text</a></li><li><a href="#method.connect_has_frame_notify">connect_has_frame_notify</a></li><li><a href="#method.connect_id_column_notify">connect_id_column_notify</a></li><li><a href="#method.connect_model_notify">connect_model_notify</a></li><li><a href="#method.connect_move_active">connect_move_active</a></li><li><a href="#method.connect_popdown">connect_popdown</a></li><li><a href="#method.connect_popup">connect_popup</a></li><li><a href="#method.connect_popup_fixed_width_notify">connect_popup_fixed_width_notify</a></li><li><a href="#method.connect_popup_shown_notify">connect_popup_shown_notify</a></li><li><a href="#method.emit_activate">emit_activate</a></li><li><a href="#method.emit_move_active">emit_move_active</a></li><li><a href="#method.emit_popdown">emit_popdown</a></li><li><a href="#method.emit_popup">emit_popup</a></li><li><a href="#method.entry_text_column">entry_text_column</a></li><li><a href="#method.has_entry">has_entry</a></li><li><a href="#method.has_frame">has_frame</a></li><li><a href="#method.id_column">id_column</a></li><li><a href="#method.is_popup_fixed_width">is_popup_fixed_width</a></li><li><a href="#method.is_popup_shown">is_popup_shown</a></li><li><a href="#method.model">model</a></li><li><a href="#method.popdown">popdown</a></li><li><a href="#method.popup">popup</a></li><li><a href="#method.popup_for_device">popup_for_device</a></li><li><a href="#method.set_active_id">set_active_id</a></li><li><a href="#method.set_active_iter">set_active_iter</a></li><li><a href="#method.set_button_sensitivity">set_button_sensitivity</a></li><li><a href="#method.set_child">set_child</a></li><li><a href="#method.set_entry_text_column">set_entry_text_column</a></li><li><a href="#method.set_has_frame">set_has_frame</a></li><li><a href="#method.set_id_column">set_id_column</a></li><li><a href="#method.set_model">set_model</a></li><li><a href="#method.set_popup_fixed_width">set_popup_fixed_width</a></li><li><a href="#method.set_row_separator_func">set_row_separator_func</a></li></ul><h3><a href="#object-safety">Object Safety</a></h3><h3><a href="#implementors">Implementors</a></h3></section><h2><a href="index.html">In gtk4::prelude</a></h2></div></nav><div class="sidebar-resizer"></div><main><div class="width-limiter"><nav class="sub"><form class="search-form"><span></span><div id="sidebar-button" tabindex="-1"><a href="../../gtk4/all.html" title="show sidebar"></a></div><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Type ‘S’ or ‘/’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings">Settings</a></div></form></nav><section id="main-content" class="content"><div class="main-heading"><h1>Trait <a href="../index.html">gtk4</a>::<wbr><a href="index.html">prelude</a>::<wbr><a class="trait" href="#">ComboBoxExt</a><button id="copy-path" title="Copy item path to clipboard">Copy item path</button></h1><span class="out-of-band"><a class="src" href="../../src/gtk4/auto/combo_box.rs.html#1242-2237">source</a> · <button id="toggle-all-docs" title="collapse all docs">[<span>&#x2212;</span>]</button></span></div><pre class="rust item-decl"><code>pub trait ComboBoxExt: <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.ComboBox.html" title="struct gtk4::ComboBox">ComboBox</a>&gt; + Sealed + 'static {
+<details class="toggle type-contents-toggle"><summary class="hideme"><span>Show 44 methods</span></summary>    // Provided methods
+    fn <a href="#method.active_id" class="fn">active_id</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/glib/gstring/struct.GString.html" title="struct glib::gstring::GString">GString</a>&gt; { ... }
+<span class="item-spacer"></span>    fn <a href="#method.active_iter" class="fn">active_iter</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../struct.TreeIter.html" title="struct gtk4::TreeIter">TreeIter</a>&gt; { ... }
+<span class="item-spacer"></span>    fn <a href="#method.button_sensitivity" class="fn">button_sensitivity</a>(&amp;self) -&gt; <a class="enum" href="../enum.SensitivityType.html" title="enum gtk4::SensitivityType">SensitivityType</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.child" class="fn">child</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt; { ... }
+<span class="item-spacer"></span>    fn <a href="#method.entry_text_column" class="fn">entry_text_column</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.has_entry" class="fn">has_entry</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.id_column" class="fn">id_column</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.model" class="fn">model</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../struct.TreeModel.html" title="struct gtk4::TreeModel">TreeModel</a>&gt; { ... }
+<span class="item-spacer"></span>    fn <a href="#method.is_popup_fixed_width" class="fn">is_popup_fixed_width</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.popdown" class="fn">popdown</a>(&amp;self) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.popup" class="fn">popup</a>(&amp;self) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.popup_for_device" class="fn">popup_for_device</a>(&amp;self, device: &amp;<a class="struct" href="../../gdk4/auto/device/struct.Device.html" title="struct gdk4::auto::device::Device">Device</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.set_active_id" class="fn">set_active_id</a>(&amp;self, active_id: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>&gt;) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.set_active_iter" class="fn">set_active_iter</a>(&amp;self, iter: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;<a class="struct" href="../struct.TreeIter.html" title="struct gtk4::TreeIter">TreeIter</a>&gt;) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.set_button_sensitivity" class="fn">set_button_sensitivity</a>(&amp;self, sensitivity: <a class="enum" href="../enum.SensitivityType.html" title="enum gtk4::SensitivityType">SensitivityType</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.set_child" class="fn">set_child</a>(&amp;self, child: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;&gt;) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.set_entry_text_column" class="fn">set_entry_text_column</a>(&amp;self, text_column: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.set_id_column" class="fn">set_id_column</a>(&amp;self, id_column: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.set_model" class="fn">set_model</a>(&amp;self, model: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.TreeModel.html" title="struct gtk4::TreeModel">TreeModel</a>&gt;&gt;) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.set_popup_fixed_width" class="fn">set_popup_fixed_width</a>(&amp;self, fixed: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.set_row_separator_func" class="fn">set_row_separator_func</a>&lt;P: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;<a class="struct" href="../struct.TreeModel.html" title="struct gtk4::TreeModel">TreeModel</a>, &amp;<a class="struct" href="../struct.TreeIter.html" title="struct gtk4::TreeIter">TreeIter</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> + 'static&gt;(
+        &amp;self,
+        func: P
+    ) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.has_frame" class="fn">has_frame</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.set_has_frame" class="fn">set_has_frame</a>(&amp;self, has_frame: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.is_popup_shown" class="fn">is_popup_shown</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_activate" class="fn">connect_activate</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(&amp;self, f: F) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.emit_activate" class="fn">emit_activate</a>(&amp;self) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_changed" class="fn">connect_changed</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(&amp;self, f: F) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_format_entry_text" class="fn">connect_format_entry_text</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>, &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>) -&gt; <a class="struct" href="https://doc.rust-lang.org/nightly/alloc/string/struct.String.html" title="struct alloc::string::String">String</a> + 'static&gt;(
+        &amp;self,
+        f: F
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_move_active" class="fn">connect_move_active</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>, <a class="enum" href="../enum.ScrollType.html" title="enum gtk4::ScrollType">ScrollType</a>) + 'static&gt;(
+        &amp;self,
+        f: F
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.emit_move_active" class="fn">emit_move_active</a>(&amp;self, scroll_type: <a class="enum" href="../enum.ScrollType.html" title="enum gtk4::ScrollType">ScrollType</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_popdown" class="fn">connect_popdown</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> + 'static&gt;(
+        &amp;self,
+        f: F
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.emit_popdown" class="fn">emit_popdown</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_popup" class="fn">connect_popup</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(&amp;self, f: F) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.emit_popup" class="fn">emit_popup</a>(&amp;self) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_active_notify" class="fn">connect_active_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
+        &amp;self,
+        f: F
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_active_id_notify" class="fn">connect_active_id_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
+        &amp;self,
+        f: F
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_button_sensitivity_notify" class="fn">connect_button_sensitivity_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
+        &amp;self,
+        f: F
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_child_notify" class="fn">connect_child_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
+        &amp;self,
+        f: F
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_entry_text_column_notify" class="fn">connect_entry_text_column_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
+        &amp;self,
+        f: F
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_has_frame_notify" class="fn">connect_has_frame_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
+        &amp;self,
+        f: F
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_id_column_notify" class="fn">connect_id_column_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
+        &amp;self,
+        f: F
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_model_notify" class="fn">connect_model_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
+        &amp;self,
+        f: F
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_popup_fixed_width_notify" class="fn">connect_popup_fixed_width_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
+        &amp;self,
+        f: F
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_popup_shown_notify" class="fn">connect_popup_shown_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
+        &amp;self,
+        f: F
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+</details>}</code></pre><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span><details class="toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>Trait containing all <a href="../struct.ComboBox.html" title="struct gtk4::ComboBox"><code>ComboBox</code></a> methods.</p>
+<h2 id="implementors-1"><a class="doc-anchor" href="#implementors-1">§</a>Implementors</h2>
+<p><a href="../struct.ComboBoxText.html" title="struct gtk4::ComboBoxText"><code>ComboBoxText</code></a>, <a href="../struct.ComboBox.html" title="struct gtk4::ComboBox"><code>ComboBox</code></a></p>
+</div></details><h2 id="provided-methods" class="section-header">Provided Methods<a href="#provided-methods" class="anchor">§</a></h2><div class="methods"><details class="toggle method-toggle" open><summary><section id="method.active_id" class="method"><a class="src rightside" href="../../src/gtk4/auto/combo_box.rs.html#1268-1274">source</a><h4 class="code-header">fn <a href="#method.active_id" class="fn">active_id</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/glib/gstring/struct.GString.html" title="struct glib::gstring::GString">GString</a>&gt;</h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span></summary><div class="docblock"><p>Returns the ID of the active row of @self.</p>
+<p>This value is taken from the active row and the column specified
+by the <a href="../struct.ComboBox.html#id-column" title="struct gtk4::ComboBox"><code>id-column</code></a> property of @self
+(see <a href="trait.ComboBoxExt.html#method.set_id_column"><code>set_id_column()</code></a>).</p>
+<p>The returned value is an interned string which means that you can
+compare the pointer by value to other interned strings and that you
+must not free it.</p>
+<p>If the <a href="../struct.ComboBox.html#id-column" title="struct gtk4::ComboBox"><code>id-column</code></a> property of @self is
+not set, or if no row is active, or if the active row has a <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="variant core::option::Option::None"><code>None</code></a>
+ID value, then <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="variant core::option::Option::None"><code>None</code></a> is returned.</p>
+<h5 id="deprecated-since-410"><a class="doc-anchor" href="#deprecated-since-410">§</a>Deprecated since 4.10</h5>
+<p>Use <a href="../struct.DropDown.html" title="struct gtk4::DropDown"><code>DropDown</code></a></p>
+<h5 id="returns"><a class="doc-anchor" href="#returns">§</a>Returns</h5>
+<p>the ID of the active row</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.active_iter" class="method"><a class="src rightside" href="../../src/gtk4/auto/combo_box.rs.html#1294-1307">source</a><h4 class="code-header">fn <a href="#method.active_iter" class="fn">active_iter</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../struct.TreeIter.html" title="struct gtk4::TreeIter">TreeIter</a>&gt;</h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span></summary><div class="docblock"><p>Sets @iter to point to the currently active item.</p>
+<p>If no item is active, @iter is left unchanged.</p>
+<h5 id="deprecated-since-410-1"><a class="doc-anchor" href="#deprecated-since-410-1">§</a>Deprecated since 4.10</h5>
+<p>Use <a href="../struct.DropDown.html" title="struct gtk4::DropDown"><code>DropDown</code></a></p>
+<h5 id="returns-1"><a class="doc-anchor" href="#returns-1">§</a>Returns</h5>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>true</code></a> if @iter was set, <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>false</code></a> otherwise</p>
+<h6 id="iter"><a class="doc-anchor" href="#iter">§</a><code>iter</code></h6>
+<p>A <a href="../struct.TreeIter.html" title="struct gtk4::TreeIter"><code>TreeIter</code></a></p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.button_sensitivity" class="method"><a class="src rightside" href="../../src/gtk4/auto/combo_box.rs.html#1327-1333">source</a><h4 class="code-header">fn <a href="#method.button_sensitivity" class="fn">button_sensitivity</a>(&amp;self) -&gt; <a class="enum" href="../enum.SensitivityType.html" title="enum gtk4::SensitivityType">SensitivityType</a></h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span></summary><div class="docblock"><p>Returns whether the combo box sets the dropdown button
+sensitive or not when there are no items in the model.</p>
+<h5 id="deprecated-since-410-2"><a class="doc-anchor" href="#deprecated-since-410-2">§</a>Deprecated since 4.10</h5>
+<p>Use <a href="../struct.DropDown.html" title="struct gtk4::DropDown"><code>DropDown</code></a></p>
+<h5 id="returns-2"><a class="doc-anchor" href="#returns-2">§</a>Returns</h5>
+<p><a href="../enum.SensitivityType.html#variant.On" title="variant gtk4::SensitivityType::On"><code>SensitivityType::On</code></a> if the dropdown button
+is sensitive when the model is empty, <a href="../enum.SensitivityType.html#variant.Off" title="variant gtk4::SensitivityType::Off"><code>SensitivityType::Off</code></a>
+if the button is always insensitive or <a href="../enum.SensitivityType.html#variant.Auto" title="variant gtk4::SensitivityType::Auto"><code>SensitivityType::Auto</code></a>
+if it is only sensitive as long as the model has one item to
+be selected.</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.child" class="method"><a class="src rightside" href="../../src/gtk4/auto/combo_box.rs.html#1348-1350">source</a><h4 class="code-header">fn <a href="#method.child" class="fn">child</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;</h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span></summary><div class="docblock"><p>Gets the child widget of @self.</p>
+<h5 id="deprecated-since-410-3"><a class="doc-anchor" href="#deprecated-since-410-3">§</a>Deprecated since 4.10</h5>
+<p>Use <a href="../struct.DropDown.html" title="struct gtk4::DropDown"><code>DropDown</code></a></p>
+<h5 id="returns-3"><a class="doc-anchor" href="#returns-3">§</a>Returns</h5>
+<p>the child widget of @self</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.entry_text_column" class="method"><a class="src rightside" href="../../src/gtk4/auto/combo_box.rs.html#1366-1368">source</a><h4 class="code-header">fn <a href="#method.entry_text_column" class="fn">entry_text_column</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a></h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span></summary><div class="docblock"><p>Returns the column which @self is using to get the strings
+from to display in the internal entry.</p>
+<h5 id="deprecated-since-410-4"><a class="doc-anchor" href="#deprecated-since-410-4">§</a>Deprecated since 4.10</h5>
+<p>Use <a href="../struct.DropDown.html" title="struct gtk4::DropDown"><code>DropDown</code></a></p>
+<h5 id="returns-4"><a class="doc-anchor" href="#returns-4">§</a>Returns</h5>
+<p>A column in the data source model of @self.</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.has_entry" class="method"><a class="src rightside" href="../../src/gtk4/auto/combo_box.rs.html#1383-1389">source</a><h4 class="code-header">fn <a href="#method.has_entry" class="fn">has_entry</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span></summary><div class="docblock"><p>Returns whether the combo box has an entry.</p>
+<h5 id="deprecated-since-410-5"><a class="doc-anchor" href="#deprecated-since-410-5">§</a>Deprecated since 4.10</h5>
+<p>Use <a href="../struct.DropDown.html" title="struct gtk4::DropDown"><code>DropDown</code></a></p>
+<h5 id="returns-5"><a class="doc-anchor" href="#returns-5">§</a>Returns</h5>
+<p>whether there is an entry in @self.</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.id_column" class="method"><a class="src rightside" href="../../src/gtk4/auto/combo_box.rs.html#1405-1407">source</a><h4 class="code-header">fn <a href="#method.id_column" class="fn">id_column</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a></h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span></summary><div class="docblock"><p>Returns the column which @self is using to get string IDs
+for values from.</p>
+<h5 id="deprecated-since-410-6"><a class="doc-anchor" href="#deprecated-since-410-6">§</a>Deprecated since 4.10</h5>
+<p>Use <a href="../struct.DropDown.html" title="struct gtk4::DropDown"><code>DropDown</code></a></p>
+<h5 id="returns-6"><a class="doc-anchor" href="#returns-6">§</a>Returns</h5>
+<p>A column in the data source model of @self.</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.model" class="method"><a class="src rightside" href="../../src/gtk4/auto/combo_box.rs.html#1423-1425">source</a><h4 class="code-header">fn <a href="#method.model" class="fn">model</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../struct.TreeModel.html" title="struct gtk4::TreeModel">TreeModel</a>&gt;</h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span></summary><div class="docblock"><p>Returns the <a href="../struct.TreeModel.html" title="struct gtk4::TreeModel"><code>TreeModel</code></a> of @self.</p>
+<h5 id="deprecated-since-410-7"><a class="doc-anchor" href="#deprecated-since-410-7">§</a>Deprecated since 4.10</h5>
+<p>Use <a href="../struct.DropDown.html" title="struct gtk4::DropDown"><code>DropDown</code></a></p>
+<h5 id="returns-7"><a class="doc-anchor" href="#returns-7">§</a>Returns</h5>
+<p>A <a href="../struct.TreeModel.html" title="struct gtk4::TreeModel"><code>TreeModel</code></a> which was passed
+during construction.</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.is_popup_fixed_width" class="method"><a class="src rightside" href="../../src/gtk4/auto/combo_box.rs.html#1440-1446">source</a><h4 class="code-header">fn <a href="#method.is_popup_fixed_width" class="fn">is_popup_fixed_width</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span></summary><div class="docblock"><p>Gets whether the popup uses a fixed width.</p>
+<h5 id="deprecated-since-410-8"><a class="doc-anchor" href="#deprecated-since-410-8">§</a>Deprecated since 4.10</h5>
+<p>Use <a href="../struct.DropDown.html" title="struct gtk4::DropDown"><code>DropDown</code></a></p>
+<h5 id="returns-8"><a class="doc-anchor" href="#returns-8">§</a>Returns</h5>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>true</code></a> if the popup uses a fixed width</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.popdown" class="method"><a class="src rightside" href="../../src/gtk4/auto/combo_box.rs.html#1459-1463">source</a><h4 class="code-header">fn <a href="#method.popdown" class="fn">popdown</a>(&amp;self)</h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span></summary><div class="docblock"><p>Hides the menu or dropdown list of @self.</p>
+<p>This function is mostly intended for use by accessibility technologies;
+applications should have little use for it.</p>
+<h5 id="deprecated-since-410-9"><a class="doc-anchor" href="#deprecated-since-410-9">§</a>Deprecated since 4.10</h5>
+<p>Use <a href="../struct.DropDown.html" title="struct gtk4::DropDown"><code>DropDown</code></a></p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.popup" class="method"><a class="src rightside" href="../../src/gtk4/auto/combo_box.rs.html#1478-1482">source</a><h4 class="code-header">fn <a href="#method.popup" class="fn">popup</a>(&amp;self)</h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span></summary><div class="docblock"><p>Pops up the menu or dropdown list of @self.</p>
+<p>This function is mostly intended for use by accessibility technologies;
+applications should have little use for it.</p>
+<p>Before calling this, @self must be mapped, or nothing will happen.</p>
+<h5 id="deprecated-since-410-10"><a class="doc-anchor" href="#deprecated-since-410-10">§</a>Deprecated since 4.10</h5>
+<p>Use <a href="../struct.DropDown.html" title="struct gtk4::DropDown"><code>DropDown</code></a></p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.popup_for_device" class="method"><a class="src rightside" href="../../src/gtk4/auto/combo_box.rs.html#1499-1506">source</a><h4 class="code-header">fn <a href="#method.popup_for_device" class="fn">popup_for_device</a>(&amp;self, device: &amp;<a class="struct" href="../../gdk4/auto/device/struct.Device.html" title="struct gdk4::auto::device::Device">Device</a>)</h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span></summary><div class="docblock"><p>Pops up the menu of @self.</p>
+<p>Note that currently this does not do anything with the device, as it was
+previously only used for list-mode combo boxes, and those were removed
+in GTK 4. However, it is retained in case similar functionality is added
+back later.</p>
+<h5 id="deprecated-since-410-11"><a class="doc-anchor" href="#deprecated-since-410-11">§</a>Deprecated since 4.10</h5>
+<p>Use <a href="../struct.DropDown.html" title="struct gtk4::DropDown"><code>DropDown</code></a></p>
+<h6 id="device"><a class="doc-anchor" href="#device">§</a><code>device</code></h6>
+<p>a <a href="../../gdk4/auto/device/struct.Device.html" title="struct gdk4::auto::device::Device"><code>gdk::Device</code></a></p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.set_active_id" class="method"><a class="src rightside" href="../../src/gtk4/auto/combo_box.rs.html#1532-1539">source</a><h4 class="code-header">fn <a href="#method.set_active_id" class="fn">set_active_id</a>(&amp;self, active_id: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>&gt;) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span></summary><div class="docblock"><p>Changes the active row of @self to the one that has an ID equal to
+@active_id.</p>
+<p>If @active_id is <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="variant core::option::Option::None"><code>None</code></a>, the active row is unset. Rows having
+a <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="variant core::option::Option::None"><code>None</code></a> ID string cannot be made active by this function.</p>
+<p>If the <a href="../struct.ComboBox.html#id-column" title="struct gtk4::ComboBox"><code>id-column</code></a> property of @self is
+unset or if no row has the given ID then the function does nothing
+and returns <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>false</code></a>.</p>
+<h5 id="deprecated-since-410-12"><a class="doc-anchor" href="#deprecated-since-410-12">§</a>Deprecated since 4.10</h5>
+<p>Use <a href="../struct.DropDown.html" title="struct gtk4::DropDown"><code>DropDown</code></a></p>
+<h6 id="active_id"><a class="doc-anchor" href="#active_id">§</a><code>active_id</code></h6>
+<p>the ID of the row to select</p>
+<h5 id="returns-9"><a class="doc-anchor" href="#returns-9">§</a>Returns</h5>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>true</code></a> if a row with a matching ID was found. If a <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="variant core::option::Option::None"><code>None</code></a>
+@active_id was given to unset the active row, the function
+always returns <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>true</code></a>.</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.set_active_iter" class="method"><a class="src rightside" href="../../src/gtk4/auto/combo_box.rs.html#1553-1560">source</a><h4 class="code-header">fn <a href="#method.set_active_iter" class="fn">set_active_iter</a>(&amp;self, iter: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;<a class="struct" href="../struct.TreeIter.html" title="struct gtk4::TreeIter">TreeIter</a>&gt;)</h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span></summary><div class="docblock"><p>Sets the current active item to be the one referenced by @iter.</p>
+<p>If @iter is <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="variant core::option::Option::None"><code>None</code></a>, the active item is unset.</p>
+<h5 id="deprecated-since-410-13"><a class="doc-anchor" href="#deprecated-since-410-13">§</a>Deprecated since 4.10</h5>
+<p>Use <a href="../struct.DropDown.html" title="struct gtk4::DropDown"><code>DropDown</code></a></p>
+<h6 id="iter-1"><a class="doc-anchor" href="#iter-1">§</a><code>iter</code></h6>
+<p>The <a href="../struct.TreeIter.html" title="struct gtk4::TreeIter"><code>TreeIter</code></a></p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.set_button_sensitivity" class="method"><a class="src rightside" href="../../src/gtk4/auto/combo_box.rs.html#1573-1580">source</a><h4 class="code-header">fn <a href="#method.set_button_sensitivity" class="fn">set_button_sensitivity</a>(&amp;self, sensitivity: <a class="enum" href="../enum.SensitivityType.html" title="enum gtk4::SensitivityType">SensitivityType</a>)</h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span></summary><div class="docblock"><p>Sets whether the dropdown button of the combo box should update
+its sensitivity depending on the model contents.</p>
+<h5 id="deprecated-since-410-14"><a class="doc-anchor" href="#deprecated-since-410-14">§</a>Deprecated since 4.10</h5>
+<p>Use <a href="../struct.DropDown.html" title="struct gtk4::DropDown"><code>DropDown</code></a></p>
+<h6 id="sensitivity"><a class="doc-anchor" href="#sensitivity">§</a><code>sensitivity</code></h6>
+<p>specify the sensitivity of the dropdown button</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.set_child" class="method"><a class="src rightside" href="../../src/gtk4/auto/combo_box.rs.html#1592-1599">source</a><h4 class="code-header">fn <a href="#method.set_child" class="fn">set_child</a>(&amp;self, child: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;&gt;)</h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span></summary><div class="docblock"><p>Sets the child widget of @self.</p>
+<h5 id="deprecated-since-410-15"><a class="doc-anchor" href="#deprecated-since-410-15">§</a>Deprecated since 4.10</h5>
+<p>Use <a href="../struct.DropDown.html" title="struct gtk4::DropDown"><code>DropDown</code></a></p>
+<h6 id="child"><a class="doc-anchor" href="#child">§</a><code>child</code></h6>
+<p>the child widget</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.set_entry_text_column" class="method"><a class="src rightside" href="../../src/gtk4/auto/combo_box.rs.html#1622-1626">source</a><h4 class="code-header">fn <a href="#method.set_entry_text_column" class="fn">set_entry_text_column</a>(&amp;self, text_column: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>)</h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span></summary><div class="docblock"><p>Sets the model column which @self should use to get strings
+from to be @text_column.</p>
+<p>For this column no separate
+<a href="../struct.CellRenderer.html" title="struct gtk4::CellRenderer"><code>CellRenderer</code></a> is needed.</p>
+<p>The column @text_column in the model of @self must be of
+type <code>G_TYPE_STRING</code>.</p>
+<p>This is only relevant if @self has been created with
+<a href="../struct.ComboBox.html#has-entry" title="struct gtk4::ComboBox"><code>has-entry</code></a> as <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>true</code></a>.</p>
+<h5 id="deprecated-since-410-16"><a class="doc-anchor" href="#deprecated-since-410-16">§</a>Deprecated since 4.10</h5>
+<p>Use <a href="../struct.DropDown.html" title="struct gtk4::DropDown"><code>DropDown</code></a></p>
+<h6 id="text_column"><a class="doc-anchor" href="#text_column">§</a><code>text_column</code></h6>
+<p>A column in @model to get the strings from for
+the internal entry</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.set_id_column" class="method"><a class="src rightside" href="../../src/gtk4/auto/combo_box.rs.html#1642-1646">source</a><h4 class="code-header">fn <a href="#method.set_id_column" class="fn">set_id_column</a>(&amp;self, id_column: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>)</h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span></summary><div class="docblock"><p>Sets the model column which @self should use to get string IDs
+for values from.</p>
+<p>The column @id_column in the model of @self must be of type
+<code>G_TYPE_STRING</code>.</p>
+<h5 id="deprecated-since-410-17"><a class="doc-anchor" href="#deprecated-since-410-17">§</a>Deprecated since 4.10</h5>
+<p>Use <a href="../struct.DropDown.html" title="struct gtk4::DropDown"><code>DropDown</code></a></p>
+<h6 id="id_column"><a class="doc-anchor" href="#id_column">§</a><code>id_column</code></h6>
+<p>A column in @model to get string IDs for values from</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.set_model" class="method"><a class="src rightside" href="../../src/gtk4/auto/combo_box.rs.html#1665-1672">source</a><h4 class="code-header">fn <a href="#method.set_model" class="fn">set_model</a>(&amp;self, model: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.TreeModel.html" title="struct gtk4::TreeModel">TreeModel</a>&gt;&gt;)</h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span></summary><div class="docblock"><p>Sets the model used by @self to be @model.</p>
+<p>Will unset a previously set model (if applicable). If model is <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="variant core::option::Option::None"><code>None</code></a>,
+then it will unset the model.</p>
+<p>Note that this function does not clear the cell renderers, you have to
+call <a href="trait.CellLayoutExt.html#method.clear" title="method gtk4::prelude::CellLayoutExt::clear"><code>CellLayoutExt::clear()</code></a> yourself if you need to set up different
+cell renderers for the new model.</p>
+<h5 id="deprecated-since-410-18"><a class="doc-anchor" href="#deprecated-since-410-18">§</a>Deprecated since 4.10</h5>
+<p>Use <a href="../struct.DropDown.html" title="struct gtk4::DropDown"><code>DropDown</code></a></p>
+<h6 id="model"><a class="doc-anchor" href="#model">§</a><code>model</code></h6>
+<p>A <a href="../struct.TreeModel.html" title="struct gtk4::TreeModel"><code>TreeModel</code></a></p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.set_popup_fixed_width" class="method"><a class="src rightside" href="../../src/gtk4/auto/combo_box.rs.html#1687-1694">source</a><h4 class="code-header">fn <a href="#method.set_popup_fixed_width" class="fn">set_popup_fixed_width</a>(&amp;self, fixed: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>)</h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span></summary><div class="docblock"><p>Specifies whether the popup’s width should be a fixed width.</p>
+<p>If @fixed is <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>true</code></a>, the popup’s width is set to match the
+allocated width of the combo box.</p>
+<h5 id="deprecated-since-410-19"><a class="doc-anchor" href="#deprecated-since-410-19">§</a>Deprecated since 4.10</h5>
+<p>Use <a href="../struct.DropDown.html" title="struct gtk4::DropDown"><code>DropDown</code></a></p>
+<h6 id="fixed"><a class="doc-anchor" href="#fixed">§</a><code>fixed</code></h6>
+<p>whether to use a fixed popup width</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.set_row_separator_func" class="method"><a class="src rightside" href="../../src/gtk4/auto/combo_box.rs.html#1710-1738">source</a><h4 class="code-header">fn <a href="#method.set_row_separator_func" class="fn">set_row_separator_func</a>&lt;P: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;<a class="struct" href="../struct.TreeModel.html" title="struct gtk4::TreeModel">TreeModel</a>, &amp;<a class="struct" href="../struct.TreeIter.html" title="struct gtk4::TreeIter">TreeIter</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> + 'static&gt;(
+    &amp;self,
+    func: P
+)</h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span></summary><div class="docblock"><p>Sets the row separator function, which is used to determine
+whether a row should be drawn as a separator.</p>
+<p>If the row separator function is <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="variant core::option::Option::None"><code>None</code></a>, no separators are drawn.
+This is the default value.</p>
+<h5 id="deprecated-since-410-20"><a class="doc-anchor" href="#deprecated-since-410-20">§</a>Deprecated since 4.10</h5>
+<p>Use <a href="../struct.DropDown.html" title="struct gtk4::DropDown"><code>DropDown</code></a></p>
+<h6 id="func"><a class="doc-anchor" href="#func">§</a><code>func</code></h6>
+<p>a <code>GtkTreeViewRowSeparatorFunc</code></p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.has_frame" class="method"><a class="src rightside" href="../../src/gtk4/auto/combo_box.rs.html#1742-1744">source</a><h4 class="code-header">fn <a href="#method.has_frame" class="fn">has_frame</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span></summary><div class="docblock"><p>The <code>has-frame</code> property controls whether a frame is drawn around the entry.</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.set_has_frame" class="method"><a class="src rightside" href="../../src/gtk4/auto/combo_box.rs.html#1748-1750">source</a><h4 class="code-header">fn <a href="#method.set_has_frame" class="fn">set_has_frame</a>(&amp;self, has_frame: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>)</h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span></summary><div class="docblock"><p>The <code>has-frame</code> property controls whether a frame is drawn around the entry.</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.is_popup_shown" class="method"><a class="src rightside" href="../../src/gtk4/auto/combo_box.rs.html#1757-1759">source</a><h4 class="code-header">fn <a href="#method.is_popup_shown" class="fn">is_popup_shown</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span></summary><div class="docblock"><p>Whether the combo boxes dropdown is popped up.</p>
+<p>Note that this property is mainly useful, because
+it allows you to connect to notify::popup-shown.</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.connect_activate" class="method"><a class="src rightside" href="../../src/gtk4/auto/combo_box.rs.html#1768-1787">source</a><h4 class="code-header">fn <a href="#method.connect_activate" class="fn">connect_activate</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(&amp;self, f: F) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div><div class="stab portability">Available on <strong>crate feature <code>v4_6</code></strong> only.</div></span></summary><div class="docblock"><p>Emitted to when the combo box is activated.</p>
+<p>The <code>::activate</code> signal on <a href="../struct.ComboBox.html" title="struct gtk4::ComboBox"><code>ComboBox</code></a> is an action signal and
+emitting it causes the combo box to pop up its dropdown.</p>
+</div></details><section id="method.emit_activate" class="method"><a class="src rightside" href="../../src/gtk4/auto/combo_box.rs.html#1791-1793">source</a><h4 class="code-header">fn <a href="#method.emit_activate" class="fn">emit_activate</a>(&amp;self)</h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div><div class="stab portability">Available on <strong>crate feature <code>v4_6</code></strong> only.</div></span><details class="toggle method-toggle" open><summary><section id="method.connect_changed" class="method"><a class="src rightside" href="../../src/gtk4/auto/combo_box.rs.html#1801-1820">source</a><h4 class="code-header">fn <a href="#method.connect_changed" class="fn">connect_changed</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(&amp;self, f: F) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span></summary><div class="docblock"><p>Emitted when the active item is changed.</p>
+<p>The can be due to the user selecting a different item from the list,
+or due to a call to <a href="trait.ComboBoxExt.html#method.set_active_iter"><code>set_active_iter()</code></a>. It will
+also be emitted while typing into the entry of a combo box with an entry.</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.connect_format_entry_text" class="method"><a class="src rightside" href="../../src/gtk4/auto/combo_box.rs.html#1864-1894">source</a><h4 class="code-header">fn <a href="#method.connect_format_entry_text" class="fn">connect_format_entry_text</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>, &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>) -&gt; <a class="struct" href="https://doc.rust-lang.org/nightly/alloc/string/struct.String.html" title="struct alloc::string::String">String</a> + 'static&gt;(
+    &amp;self,
+    f: F
+) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span></summary><div class="docblock"><p>Emitted to allow changing how the text in a combo box’s entry is displayed.</p>
+<p>See <a href="../struct.ComboBox.html#has-entry" title="struct gtk4::ComboBox"><code>has-entry</code></a>.</p>
+<p>Connect a signal handler which returns an allocated string representing
+@path. That string will then be used to set the text in the combo box’s
+entry. The default signal handler uses the text from the
+<a href="../struct.ComboBox.html#entry-text-column" title="struct gtk4::ComboBox"><code>entry-text-column</code></a> model column.</p>
+<p>Here’s an example signal handler which fetches data from the model and
+displays it in the entry.
+<strong>⚠️ The following code is in c ⚠️</strong></p>
+<div class="example-wrap"><pre class="language-c"><code>static char *
+format_entry_text_callback (GtkComboBox *combo,
+                            const char *path,
+                            gpointer     user_data)
+{
+  GtkTreeIter iter;
+  GtkTreeModel model;
+  double       value;
+
+  model = gtk_combo_box_get_model (combo);
+
+  gtk_tree_model_get_iter_from_string (model, &amp;iter, path);
+  gtk_tree_model_get (model, &amp;iter,
+                      THE_DOUBLE_VALUE_COLUMN, &amp;value,
+                      -1);
+
+  return g_strdup_printf (&quot;%g&quot;, value);
+}
+</code></pre></div><h6 id="path"><a class="doc-anchor" href="#path">§</a><code>path</code></h6>
+<p>the <a href="../struct.TreePath.html" title="struct gtk4::TreePath"><code>TreePath</code></a> string from the combo box’s current model
+to format text for</p>
+<h5 id="returns-10"><a class="doc-anchor" href="#returns-10">§</a>Returns</h5>
+<p>a newly allocated string representing @path
+for the current <a href="../struct.ComboBox.html" title="struct gtk4::ComboBox"><code>ComboBox</code></a> model.</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.connect_move_active" class="method"><a class="src rightside" href="../../src/gtk4/auto/combo_box.rs.html#1902-1928">source</a><h4 class="code-header">fn <a href="#method.connect_move_active" class="fn">connect_move_active</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>, <a class="enum" href="../enum.ScrollType.html" title="enum gtk4::ScrollType">ScrollType</a>) + 'static&gt;(
+    &amp;self,
+    f: F
+) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span></summary><div class="docblock"><p>Emitted to move the active selection.</p>
+<p>This is an <a href="class.SignalAction.html">keybinding signal</a>.</p>
+<h6 id="scroll_type"><a class="doc-anchor" href="#scroll_type">§</a><code>scroll_type</code></h6>
+<p>a <a href="../enum.ScrollType.html" title="enum gtk4::ScrollType"><code>ScrollType</code></a></p>
+</div></details><section id="method.emit_move_active" class="method"><a class="src rightside" href="../../src/gtk4/auto/combo_box.rs.html#1930-1932">source</a><h4 class="code-header">fn <a href="#method.emit_move_active" class="fn">emit_move_active</a>(&amp;self, scroll_type: <a class="enum" href="../enum.ScrollType.html" title="enum gtk4::ScrollType">ScrollType</a>)</h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span><details class="toggle method-toggle" open><summary><section id="method.connect_popdown" class="method"><a class="src rightside" href="../../src/gtk4/auto/combo_box.rs.html#1940-1959">source</a><h4 class="code-header">fn <a href="#method.connect_popdown" class="fn">connect_popdown</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> + 'static&gt;(
+    &amp;self,
+    f: F
+) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span></summary><div class="docblock"><p>Emitted to popdown the combo box list.</p>
+<p>This is an <a href="class.SignalAction.html">keybinding signal</a>.</p>
+<p>The default bindings for this signal are Alt+Up and Escape.</p>
+</div></details><section id="method.emit_popdown" class="method"><a class="src rightside" href="../../src/gtk4/auto/combo_box.rs.html#1961-1963">source</a><h4 class="code-header">fn <a href="#method.emit_popdown" class="fn">emit_popdown</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span><details class="toggle method-toggle" open><summary><section id="method.connect_popup" class="method"><a class="src rightside" href="../../src/gtk4/auto/combo_box.rs.html#1971-1990">source</a><h4 class="code-header">fn <a href="#method.connect_popup" class="fn">connect_popup</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(&amp;self, f: F) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span></summary><div class="docblock"><p>Emitted to popup the combo box list.</p>
+<p>This is an <a href="class.SignalAction.html">keybinding signal</a>.</p>
+<p>The default binding for this signal is Alt+Down.</p>
+</div></details><section id="method.emit_popup" class="method"><a class="src rightside" href="../../src/gtk4/auto/combo_box.rs.html#1992-1994">source</a><h4 class="code-header">fn <a href="#method.emit_popup" class="fn">emit_popup</a>(&amp;self)</h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span><section id="method.connect_active_notify" class="method"><a class="src rightside" href="../../src/gtk4/auto/combo_box.rs.html#1997-2017">source</a><h4 class="code-header">fn <a href="#method.connect_active_notify" class="fn">connect_active_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(&amp;self, f: F) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span><section id="method.connect_active_id_notify" class="method"><a class="src rightside" href="../../src/gtk4/auto/combo_box.rs.html#2020-2040">source</a><h4 class="code-header">fn <a href="#method.connect_active_id_notify" class="fn">connect_active_id_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
+    &amp;self,
+    f: F
+) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span><section id="method.connect_button_sensitivity_notify" class="method"><a class="src rightside" href="../../src/gtk4/auto/combo_box.rs.html#2043-2066">source</a><h4 class="code-header">fn <a href="#method.connect_button_sensitivity_notify" class="fn">connect_button_sensitivity_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
+    &amp;self,
+    f: F
+) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span><section id="method.connect_child_notify" class="method"><a class="src rightside" href="../../src/gtk4/auto/combo_box.rs.html#2069-2089">source</a><h4 class="code-header">fn <a href="#method.connect_child_notify" class="fn">connect_child_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(&amp;self, f: F) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span><section id="method.connect_entry_text_column_notify" class="method"><a class="src rightside" href="../../src/gtk4/auto/combo_box.rs.html#2092-2115">source</a><h4 class="code-header">fn <a href="#method.connect_entry_text_column_notify" class="fn">connect_entry_text_column_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
+    &amp;self,
+    f: F
+) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span><section id="method.connect_has_frame_notify" class="method"><a class="src rightside" href="../../src/gtk4/auto/combo_box.rs.html#2118-2138">source</a><h4 class="code-header">fn <a href="#method.connect_has_frame_notify" class="fn">connect_has_frame_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
+    &amp;self,
+    f: F
+) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span><section id="method.connect_id_column_notify" class="method"><a class="src rightside" href="../../src/gtk4/auto/combo_box.rs.html#2141-2161">source</a><h4 class="code-header">fn <a href="#method.connect_id_column_notify" class="fn">connect_id_column_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
+    &amp;self,
+    f: F
+) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span><section id="method.connect_model_notify" class="method"><a class="src rightside" href="../../src/gtk4/auto/combo_box.rs.html#2164-2184">source</a><h4 class="code-header">fn <a href="#method.connect_model_notify" class="fn">connect_model_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(&amp;self, f: F) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span><section id="method.connect_popup_fixed_width_notify" class="method"><a class="src rightside" href="../../src/gtk4/auto/combo_box.rs.html#2187-2210">source</a><h4 class="code-header">fn <a href="#method.connect_popup_fixed_width_notify" class="fn">connect_popup_fixed_width_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
+    &amp;self,
+    f: F
+) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span><section id="method.connect_popup_shown_notify" class="method"><a class="src rightside" href="../../src/gtk4/auto/combo_box.rs.html#2213-2236">source</a><h4 class="code-header">fn <a href="#method.connect_popup_shown_notify" class="fn">connect_popup_shown_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
+    &amp;self,
+    f: F
+) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span></div><h2 id="object-safety" class="section-header">Object Safety<a href="#object-safety" class="anchor">§</a></h2><div class="object-safety-info">This trait is <b>not</b> <a href="https://doc.rust-lang.org/nightly/reference/items/traits.html#object-safety">object safe</a>.</div><h2 id="implementors" class="section-header">Implementors<a href="#implementors" class="anchor">§</a></h2><div id="implementors-list"><section id="impl-ComboBoxExt-for-O" class="impl"><a class="src rightside" href="../../src/gtk4/auto/combo_box.rs.html#2239">source</a><a href="#impl-ComboBoxExt-for-O" class="anchor">§</a><h3 class="code-header">impl&lt;O: <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.ComboBox.html" title="struct gtk4::ComboBox">ComboBox</a>&gt;&gt; <a class="trait" href="trait.ComboBoxExt.html" title="trait gtk4::prelude::ComboBoxExt">ComboBoxExt</a> for O</h3></section></div><script src="../../trait.impl/gtk4/auto/combo_box/trait.ComboBoxExt.js" async></script></section></div></main></body></html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="A common trait implemented by the various `Event` types."><title>EventKind in gdk4::prelude - Rust</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../static.files/rustdoc-aa0817cf.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="gdk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.90.0-nightly (a00149764 2025-07-14)" data-channel="nightly" data-search-js="search-179e01a3.js" data-settings-js="settings-5514c975.js" ><script src="../../static.files/storage-4e99c027.js"></script><script defer src="sidebar-items.js"></script><script defer src="../../static.files/main-673ee1e0.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-32bb7600.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-6580c154.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-044be391.svg"></head><body class="rustdoc trait"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
+
+    function checkDocsLatestStable() {
+        function popup(msg, url) { return `
+            <style scoped="scoped">
+                .popup {
+                    max-width: 16em;
+                    background-color: #fff;
+                    position: fixed;
+                    z-index: 1;
+                    margin-left: auto;
+                    bottom: 1em;
+                    right: 1em;
+                    border-radius: 5px;
+                    box-shadow: 1px 1px 4px #777;
+                }
+
+                .popup a.version {
+                    color: #e57300;
+                    padding: 0.6em 1em;
+                    display: block;
+                }
+                .popup a.version:hover {
+                    color: #b25900;
+                }
+
+                .popup a.close {
+                    color: white;
+                    background: grey;
+                    border-radius: 99px;
+                    display: inline-block;
+                    width: 19px;
+                    line-height: 19px;
+                    font-weight: bold;
+                    text-align: center;
+                    margin: 0.6em;
+                    float: right;
+                }
+                .popup a.close:hover {
+                    background: black;
+                }
+            </style>
+            <section class="popup" id="gir_docs_popup">
+                <a class="close" href="#" onclick="document.getElementById('gir_docs_popup').remove(); return false">×</a>
+                <a class="version" href="https://gtk-rs.org/gtk4-rs/stable/latest/docs">
+                    ⚠ ${msg}
+                </a>
+            </section>
+        ` };
+
+        if ("0.10" == "main") {
+            document.body.insertAdjacentHTML(
+                'beforeend',
+                popup("This is the development version. Go to latest stable version.", "stable/latest")
+            );
+        } else {
+            fetch('https://gtk-rs.org/gtk4-rs/LATEST_RELEASE_BRANCH')
+                .then(response => response.text())
+                .then(latest_branch => {
+                    if (latest_branch.trim() != "0.10") {
+                        document.body.insertAdjacentHTML(
+                            'beforeend',
+                            popup("This version is outdated. Go to latest version.", "stable/latest")
+                        );
+                    }
+                });
+        }
+    }
+</script>
+
+
+<nav class="mobile-topbar"><button class="sidebar-menu-toggle" title="show sidebar"></button></nav><nav class="sidebar"><div class="sidebar-crate"><h2><a href="../../gdk4/index.html">gdk4</a><span class="version">0.10.0</span></h2></div><div class="sidebar-elems"><section id="rustdoc-toc"><h2 class="location"><a href="#">Event<wbr>Kind</a></h2><h3><a href="#">Sections</a></h3><ul class="block top-toc"><li><a href="#safety" title="Safety">Safety</a></li></ul><h3><a href="#required-methods">Required Methods</a></h3><ul class="block"><li><a href="#tymethod.event_types" title="event_types">event_types</a></li></ul><h3><a href="#dyn-compatibility">Dyn Compatibility</a></h3><h3><a href="#implementors">Implementors</a></h3></section><div id="rustdoc-modnav"><h2><a href="index.html">In gdk4::<wbr>prelude</a></h2></div></div></nav><div class="sidebar-resizer" title="Drag to resize sidebar"></div><main><div class="width-limiter"><rustdoc-search></rustdoc-search><section id="main-content" class="content"><div class="main-heading"><div class="rustdoc-breadcrumbs"><a href="../index.html">gdk4</a>::<wbr><a href="index.html">prelude</a></div><h1>Trait <span class="trait">EventKind</span><button id="copy-path" title="Copy item path to clipboard">Copy item path</button></h1><rustdoc-toolbar></rustdoc-toolbar><span class="sub-heading"><a class="src" href="../../src/gdk4/event.rs.html#187-191">Source</a> </span></div><pre class="rust item-decl"><code>pub unsafe trait EventKind:
+    <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/types/trait.StaticType.html" title="trait glib::types::StaticType">StaticType</a>
+    + <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/trait.FromGlibPtrFull.html" title="trait glib::translate::FromGlibPtrFull">FromGlibPtrFull</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.pointer.html">*mut </a><a class="struct" href="../../gdk4_sys/struct.GdkEvent.html" title="struct gdk4_sys::GdkEvent">GdkEvent</a>&gt;
+    + 'static {
+    // Required method
+    fn <a href="#tymethod.event_types" class="fn">event_types</a>() -&gt; &amp;'static [<a class="enum" href="../enum.EventType.html" title="enum gdk4::EventType">EventType</a>];
+}</code></pre><details class="toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>A common trait implemented by the various <a href="../struct.Event.html" title="struct gdk4::Event"><code>Event</code></a> types.</p>
+<h2 id="safety"><a class="doc-anchor" href="#safety">§</a>Safety</h2>
+<p>The user is not supposed to implement this trait.</p>
+</div></details><h2 id="required-methods" class="section-header">Required Methods<a href="#required-methods" class="anchor">§</a></h2><div class="methods"><section id="tymethod.event_types" class="method"><a class="src rightside" href="../../src/gdk4/event.rs.html#190">Source</a><h4 class="code-header">fn <a href="#tymethod.event_types" class="fn">event_types</a>() -&gt; &amp;'static [<a class="enum" href="../enum.EventType.html" title="enum gdk4::EventType">EventType</a>]</h4></section></div><h2 id="dyn-compatibility" class="section-header">Dyn Compatibility<a href="#dyn-compatibility" class="anchor">§</a></h2><div class="dyn-compatibility-info"><p>This trait is <b>not</b> <a href="https://doc.rust-lang.org/nightly/reference/items/traits.html#dyn-compatibility">dyn compatible</a>.</p><p><i>In older versions of Rust, dyn compatibility was called "object safety", so this trait is not object safe.</i></p></div><h2 id="implementors" class="section-header">Implementors<a href="#implementors" class="anchor">§</a></h2><div id="implementors-list"><section id="impl-EventKind-for-ButtonEvent" class="impl"><a class="src rightside" href="../../src/gdk4/button_event.rs.html#7-11">Source</a><a href="#impl-EventKind-for-ButtonEvent" class="anchor">§</a><h3 class="code-header">impl <a class="trait" href="trait.EventKind.html" title="trait gdk4::prelude::EventKind">EventKind</a> for <a class="struct" href="../struct.ButtonEvent.html" title="struct gdk4::ButtonEvent">ButtonEvent</a></h3></section><section id="impl-EventKind-for-CrossingEvent" class="impl"><a class="src rightside" href="../../src/gdk4/crossing_event.rs.html#7-11">Source</a><a href="#impl-EventKind-for-CrossingEvent" class="anchor">§</a><h3 class="code-header">impl <a class="trait" href="trait.EventKind.html" title="trait gdk4::prelude::EventKind">EventKind</a> for <a class="struct" href="../struct.CrossingEvent.html" title="struct gdk4::CrossingEvent">CrossingEvent</a></h3></section><section id="impl-EventKind-for-DNDEvent" class="impl"><a class="src rightside" href="../../src/gdk4/dnd_event.rs.html#7-11">Source</a><a href="#impl-EventKind-for-DNDEvent" class="anchor">§</a><h3 class="code-header">impl <a class="trait" href="trait.EventKind.html" title="trait gdk4::prelude::EventKind">EventKind</a> for <a class="struct" href="../struct.DNDEvent.html" title="struct gdk4::DNDEvent">DNDEvent</a></h3></section><section id="impl-EventKind-for-DeleteEvent" class="impl"><a class="src rightside" href="../../src/gdk4/delete_event.rs.html#7-11">Source</a><a href="#impl-EventKind-for-DeleteEvent" class="anchor">§</a><h3 class="code-header">impl <a class="trait" href="trait.EventKind.html" title="trait gdk4::prelude::EventKind">EventKind</a> for <a class="struct" href="../struct.DeleteEvent.html" title="struct gdk4::DeleteEvent">DeleteEvent</a></h3></section><section id="impl-EventKind-for-FocusEvent" class="impl"><a class="src rightside" href="../../src/gdk4/focus_event.rs.html#7-11">Source</a><a href="#impl-EventKind-for-FocusEvent" class="anchor">§</a><h3 class="code-header">impl <a class="trait" href="trait.EventKind.html" title="trait gdk4::prelude::EventKind">EventKind</a> for <a class="struct" href="../struct.FocusEvent.html" title="struct gdk4::FocusEvent">FocusEvent</a></h3></section><section id="impl-EventKind-for-GrabBrokenEvent" class="impl"><a class="src rightside" href="../../src/gdk4/grab_broken_event.rs.html#7-11">Source</a><a href="#impl-EventKind-for-GrabBrokenEvent" class="anchor">§</a><h3 class="code-header">impl <a class="trait" href="trait.EventKind.html" title="trait gdk4::prelude::EventKind">EventKind</a> for <a class="struct" href="../struct.GrabBrokenEvent.html" title="struct gdk4::GrabBrokenEvent">GrabBrokenEvent</a></h3></section><section id="impl-EventKind-for-KeyEvent" class="impl"><a class="src rightside" href="../../src/gdk4/key_event.rs.html#9-13">Source</a><a href="#impl-EventKind-for-KeyEvent" class="anchor">§</a><h3 class="code-header">impl <a class="trait" href="trait.EventKind.html" title="trait gdk4::prelude::EventKind">EventKind</a> for <a class="struct" href="../struct.KeyEvent.html" title="struct gdk4::KeyEvent">KeyEvent</a></h3></section><section id="impl-EventKind-for-MotionEvent" class="impl"><a class="src rightside" href="../../src/gdk4/motion_event.rs.html#7-11">Source</a><a href="#impl-EventKind-for-MotionEvent" class="anchor">§</a><h3 class="code-header">impl <a class="trait" href="trait.EventKind.html" title="trait gdk4::prelude::EventKind">EventKind</a> for <a class="struct" href="../struct.MotionEvent.html" title="struct gdk4::MotionEvent">MotionEvent</a></h3></section><section id="impl-EventKind-for-PadEvent" class="impl"><a class="src rightside" href="../../src/gdk4/pad_event.rs.html#7-11">Source</a><a href="#impl-EventKind-for-PadEvent" class="anchor">§</a><h3 class="code-header">impl <a class="trait" href="trait.EventKind.html" title="trait gdk4::prelude::EventKind">EventKind</a> for <a class="struct" href="../struct.PadEvent.html" title="struct gdk4::PadEvent">PadEvent</a></h3></section><section id="impl-EventKind-for-ProximityEvent" class="impl"><a class="src rightside" href="../../src/gdk4/proximity_event.rs.html#7-11">Source</a><a href="#impl-EventKind-for-ProximityEvent" class="anchor">§</a><h3 class="code-header">impl <a class="trait" href="trait.EventKind.html" title="trait gdk4::prelude::EventKind">EventKind</a> for <a class="struct" href="../struct.ProximityEvent.html" title="struct gdk4::ProximityEvent">ProximityEvent</a></h3></section><section id="impl-EventKind-for-ScrollEvent" class="impl"><a class="src rightside" href="../../src/gdk4/scroll_event.rs.html#7-11">Source</a><a href="#impl-EventKind-for-ScrollEvent" class="anchor">§</a><h3 class="code-header">impl <a class="trait" href="trait.EventKind.html" title="trait gdk4::prelude::EventKind">EventKind</a> for <a class="struct" href="../struct.ScrollEvent.html" title="struct gdk4::ScrollEvent">ScrollEvent</a></h3></section><section id="impl-EventKind-for-TouchEvent" class="impl"><a class="src rightside" href="../../src/gdk4/touch_event.rs.html#7-11">Source</a><a href="#impl-EventKind-for-TouchEvent" class="anchor">§</a><h3 class="code-header">impl <a class="trait" href="trait.EventKind.html" title="trait gdk4::prelude::EventKind">EventKind</a> for <a class="struct" href="../struct.TouchEvent.html" title="struct gdk4::TouchEvent">TouchEvent</a></h3></section><section id="impl-EventKind-for-TouchpadEvent" class="impl"><a class="src rightside" href="../../src/gdk4/touchpad_event.rs.html#7-18">Source</a><a href="#impl-EventKind-for-TouchpadEvent" class="anchor">§</a><h3 class="code-header">impl <a class="trait" href="trait.EventKind.html" title="trait gdk4::prelude::EventKind">EventKind</a> for <a class="struct" href="../struct.TouchpadEvent.html" title="struct gdk4::TouchpadEvent">TouchpadEvent</a></h3></section></div><script src="../../trait.impl/gdk4/event/trait.EventKind.js" async></script></section></div></main></body></html>

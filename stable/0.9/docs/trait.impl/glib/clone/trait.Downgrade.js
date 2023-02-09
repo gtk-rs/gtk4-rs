@@ -1,0 +1,9 @@
+(function() {
+    var implementors = Object.fromEntries([["gtk4",[["impl&lt;T&gt; <a class=\"trait\" href=\"https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/clone/trait.Downgrade.html\" title=\"trait glib::clone::Downgrade\">Downgrade</a> for <a class=\"struct\" href=\"gtk4/subclass/widget/struct.TemplateChild.html\" title=\"struct gtk4::subclass::widget::TemplateChild\">TemplateChild</a>&lt;T&gt;<div class=\"where\">where\n    T: <a class=\"trait\" href=\"https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/object/trait.ObjectType.html\" title=\"trait glib::object::ObjectType\">ObjectType</a> + <a class=\"trait\" href=\"https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/translate/trait.FromGlibPtrNone.html\" title=\"trait glib::translate::FromGlibPtrNone\">FromGlibPtrNone</a>&lt;<a class=\"primitive\" href=\"https://doc.rust-lang.org/nightly/std/primitive.pointer.html\">*mut </a>&lt;T as <a class=\"trait\" href=\"https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/object/trait.ObjectType.html\" title=\"trait glib::object::ObjectType\">ObjectType</a>&gt;::<a class=\"associatedtype\" href=\"https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/object/trait.ObjectType.html#associatedtype.GlibType\" title=\"type glib::object::ObjectType::GlibType\">GlibType</a>&gt; + <a class=\"trait\" href=\"https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/clone/trait.Downgrade.html\" title=\"trait glib::clone::Downgrade\">Downgrade</a>,</div>"]]]]);
+    if (window.register_implementors) {
+        window.register_implementors(implementors);
+    } else {
+        window.pending_implementors = implementors;
+    }
+})()
+//{"start":57,"fragment_lengths":[1405]}

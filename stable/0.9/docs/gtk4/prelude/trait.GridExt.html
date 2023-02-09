@@ -1,0 +1,305 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Trait containing all `struct@Grid` methods."><title>GridExt in gtk4::prelude - Rust</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../static.files/rustdoc-84e720fa.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.89.0-nightly (5526a2f47 2025-06-20)" data-channel="nightly" data-search-js="search-343419c9.js" data-settings-js="settings-5514c975.js" ><script src="../../static.files/storage-4e99c027.js"></script><script defer src="sidebar-items.js"></script><script defer src="../../static.files/main-fd3af306.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-32bb7600.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-6580c154.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-044be391.svg"></head><body class="rustdoc trait"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
+
+    function checkDocsLatestStable() {
+        function popup(msg, url) { return `
+            <style scoped="scoped">
+                .popup {
+                    max-width: 16em;
+                    background-color: #fff;
+                    position: fixed;
+                    z-index: 1;
+                    margin-left: auto;
+                    bottom: 1em;
+                    right: 1em;
+                    border-radius: 5px;
+                    box-shadow: 1px 1px 4px #777;
+                }
+
+                .popup a.version {
+                    color: #e57300;
+                    padding: 0.6em 1em;
+                    display: block;
+                }
+                .popup a.version:hover {
+                    color: #b25900;
+                }
+
+                .popup a.close {
+                    color: white;
+                    background: grey;
+                    border-radius: 99px;
+                    display: inline-block;
+                    width: 19px;
+                    line-height: 19px;
+                    font-weight: bold;
+                    text-align: center;
+                    margin: 0.6em;
+                    float: right;
+                }
+                .popup a.close:hover {
+                    background: black;
+                }
+            </style>
+            <section class="popup" id="gir_docs_popup">
+                <a class="close" href="#" onclick="document.getElementById('gir_docs_popup').remove(); return false">×</a>
+                <a class="version" href="https://gtk-rs.org/gtk4-rs/stable/latest/docs">
+                    ⚠ ${msg}
+                </a>
+            </section>
+        ` };
+
+        if ("0.9" == "main") {
+            document.body.insertAdjacentHTML(
+                'beforeend',
+                popup("This is the development version. Go to latest stable version.", "stable/latest")
+            );
+        } else {
+            fetch('https://gtk-rs.org/gtk4-rs/LATEST_RELEASE_BRANCH')
+                .then(response => response.text())
+                .then(latest_branch => {
+                    if (latest_branch.trim() != "0.9") {
+                        document.body.insertAdjacentHTML(
+                            'beforeend',
+                            popup("This version is outdated. Go to latest version.", "stable/latest")
+                        );
+                    }
+                });
+        }
+    }
+</script>
+
+
+<nav class="mobile-topbar"><button class="sidebar-menu-toggle" title="show sidebar"></button></nav><nav class="sidebar"><div class="sidebar-crate"><h2><a href="../../gtk4/index.html">gtk4</a><span class="version">0.9.7</span></h2></div><div class="sidebar-elems"><section id="rustdoc-toc"><h2 class="location"><a href="#">GridExt</a></h2><h3><a href="#">Sections</a></h3><ul class="block top-toc"><li><a href="#implementors-1" title="Implementors">Implementors</a></li></ul><h3><a href="#provided-methods">Provided Methods</a></h3><ul class="block"><li><a href="#method.attach" title="attach">attach</a></li><li><a href="#method.attach_next_to" title="attach_next_to">attach_next_to</a></li><li><a href="#method.baseline_row" title="baseline_row">baseline_row</a></li><li><a href="#method.child_at" title="child_at">child_at</a></li><li><a href="#method.column_spacing" title="column_spacing">column_spacing</a></li><li><a href="#method.connect_baseline_row_notify" title="connect_baseline_row_notify">connect_baseline_row_notify</a></li><li><a href="#method.connect_column_homogeneous_notify" title="connect_column_homogeneous_notify">connect_column_homogeneous_notify</a></li><li><a href="#method.connect_column_spacing_notify" title="connect_column_spacing_notify">connect_column_spacing_notify</a></li><li><a href="#method.connect_row_homogeneous_notify" title="connect_row_homogeneous_notify">connect_row_homogeneous_notify</a></li><li><a href="#method.connect_row_spacing_notify" title="connect_row_spacing_notify">connect_row_spacing_notify</a></li><li><a href="#method.insert_column" title="insert_column">insert_column</a></li><li><a href="#method.insert_next_to" title="insert_next_to">insert_next_to</a></li><li><a href="#method.insert_row" title="insert_row">insert_row</a></li><li><a href="#method.is_column_homogeneous" title="is_column_homogeneous">is_column_homogeneous</a></li><li><a href="#method.is_row_homogeneous" title="is_row_homogeneous">is_row_homogeneous</a></li><li><a href="#method.query_child" title="query_child">query_child</a></li><li><a href="#method.remove" title="remove">remove</a></li><li><a href="#method.remove_column" title="remove_column">remove_column</a></li><li><a href="#method.remove_row" title="remove_row">remove_row</a></li><li><a href="#method.row_baseline_position" title="row_baseline_position">row_baseline_position</a></li><li><a href="#method.row_spacing" title="row_spacing">row_spacing</a></li><li><a href="#method.set_baseline_row" title="set_baseline_row">set_baseline_row</a></li><li><a href="#method.set_column_homogeneous" title="set_column_homogeneous">set_column_homogeneous</a></li><li><a href="#method.set_column_spacing" title="set_column_spacing">set_column_spacing</a></li><li><a href="#method.set_row_baseline_position" title="set_row_baseline_position">set_row_baseline_position</a></li><li><a href="#method.set_row_homogeneous" title="set_row_homogeneous">set_row_homogeneous</a></li><li><a href="#method.set_row_spacing" title="set_row_spacing">set_row_spacing</a></li></ul><h3><a href="#dyn-compatibility">Dyn Compatibility</a></h3><h3><a href="#implementors">Implementors</a></h3></section><div id="rustdoc-modnav"><h2><a href="index.html">In gtk4::<wbr>prelude</a></h2></div></div></nav><div class="sidebar-resizer" title="Drag to resize sidebar"></div><main><div class="width-limiter"><rustdoc-search></rustdoc-search><section id="main-content" class="content"><div class="main-heading"><div class="rustdoc-breadcrumbs"><a href="../index.html">gtk4</a>::<wbr><a href="index.html">prelude</a></div><h1>Trait <span class="trait">GridExt</span><button id="copy-path" title="Copy item path to clipboard">Copy item path</button></h1><rustdoc-toolbar></rustdoc-toolbar><span class="sub-heading"><a class="src" href="../../src/gtk4/auto/grid.rs.html#860-1383">Source</a> </span></div><pre class="rust item-decl"><code>pub trait GridExt:
+    <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Grid.html" title="struct gtk4::Grid">Grid</a>&gt;
+    + Sealed
+    + 'static {
+<details class="toggle type-contents-toggle"><summary class="hideme"><span>Show 27 methods</span></summary>    // Provided methods
+    fn <a href="#method.attach" class="fn">attach</a>(
+        &amp;self,
+        child: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;,
+        column: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>,
+        row: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>,
+        width: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>,
+        height: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>,
+    ) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.attach_next_to" class="fn">attach_next_to</a>(
+        &amp;self,
+        child: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;,
+        sibling: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;&gt;,
+        side: <a class="enum" href="../enum.PositionType.html" title="enum gtk4::PositionType">PositionType</a>,
+        width: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>,
+        height: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>,
+    ) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.baseline_row" class="fn">baseline_row</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.child_at" class="fn">child_at</a>(&amp;self, column: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, row: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt; { ... }
+<span class="item-spacer"></span>    fn <a href="#method.is_column_homogeneous" class="fn">is_column_homogeneous</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.column_spacing" class="fn">column_spacing</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.row_baseline_position" class="fn">row_baseline_position</a>(&amp;self, row: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>) -&gt; <a class="enum" href="../enum.BaselinePosition.html" title="enum gtk4::BaselinePosition">BaselinePosition</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.is_row_homogeneous" class="fn">is_row_homogeneous</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.row_spacing" class="fn">row_spacing</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.insert_column" class="fn">insert_column</a>(&amp;self, position: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.insert_next_to" class="fn">insert_next_to</a>(&amp;self, sibling: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;, side: <a class="enum" href="../enum.PositionType.html" title="enum gtk4::PositionType">PositionType</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.insert_row" class="fn">insert_row</a>(&amp;self, position: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.query_child" class="fn">query_child</a>(&amp;self, child: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;) -&gt; (<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.remove" class="fn">remove</a>(&amp;self, child: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.remove_column" class="fn">remove_column</a>(&amp;self, position: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.remove_row" class="fn">remove_row</a>(&amp;self, position: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.set_baseline_row" class="fn">set_baseline_row</a>(&amp;self, row: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.set_column_homogeneous" class="fn">set_column_homogeneous</a>(&amp;self, homogeneous: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.set_column_spacing" class="fn">set_column_spacing</a>(&amp;self, spacing: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.set_row_baseline_position" class="fn">set_row_baseline_position</a>(&amp;self, row: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, pos: <a class="enum" href="../enum.BaselinePosition.html" title="enum gtk4::BaselinePosition">BaselinePosition</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.set_row_homogeneous" class="fn">set_row_homogeneous</a>(&amp;self, homogeneous: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.set_row_spacing" class="fn">set_row_spacing</a>(&amp;self, spacing: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_baseline_row_notify" class="fn">connect_baseline_row_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;Self) + 'static&gt;(
+        &amp;self,
+        f: F,
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_column_homogeneous_notify" class="fn">connect_column_homogeneous_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;Self) + 'static&gt;(
+        &amp;self,
+        f: F,
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_column_spacing_notify" class="fn">connect_column_spacing_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;Self) + 'static&gt;(
+        &amp;self,
+        f: F,
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_row_homogeneous_notify" class="fn">connect_row_homogeneous_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;Self) + 'static&gt;(
+        &amp;self,
+        f: F,
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_row_spacing_notify" class="fn">connect_row_spacing_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;Self) + 'static&gt;(
+        &amp;self,
+        f: F,
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+</details>}</code></pre><details class="toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>Trait containing all <a href="../struct.Grid.html" title="struct gtk4::Grid"><code>Grid</code></a> methods.</p>
+<h2 id="implementors-1"><a class="doc-anchor" href="#implementors-1">§</a>Implementors</h2>
+<p><a href="../struct.Grid.html" title="struct gtk4::Grid"><code>Grid</code></a></p>
+</div></details><h2 id="provided-methods" class="section-header">Provided Methods<a href="#provided-methods" class="anchor">§</a></h2><div class="methods"><details class="toggle method-toggle" open><summary><section id="method.attach" class="method"><a class="src rightside" href="../../src/gtk4/auto/grid.rs.html#877-888">Source</a><h4 class="code-header">fn <a href="#method.attach" class="fn">attach</a>(
+    &amp;self,
+    child: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;,
+    column: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>,
+    row: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>,
+    width: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>,
+    height: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>,
+)</h4></section></summary><div class="docblock"><p>Adds a widget to the grid.</p>
+<p>The position of @child is determined by @column and @row.
+The number of “cells” that @child will occupy is determined
+by @width and @height.</p>
+<h6 id="child"><a class="doc-anchor" href="#child">§</a><code>child</code></h6>
+<p>the widget to add</p>
+<h6 id="column"><a class="doc-anchor" href="#column">§</a><code>column</code></h6>
+<p>the column number to attach the left side of @child to</p>
+<h6 id="row"><a class="doc-anchor" href="#row">§</a><code>row</code></h6>
+<p>the row number to attach the top side of @child to</p>
+<h6 id="width"><a class="doc-anchor" href="#width">§</a><code>width</code></h6>
+<p>the number of columns that @child will span</p>
+<h6 id="height"><a class="doc-anchor" href="#height">§</a><code>height</code></h6>
+<p>the number of rows that @child will span</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.attach_next_to" class="method"><a class="src rightside" href="../../src/gtk4/auto/grid.rs.html#911-929">Source</a><h4 class="code-header">fn <a href="#method.attach_next_to" class="fn">attach_next_to</a>(
+    &amp;self,
+    child: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;,
+    sibling: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;&gt;,
+    side: <a class="enum" href="../enum.PositionType.html" title="enum gtk4::PositionType">PositionType</a>,
+    width: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>,
+    height: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>,
+)</h4></section></summary><div class="docblock"><p>Adds a widget to the grid.</p>
+<p>The widget is placed next to @sibling, on the side determined by
+@side. When @sibling is <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="variant core::option::Option::None"><code>None</code></a>, the widget is placed in row (for
+left or right placement) or column 0 (for top or bottom placement),
+at the end indicated by @side.</p>
+<p>Attaching widgets labeled <code>[1]</code>, <code>[2]</code>, <code>[3]</code> with <code>@sibling == [</code>None<code>]</code> and
+<code>@side == [</code>PositionType::Left<code>][crate::PositionType::Left]</code> yields a layout of <code>[3][2][1]</code>.</p>
+<h6 id="child-1"><a class="doc-anchor" href="#child-1">§</a><code>child</code></h6>
+<p>the widget to add</p>
+<h6 id="sibling"><a class="doc-anchor" href="#sibling">§</a><code>sibling</code></h6>
+<p>the child of @self that @child will be placed
+next to, or <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="variant core::option::Option::None"><code>None</code></a> to place @child at the beginning or end</p>
+<h6 id="side"><a class="doc-anchor" href="#side">§</a><code>side</code></h6>
+<p>the side of @sibling that @child is positioned next to</p>
+<h6 id="width-1"><a class="doc-anchor" href="#width-1">§</a><code>width</code></h6>
+<p>the number of columns that @child will span</p>
+<h6 id="height-1"><a class="doc-anchor" href="#height-1">§</a><code>height</code></h6>
+<p>the number of rows that @child will span</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.baseline_row" class="method"><a class="src rightside" href="../../src/gtk4/auto/grid.rs.html#939-941">Source</a><h4 class="code-header">fn <a href="#method.baseline_row" class="fn">baseline_row</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a></h4></section></summary><div class="docblock"><p>Returns which row defines the global baseline of @self.</p>
+<h5 id="returns"><a class="doc-anchor" href="#returns">§</a>Returns</h5>
+<p>the row index defining the global baseline</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.child_at" class="method"><a class="src rightside" href="../../src/gtk4/auto/grid.rs.html#955-963">Source</a><h4 class="code-header">fn <a href="#method.child_at" class="fn">child_at</a>(&amp;self, column: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, row: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;</h4></section></summary><div class="docblock"><p>Gets the child of @self whose area covers the grid
+cell at @column, @row.</p>
+<h6 id="column-1"><a class="doc-anchor" href="#column-1">§</a><code>column</code></h6>
+<p>the left edge of the cell</p>
+<h6 id="row-1"><a class="doc-anchor" href="#row-1">§</a><code>row</code></h6>
+<p>the top edge of the cell</p>
+<h5 id="returns-1"><a class="doc-anchor" href="#returns-1">§</a>Returns</h5>
+<p>the child at the given position</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.is_column_homogeneous" class="method"><a class="src rightside" href="../../src/gtk4/auto/grid.rs.html#973-979">Source</a><h4 class="code-header">fn <a href="#method.is_column_homogeneous" class="fn">is_column_homogeneous</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></section></summary><div class="docblock"><p>Returns whether all columns of @self have the same width.</p>
+<h5 id="returns-2"><a class="doc-anchor" href="#returns-2">§</a>Returns</h5>
+<p>whether all columns of @self have the same width.</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.column_spacing" class="method"><a class="src rightside" href="../../src/gtk4/auto/grid.rs.html#989-991">Source</a><h4 class="code-header">fn <a href="#method.column_spacing" class="fn">column_spacing</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a></h4></section></summary><div class="docblock"><p>Returns the amount of space between the columns of @self.</p>
+<h5 id="returns-3"><a class="doc-anchor" href="#returns-3">§</a>Returns</h5>
+<p>the column spacing of @self</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.row_baseline_position" class="method"><a class="src rightside" href="../../src/gtk4/auto/grid.rs.html#1004-1011">Source</a><h4 class="code-header">fn <a href="#method.row_baseline_position" class="fn">row_baseline_position</a>(&amp;self, row: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>) -&gt; <a class="enum" href="../enum.BaselinePosition.html" title="enum gtk4::BaselinePosition">BaselinePosition</a></h4></section></summary><div class="docblock"><p>Returns the baseline position of @row.</p>
+<p>See <a href="trait.GridExt.html#method.set_row_baseline_position"><code>set_row_baseline_position()</code></a>.</p>
+<h6 id="row-2"><a class="doc-anchor" href="#row-2">§</a><code>row</code></h6>
+<p>a row index</p>
+<h5 id="returns-4"><a class="doc-anchor" href="#returns-4">§</a>Returns</h5>
+<p>the baseline position of @row</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.is_row_homogeneous" class="method"><a class="src rightside" href="../../src/gtk4/auto/grid.rs.html#1021-1027">Source</a><h4 class="code-header">fn <a href="#method.is_row_homogeneous" class="fn">is_row_homogeneous</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></section></summary><div class="docblock"><p>Returns whether all rows of @self have the same height.</p>
+<h5 id="returns-5"><a class="doc-anchor" href="#returns-5">§</a>Returns</h5>
+<p>whether all rows of @self have the same height.</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.row_spacing" class="method"><a class="src rightside" href="../../src/gtk4/auto/grid.rs.html#1037-1039">Source</a><h4 class="code-header">fn <a href="#method.row_spacing" class="fn">row_spacing</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a></h4></section></summary><div class="docblock"><p>Returns the amount of space between the rows of @self.</p>
+<h5 id="returns-6"><a class="doc-anchor" href="#returns-6">§</a>Returns</h5>
+<p>the row spacing of @self</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.insert_column" class="method"><a class="src rightside" href="../../src/gtk4/auto/grid.rs.html#1049-1053">Source</a><h4 class="code-header">fn <a href="#method.insert_column" class="fn">insert_column</a>(&amp;self, position: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>)</h4></section></summary><div class="docblock"><p>Inserts a column at the specified position.</p>
+<p>Children which are attached at or to the right of this position
+are moved one column to the right. Children which span across this
+position are grown to span the new column.</p>
+<h6 id="position"><a class="doc-anchor" href="#position">§</a><code>position</code></h6>
+<p>the position to insert the column at</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.insert_next_to" class="method"><a class="src rightside" href="../../src/gtk4/auto/grid.rs.html#1067-1075">Source</a><h4 class="code-header">fn <a href="#method.insert_next_to" class="fn">insert_next_to</a>(&amp;self, sibling: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;, side: <a class="enum" href="../enum.PositionType.html" title="enum gtk4::PositionType">PositionType</a>)</h4></section></summary><div class="docblock"><p>Inserts a row or column at the specified position.</p>
+<p>The new row or column is placed next to @sibling, on the side
+determined by @side. If @side is <a href="../enum.PositionType.html#variant.Top" title="variant gtk4::PositionType::Top"><code>PositionType::Top</code></a> or <a href="../enum.PositionType.html#variant.Bottom" title="variant gtk4::PositionType::Bottom"><code>PositionType::Bottom</code></a>,
+a row is inserted. If @side is <a href="../enum.PositionType.html#variant.Left" title="variant gtk4::PositionType::Left"><code>PositionType::Left</code></a> of <a href="../enum.PositionType.html#variant.Right" title="variant gtk4::PositionType::Right"><code>PositionType::Right</code></a>,
+a column is inserted.</p>
+<h6 id="sibling-1"><a class="doc-anchor" href="#sibling-1">§</a><code>sibling</code></h6>
+<p>the child of @self that the new row or column will be
+placed next to</p>
+<h6 id="side-1"><a class="doc-anchor" href="#side-1">§</a><code>side</code></h6>
+<p>the side of @sibling that @child is positioned next to</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.insert_row" class="method"><a class="src rightside" href="../../src/gtk4/auto/grid.rs.html#1085-1089">Source</a><h4 class="code-header">fn <a href="#method.insert_row" class="fn">insert_row</a>(&amp;self, position: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>)</h4></section></summary><div class="docblock"><p>Inserts a row at the specified position.</p>
+<p>Children which are attached at or below this position
+are moved one row down. Children which span across this
+position are grown to span the new row.</p>
+<h6 id="position-1"><a class="doc-anchor" href="#position-1">§</a><code>position</code></h6>
+<p>the position to insert the row at</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.query_child" class="method"><a class="src rightside" href="../../src/gtk4/auto/grid.rs.html#1110-1131">Source</a><h4 class="code-header">fn <a href="#method.query_child" class="fn">query_child</a>(&amp;self, child: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;) -&gt; (<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>)</h4></section></summary><div class="docblock"><p>Queries the attach points and spans of @child inside the given <a href="../struct.Grid.html" title="struct gtk4::Grid"><code>Grid</code></a>.</p>
+<h6 id="child-2"><a class="doc-anchor" href="#child-2">§</a><code>child</code></h6>
+<p>a <a href="../struct.Widget.html" title="struct gtk4::Widget"><code>Widget</code></a> child of @self</p>
+<h5 id="returns-7"><a class="doc-anchor" href="#returns-7">§</a>Returns</h5><h6 id="column-2"><a class="doc-anchor" href="#column-2">§</a><code>column</code></h6>
+<p>the column used to attach the left side of @child</p>
+<h6 id="row-3"><a class="doc-anchor" href="#row-3">§</a><code>row</code></h6>
+<p>the row used to attach the top side of @child</p>
+<h6 id="width-2"><a class="doc-anchor" href="#width-2">§</a><code>width</code></h6>
+<p>the number of columns @child spans</p>
+<h6 id="height-2"><a class="doc-anchor" href="#height-2">§</a><code>height</code></h6>
+<p>the number of rows @child spans</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.remove" class="method"><a class="src rightside" href="../../src/gtk4/auto/grid.rs.html#1140-1147">Source</a><h4 class="code-header">fn <a href="#method.remove" class="fn">remove</a>(&amp;self, child: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;)</h4></section></summary><div class="docblock"><p>Removes a child from @self.</p>
+<p>The child must have been added with
+<a href="trait.GridExt.html#method.attach"><code>attach()</code></a> or <a href="trait.GridExt.html#method.attach_next_to"><code>attach_next_to()</code></a>.</p>
+<h6 id="child-3"><a class="doc-anchor" href="#child-3">§</a><code>child</code></h6>
+<p>the child widget to remove</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.remove_column" class="method"><a class="src rightside" href="../../src/gtk4/auto/grid.rs.html#1158-1162">Source</a><h4 class="code-header">fn <a href="#method.remove_column" class="fn">remove_column</a>(&amp;self, position: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>)</h4></section></summary><div class="docblock"><p>Removes a column from the grid.</p>
+<p>Children that are placed in this column are removed,
+spanning children that overlap this column have their
+width reduced by one, and children after the column
+are moved to the left.</p>
+<h6 id="position-2"><a class="doc-anchor" href="#position-2">§</a><code>position</code></h6>
+<p>the position of the column to remove</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.remove_row" class="method"><a class="src rightside" href="../../src/gtk4/auto/grid.rs.html#1173-1177">Source</a><h4 class="code-header">fn <a href="#method.remove_row" class="fn">remove_row</a>(&amp;self, position: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>)</h4></section></summary><div class="docblock"><p>Removes a row from the grid.</p>
+<p>Children that are placed in this row are removed,
+spanning children that overlap this row have their
+height reduced by one, and children below the row
+are moved up.</p>
+<h6 id="position-3"><a class="doc-anchor" href="#position-3">§</a><code>position</code></h6>
+<p>the position of the row to remove</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.set_baseline_row" class="method"><a class="src rightside" href="../../src/gtk4/auto/grid.rs.html#1188-1192">Source</a><h4 class="code-header">fn <a href="#method.set_baseline_row" class="fn">set_baseline_row</a>(&amp;self, row: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>)</h4></section></summary><div class="docblock"><p>Sets which row defines the global baseline for the entire grid.</p>
+<p>Each row in the grid can have its own local baseline, but only
+one of those is global, meaning it will be the baseline in the
+parent of the @self.</p>
+<h6 id="row-4"><a class="doc-anchor" href="#row-4">§</a><code>row</code></h6>
+<p>the row index</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.set_column_homogeneous" class="method"><a class="src rightside" href="../../src/gtk4/auto/grid.rs.html#1199-1206">Source</a><h4 class="code-header">fn <a href="#method.set_column_homogeneous" class="fn">set_column_homogeneous</a>(&amp;self, homogeneous: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>)</h4></section></summary><div class="docblock"><p>Sets whether all columns of @self will have the same width.</p>
+<h6 id="homogeneous"><a class="doc-anchor" href="#homogeneous">§</a><code>homogeneous</code></h6>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>true</code></a> to make columns homogeneous</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.set_column_spacing" class="method"><a class="src rightside" href="../../src/gtk4/auto/grid.rs.html#1213-1217">Source</a><h4 class="code-header">fn <a href="#method.set_column_spacing" class="fn">set_column_spacing</a>(&amp;self, spacing: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>)</h4></section></summary><div class="docblock"><p>Sets the amount of space between columns of @self.</p>
+<h6 id="spacing"><a class="doc-anchor" href="#spacing">§</a><code>spacing</code></h6>
+<p>the amount of space to insert between columns</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.set_row_baseline_position" class="method"><a class="src rightside" href="../../src/gtk4/auto/grid.rs.html#1228-1236">Source</a><h4 class="code-header">fn <a href="#method.set_row_baseline_position" class="fn">set_row_baseline_position</a>(&amp;self, row: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, pos: <a class="enum" href="../enum.BaselinePosition.html" title="enum gtk4::BaselinePosition">BaselinePosition</a>)</h4></section></summary><div class="docblock"><p>Sets how the baseline should be positioned on @row of the
+grid, in case that row is assigned more space than is requested.</p>
+<p>The default baseline position is <a href="../enum.BaselinePosition.html#variant.Center" title="variant gtk4::BaselinePosition::Center"><code>BaselinePosition::Center</code></a>.</p>
+<h6 id="row-5"><a class="doc-anchor" href="#row-5">§</a><code>row</code></h6>
+<p>a row index</p>
+<h6 id="pos"><a class="doc-anchor" href="#pos">§</a><code>pos</code></h6>
+<p>a <a href="../enum.BaselinePosition.html" title="enum gtk4::BaselinePosition"><code>BaselinePosition</code></a></p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.set_row_homogeneous" class="method"><a class="src rightside" href="../../src/gtk4/auto/grid.rs.html#1243-1250">Source</a><h4 class="code-header">fn <a href="#method.set_row_homogeneous" class="fn">set_row_homogeneous</a>(&amp;self, homogeneous: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>)</h4></section></summary><div class="docblock"><p>Sets whether all rows of @self will have the same height.</p>
+<h6 id="homogeneous-1"><a class="doc-anchor" href="#homogeneous-1">§</a><code>homogeneous</code></h6>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>true</code></a> to make rows homogeneous</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.set_row_spacing" class="method"><a class="src rightside" href="../../src/gtk4/auto/grid.rs.html#1257-1261">Source</a><h4 class="code-header">fn <a href="#method.set_row_spacing" class="fn">set_row_spacing</a>(&amp;self, spacing: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>)</h4></section></summary><div class="docblock"><p>Sets the amount of space between rows of @self.</p>
+<h6 id="spacing-1"><a class="doc-anchor" href="#spacing-1">§</a><code>spacing</code></h6>
+<p>the amount of space to insert between rows</p>
+</div></details><section id="method.connect_baseline_row_notify" class="method"><a class="src rightside" href="../../src/gtk4/auto/grid.rs.html#1264-1284">Source</a><h4 class="code-header">fn <a href="#method.connect_baseline_row_notify" class="fn">connect_baseline_row_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;Self) + 'static&gt;(
+    &amp;self,
+    f: F,
+) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><section id="method.connect_column_homogeneous_notify" class="method"><a class="src rightside" href="../../src/gtk4/auto/grid.rs.html#1287-1310">Source</a><h4 class="code-header">fn <a href="#method.connect_column_homogeneous_notify" class="fn">connect_column_homogeneous_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;Self) + 'static&gt;(
+    &amp;self,
+    f: F,
+) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><section id="method.connect_column_spacing_notify" class="method"><a class="src rightside" href="../../src/gtk4/auto/grid.rs.html#1313-1333">Source</a><h4 class="code-header">fn <a href="#method.connect_column_spacing_notify" class="fn">connect_column_spacing_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;Self) + 'static&gt;(
+    &amp;self,
+    f: F,
+) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><section id="method.connect_row_homogeneous_notify" class="method"><a class="src rightside" href="../../src/gtk4/auto/grid.rs.html#1336-1359">Source</a><h4 class="code-header">fn <a href="#method.connect_row_homogeneous_notify" class="fn">connect_row_homogeneous_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;Self) + 'static&gt;(
+    &amp;self,
+    f: F,
+) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><section id="method.connect_row_spacing_notify" class="method"><a class="src rightside" href="../../src/gtk4/auto/grid.rs.html#1362-1382">Source</a><h4 class="code-header">fn <a href="#method.connect_row_spacing_notify" class="fn">connect_row_spacing_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;Self) + 'static&gt;(
+    &amp;self,
+    f: F,
+) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section></div><h2 id="dyn-compatibility" class="section-header">Dyn Compatibility<a href="#dyn-compatibility" class="anchor">§</a></h2><div class="dyn-compatibility-info"><p>This trait is <b>not</b> <a href="https://doc.rust-lang.org/nightly/reference/items/traits.html#dyn-compatibility">dyn compatible</a>.</p><p><i>In older versions of Rust, dyn compatibility was called "object safety", so this trait is not object safe.</i></p></div><h2 id="implementors" class="section-header">Implementors<a href="#implementors" class="anchor">§</a></h2><div id="implementors-list"><section id="impl-GridExt-for-O" class="impl"><a class="src rightside" href="../../src/gtk4/auto/grid.rs.html#1385">Source</a><a href="#impl-GridExt-for-O" class="anchor">§</a><h3 class="code-header">impl&lt;O: <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Grid.html" title="struct gtk4::Grid">Grid</a>&gt;&gt; <a class="trait" href="trait.GridExt.html" title="trait gtk4::prelude::GridExt">GridExt</a> for O</h3></section></div><script src="../../trait.impl/gtk4/auto/grid/trait.GridExt.js" async></script></section></div></main></body></html>

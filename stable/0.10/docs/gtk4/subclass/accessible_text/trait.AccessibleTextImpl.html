@@ -1,0 +1,98 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="API documentation for the Rust `AccessibleTextImpl` trait in crate `gtk4`."><title>AccessibleTextImpl in gtk4::subclass::accessible_text - Rust</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../static.files/rustdoc-aa0817cf.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.90.0-nightly (a00149764 2025-07-14)" data-channel="nightly" data-search-js="search-179e01a3.js" data-settings-js="settings-5514c975.js" ><script src="../../../static.files/storage-4e99c027.js"></script><script defer src="sidebar-items.js"></script><script defer src="../../../static.files/main-673ee1e0.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-32bb7600.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-6580c154.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-044be391.svg"></head><body class="rustdoc trait"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
+
+    function checkDocsLatestStable() {
+        function popup(msg, url) { return `
+            <style scoped="scoped">
+                .popup {
+                    max-width: 16em;
+                    background-color: #fff;
+                    position: fixed;
+                    z-index: 1;
+                    margin-left: auto;
+                    bottom: 1em;
+                    right: 1em;
+                    border-radius: 5px;
+                    box-shadow: 1px 1px 4px #777;
+                }
+
+                .popup a.version {
+                    color: #e57300;
+                    padding: 0.6em 1em;
+                    display: block;
+                }
+                .popup a.version:hover {
+                    color: #b25900;
+                }
+
+                .popup a.close {
+                    color: white;
+                    background: grey;
+                    border-radius: 99px;
+                    display: inline-block;
+                    width: 19px;
+                    line-height: 19px;
+                    font-weight: bold;
+                    text-align: center;
+                    margin: 0.6em;
+                    float: right;
+                }
+                .popup a.close:hover {
+                    background: black;
+                }
+            </style>
+            <section class="popup" id="gir_docs_popup">
+                <a class="close" href="#" onclick="document.getElementById('gir_docs_popup').remove(); return false">×</a>
+                <a class="version" href="https://gtk-rs.org/gtk4-rs/stable/latest/docs">
+                    ⚠ ${msg}
+                </a>
+            </section>
+        ` };
+
+        if ("0.10" == "main") {
+            document.body.insertAdjacentHTML(
+                'beforeend',
+                popup("This is the development version. Go to latest stable version.", "stable/latest")
+            );
+        } else {
+            fetch('https://gtk-rs.org/gtk4-rs/LATEST_RELEASE_BRANCH')
+                .then(response => response.text())
+                .then(latest_branch => {
+                    if (latest_branch.trim() != "0.10") {
+                        document.body.insertAdjacentHTML(
+                            'beforeend',
+                            popup("This version is outdated. Go to latest version.", "stable/latest")
+                        );
+                    }
+                });
+        }
+    }
+</script>
+
+
+<nav class="mobile-topbar"><button class="sidebar-menu-toggle" title="show sidebar"></button></nav><nav class="sidebar"><div class="sidebar-crate"><h2><a href="../../../gtk4/index.html">gtk4</a><span class="version">0.10.0</span></h2></div><div class="sidebar-elems"><section id="rustdoc-toc"><h2 class="location"><a href="#">Accessible<wbr>Text<wbr>Impl</a></h2><h3><a href="#provided-methods">Provided Methods</a></h3><ul class="block"><li><a href="#method.attributes" title="attributes">attributes</a></li><li><a href="#method.caret_position" title="caret_position">caret_position</a></li><li><a href="#method.contents" title="contents">contents</a></li><li><a href="#method.contents_at" title="contents_at">contents_at</a></li><li><a href="#method.default_attributes" title="default_attributes">default_attributes</a></li><li><a href="#method.extents" title="extents">extents</a></li><li><a href="#method.offset" title="offset">offset</a></li><li><a href="#method.selection" title="selection">selection</a></li></ul><h3><a href="#dyn-compatibility">Dyn Compatibility</a></h3><h3><a href="#implementors">Implementors</a></h3></section><div id="rustdoc-modnav"><h2><a href="index.html">In gtk4::<wbr>subclass::<wbr>accessible_<wbr>text</a></h2></div></div></nav><div class="sidebar-resizer" title="Drag to resize sidebar"></div><main><div class="width-limiter"><rustdoc-search></rustdoc-search><section id="main-content" class="content"><div class="main-heading"><div class="rustdoc-breadcrumbs"><a href="../../index.html">gtk4</a>::<wbr><a href="../index.html">subclass</a>::<wbr><a href="index.html">accessible_text</a></div><h1>Trait <span class="trait">AccessibleTextImpl</span><button id="copy-path" title="Copy item path to clipboard">Copy item path</button></h1><rustdoc-toolbar></rustdoc-toolbar><span class="sub-heading"><a class="src" href="../../../src/gtk4/subclass/accessible_text.rs.html#12-60">Source</a> </span></div><pre class="rust item-decl"><code>pub trait AccessibleTextImpl: <a class="trait" href="../widget/trait.WidgetImpl.html" title="trait gtk4::subclass::widget::WidgetImpl">WidgetImpl</a> {
+    // Provided methods
+    fn <a href="#method.attributes" class="fn">attributes</a>(
+        &amp;self,
+        offset: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>,
+    ) -&gt; <a class="struct" href="https://doc.rust-lang.org/nightly/alloc/vec/struct.Vec.html" title="struct alloc::vec::Vec">Vec</a>&lt;(<a class="struct" href="../../struct.AccessibleTextRange.html" title="struct gtk4::AccessibleTextRange">AccessibleTextRange</a>, <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/gstring/struct.GString.html" title="struct glib::gstring::GString">GString</a>, <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/gstring/struct.GString.html" title="struct glib::gstring::GString">GString</a>)&gt; { ... }
+<span class="item-spacer"></span>    fn <a href="#method.caret_position" class="fn">caret_position</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.contents" class="fn">contents</a>(&amp;self, start: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>, end: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/bytes/struct.Bytes.html" title="struct glib::bytes::Bytes">Bytes</a>&gt; { ... }
+<span class="item-spacer"></span>    fn <a href="#method.contents_at" class="fn">contents_at</a>(
+        &amp;self,
+        offset: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>,
+        granularity: <a class="enum" href="../../enum.AccessibleTextGranularity.html" title="enum gtk4::AccessibleTextGranularity">AccessibleTextGranularity</a>,
+    ) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>, <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/bytes/struct.Bytes.html" title="struct glib::bytes::Bytes">Bytes</a>)&gt; { ... }
+<span class="item-spacer"></span>    fn <a href="#method.default_attributes" class="fn">default_attributes</a>(&amp;self) -&gt; <a class="struct" href="https://doc.rust-lang.org/nightly/alloc/vec/struct.Vec.html" title="struct alloc::vec::Vec">Vec</a>&lt;(<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/gstring/struct.GString.html" title="struct glib::gstring::GString">GString</a>, <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/gstring/struct.GString.html" title="struct glib::gstring::GString">GString</a>)&gt; { ... }
+<span class="item-spacer"></span>    fn <a href="#method.extents" class="fn">extents</a>(&amp;self, start: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>, end: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/graphene/auto/rect/struct.Rect.html" title="struct graphene::auto::rect::Rect">Rect</a>&gt; { ... }
+<span class="item-spacer"></span>    fn <a href="#method.offset" class="fn">offset</a>(&amp;self, point: &amp;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/graphene/auto/point/struct.Point.html" title="struct graphene::auto::point::Point">Point</a>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>&gt; { ... }
+<span class="item-spacer"></span>    fn <a href="#method.selection" class="fn">selection</a>(&amp;self) -&gt; <a class="struct" href="https://doc.rust-lang.org/nightly/alloc/vec/struct.Vec.html" title="struct alloc::vec::Vec">Vec</a>&lt;<a class="struct" href="../../struct.AccessibleTextRange.html" title="struct gtk4::AccessibleTextRange">AccessibleTextRange</a>&gt; { ... }
+}</code></pre><span class="item-info"><div class="stab portability">Available on <strong>crate feature <code>v4_14</code></strong> only.</div></span><h2 id="provided-methods" class="section-header">Provided Methods<a href="#provided-methods" class="anchor">§</a></h2><div class="methods"><section id="method.attributes" class="method"><a class="src rightside" href="../../../src/gtk4/subclass/accessible_text.rs.html#14-16">Source</a><h4 class="code-header">fn <a href="#method.attributes" class="fn">attributes</a>(
+    &amp;self,
+    offset: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>,
+) -&gt; <a class="struct" href="https://doc.rust-lang.org/nightly/alloc/vec/struct.Vec.html" title="struct alloc::vec::Vec">Vec</a>&lt;(<a class="struct" href="../../struct.AccessibleTextRange.html" title="struct gtk4::AccessibleTextRange">AccessibleTextRange</a>, <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/gstring/struct.GString.html" title="struct glib::gstring::GString">GString</a>, <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/gstring/struct.GString.html" title="struct glib::gstring::GString">GString</a>)&gt;</h4></section><section id="method.caret_position" class="method"><a class="src rightside" href="../../../src/gtk4/subclass/accessible_text.rs.html#19-21">Source</a><h4 class="code-header">fn <a href="#method.caret_position" class="fn">caret_position</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a></h4></section><section id="method.contents" class="method"><a class="src rightside" href="../../../src/gtk4/subclass/accessible_text.rs.html#24-26">Source</a><h4 class="code-header">fn <a href="#method.contents" class="fn">contents</a>(&amp;self, start: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>, end: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/bytes/struct.Bytes.html" title="struct glib::bytes::Bytes">Bytes</a>&gt;</h4></section><section id="method.contents_at" class="method"><a class="src rightside" href="../../../src/gtk4/subclass/accessible_text.rs.html#29-35">Source</a><h4 class="code-header">fn <a href="#method.contents_at" class="fn">contents_at</a>(
+    &amp;self,
+    offset: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>,
+    granularity: <a class="enum" href="../../enum.AccessibleTextGranularity.html" title="enum gtk4::AccessibleTextGranularity">AccessibleTextGranularity</a>,
+) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>, <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/bytes/struct.Bytes.html" title="struct glib::bytes::Bytes">Bytes</a>)&gt;</h4></section><section id="method.default_attributes" class="method"><a class="src rightside" href="../../../src/gtk4/subclass/accessible_text.rs.html#38-40">Source</a><h4 class="code-header">fn <a href="#method.default_attributes" class="fn">default_attributes</a>(&amp;self) -&gt; <a class="struct" href="https://doc.rust-lang.org/nightly/alloc/vec/struct.Vec.html" title="struct alloc::vec::Vec">Vec</a>&lt;(<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/gstring/struct.GString.html" title="struct glib::gstring::GString">GString</a>, <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/gstring/struct.GString.html" title="struct glib::gstring::GString">GString</a>)&gt;</h4></section><section id="method.extents" class="method"><a class="src rightside" href="../../../src/gtk4/subclass/accessible_text.rs.html#45-47">Source</a><h4 class="code-header">fn <a href="#method.extents" class="fn">extents</a>(&amp;self, start: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>, end: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/graphene/auto/rect/struct.Rect.html" title="struct graphene::auto::rect::Rect">Rect</a>&gt;</h4></section><span class="item-info"><div class="stab portability">Available on <strong>crate feature <code>v4_16</code></strong> only.</div></span><section id="method.offset" class="method"><a class="src rightside" href="../../../src/gtk4/subclass/accessible_text.rs.html#52-54">Source</a><h4 class="code-header">fn <a href="#method.offset" class="fn">offset</a>(&amp;self, point: &amp;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/graphene/auto/point/struct.Point.html" title="struct graphene::auto::point::Point">Point</a>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>&gt;</h4></section><span class="item-info"><div class="stab portability">Available on <strong>crate feature <code>v4_16</code></strong> only.</div></span><section id="method.selection" class="method"><a class="src rightside" href="../../../src/gtk4/subclass/accessible_text.rs.html#57-59">Source</a><h4 class="code-header">fn <a href="#method.selection" class="fn">selection</a>(&amp;self) -&gt; <a class="struct" href="https://doc.rust-lang.org/nightly/alloc/vec/struct.Vec.html" title="struct alloc::vec::Vec">Vec</a>&lt;<a class="struct" href="../../struct.AccessibleTextRange.html" title="struct gtk4::AccessibleTextRange">AccessibleTextRange</a>&gt;</h4></section></div><h2 id="dyn-compatibility" class="section-header">Dyn Compatibility<a href="#dyn-compatibility" class="anchor">§</a></h2><div class="dyn-compatibility-info"><p>This trait is <b>not</b> <a href="https://doc.rust-lang.org/nightly/reference/items/traits.html#dyn-compatibility">dyn compatible</a>.</p><p><i>In older versions of Rust, dyn compatibility was called "object safety", so this trait is not object safe.</i></p></div><h2 id="implementors" class="section-header">Implementors<a href="#implementors" class="anchor">§</a></h2><div id="implementors-list"></div><script src="../../../trait.impl/gtk4/subclass/accessible_text/trait.AccessibleTextImpl.js" async></script></section></div></main></body></html>

@@ -1,0 +1,195 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Derive macro for using a composite template in a widget."><title>CompositeTemplate in gtk4_macros - Rust</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2" crossorigin href="../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../static.files/rustdoc-84e720fa.css"><meta name="rustdoc-vars" data-root-path="../" data-static-root-path="../static.files/" data-current-crate="gtk4_macros" data-themes="" data-resource-suffix="" data-rustdoc-version="1.89.0-nightly (5526a2f47 2025-06-20)" data-channel="nightly" data-search-js="search-343419c9.js" data-settings-js="settings-5514c975.js" ><script src="../static.files/storage-4e99c027.js"></script><script defer src="sidebar-items.js"></script><script defer src="../static.files/main-fd3af306.js"></script><noscript><link rel="stylesheet" href="../static.files/noscript-32bb7600.css"></noscript><link rel="alternate icon" type="image/png" href="../static.files/favicon-32x32-6580c154.png"><link rel="icon" type="image/svg+xml" href="../static.files/favicon-044be391.svg"></head><body class="rustdoc derive"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
+
+    function checkDocsLatestStable() {
+        function popup(msg, url) { return `
+            <style scoped="scoped">
+                .popup {
+                    max-width: 16em;
+                    background-color: #fff;
+                    position: fixed;
+                    z-index: 1;
+                    margin-left: auto;
+                    bottom: 1em;
+                    right: 1em;
+                    border-radius: 5px;
+                    box-shadow: 1px 1px 4px #777;
+                }
+
+                .popup a.version {
+                    color: #e57300;
+                    padding: 0.6em 1em;
+                    display: block;
+                }
+                .popup a.version:hover {
+                    color: #b25900;
+                }
+
+                .popup a.close {
+                    color: white;
+                    background: grey;
+                    border-radius: 99px;
+                    display: inline-block;
+                    width: 19px;
+                    line-height: 19px;
+                    font-weight: bold;
+                    text-align: center;
+                    margin: 0.6em;
+                    float: right;
+                }
+                .popup a.close:hover {
+                    background: black;
+                }
+            </style>
+            <section class="popup" id="gir_docs_popup">
+                <a class="close" href="#" onclick="document.getElementById('gir_docs_popup').remove(); return false">×</a>
+                <a class="version" href="https://gtk-rs.org/gtk4-rs/stable/latest/docs">
+                    ⚠ ${msg}
+                </a>
+            </section>
+        ` };
+
+        if ("0.9" == "main") {
+            document.body.insertAdjacentHTML(
+                'beforeend',
+                popup("This is the development version. Go to latest stable version.", "stable/latest")
+            );
+        } else {
+            fetch('https://gtk-rs.org/gtk4-rs/LATEST_RELEASE_BRANCH')
+                .then(response => response.text())
+                .then(latest_branch => {
+                    if (latest_branch.trim() != "0.9") {
+                        document.body.insertAdjacentHTML(
+                            'beforeend',
+                            popup("This version is outdated. Go to latest version.", "stable/latest")
+                        );
+                    }
+                });
+        }
+    }
+</script>
+
+
+<nav class="mobile-topbar"><button class="sidebar-menu-toggle" title="show sidebar"></button></nav><nav class="sidebar"><div class="sidebar-crate"><h2><a href="../gtk4_macros/index.html">gtk4_<wbr>macros</a><span class="version">0.9.7</span></h2></div><div class="sidebar-elems"><section id="rustdoc-toc"><h2 class="location"><a href="#">Composite<wbr>Template</a></h2><h3><a href="#">Sections</a></h3><ul class="block top-toc"><li><a href="#example" title="Example">Example</a></li></ul></section><div id="rustdoc-modnav"><h2 class="in-crate"><a href="index.html">In crate gtk4_<wbr>macros</a></h2></div></div></nav><div class="sidebar-resizer" title="Drag to resize sidebar"></div><main><div class="width-limiter"><rustdoc-search></rustdoc-search><section id="main-content" class="content"><div class="main-heading"><div class="rustdoc-breadcrumbs"><a href="index.html">gtk4_macros</a></div><h1>Derive Macro <span class="derive">CompositeTemplate</span><button id="copy-path" title="Copy item path to clipboard">Copy item path</button></h1><rustdoc-toolbar></rustdoc-toolbar><span class="sub-heading"><a class="src" href="../src/gtk4_macros/lib.rs.html#204-209">Source</a> </span></div><pre class="rust item-decl"><code>#[derive(CompositeTemplate)]
+{
+    <span class="comment">// Attributes available to this derive:</span>
+    #[template]
+    #[template_child]
+}
+</code></pre><details class="toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>Derive macro for using a composite template in a widget.</p>
+<p>The <code>template</code> attribute specifies where the template should be loaded
+from;  it can be a <code>file</code>, a <code>resource</code>, or a <code>string</code>.</p>
+<p>The <code>template_child</code> attribute is used to mark all internal widgets
+we need to have programmatic access to. It can take two parameters:</p>
+<ul>
+<li><code>id</code> which defaults to the item name if not defined</li>
+<li><code>internal</code> whether the child should be accessible as an
+“internal-child”, defaults to <code>false</code></li>
+</ul>
+<h2 id="example"><a class="doc-anchor" href="#example">§</a>Example</h2>
+<p>Specify that <code>MyWidget</code> is using a composite template and load the
+template file the <code>composite_template.ui</code> file.</p>
+<p>Then, in the <a href="../glib/subclass/types/trait.ObjectSubclass.html"><code>ObjectSubclass</code></a> implementation you will need to call
+<a href="../gtk4/subclass/widget/trait.CompositeTemplate.html#tymethod.bind_template"><code>bind_template</code></a> in the <a href="../glib/subclass/types/trait.ObjectSubclass.html#method.class_init"><code>class_init</code></a> function, and <a href="../gtk4/subclass/prelude/trait.CompositeTemplateInitializingExt.html#tymethod.init_template"><code>init_template</code></a> in
+<a href="../glib/subclass/types/trait.ObjectSubclass.html#method.instance_init"><code>instance_init</code></a> function.</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use </span>gtk::{glib, prelude::<span class="kw-2">*</span>, subclass::prelude::<span class="kw-2">*</span>};
+
+<span class="kw">mod </span>imp {
+    <span class="kw">use super</span>::<span class="kw-2">*</span>;
+
+    <span class="attr">#[derive(Debug, Default, gtk::CompositeTemplate)]
+    #[template(file = <span class="string">"test/template.ui"</span>)]
+    </span><span class="kw">pub struct </span>MyWidget {
+        <span class="attr">#[template_child]
+        </span><span class="kw">pub </span>label: TemplateChild&lt;gtk::Label&gt;,
+        <span class="attr">#[template_child(id = <span class="string">"my_button_id"</span>)]
+        </span><span class="kw">pub </span>button: TemplateChild&lt;gtk::Button&gt;,
+    }
+
+    <span class="attr">#[glib::object_subclass]
+    </span><span class="kw">impl </span>ObjectSubclass <span class="kw">for </span>MyWidget {
+        <span class="kw">const </span>NAME: <span class="kw-2">&amp;</span><span class="lifetime">'static </span>str = <span class="string">"MyWidget"</span>;
+        <span class="kw">type </span>Type = <span class="kw">super</span>::MyWidget;
+        <span class="kw">type </span>ParentType = gtk::Box;
+
+        <span class="kw">fn </span>class_init(klass: <span class="kw-2">&amp;mut </span><span class="self">Self</span>::Class) {
+            klass.bind_template();
+        }
+
+        <span class="kw">fn </span>instance_init(obj: <span class="kw-2">&amp;</span>glib::subclass::InitializingObject&lt;<span class="self">Self</span>&gt;) {
+            obj.init_template();
+        }
+    }
+
+    <span class="kw">impl </span>ObjectImpl <span class="kw">for </span>MyWidget {}
+    <span class="kw">impl </span>WidgetImpl <span class="kw">for </span>MyWidget {}
+    <span class="kw">impl </span>BoxImpl <span class="kw">for </span>MyWidget {}
+}
+
+<span class="macro">glib::wrapper!</span> {
+    <span class="kw">pub struct </span>MyWidget(ObjectSubclass&lt;imp::MyWidget&gt;) @extends gtk::Widget, gtk::Box;
+}
+
+<span class="kw">impl </span>MyWidget {
+    <span class="kw">pub fn </span>new() -&gt; <span class="self">Self </span>{
+        glib::Object::new()
+    }
+}</code></pre></div>
+<p>The <a href="derive.CompositeTemplate.html" title="derive gtk4_macros::CompositeTemplate"><code>CompositeTemplate</code></a> macro can also be used with <a href="https://jwestman.pages.gitlab.gnome.org/blueprint-compiler/">Blueprint</a>
+if the feature <code>blueprint</code> is enabled.
+you can use <code>string</code> or <code>file</code> relative to the project directory but not
+<code>resource</code></p>
+
+<div class="example-wrap ignore"><a href="#" class="tooltip" title="This example is not tested">ⓘ</a><pre class="rust rust-example-rendered"><code><span class="kw">use </span>gtk::{glib, prelude::<span class="kw-2">*</span>, subclass::prelude::<span class="kw-2">*</span>};
+
+<span class="kw">mod </span>imp {
+    <span class="kw">use super</span>::<span class="kw-2">*</span>;
+
+    <span class="attr">#[derive(Debug, Default, gtk::CompositeTemplate)]
+    #[template(string = <span class="string">"
+    template MyWidget : Widget {
+        Label label {
+            label: 'foobar';
+        }
+
+        Label my_label2 {
+            label: 'foobaz';
+        }
+    }
+    "</span>)]
+    </span><span class="kw">pub struct </span>MyWidget {
+        <span class="attr">#[template_child]
+        </span><span class="kw">pub </span>label: TemplateChild&lt;gtk::Label&gt;,
+        <span class="attr">#[template_child(id = <span class="string">"my_label2"</span>)]
+        </span><span class="kw">pub </span>label2: gtk::TemplateChild&lt;gtk::Label&gt;,
+    }
+
+    <span class="attr">#[glib::object_subclass]
+    </span><span class="kw">impl </span>ObjectSubclass <span class="kw">for </span>MyWidget {
+        <span class="kw">const </span>NAME: <span class="kw-2">&amp;</span><span class="lifetime">'static </span>str = <span class="string">"MyWidget"</span>;
+        <span class="kw">type </span>Type = <span class="kw">super</span>::MyWidget;
+        <span class="kw">type </span>ParentType = gtk::Widget;
+        <span class="kw">fn </span>class_init(klass: <span class="kw-2">&amp;mut </span><span class="self">Self</span>::Class) {
+            klass.bind_template();
+        }
+        <span class="kw">fn </span>instance_init(obj: <span class="kw-2">&amp;</span>glib::subclass::InitializingObject&lt;<span class="self">Self</span>&gt;) {
+            obj.init_template();
+        }
+    }
+
+    <span class="kw">impl </span>ObjectImpl <span class="kw">for </span>MyWidget {
+        <span class="kw">fn </span>dispose(<span class="kw-2">&amp;</span><span class="self">self</span>) {
+            <span class="kw">while let </span><span class="prelude-val">Some</span>(child) = <span class="self">self</span>.obj().first_child() {
+                child.unparent();
+            }
+        }
+    }
+    <span class="kw">impl </span>WidgetImpl <span class="kw">for </span>MyWidget {}
+}
+
+<span class="macro">glib::wrapper!</span> {
+    <span class="kw">pub struct </span>MyWidget(ObjectSubclass&lt;imp::MyWidget&gt;) @extends gtk::Widget;
+}</code></pre></div>
+</div></details></section></div></main></body></html>

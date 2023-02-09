@@ -1,1 +1,0 @@
-initSidebarItems({"trait":[["TreeModelFilterImpl",""],["TreeModelFilterImplExt",""]]});

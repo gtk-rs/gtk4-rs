@@ -1,0 +1,1110 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Trait containing all `struct@TextView` methods."><title>TextViewExt in gtk4::prelude - Rust</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Bold-a2c9cd1067f8b328.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-fa3bb1812debf86c.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.74.0-nightly (e4133ba9b 2023-09-22)" data-channel="nightly" data-search-js="search-8be46b629f5f14a8.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="sidebar-items.js"></script><script defer src="../../static.files/main-c5bd66d33317d69f.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc trait"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
+
+    function checkDocsLatestStable() {
+        function popup(msg, url) { return `
+            <style scoped="scoped">
+                .popup {
+                    max-width: 16em;
+                    background-color: #fff;
+                    position: fixed;
+                    z-index: 1;
+                    margin-left: auto;
+                    bottom: 1em;
+                    right: 1em;
+                    border-radius: 5px;
+                    box-shadow: 1px 1px 4px #777;
+                }
+
+                .popup a.version {
+                    color: #e57300;
+                    padding: 0.6em 1em;
+                    display: block;
+                }
+                .popup a.version:hover {
+                    color: #b25900;
+                }
+
+                .popup a.close {
+                    color: white;
+                    background: grey;
+                    border-radius: 99px;
+                    display: inline-block;
+                    width: 19px;
+                    line-height: 19px;
+                    font-weight: bold;
+                    text-align: center;
+                    margin: 0.6em;
+                    float: right;
+                }
+                .popup a.close:hover {
+                    background: black;
+                }
+            </style>
+            <section class="popup" id="gir_docs_popup">
+                <a class="close" href="#" onclick="document.getElementById('gir_docs_popup').remove(); return false">×</a>
+                <a class="version" href="https://gtk-rs.org/gtk4-rs/stable/latest/docs">
+                    ⚠ ${msg}
+                </a>
+            </section>
+        ` };
+
+        if ("0.7" == "master") {
+            document.body.insertAdjacentHTML(
+                'beforeend',
+                popup("This is the development version. Go to latest stable version.", "stable/latest")
+            );
+        } else {
+            fetch('https://gtk-rs.org/gtk4-rs/LATEST_RELEASE_BRANCH')
+                .then(response => response.text())
+                .then(latest_branch => {
+                    if (latest_branch.trim() != "0.7") {
+                        document.body.insertAdjacentHTML(
+                            'beforeend',
+                            popup("This version is outdated. Go to latest version.", "stable/latest")
+                        );
+                    }
+                });
+        }
+    }
+</script>
+
+
+<nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="logo-container" href="../../gtk4/index.html"><img class="rust-logo" src="../../static.files/rust-logo-151179464ae7ed46.svg" alt="logo"></a></nav><nav class="sidebar"><a class="logo-container" href="../../gtk4/index.html"><img class="rust-logo" src="../../static.files/rust-logo-151179464ae7ed46.svg" alt="logo"></a><h2 class="location"><a href="#">TextViewExt</a></h2><div class="sidebar-elems"><section><h3><a href="#provided-methods">Provided Methods</a></h3><ul class="block"><li><a href="#method.accepts_tab">accepts_tab</a></li><li><a href="#method.add_child_at_anchor">add_child_at_anchor</a></li><li><a href="#method.add_overlay">add_overlay</a></li><li><a href="#method.backward_display_line">backward_display_line</a></li><li><a href="#method.backward_display_line_start">backward_display_line_start</a></li><li><a href="#method.bottom_margin">bottom_margin</a></li><li><a href="#method.buffer">buffer</a></li><li><a href="#method.buffer_to_window_coords">buffer_to_window_coords</a></li><li><a href="#method.connect_accepts_tab_notify">connect_accepts_tab_notify</a></li><li><a href="#method.connect_backspace">connect_backspace</a></li><li><a href="#method.connect_bottom_margin_notify">connect_bottom_margin_notify</a></li><li><a href="#method.connect_buffer_notify">connect_buffer_notify</a></li><li><a href="#method.connect_copy_clipboard">connect_copy_clipboard</a></li><li><a href="#method.connect_cursor_visible_notify">connect_cursor_visible_notify</a></li><li><a href="#method.connect_cut_clipboard">connect_cut_clipboard</a></li><li><a href="#method.connect_delete_from_cursor">connect_delete_from_cursor</a></li><li><a href="#method.connect_editable_notify">connect_editable_notify</a></li><li><a href="#method.connect_extend_selection">connect_extend_selection</a></li><li><a href="#method.connect_extra_menu_notify">connect_extra_menu_notify</a></li><li><a href="#method.connect_im_module_notify">connect_im_module_notify</a></li><li><a href="#method.connect_indent_notify">connect_indent_notify</a></li><li><a href="#method.connect_input_hints_notify">connect_input_hints_notify</a></li><li><a href="#method.connect_input_purpose_notify">connect_input_purpose_notify</a></li><li><a href="#method.connect_insert_at_cursor">connect_insert_at_cursor</a></li><li><a href="#method.connect_insert_emoji">connect_insert_emoji</a></li><li><a href="#method.connect_justification_notify">connect_justification_notify</a></li><li><a href="#method.connect_left_margin_notify">connect_left_margin_notify</a></li><li><a href="#method.connect_monospace_notify">connect_monospace_notify</a></li><li><a href="#method.connect_move_cursor">connect_move_cursor</a></li><li><a href="#method.connect_move_viewport">connect_move_viewport</a></li><li><a href="#method.connect_overwrite_notify">connect_overwrite_notify</a></li><li><a href="#method.connect_paste_clipboard">connect_paste_clipboard</a></li><li><a href="#method.connect_pixels_above_lines_notify">connect_pixels_above_lines_notify</a></li><li><a href="#method.connect_pixels_below_lines_notify">connect_pixels_below_lines_notify</a></li><li><a href="#method.connect_pixels_inside_wrap_notify">connect_pixels_inside_wrap_notify</a></li><li><a href="#method.connect_preedit_changed">connect_preedit_changed</a></li><li><a href="#method.connect_right_margin_notify">connect_right_margin_notify</a></li><li><a href="#method.connect_select_all">connect_select_all</a></li><li><a href="#method.connect_set_anchor">connect_set_anchor</a></li><li><a href="#method.connect_tabs_notify">connect_tabs_notify</a></li><li><a href="#method.connect_toggle_cursor_visible">connect_toggle_cursor_visible</a></li><li><a href="#method.connect_toggle_overwrite">connect_toggle_overwrite</a></li><li><a href="#method.connect_top_margin_notify">connect_top_margin_notify</a></li><li><a href="#method.connect_wrap_mode_notify">connect_wrap_mode_notify</a></li><li><a href="#method.cursor_locations">cursor_locations</a></li><li><a href="#method.emit_backspace">emit_backspace</a></li><li><a href="#method.emit_copy_clipboard">emit_copy_clipboard</a></li><li><a href="#method.emit_cut_clipboard">emit_cut_clipboard</a></li><li><a href="#method.emit_delete_from_cursor">emit_delete_from_cursor</a></li><li><a href="#method.emit_insert_at_cursor">emit_insert_at_cursor</a></li><li><a href="#method.emit_insert_emoji">emit_insert_emoji</a></li><li><a href="#method.emit_move_cursor">emit_move_cursor</a></li><li><a href="#method.emit_move_viewport">emit_move_viewport</a></li><li><a href="#method.emit_paste_clipboard">emit_paste_clipboard</a></li><li><a href="#method.emit_preedit_changed">emit_preedit_changed</a></li><li><a href="#method.emit_select_all">emit_select_all</a></li><li><a href="#method.emit_set_anchor">emit_set_anchor</a></li><li><a href="#method.emit_toggle_cursor_visible">emit_toggle_cursor_visible</a></li><li><a href="#method.emit_toggle_overwrite">emit_toggle_overwrite</a></li><li><a href="#method.extra_menu">extra_menu</a></li><li><a href="#method.forward_display_line">forward_display_line</a></li><li><a href="#method.forward_display_line_end">forward_display_line_end</a></li><li><a href="#method.gutter">gutter</a></li><li><a href="#method.im_context_filter_keypress">im_context_filter_keypress</a></li><li><a href="#method.im_module">im_module</a></li><li><a href="#method.indent">indent</a></li><li><a href="#method.input_hints">input_hints</a></li><li><a href="#method.input_purpose">input_purpose</a></li><li><a href="#method.is_cursor_visible">is_cursor_visible</a></li><li><a href="#method.is_editable">is_editable</a></li><li><a href="#method.is_monospace">is_monospace</a></li><li><a href="#method.iter_at_location">iter_at_location</a></li><li><a href="#method.iter_at_position">iter_at_position</a></li><li><a href="#method.iter_location">iter_location</a></li><li><a href="#method.justification">justification</a></li><li><a href="#method.left_margin">left_margin</a></li><li><a href="#method.line_at_y">line_at_y</a></li><li><a href="#method.line_yrange">line_yrange</a></li><li><a href="#method.ltr_context">ltr_context</a></li><li><a href="#method.move_mark_onscreen">move_mark_onscreen</a></li><li><a href="#method.move_overlay">move_overlay</a></li><li><a href="#method.move_visually">move_visually</a></li><li><a href="#method.overwrites">overwrites</a></li><li><a href="#method.pixels_above_lines">pixels_above_lines</a></li><li><a href="#method.pixels_below_lines">pixels_below_lines</a></li><li><a href="#method.pixels_inside_wrap">pixels_inside_wrap</a></li><li><a href="#method.place_cursor_onscreen">place_cursor_onscreen</a></li><li><a href="#method.remove">remove</a></li><li><a href="#method.reset_cursor_blink">reset_cursor_blink</a></li><li><a href="#method.reset_im_context">reset_im_context</a></li><li><a href="#method.right_margin">right_margin</a></li><li><a href="#method.rtl_context">rtl_context</a></li><li><a href="#method.scroll_mark_onscreen">scroll_mark_onscreen</a></li><li><a href="#method.scroll_to_iter">scroll_to_iter</a></li><li><a href="#method.scroll_to_mark">scroll_to_mark</a></li><li><a href="#method.set_accepts_tab">set_accepts_tab</a></li><li><a href="#method.set_bottom_margin">set_bottom_margin</a></li><li><a href="#method.set_buffer">set_buffer</a></li><li><a href="#method.set_cursor_visible">set_cursor_visible</a></li><li><a href="#method.set_editable">set_editable</a></li><li><a href="#method.set_extra_menu">set_extra_menu</a></li><li><a href="#method.set_gutter">set_gutter</a></li><li><a href="#method.set_im_module">set_im_module</a></li><li><a href="#method.set_indent">set_indent</a></li><li><a href="#method.set_input_hints">set_input_hints</a></li><li><a href="#method.set_input_purpose">set_input_purpose</a></li><li><a href="#method.set_justification">set_justification</a></li><li><a href="#method.set_left_margin">set_left_margin</a></li><li><a href="#method.set_monospace">set_monospace</a></li><li><a href="#method.set_overwrite">set_overwrite</a></li><li><a href="#method.set_pixels_above_lines">set_pixels_above_lines</a></li><li><a href="#method.set_pixels_below_lines">set_pixels_below_lines</a></li><li><a href="#method.set_pixels_inside_wrap">set_pixels_inside_wrap</a></li><li><a href="#method.set_right_margin">set_right_margin</a></li><li><a href="#method.set_tabs">set_tabs</a></li><li><a href="#method.set_top_margin">set_top_margin</a></li><li><a href="#method.set_wrap_mode">set_wrap_mode</a></li><li><a href="#method.starts_display_line">starts_display_line</a></li><li><a href="#method.tabs">tabs</a></li><li><a href="#method.top_margin">top_margin</a></li><li><a href="#method.visible_rect">visible_rect</a></li><li><a href="#method.window_to_buffer_coords">window_to_buffer_coords</a></li><li><a href="#method.wrap_mode">wrap_mode</a></li></ul><h3><a href="#implementors">Implementors</a></h3></section><h2><a href="index.html">In gtk4::prelude</a></h2></div></nav><main><div class="width-limiter"><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="main-heading"><h1>Trait <a href="../index.html">gtk4</a>::<wbr><a href="index.html">prelude</a>::<wbr><a class="trait" href="#">TextViewExt</a><button id="copy-path" title="Copy item path to clipboard"><img src="../../static.files/clipboard-7571035ce49a181d.svg" width="19" height="18" alt="Copy item path"></button></h1><span class="out-of-band"><a class="src" href="../../src/gtk4/auto/text_view.rs.html#1465-4052">source</a> · <button id="toggle-all-docs" title="collapse all docs">[<span>&#x2212;</span>]</button></span></div><pre class="rust item-decl"><code>pub trait TextViewExt: <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.TextView.html" title="struct gtk4::TextView">TextView</a>&gt; + Sealed + 'static {
+<details class="toggle type-contents-toggle"><summary class="hideme"><span>Show 123 methods</span></summary>    // Provided methods
+    fn <a href="#method.add_child_at_anchor" class="fn">add_child_at_anchor</a>(
+        &amp;self,
+        child: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;,
+        anchor: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.TextChildAnchor.html" title="struct gtk4::TextChildAnchor">TextChildAnchor</a>&gt;
+    ) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.add_overlay" class="fn">add_overlay</a>(&amp;self, child: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;, xpos: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, ypos: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.backward_display_line" class="fn">backward_display_line</a>(&amp;self, iter: &amp;mut <a class="struct" href="../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.backward_display_line_start" class="fn">backward_display_line_start</a>(&amp;self, iter: &amp;mut <a class="struct" href="../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.buffer_to_window_coords" class="fn">buffer_to_window_coords</a>(
+        &amp;self,
+        win: <a class="enum" href="../enum.TextWindowType.html" title="enum gtk4::TextWindowType">TextWindowType</a>,
+        buffer_x: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>,
+        buffer_y: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>
+    ) -&gt; (<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.forward_display_line" class="fn">forward_display_line</a>(&amp;self, iter: &amp;mut <a class="struct" href="../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.forward_display_line_end" class="fn">forward_display_line_end</a>(&amp;self, iter: &amp;mut <a class="struct" href="../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.accepts_tab" class="fn">accepts_tab</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.bottom_margin" class="fn">bottom_margin</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.buffer" class="fn">buffer</a>(&amp;self) -&gt; <a class="struct" href="../struct.TextBuffer.html" title="struct gtk4::TextBuffer">TextBuffer</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.cursor_locations" class="fn">cursor_locations</a>(
+        &amp;self,
+        iter: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;<a class="struct" href="../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>&gt;
+    ) -&gt; (<a class="struct" href="../../gdk4/auto/rectangle/struct.Rectangle.html" title="struct gdk4::auto::rectangle::Rectangle">Rectangle</a>, <a class="struct" href="../../gdk4/auto/rectangle/struct.Rectangle.html" title="struct gdk4::auto::rectangle::Rectangle">Rectangle</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.is_cursor_visible" class="fn">is_cursor_visible</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.is_editable" class="fn">is_editable</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.extra_menu" class="fn">extra_menu</a>(&amp;self) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/gio/auto/menu_model/struct.MenuModel.html" title="struct gio::auto::menu_model::MenuModel">MenuModel</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.gutter" class="fn">gutter</a>(&amp;self, win: <a class="enum" href="../enum.TextWindowType.html" title="enum gtk4::TextWindowType">TextWindowType</a>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt; { ... }
+<span class="item-spacer"></span>    fn <a href="#method.indent" class="fn">indent</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.input_hints" class="fn">input_hints</a>(&amp;self) -&gt; <a class="struct" href="../struct.InputHints.html" title="struct gtk4::InputHints">InputHints</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.input_purpose" class="fn">input_purpose</a>(&amp;self) -&gt; <a class="enum" href="../enum.InputPurpose.html" title="enum gtk4::InputPurpose">InputPurpose</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.iter_at_location" class="fn">iter_at_location</a>(&amp;self, x: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, y: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>&gt; { ... }
+<span class="item-spacer"></span>    fn <a href="#method.iter_at_position" class="fn">iter_at_position</a>(&amp;self, x: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, y: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;(<a class="struct" href="../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>)&gt; { ... }
+<span class="item-spacer"></span>    fn <a href="#method.iter_location" class="fn">iter_location</a>(&amp;self, iter: &amp;<a class="struct" href="../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>) -&gt; <a class="struct" href="../../gdk4/auto/rectangle/struct.Rectangle.html" title="struct gdk4::auto::rectangle::Rectangle">Rectangle</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.justification" class="fn">justification</a>(&amp;self) -&gt; <a class="enum" href="../enum.Justification.html" title="enum gtk4::Justification">Justification</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.left_margin" class="fn">left_margin</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.line_at_y" class="fn">line_at_y</a>(&amp;self, y: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>) -&gt; (<a class="struct" href="../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.line_yrange" class="fn">line_yrange</a>(&amp;self, iter: &amp;<a class="struct" href="../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>) -&gt; (<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.ltr_context" class="fn">ltr_context</a>(&amp;self) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/pango/auto/context/struct.Context.html" title="struct pango::auto::context::Context">Context</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.is_monospace" class="fn">is_monospace</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.overwrites" class="fn">overwrites</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.pixels_above_lines" class="fn">pixels_above_lines</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.pixels_below_lines" class="fn">pixels_below_lines</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.pixels_inside_wrap" class="fn">pixels_inside_wrap</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.right_margin" class="fn">right_margin</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.rtl_context" class="fn">rtl_context</a>(&amp;self) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/pango/auto/context/struct.Context.html" title="struct pango::auto::context::Context">Context</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.tabs" class="fn">tabs</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/pango/auto/tab_array/struct.TabArray.html" title="struct pango::auto::tab_array::TabArray">TabArray</a>&gt; { ... }
+<span class="item-spacer"></span>    fn <a href="#method.top_margin" class="fn">top_margin</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.visible_rect" class="fn">visible_rect</a>(&amp;self) -&gt; <a class="struct" href="../../gdk4/auto/rectangle/struct.Rectangle.html" title="struct gdk4::auto::rectangle::Rectangle">Rectangle</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.wrap_mode" class="fn">wrap_mode</a>(&amp;self) -&gt; <a class="enum" href="../enum.WrapMode.html" title="enum gtk4::WrapMode">WrapMode</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.im_context_filter_keypress" class="fn">im_context_filter_keypress</a>(&amp;self, event: impl <a class="trait" href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html" title="trait core::convert::AsRef">AsRef</a>&lt;<a class="struct" href="../../gdk4/auto/event/struct.Event.html" title="struct gdk4::auto::event::Event">Event</a>&gt;) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.move_mark_onscreen" class="fn">move_mark_onscreen</a>(&amp;self, mark: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.TextMark.html" title="struct gtk4::TextMark">TextMark</a>&gt;) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.move_overlay" class="fn">move_overlay</a>(&amp;self, child: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;, xpos: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, ypos: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.move_visually" class="fn">move_visually</a>(&amp;self, iter: &amp;mut <a class="struct" href="../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>, count: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.place_cursor_onscreen" class="fn">place_cursor_onscreen</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.remove" class="fn">remove</a>(&amp;self, child: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.reset_cursor_blink" class="fn">reset_cursor_blink</a>(&amp;self) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.reset_im_context" class="fn">reset_im_context</a>(&amp;self) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.scroll_mark_onscreen" class="fn">scroll_mark_onscreen</a>(&amp;self, mark: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.TextMark.html" title="struct gtk4::TextMark">TextMark</a>&gt;) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.scroll_to_iter" class="fn">scroll_to_iter</a>(
+        &amp;self,
+        iter: &amp;mut <a class="struct" href="../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>,
+        within_margin: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>,
+        use_align: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>,
+        xalign: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>,
+        yalign: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>
+    ) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.scroll_to_mark" class="fn">scroll_to_mark</a>(
+        &amp;self,
+        mark: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.TextMark.html" title="struct gtk4::TextMark">TextMark</a>&gt;,
+        within_margin: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>,
+        use_align: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>,
+        xalign: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>,
+        yalign: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>
+    ) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.set_accepts_tab" class="fn">set_accepts_tab</a>(&amp;self, accepts_tab: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.set_bottom_margin" class="fn">set_bottom_margin</a>(&amp;self, bottom_margin: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.set_buffer" class="fn">set_buffer</a>(&amp;self, buffer: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.TextBuffer.html" title="struct gtk4::TextBuffer">TextBuffer</a>&gt;&gt;) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.set_cursor_visible" class="fn">set_cursor_visible</a>(&amp;self, setting: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.set_editable" class="fn">set_editable</a>(&amp;self, setting: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.set_extra_menu" class="fn">set_extra_menu</a>(&amp;self, model: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/gio/auto/menu_model/struct.MenuModel.html" title="struct gio::auto::menu_model::MenuModel">MenuModel</a>&gt;&gt;) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.set_gutter" class="fn">set_gutter</a>(&amp;self, win: <a class="enum" href="../enum.TextWindowType.html" title="enum gtk4::TextWindowType">TextWindowType</a>, widget: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;&gt;) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.set_indent" class="fn">set_indent</a>(&amp;self, indent: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.set_input_hints" class="fn">set_input_hints</a>(&amp;self, hints: <a class="struct" href="../struct.InputHints.html" title="struct gtk4::InputHints">InputHints</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.set_input_purpose" class="fn">set_input_purpose</a>(&amp;self, purpose: <a class="enum" href="../enum.InputPurpose.html" title="enum gtk4::InputPurpose">InputPurpose</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.set_justification" class="fn">set_justification</a>(&amp;self, justification: <a class="enum" href="../enum.Justification.html" title="enum gtk4::Justification">Justification</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.set_left_margin" class="fn">set_left_margin</a>(&amp;self, left_margin: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.set_monospace" class="fn">set_monospace</a>(&amp;self, monospace: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.set_overwrite" class="fn">set_overwrite</a>(&amp;self, overwrite: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.set_pixels_above_lines" class="fn">set_pixels_above_lines</a>(&amp;self, pixels_above_lines: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.set_pixels_below_lines" class="fn">set_pixels_below_lines</a>(&amp;self, pixels_below_lines: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.set_pixels_inside_wrap" class="fn">set_pixels_inside_wrap</a>(&amp;self, pixels_inside_wrap: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.set_right_margin" class="fn">set_right_margin</a>(&amp;self, right_margin: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.set_tabs" class="fn">set_tabs</a>(&amp;self, tabs: &amp;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/pango/auto/tab_array/struct.TabArray.html" title="struct pango::auto::tab_array::TabArray">TabArray</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.set_top_margin" class="fn">set_top_margin</a>(&amp;self, top_margin: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.set_wrap_mode" class="fn">set_wrap_mode</a>(&amp;self, wrap_mode: <a class="enum" href="../enum.WrapMode.html" title="enum gtk4::WrapMode">WrapMode</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.starts_display_line" class="fn">starts_display_line</a>(&amp;self, iter: &amp;<a class="struct" href="../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.window_to_buffer_coords" class="fn">window_to_buffer_coords</a>(
+        &amp;self,
+        win: <a class="enum" href="../enum.TextWindowType.html" title="enum gtk4::TextWindowType">TextWindowType</a>,
+        window_x: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>,
+        window_y: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>
+    ) -&gt; (<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.im_module" class="fn">im_module</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/gstring/struct.GString.html" title="struct glib::gstring::GString">GString</a>&gt; { ... }
+<span class="item-spacer"></span>    fn <a href="#method.set_im_module" class="fn">set_im_module</a>(&amp;self, im_module: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>&gt;) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_backspace" class="fn">connect_backspace</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(&amp;self, f: F) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.emit_backspace" class="fn">emit_backspace</a>(&amp;self) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_copy_clipboard" class="fn">connect_copy_clipboard</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
+        &amp;self,
+        f: F
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.emit_copy_clipboard" class="fn">emit_copy_clipboard</a>(&amp;self) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_cut_clipboard" class="fn">connect_cut_clipboard</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
+        &amp;self,
+        f: F
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.emit_cut_clipboard" class="fn">emit_cut_clipboard</a>(&amp;self) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_delete_from_cursor" class="fn">connect_delete_from_cursor</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>, <a class="enum" href="../enum.DeleteType.html" title="enum gtk4::DeleteType">DeleteType</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>) + 'static&gt;(
+        &amp;self,
+        f: F
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.emit_delete_from_cursor" class="fn">emit_delete_from_cursor</a>(&amp;self, type_: <a class="enum" href="../enum.DeleteType.html" title="enum gtk4::DeleteType">DeleteType</a>, count: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_extend_selection" class="fn">connect_extend_selection</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>, <a class="enum" href="../enum.TextExtendSelection.html" title="enum gtk4::TextExtendSelection">TextExtendSelection</a>, &amp;<a class="struct" href="../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>, &amp;<a class="struct" href="../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>, &amp;<a class="struct" href="../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>) -&gt; <a class="enum" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/signal/enum.Propagation.html" title="enum glib::signal::Propagation">Propagation</a> + 'static&gt;(
+        &amp;self,
+        f: F
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_insert_at_cursor" class="fn">connect_insert_at_cursor</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>, &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>) + 'static&gt;(
+        &amp;self,
+        f: F
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.emit_insert_at_cursor" class="fn">emit_insert_at_cursor</a>(&amp;self, string: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_insert_emoji" class="fn">connect_insert_emoji</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
+        &amp;self,
+        f: F
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.emit_insert_emoji" class="fn">emit_insert_emoji</a>(&amp;self) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_move_cursor" class="fn">connect_move_cursor</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>, <a class="enum" href="../enum.MovementStep.html" title="enum gtk4::MovementStep">MovementStep</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>) + 'static&gt;(
+        &amp;self,
+        f: F
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.emit_move_cursor" class="fn">emit_move_cursor</a>(
+        &amp;self,
+        step: <a class="enum" href="../enum.MovementStep.html" title="enum gtk4::MovementStep">MovementStep</a>,
+        count: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>,
+        extend_selection: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>
+    ) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_move_viewport" class="fn">connect_move_viewport</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>, <a class="enum" href="../enum.ScrollStep.html" title="enum gtk4::ScrollStep">ScrollStep</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>) + 'static&gt;(
+        &amp;self,
+        f: F
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.emit_move_viewport" class="fn">emit_move_viewport</a>(&amp;self, step: <a class="enum" href="../enum.ScrollStep.html" title="enum gtk4::ScrollStep">ScrollStep</a>, count: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_paste_clipboard" class="fn">connect_paste_clipboard</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
+        &amp;self,
+        f: F
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.emit_paste_clipboard" class="fn">emit_paste_clipboard</a>(&amp;self) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_preedit_changed" class="fn">connect_preedit_changed</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>, &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>) + 'static&gt;(
+        &amp;self,
+        f: F
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.emit_preedit_changed" class="fn">emit_preedit_changed</a>(&amp;self, preedit: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_select_all" class="fn">connect_select_all</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>) + 'static&gt;(
+        &amp;self,
+        f: F
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.emit_select_all" class="fn">emit_select_all</a>(&amp;self, select: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_set_anchor" class="fn">connect_set_anchor</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
+        &amp;self,
+        f: F
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.emit_set_anchor" class="fn">emit_set_anchor</a>(&amp;self) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_toggle_cursor_visible" class="fn">connect_toggle_cursor_visible</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
+        &amp;self,
+        f: F
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.emit_toggle_cursor_visible" class="fn">emit_toggle_cursor_visible</a>(&amp;self) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_toggle_overwrite" class="fn">connect_toggle_overwrite</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
+        &amp;self,
+        f: F
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.emit_toggle_overwrite" class="fn">emit_toggle_overwrite</a>(&amp;self) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_accepts_tab_notify" class="fn">connect_accepts_tab_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
+        &amp;self,
+        f: F
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_bottom_margin_notify" class="fn">connect_bottom_margin_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
+        &amp;self,
+        f: F
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_buffer_notify" class="fn">connect_buffer_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
+        &amp;self,
+        f: F
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_cursor_visible_notify" class="fn">connect_cursor_visible_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
+        &amp;self,
+        f: F
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_editable_notify" class="fn">connect_editable_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
+        &amp;self,
+        f: F
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_extra_menu_notify" class="fn">connect_extra_menu_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
+        &amp;self,
+        f: F
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_im_module_notify" class="fn">connect_im_module_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
+        &amp;self,
+        f: F
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_indent_notify" class="fn">connect_indent_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
+        &amp;self,
+        f: F
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_input_hints_notify" class="fn">connect_input_hints_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
+        &amp;self,
+        f: F
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_input_purpose_notify" class="fn">connect_input_purpose_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
+        &amp;self,
+        f: F
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_justification_notify" class="fn">connect_justification_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
+        &amp;self,
+        f: F
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_left_margin_notify" class="fn">connect_left_margin_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
+        &amp;self,
+        f: F
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_monospace_notify" class="fn">connect_monospace_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
+        &amp;self,
+        f: F
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_overwrite_notify" class="fn">connect_overwrite_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
+        &amp;self,
+        f: F
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_pixels_above_lines_notify" class="fn">connect_pixels_above_lines_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
+        &amp;self,
+        f: F
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_pixels_below_lines_notify" class="fn">connect_pixels_below_lines_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
+        &amp;self,
+        f: F
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_pixels_inside_wrap_notify" class="fn">connect_pixels_inside_wrap_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
+        &amp;self,
+        f: F
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_right_margin_notify" class="fn">connect_right_margin_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
+        &amp;self,
+        f: F
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_tabs_notify" class="fn">connect_tabs_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
+        &amp;self,
+        f: F
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_top_margin_notify" class="fn">connect_top_margin_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
+        &amp;self,
+        f: F
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_wrap_mode_notify" class="fn">connect_wrap_mode_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
+        &amp;self,
+        f: F
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+</details>}</code></pre><details class="toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>Trait containing all <a href="../struct.TextView.html" title="struct gtk4::TextView"><code>TextView</code></a> methods.</p>
+<h2 id="implementors-1"><a href="#implementors-1">Implementors</a></h2>
+<p><a href="../struct.TextView.html" title="struct gtk4::TextView"><code>TextView</code></a></p>
+</div></details><h2 id="provided-methods" class="small-section-header">Provided Methods<a href="#provided-methods" class="anchor">§</a></h2><div class="methods"><details class="toggle method-toggle" open><summary><section id="method.add_child_at_anchor" class="method"><a class="src rightside" href="../../src/gtk4/auto/text_view.rs.html#1472-1480">source</a><h4 class="code-header">fn <a href="#method.add_child_at_anchor" class="fn">add_child_at_anchor</a>(
+    &amp;self,
+    child: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;,
+    anchor: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.TextChildAnchor.html" title="struct gtk4::TextChildAnchor">TextChildAnchor</a>&gt;
+)</h4></section></summary><div class="docblock"><p>Adds a child widget in the text buffer, at the given @anchor.</p>
+<h6 id="child"><a href="#child"><code>child</code></a></h6>
+<p>a <a href="../struct.Widget.html" title="struct gtk4::Widget"><code>Widget</code></a></p>
+<h6 id="anchor"><a href="#anchor"><code>anchor</code></a></h6>
+<p>a <a href="../struct.TextChildAnchor.html" title="struct gtk4::TextChildAnchor"><code>TextChildAnchor</code></a> in the <a href="../struct.TextBuffer.html" title="struct gtk4::TextBuffer"><code>TextBuffer</code></a> for @self</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.add_overlay" class="method"><a class="src rightside" href="../../src/gtk4/auto/text_view.rs.html#1499-1508">source</a><h4 class="code-header">fn <a href="#method.add_overlay" class="fn">add_overlay</a>(&amp;self, child: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;, xpos: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, ypos: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>)</h4></section></summary><div class="docblock"><p>Adds @child at a fixed coordinate in the <a href="../struct.TextView.html" title="struct gtk4::TextView"><code>TextView</code></a>’s text window.</p>
+<p>The @xpos and @ypos must be in buffer coordinates (see
+<a href="trait.TextViewExt.html#method.iter_location"><code>iter_location()</code></a> to convert to
+buffer coordinates).</p>
+<p>@child will scroll with the text view.</p>
+<p>If instead you want a widget that will not move with the
+<a href="../struct.TextView.html" title="struct gtk4::TextView"><code>TextView</code></a> contents see <a href="../struct.Overlay.html" title="struct gtk4::Overlay"><code>Overlay</code></a>.</p>
+<h6 id="child-1"><a href="#child-1"><code>child</code></a></h6>
+<p>a <a href="../struct.Widget.html" title="struct gtk4::Widget"><code>Widget</code></a></p>
+<h6 id="xpos"><a href="#xpos"><code>xpos</code></a></h6>
+<p>X position of child in window coordinates</p>
+<h6 id="ypos"><a href="#ypos"><code>ypos</code></a></h6>
+<p>Y position of child in window coordinates</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.backward_display_line" class="method"><a class="src rightside" href="../../src/gtk4/auto/text_view.rs.html#1526-1533">source</a><h4 class="code-header">fn <a href="#method.backward_display_line" class="fn">backward_display_line</a>(&amp;self, iter: &amp;mut <a class="struct" href="../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></section></summary><div class="docblock"><p>Moves the given @iter backward by one display (wrapped) line.</p>
+<p>A display line is different from a paragraph. Paragraphs are
+separated by newlines or other paragraph separator characters.
+Display lines are created by line-wrapping a paragraph. If
+wrapping is turned off, display lines and paragraphs will be the
+same. Display lines are divided differently for each view, since
+they depend on the view’s width; paragraphs are the same in all
+views, since they depend on the contents of the <a href="../struct.TextBuffer.html" title="struct gtk4::TextBuffer"><code>TextBuffer</code></a>.</p>
+<h6 id="iter"><a href="#iter"><code>iter</code></a></h6>
+<p>a <a href="../struct.TextIter.html" title="struct gtk4::TextIter"><code>TextIter</code></a></p>
+<h5 id="returns"><a href="#returns">Returns</a></h5>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>true</code></a> if @iter was moved and is not on the end iterator</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.backward_display_line_start" class="method"><a class="src rightside" href="../../src/gtk4/auto/text_view.rs.html#1551-1558">source</a><h4 class="code-header">fn <a href="#method.backward_display_line_start" class="fn">backward_display_line_start</a>(&amp;self, iter: &amp;mut <a class="struct" href="../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></section></summary><div class="docblock"><p>Moves the given @iter backward to the next display line start.</p>
+<p>A display line is different from a paragraph. Paragraphs are
+separated by newlines or other paragraph separator characters.
+Display lines are created by line-wrapping a paragraph. If
+wrapping is turned off, display lines and paragraphs will be the
+same. Display lines are divided differently for each view, since
+they depend on the view’s width; paragraphs are the same in all
+views, since they depend on the contents of the <a href="../struct.TextBuffer.html" title="struct gtk4::TextBuffer"><code>TextBuffer</code></a>.</p>
+<h6 id="iter-1"><a href="#iter-1"><code>iter</code></a></h6>
+<p>a <a href="../struct.TextIter.html" title="struct gtk4::TextIter"><code>TextIter</code></a></p>
+<h5 id="returns-1"><a href="#returns-1">Returns</a></h5>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>true</code></a> if @iter was moved and is not on the end iterator</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.buffer_to_window_coords" class="method"><a class="src rightside" href="../../src/gtk4/auto/text_view.rs.html#1577-1596">source</a><h4 class="code-header">fn <a href="#method.buffer_to_window_coords" class="fn">buffer_to_window_coords</a>(
+    &amp;self,
+    win: <a class="enum" href="../enum.TextWindowType.html" title="enum gtk4::TextWindowType">TextWindowType</a>,
+    buffer_x: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>,
+    buffer_y: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>
+) -&gt; (<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>)</h4></section></summary><div class="docblock"><p>Converts buffer coordinates to window coordinates.</p>
+<h6 id="win"><a href="#win"><code>win</code></a></h6>
+<p>a <a href="../enum.TextWindowType.html" title="enum gtk4::TextWindowType"><code>TextWindowType</code></a></p>
+<h6 id="buffer_x"><a href="#buffer_x"><code>buffer_x</code></a></h6>
+<p>buffer x coordinate</p>
+<h6 id="buffer_y"><a href="#buffer_y"><code>buffer_y</code></a></h6>
+<p>buffer y coordinate</p>
+<h5 id="returns-2"><a href="#returns-2">Returns</a></h5><h6 id="window_x"><a href="#window_x"><code>window_x</code></a></h6>
+<p>window x coordinate return location</p>
+<h6 id="window_y"><a href="#window_y"><code>window_y</code></a></h6>
+<p>window y coordinate return location</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.forward_display_line" class="method"><a class="src rightside" href="../../src/gtk4/auto/text_view.rs.html#1614-1621">source</a><h4 class="code-header">fn <a href="#method.forward_display_line" class="fn">forward_display_line</a>(&amp;self, iter: &amp;mut <a class="struct" href="../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></section></summary><div class="docblock"><p>Moves the given @iter forward by one display (wrapped) line.</p>
+<p>A display line is different from a paragraph. Paragraphs are
+separated by newlines or other paragraph separator characters.
+Display lines are created by line-wrapping a paragraph. If
+wrapping is turned off, display lines and paragraphs will be the
+same. Display lines are divided differently for each view, since
+they depend on the view’s width; paragraphs are the same in all
+views, since they depend on the contents of the <a href="../struct.TextBuffer.html" title="struct gtk4::TextBuffer"><code>TextBuffer</code></a>.</p>
+<h6 id="iter-2"><a href="#iter-2"><code>iter</code></a></h6>
+<p>a <a href="../struct.TextIter.html" title="struct gtk4::TextIter"><code>TextIter</code></a></p>
+<h5 id="returns-3"><a href="#returns-3">Returns</a></h5>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>true</code></a> if @iter was moved and is not on the end iterator</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.forward_display_line_end" class="method"><a class="src rightside" href="../../src/gtk4/auto/text_view.rs.html#1639-1646">source</a><h4 class="code-header">fn <a href="#method.forward_display_line_end" class="fn">forward_display_line_end</a>(&amp;self, iter: &amp;mut <a class="struct" href="../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></section></summary><div class="docblock"><p>Moves the given @iter forward to the next display line end.</p>
+<p>A display line is different from a paragraph. Paragraphs are
+separated by newlines or other paragraph separator characters.
+Display lines are created by line-wrapping a paragraph. If
+wrapping is turned off, display lines and paragraphs will be the
+same. Display lines are divided differently for each view, since
+they depend on the view’s width; paragraphs are the same in all
+views, since they depend on the contents of the <a href="../struct.TextBuffer.html" title="struct gtk4::TextBuffer"><code>TextBuffer</code></a>.</p>
+<h6 id="iter-3"><a href="#iter-3"><code>iter</code></a></h6>
+<p>a <a href="../struct.TextIter.html" title="struct gtk4::TextIter"><code>TextIter</code></a></p>
+<h5 id="returns-4"><a href="#returns-4">Returns</a></h5>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>true</code></a> if @iter was moved and is not on the end iterator</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.accepts_tab" class="method"><a class="src rightside" href="../../src/gtk4/auto/text_view.rs.html#1658-1664">source</a><h4 class="code-header">fn <a href="#method.accepts_tab" class="fn">accepts_tab</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></section></summary><div class="docblock"><p>Returns whether pressing the <kbd>Tab</kbd> key inserts a tab characters.</p>
+<p>See <a href="trait.TextViewExt.html#method.set_accepts_tab"><code>set_accepts_tab()</code></a>.</p>
+<h5 id="returns-5"><a href="#returns-5">Returns</a></h5>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>true</code></a> if pressing the Tab key inserts a tab character,
+<a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>false</code></a> if pressing the Tab key moves the keyboard focus.</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.bottom_margin" class="method"><a class="src rightside" href="../../src/gtk4/auto/text_view.rs.html#1673-1675">source</a><h4 class="code-header">fn <a href="#method.bottom_margin" class="fn">bottom_margin</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a></h4></section></summary><div class="docblock"><p>Gets the bottom margin for text in the @self.</p>
+<h5 id="returns-6"><a href="#returns-6">Returns</a></h5>
+<p>bottom margin in pixels</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.buffer" class="method"><a class="src rightside" href="../../src/gtk4/auto/text_view.rs.html#1687-1693">source</a><h4 class="code-header">fn <a href="#method.buffer" class="fn">buffer</a>(&amp;self) -&gt; <a class="struct" href="../struct.TextBuffer.html" title="struct gtk4::TextBuffer">TextBuffer</a></h4></section></summary><div class="docblock"><p>Returns the <a href="../struct.TextBuffer.html" title="struct gtk4::TextBuffer"><code>TextBuffer</code></a> being displayed by this text view.</p>
+<p>The reference count on the buffer is not incremented; the caller
+of this function won’t own a new reference.</p>
+<h5 id="returns-7"><a href="#returns-7">Returns</a></h5>
+<p>a <a href="../struct.TextBuffer.html" title="struct gtk4::TextBuffer"><code>TextBuffer</code></a></p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.cursor_locations" class="method"><a class="src rightside" href="../../src/gtk4/auto/text_view.rs.html#1728-1740">source</a><h4 class="code-header">fn <a href="#method.cursor_locations" class="fn">cursor_locations</a>(&amp;self, iter: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;<a class="struct" href="../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>&gt;) -&gt; (<a class="struct" href="../../gdk4/auto/rectangle/struct.Rectangle.html" title="struct gdk4::auto::rectangle::Rectangle">Rectangle</a>, <a class="struct" href="../../gdk4/auto/rectangle/struct.Rectangle.html" title="struct gdk4::auto::rectangle::Rectangle">Rectangle</a>)</h4></section></summary><div class="docblock"><p>Determine the positions of the strong and weak cursors if the
+insertion point is at @iter.</p>
+<p>The position of each cursor is stored as a zero-width rectangle.
+The strong cursor location is the location where characters of
+the directionality equal to the base direction of the paragraph
+are inserted. The weak cursor location is the location where
+characters of the directionality opposite to the base direction
+of the paragraph are inserted.</p>
+<p>If @iter is <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="variant core::option::Option::None"><code>None</code></a>, the actual cursor position is used.</p>
+<p>Note that if @iter happens to be the actual cursor position, and
+there is currently an IM preedit sequence being entered, the
+returned locations will be adjusted to account for the preedit
+cursor’s offset within the preedit sequence.</p>
+<p>The rectangle position is in buffer coordinates; use
+<a href="trait.TextViewExt.html#method.buffer_to_window_coords"><code>buffer_to_window_coords()</code></a> to convert these
+coordinates to coordinates for one of the windows in the text view.</p>
+<h6 id="iter-4"><a href="#iter-4"><code>iter</code></a></h6>
+<p>a <a href="../struct.TextIter.html" title="struct gtk4::TextIter"><code>TextIter</code></a></p>
+<h5 id="returns-8"><a href="#returns-8">Returns</a></h5><h6 id="strong"><a href="#strong"><code>strong</code></a></h6>
+<p>location to store the strong cursor position</p>
+<h6 id="weak"><a href="#weak"><code>weak</code></a></h6>
+<p>location to store the weak cursor position</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.is_cursor_visible" class="method"><a class="src rightside" href="../../src/gtk4/auto/text_view.rs.html#1749-1755">source</a><h4 class="code-header">fn <a href="#method.is_cursor_visible" class="fn">is_cursor_visible</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></section></summary><div class="docblock"><p>Find out whether the cursor should be displayed.</p>
+<h5 id="returns-9"><a href="#returns-9">Returns</a></h5>
+<p>whether the insertion mark is visible</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.is_editable" class="method"><a class="src rightside" href="../../src/gtk4/auto/text_view.rs.html#1766-1772">source</a><h4 class="code-header">fn <a href="#method.is_editable" class="fn">is_editable</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></section></summary><div class="docblock"><p>Returns the default editability of the <a href="../struct.TextView.html" title="struct gtk4::TextView"><code>TextView</code></a>.</p>
+<p>Tags in the buffer may override this setting for some ranges of text.</p>
+<h5 id="returns-10"><a href="#returns-10">Returns</a></h5>
+<p>whether text is editable by default</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.extra_menu" class="method"><a class="src rightside" href="../../src/gtk4/auto/text_view.rs.html#1782-1788">source</a><h4 class="code-header">fn <a href="#method.extra_menu" class="fn">extra_menu</a>(&amp;self) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/gio/auto/menu_model/struct.MenuModel.html" title="struct gio::auto::menu_model::MenuModel">MenuModel</a></h4></section></summary><div class="docblock"><p>Gets the menu model that gets added to the context menu
+or <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="variant core::option::Option::None"><code>None</code></a> if none has been set.</p>
+<h5 id="returns-11"><a href="#returns-11">Returns</a></h5>
+<p>the menu model</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.gutter" class="method"><a class="src rightside" href="../../src/gtk4/auto/text_view.rs.html#1804-1811">source</a><h4 class="code-header">fn <a href="#method.gutter" class="fn">gutter</a>(&amp;self, win: <a class="enum" href="../enum.TextWindowType.html" title="enum gtk4::TextWindowType">TextWindowType</a>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;</h4></section></summary><div class="docblock"><p>Gets a <a href="../struct.Widget.html" title="struct gtk4::Widget"><code>Widget</code></a> that has previously been set as gutter.</p>
+<p>See <a href="trait.TextViewExt.html#method.set_gutter"><code>set_gutter()</code></a>.</p>
+<p>@win must be one of <a href="../enum.TextWindowType.html#variant.Left" title="variant gtk4::TextWindowType::Left"><code>TextWindowType::Left</code></a>, <a href="../enum.TextWindowType.html#variant.Right" title="variant gtk4::TextWindowType::Right"><code>TextWindowType::Right</code></a>,
+<a href="../enum.TextWindowType.html#variant.Top" title="variant gtk4::TextWindowType::Top"><code>TextWindowType::Top</code></a>, or <a href="../enum.TextWindowType.html#variant.Bottom" title="variant gtk4::TextWindowType::Bottom"><code>TextWindowType::Bottom</code></a>.</p>
+<h6 id="win-1"><a href="#win-1"><code>win</code></a></h6>
+<p>a <a href="../enum.TextWindowType.html" title="enum gtk4::TextWindowType"><code>TextWindowType</code></a></p>
+<h5 id="returns-12"><a href="#returns-12">Returns</a></h5>
+<p>a <a href="../struct.Widget.html" title="struct gtk4::Widget"><code>Widget</code></a></p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.indent" class="method"><a class="src rightside" href="../../src/gtk4/auto/text_view.rs.html#1823-1825">source</a><h4 class="code-header">fn <a href="#method.indent" class="fn">indent</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a></h4></section></summary><div class="docblock"><p>Gets the default indentation of paragraphs in @self.</p>
+<p>Tags in the view’s buffer may override the default.
+The indentation may be negative.</p>
+<h5 id="returns-13"><a href="#returns-13">Returns</a></h5>
+<p>number of pixels of indentation</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.input_hints" class="method"><a class="src rightside" href="../../src/gtk4/auto/text_view.rs.html#1830-1836">source</a><h4 class="code-header">fn <a href="#method.input_hints" class="fn">input_hints</a>(&amp;self) -&gt; <a class="struct" href="../struct.InputHints.html" title="struct gtk4::InputHints">InputHints</a></h4></section></summary><div class="docblock"><p>Gets the <code>input-hints</code> of the <a href="../struct.TextView.html" title="struct gtk4::TextView"><code>TextView</code></a>.</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.input_purpose" class="method"><a class="src rightside" href="../../src/gtk4/auto/text_view.rs.html#1841-1847">source</a><h4 class="code-header">fn <a href="#method.input_purpose" class="fn">input_purpose</a>(&amp;self) -&gt; <a class="enum" href="../enum.InputPurpose.html" title="enum gtk4::InputPurpose">InputPurpose</a></h4></section></summary><div class="docblock"><p>Gets the <code>input-purpose</code> of the <a href="../struct.TextView.html" title="struct gtk4::TextView"><code>TextView</code></a>.</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.iter_at_location" class="method"><a class="src rightside" href="../../src/gtk4/auto/text_view.rs.html#1868-1883">source</a><h4 class="code-header">fn <a href="#method.iter_at_location" class="fn">iter_at_location</a>(&amp;self, x: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, y: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>&gt;</h4></section></summary><div class="docblock"><p>Retrieves the iterator at buffer coordinates @x and @y.</p>
+<p>Buffer coordinates are coordinates for the entire buffer, not just
+the currently-displayed portion. If you have coordinates from an
+event, you have to convert those to buffer coordinates with
+<a href="trait.TextViewExt.html#method.window_to_buffer_coords"><code>window_to_buffer_coords()</code></a>.</p>
+<h6 id="x"><a href="#x"><code>x</code></a></h6>
+<p>x position, in buffer coordinates</p>
+<h6 id="y"><a href="#y"><code>y</code></a></h6>
+<p>y position, in buffer coordinates</p>
+<h5 id="returns-14"><a href="#returns-14">Returns</a></h5>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>true</code></a> if the position is over text</p>
+<h6 id="iter-5"><a href="#iter-5"><code>iter</code></a></h6>
+<p>a <a href="../struct.TextIter.html" title="struct gtk4::TextIter"><code>TextIter</code></a></p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.iter_at_position" class="method"><a class="src rightside" href="../../src/gtk4/auto/text_view.rs.html#1914-1931">source</a><h4 class="code-header">fn <a href="#method.iter_at_position" class="fn">iter_at_position</a>(&amp;self, x: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, y: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;(<a class="struct" href="../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>)&gt;</h4></section></summary><div class="docblock"><p>Retrieves the iterator pointing to the character at buffer
+coordinates @x and @y.</p>
+<p>Buffer coordinates are coordinates for the entire buffer, not just
+the currently-displayed portion. If you have coordinates from an event,
+you have to convert those to buffer coordinates with
+<a href="trait.TextViewExt.html#method.window_to_buffer_coords"><code>window_to_buffer_coords()</code></a>.</p>
+<p>Note that this is different from <a href="trait.TextViewExt.html#method.iter_at_location"><code>iter_at_location()</code></a>,
+which returns cursor locations, i.e. positions between characters.</p>
+<h6 id="x-1"><a href="#x-1"><code>x</code></a></h6>
+<p>x position, in buffer coordinates</p>
+<h6 id="y-1"><a href="#y-1"><code>y</code></a></h6>
+<p>y position, in buffer coordinates</p>
+<h5 id="returns-15"><a href="#returns-15">Returns</a></h5>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>true</code></a> if the position is over text</p>
+<h6 id="iter-6"><a href="#iter-6"><code>iter</code></a></h6>
+<p>a <a href="../struct.TextIter.html" title="struct gtk4::TextIter"><code>TextIter</code></a></p>
+<h6 id="trailing"><a href="#trailing"><code>trailing</code></a></h6>
+<p>if non-<a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="variant core::option::Option::None"><code>None</code></a>, location to store
+an integer indicating where in the grapheme the user clicked.
+It will either be zero, or the number of characters in the grapheme.
+0 represents the trailing edge of the grapheme.</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.iter_location" class="method"><a class="src rightside" href="../../src/gtk4/auto/text_view.rs.html#1948-1958">source</a><h4 class="code-header">fn <a href="#method.iter_location" class="fn">iter_location</a>(&amp;self, iter: &amp;<a class="struct" href="../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>) -&gt; <a class="struct" href="../../gdk4/auto/rectangle/struct.Rectangle.html" title="struct gdk4::auto::rectangle::Rectangle">Rectangle</a></h4></section></summary><div class="docblock"><p>Gets a rectangle which roughly contains the character at @iter.</p>
+<p>The rectangle position is in buffer coordinates; use
+<a href="trait.TextViewExt.html#method.buffer_to_window_coords"><code>buffer_to_window_coords()</code></a> to convert these
+coordinates to coordinates for one of the windows in the text view.</p>
+<h6 id="iter-7"><a href="#iter-7"><code>iter</code></a></h6>
+<p>a <a href="../struct.TextIter.html" title="struct gtk4::TextIter"><code>TextIter</code></a></p>
+<h5 id="returns-16"><a href="#returns-16">Returns</a></h5><h6 id="location"><a href="#location"><code>location</code></a></h6>
+<p>bounds of the character at @iter</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.justification" class="method"><a class="src rightside" href="../../src/gtk4/auto/text_view.rs.html#1969-1975">source</a><h4 class="code-header">fn <a href="#method.justification" class="fn">justification</a>(&amp;self) -&gt; <a class="enum" href="../enum.Justification.html" title="enum gtk4::Justification">Justification</a></h4></section></summary><div class="docblock"><p>Gets the default justification of paragraphs in @self.</p>
+<p>Tags in the buffer may override the default.</p>
+<h5 id="returns-17"><a href="#returns-17">Returns</a></h5>
+<p>default justification</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.left_margin" class="method"><a class="src rightside" href="../../src/gtk4/auto/text_view.rs.html#1986-1988">source</a><h4 class="code-header">fn <a href="#method.left_margin" class="fn">left_margin</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a></h4></section></summary><div class="docblock"><p>Gets the default left margin size of paragraphs in the @self.</p>
+<p>Tags in the buffer may override the default.</p>
+<h5 id="returns-18"><a href="#returns-18">Returns</a></h5>
+<p>left margin in pixels</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.line_at_y" class="method"><a class="src rightside" href="../../src/gtk4/auto/text_view.rs.html#2010-2022">source</a><h4 class="code-header">fn <a href="#method.line_at_y" class="fn">line_at_y</a>(&amp;self, y: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>) -&gt; (<a class="struct" href="../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>)</h4></section></summary><div class="docblock"><p>Gets the <a href="../struct.TextIter.html" title="struct gtk4::TextIter"><code>TextIter</code></a> at the start of the line containing
+the coordinate @y.</p>
+<p>@y is in buffer coordinates, convert from window coordinates with
+<a href="trait.TextViewExt.html#method.window_to_buffer_coords"><code>window_to_buffer_coords()</code></a>. If non-<a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="variant core::option::Option::None"><code>None</code></a>,
+@line_top will be filled with the coordinate of the top edge
+of the line.</p>
+<h6 id="y-2"><a href="#y-2"><code>y</code></a></h6>
+<p>a y coordinate</p>
+<h5 id="returns-19"><a href="#returns-19">Returns</a></h5><h6 id="target_iter"><a href="#target_iter"><code>target_iter</code></a></h6>
+<p>a <a href="../struct.TextIter.html" title="struct gtk4::TextIter"><code>TextIter</code></a></p>
+<h6 id="line_top"><a href="#line_top"><code>line_top</code></a></h6>
+<p>return location for top coordinate of the line</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.line_yrange" class="method"><a class="src rightside" href="../../src/gtk4/auto/text_view.rs.html#2042-2054">source</a><h4 class="code-header">fn <a href="#method.line_yrange" class="fn">line_yrange</a>(&amp;self, iter: &amp;<a class="struct" href="../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>) -&gt; (<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>)</h4></section></summary><div class="docblock"><p>Gets the y coordinate of the top of the line containing @iter,
+and the height of the line.</p>
+<p>The coordinate is a buffer coordinate; convert to window
+coordinates with <a href="trait.TextViewExt.html#method.buffer_to_window_coords"><code>buffer_to_window_coords()</code></a>.</p>
+<h6 id="iter-8"><a href="#iter-8"><code>iter</code></a></h6>
+<p>a <a href="../struct.TextIter.html" title="struct gtk4::TextIter"><code>TextIter</code></a></p>
+<h5 id="returns-20"><a href="#returns-20">Returns</a></h5><h6 id="y-3"><a href="#y-3"><code>y</code></a></h6>
+<p>return location for a y coordinate</p>
+<h6 id="height"><a href="#height"><code>height</code></a></h6>
+<p>return location for a height</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.ltr_context" class="method"><a class="src rightside" href="../../src/gtk4/auto/text_view.rs.html#2068-2074">source</a><h4 class="code-header">fn <a href="#method.ltr_context" class="fn">ltr_context</a>(&amp;self) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/pango/auto/context/struct.Context.html" title="struct pango::auto::context::Context">Context</a></h4></section></summary><span class="item-info"><div class="stab portability">Available on <strong>crate feature <code>v4_4</code></strong> only.</div></span><div class="docblock"><p>Gets the <a href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/pango/auto/context/struct.Context.html" title="struct pango::auto::context::Context"><code>pango::Context</code></a> that is used for rendering LTR directed
+text layouts.</p>
+<p>The context may be replaced when CSS changes occur.</p>
+<h5 id="returns-21"><a href="#returns-21">Returns</a></h5>
+<p>a <a href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/pango/auto/context/struct.Context.html" title="struct pango::auto::context::Context"><code>pango::Context</code></a></p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.is_monospace" class="method"><a class="src rightside" href="../../src/gtk4/auto/text_view.rs.html#2083-2089">source</a><h4 class="code-header">fn <a href="#method.is_monospace" class="fn">is_monospace</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></section></summary><div class="docblock"><p>Gets whether the <a href="../struct.TextView.html" title="struct gtk4::TextView"><code>TextView</code></a> uses monospace styling.</p>
+<h5 id="returns-22"><a href="#returns-22">Returns</a></h5>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>true</code></a> if monospace fonts are desired</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.overwrites" class="method"><a class="src rightside" href="../../src/gtk4/auto/text_view.rs.html#2098-2104">source</a><h4 class="code-header">fn <a href="#method.overwrites" class="fn">overwrites</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></section></summary><div class="docblock"><p>Returns whether the <a href="../struct.TextView.html" title="struct gtk4::TextView"><code>TextView</code></a> is in overwrite mode or not.</p>
+<h5 id="returns-23"><a href="#returns-23">Returns</a></h5>
+<p>whether @self is in overwrite mode or not.</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.pixels_above_lines" class="method"><a class="src rightside" href="../../src/gtk4/auto/text_view.rs.html#2116-2118">source</a><h4 class="code-header">fn <a href="#method.pixels_above_lines" class="fn">pixels_above_lines</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a></h4></section></summary><div class="docblock"><p>Gets the default number of pixels to put above paragraphs.</p>
+<p>Adding this function with <a href="trait.TextViewExt.html#method.pixels_below_lines"><code>pixels_below_lines()</code></a>
+is equal to the line space between each paragraph.</p>
+<h5 id="returns-24"><a href="#returns-24">Returns</a></h5>
+<p>default number of pixels above paragraphs</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.pixels_below_lines" class="method"><a class="src rightside" href="../../src/gtk4/auto/text_view.rs.html#2130-2132">source</a><h4 class="code-header">fn <a href="#method.pixels_below_lines" class="fn">pixels_below_lines</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a></h4></section></summary><div class="docblock"><p>Gets the default number of pixels to put below paragraphs.</p>
+<p>The line space is the sum of the value returned by this function and
+the value returned by <a href="trait.TextViewExt.html#method.pixels_above_lines"><code>pixels_above_lines()</code></a>.</p>
+<h5 id="returns-25"><a href="#returns-25">Returns</a></h5>
+<p>default number of blank pixels below paragraphs</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.pixels_inside_wrap" class="method"><a class="src rightside" href="../../src/gtk4/auto/text_view.rs.html#2142-2144">source</a><h4 class="code-header">fn <a href="#method.pixels_inside_wrap" class="fn">pixels_inside_wrap</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a></h4></section></summary><div class="docblock"><p>Gets the default number of pixels to put between wrapped lines
+inside a paragraph.</p>
+<h5 id="returns-26"><a href="#returns-26">Returns</a></h5>
+<p>default number of pixels of blank space between wrapped lines</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.right_margin" class="method"><a class="src rightside" href="../../src/gtk4/auto/text_view.rs.html#2155-2157">source</a><h4 class="code-header">fn <a href="#method.right_margin" class="fn">right_margin</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a></h4></section></summary><div class="docblock"><p>Gets the default right margin for text in @self.</p>
+<p>Tags in the buffer may override the default.</p>
+<h5 id="returns-27"><a href="#returns-27">Returns</a></h5>
+<p>right margin in pixels</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.rtl_context" class="method"><a class="src rightside" href="../../src/gtk4/auto/text_view.rs.html#2171-2177">source</a><h4 class="code-header">fn <a href="#method.rtl_context" class="fn">rtl_context</a>(&amp;self) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/pango/auto/context/struct.Context.html" title="struct pango::auto::context::Context">Context</a></h4></section></summary><span class="item-info"><div class="stab portability">Available on <strong>crate feature <code>v4_4</code></strong> only.</div></span><div class="docblock"><p>Gets the <a href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/pango/auto/context/struct.Context.html" title="struct pango::auto::context::Context"><code>pango::Context</code></a> that is used for rendering RTL directed
+text layouts.</p>
+<p>The context may be replaced when CSS changes occur.</p>
+<h5 id="returns-28"><a href="#returns-28">Returns</a></h5>
+<p>a <a href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/pango/auto/context/struct.Context.html" title="struct pango::auto::context::Context"><code>pango::Context</code></a></p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.tabs" class="method"><a class="src rightside" href="../../src/gtk4/auto/text_view.rs.html#2192-2194">source</a><h4 class="code-header">fn <a href="#method.tabs" class="fn">tabs</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/pango/auto/tab_array/struct.TabArray.html" title="struct pango::auto::tab_array::TabArray">TabArray</a>&gt;</h4></section></summary><div class="docblock"><p>Gets the default tabs for @self.</p>
+<p>Tags in the buffer may override the defaults. The returned array
+will be <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="variant core::option::Option::None"><code>None</code></a> if “standard” (8-space) tabs are used. Free the
+return value with <code>Pango::TabArray::free()</code>.</p>
+<h5 id="returns-29"><a href="#returns-29">Returns</a></h5>
+<p>copy of default tab array,
+or <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="variant core::option::Option::None"><code>None</code></a> if standard tabs are used; must be freed with
+<code>Pango::TabArray::free()</code>.</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.top_margin" class="method"><a class="src rightside" href="../../src/gtk4/auto/text_view.rs.html#2203-2205">source</a><h4 class="code-header">fn <a href="#method.top_margin" class="fn">top_margin</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a></h4></section></summary><div class="docblock"><p>Gets the top margin for text in the @self.</p>
+<h5 id="returns-30"><a href="#returns-30">Returns</a></h5>
+<p>top margin in pixels</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.visible_rect" class="method"><a class="src rightside" href="../../src/gtk4/auto/text_view.rs.html#2220-2229">source</a><h4 class="code-header">fn <a href="#method.visible_rect" class="fn">visible_rect</a>(&amp;self) -&gt; <a class="struct" href="../../gdk4/auto/rectangle/struct.Rectangle.html" title="struct gdk4::auto::rectangle::Rectangle">Rectangle</a></h4></section></summary><div class="docblock"><p>Fills @visible_rect with the currently-visible
+region of the buffer, in buffer coordinates.</p>
+<p>Convert to window coordinates with
+<a href="trait.TextViewExt.html#method.buffer_to_window_coords"><code>buffer_to_window_coords()</code></a>.</p>
+<h5 id="returns-31"><a href="#returns-31">Returns</a></h5><h6 id="visible_rect"><a href="#visible_rect"><code>visible_rect</code></a></h6>
+<p>rectangle to fill</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.wrap_mode" class="method"><a class="src rightside" href="../../src/gtk4/auto/text_view.rs.html#2238-2244">source</a><h4 class="code-header">fn <a href="#method.wrap_mode" class="fn">wrap_mode</a>(&amp;self) -&gt; <a class="enum" href="../enum.WrapMode.html" title="enum gtk4::WrapMode">WrapMode</a></h4></section></summary><div class="docblock"><p>Gets the line wrapping for the view.</p>
+<h5 id="returns-32"><a href="#returns-32">Returns</a></h5>
+<p>the line wrap setting</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.im_context_filter_keypress" class="method"><a class="src rightside" href="../../src/gtk4/auto/text_view.rs.html#2286-2293">source</a><h4 class="code-header">fn <a href="#method.im_context_filter_keypress" class="fn">im_context_filter_keypress</a>(&amp;self, event: impl <a class="trait" href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html" title="trait core::convert::AsRef">AsRef</a>&lt;<a class="struct" href="../../gdk4/auto/event/struct.Event.html" title="struct gdk4::auto::event::Event">Event</a>&gt;) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></section></summary><div class="docblock"><p>Allow the <a href="../struct.TextView.html" title="struct gtk4::TextView"><code>TextView</code></a> input method to internally handle key press
+and release events.</p>
+<p>If this function returns <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>true</code></a>, then no further processing should be
+done for this key event. See <a href="trait.IMContextExt.html#method.filter_keypress" title="method gtk4::prelude::IMContextExt::filter_keypress"><code>IMContextExt::filter_keypress()</code></a>.</p>
+<p>Note that you are expected to call this function from your handler
+when overriding key event handling. This is needed in the case when
+you need to insert your own key handling between the input method
+and the default key event handling of the <a href="../struct.TextView.html" title="struct gtk4::TextView"><code>TextView</code></a>.</p>
+<p><strong>⚠️ The following code is in c ⚠️</strong></p>
+<div class="example-wrap"><pre class="language-c"><code>static gboolean
+gtk_foo_bar_key_press_event (GtkWidget *widget,
+                             GdkEvent  *event)
+{
+  guint keyval;
+
+  gdk_event_get_keyval ((GdkEvent*)event, &amp;keyval);
+
+  if (keyval == GDK_KEY_Return || keyval == GDK_KEY_KP_Enter)
+    {
+      if (gtk_text_view_im_context_filter_keypress (GTK_TEXT_VIEW (widget), event))
+        return TRUE;
+    }
+
+  // Do some stuff
+
+  return GTK_WIDGET_CLASS (gtk_foo_bar_parent_class)-&gt;key_press_event (widget, event);
+}
+</code></pre></div><h6 id="event"><a href="#event"><code>event</code></a></h6>
+<p>the key event</p>
+<h5 id="returns-33"><a href="#returns-33">Returns</a></h5>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>true</code></a> if the input method handled the key event.</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.move_mark_onscreen" class="method"><a class="src rightside" href="../../src/gtk4/auto/text_view.rs.html#2304-2311">source</a><h4 class="code-header">fn <a href="#method.move_mark_onscreen" class="fn">move_mark_onscreen</a>(&amp;self, mark: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.TextMark.html" title="struct gtk4::TextMark">TextMark</a>&gt;) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></section></summary><div class="docblock"><p>Moves a mark within the buffer so that it’s
+located within the currently-visible text area.</p>
+<h6 id="mark"><a href="#mark"><code>mark</code></a></h6>
+<p>a <a href="../struct.TextMark.html" title="struct gtk4::TextMark"><code>TextMark</code></a></p>
+<h5 id="returns-34"><a href="#returns-34">Returns</a></h5>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>true</code></a> if the mark moved (wasn’t already onscreen)</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.move_overlay" class="method"><a class="src rightside" href="../../src/gtk4/auto/text_view.rs.html#2323-2332">source</a><h4 class="code-header">fn <a href="#method.move_overlay" class="fn">move_overlay</a>(&amp;self, child: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;, xpos: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, ypos: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>)</h4></section></summary><div class="docblock"><p>Updates the position of a child.</p>
+<p>See <a href="trait.TextViewExt.html#method.add_overlay"><code>add_overlay()</code></a>.</p>
+<h6 id="child-2"><a href="#child-2"><code>child</code></a></h6>
+<p>a widget already added with <a href="trait.TextViewExt.html#method.add_overlay"><code>add_overlay()</code></a></p>
+<h6 id="xpos-1"><a href="#xpos-1"><code>xpos</code></a></h6>
+<p>new X position in buffer coordinates</p>
+<h6 id="ypos-1"><a href="#ypos-1"><code>ypos</code></a></h6>
+<p>new Y position in buffer coordinates</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.move_visually" class="method"><a class="src rightside" href="../../src/gtk4/auto/text_view.rs.html#2356-2364">source</a><h4 class="code-header">fn <a href="#method.move_visually" class="fn">move_visually</a>(&amp;self, iter: &amp;mut <a class="struct" href="../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>, count: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></section></summary><div class="docblock"><p>Move the iterator a given number of characters visually, treating
+it as the strong cursor position.</p>
+<p>If @count is positive, then the new strong cursor position will
+be @count positions to the right of the old cursor position.
+If @count is negative then the new strong cursor position will
+be @count positions to the left of the old cursor position.</p>
+<p>In the presence of bi-directional text, the correspondence
+between logical and visual order will depend on the direction
+of the current run, and there may be jumps when the cursor
+is moved off of the end of a run.</p>
+<h6 id="iter-9"><a href="#iter-9"><code>iter</code></a></h6>
+<p>a <a href="../struct.TextIter.html" title="struct gtk4::TextIter"><code>TextIter</code></a></p>
+<h6 id="count"><a href="#count"><code>count</code></a></h6>
+<p>number of characters to move (negative moves left,
+positive moves right)</p>
+<h5 id="returns-35"><a href="#returns-35">Returns</a></h5>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>true</code></a> if @iter moved and is not on the end iterator</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.place_cursor_onscreen" class="method"><a class="src rightside" href="../../src/gtk4/auto/text_view.rs.html#2373-2379">source</a><h4 class="code-header">fn <a href="#method.place_cursor_onscreen" class="fn">place_cursor_onscreen</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></section></summary><div class="docblock"><p>Moves the cursor to the currently visible region of the
+buffer.</p>
+<h5 id="returns-36"><a href="#returns-36">Returns</a></h5>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>true</code></a> if the cursor had to be moved.</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.remove" class="method"><a class="src rightside" href="../../src/gtk4/auto/text_view.rs.html#2385-2392">source</a><h4 class="code-header">fn <a href="#method.remove" class="fn">remove</a>(&amp;self, child: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;)</h4></section></summary><div class="docblock"><p>Removes a child widget from @self.</p>
+<h6 id="child-3"><a href="#child-3"><code>child</code></a></h6>
+<p>the child to remove</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.reset_cursor_blink" class="method"><a class="src rightside" href="../../src/gtk4/auto/text_view.rs.html#2403-2407">source</a><h4 class="code-header">fn <a href="#method.reset_cursor_blink" class="fn">reset_cursor_blink</a>(&amp;self)</h4></section></summary><div class="docblock"><p>Ensures that the cursor is shown.</p>
+<p>This also resets the time that it will stay blinking (or
+visible, in case blinking is disabled).</p>
+<p>This function should be called in response to user input
+(e.g. from derived classes that override the textview’s
+event handlers).</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.reset_im_context" class="method"><a class="src rightside" href="../../src/gtk4/auto/text_view.rs.html#2414-2418">source</a><h4 class="code-header">fn <a href="#method.reset_im_context" class="fn">reset_im_context</a>(&amp;self)</h4></section></summary><div class="docblock"><p>Reset the input method context of the text view if needed.</p>
+<p>This can be necessary in the case where modifying the buffer
+would confuse on-going input method behavior.</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.scroll_mark_onscreen" class="method"><a class="src rightside" href="../../src/gtk4/auto/text_view.rs.html#2425-2432">source</a><h4 class="code-header">fn <a href="#method.scroll_mark_onscreen" class="fn">scroll_mark_onscreen</a>(&amp;self, mark: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.TextMark.html" title="struct gtk4::TextMark">TextMark</a>&gt;)</h4></section></summary><div class="docblock"><p>Scrolls @self the minimum distance such that @mark is contained
+within the visible area of the widget.</p>
+<h6 id="mark-1"><a href="#mark-1"><code>mark</code></a></h6>
+<p>a mark in the buffer for @self</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.scroll_to_iter" class="method"><a class="src rightside" href="../../src/gtk4/auto/text_view.rs.html#2465-2483">source</a><h4 class="code-header">fn <a href="#method.scroll_to_iter" class="fn">scroll_to_iter</a>(
+    &amp;self,
+    iter: &amp;mut <a class="struct" href="../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>,
+    within_margin: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>,
+    use_align: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>,
+    xalign: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>,
+    yalign: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>
+) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></section></summary><div class="docblock"><p>Scrolls @self so that @iter is on the screen in the position
+indicated by @xalign and @yalign.</p>
+<p>An alignment of 0.0 indicates left or top, 1.0 indicates right or
+bottom, 0.5 means center. If @use_align is <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>false</code></a>, the text scrolls
+the minimal distance to get the mark onscreen, possibly not scrolling
+at all. The effective screen for purposes of this function is reduced
+by a margin of size @within_margin.</p>
+<p>Note that this function uses the currently-computed height of the
+lines in the text buffer. Line heights are computed in an idle
+handler; so this function may not have the desired effect if it’s
+called before the height computations. To avoid oddness, consider
+using <a href="trait.TextViewExt.html#method.scroll_to_mark"><code>scroll_to_mark()</code></a> which saves a point to be
+scrolled to after line validation.</p>
+<h6 id="iter-10"><a href="#iter-10"><code>iter</code></a></h6>
+<p>a <a href="../struct.TextIter.html" title="struct gtk4::TextIter"><code>TextIter</code></a></p>
+<h6 id="within_margin"><a href="#within_margin"><code>within_margin</code></a></h6>
+<p>margin as a [0.0,0.5) fraction of screen size</p>
+<h6 id="use_align"><a href="#use_align"><code>use_align</code></a></h6>
+<p>whether to use alignment arguments (if <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>false</code></a>,
+just get the mark onscreen)</p>
+<h6 id="xalign"><a href="#xalign"><code>xalign</code></a></h6>
+<p>horizontal alignment of mark within visible area</p>
+<h6 id="yalign"><a href="#yalign"><code>yalign</code></a></h6>
+<p>vertical alignment of mark within visible area</p>
+<h5 id="returns-37"><a href="#returns-37">Returns</a></h5>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>true</code></a> if scrolling occurred</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.scroll_to_mark" class="method"><a class="src rightside" href="../../src/gtk4/auto/text_view.rs.html#2505-2523">source</a><h4 class="code-header">fn <a href="#method.scroll_to_mark" class="fn">scroll_to_mark</a>(
+    &amp;self,
+    mark: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.TextMark.html" title="struct gtk4::TextMark">TextMark</a>&gt;,
+    within_margin: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>,
+    use_align: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>,
+    xalign: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>,
+    yalign: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>
+)</h4></section></summary><div class="docblock"><p>Scrolls @self so that @mark is on the screen in the position
+indicated by @xalign and @yalign.</p>
+<p>An alignment of 0.0 indicates left or top, 1.0 indicates right or
+bottom, 0.5 means center. If @use_align is <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>false</code></a>, the text scrolls
+the minimal distance to get the mark onscreen, possibly not scrolling
+at all. The effective screen for purposes of this function is reduced
+by a margin of size @within_margin.</p>
+<h6 id="mark-2"><a href="#mark-2"><code>mark</code></a></h6>
+<p>a <a href="../struct.TextMark.html" title="struct gtk4::TextMark"><code>TextMark</code></a></p>
+<h6 id="within_margin-1"><a href="#within_margin-1"><code>within_margin</code></a></h6>
+<p>margin as a [0.0,0.5) fraction of screen size</p>
+<h6 id="use_align-1"><a href="#use_align-1"><code>use_align</code></a></h6>
+<p>whether to use alignment arguments (if <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>false</code></a>, just
+get the mark onscreen)</p>
+<h6 id="xalign-1"><a href="#xalign-1"><code>xalign</code></a></h6>
+<p>horizontal alignment of mark within visible area</p>
+<h6 id="yalign-1"><a href="#yalign-1"><code>yalign</code></a></h6>
+<p>vertical alignment of mark within visible area</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.set_accepts_tab" class="method"><a class="src rightside" href="../../src/gtk4/auto/text_view.rs.html#2537-2544">source</a><h4 class="code-header">fn <a href="#method.set_accepts_tab" class="fn">set_accepts_tab</a>(&amp;self, accepts_tab: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>)</h4></section></summary><div class="docblock"><p>Sets the behavior of the text widget when the <kbd>Tab</kbd> key is pressed.</p>
+<p>If @accepts_tab is <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>true</code></a>, a tab character is inserted. If @accepts_tab
+is <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>false</code></a> the keyboard focus is moved to the next widget in the focus
+chain.</p>
+<p>Focus can always be moved using <kbd>Ctrl</kbd>+<kbd>Tab</kbd>.</p>
+<h6 id="accepts_tab"><a href="#accepts_tab"><code>accepts_tab</code></a></h6>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>true</code></a> if pressing the Tab key should insert a tab
+character, <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>false</code></a>, if pressing the Tab key should move the
+keyboard focus.</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.set_bottom_margin" class="method"><a class="src rightside" href="../../src/gtk4/auto/text_view.rs.html#2553-2557">source</a><h4 class="code-header">fn <a href="#method.set_bottom_margin" class="fn">set_bottom_margin</a>(&amp;self, bottom_margin: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>)</h4></section></summary><div class="docblock"><p>Sets the bottom margin for text in @self.</p>
+<p>Note that this function is confusingly named.
+In CSS terms, the value set here is padding.</p>
+<h6 id="bottom_margin"><a href="#bottom_margin"><code>bottom_margin</code></a></h6>
+<p>bottom margin in pixels</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.set_buffer" class="method"><a class="src rightside" href="../../src/gtk4/auto/text_view.rs.html#2568-2575">source</a><h4 class="code-header">fn <a href="#method.set_buffer" class="fn">set_buffer</a>(&amp;self, buffer: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.TextBuffer.html" title="struct gtk4::TextBuffer">TextBuffer</a>&gt;&gt;)</h4></section></summary><div class="docblock"><p>Sets @buffer as the buffer being displayed by @self.</p>
+<p>The previous buffer displayed by the text view is unreferenced, and
+a reference is added to @buffer. If you owned a reference to @buffer
+before passing it to this function, you must remove that reference
+yourself; <a href="../struct.TextView.html" title="struct gtk4::TextView"><code>TextView</code></a> will not “adopt” it.</p>
+<h6 id="buffer"><a href="#buffer"><code>buffer</code></a></h6>
+<p>a <a href="../struct.TextBuffer.html" title="struct gtk4::TextBuffer"><code>TextBuffer</code></a></p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.set_cursor_visible" class="method"><a class="src rightside" href="../../src/gtk4/auto/text_view.rs.html#2587-2594">source</a><h4 class="code-header">fn <a href="#method.set_cursor_visible" class="fn">set_cursor_visible</a>(&amp;self, setting: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>)</h4></section></summary><div class="docblock"><p>Toggles whether the insertion point should be displayed.</p>
+<p>A buffer with no editable text probably shouldn’t have a visible
+cursor, so you may want to turn the cursor off.</p>
+<p>Note that this property may be overridden by the
+<a href="../struct.Settings.html#gtk-keynav-use-caret" title="struct gtk4::Settings"><code>gtk-keynav-use-caret</code></a> setting.</p>
+<h6 id="setting"><a href="#setting"><code>setting</code></a></h6>
+<p>whether to show the insertion cursor</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.set_editable" class="method"><a class="src rightside" href="../../src/gtk4/auto/text_view.rs.html#2603-2607">source</a><h4 class="code-header">fn <a href="#method.set_editable" class="fn">set_editable</a>(&amp;self, setting: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>)</h4></section></summary><div class="docblock"><p>Sets the default editability of the <a href="../struct.TextView.html" title="struct gtk4::TextView"><code>TextView</code></a>.</p>
+<p>You can override this default setting with tags in the buffer,
+using the “editable” attribute of tags.</p>
+<h6 id="setting-1"><a href="#setting-1"><code>setting</code></a></h6>
+<p>whether it’s editable</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.set_extra_menu" class="method"><a class="src rightside" href="../../src/gtk4/auto/text_view.rs.html#2616-2623">source</a><h4 class="code-header">fn <a href="#method.set_extra_menu" class="fn">set_extra_menu</a>(&amp;self, model: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/gio/auto/menu_model/struct.MenuModel.html" title="struct gio::auto::menu_model::MenuModel">MenuModel</a>&gt;&gt;)</h4></section></summary><div class="docblock"><p>Sets a menu model to add when constructing the context
+menu for @self.</p>
+<p>You can pass <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="variant core::option::Option::None"><code>None</code></a> to remove a previously set extra menu.</p>
+<h6 id="model"><a href="#model"><code>model</code></a></h6>
+<p>a <code>GMenuModel</code></p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.set_gutter" class="method"><a class="src rightside" href="../../src/gtk4/auto/text_view.rs.html#2634-2642">source</a><h4 class="code-header">fn <a href="#method.set_gutter" class="fn">set_gutter</a>(&amp;self, win: <a class="enum" href="../enum.TextWindowType.html" title="enum gtk4::TextWindowType">TextWindowType</a>, widget: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;&gt;)</h4></section></summary><div class="docblock"><p>Places @widget into the gutter specified by @win.</p>
+<p>@win must be one of <a href="../enum.TextWindowType.html#variant.Left" title="variant gtk4::TextWindowType::Left"><code>TextWindowType::Left</code></a>, <a href="../enum.TextWindowType.html#variant.Right" title="variant gtk4::TextWindowType::Right"><code>TextWindowType::Right</code></a>,
+<a href="../enum.TextWindowType.html#variant.Top" title="variant gtk4::TextWindowType::Top"><code>TextWindowType::Top</code></a>, or <a href="../enum.TextWindowType.html#variant.Bottom" title="variant gtk4::TextWindowType::Bottom"><code>TextWindowType::Bottom</code></a>.</p>
+<h6 id="win-2"><a href="#win-2"><code>win</code></a></h6>
+<p>a <a href="../enum.TextWindowType.html" title="enum gtk4::TextWindowType"><code>TextWindowType</code></a></p>
+<h6 id="widget"><a href="#widget"><code>widget</code></a></h6>
+<p>a <a href="../struct.Widget.html" title="struct gtk4::Widget"><code>Widget</code></a></p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.set_indent" class="method"><a class="src rightside" href="../../src/gtk4/auto/text_view.rs.html#2650-2654">source</a><h4 class="code-header">fn <a href="#method.set_indent" class="fn">set_indent</a>(&amp;self, indent: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>)</h4></section></summary><div class="docblock"><p>Sets the default indentation for paragraphs in @self.</p>
+<p>Tags in the buffer may override the default.</p>
+<h6 id="indent"><a href="#indent"><code>indent</code></a></h6>
+<p>indentation in pixels</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.set_input_hints" class="method"><a class="src rightside" href="../../src/gtk4/auto/text_view.rs.html#2663-2667">source</a><h4 class="code-header">fn <a href="#method.set_input_hints" class="fn">set_input_hints</a>(&amp;self, hints: <a class="struct" href="../struct.InputHints.html" title="struct gtk4::InputHints">InputHints</a>)</h4></section></summary><div class="docblock"><p>Sets the <code>input-hints</code> of the <a href="../struct.TextView.html" title="struct gtk4::TextView"><code>TextView</code></a>.</p>
+<p>The <code>input-hints</code> allow input methods to fine-tune
+their behaviour.</p>
+<h6 id="hints"><a href="#hints"><code>hints</code></a></h6>
+<p>the hints</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.set_input_purpose" class="method"><a class="src rightside" href="../../src/gtk4/auto/text_view.rs.html#2676-2683">source</a><h4 class="code-header">fn <a href="#method.set_input_purpose" class="fn">set_input_purpose</a>(&amp;self, purpose: <a class="enum" href="../enum.InputPurpose.html" title="enum gtk4::InputPurpose">InputPurpose</a>)</h4></section></summary><div class="docblock"><p>Sets the <code>input-purpose</code> of the <a href="../struct.TextView.html" title="struct gtk4::TextView"><code>TextView</code></a>.</p>
+<p>The <code>input-purpose</code> can be used by on-screen keyboards
+and other input methods to adjust their behaviour.</p>
+<h6 id="purpose"><a href="#purpose"><code>purpose</code></a></h6>
+<p>the purpose</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.set_justification" class="method"><a class="src rightside" href="../../src/gtk4/auto/text_view.rs.html#2691-2698">source</a><h4 class="code-header">fn <a href="#method.set_justification" class="fn">set_justification</a>(&amp;self, justification: <a class="enum" href="../enum.Justification.html" title="enum gtk4::Justification">Justification</a>)</h4></section></summary><div class="docblock"><p>Sets the default justification of text in @self.</p>
+<p>Tags in the view’s buffer may override the default.</p>
+<h6 id="justification"><a href="#justification"><code>justification</code></a></h6>
+<p>justification</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.set_left_margin" class="method"><a class="src rightside" href="../../src/gtk4/auto/text_view.rs.html#2709-2713">source</a><h4 class="code-header">fn <a href="#method.set_left_margin" class="fn">set_left_margin</a>(&amp;self, left_margin: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>)</h4></section></summary><div class="docblock"><p>Sets the default left margin for text in @self.</p>
+<p>Tags in the buffer may override the default.</p>
+<p>Note that this function is confusingly named.
+In CSS terms, the value set here is padding.</p>
+<h6 id="left_margin"><a href="#left_margin"><code>left_margin</code></a></h6>
+<p>left margin in pixels</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.set_monospace" class="method"><a class="src rightside" href="../../src/gtk4/auto/text_view.rs.html#2720-2724">source</a><h4 class="code-header">fn <a href="#method.set_monospace" class="fn">set_monospace</a>(&amp;self, monospace: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>)</h4></section></summary><div class="docblock"><p>Sets whether the <a href="../struct.TextView.html" title="struct gtk4::TextView"><code>TextView</code></a> should display text in
+monospace styling.</p>
+<h6 id="monospace"><a href="#monospace"><code>monospace</code></a></h6>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>true</code></a> to request monospace styling</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.set_overwrite" class="method"><a class="src rightside" href="../../src/gtk4/auto/text_view.rs.html#2730-2734">source</a><h4 class="code-header">fn <a href="#method.set_overwrite" class="fn">set_overwrite</a>(&amp;self, overwrite: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>)</h4></section></summary><div class="docblock"><p>Changes the <a href="../struct.TextView.html" title="struct gtk4::TextView"><code>TextView</code></a> overwrite mode.</p>
+<h6 id="overwrite"><a href="#overwrite"><code>overwrite</code></a></h6>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>true</code></a> to turn on overwrite mode, <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>false</code></a> to turn it off</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.set_pixels_above_lines" class="method"><a class="src rightside" href="../../src/gtk4/auto/text_view.rs.html#2742-2749">source</a><h4 class="code-header">fn <a href="#method.set_pixels_above_lines" class="fn">set_pixels_above_lines</a>(&amp;self, pixels_above_lines: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>)</h4></section></summary><div class="docblock"><p>Sets the default number of blank pixels above paragraphs in @self.</p>
+<p>Tags in the buffer for @self may override the defaults.</p>
+<h6 id="pixels_above_lines"><a href="#pixels_above_lines"><code>pixels_above_lines</code></a></h6>
+<p>pixels above paragraphs</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.set_pixels_below_lines" class="method"><a class="src rightside" href="../../src/gtk4/auto/text_view.rs.html#2758-2765">source</a><h4 class="code-header">fn <a href="#method.set_pixels_below_lines" class="fn">set_pixels_below_lines</a>(&amp;self, pixels_below_lines: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>)</h4></section></summary><div class="docblock"><p>Sets the default number of pixels of blank space
+to put below paragraphs in @self.</p>
+<p>May be overridden by tags applied to @self’s buffer.</p>
+<h6 id="pixels_below_lines"><a href="#pixels_below_lines"><code>pixels_below_lines</code></a></h6>
+<p>pixels below paragraphs</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.set_pixels_inside_wrap" class="method"><a class="src rightside" href="../../src/gtk4/auto/text_view.rs.html#2774-2781">source</a><h4 class="code-header">fn <a href="#method.set_pixels_inside_wrap" class="fn">set_pixels_inside_wrap</a>(&amp;self, pixels_inside_wrap: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>)</h4></section></summary><div class="docblock"><p>Sets the default number of pixels of blank space to leave between
+display/wrapped lines within a paragraph.</p>
+<p>May be overridden by tags in @self’s buffer.</p>
+<h6 id="pixels_inside_wrap"><a href="#pixels_inside_wrap"><code>pixels_inside_wrap</code></a></h6>
+<p>default number of pixels between wrapped lines</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.set_right_margin" class="method"><a class="src rightside" href="../../src/gtk4/auto/text_view.rs.html#2792-2796">source</a><h4 class="code-header">fn <a href="#method.set_right_margin" class="fn">set_right_margin</a>(&amp;self, right_margin: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>)</h4></section></summary><div class="docblock"><p>Sets the default right margin for text in the text view.</p>
+<p>Tags in the buffer may override the default.</p>
+<p>Note that this function is confusingly named.
+In CSS terms, the value set here is padding.</p>
+<h6 id="right_margin"><a href="#right_margin"><code>right_margin</code></a></h6>
+<p>right margin in pixels</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.set_tabs" class="method"><a class="src rightside" href="../../src/gtk4/auto/text_view.rs.html#2804-2811">source</a><h4 class="code-header">fn <a href="#method.set_tabs" class="fn">set_tabs</a>(&amp;self, tabs: &amp;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/pango/auto/tab_array/struct.TabArray.html" title="struct pango::auto::tab_array::TabArray">TabArray</a>)</h4></section></summary><div class="docblock"><p>Sets the default tab stops for paragraphs in @self.</p>
+<p>Tags in the buffer may override the default.</p>
+<h6 id="tabs"><a href="#tabs"><code>tabs</code></a></h6>
+<p>tabs as a <a href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/pango/auto/tab_array/struct.TabArray.html" title="struct pango::auto::tab_array::TabArray"><code>pango::TabArray</code></a></p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.set_top_margin" class="method"><a class="src rightside" href="../../src/gtk4/auto/text_view.rs.html#2820-2824">source</a><h4 class="code-header">fn <a href="#method.set_top_margin" class="fn">set_top_margin</a>(&amp;self, top_margin: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>)</h4></section></summary><div class="docblock"><p>Sets the top margin for text in @self.</p>
+<p>Note that this function is confusingly named.
+In CSS terms, the value set here is padding.</p>
+<h6 id="top_margin"><a href="#top_margin"><code>top_margin</code></a></h6>
+<p>top margin in pixels</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.set_wrap_mode" class="method"><a class="src rightside" href="../../src/gtk4/auto/text_view.rs.html#2830-2834">source</a><h4 class="code-header">fn <a href="#method.set_wrap_mode" class="fn">set_wrap_mode</a>(&amp;self, wrap_mode: <a class="enum" href="../enum.WrapMode.html" title="enum gtk4::WrapMode">WrapMode</a>)</h4></section></summary><div class="docblock"><p>Sets the line wrapping for the view.</p>
+<h6 id="wrap_mode"><a href="#wrap_mode"><code>wrap_mode</code></a></h6>
+<p>a <a href="../enum.WrapMode.html" title="enum gtk4::WrapMode"><code>WrapMode</code></a></p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.starts_display_line" class="method"><a class="src rightside" href="../../src/gtk4/auto/text_view.rs.html#2847-2854">source</a><h4 class="code-header">fn <a href="#method.starts_display_line" class="fn">starts_display_line</a>(&amp;self, iter: &amp;<a class="struct" href="../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></section></summary><div class="docblock"><p>Determines whether @iter is at the start of a display line.</p>
+<p>See <a href="trait.TextViewExt.html#method.forward_display_line"><code>forward_display_line()</code></a> for an
+explanation of display lines vs. paragraphs.</p>
+<h6 id="iter-11"><a href="#iter-11"><code>iter</code></a></h6>
+<p>a <a href="../struct.TextIter.html" title="struct gtk4::TextIter"><code>TextIter</code></a></p>
+<h5 id="returns-38"><a href="#returns-38">Returns</a></h5>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>true</code></a> if @iter begins a wrapped line</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.window_to_buffer_coords" class="method"><a class="src rightside" href="../../src/gtk4/auto/text_view.rs.html#2874-2893">source</a><h4 class="code-header">fn <a href="#method.window_to_buffer_coords" class="fn">window_to_buffer_coords</a>(
+    &amp;self,
+    win: <a class="enum" href="../enum.TextWindowType.html" title="enum gtk4::TextWindowType">TextWindowType</a>,
+    window_x: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>,
+    window_y: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>
+) -&gt; (<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>)</h4></section></summary><div class="docblock"><p>Converts coordinates on the window identified by @win to buffer
+coordinates.</p>
+<h6 id="win-3"><a href="#win-3"><code>win</code></a></h6>
+<p>a <a href="../enum.TextWindowType.html" title="enum gtk4::TextWindowType"><code>TextWindowType</code></a></p>
+<h6 id="window_x-1"><a href="#window_x-1"><code>window_x</code></a></h6>
+<p>window x coordinate</p>
+<h6 id="window_y-1"><a href="#window_y-1"><code>window_y</code></a></h6>
+<p>window y coordinate</p>
+<h5 id="returns-39"><a href="#returns-39">Returns</a></h5><h6 id="buffer_x-1"><a href="#buffer_x-1"><code>buffer_x</code></a></h6>
+<p>buffer x coordinate return location</p>
+<h6 id="buffer_y-1"><a href="#buffer_y-1"><code>buffer_y</code></a></h6>
+<p>buffer y coordinate return location</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.im_module" class="method"><a class="src rightside" href="../../src/gtk4/auto/text_view.rs.html#2902-2904">source</a><h4 class="code-header">fn <a href="#method.im_module" class="fn">im_module</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/gstring/struct.GString.html" title="struct glib::gstring::GString">GString</a>&gt;</h4></section></summary><div class="docblock"><p>Which IM (input method) module should be used for this text_view.</p>
+<p>See <a href="../struct.IMMulticontext.html" title="struct gtk4::IMMulticontext"><code>IMMulticontext</code></a>.</p>
+<p>Setting this to a non-<a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="variant core::option::Option::None"><code>None</code></a> value overrides the system-wide IM module
+setting. See the GtkSettings <a href="../struct.Settings.html#gtk-im-module" title="struct gtk4::Settings"><code>gtk-im-module</code></a> property.</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.set_im_module" class="method"><a class="src rightside" href="../../src/gtk4/auto/text_view.rs.html#2913-2915">source</a><h4 class="code-header">fn <a href="#method.set_im_module" class="fn">set_im_module</a>(&amp;self, im_module: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>&gt;)</h4></section></summary><div class="docblock"><p>Which IM (input method) module should be used for this text_view.</p>
+<p>See <a href="../struct.IMMulticontext.html" title="struct gtk4::IMMulticontext"><code>IMMulticontext</code></a>.</p>
+<p>Setting this to a non-<a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="variant core::option::Option::None"><code>None</code></a> value overrides the system-wide IM module
+setting. See the GtkSettings <a href="../struct.Settings.html#gtk-im-module" title="struct gtk4::Settings"><code>gtk-im-module</code></a> property.</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.connect_backspace" class="method"><a class="src rightside" href="../../src/gtk4/auto/text_view.rs.html#2924-2943">source</a><h4 class="code-header">fn <a href="#method.connect_backspace" class="fn">connect_backspace</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(&amp;self, f: F) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section></summary><div class="docblock"><p>Gets emitted when the user asks for it.</p>
+<p>The ::backspace signal is a <a href="class.SignalAction.html">keybinding signal</a>.</p>
+<p>The default bindings for this signal are
+<kbd>Backspace</kbd> and <kbd>Shift</kbd>+<kbd>Backspace</kbd>.</p>
+</div></details><section id="method.emit_backspace" class="method"><a class="src rightside" href="../../src/gtk4/auto/text_view.rs.html#2945-2947">source</a><h4 class="code-header">fn <a href="#method.emit_backspace" class="fn">emit_backspace</a>(&amp;self)</h4></section><details class="toggle method-toggle" open><summary><section id="method.connect_copy_clipboard" class="method"><a class="src rightside" href="../../src/gtk4/auto/text_view.rs.html#2957-2976">source</a><h4 class="code-header">fn <a href="#method.connect_copy_clipboard" class="fn">connect_copy_clipboard</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
+    &amp;self,
+    f: F
+) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section></summary><div class="docblock"><p>Gets emitted to copy the selection to the clipboard.</p>
+<p>The ::copy-clipboard signal is a <a href="class.SignalAction.html">keybinding signal</a>.</p>
+<p>The default bindings for this signal are
+<kbd>Ctrl</kbd>+<kbd>c</kbd> and
+<kbd>Ctrl</kbd>+<kbd>Insert</kbd>.</p>
+</div></details><section id="method.emit_copy_clipboard" class="method"><a class="src rightside" href="../../src/gtk4/auto/text_view.rs.html#2978-2980">source</a><h4 class="code-header">fn <a href="#method.emit_copy_clipboard" class="fn">emit_copy_clipboard</a>(&amp;self)</h4></section><details class="toggle method-toggle" open><summary><section id="method.connect_cut_clipboard" class="method"><a class="src rightside" href="../../src/gtk4/auto/text_view.rs.html#2990-3009">source</a><h4 class="code-header">fn <a href="#method.connect_cut_clipboard" class="fn">connect_cut_clipboard</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(&amp;self, f: F) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section></summary><div class="docblock"><p>Gets emitted to cut the selection to the clipboard.</p>
+<p>The ::cut-clipboard signal is a <a href="class.SignalAction.html">keybinding signal</a>.</p>
+<p>The default bindings for this signal are
+<kbd>Ctrl</kbd>+<kbd>x</kbd> and
+<kbd>Shift</kbd>+<kbd>Delete</kbd>.</p>
+</div></details><section id="method.emit_cut_clipboard" class="method"><a class="src rightside" href="../../src/gtk4/auto/text_view.rs.html#3011-3013">source</a><h4 class="code-header">fn <a href="#method.emit_cut_clipboard" class="fn">emit_cut_clipboard</a>(&amp;self)</h4></section><details class="toggle method-toggle" open><summary><section id="method.connect_delete_from_cursor" class="method"><a class="src rightside" href="../../src/gtk4/auto/text_view.rs.html#3032-3063">source</a><h4 class="code-header">fn <a href="#method.connect_delete_from_cursor" class="fn">connect_delete_from_cursor</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>, <a class="enum" href="../enum.DeleteType.html" title="enum gtk4::DeleteType">DeleteType</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>) + 'static&gt;(
+    &amp;self,
+    f: F
+) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section></summary><div class="docblock"><p>Gets emitted when the user initiates a text deletion.</p>
+<p>The ::delete-from-cursor signal is a <a href="class.SignalAction.html">keybinding signal</a>.</p>
+<p>If the @type_ is <a href="../enum.DeleteType.html#variant.Chars" title="variant gtk4::DeleteType::Chars"><code>DeleteType::Chars</code></a>, GTK deletes the selection
+if there is one, otherwise it deletes the requested number
+of characters.</p>
+<p>The default bindings for this signal are <kbd>Delete</kbd> for
+deleting a character, <kbd>Ctrl</kbd>+<kbd>Delete</kbd> for
+deleting a word and <kbd>Ctrl</kbd>+<kbd>Backspace</kbd> for
+deleting a word backwards.</p>
+<h6 id="type_"><a href="#type_"><code>type_</code></a></h6>
+<p>the granularity of the deletion, as a <a href="../enum.DeleteType.html" title="enum gtk4::DeleteType"><code>DeleteType</code></a></p>
+<h6 id="count-1"><a href="#count-1"><code>count</code></a></h6>
+<p>the number of @type_ units to delete</p>
+</div></details><section id="method.emit_delete_from_cursor" class="method"><a class="src rightside" href="../../src/gtk4/auto/text_view.rs.html#3065-3067">source</a><h4 class="code-header">fn <a href="#method.emit_delete_from_cursor" class="fn">emit_delete_from_cursor</a>(&amp;self, type_: <a class="enum" href="../enum.DeleteType.html" title="enum gtk4::DeleteType">DeleteType</a>, count: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>)</h4></section><details class="toggle method-toggle" open><summary><section id="method.connect_extend_selection" class="method"><a class="src rightside" href="../../src/gtk4/auto/text_view.rs.html#3084-3124">source</a><h4 class="code-header">fn <a href="#method.connect_extend_selection" class="fn">connect_extend_selection</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>, <a class="enum" href="../enum.TextExtendSelection.html" title="enum gtk4::TextExtendSelection">TextExtendSelection</a>, &amp;<a class="struct" href="../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>, &amp;<a class="struct" href="../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>, &amp;<a class="struct" href="../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>) -&gt; <a class="enum" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/signal/enum.Propagation.html" title="enum glib::signal::Propagation">Propagation</a> + 'static&gt;(
+    &amp;self,
+    f: F
+) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section></summary><div class="docblock"><p>Emitted when the selection needs to be extended at @location.</p>
+<h6 id="granularity"><a href="#granularity"><code>granularity</code></a></h6>
+<p>the granularity type</p>
+<h6 id="location-1"><a href="#location-1"><code>location</code></a></h6>
+<p>the location where to extend the selection</p>
+<h6 id="start"><a href="#start"><code>start</code></a></h6>
+<p>where the selection should start</p>
+<h6 id="end"><a href="#end"><code>end</code></a></h6>
+<p>where the selection should end</p>
+<h5 id="returns-40"><a href="#returns-40">Returns</a></h5>
+<p><code>GDK_EVENT_STOP</code> to stop other handlers from being invoked for the
+event. <code>GDK_EVENT_PROPAGATE</code> to propagate the event further.</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.connect_insert_at_cursor" class="method"><a class="src rightside" href="../../src/gtk4/auto/text_view.rs.html#3135-3161">source</a><h4 class="code-header">fn <a href="#method.connect_insert_at_cursor" class="fn">connect_insert_at_cursor</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>, &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>) + 'static&gt;(
+    &amp;self,
+    f: F
+) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section></summary><div class="docblock"><p>Gets emitted when the user initiates the insertion of a
+fixed string at the cursor.</p>
+<p>The ::insert-at-cursor signal is a <a href="class.SignalAction.html">keybinding signal</a>.</p>
+<p>This signal has no default bindings.</p>
+<h6 id="string"><a href="#string"><code>string</code></a></h6>
+<p>the string to insert</p>
+</div></details><section id="method.emit_insert_at_cursor" class="method"><a class="src rightside" href="../../src/gtk4/auto/text_view.rs.html#3163-3165">source</a><h4 class="code-header">fn <a href="#method.emit_insert_at_cursor" class="fn">emit_insert_at_cursor</a>(&amp;self, string: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>)</h4></section><details class="toggle method-toggle" open><summary><section id="method.connect_insert_emoji" class="method"><a class="src rightside" href="../../src/gtk4/auto/text_view.rs.html#3175-3194">source</a><h4 class="code-header">fn <a href="#method.connect_insert_emoji" class="fn">connect_insert_emoji</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(&amp;self, f: F) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section></summary><div class="docblock"><p>Gets emitted to present the Emoji chooser for the @text_view.</p>
+<p>The ::insert-emoji signal is a <a href="class.SignalAction.html">keybinding signal</a>.</p>
+<p>The default bindings for this signal are
+<kbd>Ctrl</kbd>+<kbd>.</kbd> and
+<kbd>Ctrl</kbd>+<kbd>;</kbd></p>
+</div></details><section id="method.emit_insert_emoji" class="method"><a class="src rightside" href="../../src/gtk4/auto/text_view.rs.html#3196-3198">source</a><h4 class="code-header">fn <a href="#method.emit_insert_emoji" class="fn">emit_insert_emoji</a>(&amp;self)</h4></section><details class="toggle method-toggle" open><summary><section id="method.connect_move_cursor" class="method"><a class="src rightside" href="../../src/gtk4/auto/text_view.rs.html#3230-3263">source</a><h4 class="code-header">fn <a href="#method.connect_move_cursor" class="fn">connect_move_cursor</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>, <a class="enum" href="../enum.MovementStep.html" title="enum gtk4::MovementStep">MovementStep</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>) + 'static&gt;(
+    &amp;self,
+    f: F
+) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section></summary><div class="docblock"><p>Gets emitted when the user initiates a cursor movement.</p>
+<p>The ::move-cursor signal is a <a href="class.SignalAction.html">keybinding signal</a>.
+If the cursor is not visible in @text_view, this signal causes
+the viewport to be moved instead.</p>
+<p>Applications should not connect to it, but may emit it with
+g_signal_emit_by_name() if they need to control the cursor
+programmatically.</p>
+<p>The default bindings for this signal come in two variants,
+the variant with the <kbd>Shift</kbd> modifier extends the
+selection, the variant without it does not.
+There are too many key combinations to list them all here.</p>
+<ul>
+<li><kbd>←</kbd>, <kbd>→</kbd>, <kbd>↑</kbd>, <kbd>↓</kbd>
+move by individual characters/lines</li>
+<li><kbd>Ctrl</kbd>+<kbd>←</kbd>, etc. move by words/paragraphs</li>
+<li><kbd>Home</kbd> and <kbd>End</kbd> move to the ends of the buffer</li>
+<li><kbd>PgUp</kbd> and <kbd>PgDn</kbd> move vertically by pages</li>
+<li><kbd>Ctrl</kbd>+<kbd>PgUp</kbd> and <kbd>Ctrl</kbd>+<kbd>PgDn</kbd>
+move horizontally by pages</li>
+</ul>
+<h6 id="step"><a href="#step"><code>step</code></a></h6>
+<p>the granularity of the move, as a <a href="../enum.MovementStep.html" title="enum gtk4::MovementStep"><code>MovementStep</code></a></p>
+<h6 id="count-2"><a href="#count-2"><code>count</code></a></h6>
+<p>the number of @step units to move</p>
+<h6 id="extend_selection"><a href="#extend_selection"><code>extend_selection</code></a></h6>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>true</code></a> if the move should extend the selection</p>
+</div></details><section id="method.emit_move_cursor" class="method"><a class="src rightside" href="../../src/gtk4/auto/text_view.rs.html#3265-3267">source</a><h4 class="code-header">fn <a href="#method.emit_move_cursor" class="fn">emit_move_cursor</a>(
+    &amp;self,
+    step: <a class="enum" href="../enum.MovementStep.html" title="enum gtk4::MovementStep">MovementStep</a>,
+    count: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>,
+    extend_selection: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>
+)</h4></section><details class="toggle method-toggle" open><summary><section id="method.connect_move_viewport" class="method"><a class="src rightside" href="../../src/gtk4/auto/text_view.rs.html#3282-3313">source</a><h4 class="code-header">fn <a href="#method.connect_move_viewport" class="fn">connect_move_viewport</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>, <a class="enum" href="../enum.ScrollStep.html" title="enum gtk4::ScrollStep">ScrollStep</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>) + 'static&gt;(
+    &amp;self,
+    f: F
+) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section></summary><div class="docblock"><p>Gets emitted to move the viewport.</p>
+<p>The ::move-viewport signal is a <a href="class.SignalAction.html">keybinding signal</a>,
+which can be bound to key combinations to allow the user to move the viewport,
+i.e. change what part of the text view is visible in a containing scrolled
+window.</p>
+<p>There are no default bindings for this signal.</p>
+<h6 id="step-1"><a href="#step-1"><code>step</code></a></h6>
+<p>the granularity of the movement, as a <a href="../enum.ScrollStep.html" title="enum gtk4::ScrollStep"><code>ScrollStep</code></a></p>
+<h6 id="count-3"><a href="#count-3"><code>count</code></a></h6>
+<p>the number of @step units to move</p>
+</div></details><section id="method.emit_move_viewport" class="method"><a class="src rightside" href="../../src/gtk4/auto/text_view.rs.html#3315-3317">source</a><h4 class="code-header">fn <a href="#method.emit_move_viewport" class="fn">emit_move_viewport</a>(&amp;self, step: <a class="enum" href="../enum.ScrollStep.html" title="enum gtk4::ScrollStep">ScrollStep</a>, count: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>)</h4></section><details class="toggle method-toggle" open><summary><section id="method.connect_paste_clipboard" class="method"><a class="src rightside" href="../../src/gtk4/auto/text_view.rs.html#3328-3347">source</a><h4 class="code-header">fn <a href="#method.connect_paste_clipboard" class="fn">connect_paste_clipboard</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
+    &amp;self,
+    f: F
+) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section></summary><div class="docblock"><p>Gets emitted to paste the contents of the clipboard
+into the text view.</p>
+<p>The ::paste-clipboard signal is a <a href="class.SignalAction.html">keybinding signal</a>.</p>
+<p>The default bindings for this signal are
+<kbd>Ctrl</kbd>+<kbd>v</kbd> and
+<kbd>Shift</kbd>+<kbd>Insert</kbd>.</p>
+</div></details><section id="method.emit_paste_clipboard" class="method"><a class="src rightside" href="../../src/gtk4/auto/text_view.rs.html#3349-3351">source</a><h4 class="code-header">fn <a href="#method.emit_paste_clipboard" class="fn">emit_paste_clipboard</a>(&amp;self)</h4></section><details class="toggle method-toggle" open><summary><section id="method.connect_preedit_changed" class="method"><a class="src rightside" href="../../src/gtk4/auto/text_view.rs.html#3364-3390">source</a><h4 class="code-header">fn <a href="#method.connect_preedit_changed" class="fn">connect_preedit_changed</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>, &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>) + 'static&gt;(
+    &amp;self,
+    f: F
+) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section></summary><div class="docblock"><p>Emitted when preedit text of the active IM changes.</p>
+<p>If an input method is used, the typed text will not immediately
+be committed to the buffer. So if you are interested in the text,
+connect to this signal.</p>
+<p>This signal is only emitted if the text at the given position
+is actually editable.</p>
+<h6 id="preedit"><a href="#preedit"><code>preedit</code></a></h6>
+<p>the current preedit string</p>
+</div></details><section id="method.emit_preedit_changed" class="method"><a class="src rightside" href="../../src/gtk4/auto/text_view.rs.html#3392-3394">source</a><h4 class="code-header">fn <a href="#method.emit_preedit_changed" class="fn">emit_preedit_changed</a>(&amp;self, preedit: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>)</h4></section><details class="toggle method-toggle" open><summary><section id="method.connect_select_all" class="method"><a class="src rightside" href="../../src/gtk4/auto/text_view.rs.html#3408-3431">source</a><h4 class="code-header">fn <a href="#method.connect_select_all" class="fn">connect_select_all</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>) + 'static&gt;(
+    &amp;self,
+    f: F
+) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section></summary><div class="docblock"><p>Gets emitted to select or unselect the complete contents of the text view.</p>
+<p>The ::select-all signal is a <a href="class.SignalAction.html">keybinding signal</a>.</p>
+<p>The default bindings for this signal are
+<kbd>Ctrl</kbd>+<kbd>a</kbd> and
+<kbd>Ctrl</kbd>+<kbd>/</kbd> for selecting and
+<kbd>Shift</kbd>+<kbd>Ctrl</kbd>+<kbd>a</kbd> and
+<kbd>Ctrl</kbd>+<kbd>&lt;/kbd&gt; for unselecting.</p>
+<h6 id="select"><a href="#select"><code>select</code></a></h6>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>true</code></a> to select, <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>false</code></a> to unselect</p>
+</div></details><section id="method.emit_select_all" class="method"><a class="src rightside" href="../../src/gtk4/auto/text_view.rs.html#3433-3435">source</a><h4 class="code-header">fn <a href="#method.emit_select_all" class="fn">emit_select_all</a>(&amp;self, select: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>)</h4></section><details class="toggle method-toggle" open><summary><section id="method.connect_set_anchor" class="method"><a class="src rightside" href="../../src/gtk4/auto/text_view.rs.html#3446-3465">source</a><h4 class="code-header">fn <a href="#method.connect_set_anchor" class="fn">connect_set_anchor</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(&amp;self, f: F) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section></summary><div class="docblock"><p>Gets emitted when the user initiates settings the “anchor” mark.</p>
+<p>The ::set-anchor signal is a <a href="class.SignalAction.html">keybinding signal</a>
+which gets emitted when the user initiates setting the “anchor”
+mark. The “anchor” mark gets placed at the same position as the
+“insert” mark.</p>
+<p>This signal has no default bindings.</p>
+</div></details><section id="method.emit_set_anchor" class="method"><a class="src rightside" href="../../src/gtk4/auto/text_view.rs.html#3467-3469">source</a><h4 class="code-header">fn <a href="#method.emit_set_anchor" class="fn">emit_set_anchor</a>(&amp;self)</h4></section><details class="toggle method-toggle" open><summary><section id="method.connect_toggle_cursor_visible" class="method"><a class="src rightside" href="../../src/gtk4/auto/text_view.rs.html#3478-3500">source</a><h4 class="code-header">fn <a href="#method.connect_toggle_cursor_visible" class="fn">connect_toggle_cursor_visible</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
+    &amp;self,
+    f: F
+) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section></summary><div class="docblock"><p>Gets emitted to toggle the <code>cursor-visible</code> property.</p>
+<p>The ::toggle-cursor-visible signal is a
+<a href="class.SignalAction.html">keybinding signal</a>.</p>
+<p>The default binding for this signal is <kbd>F7</kbd>.</p>
+</div></details><section id="method.emit_toggle_cursor_visible" class="method"><a class="src rightside" href="../../src/gtk4/auto/text_view.rs.html#3502-3504">source</a><h4 class="code-header">fn <a href="#method.emit_toggle_cursor_visible" class="fn">emit_toggle_cursor_visible</a>(&amp;self)</h4></section><details class="toggle method-toggle" open><summary><section id="method.connect_toggle_overwrite" class="method"><a class="src rightside" href="../../src/gtk4/auto/text_view.rs.html#3512-3531">source</a><h4 class="code-header">fn <a href="#method.connect_toggle_overwrite" class="fn">connect_toggle_overwrite</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
+    &amp;self,
+    f: F
+) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section></summary><div class="docblock"><p>Gets emitted to toggle the overwrite mode of the text view.</p>
+<p>The ::toggle-overwrite signal is a <a href="class.SignalAction.html">keybinding signal</a>.</p>
+<p>The default binding for this signal is <kbd>Insert</kbd>.</p>
+</div></details><section id="method.emit_toggle_overwrite" class="method"><a class="src rightside" href="../../src/gtk4/auto/text_view.rs.html#3533-3535">source</a><h4 class="code-header">fn <a href="#method.emit_toggle_overwrite" class="fn">emit_toggle_overwrite</a>(&amp;self)</h4></section><section id="method.connect_accepts_tab_notify" class="method"><a class="src rightside" href="../../src/gtk4/auto/text_view.rs.html#3538-3561">source</a><h4 class="code-header">fn <a href="#method.connect_accepts_tab_notify" class="fn">connect_accepts_tab_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
+    &amp;self,
+    f: F
+) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><section id="method.connect_bottom_margin_notify" class="method"><a class="src rightside" href="../../src/gtk4/auto/text_view.rs.html#3564-3587">source</a><h4 class="code-header">fn <a href="#method.connect_bottom_margin_notify" class="fn">connect_bottom_margin_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
+    &amp;self,
+    f: F
+) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><section id="method.connect_buffer_notify" class="method"><a class="src rightside" href="../../src/gtk4/auto/text_view.rs.html#3590-3610">source</a><h4 class="code-header">fn <a href="#method.connect_buffer_notify" class="fn">connect_buffer_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(&amp;self, f: F) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><section id="method.connect_cursor_visible_notify" class="method"><a class="src rightside" href="../../src/gtk4/auto/text_view.rs.html#3613-3636">source</a><h4 class="code-header">fn <a href="#method.connect_cursor_visible_notify" class="fn">connect_cursor_visible_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
+    &amp;self,
+    f: F
+) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><section id="method.connect_editable_notify" class="method"><a class="src rightside" href="../../src/gtk4/auto/text_view.rs.html#3639-3659">source</a><h4 class="code-header">fn <a href="#method.connect_editable_notify" class="fn">connect_editable_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
+    &amp;self,
+    f: F
+) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><section id="method.connect_extra_menu_notify" class="method"><a class="src rightside" href="../../src/gtk4/auto/text_view.rs.html#3662-3682">source</a><h4 class="code-header">fn <a href="#method.connect_extra_menu_notify" class="fn">connect_extra_menu_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
+    &amp;self,
+    f: F
+) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><section id="method.connect_im_module_notify" class="method"><a class="src rightside" href="../../src/gtk4/auto/text_view.rs.html#3685-3705">source</a><h4 class="code-header">fn <a href="#method.connect_im_module_notify" class="fn">connect_im_module_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
+    &amp;self,
+    f: F
+) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><section id="method.connect_indent_notify" class="method"><a class="src rightside" href="../../src/gtk4/auto/text_view.rs.html#3708-3728">source</a><h4 class="code-header">fn <a href="#method.connect_indent_notify" class="fn">connect_indent_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(&amp;self, f: F) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><section id="method.connect_input_hints_notify" class="method"><a class="src rightside" href="../../src/gtk4/auto/text_view.rs.html#3731-3754">source</a><h4 class="code-header">fn <a href="#method.connect_input_hints_notify" class="fn">connect_input_hints_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
+    &amp;self,
+    f: F
+) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><section id="method.connect_input_purpose_notify" class="method"><a class="src rightside" href="../../src/gtk4/auto/text_view.rs.html#3757-3780">source</a><h4 class="code-header">fn <a href="#method.connect_input_purpose_notify" class="fn">connect_input_purpose_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
+    &amp;self,
+    f: F
+) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><section id="method.connect_justification_notify" class="method"><a class="src rightside" href="../../src/gtk4/auto/text_view.rs.html#3783-3806">source</a><h4 class="code-header">fn <a href="#method.connect_justification_notify" class="fn">connect_justification_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
+    &amp;self,
+    f: F
+) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><section id="method.connect_left_margin_notify" class="method"><a class="src rightside" href="../../src/gtk4/auto/text_view.rs.html#3809-3832">source</a><h4 class="code-header">fn <a href="#method.connect_left_margin_notify" class="fn">connect_left_margin_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
+    &amp;self,
+    f: F
+) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><section id="method.connect_monospace_notify" class="method"><a class="src rightside" href="../../src/gtk4/auto/text_view.rs.html#3835-3855">source</a><h4 class="code-header">fn <a href="#method.connect_monospace_notify" class="fn">connect_monospace_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
+    &amp;self,
+    f: F
+) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><section id="method.connect_overwrite_notify" class="method"><a class="src rightside" href="../../src/gtk4/auto/text_view.rs.html#3858-3878">source</a><h4 class="code-header">fn <a href="#method.connect_overwrite_notify" class="fn">connect_overwrite_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
+    &amp;self,
+    f: F
+) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><section id="method.connect_pixels_above_lines_notify" class="method"><a class="src rightside" href="../../src/gtk4/auto/text_view.rs.html#3881-3904">source</a><h4 class="code-header">fn <a href="#method.connect_pixels_above_lines_notify" class="fn">connect_pixels_above_lines_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
+    &amp;self,
+    f: F
+) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><section id="method.connect_pixels_below_lines_notify" class="method"><a class="src rightside" href="../../src/gtk4/auto/text_view.rs.html#3907-3930">source</a><h4 class="code-header">fn <a href="#method.connect_pixels_below_lines_notify" class="fn">connect_pixels_below_lines_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
+    &amp;self,
+    f: F
+) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><section id="method.connect_pixels_inside_wrap_notify" class="method"><a class="src rightside" href="../../src/gtk4/auto/text_view.rs.html#3933-3956">source</a><h4 class="code-header">fn <a href="#method.connect_pixels_inside_wrap_notify" class="fn">connect_pixels_inside_wrap_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
+    &amp;self,
+    f: F
+) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><section id="method.connect_right_margin_notify" class="method"><a class="src rightside" href="../../src/gtk4/auto/text_view.rs.html#3959-3982">source</a><h4 class="code-header">fn <a href="#method.connect_right_margin_notify" class="fn">connect_right_margin_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
+    &amp;self,
+    f: F
+) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><section id="method.connect_tabs_notify" class="method"><a class="src rightside" href="../../src/gtk4/auto/text_view.rs.html#3985-4005">source</a><h4 class="code-header">fn <a href="#method.connect_tabs_notify" class="fn">connect_tabs_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(&amp;self, f: F) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><section id="method.connect_top_margin_notify" class="method"><a class="src rightside" href="../../src/gtk4/auto/text_view.rs.html#4008-4028">source</a><h4 class="code-header">fn <a href="#method.connect_top_margin_notify" class="fn">connect_top_margin_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
+    &amp;self,
+    f: F
+) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><section id="method.connect_wrap_mode_notify" class="method"><a class="src rightside" href="../../src/gtk4/auto/text_view.rs.html#4031-4051">source</a><h4 class="code-header">fn <a href="#method.connect_wrap_mode_notify" class="fn">connect_wrap_mode_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
+    &amp;self,
+    f: F
+) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section></div><h2 id="implementors" class="small-section-header">Implementors<a href="#implementors" class="anchor">§</a></h2><div id="implementors-list"><section id="impl-TextViewExt-for-O" class="impl"><a class="src rightside" href="../../src/gtk4/auto/text_view.rs.html#4054">source</a><a href="#impl-TextViewExt-for-O" class="anchor">§</a><h3 class="code-header">impl&lt;O: <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.TextView.html" title="struct gtk4::TextView">TextView</a>&gt;&gt; <a class="trait" href="trait.TextViewExt.html" title="trait gtk4::prelude::TextViewExt">TextViewExt</a> for O</h3></section></div><script src="../../implementors/gtk4/auto/text_view/trait.TextViewExt.js" async></script></section></div></main></body></html>

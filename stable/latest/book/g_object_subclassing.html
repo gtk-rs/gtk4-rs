@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html lang="en" class="sidebar-visible no-js rust">
+<html lang="en" class="rust sidebar-visible" dir="ltr">
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
@@ -7,10 +7,10 @@
 
 
         <!-- Custom HTML head -->
-        
+
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="theme-color" content="#ffffff" />
+        <meta name="theme-color" content="#ffffff">
 
         <link rel="icon" href="favicon.svg">
         <link rel="shortcut icon" href="favicon.png">
@@ -24,26 +24,41 @@
         <link rel="stylesheet" href="fonts/fonts.css">
 
         <!-- Highlight.js Stylesheets -->
-        <link rel="stylesheet" href="highlight.css">
-        <link rel="stylesheet" href="tomorrow-night.css">
-        <link rel="stylesheet" href="ayu-highlight.css">
+        <link rel="stylesheet" id="highlight-css" href="highlight.css">
+        <link rel="stylesheet" id="tomorrow-night-css" href="tomorrow-night.css">
+        <link rel="stylesheet" id="ayu-highlight-css" href="ayu-highlight.css">
 
         <!-- Custom theme stylesheets -->
         <link rel="stylesheet" href="theme/style.css">
 
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "";
+            const default_light_theme = "rust";
+            const default_dark_theme = "navy";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="toc.js"></script>
     </head>
     <body>
-        <!-- Provide site root to javascript -->
-        <script>
-            var path_to_root = "";
-            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "rust";
-        </script>
-
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="body-container">
         <!-- Work around some values being stored in localStorage wrapped in quotes -->
         <script>
             try {
-                var theme = localStorage.getItem('mdbook-theme');
-                var sidebar = localStorage.getItem('mdbook-sidebar');
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
 
                 if (theme.startsWith('"') && theme.endsWith('"')) {
                     localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
@@ -57,55 +72,65 @@
 
         <!-- Set the theme before any content is loaded, prevents flash -->
         <script>
-            var theme;
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
             try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
             if (theme === null || theme === undefined) { theme = default_theme; }
-            var html = document.querySelector('html');
-            html.classList.remove('no-js')
+            const html = document.documentElement;
             html.classList.remove('rust')
             html.classList.add(theme);
-            html.classList.add('js');
+            html.classList.add("js");
         </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
 
         <!-- Hide / unhide sidebar before it is displayed -->
         <script>
-            var html = document.querySelector('html');
-            var sidebar = 'hidden';
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
             }
+            sidebar_toggle.checked = sidebar === 'visible';
             html.classList.remove('sidebar-visible');
             html.classList.add("sidebar-" + sidebar);
         </script>
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
-            <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="introduction.html">Introduction</a></li><li class="chapter-item expanded "><a href="installation.html"><strong aria-hidden="true">1.</strong> Installation</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="installation_linux.html"><strong aria-hidden="true">1.1.</strong> Linux</a></li><li class="chapter-item expanded "><a href="installation_macos.html"><strong aria-hidden="true">1.2.</strong> macOS</a></li><li class="chapter-item expanded "><a href="installation_windows.html"><strong aria-hidden="true">1.3.</strong> Windows</a></li></ol></li><li class="chapter-item expanded "><a href="project_setup.html"><strong aria-hidden="true">2.</strong> Project Setup</a></li><li class="chapter-item expanded "><a href="hello_world.html"><strong aria-hidden="true">3.</strong> Hello World!</a></li><li class="chapter-item expanded "><a href="widgets.html"><strong aria-hidden="true">4.</strong> Widgets</a></li><li class="chapter-item expanded "><a href="g_object_concepts.html"><strong aria-hidden="true">5.</strong> GObject Concepts</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="g_object_memory_management.html"><strong aria-hidden="true">5.1.</strong> Memory Management</a></li><li class="chapter-item expanded "><a href="g_object_subclassing.html" class="active"><strong aria-hidden="true">5.2.</strong> Subclassing</a></li><li class="chapter-item expanded "><a href="g_object_values.html"><strong aria-hidden="true">5.3.</strong> Generic Values</a></li><li class="chapter-item expanded "><a href="g_object_properties.html"><strong aria-hidden="true">5.4.</strong> Properties</a></li><li class="chapter-item expanded "><a href="g_object_signals.html"><strong aria-hidden="true">5.5.</strong> Signals</a></li></ol></li><li class="chapter-item expanded "><a href="main_event_loop.html"><strong aria-hidden="true">6.</strong> The Main Event Loop</a></li><li class="chapter-item expanded "><a href="settings.html"><strong aria-hidden="true">7.</strong> Settings</a></li><li class="chapter-item expanded "><a href="saving_window_state.html"><strong aria-hidden="true">8.</strong> Saving Window State</a></li><li class="chapter-item expanded "><a href="list_widgets.html"><strong aria-hidden="true">9.</strong> List Widgets</a></li><li class="chapter-item expanded "><a href="composite_templates.html"><strong aria-hidden="true">10.</strong> Composite Templates</a></li><li class="chapter-item expanded "><a href="todo_1.html"><strong aria-hidden="true">11.</strong> Building a Simple To-Do App</a></li><li class="chapter-item expanded "><a href="actions.html"><strong aria-hidden="true">12.</strong> Actions</a></li><li class="chapter-item expanded "><a href="todo_2.html"><strong aria-hidden="true">13.</strong> Manipulating State of To-Do App</a></li><li class="chapter-item expanded "><a href="css.html"><strong aria-hidden="true">14.</strong> CSS</a></li><li class="chapter-item expanded "><a href="libadwaita.html"><strong aria-hidden="true">15.</strong> Libadwaita</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="todo_3.html"><strong aria-hidden="true">15.1.</strong> Let To-Do App use Libadwaita</a></li><li class="chapter-item expanded "><a href="todo_4.html"><strong aria-hidden="true">15.2.</strong> Adding Collections</a></li></ol></li></ol>
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="toc.html"></iframe>
+            </noscript>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
             </div>
-            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
 
         <div id="page-wrapper" class="page-wrapper">
 
             <div class="page">
-                                <div id="menu-bar-hover-placeholder"></div>
-                <div id="menu-bar" class="menu-bar sticky bordered">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
                     <div class="left-buttons">
-                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
                             <i class="fa fa-bars"></i>
-                        </button>
+                        </label>
                         <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
                             <i class="fa fa-paint-brush"></i>
                         </button>
                         <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="default_theme">Auto</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
                         </ul>
-                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                        <button id="search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="searchbar">
                             <i class="fa fa-search"></i>
                         </button>
                     </div>
@@ -116,7 +141,7 @@
                         <a href="print.html" title="Print this book" aria-label="Print this book">
                             <i id="print-button" class="fa fa-print"></i>
                         </a>
-                        <a href="https://github.com/gtk-rs/gtk4-rs/tree/master/book" title="Git repository" aria-label="Git repository">
+                        <a href="https://github.com/gtk-rs/gtk4-rs/tree/main/book" title="Git repository" aria-label="Git repository">
                             <i id="git-repository-button" class="fa fa-github"></i>
                         </a>
 
@@ -148,10 +173,10 @@
                         <h1 id="subclassing"><a class="header" href="#subclassing">Subclassing</a></h1>
 <p>GObjects rely heavily on inheritance.
 Therefore, it makes sense that if we want to create a custom GObject, this is done via subclassing.
-Let's see how this works by replacing the button in our &quot;Hello World!&quot; app with a custom one.
+Let's see how this works by replacing the button in our "Hello World!" app with a custom one.
 First, we need to create an implementation struct that holds the state and overrides the virtual methods.</p>
-<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/g_object_subclassing/1/custom_button/imp.rs">listings/g_object_subclassing/1/custom_button/imp.rs</a></p>
-<pre><code class="language-rust  no_run noplayground">use gtk::glib;
+<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/g_object_subclassing/1/custom_button/imp.rs">listings/g_object_subclassing/1/custom_button/imp.rs</a></p>
+<pre><code class="language-rust">use gtk::glib;
 use gtk::subclass::prelude::*;
 
 // Object holding the state
@@ -161,7 +186,7 @@ pub struct CustomButton;
 // The central trait for subclassing a GObject
 #[glib::object_subclass]
 impl ObjectSubclass for CustomButton {
-    const NAME: &amp;'static str = &quot;MyGtkAppCustomButton&quot;;
+    const NAME: &amp;'static str = "MyGtkAppCustomButton";
     type Type = super::CustomButton;
     type ParentType = gtk::Button;
 }
@@ -184,8 +209,8 @@ impl ButtonImpl for CustomButton {}</code></pre>
 Since we only want to have a plain button for now, we override nothing.
 We still have to add the empty <code>impl</code> though.
 Next, we describe the public interface of our custom GObject.</p>
-<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/g_object_subclassing/1/custom_button/mod.rs">listings/g_object_subclassing/1/custom_button/mod.rs</a></p>
-<pre><code class="language-rust  no_run noplayground">mod imp;
+<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/g_object_subclassing/1/custom_button/mod.rs">listings/g_object_subclassing/1/custom_button/mod.rs</a></p>
+<pre><code class="language-rust">mod imp;
 
 use glib::Object;
 use gtk::glib;
@@ -202,7 +227,7 @@ impl CustomButton {
     }
 
     pub fn with_label(label: &amp;str) -&gt; Self {
-        Object::builder().property(&quot;label&quot;, label).build()
+        Object::builder().property("label", label).build()
     }
 }
 <span class="boring">
@@ -213,48 +238,48 @@ impl CustomButton {
 </span><span class="boring">}</span></code></pre>
 <p><a href="https://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/macro.wrapper.html"><code>glib::wrapper!</code></a> implements the same traits that our <code>ParentType</code> implements.
 Theoretically that would mean that the <code>ParentType</code> is also the only thing we have to specify here.
-Unfortunately, nobody found yet a good way to do that.
+Unfortunately, nobody has yet found a good way to do that.
 Which is why, as of today, subclassing of GObjects in Rust requires to mention all ancestors and interfaces apart from <code>GObject</code> and <code>GInitiallyUnowned</code>.
 For <code>gtk::Button</code>, we can look up the ancestors and interfaces in the corresponding <a href="https://docs.gtk.org/gtk4/class.Button.html#hierarchy">doc page</a> of GTK4.</p>
 <p>After these steps, nothing is stopping us from replacing <code>gtk::Button</code> with our <code>CustomButton</code>.</p>
-<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/g_object_subclassing/1/main.rs">listings/g_object_subclassing/1/main.rs</a></p>
-<pre><code class="language-rust  no_run noplayground">mod custom_button;
+<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/g_object_subclassing/1/main.rs">listings/g_object_subclassing/1/main.rs</a></p>
+<pre><code class="language-rust">mod custom_button;
 
 use custom_button::CustomButton;
 use gtk::prelude::*;
-use gtk::{Application, ApplicationWindow};
+use gtk::{glib, Application, ApplicationWindow};
 
-const APP_ID: &amp;str = &quot;org.gtk_rs.GObjectSubclassing1&quot;;
+const APP_ID: &amp;str = "org.gtk_rs.GObjectSubclassing1";
 
-fn main() {
+fn main() -&gt; glib::ExitCode {
     // Create a new application
     let app = Application::builder().application_id(APP_ID).build();
 
-    // Connect to &quot;activate&quot; signal of `app`
+    // Connect to "activate" signal of `app`
     app.connect_activate(build_ui);
 
     // Run the application
-    app.run();
+    app.run()
 }
 
 fn build_ui(app: &amp;Application) {
     // Create a button
-    let button = CustomButton::with_label(&quot;Press me!&quot;);
+    let button = CustomButton::with_label("Press me!");
     button.set_margin_top(12);
     button.set_margin_bottom(12);
     button.set_margin_start(12);
     button.set_margin_end(12);
 
-    // Connect to &quot;clicked&quot; signal of `button`
+    // Connect to "clicked" signal of `button`
     button.connect_clicked(move |button| {
-        // Set the label to &quot;Hello World!&quot; after the button has been clicked on
-        button.set_label(&quot;Hello World!&quot;);
+        // Set the label to "Hello World!" after the button has been clicked on
+        button.set_label("Hello World!");
     });
 
     // Create a window
     let window = ApplicationWindow::builder()
         .application(app)
-        .title(&quot;My GTK App&quot;)
+        .title("My GTK App")
         .child(&amp;button)
         .build();
 
@@ -264,7 +289,7 @@ fn build_ui(app: &amp;Application) {
 <blockquote>
 <p>Describing objects with two structs is a peculiarity coming from how GObjects are defined in C.
 <code>imp::CustomButton</code> handles the state of the GObject and the overridden virtual methods.
-<code>CustomButton</code> determines the exposed methods from the implemented traits and added methods. </p>
+<code>CustomButton</code> determines the exposed methods from the implemented traits and added methods.</p>
 </blockquote>
 <h2 id="adding-functionality"><a class="header" href="#adding-functionality">Adding Functionality</a></h2>
 <p>We are able to use <code>CustomButton</code> as a drop-in replacement for <code>gtk::Button</code>.
@@ -272,8 +297,8 @@ This is cool, but also not very tempting to do in a real application.
 For the gain of zero benefits, it did involve quite a bit of boilerplate after all.</p>
 <p>So let's make it a bit more interesting!
 <code>gtk::Button</code> does not hold much state, but we can let <code>CustomButton</code> hold a number.</p>
-<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/g_object_subclassing/2/custom_button/imp.rs">listings/g_object_subclassing/2/custom_button/imp.rs</a></p>
-<pre><code class="language-rust  no_run noplayground">use std::cell::Cell;
+<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/g_object_subclassing/2/custom_button/imp.rs">listings/g_object_subclassing/2/custom_button/imp.rs</a></p>
+<pre><code class="language-rust">use std::cell::Cell;
 
 use gtk::glib;
 use gtk::prelude::*;
@@ -288,7 +313,7 @@ pub struct CustomButton {
 // The central trait for subclassing a GObject
 #[glib::object_subclass]
 impl ObjectSubclass for CustomButton {
-    const NAME: &amp;'static str = &quot;MyGtkAppCustomButton&quot;;
+    const NAME: &amp;'static str = "MyGtkAppCustomButton";
     type Type = super::CustomButton;
     type ParentType = gtk::Button;
 }
@@ -313,24 +338,24 @@ impl ButtonImpl for CustomButton {
 }</code></pre>
 <p>We override <code>constructed</code> in <code>ObjectImpl</code> so that the label of the button initializes with <code>number</code>.
 We also override <code>clicked</code> in <code>ButtonImpl</code> so that every click increases <code>number</code> and updates the label.</p>
-<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/g_object_subclassing/2/main.rs">listings/g_object_subclassing/2/main.rs</a></p>
-<pre><code class="language-rust  no_run noplayground"><span class="boring">mod custom_button;
+<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/g_object_subclassing/2/main.rs">listings/g_object_subclassing/2/main.rs</a></p>
+<pre><code class="language-rust"><span class="boring">mod custom_button;
 </span><span class="boring">
 </span><span class="boring">use custom_button::CustomButton;
 </span><span class="boring">use gtk::prelude::*;
-</span><span class="boring">use gtk::{Application, ApplicationWindow};
+</span><span class="boring">use gtk::{glib, Application, ApplicationWindow};
 </span><span class="boring">
-</span><span class="boring">const APP_ID: &amp;str = &quot;org.gtk_rs.GObjectSubclassing2&quot;;
+</span><span class="boring">const APP_ID: &amp;str = "org.gtk_rs.GObjectSubclassing2";
 </span><span class="boring">
-</span><span class="boring">fn main() {
+</span><span class="boring">fn main() -&gt; glib::ExitCode {
 </span><span class="boring">    // Create a new application
 </span><span class="boring">    let app = Application::builder().application_id(APP_ID).build();
 </span><span class="boring">
-</span><span class="boring">    // Connect to &quot;activate&quot; signal of `app`
+</span><span class="boring">    // Connect to "activate" signal of `app`
 </span><span class="boring">    app.connect_activate(build_ui);
 </span><span class="boring">
 </span><span class="boring">    // Run the application
-</span><span class="boring">    app.run();
+</span><span class="boring">    app.run()
 </span><span class="boring">}
 </span><span class="boring">
 </span>fn build_ui(app: &amp;Application) {
@@ -344,7 +369,7 @@ We also override <code>clicked</code> in <code>ButtonImpl</code> so that every c
     // Create a window
     let window = ApplicationWindow::builder()
         .application(app)
-        .title(&quot;My GTK App&quot;)
+        .title("My GTK App")
         .child(&amp;button)
         .build();
 
@@ -352,7 +377,7 @@ We also override <code>clicked</code> in <code>ButtonImpl</code> so that every c
     window.present();
 }</code></pre>
 <p>In <code>build_ui</code> we stop calling <code>connect_clicked</code>, and that was it.
-After a rebuild, the app now features our <code>CustomButton</code> with the label &quot;0&quot;.
+After a rebuild, the app now features our <code>CustomButton</code> with the label "0".
 Every time we click on the button, the number displayed by the label increases by 1.</p>
 <div style="text-align:center">
  <video autoplay muted loop>
@@ -375,7 +400,7 @@ Every time we click on the button, the number displayed by the label increases b
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next" href="g_object_values.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="g_object_values.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -389,7 +414,7 @@ Every time we click on the button, the number displayed by the label increases b
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next" href="g_object_values.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="g_object_values.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>
@@ -415,5 +440,6 @@ Every time we click on the button, the number displayed by the label increases b
         <!-- Custom JS scripts -->
 
 
+    </div>
     </body>
 </html>

@@ -1,0 +1,129 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Rust GSK 4 bindings"><title>gsk4 - Rust</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2" crossorigin href="../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../static.files/rustdoc-84e720fa.css"><meta name="rustdoc-vars" data-root-path="../" data-static-root-path="../static.files/" data-current-crate="gsk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.89.0-nightly (5526a2f47 2025-06-20)" data-channel="nightly" data-search-js="search-343419c9.js" data-settings-js="settings-5514c975.js" ><script src="../static.files/storage-4e99c027.js"></script><script defer src="../crates.js"></script><script defer src="../static.files/main-fd3af306.js"></script><noscript><link rel="stylesheet" href="../static.files/noscript-32bb7600.css"></noscript><link rel="alternate icon" type="image/png" href="../static.files/favicon-32x32-6580c154.png"><link rel="icon" type="image/svg+xml" href="../static.files/favicon-044be391.svg"></head><body class="rustdoc mod crate"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
+
+    function checkDocsLatestStable() {
+        function popup(msg, url) { return `
+            <style scoped="scoped">
+                .popup {
+                    max-width: 16em;
+                    background-color: #fff;
+                    position: fixed;
+                    z-index: 1;
+                    margin-left: auto;
+                    bottom: 1em;
+                    right: 1em;
+                    border-radius: 5px;
+                    box-shadow: 1px 1px 4px #777;
+                }
+
+                .popup a.version {
+                    color: #e57300;
+                    padding: 0.6em 1em;
+                    display: block;
+                }
+                .popup a.version:hover {
+                    color: #b25900;
+                }
+
+                .popup a.close {
+                    color: white;
+                    background: grey;
+                    border-radius: 99px;
+                    display: inline-block;
+                    width: 19px;
+                    line-height: 19px;
+                    font-weight: bold;
+                    text-align: center;
+                    margin: 0.6em;
+                    float: right;
+                }
+                .popup a.close:hover {
+                    background: black;
+                }
+            </style>
+            <section class="popup" id="gir_docs_popup">
+                <a class="close" href="#" onclick="document.getElementById('gir_docs_popup').remove(); return false">×</a>
+                <a class="version" href="https://gtk-rs.org/gtk4-rs/stable/latest/docs">
+                    ⚠ ${msg}
+                </a>
+            </section>
+        ` };
+
+        if ("0.9" == "main") {
+            document.body.insertAdjacentHTML(
+                'beforeend',
+                popup("This is the development version. Go to latest stable version.", "stable/latest")
+            );
+        } else {
+            fetch('https://gtk-rs.org/gtk4-rs/LATEST_RELEASE_BRANCH')
+                .then(response => response.text())
+                .then(latest_branch => {
+                    if (latest_branch.trim() != "0.9") {
+                        document.body.insertAdjacentHTML(
+                            'beforeend',
+                            popup("This version is outdated. Go to latest version.", "stable/latest")
+                        );
+                    }
+                });
+        }
+    }
+</script>
+
+
+<nav class="mobile-topbar"><button class="sidebar-menu-toggle" title="show sidebar"></button></nav><nav class="sidebar"><div class="sidebar-crate"><h2><a href="../gsk4/index.html">gsk4</a><span class="version">0.9.7</span></h2></div><div class="sidebar-elems"><ul class="block"><li><a id="all-types" href="all.html">All Items</a></li></ul><section id="rustdoc-toc"><h3><a href="#">Sections</a></h3><ul class="block top-toc"><li><a href="#rust-gsk-4-bindings" title="Rust GSK 4 bindings">Rust GSK 4 bindings</a><ul><li><a href="#minimum-supported-rust-version" title="Minimum supported Rust version">Minimum supported Rust version</a></li><li><a href="#documentation" title="Documentation">Documentation</a></li><li><a href="#using" title="Using">Using</a></li><li><a href="#license" title="License">License</a></li></ul></li></ul><h3><a href="#reexports">Crate Items</a></h3><ul class="block"><li><a href="#reexports" title="Re-exports">Re-exports</a></li><li><a href="#modules" title="Modules">Modules</a></li><li><a href="#structs" title="Structs">Structs</a></li><li><a href="#enums" title="Enums">Enums</a></li></ul></section><div id="rustdoc-modnav"></div></div></nav><div class="sidebar-resizer" title="Drag to resize sidebar"></div><main><div class="width-limiter"><rustdoc-search></rustdoc-search><section id="main-content" class="content"><div class="main-heading"><h1>Crate <span>gsk4</span><button id="copy-path" title="Copy item path to clipboard">Copy item path</button></h1><rustdoc-toolbar></rustdoc-toolbar><span class="sub-heading"><a class="src" href="../src/gsk4/lib.rs.html#3-104">Source</a> </span></div><details class="toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><h2 id="rust-gsk-4-bindings"><a class="doc-anchor" href="#rust-gsk-4-bindings">§</a>Rust GSK 4 bindings</h2>
+<p>The project website is <a href="https://gtk-rs.org/">here</a>.</p>
+<p>Rust bindings of <a href="https://docs.gtk.org/gsk4/">GSK 4</a>, part
+of <a href="https://github.com/gtk-rs/gtk4-rs/">gtk4-rs</a>.</p>
+<p>GSK is an intermediate layer that isolates GTK from the details of the OpenGL or
+Vulkan implementation.</p>
+<h3 id="minimum-supported-rust-version"><a class="doc-anchor" href="#minimum-supported-rust-version">§</a>Minimum supported Rust version</h3>
+<p>Currently, the minimum supported Rust version is <code>1.70</code>.</p>
+<h3 id="documentation"><a class="doc-anchor" href="#documentation">§</a>Documentation</h3>
+<ul>
+<li>The Rust API <a href="https://gtk-rs.org/gtk4-rs/stable/latest/docs/gsk4">Stable</a>/<a href="https://gtk-rs.org/gtk4-rs/git/docs/gsk4/">Development</a></li>
+<li><a href="https://docs.gtk.org/gsk4/">The C API</a></li>
+<li><a href="https://www.gtk.org/docs/installations/">GTK Installation instructions</a></li>
+</ul>
+<h3 id="using"><a class="doc-anchor" href="#using">§</a>Using</h3>
+<p>We recommend using <a href="https://crates.io/keywords/gtk-rs">crates from crates.io</a>,
+as <a href="https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/index.html#library-versions">demonstrated here</a>.</p>
+<p>If you want to track the bleeding edge, use the git dependency instead:</p>
+<div class="example-wrap"><pre class="language-toml"><code>[dependencies]
+gsk = { git = &quot;https://github.com/gtk-rs/gtk4-rs.git&quot;, package = &quot;gsk4&quot; }</code></pre></div>
+<p>Avoid mixing versioned and git crates like this:</p>
+<div class="example-wrap"><pre class="language-toml"><code># This will not compile
+[dependencies]
+gdk = {version = &quot;0.1&quot;, package = &quot;gdk4&quot;}
+gsk = { git = &quot;https://github.com/gtk-rs/gtk4-rs.git&quot;, package = &quot;gsk4&quot; }</code></pre></div><h4 id="features"><a class="doc-anchor" href="#features">§</a>Features</h4><div><table><thead><tr><th>Feature</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>vulkan</code></td><td>Enable <code>vulkan</code> Renderer. Only if GTK is compiled with Vulkan support</td></tr>
+<tr><td><code>broadway</code></td><td>Enable <code>broadway</code> Renderer. Only if GTK is compiled with Broadway support</td></tr>
+<tr><td><code>v4_18</code></td><td>Enable the new APIs part of GTK 4.18</td></tr>
+<tr><td><code>v4_16</code></td><td>Enable the new APIs part of GTK 4.16</td></tr>
+<tr><td><code>v4_14</code></td><td>Enable the new APIs part of GTK 4.14</td></tr>
+<tr><td><code>v4_10</code></td><td>Enable the new APIs part of GTK 4.10</td></tr>
+<tr><td><code>v4_6</code></td><td>Enable the new APIs part of GTK 4.6</td></tr>
+<tr><td><code>v4_4</code></td><td>Enable the new APIs part of GTK 4.4</td></tr>
+<tr><td><code>v4_2</code></td><td>Enable the new APIs part of GTK 4.2</td></tr>
+</tbody></table>
+</div><h4 id="see-also"><a class="doc-anchor" href="#see-also">§</a>See Also</h4>
+<ul>
+<li><a href="https://crates.io/crates/glib">glib</a></li>
+<li><a href="https://crates.io/crates/gio">gio</a></li>
+<li><a href="https://crates.io/crates/gdk4">gdk4</a></li>
+<li><a href="https://crates.io/crates/gtk4">gtk4</a></li>
+</ul>
+<h3 id="license"><a class="doc-anchor" href="#license">§</a>License</h3>
+<p>The Rust bindings of <strong>gsk4</strong> are available under the MIT License, please refer to it.</p>
+</div></details><h2 id="reexports" class="section-header">Re-exports<a href="#reexports" class="anchor">§</a></h2><dl class="item-table reexports"><dt id="reexport.cairo"><code>pub use <a class="mod" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/cairo/index.html" title="mod cairo">cairo</a>;</code></dt><dt id="reexport.gdk"><code>pub use <a class="mod" href="../gdk4/index.html" title="mod gdk4">gdk</a>;</code></dt><dt id="reexport.glib"><code>pub use <a class="mod" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/index.html" title="mod glib">glib</a>;</code></dt><dt id="reexport.graphene"><code>pub use <a class="mod" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/graphene/index.html" title="mod graphene">graphene</a>;</code></dt><dt id="reexport.ffi"><code>pub use <a class="mod" href="../gsk4_sys/index.html" title="mod gsk4_sys">gsk4_sys</a> as ffi;</code></dt><dt id="reexport.pango"><code>pub use <a class="mod" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/pango/index.html" title="mod pango">pango</a>;</code></dt></dl><h2 id="modules" class="section-header">Modules<a href="#modules" class="anchor">§</a></h2><dl class="item-table"><dt><a class="mod" href="builders/index.html" title="mod gsk4::builders">builders</a></dt><dd>Builder pattern types.</dd><dt><a class="mod" href="prelude/index.html" title="mod gsk4::prelude">prelude</a></dt><dd>Traits intended for blanket imports.</dd></dl><h2 id="structs" class="section-header">Structs<a href="#structs" class="anchor">§</a></h2><dl class="item-table"><dt><a class="struct" href="struct.BlendNode.html" title="struct gsk4::BlendNode">Blend<wbr>Node</a></dt><dd>A render node applying a blending function between its two child nodes.</dd><dt><a class="struct" href="struct.BlurNode.html" title="struct gsk4::BlurNode">Blur<wbr>Node</a></dt><dd>A render node applying a blur effect to its single child.</dd><dt><a class="struct" href="struct.BorderNode.html" title="struct gsk4::BorderNode">Border<wbr>Node</a></dt><dd>A render node for a border.</dd><dt><a class="struct" href="struct.BroadwayRenderer.html" title="struct gsk4::BroadwayRenderer">Broadway<wbr>Renderer</a><wbr><span class="stab portability" title="Available on crate feature `broadway` only"><code>broadway</code></span></dt><dd>A Broadway based renderer.</dd><dt><a class="struct" href="struct.CairoNode.html" title="struct gsk4::CairoNode">Cairo<wbr>Node</a></dt><dd>A render node for a Cairo surface.</dd><dt><a class="struct" href="struct.CairoRenderer.html" title="struct gsk4::CairoRenderer">Cairo<wbr>Renderer</a></dt><dd>A GSK renderer that is using cairo.</dd><dt><a class="struct" href="struct.ClipNode.html" title="struct gsk4::ClipNode">Clip<wbr>Node</a></dt><dd>A render node applying a rectangular clip to its single child node.</dd><dt><a class="struct" href="struct.ColorMatrixNode.html" title="struct gsk4::ColorMatrixNode">Color<wbr>Matrix<wbr>Node</a></dt><dd>A render node controlling the color matrix of its single child node.</dd><dt><a class="struct" href="struct.ColorNode.html" title="struct gsk4::ColorNode">Color<wbr>Node</a></dt><dd>A render node for a solid color.</dd><dt><a class="struct" href="struct.ColorStop.html" title="struct gsk4::ColorStop">Color<wbr>Stop</a></dt><dd>A color stop in a gradient node.</dd><dt><a class="struct" href="struct.ConicGradientNode.html" title="struct gsk4::ConicGradientNode">Conic<wbr>Gradient<wbr>Node</a></dt><dd>A render node for a conic gradient.</dd><dt><a class="struct" href="struct.ContainerNode.html" title="struct gsk4::ContainerNode">Container<wbr>Node</a></dt><dd>A render node that can contain other render nodes.</dd><dt><a class="struct" href="struct.CrossFadeNode.html" title="struct gsk4::CrossFadeNode">Cross<wbr>Fade<wbr>Node</a></dt><dd>A render node cross fading between two child nodes.</dd><dt><a class="struct" href="struct.DebugNode.html" title="struct gsk4::DebugNode">Debug<wbr>Node</a></dt><dd>A render node that emits a debugging message when drawing its
+child node.</dd><dt><a class="struct" href="struct.FillNode.html" title="struct gsk4::FillNode">Fill<wbr>Node</a><wbr><span class="stab portability" title="Available on crate feature `v4_14` only"><code>v4_14</code></span></dt><dd>A render node filling the area given by <a href="struct.Path.html" title="struct gsk4::Path"><code>Path</code></a>
+and <a href="enum.FillRule.html" title="enum gsk4::FillRule"><code>FillRule</code></a> with the child node.</dd><dt><a class="struct" href="struct.GLRenderer.html" title="struct gsk4::GLRenderer">GLRenderer</a><wbr><span class="stab portability" title="Available on crate feature `v4_2` only"><code>v4_2</code></span></dt><dd>A GL based renderer.</dd><dt><a class="struct" href="struct.GLShader.html" title="struct gsk4::GLShader">GLShader</a></dt><dd>A <a href="struct.GLShader.html" title="struct gsk4::GLShader"><code>GLShader</code></a> is a snippet of GLSL that is meant to run in the
+fragment shader of the rendering pipeline.</dd><dt><a class="struct" href="struct.GLShaderNode.html" title="struct gsk4::GLShaderNode">GLShader<wbr>Node</a></dt><dd>A render node using a GL shader when drawing its children nodes.</dd><dt><a class="struct" href="struct.InsetShadowNode.html" title="struct gsk4::InsetShadowNode">Inset<wbr>Shadow<wbr>Node</a></dt><dd>A render node for an inset shadow.</dd><dt><a class="struct" href="struct.LinearGradientNode.html" title="struct gsk4::LinearGradientNode">Linear<wbr>Gradient<wbr>Node</a></dt><dd>A render node for a linear gradient.</dd><dt><a class="struct" href="struct.MaskNode.html" title="struct gsk4::MaskNode">Mask<wbr>Node</a><wbr><span class="stab portability" title="Available on crate feature `v4_10` only"><code>v4_10</code></span></dt><dd>A render node masking one child node with another.</dd><dt><a class="struct" href="struct.NglRenderer.html" title="struct gsk4::NglRenderer">NglRenderer</a><wbr><span class="stab portability" title="Available on crate feature `v4_2` only"><code>v4_2</code></span></dt><dd>Implements</dd><dt><a class="struct" href="struct.OpacityNode.html" title="struct gsk4::OpacityNode">Opacity<wbr>Node</a></dt><dd>A render node controlling the opacity of its single child node.</dd><dt><a class="struct" href="struct.OutsetShadowNode.html" title="struct gsk4::OutsetShadowNode">Outset<wbr>Shadow<wbr>Node</a></dt><dd>A render node for an outset shadow.</dd><dt><a class="struct" href="struct.ParseLocation.html" title="struct gsk4::ParseLocation">Parse<wbr>Location</a></dt><dd>A location in a parse buffer.</dd><dt><a class="struct" href="struct.Path.html" title="struct gsk4::Path">Path</a><wbr><span class="stab portability" title="Available on crate feature `v4_14` only"><code>v4_14</code></span></dt><dd>Describes lines and curves that are more complex than simple rectangles.</dd><dt><a class="struct" href="struct.PathBuilder.html" title="struct gsk4::PathBuilder">Path<wbr>Builder</a><wbr><span class="stab portability" title="Available on crate feature `v4_14` only"><code>v4_14</code></span></dt><dd>An auxiliary object for constructing <a href="struct.Path.html" title="struct gsk4::Path"><code>Path</code></a> objects.</dd><dt><a class="struct" href="struct.PathForeachFlags.html" title="struct gsk4::PathForeachFlags">Path<wbr>Foreach<wbr>Flags</a><wbr><span class="stab portability" title="Available on crate feature `v4_14` only"><code>v4_14</code></span></dt><dd>Flags that can be passed to gsk_path_foreach() to influence what
+kinds of operations the path is decomposed into.</dd><dt><a class="struct" href="struct.PathMeasure.html" title="struct gsk4::PathMeasure">Path<wbr>Measure</a><wbr><span class="stab portability" title="Available on crate feature `v4_14` only"><code>v4_14</code></span></dt><dd>An object that allows measurements on paths such as determining
+the length of the path.</dd><dt><a class="struct" href="struct.PathPoint.html" title="struct gsk4::PathPoint">Path<wbr>Point</a><wbr><span class="stab portability" title="Available on crate feature `v4_14` only"><code>v4_14</code></span></dt><dd>An opaque type representing a point on a path.</dd><dt><a class="struct" href="struct.RadialGradientNode.html" title="struct gsk4::RadialGradientNode">Radial<wbr>Gradient<wbr>Node</a></dt><dd>A render node for a radial gradient.</dd><dt><a class="struct" href="struct.RenderNode.html" title="struct gsk4::RenderNode">Render<wbr>Node</a></dt><dd><a href="struct.RenderNode.html" title="struct gsk4::RenderNode"><code>RenderNode</code></a> is the basic block in a scene graph to be
+rendered using <a href="struct.Renderer.html" title="struct gsk4::Renderer"><code>Renderer</code></a>.</dd><dt><a class="struct" href="struct.Renderer.html" title="struct gsk4::Renderer">Renderer</a></dt><dd>A class that renders a scene graph defined via a tree of
+<a href="struct.RenderNode.html" title="struct gsk4::RenderNode"><code>RenderNode</code></a> instances.</dd><dt><a class="struct" href="struct.RepeatNode.html" title="struct gsk4::RepeatNode">Repeat<wbr>Node</a></dt><dd>A render node repeating its single child node.</dd><dt><a class="struct" href="struct.RepeatingLinearGradientNode.html" title="struct gsk4::RepeatingLinearGradientNode">Repeating<wbr>Linear<wbr>Gradient<wbr>Node</a></dt><dd>A render node for a repeating linear gradient.</dd><dt><a class="struct" href="struct.RepeatingRadialGradientNode.html" title="struct gsk4::RepeatingRadialGradientNode">Repeating<wbr>Radial<wbr>Gradient<wbr>Node</a></dt><dd>A render node for a repeating radial gradient.</dd><dt><a class="struct" href="struct.RoundedClipNode.html" title="struct gsk4::RoundedClipNode">Rounded<wbr>Clip<wbr>Node</a></dt><dd>A render node applying a rounded rectangle clip to its single child.</dd><dt><a class="struct" href="struct.RoundedRect.html" title="struct gsk4::RoundedRect">Rounded<wbr>Rect</a></dt><dd>A rectangular region with rounded corners.</dd><dt><a class="struct" href="struct.ShaderArgsBuilder.html" title="struct gsk4::ShaderArgsBuilder">Shader<wbr>Args<wbr>Builder</a></dt><dd>An object to build the uniforms data for a <a href="struct.GLShader.html" title="struct gsk4::GLShader"><code>GLShader</code></a>.</dd><dt><a class="struct" href="struct.Shadow.html" title="struct gsk4::Shadow">Shadow</a></dt><dd>The shadow parameters in a shadow node.</dd><dt><a class="struct" href="struct.ShadowNode.html" title="struct gsk4::ShadowNode">Shadow<wbr>Node</a></dt><dd>A render node drawing one or more shadows behind its single child node.</dd><dt><a class="struct" href="struct.Stroke.html" title="struct gsk4::Stroke">Stroke</a><wbr><span class="stab portability" title="Available on crate feature `v4_14` only"><code>v4_14</code></span></dt><dd>Collects the parameters that influence the operation of stroking a path.</dd><dt><a class="struct" href="struct.StrokeNode.html" title="struct gsk4::StrokeNode">Stroke<wbr>Node</a><wbr><span class="stab portability" title="Available on crate feature `v4_14` only"><code>v4_14</code></span></dt><dd>A render node that will fill the area determined by stroking the the given
+<a href="struct.Path.html" title="struct gsk4::Path"><code>Path</code></a> using the <a href="struct.Stroke.html" title="struct gsk4::Stroke"><code>Stroke</code></a> attributes.</dd><dt><a class="struct" href="struct.TextNode.html" title="struct gsk4::TextNode">Text<wbr>Node</a></dt><dd>A render node drawing a set of glyphs.</dd><dt><a class="struct" href="struct.TextureNode.html" title="struct gsk4::TextureNode">Texture<wbr>Node</a></dt><dd>A render node for a <a href="../gdk4/auto/texture/struct.Texture.html" title="struct gdk4::auto::texture::Texture"><code>gdk::Texture</code></a>.</dd><dt><a class="struct" href="struct.TextureScaleNode.html" title="struct gsk4::TextureScaleNode">Texture<wbr>Scale<wbr>Node</a><wbr><span class="stab portability" title="Available on crate feature `v4_10` only"><code>v4_10</code></span></dt><dd>A render node for a <a href="../gdk4/auto/texture/struct.Texture.html" title="struct gdk4::auto::texture::Texture"><code>gdk::Texture</code></a>.</dd><dt><a class="struct" href="struct.Transform.html" title="struct gsk4::Transform">Transform</a></dt><dd>An object to describe transform matrices.</dd><dt><a class="struct" href="struct.TransformNode.html" title="struct gsk4::TransformNode">Transform<wbr>Node</a></dt><dd>A render node applying a <a href="struct.Transform.html" title="struct gsk4::Transform"><code>Transform</code></a> to its single child node.</dd><dt><a class="struct" href="struct.VulkanRenderer.html" title="struct gsk4::VulkanRenderer">Vulkan<wbr>Renderer</a><wbr><span class="stab portability" title="Available on crate feature `vulkan` only"><code>vulkan</code></span></dt><dd>A GSK renderer that is using Vulkan.</dd></dl><h2 id="enums" class="section-header">Enums<a href="#enums" class="anchor">§</a></h2><dl class="item-table"><dt><a class="enum" href="enum.BlendMode.html" title="enum gsk4::BlendMode">Blend<wbr>Mode</a></dt><dd>The blend modes available for render nodes.</dd><dt><a class="enum" href="enum.Corner.html" title="enum gsk4::Corner">Corner</a></dt><dd>The corner indices used by <a href="struct.RoundedRect.html" title="struct gsk4::RoundedRect"><code>RoundedRect</code></a>.</dd><dt><a class="enum" href="enum.FillRule.html" title="enum gsk4::FillRule">Fill<wbr>Rule</a><wbr><span class="stab portability" title="Available on crate feature `v4_14` only"><code>v4_14</code></span></dt><dd><a href="enum.FillRule.html" title="enum gsk4::FillRule"><code>FillRule</code></a> is used to select how paths are filled.</dd><dt><a class="enum" href="enum.GLUniformType.html" title="enum gsk4::GLUniformType">GLUniform<wbr>Type</a></dt><dd>This defines the types of the uniforms that <code>GskGLShaders</code>
+declare.</dd><dt><a class="enum" href="enum.LineCap.html" title="enum gsk4::LineCap">LineCap</a><wbr><span class="stab portability" title="Available on crate feature `v4_14` only"><code>v4_14</code></span></dt><dd>Specifies how to render the start and end points of contours or
+dashes when stroking.</dd><dt><a class="enum" href="enum.LineJoin.html" title="enum gsk4::LineJoin">Line<wbr>Join</a><wbr><span class="stab portability" title="Available on crate feature `v4_14` only"><code>v4_14</code></span></dt><dd>Specifies how to render the junction of two lines when stroking.</dd><dt><a class="enum" href="enum.MaskMode.html" title="enum gsk4::MaskMode">Mask<wbr>Mode</a><wbr><span class="stab portability" title="Available on crate feature `v4_10` only"><code>v4_10</code></span></dt><dd>The mask modes available for mask nodes.</dd><dt><a class="enum" href="enum.PathDirection.html" title="enum gsk4::PathDirection">Path<wbr>Direction</a><wbr><span class="stab portability" title="Available on crate feature `v4_14` only"><code>v4_14</code></span></dt><dd>The values of the <a href="enum.PathDirection.html" title="enum gsk4::PathDirection"><code>PathDirection</code></a> enum are used to pick one
+of the four tangents at a given point on the path.</dd><dt><a class="enum" href="enum.PathOperation.html" title="enum gsk4::PathOperation">Path<wbr>Operation</a><wbr><span class="stab portability" title="Available on crate feature `v4_14` only"><code>v4_14</code></span></dt><dd>Path operations are used to describe the segments of a <a href="struct.Path.html" title="struct gsk4::Path"><code>Path</code></a>.</dd><dt><a class="enum" href="enum.RenderNodeType.html" title="enum gsk4::RenderNodeType">Render<wbr>Node<wbr>Type</a></dt><dd>The type of a node determines what the node is rendering.</dd><dt><a class="enum" href="enum.ScalingFilter.html" title="enum gsk4::ScalingFilter">Scaling<wbr>Filter</a></dt><dd>The filters used when scaling texture data.</dd><dt><a class="enum" href="enum.SerializationError.html" title="enum gsk4::SerializationError">Serialization<wbr>Error</a></dt><dd>Errors that can happen during (de)serialization.</dd><dt><a class="enum" href="enum.TransformCategory.html" title="enum gsk4::TransformCategory">Transform<wbr>Category</a></dt><dd>The categories of matrices relevant for GSK and GTK.</dd></dl></section></div></main></body></html>

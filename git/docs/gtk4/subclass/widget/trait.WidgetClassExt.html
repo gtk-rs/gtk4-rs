@@ -1,0 +1,351 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="API documentation for the Rust `WidgetClassExt` trait in crate `gtk4`."><title>WidgetClassExt in gtk4::subclass::widget - Rust</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../static.files/rustdoc-aa0817cf.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.90.0-nightly (a00149764 2025-07-14)" data-channel="nightly" data-search-js="search-179e01a3.js" data-settings-js="settings-5514c975.js" ><script src="../../../static.files/storage-4e99c027.js"></script><script defer src="sidebar-items.js"></script><script defer src="../../../static.files/main-673ee1e0.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-32bb7600.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-6580c154.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-044be391.svg"></head><body class="rustdoc trait"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
+
+    function checkDocsLatestStable() {
+        function popup(msg, url) { return `
+            <style scoped="scoped">
+                .popup {
+                    max-width: 16em;
+                    background-color: #fff;
+                    position: fixed;
+                    z-index: 1;
+                    margin-left: auto;
+                    bottom: 1em;
+                    right: 1em;
+                    border-radius: 5px;
+                    box-shadow: 1px 1px 4px #777;
+                }
+
+                .popup a.version {
+                    color: #e57300;
+                    padding: 0.6em 1em;
+                    display: block;
+                }
+                .popup a.version:hover {
+                    color: #b25900;
+                }
+
+                .popup a.close {
+                    color: white;
+                    background: grey;
+                    border-radius: 99px;
+                    display: inline-block;
+                    width: 19px;
+                    line-height: 19px;
+                    font-weight: bold;
+                    text-align: center;
+                    margin: 0.6em;
+                    float: right;
+                }
+                .popup a.close:hover {
+                    background: black;
+                }
+            </style>
+            <section class="popup" id="gir_docs_popup">
+                <a class="close" href="#" onclick="document.getElementById('gir_docs_popup').remove(); return false">×</a>
+                <a class="version" href="https://gtk-rs.org/gtk4-rs/stable/latest/docs">
+                    ⚠ ${msg}
+                </a>
+            </section>
+        ` };
+
+        if ("main" == "main") {
+            document.body.insertAdjacentHTML(
+                'beforeend',
+                popup("This is the development version. Go to latest stable version.", "stable/latest")
+            );
+        } else {
+            fetch('https://gtk-rs.org/gtk4-rs/LATEST_RELEASE_BRANCH')
+                .then(response => response.text())
+                .then(latest_branch => {
+                    if (latest_branch.trim() != "main") {
+                        document.body.insertAdjacentHTML(
+                            'beforeend',
+                            popup("This version is outdated. Go to latest version.", "stable/latest")
+                        );
+                    }
+                });
+        }
+    }
+</script>
+
+
+<nav class="mobile-topbar"><button class="sidebar-menu-toggle" title="show sidebar"></button></nav><nav class="sidebar"><div class="sidebar-crate"><h2><a href="../../../gtk4/index.html">gtk4</a><span class="version">0.10.0</span></h2></div><div class="sidebar-elems"><section id="rustdoc-toc"><h2 class="location"><a href="#">Widget<wbr>Class<wbr>Ext</a></h2><h3><a href="#provided-methods">Provided Methods</a></h3><ul class="block"><li><a href="#method.accessible_role" title="accessible_role">accessible_role</a></li><li><a href="#method.activate_signal" title="activate_signal">activate_signal</a></li><li><a href="#method.add_binding" title="add_binding">add_binding</a></li><li><a href="#method.add_binding_action" title="add_binding_action">add_binding_action</a></li><li><a href="#method.add_binding_signal" title="add_binding_signal">add_binding_signal</a></li><li><a href="#method.add_shortcut" title="add_shortcut">add_shortcut</a></li><li><a href="#method.bind_template_child_with_offset" title="bind_template_child_with_offset">bind_template_child_with_offset</a></li><li><a href="#method.css_name" title="css_name">css_name</a></li><li><a href="#method.install_action" title="install_action">install_action</a></li><li><a href="#method.install_action_async" title="install_action_async">install_action_async</a></li><li><a href="#method.install_property_action" title="install_property_action">install_property_action</a></li><li><a href="#method.layout_manager_type" title="layout_manager_type">layout_manager_type</a></li><li><a href="#method.query_action" title="query_action">query_action</a></li><li><a href="#method.rust_template_scope" title="rust_template_scope">rust_template_scope</a></li><li><a href="#method.set_accessible_role" title="set_accessible_role">set_accessible_role</a></li><li><a href="#method.set_activate_signal" title="set_activate_signal">set_activate_signal</a></li><li><a href="#method.set_activate_signal_from_name" title="set_activate_signal_from_name">set_activate_signal_from_name</a></li><li><a href="#method.set_css_name" title="set_css_name">set_css_name</a></li><li><a href="#method.set_layout_manager_type" title="set_layout_manager_type">set_layout_manager_type</a></li><li><a href="#method.set_template" title="set_template">set_template</a></li><li><a href="#method.set_template_bytes" title="set_template_bytes">set_template_bytes</a></li><li><a href="#method.set_template_from_resource" title="set_template_from_resource">set_template_from_resource</a></li><li><a href="#method.set_template_scope" title="set_template_scope">set_template_scope</a></li><li><a href="#method.set_template_static" title="set_template_static">set_template_static</a></li></ul><h3><a href="#dyn-compatibility">Dyn Compatibility</a></h3><h3><a href="#implementors">Implementors</a></h3></section><div id="rustdoc-modnav"><h2><a href="index.html">In gtk4::<wbr>subclass::<wbr>widget</a></h2></div></div></nav><div class="sidebar-resizer" title="Drag to resize sidebar"></div><main><div class="width-limiter"><rustdoc-search></rustdoc-search><section id="main-content" class="content"><div class="main-heading"><div class="rustdoc-breadcrumbs"><a href="../../index.html">gtk4</a>::<wbr><a href="../index.html">subclass</a>::<wbr><a href="index.html">widget</a></div><h1>Trait <span class="trait">WidgetClassExt</span><button id="copy-path" title="Copy item path to clipboard">Copy item path</button></h1><rustdoc-toolbar></rustdoc-toolbar><span class="sub-heading"><a class="src" href="../../../src/gtk4/subclass/widget.rs.html#1055-1632">Source</a> </span></div><pre class="rust item-decl"><code>pub unsafe trait WidgetClassExt: <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/subclass/types/trait.ClassStruct.html" title="trait glib::subclass::types::ClassStruct">ClassStruct</a> {
+<details class="toggle type-contents-toggle"><summary class="hideme"><span>Show 24 methods</span></summary>    // Provided methods
+    fn <a href="#method.set_template_bytes" class="fn">set_template_bytes</a>(&amp;mut self, template: &amp;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/bytes/struct.Bytes.html" title="struct glib::bytes::Bytes">Bytes</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.set_template" class="fn">set_template</a>(&amp;mut self, template: &amp;[<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u8.html">u8</a>]) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.set_template_static" class="fn">set_template_static</a>(&amp;mut self, template: &amp;'static [<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u8.html">u8</a>]) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.set_template_from_resource" class="fn">set_template_from_resource</a>(&amp;mut self, resource_name: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.install_action_async" class="fn">install_action_async</a>&lt;Fut, F&gt;(
+        &amp;mut self,
+        action_name: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>,
+        parameter_type: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/variant_type/struct.VariantTy.html" title="struct glib::variant_type::VariantTy">VariantTy</a>&gt;,
+        activate: F,
+    )
+       <span class="where">where F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&lt;&lt;Self as <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/subclass/types/trait.ClassStruct.html" title="trait glib::subclass::types::ClassStruct">ClassStruct</a>&gt;::<a class="associatedtype" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/subclass/types/trait.ClassStruct.html#associatedtype.Type" title="type glib::subclass::types::ClassStruct::Type">Type</a> as <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/subclass/types/trait.ObjectSubclass.html" title="trait glib::subclass::types::ObjectSubclass">ObjectSubclass</a>&gt;::<a class="associatedtype" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/subclass/types/trait.ObjectSubclass.html#associatedtype.Type" title="type glib::subclass::types::ObjectSubclass::Type">Type</a>, <a class="struct" href="https://doc.rust-lang.org/nightly/alloc/string/struct.String.html" title="struct alloc::string::String">String</a>, <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/variant/struct.Variant.html" title="struct glib::variant::Variant">Variant</a>&gt;) -&gt; Fut + 'static + <a class="trait" href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html" title="trait core::clone::Clone">Clone</a>,
+             Fut: <a class="trait" href="https://doc.rust-lang.org/nightly/core/future/future/trait.Future.html" title="trait core::future::future::Future">Future</a>&lt;Output = <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.unit.html">()</a>&gt;</span> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.install_action" class="fn">install_action</a>&lt;F&gt;(
+        &amp;mut self,
+        action_name: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>,
+        parameter_type: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/variant_type/struct.VariantTy.html" title="struct glib::variant_type::VariantTy">VariantTy</a>&gt;,
+        activate: F,
+    )
+       <span class="where">where F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;&lt;&lt;Self as <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/subclass/types/trait.ClassStruct.html" title="trait glib::subclass::types::ClassStruct">ClassStruct</a>&gt;::<a class="associatedtype" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/subclass/types/trait.ClassStruct.html#associatedtype.Type" title="type glib::subclass::types::ClassStruct::Type">Type</a> as <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/subclass/types/trait.ObjectSubclass.html" title="trait glib::subclass::types::ObjectSubclass">ObjectSubclass</a>&gt;::<a class="associatedtype" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/subclass/types/trait.ObjectSubclass.html#associatedtype.Type" title="type glib::subclass::types::ObjectSubclass::Type">Type</a>, &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>, <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/variant/struct.Variant.html" title="struct glib::variant::Variant">Variant</a>&gt;) + 'static</span> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.query_action" class="fn">query_action</a>(&amp;self) -&gt; <a class="struct" href="struct.WidgetActionIter.html" title="struct gtk4::subclass::widget::WidgetActionIter">WidgetActionIter</a> <a href="#" class="tooltip" data-notable-ty="WidgetActionIter">ⓘ</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.set_template_scope" class="fn">set_template_scope</a>&lt;S: <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../../struct.BuilderScope.html" title="struct gtk4::BuilderScope">BuilderScope</a>&gt;&gt;(&amp;mut self, scope: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;S</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.add_binding" class="fn">add_binding</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;&lt;&lt;Self as <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/subclass/types/trait.ClassStruct.html" title="trait glib::subclass::types::ClassStruct">ClassStruct</a>&gt;::<a class="associatedtype" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/subclass/types/trait.ClassStruct.html#associatedtype.Type" title="type glib::subclass::types::ClassStruct::Type">Type</a> as <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/subclass/types/trait.ObjectSubclass.html" title="trait glib::subclass::types::ObjectSubclass">ObjectSubclass</a>&gt;::<a class="associatedtype" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/subclass/types/trait.ObjectSubclass.html#associatedtype.Type" title="type glib::subclass::types::ObjectSubclass::Type">Type</a>) -&gt; <a class="enum" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/enum.Propagation.html" title="enum glib::signal::Propagation">Propagation</a> + 'static&gt;(
+        &amp;mut self,
+        keyval: <a class="struct" href="../../../gdk4/keys/struct.Key.html" title="struct gdk4::keys::Key">Key</a>,
+        mods: <a class="struct" href="../../../gdk4/auto/flags/struct.ModifierType.html" title="struct gdk4::auto::flags::ModifierType">ModifierType</a>,
+        callback: F,
+    ) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.add_binding_action" class="fn">add_binding_action</a>(
+        &amp;mut self,
+        keyval: <a class="struct" href="../../../gdk4/keys/struct.Key.html" title="struct gdk4::keys::Key">Key</a>,
+        mods: <a class="struct" href="../../../gdk4/auto/flags/struct.ModifierType.html" title="struct gdk4::auto::flags::ModifierType">ModifierType</a>,
+        action_name: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>,
+    ) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.add_binding_signal" class="fn">add_binding_signal</a>(
+        &amp;mut self,
+        keyval: <a class="struct" href="../../../gdk4/keys/struct.Key.html" title="struct gdk4::keys::Key">Key</a>,
+        mods: <a class="struct" href="../../../gdk4/auto/flags/struct.ModifierType.html" title="struct gdk4::auto::flags::ModifierType">ModifierType</a>,
+        signal_name: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>,
+    ) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.add_shortcut" class="fn">add_shortcut</a>(&amp;mut self, shortcut: &amp;<a class="struct" href="../../struct.Shortcut.html" title="struct gtk4::Shortcut">Shortcut</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.install_property_action" class="fn">install_property_action</a>(
+        &amp;mut self,
+        action_name: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>,
+        property_name: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>,
+    ) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.activate_signal" class="fn">activate_signal</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/subclass/signal/struct.SignalId.html" title="struct glib::subclass::signal::SignalId">SignalId</a>&gt; { ... }
+<span class="item-spacer"></span>    fn <a href="#method.set_activate_signal" class="fn">set_activate_signal</a>(&amp;mut self, signal_id: <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/subclass/signal/struct.SignalId.html" title="struct glib::subclass::signal::SignalId">SignalId</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.set_activate_signal_from_name" class="fn">set_activate_signal_from_name</a>(&amp;mut self, signal_name: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.set_layout_manager_type" class="fn">set_layout_manager_type</a>&lt;T: <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../../struct.LayoutManager.html" title="struct gtk4::LayoutManager">LayoutManager</a>&gt;&gt;(&amp;mut self) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.layout_manager_type" class="fn">layout_manager_type</a>(&amp;self) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/types/struct.Type.html" title="struct glib::types::Type">Type</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.set_css_name" class="fn">set_css_name</a>(&amp;mut self, name: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.css_name" class="fn">css_name</a>(&amp;self) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/gstring/struct.GString.html" title="struct glib::gstring::GString">GString</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.set_accessible_role" class="fn">set_accessible_role</a>(&amp;mut self, role: <a class="enum" href="../../enum.AccessibleRole.html" title="enum gtk4::AccessibleRole">AccessibleRole</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.accessible_role" class="fn">accessible_role</a>(&amp;self) -&gt; <a class="enum" href="../../enum.AccessibleRole.html" title="enum gtk4::AccessibleRole">AccessibleRole</a> { ... }
+<span class="item-spacer"></span>    unsafe fn <a href="#method.bind_template_child_with_offset" class="fn">bind_template_child_with_offset</a>&lt;T&gt;(
+        &amp;mut self,
+        name: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>,
+        internal: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>,
+        offset: FieldOffset&lt;Self::<a class="associatedtype" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/subclass/types/trait.ClassStruct.html#associatedtype.Type" title="type glib::subclass::types::ClassStruct::Type">Type</a>, <a class="struct" href="struct.TemplateChild.html" title="struct gtk4::subclass::widget::TemplateChild">TemplateChild</a>&lt;T&gt;&gt;,
+    )
+       <span class="where">where T: <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.ObjectType.html" title="trait glib::object::ObjectType">ObjectType</a> + <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.FromGlibPtrNone.html" title="trait glib::translate::FromGlibPtrNone">FromGlibPtrNone</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.pointer.html">*mut </a>&lt;T as <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.ObjectType.html" title="trait glib::object::ObjectType">ObjectType</a>&gt;::<a class="associatedtype" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.ObjectType.html#associatedtype.GlibType" title="type glib::object::ObjectType::GlibType">GlibType</a>&gt;</span> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.rust_template_scope" class="fn">rust_template_scope</a>(&amp;mut self) -&gt; <a class="struct" href="../../struct.BuilderRustScope.html" title="struct gtk4::BuilderRustScope">BuilderRustScope</a> { ... }
+</details>}</code></pre><h2 id="provided-methods" class="section-header">Provided Methods<a href="#provided-methods" class="anchor">§</a></h2><div class="methods"><section id="method.set_template_bytes" class="method"><a class="src rightside" href="../../../src/gtk4/subclass/widget.rs.html#1057-1062">Source</a><h4 class="code-header">fn <a href="#method.set_template_bytes" class="fn">set_template_bytes</a>(&amp;mut self, template: &amp;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/bytes/struct.Bytes.html" title="struct glib::bytes::Bytes">Bytes</a>)</h4></section><details class="toggle method-toggle" open><summary><section id="method.set_template" class="method"><a class="src rightside" href="../../../src/gtk4/subclass/widget.rs.html#1074-1077">Source</a><h4 class="code-header">fn <a href="#method.set_template" class="fn">set_template</a>(&amp;mut self, template: &amp;[<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u8.html">u8</a>])</h4></section></summary><div class="docblock"><p>This should be called at class initialization time to specify
+the <a href="../../struct.Builder.html" title="struct gtk4::Builder"><code>Builder</code></a> XML to be used to extend a widget.</p>
+<p>For convenience, <a href="trait.WidgetClassExt.html#method.set_template_from_resource"><code>set_template_from_resource()</code></a>
+is also provided.</p>
+<p>Note that any class that installs templates must call
+<code>Gtk::Widget::init_template()</code> in the widget’s instance initializer.</p>
+<h6 id="template_bytes"><a class="doc-anchor" href="#template_bytes">§</a><code>template_bytes</code></h6>
+<p><code>GBytes</code> holding the <a href="../../struct.Builder.html" title="struct gtk4::Builder"><code>Builder</code></a> XML</p>
+</div></details><section id="method.set_template_static" class="method"><a class="src rightside" href="../../../src/gtk4/subclass/widget.rs.html#1079-1082">Source</a><h4 class="code-header">fn <a href="#method.set_template_static" class="fn">set_template_static</a>(&amp;mut self, template: &amp;'static [<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u8.html">u8</a>])</h4></section><details class="toggle method-toggle" open><summary><section id="method.set_template_from_resource" class="method"><a class="src rightside" href="../../../src/gtk4/subclass/widget.rs.html#1093-1101">Source</a><h4 class="code-header">fn <a href="#method.set_template_from_resource" class="fn">set_template_from_resource</a>(&amp;mut self, resource_name: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>)</h4></section></summary><div class="docblock"><p>A convenience function that calls <a href="trait.WidgetClassExt.html#method.set_template"><code>set_template()</code></a>
+with the contents of a resource.</p>
+<p>Note that any class that installs templates must call
+<code>Gtk::Widget::init_template()</code> in the widget’s instance
+initializer.</p>
+<h6 id="resource_name"><a class="doc-anchor" href="#resource_name">§</a><code>resource_name</code></h6>
+<p>resource path to load the template from</p>
+</div></details><section id="method.install_action_async" class="method"><a class="src rightside" href="../../../src/gtk4/subclass/widget.rs.html#1103-1140">Source</a><h4 class="code-header">fn <a href="#method.install_action_async" class="fn">install_action_async</a>&lt;Fut, F&gt;(
+    &amp;mut self,
+    action_name: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>,
+    parameter_type: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/variant_type/struct.VariantTy.html" title="struct glib::variant_type::VariantTy">VariantTy</a>&gt;,
+    activate: F,
+)<div class="where">where
+    F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&lt;&lt;Self as <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/subclass/types/trait.ClassStruct.html" title="trait glib::subclass::types::ClassStruct">ClassStruct</a>&gt;::<a class="associatedtype" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/subclass/types/trait.ClassStruct.html#associatedtype.Type" title="type glib::subclass::types::ClassStruct::Type">Type</a> as <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/subclass/types/trait.ObjectSubclass.html" title="trait glib::subclass::types::ObjectSubclass">ObjectSubclass</a>&gt;::<a class="associatedtype" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/subclass/types/trait.ObjectSubclass.html#associatedtype.Type" title="type glib::subclass::types::ObjectSubclass::Type">Type</a>, <a class="struct" href="https://doc.rust-lang.org/nightly/alloc/string/struct.String.html" title="struct alloc::string::String">String</a>, <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/variant/struct.Variant.html" title="struct glib::variant::Variant">Variant</a>&gt;) -&gt; Fut + 'static + <a class="trait" href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html" title="trait core::clone::Clone">Clone</a>,
+    Fut: <a class="trait" href="https://doc.rust-lang.org/nightly/core/future/future/trait.Future.html" title="trait core::future::future::Future">Future</a>&lt;Output = <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.unit.html">()</a>&gt;,</div></h4></section><details class="toggle method-toggle" open><summary><section id="method.install_action" class="method"><a class="src rightside" href="../../../src/gtk4/subclass/widget.rs.html#1156-1225">Source</a><h4 class="code-header">fn <a href="#method.install_action" class="fn">install_action</a>&lt;F&gt;(
+    &amp;mut self,
+    action_name: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>,
+    parameter_type: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/variant_type/struct.VariantTy.html" title="struct glib::variant_type::VariantTy">VariantTy</a>&gt;,
+    activate: F,
+)<div class="where">where
+    F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;&lt;&lt;Self as <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/subclass/types/trait.ClassStruct.html" title="trait glib::subclass::types::ClassStruct">ClassStruct</a>&gt;::<a class="associatedtype" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/subclass/types/trait.ClassStruct.html#associatedtype.Type" title="type glib::subclass::types::ClassStruct::Type">Type</a> as <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/subclass/types/trait.ObjectSubclass.html" title="trait glib::subclass::types::ObjectSubclass">ObjectSubclass</a>&gt;::<a class="associatedtype" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/subclass/types/trait.ObjectSubclass.html#associatedtype.Type" title="type glib::subclass::types::ObjectSubclass::Type">Type</a>, &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>, <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/variant/struct.Variant.html" title="struct glib::variant::Variant">Variant</a>&gt;) + 'static,</div></h4></section></summary><div class="docblock"><p>Adds an action for all instances of a widget class.</p>
+<p>This function should be called at class initialization time.</p>
+<p>Actions installed by this function are stateless. The only state
+they have is whether they are enabled or not (which can be changed
+with <a href="../../prelude/trait.WidgetExt.html#method.action_set_enabled" title="method gtk4::prelude::WidgetExt::action_set_enabled"><code>WidgetExt::action_set_enabled()</code></a>).</p>
+<h6 id="action_name"><a class="doc-anchor" href="#action_name">§</a><code>action_name</code></h6>
+<p>a prefixed action name, such as “clipboard.paste”</p>
+<h6 id="parameter_type"><a class="doc-anchor" href="#parameter_type">§</a><code>parameter_type</code></h6>
+<p>the parameter type</p>
+<h6 id="activate"><a class="doc-anchor" href="#activate">§</a><code>activate</code></h6>
+<p>callback to use when the action is activated</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.query_action" class="method"><a class="src rightside" href="../../../src/gtk4/subclass/widget.rs.html#1255-1258">Source</a><h4 class="code-header">fn <a href="#method.query_action" class="fn">query_action</a>(&amp;self) -&gt; <a class="struct" href="struct.WidgetActionIter.html" title="struct gtk4::subclass::widget::WidgetActionIter">WidgetActionIter</a> <a href="#" class="tooltip" data-notable-ty="WidgetActionIter">ⓘ</a></h4></section></summary><div class="docblock"><p>Returns details about an action that has been
+installed for @self.</p>
+<p>See <a href="trait.WidgetClassExt.html#method.install_action"><code>install_action()</code></a> for details on
+how to install actions.</p>
+<p>Note that this function will also return actions defined
+by parent classes. You can identify those by looking
+at @owner.</p>
+<h6 id="index_"><a class="doc-anchor" href="#index_">§</a><code>index_</code></h6>
+<p>position of the action to query</p>
+<h5 id="returns"><a class="doc-anchor" href="#returns">§</a>Returns</h5>
+<p>true if the action was found</p>
+<h6 id="owner"><a class="doc-anchor" href="#owner">§</a><code>owner</code></h6>
+<p>return location for the type where the action was defined</p>
+<h6 id="action_name-1"><a class="doc-anchor" href="#action_name-1">§</a><code>action_name</code></h6>
+<p>return location for the action name</p>
+<h6 id="parameter_type-1"><a class="doc-anchor" href="#parameter_type-1">§</a><code>parameter_type</code></h6>
+<p>return location for the parameter type</p>
+<h6 id="property_name"><a class="doc-anchor" href="#property_name">§</a><code>property_name</code></h6>
+<p>return location for the property name</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.set_template_scope" class="method"><a class="src rightside" href="../../../src/gtk4/subclass/widget.rs.html#1270-1275">Source</a><h4 class="code-header">fn <a href="#method.set_template_scope" class="fn">set_template_scope</a>&lt;S: <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../../struct.BuilderScope.html" title="struct gtk4::BuilderScope">BuilderScope</a>&gt;&gt;(&amp;mut self, scope: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;S</a>)</h4></section></summary><div class="docblock"><p>Overrides the default scope to be used when parsing the class template.</p>
+<p>This function is intended for language bindings.</p>
+<p>Note that this must be called from a composite widget classes class
+initializer after calling <a href="trait.WidgetClassExt.html#method.set_template"><code>set_template()</code></a>.</p>
+<h6 id="scope"><a class="doc-anchor" href="#scope">§</a><code>scope</code></h6>
+<p><a href="../../struct.BuilderScope.html" title="struct gtk4::BuilderScope"><code>BuilderScope</code></a> to use when loading
+the class template</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.add_binding" class="method"><a class="src rightside" href="../../../src/gtk4/subclass/widget.rs.html#1297-1314">Source</a><h4 class="code-header">fn <a href="#method.add_binding" class="fn">add_binding</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;&lt;&lt;Self as <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/subclass/types/trait.ClassStruct.html" title="trait glib::subclass::types::ClassStruct">ClassStruct</a>&gt;::<a class="associatedtype" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/subclass/types/trait.ClassStruct.html#associatedtype.Type" title="type glib::subclass::types::ClassStruct::Type">Type</a> as <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/subclass/types/trait.ObjectSubclass.html" title="trait glib::subclass::types::ObjectSubclass">ObjectSubclass</a>&gt;::<a class="associatedtype" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/subclass/types/trait.ObjectSubclass.html#associatedtype.Type" title="type glib::subclass::types::ObjectSubclass::Type">Type</a>) -&gt; <a class="enum" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/enum.Propagation.html" title="enum glib::signal::Propagation">Propagation</a> + 'static&gt;(
+    &amp;mut self,
+    keyval: <a class="struct" href="../../../gdk4/keys/struct.Key.html" title="struct gdk4::keys::Key">Key</a>,
+    mods: <a class="struct" href="../../../gdk4/auto/flags/struct.ModifierType.html" title="struct gdk4::auto::flags::ModifierType">ModifierType</a>,
+    callback: F,
+)</h4></section></summary><div class="docblock"><p>Creates a new shortcut for @self that calls the given @callback
+with arguments according to @format_string.</p>
+<p>The arguments and format string must be provided in the same way as
+with <code>GLib::Variant::new()</code>.</p>
+<p>This function is a convenience wrapper around
+<a href="trait.WidgetClassExt.html#method.add_shortcut"><code>add_shortcut()</code></a> and must be called during class
+initialization. It does not provide for user data, if you need that,
+you will have to use <a href="trait.WidgetClassExt.html#method.add_shortcut"><code>add_shortcut()</code></a> with a custom
+shortcut.</p>
+<h6 id="keyval"><a class="doc-anchor" href="#keyval">§</a><code>keyval</code></h6>
+<p>key value of binding to install</p>
+<h6 id="mods"><a class="doc-anchor" href="#mods">§</a><code>mods</code></h6>
+<p>key modifier of binding to install</p>
+<h6 id="callback"><a class="doc-anchor" href="#callback">§</a><code>callback</code></h6>
+<p>the callback to call upon activation</p>
+<h6 id="format_string"><a class="doc-anchor" href="#format_string">§</a><code>format_string</code></h6>
+<p><code>GVariant</code> format string for arguments</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.add_binding_action" class="method"><a class="src rightside" href="../../../src/gtk4/subclass/widget.rs.html#1334-1340">Source</a><h4 class="code-header">fn <a href="#method.add_binding_action" class="fn">add_binding_action</a>(
+    &amp;mut self,
+    keyval: <a class="struct" href="../../../gdk4/keys/struct.Key.html" title="struct gdk4::keys::Key">Key</a>,
+    mods: <a class="struct" href="../../../gdk4/auto/flags/struct.ModifierType.html" title="struct gdk4::auto::flags::ModifierType">ModifierType</a>,
+    action_name: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>,
+)</h4></section></summary><div class="docblock"><p>Creates a new shortcut for @self that activates the given
+@action_name with arguments read according to @format_string.</p>
+<p>The arguments and format string must be provided in the same way as
+with <code>GLib::Variant::new()</code>.</p>
+<p>This function is a convenience wrapper around
+<a href="trait.WidgetClassExt.html#method.add_shortcut"><code>add_shortcut()</code></a> and must be called during class
+initialization.</p>
+<h6 id="keyval-1"><a class="doc-anchor" href="#keyval-1">§</a><code>keyval</code></h6>
+<p>key value of binding to install</p>
+<h6 id="mods-1"><a class="doc-anchor" href="#mods-1">§</a><code>mods</code></h6>
+<p>key modifier of binding to install</p>
+<h6 id="action_name-2"><a class="doc-anchor" href="#action_name-2">§</a><code>action_name</code></h6>
+<p>the action to activate</p>
+<h6 id="format_string-1"><a class="doc-anchor" href="#format_string-1">§</a><code>format_string</code></h6>
+<p><code>GVariant</code> format string for arguments</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.add_binding_signal" class="method"><a class="src rightside" href="../../../src/gtk4/subclass/widget.rs.html#1360-1372">Source</a><h4 class="code-header">fn <a href="#method.add_binding_signal" class="fn">add_binding_signal</a>(
+    &amp;mut self,
+    keyval: <a class="struct" href="../../../gdk4/keys/struct.Key.html" title="struct gdk4::keys::Key">Key</a>,
+    mods: <a class="struct" href="../../../gdk4/auto/flags/struct.ModifierType.html" title="struct gdk4::auto::flags::ModifierType">ModifierType</a>,
+    signal_name: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>,
+)</h4></section></summary><div class="docblock"><p>Creates a new shortcut for @self that emits the given action
+@signal with arguments read according to @format_string.</p>
+<p>The arguments and format string must be provided in the same way as
+with <code>GLib::Variant::new()</code>.</p>
+<p>This function is a convenience wrapper around
+<a href="trait.WidgetClassExt.html#method.add_shortcut"><code>add_shortcut()</code></a> and must be called during class
+initialization.</p>
+<h6 id="keyval-2"><a class="doc-anchor" href="#keyval-2">§</a><code>keyval</code></h6>
+<p>key value of binding to install</p>
+<h6 id="mods-2"><a class="doc-anchor" href="#mods-2">§</a><code>mods</code></h6>
+<p>key modifier of binding to install</p>
+<h6 id="signal"><a class="doc-anchor" href="#signal">§</a><code>signal</code></h6>
+<p>the signal to execute</p>
+<h6 id="format_string-2"><a class="doc-anchor" href="#format_string-2">§</a><code>format_string</code></h6>
+<p><code>GVariant</code> format string for arguments</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.add_shortcut" class="method"><a class="src rightside" href="../../../src/gtk4/subclass/widget.rs.html#1387-1392">Source</a><h4 class="code-header">fn <a href="#method.add_shortcut" class="fn">add_shortcut</a>(&amp;mut self, shortcut: &amp;<a class="struct" href="../../struct.Shortcut.html" title="struct gtk4::Shortcut">Shortcut</a>)</h4></section></summary><div class="docblock"><p>Installs a shortcut in @self.</p>
+<p>Every instance created for @self or its subclasses will
+inherit this shortcut and trigger it.</p>
+<p>Shortcuts added this way will be triggered in the [enum@Gtk.PropagationPhase.bubble]
+phase, which means they may also trigger if child widgets have focus.</p>
+<p>This function must only be used in class initialization functions
+otherwise it is not guaranteed that the shortcut will be installed.</p>
+<h6 id="shortcut"><a class="doc-anchor" href="#shortcut">§</a><code>shortcut</code></h6>
+<p>the shortcut to add</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.install_property_action" class="method"><a class="src rightside" href="../../../src/gtk4/subclass/widget.rs.html#1415-1424">Source</a><h4 class="code-header">fn <a href="#method.install_property_action" class="fn">install_property_action</a>(&amp;mut self, action_name: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>, property_name: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>)</h4></section></summary><div class="docblock"><p>Installs an action called @action_name on @self and
+binds its state to the value of the @property_name property.</p>
+<p>This function will perform a few sanity checks on the property selected
+via @property_name. Namely, the property must exist, must be readable,
+writable and must not be construct-only. There are also restrictions
+on the type of the given property, it must be boolean, int, unsigned int,
+double or string. If any of these conditions are not met, a critical
+warning will be printed and no action will be added.</p>
+<p>The state type of the action matches the property type.</p>
+<p>If the property is boolean, the action will have no parameter and
+toggle the property value. Otherwise, the action will have a parameter
+of the same type as the property.</p>
+<h6 id="action_name-3"><a class="doc-anchor" href="#action_name-3">§</a><code>action_name</code></h6>
+<p>name of the action</p>
+<h6 id="property_name-1"><a class="doc-anchor" href="#property_name-1">§</a><code>property_name</code></h6>
+<p>name of a property in instances of @self
+or any parent class</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.activate_signal" class="method"><a class="src rightside" href="../../../src/gtk4/subclass/widget.rs.html#1437-1447">Source</a><h4 class="code-header">fn <a href="#method.activate_signal" class="fn">activate_signal</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/subclass/signal/struct.SignalId.html" title="struct glib::subclass::signal::SignalId">SignalId</a>&gt;</h4></section></summary><div class="docblock"><p>Retrieves the signal id for the activation signal.</p>
+<p>The activation signal is set using
+<a href="trait.WidgetClassExt.html#method.set_activate_signal"><code>set_activate_signal()</code></a>.</p>
+<h5 id="returns-1"><a class="doc-anchor" href="#returns-1">§</a>Returns</h5>
+<p>a signal id, or 0 if the widget class does not
+specify an activation signal</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.set_activate_signal" class="method"><a class="src rightside" href="../../../src/gtk4/subclass/widget.rs.html#1458-1463">Source</a><h4 class="code-header">fn <a href="#method.set_activate_signal" class="fn">set_activate_signal</a>(&amp;mut self, signal_id: <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/subclass/signal/struct.SignalId.html" title="struct glib::subclass::signal::SignalId">SignalId</a>)</h4></section></summary><div class="docblock"><p>Sets the activation signal for a widget class.</p>
+<p>The signal will be emitted when calling <a href="../../prelude/trait.WidgetExt.html#method.activate" title="method gtk4::prelude::WidgetExt::activate"><code>WidgetExt::activate()</code></a>.</p>
+<p>The @signal_id must have been registered with [function.GObject.signal_new]
+or <code>signal_newv()</code> before calling this function.</p>
+<h6 id="signal_id"><a class="doc-anchor" href="#signal_id">§</a><code>signal_id</code></h6>
+<p>the id for the activate signal</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.set_activate_signal_from_name" class="method"><a class="src rightside" href="../../../src/gtk4/subclass/widget.rs.html#1476-1490">Source</a><h4 class="code-header">fn <a href="#method.set_activate_signal_from_name" class="fn">set_activate_signal_from_name</a>(&amp;mut self, signal_name: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>)</h4></section></summary><div class="docblock"><p>Sets the activation signal for a widget class.</p>
+<p>The signal id will by looked up by @signal_name.</p>
+<p>The signal will be emitted when calling <a href="../../prelude/trait.WidgetExt.html#method.activate" title="method gtk4::prelude::WidgetExt::activate"><code>WidgetExt::activate()</code></a>.</p>
+<p>The @signal_name must have been registered with [function.GObject.signal_new]
+or <code>signal_newv()</code> before calling this function.</p>
+<h6 id="signal_name"><a class="doc-anchor" href="#signal_name">§</a><code>signal_name</code></h6>
+<p>the name of the activate signal of @widget_type</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.set_layout_manager_type" class="method"><a class="src rightside" href="../../../src/gtk4/subclass/widget.rs.html#1503-1511">Source</a><h4 class="code-header">fn <a href="#method.set_layout_manager_type" class="fn">set_layout_manager_type</a>&lt;T: <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../../struct.LayoutManager.html" title="struct gtk4::LayoutManager">LayoutManager</a>&gt;&gt;(&amp;mut self)</h4></section></summary><div class="docblock"><p>Sets the type to be used for creating layout managers for
+widgets of @self.</p>
+<p>The given @type_ must be a subtype of <a href="../../struct.LayoutManager.html" title="struct gtk4::LayoutManager"><code>LayoutManager</code></a>.</p>
+<p>This function should only be called from class init functions
+of widgets.</p>
+<h6 id="type_"><a class="doc-anchor" href="#type_">§</a><code>type_</code></h6>
+<p>the object type that implements the <a href="../../struct.LayoutManager.html" title="struct gtk4::LayoutManager"><code>LayoutManager</code></a>
+for @self</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.layout_manager_type" class="method"><a class="src rightside" href="../../../src/gtk4/subclass/widget.rs.html#1523-1528">Source</a><h4 class="code-header">fn <a href="#method.layout_manager_type" class="fn">layout_manager_type</a>(&amp;self) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/types/struct.Type.html" title="struct glib::types::Type">Type</a></h4></section></summary><div class="docblock"><p>Retrieves the type of the <a href="../../struct.LayoutManager.html" title="struct gtk4::LayoutManager"><code>LayoutManager</code></a>
+used by widgets of class @self.</p>
+<p>See also: <a href="trait.WidgetClassExt.html#method.set_layout_manager_type"><code>set_layout_manager_type()</code></a>.</p>
+<h5 id="returns-2"><a class="doc-anchor" href="#returns-2">§</a>Returns</h5>
+<p>type of a <a href="../../struct.LayoutManager.html" title="struct gtk4::LayoutManager"><code>LayoutManager</code></a> subclass, or <code>G_TYPE_INVALID</code></p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.set_css_name" class="method"><a class="src rightside" href="../../../src/gtk4/subclass/widget.rs.html#1538-1543">Source</a><h4 class="code-header">fn <a href="#method.set_css_name" class="fn">set_css_name</a>(&amp;mut self, name: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>)</h4></section></summary><div class="docblock"><p>Sets the name to be used for CSS matching of widgets.</p>
+<p>If this function is not called for a given class, the name
+set on the parent class is used. By default, <a href="../../struct.Widget.html" title="struct gtk4::Widget"><code>Widget</code></a>
+uses the name “widget”.</p>
+<h6 id="name"><a class="doc-anchor" href="#name">§</a><code>name</code></h6>
+<p>name to use</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.css_name" class="method"><a class="src rightside" href="../../../src/gtk4/subclass/widget.rs.html#1554-1559">Source</a><h4 class="code-header">fn <a href="#method.css_name" class="fn">css_name</a>(&amp;self) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/gstring/struct.GString.html" title="struct glib::gstring::GString">GString</a></h4></section></summary><div class="docblock"><p>Gets the name used by this class for matching in CSS code.</p>
+<p>See <a href="trait.WidgetClassExt.html#method.set_css_name"><code>set_css_name()</code></a> for details.</p>
+<h5 id="returns-3"><a class="doc-anchor" href="#returns-3">§</a>Returns</h5>
+<p>the CSS name of the given class</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.set_accessible_role" class="method"><a class="src rightside" href="../../../src/gtk4/subclass/widget.rs.html#1568-1573">Source</a><h4 class="code-header">fn <a href="#method.set_accessible_role" class="fn">set_accessible_role</a>(&amp;mut self, role: <a class="enum" href="../../enum.AccessibleRole.html" title="enum gtk4::AccessibleRole">AccessibleRole</a>)</h4></section></summary><div class="docblock"><p>Sets the accessible role used by the given widget class.</p>
+<p>Different accessible roles have different states, and are
+rendered differently by assistive technologies.</p>
+<h6 id="accessible_role"><a class="doc-anchor" href="#accessible_role">§</a><code>accessible_role</code></h6>
+<p>the accessible role to use</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.accessible_role" class="method"><a class="src rightside" href="../../../src/gtk4/subclass/widget.rs.html#1587-1592">Source</a><h4 class="code-header">fn <a href="#method.accessible_role" class="fn">accessible_role</a>(&amp;self) -&gt; <a class="enum" href="../../enum.AccessibleRole.html" title="enum gtk4::AccessibleRole">AccessibleRole</a></h4></section></summary><div class="docblock"><p>Retrieves the accessible role used by the given widget class.</p>
+<p>Different accessible roles have different states, and are rendered
+differently by assistive technologies.</p>
+<p>See also: <a href="../../prelude/trait.AccessibleExt.html#method.accessible_role" title="method gtk4::prelude::AccessibleExt::accessible_role"><code>AccessibleExt::accessible_role()</code></a>.</p>
+<h5 id="returns-4"><a class="doc-anchor" href="#returns-4">§</a>Returns</h5>
+<p>the accessible role for the widget class</p>
+</div></details><section id="method.bind_template_child_with_offset" class="method"><a class="src rightside" href="../../../src/gtk4/subclass/widget.rs.html#1596-1614">Source</a><h4 class="code-header">unsafe fn <a href="#method.bind_template_child_with_offset" class="fn">bind_template_child_with_offset</a>&lt;T&gt;(
+    &amp;mut self,
+    name: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>,
+    internal: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>,
+    offset: FieldOffset&lt;Self::<a class="associatedtype" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/subclass/types/trait.ClassStruct.html#associatedtype.Type" title="type glib::subclass::types::ClassStruct::Type">Type</a>, <a class="struct" href="struct.TemplateChild.html" title="struct gtk4::subclass::widget::TemplateChild">TemplateChild</a>&lt;T&gt;&gt;,
+)<div class="where">where
+    T: <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.ObjectType.html" title="trait glib::object::ObjectType">ObjectType</a> + <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/translate/trait.FromGlibPtrNone.html" title="trait glib::translate::FromGlibPtrNone">FromGlibPtrNone</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.pointer.html">*mut </a>&lt;T as <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.ObjectType.html" title="trait glib::object::ObjectType">ObjectType</a>&gt;::<a class="associatedtype" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.ObjectType.html#associatedtype.GlibType" title="type glib::object::ObjectType::GlibType">GlibType</a>&gt;,</div></h4></section><section id="method.rust_template_scope" class="method"><a class="src rightside" href="../../../src/gtk4/subclass/widget.rs.html#1616-1631">Source</a><h4 class="code-header">fn <a href="#method.rust_template_scope" class="fn">rust_template_scope</a>(&amp;mut self) -&gt; <a class="struct" href="../../struct.BuilderRustScope.html" title="struct gtk4::BuilderRustScope">BuilderRustScope</a></h4></section></div><h2 id="dyn-compatibility" class="section-header">Dyn Compatibility<a href="#dyn-compatibility" class="anchor">§</a></h2><div class="dyn-compatibility-info"><p>This trait is <b>not</b> <a href="https://doc.rust-lang.org/nightly/reference/items/traits.html#dyn-compatibility">dyn compatible</a>.</p><p><i>In older versions of Rust, dyn compatibility was called "object safety", so this trait is not object safe.</i></p></div><h2 id="implementors" class="section-header">Implementors<a href="#implementors" class="anchor">§</a></h2><div id="implementors-list"><section id="impl-WidgetClassExt-for-T" class="impl"><a class="src rightside" href="../../../src/gtk4/subclass/widget.rs.html#1634">Source</a><a href="#impl-WidgetClassExt-for-T" class="anchor">§</a><h3 class="code-header">impl&lt;T: <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/subclass/types/trait.ClassStruct.html" title="trait glib::subclass::types::ClassStruct">ClassStruct</a>&gt; <a class="trait" href="trait.WidgetClassExt.html" title="trait gtk4::subclass::widget::WidgetClassExt">WidgetClassExt</a> for T<div class="where">where
+    T::<a class="associatedtype" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/subclass/types/trait.ClassStruct.html#associatedtype.Type" title="type glib::subclass::types::ClassStruct::Type">Type</a>: <a class="trait" href="trait.WidgetImpl.html" title="trait gtk4::subclass::widget::WidgetImpl">WidgetImpl</a>,</div></h3></section></div><script src="../../../trait.impl/gtk4/subclass/widget/trait.WidgetClassExt.js" async></script><script type="text/json" id="notable-traits-data">{"WidgetActionIter":"<h3>Notable traits for <code><a class=\"struct\" href=\"struct.WidgetActionIter.html\" title=\"struct gtk4::subclass::widget::WidgetActionIter\">WidgetActionIter</a></code></h3><pre><code><div class=\"where\">impl <a class=\"trait\" href=\"https://doc.rust-lang.org/nightly/core/iter/traits/iterator/trait.Iterator.html\" title=\"trait core::iter::traits::iterator::Iterator\">Iterator</a> for <a class=\"struct\" href=\"struct.WidgetActionIter.html\" title=\"struct gtk4::subclass::widget::WidgetActionIter\">WidgetActionIter</a></div><div class=\"where\">    type <a href=\"https://doc.rust-lang.org/nightly/core/iter/traits/iterator/trait.Iterator.html#associatedtype.Item\" class=\"associatedtype\">Item</a> = <a class=\"struct\" href=\"struct.WidgetAction.html\" title=\"struct gtk4::subclass::widget::WidgetAction\">WidgetAction</a>;</div>"}</script></section></div></main></body></html>

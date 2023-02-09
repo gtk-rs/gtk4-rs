@@ -1,1 +1,0 @@
-window.SIDEBAR_ITEMS = {"trait":[["StyleContextImpl",""],["StyleContextImplExt",""]]};

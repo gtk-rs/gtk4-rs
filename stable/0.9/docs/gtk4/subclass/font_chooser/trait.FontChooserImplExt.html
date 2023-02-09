@@ -1,0 +1,83 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="API documentation for the Rust `FontChooserImplExt` trait in crate `gtk4`."><title>FontChooserImplExt in gtk4::subclass::font_chooser - Rust</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../static.files/rustdoc-84e720fa.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.89.0-nightly (5526a2f47 2025-06-20)" data-channel="nightly" data-search-js="search-343419c9.js" data-settings-js="settings-5514c975.js" ><script src="../../../static.files/storage-4e99c027.js"></script><script defer src="sidebar-items.js"></script><script defer src="../../../static.files/main-fd3af306.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-32bb7600.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-6580c154.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-044be391.svg"></head><body class="rustdoc trait"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
+
+    function checkDocsLatestStable() {
+        function popup(msg, url) { return `
+            <style scoped="scoped">
+                .popup {
+                    max-width: 16em;
+                    background-color: #fff;
+                    position: fixed;
+                    z-index: 1;
+                    margin-left: auto;
+                    bottom: 1em;
+                    right: 1em;
+                    border-radius: 5px;
+                    box-shadow: 1px 1px 4px #777;
+                }
+
+                .popup a.version {
+                    color: #e57300;
+                    padding: 0.6em 1em;
+                    display: block;
+                }
+                .popup a.version:hover {
+                    color: #b25900;
+                }
+
+                .popup a.close {
+                    color: white;
+                    background: grey;
+                    border-radius: 99px;
+                    display: inline-block;
+                    width: 19px;
+                    line-height: 19px;
+                    font-weight: bold;
+                    text-align: center;
+                    margin: 0.6em;
+                    float: right;
+                }
+                .popup a.close:hover {
+                    background: black;
+                }
+            </style>
+            <section class="popup" id="gir_docs_popup">
+                <a class="close" href="#" onclick="document.getElementById('gir_docs_popup').remove(); return false">×</a>
+                <a class="version" href="https://gtk-rs.org/gtk4-rs/stable/latest/docs">
+                    ⚠ ${msg}
+                </a>
+            </section>
+        ` };
+
+        if ("0.9" == "main") {
+            document.body.insertAdjacentHTML(
+                'beforeend',
+                popup("This is the development version. Go to latest stable version.", "stable/latest")
+            );
+        } else {
+            fetch('https://gtk-rs.org/gtk4-rs/LATEST_RELEASE_BRANCH')
+                .then(response => response.text())
+                .then(latest_branch => {
+                    if (latest_branch.trim() != "0.9") {
+                        document.body.insertAdjacentHTML(
+                            'beforeend',
+                            popup("This version is outdated. Go to latest version.", "stable/latest")
+                        );
+                    }
+                });
+        }
+    }
+</script>
+
+
+<nav class="mobile-topbar"><button class="sidebar-menu-toggle" title="show sidebar"></button></nav><nav class="sidebar"><div class="sidebar-crate"><h2><a href="../../../gtk4/index.html">gtk4</a><span class="version">0.9.7</span></h2></div><div class="sidebar-elems"><section id="rustdoc-toc"><h2 class="location"><a href="#">Font<wbr>Chooser<wbr>Impl<wbr>Ext</a></h2><h3><a href="#provided-methods">Provided Methods</a></h3><ul class="block"><li><a href="#method.parent_font_activated" title="parent_font_activated">parent_font_activated</a></li><li><a href="#method.parent_font_face" title="parent_font_face">parent_font_face</a></li><li><a href="#method.parent_font_family" title="parent_font_family">parent_font_family</a></li><li><a href="#method.parent_font_map" title="parent_font_map">parent_font_map</a></li><li><a href="#method.parent_font_size" title="parent_font_size">parent_font_size</a></li><li><a href="#method.parent_set_filter_func" title="parent_set_filter_func">parent_set_filter_func</a></li><li><a href="#method.parent_set_font_map" title="parent_set_font_map">parent_set_font_map</a></li></ul><h3><a href="#dyn-compatibility">Dyn Compatibility</a></h3><h3><a href="#implementors">Implementors</a></h3></section><div id="rustdoc-modnav"><h2><a href="index.html">In gtk4::<wbr>subclass::<wbr>font_<wbr>chooser</a></h2></div></div></nav><div class="sidebar-resizer" title="Drag to resize sidebar"></div><main><div class="width-limiter"><rustdoc-search></rustdoc-search><section id="main-content" class="content"><div class="main-heading"><div class="rustdoc-breadcrumbs"><a href="../../index.html">gtk4</a>::<wbr><a href="../index.html">subclass</a>::<wbr><a href="index.html">font_chooser</a></div><h1>Trait <span class="trait">FontChooserImplExt</span><button id="copy-path" title="Copy item path to clipboard">Copy item path</button></h1><rustdoc-toolbar></rustdoc-toolbar><span class="sub-heading"><a class="src" href="../../../src/gtk4/subclass/font_chooser.rs.html#89-213">Source</a> </span></div><pre class="rust item-decl"><code>pub trait FontChooserImplExt: Sealed + <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/subclass/types/trait.ObjectSubclass.html" title="trait glib::subclass::types::ObjectSubclass">ObjectSubclass</a> {
+    // Provided methods
+    fn <a href="#method.parent_font_family" class="fn">parent_font_family</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/pango/auto/font_family/struct.FontFamily.html" title="struct pango::auto::font_family::FontFamily">FontFamily</a>&gt; { ... }
+<span class="item-spacer"></span>    fn <a href="#method.parent_font_face" class="fn">parent_font_face</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/pango/auto/font_face/struct.FontFace.html" title="struct pango::auto::font_face::FontFace">FontFace</a>&gt; { ... }
+<span class="item-spacer"></span>    fn <a href="#method.parent_font_size" class="fn">parent_font_size</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.parent_set_filter_func" class="fn">parent_set_filter_func</a>(&amp;self, callback: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="struct.FilterCallback.html" title="struct gtk4::subclass::font_chooser::FilterCallback">FilterCallback</a>&gt;) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.parent_set_font_map" class="fn">parent_set_font_map</a>&lt;P: <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/pango/auto/font_map/struct.FontMap.html" title="struct pango::auto::font_map::FontMap">FontMap</a>&gt;&gt;(&amp;self, font_map: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;P</a>&gt;) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.parent_font_map" class="fn">parent_font_map</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/pango/auto/font_map/struct.FontMap.html" title="struct pango::auto::font_map::FontMap">FontMap</a>&gt; { ... }
+<span class="item-spacer"></span>    fn <a href="#method.parent_font_activated" class="fn">parent_font_activated</a>(&amp;self, font_name: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>) { ... }
+}</code></pre><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span><h2 id="provided-methods" class="section-header">Provided Methods<a href="#provided-methods" class="anchor">§</a></h2><div class="methods"><section id="method.parent_font_family" class="method"><a class="src rightside" href="../../../src/gtk4/subclass/font_chooser.rs.html#90-105">Source</a><h4 class="code-header">fn <a href="#method.parent_font_family" class="fn">parent_font_family</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/pango/auto/font_family/struct.FontFamily.html" title="struct pango::auto::font_family::FontFamily">FontFamily</a>&gt;</h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span><section id="method.parent_font_face" class="method"><a class="src rightside" href="../../../src/gtk4/subclass/font_chooser.rs.html#107-123">Source</a><h4 class="code-header">fn <a href="#method.parent_font_face" class="fn">parent_font_face</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/pango/auto/font_face/struct.FontFace.html" title="struct pango::auto::font_face::FontFace">FontFace</a>&gt;</h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span><section id="method.parent_font_size" class="method"><a class="src rightside" href="../../../src/gtk4/subclass/font_chooser.rs.html#125-138">Source</a><h4 class="code-header">fn <a href="#method.parent_font_size" class="fn">parent_font_size</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a></h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span><section id="method.parent_set_filter_func" class="method"><a class="src rightside" href="../../../src/gtk4/subclass/font_chooser.rs.html#140-164">Source</a><h4 class="code-header">fn <a href="#method.parent_set_filter_func" class="fn">parent_set_filter_func</a>(&amp;self, callback: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="struct.FilterCallback.html" title="struct gtk4::subclass::font_chooser::FilterCallback">FilterCallback</a>&gt;)</h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span><section id="method.parent_set_font_map" class="method"><a class="src rightside" href="../../../src/gtk4/subclass/font_chooser.rs.html#166-180">Source</a><h4 class="code-header">fn <a href="#method.parent_set_font_map" class="fn">parent_set_font_map</a>&lt;P: <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/pango/auto/font_map/struct.FontMap.html" title="struct pango::auto::font_map::FontMap">FontMap</a>&gt;&gt;(&amp;self, font_map: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;P</a>&gt;)</h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span><section id="method.parent_font_map" class="method"><a class="src rightside" href="../../../src/gtk4/subclass/font_chooser.rs.html#182-198">Source</a><h4 class="code-header">fn <a href="#method.parent_font_map" class="fn">parent_font_map</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/pango/auto/font_map/struct.FontMap.html" title="struct pango::auto::font_map::FontMap">FontMap</a>&gt;</h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span><section id="method.parent_font_activated" class="method"><a class="src rightside" href="../../../src/gtk4/subclass/font_chooser.rs.html#200-212">Source</a><h4 class="code-header">fn <a href="#method.parent_font_activated" class="fn">parent_font_activated</a>(&amp;self, font_name: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>)</h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span></div><h2 id="dyn-compatibility" class="section-header">Dyn Compatibility<a href="#dyn-compatibility" class="anchor">§</a></h2><div class="dyn-compatibility-info"><p>This trait is <b>not</b> <a href="https://doc.rust-lang.org/nightly/reference/items/traits.html#dyn-compatibility">dyn compatible</a>.</p><p><i>In older versions of Rust, dyn compatibility was called "object safety", so this trait is not object safe.</i></p></div><h2 id="implementors" class="section-header">Implementors<a href="#implementors" class="anchor">§</a></h2><div id="implementors-list"><section id="impl-FontChooserImplExt-for-T" class="impl"><a class="src rightside" href="../../../src/gtk4/subclass/font_chooser.rs.html#215">Source</a><a href="#impl-FontChooserImplExt-for-T" class="anchor">§</a><h3 class="code-header">impl&lt;T: <a class="trait" href="trait.FontChooserImpl.html" title="trait gtk4::subclass::font_chooser::FontChooserImpl">FontChooserImpl</a>&gt; <a class="trait" href="trait.FontChooserImplExt.html" title="trait gtk4::subclass::font_chooser::FontChooserImplExt">FontChooserImplExt</a> for T</h3></section></div><script src="../../../trait.impl/gtk4/subclass/font_chooser/trait.FontChooserImplExt.js" async></script></section></div></main></body></html>

@@ -1,0 +1,396 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Trait containing all `struct@MediaStream` methods."><title>MediaStreamExt in gtk4::prelude - Rust</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Bold-a2c9cd1067f8b328.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-fa3bb1812debf86c.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.74.0-nightly (e4133ba9b 2023-09-22)" data-channel="nightly" data-search-js="search-8be46b629f5f14a8.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="sidebar-items.js"></script><script defer src="../../static.files/main-c5bd66d33317d69f.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc trait"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
+
+    function checkDocsLatestStable() {
+        function popup(msg, url) { return `
+            <style scoped="scoped">
+                .popup {
+                    max-width: 16em;
+                    background-color: #fff;
+                    position: fixed;
+                    z-index: 1;
+                    margin-left: auto;
+                    bottom: 1em;
+                    right: 1em;
+                    border-radius: 5px;
+                    box-shadow: 1px 1px 4px #777;
+                }
+
+                .popup a.version {
+                    color: #e57300;
+                    padding: 0.6em 1em;
+                    display: block;
+                }
+                .popup a.version:hover {
+                    color: #b25900;
+                }
+
+                .popup a.close {
+                    color: white;
+                    background: grey;
+                    border-radius: 99px;
+                    display: inline-block;
+                    width: 19px;
+                    line-height: 19px;
+                    font-weight: bold;
+                    text-align: center;
+                    margin: 0.6em;
+                    float: right;
+                }
+                .popup a.close:hover {
+                    background: black;
+                }
+            </style>
+            <section class="popup" id="gir_docs_popup">
+                <a class="close" href="#" onclick="document.getElementById('gir_docs_popup').remove(); return false">×</a>
+                <a class="version" href="https://gtk-rs.org/gtk4-rs/stable/latest/docs">
+                    ⚠ ${msg}
+                </a>
+            </section>
+        ` };
+
+        if ("0.7" == "master") {
+            document.body.insertAdjacentHTML(
+                'beforeend',
+                popup("This is the development version. Go to latest stable version.", "stable/latest")
+            );
+        } else {
+            fetch('https://gtk-rs.org/gtk4-rs/LATEST_RELEASE_BRANCH')
+                .then(response => response.text())
+                .then(latest_branch => {
+                    if (latest_branch.trim() != "0.7") {
+                        document.body.insertAdjacentHTML(
+                            'beforeend',
+                            popup("This version is outdated. Go to latest version.", "stable/latest")
+                        );
+                    }
+                });
+        }
+    }
+</script>
+
+
+<nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="logo-container" href="../../gtk4/index.html"><img class="rust-logo" src="../../static.files/rust-logo-151179464ae7ed46.svg" alt="logo"></a></nav><nav class="sidebar"><a class="logo-container" href="../../gtk4/index.html"><img class="rust-logo" src="../../static.files/rust-logo-151179464ae7ed46.svg" alt="logo"></a><h2 class="location"><a href="#">MediaStreamExt</a></h2><div class="sidebar-elems"><section><h3><a href="#provided-methods">Provided Methods</a></h3><ul class="block"><li><a href="#method.connect_duration_notify">connect_duration_notify</a></li><li><a href="#method.connect_ended_notify">connect_ended_notify</a></li><li><a href="#method.connect_error_notify">connect_error_notify</a></li><li><a href="#method.connect_has_audio_notify">connect_has_audio_notify</a></li><li><a href="#method.connect_has_video_notify">connect_has_video_notify</a></li><li><a href="#method.connect_loop_notify">connect_loop_notify</a></li><li><a href="#method.connect_muted_notify">connect_muted_notify</a></li><li><a href="#method.connect_playing_notify">connect_playing_notify</a></li><li><a href="#method.connect_prepared_notify">connect_prepared_notify</a></li><li><a href="#method.connect_seekable_notify">connect_seekable_notify</a></li><li><a href="#method.connect_seeking_notify">connect_seeking_notify</a></li><li><a href="#method.connect_timestamp_notify">connect_timestamp_notify</a></li><li><a href="#method.connect_volume_notify">connect_volume_notify</a></li><li><a href="#method.duration">duration</a></li><li><a href="#method.ended">ended</a></li><li><a href="#method.error">error</a></li><li><a href="#method.has_audio">has_audio</a></li><li><a href="#method.has_video">has_video</a></li><li><a href="#method.is_ended">is_ended</a></li><li><a href="#method.is_loop">is_loop</a></li><li><a href="#method.is_muted">is_muted</a></li><li><a href="#method.is_playing">is_playing</a></li><li><a href="#method.is_prepared">is_prepared</a></li><li><a href="#method.is_seekable">is_seekable</a></li><li><a href="#method.is_seeking">is_seeking</a></li><li><a href="#method.pause">pause</a></li><li><a href="#method.play">play</a></li><li><a href="#method.prepared">prepared</a></li><li><a href="#method.realize">realize</a></li><li><a href="#method.seek">seek</a></li><li><a href="#method.seek_failed">seek_failed</a></li><li><a href="#method.seek_success">seek_success</a></li><li><a href="#method.set_loop">set_loop</a></li><li><a href="#method.set_muted">set_muted</a></li><li><a href="#method.set_playing">set_playing</a></li><li><a href="#method.set_prepared">set_prepared</a></li><li><a href="#method.set_volume">set_volume</a></li><li><a href="#method.stream_ended">stream_ended</a></li><li><a href="#method.stream_prepared">stream_prepared</a></li><li><a href="#method.stream_unprepared">stream_unprepared</a></li><li><a href="#method.timestamp">timestamp</a></li><li><a href="#method.unprepared">unprepared</a></li><li><a href="#method.unrealize">unrealize</a></li><li><a href="#method.update">update</a></li><li><a href="#method.volume">volume</a></li></ul><h3><a href="#implementors">Implementors</a></h3></section><h2><a href="index.html">In gtk4::prelude</a></h2></div></nav><main><div class="width-limiter"><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="main-heading"><h1>Trait <a href="../index.html">gtk4</a>::<wbr><a href="index.html">prelude</a>::<wbr><a class="trait" href="#">MediaStreamExt</a><button id="copy-path" title="Copy item path to clipboard"><img src="../../static.files/clipboard-7571035ce49a181d.svg" width="19" height="18" alt="Copy item path"></button></h1><span class="out-of-band"><a class="src" href="../../src/gtk4/auto/media_stream.rs.html#141-989">source</a> · <button id="toggle-all-docs" title="collapse all docs">[<span>&#x2212;</span>]</button></span></div><pre class="rust item-decl"><code>pub trait MediaStreamExt: <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.MediaStream.html" title="struct gtk4::MediaStream">MediaStream</a>&gt; + Sealed + 'static {
+<details class="toggle type-contents-toggle"><summary class="hideme"><span>Show 45 methods</span></summary>    // Provided methods
+    fn <a href="#method.ended" class="fn">ended</a>(&amp;self) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.duration" class="fn">duration</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i64.html">i64</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.is_ended" class="fn">is_ended</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.error" class="fn">error</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/error/struct.Error.html" title="struct glib::error::Error">Error</a>&gt; { ... }
+<span class="item-spacer"></span>    fn <a href="#method.is_loop" class="fn">is_loop</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.is_muted" class="fn">is_muted</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.is_playing" class="fn">is_playing</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.timestamp" class="fn">timestamp</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i64.html">i64</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.volume" class="fn">volume</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.has_audio" class="fn">has_audio</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.has_video" class="fn">has_video</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.is_prepared" class="fn">is_prepared</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.is_seekable" class="fn">is_seekable</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.is_seeking" class="fn">is_seeking</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.pause" class="fn">pause</a>(&amp;self) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.play" class="fn">play</a>(&amp;self) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.prepared" class="fn">prepared</a>(
+        &amp;self,
+        has_audio: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>,
+        has_video: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>,
+        seekable: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>,
+        duration: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i64.html">i64</a>
+    ) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.realize" class="fn">realize</a>(&amp;self, surface: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../../gdk4/auto/surface/struct.Surface.html" title="struct gdk4::auto::surface::Surface">Surface</a>&gt;) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.seek" class="fn">seek</a>(&amp;self, timestamp: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i64.html">i64</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.seek_failed" class="fn">seek_failed</a>(&amp;self) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.seek_success" class="fn">seek_success</a>(&amp;self) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.set_loop" class="fn">set_loop</a>(&amp;self, loop_: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.set_muted" class="fn">set_muted</a>(&amp;self, muted: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.set_playing" class="fn">set_playing</a>(&amp;self, playing: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.set_volume" class="fn">set_volume</a>(&amp;self, volume: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.stream_ended" class="fn">stream_ended</a>(&amp;self) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.stream_prepared" class="fn">stream_prepared</a>(
+        &amp;self,
+        has_audio: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>,
+        has_video: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>,
+        seekable: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>,
+        duration: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i64.html">i64</a>
+    ) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.stream_unprepared" class="fn">stream_unprepared</a>(&amp;self) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.unprepared" class="fn">unprepared</a>(&amp;self) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.unrealize" class="fn">unrealize</a>(&amp;self, surface: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../../gdk4/auto/surface/struct.Surface.html" title="struct gdk4::auto::surface::Surface">Surface</a>&gt;) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.update" class="fn">update</a>(&amp;self, timestamp: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i64.html">i64</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.set_prepared" class="fn">set_prepared</a>(&amp;self, prepared: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_duration_notify" class="fn">connect_duration_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
+        &amp;self,
+        f: F
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_ended_notify" class="fn">connect_ended_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
+        &amp;self,
+        f: F
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_error_notify" class="fn">connect_error_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
+        &amp;self,
+        f: F
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_has_audio_notify" class="fn">connect_has_audio_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
+        &amp;self,
+        f: F
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_has_video_notify" class="fn">connect_has_video_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
+        &amp;self,
+        f: F
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_loop_notify" class="fn">connect_loop_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
+        &amp;self,
+        f: F
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_muted_notify" class="fn">connect_muted_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
+        &amp;self,
+        f: F
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_playing_notify" class="fn">connect_playing_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
+        &amp;self,
+        f: F
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_prepared_notify" class="fn">connect_prepared_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
+        &amp;self,
+        f: F
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_seekable_notify" class="fn">connect_seekable_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
+        &amp;self,
+        f: F
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_seeking_notify" class="fn">connect_seeking_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
+        &amp;self,
+        f: F
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_timestamp_notify" class="fn">connect_timestamp_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
+        &amp;self,
+        f: F
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_volume_notify" class="fn">connect_volume_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
+        &amp;self,
+        f: F
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+</details>}</code></pre><details class="toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>Trait containing all <a href="../struct.MediaStream.html" title="struct gtk4::MediaStream"><code>MediaStream</code></a> methods.</p>
+<h2 id="implementors-1"><a href="#implementors-1">Implementors</a></h2>
+<p><a href="../struct.MediaFile.html" title="struct gtk4::MediaFile"><code>MediaFile</code></a>, <a href="../struct.MediaStream.html" title="struct gtk4::MediaStream"><code>MediaStream</code></a></p>
+</div></details><h2 id="provided-methods" class="small-section-header">Provided Methods<a href="#provided-methods" class="anchor">§</a></h2><div class="methods"><details class="toggle method-toggle" open><summary><section id="method.ended" class="method"><a class="src rightside" href="../../src/gtk4/auto/media_stream.rs.html#155-159">source</a><h4 class="code-header">fn <a href="#method.ended" class="fn">ended</a>(&amp;self)</h4></section></summary><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.4</span></div></span><div class="docblock"><p>Pauses the media stream and marks it as ended.</p>
+<p>This is a hint only, calls to <a href="trait.MediaStreamExt.html#method.play"><code>play()</code></a>
+may still happen.</p>
+<p>The media stream must be prepared when this function is called.</p>
+<h5 id="deprecated-since-44"><a href="#deprecated-since-44">Deprecated since 4.4</a></h5>
+<p>Use <a href="trait.MediaStreamExt.html#method.stream_ended"><code>stream_ended()</code></a> instead</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.duration" class="method"><a class="src rightside" href="../../src/gtk4/auto/media_stream.rs.html#170-172">source</a><h4 class="code-header">fn <a href="#method.duration" class="fn">duration</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i64.html">i64</a></h4></section></summary><div class="docblock"><p>Gets the duration of the stream.</p>
+<p>If the duration is not known, 0 will be returned.</p>
+<h5 id="returns"><a href="#returns">Returns</a></h5>
+<p>the duration of the stream or 0 if not known.</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.is_ended" class="method"><a class="src rightside" href="../../src/gtk4/auto/media_stream.rs.html#181-187">source</a><h4 class="code-header">fn <a href="#method.is_ended" class="fn">is_ended</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></section></summary><div class="docblock"><p>Returns whether the streams playback is finished.</p>
+<h5 id="returns-1"><a href="#returns-1">Returns</a></h5>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>true</code></a> if playback is finished</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.error" class="method"><a class="src rightside" href="../../src/gtk4/auto/media_stream.rs.html#210-216">source</a><h4 class="code-header">fn <a href="#method.error" class="fn">error</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/error/struct.Error.html" title="struct glib::error::Error">Error</a>&gt;</h4></section></summary><div class="docblock"><p>If the stream is in an error state, returns the <code>GError</code>
+explaining that state.</p>
+<p>Any type of error can be reported here depending on the
+implementation of the media stream.</p>
+<p>A media stream in an error cannot be operated on, calls
+like <a href="trait.MediaStreamExt.html#method.play"><code>play()</code></a> or
+<a href="trait.MediaStreamExt.html#method.seek"><code>seek()</code></a> will not have any effect.</p>
+<p><a href="../struct.MediaStream.html" title="struct gtk4::MediaStream"><code>MediaStream</code></a> itself does not provide a way to unset
+an error, but implementations may provide options. For example,
+a <a href="../struct.MediaFile.html" title="struct gtk4::MediaFile"><code>MediaFile</code></a> will unset errors when a new source is
+set, e.g. with <a href="trait.MediaFileExt.html#method.set_file" title="method gtk4::prelude::MediaFileExt::set_file"><code>MediaFileExt::set_file()</code></a>.</p>
+<h5 id="returns-2"><a href="#returns-2">Returns</a></h5>
+<p><a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="variant core::option::Option::None"><code>None</code></a> if not in an
+error state or the <code>GError</code> of the stream</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.is_loop" class="method"><a class="src rightside" href="../../src/gtk4/auto/media_stream.rs.html#227-233">source</a><h4 class="code-header">fn <a href="#method.is_loop" class="fn">is_loop</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></section></summary><div class="docblock"><p>Returns whether the stream is set to loop.</p>
+<p>See <a href="trait.MediaStreamExt.html#method.set_loop"><code>set_loop()</code></a> for details.</p>
+<h5 id="returns-3"><a href="#returns-3">Returns</a></h5>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>true</code></a> if the stream should loop</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.is_muted" class="method"><a class="src rightside" href="../../src/gtk4/auto/media_stream.rs.html#244-250">source</a><h4 class="code-header">fn <a href="#method.is_muted" class="fn">is_muted</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></section></summary><div class="docblock"><p>Returns whether the audio for the stream is muted.</p>
+<p>See <a href="trait.MediaStreamExt.html#method.set_muted"><code>set_muted()</code></a> for details.</p>
+<h5 id="returns-4"><a href="#returns-4">Returns</a></h5>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>true</code></a> if the stream is muted</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.is_playing" class="method"><a class="src rightside" href="../../src/gtk4/auto/media_stream.rs.html#259-265">source</a><h4 class="code-header">fn <a href="#method.is_playing" class="fn">is_playing</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></section></summary><div class="docblock"><p>Return whether the stream is currently playing.</p>
+<h5 id="returns-5"><a href="#returns-5">Returns</a></h5>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>true</code></a> if the stream is playing</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.timestamp" class="method"><a class="src rightside" href="../../src/gtk4/auto/media_stream.rs.html#274-276">source</a><h4 class="code-header">fn <a href="#method.timestamp" class="fn">timestamp</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i64.html">i64</a></h4></section></summary><div class="docblock"><p>Returns the current presentation timestamp in microseconds.</p>
+<h5 id="returns-6"><a href="#returns-6">Returns</a></h5>
+<p>the timestamp in microseconds</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.volume" class="method"><a class="src rightside" href="../../src/gtk4/auto/media_stream.rs.html#287-289">source</a><h4 class="code-header">fn <a href="#method.volume" class="fn">volume</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a></h4></section></summary><div class="docblock"><p>Returns the volume of the audio for the stream.</p>
+<p>See <a href="trait.MediaStreamExt.html#method.set_volume"><code>set_volume()</code></a> for details.</p>
+<h5 id="returns-7"><a href="#returns-7">Returns</a></h5>
+<p>volume of the stream from 0.0 to 1.0</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.has_audio" class="method"><a class="src rightside" href="../../src/gtk4/auto/media_stream.rs.html#297-303">source</a><h4 class="code-header">fn <a href="#method.has_audio" class="fn">has_audio</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></section></summary><div class="docblock"><p>Returns whether the stream has audio.</p>
+<h5 id="returns-8"><a href="#returns-8">Returns</a></h5>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>true</code></a> if the stream has audio</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.has_video" class="method"><a class="src rightside" href="../../src/gtk4/auto/media_stream.rs.html#311-317">source</a><h4 class="code-header">fn <a href="#method.has_video" class="fn">has_video</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></section></summary><div class="docblock"><p>Returns whether the stream has video.</p>
+<h5 id="returns-9"><a href="#returns-9">Returns</a></h5>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>true</code></a> if the stream has video</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.is_prepared" class="method"><a class="src rightside" href="../../src/gtk4/auto/media_stream.rs.html#327-333">source</a><h4 class="code-header">fn <a href="#method.is_prepared" class="fn">is_prepared</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></section></summary><div class="docblock"><p>Returns whether the stream has finished initializing.</p>
+<p>At this point the existence of audio and video is known.</p>
+<h5 id="returns-10"><a href="#returns-10">Returns</a></h5>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>true</code></a> if the stream is prepared</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.is_seekable" class="method"><a class="src rightside" href="../../src/gtk4/auto/media_stream.rs.html#349-355">source</a><h4 class="code-header">fn <a href="#method.is_seekable" class="fn">is_seekable</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></section></summary><div class="docblock"><p>Checks if a stream may be seekable.</p>
+<p>This is meant to be a hint. Streams may not allow seeking even if
+this function returns <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>true</code></a>. However, if this function returns
+<a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>false</code></a>, streams are guaranteed to not be seekable and user interfaces
+may hide controls that allow seeking.</p>
+<p>It is allowed to call <a href="trait.MediaStreamExt.html#method.seek"><code>seek()</code></a> on a non-seekable
+stream, though it will not do anything.</p>
+<h5 id="returns-11"><a href="#returns-11">Returns</a></h5>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>true</code></a> if the stream may support seeking</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.is_seeking" class="method"><a class="src rightside" href="../../src/gtk4/auto/media_stream.rs.html#363-369">source</a><h4 class="code-header">fn <a href="#method.is_seeking" class="fn">is_seeking</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></section></summary><div class="docblock"><p>Checks if there is currently a seek operation going on.</p>
+<h5 id="returns-12"><a href="#returns-12">Returns</a></h5>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>true</code></a> if a seek operation is ongoing.</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.pause" class="method"><a class="src rightside" href="../../src/gtk4/auto/media_stream.rs.html#375-379">source</a><h4 class="code-header">fn <a href="#method.pause" class="fn">pause</a>(&amp;self)</h4></section></summary><div class="docblock"><p>Pauses playback of the stream.</p>
+<p>If the stream is not playing, do nothing.</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.play" class="method"><a class="src rightside" href="../../src/gtk4/auto/media_stream.rs.html#385-389">source</a><h4 class="code-header">fn <a href="#method.play" class="fn">play</a>(&amp;self)</h4></section></summary><div class="docblock"><p>Starts playing the stream.</p>
+<p>If the stream is in error or already playing, do nothing.</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.prepared" class="method"><a class="src rightside" href="../../src/gtk4/auto/media_stream.rs.html#407-417">source</a><h4 class="code-header">fn <a href="#method.prepared" class="fn">prepared</a>(
+    &amp;self,
+    has_audio: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>,
+    has_video: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>,
+    seekable: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>,
+    duration: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i64.html">i64</a>
+)</h4></section></summary><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.4</span></div></span><div class="docblock"><p>Same as gtk_media_stream_stream_prepared().</p>
+<h5 id="deprecated-since-44-1"><a href="#deprecated-since-44-1">Deprecated since 4.4</a></h5>
+<p>Use <a href="trait.MediaStreamExt.html#method.stream_prepared"><code>stream_prepared()</code></a> instead.</p>
+<h6 id="has_audio"><a href="#has_audio"><code>has_audio</code></a></h6>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>true</code></a> if the stream should advertise audio support</p>
+<h6 id="has_video"><a href="#has_video"><code>has_video</code></a></h6>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>true</code></a> if the stream should advertise video support</p>
+<h6 id="seekable"><a href="#seekable"><code>seekable</code></a></h6>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>true</code></a> if the stream should advertise seekability</p>
+<h6 id="duration"><a href="#duration"><code>duration</code></a></h6>
+<p>The duration of the stream or 0 if unknown</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.realize" class="method"><a class="src rightside" href="../../src/gtk4/auto/media_stream.rs.html#438-445">source</a><h4 class="code-header">fn <a href="#method.realize" class="fn">realize</a>(&amp;self, surface: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../../gdk4/auto/surface/struct.Surface.html" title="struct gdk4::auto::surface::Surface">Surface</a>&gt;)</h4></section></summary><div class="docblock"><p>Called by users to attach the media stream to a <a href="../../gdk4/auto/surface/struct.Surface.html" title="struct gdk4::auto::surface::Surface"><code>gdk::Surface</code></a> they manage.</p>
+<p>The stream can then access the resources of @surface for its
+rendering purposes. In particular, media streams might want to
+create a <a href="../../gdk4/auto/gl_context/struct.GLContext.html" title="struct gdk4::auto::gl_context::GLContext"><code>gdk::GLContext</code></a> or sync to the <a href="../../gdk4/auto/frame_clock/struct.FrameClock.html" title="struct gdk4::auto::frame_clock::FrameClock"><code>gdk::FrameClock</code></a>.</p>
+<p>Whoever calls this function is responsible for calling
+<a href="trait.MediaStreamExt.html#method.unrealize"><code>unrealize()</code></a> before either the stream
+or @surface get destroyed.</p>
+<p>Multiple calls to this function may happen from different
+users of the video, even with the same @surface. Each of these
+calls must be followed by its own call to
+<a href="trait.MediaStreamExt.html#method.unrealize"><code>unrealize()</code></a>.</p>
+<p>It is not required to call this function to make a media stream work.</p>
+<h6 id="surface"><a href="#surface"><code>surface</code></a></h6>
+<p>a <a href="../../gdk4/auto/surface/struct.Surface.html" title="struct gdk4::auto::surface::Surface"><code>gdk::Surface</code></a></p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.seek" class="method"><a class="src rightside" href="../../src/gtk4/auto/media_stream.rs.html#461-465">source</a><h4 class="code-header">fn <a href="#method.seek" class="fn">seek</a>(&amp;self, timestamp: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i64.html">i64</a>)</h4></section></summary><div class="docblock"><p>Start a seek operation on @self to @timestamp.</p>
+<p>If @timestamp is out of range, it will be clamped.</p>
+<p>Seek operations may not finish instantly. While a
+seek operation is in process, the <a href="../struct.MediaStream.html#seeking" title="struct gtk4::MediaStream"><code>seeking</code></a>
+property will be set.</p>
+<p>When calling gtk_media_stream_seek() during an
+ongoing seek operation, the new seek will override
+any pending seek.</p>
+<h6 id="timestamp"><a href="#timestamp"><code>timestamp</code></a></h6>
+<p>timestamp to seek to.</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.seek_failed" class="method"><a class="src rightside" href="../../src/gtk4/auto/media_stream.rs.html#475-479">source</a><h4 class="code-header">fn <a href="#method.seek_failed" class="fn">seek_failed</a>(&amp;self)</h4></section></summary><div class="docblock"><p>Ends a seek operation started via GtkMediaStream.seek() as a failure.</p>
+<p>This will not cause an error on the stream and will assume that
+playback continues as if no seek had happened.</p>
+<p>See <a href="trait.MediaStreamExt.html#method.seek_success"><code>seek_success()</code></a> for the other way of
+ending a seek.</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.seek_success" class="method"><a class="src rightside" href="../../src/gtk4/auto/media_stream.rs.html#489-493">source</a><h4 class="code-header">fn <a href="#method.seek_success" class="fn">seek_success</a>(&amp;self)</h4></section></summary><div class="docblock"><p>Ends a seek operation started via GtkMediaStream.seek() successfully.</p>
+<p>This function will unset the GtkMediaStream:ended property
+if it was set.</p>
+<p>See <a href="trait.MediaStreamExt.html#method.seek_failed"><code>seek_failed()</code></a> for the other way of
+ending a seek.</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.set_loop" class="method"><a class="src rightside" href="../../src/gtk4/auto/media_stream.rs.html#506-510">source</a><h4 class="code-header">fn <a href="#method.set_loop" class="fn">set_loop</a>(&amp;self, loop_: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>)</h4></section></summary><div class="docblock"><p>Sets whether the stream should loop.</p>
+<p>In this case, it will attempt to restart playback
+from the beginning instead of stopping at the end.</p>
+<p>Not all streams may support looping, in particular
+non-seekable streams. Those streams will ignore the
+loop setting and just end.</p>
+<h6 id="loop_"><a href="#loop_"><code>loop_</code></a></h6>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>true</code></a> if the stream should loop</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.set_muted" class="method"><a class="src rightside" href="../../src/gtk4/auto/media_stream.rs.html#523-527">source</a><h4 class="code-header">fn <a href="#method.set_muted" class="fn">set_muted</a>(&amp;self, muted: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>)</h4></section></summary><div class="docblock"><p>Sets whether the audio stream should be muted.</p>
+<p>Muting a stream will cause no audio to be played, but it
+does not modify the volume. This means that muting and
+then unmuting the stream will restore the volume settings.</p>
+<p>If the stream has no audio, calling this function will
+still work but it will not have an audible effect.</p>
+<h6 id="muted"><a href="#muted"><code>muted</code></a></h6>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>true</code></a> if the stream should be muted</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.set_playing" class="method"><a class="src rightside" href="../../src/gtk4/auto/media_stream.rs.html#533-537">source</a><h4 class="code-header">fn <a href="#method.set_playing" class="fn">set_playing</a>(&amp;self, playing: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>)</h4></section></summary><div class="docblock"><p>Starts or pauses playback of the stream.</p>
+<h6 id="playing"><a href="#playing"><code>playing</code></a></h6>
+<p>whether to start or pause playback</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.set_volume" class="method"><a class="src rightside" href="../../src/gtk4/auto/media_stream.rs.html#553-557">source</a><h4 class="code-header">fn <a href="#method.set_volume" class="fn">set_volume</a>(&amp;self, volume: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>)</h4></section></summary><div class="docblock"><p>Sets the volume of the audio stream.</p>
+<p>This function call will work even if the stream is muted.</p>
+<p>The given @volume should range from 0.0 for silence to 1.0
+for as loud as possible. Values outside of this range will
+be clamped to the nearest value.</p>
+<p>If the stream has no audio or is muted, calling this function
+will still work but it will not have an immediate audible effect.
+When the stream is unmuted, the new volume setting will take effect.</p>
+<h6 id="volume"><a href="#volume"><code>volume</code></a></h6>
+<p>New volume of the stream from 0.0 to 1.0</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.stream_ended" class="method"><a class="src rightside" href="../../src/gtk4/auto/media_stream.rs.html#568-572">source</a><h4 class="code-header">fn <a href="#method.stream_ended" class="fn">stream_ended</a>(&amp;self)</h4></section></summary><span class="item-info"><div class="stab portability">Available on <strong>crate feature <code>v4_4</code></strong> only.</div></span><div class="docblock"><p>Pauses the media stream and marks it as ended.</p>
+<p>This is a hint only, calls to <a href="trait.MediaStreamExt.html#method.play"><code>play()</code></a>
+may still happen.</p>
+<p>The media stream must be prepared when this function is called.</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.stream_prepared" class="method"><a class="src rightside" href="../../src/gtk4/auto/media_stream.rs.html#595-605">source</a><h4 class="code-header">fn <a href="#method.stream_prepared" class="fn">stream_prepared</a>(
+    &amp;self,
+    has_audio: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>,
+    has_video: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>,
+    seekable: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>,
+    duration: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i64.html">i64</a>
+)</h4></section></summary><span class="item-info"><div class="stab portability">Available on <strong>crate feature <code>v4_4</code></strong> only.</div></span><div class="docblock"><p>Called by <a href="../struct.MediaStream.html" title="struct gtk4::MediaStream"><code>MediaStream</code></a> implementations to advertise the stream
+being ready to play and providing details about the stream.</p>
+<p>Note that the arguments are hints. If the stream implementation
+cannot determine the correct values, it is better to err on the
+side of caution and return <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>true</code></a>. User interfaces will use those
+values to determine what controls to show.</p>
+<p>This function may not be called again until the stream has been
+reset via <a href="trait.MediaStreamExt.html#method.stream_unprepared"><code>stream_unprepared()</code></a>.</p>
+<h6 id="has_audio-1"><a href="#has_audio-1"><code>has_audio</code></a></h6>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>true</code></a> if the stream should advertise audio support</p>
+<h6 id="has_video-1"><a href="#has_video-1"><code>has_video</code></a></h6>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>true</code></a> if the stream should advertise video support</p>
+<h6 id="seekable-1"><a href="#seekable-1"><code>seekable</code></a></h6>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>true</code></a> if the stream should advertise seekability</p>
+<h6 id="duration-1"><a href="#duration-1"><code>duration</code></a></h6>
+<p>The duration of the stream or 0 if unknown</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.stream_unprepared" class="method"><a class="src rightside" href="../../src/gtk4/auto/media_stream.rs.html#615-619">source</a><h4 class="code-header">fn <a href="#method.stream_unprepared" class="fn">stream_unprepared</a>(&amp;self)</h4></section></summary><span class="item-info"><div class="stab portability">Available on <strong>crate feature <code>v4_4</code></strong> only.</div></span><div class="docblock"><p>Resets a given media stream implementation.</p>
+<p><a href="trait.MediaStreamExt.html#method.stream_prepared"><code>stream_prepared()</code></a> can then be called again.</p>
+<p>This function will also reset any error state the stream was in.</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.unprepared" class="method"><a class="src rightside" href="../../src/gtk4/auto/media_stream.rs.html#629-633">source</a><h4 class="code-header">fn <a href="#method.unprepared" class="fn">unprepared</a>(&amp;self)</h4></section></summary><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.4</span></div></span><div class="docblock"><p>Same as gtk_media_stream_stream_unprepared().</p>
+<h5 id="deprecated-since-44-2"><a href="#deprecated-since-44-2">Deprecated since 4.4</a></h5>
+<p>Use <a href="trait.MediaStreamExt.html#method.stream_unprepared"><code>stream_unprepared()</code></a> instead.</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.unrealize" class="method"><a class="src rightside" href="../../src/gtk4/auto/media_stream.rs.html#642-649">source</a><h4 class="code-header">fn <a href="#method.unrealize" class="fn">unrealize</a>(&amp;self, surface: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../../gdk4/auto/surface/struct.Surface.html" title="struct gdk4::auto::surface::Surface">Surface</a>&gt;)</h4></section></summary><div class="docblock"><p>Undoes a previous call to gtk_media_stream_realize().</p>
+<p>This causes the stream to release all resources it had
+allocated from @surface.</p>
+<h6 id="surface-1"><a href="#surface-1"><code>surface</code></a></h6>
+<p>the <a href="../../gdk4/auto/surface/struct.Surface.html" title="struct gdk4::auto::surface::Surface"><code>gdk::Surface</code></a> the stream was realized with</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.update" class="method"><a class="src rightside" href="../../src/gtk4/auto/media_stream.rs.html#661-665">source</a><h4 class="code-header">fn <a href="#method.update" class="fn">update</a>(&amp;self, timestamp: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i64.html">i64</a>)</h4></section></summary><div class="docblock"><p>Media stream implementations should regularly call this
+function to update the timestamp reported by the stream.</p>
+<p>It is up to implementations to call this at the frequency
+they deem appropriate.</p>
+<p>The media stream must be prepared when this function is called.</p>
+<h6 id="timestamp-1"><a href="#timestamp-1"><code>timestamp</code></a></h6>
+<p>the new timestamp</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.set_prepared" class="method"><a class="src rightside" href="../../src/gtk4/auto/media_stream.rs.html#669-671">source</a><h4 class="code-header">fn <a href="#method.set_prepared" class="fn">set_prepared</a>(&amp;self, prepared: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>)</h4></section></summary><div class="docblock"><p>Whether the stream has finished initializing and existence of
+audio and video is known.</p>
+</div></details><section id="method.connect_duration_notify" class="method"><a class="src rightside" href="../../src/gtk4/auto/media_stream.rs.html#674-697">source</a><h4 class="code-header">fn <a href="#method.connect_duration_notify" class="fn">connect_duration_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
+    &amp;self,
+    f: F
+) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><section id="method.connect_ended_notify" class="method"><a class="src rightside" href="../../src/gtk4/auto/media_stream.rs.html#700-720">source</a><h4 class="code-header">fn <a href="#method.connect_ended_notify" class="fn">connect_ended_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(&amp;self, f: F) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><section id="method.connect_error_notify" class="method"><a class="src rightside" href="../../src/gtk4/auto/media_stream.rs.html#723-743">source</a><h4 class="code-header">fn <a href="#method.connect_error_notify" class="fn">connect_error_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(&amp;self, f: F) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><section id="method.connect_has_audio_notify" class="method"><a class="src rightside" href="../../src/gtk4/auto/media_stream.rs.html#746-769">source</a><h4 class="code-header">fn <a href="#method.connect_has_audio_notify" class="fn">connect_has_audio_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
+    &amp;self,
+    f: F
+) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><section id="method.connect_has_video_notify" class="method"><a class="src rightside" href="../../src/gtk4/auto/media_stream.rs.html#772-795">source</a><h4 class="code-header">fn <a href="#method.connect_has_video_notify" class="fn">connect_has_video_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
+    &amp;self,
+    f: F
+) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><section id="method.connect_loop_notify" class="method"><a class="src rightside" href="../../src/gtk4/auto/media_stream.rs.html#798-818">source</a><h4 class="code-header">fn <a href="#method.connect_loop_notify" class="fn">connect_loop_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(&amp;self, f: F) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><section id="method.connect_muted_notify" class="method"><a class="src rightside" href="../../src/gtk4/auto/media_stream.rs.html#821-841">source</a><h4 class="code-header">fn <a href="#method.connect_muted_notify" class="fn">connect_muted_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(&amp;self, f: F) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><section id="method.connect_playing_notify" class="method"><a class="src rightside" href="../../src/gtk4/auto/media_stream.rs.html#844-864">source</a><h4 class="code-header">fn <a href="#method.connect_playing_notify" class="fn">connect_playing_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
+    &amp;self,
+    f: F
+) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><section id="method.connect_prepared_notify" class="method"><a class="src rightside" href="../../src/gtk4/auto/media_stream.rs.html#867-890">source</a><h4 class="code-header">fn <a href="#method.connect_prepared_notify" class="fn">connect_prepared_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
+    &amp;self,
+    f: F
+) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><section id="method.connect_seekable_notify" class="method"><a class="src rightside" href="../../src/gtk4/auto/media_stream.rs.html#893-916">source</a><h4 class="code-header">fn <a href="#method.connect_seekable_notify" class="fn">connect_seekable_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
+    &amp;self,
+    f: F
+) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><section id="method.connect_seeking_notify" class="method"><a class="src rightside" href="../../src/gtk4/auto/media_stream.rs.html#919-939">source</a><h4 class="code-header">fn <a href="#method.connect_seeking_notify" class="fn">connect_seeking_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
+    &amp;self,
+    f: F
+) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><section id="method.connect_timestamp_notify" class="method"><a class="src rightside" href="../../src/gtk4/auto/media_stream.rs.html#942-965">source</a><h4 class="code-header">fn <a href="#method.connect_timestamp_notify" class="fn">connect_timestamp_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
+    &amp;self,
+    f: F
+) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><section id="method.connect_volume_notify" class="method"><a class="src rightside" href="../../src/gtk4/auto/media_stream.rs.html#968-988">source</a><h4 class="code-header">fn <a href="#method.connect_volume_notify" class="fn">connect_volume_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(&amp;self, f: F) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section></div><h2 id="implementors" class="small-section-header">Implementors<a href="#implementors" class="anchor">§</a></h2><div id="implementors-list"><section id="impl-MediaStreamExt-for-O" class="impl"><a class="src rightside" href="../../src/gtk4/auto/media_stream.rs.html#991">source</a><a href="#impl-MediaStreamExt-for-O" class="anchor">§</a><h3 class="code-header">impl&lt;O: <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.MediaStream.html" title="struct gtk4::MediaStream">MediaStream</a>&gt;&gt; <a class="trait" href="trait.MediaStreamExt.html" title="trait gtk4::prelude::MediaStreamExt">MediaStreamExt</a> for O</h3></section></div><script src="../../implementors/gtk4/auto/media_stream/trait.MediaStreamExt.js" async></script></section></div></main></body></html>

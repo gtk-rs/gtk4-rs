@@ -1,0 +1,124 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Trait containing all `struct@AppLaunchContext` methods."><title>GdkAppLaunchContextExt in gdk4::prelude - Rust</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-46f98efaafac5295.ttf.woff2,FiraSans-Regular-018c141bf0843ffd.woff2,FiraSans-Medium-8f9a781e4970d388.woff2,SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2,SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-081576b923113409.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="gdk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.79.0-nightly (3a36386dc 2024-04-25)" data-channel="nightly" data-search-js="search-bf21c90c8c1d92b1.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../static.files/storage-e32f0c247825364d.js"></script><script defer src="sidebar-items.js"></script><script defer src="../../static.files/main-20a3ad099b048cf2.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-09095024cf37855e.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc trait"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
+
+    function checkDocsLatestStable() {
+        function popup(msg, url) { return `
+            <style scoped="scoped">
+                .popup {
+                    max-width: 16em;
+                    background-color: #fff;
+                    position: fixed;
+                    z-index: 1;
+                    margin-left: auto;
+                    bottom: 1em;
+                    right: 1em;
+                    border-radius: 5px;
+                    box-shadow: 1px 1px 4px #777;
+                }
+
+                .popup a.version {
+                    color: #e57300;
+                    padding: 0.6em 1em;
+                    display: block;
+                }
+                .popup a.version:hover {
+                    color: #b25900;
+                }
+
+                .popup a.close {
+                    color: white;
+                    background: grey;
+                    border-radius: 99px;
+                    display: inline-block;
+                    width: 19px;
+                    line-height: 19px;
+                    font-weight: bold;
+                    text-align: center;
+                    margin: 0.6em;
+                    float: right;
+                }
+                .popup a.close:hover {
+                    background: black;
+                }
+            </style>
+            <section class="popup" id="gir_docs_popup">
+                <a class="close" href="#" onclick="document.getElementById('gir_docs_popup').remove(); return false">×</a>
+                <a class="version" href="https://gtk-rs.org/gtk4-rs/stable/latest/docs">
+                    ⚠ ${msg}
+                </a>
+            </section>
+        ` };
+
+        if ("0.8" == "master") {
+            document.body.insertAdjacentHTML(
+                'beforeend',
+                popup("This is the development version. Go to latest stable version.", "stable/latest")
+            );
+        } else {
+            fetch('https://gtk-rs.org/gtk4-rs/LATEST_RELEASE_BRANCH')
+                .then(response => response.text())
+                .then(latest_branch => {
+                    if (latest_branch.trim() != "0.8") {
+                        document.body.insertAdjacentHTML(
+                            'beforeend',
+                            popup("This version is outdated. Go to latest version.", "stable/latest")
+                        );
+                    }
+                });
+        }
+    }
+</script>
+
+
+<nav class="mobile-topbar"><button class="sidebar-menu-toggle" title="show sidebar"></button></nav><nav class="sidebar"><div class="sidebar-crate"><h2><a href="../../gdk4/index.html">gdk4</a><span class="version">0.8.2</span></h2></div><h2 class="location"><a href="#">GdkAppLaunchContextExt</a></h2><div class="sidebar-elems"><section><h3><a href="#provided-methods">Provided Methods</a></h3><ul class="block"><li><a href="#method.display">display</a></li><li><a href="#method.set_desktop">set_desktop</a></li><li><a href="#method.set_icon">set_icon</a></li><li><a href="#method.set_icon_name">set_icon_name</a></li><li><a href="#method.set_timestamp">set_timestamp</a></li></ul><h3><a href="#object-safety">Object Safety</a></h3><h3><a href="#implementors">Implementors</a></h3></section><h2><a href="index.html">In gdk4::prelude</a></h2></div></nav><div class="sidebar-resizer"></div><main><div class="width-limiter"><nav class="sub"><form class="search-form"><span></span><div id="sidebar-button" tabindex="-1"><a href="../../gdk4/all.html" title="show sidebar"></a></div><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Type ‘S’ or ‘/’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings">Settings</a></div></form></nav><section id="main-content" class="content"><div class="main-heading"><h1>Trait <a href="../index.html">gdk4</a>::<wbr><a href="index.html">prelude</a>::<wbr><a class="trait" href="#">GdkAppLaunchContextExt</a><button id="copy-path" title="Copy item path to clipboard">Copy item path</button></h1><span class="out-of-band"><a class="src" href="../../src/gdk4/auto/app_launch_context.rs.html#64-159">source</a> · <button id="toggle-all-docs" title="collapse all docs">[<span>&#x2212;</span>]</button></span></div><pre class="rust item-decl"><code>pub trait GdkAppLaunchContextExt: <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.AppLaunchContext.html" title="struct gdk4::AppLaunchContext">AppLaunchContext</a>&gt; + Sealed + 'static {
+    // Provided methods
+    fn <a href="#method.display" class="fn">display</a>(&amp;self) -&gt; <a class="struct" href="../struct.Display.html" title="struct gdk4::Display">Display</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.set_desktop" class="fn">set_desktop</a>(&amp;self, desktop: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.set_icon" class="fn">set_icon</a>(&amp;self, icon: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/gio/auto/icon/struct.Icon.html" title="struct gio::auto::icon::Icon">Icon</a>&gt;&gt;) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.set_icon_name" class="fn">set_icon_name</a>(&amp;self, icon_name: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>&gt;) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.set_timestamp" class="fn">set_timestamp</a>(&amp;self, timestamp: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>) { ... }
+}</code></pre><details class="toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>Trait containing all <a href="../struct.AppLaunchContext.html" title="struct gdk4::AppLaunchContext"><code>AppLaunchContext</code></a> methods.</p>
+<h2 id="implementors-1"><a class="doc-anchor" href="#implementors-1">§</a>Implementors</h2>
+<p><a href="../struct.AppLaunchContext.html" title="struct gdk4::AppLaunchContext"><code>AppLaunchContext</code></a></p>
+</div></details><h2 id="provided-methods" class="section-header">Provided Methods<a href="#provided-methods" class="anchor">§</a></h2><div class="methods"><details class="toggle method-toggle" open><summary><section id="method.display" class="method"><a class="src rightside" href="../../src/gdk4/auto/app_launch_context.rs.html#72-78">source</a><h4 class="code-header">fn <a href="#method.display" class="fn">display</a>(&amp;self) -&gt; <a class="struct" href="../struct.Display.html" title="struct gdk4::Display">Display</a></h4></section></summary><div class="docblock"><p>Gets the <a href="../struct.Display.html" title="struct gdk4::Display"><code>Display</code></a> that @self is for.</p>
+<h5 id="returns"><a class="doc-anchor" href="#returns">§</a>Returns</h5>
+<p>the display of @self</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.set_desktop" class="method"><a class="src rightside" href="../../src/gdk4/auto/app_launch_context.rs.html#96-100">source</a><h4 class="code-header">fn <a href="#method.set_desktop" class="fn">set_desktop</a>(&amp;self, desktop: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>)</h4></section></summary><div class="docblock"><p>Sets the workspace on which applications will be launched.</p>
+<p>This only works when running under a window manager that
+supports multiple workspaces, as described in the
+<a href="http://www.freedesktop.org/Standards/wm-spec">Extended Window Manager Hints</a>.
+Specifically this sets the <code>_NET_WM_DESKTOP</code> property described
+in that spec.</p>
+<p>This only works when using the X11 backend.</p>
+<p>When the workspace is not specified or @desktop is set to -1,
+it is up to the window manager to pick one, typically it will
+be the current workspace.</p>
+<h6 id="desktop"><a class="doc-anchor" href="#desktop">§</a><code>desktop</code></h6>
+<p>the number of a workspace, or -1</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.set_icon" class="method"><a class="src rightside" href="../../src/gdk4/auto/app_launch_context.rs.html#112-119">source</a><h4 class="code-header">fn <a href="#method.set_icon" class="fn">set_icon</a>(&amp;self, icon: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/gio/auto/icon/struct.Icon.html" title="struct gio::auto::icon::Icon">Icon</a>&gt;&gt;)</h4></section></summary><div class="docblock"><p>Sets the icon for applications that are launched with this
+context.</p>
+<p>Window Managers can use this information when displaying startup
+notification.</p>
+<p>See also <a href="trait.GdkAppLaunchContextExt.html#method.set_icon_name"><code>set_icon_name()</code></a>.</p>
+<h6 id="icon"><a class="doc-anchor" href="#icon">§</a><code>icon</code></h6>
+<p>a <code>GIcon</code></p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.set_icon_name" class="method"><a class="src rightside" href="../../src/gdk4/auto/app_launch_context.rs.html#133-140">source</a><h4 class="code-header">fn <a href="#method.set_icon_name" class="fn">set_icon_name</a>(&amp;self, icon_name: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>&gt;)</h4></section></summary><div class="docblock"><p>Sets the icon for applications that are launched with this context.</p>
+<p>The @icon_name will be interpreted in the same way as the Icon field
+in desktop files. See also <a href="trait.GdkAppLaunchContextExt.html#method.set_icon"><code>set_icon()</code></a>.</p>
+<p>If both @icon and @icon_name are set, the @icon_name takes priority.
+If neither @icon or @icon_name is set, the icon is taken from either
+the file that is passed to launched application or from the <code>GAppInfo</code>
+for the launched application itself.</p>
+<h6 id="icon_name"><a class="doc-anchor" href="#icon_name">§</a><code>icon_name</code></h6>
+<p>an icon name</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.set_timestamp" class="method"><a class="src rightside" href="../../src/gdk4/auto/app_launch_context.rs.html#154-158">source</a><h4 class="code-header">fn <a href="#method.set_timestamp" class="fn">set_timestamp</a>(&amp;self, timestamp: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>)</h4></section></summary><div class="docblock"><p>Sets the timestamp of @self.</p>
+<p>The timestamp should ideally be taken from the event that
+triggered the launch.</p>
+<p>Window managers can use this information to avoid moving the
+focus to the newly launched application when the user is busy
+typing in another window. This is also known as ‘focus stealing
+prevention’.</p>
+<h6 id="timestamp"><a class="doc-anchor" href="#timestamp">§</a><code>timestamp</code></h6>
+<p>a timestamp</p>
+</div></details></div><h2 id="object-safety" class="section-header">Object Safety<a href="#object-safety" class="anchor">§</a></h2><div class="object-safety-info">This trait is <b>not</b> <a href="https://doc.rust-lang.org/nightly/reference/items/traits.html#object-safety">object safe</a>.</div><h2 id="implementors" class="section-header">Implementors<a href="#implementors" class="anchor">§</a></h2><div id="implementors-list"><section id="impl-GdkAppLaunchContextExt-for-O" class="impl"><a class="src rightside" href="../../src/gdk4/auto/app_launch_context.rs.html#161">source</a><a href="#impl-GdkAppLaunchContextExt-for-O" class="anchor">§</a><h3 class="code-header">impl&lt;O: <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.AppLaunchContext.html" title="struct gdk4::AppLaunchContext">AppLaunchContext</a>&gt;&gt; <a class="trait" href="trait.GdkAppLaunchContextExt.html" title="trait gdk4::prelude::GdkAppLaunchContextExt">GdkAppLaunchContextExt</a> for O</h3></section></div><script src="../../trait.impl/gdk4/auto/app_launch_context/trait.GdkAppLaunchContextExt.js" async></script></section></div></main></body></html>

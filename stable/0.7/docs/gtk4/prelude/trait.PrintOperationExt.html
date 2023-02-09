@@ -1,0 +1,749 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Trait containing all `struct@PrintOperation` methods."><title>PrintOperationExt in gtk4::prelude - Rust</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Bold-a2c9cd1067f8b328.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-fa3bb1812debf86c.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.74.0-nightly (e4133ba9b 2023-09-22)" data-channel="nightly" data-search-js="search-8be46b629f5f14a8.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="sidebar-items.js"></script><script defer src="../../static.files/main-c5bd66d33317d69f.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc trait"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
+
+    function checkDocsLatestStable() {
+        function popup(msg, url) { return `
+            <style scoped="scoped">
+                .popup {
+                    max-width: 16em;
+                    background-color: #fff;
+                    position: fixed;
+                    z-index: 1;
+                    margin-left: auto;
+                    bottom: 1em;
+                    right: 1em;
+                    border-radius: 5px;
+                    box-shadow: 1px 1px 4px #777;
+                }
+
+                .popup a.version {
+                    color: #e57300;
+                    padding: 0.6em 1em;
+                    display: block;
+                }
+                .popup a.version:hover {
+                    color: #b25900;
+                }
+
+                .popup a.close {
+                    color: white;
+                    background: grey;
+                    border-radius: 99px;
+                    display: inline-block;
+                    width: 19px;
+                    line-height: 19px;
+                    font-weight: bold;
+                    text-align: center;
+                    margin: 0.6em;
+                    float: right;
+                }
+                .popup a.close:hover {
+                    background: black;
+                }
+            </style>
+            <section class="popup" id="gir_docs_popup">
+                <a class="close" href="#" onclick="document.getElementById('gir_docs_popup').remove(); return false">×</a>
+                <a class="version" href="https://gtk-rs.org/gtk4-rs/stable/latest/docs">
+                    ⚠ ${msg}
+                </a>
+            </section>
+        ` };
+
+        if ("0.7" == "master") {
+            document.body.insertAdjacentHTML(
+                'beforeend',
+                popup("This is the development version. Go to latest stable version.", "stable/latest")
+            );
+        } else {
+            fetch('https://gtk-rs.org/gtk4-rs/LATEST_RELEASE_BRANCH')
+                .then(response => response.text())
+                .then(latest_branch => {
+                    if (latest_branch.trim() != "0.7") {
+                        document.body.insertAdjacentHTML(
+                            'beforeend',
+                            popup("This version is outdated. Go to latest version.", "stable/latest")
+                        );
+                    }
+                });
+        }
+    }
+</script>
+
+
+<nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="logo-container" href="../../gtk4/index.html"><img class="rust-logo" src="../../static.files/rust-logo-151179464ae7ed46.svg" alt="logo"></a></nav><nav class="sidebar"><a class="logo-container" href="../../gtk4/index.html"><img class="rust-logo" src="../../static.files/rust-logo-151179464ae7ed46.svg" alt="logo"></a><h2 class="location"><a href="#">PrintOperationExt</a></h2><div class="sidebar-elems"><section><h3><a href="#provided-methods">Provided Methods</a></h3><ul class="block"><li><a href="#method.allows_async">allows_async</a></li><li><a href="#method.cancel">cancel</a></li><li><a href="#method.connect_allow_async_notify">connect_allow_async_notify</a></li><li><a href="#method.connect_begin_print">connect_begin_print</a></li><li><a href="#method.connect_create_custom_widget">connect_create_custom_widget</a></li><li><a href="#method.connect_current_page_notify">connect_current_page_notify</a></li><li><a href="#method.connect_custom_tab_label_notify">connect_custom_tab_label_notify</a></li><li><a href="#method.connect_custom_widget_apply">connect_custom_widget_apply</a></li><li><a href="#method.connect_default_page_setup_notify">connect_default_page_setup_notify</a></li><li><a href="#method.connect_done">connect_done</a></li><li><a href="#method.connect_draw_page">connect_draw_page</a></li><li><a href="#method.connect_embed_page_setup_notify">connect_embed_page_setup_notify</a></li><li><a href="#method.connect_end_print">connect_end_print</a></li><li><a href="#method.connect_export_filename_notify">connect_export_filename_notify</a></li><li><a href="#method.connect_has_selection_notify">connect_has_selection_notify</a></li><li><a href="#method.connect_job_name_notify">connect_job_name_notify</a></li><li><a href="#method.connect_n_pages_notify">connect_n_pages_notify</a></li><li><a href="#method.connect_n_pages_to_print_notify">connect_n_pages_to_print_notify</a></li><li><a href="#method.connect_paginate">connect_paginate</a></li><li><a href="#method.connect_preview">connect_preview</a></li><li><a href="#method.connect_print_settings_notify">connect_print_settings_notify</a></li><li><a href="#method.connect_request_page_setup">connect_request_page_setup</a></li><li><a href="#method.connect_show_progress_notify">connect_show_progress_notify</a></li><li><a href="#method.connect_status_changed">connect_status_changed</a></li><li><a href="#method.connect_status_notify">connect_status_notify</a></li><li><a href="#method.connect_status_string_notify">connect_status_string_notify</a></li><li><a href="#method.connect_support_selection_notify">connect_support_selection_notify</a></li><li><a href="#method.connect_track_print_status_notify">connect_track_print_status_notify</a></li><li><a href="#method.connect_unit_notify">connect_unit_notify</a></li><li><a href="#method.connect_update_custom_widget">connect_update_custom_widget</a></li><li><a href="#method.connect_use_full_page_notify">connect_use_full_page_notify</a></li><li><a href="#method.current_page">current_page</a></li><li><a href="#method.custom_tab_label">custom_tab_label</a></li><li><a href="#method.default_page_setup">default_page_setup</a></li><li><a href="#method.draw_page_finish">draw_page_finish</a></li><li><a href="#method.embeds_page_setup">embeds_page_setup</a></li><li><a href="#method.export_filename">export_filename</a></li><li><a href="#method.has_selection">has_selection</a></li><li><a href="#method.is_finished">is_finished</a></li><li><a href="#method.job_name">job_name</a></li><li><a href="#method.n_pages">n_pages</a></li><li><a href="#method.n_pages_to_print">n_pages_to_print</a></li><li><a href="#method.print_settings">print_settings</a></li><li><a href="#method.run">run</a></li><li><a href="#method.set_allow_async">set_allow_async</a></li><li><a href="#method.set_current_page">set_current_page</a></li><li><a href="#method.set_custom_tab_label">set_custom_tab_label</a></li><li><a href="#method.set_default_page_setup">set_default_page_setup</a></li><li><a href="#method.set_defer_drawing">set_defer_drawing</a></li><li><a href="#method.set_embed_page_setup">set_embed_page_setup</a></li><li><a href="#method.set_export_filename">set_export_filename</a></li><li><a href="#method.set_has_selection">set_has_selection</a></li><li><a href="#method.set_job_name">set_job_name</a></li><li><a href="#method.set_n_pages">set_n_pages</a></li><li><a href="#method.set_print_settings">set_print_settings</a></li><li><a href="#method.set_show_progress">set_show_progress</a></li><li><a href="#method.set_support_selection">set_support_selection</a></li><li><a href="#method.set_track_print_status">set_track_print_status</a></li><li><a href="#method.set_unit">set_unit</a></li><li><a href="#method.set_use_full_page">set_use_full_page</a></li><li><a href="#method.shows_progress">shows_progress</a></li><li><a href="#method.status">status</a></li><li><a href="#method.status_string">status_string</a></li><li><a href="#method.supports_selection">supports_selection</a></li><li><a href="#method.tracks_print_status">tracks_print_status</a></li><li><a href="#method.unit">unit</a></li><li><a href="#method.uses_full_page">uses_full_page</a></li></ul><h3><a href="#implementors">Implementors</a></h3></section><h2><a href="index.html">In gtk4::prelude</a></h2></div></nav><main><div class="width-limiter"><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="main-heading"><h1>Trait <a href="../index.html">gtk4</a>::<wbr><a href="index.html">prelude</a>::<wbr><a class="trait" href="#">PrintOperationExt</a><button id="copy-path" title="Copy item path to clipboard"><img src="../../static.files/clipboard-7571035ce49a181d.svg" width="19" height="18" alt="Copy item path"></button></h1><span class="out-of-band"><a class="src" href="../../src/gtk4/auto/print_operation.rs.html#754-2412">source</a> · <button id="toggle-all-docs" title="collapse all docs">[<span>&#x2212;</span>]</button></span></div><pre class="rust item-decl"><code>pub trait PrintOperationExt: <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.PrintOperation.html" title="struct gtk4::PrintOperation">PrintOperation</a>&gt; + Sealed + 'static {
+<details class="toggle type-contents-toggle"><summary class="hideme"><span>Show 67 methods</span></summary>    // Provided methods
+    fn <a href="#method.cancel" class="fn">cancel</a>(&amp;self) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.draw_page_finish" class="fn">draw_page_finish</a>(&amp;self) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.default_page_setup" class="fn">default_page_setup</a>(&amp;self) -&gt; <a class="struct" href="../struct.PageSetup.html" title="struct gtk4::PageSetup">PageSetup</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.embeds_page_setup" class="fn">embeds_page_setup</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.has_selection" class="fn">has_selection</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.n_pages_to_print" class="fn">n_pages_to_print</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.print_settings" class="fn">print_settings</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../struct.PrintSettings.html" title="struct gtk4::PrintSettings">PrintSettings</a>&gt; { ... }
+<span class="item-spacer"></span>    fn <a href="#method.status" class="fn">status</a>(&amp;self) -&gt; <a class="enum" href="../enum.PrintStatus.html" title="enum gtk4::PrintStatus">PrintStatus</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.status_string" class="fn">status_string</a>(&amp;self) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/gstring/struct.GString.html" title="struct glib::gstring::GString">GString</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.supports_selection" class="fn">supports_selection</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.is_finished" class="fn">is_finished</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.run" class="fn">run</a>(
+        &amp;self,
+        action: <a class="enum" href="../enum.PrintOperationAction.html" title="enum gtk4::PrintOperationAction">PrintOperationAction</a>,
+        parent: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Window.html" title="struct gtk4::Window">Window</a>&gt;&gt;
+    ) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="enum" href="../enum.PrintOperationResult.html" title="enum gtk4::PrintOperationResult">PrintOperationResult</a>, <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/error/struct.Error.html" title="struct glib::error::Error">Error</a>&gt; { ... }
+<span class="item-spacer"></span>    fn <a href="#method.set_allow_async" class="fn">set_allow_async</a>(&amp;self, allow_async: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.set_current_page" class="fn">set_current_page</a>(&amp;self, current_page: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.set_custom_tab_label" class="fn">set_custom_tab_label</a>(&amp;self, label: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>&gt;) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.set_default_page_setup" class="fn">set_default_page_setup</a>(&amp;self, default_page_setup: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;<a class="struct" href="../struct.PageSetup.html" title="struct gtk4::PageSetup">PageSetup</a>&gt;) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.set_defer_drawing" class="fn">set_defer_drawing</a>(&amp;self) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.set_embed_page_setup" class="fn">set_embed_page_setup</a>(&amp;self, embed: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.set_export_filename" class="fn">set_export_filename</a>(&amp;self, filename: impl <a class="trait" href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html" title="trait core::convert::AsRef">AsRef</a>&lt;<a class="struct" href="https://doc.rust-lang.org/nightly/std/path/struct.Path.html" title="struct std::path::Path">Path</a>&gt;) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.set_has_selection" class="fn">set_has_selection</a>(&amp;self, has_selection: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.set_job_name" class="fn">set_job_name</a>(&amp;self, job_name: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.set_n_pages" class="fn">set_n_pages</a>(&amp;self, n_pages: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.set_print_settings" class="fn">set_print_settings</a>(&amp;self, print_settings: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;<a class="struct" href="../struct.PrintSettings.html" title="struct gtk4::PrintSettings">PrintSettings</a>&gt;) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.set_show_progress" class="fn">set_show_progress</a>(&amp;self, show_progress: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.set_support_selection" class="fn">set_support_selection</a>(&amp;self, support_selection: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.set_track_print_status" class="fn">set_track_print_status</a>(&amp;self, track_status: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.set_unit" class="fn">set_unit</a>(&amp;self, unit: <a class="enum" href="../enum.Unit.html" title="enum gtk4::Unit">Unit</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.set_use_full_page" class="fn">set_use_full_page</a>(&amp;self, full_page: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.allows_async" class="fn">allows_async</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.current_page" class="fn">current_page</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.custom_tab_label" class="fn">custom_tab_label</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/gstring/struct.GString.html" title="struct glib::gstring::GString">GString</a>&gt; { ... }
+<span class="item-spacer"></span>    fn <a href="#method.export_filename" class="fn">export_filename</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/gstring/struct.GString.html" title="struct glib::gstring::GString">GString</a>&gt; { ... }
+<span class="item-spacer"></span>    fn <a href="#method.job_name" class="fn">job_name</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/gstring/struct.GString.html" title="struct glib::gstring::GString">GString</a>&gt; { ... }
+<span class="item-spacer"></span>    fn <a href="#method.n_pages" class="fn">n_pages</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.shows_progress" class="fn">shows_progress</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.tracks_print_status" class="fn">tracks_print_status</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.unit" class="fn">unit</a>(&amp;self) -&gt; <a class="enum" href="../enum.Unit.html" title="enum gtk4::Unit">Unit</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.uses_full_page" class="fn">uses_full_page</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_begin_print" class="fn">connect_begin_print</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>, &amp;<a class="struct" href="../struct.PrintContext.html" title="struct gtk4::PrintContext">PrintContext</a>) + 'static&gt;(
+        &amp;self,
+        f: F
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_create_custom_widget" class="fn">connect_create_custom_widget</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/object/struct.Object.html" title="struct glib::object::Object">Object</a>&gt; + 'static&gt;(
+        &amp;self,
+        f: F
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_custom_widget_apply" class="fn">connect_custom_widget_apply</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>, &amp;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>) + 'static&gt;(
+        &amp;self,
+        f: F
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_done" class="fn">connect_done</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>, <a class="enum" href="../enum.PrintOperationResult.html" title="enum gtk4::PrintOperationResult">PrintOperationResult</a>) + 'static&gt;(
+        &amp;self,
+        f: F
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_draw_page" class="fn">connect_draw_page</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>, &amp;<a class="struct" href="../struct.PrintContext.html" title="struct gtk4::PrintContext">PrintContext</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>) + 'static&gt;(
+        &amp;self,
+        f: F
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_end_print" class="fn">connect_end_print</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>, &amp;<a class="struct" href="../struct.PrintContext.html" title="struct gtk4::PrintContext">PrintContext</a>) + 'static&gt;(
+        &amp;self,
+        f: F
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_paginate" class="fn">connect_paginate</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>, &amp;<a class="struct" href="../struct.PrintContext.html" title="struct gtk4::PrintContext">PrintContext</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> + 'static&gt;(
+        &amp;self,
+        f: F
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_preview" class="fn">connect_preview</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>, &amp;<a class="struct" href="../struct.PrintOperationPreview.html" title="struct gtk4::PrintOperationPreview">PrintOperationPreview</a>, &amp;<a class="struct" href="../struct.PrintContext.html" title="struct gtk4::PrintContext">PrintContext</a>, <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;<a class="struct" href="../struct.Window.html" title="struct gtk4::Window">Window</a>&gt;) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> + 'static&gt;(
+        &amp;self,
+        f: F
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_request_page_setup" class="fn">connect_request_page_setup</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>, &amp;<a class="struct" href="../struct.PrintContext.html" title="struct gtk4::PrintContext">PrintContext</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, &amp;<a class="struct" href="../struct.PageSetup.html" title="struct gtk4::PageSetup">PageSetup</a>) + 'static&gt;(
+        &amp;self,
+        f: F
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_status_changed" class="fn">connect_status_changed</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
+        &amp;self,
+        f: F
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_update_custom_widget" class="fn">connect_update_custom_widget</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>, &amp;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>, &amp;<a class="struct" href="../struct.PageSetup.html" title="struct gtk4::PageSetup">PageSetup</a>, &amp;<a class="struct" href="../struct.PrintSettings.html" title="struct gtk4::PrintSettings">PrintSettings</a>) + 'static&gt;(
+        &amp;self,
+        f: F
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_allow_async_notify" class="fn">connect_allow_async_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
+        &amp;self,
+        f: F
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_current_page_notify" class="fn">connect_current_page_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
+        &amp;self,
+        f: F
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_custom_tab_label_notify" class="fn">connect_custom_tab_label_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
+        &amp;self,
+        f: F
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_default_page_setup_notify" class="fn">connect_default_page_setup_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
+        &amp;self,
+        f: F
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_embed_page_setup_notify" class="fn">connect_embed_page_setup_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
+        &amp;self,
+        f: F
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_export_filename_notify" class="fn">connect_export_filename_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
+        &amp;self,
+        f: F
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_has_selection_notify" class="fn">connect_has_selection_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
+        &amp;self,
+        f: F
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_job_name_notify" class="fn">connect_job_name_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
+        &amp;self,
+        f: F
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_n_pages_notify" class="fn">connect_n_pages_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
+        &amp;self,
+        f: F
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_n_pages_to_print_notify" class="fn">connect_n_pages_to_print_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
+        &amp;self,
+        f: F
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_print_settings_notify" class="fn">connect_print_settings_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
+        &amp;self,
+        f: F
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_show_progress_notify" class="fn">connect_show_progress_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
+        &amp;self,
+        f: F
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_status_notify" class="fn">connect_status_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
+        &amp;self,
+        f: F
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_status_string_notify" class="fn">connect_status_string_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
+        &amp;self,
+        f: F
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_support_selection_notify" class="fn">connect_support_selection_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
+        &amp;self,
+        f: F
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_track_print_status_notify" class="fn">connect_track_print_status_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
+        &amp;self,
+        f: F
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_unit_notify" class="fn">connect_unit_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
+        &amp;self,
+        f: F
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_use_full_page_notify" class="fn">connect_use_full_page_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
+        &amp;self,
+        f: F
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+</details>}</code></pre><details class="toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>Trait containing all <a href="../struct.PrintOperation.html" title="struct gtk4::PrintOperation"><code>PrintOperation</code></a> methods.</p>
+<h2 id="implementors-1"><a href="#implementors-1">Implementors</a></h2>
+<p><a href="../struct.PrintOperation.html" title="struct gtk4::PrintOperation"><code>PrintOperation</code></a></p>
+</div></details><h2 id="provided-methods" class="small-section-header">Provided Methods<a href="#provided-methods" class="anchor">§</a></h2><div class="methods"><details class="toggle method-toggle" open><summary><section id="method.cancel" class="method"><a class="src rightside" href="../../src/gtk4/auto/print_operation.rs.html#761-765">source</a><h4 class="code-header">fn <a href="#method.cancel" class="fn">cancel</a>(&amp;self)</h4></section></summary><div class="docblock"><p>Cancels a running print operation.</p>
+<p>This function may be called from a <a href="../struct.PrintOperation.html#begin-print" title="struct gtk4::PrintOperation"><code>begin-print</code></a>,
+<a href="../struct.PrintOperation.html#paginate" title="struct gtk4::PrintOperation"><code>paginate</code></a> or <a href="../struct.PrintOperation.html#draw-page" title="struct gtk4::PrintOperation"><code>draw-page</code></a>
+signal handler to stop the currently running print operation.</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.draw_page_finish" class="method"><a class="src rightside" href="../../src/gtk4/auto/print_operation.rs.html#774-778">source</a><h4 class="code-header">fn <a href="#method.draw_page_finish" class="fn">draw_page_finish</a>(&amp;self)</h4></section></summary><div class="docblock"><p>Signal that drawing of particular page is complete.</p>
+<p>It is called after completion of page drawing (e.g. drawing
+in another thread). If <a href="trait.PrintOperationExt.html#method.set_defer_drawing"><code>set_defer_drawing()</code></a>
+was called before, then this function has to be called by application.
+Otherwise it is called by GTK itself.</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.default_page_setup" class="method"><a class="src rightside" href="../../src/gtk4/auto/print_operation.rs.html#787-793">source</a><h4 class="code-header">fn <a href="#method.default_page_setup" class="fn">default_page_setup</a>(&amp;self) -&gt; <a class="struct" href="../struct.PageSetup.html" title="struct gtk4::PageSetup">PageSetup</a></h4></section></summary><div class="docblock"><p>Returns the default page setup.</p>
+<h5 id="returns"><a href="#returns">Returns</a></h5>
+<p>the default page setup</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.embeds_page_setup" class="method"><a class="src rightside" href="../../src/gtk4/auto/print_operation.rs.html#802-808">source</a><h4 class="code-header">fn <a href="#method.embeds_page_setup" class="fn">embeds_page_setup</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></section></summary><div class="docblock"><p>Gets whether page setup selection combos are embedded</p>
+<h5 id="returns-1"><a href="#returns-1">Returns</a></h5>
+<p>whether page setup selection combos are embedded</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.has_selection" class="method"><a class="src rightside" href="../../src/gtk4/auto/print_operation.rs.html#817-823">source</a><h4 class="code-header">fn <a href="#method.has_selection" class="fn">has_selection</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></section></summary><div class="docblock"><p>Gets whether there is a selection.</p>
+<h5 id="returns-2"><a href="#returns-2">Returns</a></h5>
+<p>whether there is a selection</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.n_pages_to_print" class="method"><a class="src rightside" href="../../src/gtk4/auto/print_operation.rs.html#841-843">source</a><h4 class="code-header">fn <a href="#method.n_pages_to_print" class="fn">n_pages_to_print</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a></h4></section></summary><div class="docblock"><p>Returns the number of pages that will be printed.</p>
+<p>Note that this value is set during print preparation phase
+(<a href="../enum.PrintStatus.html#variant.Preparing" title="variant gtk4::PrintStatus::Preparing"><code>PrintStatus::Preparing</code></a>), so this function should never be
+called before the data generation phase (<a href="../enum.PrintStatus.html#variant.GeneratingData" title="variant gtk4::PrintStatus::GeneratingData"><code>PrintStatus::GeneratingData</code></a>).
+You can connect to the <a href="../struct.PrintOperation.html#status-changed" title="struct gtk4::PrintOperation"><code>status-changed</code></a>
+signal and call gtk_print_operation_get_n_pages_to_print() when
+print status is <a href="../enum.PrintStatus.html#variant.GeneratingData" title="variant gtk4::PrintStatus::GeneratingData"><code>PrintStatus::GeneratingData</code></a>.</p>
+<p>This is typically used to track the progress of print operation.</p>
+<h5 id="returns-3"><a href="#returns-3">Returns</a></h5>
+<p>the number of pages that will be printed</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.print_settings" class="method"><a class="src rightside" href="../../src/gtk4/auto/print_operation.rs.html#856-862">source</a><h4 class="code-header">fn <a href="#method.print_settings" class="fn">print_settings</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../struct.PrintSettings.html" title="struct gtk4::PrintSettings">PrintSettings</a>&gt;</h4></section></summary><div class="docblock"><p>Returns the current print settings.</p>
+<p>Note that the return value is <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="variant core::option::Option::None"><code>None</code></a> until either
+<a href="trait.PrintOperationExt.html#method.set_print_settings"><code>set_print_settings()</code></a> or
+<a href="trait.PrintOperationExt.html#method.run"><code>run()</code></a> have been called.</p>
+<h5 id="returns-4"><a href="#returns-4">Returns</a></h5>
+<p>the current print settings of @self.</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.status" class="method"><a class="src rightside" href="../../src/gtk4/auto/print_operation.rs.html#873-879">source</a><h4 class="code-header">fn <a href="#method.status" class="fn">status</a>(&amp;self) -&gt; <a class="enum" href="../enum.PrintStatus.html" title="enum gtk4::PrintStatus">PrintStatus</a></h4></section></summary><div class="docblock"><p>Returns the status of the print operation.</p>
+<p>Also see <a href="trait.PrintOperationExt.html#method.status_string"><code>status_string()</code></a>.</p>
+<h5 id="returns-5"><a href="#returns-5">Returns</a></h5>
+<p>the status of the print operation</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.status_string" class="method"><a class="src rightside" href="../../src/gtk4/auto/print_operation.rs.html#896-902">source</a><h4 class="code-header">fn <a href="#method.status_string" class="fn">status_string</a>(&amp;self) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/gstring/struct.GString.html" title="struct glib::gstring::GString">GString</a></h4></section></summary><div class="docblock"><p>Returns a string representation of the status of the
+print operation.</p>
+<p>The string is translated and suitable for displaying
+the print status e.g. in a <a href="../struct.Statusbar.html" title="struct gtk4::Statusbar"><code>Statusbar</code></a>.</p>
+<p>Use <a href="trait.PrintOperationExt.html#method.status"><code>status()</code></a> to obtain
+a status value that is suitable for programmatic use.</p>
+<h5 id="returns-6"><a href="#returns-6">Returns</a></h5>
+<p>a string representation of the status
+of the print operation</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.supports_selection" class="method"><a class="src rightside" href="../../src/gtk4/auto/print_operation.rs.html#911-917">source</a><h4 class="code-header">fn <a href="#method.supports_selection" class="fn">supports_selection</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></section></summary><div class="docblock"><p>Gets whether the application supports print of selection</p>
+<h5 id="returns-7"><a href="#returns-7">Returns</a></h5>
+<p>whether the application supports print of selection</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.is_finished" class="method"><a class="src rightside" href="../../src/gtk4/auto/print_operation.rs.html#933-939">source</a><h4 class="code-header">fn <a href="#method.is_finished" class="fn">is_finished</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></section></summary><div class="docblock"><p>A convenience function to find out if the print operation
+is finished.</p>
+<p>a print operation is finished if its status is either
+<a href="../enum.PrintStatus.html#variant.Finished" title="variant gtk4::PrintStatus::Finished"><code>PrintStatus::Finished</code></a> or <a href="../enum.PrintStatus.html#variant.FinishedAborted" title="variant gtk4::PrintStatus::FinishedAborted"><code>PrintStatus::FinishedAborted</code></a>.</p>
+<p>Note: when you enable print status tracking the print operation
+can be in a non-finished state even after done has been called, as
+the operation status then tracks the print job status on the printer.</p>
+<h5 id="returns-8"><a href="#returns-8">Returns</a></h5>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>true</code></a>, if the print operation is finished.</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.run" class="method"><a class="src rightside" href="../../src/gtk4/auto/print_operation.rs.html#1015-1034">source</a><h4 class="code-header">fn <a href="#method.run" class="fn">run</a>(
+    &amp;self,
+    action: <a class="enum" href="../enum.PrintOperationAction.html" title="enum gtk4::PrintOperationAction">PrintOperationAction</a>,
+    parent: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Window.html" title="struct gtk4::Window">Window</a>&gt;&gt;
+) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="enum" href="../enum.PrintOperationResult.html" title="enum gtk4::PrintOperationResult">PrintOperationResult</a>, <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/error/struct.Error.html" title="struct glib::error::Error">Error</a>&gt;</h4></section></summary><div class="docblock"><p>Runs the print operation.</p>
+<p>Normally that this function does not return until the rendering
+of all pages is complete. You can connect to the
+<a href="../struct.PrintOperation.html#status-changed" title="struct gtk4::PrintOperation"><code>status-changed</code></a> signal on @self to obtain
+some information about the progress of the print operation.</p>
+<p>Furthermore, it may use a recursive mainloop to show the print dialog.</p>
+<p>If you set the [Gtk.PrintOperation:allow-async] property, the operation
+will run asynchronously if this is supported on the platform. The
+<a href="../struct.PrintOperation.html#done" title="struct gtk4::PrintOperation"><code>done</code></a> signal will be emitted with the result
+of the operation when the it is done (i.e. when the dialog is canceled,
+or when the print succeeds or fails).</p>
+<p><strong>⚠️ The following code is in c ⚠️</strong></p>
+<div class="example-wrap"><pre class="language-c"><code>if (settings != NULL)
+  gtk_print_operation_set_print_settings (print, settings);
+
+if (page_setup != NULL)
+  gtk_print_operation_set_default_page_setup (print, page_setup);
+
+g_signal_connect (print, &quot;begin-print&quot;,
+                  G_CALLBACK (begin_print), &amp;data);
+g_signal_connect (print, &quot;draw-page&quot;,
+                  G_CALLBACK (draw_page), &amp;data);
+
+res = gtk_print_operation_run (print,
+                               GTK_PRINT_OPERATION_ACTION_PRINT_DIALOG,
+                               parent,
+                               &amp;error);
+
+if (res == GTK_PRINT_OPERATION_RESULT_ERROR)
+ {
+   error_dialog = gtk_message_dialog_new (GTK_WINDOW (parent),
+                                   GTK_DIALOG_DESTROY_WITH_PARENT,
+                         GTK_MESSAGE_ERROR,
+                         GTK_BUTTONS_CLOSE,
+                         &quot;Error printing file:\n%s&quot;,
+                         error-&gt;message);
+   g_signal_connect (error_dialog, &quot;response&quot;,
+                     G_CALLBACK (gtk_window_destroy), NULL);
+   gtk_window_present (GTK_WINDOW (error_dialog));
+   g_error_free (error);
+ }
+else if (res == GTK_PRINT_OPERATION_RESULT_APPLY)
+ {
+   if (settings != NULL)
+g_object_unref (settings);
+   settings = g_object_ref (gtk_print_operation_get_print_settings (print));
+ }
+</code></pre></div>
+<p>Note that gtk_print_operation_run() can only be called once on a
+given <a href="../struct.PrintOperation.html" title="struct gtk4::PrintOperation"><code>PrintOperation</code></a>.</p>
+<h6 id="action"><a href="#action"><code>action</code></a></h6>
+<p>the action to start</p>
+<h6 id="parent"><a href="#parent"><code>parent</code></a></h6>
+<p>Transient parent of the dialog</p>
+<h5 id="returns-9"><a href="#returns-9">Returns</a></h5>
+<p>the result of the print operation. A return value of
+<a href="../enum.PrintOperationResult.html#variant.Apply" title="variant gtk4::PrintOperationResult::Apply"><code>PrintOperationResult::Apply</code></a> indicates that the printing was
+completed successfully. In this case, it is a good idea to obtain
+the used print settings with
+<a href="trait.PrintOperationExt.html#method.print_settings"><code>print_settings()</code></a>
+and store them for reuse with the next print operation. A value of
+<a href="../enum.PrintOperationResult.html#variant.InProgress" title="variant gtk4::PrintOperationResult::InProgress"><code>PrintOperationResult::InProgress</code></a> means the operation is running
+asynchronously, and will emit the <a href="../struct.PrintOperation.html#done" title="struct gtk4::PrintOperation"><code>done</code></a>
+signal when done.</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.set_allow_async" class="method"><a class="src rightside" href="../../src/gtk4/auto/print_operation.rs.html#1044-1051">source</a><h4 class="code-header">fn <a href="#method.set_allow_async" class="fn">set_allow_async</a>(&amp;self, allow_async: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>)</h4></section></summary><div class="docblock"><p>Sets whether gtk_print_operation_run() may return
+before the print operation is completed.</p>
+<p>Note that some platforms may not allow asynchronous
+operation.</p>
+<h6 id="allow_async"><a href="#allow_async"><code>allow_async</code></a></h6>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>true</code></a> to allow asynchronous operation</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.set_current_page" class="method"><a class="src rightside" href="../../src/gtk4/auto/print_operation.rs.html#1062-1066">source</a><h4 class="code-header">fn <a href="#method.set_current_page" class="fn">set_current_page</a>(&amp;self, current_page: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>)</h4></section></summary><div class="docblock"><p>Sets the current page.</p>
+<p>If this is called before <a href="trait.PrintOperationExt.html#method.run"><code>run()</code></a>,
+the user will be able to select to print only the current page.</p>
+<p>Note that this only makes sense for pre-paginated documents.</p>
+<h6 id="current_page"><a href="#current_page"><code>current_page</code></a></h6>
+<p>the current page, 0-based</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.set_custom_tab_label" class="method"><a class="src rightside" href="../../src/gtk4/auto/print_operation.rs.html#1072-1079">source</a><h4 class="code-header">fn <a href="#method.set_custom_tab_label" class="fn">set_custom_tab_label</a>(&amp;self, label: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>&gt;)</h4></section></summary><div class="docblock"><p>Sets the label for the tab holding custom widgets.</p>
+<h6 id="label"><a href="#label"><code>label</code></a></h6>
+<p>the label to use, or <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="variant core::option::Option::None"><code>None</code></a> to use the default label</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.set_default_page_setup" class="method"><a class="src rightside" href="../../src/gtk4/auto/print_operation.rs.html#1089-1096">source</a><h4 class="code-header">fn <a href="#method.set_default_page_setup" class="fn">set_default_page_setup</a>(&amp;self, default_page_setup: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;<a class="struct" href="../struct.PageSetup.html" title="struct gtk4::PageSetup">PageSetup</a>&gt;)</h4></section></summary><div class="docblock"><p>Makes @default_page_setup the default page setup for @self.</p>
+<p>This page setup will be used by <a href="trait.PrintOperationExt.html#method.run"><code>run()</code></a>,
+but it can be overridden on a per-page basis by connecting
+to the <a href="../struct.PrintOperation.html#request-page-setup" title="struct gtk4::PrintOperation"><code>request-page-setup</code></a> signal.</p>
+<h6 id="default_page_setup"><a href="#default_page_setup"><code>default_page_setup</code></a></h6>
+<p>a <a href="../struct.PageSetup.html" title="struct gtk4::PageSetup"><code>PageSetup</code></a></p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.set_defer_drawing" class="method"><a class="src rightside" href="../../src/gtk4/auto/print_operation.rs.html#1106-1110">source</a><h4 class="code-header">fn <a href="#method.set_defer_drawing" class="fn">set_defer_drawing</a>(&amp;self)</h4></section></summary><div class="docblock"><p>Sets up the <a href="../struct.PrintOperation.html" title="struct gtk4::PrintOperation"><code>PrintOperation</code></a> to wait for calling of
+<a href="trait.PrintOperationExt.html#method.draw_page_finish"><code>draw_page_finish()</code></a> from application.</p>
+<p>This can be used for drawing page in another thread.</p>
+<p>This function must be called in the callback of the
+<a href="../struct.PrintOperation.html#draw-page" title="struct gtk4::PrintOperation"><code>draw-page</code></a> signal.</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.set_embed_page_setup" class="method"><a class="src rightside" href="../../src/gtk4/auto/print_operation.rs.html#1118-1125">source</a><h4 class="code-header">fn <a href="#method.set_embed_page_setup" class="fn">set_embed_page_setup</a>(&amp;self, embed: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>)</h4></section></summary><div class="docblock"><p>Embed page size combo box and orientation combo box into page setup page.</p>
+<p>Selected page setup is stored as default page setup in <a href="../struct.PrintOperation.html" title="struct gtk4::PrintOperation"><code>PrintOperation</code></a>.</p>
+<h6 id="embed"><a href="#embed"><code>embed</code></a></h6>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>true</code></a> to embed page setup selection in the <a href="../struct.PrintUnixDialog.html" title="struct gtk4::PrintUnixDialog"><code>PrintUnixDialog</code></a></p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.set_export_filename" class="method"><a class="src rightside" href="../../src/gtk4/auto/print_operation.rs.html#1140-1147">source</a><h4 class="code-header">fn <a href="#method.set_export_filename" class="fn">set_export_filename</a>(&amp;self, filename: impl <a class="trait" href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html" title="trait core::convert::AsRef">AsRef</a>&lt;<a class="struct" href="https://doc.rust-lang.org/nightly/std/path/struct.Path.html" title="struct std::path::Path">Path</a>&gt;)</h4></section></summary><div class="docblock"><p>Sets up the <a href="../struct.PrintOperation.html" title="struct gtk4::PrintOperation"><code>PrintOperation</code></a> to generate a file instead
+of showing the print dialog.</p>
+<p>The intended use of this function is for implementing
+“Export to PDF” actions. Currently, PDF is the only supported
+format.</p>
+<p>“Print to PDF” support is independent of this and is done
+by letting the user pick the “Print to PDF” item from the list
+of printers in the print dialog.</p>
+<h6 id="filename"><a href="#filename"><code>filename</code></a></h6>
+<p>the filename for the exported file</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.set_has_selection" class="method"><a class="src rightside" href="../../src/gtk4/auto/print_operation.rs.html#1157-1164">source</a><h4 class="code-header">fn <a href="#method.set_has_selection" class="fn">set_has_selection</a>(&amp;self, has_selection: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>)</h4></section></summary><div class="docblock"><p>Sets whether there is a selection to print.</p>
+<p>Application has to set number of pages to which the selection
+will draw by <a href="trait.PrintOperationExt.html#method.set_n_pages"><code>set_n_pages()</code></a> in a handler
+for the <a href="../struct.PrintOperation.html#begin-print" title="struct gtk4::PrintOperation"><code>begin-print</code></a> signal.</p>
+<h6 id="has_selection"><a href="#has_selection"><code>has_selection</code></a></h6>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>true</code></a> indicates that a selection exists</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.set_job_name" class="method"><a class="src rightside" href="../../src/gtk4/auto/print_operation.rs.html#1176-1183">source</a><h4 class="code-header">fn <a href="#method.set_job_name" class="fn">set_job_name</a>(&amp;self, job_name: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>)</h4></section></summary><div class="docblock"><p>Sets the name of the print job.</p>
+<p>The name is used to identify the job (e.g. in monitoring
+applications like eggcups).</p>
+<p>If you don’t set a job name, GTK picks a default one by
+numbering successive print jobs.</p>
+<h6 id="job_name"><a href="#job_name"><code>job_name</code></a></h6>
+<p>a string that identifies the print job</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.set_n_pages" class="method"><a class="src rightside" href="../../src/gtk4/auto/print_operation.rs.html#1199-1203">source</a><h4 class="code-header">fn <a href="#method.set_n_pages" class="fn">set_n_pages</a>(&amp;self, n_pages: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>)</h4></section></summary><div class="docblock"><p>Sets the number of pages in the document.</p>
+<p>This must be set to a positive number before the rendering
+starts. It may be set in a <a href="../struct.PrintOperation.html#begin-print" title="struct gtk4::PrintOperation"><code>begin-print</code></a>
+signal handler.</p>
+<p>Note that the page numbers passed to the
+<a href="../struct.PrintOperation.html#request-page-setup" title="struct gtk4::PrintOperation"><code>request-page-setup</code></a>
+and <a href="../struct.PrintOperation.html#draw-page" title="struct gtk4::PrintOperation"><code>draw-page</code></a> signals are 0-based, i.e.
+if the user chooses to print all pages, the last ::draw-page signal
+will be for page @n_pages - 1.</p>
+<h6 id="n_pages"><a href="#n_pages"><code>n_pages</code></a></h6>
+<p>the number of pages</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.set_print_settings" class="method"><a class="src rightside" href="../../src/gtk4/auto/print_operation.rs.html#1212-1219">source</a><h4 class="code-header">fn <a href="#method.set_print_settings" class="fn">set_print_settings</a>(&amp;self, print_settings: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;<a class="struct" href="../struct.PrintSettings.html" title="struct gtk4::PrintSettings">PrintSettings</a>&gt;)</h4></section></summary><div class="docblock"><p>Sets the print settings for @self.</p>
+<p>This is typically used to re-establish print settings
+from a previous print operation, see <a href="trait.PrintOperationExt.html#method.run"><code>run()</code></a>.</p>
+<h6 id="print_settings"><a href="#print_settings"><code>print_settings</code></a></h6>
+<p><a href="../struct.PrintSettings.html" title="struct gtk4::PrintSettings"><code>PrintSettings</code></a></p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.set_show_progress" class="method"><a class="src rightside" href="../../src/gtk4/auto/print_operation.rs.html#1226-1233">source</a><h4 class="code-header">fn <a href="#method.set_show_progress" class="fn">set_show_progress</a>(&amp;self, show_progress: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>)</h4></section></summary><div class="docblock"><p>If @show_progress is <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>true</code></a>, the print operation will show
+a progress dialog during the print operation.</p>
+<h6 id="show_progress"><a href="#show_progress"><code>show_progress</code></a></h6>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>true</code></a> to show a progress dialog</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.set_support_selection" class="method"><a class="src rightside" href="../../src/gtk4/auto/print_operation.rs.html#1239-1246">source</a><h4 class="code-header">fn <a href="#method.set_support_selection" class="fn">set_support_selection</a>(&amp;self, support_selection: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>)</h4></section></summary><div class="docblock"><p>Sets whether selection is supported by <a href="../struct.PrintOperation.html" title="struct gtk4::PrintOperation"><code>PrintOperation</code></a>.</p>
+<h6 id="support_selection"><a href="#support_selection"><code>support_selection</code></a></h6>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>true</code></a> to support selection</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.set_track_print_status" class="method"><a class="src rightside" href="../../src/gtk4/auto/print_operation.rs.html#1259-1266">source</a><h4 class="code-header">fn <a href="#method.set_track_print_status" class="fn">set_track_print_status</a>(&amp;self, track_status: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>)</h4></section></summary><div class="docblock"><p>If track_status is <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>true</code></a>, the print operation will try to continue
+report on the status of the print job in the printer queues and printer.</p>
+<p>This can allow your application to show things like “out of paper”
+issues, and when the print job actually reaches the printer.</p>
+<p>This function is often implemented using some form of polling,
+so it should not be enabled unless needed.</p>
+<h6 id="track_status"><a href="#track_status"><code>track_status</code></a></h6>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>true</code></a> to track status after printing</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.set_unit" class="method"><a class="src rightside" href="../../src/gtk4/auto/print_operation.rs.html#1274-1278">source</a><h4 class="code-header">fn <a href="#method.set_unit" class="fn">set_unit</a>(&amp;self, unit: <a class="enum" href="../enum.Unit.html" title="enum gtk4::Unit">Unit</a>)</h4></section></summary><div class="docblock"><p>Sets up the transformation for the cairo context obtained from
+<a href="../struct.PrintContext.html" title="struct gtk4::PrintContext"><code>PrintContext</code></a> in such a way that distances are measured in
+units of @unit.</p>
+<h6 id="unit"><a href="#unit"><code>unit</code></a></h6>
+<p>the unit to use</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.set_use_full_page" class="method"><a class="src rightside" href="../../src/gtk4/auto/print_operation.rs.html#1290-1297">source</a><h4 class="code-header">fn <a href="#method.set_use_full_page" class="fn">set_use_full_page</a>(&amp;self, full_page: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>)</h4></section></summary><div class="docblock"><p>If @full_page is <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>true</code></a>, the transformation for the cairo context
+obtained from <a href="../struct.PrintContext.html" title="struct gtk4::PrintContext"><code>PrintContext</code></a> puts the origin at the top left
+corner of the page.</p>
+<p>This may not be the top left corner of the sheet, depending on page
+orientation and the number of pages per sheet). Otherwise, the origin
+is at the top left corner of the imageable area (i.e. inside the margins).</p>
+<h6 id="full_page"><a href="#full_page"><code>full_page</code></a></h6>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>true</code></a> to set up the <a href="../struct.PrintContext.html" title="struct gtk4::PrintContext"><code>PrintContext</code></a> for the full page</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.allows_async" class="method"><a class="src rightside" href="../../src/gtk4/auto/print_operation.rs.html#1310-1312">source</a><h4 class="code-header">fn <a href="#method.allows_async" class="fn">allows_async</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></section></summary><div class="docblock"><p>Determines whether the print operation may run asynchronously or not.</p>
+<p>Some systems don’t support asynchronous printing, but those that do
+will return <a href="../enum.PrintOperationResult.html#variant.InProgress" title="variant gtk4::PrintOperationResult::InProgress"><code>PrintOperationResult::InProgress</code></a> as the status, and
+emit the <a href="../struct.PrintOperation.html#done" title="struct gtk4::PrintOperation"><code>done</code></a> signal when the operation
+is actually done.</p>
+<p>The Windows port does not support asynchronous operation at all (this
+is unlikely to change). On other platforms, all actions except for
+<a href="../enum.PrintOperationAction.html#variant.Export" title="variant gtk4::PrintOperationAction::Export"><code>PrintOperationAction::Export</code></a> support asynchronous operation.</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.current_page" class="method"><a class="src rightside" href="../../src/gtk4/auto/print_operation.rs.html#1321-1323">source</a><h4 class="code-header">fn <a href="#method.current_page" class="fn">current_page</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a></h4></section></summary><div class="docblock"><p>The current page in the document.</p>
+<p>If this is set before <a href="trait.PrintOperationExt.html#method.run"><code>run()</code></a>,
+the user will be able to select to print only the current page.</p>
+<p>Note that this only makes sense for pre-paginated documents.</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.custom_tab_label" class="method"><a class="src rightside" href="../../src/gtk4/auto/print_operation.rs.html#1331-1333">source</a><h4 class="code-header">fn <a href="#method.custom_tab_label" class="fn">custom_tab_label</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/gstring/struct.GString.html" title="struct glib::gstring::GString">GString</a>&gt;</h4></section></summary><div class="docblock"><p>Used as the label of the tab containing custom widgets.</p>
+<p>Note that this property may be ignored on some platforms.</p>
+<p>If this is <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="variant core::option::Option::None"><code>None</code></a>, GTK uses a default label.</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.export_filename" class="method"><a class="src rightside" href="../../src/gtk4/auto/print_operation.rs.html#1346-1348">source</a><h4 class="code-header">fn <a href="#method.export_filename" class="fn">export_filename</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/gstring/struct.GString.html" title="struct glib::gstring::GString">GString</a>&gt;</h4></section></summary><div class="docblock"><p>The name of a file to generate instead of showing the print dialog.</p>
+<p>Currently, PDF is the only supported format.</p>
+<p>The intended use of this property is for implementing
+“Export to PDF” actions.</p>
+<p>“Print to PDF” support is independent of this and is done
+by letting the user pick the “Print to PDF” item from the
+list of printers in the print dialog.</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.job_name" class="method"><a class="src rightside" href="../../src/gtk4/auto/print_operation.rs.html#1356-1358">source</a><h4 class="code-header">fn <a href="#method.job_name" class="fn">job_name</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/gstring/struct.GString.html" title="struct glib::gstring::GString">GString</a>&gt;</h4></section></summary><div class="docblock"><p>A string used to identify the job (e.g. in monitoring
+applications like eggcups).</p>
+<p>If you don’t set a job name, GTK picks a default one
+by numbering successive print jobs.</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.n_pages" class="method"><a class="src rightside" href="../../src/gtk4/auto/print_operation.rs.html#1372-1374">source</a><h4 class="code-header">fn <a href="#method.n_pages" class="fn">n_pages</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a></h4></section></summary><div class="docblock"><p>The number of pages in the document.</p>
+<p>This must be set to a positive number before the rendering
+starts. It may be set in a <a href="../struct.PrintOperation.html#begin-print" title="struct gtk4::PrintOperation"><code>begin-print</code></a>
+signal handler.</p>
+<p>Note that the page numbers passed to the
+<a href="../struct.PrintOperation.html#request-page-setup" title="struct gtk4::PrintOperation"><code>request-page-setup</code></a> and
+<a href="../struct.PrintOperation.html#draw-page" title="struct gtk4::PrintOperation"><code>draw-page</code></a> signals are 0-based, i.e.
+if the user chooses to print all pages, the last ::draw-page signal
+will be for page @n_pages - 1.</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.shows_progress" class="method"><a class="src rightside" href="../../src/gtk4/auto/print_operation.rs.html#1379-1381">source</a><h4 class="code-header">fn <a href="#method.shows_progress" class="fn">shows_progress</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></section></summary><div class="docblock"><p>Determines whether to show a progress dialog during the
+print operation.</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.tracks_print_status" class="method"><a class="src rightside" href="../../src/gtk4/auto/print_operation.rs.html#1391-1393">source</a><h4 class="code-header">fn <a href="#method.tracks_print_status" class="fn">tracks_print_status</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></section></summary><div class="docblock"><p>If <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>true</code></a>, the print operation will try to continue report on
+the status of the print job in the printer queues and printer.</p>
+<p>This can allow your application to show things like “out of paper”
+issues, and when the print job actually reaches the printer.
+However, this is often implemented using polling, and should
+not be enabled unless needed.</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.unit" class="method"><a class="src rightside" href="../../src/gtk4/auto/print_operation.rs.html#1398-1400">source</a><h4 class="code-header">fn <a href="#method.unit" class="fn">unit</a>(&amp;self) -&gt; <a class="enum" href="../enum.Unit.html" title="enum gtk4::Unit">Unit</a></h4></section></summary><div class="docblock"><p>The transformation for the cairo context obtained from
+<a href="../struct.PrintContext.html" title="struct gtk4::PrintContext"><code>PrintContext</code></a> is set up in such a way that distances
+are measured in units of @unit.</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.uses_full_page" class="method"><a class="src rightside" href="../../src/gtk4/auto/print_operation.rs.html#1411-1413">source</a><h4 class="code-header">fn <a href="#method.uses_full_page" class="fn">uses_full_page</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></section></summary><div class="docblock"><p>If <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>true</code></a>, the transformation for the cairo context obtained
+from <a href="../struct.PrintContext.html" title="struct gtk4::PrintContext"><code>PrintContext</code></a> puts the origin at the top left corner
+of the page.</p>
+<p>This may not be the top left corner of the sheet, depending on
+page orientation and the number of pages per sheet. Otherwise,
+the origin is at the top left corner of the imageable area (i.e.
+inside the margins).</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.connect_begin_print" class="method"><a class="src rightside" href="../../src/gtk4/auto/print_operation.rs.html#1425-1451">source</a><h4 class="code-header">fn <a href="#method.connect_begin_print" class="fn">connect_begin_print</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>, &amp;<a class="struct" href="../struct.PrintContext.html" title="struct gtk4::PrintContext">PrintContext</a>) + 'static&gt;(
+    &amp;self,
+    f: F
+) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section></summary><div class="docblock"><p>Emitted after the user has finished changing print settings
+in the dialog, before the actual rendering starts.</p>
+<p>A typical use for ::begin-print is to use the parameters from the
+<a href="../struct.PrintContext.html" title="struct gtk4::PrintContext"><code>PrintContext</code></a> and paginate the document accordingly,
+and then set the number of pages with
+<a href="trait.PrintOperationExt.html#method.set_n_pages"><code>set_n_pages()</code></a>.</p>
+<h6 id="context"><a href="#context"><code>context</code></a></h6>
+<p>the <a href="../struct.PrintContext.html" title="struct gtk4::PrintContext"><code>PrintContext</code></a> for the current operation</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.connect_create_custom_widget" class="method"><a class="src rightside" href="../../src/gtk4/auto/print_operation.rs.html#1470-1497">source</a><h4 class="code-header">fn <a href="#method.connect_create_custom_widget" class="fn">connect_create_custom_widget</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/object/struct.Object.html" title="struct glib::object::Object">Object</a>&gt; + 'static&gt;(
+    &amp;self,
+    f: F
+) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section></summary><div class="docblock"><p>Emitted when displaying the print dialog.</p>
+<p>If you return a widget in a handler for this signal it will be
+added to a custom tab in the print dialog. You typically return a
+container widget with multiple widgets in it.</p>
+<p>The print dialog owns the returned widget, and its lifetime is not
+controlled by the application. However, the widget is guaranteed
+to stay around until the <a href="../struct.PrintOperation.html#custom-widget-apply" title="struct gtk4::PrintOperation"><code>custom-widget-apply</code></a>
+signal is emitted on the operation. Then you can read out any
+information you need from the widgets.</p>
+<h5 id="returns-10"><a href="#returns-10">Returns</a></h5>
+<p>A custom widget that gets embedded in
+the print dialog</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.connect_custom_widget_apply" class="method"><a class="src rightside" href="../../src/gtk4/auto/print_operation.rs.html#1508-1537">source</a><h4 class="code-header">fn <a href="#method.connect_custom_widget_apply" class="fn">connect_custom_widget_apply</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>, &amp;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>) + 'static&gt;(
+    &amp;self,
+    f: F
+) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section></summary><div class="docblock"><p>Emitted right before ::begin-print if you added
+a custom widget in the ::create-custom-widget handler.</p>
+<p>When you get this signal you should read the information from the
+custom widgets, as the widgets are not guaranteed to be around at a
+later time.</p>
+<h6 id="widget"><a href="#widget"><code>widget</code></a></h6>
+<p>the custom widget added in ::create-custom-widget</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.connect_done" class="method"><a class="src rightside" href="../../src/gtk4/auto/print_operation.rs.html#1552-1578">source</a><h4 class="code-header">fn <a href="#method.connect_done" class="fn">connect_done</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>, <a class="enum" href="../enum.PrintOperationResult.html" title="enum gtk4::PrintOperationResult">PrintOperationResult</a>) + 'static&gt;(
+    &amp;self,
+    f: F
+) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section></summary><div class="docblock"><p>Emitted when the print operation run has finished doing
+everything required for printing.</p>
+<p>@result gives you information about what happened during the run.
+If @result is <a href="../enum.PrintOperationResult.html#variant.Error" title="variant gtk4::PrintOperationResult::Error"><code>PrintOperationResult::Error</code></a> then you can call
+<code>Gtk::PrintOperation::get_error()</code> for more information.</p>
+<p>If you enabled print status tracking then
+<a href="trait.PrintOperationExt.html#method.is_finished"><code>is_finished()</code></a> may still return <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>false</code></a>
+after the ::done signal was emitted.</p>
+<h6 id="result"><a href="#result"><code>result</code></a></h6>
+<p>the result of the print operation</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.connect_draw_page" class="method"><a class="src rightside" href="../../src/gtk4/auto/print_operation.rs.html#1638-1669">source</a><h4 class="code-header">fn <a href="#method.connect_draw_page" class="fn">connect_draw_page</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>, &amp;<a class="struct" href="../struct.PrintContext.html" title="struct gtk4::PrintContext">PrintContext</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>) + 'static&gt;(
+    &amp;self,
+    f: F
+) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section></summary><div class="docblock"><p>Emitted for every page that is printed.</p>
+<p>The signal handler must render the @page_nr’s page onto the cairo
+context obtained from @context using
+<a href="../struct.PrintContext.html#method.cairo_context" title="method gtk4::PrintContext::cairo_context"><code>PrintContext::cairo_context()</code></a>.</p>
+<p><strong>⚠️ The following code is in c ⚠️</strong></p>
+<div class="example-wrap"><pre class="language-c"><code>static void
+draw_page (GtkPrintOperation *operation,
+           GtkPrintContext   *context,
+           int                page_nr,
+           gpointer           user_data)
+{
+  cairo_t *cr;
+  PangoLayout *layout;
+  double width, text_height;
+  int layout_height;
+  PangoFontDescription *desc;
+
+  cr = gtk_print_context_get_cairo_context (context);
+  width = gtk_print_context_get_width (context);
+
+  cairo_rectangle (cr, 0, 0, width, HEADER_HEIGHT);
+
+  cairo_set_source_rgb (cr, 0.8, 0.8, 0.8);
+  cairo_fill (cr);
+
+  layout = gtk_print_context_create_pango_layout (context);
+
+  desc = pango_font_description_from_string (&quot;sans 14&quot;);
+  pango_layout_set_font_description (layout, desc);
+  pango_font_description_free (desc);
+
+  pango_layout_set_text (layout, &quot;some text&quot;, -1);
+  pango_layout_set_width (layout, width * PANGO_SCALE);
+  pango_layout_set_alignment (layout, PANGO_ALIGN_CENTER);
+
+  pango_layout_get_size (layout, NULL, &amp;layout_height);
+  text_height = (double)layout_height / PANGO_SCALE;
+
+  cairo_move_to (cr, width / 2,  (HEADER_HEIGHT - text_height) / 2);
+  pango_cairo_show_layout (cr, layout);
+
+  g_object_unref (layout);
+}
+</code></pre></div>
+<p>Use <a href="trait.PrintOperationExt.html#method.set_use_full_page"><code>set_use_full_page()</code></a> and
+<a href="trait.PrintOperationExt.html#method.set_unit"><code>set_unit()</code></a> before starting the print
+operation to set up the transformation of the cairo context
+according to your needs.</p>
+<h6 id="context-1"><a href="#context-1"><code>context</code></a></h6>
+<p>the <a href="../struct.PrintContext.html" title="struct gtk4::PrintContext"><code>PrintContext</code></a> for the current operation</p>
+<h6 id="page_nr"><a href="#page_nr"><code>page_nr</code></a></h6>
+<p>the number of the currently printed page (0-based)</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.connect_end_print" class="method"><a class="src rightside" href="../../src/gtk4/auto/print_operation.rs.html#1678-1704">source</a><h4 class="code-header">fn <a href="#method.connect_end_print" class="fn">connect_end_print</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>, &amp;<a class="struct" href="../struct.PrintContext.html" title="struct gtk4::PrintContext">PrintContext</a>) + 'static&gt;(
+    &amp;self,
+    f: F
+) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section></summary><div class="docblock"><p>Emitted after all pages have been rendered.</p>
+<p>A handler for this signal can clean up any resources that have
+been allocated in the <a href="../struct.PrintOperation.html#begin-print" title="struct gtk4::PrintOperation"><code>begin-print</code></a> handler.</p>
+<h6 id="context-2"><a href="#context-2"><code>context</code></a></h6>
+<p>the <a href="../struct.PrintContext.html" title="struct gtk4::PrintContext"><code>PrintContext</code></a> for the current operation</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.connect_paginate" class="method"><a class="src rightside" href="../../src/gtk4/auto/print_operation.rs.html#1727-1757">source</a><h4 class="code-header">fn <a href="#method.connect_paginate" class="fn">connect_paginate</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>, &amp;<a class="struct" href="../struct.PrintContext.html" title="struct gtk4::PrintContext">PrintContext</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> + 'static&gt;(
+    &amp;self,
+    f: F
+) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section></summary><div class="docblock"><p>Emitted after the ::begin-print signal, but before the actual rendering
+starts.</p>
+<p>It keeps getting emitted until a connected signal handler returns <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>true</code></a>.</p>
+<p>The ::paginate signal is intended to be used for paginating a document
+in small chunks, to avoid blocking the user interface for a long
+time. The signal handler should update the number of pages using
+<a href="trait.PrintOperationExt.html#method.set_n_pages"><code>set_n_pages()</code></a>, and return <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>true</code></a> if the document
+has been completely paginated.</p>
+<p>If you don’t need to do pagination in chunks, you can simply do
+it all in the ::begin-print handler, and set the number of pages
+from there.</p>
+<h6 id="context-3"><a href="#context-3"><code>context</code></a></h6>
+<p>the <a href="../struct.PrintContext.html" title="struct gtk4::PrintContext"><code>PrintContext</code></a> for the current operation</p>
+<h5 id="returns-11"><a href="#returns-11">Returns</a></h5>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>true</code></a> if pagination is complete</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.connect_preview" class="method"><a class="src rightside" href="../../src/gtk4/auto/print_operation.rs.html#1787-1823">source</a><h4 class="code-header">fn <a href="#method.connect_preview" class="fn">connect_preview</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>, &amp;<a class="struct" href="../struct.PrintOperationPreview.html" title="struct gtk4::PrintOperationPreview">PrintOperationPreview</a>, &amp;<a class="struct" href="../struct.PrintContext.html" title="struct gtk4::PrintContext">PrintContext</a>, <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;<a class="struct" href="../struct.Window.html" title="struct gtk4::Window">Window</a>&gt;) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> + 'static&gt;(
+    &amp;self,
+    f: F
+) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section></summary><div class="docblock"><p>Gets emitted when a preview is requested from the native dialog.</p>
+<p>The default handler for this signal uses an external viewer
+application to preview.</p>
+<p>To implement a custom print preview, an application must return
+<a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>true</code></a> from its handler for this signal. In order to use the
+provided @context for the preview implementation, it must be
+given a suitable cairo context with
+<a href="../struct.PrintContext.html#method.set_cairo_context" title="method gtk4::PrintContext::set_cairo_context"><code>PrintContext::set_cairo_context()</code></a>.</p>
+<p>The custom preview implementation can use
+<a href="trait.PrintOperationPreviewExt.html#method.is_selected" title="method gtk4::prelude::PrintOperationPreviewExt::is_selected"><code>PrintOperationPreviewExt::is_selected()</code></a> and
+<a href="trait.PrintOperationPreviewExt.html#method.render_page" title="method gtk4::prelude::PrintOperationPreviewExt::render_page"><code>PrintOperationPreviewExt::render_page()</code></a> to find pages which
+are selected for print and render them. The preview must be
+finished by calling <a href="trait.PrintOperationPreviewExt.html#method.end_preview" title="method gtk4::prelude::PrintOperationPreviewExt::end_preview"><code>PrintOperationPreviewExt::end_preview()</code></a>
+(typically in response to the user clicking a close button).</p>
+<h6 id="preview"><a href="#preview"><code>preview</code></a></h6>
+<p>the <a href="../struct.PrintOperationPreview.html" title="struct gtk4::PrintOperationPreview"><code>PrintOperationPreview</code></a> for the current operation</p>
+<h6 id="context-4"><a href="#context-4"><code>context</code></a></h6>
+<p>the <a href="../struct.PrintContext.html" title="struct gtk4::PrintContext"><code>PrintContext</code></a> that will be used</p>
+<h6 id="parent-1"><a href="#parent-1"><code>parent</code></a></h6>
+<p>the <a href="../struct.Window.html" title="struct gtk4::Window"><code>Window</code></a> to use as window parent</p>
+<h5 id="returns-12"><a href="#returns-12">Returns</a></h5>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>true</code></a> if the listener wants to take over control of the preview</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.connect_request_page_setup" class="method"><a class="src rightside" href="../../src/gtk4/auto/print_operation.rs.html#1837-1870">source</a><h4 class="code-header">fn <a href="#method.connect_request_page_setup" class="fn">connect_request_page_setup</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>, &amp;<a class="struct" href="../struct.PrintContext.html" title="struct gtk4::PrintContext">PrintContext</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, &amp;<a class="struct" href="../struct.PageSetup.html" title="struct gtk4::PageSetup">PageSetup</a>) + 'static&gt;(
+    &amp;self,
+    f: F
+) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section></summary><div class="docblock"><p>Emitted once for every page that is printed.</p>
+<p>This gives the application a chance to modify the page setup.
+Any changes done to @setup will be in force only for printing
+this page.</p>
+<h6 id="context-5"><a href="#context-5"><code>context</code></a></h6>
+<p>the <a href="../struct.PrintContext.html" title="struct gtk4::PrintContext"><code>PrintContext</code></a> for the current operation</p>
+<h6 id="page_nr-1"><a href="#page_nr-1"><code>page_nr</code></a></h6>
+<p>the number of the currently printed page (0-based)</p>
+<h6 id="setup"><a href="#setup"><code>setup</code></a></h6>
+<p>the <a href="../struct.PageSetup.html" title="struct gtk4::PageSetup"><code>PageSetup</code></a></p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.connect_status_changed" class="method"><a class="src rightside" href="../../src/gtk4/auto/print_operation.rs.html#1878-1900">source</a><h4 class="code-header">fn <a href="#method.connect_status_changed" class="fn">connect_status_changed</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
+    &amp;self,
+    f: F
+) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section></summary><div class="docblock"><p>Emitted at between the various phases of the print operation.</p>
+<p>See <a href="../enum.PrintStatus.html" title="enum gtk4::PrintStatus"><code>PrintStatus</code></a> for the phases that are being discriminated.
+Use <a href="trait.PrintOperationExt.html#method.status"><code>status()</code></a> to find out the current
+status.</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.connect_update_custom_widget" class="method"><a class="src rightside" href="../../src/gtk4/auto/print_operation.rs.html#1913-1946">source</a><h4 class="code-header">fn <a href="#method.connect_update_custom_widget" class="fn">connect_update_custom_widget</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>, &amp;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>, &amp;<a class="struct" href="../struct.PageSetup.html" title="struct gtk4::PageSetup">PageSetup</a>, &amp;<a class="struct" href="../struct.PrintSettings.html" title="struct gtk4::PrintSettings">PrintSettings</a>) + 'static&gt;(
+    &amp;self,
+    f: F
+) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section></summary><div class="docblock"><p>Emitted after change of selected printer.</p>
+<p>The actual page setup and print settings are passed to the custom
+widget, which can actualize itself according to this change.</p>
+<h6 id="widget-1"><a href="#widget-1"><code>widget</code></a></h6>
+<p>the custom widget added in ::create-custom-widget</p>
+<h6 id="setup-1"><a href="#setup-1"><code>setup</code></a></h6>
+<p>actual page setup</p>
+<h6 id="settings-1"><a href="#settings-1"><code>settings</code></a></h6>
+<p>actual print settings</p>
+</div></details><section id="method.connect_allow_async_notify" class="method"><a class="src rightside" href="../../src/gtk4/auto/print_operation.rs.html#1949-1972">source</a><h4 class="code-header">fn <a href="#method.connect_allow_async_notify" class="fn">connect_allow_async_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
+    &amp;self,
+    f: F
+) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><section id="method.connect_current_page_notify" class="method"><a class="src rightside" href="../../src/gtk4/auto/print_operation.rs.html#1975-1998">source</a><h4 class="code-header">fn <a href="#method.connect_current_page_notify" class="fn">connect_current_page_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
+    &amp;self,
+    f: F
+) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><section id="method.connect_custom_tab_label_notify" class="method"><a class="src rightside" href="../../src/gtk4/auto/print_operation.rs.html#2001-2024">source</a><h4 class="code-header">fn <a href="#method.connect_custom_tab_label_notify" class="fn">connect_custom_tab_label_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
+    &amp;self,
+    f: F
+) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><section id="method.connect_default_page_setup_notify" class="method"><a class="src rightside" href="../../src/gtk4/auto/print_operation.rs.html#2027-2050">source</a><h4 class="code-header">fn <a href="#method.connect_default_page_setup_notify" class="fn">connect_default_page_setup_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
+    &amp;self,
+    f: F
+) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><section id="method.connect_embed_page_setup_notify" class="method"><a class="src rightside" href="../../src/gtk4/auto/print_operation.rs.html#2053-2076">source</a><h4 class="code-header">fn <a href="#method.connect_embed_page_setup_notify" class="fn">connect_embed_page_setup_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
+    &amp;self,
+    f: F
+) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><section id="method.connect_export_filename_notify" class="method"><a class="src rightside" href="../../src/gtk4/auto/print_operation.rs.html#2079-2102">source</a><h4 class="code-header">fn <a href="#method.connect_export_filename_notify" class="fn">connect_export_filename_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
+    &amp;self,
+    f: F
+) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><section id="method.connect_has_selection_notify" class="method"><a class="src rightside" href="../../src/gtk4/auto/print_operation.rs.html#2105-2128">source</a><h4 class="code-header">fn <a href="#method.connect_has_selection_notify" class="fn">connect_has_selection_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
+    &amp;self,
+    f: F
+) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><section id="method.connect_job_name_notify" class="method"><a class="src rightside" href="../../src/gtk4/auto/print_operation.rs.html#2131-2154">source</a><h4 class="code-header">fn <a href="#method.connect_job_name_notify" class="fn">connect_job_name_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
+    &amp;self,
+    f: F
+) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><section id="method.connect_n_pages_notify" class="method"><a class="src rightside" href="../../src/gtk4/auto/print_operation.rs.html#2157-2180">source</a><h4 class="code-header">fn <a href="#method.connect_n_pages_notify" class="fn">connect_n_pages_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
+    &amp;self,
+    f: F
+) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><section id="method.connect_n_pages_to_print_notify" class="method"><a class="src rightside" href="../../src/gtk4/auto/print_operation.rs.html#2183-2206">source</a><h4 class="code-header">fn <a href="#method.connect_n_pages_to_print_notify" class="fn">connect_n_pages_to_print_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
+    &amp;self,
+    f: F
+) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><section id="method.connect_print_settings_notify" class="method"><a class="src rightside" href="../../src/gtk4/auto/print_operation.rs.html#2209-2232">source</a><h4 class="code-header">fn <a href="#method.connect_print_settings_notify" class="fn">connect_print_settings_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
+    &amp;self,
+    f: F
+) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><section id="method.connect_show_progress_notify" class="method"><a class="src rightside" href="../../src/gtk4/auto/print_operation.rs.html#2235-2258">source</a><h4 class="code-header">fn <a href="#method.connect_show_progress_notify" class="fn">connect_show_progress_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
+    &amp;self,
+    f: F
+) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><section id="method.connect_status_notify" class="method"><a class="src rightside" href="../../src/gtk4/auto/print_operation.rs.html#2261-2284">source</a><h4 class="code-header">fn <a href="#method.connect_status_notify" class="fn">connect_status_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(&amp;self, f: F) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><section id="method.connect_status_string_notify" class="method"><a class="src rightside" href="../../src/gtk4/auto/print_operation.rs.html#2287-2310">source</a><h4 class="code-header">fn <a href="#method.connect_status_string_notify" class="fn">connect_status_string_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
+    &amp;self,
+    f: F
+) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><section id="method.connect_support_selection_notify" class="method"><a class="src rightside" href="../../src/gtk4/auto/print_operation.rs.html#2313-2336">source</a><h4 class="code-header">fn <a href="#method.connect_support_selection_notify" class="fn">connect_support_selection_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
+    &amp;self,
+    f: F
+) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><section id="method.connect_track_print_status_notify" class="method"><a class="src rightside" href="../../src/gtk4/auto/print_operation.rs.html#2339-2362">source</a><h4 class="code-header">fn <a href="#method.connect_track_print_status_notify" class="fn">connect_track_print_status_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
+    &amp;self,
+    f: F
+) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><section id="method.connect_unit_notify" class="method"><a class="src rightside" href="../../src/gtk4/auto/print_operation.rs.html#2365-2385">source</a><h4 class="code-header">fn <a href="#method.connect_unit_notify" class="fn">connect_unit_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(&amp;self, f: F) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><section id="method.connect_use_full_page_notify" class="method"><a class="src rightside" href="../../src/gtk4/auto/print_operation.rs.html#2388-2411">source</a><h4 class="code-header">fn <a href="#method.connect_use_full_page_notify" class="fn">connect_use_full_page_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
+    &amp;self,
+    f: F
+) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section></div><h2 id="implementors" class="small-section-header">Implementors<a href="#implementors" class="anchor">§</a></h2><div id="implementors-list"><section id="impl-PrintOperationExt-for-O" class="impl"><a class="src rightside" href="../../src/gtk4/auto/print_operation.rs.html#2414">source</a><a href="#impl-PrintOperationExt-for-O" class="anchor">§</a><h3 class="code-header">impl&lt;O: <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.PrintOperation.html" title="struct gtk4::PrintOperation">PrintOperation</a>&gt;&gt; <a class="trait" href="trait.PrintOperationExt.html" title="trait gtk4::prelude::PrintOperationExt">PrintOperationExt</a> for O</h3></section></div><script src="../../implementors/gtk4/auto/print_operation/trait.PrintOperationExt.js" async></script></section></div></main></body></html>

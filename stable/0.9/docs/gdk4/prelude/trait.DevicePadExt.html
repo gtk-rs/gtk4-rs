@@ -1,0 +1,110 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Trait containing all `struct@DevicePad` methods."><title>DevicePadExt in gdk4::prelude - Rust</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../static.files/rustdoc-84e720fa.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="gdk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.89.0-nightly (5526a2f47 2025-06-20)" data-channel="nightly" data-search-js="search-343419c9.js" data-settings-js="settings-5514c975.js" ><script src="../../static.files/storage-4e99c027.js"></script><script defer src="sidebar-items.js"></script><script defer src="../../static.files/main-fd3af306.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-32bb7600.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-6580c154.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-044be391.svg"></head><body class="rustdoc trait"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
+
+    function checkDocsLatestStable() {
+        function popup(msg, url) { return `
+            <style scoped="scoped">
+                .popup {
+                    max-width: 16em;
+                    background-color: #fff;
+                    position: fixed;
+                    z-index: 1;
+                    margin-left: auto;
+                    bottom: 1em;
+                    right: 1em;
+                    border-radius: 5px;
+                    box-shadow: 1px 1px 4px #777;
+                }
+
+                .popup a.version {
+                    color: #e57300;
+                    padding: 0.6em 1em;
+                    display: block;
+                }
+                .popup a.version:hover {
+                    color: #b25900;
+                }
+
+                .popup a.close {
+                    color: white;
+                    background: grey;
+                    border-radius: 99px;
+                    display: inline-block;
+                    width: 19px;
+                    line-height: 19px;
+                    font-weight: bold;
+                    text-align: center;
+                    margin: 0.6em;
+                    float: right;
+                }
+                .popup a.close:hover {
+                    background: black;
+                }
+            </style>
+            <section class="popup" id="gir_docs_popup">
+                <a class="close" href="#" onclick="document.getElementById('gir_docs_popup').remove(); return false">×</a>
+                <a class="version" href="https://gtk-rs.org/gtk4-rs/stable/latest/docs">
+                    ⚠ ${msg}
+                </a>
+            </section>
+        ` };
+
+        if ("0.9" == "main") {
+            document.body.insertAdjacentHTML(
+                'beforeend',
+                popup("This is the development version. Go to latest stable version.", "stable/latest")
+            );
+        } else {
+            fetch('https://gtk-rs.org/gtk4-rs/LATEST_RELEASE_BRANCH')
+                .then(response => response.text())
+                .then(latest_branch => {
+                    if (latest_branch.trim() != "0.9") {
+                        document.body.insertAdjacentHTML(
+                            'beforeend',
+                            popup("This version is outdated. Go to latest version.", "stable/latest")
+                        );
+                    }
+                });
+        }
+    }
+</script>
+
+
+<nav class="mobile-topbar"><button class="sidebar-menu-toggle" title="show sidebar"></button></nav><nav class="sidebar"><div class="sidebar-crate"><h2><a href="../../gdk4/index.html">gdk4</a><span class="version">0.9.7</span></h2></div><div class="sidebar-elems"><section id="rustdoc-toc"><h2 class="location"><a href="#">Device<wbr>PadExt</a></h2><h3><a href="#">Sections</a></h3><ul class="block top-toc"><li><a href="#implementors-1" title="Implementors">Implementors</a></li></ul><h3><a href="#provided-methods">Provided Methods</a></h3><ul class="block"><li><a href="#method.feature_group" title="feature_group">feature_group</a></li><li><a href="#method.group_n_modes" title="group_n_modes">group_n_modes</a></li><li><a href="#method.n_features" title="n_features">n_features</a></li><li><a href="#method.n_groups" title="n_groups">n_groups</a></li></ul><h3><a href="#dyn-compatibility">Dyn Compatibility</a></h3><h3><a href="#implementors">Implementors</a></h3></section><div id="rustdoc-modnav"><h2><a href="index.html">In gdk4::<wbr>prelude</a></h2></div></div></nav><div class="sidebar-resizer" title="Drag to resize sidebar"></div><main><div class="width-limiter"><rustdoc-search></rustdoc-search><section id="main-content" class="content"><div class="main-heading"><div class="rustdoc-breadcrumbs"><a href="../index.html">gdk4</a>::<wbr><a href="index.html">prelude</a></div><h1>Trait <span class="trait">DevicePadExt</span><button id="copy-path" title="Copy item path to clipboard">Copy item path</button></h1><rustdoc-toolbar></rustdoc-toolbar><span class="sub-heading"><a class="src" href="../../src/gdk4/auto/device_pad.rs.html#52-118">Source</a> </span></div><pre class="rust item-decl"><code>pub trait DevicePadExt:
+    <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.DevicePad.html" title="struct gdk4::DevicePad">DevicePad</a>&gt;
+    + Sealed
+    + 'static {
+    // Provided methods
+    fn <a href="#method.feature_group" class="fn">feature_group</a>(&amp;self, feature: <a class="enum" href="../enum.DevicePadFeature.html" title="enum gdk4::DevicePadFeature">DevicePadFeature</a>, feature_idx: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.group_n_modes" class="fn">group_n_modes</a>(&amp;self, group_idx: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.n_features" class="fn">n_features</a>(&amp;self, feature: <a class="enum" href="../enum.DevicePadFeature.html" title="enum gdk4::DevicePadFeature">DevicePadFeature</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.n_groups" class="fn">n_groups</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a> { ... }
+}</code></pre><details class="toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>Trait containing all <a href="../struct.DevicePad.html" title="struct gdk4::DevicePad"><code>DevicePad</code></a> methods.</p>
+<h2 id="implementors-1"><a class="doc-anchor" href="#implementors-1">§</a>Implementors</h2>
+<p><a href="../struct.DevicePad.html" title="struct gdk4::DevicePad"><code>DevicePad</code></a></p>
+</div></details><h2 id="provided-methods" class="section-header">Provided Methods<a href="#provided-methods" class="anchor">§</a></h2><div class="methods"><details class="toggle method-toggle" open><summary><section id="method.feature_group" class="method"><a class="src rightside" href="../../src/gdk4/auto/device_pad.rs.html#66-74">Source</a><h4 class="code-header">fn <a href="#method.feature_group" class="fn">feature_group</a>(&amp;self, feature: <a class="enum" href="../enum.DevicePadFeature.html" title="enum gdk4::DevicePadFeature">DevicePadFeature</a>, feature_idx: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a></h4></section></summary><div class="docblock"><p>Returns the group the given @feature and @idx belong to.</p>
+<p>f the feature or index do not exist in @self, -1 is returned.</p>
+<h6 id="feature"><a class="doc-anchor" href="#feature">§</a><code>feature</code></h6>
+<p>the feature type to get the group from</p>
+<h6 id="feature_idx"><a class="doc-anchor" href="#feature_idx">§</a><code>feature_idx</code></h6>
+<p>the index of the feature to get the group from</p>
+<h5 id="returns"><a class="doc-anchor" href="#returns">§</a>Returns</h5>
+<p>The group number of the queried pad feature.</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.group_n_modes" class="method"><a class="src rightside" href="../../src/gdk4/auto/device_pad.rs.html#85-87">Source</a><h4 class="code-header">fn <a href="#method.group_n_modes" class="fn">group_n_modes</a>(&amp;self, group_idx: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a></h4></section></summary><div class="docblock"><p>Returns the number of modes that @group may have.</p>
+<h6 id="group_idx"><a class="doc-anchor" href="#group_idx">§</a><code>group_idx</code></h6>
+<p>group to get the number of available modes from</p>
+<h5 id="returns-1"><a class="doc-anchor" href="#returns-1">§</a>Returns</h5>
+<p>The number of modes available in @group.</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.n_features" class="method"><a class="src rightside" href="../../src/gdk4/auto/device_pad.rs.html#98-102">Source</a><h4 class="code-header">fn <a href="#method.n_features" class="fn">n_features</a>(&amp;self, feature: <a class="enum" href="../enum.DevicePadFeature.html" title="enum gdk4::DevicePadFeature">DevicePadFeature</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a></h4></section></summary><div class="docblock"><p>Returns the number of features a tablet pad has.</p>
+<h6 id="feature-1"><a class="doc-anchor" href="#feature-1">§</a><code>feature</code></h6>
+<p>a pad feature</p>
+<h5 id="returns-2"><a class="doc-anchor" href="#returns-2">§</a>Returns</h5>
+<p>The amount of elements of type @feature that this pad has.</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.n_groups" class="method"><a class="src rightside" href="../../src/gdk4/auto/device_pad.rs.html#115-117">Source</a><h4 class="code-header">fn <a href="#method.n_groups" class="fn">n_groups</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a></h4></section></summary><div class="docblock"><p>Returns the number of groups this pad device has.</p>
+<p>Pads have at least one group. A pad group is a subcollection of
+buttons/strip/rings that is affected collectively by a same
+current mode.</p>
+<h5 id="returns-3"><a class="doc-anchor" href="#returns-3">§</a>Returns</h5>
+<p>The number of button/ring/strip groups in the pad.</p>
+</div></details></div><h2 id="dyn-compatibility" class="section-header">Dyn Compatibility<a href="#dyn-compatibility" class="anchor">§</a></h2><div class="dyn-compatibility-info"><p>This trait is <b>not</b> <a href="https://doc.rust-lang.org/nightly/reference/items/traits.html#dyn-compatibility">dyn compatible</a>.</p><p><i>In older versions of Rust, dyn compatibility was called "object safety", so this trait is not object safe.</i></p></div><h2 id="implementors" class="section-header">Implementors<a href="#implementors" class="anchor">§</a></h2><div id="implementors-list"><section id="impl-DevicePadExt-for-O" class="impl"><a class="src rightside" href="../../src/gdk4/auto/device_pad.rs.html#120">Source</a><a href="#impl-DevicePadExt-for-O" class="anchor">§</a><h3 class="code-header">impl&lt;O: <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.DevicePad.html" title="struct gdk4::DevicePad">DevicePad</a>&gt;&gt; <a class="trait" href="trait.DevicePadExt.html" title="trait gdk4::prelude::DevicePadExt">DevicePadExt</a> for O</h3></section></div><script src="../../trait.impl/gdk4/auto/device_pad/trait.DevicePadExt.js" async></script></section></div></main></body></html>

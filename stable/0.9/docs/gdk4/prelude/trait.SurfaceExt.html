@@ -1,0 +1,351 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Trait containing all `struct@Surface` methods."><title>SurfaceExt in gdk4::prelude - Rust</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../static.files/rustdoc-84e720fa.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="gdk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.89.0-nightly (5526a2f47 2025-06-20)" data-channel="nightly" data-search-js="search-343419c9.js" data-settings-js="settings-5514c975.js" ><script src="../../static.files/storage-4e99c027.js"></script><script defer src="sidebar-items.js"></script><script defer src="../../static.files/main-fd3af306.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-32bb7600.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-6580c154.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-044be391.svg"></head><body class="rustdoc trait"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
+
+    function checkDocsLatestStable() {
+        function popup(msg, url) { return `
+            <style scoped="scoped">
+                .popup {
+                    max-width: 16em;
+                    background-color: #fff;
+                    position: fixed;
+                    z-index: 1;
+                    margin-left: auto;
+                    bottom: 1em;
+                    right: 1em;
+                    border-radius: 5px;
+                    box-shadow: 1px 1px 4px #777;
+                }
+
+                .popup a.version {
+                    color: #e57300;
+                    padding: 0.6em 1em;
+                    display: block;
+                }
+                .popup a.version:hover {
+                    color: #b25900;
+                }
+
+                .popup a.close {
+                    color: white;
+                    background: grey;
+                    border-radius: 99px;
+                    display: inline-block;
+                    width: 19px;
+                    line-height: 19px;
+                    font-weight: bold;
+                    text-align: center;
+                    margin: 0.6em;
+                    float: right;
+                }
+                .popup a.close:hover {
+                    background: black;
+                }
+            </style>
+            <section class="popup" id="gir_docs_popup">
+                <a class="close" href="#" onclick="document.getElementById('gir_docs_popup').remove(); return false">×</a>
+                <a class="version" href="https://gtk-rs.org/gtk4-rs/stable/latest/docs">
+                    ⚠ ${msg}
+                </a>
+            </section>
+        ` };
+
+        if ("0.9" == "main") {
+            document.body.insertAdjacentHTML(
+                'beforeend',
+                popup("This is the development version. Go to latest stable version.", "stable/latest")
+            );
+        } else {
+            fetch('https://gtk-rs.org/gtk4-rs/LATEST_RELEASE_BRANCH')
+                .then(response => response.text())
+                .then(latest_branch => {
+                    if (latest_branch.trim() != "0.9") {
+                        document.body.insertAdjacentHTML(
+                            'beforeend',
+                            popup("This version is outdated. Go to latest version.", "stable/latest")
+                        );
+                    }
+                });
+        }
+    }
+</script>
+
+
+<nav class="mobile-topbar"><button class="sidebar-menu-toggle" title="show sidebar"></button></nav><nav class="sidebar"><div class="sidebar-crate"><h2><a href="../../gdk4/index.html">gdk4</a><span class="version">0.9.7</span></h2></div><div class="sidebar-elems"><section id="rustdoc-toc"><h2 class="location"><a href="#">Surface<wbr>Ext</a></h2><h3><a href="#">Sections</a></h3><ul class="block top-toc"><li><a href="#implementors-1" title="Implementors">Implementors</a></li></ul><h3><a href="#provided-methods">Provided Methods</a></h3><ul class="block"><li><a href="#method.beep" title="beep">beep</a></li><li><a href="#method.connect_cursor_notify" title="connect_cursor_notify">connect_cursor_notify</a></li><li><a href="#method.connect_enter_monitor" title="connect_enter_monitor">connect_enter_monitor</a></li><li><a href="#method.connect_event" title="connect_event">connect_event</a></li><li><a href="#method.connect_height_notify" title="connect_height_notify">connect_height_notify</a></li><li><a href="#method.connect_layout" title="connect_layout">connect_layout</a></li><li><a href="#method.connect_leave_monitor" title="connect_leave_monitor">connect_leave_monitor</a></li><li><a href="#method.connect_mapped_notify" title="connect_mapped_notify">connect_mapped_notify</a></li><li><a href="#method.connect_render" title="connect_render">connect_render</a></li><li><a href="#method.connect_scale_factor_notify" title="connect_scale_factor_notify">connect_scale_factor_notify</a></li><li><a href="#method.connect_scale_notify" title="connect_scale_notify">connect_scale_notify</a></li><li><a href="#method.connect_width_notify" title="connect_width_notify">connect_width_notify</a></li><li><a href="#method.create_cairo_context" title="create_cairo_context">create_cairo_context</a></li><li><a href="#method.create_gl_context" title="create_gl_context">create_gl_context</a></li><li><a href="#method.create_vulkan_context" title="create_vulkan_context">create_vulkan_context</a></li><li><a href="#method.cursor" title="cursor">cursor</a></li><li><a href="#method.destroy" title="destroy">destroy</a></li><li><a href="#method.device_cursor" title="device_cursor">device_cursor</a></li><li><a href="#method.device_position" title="device_position">device_position</a></li><li><a href="#method.display" title="display">display</a></li><li><a href="#method.frame_clock" title="frame_clock">frame_clock</a></li><li><a href="#method.height" title="height">height</a></li><li><a href="#method.hide" title="hide">hide</a></li><li><a href="#method.is_destroyed" title="is_destroyed">is_destroyed</a></li><li><a href="#method.is_mapped" title="is_mapped">is_mapped</a></li><li><a href="#method.queue_render" title="queue_render">queue_render</a></li><li><a href="#method.request_layout" title="request_layout">request_layout</a></li><li><a href="#method.scale" title="scale">scale</a></li><li><a href="#method.scale_factor" title="scale_factor">scale_factor</a></li><li><a href="#method.set_cursor" title="set_cursor">set_cursor</a></li><li><a href="#method.set_device_cursor" title="set_device_cursor">set_device_cursor</a></li><li><a href="#method.set_input_region" title="set_input_region">set_input_region</a></li><li><a href="#method.set_opaque_region" title="set_opaque_region">set_opaque_region</a></li><li><a href="#method.width" title="width">width</a></li></ul><h3><a href="#dyn-compatibility">Dyn Compatibility</a></h3><h3><a href="#implementors">Implementors</a></h3></section><div id="rustdoc-modnav"><h2><a href="index.html">In gdk4::<wbr>prelude</a></h2></div></div></nav><div class="sidebar-resizer" title="Drag to resize sidebar"></div><main><div class="width-limiter"><rustdoc-search></rustdoc-search><section id="main-content" class="content"><div class="main-heading"><div class="rustdoc-breadcrumbs"><a href="../index.html">gdk4</a>::<wbr><a href="index.html">prelude</a></div><h1>Trait <span class="trait">SurfaceExt</span><button id="copy-path" title="Copy item path to clipboard">Copy item path</button></h1><rustdoc-toolbar></rustdoc-toolbar><span class="sub-heading"><a class="src" href="../../src/gdk4/auto/surface.rs.html#185-942">Source</a> </span></div><pre class="rust item-decl"><code>pub trait SurfaceExt:
+    <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Surface.html" title="struct gdk4::Surface">Surface</a>&gt;
+    + Sealed
+    + 'static {
+<details class="toggle type-contents-toggle"><summary class="hideme"><span>Show 34 methods</span></summary>    // Provided methods
+    fn <a href="#method.beep" class="fn">beep</a>(&amp;self) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.create_cairo_context" class="fn">create_cairo_context</a>(&amp;self) -&gt; <a class="struct" href="../struct.CairoContext.html" title="struct gdk4::CairoContext">CairoContext</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.create_gl_context" class="fn">create_gl_context</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="struct" href="../struct.GLContext.html" title="struct gdk4::GLContext">GLContext</a>, <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/error/struct.Error.html" title="struct glib::error::Error">Error</a>&gt; { ... }
+<span class="item-spacer"></span>    fn <a href="#method.create_vulkan_context" class="fn">create_vulkan_context</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="struct" href="../struct.VulkanContext.html" title="struct gdk4::VulkanContext">VulkanContext</a>, <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/error/struct.Error.html" title="struct glib::error::Error">Error</a>&gt; { ... }
+<span class="item-spacer"></span>    fn <a href="#method.destroy" class="fn">destroy</a>(&amp;self) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.cursor" class="fn">cursor</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../struct.Cursor.html" title="struct gdk4::Cursor">Cursor</a>&gt; { ... }
+<span class="item-spacer"></span>    fn <a href="#method.device_cursor" class="fn">device_cursor</a>(&amp;self, device: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Device.html" title="struct gdk4::Device">Device</a>&gt;) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../struct.Cursor.html" title="struct gdk4::Cursor">Cursor</a>&gt; { ... }
+<span class="item-spacer"></span>    fn <a href="#method.device_position" class="fn">device_position</a>(
+        &amp;self,
+        device: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Device.html" title="struct gdk4::Device">Device</a>&gt;,
+    ) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>, <a class="struct" href="../struct.ModifierType.html" title="struct gdk4::ModifierType">ModifierType</a>)&gt; { ... }
+<span class="item-spacer"></span>    fn <a href="#method.display" class="fn">display</a>(&amp;self) -&gt; <a class="struct" href="../struct.Display.html" title="struct gdk4::Display">Display</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.frame_clock" class="fn">frame_clock</a>(&amp;self) -&gt; <a class="struct" href="../struct.FrameClock.html" title="struct gdk4::FrameClock">FrameClock</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.height" class="fn">height</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.is_mapped" class="fn">is_mapped</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.scale" class="fn">scale</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.scale_factor" class="fn">scale_factor</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.width" class="fn">width</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.hide" class="fn">hide</a>(&amp;self) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.is_destroyed" class="fn">is_destroyed</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.queue_render" class="fn">queue_render</a>(&amp;self) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.request_layout" class="fn">request_layout</a>(&amp;self) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.set_cursor" class="fn">set_cursor</a>(&amp;self, cursor: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;<a class="struct" href="../struct.Cursor.html" title="struct gdk4::Cursor">Cursor</a>&gt;) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.set_device_cursor" class="fn">set_device_cursor</a>(&amp;self, device: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Device.html" title="struct gdk4::Device">Device</a>&gt;, cursor: &amp;<a class="struct" href="../struct.Cursor.html" title="struct gdk4::Cursor">Cursor</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.set_input_region" class="fn">set_input_region</a>(&amp;self, region: &amp;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/cairo/region/struct.Region.html" title="struct cairo::region::Region">Region</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.set_opaque_region" class="fn">set_opaque_region</a>(&amp;self, region: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/cairo/region/struct.Region.html" title="struct cairo::region::Region">Region</a>&gt;) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_enter_monitor" class="fn">connect_enter_monitor</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;Self, &amp;<a class="struct" href="../struct.Monitor.html" title="struct gdk4::Monitor">Monitor</a>) + 'static&gt;(
+        &amp;self,
+        f: F,
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_event" class="fn">connect_event</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;Self, &amp;<a class="struct" href="../struct.Event.html" title="struct gdk4::Event">Event</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> + 'static&gt;(
+        &amp;self,
+        f: F,
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_layout" class="fn">connect_layout</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;Self, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>) + 'static&gt;(
+        &amp;self,
+        f: F,
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_leave_monitor" class="fn">connect_leave_monitor</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;Self, &amp;<a class="struct" href="../struct.Monitor.html" title="struct gdk4::Monitor">Monitor</a>) + 'static&gt;(
+        &amp;self,
+        f: F,
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_render" class="fn">connect_render</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;Self, &amp;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/cairo/region/struct.Region.html" title="struct cairo::region::Region">Region</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> + 'static&gt;(
+        &amp;self,
+        f: F,
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_cursor_notify" class="fn">connect_cursor_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;Self) + 'static&gt;(
+        &amp;self,
+        f: F,
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_height_notify" class="fn">connect_height_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;Self) + 'static&gt;(
+        &amp;self,
+        f: F,
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_mapped_notify" class="fn">connect_mapped_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;Self) + 'static&gt;(
+        &amp;self,
+        f: F,
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_scale_notify" class="fn">connect_scale_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;Self) + 'static&gt;(
+        &amp;self,
+        f: F,
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_scale_factor_notify" class="fn">connect_scale_factor_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;Self) + 'static&gt;(
+        &amp;self,
+        f: F,
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_width_notify" class="fn">connect_width_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;Self) + 'static&gt;(
+        &amp;self,
+        f: F,
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+</details>}</code></pre><details class="toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>Trait containing all <a href="../struct.Surface.html" title="struct gdk4::Surface"><code>Surface</code></a> methods.</p>
+<h2 id="implementors-1"><a class="doc-anchor" href="#implementors-1">§</a>Implementors</h2>
+<p><a href="../struct.DragSurface.html" title="struct gdk4::DragSurface"><code>DragSurface</code></a>, <a href="../struct.Popup.html" title="struct gdk4::Popup"><code>Popup</code></a>, <a href="../struct.Surface.html" title="struct gdk4::Surface"><code>Surface</code></a>, <a href="../struct.Toplevel.html" title="struct gdk4::Toplevel"><code>Toplevel</code></a></p>
+</div></details><h2 id="provided-methods" class="section-header">Provided Methods<a href="#provided-methods" class="anchor">§</a></h2><div class="methods"><details class="toggle method-toggle" open><summary><section id="method.beep" class="method"><a class="src rightside" href="../../src/gdk4/auto/surface.rs.html#191-195">Source</a><h4 class="code-header">fn <a href="#method.beep" class="fn">beep</a>(&amp;self)</h4></section></summary><div class="docblock"><p>Emits a short beep associated to @self.</p>
+<p>If the display of @self does not support per-surface beeps,
+emits a short beep on the display just as <a href="trait.DisplayExt.html#method.beep" title="method gdk4::prelude::DisplayExt::beep"><code>DisplayExt::beep()</code></a>.</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.create_cairo_context" class="method"><a class="src rightside" href="../../src/gdk4/auto/surface.rs.html#203-209">Source</a><h4 class="code-header">fn <a href="#method.create_cairo_context" class="fn">create_cairo_context</a>(&amp;self) -&gt; <a class="struct" href="../struct.CairoContext.html" title="struct gdk4::CairoContext">CairoContext</a></h4></section></summary><div class="docblock"><p>Creates a new <a href="../struct.CairoContext.html" title="struct gdk4::CairoContext"><code>CairoContext</code></a> for rendering on @self.</p>
+<h5 id="returns"><a class="doc-anchor" href="#returns">§</a>Returns</h5>
+<p>the newly created <a href="../struct.CairoContext.html" title="struct gdk4::CairoContext"><code>CairoContext</code></a></p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.create_gl_context" class="method"><a class="src rightside" href="../../src/gdk4/auto/surface.rs.html#222-233">Source</a><h4 class="code-header">fn <a href="#method.create_gl_context" class="fn">create_gl_context</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="struct" href="../struct.GLContext.html" title="struct gdk4::GLContext">GLContext</a>, <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/error/struct.Error.html" title="struct glib::error::Error">Error</a>&gt;</h4></section></summary><div class="docblock"><p>Creates a new <a href="../struct.GLContext.html" title="struct gdk4::GLContext"><code>GLContext</code></a> for the <a href="../struct.Surface.html" title="struct gdk4::Surface"><code>Surface</code></a>.</p>
+<p>The context is disconnected from any particular surface or surface.
+If the creation of the <a href="../struct.GLContext.html" title="struct gdk4::GLContext"><code>GLContext</code></a> failed, @error will be set.
+Before using the returned <a href="../struct.GLContext.html" title="struct gdk4::GLContext"><code>GLContext</code></a>, you will need to
+call <a href="trait.GLContextExt.html#method.make_current" title="method gdk4::prelude::GLContextExt::make_current"><code>GLContextExt::make_current()</code></a> or <a href="trait.GLContextExt.html#method.realize" title="method gdk4::prelude::GLContextExt::realize"><code>GLContextExt::realize()</code></a>.</p>
+<h5 id="returns-1"><a class="doc-anchor" href="#returns-1">§</a>Returns</h5>
+<p>the newly created <a href="../struct.GLContext.html" title="struct gdk4::GLContext"><code>GLContext</code></a></p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.create_vulkan_context" class="method"><a class="src rightside" href="../../src/gdk4/auto/surface.rs.html#248-259">Source</a><h4 class="code-header">fn <a href="#method.create_vulkan_context" class="fn">create_vulkan_context</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="struct" href="../struct.VulkanContext.html" title="struct gdk4::VulkanContext">VulkanContext</a>, <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/error/struct.Error.html" title="struct glib::error::Error">Error</a>&gt;</h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.14</span></div></span></summary><div class="docblock"><p>Sets an error and returns <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="variant core::option::Option::None"><code>None</code></a>.</p>
+<h5 id="deprecated-since-414"><a class="doc-anchor" href="#deprecated-since-414">§</a>Deprecated since 4.14</h5>
+<p>GTK does not expose any Vulkan internals. This
+function is a leftover that was accidentally exposed.</p>
+<h5 id="returns-2"><a class="doc-anchor" href="#returns-2">§</a>Returns</h5>
+<p><a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="variant core::option::Option::None"><code>None</code></a></p>
+</div></details><section id="method.destroy" class="method"><a class="src rightside" href="../../src/gdk4/auto/surface.rs.html#262-266">Source</a><h4 class="code-header">fn <a href="#method.destroy" class="fn">destroy</a>(&amp;self)</h4></section><details class="toggle method-toggle" open><summary><section id="method.cursor" class="method"><a class="src rightside" href="../../src/gdk4/auto/surface.rs.html#281-283">Source</a><h4 class="code-header">fn <a href="#method.cursor" class="fn">cursor</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../struct.Cursor.html" title="struct gdk4::Cursor">Cursor</a>&gt;</h4></section></summary><div class="docblock"><p>Retrieves a <a href="../struct.Cursor.html" title="struct gdk4::Cursor"><code>Cursor</code></a> pointer for the cursor currently set on the
+<a href="../struct.Surface.html" title="struct gdk4::Surface"><code>Surface</code></a>.</p>
+<p>If the return value is <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="variant core::option::Option::None"><code>None</code></a> then there is no custom cursor set on
+the surface, and it is using the cursor for its parent surface.</p>
+<p>Use <a href="trait.SurfaceExt.html#method.set_cursor"><code>set_cursor()</code></a> to unset the cursor of the surface.</p>
+<h5 id="returns-3"><a class="doc-anchor" href="#returns-3">§</a>Returns</h5>
+<p>a <a href="../struct.Cursor.html" title="struct gdk4::Cursor"><code>Cursor</code></a></p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.device_cursor" class="method"><a class="src rightside" href="../../src/gdk4/auto/surface.rs.html#300-307">Source</a><h4 class="code-header">fn <a href="#method.device_cursor" class="fn">device_cursor</a>(&amp;self, device: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Device.html" title="struct gdk4::Device">Device</a>&gt;) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../struct.Cursor.html" title="struct gdk4::Cursor">Cursor</a>&gt;</h4></section></summary><div class="docblock"><p>Retrieves a <a href="../struct.Cursor.html" title="struct gdk4::Cursor"><code>Cursor</code></a> pointer for the @device currently set on the
+specified <a href="../struct.Surface.html" title="struct gdk4::Surface"><code>Surface</code></a>.</p>
+<p>If the return value is <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="variant core::option::Option::None"><code>None</code></a> then there is no custom cursor set on the
+specified surface, and it is using the cursor for its parent surface.</p>
+<p>Use <a href="trait.SurfaceExt.html#method.set_cursor"><code>set_cursor()</code></a> to unset the cursor of the surface.</p>
+<h6 id="device"><a class="doc-anchor" href="#device">§</a><code>device</code></h6>
+<p>a pointer <a href="../struct.Device.html" title="struct gdk4::Device"><code>Device</code></a></p>
+<h5 id="returns-4"><a class="doc-anchor" href="#returns-4">§</a>Returns</h5>
+<p>a <a href="../struct.Cursor.html" title="struct gdk4::Cursor"><code>Cursor</code></a></p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.device_position" class="method"><a class="src rightside" href="../../src/gdk4/auto/surface.rs.html#330-352">Source</a><h4 class="code-header">fn <a href="#method.device_position" class="fn">device_position</a>(
+    &amp;self,
+    device: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Device.html" title="struct gdk4::Device">Device</a>&gt;,
+) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>, <a class="struct" href="../struct.ModifierType.html" title="struct gdk4::ModifierType">ModifierType</a>)&gt;</h4></section></summary><div class="docblock"><p>Obtains the current device position and modifier state.</p>
+<p>The position is given in coordinates relative to the upper
+left corner of @self.</p>
+<h6 id="device-1"><a class="doc-anchor" href="#device-1">§</a><code>device</code></h6>
+<p>pointer <a href="../struct.Device.html" title="struct gdk4::Device"><code>Device</code></a> to query to</p>
+<h5 id="returns-5"><a class="doc-anchor" href="#returns-5">§</a>Returns</h5>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>true</code></a> if the device is over the surface</p>
+<h6 id="x"><a class="doc-anchor" href="#x">§</a><code>x</code></h6>
+<p>return location for the X coordinate of @device</p>
+<h6 id="y"><a class="doc-anchor" href="#y">§</a><code>y</code></h6>
+<p>return location for the Y coordinate of @device</p>
+<h6 id="mask"><a class="doc-anchor" href="#mask">§</a><code>mask</code></h6>
+<p>return location for the modifier mask</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.display" class="method"><a class="src rightside" href="../../src/gdk4/auto/surface.rs.html#361-363">Source</a><h4 class="code-header">fn <a href="#method.display" class="fn">display</a>(&amp;self) -&gt; <a class="struct" href="../struct.Display.html" title="struct gdk4::Display">Display</a></h4></section></summary><div class="docblock"><p>Gets the <a href="../struct.Display.html" title="struct gdk4::Display"><code>Display</code></a> associated with a <a href="../struct.Surface.html" title="struct gdk4::Surface"><code>Surface</code></a>.</p>
+<h5 id="returns-6"><a class="doc-anchor" href="#returns-6">§</a>Returns</h5>
+<p>the <a href="../struct.Display.html" title="struct gdk4::Display"><code>Display</code></a> associated with @self</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.frame_clock" class="method"><a class="src rightside" href="../../src/gdk4/auto/surface.rs.html#376-382">Source</a><h4 class="code-header">fn <a href="#method.frame_clock" class="fn">frame_clock</a>(&amp;self) -&gt; <a class="struct" href="../struct.FrameClock.html" title="struct gdk4::FrameClock">FrameClock</a></h4></section></summary><div class="docblock"><p>Gets the frame clock for the surface.</p>
+<p>The frame clock for a surface never changes unless the surface is
+reparented to a new toplevel surface.</p>
+<h5 id="returns-7"><a class="doc-anchor" href="#returns-7">§</a>Returns</h5>
+<p>the frame clock</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.height" class="method"><a class="src rightside" href="../../src/gdk4/auto/surface.rs.html#394-396">Source</a><h4 class="code-header">fn <a href="#method.height" class="fn">height</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a></h4></section></summary><div class="docblock"><p>Returns the height of the given @self.</p>
+<p>Surface size is reported in ”application pixels”, not
+”device pixels” (see <a href="trait.SurfaceExt.html#method.scale_factor"><code>scale_factor()</code></a>).</p>
+<h5 id="returns-8"><a class="doc-anchor" href="#returns-8">§</a>Returns</h5>
+<p>The height of @self</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.is_mapped" class="method"><a class="src rightside" href="../../src/gdk4/auto/surface.rs.html#409-411">Source</a><h4 class="code-header">fn <a href="#method.is_mapped" class="fn">is_mapped</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></section></summary><div class="docblock"><p>Checks whether the surface has been mapped.</p>
+<p>A surface is mapped with <a href="trait.ToplevelExt.html#method.present" title="method gdk4::prelude::ToplevelExt::present"><code>ToplevelExt::present()</code></a>
+or <a href="trait.PopupExt.html#method.present" title="method gdk4::prelude::PopupExt::present"><code>PopupExt::present()</code></a>.</p>
+<h5 id="returns-9"><a class="doc-anchor" href="#returns-9">§</a>Returns</h5>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>true</code></a> if the surface is mapped</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.scale" class="method"><a class="src rightside" href="../../src/gdk4/auto/surface.rs.html#432-434">Source</a><h4 class="code-header">fn <a href="#method.scale" class="fn">scale</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a></h4></section><span class="item-info"><div class="stab portability">Available on <strong>crate feature <code>v4_12</code></strong> only.</div></span></summary><div class="docblock"><p>Returns the internal scale that maps from surface coordinates
+to the actual device pixels.</p>
+<p>When the scale is bigger than 1, the windowing system prefers to get
+buffers with a resolution that is bigger than the surface size (e.g.
+to show the surface on a high-resolution display, or in a magnifier).</p>
+<p>Compare with <a href="trait.SurfaceExt.html#method.scale_factor"><code>scale_factor()</code></a>, which returns the
+next larger integer.</p>
+<p>The scale may change during the lifetime of the surface.</p>
+<h5 id="returns-10"><a class="doc-anchor" href="#returns-10">§</a>Returns</h5>
+<p>the scale</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.scale_factor" class="method"><a class="src rightside" href="../../src/gdk4/auto/surface.rs.html#454-456">Source</a><h4 class="code-header">fn <a href="#method.scale_factor" class="fn">scale_factor</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a></h4></section></summary><div class="docblock"><p>Returns the internal scale factor that maps from surface coordinates
+to the actual device pixels.</p>
+<p>On traditional systems this is 1, but on very high density outputs
+this can be a higher value (often 2). A higher value means that drawing
+is automatically scaled up to a higher resolution, so any code doing
+drawing will automatically look nicer. However, if you are supplying
+pixel-based data the scale value can be used to determine whether to
+use a pixel resource with higher resolution data.</p>
+<p>The scale factor may change during the lifetime of the surface.</p>
+<h5 id="returns-11"><a class="doc-anchor" href="#returns-11">§</a>Returns</h5>
+<p>the scale factor</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.width" class="method"><a class="src rightside" href="../../src/gdk4/auto/surface.rs.html#468-470">Source</a><h4 class="code-header">fn <a href="#method.width" class="fn">width</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a></h4></section></summary><div class="docblock"><p>Returns the width of the given @self.</p>
+<p>Surface size is reported in ”application pixels”, not
+”device pixels” (see <a href="trait.SurfaceExt.html#method.scale_factor"><code>scale_factor()</code></a>).</p>
+<h5 id="returns-12"><a class="doc-anchor" href="#returns-12">§</a>Returns</h5>
+<p>The width of @self</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.hide" class="method"><a class="src rightside" href="../../src/gdk4/auto/surface.rs.html#479-483">Source</a><h4 class="code-header">fn <a href="#method.hide" class="fn">hide</a>(&amp;self)</h4></section></summary><div class="docblock"><p>Hide the surface.</p>
+<p>For toplevel surfaces, withdraws them, so they will no longer be
+known to the window manager; for all surfaces, unmaps them, so
+they won’t be displayed. Normally done automatically as
+part of <a href="../gtk4/method.Widget.hide.html">gtk_widget_hide()</a>.</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.is_destroyed" class="method"><a class="src rightside" href="../../src/gdk4/auto/surface.rs.html#491-497">Source</a><h4 class="code-header">fn <a href="#method.is_destroyed" class="fn">is_destroyed</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></section></summary><div class="docblock"><p>Check to see if a surface is destroyed.</p>
+<h5 id="returns-13"><a class="doc-anchor" href="#returns-13">§</a>Returns</h5>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>true</code></a> if the surface is destroyed</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.queue_render" class="method"><a class="src rightside" href="../../src/gdk4/auto/surface.rs.html#505-509">Source</a><h4 class="code-header">fn <a href="#method.queue_render" class="fn">queue_render</a>(&amp;self)</h4></section></summary><div class="docblock"><p>Forces a <a href="../struct.Surface.html#render" title="struct gdk4::Surface"><code>render</code></a> signal emission for @self
+to be scheduled.</p>
+<p>This function is useful for implementations that track invalid
+regions on their own.</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.request_layout" class="method"><a class="src rightside" href="../../src/gdk4/auto/surface.rs.html#515-519">Source</a><h4 class="code-header">fn <a href="#method.request_layout" class="fn">request_layout</a>(&amp;self)</h4></section></summary><div class="docblock"><p>Request a layout phase from the surface’s frame clock.</p>
+<p>See <a href="../struct.FrameClock.html#method.request_phase" title="method gdk4::FrameClock::request_phase"><code>FrameClock::request_phase()</code></a>.</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.set_cursor" class="method"><a class="src rightside" href="../../src/gdk4/auto/surface.rs.html#533-537">Source</a><h4 class="code-header">fn <a href="#method.set_cursor" class="fn">set_cursor</a>(&amp;self, cursor: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;<a class="struct" href="../struct.Cursor.html" title="struct gdk4::Cursor">Cursor</a>&gt;)</h4></section></summary><div class="docblock"><p>Sets the default mouse pointer for a <a href="../struct.Surface.html" title="struct gdk4::Surface"><code>Surface</code></a>.</p>
+<p>Passing <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="variant core::option::Option::None"><code>None</code></a> for the @cursor argument means that @self will use
+the cursor of its parent surface. Most surfaces should use this default.
+Note that @cursor must be for the same display as @self.</p>
+<p>Use <a href="../struct.Cursor.html#method.from_name" title="associated function gdk4::Cursor::from_name"><code>Cursor::from_name()</code></a> or <a href="../struct.Cursor.html#method.from_texture" title="associated function gdk4::Cursor::from_texture"><code>Cursor::from_texture()</code></a>
+to create the cursor. To make the cursor invisible, use <code>GDK_BLANK_CURSOR</code>.</p>
+<h6 id="cursor"><a class="doc-anchor" href="#cursor">§</a><code>cursor</code></h6>
+<p>a <a href="../struct.Cursor.html" title="struct gdk4::Cursor"><code>Cursor</code></a></p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.set_device_cursor" class="method"><a class="src rightside" href="../../src/gdk4/auto/surface.rs.html#551-559">Source</a><h4 class="code-header">fn <a href="#method.set_device_cursor" class="fn">set_device_cursor</a>(&amp;self, device: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Device.html" title="struct gdk4::Device">Device</a>&gt;, cursor: &amp;<a class="struct" href="../struct.Cursor.html" title="struct gdk4::Cursor">Cursor</a>)</h4></section></summary><div class="docblock"><p>Sets a specific <a href="../struct.Cursor.html" title="struct gdk4::Cursor"><code>Cursor</code></a> for a given device when it gets inside @self.</p>
+<p>Passing <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="variant core::option::Option::None"><code>None</code></a> for the @cursor argument means that @self will use the
+cursor of its parent surface. Most surfaces should use this default.</p>
+<p>Use <a href="../struct.Cursor.html#method.from_name" title="associated function gdk4::Cursor::from_name"><code>Cursor::from_name()</code></a> or <a href="../struct.Cursor.html#method.from_texture" title="associated function gdk4::Cursor::from_texture"><code>Cursor::from_texture()</code></a>
+to create the cursor. To make the cursor invisible, use <code>GDK_BLANK_CURSOR</code>.</p>
+<h6 id="device-2"><a class="doc-anchor" href="#device-2">§</a><code>device</code></h6>
+<p>a pointer <a href="../struct.Device.html" title="struct gdk4::Device"><code>Device</code></a></p>
+<h6 id="cursor-1"><a class="doc-anchor" href="#cursor-1">§</a><code>cursor</code></h6>
+<p>a <a href="../struct.Cursor.html" title="struct gdk4::Cursor"><code>Cursor</code></a></p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.set_input_region" class="method"><a class="src rightside" href="../../src/gdk4/auto/surface.rs.html#578-585">Source</a><h4 class="code-header">fn <a href="#method.set_input_region" class="fn">set_input_region</a>(&amp;self, region: &amp;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/cairo/region/struct.Region.html" title="struct cairo::region::Region">Region</a>)</h4></section></summary><div class="docblock"><p>Apply the region to the surface for the purpose of event
+handling.</p>
+<p>Mouse events which happen while the pointer position corresponds
+to an unset bit in the mask will be passed on the surface below
+@self.</p>
+<p>An input region is typically used with RGBA surfaces. The alpha
+channel of the surface defines which pixels are invisible and
+allows for nicely antialiased borders, and the input region
+controls where the surface is “clickable”.</p>
+<p>Use <a href="trait.DisplayExt.html#method.supports_input_shapes" title="method gdk4::prelude::DisplayExt::supports_input_shapes"><code>DisplayExt::supports_input_shapes()</code></a> to find out if
+a particular backend supports input regions.</p>
+<h6 id="region"><a class="doc-anchor" href="#region">§</a><code>region</code></h6>
+<p>region of surface to be reactive</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.set_opaque_region" class="method"><a class="src rightside" href="../../src/gdk4/auto/surface.rs.html#613-620">Source</a><h4 class="code-header">fn <a href="#method.set_opaque_region" class="fn">set_opaque_region</a>(&amp;self, region: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/cairo/region/struct.Region.html" title="struct cairo::region::Region">Region</a>&gt;)</h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.16</span></div></span></summary><div class="docblock"><p>Marks a region of the <a href="../struct.Surface.html" title="struct gdk4::Surface"><code>Surface</code></a> as opaque.</p>
+<p>For optimisation purposes, compositing window managers may
+like to not draw obscured regions of surfaces, or turn off blending
+during for these regions. With RGB windows with no transparency,
+this is just the shape of the window, but with ARGB32 windows, the
+compositor does not know what regions of the window are transparent
+or not.</p>
+<p>This function only works for toplevel surfaces.</p>
+<p>GTK will update this property automatically if the @self background
+is opaque, as we know where the opaque regions are. If your surface
+background is not opaque, please update this property in your
+<a href="../gtk4/vfunc.Widget.css_changed.html">GtkWidgetClass.css_changed</a> handler.</p>
+<h5 id="deprecated-since-416"><a class="doc-anchor" href="#deprecated-since-416">§</a>Deprecated since 4.16</h5>
+<p>GDK can figure out the opaque parts of a window itself
+by inspecting the contents that are drawn.</p>
+<h6 id="region-1"><a class="doc-anchor" href="#region-1">§</a><code>region</code></h6>
+<p>a region, or <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="variant core::option::Option::None"><code>None</code></a> to make the entire
+surface opaque</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.connect_enter_monitor" class="method"><a class="src rightside" href="../../src/gdk4/auto/surface.rs.html#626-652">Source</a><h4 class="code-header">fn <a href="#method.connect_enter_monitor" class="fn">connect_enter_monitor</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;Self, &amp;<a class="struct" href="../struct.Monitor.html" title="struct gdk4::Monitor">Monitor</a>) + 'static&gt;(
+    &amp;self,
+    f: F,
+) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section></summary><div class="docblock"><p>Emitted when @surface starts being present on the monitor.</p>
+<h6 id="monitor"><a class="doc-anchor" href="#monitor">§</a><code>monitor</code></h6>
+<p>the monitor</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.connect_event" class="method"><a class="src rightside" href="../../src/gdk4/auto/surface.rs.html#662-689">Source</a><h4 class="code-header">fn <a href="#method.connect_event" class="fn">connect_event</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;Self, &amp;<a class="struct" href="../struct.Event.html" title="struct gdk4::Event">Event</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> + 'static&gt;(
+    &amp;self,
+    f: F,
+) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section></summary><div class="docblock"><p>Emitted when GDK receives an input event for @surface.</p>
+<h6 id="event"><a class="doc-anchor" href="#event">§</a><code>event</code></h6>
+<p>an input event</p>
+<h5 id="returns-14"><a class="doc-anchor" href="#returns-14">§</a>Returns</h5>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>true</code></a> to indicate that the event has been handled</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.connect_layout" class="method"><a class="src rightside" href="../../src/gdk4/auto/surface.rs.html#701-726">Source</a><h4 class="code-header">fn <a href="#method.connect_layout" class="fn">connect_layout</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;Self, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>) + 'static&gt;(
+    &amp;self,
+    f: F,
+) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section></summary><div class="docblock"><p>Emitted when the size of @surface is changed, or when relayout should
+be performed.</p>
+<p>Surface size is reported in ”application pixels”, not
+”device pixels” (see gdk_surface_get_scale_factor()).</p>
+<h6 id="width"><a class="doc-anchor" href="#width">§</a><code>width</code></h6>
+<p>the current width</p>
+<h6 id="height"><a class="doc-anchor" href="#height">§</a><code>height</code></h6>
+<p>the current height</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.connect_leave_monitor" class="method"><a class="src rightside" href="../../src/gdk4/auto/surface.rs.html#732-758">Source</a><h4 class="code-header">fn <a href="#method.connect_leave_monitor" class="fn">connect_leave_monitor</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;Self, &amp;<a class="struct" href="../struct.Monitor.html" title="struct gdk4::Monitor">Monitor</a>) + 'static&gt;(
+    &amp;self,
+    f: F,
+) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section></summary><div class="docblock"><p>Emitted when @surface stops being present on the monitor.</p>
+<h6 id="monitor-1"><a class="doc-anchor" href="#monitor-1">§</a><code>monitor</code></h6>
+<p>the monitor</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.connect_render" class="method"><a class="src rightside" href="../../src/gdk4/auto/surface.rs.html#768-798">Source</a><h4 class="code-header">fn <a href="#method.connect_render" class="fn">connect_render</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;Self, &amp;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/cairo/region/struct.Region.html" title="struct cairo::region::Region">Region</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> + 'static&gt;(
+    &amp;self,
+    f: F,
+) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section></summary><div class="docblock"><p>Emitted when part of the surface needs to be redrawn.</p>
+<h6 id="region-2"><a class="doc-anchor" href="#region-2">§</a><code>region</code></h6>
+<p>the region that needs to be redrawn</p>
+<h5 id="returns-15"><a class="doc-anchor" href="#returns-15">§</a>Returns</h5>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>true</code></a> to indicate that the signal has been handled</p>
+</div></details><section id="method.connect_cursor_notify" class="method"><a class="src rightside" href="../../src/gdk4/auto/surface.rs.html#801-821">Source</a><h4 class="code-header">fn <a href="#method.connect_cursor_notify" class="fn">connect_cursor_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;Self) + 'static&gt;(&amp;self, f: F) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><section id="method.connect_height_notify" class="method"><a class="src rightside" href="../../src/gdk4/auto/surface.rs.html#824-844">Source</a><h4 class="code-header">fn <a href="#method.connect_height_notify" class="fn">connect_height_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;Self) + 'static&gt;(&amp;self, f: F) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><section id="method.connect_mapped_notify" class="method"><a class="src rightside" href="../../src/gdk4/auto/surface.rs.html#847-867">Source</a><h4 class="code-header">fn <a href="#method.connect_mapped_notify" class="fn">connect_mapped_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;Self) + 'static&gt;(&amp;self, f: F) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><section id="method.connect_scale_notify" class="method"><a class="src rightside" href="../../src/gdk4/auto/surface.rs.html#872-892">Source</a><h4 class="code-header">fn <a href="#method.connect_scale_notify" class="fn">connect_scale_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;Self) + 'static&gt;(&amp;self, f: F) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><span class="item-info"><div class="stab portability">Available on <strong>crate feature <code>v4_12</code></strong> only.</div></span><section id="method.connect_scale_factor_notify" class="method"><a class="src rightside" href="../../src/gdk4/auto/surface.rs.html#895-918">Source</a><h4 class="code-header">fn <a href="#method.connect_scale_factor_notify" class="fn">connect_scale_factor_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;Self) + 'static&gt;(
+    &amp;self,
+    f: F,
+) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><section id="method.connect_width_notify" class="method"><a class="src rightside" href="../../src/gdk4/auto/surface.rs.html#921-941">Source</a><h4 class="code-header">fn <a href="#method.connect_width_notify" class="fn">connect_width_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;Self) + 'static&gt;(&amp;self, f: F) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section></div><h2 id="dyn-compatibility" class="section-header">Dyn Compatibility<a href="#dyn-compatibility" class="anchor">§</a></h2><div class="dyn-compatibility-info"><p>This trait is <b>not</b> <a href="https://doc.rust-lang.org/nightly/reference/items/traits.html#dyn-compatibility">dyn compatible</a>.</p><p><i>In older versions of Rust, dyn compatibility was called "object safety", so this trait is not object safe.</i></p></div><h2 id="implementors" class="section-header">Implementors<a href="#implementors" class="anchor">§</a></h2><div id="implementors-list"><section id="impl-SurfaceExt-for-O" class="impl"><a class="src rightside" href="../../src/gdk4/auto/surface.rs.html#944">Source</a><a href="#impl-SurfaceExt-for-O" class="anchor">§</a><h3 class="code-header">impl&lt;O: <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Surface.html" title="struct gdk4::Surface">Surface</a>&gt;&gt; <a class="trait" href="trait.SurfaceExt.html" title="trait gdk4::prelude::SurfaceExt">SurfaceExt</a> for O</h3></section></div><script src="../../trait.impl/gdk4/auto/surface/trait.SurfaceExt.js" async></script></section></div></main></body></html>

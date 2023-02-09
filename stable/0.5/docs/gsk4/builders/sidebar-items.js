@@ -1,1 +1,0 @@
-window.SIDEBAR_ITEMS = {"struct":[["ColorStopBuilder","A builder-pattern type to construct [`ColorStop`] objects."],["GLShaderBuilder","A builder-pattern type to construct [`GLShader`] objects."],["ShaderArgsBuilder","An object to build the uniforms data for a [`GLShader`][crate::GLShader]."]]};

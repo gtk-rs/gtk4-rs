@@ -1,4 +1,0 @@
-(function() {var implementors = {};
-implementors["gdk4"] = [{"text":"impl <a class=\"trait\" href=\"https://doc.rust-lang.org/nightly/core/ops/deref/trait.DerefMut.html\" title=\"trait core::ops::deref::DerefMut\">DerefMut</a> for <a class=\"struct\" href=\"gdk4/keys/struct.Key.html\" title=\"struct gdk4::keys::Key\">Key</a>","synthetic":false,"types":["gdk4::keys::Key"]}];
-implementors["gtk4"] = [{"text":"impl <a class=\"trait\" href=\"https://doc.rust-lang.org/nightly/core/ops/deref/trait.DerefMut.html\" title=\"trait core::ops::deref::DerefMut\">DerefMut</a> for <a class=\"struct\" href=\"gtk4/struct.Border.html\" title=\"struct gtk4::Border\">Border</a>","synthetic":false,"types":["gtk4::border::Border"]}];
-if (window.register_implementors) {window.register_implementors(implementors);} else {window.pending_implementors = implementors;}})()

@@ -1,0 +1,165 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Trait containing all `struct@EventController` methods."><title>EventControllerExt in gtk4::prelude - Rust</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-46f98efaafac5295.ttf.woff2,FiraSans-Regular-018c141bf0843ffd.woff2,FiraSans-Medium-8f9a781e4970d388.woff2,SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2,SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-081576b923113409.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.79.0-nightly (3a36386dc 2024-04-25)" data-channel="nightly" data-search-js="search-bf21c90c8c1d92b1.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../static.files/storage-e32f0c247825364d.js"></script><script defer src="sidebar-items.js"></script><script defer src="../../static.files/main-20a3ad099b048cf2.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-09095024cf37855e.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc trait"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
+
+    function checkDocsLatestStable() {
+        function popup(msg, url) { return `
+            <style scoped="scoped">
+                .popup {
+                    max-width: 16em;
+                    background-color: #fff;
+                    position: fixed;
+                    z-index: 1;
+                    margin-left: auto;
+                    bottom: 1em;
+                    right: 1em;
+                    border-radius: 5px;
+                    box-shadow: 1px 1px 4px #777;
+                }
+
+                .popup a.version {
+                    color: #e57300;
+                    padding: 0.6em 1em;
+                    display: block;
+                }
+                .popup a.version:hover {
+                    color: #b25900;
+                }
+
+                .popup a.close {
+                    color: white;
+                    background: grey;
+                    border-radius: 99px;
+                    display: inline-block;
+                    width: 19px;
+                    line-height: 19px;
+                    font-weight: bold;
+                    text-align: center;
+                    margin: 0.6em;
+                    float: right;
+                }
+                .popup a.close:hover {
+                    background: black;
+                }
+            </style>
+            <section class="popup" id="gir_docs_popup">
+                <a class="close" href="#" onclick="document.getElementById('gir_docs_popup').remove(); return false">×</a>
+                <a class="version" href="https://gtk-rs.org/gtk4-rs/stable/latest/docs">
+                    ⚠ ${msg}
+                </a>
+            </section>
+        ` };
+
+        if ("0.8" == "master") {
+            document.body.insertAdjacentHTML(
+                'beforeend',
+                popup("This is the development version. Go to latest stable version.", "stable/latest")
+            );
+        } else {
+            fetch('https://gtk-rs.org/gtk4-rs/LATEST_RELEASE_BRANCH')
+                .then(response => response.text())
+                .then(latest_branch => {
+                    if (latest_branch.trim() != "0.8") {
+                        document.body.insertAdjacentHTML(
+                            'beforeend',
+                            popup("This version is outdated. Go to latest version.", "stable/latest")
+                        );
+                    }
+                });
+        }
+    }
+</script>
+
+
+<nav class="mobile-topbar"><button class="sidebar-menu-toggle" title="show sidebar"></button></nav><nav class="sidebar"><div class="sidebar-crate"><h2><a href="../../gtk4/index.html">gtk4</a><span class="version">0.8.2</span></h2></div><h2 class="location"><a href="#">EventControllerExt</a></h2><div class="sidebar-elems"><section><h3><a href="#provided-methods">Provided Methods</a></h3><ul class="block"><li><a href="#method.connect_name_notify">connect_name_notify</a></li><li><a href="#method.connect_propagation_limit_notify">connect_propagation_limit_notify</a></li><li><a href="#method.connect_propagation_phase_notify">connect_propagation_phase_notify</a></li><li><a href="#method.connect_widget_notify">connect_widget_notify</a></li><li><a href="#method.current_event">current_event</a></li><li><a href="#method.current_event_device">current_event_device</a></li><li><a href="#method.current_event_state">current_event_state</a></li><li><a href="#method.current_event_time">current_event_time</a></li><li><a href="#method.name">name</a></li><li><a href="#method.propagation_limit">propagation_limit</a></li><li><a href="#method.propagation_phase">propagation_phase</a></li><li><a href="#method.reset">reset</a></li><li><a href="#method.set_name">set_name</a></li><li><a href="#method.set_propagation_limit">set_propagation_limit</a></li><li><a href="#method.set_propagation_phase">set_propagation_phase</a></li><li><a href="#method.set_static_name">set_static_name</a></li><li><a href="#method.widget">widget</a></li></ul><h3><a href="#object-safety">Object Safety</a></h3><h3><a href="#implementors">Implementors</a></h3></section><h2><a href="index.html">In gtk4::prelude</a></h2></div></nav><div class="sidebar-resizer"></div><main><div class="width-limiter"><nav class="sub"><form class="search-form"><span></span><div id="sidebar-button" tabindex="-1"><a href="../../gtk4/all.html" title="show sidebar"></a></div><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Type ‘S’ or ‘/’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings">Settings</a></div></form></nav><section id="main-content" class="content"><div class="main-heading"><h1>Trait <a href="../index.html">gtk4</a>::<wbr><a href="index.html">prelude</a>::<wbr><a class="trait" href="#">EventControllerExt</a><button id="copy-path" title="Copy item path to clipboard">Copy item path</button></h1><span class="out-of-band"><a class="src" href="../../src/gtk4/auto/event_controller.rs.html#80-382">source</a> · <button id="toggle-all-docs" title="collapse all docs">[<span>&#x2212;</span>]</button></span></div><pre class="rust item-decl"><code>pub trait EventControllerExt: <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.EventController.html" title="struct gtk4::EventController">EventController</a>&gt; + Sealed + 'static {
+<details class="toggle type-contents-toggle"><summary class="hideme"><span>Show 17 methods</span></summary>    // Provided methods
+    fn <a href="#method.current_event" class="fn">current_event</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../../gdk4/auto/event/struct.Event.html" title="struct gdk4::auto::event::Event">Event</a>&gt; { ... }
+<span class="item-spacer"></span>    fn <a href="#method.current_event_device" class="fn">current_event_device</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../../gdk4/auto/device/struct.Device.html" title="struct gdk4::auto::device::Device">Device</a>&gt; { ... }
+<span class="item-spacer"></span>    fn <a href="#method.current_event_state" class="fn">current_event_state</a>(&amp;self) -&gt; <a class="struct" href="../../gdk4/auto/flags/struct.ModifierType.html" title="struct gdk4::auto::flags::ModifierType">ModifierType</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.current_event_time" class="fn">current_event_time</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.name" class="fn">name</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/glib/gstring/struct.GString.html" title="struct glib::gstring::GString">GString</a>&gt; { ... }
+<span class="item-spacer"></span>    fn <a href="#method.propagation_limit" class="fn">propagation_limit</a>(&amp;self) -&gt; <a class="enum" href="../enum.PropagationLimit.html" title="enum gtk4::PropagationLimit">PropagationLimit</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.propagation_phase" class="fn">propagation_phase</a>(&amp;self) -&gt; <a class="enum" href="../enum.PropagationPhase.html" title="enum gtk4::PropagationPhase">PropagationPhase</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.widget" class="fn">widget</a>(&amp;self) -&gt; <a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.reset" class="fn">reset</a>(&amp;self) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.set_name" class="fn">set_name</a>(&amp;self, name: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>&gt;) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.set_propagation_limit" class="fn">set_propagation_limit</a>(&amp;self, limit: <a class="enum" href="../enum.PropagationLimit.html" title="enum gtk4::PropagationLimit">PropagationLimit</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.set_propagation_phase" class="fn">set_propagation_phase</a>(&amp;self, phase: <a class="enum" href="../enum.PropagationPhase.html" title="enum gtk4::PropagationPhase">PropagationPhase</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.set_static_name" class="fn">set_static_name</a>(&amp;self, name: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>&gt;) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_name_notify" class="fn">connect_name_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
+        &amp;self,
+        f: F
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_propagation_limit_notify" class="fn">connect_propagation_limit_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
+        &amp;self,
+        f: F
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_propagation_phase_notify" class="fn">connect_propagation_phase_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
+        &amp;self,
+        f: F
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_widget_notify" class="fn">connect_widget_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
+        &amp;self,
+        f: F
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+</details>}</code></pre><details class="toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>Trait containing all <a href="../struct.EventController.html" title="struct gtk4::EventController"><code>EventController</code></a> methods.</p>
+<h2 id="implementors-1"><a class="doc-anchor" href="#implementors-1">§</a>Implementors</h2>
+<p><a href="../struct.DropControllerMotion.html" title="struct gtk4::DropControllerMotion"><code>DropControllerMotion</code></a>, <a href="../struct.DropTargetAsync.html" title="struct gtk4::DropTargetAsync"><code>DropTargetAsync</code></a>, <a href="../struct.DropTarget.html" title="struct gtk4::DropTarget"><code>DropTarget</code></a>, <a href="../struct.EventControllerFocus.html" title="struct gtk4::EventControllerFocus"><code>EventControllerFocus</code></a>, <a href="../struct.EventControllerKey.html" title="struct gtk4::EventControllerKey"><code>EventControllerKey</code></a>, <a href="../struct.EventControllerLegacy.html" title="struct gtk4::EventControllerLegacy"><code>EventControllerLegacy</code></a>, <a href="../struct.EventControllerMotion.html" title="struct gtk4::EventControllerMotion"><code>EventControllerMotion</code></a>, <a href="../struct.EventControllerScroll.html" title="struct gtk4::EventControllerScroll"><code>EventControllerScroll</code></a>, <a href="../struct.EventController.html" title="struct gtk4::EventController"><code>EventController</code></a>, <a href="../struct.Gesture.html" title="struct gtk4::Gesture"><code>Gesture</code></a>, <a href="../struct.PadController.html" title="struct gtk4::PadController"><code>PadController</code></a>, <a href="../struct.ShortcutController.html" title="struct gtk4::ShortcutController"><code>ShortcutController</code></a></p>
+</div></details><h2 id="provided-methods" class="section-header">Provided Methods<a href="#provided-methods" class="anchor">§</a></h2><div class="methods"><details class="toggle method-toggle" open><summary><section id="method.current_event" class="method"><a class="src rightside" href="../../src/gtk4/auto/event_controller.rs.html#91-97">source</a><h4 class="code-header">fn <a href="#method.current_event" class="fn">current_event</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../../gdk4/auto/event/struct.Event.html" title="struct gdk4::auto::event::Event">Event</a>&gt;</h4></section></summary><div class="docblock"><p>Returns the event that is currently being handled by the controller.</p>
+<p>At other times, <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="variant core::option::Option::None"><code>None</code></a> is returned.</p>
+<h5 id="returns"><a class="doc-anchor" href="#returns">§</a>Returns</h5>
+<p>the event that is currently
+handled by @self</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.current_event_device" class="method"><a class="src rightside" href="../../src/gtk4/auto/event_controller.rs.html#110-116">source</a><h4 class="code-header">fn <a href="#method.current_event_device" class="fn">current_event_device</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../../gdk4/auto/device/struct.Device.html" title="struct gdk4::auto::device::Device">Device</a>&gt;</h4></section></summary><div class="docblock"><p>Returns the device of the event that is currently being
+handled by the controller.</p>
+<p>At other times, <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="variant core::option::Option::None"><code>None</code></a> is returned.</p>
+<h5 id="returns-1"><a class="doc-anchor" href="#returns-1">§</a>Returns</h5>
+<p>device of the event is
+currently handled by @self</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.current_event_state" class="method"><a class="src rightside" href="../../src/gtk4/auto/event_controller.rs.html#128-134">source</a><h4 class="code-header">fn <a href="#method.current_event_state" class="fn">current_event_state</a>(&amp;self) -&gt; <a class="struct" href="../../gdk4/auto/flags/struct.ModifierType.html" title="struct gdk4::auto::flags::ModifierType">ModifierType</a></h4></section></summary><div class="docblock"><p>Returns the modifier state of the event that is currently being
+handled by the controller.</p>
+<p>At other times, 0 is returned.</p>
+<h5 id="returns-2"><a class="doc-anchor" href="#returns-2">§</a>Returns</h5>
+<p>modifier state of the event is currently handled by @self</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.current_event_time" class="method"><a class="src rightside" href="../../src/gtk4/auto/event_controller.rs.html#146-148">source</a><h4 class="code-header">fn <a href="#method.current_event_time" class="fn">current_event_time</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a></h4></section></summary><div class="docblock"><p>Returns the timestamp of the event that is currently being
+handled by the controller.</p>
+<p>At other times, 0 is returned.</p>
+<h5 id="returns-3"><a class="doc-anchor" href="#returns-3">§</a>Returns</h5>
+<p>timestamp of the event is currently handled by @self</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.name" class="method"><a class="src rightside" href="../../src/gtk4/auto/event_controller.rs.html#157-163">source</a><h4 class="code-header">fn <a href="#method.name" class="fn">name</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/glib/gstring/struct.GString.html" title="struct glib::gstring::GString">GString</a>&gt;</h4></section></summary><div class="docblock"><p>Gets the name of @self.</p>
+<h5 id="returns-4"><a class="doc-anchor" href="#returns-4">§</a>Returns</h5>
+<p>The controller name</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.propagation_limit" class="method"><a class="src rightside" href="../../src/gtk4/auto/event_controller.rs.html#172-178">source</a><h4 class="code-header">fn <a href="#method.propagation_limit" class="fn">propagation_limit</a>(&amp;self) -&gt; <a class="enum" href="../enum.PropagationLimit.html" title="enum gtk4::PropagationLimit">PropagationLimit</a></h4></section></summary><div class="docblock"><p>Gets the propagation limit of the event controller.</p>
+<h5 id="returns-5"><a class="doc-anchor" href="#returns-5">§</a>Returns</h5>
+<p>the propagation limit</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.propagation_phase" class="method"><a class="src rightside" href="../../src/gtk4/auto/event_controller.rs.html#187-193">source</a><h4 class="code-header">fn <a href="#method.propagation_phase" class="fn">propagation_phase</a>(&amp;self) -&gt; <a class="enum" href="../enum.PropagationPhase.html" title="enum gtk4::PropagationPhase">PropagationPhase</a></h4></section></summary><div class="docblock"><p>Gets the propagation phase at which @self handles events.</p>
+<h5 id="returns-6"><a class="doc-anchor" href="#returns-6">§</a>Returns</h5>
+<p>the propagation phase</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.widget" class="method"><a class="src rightside" href="../../src/gtk4/auto/event_controller.rs.html#202-208">source</a><h4 class="code-header">fn <a href="#method.widget" class="fn">widget</a>(&amp;self) -&gt; <a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a></h4></section></summary><div class="docblock"><p>Returns the <a href="../struct.Widget.html" title="struct gtk4::Widget"><code>Widget</code></a> this controller relates to.</p>
+<h5 id="returns-7"><a class="doc-anchor" href="#returns-7">§</a>Returns</h5>
+<p>a <a href="../struct.Widget.html" title="struct gtk4::Widget"><code>Widget</code></a></p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.reset" class="method"><a class="src rightside" href="../../src/gtk4/auto/event_controller.rs.html#212-216">source</a><h4 class="code-header">fn <a href="#method.reset" class="fn">reset</a>(&amp;self)</h4></section></summary><div class="docblock"><p>Resets the @self to a clean state.</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.set_name" class="method"><a class="src rightside" href="../../src/gtk4/auto/event_controller.rs.html#222-229">source</a><h4 class="code-header">fn <a href="#method.set_name" class="fn">set_name</a>(&amp;self, name: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>&gt;)</h4></section></summary><div class="docblock"><p>Sets a name on the controller that can be used for debugging.</p>
+<h6 id="name"><a class="doc-anchor" href="#name">§</a><code>name</code></h6>
+<p>a name for @self</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.set_propagation_limit" class="method"><a class="src rightside" href="../../src/gtk4/auto/event_controller.rs.html#239-246">source</a><h4 class="code-header">fn <a href="#method.set_propagation_limit" class="fn">set_propagation_limit</a>(&amp;self, limit: <a class="enum" href="../enum.PropagationLimit.html" title="enum gtk4::PropagationLimit">PropagationLimit</a>)</h4></section></summary><div class="docblock"><p>Sets the event propagation limit on the event controller.</p>
+<p>If the limit is set to <a href="../enum.PropagationLimit.html#variant.SameNative" title="variant gtk4::PropagationLimit::SameNative"><code>PropagationLimit::SameNative</code></a>, the controller
+won’t handle events that are targeted at widgets on a different
+surface, such as popovers.</p>
+<h6 id="limit"><a class="doc-anchor" href="#limit">§</a><code>limit</code></h6>
+<p>the propagation limit</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.set_propagation_phase" class="method"><a class="src rightside" href="../../src/gtk4/auto/event_controller.rs.html#255-262">source</a><h4 class="code-header">fn <a href="#method.set_propagation_phase" class="fn">set_propagation_phase</a>(&amp;self, phase: <a class="enum" href="../enum.PropagationPhase.html" title="enum gtk4::PropagationPhase">PropagationPhase</a>)</h4></section></summary><div class="docblock"><p>Sets the propagation phase at which a controller handles events.</p>
+<p>If @phase is <a href="../enum.PropagationPhase.html#variant.None" title="variant gtk4::PropagationPhase::None"><code>PropagationPhase::None</code></a>, no automatic event handling will be
+performed, but other additional gesture maintenance will.</p>
+<h6 id="phase"><a class="doc-anchor" href="#phase">§</a><code>phase</code></h6>
+<p>a propagation phase</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.set_static_name" class="method"><a class="src rightside" href="../../src/gtk4/auto/event_controller.rs.html#270-277">source</a><h4 class="code-header">fn <a href="#method.set_static_name" class="fn">set_static_name</a>(&amp;self, name: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>&gt;)</h4></section><span class="item-info"><div class="stab portability">Available on <strong>crate feature <code>v4_8</code></strong> only.</div></span></summary><div class="docblock"><p>Sets a name on the controller that can be used for debugging.</p>
+<h6 id="name-1"><a class="doc-anchor" href="#name-1">§</a><code>name</code></h6>
+<p>a name for @self, must be a static string</p>
+</div></details><section id="method.connect_name_notify" class="method"><a class="src rightside" href="../../src/gtk4/auto/event_controller.rs.html#280-303">source</a><h4 class="code-header">fn <a href="#method.connect_name_notify" class="fn">connect_name_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(&amp;self, f: F) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><section id="method.connect_propagation_limit_notify" class="method"><a class="src rightside" href="../../src/gtk4/auto/event_controller.rs.html#306-329">source</a><h4 class="code-header">fn <a href="#method.connect_propagation_limit_notify" class="fn">connect_propagation_limit_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
+    &amp;self,
+    f: F
+) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><section id="method.connect_propagation_phase_notify" class="method"><a class="src rightside" href="../../src/gtk4/auto/event_controller.rs.html#332-355">source</a><h4 class="code-header">fn <a href="#method.connect_propagation_phase_notify" class="fn">connect_propagation_phase_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
+    &amp;self,
+    f: F
+) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><section id="method.connect_widget_notify" class="method"><a class="src rightside" href="../../src/gtk4/auto/event_controller.rs.html#358-381">source</a><h4 class="code-header">fn <a href="#method.connect_widget_notify" class="fn">connect_widget_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(&amp;self, f: F) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section></div><h2 id="object-safety" class="section-header">Object Safety<a href="#object-safety" class="anchor">§</a></h2><div class="object-safety-info">This trait is <b>not</b> <a href="https://doc.rust-lang.org/nightly/reference/items/traits.html#object-safety">object safe</a>.</div><h2 id="implementors" class="section-header">Implementors<a href="#implementors" class="anchor">§</a></h2><div id="implementors-list"><section id="impl-EventControllerExt-for-O" class="impl"><a class="src rightside" href="../../src/gtk4/auto/event_controller.rs.html#384">source</a><a href="#impl-EventControllerExt-for-O" class="anchor">§</a><h3 class="code-header">impl&lt;O: <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.EventController.html" title="struct gtk4::EventController">EventController</a>&gt;&gt; <a class="trait" href="trait.EventControllerExt.html" title="trait gtk4::prelude::EventControllerExt">EventControllerExt</a> for O</h3></section></div><script src="../../trait.impl/gtk4/auto/event_controller/trait.EventControllerExt.js" async></script></section></div></main></body></html>

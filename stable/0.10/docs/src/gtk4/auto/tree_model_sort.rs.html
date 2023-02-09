@@ -1,0 +1,420 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4/src/auto/tree_model_sort.rs`."><title>tree_model_sort.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../static.files/rustdoc-aa0817cf.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.90.0-nightly (a00149764 2025-07-14)" data-channel="nightly" data-search-js="search-179e01a3.js" data-settings-js="settings-5514c975.js" ><script src="../../../static.files/storage-4e99c027.js"></script><script defer src="../../../static.files/src-script-813739b1.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-673ee1e0.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-32bb7600.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-6580c154.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
+
+    function checkDocsLatestStable() {
+        function popup(msg, url) { return `
+            <style scoped="scoped">
+                .popup {
+                    max-width: 16em;
+                    background-color: #fff;
+                    position: fixed;
+                    z-index: 1;
+                    margin-left: auto;
+                    bottom: 1em;
+                    right: 1em;
+                    border-radius: 5px;
+                    box-shadow: 1px 1px 4px #777;
+                }
+
+                .popup a.version {
+                    color: #e57300;
+                    padding: 0.6em 1em;
+                    display: block;
+                }
+                .popup a.version:hover {
+                    color: #b25900;
+                }
+
+                .popup a.close {
+                    color: white;
+                    background: grey;
+                    border-radius: 99px;
+                    display: inline-block;
+                    width: 19px;
+                    line-height: 19px;
+                    font-weight: bold;
+                    text-align: center;
+                    margin: 0.6em;
+                    float: right;
+                }
+                .popup a.close:hover {
+                    background: black;
+                }
+            </style>
+            <section class="popup" id="gir_docs_popup">
+                <a class="close" href="#" onclick="document.getElementById('gir_docs_popup').remove(); return false">×</a>
+                <a class="version" href="https://gtk-rs.org/gtk4-rs/stable/latest/docs">
+                    ⚠ ${msg}
+                </a>
+            </section>
+        ` };
+
+        if ("0.10" == "main") {
+            document.body.insertAdjacentHTML(
+                'beforeend',
+                popup("This is the development version. Go to latest stable version.", "stable/latest")
+            );
+        } else {
+            fetch('https://gtk-rs.org/gtk4-rs/LATEST_RELEASE_BRANCH')
+                .then(response => response.text())
+                .then(latest_branch => {
+                    if (latest_branch.trim() != "0.10") {
+                        document.body.insertAdjacentHTML(
+                            'beforeend',
+                            popup("This version is outdated. Go to latest version.", "stable/latest")
+                        );
+                    }
+                });
+        }
+    }
+</script>
+
+
+<nav class="sidebar"><div class="src-sidebar-title"><h2>Files</h2></div></nav><div class="sidebar-resizer" title="Drag to resize sidebar"></div><main><rustdoc-search></rustdoc-search><section id="main-content" class="content"><div class="main-heading"><h1><div class="sub-heading">gtk4/auto/</div>tree_model_sort.rs</h1><rustdoc-toolbar></rustdoc-toolbar></div><div class="example-wrap digits-3"><pre class="rust"><code><a href=#1 id=1 data-nosnippet>1</a><span class="comment">// This file was generated by gir (https://github.com/gtk-rs/gir)
+<a href=#2 id=2 data-nosnippet>2</a>// from gir-files (https://github.com/gtk-rs/gir-files)
+<a href=#3 id=3 data-nosnippet>3</a>// DO NOT EDIT
+<a href=#4 id=4 data-nosnippet>4</a></span><span class="attr">#![allow(deprecated)]
+<a href=#5 id=5 data-nosnippet>5</a>
+<a href=#6 id=6 data-nosnippet>6</a></span><span class="kw">use crate</span>::{<a href="../../../gtk4_sys/index.html">ffi</a>, <a href="tree_drag_source.rs.html#9-23">TreeDragSource</a>, <a href="tree_iter.rs.html#8-25">TreeIter</a>, <a href="tree_model.rs.html#15-277">TreeModel</a>, <a href="tree_path.rs.html#8-21">TreePath</a>, <a href="tree_sortable.rs.html#15-93">TreeSortable</a>};
+<a href=#7 id=7 data-nosnippet>7</a><span class="kw">use </span>glib::{<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/prelude/index.html">prelude</a>::<span class="kw-2">*</span>, <a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/index.html">translate</a>::<span class="kw-2">*</span>};
+<a href=#8 id=8 data-nosnippet>8</a>
+<a href=#9 id=9 data-nosnippet>9</a><a class="macro" href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/macro.wrapper.html">glib::wrapper!</a> {
+<a href=#10 id=10 data-nosnippet>10</a>    <span class="doccomment">/// Use [`SortListModel`][crate::SortListModel] instead
+<a href=#11 id=11 data-nosnippet>11</a>    /// A GtkTreeModel which makes an underlying tree model sortable
+<a href=#12 id=12 data-nosnippet>12</a>    ///
+<a href=#13 id=13 data-nosnippet>13</a>    /// The [`TreeModelSort`][crate::TreeModelSort] is a model which implements the [`TreeSortable`][crate::TreeSortable]
+<a href=#14 id=14 data-nosnippet>14</a>    /// interface.  It does not hold any data itself, but rather is created with
+<a href=#15 id=15 data-nosnippet>15</a>    /// a child model and proxies its data.  It has identical column types to
+<a href=#16 id=16 data-nosnippet>16</a>    /// this child model, and the changes in the child are propagated.  The
+<a href=#17 id=17 data-nosnippet>17</a>    /// primary purpose of this model is to provide a way to sort a different
+<a href=#18 id=18 data-nosnippet>18</a>    /// model without modifying it. Note that the sort function used by
+<a href=#19 id=19 data-nosnippet>19</a>    /// [`TreeModelSort`][crate::TreeModelSort] is not guaranteed to be stable.
+<a href=#20 id=20 data-nosnippet>20</a>    ///
+<a href=#21 id=21 data-nosnippet>21</a>    /// The use of this is best demonstrated through an example.  In the
+<a href=#22 id=22 data-nosnippet>22</a>    /// following sample code we create two [`TreeView`][crate::TreeView] widgets each with a
+<a href=#23 id=23 data-nosnippet>23</a>    /// view of the same data.  As the model is wrapped here by a
+<a href=#24 id=24 data-nosnippet>24</a>    /// [`TreeModelSort`][crate::TreeModelSort], the two [`TreeView`][crate::TreeView]s can each sort their
+<a href=#25 id=25 data-nosnippet>25</a>    /// view of the data without affecting the other.  By contrast, if we
+<a href=#26 id=26 data-nosnippet>26</a>    /// simply put the same model in each widget, then sorting the first would
+<a href=#27 id=27 data-nosnippet>27</a>    /// sort the second.
+<a href=#28 id=28 data-nosnippet>28</a>    ///
+<a href=#29 id=29 data-nosnippet>29</a>    /// ## Using a [`TreeModelSort`][crate::TreeModelSort]
+<a href=#30 id=30 data-nosnippet>30</a>    ///
+<a href=#31 id=31 data-nosnippet>31</a>    /// **⚠️ The following code is in c ⚠️**
+<a href=#32 id=32 data-nosnippet>32</a>    ///
+<a href=#33 id=33 data-nosnippet>33</a>    /// ```c
+<a href=#34 id=34 data-nosnippet>34</a>    /// {
+<a href=#35 id=35 data-nosnippet>35</a>    ///   GtkTreeView *tree_view1;
+<a href=#36 id=36 data-nosnippet>36</a>    ///   GtkTreeView *tree_view2;
+<a href=#37 id=37 data-nosnippet>37</a>    ///   GtkTreeModel *sort_model1;
+<a href=#38 id=38 data-nosnippet>38</a>    ///   GtkTreeModel *sort_model2;
+<a href=#39 id=39 data-nosnippet>39</a>    ///   GtkTreeModel *child_model;
+<a href=#40 id=40 data-nosnippet>40</a>    ///
+<a href=#41 id=41 data-nosnippet>41</a>    ///   // get the child model
+<a href=#42 id=42 data-nosnippet>42</a>    ///   child_model = get_my_model ();
+<a href=#43 id=43 data-nosnippet>43</a>    ///
+<a href=#44 id=44 data-nosnippet>44</a>    ///   // Create the first tree
+<a href=#45 id=45 data-nosnippet>45</a>    ///   sort_model1 = gtk_tree_model_sort_new_with_model (child_model);
+<a href=#46 id=46 data-nosnippet>46</a>    ///   tree_view1 = gtk_tree_view_new_with_model (sort_model1);
+<a href=#47 id=47 data-nosnippet>47</a>    ///
+<a href=#48 id=48 data-nosnippet>48</a>    ///   // Create the second tree
+<a href=#49 id=49 data-nosnippet>49</a>    ///   sort_model2 = gtk_tree_model_sort_new_with_model (child_model);
+<a href=#50 id=50 data-nosnippet>50</a>    ///   tree_view2 = gtk_tree_view_new_with_model (sort_model2);
+<a href=#51 id=51 data-nosnippet>51</a>    ///
+<a href=#52 id=52 data-nosnippet>52</a>    ///   // Now we can sort the two models independently
+<a href=#53 id=53 data-nosnippet>53</a>    ///   gtk_tree_sortable_set_sort_column_id (GTK_TREE_SORTABLE (sort_model1),
+<a href=#54 id=54 data-nosnippet>54</a>    ///                                         COLUMN_1, GTK_SORT_ASCENDING);
+<a href=#55 id=55 data-nosnippet>55</a>    ///   gtk_tree_sortable_set_sort_column_id (GTK_TREE_SORTABLE (sort_model2),
+<a href=#56 id=56 data-nosnippet>56</a>    ///                                         COLUMN_1, GTK_SORT_DESCENDING);
+<a href=#57 id=57 data-nosnippet>57</a>    /// }
+<a href=#58 id=58 data-nosnippet>58</a>    /// ```
+<a href=#59 id=59 data-nosnippet>59</a>    ///
+<a href=#60 id=60 data-nosnippet>60</a>    /// To demonstrate how to access the underlying child model from the sort
+<a href=#61 id=61 data-nosnippet>61</a>    /// model, the next example will be a callback for the [`TreeSelection`][crate::TreeSelection]
+<a href=#62 id=62 data-nosnippet>62</a>    /// `GtkTreeSelection::changed` signal.  In this callback, we get a string
+<a href=#63 id=63 data-nosnippet>63</a>    /// from COLUMN_1 of the model.  We then modify the string, find the same
+<a href=#64 id=64 data-nosnippet>64</a>    /// selected row on the child model, and change the row there.
+<a href=#65 id=65 data-nosnippet>65</a>    ///
+<a href=#66 id=66 data-nosnippet>66</a>    /// ## Accessing the child model of in a selection changed callback
+<a href=#67 id=67 data-nosnippet>67</a>    ///
+<a href=#68 id=68 data-nosnippet>68</a>    /// **⚠️ The following code is in c ⚠️**
+<a href=#69 id=69 data-nosnippet>69</a>    ///
+<a href=#70 id=70 data-nosnippet>70</a>    /// ```c
+<a href=#71 id=71 data-nosnippet>71</a>    /// void
+<a href=#72 id=72 data-nosnippet>72</a>    /// selection_changed (GtkTreeSelection *selection, gpointer data)
+<a href=#73 id=73 data-nosnippet>73</a>    /// {
+<a href=#74 id=74 data-nosnippet>74</a>    ///   GtkTreeModel *sort_model = NULL;
+<a href=#75 id=75 data-nosnippet>75</a>    ///   GtkTreeModel *child_model;
+<a href=#76 id=76 data-nosnippet>76</a>    ///   GtkTreeIter sort_iter;
+<a href=#77 id=77 data-nosnippet>77</a>    ///   GtkTreeIter child_iter;
+<a href=#78 id=78 data-nosnippet>78</a>    ///   char *some_data = NULL;
+<a href=#79 id=79 data-nosnippet>79</a>    ///   char *modified_data;
+<a href=#80 id=80 data-nosnippet>80</a>    ///
+<a href=#81 id=81 data-nosnippet>81</a>    ///   // Get the current selected row and the model.
+<a href=#82 id=82 data-nosnippet>82</a>    ///   if (! gtk_tree_selection_get_selected (selection,
+<a href=#83 id=83 data-nosnippet>83</a>    ///                                          &amp;sort_model,
+<a href=#84 id=84 data-nosnippet>84</a>    ///                                          &amp;sort_iter))
+<a href=#85 id=85 data-nosnippet>85</a>    ///     return;
+<a href=#86 id=86 data-nosnippet>86</a>    ///
+<a href=#87 id=87 data-nosnippet>87</a>    ///   // Look up the current value on the selected row and get
+<a href=#88 id=88 data-nosnippet>88</a>    ///   // a new value to change it to.
+<a href=#89 id=89 data-nosnippet>89</a>    ///   gtk_tree_model_get (GTK_TREE_MODEL (sort_model), &amp;sort_iter,
+<a href=#90 id=90 data-nosnippet>90</a>    ///                       COLUMN_1, &amp;some_data,
+<a href=#91 id=91 data-nosnippet>91</a>    ///                       -1);
+<a href=#92 id=92 data-nosnippet>92</a>    ///
+<a href=#93 id=93 data-nosnippet>93</a>    ///   modified_data = change_the_data (some_data);
+<a href=#94 id=94 data-nosnippet>94</a>    ///   g_free (some_data);
+<a href=#95 id=95 data-nosnippet>95</a>    ///
+<a href=#96 id=96 data-nosnippet>96</a>    ///   // Get an iterator on the child model, instead of the sort model.
+<a href=#97 id=97 data-nosnippet>97</a>    ///   gtk_tree_model_sort_convert_iter_to_child_iter (GTK_TREE_MODEL_SORT (sort_model),
+<a href=#98 id=98 data-nosnippet>98</a>    ///                                                   &amp;child_iter,
+<a href=#99 id=99 data-nosnippet>99</a>    ///                                                   &amp;sort_iter);
+<a href=#100 id=100 data-nosnippet>100</a>    ///
+<a href=#101 id=101 data-nosnippet>101</a>    ///   // Get the child model and change the value of the row. In this
+<a href=#102 id=102 data-nosnippet>102</a>    ///   // example, the child model is a GtkListStore. It could be any other
+<a href=#103 id=103 data-nosnippet>103</a>    ///   // type of model, though.
+<a href=#104 id=104 data-nosnippet>104</a>    ///   child_model = gtk_tree_model_sort_get_model (GTK_TREE_MODEL_SORT (sort_model));
+<a href=#105 id=105 data-nosnippet>105</a>    ///   gtk_list_store_set (GTK_LIST_STORE (child_model), &amp;child_iter,
+<a href=#106 id=106 data-nosnippet>106</a>    ///                       COLUMN_1, &amp;modified_data,
+<a href=#107 id=107 data-nosnippet>107</a>    ///                       -1);
+<a href=#108 id=108 data-nosnippet>108</a>    ///   g_free (modified_data);
+<a href=#109 id=109 data-nosnippet>109</a>    /// }
+<a href=#110 id=110 data-nosnippet>110</a>    /// ```
+<a href=#111 id=111 data-nosnippet>111</a>    ///
+<a href=#112 id=112 data-nosnippet>112</a>    /// ## Properties
+<a href=#113 id=113 data-nosnippet>113</a>    ///
+<a href=#114 id=114 data-nosnippet>114</a>    ///
+<a href=#115 id=115 data-nosnippet>115</a>    /// #### `model`
+<a href=#116 id=116 data-nosnippet>116</a>    ///  The model of the tree model sort.
+<a href=#117 id=117 data-nosnippet>117</a>    ///
+<a href=#118 id=118 data-nosnippet>118</a>    /// Readable | Writeable | Construct Only
+<a href=#119 id=119 data-nosnippet>119</a>    ///
+<a href=#120 id=120 data-nosnippet>120</a>    /// # Implements
+<a href=#121 id=121 data-nosnippet>121</a>    ///
+<a href=#122 id=122 data-nosnippet>122</a>    /// [`TreeModelSortExt`][trait@crate::prelude::TreeModelSortExt], [`trait@glib::ObjectExt`], [`TreeDragSourceExt`][trait@crate::prelude::TreeDragSourceExt], [`TreeModelExt`][trait@crate::prelude::TreeModelExt], [`TreeSortableExt`][trait@crate::prelude::TreeSortableExt], [`TreeModelExtManual`][trait@crate::prelude::TreeModelExtManual], [`TreeSortableExtManual`][trait@crate::prelude::TreeSortableExtManual]
+<a href=#123 id=123 data-nosnippet>123</a>    </span><span class="attr">#[doc(alias = <span class="string">"GtkTreeModelSort"</span>)]
+<a href=#124 id=124 data-nosnippet>124</a>    </span><span class="kw">pub struct </span><a href="../../../gtk4/struct.TreeModelSort.html">TreeModelSort</a>(Object&lt;<a href="../../../gtk4_sys/struct.GtkTreeModelSort.html">ffi::GtkTreeModelSort</a>, <a href="../../../gtk4_sys/struct.GtkTreeModelSortClass.html">ffi::GtkTreeModelSortClass</a>&gt;) @implements <a href="tree_drag_source.rs.html#9-23">TreeDragSource</a>, <a href="tree_model.rs.html#15-277">TreeModel</a>, <a href="tree_sortable.rs.html#15-93">TreeSortable</a>;
+<a href=#125 id=125 data-nosnippet>125</a>
+<a href=#126 id=126 data-nosnippet>126</a>    <span class="kw">match fn </span>{
+<a href=#127 id=127 data-nosnippet>127</a>        type_ =&gt; || ffi::gtk_tree_model_sort_get_type(),
+<a href=#128 id=128 data-nosnippet>128</a>    }
+<a href=#129 id=129 data-nosnippet>129</a>}
+<a href=#130 id=130 data-nosnippet>130</a>
+<a href=#131 id=131 data-nosnippet>131</a><span class="kw">impl </span><a href="#9-129">TreeModelSort</a> {
+<a href=#132 id=132 data-nosnippet>132</a>    <span class="kw">pub const </span>NONE: <a class="prelude-ty" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html">Option</a>&lt;<span class="kw-2">&amp;</span><span class="lifetime">'static </span><a href="#9-129">TreeModelSort</a>&gt; = <a class="prelude-val" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None">None</a>;
+<a href=#133 id=133 data-nosnippet>133</a>
+<a href=#134 id=134 data-nosnippet>134</a>    <span class="doccomment">/// Creates a new [`TreeModelSort`][crate::TreeModelSort], with @child_model as the child model.
+<a href=#135 id=135 data-nosnippet>135</a>    /// ## `child_model`
+<a href=#136 id=136 data-nosnippet>136</a>    /// A [`TreeModel`][crate::TreeModel]
+<a href=#137 id=137 data-nosnippet>137</a>    ///
+<a href=#138 id=138 data-nosnippet>138</a>    /// # Returns
+<a href=#139 id=139 data-nosnippet>139</a>    ///
+<a href=#140 id=140 data-nosnippet>140</a>    /// A new [`TreeModelSort`][crate::TreeModelSort].
+<a href=#141 id=141 data-nosnippet>141</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_tree_model_sort_new_with_model"</span>)]
+<a href=#142 id=142 data-nosnippet>142</a>    #[doc(alias = <span class="string">"new_with_model"</span>)]
+<a href=#143 id=143 data-nosnippet>143</a>    </span><span class="kw">pub fn </span>with_model(child_model: <span class="kw-2">&amp;</span><span class="kw">impl </span><a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/object/trait.IsA.html">IsA</a>&lt;<a href="tree_model.rs.html#15-277">TreeModel</a>&gt;) -&gt; <a href="#9-129">TreeModelSort</a> {
+<a href=#144 id=144 data-nosnippet>144</a>        <span class="macro">skip_assert_initialized!</span>();
+<a href=#145 id=145 data-nosnippet>145</a>        <span class="kw">unsafe </span>{
+<a href=#146 id=146 data-nosnippet>146</a>            <a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/fn.from_glib_full.html">from_glib_full</a>(<a href="../../../gtk4_sys/fn.gtk_tree_model_sort_new_with_model.html">ffi::gtk_tree_model_sort_new_with_model</a>(
+<a href=#147 id=147 data-nosnippet>147</a>                <a href="#143">child_model</a>.<a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html#tymethod.as_ref">as_ref</a>().<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
+<a href=#148 id=148 data-nosnippet>148</a>            ))
+<a href=#149 id=149 data-nosnippet>149</a>        }
+<a href=#150 id=150 data-nosnippet>150</a>    }
+<a href=#151 id=151 data-nosnippet>151</a>}
+<a href=#152 id=152 data-nosnippet>152</a>
+<a href=#153 id=153 data-nosnippet>153</a><span class="doccomment">/// Trait containing all [`struct@TreeModelSort`] methods.
+<a href=#154 id=154 data-nosnippet>154</a>///
+<a href=#155 id=155 data-nosnippet>155</a>/// # Implementors
+<a href=#156 id=156 data-nosnippet>156</a>///
+<a href=#157 id=157 data-nosnippet>157</a>/// [`TreeModelSort`][struct@crate::TreeModelSort]
+<a href=#158 id=158 data-nosnippet>158</a></span><span class="kw">pub trait </span><a href="../../../gtk4/prelude/trait.TreeModelSortExt.html">TreeModelSortExt</a>: <a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/object/trait.IsA.html">IsA</a>&lt;<a href="#9-129">TreeModelSort</a>&gt; + <span class="lifetime">'static </span>{
+<a href=#159 id=159 data-nosnippet>159</a>    <span class="doccomment">/// This function should almost never be called.  It clears the @self
+<a href=#160 id=160 data-nosnippet>160</a>    /// of any cached iterators that haven’t been reffed with
+<a href=#161 id=161 data-nosnippet>161</a>    /// gtk_tree_model_ref_node().  This might be useful if the child model being
+<a href=#162 id=162 data-nosnippet>162</a>    /// sorted is static (and doesn’t change often) and there has been a lot of
+<a href=#163 id=163 data-nosnippet>163</a>    /// unreffed access to nodes.  As a side effect of this function, all unreffed
+<a href=#164 id=164 data-nosnippet>164</a>    /// iters will be invalid.
+<a href=#165 id=165 data-nosnippet>165</a>    ///
+<a href=#166 id=166 data-nosnippet>166</a>    /// # Deprecated since 4.10
+<a href=#167 id=167 data-nosnippet>167</a>    ///
+<a href=#168 id=168 data-nosnippet>168</a>    </span><span class="attr">#[cfg_attr(feature = <span class="string">"v4_10"</span>, deprecated = <span class="string">"Since 4.10"</span>)]
+<a href=#169 id=169 data-nosnippet>169</a>    #[allow(deprecated)]
+<a href=#170 id=170 data-nosnippet>170</a>    #[doc(alias = <span class="string">"gtk_tree_model_sort_clear_cache"</span>)]
+<a href=#171 id=171 data-nosnippet>171</a>    </span><span class="kw">fn </span>clear_cache(<span class="kw-2">&amp;</span><span class="self">self</span>) {
+<a href=#172 id=172 data-nosnippet>172</a>        <span class="kw">unsafe </span>{
+<a href=#173 id=173 data-nosnippet>173</a>            <a href="../../../gtk4_sys/fn.gtk_tree_model_sort_clear_cache.html">ffi::gtk_tree_model_sort_clear_cache</a>(<a class="self" href="#171">self</a>.<a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html#tymethod.as_ref">as_ref</a>().<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>);
+<a href=#174 id=174 data-nosnippet>174</a>        }
+<a href=#175 id=175 data-nosnippet>175</a>    }
+<a href=#176 id=176 data-nosnippet>176</a>
+<a href=#177 id=177 data-nosnippet>177</a>    <span class="doccomment">/// Sets @sort_iter to point to the row in @self that corresponds to
+<a href=#178 id=178 data-nosnippet>178</a>    /// the row pointed at by @child_iter.  If @sort_iter was not set, [`false`]
+<a href=#179 id=179 data-nosnippet>179</a>    /// is returned.  Note: a boolean is only returned since 2.14.
+<a href=#180 id=180 data-nosnippet>180</a>    ///
+<a href=#181 id=181 data-nosnippet>181</a>    /// # Deprecated since 4.10
+<a href=#182 id=182 data-nosnippet>182</a>    ///
+<a href=#183 id=183 data-nosnippet>183</a>    /// ## `child_iter`
+<a href=#184 id=184 data-nosnippet>184</a>    /// A valid [`TreeIter`][crate::TreeIter] pointing to a row on the child model
+<a href=#185 id=185 data-nosnippet>185</a>    ///
+<a href=#186 id=186 data-nosnippet>186</a>    /// # Returns
+<a href=#187 id=187 data-nosnippet>187</a>    ///
+<a href=#188 id=188 data-nosnippet>188</a>    /// [`true`], if @sort_iter was set, i.e. if @sort_iter is a
+<a href=#189 id=189 data-nosnippet>189</a>    /// valid iterator pointer to a visible row in the child model.
+<a href=#190 id=190 data-nosnippet>190</a>    ///
+<a href=#191 id=191 data-nosnippet>191</a>    /// ## `sort_iter`
+<a href=#192 id=192 data-nosnippet>192</a>    /// An uninitialized [`TreeIter`][crate::TreeIter]
+<a href=#193 id=193 data-nosnippet>193</a>    </span><span class="attr">#[cfg_attr(feature = <span class="string">"v4_10"</span>, deprecated = <span class="string">"Since 4.10"</span>)]
+<a href=#194 id=194 data-nosnippet>194</a>    #[allow(deprecated)]
+<a href=#195 id=195 data-nosnippet>195</a>    #[doc(alias = <span class="string">"gtk_tree_model_sort_convert_child_iter_to_iter"</span>)]
+<a href=#196 id=196 data-nosnippet>196</a>    </span><span class="kw">fn </span>convert_child_iter_to_iter(<span class="kw-2">&amp;</span><span class="self">self</span>, child_iter: <span class="kw-2">&amp;</span><a href="tree_iter.rs.html#8-25">TreeIter</a>) -&gt; <a class="prelude-ty" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html">Option</a>&lt;<a href="tree_iter.rs.html#8-25">TreeIter</a>&gt; {
+<a href=#197 id=197 data-nosnippet>197</a>        <span class="kw">unsafe </span>{
+<a href=#198 id=198 data-nosnippet>198</a>            <span class="kw">let </span><span class="kw-2">mut </span>sort_iter = <a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/trait.Uninitialized.html#tymethod.uninitialized">TreeIter::uninitialized</a>();
+<a href=#199 id=199 data-nosnippet>199</a>            <span class="kw">let </span>ret = <a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/fn.from_glib.html">from_glib</a>(<a href="../../../gtk4_sys/fn.gtk_tree_model_sort_convert_child_iter_to_iter.html">ffi::gtk_tree_model_sort_convert_child_iter_to_iter</a>(
+<a href=#200 id=200 data-nosnippet>200</a>                <a class="self" href="#196">self</a>.<a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html#tymethod.as_ref">as_ref</a>().<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
+<a href=#201 id=201 data-nosnippet>201</a>                <a href="#198">sort_iter</a>.<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/trait.ToGlibPtrMut.html#tymethod.to_glib_none_mut">to_glib_none_mut</a>().<span class="number">0</span>,
+<a href=#202 id=202 data-nosnippet>202</a>                <a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/fn.mut_override.html">mut_override</a>(<a href="#196">child_iter</a>.<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>),
+<a href=#203 id=203 data-nosnippet>203</a>            ));
+<a href=#204 id=204 data-nosnippet>204</a>            <span class="kw">if </span><a href="#199">ret</a> {
+<a href=#205 id=205 data-nosnippet>205</a>                <a class="prelude-val" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.Some">Some</a>(<a href="#198">sort_iter</a>)
+<a href=#206 id=206 data-nosnippet>206</a>            } <span class="kw">else </span>{
+<a href=#207 id=207 data-nosnippet>207</a>                <a class="prelude-val" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None"><a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None">None</a>
+<a href=#208 id=208 data-nosnippet>208</a>            </a>}
+<a href=#209 id=209 data-nosnippet>209</a>        }
+<a href=#210 id=210 data-nosnippet>210</a>    }
+<a href=#211 id=211 data-nosnippet>211</a>
+<a href=#212 id=212 data-nosnippet>212</a>    <span class="doccomment">/// Converts @child_path to a path relative to @self.  That is,
+<a href=#213 id=213 data-nosnippet>213</a>    /// @child_path points to a path in the child model.  The returned path will
+<a href=#214 id=214 data-nosnippet>214</a>    /// point to the same row in the sorted model.  If @child_path isn’t a valid
+<a href=#215 id=215 data-nosnippet>215</a>    /// path on the child model, then [`None`] is returned.
+<a href=#216 id=216 data-nosnippet>216</a>    ///
+<a href=#217 id=217 data-nosnippet>217</a>    /// # Deprecated since 4.10
+<a href=#218 id=218 data-nosnippet>218</a>    ///
+<a href=#219 id=219 data-nosnippet>219</a>    /// ## `child_path`
+<a href=#220 id=220 data-nosnippet>220</a>    /// A [`TreePath`][crate::TreePath] to convert
+<a href=#221 id=221 data-nosnippet>221</a>    ///
+<a href=#222 id=222 data-nosnippet>222</a>    /// # Returns
+<a href=#223 id=223 data-nosnippet>223</a>    ///
+<a href=#224 id=224 data-nosnippet>224</a>    /// A newly allocated [`TreePath`][crate::TreePath]
+<a href=#225 id=225 data-nosnippet>225</a>    </span><span class="attr">#[cfg_attr(feature = <span class="string">"v4_10"</span>, deprecated = <span class="string">"Since 4.10"</span>)]
+<a href=#226 id=226 data-nosnippet>226</a>    #[allow(deprecated)]
+<a href=#227 id=227 data-nosnippet>227</a>    #[doc(alias = <span class="string">"gtk_tree_model_sort_convert_child_path_to_path"</span>)]
+<a href=#228 id=228 data-nosnippet>228</a>    </span><span class="kw">fn </span>convert_child_path_to_path(<span class="kw-2">&amp;</span><span class="self">self</span>, child_path: <span class="kw-2">&amp;</span><a href="tree_path.rs.html#8-21">TreePath</a>) -&gt; <a class="prelude-ty" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html">Option</a>&lt;<a href="tree_path.rs.html#8-21">TreePath</a>&gt; {
+<a href=#229 id=229 data-nosnippet>229</a>        <span class="kw">unsafe </span>{
+<a href=#230 id=230 data-nosnippet>230</a>            <a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/fn.from_glib_full.html">from_glib_full</a>(<a href="../../../gtk4_sys/fn.gtk_tree_model_sort_convert_child_path_to_path.html">ffi::gtk_tree_model_sort_convert_child_path_to_path</a>(
+<a href=#231 id=231 data-nosnippet>231</a>                <a class="self" href="#228">self</a>.<a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html#tymethod.as_ref">as_ref</a>().<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
+<a href=#232 id=232 data-nosnippet>232</a>                <a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/fn.mut_override.html">mut_override</a>(<a href="#228">child_path</a>.<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>),
+<a href=#233 id=233 data-nosnippet>233</a>            ))
+<a href=#234 id=234 data-nosnippet>234</a>        }
+<a href=#235 id=235 data-nosnippet>235</a>    }
+<a href=#236 id=236 data-nosnippet>236</a>
+<a href=#237 id=237 data-nosnippet>237</a>    <span class="doccomment">/// Sets @child_iter to point to the row pointed to by @sorted_iter.
+<a href=#238 id=238 data-nosnippet>238</a>    ///
+<a href=#239 id=239 data-nosnippet>239</a>    /// # Deprecated since 4.10
+<a href=#240 id=240 data-nosnippet>240</a>    ///
+<a href=#241 id=241 data-nosnippet>241</a>    /// ## `sorted_iter`
+<a href=#242 id=242 data-nosnippet>242</a>    /// A valid [`TreeIter`][crate::TreeIter] pointing to a row on @self.
+<a href=#243 id=243 data-nosnippet>243</a>    ///
+<a href=#244 id=244 data-nosnippet>244</a>    /// # Returns
+<a href=#245 id=245 data-nosnippet>245</a>    ///
+<a href=#246 id=246 data-nosnippet>246</a>    ///
+<a href=#247 id=247 data-nosnippet>247</a>    /// ## `child_iter`
+<a href=#248 id=248 data-nosnippet>248</a>    /// An uninitialized [`TreeIter`][crate::TreeIter]
+<a href=#249 id=249 data-nosnippet>249</a>    </span><span class="attr">#[cfg_attr(feature = <span class="string">"v4_10"</span>, deprecated = <span class="string">"Since 4.10"</span>)]
+<a href=#250 id=250 data-nosnippet>250</a>    #[allow(deprecated)]
+<a href=#251 id=251 data-nosnippet>251</a>    #[doc(alias = <span class="string">"gtk_tree_model_sort_convert_iter_to_child_iter"</span>)]
+<a href=#252 id=252 data-nosnippet>252</a>    </span><span class="kw">fn </span>convert_iter_to_child_iter(<span class="kw-2">&amp;</span><span class="self">self</span>, sorted_iter: <span class="kw-2">&amp;</span><a href="tree_iter.rs.html#8-25">TreeIter</a>) -&gt; <a href="tree_iter.rs.html#8-25">TreeIter</a> {
+<a href=#253 id=253 data-nosnippet>253</a>        <span class="kw">unsafe </span>{
+<a href=#254 id=254 data-nosnippet>254</a>            <span class="kw">let </span><span class="kw-2">mut </span>child_iter = <a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/trait.Uninitialized.html#tymethod.uninitialized">TreeIter::uninitialized</a>();
+<a href=#255 id=255 data-nosnippet>255</a>            <a href="../../../gtk4_sys/fn.gtk_tree_model_sort_convert_iter_to_child_iter.html">ffi::gtk_tree_model_sort_convert_iter_to_child_iter</a>(
+<a href=#256 id=256 data-nosnippet>256</a>                <a class="self" href="#252">self</a>.<a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html#tymethod.as_ref">as_ref</a>().<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
+<a href=#257 id=257 data-nosnippet>257</a>                <a href="#254">child_iter</a>.<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/trait.ToGlibPtrMut.html#tymethod.to_glib_none_mut">to_glib_none_mut</a>().<span class="number">0</span>,
+<a href=#258 id=258 data-nosnippet>258</a>                <a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/fn.mut_override.html">mut_override</a>(<a href="#252">sorted_iter</a>.<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>),
+<a href=#259 id=259 data-nosnippet>259</a>            );
+<a href=#260 id=260 data-nosnippet>260</a>            <a href="#254">child_iter</a>
+<a href=#261 id=261 data-nosnippet>261</a>        }
+<a href=#262 id=262 data-nosnippet>262</a>    }
+<a href=#263 id=263 data-nosnippet>263</a>
+<a href=#264 id=264 data-nosnippet>264</a>    <span class="doccomment">/// Converts @sorted_path to a path on the child model of @self.
+<a href=#265 id=265 data-nosnippet>265</a>    /// That is, @sorted_path points to a location in @self.  The
+<a href=#266 id=266 data-nosnippet>266</a>    /// returned path will point to the same location in the model not being
+<a href=#267 id=267 data-nosnippet>267</a>    /// sorted.  If @sorted_path does not point to a location in the child model,
+<a href=#268 id=268 data-nosnippet>268</a>    /// [`None`] is returned.
+<a href=#269 id=269 data-nosnippet>269</a>    ///
+<a href=#270 id=270 data-nosnippet>270</a>    /// # Deprecated since 4.10
+<a href=#271 id=271 data-nosnippet>271</a>    ///
+<a href=#272 id=272 data-nosnippet>272</a>    /// ## `sorted_path`
+<a href=#273 id=273 data-nosnippet>273</a>    /// A [`TreePath`][crate::TreePath] to convert
+<a href=#274 id=274 data-nosnippet>274</a>    ///
+<a href=#275 id=275 data-nosnippet>275</a>    /// # Returns
+<a href=#276 id=276 data-nosnippet>276</a>    ///
+<a href=#277 id=277 data-nosnippet>277</a>    /// A newly allocated [`TreePath`][crate::TreePath]
+<a href=#278 id=278 data-nosnippet>278</a>    </span><span class="attr">#[cfg_attr(feature = <span class="string">"v4_10"</span>, deprecated = <span class="string">"Since 4.10"</span>)]
+<a href=#279 id=279 data-nosnippet>279</a>    #[allow(deprecated)]
+<a href=#280 id=280 data-nosnippet>280</a>    #[doc(alias = <span class="string">"gtk_tree_model_sort_convert_path_to_child_path"</span>)]
+<a href=#281 id=281 data-nosnippet>281</a>    </span><span class="kw">fn </span>convert_path_to_child_path(<span class="kw-2">&amp;</span><span class="self">self</span>, sorted_path: <span class="kw-2">&amp;</span><a href="tree_path.rs.html#8-21">TreePath</a>) -&gt; <a class="prelude-ty" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html">Option</a>&lt;<a href="tree_path.rs.html#8-21">TreePath</a>&gt; {
+<a href=#282 id=282 data-nosnippet>282</a>        <span class="kw">unsafe </span>{
+<a href=#283 id=283 data-nosnippet>283</a>            <a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/fn.from_glib_full.html">from_glib_full</a>(<a href="../../../gtk4_sys/fn.gtk_tree_model_sort_convert_path_to_child_path.html">ffi::gtk_tree_model_sort_convert_path_to_child_path</a>(
+<a href=#284 id=284 data-nosnippet>284</a>                <a class="self" href="#281">self</a>.<a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html#tymethod.as_ref">as_ref</a>().<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
+<a href=#285 id=285 data-nosnippet>285</a>                <a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/fn.mut_override.html">mut_override</a>(<a href="#281">sorted_path</a>.<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>),
+<a href=#286 id=286 data-nosnippet>286</a>            ))
+<a href=#287 id=287 data-nosnippet>287</a>        }
+<a href=#288 id=288 data-nosnippet>288</a>    }
+<a href=#289 id=289 data-nosnippet>289</a>
+<a href=#290 id=290 data-nosnippet>290</a>    <span class="doccomment">/// Returns the model the [`TreeModelSort`][crate::TreeModelSort] is sorting.
+<a href=#291 id=291 data-nosnippet>291</a>    ///
+<a href=#292 id=292 data-nosnippet>292</a>    /// # Returns
+<a href=#293 id=293 data-nosnippet>293</a>    ///
+<a href=#294 id=294 data-nosnippet>294</a>    /// the "child model" being sorted
+<a href=#295 id=295 data-nosnippet>295</a>    </span><span class="attr">#[doc(alias = <span class="string">"gtk_tree_model_sort_get_model"</span>)]
+<a href=#296 id=296 data-nosnippet>296</a>    #[doc(alias = <span class="string">"get_model"</span>)]
+<a href=#297 id=297 data-nosnippet>297</a>    </span><span class="kw">fn </span>model(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <a href="tree_model.rs.html#15-277">TreeModel</a> {
+<a href=#298 id=298 data-nosnippet>298</a>        <span class="kw">unsafe </span>{
+<a href=#299 id=299 data-nosnippet>299</a>            <a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/fn.from_glib_none.html">from_glib_none</a>(<a href="../../../gtk4_sys/fn.gtk_tree_model_sort_get_model.html">ffi::gtk_tree_model_sort_get_model</a>(
+<a href=#300 id=300 data-nosnippet>300</a>                <a class="self" href="#297">self</a>.<a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html#tymethod.as_ref">as_ref</a>().<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
+<a href=#301 id=301 data-nosnippet>301</a>            ))
+<a href=#302 id=302 data-nosnippet>302</a>        }
+<a href=#303 id=303 data-nosnippet>303</a>    }
+<a href=#304 id=304 data-nosnippet>304</a>
+<a href=#305 id=305 data-nosnippet>305</a>    <span class="doccomment">/// &gt; This function is slow. Only use it for debugging and/or testing
+<a href=#306 id=306 data-nosnippet>306</a>    /// &gt; purposes.
+<a href=#307 id=307 data-nosnippet>307</a>    ///
+<a href=#308 id=308 data-nosnippet>308</a>    /// Checks if the given iter is a valid iter for this [`TreeModelSort`][crate::TreeModelSort].
+<a href=#309 id=309 data-nosnippet>309</a>    ///
+<a href=#310 id=310 data-nosnippet>310</a>    /// # Deprecated since 4.10
+<a href=#311 id=311 data-nosnippet>311</a>    ///
+<a href=#312 id=312 data-nosnippet>312</a>    /// ## `iter`
+<a href=#313 id=313 data-nosnippet>313</a>    /// A [`TreeIter`][crate::TreeIter]
+<a href=#314 id=314 data-nosnippet>314</a>    ///
+<a href=#315 id=315 data-nosnippet>315</a>    /// # Returns
+<a href=#316 id=316 data-nosnippet>316</a>    ///
+<a href=#317 id=317 data-nosnippet>317</a>    /// [`true`] if the iter is valid, [`false`] if the iter is invalid.
+<a href=#318 id=318 data-nosnippet>318</a>    </span><span class="attr">#[cfg_attr(feature = <span class="string">"v4_10"</span>, deprecated = <span class="string">"Since 4.10"</span>)]
+<a href=#319 id=319 data-nosnippet>319</a>    #[allow(deprecated)]
+<a href=#320 id=320 data-nosnippet>320</a>    #[doc(alias = <span class="string">"gtk_tree_model_sort_iter_is_valid"</span>)]
+<a href=#321 id=321 data-nosnippet>321</a>    </span><span class="kw">fn </span>iter_is_valid(<span class="kw-2">&amp;</span><span class="self">self</span>, iter: <span class="kw-2">&amp;</span><a href="tree_iter.rs.html#8-25">TreeIter</a>) -&gt; <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> {
+<a href=#322 id=322 data-nosnippet>322</a>        <span class="kw">unsafe </span>{
+<a href=#323 id=323 data-nosnippet>323</a>            <a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/fn.from_glib.html">from_glib</a>(<a href="../../../gtk4_sys/fn.gtk_tree_model_sort_iter_is_valid.html">ffi::gtk_tree_model_sort_iter_is_valid</a>(
+<a href=#324 id=324 data-nosnippet>324</a>                <a class="self" href="#321">self</a>.<a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html#tymethod.as_ref">as_ref</a>().<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>,
+<a href=#325 id=325 data-nosnippet>325</a>                <a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/fn.mut_override.html">mut_override</a>(<a href="#321">iter</a>.<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>),
+<a href=#326 id=326 data-nosnippet>326</a>            ))
+<a href=#327 id=327 data-nosnippet>327</a>        }
+<a href=#328 id=328 data-nosnippet>328</a>    }
+<a href=#329 id=329 data-nosnippet>329</a>
+<a href=#330 id=330 data-nosnippet>330</a>    <span class="doccomment">/// This resets the default sort function to be in the “unsorted” state.  That
+<a href=#331 id=331 data-nosnippet>331</a>    /// is, it is in the same order as the child model. It will re-sort the model
+<a href=#332 id=332 data-nosnippet>332</a>    /// to be in the same order as the child model only if the [`TreeModelSort`][crate::TreeModelSort]
+<a href=#333 id=333 data-nosnippet>333</a>    /// is in “unsorted” state.
+<a href=#334 id=334 data-nosnippet>334</a>    ///
+<a href=#335 id=335 data-nosnippet>335</a>    /// # Deprecated since 4.10
+<a href=#336 id=336 data-nosnippet>336</a>    ///
+<a href=#337 id=337 data-nosnippet>337</a>    </span><span class="attr">#[cfg_attr(feature = <span class="string">"v4_10"</span>, deprecated = <span class="string">"Since 4.10"</span>)]
+<a href=#338 id=338 data-nosnippet>338</a>    #[allow(deprecated)]
+<a href=#339 id=339 data-nosnippet>339</a>    #[doc(alias = <span class="string">"gtk_tree_model_sort_reset_default_sort_func"</span>)]
+<a href=#340 id=340 data-nosnippet>340</a>    </span><span class="kw">fn </span>reset_default_sort_func(<span class="kw-2">&amp;</span><span class="self">self</span>) {
+<a href=#341 id=341 data-nosnippet>341</a>        <span class="kw">unsafe </span>{
+<a href=#342 id=342 data-nosnippet>342</a>            <a href="../../../gtk4_sys/fn.gtk_tree_model_sort_reset_default_sort_func.html">ffi::gtk_tree_model_sort_reset_default_sort_func</a>(<a class="self" href="#340">self</a>.<a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html#tymethod.as_ref">as_ref</a>().<a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/translate/trait.ToGlibPtr.html#tymethod.to_glib_none">to_glib_none</a>().<span class="number">0</span>);
+<a href=#343 id=343 data-nosnippet>343</a>        }
+<a href=#344 id=344 data-nosnippet>344</a>    }
+<a href=#345 id=345 data-nosnippet>345</a>}
+<a href=#346 id=346 data-nosnippet>346</a>
+<a href=#347 id=347 data-nosnippet>347</a><span class="kw">impl</span>&lt;O: <a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/object/trait.IsA.html">IsA</a>&lt;<a href="#9-129">TreeModelSort</a>&gt;&gt; <a href="#158-345">TreeModelSortExt</a> <span class="kw">for </span>O {}</code></pre></div></section></main></body></html>

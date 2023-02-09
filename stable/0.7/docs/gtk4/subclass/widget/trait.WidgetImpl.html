@@ -1,0 +1,243 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="API documentation for the Rust `WidgetImpl` trait in crate `gtk4`."><title>WidgetImpl in gtk4::subclass::widget - Rust</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Bold-a2c9cd1067f8b328.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../static.files/rustdoc-fa3bb1812debf86c.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.74.0-nightly (e4133ba9b 2023-09-22)" data-channel="nightly" data-search-js="search-8be46b629f5f14a8.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="sidebar-items.js"></script><script defer src="../../../static.files/main-c5bd66d33317d69f.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc trait"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
+
+    function checkDocsLatestStable() {
+        function popup(msg, url) { return `
+            <style scoped="scoped">
+                .popup {
+                    max-width: 16em;
+                    background-color: #fff;
+                    position: fixed;
+                    z-index: 1;
+                    margin-left: auto;
+                    bottom: 1em;
+                    right: 1em;
+                    border-radius: 5px;
+                    box-shadow: 1px 1px 4px #777;
+                }
+
+                .popup a.version {
+                    color: #e57300;
+                    padding: 0.6em 1em;
+                    display: block;
+                }
+                .popup a.version:hover {
+                    color: #b25900;
+                }
+
+                .popup a.close {
+                    color: white;
+                    background: grey;
+                    border-radius: 99px;
+                    display: inline-block;
+                    width: 19px;
+                    line-height: 19px;
+                    font-weight: bold;
+                    text-align: center;
+                    margin: 0.6em;
+                    float: right;
+                }
+                .popup a.close:hover {
+                    background: black;
+                }
+            </style>
+            <section class="popup" id="gir_docs_popup">
+                <a class="close" href="#" onclick="document.getElementById('gir_docs_popup').remove(); return false">×</a>
+                <a class="version" href="https://gtk-rs.org/gtk4-rs/stable/latest/docs">
+                    ⚠ ${msg}
+                </a>
+            </section>
+        ` };
+
+        if ("0.7" == "master") {
+            document.body.insertAdjacentHTML(
+                'beforeend',
+                popup("This is the development version. Go to latest stable version.", "stable/latest")
+            );
+        } else {
+            fetch('https://gtk-rs.org/gtk4-rs/LATEST_RELEASE_BRANCH')
+                .then(response => response.text())
+                .then(latest_branch => {
+                    if (latest_branch.trim() != "0.7") {
+                        document.body.insertAdjacentHTML(
+                            'beforeend',
+                            popup("This version is outdated. Go to latest version.", "stable/latest")
+                        );
+                    }
+                });
+        }
+    }
+</script>
+
+
+<nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="logo-container" href="../../../gtk4/index.html"><img class="rust-logo" src="../../../static.files/rust-logo-151179464ae7ed46.svg" alt="logo"></a></nav><nav class="sidebar"><a class="logo-container" href="../../../gtk4/index.html"><img class="rust-logo" src="../../../static.files/rust-logo-151179464ae7ed46.svg" alt="logo"></a><h2 class="location"><a href="#">WidgetImpl</a></h2><div class="sidebar-elems"><section><h3><a href="#provided-methods">Provided Methods</a></h3><ul class="block"><li><a href="#method.compute_expand">compute_expand</a></li><li><a href="#method.contains">contains</a></li><li><a href="#method.direction_changed">direction_changed</a></li><li><a href="#method.focus">focus</a></li><li><a href="#method.grab_focus">grab_focus</a></li><li><a href="#method.hide">hide</a></li><li><a href="#method.keynav_failed">keynav_failed</a></li><li><a href="#method.map">map</a></li><li><a href="#method.measure">measure</a></li><li><a href="#method.mnemonic_activate">mnemonic_activate</a></li><li><a href="#method.move_focus">move_focus</a></li><li><a href="#method.query_tooltip">query_tooltip</a></li><li><a href="#method.realize">realize</a></li><li><a href="#method.request_mode">request_mode</a></li><li><a href="#method.root">root</a></li><li><a href="#method.set_focus_child">set_focus_child</a></li><li><a href="#method.show">show</a></li><li><a href="#method.size_allocate">size_allocate</a></li><li><a href="#method.snapshot">snapshot</a></li><li><a href="#method.state_flags_changed">state_flags_changed</a></li><li><a href="#method.system_setting_changed">system_setting_changed</a></li><li><a href="#method.unmap">unmap</a></li><li><a href="#method.unrealize">unrealize</a></li><li><a href="#method.unroot">unroot</a></li></ul><h3><a href="#implementors">Implementors</a></h3></section><h2><a href="index.html">In gtk4::subclass::widget</a></h2></div></nav><main><div class="width-limiter"><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="main-heading"><h1>Trait <a href="../../index.html">gtk4</a>::<wbr><a href="../index.html">subclass</a>::<wbr><a href="index.html">widget</a>::<wbr><a class="trait" href="#">WidgetImpl</a><button id="copy-path" title="Copy item path to clipboard"><img src="../../../static.files/clipboard-7571035ce49a181d.svg" width="19" height="18" alt="Copy item path"></button></h1><span class="out-of-band"><a class="src" href="../../../src/gtk4/subclass/widget.rs.html#106-374">source</a> · <button id="toggle-all-docs" title="collapse all docs">[<span>&#x2212;</span>]</button></span></div><pre class="rust item-decl"><code>pub trait WidgetImpl: <a class="trait" href="trait.WidgetImplExt.html" title="trait gtk4::subclass::widget::WidgetImplExt">WidgetImplExt</a> + <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/subclass/object/trait.ObjectImpl.html" title="trait glib::subclass::object::ObjectImpl">ObjectImpl</a> {
+<details class="toggle type-contents-toggle"><summary class="hideme"><span>Show 24 methods</span></summary>    // Provided methods
+    fn <a href="#method.compute_expand" class="fn">compute_expand</a>(&amp;self, hexpand: &amp;mut <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>, vexpand: &amp;mut <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.contains" class="fn">contains</a>(&amp;self, x: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>, y: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.direction_changed" class="fn">direction_changed</a>(&amp;self, previous_direction: <a class="enum" href="../../enum.TextDirection.html" title="enum gtk4::TextDirection">TextDirection</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.focus" class="fn">focus</a>(&amp;self, direction_type: <a class="enum" href="../../enum.DirectionType.html" title="enum gtk4::DirectionType">DirectionType</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.request_mode" class="fn">request_mode</a>(&amp;self) -&gt; <a class="enum" href="../../enum.SizeRequestMode.html" title="enum gtk4::SizeRequestMode">SizeRequestMode</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.grab_focus" class="fn">grab_focus</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.hide" class="fn">hide</a>(&amp;self) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.keynav_failed" class="fn">keynav_failed</a>(&amp;self, direction_type: <a class="enum" href="../../enum.DirectionType.html" title="enum gtk4::DirectionType">DirectionType</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.map" class="fn">map</a>(&amp;self) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.measure" class="fn">measure</a>(
+        &amp;self,
+        orientation: <a class="enum" href="../../enum.Orientation.html" title="enum gtk4::Orientation">Orientation</a>,
+        for_size: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>
+    ) -&gt; (<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.mnemonic_activate" class="fn">mnemonic_activate</a>(&amp;self, group_cycling: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.move_focus" class="fn">move_focus</a>(&amp;self, direction_type: <a class="enum" href="../../enum.DirectionType.html" title="enum gtk4::DirectionType">DirectionType</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.query_tooltip" class="fn">query_tooltip</a>(
+        &amp;self,
+        x: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>,
+        y: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>,
+        keyboard_tooltip: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>,
+        tooltip: &amp;<a class="struct" href="../../struct.Tooltip.html" title="struct gtk4::Tooltip">Tooltip</a>
+    ) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.realize" class="fn">realize</a>(&amp;self) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.root" class="fn">root</a>(&amp;self) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.set_focus_child" class="fn">set_focus_child</a>(&amp;self, child: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;<a class="struct" href="../../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.show" class="fn">show</a>(&amp;self) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.size_allocate" class="fn">size_allocate</a>(&amp;self, width: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, height: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, baseline: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.snapshot" class="fn">snapshot</a>(&amp;self, snapshot: &amp;<a class="struct" href="../../struct.Snapshot.html" title="struct gtk4::Snapshot">Snapshot</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.state_flags_changed" class="fn">state_flags_changed</a>(&amp;self, state_flags: &amp;<a class="struct" href="../../struct.StateFlags.html" title="struct gtk4::StateFlags">StateFlags</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.system_setting_changed" class="fn">system_setting_changed</a>(&amp;self, settings: &amp;<a class="enum" href="../../enum.SystemSetting.html" title="enum gtk4::SystemSetting">SystemSetting</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.unmap" class="fn">unmap</a>(&amp;self) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.unrealize" class="fn">unrealize</a>(&amp;self) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.unroot" class="fn">unroot</a>(&amp;self) { ... }
+</details>}</code></pre><h2 id="provided-methods" class="small-section-header">Provided Methods<a href="#provided-methods" class="anchor">§</a></h2><div class="methods"><section id="method.compute_expand" class="method"><a class="src rightside" href="../../../src/gtk4/subclass/widget.rs.html#107-109">source</a><h4 class="code-header">fn <a href="#method.compute_expand" class="fn">compute_expand</a>(&amp;self, hexpand: &amp;mut <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>, vexpand: &amp;mut <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>)</h4></section><details class="toggle method-toggle" open><summary><section id="method.contains" class="method"><a class="src rightside" href="../../../src/gtk4/subclass/widget.rs.html#123-125">source</a><h4 class="code-header">fn <a href="#method.contains" class="fn">contains</a>(&amp;self, x: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>, y: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></section></summary><div class="docblock"><p>Tests if the point at (@x, @y) is contained in @self.</p>
+<p>The coordinates for (@x, @y) must be in widget coordinates, so
+(0, 0) is assumed to be the top left of @self’s content area.</p>
+<h6 id="x"><a href="#x"><code>x</code></a></h6>
+<p>X coordinate to test, relative to @self’s origin</p>
+<h6 id="y"><a href="#y"><code>y</code></a></h6>
+<p>Y coordinate to test, relative to @self’s origin</p>
+<h5 id="returns"><a href="#returns">Returns</a></h5>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>true</code></a> if @self contains (@x, @y).</p>
+</div></details><section id="method.direction_changed" class="method"><a class="src rightside" href="../../../src/gtk4/subclass/widget.rs.html#127-129">source</a><h4 class="code-header">fn <a href="#method.direction_changed" class="fn">direction_changed</a>(&amp;self, previous_direction: <a class="enum" href="../../enum.TextDirection.html" title="enum gtk4::TextDirection">TextDirection</a>)</h4></section><section id="method.focus" class="method"><a class="src rightside" href="../../../src/gtk4/subclass/widget.rs.html#131-133">source</a><h4 class="code-header">fn <a href="#method.focus" class="fn">focus</a>(&amp;self, direction_type: <a class="enum" href="../../enum.DirectionType.html" title="enum gtk4::DirectionType">DirectionType</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></section><details class="toggle method-toggle" open><summary><section id="method.request_mode" class="method"><a class="src rightside" href="../../../src/gtk4/subclass/widget.rs.html#147-149">source</a><h4 class="code-header">fn <a href="#method.request_mode" class="fn">request_mode</a>(&amp;self) -&gt; <a class="enum" href="../../enum.SizeRequestMode.html" title="enum gtk4::SizeRequestMode">SizeRequestMode</a></h4></section></summary><div class="docblock"><p>Gets whether the widget prefers a height-for-width layout
+or a width-for-height layout.</p>
+<p>Single-child widgets generally propagate the preference of
+their child, more complex widgets need to request something
+either in context of their children or in context of their
+allocation capabilities.</p>
+<h5 id="returns-1"><a href="#returns-1">Returns</a></h5>
+<p>The <a href="../../enum.SizeRequestMode.html" title="enum gtk4::SizeRequestMode"><code>SizeRequestMode</code></a> preferred by @self.</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.grab_focus" class="method"><a class="src rightside" href="../../../src/gtk4/subclass/widget.rs.html#163-165">source</a><h4 class="code-header">fn <a href="#method.grab_focus" class="fn">grab_focus</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></section></summary><div class="docblock"><p>Causes @self to have the keyboard focus for the <a href="../../struct.Window.html" title="struct gtk4::Window"><code>Window</code></a> it’s inside.</p>
+<p>If @self is not focusable, or its <a href="trait.WidgetImpl.html#method.grab_focus" title="method gtk4::subclass::widget::WidgetImpl::grab_focus"><code>WidgetImpl::grab_focus()</code></a>
+implementation cannot transfer the focus to a descendant of @self
+that is focusable, it will not take focus and <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>false</code></a> will be returned.</p>
+<p>Calling <a href="../../prelude/trait.WidgetExt.html#method.grab_focus" title="method gtk4::prelude::WidgetExt::grab_focus"><code>WidgetExt::grab_focus()</code></a> on an already focused widget
+is allowed, should not have an effect, and return <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>true</code></a>.</p>
+<h5 id="returns-2"><a href="#returns-2">Returns</a></h5>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>true</code></a> if focus is now inside @self.</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.hide" class="method"><a class="src rightside" href="../../../src/gtk4/subclass/widget.rs.html#176-178">source</a><h4 class="code-header">fn <a href="#method.hide" class="fn">hide</a>(&amp;self)</h4></section></summary><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span><div class="docblock"><p>Reverses the effects of gtk_widget_show().</p>
+<p>This is causing the widget to be hidden (invisible to the user).</p>
+<h5 id="deprecated-since-410"><a href="#deprecated-since-410">Deprecated since 4.10</a></h5>
+<p>Use <a href="../../prelude/trait.WidgetExt.html#method.set_visible" title="method gtk4::prelude::WidgetExt::set_visible"><code>WidgetExt::set_visible()</code></a> instead</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.keynav_failed" class="method"><a class="src rightside" href="../../../src/gtk4/subclass/widget.rs.html#215-217">source</a><h4 class="code-header">fn <a href="#method.keynav_failed" class="fn">keynav_failed</a>(&amp;self, direction_type: <a class="enum" href="../../enum.DirectionType.html" title="enum gtk4::DirectionType">DirectionType</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></section></summary><div class="docblock"><p>Emits the <code>::keynav-failed</code> signal on the widget.</p>
+<p>This function should be called whenever keyboard navigation
+within a single widget hits a boundary.</p>
+<p>The return value of this function should be interpreted
+in a way similar to the return value of
+<a href="../../prelude/trait.WidgetExt.html#method.child_focus" title="method gtk4::prelude::WidgetExt::child_focus"><code>WidgetExt::child_focus()</code></a>. When <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>true</code></a> is returned,
+stay in the widget, the failed keyboard  navigation is OK
+and/or there is nowhere we can/should move the focus to.
+When <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>false</code></a> is returned, the caller should continue with
+keyboard navigation outside the widget, e.g. by calling
+<a href="../../prelude/trait.WidgetExt.html#method.child_focus" title="method gtk4::prelude::WidgetExt::child_focus"><code>WidgetExt::child_focus()</code></a> on the widget’s toplevel.</p>
+<p>The default <a href="../../struct.Widget.html#keynav-failed" title="struct gtk4::Widget"><code>keynav-failed</code></a> handler returns
+<a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>false</code></a> for <a href="../../enum.DirectionType.html#variant.TabForward" title="variant gtk4::DirectionType::TabForward"><code>DirectionType::TabForward</code></a> and <a href="../../enum.DirectionType.html#variant.TabBackward" title="variant gtk4::DirectionType::TabBackward"><code>DirectionType::TabBackward</code></a>.
+For the other values of <a href="../../enum.DirectionType.html" title="enum gtk4::DirectionType"><code>DirectionType</code></a> it returns <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>true</code></a>.</p>
+<p>Whenever the default handler returns <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>true</code></a>, it also calls
+<a href="../../prelude/trait.WidgetExt.html#method.error_bell" title="method gtk4::prelude::WidgetExt::error_bell"><code>WidgetExt::error_bell()</code></a> to notify the user of the
+failed keyboard navigation.</p>
+<p>A use case for providing an own implementation of ::keynav-failed
+(either by connecting to it or by overriding it) would be a row of
+<a href="../../struct.Entry.html" title="struct gtk4::Entry"><code>Entry</code></a> widgets where the user should be able to navigate
+the entire row with the cursor keys, as e.g. known from user
+interfaces that require entering license keys.</p>
+<h6 id="direction"><a href="#direction"><code>direction</code></a></h6>
+<p>direction of focus movement</p>
+<h5 id="returns-3"><a href="#returns-3">Returns</a></h5>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>true</code></a> if stopping keyboard navigation is fine, <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>false</code></a>
+if the emitting widget should try to handle the keyboard
+navigation attempt in its parent container(s).</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.map" class="method"><a class="src rightside" href="../../../src/gtk4/subclass/widget.rs.html#222-224">source</a><h4 class="code-header">fn <a href="#method.map" class="fn">map</a>(&amp;self)</h4></section></summary><div class="docblock"><p>Causes a widget to be mapped if it isn’t already.</p>
+<p>This function is only for use in widget implementations.</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.measure" class="method"><a class="src rightside" href="../../../src/gtk4/subclass/widget.rs.html#259-261">source</a><h4 class="code-header">fn <a href="#method.measure" class="fn">measure</a>(
+    &amp;self,
+    orientation: <a class="enum" href="../../enum.Orientation.html" title="enum gtk4::Orientation">Orientation</a>,
+    for_size: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>
+) -&gt; (<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>)</h4></section></summary><div class="docblock"><p>Measures @self in the orientation @orientation and for the given @for_size.</p>
+<p>As an example, if @orientation is <a href="../../enum.Orientation.html#variant.Horizontal" title="variant gtk4::Orientation::Horizontal"><code>Orientation::Horizontal</code></a> and @for_size
+is 300, this functions will compute the minimum and natural width of @self
+if it is allocated at a height of 300 pixels.</p>
+<p>See <a href="class.Widget.html#height-for-width-geometry-management">GtkWidget’s geometry management section</a> for
+a more details on implementing <code>GtkWidgetClass.measure()</code>.</p>
+<h6 id="orientation"><a href="#orientation"><code>orientation</code></a></h6>
+<p>the orientation to measure</p>
+<h6 id="for_size"><a href="#for_size"><code>for_size</code></a></h6>
+<p>Size for the opposite of @orientation, i.e.
+if @orientation is <a href="../../enum.Orientation.html#variant.Horizontal" title="variant gtk4::Orientation::Horizontal"><code>Orientation::Horizontal</code></a>, this is
+the height the widget should be measured with. The <a href="../../enum.Orientation.html#variant.Vertical" title="variant gtk4::Orientation::Vertical"><code>Orientation::Vertical</code></a>
+case is analogous. This way, both height-for-width and width-for-height
+requests can be implemented. If no size is known, -1 can be passed.</p>
+<h5 id="returns-4"><a href="#returns-4">Returns</a></h5><h6 id="minimum"><a href="#minimum"><code>minimum</code></a></h6>
+<p>location to store the minimum size</p>
+<h6 id="natural"><a href="#natural"><code>natural</code></a></h6>
+<p>location to store the natural size</p>
+<h6 id="minimum_baseline"><a href="#minimum_baseline"><code>minimum_baseline</code></a></h6>
+<p>location to store the baseline
+position for the minimum size, or -1 to report no baseline</p>
+<h6 id="natural_baseline"><a href="#natural_baseline"><code>natural_baseline</code></a></h6>
+<p>location to store the baseline
+position for the natural size, or -1 to report no baseline</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.mnemonic_activate" class="method"><a class="src rightside" href="../../../src/gtk4/subclass/widget.rs.html#272-274">source</a><h4 class="code-header">fn <a href="#method.mnemonic_activate" class="fn">mnemonic_activate</a>(&amp;self, group_cycling: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></section></summary><div class="docblock"><p>Emits the ::mnemonic-activate signal.</p>
+<p>See <a href="../../struct.Widget.html#mnemonic-activate" title="struct gtk4::Widget"><code>mnemonic-activate</code></a>.</p>
+<h6 id="group_cycling"><a href="#group_cycling"><code>group_cycling</code></a></h6>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>true</code></a> if there are other widgets with the same mnemonic</p>
+<h5 id="returns-5"><a href="#returns-5">Returns</a></h5>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>true</code></a> if the signal has been handled</p>
+</div></details><section id="method.move_focus" class="method"><a class="src rightside" href="../../../src/gtk4/subclass/widget.rs.html#276-278">source</a><h4 class="code-header">fn <a href="#method.move_focus" class="fn">move_focus</a>(&amp;self, direction_type: <a class="enum" href="../../enum.DirectionType.html" title="enum gtk4::DirectionType">DirectionType</a>)</h4></section><section id="method.query_tooltip" class="method"><a class="src rightside" href="../../../src/gtk4/subclass/widget.rs.html#280-282">source</a><h4 class="code-header">fn <a href="#method.query_tooltip" class="fn">query_tooltip</a>(
+    &amp;self,
+    x: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>,
+    y: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>,
+    keyboard_tooltip: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>,
+    tooltip: &amp;<a class="struct" href="../../struct.Tooltip.html" title="struct gtk4::Tooltip">Tooltip</a>
+) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></section><details class="toggle method-toggle" open><summary><section id="method.realize" class="method"><a class="src rightside" href="../../../src/gtk4/subclass/widget.rs.html#300-302">source</a><h4 class="code-header">fn <a href="#method.realize" class="fn">realize</a>(&amp;self)</h4></section></summary><div class="docblock"><p>Creates the GDK resources associated with a widget.</p>
+<p>Normally realization happens implicitly; if you show a widget
+and all its parent containers, then the widget will be realized
+and mapped automatically.</p>
+<p>Realizing a widget requires all the widget’s parent widgets to be
+realized; calling this function realizes the widget’s parents
+in addition to @self itself. If a widget is not yet inside a
+toplevel window when you realize it, bad things will happen.</p>
+<p>This function is primarily used in widget implementations, and
+isn’t very useful otherwise. Many times when you think you might
+need it, a better approach is to connect to a signal that will be
+called after the widget is realized automatically, such as
+<a href="../../struct.Widget.html#realize" title="struct gtk4::Widget"><code>realize</code></a>.</p>
+</div></details><section id="method.root" class="method"><a class="src rightside" href="../../../src/gtk4/subclass/widget.rs.html#304-306">source</a><h4 class="code-header">fn <a href="#method.root" class="fn">root</a>(&amp;self)</h4></section><details class="toggle method-toggle" open><summary><section id="method.set_focus_child" class="method"><a class="src rightside" href="../../../src/gtk4/subclass/widget.rs.html#316-318">source</a><h4 class="code-header">fn <a href="#method.set_focus_child" class="fn">set_focus_child</a>(&amp;self, child: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;<a class="struct" href="../../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;)</h4></section></summary><div class="docblock"><p>Set @child as the current focus child of @self.</p>
+<p>This function is only suitable for widget implementations.
+If you want a certain widget to get the input focus, call
+<a href="../../prelude/trait.WidgetExt.html#method.grab_focus" title="method gtk4::prelude::WidgetExt::grab_focus"><code>WidgetExt::grab_focus()</code></a> on it.</p>
+<h6 id="child"><a href="#child"><code>child</code></a></h6>
+<p>a direct child widget of @self or <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="variant core::option::Option::None"><code>None</code></a>
+to unset the focus child of @self</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.show" class="method"><a class="src rightside" href="../../../src/gtk4/subclass/widget.rs.html#336-338">source</a><h4 class="code-header">fn <a href="#method.show" class="fn">show</a>(&amp;self)</h4></section></summary><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span><div class="docblock"><p>Flags a widget to be displayed.</p>
+<p>Any widget that isn’t shown will not appear on the screen.</p>
+<p>Remember that you have to show the containers containing a widget,
+in addition to the widget itself, before it will appear onscreen.</p>
+<p>When a toplevel container is shown, it is immediately realized and
+mapped; other shown widgets are realized and mapped when their
+toplevel container is realized and mapped.</p>
+<h5 id="deprecated-since-410-1"><a href="#deprecated-since-410-1">Deprecated since 4.10</a></h5>
+<p>Use <a href="../../prelude/trait.WidgetExt.html#method.set_visible" title="method gtk4::prelude::WidgetExt::set_visible"><code>WidgetExt::set_visible()</code></a> instead</p>
+</div></details><section id="method.size_allocate" class="method"><a class="src rightside" href="../../../src/gtk4/subclass/widget.rs.html#340-342">source</a><h4 class="code-header">fn <a href="#method.size_allocate" class="fn">size_allocate</a>(&amp;self, width: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, height: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, baseline: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>)</h4></section><section id="method.snapshot" class="method"><a class="src rightside" href="../../../src/gtk4/subclass/widget.rs.html#344-346">source</a><h4 class="code-header">fn <a href="#method.snapshot" class="fn">snapshot</a>(&amp;self, snapshot: &amp;<a class="struct" href="../../struct.Snapshot.html" title="struct gtk4::Snapshot">Snapshot</a>)</h4></section><section id="method.state_flags_changed" class="method"><a class="src rightside" href="../../../src/gtk4/subclass/widget.rs.html#348-350">source</a><h4 class="code-header">fn <a href="#method.state_flags_changed" class="fn">state_flags_changed</a>(&amp;self, state_flags: &amp;<a class="struct" href="../../struct.StateFlags.html" title="struct gtk4::StateFlags">StateFlags</a>)</h4></section><section id="method.system_setting_changed" class="method"><a class="src rightside" href="../../../src/gtk4/subclass/widget.rs.html#352-354">source</a><h4 class="code-header">fn <a href="#method.system_setting_changed" class="fn">system_setting_changed</a>(&amp;self, settings: &amp;<a class="enum" href="../../enum.SystemSetting.html" title="enum gtk4::SystemSetting">SystemSetting</a>)</h4></section><details class="toggle method-toggle" open><summary><section id="method.unmap" class="method"><a class="src rightside" href="../../../src/gtk4/subclass/widget.rs.html#359-361">source</a><h4 class="code-header">fn <a href="#method.unmap" class="fn">unmap</a>(&amp;self)</h4></section></summary><div class="docblock"><p>Causes a widget to be unmapped if it’s currently mapped.</p>
+<p>This function is only for use in widget implementations.</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.unrealize" class="method"><a class="src rightside" href="../../../src/gtk4/subclass/widget.rs.html#367-369">source</a><h4 class="code-header">fn <a href="#method.unrealize" class="fn">unrealize</a>(&amp;self)</h4></section></summary><div class="docblock"><p>Causes a widget to be unrealized (frees all GDK resources
+associated with the widget).</p>
+<p>This function is only useful in widget implementations.</p>
+</div></details><section id="method.unroot" class="method"><a class="src rightside" href="../../../src/gtk4/subclass/widget.rs.html#371-373">source</a><h4 class="code-header">fn <a href="#method.unroot" class="fn">unroot</a>(&amp;self)</h4></section></div><h2 id="implementors" class="small-section-header">Implementors<a href="#implementors" class="anchor">§</a></h2><div id="implementors-list"></div><script src="../../../implementors/gtk4/subclass/widget/trait.WidgetImpl.js" async></script></section></div></main></body></html>

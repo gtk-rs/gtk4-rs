@@ -1,0 +1,154 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="API documentation for the Rust `LayoutManagerImpl` trait in crate `gtk4`."><title>LayoutManagerImpl in gtk4::subclass::layout_manager - Rust</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-46f98efaafac5295.ttf.woff2,FiraSans-Regular-018c141bf0843ffd.woff2,FiraSans-Medium-8f9a781e4970d388.woff2,SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2,SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../static.files/rustdoc-081576b923113409.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.79.0-nightly (3a36386dc 2024-04-25)" data-channel="nightly" data-search-js="search-bf21c90c8c1d92b1.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../../static.files/storage-e32f0c247825364d.js"></script><script defer src="sidebar-items.js"></script><script defer src="../../../static.files/main-20a3ad099b048cf2.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-09095024cf37855e.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc trait"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
+
+    function checkDocsLatestStable() {
+        function popup(msg, url) { return `
+            <style scoped="scoped">
+                .popup {
+                    max-width: 16em;
+                    background-color: #fff;
+                    position: fixed;
+                    z-index: 1;
+                    margin-left: auto;
+                    bottom: 1em;
+                    right: 1em;
+                    border-radius: 5px;
+                    box-shadow: 1px 1px 4px #777;
+                }
+
+                .popup a.version {
+                    color: #e57300;
+                    padding: 0.6em 1em;
+                    display: block;
+                }
+                .popup a.version:hover {
+                    color: #b25900;
+                }
+
+                .popup a.close {
+                    color: white;
+                    background: grey;
+                    border-radius: 99px;
+                    display: inline-block;
+                    width: 19px;
+                    line-height: 19px;
+                    font-weight: bold;
+                    text-align: center;
+                    margin: 0.6em;
+                    float: right;
+                }
+                .popup a.close:hover {
+                    background: black;
+                }
+            </style>
+            <section class="popup" id="gir_docs_popup">
+                <a class="close" href="#" onclick="document.getElementById('gir_docs_popup').remove(); return false">×</a>
+                <a class="version" href="https://gtk-rs.org/gtk4-rs/stable/latest/docs">
+                    ⚠ ${msg}
+                </a>
+            </section>
+        ` };
+
+        if ("0.8" == "master") {
+            document.body.insertAdjacentHTML(
+                'beforeend',
+                popup("This is the development version. Go to latest stable version.", "stable/latest")
+            );
+        } else {
+            fetch('https://gtk-rs.org/gtk4-rs/LATEST_RELEASE_BRANCH')
+                .then(response => response.text())
+                .then(latest_branch => {
+                    if (latest_branch.trim() != "0.8") {
+                        document.body.insertAdjacentHTML(
+                            'beforeend',
+                            popup("This version is outdated. Go to latest version.", "stable/latest")
+                        );
+                    }
+                });
+        }
+    }
+</script>
+
+
+<nav class="mobile-topbar"><button class="sidebar-menu-toggle" title="show sidebar"></button></nav><nav class="sidebar"><div class="sidebar-crate"><h2><a href="../../../gtk4/index.html">gtk4</a><span class="version">0.8.2</span></h2></div><h2 class="location"><a href="#">LayoutManagerImpl</a></h2><div class="sidebar-elems"><section><h3><a href="#provided-methods">Provided Methods</a></h3><ul class="block"><li><a href="#method.allocate">allocate</a></li><li><a href="#method.create_layout_child">create_layout_child</a></li><li><a href="#method.layout_child_type">layout_child_type</a></li><li><a href="#method.measure">measure</a></li><li><a href="#method.request_mode">request_mode</a></li><li><a href="#method.root">root</a></li><li><a href="#method.unroot">unroot</a></li></ul><h3><a href="#object-safety">Object Safety</a></h3><h3><a href="#implementors">Implementors</a></h3></section><h2><a href="index.html">In gtk4::subclass::layout_manager</a></h2></div></nav><div class="sidebar-resizer"></div><main><div class="width-limiter"><nav class="sub"><form class="search-form"><span></span><div id="sidebar-button" tabindex="-1"><a href="../../../gtk4/all.html" title="show sidebar"></a></div><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Type ‘S’ or ‘/’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings">Settings</a></div></form></nav><section id="main-content" class="content"><div class="main-heading"><h1>Trait <a href="../../index.html">gtk4</a>::<wbr><a href="../index.html">subclass</a>::<wbr><a href="index.html">layout_manager</a>::<wbr><a class="trait" href="#">LayoutManagerImpl</a><button id="copy-path" title="Copy item path to clipboard">Copy item path</button></h1><span class="out-of-band"><a class="src" href="../../../src/gtk4/subclass/layout_manager.rs.html#14-111">source</a> · <button id="toggle-all-docs" title="collapse all docs">[<span>&#x2212;</span>]</button></span></div><pre class="rust item-decl"><code>pub trait LayoutManagerImpl: <a class="trait" href="trait.LayoutManagerImplExt.html" title="trait gtk4::subclass::layout_manager::LayoutManagerImplExt">LayoutManagerImplExt</a> + <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/glib/subclass/object/trait.ObjectImpl.html" title="trait glib::subclass::object::ObjectImpl">ObjectImpl</a> {
+    // Provided methods
+    fn <a href="#method.allocate" class="fn">allocate</a>(&amp;self, widget: &amp;<a class="struct" href="../../struct.Widget.html" title="struct gtk4::Widget">Widget</a>, width: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, height: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, baseline: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.create_layout_child" class="fn">create_layout_child</a>(
+        &amp;self,
+        widget: &amp;<a class="struct" href="../../struct.Widget.html" title="struct gtk4::Widget">Widget</a>,
+        for_child: &amp;<a class="struct" href="../../struct.Widget.html" title="struct gtk4::Widget">Widget</a>
+    ) -&gt; <a class="struct" href="../../struct.LayoutChild.html" title="struct gtk4::LayoutChild">LayoutChild</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.layout_child_type" class="fn">layout_child_type</a>() -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/glib/types/struct.Type.html" title="struct glib::types::Type">Type</a>&gt; { ... }
+<span class="item-spacer"></span>    fn <a href="#method.request_mode" class="fn">request_mode</a>(&amp;self, widget: &amp;<a class="struct" href="../../struct.Widget.html" title="struct gtk4::Widget">Widget</a>) -&gt; <a class="enum" href="../../enum.SizeRequestMode.html" title="enum gtk4::SizeRequestMode">SizeRequestMode</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.measure" class="fn">measure</a>(
+        &amp;self,
+        widget: &amp;<a class="struct" href="../../struct.Widget.html" title="struct gtk4::Widget">Widget</a>,
+        orientation: <a class="enum" href="../../enum.Orientation.html" title="enum gtk4::Orientation">Orientation</a>,
+        for_size: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>
+    ) -&gt; (<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.root" class="fn">root</a>(&amp;self) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.unroot" class="fn">unroot</a>(&amp;self) { ... }
+}</code></pre><h2 id="provided-methods" class="section-header">Provided Methods<a href="#provided-methods" class="anchor">§</a></h2><div class="methods"><details class="toggle method-toggle" open><summary><section id="method.allocate" class="method"><a class="src rightside" href="../../../src/gtk4/subclass/layout_manager.rs.html#26-28">source</a><h4 class="code-header">fn <a href="#method.allocate" class="fn">allocate</a>(&amp;self, widget: &amp;<a class="struct" href="../../struct.Widget.html" title="struct gtk4::Widget">Widget</a>, width: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, height: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, baseline: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>)</h4></section></summary><div class="docblock"><p>Assigns the given @width, @height, and @baseline to
+a @widget, and computes the position and sizes of the children of
+the @widget using the layout management policy of @self.</p>
+<h6 id="widget"><a class="doc-anchor" href="#widget">§</a><code>widget</code></h6>
+<p>the <a href="../../struct.Widget.html" title="struct gtk4::Widget"><code>Widget</code></a> using @self</p>
+<h6 id="width"><a class="doc-anchor" href="#width">§</a><code>width</code></h6>
+<p>the new width of the @widget</p>
+<h6 id="height"><a class="doc-anchor" href="#height">§</a><code>height</code></h6>
+<p>the new height of the @widget</p>
+<h6 id="baseline"><a class="doc-anchor" href="#baseline">§</a><code>baseline</code></h6>
+<p>the baseline position of the @widget, or -1</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.create_layout_child" class="method"><a class="src rightside" href="../../../src/gtk4/subclass/layout_manager.rs.html#39-41">source</a><h4 class="code-header">fn <a href="#method.create_layout_child" class="fn">create_layout_child</a>(
+    &amp;self,
+    widget: &amp;<a class="struct" href="../../struct.Widget.html" title="struct gtk4::Widget">Widget</a>,
+    for_child: &amp;<a class="struct" href="../../struct.Widget.html" title="struct gtk4::Widget">Widget</a>
+) -&gt; <a class="struct" href="../../struct.LayoutChild.html" title="struct gtk4::LayoutChild">LayoutChild</a></h4></section></summary><div class="docblock"><p>Create a <a href="../../struct.LayoutChild.html" title="struct gtk4::LayoutChild"><code>LayoutChild</code></a> instance for the given @for_child widget.</p>
+<h6 id="widget-1"><a class="doc-anchor" href="#widget-1">§</a><code>widget</code></h6>
+<p>the widget using the @self</p>
+<h6 id="for_child"><a class="doc-anchor" href="#for_child">§</a><code>for_child</code></h6>
+<p>the child of @widget</p>
+<h5 id="returns"><a class="doc-anchor" href="#returns">§</a>Returns</h5>
+<p>a <a href="../../struct.LayoutChild.html" title="struct gtk4::LayoutChild"><code>LayoutChild</code></a></p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.layout_child_type" class="method"><a class="src rightside" href="../../../src/gtk4/subclass/layout_manager.rs.html#44-46">source</a><h4 class="code-header">fn <a href="#method.layout_child_type" class="fn">layout_child_type</a>() -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/glib/types/struct.Type.html" title="struct glib::types::Type">Type</a>&gt;</h4></section></summary><div class="docblock"><p>Only set if the child implemented LayoutChildImpl</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.request_mode" class="method"><a class="src rightside" href="../../../src/gtk4/subclass/layout_manager.rs.html#52-54">source</a><h4 class="code-header">fn <a href="#method.request_mode" class="fn">request_mode</a>(&amp;self, widget: &amp;<a class="struct" href="../../struct.Widget.html" title="struct gtk4::Widget">Widget</a>) -&gt; <a class="enum" href="../../enum.SizeRequestMode.html" title="enum gtk4::SizeRequestMode">SizeRequestMode</a></h4></section></summary><div class="docblock"><p>a virtual function, used to return the preferred
+request mode for the layout manager; for instance, “width for height”
+or “height for width”; see <a href="../../enum.SizeRequestMode.html" title="enum gtk4::SizeRequestMode"><code>SizeRequestMode</code></a></p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.measure" class="method"><a class="src rightside" href="../../../src/gtk4/subclass/layout_manager.rs.html#91-98">source</a><h4 class="code-header">fn <a href="#method.measure" class="fn">measure</a>(
+    &amp;self,
+    widget: &amp;<a class="struct" href="../../struct.Widget.html" title="struct gtk4::Widget">Widget</a>,
+    orientation: <a class="enum" href="../../enum.Orientation.html" title="enum gtk4::Orientation">Orientation</a>,
+    for_size: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>
+) -&gt; (<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>)</h4></section></summary><div class="docblock"><p>Measures the size of the @widget using @self, for the
+given @orientation and size.</p>
+<p>See the <a href="../../struct.Widget.html" title="struct gtk4::Widget"><code>Widget</code></a> documentation on layout management for
+more details.</p>
+<h6 id="widget-2"><a class="doc-anchor" href="#widget-2">§</a><code>widget</code></h6>
+<p>the <a href="../../struct.Widget.html" title="struct gtk4::Widget"><code>Widget</code></a> using @self</p>
+<h6 id="orientation"><a class="doc-anchor" href="#orientation">§</a><code>orientation</code></h6>
+<p>the orientation to measure</p>
+<h6 id="for_size"><a class="doc-anchor" href="#for_size">§</a><code>for_size</code></h6>
+<p>Size for the opposite of @orientation; for instance, if
+the @orientation is <a href="../../enum.Orientation.html#variant.Horizontal" title="variant gtk4::Orientation::Horizontal"><code>Orientation::Horizontal</code></a>, this is the height
+of the widget; if the @orientation is <a href="../../enum.Orientation.html#variant.Vertical" title="variant gtk4::Orientation::Vertical"><code>Orientation::Vertical</code></a>, this
+is the width of the widget. This allows to measure the height for the
+given width, and the width for the given height. Use -1 if the size
+is not known</p>
+<h5 id="returns-1"><a class="doc-anchor" href="#returns-1">§</a>Returns</h5><h6 id="minimum"><a class="doc-anchor" href="#minimum">§</a><code>minimum</code></h6>
+<p>the minimum size for the given size and
+orientation</p>
+<h6 id="natural"><a class="doc-anchor" href="#natural">§</a><code>natural</code></h6>
+<p>the natural, or preferred size for the
+given size and orientation</p>
+<h6 id="minimum_baseline"><a class="doc-anchor" href="#minimum_baseline">§</a><code>minimum_baseline</code></h6>
+<p>the baseline position for the
+minimum size</p>
+<h6 id="natural_baseline"><a class="doc-anchor" href="#natural_baseline">§</a><code>natural_baseline</code></h6>
+<p>the baseline position for the
+natural size</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.root" class="method"><a class="src rightside" href="../../../src/gtk4/subclass/layout_manager.rs.html#102-104">source</a><h4 class="code-header">fn <a href="#method.root" class="fn">root</a>(&amp;self)</h4></section></summary><div class="docblock"><p>a virtual function, called when the widget using the layout
+manager is attached to a <a href="../../struct.Root.html" title="struct gtk4::Root"><code>Root</code></a></p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.unroot" class="method"><a class="src rightside" href="../../../src/gtk4/subclass/layout_manager.rs.html#108-110">source</a><h4 class="code-header">fn <a href="#method.unroot" class="fn">unroot</a>(&amp;self)</h4></section></summary><div class="docblock"><p>a virtual function, called when the widget using the layout
+manager is detached from a <a href="../../struct.Root.html" title="struct gtk4::Root"><code>Root</code></a></p>
+</div></details></div><h2 id="object-safety" class="section-header">Object Safety<a href="#object-safety" class="anchor">§</a></h2><div class="object-safety-info">This trait is <b>not</b> <a href="https://doc.rust-lang.org/nightly/reference/items/traits.html#object-safety">object safe</a>.</div><h2 id="implementors" class="section-header">Implementors<a href="#implementors" class="anchor">§</a></h2><div id="implementors-list"></div><script src="../../../trait.impl/gtk4/subclass/layout_manager/trait.LayoutManagerImpl.js" async></script></section></div></main></body></html>

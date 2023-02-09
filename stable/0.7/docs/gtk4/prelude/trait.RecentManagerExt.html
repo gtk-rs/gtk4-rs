@@ -1,0 +1,179 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Trait containing all `struct@RecentManager` methods."><title>RecentManagerExt in gtk4::prelude - Rust</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Bold-a2c9cd1067f8b328.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-fa3bb1812debf86c.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.74.0-nightly (e4133ba9b 2023-09-22)" data-channel="nightly" data-search-js="search-8be46b629f5f14a8.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="sidebar-items.js"></script><script defer src="../../static.files/main-c5bd66d33317d69f.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc trait"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
+
+    function checkDocsLatestStable() {
+        function popup(msg, url) { return `
+            <style scoped="scoped">
+                .popup {
+                    max-width: 16em;
+                    background-color: #fff;
+                    position: fixed;
+                    z-index: 1;
+                    margin-left: auto;
+                    bottom: 1em;
+                    right: 1em;
+                    border-radius: 5px;
+                    box-shadow: 1px 1px 4px #777;
+                }
+
+                .popup a.version {
+                    color: #e57300;
+                    padding: 0.6em 1em;
+                    display: block;
+                }
+                .popup a.version:hover {
+                    color: #b25900;
+                }
+
+                .popup a.close {
+                    color: white;
+                    background: grey;
+                    border-radius: 99px;
+                    display: inline-block;
+                    width: 19px;
+                    line-height: 19px;
+                    font-weight: bold;
+                    text-align: center;
+                    margin: 0.6em;
+                    float: right;
+                }
+                .popup a.close:hover {
+                    background: black;
+                }
+            </style>
+            <section class="popup" id="gir_docs_popup">
+                <a class="close" href="#" onclick="document.getElementById('gir_docs_popup').remove(); return false">×</a>
+                <a class="version" href="https://gtk-rs.org/gtk4-rs/stable/latest/docs">
+                    ⚠ ${msg}
+                </a>
+            </section>
+        ` };
+
+        if ("0.7" == "master") {
+            document.body.insertAdjacentHTML(
+                'beforeend',
+                popup("This is the development version. Go to latest stable version.", "stable/latest")
+            );
+        } else {
+            fetch('https://gtk-rs.org/gtk4-rs/LATEST_RELEASE_BRANCH')
+                .then(response => response.text())
+                .then(latest_branch => {
+                    if (latest_branch.trim() != "0.7") {
+                        document.body.insertAdjacentHTML(
+                            'beforeend',
+                            popup("This version is outdated. Go to latest version.", "stable/latest")
+                        );
+                    }
+                });
+        }
+    }
+</script>
+
+
+<nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="logo-container" href="../../gtk4/index.html"><img class="rust-logo" src="../../static.files/rust-logo-151179464ae7ed46.svg" alt="logo"></a></nav><nav class="sidebar"><a class="logo-container" href="../../gtk4/index.html"><img class="rust-logo" src="../../static.files/rust-logo-151179464ae7ed46.svg" alt="logo"></a><h2 class="location"><a href="#">RecentManagerExt</a></h2><div class="sidebar-elems"><section><h3><a href="#provided-methods">Provided Methods</a></h3><ul class="block"><li><a href="#method.add_full">add_full</a></li><li><a href="#method.add_item">add_item</a></li><li><a href="#method.connect_changed">connect_changed</a></li><li><a href="#method.connect_size_notify">connect_size_notify</a></li><li><a href="#method.filename">filename</a></li><li><a href="#method.has_item">has_item</a></li><li><a href="#method.items">items</a></li><li><a href="#method.lookup_item">lookup_item</a></li><li><a href="#method.move_item">move_item</a></li><li><a href="#method.purge_items">purge_items</a></li><li><a href="#method.remove_item">remove_item</a></li><li><a href="#method.size">size</a></li></ul><h3><a href="#implementors">Implementors</a></h3></section><h2><a href="index.html">In gtk4::prelude</a></h2></div></nav><main><div class="width-limiter"><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="main-heading"><h1>Trait <a href="../index.html">gtk4</a>::<wbr><a href="index.html">prelude</a>::<wbr><a class="trait" href="#">RecentManagerExt</a><button id="copy-path" title="Copy item path to clipboard"><img src="../../static.files/clipboard-7571035ce49a181d.svg" width="19" height="18" alt="Copy item path"></button></h1><span class="out-of-band"><a class="src" href="../../src/gtk4/auto/recent_manager.rs.html#168-438">source</a> · <button id="toggle-all-docs" title="collapse all docs">[<span>&#x2212;</span>]</button></span></div><pre class="rust item-decl"><code>pub trait RecentManagerExt: <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.RecentManager.html" title="struct gtk4::RecentManager">RecentManager</a>&gt; + Sealed + 'static {
+    // Provided methods
+    fn <a href="#method.add_full" class="fn">add_full</a>(&amp;self, uri: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>, recent_data: &amp;<a class="struct" href="../struct.RecentData.html" title="struct gtk4::RecentData">RecentData</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.add_item" class="fn">add_item</a>(&amp;self, uri: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.items" class="fn">items</a>(&amp;self) -&gt; <a class="struct" href="https://doc.rust-lang.org/nightly/alloc/vec/struct.Vec.html" title="struct alloc::vec::Vec">Vec</a>&lt;<a class="struct" href="../struct.RecentInfo.html" title="struct gtk4::RecentInfo">RecentInfo</a>&gt; { ... }
+<span class="item-spacer"></span>    fn <a href="#method.has_item" class="fn">has_item</a>(&amp;self, uri: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.lookup_item" class="fn">lookup_item</a>(&amp;self, uri: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../struct.RecentInfo.html" title="struct gtk4::RecentInfo">RecentInfo</a>&gt;, <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/error/struct.Error.html" title="struct glib::error::Error">Error</a>&gt; { ... }
+<span class="item-spacer"></span>    fn <a href="#method.move_item" class="fn">move_item</a>(&amp;self, uri: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>, new_uri: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>&gt;) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.unit.html">()</a>, <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/error/struct.Error.html" title="struct glib::error::Error">Error</a>&gt; { ... }
+<span class="item-spacer"></span>    fn <a href="#method.purge_items" class="fn">purge_items</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/error/struct.Error.html" title="struct glib::error::Error">Error</a>&gt; { ... }
+<span class="item-spacer"></span>    fn <a href="#method.remove_item" class="fn">remove_item</a>(&amp;self, uri: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.unit.html">()</a>, <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/error/struct.Error.html" title="struct glib::error::Error">Error</a>&gt; { ... }
+<span class="item-spacer"></span>    fn <a href="#method.filename" class="fn">filename</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/gstring/struct.GString.html" title="struct glib::gstring::GString">GString</a>&gt; { ... }
+<span class="item-spacer"></span>    fn <a href="#method.size" class="fn">size</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_changed" class="fn">connect_changed</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(&amp;self, f: F) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_size_notify" class="fn">connect_size_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
+        &amp;self,
+        f: F
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+}</code></pre><details class="toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>Trait containing all <a href="../struct.RecentManager.html" title="struct gtk4::RecentManager"><code>RecentManager</code></a> methods.</p>
+<h2 id="implementors-1"><a href="#implementors-1">Implementors</a></h2>
+<p><a href="../struct.RecentManager.html" title="struct gtk4::RecentManager"><code>RecentManager</code></a></p>
+</div></details><h2 id="provided-methods" class="small-section-header">Provided Methods<a href="#provided-methods" class="anchor">§</a></h2><div class="methods"><details class="toggle method-toggle" open><summary><section id="method.add_full" class="method"><a class="src rightside" href="../../src/gtk4/auto/recent_manager.rs.html#198-206">source</a><h4 class="code-header">fn <a href="#method.add_full" class="fn">add_full</a>(&amp;self, uri: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>, recent_data: &amp;<a class="struct" href="../struct.RecentData.html" title="struct gtk4::RecentData">RecentData</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></section></summary><div class="docblock"><p>Adds a new resource, pointed by @uri, into the recently used
+resources list, using the metadata specified inside the
+<a href="../struct.RecentData.html" title="struct gtk4::RecentData"><code>RecentData</code></a> passed in @recent_data.</p>
+<p>The passed URI will be used to identify this resource inside the
+list.</p>
+<p>In order to register the new recently used resource, metadata about
+the resource must be passed as well as the URI; the metadata is
+stored in a <a href="../struct.RecentData.html" title="struct gtk4::RecentData"><code>RecentData</code></a>, which must contain the MIME
+type of the resource pointed by the URI; the name of the application
+that is registering the item, and a command line to be used when
+launching the item.</p>
+<p>Optionally, a <a href="../struct.RecentData.html" title="struct gtk4::RecentData"><code>RecentData</code></a> might contain a UTF-8 string
+to be used when viewing the item instead of the last component of
+the URI; a short description of the item; whether the item should
+be considered private - that is, should be displayed only by the
+applications that have registered it.</p>
+<h6 id="uri"><a href="#uri"><code>uri</code></a></h6>
+<p>a valid URI</p>
+<h6 id="recent_data"><a href="#recent_data"><code>recent_data</code></a></h6>
+<p>metadata of the resource</p>
+<h5 id="returns"><a href="#returns">Returns</a></h5>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>true</code></a> if the new item was successfully added to the
+recently used resources list, <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>false</code></a> otherwise</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.add_item" class="method"><a class="src rightside" href="../../src/gtk4/auto/recent_manager.rs.html#225-232">source</a><h4 class="code-header">fn <a href="#method.add_item" class="fn">add_item</a>(&amp;self, uri: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></section></summary><div class="docblock"><p>Adds a new resource, pointed by @uri, into the recently used
+resources list.</p>
+<p>This function automatically retrieves some of the needed
+metadata and setting other metadata to common default values;
+it then feeds the data to <a href="trait.RecentManagerExt.html#method.add_full"><code>add_full()</code></a>.</p>
+<p>See <a href="trait.RecentManagerExt.html#method.add_full"><code>add_full()</code></a> if you want to explicitly
+define the metadata for the resource pointed by @uri.</p>
+<h6 id="uri-1"><a href="#uri-1"><code>uri</code></a></h6>
+<p>a valid URI</p>
+<h5 id="returns-1"><a href="#returns-1">Returns</a></h5>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>true</code></a> if the new item was successfully added
+to the recently used resources list</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.items" class="method"><a class="src rightside" href="../../src/gtk4/auto/recent_manager.rs.html#244-250">source</a><h4 class="code-header">fn <a href="#method.items" class="fn">items</a>(&amp;self) -&gt; <a class="struct" href="https://doc.rust-lang.org/nightly/alloc/vec/struct.Vec.html" title="struct alloc::vec::Vec">Vec</a>&lt;<a class="struct" href="../struct.RecentInfo.html" title="struct gtk4::RecentInfo">RecentInfo</a>&gt;</h4></section></summary><div class="docblock"><p>Gets the list of recently used resources.</p>
+<h5 id="returns-2"><a href="#returns-2">Returns</a></h5>
+<p>a list of
+newly allocated <code>GtkRecentInfo objects</code>. Use
+<code>Gtk::RecentInfo::unref()</code> on each item inside the list, and then
+free the list itself using g_list_free().</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.has_item" class="method"><a class="src rightside" href="../../src/gtk4/auto/recent_manager.rs.html#261-268">source</a><h4 class="code-header">fn <a href="#method.has_item" class="fn">has_item</a>(&amp;self, uri: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></section></summary><div class="docblock"><p>Checks whether there is a recently used resource registered
+with @uri inside the recent manager.</p>
+<h6 id="uri-2"><a href="#uri-2"><code>uri</code></a></h6>
+<p>a URI</p>
+<h5 id="returns-3"><a href="#returns-3">Returns</a></h5>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>true</code></a> if the resource was found, <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>false</code></a> otherwise</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.lookup_item" class="method"><a class="src rightside" href="../../src/gtk4/auto/recent_manager.rs.html#283-297">source</a><h4 class="code-header">fn <a href="#method.lookup_item" class="fn">lookup_item</a>(&amp;self, uri: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../struct.RecentInfo.html" title="struct gtk4::RecentInfo">RecentInfo</a>&gt;, <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/error/struct.Error.html" title="struct glib::error::Error">Error</a>&gt;</h4></section></summary><div class="docblock"><p>Searches for a URI inside the recently used resources list, and
+returns a <a href="../struct.RecentInfo.html" title="struct gtk4::RecentInfo"><code>RecentInfo</code></a> containing information about the resource
+like its MIME type, or its display name.</p>
+<h6 id="uri-3"><a href="#uri-3"><code>uri</code></a></h6>
+<p>a URI</p>
+<h5 id="returns-4"><a href="#returns-4">Returns</a></h5>
+<p>a <a href="../struct.RecentInfo.html" title="struct gtk4::RecentInfo"><code>RecentInfo</code></a> containing information
+about the resource pointed by @uri, or <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="variant core::option::Option::None"><code>None</code></a> if the URI was
+not registered in the recently used resources list. Free with
+<code>Gtk::RecentInfo::unref()</code>.</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.move_item" class="method"><a class="src rightside" href="../../src/gtk4/auto/recent_manager.rs.html#313-329">source</a><h4 class="code-header">fn <a href="#method.move_item" class="fn">move_item</a>(&amp;self, uri: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>, new_uri: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>&gt;) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.unit.html">()</a>, <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/error/struct.Error.html" title="struct glib::error::Error">Error</a>&gt;</h4></section></summary><div class="docblock"><p>Changes the location of a recently used resource from @uri to @new_uri.</p>
+<p>Please note that this function will not affect the resource pointed
+by the URIs, but only the URI used in the recently used resources list.</p>
+<h6 id="uri-4"><a href="#uri-4"><code>uri</code></a></h6>
+<p>the URI of a recently used resource</p>
+<h6 id="new_uri"><a href="#new_uri"><code>new_uri</code></a></h6>
+<p>the new URI of the recently used resource, or
+<a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="variant core::option::Option::None"><code>None</code></a> to remove the item pointed by @uri in the list</p>
+<h5 id="returns-5"><a href="#returns-5">Returns</a></h5>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>true</code></a> on success</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.purge_items" class="method"><a class="src rightside" href="../../src/gtk4/auto/recent_manager.rs.html#338-349">source</a><h4 class="code-header">fn <a href="#method.purge_items" class="fn">purge_items</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/error/struct.Error.html" title="struct glib::error::Error">Error</a>&gt;</h4></section></summary><div class="docblock"><p>Purges every item from the recently used resources list.</p>
+<h5 id="returns-6"><a href="#returns-6">Returns</a></h5>
+<p>the number of items that have been removed from the
+recently used resources list</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.remove_item" class="method"><a class="src rightside" href="../../src/gtk4/auto/recent_manager.rs.html#361-376">source</a><h4 class="code-header">fn <a href="#method.remove_item" class="fn">remove_item</a>(&amp;self, uri: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.unit.html">()</a>, <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/error/struct.Error.html" title="struct glib::error::Error">Error</a>&gt;</h4></section></summary><div class="docblock"><p>Removes a resource pointed by @uri from the recently used resources
+list handled by a recent manager.</p>
+<h6 id="uri-5"><a href="#uri-5"><code>uri</code></a></h6>
+<p>the URI of the item you wish to remove</p>
+<h5 id="returns-7"><a href="#returns-7">Returns</a></h5>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>true</code></a> if the item pointed by @uri has been successfully
+removed by the recently used resources list, and <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>false</code></a> otherwise</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.filename" class="method"><a class="src rightside" href="../../src/gtk4/auto/recent_manager.rs.html#380-382">source</a><h4 class="code-header">fn <a href="#method.filename" class="fn">filename</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/gstring/struct.GString.html" title="struct glib::gstring::GString">GString</a>&gt;</h4></section></summary><div class="docblock"><p>The full path to the file to be used to store and read the
+recently used resources list</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.size" class="method"><a class="src rightside" href="../../src/gtk4/auto/recent_manager.rs.html#385-387">source</a><h4 class="code-header">fn <a href="#method.size" class="fn">size</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a></h4></section></summary><div class="docblock"><p>The size of the recently used resources list.</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.connect_changed" class="method"><a class="src rightside" href="../../src/gtk4/auto/recent_manager.rs.html#395-414">source</a><h4 class="code-header">fn <a href="#method.connect_changed" class="fn">connect_changed</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(&amp;self, f: F) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section></summary><div class="docblock"><p>Emitted when the current recently used resources manager changes
+its contents.</p>
+<p>This can happen either by calling <a href="trait.RecentManagerExt.html#method.add_item"><code>add_item()</code></a>
+or by another application.</p>
+</div></details><section id="method.connect_size_notify" class="method"><a class="src rightside" href="../../src/gtk4/auto/recent_manager.rs.html#417-437">source</a><h4 class="code-header">fn <a href="#method.connect_size_notify" class="fn">connect_size_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(&amp;self, f: F) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section></div><h2 id="implementors" class="small-section-header">Implementors<a href="#implementors" class="anchor">§</a></h2><div id="implementors-list"><section id="impl-RecentManagerExt-for-O" class="impl"><a class="src rightside" href="../../src/gtk4/auto/recent_manager.rs.html#440">source</a><a href="#impl-RecentManagerExt-for-O" class="anchor">§</a><h3 class="code-header">impl&lt;O: <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.18/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.RecentManager.html" title="struct gtk4::RecentManager">RecentManager</a>&gt;&gt; <a class="trait" href="trait.RecentManagerExt.html" title="trait gtk4::prelude::RecentManagerExt">RecentManagerExt</a> for O</h3></section></div><script src="../../implementors/gtk4/auto/recent_manager/trait.RecentManagerExt.js" async></script></section></div></main></body></html>

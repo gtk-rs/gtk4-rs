@@ -1,0 +1,168 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Trait containing all `struct@CellLayout` methods."><title>CellLayoutExt in gtk4::prelude - Rust</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-46f98efaafac5295.ttf.woff2,FiraSans-Regular-018c141bf0843ffd.woff2,FiraSans-Medium-8f9a781e4970d388.woff2,SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2,SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-081576b923113409.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.79.0-nightly (3a36386dc 2024-04-25)" data-channel="nightly" data-search-js="search-bf21c90c8c1d92b1.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../static.files/storage-e32f0c247825364d.js"></script><script defer src="sidebar-items.js"></script><script defer src="../../static.files/main-20a3ad099b048cf2.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-09095024cf37855e.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc trait"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
+
+    function checkDocsLatestStable() {
+        function popup(msg, url) { return `
+            <style scoped="scoped">
+                .popup {
+                    max-width: 16em;
+                    background-color: #fff;
+                    position: fixed;
+                    z-index: 1;
+                    margin-left: auto;
+                    bottom: 1em;
+                    right: 1em;
+                    border-radius: 5px;
+                    box-shadow: 1px 1px 4px #777;
+                }
+
+                .popup a.version {
+                    color: #e57300;
+                    padding: 0.6em 1em;
+                    display: block;
+                }
+                .popup a.version:hover {
+                    color: #b25900;
+                }
+
+                .popup a.close {
+                    color: white;
+                    background: grey;
+                    border-radius: 99px;
+                    display: inline-block;
+                    width: 19px;
+                    line-height: 19px;
+                    font-weight: bold;
+                    text-align: center;
+                    margin: 0.6em;
+                    float: right;
+                }
+                .popup a.close:hover {
+                    background: black;
+                }
+            </style>
+            <section class="popup" id="gir_docs_popup">
+                <a class="close" href="#" onclick="document.getElementById('gir_docs_popup').remove(); return false">×</a>
+                <a class="version" href="https://gtk-rs.org/gtk4-rs/stable/latest/docs">
+                    ⚠ ${msg}
+                </a>
+            </section>
+        ` };
+
+        if ("0.8" == "master") {
+            document.body.insertAdjacentHTML(
+                'beforeend',
+                popup("This is the development version. Go to latest stable version.", "stable/latest")
+            );
+        } else {
+            fetch('https://gtk-rs.org/gtk4-rs/LATEST_RELEASE_BRANCH')
+                .then(response => response.text())
+                .then(latest_branch => {
+                    if (latest_branch.trim() != "0.8") {
+                        document.body.insertAdjacentHTML(
+                            'beforeend',
+                            popup("This version is outdated. Go to latest version.", "stable/latest")
+                        );
+                    }
+                });
+        }
+    }
+</script>
+
+
+<nav class="mobile-topbar"><button class="sidebar-menu-toggle" title="show sidebar"></button></nav><nav class="sidebar"><div class="sidebar-crate"><h2><a href="../../gtk4/index.html">gtk4</a><span class="version">0.8.2</span></h2></div><h2 class="location"><a href="#">CellLayoutExt</a></h2><div class="sidebar-elems"><section><h3><a href="#provided-methods">Provided Methods</a></h3><ul class="block"><li><a href="#method.add_attribute">add_attribute</a></li><li><a href="#method.area">area</a></li><li><a href="#method.cells">cells</a></li><li><a href="#method.clear">clear</a></li><li><a href="#method.clear_attributes">clear_attributes</a></li><li><a href="#method.pack_end">pack_end</a></li><li><a href="#method.pack_start">pack_start</a></li><li><a href="#method.reorder">reorder</a></li><li><a href="#method.set_cell_data_func">set_cell_data_func</a></li></ul><h3><a href="#object-safety">Object Safety</a></h3><h3><a href="#implementors">Implementors</a></h3></section><h2><a href="index.html">In gtk4::prelude</a></h2></div></nav><div class="sidebar-resizer"></div><main><div class="width-limiter"><nav class="sub"><form class="search-form"><span></span><div id="sidebar-button" tabindex="-1"><a href="../../gtk4/all.html" title="show sidebar"></a></div><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Type ‘S’ or ‘/’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings">Settings</a></div></form></nav><section id="main-content" class="content"><div class="main-heading"><h1>Trait <a href="../index.html">gtk4</a>::<wbr><a href="index.html">prelude</a>::<wbr><a class="trait" href="#">CellLayoutExt</a><button id="copy-path" title="Copy item path to clipboard">Copy item path</button></h1><span class="out-of-band"><a class="src" href="../../src/gtk4/auto/cell_layout.rs.html#151-395">source</a> · <button id="toggle-all-docs" title="collapse all docs">[<span>&#x2212;</span>]</button></span></div><pre class="rust item-decl"><code>pub trait CellLayoutExt: <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.CellLayout.html" title="struct gtk4::CellLayout">CellLayout</a>&gt; + Sealed + 'static {
+    // Provided methods
+    fn <a href="#method.add_attribute" class="fn">add_attribute</a>(
+        &amp;self,
+        cell: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.CellRenderer.html" title="struct gtk4::CellRenderer">CellRenderer</a>&gt;,
+        attribute: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>,
+        column: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>
+    ) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.clear" class="fn">clear</a>(&amp;self) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.clear_attributes" class="fn">clear_attributes</a>(&amp;self, cell: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.CellRenderer.html" title="struct gtk4::CellRenderer">CellRenderer</a>&gt;) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.area" class="fn">area</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../struct.CellArea.html" title="struct gtk4::CellArea">CellArea</a>&gt; { ... }
+<span class="item-spacer"></span>    fn <a href="#method.cells" class="fn">cells</a>(&amp;self) -&gt; <a class="struct" href="https://doc.rust-lang.org/nightly/alloc/vec/struct.Vec.html" title="struct alloc::vec::Vec">Vec</a>&lt;<a class="struct" href="../struct.CellRenderer.html" title="struct gtk4::CellRenderer">CellRenderer</a>&gt; { ... }
+<span class="item-spacer"></span>    fn <a href="#method.pack_end" class="fn">pack_end</a>(&amp;self, cell: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.CellRenderer.html" title="struct gtk4::CellRenderer">CellRenderer</a>&gt;, expand: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.pack_start" class="fn">pack_start</a>(&amp;self, cell: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.CellRenderer.html" title="struct gtk4::CellRenderer">CellRenderer</a>&gt;, expand: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.reorder" class="fn">reorder</a>(&amp;self, cell: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.CellRenderer.html" title="struct gtk4::CellRenderer">CellRenderer</a>&gt;, position: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.set_cell_data_func" class="fn">set_cell_data_func</a>&lt;P: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;<a class="struct" href="../struct.CellLayout.html" title="struct gtk4::CellLayout">CellLayout</a>, &amp;<a class="struct" href="../struct.CellRenderer.html" title="struct gtk4::CellRenderer">CellRenderer</a>, &amp;<a class="struct" href="../struct.TreeModel.html" title="struct gtk4::TreeModel">TreeModel</a>, &amp;<a class="struct" href="../struct.TreeIter.html" title="struct gtk4::TreeIter">TreeIter</a>) + 'static&gt;(
+        &amp;self,
+        cell: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.CellRenderer.html" title="struct gtk4::CellRenderer">CellRenderer</a>&gt;,
+        func: P
+    ) { ... }
+}</code></pre><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span><details class="toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>Trait containing all <a href="../struct.CellLayout.html" title="struct gtk4::CellLayout"><code>CellLayout</code></a> methods.</p>
+<h2 id="implementors-1"><a class="doc-anchor" href="#implementors-1">§</a>Implementors</h2>
+<p><a href="../struct.CellAreaBox.html" title="struct gtk4::CellAreaBox"><code>CellAreaBox</code></a>, <a href="../struct.CellArea.html" title="struct gtk4::CellArea"><code>CellArea</code></a>, <a href="../struct.CellLayout.html" title="struct gtk4::CellLayout"><code>CellLayout</code></a>, <a href="../struct.CellView.html" title="struct gtk4::CellView"><code>CellView</code></a>, <a href="../struct.ComboBoxText.html" title="struct gtk4::ComboBoxText"><code>ComboBoxText</code></a>, <a href="../struct.ComboBox.html" title="struct gtk4::ComboBox"><code>ComboBox</code></a>, <a href="../struct.EntryCompletion.html" title="struct gtk4::EntryCompletion"><code>EntryCompletion</code></a>, <a href="../struct.IconView.html" title="struct gtk4::IconView"><code>IconView</code></a>, <a href="../struct.TreeViewColumn.html" title="struct gtk4::TreeViewColumn"><code>TreeViewColumn</code></a></p>
+</div></details><h2 id="provided-methods" class="section-header">Provided Methods<a href="#provided-methods" class="anchor">§</a></h2><div class="methods"><details class="toggle method-toggle" open><summary><section id="method.add_attribute" class="method"><a class="src rightside" href="../../src/gtk4/auto/cell_layout.rs.html#171-180">source</a><h4 class="code-header">fn <a href="#method.add_attribute" class="fn">add_attribute</a>(
+    &amp;self,
+    cell: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.CellRenderer.html" title="struct gtk4::CellRenderer">CellRenderer</a>&gt;,
+    attribute: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>,
+    column: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>
+)</h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span></summary><div class="docblock"><p>Adds an attribute mapping to the list in @self.</p>
+<p>The @column is the column of the model to get a value from, and the
+@attribute is the property on @cell to be set from that value. So for
+example if column 2 of the model contains strings, you could have the
+“text” attribute of a <a href="../struct.CellRendererText.html" title="struct gtk4::CellRendererText"><code>CellRendererText</code></a> get its values from column 2.
+In this context “attribute” and “property” are used interchangeably.</p>
+<h5 id="deprecated-since-410"><a class="doc-anchor" href="#deprecated-since-410">§</a>Deprecated since 4.10</h5><h6 id="cell"><a class="doc-anchor" href="#cell">§</a><code>cell</code></h6>
+<p>a <a href="../struct.CellRenderer.html" title="struct gtk4::CellRenderer"><code>CellRenderer</code></a></p>
+<h6 id="attribute"><a class="doc-anchor" href="#attribute">§</a><code>attribute</code></h6>
+<p>a property on the renderer</p>
+<h6 id="column"><a class="doc-anchor" href="#column">§</a><code>column</code></h6>
+<p>the column position on the model to get the attribute from</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.clear" class="method"><a class="src rightside" href="../../src/gtk4/auto/cell_layout.rs.html#190-194">source</a><h4 class="code-header">fn <a href="#method.clear" class="fn">clear</a>(&amp;self)</h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span></summary><div class="docblock"><p>Unsets all the mappings on all renderers on @self and
+removes all renderers from @self.</p>
+<h5 id="deprecated-since-410-1"><a class="doc-anchor" href="#deprecated-since-410-1">§</a>Deprecated since 4.10</h5></div></details><details class="toggle method-toggle" open><summary><section id="method.clear_attributes" class="method"><a class="src rightside" href="../../src/gtk4/auto/cell_layout.rs.html#206-213">source</a><h4 class="code-header">fn <a href="#method.clear_attributes" class="fn">clear_attributes</a>(&amp;self, cell: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.CellRenderer.html" title="struct gtk4::CellRenderer">CellRenderer</a>&gt;)</h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span></summary><div class="docblock"><p>Clears all existing attributes previously set with
+gtk_cell_layout_set_attributes().</p>
+<h5 id="deprecated-since-410-2"><a class="doc-anchor" href="#deprecated-since-410-2">§</a>Deprecated since 4.10</h5><h6 id="cell-1"><a class="doc-anchor" href="#cell-1">§</a><code>cell</code></h6>
+<p>a <a href="../struct.CellRenderer.html" title="struct gtk4::CellRenderer"><code>CellRenderer</code></a> to clear the attribute mapping on</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.area" class="method"><a class="src rightside" href="../../src/gtk4/auto/cell_layout.rs.html#229-235">source</a><h4 class="code-header">fn <a href="#method.area" class="fn">area</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../struct.CellArea.html" title="struct gtk4::CellArea">CellArea</a>&gt;</h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span></summary><div class="docblock"><p>Returns the underlying <a href="../struct.CellArea.html" title="struct gtk4::CellArea"><code>CellArea</code></a> which might be @self
+if called on a <a href="../struct.CellArea.html" title="struct gtk4::CellArea"><code>CellArea</code></a> or might be <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="variant core::option::Option::None"><code>None</code></a> if no <a href="../struct.CellArea.html" title="struct gtk4::CellArea"><code>CellArea</code></a>
+is used by @self.</p>
+<h5 id="deprecated-since-410-3"><a class="doc-anchor" href="#deprecated-since-410-3">§</a>Deprecated since 4.10</h5><h5 id="returns"><a class="doc-anchor" href="#returns">§</a>Returns</h5>
+<p>the cell area used by @self</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.cells" class="method"><a class="src rightside" href="../../src/gtk4/auto/cell_layout.rs.html#252-258">source</a><h4 class="code-header">fn <a href="#method.cells" class="fn">cells</a>(&amp;self) -&gt; <a class="struct" href="https://doc.rust-lang.org/nightly/alloc/vec/struct.Vec.html" title="struct alloc::vec::Vec">Vec</a>&lt;<a class="struct" href="../struct.CellRenderer.html" title="struct gtk4::CellRenderer">CellRenderer</a>&gt;</h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span></summary><div class="docblock"><p>Returns the cell renderers which have been added to @self.</p>
+<h5 id="deprecated-since-410-4"><a class="doc-anchor" href="#deprecated-since-410-4">§</a>Deprecated since 4.10</h5><h5 id="returns-1"><a class="doc-anchor" href="#returns-1">§</a>Returns</h5>
+<p>a list of cell renderers. The list, but not the renderers has
+been newly allocated and should be freed with g_list_free()
+when no longer needed.</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.pack_end" class="method"><a class="src rightside" href="../../src/gtk4/auto/cell_layout.rs.html#275-283">source</a><h4 class="code-header">fn <a href="#method.pack_end" class="fn">pack_end</a>(&amp;self, cell: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.CellRenderer.html" title="struct gtk4::CellRenderer">CellRenderer</a>&gt;, expand: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>)</h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span></summary><div class="docblock"><p>Adds the @cell to the end of @self. If @expand is <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>false</code></a>, then the
+@cell is allocated no more space than it needs. Any unused space is
+divided evenly between cells for which @expand is <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>true</code></a>.</p>
+<p>Note that reusing the same cell renderer is not supported.</p>
+<h5 id="deprecated-since-410-5"><a class="doc-anchor" href="#deprecated-since-410-5">§</a>Deprecated since 4.10</h5><h6 id="cell-2"><a class="doc-anchor" href="#cell-2">§</a><code>cell</code></h6>
+<p>a <a href="../struct.CellRenderer.html" title="struct gtk4::CellRenderer"><code>CellRenderer</code></a></p>
+<h6 id="expand"><a class="doc-anchor" href="#expand">§</a><code>expand</code></h6>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>true</code></a> if @cell is to be given extra space allocated to @self</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.pack_start" class="method"><a class="src rightside" href="../../src/gtk4/auto/cell_layout.rs.html#300-308">source</a><h4 class="code-header">fn <a href="#method.pack_start" class="fn">pack_start</a>(&amp;self, cell: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.CellRenderer.html" title="struct gtk4::CellRenderer">CellRenderer</a>&gt;, expand: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>)</h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span></summary><div class="docblock"><p>Packs the @cell into the beginning of @self. If @expand is <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>false</code></a>,
+then the @cell is allocated no more space than it needs. Any unused space
+is divided evenly between cells for which @expand is <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>true</code></a>.</p>
+<p>Note that reusing the same cell renderer is not supported.</p>
+<h5 id="deprecated-since-410-6"><a class="doc-anchor" href="#deprecated-since-410-6">§</a>Deprecated since 4.10</h5><h6 id="cell-3"><a class="doc-anchor" href="#cell-3">§</a><code>cell</code></h6>
+<p>a <a href="../struct.CellRenderer.html" title="struct gtk4::CellRenderer"><code>CellRenderer</code></a></p>
+<h6 id="expand-1"><a class="doc-anchor" href="#expand-1">§</a><code>expand</code></h6>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>true</code></a> if @cell is to be given extra space allocated to @self</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.reorder" class="method"><a class="src rightside" href="../../src/gtk4/auto/cell_layout.rs.html#324-332">source</a><h4 class="code-header">fn <a href="#method.reorder" class="fn">reorder</a>(&amp;self, cell: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.CellRenderer.html" title="struct gtk4::CellRenderer">CellRenderer</a>&gt;, position: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>)</h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span></summary><div class="docblock"><p>Re-inserts @cell at @position.</p>
+<p>Note that @cell has already to be packed into @self
+for this to function properly.</p>
+<h5 id="deprecated-since-410-7"><a class="doc-anchor" href="#deprecated-since-410-7">§</a>Deprecated since 4.10</h5><h6 id="cell-4"><a class="doc-anchor" href="#cell-4">§</a><code>cell</code></h6>
+<p>a <a href="../struct.CellRenderer.html" title="struct gtk4::CellRenderer"><code>CellRenderer</code></a> to reorder</p>
+<h6 id="position"><a class="doc-anchor" href="#position">§</a><code>position</code></h6>
+<p>new position to insert @cell at</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.set_cell_data_func" class="method"><a class="src rightside" href="../../src/gtk4/auto/cell_layout.rs.html#353-394">source</a><h4 class="code-header">fn <a href="#method.set_cell_data_func" class="fn">set_cell_data_func</a>&lt;P: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;<a class="struct" href="../struct.CellLayout.html" title="struct gtk4::CellLayout">CellLayout</a>, &amp;<a class="struct" href="../struct.CellRenderer.html" title="struct gtk4::CellRenderer">CellRenderer</a>, &amp;<a class="struct" href="../struct.TreeModel.html" title="struct gtk4::TreeModel">TreeModel</a>, &amp;<a class="struct" href="../struct.TreeIter.html" title="struct gtk4::TreeIter">TreeIter</a>) + 'static&gt;(
+    &amp;self,
+    cell: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.CellRenderer.html" title="struct gtk4::CellRenderer">CellRenderer</a>&gt;,
+    func: P
+)</h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span></summary><div class="docblock"><p>Sets the <a href="../struct.CellLayout.html" title="struct gtk4::CellLayout"><code>CellLayout</code></a>DataFunc to use for @self.</p>
+<p>This function is used instead of the standard attributes mapping
+for setting the column value, and should set the value of @self’s
+cell renderer(s) as appropriate.</p>
+<p>@func may be <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="variant core::option::Option::None"><code>None</code></a> to remove a previously set function.</p>
+<h5 id="deprecated-since-410-8"><a class="doc-anchor" href="#deprecated-since-410-8">§</a>Deprecated since 4.10</h5><h6 id="cell-5"><a class="doc-anchor" href="#cell-5">§</a><code>cell</code></h6>
+<p>a <a href="../struct.CellRenderer.html" title="struct gtk4::CellRenderer"><code>CellRenderer</code></a></p>
+<h6 id="func"><a class="doc-anchor" href="#func">§</a><code>func</code></h6>
+<p>the <a href="../struct.CellLayout.html" title="struct gtk4::CellLayout"><code>CellLayout</code></a>DataFunc to use</p>
+<h6 id="func_data"><a class="doc-anchor" href="#func_data">§</a><code>func_data</code></h6>
+<p>user data for @func</p>
+</div></details></div><h2 id="object-safety" class="section-header">Object Safety<a href="#object-safety" class="anchor">§</a></h2><div class="object-safety-info">This trait is <b>not</b> <a href="https://doc.rust-lang.org/nightly/reference/items/traits.html#object-safety">object safe</a>.</div><h2 id="implementors" class="section-header">Implementors<a href="#implementors" class="anchor">§</a></h2><div id="implementors-list"><section id="impl-CellLayoutExt-for-O" class="impl"><a class="src rightside" href="../../src/gtk4/auto/cell_layout.rs.html#397">source</a><a href="#impl-CellLayoutExt-for-O" class="anchor">§</a><h3 class="code-header">impl&lt;O: <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.CellLayout.html" title="struct gtk4::CellLayout">CellLayout</a>&gt;&gt; <a class="trait" href="trait.CellLayoutExt.html" title="trait gtk4::prelude::CellLayoutExt">CellLayoutExt</a> for O</h3></section></div><script src="../../trait.impl/gtk4/auto/cell_layout/trait.CellLayoutExt.js" async></script></section></div></main></body></html>

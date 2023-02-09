@@ -1,0 +1,189 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Trait containing all `struct@TreeModelFilter` methods."><title>TreeModelFilterExt in gtk4::prelude - Rust</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-46f98efaafac5295.ttf.woff2,FiraSans-Regular-018c141bf0843ffd.woff2,FiraSans-Medium-8f9a781e4970d388.woff2,SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2,SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-081576b923113409.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.79.0-nightly (3a36386dc 2024-04-25)" data-channel="nightly" data-search-js="search-bf21c90c8c1d92b1.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../static.files/storage-e32f0c247825364d.js"></script><script defer src="sidebar-items.js"></script><script defer src="../../static.files/main-20a3ad099b048cf2.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-09095024cf37855e.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc trait"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
+
+    function checkDocsLatestStable() {
+        function popup(msg, url) { return `
+            <style scoped="scoped">
+                .popup {
+                    max-width: 16em;
+                    background-color: #fff;
+                    position: fixed;
+                    z-index: 1;
+                    margin-left: auto;
+                    bottom: 1em;
+                    right: 1em;
+                    border-radius: 5px;
+                    box-shadow: 1px 1px 4px #777;
+                }
+
+                .popup a.version {
+                    color: #e57300;
+                    padding: 0.6em 1em;
+                    display: block;
+                }
+                .popup a.version:hover {
+                    color: #b25900;
+                }
+
+                .popup a.close {
+                    color: white;
+                    background: grey;
+                    border-radius: 99px;
+                    display: inline-block;
+                    width: 19px;
+                    line-height: 19px;
+                    font-weight: bold;
+                    text-align: center;
+                    margin: 0.6em;
+                    float: right;
+                }
+                .popup a.close:hover {
+                    background: black;
+                }
+            </style>
+            <section class="popup" id="gir_docs_popup">
+                <a class="close" href="#" onclick="document.getElementById('gir_docs_popup').remove(); return false">×</a>
+                <a class="version" href="https://gtk-rs.org/gtk4-rs/stable/latest/docs">
+                    ⚠ ${msg}
+                </a>
+            </section>
+        ` };
+
+        if ("0.8" == "master") {
+            document.body.insertAdjacentHTML(
+                'beforeend',
+                popup("This is the development version. Go to latest stable version.", "stable/latest")
+            );
+        } else {
+            fetch('https://gtk-rs.org/gtk4-rs/LATEST_RELEASE_BRANCH')
+                .then(response => response.text())
+                .then(latest_branch => {
+                    if (latest_branch.trim() != "0.8") {
+                        document.body.insertAdjacentHTML(
+                            'beforeend',
+                            popup("This version is outdated. Go to latest version.", "stable/latest")
+                        );
+                    }
+                });
+        }
+    }
+</script>
+
+
+<nav class="mobile-topbar"><button class="sidebar-menu-toggle" title="show sidebar"></button></nav><nav class="sidebar"><div class="sidebar-crate"><h2><a href="../../gtk4/index.html">gtk4</a><span class="version">0.8.2</span></h2></div><h2 class="location"><a href="#">TreeModelFilterExt</a></h2><div class="sidebar-elems"><section><h3><a href="#provided-methods">Provided Methods</a></h3><ul class="block"><li><a href="#method.child_model">child_model</a></li><li><a href="#method.clear_cache">clear_cache</a></li><li><a href="#method.convert_child_iter_to_iter">convert_child_iter_to_iter</a></li><li><a href="#method.convert_child_path_to_path">convert_child_path_to_path</a></li><li><a href="#method.convert_iter_to_child_iter">convert_iter_to_child_iter</a></li><li><a href="#method.convert_path_to_child_path">convert_path_to_child_path</a></li><li><a href="#method.model">model</a></li><li><a href="#method.refilter">refilter</a></li><li><a href="#method.set_visible_column">set_visible_column</a></li><li><a href="#method.set_visible_func">set_visible_func</a></li></ul><h3><a href="#object-safety">Object Safety</a></h3><h3><a href="#implementors">Implementors</a></h3></section><h2><a href="index.html">In gtk4::prelude</a></h2></div></nav><div class="sidebar-resizer"></div><main><div class="width-limiter"><nav class="sub"><form class="search-form"><span></span><div id="sidebar-button" tabindex="-1"><a href="../../gtk4/all.html" title="show sidebar"></a></div><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Type ‘S’ or ‘/’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings">Settings</a></div></form></nav><section id="main-content" class="content"><div class="main-heading"><h1>Trait <a href="../index.html">gtk4</a>::<wbr><a href="index.html">prelude</a>::<wbr><a class="trait" href="#">TreeModelFilterExt</a><button id="copy-path" title="Copy item path to clipboard">Copy item path</button></h1><span class="out-of-band"><a class="src" href="../../src/gtk4/auto/tree_model_filter.rs.html#115-384">source</a> · <button id="toggle-all-docs" title="collapse all docs">[<span>&#x2212;</span>]</button></span></div><pre class="rust item-decl"><code>pub trait TreeModelFilterExt: <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.TreeModelFilter.html" title="struct gtk4::TreeModelFilter">TreeModelFilter</a>&gt; + Sealed + 'static {
+    // Provided methods
+    fn <a href="#method.clear_cache" class="fn">clear_cache</a>(&amp;self) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.convert_child_iter_to_iter" class="fn">convert_child_iter_to_iter</a>(
+        &amp;self,
+        child_iter: &amp;<a class="struct" href="../struct.TreeIter.html" title="struct gtk4::TreeIter">TreeIter</a>
+    ) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../struct.TreeIter.html" title="struct gtk4::TreeIter">TreeIter</a>&gt; { ... }
+<span class="item-spacer"></span>    fn <a href="#method.convert_child_path_to_path" class="fn">convert_child_path_to_path</a>(
+        &amp;self,
+        child_path: &amp;<a class="struct" href="../struct.TreePath.html" title="struct gtk4::TreePath">TreePath</a>
+    ) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../struct.TreePath.html" title="struct gtk4::TreePath">TreePath</a>&gt; { ... }
+<span class="item-spacer"></span>    fn <a href="#method.convert_iter_to_child_iter" class="fn">convert_iter_to_child_iter</a>(&amp;self, filter_iter: &amp;<a class="struct" href="../struct.TreeIter.html" title="struct gtk4::TreeIter">TreeIter</a>) -&gt; <a class="struct" href="../struct.TreeIter.html" title="struct gtk4::TreeIter">TreeIter</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.convert_path_to_child_path" class="fn">convert_path_to_child_path</a>(
+        &amp;self,
+        filter_path: &amp;<a class="struct" href="../struct.TreePath.html" title="struct gtk4::TreePath">TreePath</a>
+    ) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../struct.TreePath.html" title="struct gtk4::TreePath">TreePath</a>&gt; { ... }
+<span class="item-spacer"></span>    fn <a href="#method.model" class="fn">model</a>(&amp;self) -&gt; <a class="struct" href="../struct.TreeModel.html" title="struct gtk4::TreeModel">TreeModel</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.refilter" class="fn">refilter</a>(&amp;self) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.set_visible_column" class="fn">set_visible_column</a>(&amp;self, column: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.set_visible_func" class="fn">set_visible_func</a>&lt;P: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;<a class="struct" href="../struct.TreeModel.html" title="struct gtk4::TreeModel">TreeModel</a>, &amp;<a class="struct" href="../struct.TreeIter.html" title="struct gtk4::TreeIter">TreeIter</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> + 'static&gt;(
+        &amp;self,
+        func: P
+    ) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.child_model" class="fn">child_model</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../struct.TreeModel.html" title="struct gtk4::TreeModel">TreeModel</a>&gt; { ... }
+}</code></pre><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span><details class="toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>Trait containing all <a href="../struct.TreeModelFilter.html" title="struct gtk4::TreeModelFilter"><code>TreeModelFilter</code></a> methods.</p>
+<h2 id="implementors-1"><a class="doc-anchor" href="#implementors-1">§</a>Implementors</h2>
+<p><a href="../struct.TreeModelFilter.html" title="struct gtk4::TreeModelFilter"><code>TreeModelFilter</code></a></p>
+</div></details><h2 id="provided-methods" class="section-header">Provided Methods<a href="#provided-methods" class="anchor">§</a></h2><div class="methods"><details class="toggle method-toggle" open><summary><section id="method.clear_cache" class="method"><a class="src rightside" href="../../src/gtk4/auto/tree_model_filter.rs.html#128-132">source</a><h4 class="code-header">fn <a href="#method.clear_cache" class="fn">clear_cache</a>(&amp;self)</h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span></summary><div class="docblock"><p>This function should almost never be called. It clears the @self
+of any cached iterators that haven’t been reffed with
+gtk_tree_model_ref_node(). This might be useful if the child model
+being filtered is static (and doesn’t change often) and there has been
+a lot of unreffed access to nodes. As a side effect of this function,
+all unreffed iters will be invalid.</p>
+<h5 id="deprecated-since-410"><a class="doc-anchor" href="#deprecated-since-410">§</a>Deprecated since 4.10</h5></div></details><details class="toggle method-toggle" open><summary><section id="method.convert_child_iter_to_iter" class="method"><a class="src rightside" href="../../src/gtk4/auto/tree_model_filter.rs.html#153-167">source</a><h4 class="code-header">fn <a href="#method.convert_child_iter_to_iter" class="fn">convert_child_iter_to_iter</a>(&amp;self, child_iter: &amp;<a class="struct" href="../struct.TreeIter.html" title="struct gtk4::TreeIter">TreeIter</a>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../struct.TreeIter.html" title="struct gtk4::TreeIter">TreeIter</a>&gt;</h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span></summary><div class="docblock"><p>Sets @filter_iter to point to the row in @self that corresponds to the
+row pointed at by @child_iter.  If @filter_iter was not set, <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>false</code></a> is
+returned.</p>
+<h5 id="deprecated-since-410-1"><a class="doc-anchor" href="#deprecated-since-410-1">§</a>Deprecated since 4.10</h5><h6 id="child_iter"><a class="doc-anchor" href="#child_iter">§</a><code>child_iter</code></h6>
+<p>A valid <a href="../struct.TreeIter.html" title="struct gtk4::TreeIter"><code>TreeIter</code></a> pointing to a row on the child model.</p>
+<h5 id="returns"><a class="doc-anchor" href="#returns">§</a>Returns</h5>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>true</code></a>, if @filter_iter was set, i.e. if @child_iter is a
+valid iterator pointing to a visible row in child model.</p>
+<h6 id="filter_iter"><a class="doc-anchor" href="#filter_iter">§</a><code>filter_iter</code></h6>
+<p>An uninitialized <a href="../struct.TreeIter.html" title="struct gtk4::TreeIter"><code>TreeIter</code></a></p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.convert_child_path_to_path" class="method"><a class="src rightside" href="../../src/gtk4/auto/tree_model_filter.rs.html#186-193">source</a><h4 class="code-header">fn <a href="#method.convert_child_path_to_path" class="fn">convert_child_path_to_path</a>(&amp;self, child_path: &amp;<a class="struct" href="../struct.TreePath.html" title="struct gtk4::TreePath">TreePath</a>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../struct.TreePath.html" title="struct gtk4::TreePath">TreePath</a>&gt;</h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span></summary><div class="docblock"><p>Converts @child_path to a path relative to @self. That is, @child_path
+points to a path in the child model. The rerturned path will point to the
+same row in the filtered model. If @child_path isn’t a valid path on the
+child model or points to a row which is not visible in @self, then <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="variant core::option::Option::None"><code>None</code></a>
+is returned.</p>
+<h5 id="deprecated-since-410-2"><a class="doc-anchor" href="#deprecated-since-410-2">§</a>Deprecated since 4.10</h5><h6 id="child_path"><a class="doc-anchor" href="#child_path">§</a><code>child_path</code></h6>
+<p>A <a href="../struct.TreePath.html" title="struct gtk4::TreePath"><code>TreePath</code></a> to convert.</p>
+<h5 id="returns-1"><a class="doc-anchor" href="#returns-1">§</a>Returns</h5>
+<p>A newly allocated <a href="../struct.TreePath.html" title="struct gtk4::TreePath"><code>TreePath</code></a></p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.convert_iter_to_child_iter" class="method"><a class="src rightside" href="../../src/gtk4/auto/tree_model_filter.rs.html#210-220">source</a><h4 class="code-header">fn <a href="#method.convert_iter_to_child_iter" class="fn">convert_iter_to_child_iter</a>(&amp;self, filter_iter: &amp;<a class="struct" href="../struct.TreeIter.html" title="struct gtk4::TreeIter">TreeIter</a>) -&gt; <a class="struct" href="../struct.TreeIter.html" title="struct gtk4::TreeIter">TreeIter</a></h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span></summary><div class="docblock"><p>Sets @child_iter to point to the row pointed to by @filter_iter.</p>
+<h5 id="deprecated-since-410-3"><a class="doc-anchor" href="#deprecated-since-410-3">§</a>Deprecated since 4.10</h5><h6 id="filter_iter-1"><a class="doc-anchor" href="#filter_iter-1">§</a><code>filter_iter</code></h6>
+<p>A valid <a href="../struct.TreeIter.html" title="struct gtk4::TreeIter"><code>TreeIter</code></a> pointing to a row on @self.</p>
+<h5 id="returns-2"><a class="doc-anchor" href="#returns-2">§</a>Returns</h5><h6 id="child_iter-1"><a class="doc-anchor" href="#child_iter-1">§</a><code>child_iter</code></h6>
+<p>An uninitialized <a href="../struct.TreeIter.html" title="struct gtk4::TreeIter"><code>TreeIter</code></a></p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.convert_path_to_child_path" class="method"><a class="src rightside" href="../../src/gtk4/auto/tree_model_filter.rs.html#238-245">source</a><h4 class="code-header">fn <a href="#method.convert_path_to_child_path" class="fn">convert_path_to_child_path</a>(&amp;self, filter_path: &amp;<a class="struct" href="../struct.TreePath.html" title="struct gtk4::TreePath">TreePath</a>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../struct.TreePath.html" title="struct gtk4::TreePath">TreePath</a>&gt;</h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span></summary><div class="docblock"><p>Converts @filter_path to a path on the child model of @self. That is,
+@filter_path points to a location in @self. The returned path will
+point to the same location in the model not being filtered. If @filter_path
+does not point to a location in the child model, <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="variant core::option::Option::None"><code>None</code></a> is returned.</p>
+<h5 id="deprecated-since-410-4"><a class="doc-anchor" href="#deprecated-since-410-4">§</a>Deprecated since 4.10</h5><h6 id="filter_path"><a class="doc-anchor" href="#filter_path">§</a><code>filter_path</code></h6>
+<p>A <a href="../struct.TreePath.html" title="struct gtk4::TreePath"><code>TreePath</code></a> to convert.</p>
+<h5 id="returns-3"><a class="doc-anchor" href="#returns-3">§</a>Returns</h5>
+<p>A newly allocated <a href="../struct.TreePath.html" title="struct gtk4::TreePath"><code>TreePath</code></a></p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.model" class="method"><a class="src rightside" href="../../src/gtk4/auto/tree_model_filter.rs.html#259-265">source</a><h4 class="code-header">fn <a href="#method.model" class="fn">model</a>(&amp;self) -&gt; <a class="struct" href="../struct.TreeModel.html" title="struct gtk4::TreeModel">TreeModel</a></h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span></summary><div class="docblock"><p>Returns a pointer to the child model of @self.</p>
+<h5 id="deprecated-since-410-5"><a class="doc-anchor" href="#deprecated-since-410-5">§</a>Deprecated since 4.10</h5><h5 id="returns-4"><a class="doc-anchor" href="#returns-4">§</a>Returns</h5>
+<p>A pointer to a <a href="../struct.TreeModel.html" title="struct gtk4::TreeModel"><code>TreeModel</code></a></p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.refilter" class="method"><a class="src rightside" href="../../src/gtk4/auto/tree_model_filter.rs.html#275-279">source</a><h4 class="code-header">fn <a href="#method.refilter" class="fn">refilter</a>(&amp;self)</h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span></summary><div class="docblock"><p>Emits ::row_changed for each row in the child model, which causes
+the filter to re-evaluate whether a row is visible or not.</p>
+<h5 id="deprecated-since-410-6"><a class="doc-anchor" href="#deprecated-since-410-6">§</a>Deprecated since 4.10</h5></div></details><details class="toggle method-toggle" open><summary><section id="method.set_visible_column" class="method"><a class="src rightside" href="../../src/gtk4/auto/tree_model_filter.rs.html#297-301">source</a><h4 class="code-header">fn <a href="#method.set_visible_column" class="fn">set_visible_column</a>(&amp;self, column: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>)</h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span></summary><div class="docblock"><p>Sets @column of the child_model to be the column where @self should
+look for visibility information. @columns should be a column of type
+<code>G_TYPE_BOOLEAN</code>, where <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>true</code></a> means that a row is visible, and <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>false</code></a>
+if not.</p>
+<p>Note that gtk_tree_model_filter_set_visible_func() or
+gtk_tree_model_filter_set_visible_column() can only be called
+once for a given filter model.</p>
+<h5 id="deprecated-since-410-7"><a class="doc-anchor" href="#deprecated-since-410-7">§</a>Deprecated since 4.10</h5><h6 id="column"><a class="doc-anchor" href="#column">§</a><code>column</code></h6>
+<p>A <code>int</code> which is the column containing the visible information</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.set_visible_func" class="method"><a class="src rightside" href="../../src/gtk4/auto/tree_model_filter.rs.html#350-378">source</a><h4 class="code-header">fn <a href="#method.set_visible_func" class="fn">set_visible_func</a>&lt;P: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;<a class="struct" href="../struct.TreeModel.html" title="struct gtk4::TreeModel">TreeModel</a>, &amp;<a class="struct" href="../struct.TreeIter.html" title="struct gtk4::TreeIter">TreeIter</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> + 'static&gt;(
+    &amp;self,
+    func: P
+)</h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span></summary><div class="docblock"><p>Sets the visible function used when filtering the @self to be @func.
+The function should return <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>true</code></a> if the given row should be visible and
+<a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>false</code></a> otherwise.</p>
+<p>If the condition calculated by the function changes over time (e.g.
+because it depends on some global parameters), you must call
+gtk_tree_model_filter_refilter() to keep the visibility information
+of the model up-to-date.</p>
+<p>Note that @func is called whenever a row is inserted, when it may still
+be empty. The visible function should therefore take special care of empty
+rows, like in the example below.</p>
+<p><strong>⚠️ The following code is in C ⚠️</strong></p>
+<div class="example-wrap"><pre class="language-C"><code>static gboolean
+visible_func (GtkTreeModel *model,
+              GtkTreeIter  *iter,
+              gpointer      data)
+{
+  // Visible if row is non-empty and first column is “HI”
+  char *str;
+  gboolean visible = FALSE;
+
+  gtk_tree_model_get (model, iter, 0, &amp;str, -1);
+  if (str &amp;&amp; strcmp (str, &quot;HI&quot;) == 0)
+    visible = TRUE;
+  g_free (str);
+
+  return visible;
+}
+</code></pre></div>
+<p>Note that gtk_tree_model_filter_set_visible_func() or
+gtk_tree_model_filter_set_visible_column() can only be called
+once for a given filter model.</p>
+<h5 id="deprecated-since-410-8"><a class="doc-anchor" href="#deprecated-since-410-8">§</a>Deprecated since 4.10</h5><h6 id="func"><a class="doc-anchor" href="#func">§</a><code>func</code></h6>
+<p>A <code>GtkTreeModelFilterVisibleFunc</code>, the visible function</p>
+</div></details><section id="method.child_model" class="method"><a class="src rightside" href="../../src/gtk4/auto/tree_model_filter.rs.html#381-383">source</a><h4 class="code-header">fn <a href="#method.child_model" class="fn">child_model</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../struct.TreeModel.html" title="struct gtk4::TreeModel">TreeModel</a>&gt;</h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span></div><h2 id="object-safety" class="section-header">Object Safety<a href="#object-safety" class="anchor">§</a></h2><div class="object-safety-info">This trait is <b>not</b> <a href="https://doc.rust-lang.org/nightly/reference/items/traits.html#object-safety">object safe</a>.</div><h2 id="implementors" class="section-header">Implementors<a href="#implementors" class="anchor">§</a></h2><div id="implementors-list"><section id="impl-TreeModelFilterExt-for-O" class="impl"><a class="src rightside" href="../../src/gtk4/auto/tree_model_filter.rs.html#386">source</a><a href="#impl-TreeModelFilterExt-for-O" class="anchor">§</a><h3 class="code-header">impl&lt;O: <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.TreeModelFilter.html" title="struct gtk4::TreeModelFilter">TreeModelFilter</a>&gt;&gt; <a class="trait" href="trait.TreeModelFilterExt.html" title="trait gtk4::prelude::TreeModelFilterExt">TreeModelFilterExt</a> for O</h3></section></div><script src="../../trait.impl/gtk4/auto/tree_model_filter/trait.TreeModelFilterExt.js" async></script></section></div></main></body></html>

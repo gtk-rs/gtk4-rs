@@ -1,0 +1,266 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Trait containing all `struct@Popover` methods."><title>PopoverExt in gtk4::prelude - Rust</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../static.files/rustdoc-84e720fa.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.89.0-nightly (5526a2f47 2025-06-20)" data-channel="nightly" data-search-js="search-343419c9.js" data-settings-js="settings-5514c975.js" ><script src="../../static.files/storage-4e99c027.js"></script><script defer src="sidebar-items.js"></script><script defer src="../../static.files/main-fd3af306.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-32bb7600.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-6580c154.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-044be391.svg"></head><body class="rustdoc trait"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
+
+    function checkDocsLatestStable() {
+        function popup(msg, url) { return `
+            <style scoped="scoped">
+                .popup {
+                    max-width: 16em;
+                    background-color: #fff;
+                    position: fixed;
+                    z-index: 1;
+                    margin-left: auto;
+                    bottom: 1em;
+                    right: 1em;
+                    border-radius: 5px;
+                    box-shadow: 1px 1px 4px #777;
+                }
+
+                .popup a.version {
+                    color: #e57300;
+                    padding: 0.6em 1em;
+                    display: block;
+                }
+                .popup a.version:hover {
+                    color: #b25900;
+                }
+
+                .popup a.close {
+                    color: white;
+                    background: grey;
+                    border-radius: 99px;
+                    display: inline-block;
+                    width: 19px;
+                    line-height: 19px;
+                    font-weight: bold;
+                    text-align: center;
+                    margin: 0.6em;
+                    float: right;
+                }
+                .popup a.close:hover {
+                    background: black;
+                }
+            </style>
+            <section class="popup" id="gir_docs_popup">
+                <a class="close" href="#" onclick="document.getElementById('gir_docs_popup').remove(); return false">×</a>
+                <a class="version" href="https://gtk-rs.org/gtk4-rs/stable/latest/docs">
+                    ⚠ ${msg}
+                </a>
+            </section>
+        ` };
+
+        if ("0.9" == "main") {
+            document.body.insertAdjacentHTML(
+                'beforeend',
+                popup("This is the development version. Go to latest stable version.", "stable/latest")
+            );
+        } else {
+            fetch('https://gtk-rs.org/gtk4-rs/LATEST_RELEASE_BRANCH')
+                .then(response => response.text())
+                .then(latest_branch => {
+                    if (latest_branch.trim() != "0.9") {
+                        document.body.insertAdjacentHTML(
+                            'beforeend',
+                            popup("This version is outdated. Go to latest version.", "stable/latest")
+                        );
+                    }
+                });
+        }
+    }
+</script>
+
+
+<nav class="mobile-topbar"><button class="sidebar-menu-toggle" title="show sidebar"></button></nav><nav class="sidebar"><div class="sidebar-crate"><h2><a href="../../gtk4/index.html">gtk4</a><span class="version">0.9.7</span></h2></div><div class="sidebar-elems"><section id="rustdoc-toc"><h2 class="location"><a href="#">Popover<wbr>Ext</a></h2><h3><a href="#">Sections</a></h3><ul class="block top-toc"><li><a href="#implementors-1" title="Implementors">Implementors</a></li></ul><h3><a href="#provided-methods">Provided Methods</a></h3><ul class="block"><li><a href="#method.child" title="child">child</a></li><li><a href="#method.connect_activate_default" title="connect_activate_default">connect_activate_default</a></li><li><a href="#method.connect_autohide_notify" title="connect_autohide_notify">connect_autohide_notify</a></li><li><a href="#method.connect_cascade_popdown_notify" title="connect_cascade_popdown_notify">connect_cascade_popdown_notify</a></li><li><a href="#method.connect_child_notify" title="connect_child_notify">connect_child_notify</a></li><li><a href="#method.connect_closed" title="connect_closed">connect_closed</a></li><li><a href="#method.connect_default_widget_notify" title="connect_default_widget_notify">connect_default_widget_notify</a></li><li><a href="#method.connect_has_arrow_notify" title="connect_has_arrow_notify">connect_has_arrow_notify</a></li><li><a href="#method.connect_mnemonics_visible_notify" title="connect_mnemonics_visible_notify">connect_mnemonics_visible_notify</a></li><li><a href="#method.connect_pointing_to_notify" title="connect_pointing_to_notify">connect_pointing_to_notify</a></li><li><a href="#method.connect_position_notify" title="connect_position_notify">connect_position_notify</a></li><li><a href="#method.default_widget" title="default_widget">default_widget</a></li><li><a href="#method.emit_activate_default" title="emit_activate_default">emit_activate_default</a></li><li><a href="#method.has_arrow" title="has_arrow">has_arrow</a></li><li><a href="#method.is_autohide" title="is_autohide">is_autohide</a></li><li><a href="#method.is_cascade_popdown" title="is_cascade_popdown">is_cascade_popdown</a></li><li><a href="#method.is_mnemonics_visible" title="is_mnemonics_visible">is_mnemonics_visible</a></li><li><a href="#method.offset" title="offset">offset</a></li><li><a href="#method.pointing_to" title="pointing_to">pointing_to</a></li><li><a href="#method.popdown" title="popdown">popdown</a></li><li><a href="#method.popup" title="popup">popup</a></li><li><a href="#method.position" title="position">position</a></li><li><a href="#method.present" title="present">present</a></li><li><a href="#method.set_autohide" title="set_autohide">set_autohide</a></li><li><a href="#method.set_cascade_popdown" title="set_cascade_popdown">set_cascade_popdown</a></li><li><a href="#method.set_child" title="set_child">set_child</a></li><li><a href="#method.set_default_widget" title="set_default_widget">set_default_widget</a></li><li><a href="#method.set_has_arrow" title="set_has_arrow">set_has_arrow</a></li><li><a href="#method.set_mnemonics_visible" title="set_mnemonics_visible">set_mnemonics_visible</a></li><li><a href="#method.set_offset" title="set_offset">set_offset</a></li><li><a href="#method.set_pointing_to" title="set_pointing_to">set_pointing_to</a></li><li><a href="#method.set_position" title="set_position">set_position</a></li></ul><h3><a href="#dyn-compatibility">Dyn Compatibility</a></h3><h3><a href="#implementors">Implementors</a></h3></section><div id="rustdoc-modnav"><h2><a href="index.html">In gtk4::<wbr>prelude</a></h2></div></div></nav><div class="sidebar-resizer" title="Drag to resize sidebar"></div><main><div class="width-limiter"><rustdoc-search></rustdoc-search><section id="main-content" class="content"><div class="main-heading"><div class="rustdoc-breadcrumbs"><a href="../index.html">gtk4</a>::<wbr><a href="index.html">prelude</a></div><h1>Trait <span class="trait">PopoverExt</span><button id="copy-path" title="Copy item path to clipboard">Copy item path</button></h1><rustdoc-toolbar></rustdoc-toolbar><span class="sub-heading"><a class="src" href="../../src/gtk4/auto/popover.rs.html#1042-1617">Source</a> </span></div><pre class="rust item-decl"><code>pub trait PopoverExt:
+    <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Popover.html" title="struct gtk4::Popover">Popover</a>&gt;
+    + Sealed
+    + 'static {
+<details class="toggle type-contents-toggle"><summary class="hideme"><span>Show 32 methods</span></summary>    // Provided methods
+    fn <a href="#method.is_autohide" class="fn">is_autohide</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.is_cascade_popdown" class="fn">is_cascade_popdown</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.child" class="fn">child</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt; { ... }
+<span class="item-spacer"></span>    fn <a href="#method.has_arrow" class="fn">has_arrow</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.is_mnemonics_visible" class="fn">is_mnemonics_visible</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.offset" class="fn">offset</a>(&amp;self) -&gt; (<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.pointing_to" class="fn">pointing_to</a>(&amp;self) -&gt; (<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>, <a class="struct" href="../../gdk4/auto/rectangle/struct.Rectangle.html" title="struct gdk4::auto::rectangle::Rectangle">Rectangle</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.position" class="fn">position</a>(&amp;self) -&gt; <a class="enum" href="../enum.PositionType.html" title="enum gtk4::PositionType">PositionType</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.popdown" class="fn">popdown</a>(&amp;self) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.popup" class="fn">popup</a>(&amp;self) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.present" class="fn">present</a>(&amp;self) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.set_autohide" class="fn">set_autohide</a>(&amp;self, autohide: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.set_cascade_popdown" class="fn">set_cascade_popdown</a>(&amp;self, cascade_popdown: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.set_child" class="fn">set_child</a>(&amp;self, child: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;&gt;) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.set_default_widget" class="fn">set_default_widget</a>(&amp;self, widget: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;&gt;) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.set_has_arrow" class="fn">set_has_arrow</a>(&amp;self, has_arrow: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.set_mnemonics_visible" class="fn">set_mnemonics_visible</a>(&amp;self, mnemonics_visible: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.set_offset" class="fn">set_offset</a>(&amp;self, x_offset: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, y_offset: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.set_pointing_to" class="fn">set_pointing_to</a>(&amp;self, rect: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;<a class="struct" href="../../gdk4/auto/rectangle/struct.Rectangle.html" title="struct gdk4::auto::rectangle::Rectangle">Rectangle</a>&gt;) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.set_position" class="fn">set_position</a>(&amp;self, position: <a class="enum" href="../enum.PositionType.html" title="enum gtk4::PositionType">PositionType</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.default_widget" class="fn">default_widget</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt; { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_activate_default" class="fn">connect_activate_default</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;Self) + 'static&gt;(
+        &amp;self,
+        f: F,
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.emit_activate_default" class="fn">emit_activate_default</a>(&amp;self) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_closed" class="fn">connect_closed</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;Self) + 'static&gt;(&amp;self, f: F) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_autohide_notify" class="fn">connect_autohide_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;Self) + 'static&gt;(
+        &amp;self,
+        f: F,
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_cascade_popdown_notify" class="fn">connect_cascade_popdown_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;Self) + 'static&gt;(
+        &amp;self,
+        f: F,
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_child_notify" class="fn">connect_child_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;Self) + 'static&gt;(
+        &amp;self,
+        f: F,
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_default_widget_notify" class="fn">connect_default_widget_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;Self) + 'static&gt;(
+        &amp;self,
+        f: F,
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_has_arrow_notify" class="fn">connect_has_arrow_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;Self) + 'static&gt;(
+        &amp;self,
+        f: F,
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_mnemonics_visible_notify" class="fn">connect_mnemonics_visible_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;Self) + 'static&gt;(
+        &amp;self,
+        f: F,
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_pointing_to_notify" class="fn">connect_pointing_to_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;Self) + 'static&gt;(
+        &amp;self,
+        f: F,
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_position_notify" class="fn">connect_position_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;Self) + 'static&gt;(
+        &amp;self,
+        f: F,
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+</details>}</code></pre><details class="toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>Trait containing all <a href="../struct.Popover.html" title="struct gtk4::Popover"><code>Popover</code></a> methods.</p>
+<h2 id="implementors-1"><a class="doc-anchor" href="#implementors-1">§</a>Implementors</h2>
+<p><a href="../struct.EmojiChooser.html" title="struct gtk4::EmojiChooser"><code>EmojiChooser</code></a>, <a href="../struct.PopoverMenu.html" title="struct gtk4::PopoverMenu"><code>PopoverMenu</code></a>, <a href="../struct.Popover.html" title="struct gtk4::Popover"><code>Popover</code></a></p>
+</div></details><h2 id="provided-methods" class="section-header">Provided Methods<a href="#provided-methods" class="anchor">§</a></h2><div class="methods"><details class="toggle method-toggle" open><summary><section id="method.is_autohide" class="method"><a class="src rightside" href="../../src/gtk4/auto/popover.rs.html#1054-1060">Source</a><h4 class="code-header">fn <a href="#method.is_autohide" class="fn">is_autohide</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></section></summary><div class="docblock"><p>Returns whether the popover is modal.</p>
+<p>See <a href="trait.PopoverExt.html#method.set_autohide"><code>set_autohide()</code></a> for the
+implications of this.</p>
+<h5 id="returns"><a class="doc-anchor" href="#returns">§</a>Returns</h5>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>true</code></a> if @self is modal</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.is_cascade_popdown" class="method"><a class="src rightside" href="../../src/gtk4/auto/popover.rs.html#1070-1076">Source</a><h4 class="code-header">fn <a href="#method.is_cascade_popdown" class="fn">is_cascade_popdown</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></section></summary><div class="docblock"><p>Returns whether the popover will close after a modal child is closed.</p>
+<h5 id="returns-1"><a class="doc-anchor" href="#returns-1">§</a>Returns</h5>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>true</code></a> if @self will close after a modal child.</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.child" class="method"><a class="src rightside" href="../../src/gtk4/auto/popover.rs.html#1085-1087">Source</a><h4 class="code-header">fn <a href="#method.child" class="fn">child</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;</h4></section></summary><div class="docblock"><p>Gets the child widget of @self.</p>
+<h5 id="returns-2"><a class="doc-anchor" href="#returns-2">§</a>Returns</h5>
+<p>the child widget of @self</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.has_arrow" class="method"><a class="src rightside" href="../../src/gtk4/auto/popover.rs.html#1098-1104">Source</a><h4 class="code-header">fn <a href="#method.has_arrow" class="fn">has_arrow</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></section></summary><div class="docblock"><p>Gets whether this popover is showing an arrow
+pointing at the widget that it is relative to.</p>
+<h5 id="returns-3"><a class="doc-anchor" href="#returns-3">§</a>Returns</h5>
+<p>whether the popover has an arrow</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.is_mnemonics_visible" class="method"><a class="src rightside" href="../../src/gtk4/auto/popover.rs.html#1115-1121">Source</a><h4 class="code-header">fn <a href="#method.is_mnemonics_visible" class="fn">is_mnemonics_visible</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></section></summary><div class="docblock"><p>Gets whether mnemonics are visible.</p>
+<h5 id="returns-4"><a class="doc-anchor" href="#returns-4">§</a>Returns</h5>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>true</code></a> if mnemonics are supposed to be visible
+in this popover</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.offset" class="method"><a class="src rightside" href="../../src/gtk4/auto/popover.rs.html#1135-1146">Source</a><h4 class="code-header">fn <a href="#method.offset" class="fn">offset</a>(&amp;self) -&gt; (<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>)</h4></section></summary><div class="docblock"><p>Gets the offset previous set with <a href="trait.PopoverExt.html#method.set_offset"><code>set_offset()</code></a>()].</p>
+<h5 id="returns-5"><a class="doc-anchor" href="#returns-5">§</a>Returns</h5><h6 id="x_offset"><a class="doc-anchor" href="#x_offset">§</a><code>x_offset</code></h6>
+<p>a location for the x_offset</p>
+<h6 id="y_offset"><a class="doc-anchor" href="#y_offset">§</a><code>y_offset</code></h6>
+<p>a location for the y_offset</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.pointing_to" class="method"><a class="src rightside" href="../../src/gtk4/auto/popover.rs.html#1164-1173">Source</a><h4 class="code-header">fn <a href="#method.pointing_to" class="fn">pointing_to</a>(&amp;self) -&gt; (<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>, <a class="struct" href="../../gdk4/auto/rectangle/struct.Rectangle.html" title="struct gdk4::auto::rectangle::Rectangle">Rectangle</a>)</h4></section></summary><div class="docblock"><p>Gets the rectangle that the popover points to.</p>
+<p>If a rectangle to point to has been set, this function will
+return <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>true</code></a> and fill in @rect with such rectangle, otherwise
+it will return <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>false</code></a> and fill in @rect with the parent
+widget coordinates.</p>
+<h5 id="returns-6"><a class="doc-anchor" href="#returns-6">§</a>Returns</h5>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>true</code></a> if a rectangle to point to was set.</p>
+<h6 id="rect"><a class="doc-anchor" href="#rect">§</a><code>rect</code></h6>
+<p>location to store the rectangle</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.position" class="method"><a class="src rightside" href="../../src/gtk4/auto/popover.rs.html#1182-1188">Source</a><h4 class="code-header">fn <a href="#method.position" class="fn">position</a>(&amp;self) -&gt; <a class="enum" href="../enum.PositionType.html" title="enum gtk4::PositionType">PositionType</a></h4></section></summary><div class="docblock"><p>Returns the preferred position of @self.</p>
+<h5 id="returns-7"><a class="doc-anchor" href="#returns-7">§</a>Returns</h5>
+<p>The preferred position.</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.popdown" class="method"><a class="src rightside" href="../../src/gtk4/auto/popover.rs.html#1195-1199">Source</a><h4 class="code-header">fn <a href="#method.popdown" class="fn">popdown</a>(&amp;self)</h4></section></summary><div class="docblock"><p>Pops @self down.</p>
+<p>This may have the side-effect of closing a parent popover
+as well. See <a href="../struct.Popover.html#cascade-popdown" title="struct gtk4::Popover"><code>cascade-popdown</code></a>.</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.popup" class="method"><a class="src rightside" href="../../src/gtk4/auto/popover.rs.html#1203-1207">Source</a><h4 class="code-header">fn <a href="#method.popup" class="fn">popup</a>(&amp;self)</h4></section></summary><div class="docblock"><p>Pops @self up.</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.present" class="method"><a class="src rightside" href="../../src/gtk4/auto/popover.rs.html#1217-1221">Source</a><h4 class="code-header">fn <a href="#method.present" class="fn">present</a>(&amp;self)</h4></section></summary><div class="docblock"><p>Allocate a size for the <a href="../struct.Popover.html" title="struct gtk4::Popover"><code>Popover</code></a>.</p>
+<p>This function needs to be called in size-allocate by widgets
+who have a <a href="../struct.Popover.html" title="struct gtk4::Popover"><code>Popover</code></a> as child. When using a layout manager,
+this is happening automatically.</p>
+<p>To make a popover appear on screen, use <a href="trait.PopoverExt.html#method.popup"><code>popup()</code></a>.</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.set_autohide" class="method"><a class="src rightside" href="../../src/gtk4/auto/popover.rs.html#1236-1240">Source</a><h4 class="code-header">fn <a href="#method.set_autohide" class="fn">set_autohide</a>(&amp;self, autohide: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>)</h4></section></summary><div class="docblock"><p>Sets whether @self is modal.</p>
+<p>A modal popover will grab the keyboard focus on it when being
+displayed. Focus will wrap around within the popover. Clicking
+outside the popover area or pressing Esc will dismiss the popover.</p>
+<p>Called this function on an already showing popup with a new
+autohide value different from the current one, will cause the
+popup to be hidden.</p>
+<h6 id="autohide"><a class="doc-anchor" href="#autohide">§</a><code>autohide</code></h6>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>true</code></a> to dismiss the popover on outside clicks</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.set_cascade_popdown" class="method"><a class="src rightside" href="../../src/gtk4/auto/popover.rs.html#1250-1257">Source</a><h4 class="code-header">fn <a href="#method.set_cascade_popdown" class="fn">set_cascade_popdown</a>(&amp;self, cascade_popdown: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>)</h4></section></summary><div class="docblock"><p>If @cascade_popdown is <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>true</code></a>, the popover will be
+closed when a child modal popover is closed.</p>
+<p>If <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>false</code></a>, @self will stay visible.</p>
+<h6 id="cascade_popdown"><a class="doc-anchor" href="#cascade_popdown">§</a><code>cascade_popdown</code></h6>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>true</code></a> if the popover should follow a child closing</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.set_child" class="method"><a class="src rightside" href="../../src/gtk4/auto/popover.rs.html#1264-1271">Source</a><h4 class="code-header">fn <a href="#method.set_child" class="fn">set_child</a>(&amp;self, child: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;&gt;)</h4></section></summary><div class="docblock"><p>Sets the child widget of @self.</p>
+<h6 id="child"><a class="doc-anchor" href="#child">§</a><code>child</code></h6>
+<p>the child widget</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.set_default_widget" class="method"><a class="src rightside" href="../../src/gtk4/auto/popover.rs.html#1283-1290">Source</a><h4 class="code-header">fn <a href="#method.set_default_widget" class="fn">set_default_widget</a>(&amp;self, widget: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;&gt;)</h4></section></summary><div class="docblock"><p>Sets the default widget of a <a href="../struct.Popover.html" title="struct gtk4::Popover"><code>Popover</code></a>.</p>
+<p>The default widget is the widget that’s activated when the user
+presses Enter in a dialog (for example). This function sets or
+unsets the default widget for a <a href="../struct.Popover.html" title="struct gtk4::Popover"><code>Popover</code></a>.</p>
+<h6 id="widget"><a class="doc-anchor" href="#widget">§</a><code>widget</code></h6>
+<p>a child widget of @self to set as
+the default, or <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="variant core::option::Option::None"><code>None</code></a> to unset the default widget for the popover</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.set_has_arrow" class="method"><a class="src rightside" href="../../src/gtk4/auto/popover.rs.html#1298-1302">Source</a><h4 class="code-header">fn <a href="#method.set_has_arrow" class="fn">set_has_arrow</a>(&amp;self, has_arrow: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>)</h4></section></summary><div class="docblock"><p>Sets whether this popover should draw an arrow
+pointing at the widget it is relative to.</p>
+<h6 id="has_arrow"><a class="doc-anchor" href="#has_arrow">§</a><code>has_arrow</code></h6>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>true</code></a> to draw an arrow</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.set_mnemonics_visible" class="method"><a class="src rightside" href="../../src/gtk4/auto/popover.rs.html#1309-1316">Source</a><h4 class="code-header">fn <a href="#method.set_mnemonics_visible" class="fn">set_mnemonics_visible</a>(&amp;self, mnemonics_visible: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>)</h4></section></summary><div class="docblock"><p>Sets whether mnemonics should be visible.</p>
+<h6 id="mnemonics_visible"><a class="doc-anchor" href="#mnemonics_visible">§</a><code>mnemonics_visible</code></h6>
+<p>the new value</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.set_offset" class="method"><a class="src rightside" href="../../src/gtk4/auto/popover.rs.html#1328-1332">Source</a><h4 class="code-header">fn <a href="#method.set_offset" class="fn">set_offset</a>(&amp;self, x_offset: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, y_offset: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>)</h4></section></summary><div class="docblock"><p>Sets the offset to use when calculating the position
+of the popover.</p>
+<p>These values are used when preparing the <code>Gdk::PopupLayout</code>
+for positioning the popover.</p>
+<h6 id="x_offset-1"><a class="doc-anchor" href="#x_offset-1">§</a><code>x_offset</code></h6>
+<p>the x offset to adjust the position by</p>
+<h6 id="y_offset-1"><a class="doc-anchor" href="#y_offset-1">§</a><code>y_offset</code></h6>
+<p>the y offset to adjust the position by</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.set_pointing_to" class="method"><a class="src rightside" href="../../src/gtk4/auto/popover.rs.html#1341-1345">Source</a><h4 class="code-header">fn <a href="#method.set_pointing_to" class="fn">set_pointing_to</a>(&amp;self, rect: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;<a class="struct" href="../../gdk4/auto/rectangle/struct.Rectangle.html" title="struct gdk4::auto::rectangle::Rectangle">Rectangle</a>&gt;)</h4></section></summary><div class="docblock"><p>Sets the rectangle that @self points to.</p>
+<p>This is in the coordinate space of the @self parent.</p>
+<h6 id="rect-1"><a class="doc-anchor" href="#rect-1">§</a><code>rect</code></h6>
+<p>rectangle to point to</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.set_position" class="method"><a class="src rightside" href="../../src/gtk4/auto/popover.rs.html#1359-1363">Source</a><h4 class="code-header">fn <a href="#method.set_position" class="fn">set_position</a>(&amp;self, position: <a class="enum" href="../enum.PositionType.html" title="enum gtk4::PositionType">PositionType</a>)</h4></section></summary><div class="docblock"><p>Sets the preferred position for @self to appear.</p>
+<p>If the @self is currently visible, it will be immediately
+updated.</p>
+<p>This preference will be respected where possible, although
+on lack of space (eg. if close to the window edges), the
+<a href="../struct.Popover.html" title="struct gtk4::Popover"><code>Popover</code></a> may choose to appear on the opposite side.</p>
+<h6 id="position"><a class="doc-anchor" href="#position">§</a><code>position</code></h6>
+<p>preferred popover position</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.default_widget" class="method"><a class="src rightside" href="../../src/gtk4/auto/popover.rs.html#1367-1369">Source</a><h4 class="code-header">fn <a href="#method.default_widget" class="fn">default_widget</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;</h4></section></summary><div class="docblock"><p>The default widget inside the popover.</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.connect_activate_default" class="method"><a class="src rightside" href="../../src/gtk4/auto/popover.rs.html#1377-1396">Source</a><h4 class="code-header">fn <a href="#method.connect_activate_default" class="fn">connect_activate_default</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;Self) + 'static&gt;(
+    &amp;self,
+    f: F,
+) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section></summary><div class="docblock"><p>Emitted whend the user activates the default widget.</p>
+<p>This is a <a href="class.SignalAction.html">keybinding signal</a>.</p>
+<p>The default binding for this signal is <kbd>Enter</kbd>.</p>
+</div></details><section id="method.emit_activate_default" class="method"><a class="src rightside" href="../../src/gtk4/auto/popover.rs.html#1398-1400">Source</a><h4 class="code-header">fn <a href="#method.emit_activate_default" class="fn">emit_activate_default</a>(&amp;self)</h4></section><details class="toggle method-toggle" open><summary><section id="method.connect_closed" class="method"><a class="src rightside" href="../../src/gtk4/auto/popover.rs.html#1404-1423">Source</a><h4 class="code-header">fn <a href="#method.connect_closed" class="fn">connect_closed</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;Self) + 'static&gt;(&amp;self, f: F) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section></summary><div class="docblock"><p>Emitted when the popover is closed.</p>
+</div></details><section id="method.connect_autohide_notify" class="method"><a class="src rightside" href="../../src/gtk4/auto/popover.rs.html#1426-1446">Source</a><h4 class="code-header">fn <a href="#method.connect_autohide_notify" class="fn">connect_autohide_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;Self) + 'static&gt;(
+    &amp;self,
+    f: F,
+) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><section id="method.connect_cascade_popdown_notify" class="method"><a class="src rightside" href="../../src/gtk4/auto/popover.rs.html#1449-1472">Source</a><h4 class="code-header">fn <a href="#method.connect_cascade_popdown_notify" class="fn">connect_cascade_popdown_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;Self) + 'static&gt;(
+    &amp;self,
+    f: F,
+) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><section id="method.connect_child_notify" class="method"><a class="src rightside" href="../../src/gtk4/auto/popover.rs.html#1475-1495">Source</a><h4 class="code-header">fn <a href="#method.connect_child_notify" class="fn">connect_child_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;Self) + 'static&gt;(&amp;self, f: F) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><section id="method.connect_default_widget_notify" class="method"><a class="src rightside" href="../../src/gtk4/auto/popover.rs.html#1498-1521">Source</a><h4 class="code-header">fn <a href="#method.connect_default_widget_notify" class="fn">connect_default_widget_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;Self) + 'static&gt;(
+    &amp;self,
+    f: F,
+) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><section id="method.connect_has_arrow_notify" class="method"><a class="src rightside" href="../../src/gtk4/auto/popover.rs.html#1524-1544">Source</a><h4 class="code-header">fn <a href="#method.connect_has_arrow_notify" class="fn">connect_has_arrow_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;Self) + 'static&gt;(
+    &amp;self,
+    f: F,
+) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><section id="method.connect_mnemonics_visible_notify" class="method"><a class="src rightside" href="../../src/gtk4/auto/popover.rs.html#1547-1570">Source</a><h4 class="code-header">fn <a href="#method.connect_mnemonics_visible_notify" class="fn">connect_mnemonics_visible_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;Self) + 'static&gt;(
+    &amp;self,
+    f: F,
+) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><section id="method.connect_pointing_to_notify" class="method"><a class="src rightside" href="../../src/gtk4/auto/popover.rs.html#1573-1593">Source</a><h4 class="code-header">fn <a href="#method.connect_pointing_to_notify" class="fn">connect_pointing_to_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;Self) + 'static&gt;(
+    &amp;self,
+    f: F,
+) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><section id="method.connect_position_notify" class="method"><a class="src rightside" href="../../src/gtk4/auto/popover.rs.html#1596-1616">Source</a><h4 class="code-header">fn <a href="#method.connect_position_notify" class="fn">connect_position_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;Self) + 'static&gt;(
+    &amp;self,
+    f: F,
+) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section></div><h2 id="dyn-compatibility" class="section-header">Dyn Compatibility<a href="#dyn-compatibility" class="anchor">§</a></h2><div class="dyn-compatibility-info"><p>This trait is <b>not</b> <a href="https://doc.rust-lang.org/nightly/reference/items/traits.html#dyn-compatibility">dyn compatible</a>.</p><p><i>In older versions of Rust, dyn compatibility was called "object safety", so this trait is not object safe.</i></p></div><h2 id="implementors" class="section-header">Implementors<a href="#implementors" class="anchor">§</a></h2><div id="implementors-list"><section id="impl-PopoverExt-for-O" class="impl"><a class="src rightside" href="../../src/gtk4/auto/popover.rs.html#1619">Source</a><a href="#impl-PopoverExt-for-O" class="anchor">§</a><h3 class="code-header">impl&lt;O: <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Popover.html" title="struct gtk4::Popover">Popover</a>&gt;&gt; <a class="trait" href="trait.PopoverExt.html" title="trait gtk4::prelude::PopoverExt">PopoverExt</a> for O</h3></section></div><script src="../../trait.impl/gtk4/auto/popover/trait.PopoverExt.js" async></script></section></div></main></body></html>

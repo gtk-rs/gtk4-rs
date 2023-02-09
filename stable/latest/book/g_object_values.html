@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html lang="en" class="sidebar-visible no-js rust">
+<html lang="en" class="rust sidebar-visible" dir="ltr">
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
@@ -7,10 +7,10 @@
 
 
         <!-- Custom HTML head -->
-        
+
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="theme-color" content="#ffffff" />
+        <meta name="theme-color" content="#ffffff">
 
         <link rel="icon" href="favicon.svg">
         <link rel="shortcut icon" href="favicon.png">
@@ -24,26 +24,41 @@
         <link rel="stylesheet" href="fonts/fonts.css">
 
         <!-- Highlight.js Stylesheets -->
-        <link rel="stylesheet" href="highlight.css">
-        <link rel="stylesheet" href="tomorrow-night.css">
-        <link rel="stylesheet" href="ayu-highlight.css">
+        <link rel="stylesheet" id="highlight-css" href="highlight.css">
+        <link rel="stylesheet" id="tomorrow-night-css" href="tomorrow-night.css">
+        <link rel="stylesheet" id="ayu-highlight-css" href="ayu-highlight.css">
 
         <!-- Custom theme stylesheets -->
         <link rel="stylesheet" href="theme/style.css">
 
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "";
+            const default_light_theme = "rust";
+            const default_dark_theme = "navy";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="toc.js"></script>
     </head>
     <body>
-        <!-- Provide site root to javascript -->
-        <script>
-            var path_to_root = "";
-            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "rust";
-        </script>
-
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="body-container">
         <!-- Work around some values being stored in localStorage wrapped in quotes -->
         <script>
             try {
-                var theme = localStorage.getItem('mdbook-theme');
-                var sidebar = localStorage.getItem('mdbook-sidebar');
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
 
                 if (theme.startsWith('"') && theme.endsWith('"')) {
                     localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
@@ -57,55 +72,65 @@
 
         <!-- Set the theme before any content is loaded, prevents flash -->
         <script>
-            var theme;
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
             try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
             if (theme === null || theme === undefined) { theme = default_theme; }
-            var html = document.querySelector('html');
-            html.classList.remove('no-js')
+            const html = document.documentElement;
             html.classList.remove('rust')
             html.classList.add(theme);
-            html.classList.add('js');
+            html.classList.add("js");
         </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
 
         <!-- Hide / unhide sidebar before it is displayed -->
         <script>
-            var html = document.querySelector('html');
-            var sidebar = 'hidden';
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
             }
+            sidebar_toggle.checked = sidebar === 'visible';
             html.classList.remove('sidebar-visible');
             html.classList.add("sidebar-" + sidebar);
         </script>
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
-            <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="introduction.html">Introduction</a></li><li class="chapter-item expanded "><a href="installation.html"><strong aria-hidden="true">1.</strong> Installation</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="installation_linux.html"><strong aria-hidden="true">1.1.</strong> Linux</a></li><li class="chapter-item expanded "><a href="installation_macos.html"><strong aria-hidden="true">1.2.</strong> macOS</a></li><li class="chapter-item expanded "><a href="installation_windows.html"><strong aria-hidden="true">1.3.</strong> Windows</a></li></ol></li><li class="chapter-item expanded "><a href="project_setup.html"><strong aria-hidden="true">2.</strong> Project Setup</a></li><li class="chapter-item expanded "><a href="hello_world.html"><strong aria-hidden="true">3.</strong> Hello World!</a></li><li class="chapter-item expanded "><a href="widgets.html"><strong aria-hidden="true">4.</strong> Widgets</a></li><li class="chapter-item expanded "><a href="g_object_concepts.html"><strong aria-hidden="true">5.</strong> GObject Concepts</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="g_object_memory_management.html"><strong aria-hidden="true">5.1.</strong> Memory Management</a></li><li class="chapter-item expanded "><a href="g_object_subclassing.html"><strong aria-hidden="true">5.2.</strong> Subclassing</a></li><li class="chapter-item expanded "><a href="g_object_values.html" class="active"><strong aria-hidden="true">5.3.</strong> Generic Values</a></li><li class="chapter-item expanded "><a href="g_object_properties.html"><strong aria-hidden="true">5.4.</strong> Properties</a></li><li class="chapter-item expanded "><a href="g_object_signals.html"><strong aria-hidden="true">5.5.</strong> Signals</a></li></ol></li><li class="chapter-item expanded "><a href="main_event_loop.html"><strong aria-hidden="true">6.</strong> The Main Event Loop</a></li><li class="chapter-item expanded "><a href="settings.html"><strong aria-hidden="true">7.</strong> Settings</a></li><li class="chapter-item expanded "><a href="saving_window_state.html"><strong aria-hidden="true">8.</strong> Saving Window State</a></li><li class="chapter-item expanded "><a href="list_widgets.html"><strong aria-hidden="true">9.</strong> List Widgets</a></li><li class="chapter-item expanded "><a href="composite_templates.html"><strong aria-hidden="true">10.</strong> Composite Templates</a></li><li class="chapter-item expanded "><a href="todo_1.html"><strong aria-hidden="true">11.</strong> Building a Simple To-Do App</a></li><li class="chapter-item expanded "><a href="actions.html"><strong aria-hidden="true">12.</strong> Actions</a></li><li class="chapter-item expanded "><a href="todo_2.html"><strong aria-hidden="true">13.</strong> Manipulating State of To-Do App</a></li><li class="chapter-item expanded "><a href="css.html"><strong aria-hidden="true">14.</strong> CSS</a></li><li class="chapter-item expanded "><a href="libadwaita.html"><strong aria-hidden="true">15.</strong> Libadwaita</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="todo_3.html"><strong aria-hidden="true">15.1.</strong> Let To-Do App use Libadwaita</a></li><li class="chapter-item expanded "><a href="todo_4.html"><strong aria-hidden="true">15.2.</strong> Adding Collections</a></li></ol></li></ol>
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="toc.html"></iframe>
+            </noscript>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
             </div>
-            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
 
         <div id="page-wrapper" class="page-wrapper">
 
             <div class="page">
-                                <div id="menu-bar-hover-placeholder"></div>
-                <div id="menu-bar" class="menu-bar sticky bordered">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
                     <div class="left-buttons">
-                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
                             <i class="fa fa-bars"></i>
-                        </button>
+                        </label>
                         <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
                             <i class="fa fa-paint-brush"></i>
                         </button>
                         <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="default_theme">Auto</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
                         </ul>
-                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                        <button id="search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="searchbar">
                             <i class="fa fa-search"></i>
                         </button>
                     </div>
@@ -116,7 +141,7 @@
                         <a href="print.html" title="Print this book" aria-label="Print this book">
                             <i id="print-button" class="fa fa-print"></i>
                         </a>
-                        <a href="https://github.com/gtk-rs/gtk4-rs/tree/master/book" title="Git repository" aria-label="Git repository">
+                        <a href="https://github.com/gtk-rs/gtk4-rs/tree/main/book" title="Git repository" aria-label="Git repository">
                             <i id="git-repository-button" class="fa fa-github"></i>
                         </a>
 
@@ -166,8 +191,8 @@ Conceptually, a <code>Value</code> is similar to a Rust <code>enum</code> define
     Object(Option&lt;dyn IsA&lt;glib::Object&gt;&gt;),
 }</code></pre>
 <p>For example, this is how you would use a <code>Value</code> representing an <code>i32</code>.</p>
-<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/g_object_values/1/main.rs">listings/g_object_values/1/main.rs</a></p>
-<pre><code class="language-rust  no_run noplayground"><span class="boring">use gtk::prelude::*;
+<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/g_object_values/1/main.rs">listings/g_object_values/1/main.rs</a></p>
+<pre><code class="language-rust"><span class="boring">use gtk::prelude::*;
 </span><span class="boring">
 </span><span class="boring">fn main() {
 </span>    // Store `i32` as `Value`
@@ -176,44 +201,44 @@ Conceptually, a <code>Value</code> is similar to a Rust <code>enum</code> define
     // Retrieve `i32` from `Value`
     let integer = integer_value
         .get::&lt;i32&gt;()
-        .expect(&quot;The value needs to be of type `i32`.&quot;);
+        .expect("The value needs to be of type `i32`.");
 
     // Check if the retrieved value is correct
     assert_eq!(integer, 10);
 <span class="boring">
 </span><span class="boring">    // Store string as `Value`
-</span><span class="boring">    let string_value = &quot;Hello!&quot;.to_value();
+</span><span class="boring">    let string_value = "Hello!".to_value();
 </span><span class="boring">
 </span><span class="boring">    // Retrieve `String` from `Value`
 </span><span class="boring">    let string = string_value
 </span><span class="boring">        .get::&lt;String&gt;()
-</span><span class="boring">        .expect(&quot;The value needs to be of type `String`.&quot;);
+</span><span class="boring">        .expect("The value needs to be of type `String`.");
 </span><span class="boring">
 </span><span class="boring">    // Check if the retrieved value is correct
-</span><span class="boring">    assert_eq!(string, &quot;Hello!&quot;.to_string());
+</span><span class="boring">    assert_eq!(string, "Hello!".to_string());
 </span><span class="boring">
 </span><span class="boring">    // Store `Option&lt;String&gt;` as `Value`
-</span><span class="boring">    let string_some_value = &quot;Hello!&quot;.to_value();
+</span><span class="boring">    let string_some_value = "Hello!".to_value();
 </span><span class="boring">    let string_none_value = None::&lt;String&gt;.to_value();
 </span><span class="boring">
 </span><span class="boring">    // Retrieve `String` from `Value`
 </span><span class="boring">    let string_some = string_some_value
 </span><span class="boring">        .get::&lt;Option&lt;String&gt;&gt;()
-</span><span class="boring">        .expect(&quot;The value needs to be of type `Option&lt;String&gt;`.&quot;);
+</span><span class="boring">        .expect("The value needs to be of type `Option&lt;String&gt;`.");
 </span><span class="boring">    let string_none = string_none_value
 </span><span class="boring">        .get::&lt;Option&lt;String&gt;&gt;()
-</span><span class="boring">        .expect(&quot;The value needs to be of type `Option&lt;String&gt;`.&quot;);
+</span><span class="boring">        .expect("The value needs to be of type `Option&lt;String&gt;`.");
 </span><span class="boring">
 </span><span class="boring">    // Check if the retrieved value is correct
-</span><span class="boring">    assert_eq!(string_some, Some(&quot;Hello!&quot;.to_string()));
+</span><span class="boring">    assert_eq!(string_some, Some("Hello!".to_string()));
 </span><span class="boring">    assert_eq!(string_none, None);
 </span><span class="boring">}</span></code></pre>
 <p>Also note that in the <code>enum</code> above boxed types such as <code>String</code> or <code>glib::Object</code> are wrapped in an <code>Option</code>.
 This comes from C, where every boxed type can potentially be <code>None</code> (or <code>NULL</code> in C terms).
 You can still access it the same way as with the <code>i32</code> above.
 <a href="https://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/value/struct.Value.html#method.get"><code>get</code></a> will then not only return <code>Err</code> if you specified the wrong type, but also if the <code>Value</code> represents <code>None</code>.</p>
-<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/g_object_values/1/main.rs">listings/g_object_values/1/main.rs</a></p>
-<pre><code class="language-rust  no_run noplayground"><span class="boring">use gtk::prelude::*;
+<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/g_object_values/1/main.rs">listings/g_object_values/1/main.rs</a></p>
+<pre><code class="language-rust"><span class="boring">use gtk::prelude::*;
 </span><span class="boring">
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Store `i32` as `Value`
@@ -222,41 +247,41 @@ You can still access it the same way as with the <code>i32</code> above.
 </span><span class="boring">    // Retrieve `i32` from `Value`
 </span><span class="boring">    let integer = integer_value
 </span><span class="boring">        .get::&lt;i32&gt;()
-</span><span class="boring">        .expect(&quot;The value needs to be of type `i32`.&quot;);
+</span><span class="boring">        .expect("The value needs to be of type `i32`.");
 </span><span class="boring">
 </span><span class="boring">    // Check if the retrieved value is correct
 </span><span class="boring">    assert_eq!(integer, 10);
 </span><span class="boring">
 </span>    // Store string as `Value`
-    let string_value = &quot;Hello!&quot;.to_value();
+    let string_value = "Hello!".to_value();
 
     // Retrieve `String` from `Value`
     let string = string_value
         .get::&lt;String&gt;()
-        .expect(&quot;The value needs to be of type `String`.&quot;);
+        .expect("The value needs to be of type `String`.");
 
     // Check if the retrieved value is correct
-    assert_eq!(string, &quot;Hello!&quot;.to_string());
+    assert_eq!(string, "Hello!".to_string());
 <span class="boring">
 </span><span class="boring">    // Store `Option&lt;String&gt;` as `Value`
-</span><span class="boring">    let string_some_value = &quot;Hello!&quot;.to_value();
+</span><span class="boring">    let string_some_value = "Hello!".to_value();
 </span><span class="boring">    let string_none_value = None::&lt;String&gt;.to_value();
 </span><span class="boring">
 </span><span class="boring">    // Retrieve `String` from `Value`
 </span><span class="boring">    let string_some = string_some_value
 </span><span class="boring">        .get::&lt;Option&lt;String&gt;&gt;()
-</span><span class="boring">        .expect(&quot;The value needs to be of type `Option&lt;String&gt;`.&quot;);
+</span><span class="boring">        .expect("The value needs to be of type `Option&lt;String&gt;`.");
 </span><span class="boring">    let string_none = string_none_value
 </span><span class="boring">        .get::&lt;Option&lt;String&gt;&gt;()
-</span><span class="boring">        .expect(&quot;The value needs to be of type `Option&lt;String&gt;`.&quot;);
+</span><span class="boring">        .expect("The value needs to be of type `Option&lt;String&gt;`.");
 </span><span class="boring">
 </span><span class="boring">    // Check if the retrieved value is correct
-</span><span class="boring">    assert_eq!(string_some, Some(&quot;Hello!&quot;.to_string()));
+</span><span class="boring">    assert_eq!(string_some, Some("Hello!".to_string()));
 </span><span class="boring">    assert_eq!(string_none, None);
 </span><span class="boring">}</span></code></pre>
 <p>If you want to differentiate between specifying the wrong type and a <code>Value</code> representing <code>None</code>, just call <code>get::&lt;Option&lt;T&gt;&gt;</code> instead.</p>
-<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/g_object_values/1/main.rs">listings/g_object_values/1/main.rs</a></p>
-<pre><code class="language-rust  no_run noplayground"><span class="boring">use gtk::prelude::*;
+<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/g_object_values/1/main.rs">listings/g_object_values/1/main.rs</a></p>
+<pre><code class="language-rust"><span class="boring">use gtk::prelude::*;
 </span><span class="boring">
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Store `i32` as `Value`
@@ -265,36 +290,36 @@ You can still access it the same way as with the <code>i32</code> above.
 </span><span class="boring">    // Retrieve `i32` from `Value`
 </span><span class="boring">    let integer = integer_value
 </span><span class="boring">        .get::&lt;i32&gt;()
-</span><span class="boring">        .expect(&quot;The value needs to be of type `i32`.&quot;);
+</span><span class="boring">        .expect("The value needs to be of type `i32`.");
 </span><span class="boring">
 </span><span class="boring">    // Check if the retrieved value is correct
 </span><span class="boring">    assert_eq!(integer, 10);
 </span><span class="boring">
 </span><span class="boring">    // Store string as `Value`
-</span><span class="boring">    let string_value = &quot;Hello!&quot;.to_value();
+</span><span class="boring">    let string_value = "Hello!".to_value();
 </span><span class="boring">
 </span><span class="boring">    // Retrieve `String` from `Value`
 </span><span class="boring">    let string = string_value
 </span><span class="boring">        .get::&lt;String&gt;()
-</span><span class="boring">        .expect(&quot;The value needs to be of type `String`.&quot;);
+</span><span class="boring">        .expect("The value needs to be of type `String`.");
 </span><span class="boring">
 </span><span class="boring">    // Check if the retrieved value is correct
-</span><span class="boring">    assert_eq!(string, &quot;Hello!&quot;.to_string());
+</span><span class="boring">    assert_eq!(string, "Hello!".to_string());
 </span><span class="boring">
 </span>    // Store `Option&lt;String&gt;` as `Value`
-    let string_some_value = &quot;Hello!&quot;.to_value();
+    let string_some_value = "Hello!".to_value();
     let string_none_value = None::&lt;String&gt;.to_value();
 
     // Retrieve `String` from `Value`
     let string_some = string_some_value
         .get::&lt;Option&lt;String&gt;&gt;()
-        .expect(&quot;The value needs to be of type `Option&lt;String&gt;`.&quot;);
+        .expect("The value needs to be of type `Option&lt;String&gt;`.");
     let string_none = string_none_value
         .get::&lt;Option&lt;String&gt;&gt;()
-        .expect(&quot;The value needs to be of type `Option&lt;String&gt;`.&quot;);
+        .expect("The value needs to be of type `Option&lt;String&gt;`.");
 
     // Check if the retrieved value is correct
-    assert_eq!(string_some, Some(&quot;Hello!&quot;.to_string()));
+    assert_eq!(string_some, Some("Hello!".to_string()));
     assert_eq!(string_none, None);
 <span class="boring">}</span></code></pre>
 <p>We will use <code>Value</code> when we deal with properties and signals later on.</p>
@@ -304,8 +329,8 @@ Although <code>GVariant</code> supports arbitrarily complex types, the Rust bind
 Containers of the above types are possible as well, such as <code>HashMap</code>, <code>Vec</code>, <code>Option</code>, tuples up to 16 elements, and <code>Variant</code>.
 Variants can even be <a href="https://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib_macros/derive.Variant.html#">derived</a> from Rust structs as long as its members can be represented by variants.</p>
 <p>In the most simple case, converting Rust types to <code>Variant</code> and vice-versa is very similar to the way it worked with <code>Value</code>.</p>
-<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/g_object_values/2/main.rs">listings/g_object_values/2/main.rs</a></p>
-<pre><code class="language-rust  no_run noplayground"><span class="boring">use gtk::prelude::*;
+<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/g_object_values/2/main.rs">listings/g_object_values/2/main.rs</a></p>
+<pre><code class="language-rust"><span class="boring">use gtk::prelude::*;
 </span><span class="boring">
 </span><span class="boring">fn main() {
 </span>    // Store `i32` as `Variant`
@@ -314,23 +339,23 @@ Variants can even be <a href="https://gtk-rs.org/gtk-rs-core/stable/latest/docs/
     // Retrieve `i32` from `Variant`
     let integer = integer_variant
         .get::&lt;i32&gt;()
-        .expect(&quot;The variant needs to be of type `i32`.&quot;);
+        .expect("The variant needs to be of type `i32`.");
 
     // Check if the retrieved value is correct
     assert_eq!(integer, 10);
 <span class="boring">
-</span><span class="boring">    let variant = vec![&quot;Hello&quot;, &quot;there!&quot;].to_variant();
+</span><span class="boring">    let variant = vec!["Hello", "there!"].to_variant();
 </span><span class="boring">    assert_eq!(variant.n_children(), 2);
 </span><span class="boring">    let vec = &amp;variant
 </span><span class="boring">        .get::&lt;Vec&lt;String&gt;&gt;()
-</span><span class="boring">        .expect(&quot;The variant needs to be of type `String`.&quot;);
-</span><span class="boring">    assert_eq!(vec[0], &quot;Hello&quot;);
+</span><span class="boring">        .expect("The variant needs to be of type `String`.");
+</span><span class="boring">    assert_eq!(vec[0], "Hello");
 </span><span class="boring">}</span></code></pre>
 <p>However, a <code>Variant</code> is also able to represent containers such as <a href="https://doc.rust-lang.org/std/collections/struct.HashMap.html"><code>HashMap</code></a> or <a href="https://doc.rust-lang.org/std/vec/struct.Vec.html"><code>Vec</code></a>.
 The following snippet shows how to convert between <code>Vec</code> and <code>Variant</code>.
 More examples can be found in the <a href="https://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/variant/index.html">docs</a>.</p>
-<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/g_object_values/2/main.rs">listings/g_object_values/2/main.rs</a></p>
-<pre><code class="language-rust  no_run noplayground"><span class="boring">use gtk::prelude::*;
+<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/g_object_values/2/main.rs">listings/g_object_values/2/main.rs</a></p>
+<pre><code class="language-rust"><span class="boring">use gtk::prelude::*;
 </span><span class="boring">
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Store `i32` as `Variant`
@@ -339,17 +364,17 @@ More examples can be found in the <a href="https://gtk-rs.org/gtk-rs-core/stable
 </span><span class="boring">    // Retrieve `i32` from `Variant`
 </span><span class="boring">    let integer = integer_variant
 </span><span class="boring">        .get::&lt;i32&gt;()
-</span><span class="boring">        .expect(&quot;The variant needs to be of type `i32`.&quot;);
+</span><span class="boring">        .expect("The variant needs to be of type `i32`.");
 </span><span class="boring">
 </span><span class="boring">    // Check if the retrieved value is correct
 </span><span class="boring">    assert_eq!(integer, 10);
 </span><span class="boring">
-</span>    let variant = vec![&quot;Hello&quot;, &quot;there!&quot;].to_variant();
+</span>    let variant = vec!["Hello", "there!"].to_variant();
     assert_eq!(variant.n_children(), 2);
     let vec = &amp;variant
         .get::&lt;Vec&lt;String&gt;&gt;()
-        .expect(&quot;The variant needs to be of type `String`.&quot;);
-    assert_eq!(vec[0], &quot;Hello&quot;);
+        .expect("The variant needs to be of type `String`.");
+    assert_eq!(vec[0], "Hello");
 <span class="boring">}</span></code></pre>
 <p>We will use <code>Variant</code> when saving settings using <a href="https://gtk-rs.org/gtk-rs-core/stable/latest/docs/gio/struct.Settings.html"><code>gio::Settings</code></a> or activating actions via <a href="https://gtk-rs.org/gtk-rs-core/stable/latest/docs/gio/struct.Action.html"><code>gio::Action</code></a>.</p>
 
@@ -361,7 +386,7 @@ More examples can be found in the <a href="https://gtk-rs.org/gtk-rs-core/stable
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next" href="g_object_properties.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="g_object_properties.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -375,7 +400,7 @@ More examples can be found in the <a href="https://gtk-rs.org/gtk-rs-core/stable
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next" href="g_object_properties.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="g_object_properties.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>
@@ -401,5 +426,6 @@ More examples can be found in the <a href="https://gtk-rs.org/gtk-rs-core/stable
         <!-- Custom JS scripts -->
 
 
+    </div>
     </body>
 </html>

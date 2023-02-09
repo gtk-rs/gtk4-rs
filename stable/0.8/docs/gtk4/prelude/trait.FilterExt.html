@@ -1,0 +1,117 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Trait containing all `struct@Filter` methods."><title>FilterExt in gtk4::prelude - Rust</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-46f98efaafac5295.ttf.woff2,FiraSans-Regular-018c141bf0843ffd.woff2,FiraSans-Medium-8f9a781e4970d388.woff2,SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2,SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-081576b923113409.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.79.0-nightly (3a36386dc 2024-04-25)" data-channel="nightly" data-search-js="search-bf21c90c8c1d92b1.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../static.files/storage-e32f0c247825364d.js"></script><script defer src="sidebar-items.js"></script><script defer src="../../static.files/main-20a3ad099b048cf2.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-09095024cf37855e.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc trait"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
+
+    function checkDocsLatestStable() {
+        function popup(msg, url) { return `
+            <style scoped="scoped">
+                .popup {
+                    max-width: 16em;
+                    background-color: #fff;
+                    position: fixed;
+                    z-index: 1;
+                    margin-left: auto;
+                    bottom: 1em;
+                    right: 1em;
+                    border-radius: 5px;
+                    box-shadow: 1px 1px 4px #777;
+                }
+
+                .popup a.version {
+                    color: #e57300;
+                    padding: 0.6em 1em;
+                    display: block;
+                }
+                .popup a.version:hover {
+                    color: #b25900;
+                }
+
+                .popup a.close {
+                    color: white;
+                    background: grey;
+                    border-radius: 99px;
+                    display: inline-block;
+                    width: 19px;
+                    line-height: 19px;
+                    font-weight: bold;
+                    text-align: center;
+                    margin: 0.6em;
+                    float: right;
+                }
+                .popup a.close:hover {
+                    background: black;
+                }
+            </style>
+            <section class="popup" id="gir_docs_popup">
+                <a class="close" href="#" onclick="document.getElementById('gir_docs_popup').remove(); return false">×</a>
+                <a class="version" href="https://gtk-rs.org/gtk4-rs/stable/latest/docs">
+                    ⚠ ${msg}
+                </a>
+            </section>
+        ` };
+
+        if ("0.8" == "master") {
+            document.body.insertAdjacentHTML(
+                'beforeend',
+                popup("This is the development version. Go to latest stable version.", "stable/latest")
+            );
+        } else {
+            fetch('https://gtk-rs.org/gtk4-rs/LATEST_RELEASE_BRANCH')
+                .then(response => response.text())
+                .then(latest_branch => {
+                    if (latest_branch.trim() != "0.8") {
+                        document.body.insertAdjacentHTML(
+                            'beforeend',
+                            popup("This version is outdated. Go to latest version.", "stable/latest")
+                        );
+                    }
+                });
+        }
+    }
+</script>
+
+
+<nav class="mobile-topbar"><button class="sidebar-menu-toggle" title="show sidebar"></button></nav><nav class="sidebar"><div class="sidebar-crate"><h2><a href="../../gtk4/index.html">gtk4</a><span class="version">0.8.2</span></h2></div><h2 class="location"><a href="#">FilterExt</a></h2><div class="sidebar-elems"><section><h3><a href="#provided-methods">Provided Methods</a></h3><ul class="block"><li><a href="#method.changed">changed</a></li><li><a href="#method.connect_changed">connect_changed</a></li><li><a href="#method.match_">match_</a></li><li><a href="#method.strictness">strictness</a></li></ul><h3><a href="#object-safety">Object Safety</a></h3><h3><a href="#implementors">Implementors</a></h3></section><h2><a href="index.html">In gtk4::prelude</a></h2></div></nav><div class="sidebar-resizer"></div><main><div class="width-limiter"><nav class="sub"><form class="search-form"><span></span><div id="sidebar-button" tabindex="-1"><a href="../../gtk4/all.html" title="show sidebar"></a></div><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Type ‘S’ or ‘/’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings">Settings</a></div></form></nav><section id="main-content" class="content"><div class="main-heading"><h1>Trait <a href="../index.html">gtk4</a>::<wbr><a href="index.html">prelude</a>::<wbr><a class="trait" href="#">FilterExt</a><button id="copy-path" title="Copy item path to clipboard">Copy item path</button></h1><span class="out-of-band"><a class="src" href="../../src/gtk4/auto/filter.rs.html#75-171">source</a> · <button id="toggle-all-docs" title="collapse all docs">[<span>&#x2212;</span>]</button></span></div><pre class="rust item-decl"><code>pub trait FilterExt: <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Filter.html" title="struct gtk4::Filter">Filter</a>&gt; + Sealed + 'static {
+    // Provided methods
+    fn <a href="#method.changed" class="fn">changed</a>(&amp;self, change: <a class="enum" href="../enum.FilterChange.html" title="enum gtk4::FilterChange">FilterChange</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.strictness" class="fn">strictness</a>(&amp;self) -&gt; <a class="enum" href="../enum.FilterMatch.html" title="enum gtk4::FilterMatch">FilterMatch</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.match_" class="fn">match_</a>(&amp;self, item: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/glib/object/struct.Object.html" title="struct glib::object::Object">Object</a>&gt;) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_changed" class="fn">connect_changed</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>, <a class="enum" href="../enum.FilterChange.html" title="enum gtk4::FilterChange">FilterChange</a>) + 'static&gt;(
+        &amp;self,
+        f: F
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+}</code></pre><details class="toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>Trait containing all <a href="../struct.Filter.html" title="struct gtk4::Filter"><code>Filter</code></a> methods.</p>
+<h2 id="implementors-1"><a class="doc-anchor" href="#implementors-1">§</a>Implementors</h2>
+<p><a href="../struct.BoolFilter.html" title="struct gtk4::BoolFilter"><code>BoolFilter</code></a>, <a href="../struct.CustomFilter.html" title="struct gtk4::CustomFilter"><code>CustomFilter</code></a>, <a href="../struct.FileFilter.html" title="struct gtk4::FileFilter"><code>FileFilter</code></a>, <a href="../struct.Filter.html" title="struct gtk4::Filter"><code>Filter</code></a>, <a href="../struct.MultiFilter.html" title="struct gtk4::MultiFilter"><code>MultiFilter</code></a>, <a href="../struct.StringFilter.html" title="struct gtk4::StringFilter"><code>StringFilter</code></a></p>
+</div></details><h2 id="provided-methods" class="section-header">Provided Methods<a href="#provided-methods" class="anchor">§</a></h2><div class="methods"><details class="toggle method-toggle" open><summary><section id="method.changed" class="method"><a class="src rightside" href="../../src/gtk4/auto/filter.rs.html#91-95">source</a><h4 class="code-header">fn <a href="#method.changed" class="fn">changed</a>(&amp;self, change: <a class="enum" href="../enum.FilterChange.html" title="enum gtk4::FilterChange">FilterChange</a>)</h4></section></summary><div class="docblock"><p>Notifies all users of the filter that it has changed.</p>
+<p>This emits the <a href="../struct.Filter.html#changed" title="struct gtk4::Filter"><code>changed</code></a> signal. Users
+of the filter should then check items again via
+<a href="trait.FilterExt.html#method.match_"><code>match_()</code></a>.</p>
+<p>Depending on the @change parameter, not all items need to
+be changed, but only some. Refer to the <a href="../enum.FilterChange.html" title="enum gtk4::FilterChange"><code>FilterChange</code></a>
+documentation for details.</p>
+<p>This function is intended for implementers of <a href="../struct.Filter.html" title="struct gtk4::Filter"><code>Filter</code></a>
+subclasses and should not be called from other functions.</p>
+<h6 id="change"><a class="doc-anchor" href="#change">§</a><code>change</code></h6>
+<p>How the filter changed</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.strictness" class="method"><a class="src rightside" href="../../src/gtk4/auto/filter.rs.html#112-118">source</a><h4 class="code-header">fn <a href="#method.strictness" class="fn">strictness</a>(&amp;self) -&gt; <a class="enum" href="../enum.FilterMatch.html" title="enum gtk4::FilterMatch">FilterMatch</a></h4></section></summary><div class="docblock"><p>Gets the known strictness of @filters.</p>
+<p>If the strictness is not known, <a href="../enum.FilterMatch.html#variant.Some" title="variant gtk4::FilterMatch::Some"><code>FilterMatch::Some</code></a> is returned.</p>
+<p>This value may change after emission of the <a href="../struct.Filter.html#changed" title="struct gtk4::Filter"><code>changed</code></a>
+signal.</p>
+<p>This function is meant purely for optimization purposes, filters can
+choose to omit implementing it, but <a href="../struct.FilterListModel.html" title="struct gtk4::FilterListModel"><code>FilterListModel</code></a> uses it.</p>
+<h5 id="returns"><a class="doc-anchor" href="#returns">§</a>Returns</h5>
+<p>the strictness of @self</p>
+</div></details><section id="method.match_" class="method"><a class="src rightside" href="../../src/gtk4/auto/filter.rs.html#122-129">source</a><h4 class="code-header">fn <a href="#method.match_" class="fn">match_</a>(&amp;self, item: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/glib/object/struct.Object.html" title="struct glib::object::Object">Object</a>&gt;) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></section><details class="toggle method-toggle" open><summary><section id="method.connect_changed" class="method"><a class="src rightside" href="../../src/gtk4/auto/filter.rs.html#144-170">source</a><h4 class="code-header">fn <a href="#method.connect_changed" class="fn">connect_changed</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>, <a class="enum" href="../enum.FilterChange.html" title="enum gtk4::FilterChange">FilterChange</a>) + 'static&gt;(
+    &amp;self,
+    f: F
+) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section></summary><div class="docblock"><p>Emitted whenever the filter changed.</p>
+<p>Users of the filter should then check items again via
+<a href="trait.FilterExt.html#method.match_"><code>match_()</code></a>.</p>
+<p><a href="../struct.FilterListModel.html" title="struct gtk4::FilterListModel"><code>FilterListModel</code></a> handles this signal automatically.</p>
+<p>Depending on the @change parameter, not all items need
+to be checked, but only some. Refer to the <a href="../enum.FilterChange.html" title="enum gtk4::FilterChange"><code>FilterChange</code></a>
+documentation for details.</p>
+<h6 id="change-1"><a class="doc-anchor" href="#change-1">§</a><code>change</code></h6>
+<p>how the filter changed</p>
+</div></details></div><h2 id="object-safety" class="section-header">Object Safety<a href="#object-safety" class="anchor">§</a></h2><div class="object-safety-info">This trait is <b>not</b> <a href="https://doc.rust-lang.org/nightly/reference/items/traits.html#object-safety">object safe</a>.</div><h2 id="implementors" class="section-header">Implementors<a href="#implementors" class="anchor">§</a></h2><div id="implementors-list"><section id="impl-FilterExt-for-O" class="impl"><a class="src rightside" href="../../src/gtk4/auto/filter.rs.html#173">source</a><a href="#impl-FilterExt-for-O" class="anchor">§</a><h3 class="code-header">impl&lt;O: <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.19/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Filter.html" title="struct gtk4::Filter">Filter</a>&gt;&gt; <a class="trait" href="trait.FilterExt.html" title="trait gtk4::prelude::FilterExt">FilterExt</a> for O</h3></section></div><script src="../../trait.impl/gtk4/auto/filter/trait.FilterExt.js" async></script></section></div></main></body></html>

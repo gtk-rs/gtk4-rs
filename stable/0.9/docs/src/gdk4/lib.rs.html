@@ -1,0 +1,217 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gdk4/src/lib.rs`."><title>lib.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../static.files/rustdoc-84e720fa.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="gdk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.89.0-nightly (5526a2f47 2025-06-20)" data-channel="nightly" data-search-js="search-343419c9.js" data-settings-js="settings-5514c975.js" ><script src="../../static.files/storage-4e99c027.js"></script><script defer src="../../static.files/src-script-813739b1.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-fd3af306.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-32bb7600.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-6580c154.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
+
+    function checkDocsLatestStable() {
+        function popup(msg, url) { return `
+            <style scoped="scoped">
+                .popup {
+                    max-width: 16em;
+                    background-color: #fff;
+                    position: fixed;
+                    z-index: 1;
+                    margin-left: auto;
+                    bottom: 1em;
+                    right: 1em;
+                    border-radius: 5px;
+                    box-shadow: 1px 1px 4px #777;
+                }
+
+                .popup a.version {
+                    color: #e57300;
+                    padding: 0.6em 1em;
+                    display: block;
+                }
+                .popup a.version:hover {
+                    color: #b25900;
+                }
+
+                .popup a.close {
+                    color: white;
+                    background: grey;
+                    border-radius: 99px;
+                    display: inline-block;
+                    width: 19px;
+                    line-height: 19px;
+                    font-weight: bold;
+                    text-align: center;
+                    margin: 0.6em;
+                    float: right;
+                }
+                .popup a.close:hover {
+                    background: black;
+                }
+            </style>
+            <section class="popup" id="gir_docs_popup">
+                <a class="close" href="#" onclick="document.getElementById('gir_docs_popup').remove(); return false">×</a>
+                <a class="version" href="https://gtk-rs.org/gtk4-rs/stable/latest/docs">
+                    ⚠ ${msg}
+                </a>
+            </section>
+        ` };
+
+        if ("0.9" == "main") {
+            document.body.insertAdjacentHTML(
+                'beforeend',
+                popup("This is the development version. Go to latest stable version.", "stable/latest")
+            );
+        } else {
+            fetch('https://gtk-rs.org/gtk4-rs/LATEST_RELEASE_BRANCH')
+                .then(response => response.text())
+                .then(latest_branch => {
+                    if (latest_branch.trim() != "0.9") {
+                        document.body.insertAdjacentHTML(
+                            'beforeend',
+                            popup("This version is outdated. Go to latest version.", "stable/latest")
+                        );
+                    }
+                });
+        }
+    }
+</script>
+
+
+<nav class="sidebar"><div class="src-sidebar-title"><h2>Files</h2></div></nav><div class="sidebar-resizer" title="Drag to resize sidebar"></div><main><rustdoc-search></rustdoc-search><section id="main-content" class="content"><div class="main-heading"><h1><div class="sub-heading">gdk4/</div>lib.rs</h1><rustdoc-toolbar></rustdoc-toolbar></div><div class="example-wrap digits-3"><pre class="rust"><code><a href=#1 id=1 data-nosnippet>1</a><span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.
+<a href=#2 id=2 data-nosnippet>2</a>
+<a href=#3 id=3 data-nosnippet>3</a></span><span class="attr">#![cfg_attr(docsrs, feature(doc_cfg))]
+<a href=#4 id=4 data-nosnippet>4</a>#![allow(deprecated)]
+<a href=#5 id=5 data-nosnippet>5</a>#![allow(clippy::manual_c_str_literals)]
+<a href=#6 id=6 data-nosnippet>6</a>#![doc = <span class="macro">include_str!</span>(<span class="string">"../README.md"</span>)]
+<a href=#7 id=7 data-nosnippet>7</a>
+<a href=#8 id=8 data-nosnippet>8</a></span><span class="kw">pub use </span><a href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/cairo/index.html">cairo</a>;
+<a href=#9 id=9 data-nosnippet>9</a><span class="kw">pub use </span><a href="../../gdk4_sys/index.html">gdk4_sys</a> <span class="kw">as </span>ffi;
+<a href=#10 id=10 data-nosnippet>10</a><span class="kw">pub use </span><a href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/gdk_pixbuf/index.html">gdk_pixbuf</a>;
+<a href=#11 id=11 data-nosnippet>11</a><span class="kw">pub use </span><a href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/gio/index.html">gio</a>;
+<a href=#12 id=12 data-nosnippet>12</a><span class="attr">#[cfg(feature = <span class="string">"gl"</span>)]
+<a href=#13 id=13 data-nosnippet>13</a>#[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"gl"</span>)))]
+<a href=#14 id=14 data-nosnippet>14</a></span><span class="kw">pub use </span><a href="https://docs.rs/gl/latest/gl/index.html">gl</a>;
+<a href=#15 id=15 data-nosnippet>15</a><span class="kw">pub use </span><a href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/index.html">glib</a>;
+<a href=#16 id=16 data-nosnippet>16</a><span class="kw">pub use </span><a href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/pango/index.html">pango</a>;
+<a href=#17 id=17 data-nosnippet>17</a>
+<a href=#18 id=18 data-nosnippet>18</a><span class="doccomment">/// This is the priority that the idle handler processing surface updates
+<a href=#19 id=19 data-nosnippet>19</a>/// is given in the main loop.
+<a href=#20 id=20 data-nosnippet>20</a></span><span class="attr">#[doc(alias = <span class="string">"GDK_PRIORITY_REDRAW"</span>)]
+<a href=#21 id=21 data-nosnippet>21</a></span><span class="kw">pub const </span><a href="../../gdk4/constant.PRIORITY_REDRAW.html">PRIORITY_REDRAW</a>: <a href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a> = <a href="../../gdk4_sys/constant.GDK_PRIORITY_REDRAW.html">ffi::GDK_PRIORITY_REDRAW</a> <span class="kw">as </span><a href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>;
+<a href=#22 id=22 data-nosnippet>22</a>
+<a href=#23 id=23 data-nosnippet>23</a><span class="doccomment">/// A mask covering all entries in [`ModifierType`][crate::ModifierType].
+<a href=#24 id=24 data-nosnippet>24</a></span><span class="attr">#[doc(alias = <span class="string">"GDK_MODIFIER_MASK"</span>)]
+<a href=#25 id=25 data-nosnippet>25</a></span><span class="kw">pub const </span><a href="../../gdk4/constant.MODIFIER_MASK.html">MODIFIER_MASK</a>: <a href="auto/flags.rs.html#571-629">ModifierType</a> = <a href="auto/flags.rs.html#571-629">ModifierType::all</a>();
+<a href=#26 id=26 data-nosnippet>26</a>
+<a href=#27 id=27 data-nosnippet>27</a><span class="doccomment">/// Defines all possible DND actions.
+<a href=#28 id=28 data-nosnippet>28</a>///
+<a href=#29 id=29 data-nosnippet>29</a>/// This can be used in [`Drop::status()`][crate::Drop::status()] messages when any drop
+<a href=#30 id=30 data-nosnippet>30</a>/// can be accepted or a more specific drop method is not yet known.
+<a href=#31 id=31 data-nosnippet>31</a></span><span class="attr">#[doc(alias = <span class="string">"GDK_ACTION_ALL"</span>)]
+<a href=#32 id=32 data-nosnippet>32</a></span><span class="kw">pub const </span><a href="../../gdk4/constant.ACTION_ALL.html">ACTION_ALL</a>: <a href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a> = <a href="../../gdk4_sys/constant.GDK_ACTION_ALL.html">ffi::GDK_ACTION_ALL</a> <span class="kw">as </span><a href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>;
+<a href=#33 id=33 data-nosnippet>33</a>
+<a href=#34 id=34 data-nosnippet>34</a><span class="doccomment">/// Represents the current time, and can be used anywhere a time is expected.
+<a href=#35 id=35 data-nosnippet>35</a></span><span class="attr">#[doc(alias = <span class="string">"GDK_CURRENT_TIME"</span>)]
+<a href=#36 id=36 data-nosnippet>36</a></span><span class="kw">pub const </span><a href="../../gdk4/constant.CURRENT_TIME.html">CURRENT_TIME</a>: <a href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a> = <a href="../../gdk4_sys/constant.GDK_CURRENT_TIME.html">ffi::GDK_CURRENT_TIME</a> <span class="kw">as </span><a href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>;
+<a href=#37 id=37 data-nosnippet>37</a>
+<a href=#38 id=38 data-nosnippet>38</a><span class="doccomment">/// The primary button. This is typically the left mouse button, or the
+<a href=#39 id=39 data-nosnippet>39</a>/// right button in a left-handed setup.
+<a href=#40 id=40 data-nosnippet>40</a></span><span class="attr">#[doc(alias = <span class="string">"GDK_BUTTON_PRIMARY"</span>)]
+<a href=#41 id=41 data-nosnippet>41</a></span><span class="kw">pub const </span><a href="../../gdk4/constant.BUTTON_PRIMARY.html">BUTTON_PRIMARY</a>: <a href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a> = <a href="../../gdk4_sys/constant.GDK_BUTTON_PRIMARY.html">ffi::GDK_BUTTON_PRIMARY</a> <span class="kw">as </span><a href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>;
+<a href=#42 id=42 data-nosnippet>42</a>
+<a href=#43 id=43 data-nosnippet>43</a><span class="doccomment">/// The middle button.
+<a href=#44 id=44 data-nosnippet>44</a></span><span class="attr">#[doc(alias = <span class="string">"GDK_BUTTON_MIDDLE"</span>)]
+<a href=#45 id=45 data-nosnippet>45</a></span><span class="kw">pub const </span><a href="../../gdk4/constant.BUTTON_MIDDLE.html">BUTTON_MIDDLE</a>: <a href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a> = <a href="../../gdk4_sys/constant.GDK_BUTTON_MIDDLE.html">ffi::GDK_BUTTON_MIDDLE</a> <span class="kw">as </span><a href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>;
+<a href=#46 id=46 data-nosnippet>46</a>
+<a href=#47 id=47 data-nosnippet>47</a><span class="doccomment">/// The secondary button. This is typically the right mouse button, or the
+<a href=#48 id=48 data-nosnippet>48</a>/// left button in a left-handed setup.
+<a href=#49 id=49 data-nosnippet>49</a></span><span class="attr">#[doc(alias = <span class="string">"GDK_BUTTON_SECONDARY"</span>)]
+<a href=#50 id=50 data-nosnippet>50</a></span><span class="kw">pub const </span><a href="../../gdk4/constant.BUTTON_SECONDARY.html">BUTTON_SECONDARY</a>: <a href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a> = <a href="../../gdk4_sys/constant.GDK_BUTTON_SECONDARY.html">ffi::GDK_BUTTON_SECONDARY</a> <span class="kw">as </span><a href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>;
+<a href=#51 id=51 data-nosnippet>51</a>
+<a href=#52 id=52 data-nosnippet>52</a><span class="doccomment">/// Use this macro as the return value for stopping the propagation of
+<a href=#53 id=53 data-nosnippet>53</a>/// an event handler.
+<a href=#54 id=54 data-nosnippet>54</a></span><span class="attr">#[doc(alias = <span class="string">"GDK_EVENT_STOP"</span>)]
+<a href=#55 id=55 data-nosnippet>55</a></span><span class="kw">pub const </span><a href="../../gdk4/constant.EVENT_STOP.html">EVENT_STOP</a>: <a href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a> = <a href="../../gdk4_sys/constant.GDK_EVENT_STOP.html">ffi::GDK_EVENT_STOP</a> <span class="kw">as </span><a href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>;
+<a href=#56 id=56 data-nosnippet>56</a>
+<a href=#57 id=57 data-nosnippet>57</a><span class="doccomment">/// Use this macro as the return value for continuing the propagation of
+<a href=#58 id=58 data-nosnippet>58</a>/// an event handler.
+<a href=#59 id=59 data-nosnippet>59</a></span><span class="attr">#[doc(alias = <span class="string">"GDK_EVENT_PROPAGATE"</span>)]
+<a href=#60 id=60 data-nosnippet>60</a></span><span class="kw">pub const </span><a href="../../gdk4/constant.EVENT_PROPAGATE.html">EVENT_PROPAGATE</a>: <a href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a> = <a href="../../gdk4_sys/constant.GDK_EVENT_PROPAGATE.html">ffi::GDK_EVENT_PROPAGATE</a> <span class="kw">as </span><a href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>;
+<a href=#61 id=61 data-nosnippet>61</a>
+<a href=#62 id=62 data-nosnippet>62</a><span class="comment">// GDK 4 has no runtime to initialize
+<a href=#63 id=63 data-nosnippet>63</a></span><span class="macro">macro_rules!</span> assert_initialized_main_thread {
+<a href=#64 id=64 data-nosnippet>64</a>    () =&gt; {};
+<a href=#65 id=65 data-nosnippet>65</a>}
+<a href=#66 id=66 data-nosnippet>66</a>
+<a href=#67 id=67 data-nosnippet>67</a><span class="comment">// No-op
+<a href=#68 id=68 data-nosnippet>68</a></span><span class="macro">macro_rules!</span> skip_assert_initialized {
+<a href=#69 id=69 data-nosnippet>69</a>    () =&gt; {};
+<a href=#70 id=70 data-nosnippet>70</a>}
+<a href=#71 id=71 data-nosnippet>71</a>
+<a href=#72 id=72 data-nosnippet>72</a><span class="attr">#[allow(clippy::derived_hash_with_manual_eq)]
+<a href=#73 id=73 data-nosnippet>73</a>#[allow(clippy::type_complexity)]
+<a href=#74 id=74 data-nosnippet>74</a>#[allow(unused_imports)]
+<a href=#75 id=75 data-nosnippet>75</a></span><span class="kw">mod </span><a href="auto/mod.rs.html#5-293">auto</a>;
+<a href=#76 id=76 data-nosnippet>76</a>
+<a href=#77 id=77 data-nosnippet>77</a><span class="attr">#[macro_use]
+<a href=#78 id=78 data-nosnippet>78</a></span><span class="kw">mod </span><a href="event.rs.html#3-238">event</a>;
+<a href=#79 id=79 data-nosnippet>79</a>
+<a href=#80 id=80 data-nosnippet>80</a><span class="kw">pub mod </span><a href="builders.rs.html#4-9">builders</a>;
+<a href=#81 id=81 data-nosnippet>81</a><span class="kw">pub mod </span><a href="prelude.rs.html#4-24">prelude</a>;
+<a href=#82 id=82 data-nosnippet>82</a><span class="kw">pub mod </span><a href="subclass/mod.rs.html#4-19">subclass</a>;
+<a href=#83 id=83 data-nosnippet>83</a>
+<a href=#84 id=84 data-nosnippet>84</a><span class="kw">mod </span><a href="button_event.rs.html#3-19">button_event</a>;
+<a href=#85 id=85 data-nosnippet>85</a><span class="kw">mod </span><a href="cairo_interaction.rs.html#3-188">cairo_interaction</a>;
+<a href=#86 id=86 data-nosnippet>86</a><span class="kw">mod </span><a href="clipboard.rs.html#3-129">clipboard</a>;
+<a href=#87 id=87 data-nosnippet>87</a><span class="kw">mod </span><a href="content_deserializer.rs.html#3-60">content_deserializer</a>;
+<a href=#88 id=88 data-nosnippet>88</a><span class="kw">mod </span><a href="content_formats.rs.html#3-49">content_formats</a>;
+<a href=#89 id=89 data-nosnippet>89</a><span class="kw">mod </span><a href="content_formats_builder.rs.html#3-77">content_formats_builder</a>;
+<a href=#90 id=90 data-nosnippet>90</a><span class="kw">mod </span><a href="content_provider.rs.html#3-50">content_provider</a>;
+<a href=#91 id=91 data-nosnippet>91</a><span class="kw">mod </span><a href="content_serializer.rs.html#3-50">content_serializer</a>;
+<a href=#92 id=92 data-nosnippet>92</a><span class="kw">mod </span><a href="crossing_event.rs.html#3-21">crossing_event</a>;
+<a href=#93 id=93 data-nosnippet>93</a><span class="attr">#[cfg(feature = <span class="string">"v4_16"</span>)]
+<a href=#94 id=94 data-nosnippet>94</a>#[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_16"</span>)))]
+<a href=#95 id=95 data-nosnippet>95</a></span><span class="kw">mod </span><a href="cursor.rs.html#3-79">cursor</a>;
+<a href=#96 id=96 data-nosnippet>96</a><span class="kw">mod </span><a href="delete_event.rs.html#3-17">delete_event</a>;
+<a href=#97 id=97 data-nosnippet>97</a><span class="kw">mod </span><a href="display.rs.html#3-283">display</a>;
+<a href=#98 id=98 data-nosnippet>98</a><span class="attr">#[cfg(feature = <span class="string">"v4_14"</span>)]
+<a href=#99 id=99 data-nosnippet>99</a>#[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_14"</span>)))]
+<a href=#100 id=100 data-nosnippet>100</a></span><span class="kw">mod </span><a href="dmabuf_texture_builder.rs.html#3-89">dmabuf_texture_builder</a>;
+<a href=#101 id=101 data-nosnippet>101</a><span class="kw">mod </span><a href="dnd_event.rs.html#3-19">dnd_event</a>;
+<a href=#102 id=102 data-nosnippet>102</a><span class="attr">#[cfg(feature = <span class="string">"v4_12"</span>)]
+<a href=#103 id=103 data-nosnippet>103</a>#[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_12"</span>)))]
+<a href=#104 id=104 data-nosnippet>104</a></span><span class="kw">mod </span><a href="drag_surface.rs.html#3-55">drag_surface</a>;
+<a href=#105 id=105 data-nosnippet>105</a><span class="attr">#[cfg(feature = <span class="string">"v4_12"</span>)]
+<a href=#106 id=106 data-nosnippet>106</a>#[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_12"</span>)))]
+<a href=#107 id=107 data-nosnippet>107</a></span><span class="kw">mod </span><a href="drag_surface_size.rs.html#3-28">drag_surface_size</a>;
+<a href=#108 id=108 data-nosnippet>108</a><span class="kw">mod </span><a href="draw_context.rs.html#3-44">draw_context</a>;
+<a href=#109 id=109 data-nosnippet>109</a><span class="kw">mod </span><a href="drop.rs.html#3-102">drop</a>;
+<a href=#110 id=110 data-nosnippet>110</a><span class="kw">mod </span><a href="focus_event.rs.html#3-19">focus_event</a>;
+<a href=#111 id=111 data-nosnippet>111</a><span class="kw">mod </span><a href="functions.rs.html#3-429">functions</a>;
+<a href=#112 id=112 data-nosnippet>112</a><span class="kw">mod </span><a href="gl_texture.rs.html#3-83">gl_texture</a>;
+<a href=#113 id=113 data-nosnippet>113</a><span class="attr">#[cfg(feature = <span class="string">"v4_12"</span>)]
+<a href=#114 id=114 data-nosnippet>114</a>#[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_12"</span>)))]
+<a href=#115 id=115 data-nosnippet>115</a></span><span class="kw">mod </span><a href="gl_texture_builder.rs.html#3-245">gl_texture_builder</a>;
+<a href=#116 id=116 data-nosnippet>116</a><span class="kw">mod </span><a href="grab_broken_event.rs.html#3-20">grab_broken_event</a>;
+<a href=#117 id=117 data-nosnippet>117</a><span class="kw">mod </span><a href="key_event.rs.html#3-102">key_event</a>;
+<a href=#118 id=118 data-nosnippet>118</a><span class="kw">mod </span><a href="keymap_key.rs.html#3-51">keymap_key</a>;
+<a href=#119 id=119 data-nosnippet>119</a><span class="kw">mod </span><a href="keys.rs.html#3-4815">keys</a>;
+<a href=#120 id=120 data-nosnippet>120</a><span class="kw">mod </span><a href="motion_event.rs.html#3-17">motion_event</a>;
+<a href=#121 id=121 data-nosnippet>121</a><span class="kw">mod </span><a href="pad_event.rs.html#3-21">pad_event</a>;
+<a href=#122 id=122 data-nosnippet>122</a><span class="kw">mod </span><a href="popup_layout.rs.html#3-28">popup_layout</a>;
+<a href=#123 id=123 data-nosnippet>123</a><span class="kw">mod </span><a href="proximity_event.rs.html#3-17">proximity_event</a>;
+<a href=#124 id=124 data-nosnippet>124</a><span class="kw">mod </span><a href="rectangle.rs.html#3-142">rectangle</a>;
+<a href=#125 id=125 data-nosnippet>125</a><span class="kw">mod </span><a href="rgba.rs.html#3-272">rgba</a>;
+<a href=#126 id=126 data-nosnippet>126</a><span class="kw">mod </span><a href="scroll_event.rs.html#3-21">scroll_event</a>;
+<a href=#127 id=127 data-nosnippet>127</a><span class="kw">mod </span><a href="surface.rs.html#3-92">surface</a>;
+<a href=#128 id=128 data-nosnippet>128</a><span class="kw">mod </span><a href="texture.rs.html#3-65">texture</a>;
+<a href=#129 id=129 data-nosnippet>129</a><span class="kw">mod </span><a href="time_coord.rs.html#3-57">time_coord</a>;
+<a href=#130 id=130 data-nosnippet>130</a><span class="kw">mod </span><a href="toplevel.rs.html#3-64">toplevel</a>;
+<a href=#131 id=131 data-nosnippet>131</a><span class="kw">mod </span><a href="toplevel_size.rs.html#3-118">toplevel_size</a>;
+<a href=#132 id=132 data-nosnippet>132</a><span class="kw">mod </span><a href="touch_event.rs.html#3-19">touch_event</a>;
+<a href=#133 id=133 data-nosnippet>133</a><span class="kw">mod </span><a href="touchpad_event.rs.html#3-30">touchpad_event</a>;
+<a href=#134 id=134 data-nosnippet>134</a>
+<a href=#135 id=135 data-nosnippet>135</a><span class="kw">pub use </span><a href="#75">auto</a>::<span class="kw-2">*</span>;
+<a href=#136 id=136 data-nosnippet>136</a><span class="kw">pub use </span><a href="display.rs.html#8-14">display::Backend</a>;
+<a href=#137 id=137 data-nosnippet>137</a><span class="attr">#[cfg(feature = <span class="string">"v4_12"</span>)]
+<a href=#138 id=138 data-nosnippet>138</a>#[cfg_attr(docsrs, doc(cfg(feature = <span class="string">"v4_12"</span>)))]
+<a href=#139 id=139 data-nosnippet>139</a></span><span class="kw">pub use </span><a href="drag_surface_size.rs.html#10">drag_surface_size::DragSurfaceSize</a>;
+<a href=#140 id=140 data-nosnippet>140</a><span class="kw">pub use </span><a href="#111">functions</a>::<span class="kw-2">*</span>;
+<a href=#141 id=141 data-nosnippet>141</a><span class="kw">pub use </span><a href="keymap_key.rs.html#8-12">keymap_key::KeymapKey</a>;
+<a href=#142 id=142 data-nosnippet>142</a><span class="kw">pub use </span><a href="keys.rs.html#9">keys::Key</a>;
+<a href=#143 id=143 data-nosnippet>143</a><span class="kw">pub use </span><a href="time_coord.rs.html#9-18">time_coord::TimeCoord</a>;
+<a href=#144 id=144 data-nosnippet>144</a><span class="kw">pub use </span><a href="toplevel_size.rs.html#10">toplevel_size::ToplevelSize</a>;</code></pre></div></section></main></body></html>

@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html lang="en" class="sidebar-visible no-js rust">
+<html lang="en" class="rust sidebar-visible" dir="ltr">
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
@@ -7,10 +7,10 @@
 
 
         <!-- Custom HTML head -->
-        
+
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="theme-color" content="#ffffff" />
+        <meta name="theme-color" content="#ffffff">
 
         <link rel="icon" href="favicon.svg">
         <link rel="shortcut icon" href="favicon.png">
@@ -24,26 +24,41 @@
         <link rel="stylesheet" href="fonts/fonts.css">
 
         <!-- Highlight.js Stylesheets -->
-        <link rel="stylesheet" href="highlight.css">
-        <link rel="stylesheet" href="tomorrow-night.css">
-        <link rel="stylesheet" href="ayu-highlight.css">
+        <link rel="stylesheet" id="highlight-css" href="highlight.css">
+        <link rel="stylesheet" id="tomorrow-night-css" href="tomorrow-night.css">
+        <link rel="stylesheet" id="ayu-highlight-css" href="ayu-highlight.css">
 
         <!-- Custom theme stylesheets -->
         <link rel="stylesheet" href="theme/style.css">
 
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "";
+            const default_light_theme = "rust";
+            const default_dark_theme = "navy";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="toc.js"></script>
     </head>
     <body>
-        <!-- Provide site root to javascript -->
-        <script>
-            var path_to_root = "";
-            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "rust";
-        </script>
-
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="body-container">
         <!-- Work around some values being stored in localStorage wrapped in quotes -->
         <script>
             try {
-                var theme = localStorage.getItem('mdbook-theme');
-                var sidebar = localStorage.getItem('mdbook-sidebar');
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
 
                 if (theme.startsWith('"') && theme.endsWith('"')) {
                     localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
@@ -57,55 +72,65 @@
 
         <!-- Set the theme before any content is loaded, prevents flash -->
         <script>
-            var theme;
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
             try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
             if (theme === null || theme === undefined) { theme = default_theme; }
-            var html = document.querySelector('html');
-            html.classList.remove('no-js')
+            const html = document.documentElement;
             html.classList.remove('rust')
             html.classList.add(theme);
-            html.classList.add('js');
+            html.classList.add("js");
         </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
 
         <!-- Hide / unhide sidebar before it is displayed -->
         <script>
-            var html = document.querySelector('html');
-            var sidebar = 'hidden';
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
             }
+            sidebar_toggle.checked = sidebar === 'visible';
             html.classList.remove('sidebar-visible');
             html.classList.add("sidebar-" + sidebar);
         </script>
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
-            <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="introduction.html">Introduction</a></li><li class="chapter-item expanded "><a href="installation.html"><strong aria-hidden="true">1.</strong> Installation</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="installation_linux.html"><strong aria-hidden="true">1.1.</strong> Linux</a></li><li class="chapter-item expanded "><a href="installation_macos.html"><strong aria-hidden="true">1.2.</strong> macOS</a></li><li class="chapter-item expanded "><a href="installation_windows.html"><strong aria-hidden="true">1.3.</strong> Windows</a></li></ol></li><li class="chapter-item expanded "><a href="project_setup.html"><strong aria-hidden="true">2.</strong> Project Setup</a></li><li class="chapter-item expanded "><a href="hello_world.html"><strong aria-hidden="true">3.</strong> Hello World!</a></li><li class="chapter-item expanded "><a href="widgets.html"><strong aria-hidden="true">4.</strong> Widgets</a></li><li class="chapter-item expanded "><a href="g_object_concepts.html"><strong aria-hidden="true">5.</strong> GObject Concepts</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="g_object_memory_management.html"><strong aria-hidden="true">5.1.</strong> Memory Management</a></li><li class="chapter-item expanded "><a href="g_object_subclassing.html"><strong aria-hidden="true">5.2.</strong> Subclassing</a></li><li class="chapter-item expanded "><a href="g_object_values.html"><strong aria-hidden="true">5.3.</strong> Generic Values</a></li><li class="chapter-item expanded "><a href="g_object_properties.html"><strong aria-hidden="true">5.4.</strong> Properties</a></li><li class="chapter-item expanded "><a href="g_object_signals.html" class="active"><strong aria-hidden="true">5.5.</strong> Signals</a></li></ol></li><li class="chapter-item expanded "><a href="main_event_loop.html"><strong aria-hidden="true">6.</strong> The Main Event Loop</a></li><li class="chapter-item expanded "><a href="settings.html"><strong aria-hidden="true">7.</strong> Settings</a></li><li class="chapter-item expanded "><a href="saving_window_state.html"><strong aria-hidden="true">8.</strong> Saving Window State</a></li><li class="chapter-item expanded "><a href="list_widgets.html"><strong aria-hidden="true">9.</strong> List Widgets</a></li><li class="chapter-item expanded "><a href="composite_templates.html"><strong aria-hidden="true">10.</strong> Composite Templates</a></li><li class="chapter-item expanded "><a href="todo_1.html"><strong aria-hidden="true">11.</strong> Building a Simple To-Do App</a></li><li class="chapter-item expanded "><a href="actions.html"><strong aria-hidden="true">12.</strong> Actions</a></li><li class="chapter-item expanded "><a href="todo_2.html"><strong aria-hidden="true">13.</strong> Manipulating State of To-Do App</a></li><li class="chapter-item expanded "><a href="css.html"><strong aria-hidden="true">14.</strong> CSS</a></li><li class="chapter-item expanded "><a href="libadwaita.html"><strong aria-hidden="true">15.</strong> Libadwaita</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="todo_3.html"><strong aria-hidden="true">15.1.</strong> Let To-Do App use Libadwaita</a></li><li class="chapter-item expanded "><a href="todo_4.html"><strong aria-hidden="true">15.2.</strong> Adding Collections</a></li></ol></li></ol>
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="toc.html"></iframe>
+            </noscript>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
             </div>
-            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
 
         <div id="page-wrapper" class="page-wrapper">
 
             <div class="page">
-                                <div id="menu-bar-hover-placeholder"></div>
-                <div id="menu-bar" class="menu-bar sticky bordered">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
                     <div class="left-buttons">
-                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
                             <i class="fa fa-bars"></i>
-                        </button>
+                        </label>
                         <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
                             <i class="fa fa-paint-brush"></i>
                         </button>
                         <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="default_theme">Auto</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
                         </ul>
-                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                        <button id="search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="searchbar">
                             <i class="fa fa-search"></i>
                         </button>
                     </div>
@@ -116,7 +141,7 @@
                         <a href="print.html" title="Print this book" aria-label="Print this book">
                             <i id="print-button" class="fa fa-print"></i>
                         </a>
-                        <a href="https://github.com/gtk-rs/gtk4-rs/tree/master/book" title="Git repository" aria-label="Git repository">
+                        <a href="https://github.com/gtk-rs/gtk4-rs/tree/main/book" title="Git repository" aria-label="Git repository">
                             <i id="git-repository-button" class="fa fa-github"></i>
                         </a>
 
@@ -147,46 +172,46 @@
                     <main>
                         <h1 id="signals"><a class="header" href="#signals">Signals</a></h1>
 <p>GObject signals are a system for registering callbacks for specific events.
-For example, if we press on a button, the &quot;clicked&quot; signal will be emitted.
+For example, if we press on a button, the "clicked" signal will be emitted.
 The signal then takes care that all the registered callbacks will be executed.</p>
 <p><code>gtk-rs</code> provides convenience methods for registering callbacks.
-In our &quot;Hello World&quot; example we <a href="../docs/gtk4/prelude/trait.ButtonExt.html#tymethod.connect_clicked">connected</a> the &quot;clicked&quot; signal to a closure which sets the label of the button to &quot;Hello World&quot; as soon as it gets called.</p>
-<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/hello_world/3/main.rs">listings/hello_world/3/main.rs</a></p>
-<pre><code class="language-rust  no_run noplayground"><span class="boring">use gtk::prelude::*;
-</span><span class="boring">use gtk::{Application, ApplicationWindow, Button};
-</span><span class="boring">const APP_ID: &amp;str = &quot;org.gtk_rs.HelloWorld3&quot;;
+In our "Hello World" example we <a href="https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/prelude/trait.ButtonExt.html#tymethod.connect_clicked">connected</a> the "clicked" signal to a closure which sets the label of the button to "Hello World" as soon as it gets called.</p>
+<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/hello_world/3/main.rs">listings/hello_world/3/main.rs</a></p>
+<pre><code class="language-rust"><span class="boring">use gtk::prelude::*;
+</span><span class="boring">use gtk::{glib, Application, ApplicationWindow, Button};
+</span><span class="boring">const APP_ID: &amp;str = "org.gtk_rs.HelloWorld3";
 </span><span class="boring">
-</span><span class="boring">fn main() {
+</span><span class="boring">fn main() -&gt; glib::ExitCode {
 </span><span class="boring">    // Create a new application
 </span><span class="boring">    let app = Application::builder().application_id(APP_ID).build();
 </span><span class="boring">
-</span><span class="boring">    // Connect to &quot;activate&quot; signal of `app`
+</span><span class="boring">    // Connect to "activate" signal of `app`
 </span><span class="boring">    app.connect_activate(build_ui);
 </span><span class="boring">
 </span><span class="boring">    // Run the application
-</span><span class="boring">    app.run();
+</span><span class="boring">    app.run()
 </span><span class="boring">}
 </span><span class="boring">
 </span><span class="boring">fn build_ui(app: &amp;Application) {
 </span><span class="boring">    // Create a button with label and margins
 </span><span class="boring">    let button = Button::builder()
-</span><span class="boring">        .label(&quot;Press me!&quot;)
+</span><span class="boring">        .label("Press me!")
 </span><span class="boring">        .margin_top(12)
 </span><span class="boring">        .margin_bottom(12)
 </span><span class="boring">        .margin_start(12)
 </span><span class="boring">        .margin_end(12)
 </span><span class="boring">        .build();
 </span><span class="boring">
-</span>    // Connect to &quot;clicked&quot; signal of `button`
+</span>    // Connect to "clicked" signal of `button`
     button.connect_clicked(|button| {
-        // Set the label to &quot;Hello World!&quot; after the button has been clicked on
-        button.set_label(&quot;Hello World!&quot;);
+        // Set the label to "Hello World!" after the button has been clicked on
+        button.set_label("Hello World!");
     });
 <span class="boring">
 </span><span class="boring">    // Create a window
 </span><span class="boring">    let window = ApplicationWindow::builder()
 </span><span class="boring">        .application(app)
-</span><span class="boring">        .title(&quot;My GTK App&quot;)
+</span><span class="boring">        .title("My GTK App")
 </span><span class="boring">        .child(&amp;button)
 </span><span class="boring">        .build();
 </span><span class="boring">
@@ -194,41 +219,41 @@ In our &quot;Hello World&quot; example we <a href="../docs/gtk4/prelude/trait.Bu
 </span><span class="boring">    window.present();
 </span><span class="boring">}</span></code></pre>
 <p>If we wanted to, we could have connected to it with the generic <a href="https://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/object/trait.ObjectExt.html#tymethod.connect_closure"><code>connect_closure</code></a> method and the <a href="https://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/macro.closure_local.html"><code>glib::closure_local!</code></a> macro.</p>
-<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/g_object_signals/1/main.rs">listings/g_object_signals/1/main.rs</a></p>
-<pre><code class="language-rust  no_run noplayground"><span class="boring">use glib::closure_local;
+<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/g_object_signals/1/main.rs">listings/g_object_signals/1/main.rs</a></p>
+<pre><code class="language-rust"><span class="boring">use glib::closure_local;
 </span><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::{glib, Application, ApplicationWindow, Button};
 </span><span class="boring">
-</span><span class="boring">const APP_ID: &amp;str = &quot;org.gtk_rs.GObjectSignals1&quot;;
+</span><span class="boring">const APP_ID: &amp;str = "org.gtk_rs.GObjectSignals1";
 </span><span class="boring">
-</span><span class="boring">fn main() {
+</span><span class="boring">fn main() -&gt; glib::ExitCode {
 </span><span class="boring">    // Create a new application
 </span><span class="boring">    let app = Application::builder().application_id(APP_ID).build();
 </span><span class="boring">
-</span><span class="boring">    // Connect to &quot;activate&quot; signal of `app`
+</span><span class="boring">    // Connect to "activate" signal of `app`
 </span><span class="boring">    app.connect_activate(build_ui);
 </span><span class="boring">
 </span><span class="boring">    // Run the application
-</span><span class="boring">    app.run();
+</span><span class="boring">    app.run()
 </span><span class="boring">}
 </span><span class="boring">
 </span><span class="boring">fn build_ui(app: &amp;Application) {
 </span><span class="boring">    // Create a button
 </span><span class="boring">    let button = Button::builder()
-</span><span class="boring">        .label(&quot;Press me!&quot;)
+</span><span class="boring">        .label("Press me!")
 </span><span class="boring">        .margin_top(12)
 </span><span class="boring">        .margin_bottom(12)
 </span><span class="boring">        .margin_start(12)
 </span><span class="boring">        .margin_end(12)
 </span><span class="boring">        .build();
 </span><span class="boring">
-</span>    // Connect to &quot;clicked&quot; signal of `button`
+</span>    // Connect to "clicked" signal of `button`
     button.connect_closure(
-        &quot;clicked&quot;,
+        "clicked",
         false,
         closure_local!(move |button: Button| {
-            // Set the label to &quot;Hello World!&quot; after the button has been clicked on
-            button.set_label(&quot;Hello World!&quot;);
+            // Set the label to "Hello World!" after the button has been clicked on
+            button.set_label("Hello World!");
         }),
     );
 
@@ -236,89 +261,70 @@ In our &quot;Hello World&quot; example we <a href="../docs/gtk4/prelude/trait.Bu
 </span><span class="boring">    // Create a window
 </span><span class="boring">    let window = ApplicationWindow::builder()
 </span><span class="boring">        .application(app)
-</span><span class="boring">        .title(&quot;My GTK App&quot;)
+</span><span class="boring">        .title("My GTK App")
 </span><span class="boring">        .child(&amp;button)
 </span><span class="boring">        .build();
 </span><span class="boring">
 </span><span class="boring">    // Present window
 </span><span class="boring">    window.present();
 </span><span class="boring">}</span></code></pre>
-<p>Similar to the generic way of accessing properties, the advantage of <code>connect_closure</code> is that it also works with custom signals.</p>
+<p>The advantage of <code>connect_closure</code> is that it also works with custom signals.</p>
 <blockquote>
 <p>If you need to clone reference counted objects into your closure you don't have to wrap it within another <code>clone!</code> macro.
-<code>closure_local!</code> accepts the same syntax for creating strong/weak references, plus a <a href="https://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/macro.closure.html#object-watching">watch</a> feature that automatically disconnects the closure once the watched object is dropped. </p>
+<code>closure_local!</code> accepts the same syntax for creating strong/weak references, plus a <a href="https://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/macro.closure.html#object-watching">watch</a> feature that automatically disconnects the closure once the watched object is dropped.</p>
 </blockquote>
 <h2 id="adding-signals-to-custom-gobjects"><a class="header" href="#adding-signals-to-custom-gobjects">Adding Signals to Custom GObjects</a></h2>
 <p>Let's see how we can create our own signals.
 Again we do that by extending our <code>CustomButton</code>.
-First we override the necessary methods in <code>ObjectImpl</code>.</p>
-<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/g_object_signals/2/custom_button/imp.rs">listings/g_object_signals/2/custom_button/imp.rs</a></p>
-<pre><code class="language-rust  no_run noplayground"><span class="boring">use std::cell::Cell;
+First we override the <code>signals</code> method in <code>ObjectImpl</code>.
+In order to do that, we need to lazily initialize a static item <code>SIGNALS</code>.
+<a href="https://doc.rust-lang.org/std/sync/struct.OnceLock.html"><code>std::sync::OnceLock</code></a> ensures that <code>SIGNALS</code> will only be initialized once.</p>
+<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/g_object_signals/2/custom_button/imp.rs">listings/g_object_signals/2/custom_button/imp.rs</a></p>
+<pre><code class="language-rust"><span class="boring">use std::cell::Cell;
+</span><span class="boring">use std::sync::OnceLock;
 </span><span class="boring">
 </span><span class="boring">use glib::subclass::Signal;
-</span><span class="boring">use glib::{BindingFlags, ParamSpec, ParamSpecInt, Value};
+</span><span class="boring">use glib::Properties;
 </span><span class="boring">use gtk::glib;
 </span><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::subclass::prelude::*;
-</span><span class="boring">use once_cell::sync::Lazy;
 </span><span class="boring">
 </span><span class="boring">// Object holding the state
-</span><span class="boring">#[derive(Default)]
+</span><span class="boring">#[derive(Properties, Default)]
+</span><span class="boring">#[properties(wrapper_type = super::CustomButton)]
 </span><span class="boring">pub struct CustomButton {
+</span><span class="boring">    #[property(get, set)]
 </span><span class="boring">    number: Cell&lt;i32&gt;,
 </span><span class="boring">}
 </span><span class="boring">
 </span><span class="boring">// The central trait for subclassing a GObject
 </span><span class="boring">#[glib::object_subclass]
 </span><span class="boring">impl ObjectSubclass for CustomButton {
-</span><span class="boring">    const NAME: &amp;'static str = &quot;MyGtkAppCustomButton&quot;;
+</span><span class="boring">    const NAME: &amp;'static str = "MyGtkAppCustomButton";
 </span><span class="boring">    type Type = super::CustomButton;
 </span><span class="boring">    type ParentType = gtk::Button;
 </span><span class="boring">}
 </span><span class="boring">
 </span>// Trait shared by all GObjects
+#[glib::derived_properties]
 impl ObjectImpl for CustomButton {
     fn signals() -&gt; &amp;'static [Signal] {
-        static SIGNALS: Lazy&lt;Vec&lt;Signal&gt;&gt; = Lazy::new(|| {
-            vec![Signal::builder(&quot;max-number-reached&quot;)
+        static SIGNALS: OnceLock&lt;Vec&lt;Signal&gt;&gt; = OnceLock::new();
+        SIGNALS.get_or_init(|| {
+            vec![Signal::builder("max-number-reached")
                 .param_types([i32::static_type()])
                 .build()]
-        });
-        SIGNALS.as_ref()
+        })
     }
 <span class="boring">
-</span><span class="boring">    fn properties() -&gt; &amp;'static [ParamSpec] {
-</span><span class="boring">        static PROPERTIES: Lazy&lt;Vec&lt;ParamSpec&gt;&gt; =
-</span><span class="boring">            Lazy::new(|| vec![ParamSpecInt::builder(&quot;number&quot;).build()]);
-</span><span class="boring">        PROPERTIES.as_ref()
-</span><span class="boring">    }
-</span><span class="boring">
-</span><span class="boring">    fn set_property(&amp;self, _id: usize, value: &amp;Value, pspec: &amp;ParamSpec) {
-</span><span class="boring">        match pspec.name() {
-</span><span class="boring">            &quot;number&quot; =&gt; {
-</span><span class="boring">                let input_number =
-</span><span class="boring">                    value.get().expect(&quot;The value needs to be of type `i32`.&quot;);
-</span><span class="boring">                self.number.replace(input_number);
-</span><span class="boring">            }
-</span><span class="boring">            _ =&gt; unimplemented!(),
-</span><span class="boring">        }
-</span><span class="boring">    }
-</span><span class="boring">
-</span><span class="boring">    fn property(&amp;self, _id: usize, pspec: &amp;ParamSpec) -&gt; Value {
-</span><span class="boring">        match pspec.name() {
-</span><span class="boring">            &quot;number&quot; =&gt; self.number.get().to_value(),
-</span><span class="boring">            _ =&gt; unimplemented!(),
-</span><span class="boring">        }
-</span><span class="boring">    }
-</span><span class="boring">
 </span><span class="boring">    fn constructed(&amp;self) {
 </span><span class="boring">        self.parent_constructed();
 </span><span class="boring">
 </span><span class="boring">        // Bind label to number
 </span><span class="boring">        // `SYNC_CREATE` ensures that the label will be immediately set
 </span><span class="boring">        let obj = self.obj();
-</span><span class="boring">        obj.bind_property(&quot;number&quot;, obj.as_ref(), &quot;label&quot;)
-</span><span class="boring">            .flags(BindingFlags::SYNC_CREATE)
+</span><span class="boring">        obj.bind_property("number", obj.as_ref(), "label")
+</span><span class="boring">            .sync_create()
 </span><span class="boring">            .build();
 </span><span class="boring">    }
 </span><span class="boring">}
@@ -331,82 +337,61 @@ impl ObjectImpl for CustomButton {
 </span><span class="boring">// Trait shared by all buttons
 </span><span class="boring">impl ButtonImpl for CustomButton {
 </span><span class="boring">    fn clicked(&amp;self) {
-</span><span class="boring">        let incremented_number = self.number.get() + 1;
+</span><span class="boring">        let incremented_number = self.obj().number() + 1;
 </span><span class="boring">        let obj = self.obj();
 </span><span class="boring">        // If `number` reached `MAX_NUMBER`,
-</span><span class="boring">        // emit &quot;max-number-reached&quot; signal and set `number` back to 0
+</span><span class="boring">        // emit "max-number-reached" signal and set `number` back to 0
 </span><span class="boring">        if incremented_number == MAX_NUMBER {
-</span><span class="boring">            obj.emit_by_name::&lt;()&gt;(&quot;max-number-reached&quot;, &amp;[&amp;incremented_number]);
-</span><span class="boring">            obj.set_property(&quot;number&quot;, &amp;0);
+</span><span class="boring">            obj.emit_by_name::&lt;()&gt;("max-number-reached", &amp;[&amp;incremented_number]);
+</span><span class="boring">            obj.set_number(0);
 </span><span class="boring">        } else {
-</span><span class="boring">            obj.set_property(&quot;number&quot;, &amp;incremented_number);
+</span><span class="boring">            obj.set_number(incremented_number);
 </span><span class="boring">        }
 </span><span class="boring">    }
 </span><span class="boring">}</span></code></pre>
 <p>The <code>signals</code> method is responsible for defining a set of signals.
-In our case, we only create a single signal named &quot;max-number-reached&quot;.
+In our case, we only create a single signal named "max-number-reached".
 When naming our signal, we make sure to do that in <a href="https://en.wikipedia.org/wiki/Letter_case#Kebab_case">kebab-case</a>.
 When emitted, it sends a single <code>i32</code> value.</p>
 <p>We want the signal to be emitted, whenever <code>number</code> reaches <code>MAX_NUMBER</code>.
 Together with the signal we send the value <code>number</code> currently holds.
 After we did that, we set <code>number</code> back to 0.</p>
-<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/g_object_signals/2/custom_button/imp.rs">listings/g_object_signals/2/custom_button/imp.rs</a></p>
-<pre><code class="language-rust  no_run noplayground"><span class="boring">use std::cell::Cell;
+<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/g_object_signals/2/custom_button/imp.rs">listings/g_object_signals/2/custom_button/imp.rs</a></p>
+<pre><code class="language-rust"><span class="boring">use std::cell::Cell;
+</span><span class="boring">use std::sync::OnceLock;
 </span><span class="boring">
 </span><span class="boring">use glib::subclass::Signal;
-</span><span class="boring">use glib::{BindingFlags, ParamSpec, ParamSpecInt, Value};
+</span><span class="boring">use glib::Properties;
 </span><span class="boring">use gtk::glib;
 </span><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::subclass::prelude::*;
-</span><span class="boring">use once_cell::sync::Lazy;
 </span><span class="boring">
 </span><span class="boring">// Object holding the state
-</span><span class="boring">#[derive(Default)]
+</span><span class="boring">#[derive(Properties, Default)]
+</span><span class="boring">#[properties(wrapper_type = super::CustomButton)]
 </span><span class="boring">pub struct CustomButton {
+</span><span class="boring">    #[property(get, set)]
 </span><span class="boring">    number: Cell&lt;i32&gt;,
 </span><span class="boring">}
 </span><span class="boring">
 </span><span class="boring">// The central trait for subclassing a GObject
 </span><span class="boring">#[glib::object_subclass]
 </span><span class="boring">impl ObjectSubclass for CustomButton {
-</span><span class="boring">    const NAME: &amp;'static str = &quot;MyGtkAppCustomButton&quot;;
+</span><span class="boring">    const NAME: &amp;'static str = "MyGtkAppCustomButton";
 </span><span class="boring">    type Type = super::CustomButton;
 </span><span class="boring">    type ParentType = gtk::Button;
 </span><span class="boring">}
 </span><span class="boring">
 </span><span class="boring">// Trait shared by all GObjects
+</span><span class="boring">#[glib::derived_properties]
 </span><span class="boring">impl ObjectImpl for CustomButton {
 </span><span class="boring">    fn signals() -&gt; &amp;'static [Signal] {
-</span><span class="boring">        static SIGNALS: Lazy&lt;Vec&lt;Signal&gt;&gt; = Lazy::new(|| {
-</span><span class="boring">            vec![Signal::builder(&quot;max-number-reached&quot;)
+</span><span class="boring">        static SIGNALS: OnceLock&lt;Vec&lt;Signal&gt;&gt; = OnceLock::new();
+</span><span class="boring">        SIGNALS.get_or_init(|| {
+</span><span class="boring">            vec![Signal::builder("max-number-reached")
 </span><span class="boring">                .param_types([i32::static_type()])
 </span><span class="boring">                .build()]
-</span><span class="boring">        });
-</span><span class="boring">        SIGNALS.as_ref()
-</span><span class="boring">    }
-</span><span class="boring">
-</span><span class="boring">    fn properties() -&gt; &amp;'static [ParamSpec] {
-</span><span class="boring">        static PROPERTIES: Lazy&lt;Vec&lt;ParamSpec&gt;&gt; =
-</span><span class="boring">            Lazy::new(|| vec![ParamSpecInt::builder(&quot;number&quot;).build()]);
-</span><span class="boring">        PROPERTIES.as_ref()
-</span><span class="boring">    }
-</span><span class="boring">
-</span><span class="boring">    fn set_property(&amp;self, _id: usize, value: &amp;Value, pspec: &amp;ParamSpec) {
-</span><span class="boring">        match pspec.name() {
-</span><span class="boring">            &quot;number&quot; =&gt; {
-</span><span class="boring">                let input_number =
-</span><span class="boring">                    value.get().expect(&quot;The value needs to be of type `i32`.&quot;);
-</span><span class="boring">                self.number.replace(input_number);
-</span><span class="boring">            }
-</span><span class="boring">            _ =&gt; unimplemented!(),
-</span><span class="boring">        }
-</span><span class="boring">    }
-</span><span class="boring">
-</span><span class="boring">    fn property(&amp;self, _id: usize, pspec: &amp;ParamSpec) -&gt; Value {
-</span><span class="boring">        match pspec.name() {
-</span><span class="boring">            &quot;number&quot; =&gt; self.number.get().to_value(),
-</span><span class="boring">            _ =&gt; unimplemented!(),
-</span><span class="boring">        }
+</span><span class="boring">        })
 </span><span class="boring">    }
 </span><span class="boring">
 </span><span class="boring">    fn constructed(&amp;self) {
@@ -415,8 +400,8 @@ After we did that, we set <code>number</code> back to 0.</p>
 </span><span class="boring">        // Bind label to number
 </span><span class="boring">        // `SYNC_CREATE` ensures that the label will be immediately set
 </span><span class="boring">        let obj = self.obj();
-</span><span class="boring">        obj.bind_property(&quot;number&quot;, obj.as_ref(), &quot;label&quot;)
-</span><span class="boring">            .flags(BindingFlags::SYNC_CREATE)
+</span><span class="boring">        obj.bind_property("number", obj.as_ref(), "label")
+</span><span class="boring">            .sync_create()
 </span><span class="boring">            .build();
 </span><span class="boring">    }
 </span><span class="boring">}
@@ -429,40 +414,40 @@ After we did that, we set <code>number</code> back to 0.</p>
 // Trait shared by all buttons
 impl ButtonImpl for CustomButton {
     fn clicked(&amp;self) {
-        let incremented_number = self.number.get() + 1;
+        let incremented_number = self.obj().number() + 1;
         let obj = self.obj();
         // If `number` reached `MAX_NUMBER`,
-        // emit &quot;max-number-reached&quot; signal and set `number` back to 0
+        // emit "max-number-reached" signal and set `number` back to 0
         if incremented_number == MAX_NUMBER {
-            obj.emit_by_name::&lt;()&gt;(&quot;max-number-reached&quot;, &amp;[&amp;incremented_number]);
-            obj.set_property(&quot;number&quot;, &amp;0);
+            obj.emit_by_name::&lt;()&gt;("max-number-reached", &amp;[&amp;incremented_number]);
+            obj.set_number(0);
         } else {
-            obj.set_property(&quot;number&quot;, &amp;incremented_number);
+            obj.set_number(incremented_number);
         }
     }
 }</code></pre>
 <p>If we now press on the button, the number of its label increases until it reaches <code>MAX_NUMBER</code>.
-Then it emits the &quot;max-number-reached&quot; signal which we can nicely connect to.
-Whenever we now receive the &quot;max-number-reached&quot; signal, the accompanying number is printed to <a href="https://en.wikipedia.org/wiki/Standard_streams#Standard_output_(stdout)">standard output</a>.</p>
-<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/g_object_signals/2/main.rs">listings/g_object_signals/2/main.rs</a></p>
-<pre><code class="language-rust  no_run noplayground"><span class="boring">mod custom_button;
+Then it emits the "max-number-reached" signal which we can nicely connect to.
+Whenever we now receive the "max-number-reached" signal, the accompanying number is printed to <a href="https://en.wikipedia.org/wiki/Standard_streams#Standard_output_(stdout)">standard output</a>.</p>
+<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/g_object_signals/2/main.rs">listings/g_object_signals/2/main.rs</a></p>
+<pre><code class="language-rust"><span class="boring">mod custom_button;
 </span><span class="boring">
 </span><span class="boring">use custom_button::CustomButton;
 </span><span class="boring">use glib::closure_local;
 </span><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::{glib, Application, ApplicationWindow};
 </span><span class="boring">
-</span><span class="boring">const APP_ID: &amp;str = &quot;org.gtk_rs.GObjectSignals2&quot;;
+</span><span class="boring">const APP_ID: &amp;str = "org.gtk_rs.GObjectSignals2";
 </span><span class="boring">
-</span><span class="boring">fn main() {
+</span><span class="boring">fn main() -&gt; glib::ExitCode {
 </span><span class="boring">    // Create a new application
 </span><span class="boring">    let app = Application::builder().application_id(APP_ID).build();
 </span><span class="boring">
-</span><span class="boring">    // Connect to &quot;activate&quot; signal of `app`
+</span><span class="boring">    // Connect to "activate" signal of `app`
 </span><span class="boring">    app.connect_activate(build_ui);
 </span><span class="boring">
 </span><span class="boring">    // Run the application
-</span><span class="boring">    app.run();
+</span><span class="boring">    app.run()
 </span><span class="boring">}
 </span><span class="boring">fn build_ui(app: &amp;Application) {
 </span><span class="boring">    // Create a button
@@ -473,17 +458,17 @@ Whenever we now receive the &quot;max-number-reached&quot; signal, the accompany
 </span><span class="boring">    button.set_margin_end(12);
 </span><span class="boring">
 </span>    button.connect_closure(
-        &quot;max-number-reached&quot;,
+        "max-number-reached",
         false,
         closure_local!(move |_button: CustomButton, number: i32| {
-            println!(&quot;The maximum number {} has been reached&quot;, number);
+            println!("The maximum number {} has been reached", number);
         }),
     );
 <span class="boring">
 </span><span class="boring">    // Create a window
 </span><span class="boring">    let window = ApplicationWindow::builder()
 </span><span class="boring">        .application(app)
-</span><span class="boring">        .title(&quot;My GTK App&quot;)
+</span><span class="boring">        .title("My GTK App")
 </span><span class="boring">        .child(&amp;button)
 </span><span class="boring">        .build();
 </span><span class="boring">
@@ -501,7 +486,7 @@ Custom signals are especially useful, if you want to notify consumers of your GO
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next" href="main_event_loop.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="main_event_loop.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -515,7 +500,7 @@ Custom signals are especially useful, if you want to notify consumers of your GO
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next" href="main_event_loop.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="main_event_loop.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>
@@ -541,5 +526,6 @@ Custom signals are especially useful, if you want to notify consumers of your GO
         <!-- Custom JS scripts -->
 
 
+    </div>
     </body>
 </html>

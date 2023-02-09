@@ -1,0 +1,1 @@
+searchState.loadedDescShard("gtk4_macros", 0, "GTK 4 Macros\nDerive macro for using a composite template in a widget.\nAttribute macro for creating template callbacks from Rust …\nAttribute macro for declaring GTK tests.")

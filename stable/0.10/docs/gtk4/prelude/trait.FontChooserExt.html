@@ -1,0 +1,322 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Trait containing all `struct@FontChooser` methods."><title>FontChooserExt in gtk4::prelude - Rust</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../static.files/rustdoc-aa0817cf.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.90.0-nightly (a00149764 2025-07-14)" data-channel="nightly" data-search-js="search-179e01a3.js" data-settings-js="settings-5514c975.js" ><script src="../../static.files/storage-4e99c027.js"></script><script defer src="sidebar-items.js"></script><script defer src="../../static.files/main-673ee1e0.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-32bb7600.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-6580c154.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-044be391.svg"></head><body class="rustdoc trait"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
+
+    function checkDocsLatestStable() {
+        function popup(msg, url) { return `
+            <style scoped="scoped">
+                .popup {
+                    max-width: 16em;
+                    background-color: #fff;
+                    position: fixed;
+                    z-index: 1;
+                    margin-left: auto;
+                    bottom: 1em;
+                    right: 1em;
+                    border-radius: 5px;
+                    box-shadow: 1px 1px 4px #777;
+                }
+
+                .popup a.version {
+                    color: #e57300;
+                    padding: 0.6em 1em;
+                    display: block;
+                }
+                .popup a.version:hover {
+                    color: #b25900;
+                }
+
+                .popup a.close {
+                    color: white;
+                    background: grey;
+                    border-radius: 99px;
+                    display: inline-block;
+                    width: 19px;
+                    line-height: 19px;
+                    font-weight: bold;
+                    text-align: center;
+                    margin: 0.6em;
+                    float: right;
+                }
+                .popup a.close:hover {
+                    background: black;
+                }
+            </style>
+            <section class="popup" id="gir_docs_popup">
+                <a class="close" href="#" onclick="document.getElementById('gir_docs_popup').remove(); return false">×</a>
+                <a class="version" href="https://gtk-rs.org/gtk4-rs/stable/latest/docs">
+                    ⚠ ${msg}
+                </a>
+            </section>
+        ` };
+
+        if ("0.10" == "main") {
+            document.body.insertAdjacentHTML(
+                'beforeend',
+                popup("This is the development version. Go to latest stable version.", "stable/latest")
+            );
+        } else {
+            fetch('https://gtk-rs.org/gtk4-rs/LATEST_RELEASE_BRANCH')
+                .then(response => response.text())
+                .then(latest_branch => {
+                    if (latest_branch.trim() != "0.10") {
+                        document.body.insertAdjacentHTML(
+                            'beforeend',
+                            popup("This version is outdated. Go to latest version.", "stable/latest")
+                        );
+                    }
+                });
+        }
+    }
+</script>
+
+
+<nav class="mobile-topbar"><button class="sidebar-menu-toggle" title="show sidebar"></button></nav><nav class="sidebar"><div class="sidebar-crate"><h2><a href="../../gtk4/index.html">gtk4</a><span class="version">0.10.0</span></h2></div><div class="sidebar-elems"><section id="rustdoc-toc"><h2 class="location"><a href="#">Font<wbr>Chooser<wbr>Ext</a></h2><h3><a href="#">Sections</a></h3><ul class="block top-toc"><li><a href="#implementors-1" title="Implementors">Implementors</a></li></ul><h3><a href="#provided-methods">Provided Methods</a></h3><ul class="block"><li><a href="#method.connect_font_activated" title="connect_font_activated">connect_font_activated</a></li><li><a href="#method.connect_font_desc_notify" title="connect_font_desc_notify">connect_font_desc_notify</a></li><li><a href="#method.connect_font_features_notify" title="connect_font_features_notify">connect_font_features_notify</a></li><li><a href="#method.connect_font_notify" title="connect_font_notify">connect_font_notify</a></li><li><a href="#method.connect_language_notify" title="connect_language_notify">connect_language_notify</a></li><li><a href="#method.connect_level_notify" title="connect_level_notify">connect_level_notify</a></li><li><a href="#method.connect_preview_text_notify" title="connect_preview_text_notify">connect_preview_text_notify</a></li><li><a href="#method.connect_show_preview_entry_notify" title="connect_show_preview_entry_notify">connect_show_preview_entry_notify</a></li><li><a href="#method.font" title="font">font</a></li><li><a href="#method.font_desc" title="font_desc">font_desc</a></li><li><a href="#method.font_face" title="font_face">font_face</a></li><li><a href="#method.font_family" title="font_family">font_family</a></li><li><a href="#method.font_features" title="font_features">font_features</a></li><li><a href="#method.font_map" title="font_map">font_map</a></li><li><a href="#method.font_size" title="font_size">font_size</a></li><li><a href="#method.language" title="language">language</a></li><li><a href="#method.level" title="level">level</a></li><li><a href="#method.preview_text" title="preview_text">preview_text</a></li><li><a href="#method.set_filter_func" title="set_filter_func">set_filter_func</a></li><li><a href="#method.set_font" title="set_font">set_font</a></li><li><a href="#method.set_font_desc" title="set_font_desc">set_font_desc</a></li><li><a href="#method.set_font_map" title="set_font_map">set_font_map</a></li><li><a href="#method.set_language" title="set_language">set_language</a></li><li><a href="#method.set_level" title="set_level">set_level</a></li><li><a href="#method.set_preview_text" title="set_preview_text">set_preview_text</a></li><li><a href="#method.set_show_preview_entry" title="set_show_preview_entry">set_show_preview_entry</a></li><li><a href="#method.shows_preview_entry" title="shows_preview_entry">shows_preview_entry</a></li></ul><h3><a href="#dyn-compatibility">Dyn Compatibility</a></h3><h3><a href="#implementors">Implementors</a></h3></section><div id="rustdoc-modnav"><h2><a href="index.html">In gtk4::<wbr>prelude</a></h2></div></div></nav><div class="sidebar-resizer" title="Drag to resize sidebar"></div><main><div class="width-limiter"><rustdoc-search></rustdoc-search><section id="main-content" class="content"><div class="main-heading"><div class="rustdoc-breadcrumbs"><a href="../index.html">gtk4</a>::<wbr><a href="index.html">prelude</a></div><h1>Trait <span class="trait">FontChooserExt</span><button id="copy-path" title="Copy item path to clipboard">Copy item path</button></h1><rustdoc-toolbar></rustdoc-toolbar><span class="sub-heading"><a class="src" href="../../src/gtk4/auto/font_chooser.rs.html#104-827">Source</a> </span></div><pre class="rust item-decl"><code>pub trait FontChooserExt: <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.FontChooser.html" title="struct gtk4::FontChooser">FontChooser</a>&gt; + 'static {
+<details class="toggle type-contents-toggle"><summary class="hideme"><span>Show 27 methods</span></summary>    // Provided methods
+    fn <a href="#method.font" class="fn">font</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/gstring/struct.GString.html" title="struct glib::gstring::GString">GString</a>&gt; { ... }
+<span class="item-spacer"></span>    fn <a href="#method.font_desc" class="fn">font_desc</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/pango/auto/font_description/struct.FontDescription.html" title="struct pango::auto::font_description::FontDescription">FontDescription</a>&gt; { ... }
+<span class="item-spacer"></span>    fn <a href="#method.font_face" class="fn">font_face</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/pango/auto/font_face/struct.FontFace.html" title="struct pango::auto::font_face::FontFace">FontFace</a>&gt; { ... }
+<span class="item-spacer"></span>    fn <a href="#method.font_family" class="fn">font_family</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/pango/auto/font_family/struct.FontFamily.html" title="struct pango::auto::font_family::FontFamily">FontFamily</a>&gt; { ... }
+<span class="item-spacer"></span>    fn <a href="#method.font_features" class="fn">font_features</a>(&amp;self) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/gstring/struct.GString.html" title="struct glib::gstring::GString">GString</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.font_map" class="fn">font_map</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/pango/auto/font_map/struct.FontMap.html" title="struct pango::auto::font_map::FontMap">FontMap</a>&gt; { ... }
+<span class="item-spacer"></span>    fn <a href="#method.font_size" class="fn">font_size</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.language" class="fn">language</a>(&amp;self) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/gstring/struct.GString.html" title="struct glib::gstring::GString">GString</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.level" class="fn">level</a>(&amp;self) -&gt; <a class="struct" href="../struct.FontChooserLevel.html" title="struct gtk4::FontChooserLevel">FontChooserLevel</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.preview_text" class="fn">preview_text</a>(&amp;self) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/gstring/struct.GString.html" title="struct glib::gstring::GString">GString</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.shows_preview_entry" class="fn">shows_preview_entry</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.set_filter_func" class="fn">set_filter_func</a>&lt;P: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/pango/auto/font_family/struct.FontFamily.html" title="struct pango::auto::font_family::FontFamily">FontFamily</a>, &amp;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/pango/auto/font_face/struct.FontFace.html" title="struct pango::auto::font_face::FontFace">FontFace</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> + 'static&gt;(
+        &amp;self,
+        filter: P,
+    ) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.set_font" class="fn">set_font</a>(&amp;self, fontname: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.set_font_desc" class="fn">set_font_desc</a>(&amp;self, font_desc: &amp;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/pango/auto/font_description/struct.FontDescription.html" title="struct pango::auto::font_description::FontDescription">FontDescription</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.set_font_map" class="fn">set_font_map</a>(&amp;self, fontmap: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/pango/auto/font_map/struct.FontMap.html" title="struct pango::auto::font_map::FontMap">FontMap</a>&gt;&gt;) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.set_language" class="fn">set_language</a>(&amp;self, language: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.set_level" class="fn">set_level</a>(&amp;self, level: <a class="struct" href="../struct.FontChooserLevel.html" title="struct gtk4::FontChooserLevel">FontChooserLevel</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.set_preview_text" class="fn">set_preview_text</a>(&amp;self, text: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.set_show_preview_entry" class="fn">set_show_preview_entry</a>(&amp;self, show_preview_entry: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_font_activated" class="fn">connect_font_activated</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;Self, &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>) + 'static&gt;(
+        &amp;self,
+        f: F,
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_font_notify" class="fn">connect_font_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;Self) + 'static&gt;(
+        &amp;self,
+        f: F,
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_font_desc_notify" class="fn">connect_font_desc_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;Self) + 'static&gt;(
+        &amp;self,
+        f: F,
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_font_features_notify" class="fn">connect_font_features_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;Self) + 'static&gt;(
+        &amp;self,
+        f: F,
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_language_notify" class="fn">connect_language_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;Self) + 'static&gt;(
+        &amp;self,
+        f: F,
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_level_notify" class="fn">connect_level_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;Self) + 'static&gt;(
+        &amp;self,
+        f: F,
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_preview_text_notify" class="fn">connect_preview_text_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;Self) + 'static&gt;(
+        &amp;self,
+        f: F,
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_show_preview_entry_notify" class="fn">connect_show_preview_entry_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;Self) + 'static&gt;(
+        &amp;self,
+        f: F,
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+</details>}</code></pre><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span><details class="toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>Trait containing all <a href="../struct.FontChooser.html" title="struct gtk4::FontChooser"><code>FontChooser</code></a> methods.</p>
+<h2 id="implementors-1"><a class="doc-anchor" href="#implementors-1">§</a>Implementors</h2>
+<p><a href="../struct.FontButton.html" title="struct gtk4::FontButton"><code>FontButton</code></a>, <a href="../struct.FontChooserDialog.html" title="struct gtk4::FontChooserDialog"><code>FontChooserDialog</code></a>, <a href="../struct.FontChooserWidget.html" title="struct gtk4::FontChooserWidget"><code>FontChooserWidget</code></a>, <a href="../struct.FontChooser.html" title="struct gtk4::FontChooser"><code>FontChooser</code></a></p>
+</div></details><h2 id="provided-methods" class="section-header">Provided Methods<a href="#provided-methods" class="anchor">§</a></h2><div class="methods"><details class="toggle method-toggle" open><summary><section id="method.font" class="method"><a class="src rightside" href="../../src/gtk4/auto/font_chooser.rs.html#129-135">Source</a><h4 class="code-header">fn <a href="#method.font" class="fn">font</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/gstring/struct.GString.html" title="struct glib::gstring::GString">GString</a>&gt;</h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span></summary><div class="docblock"><p>Gets the currently-selected font name.</p>
+<p>Note that this can be a different string than what you set with
+<a href="trait.FontChooserExt.html#method.set_font"><code>set_font()</code></a>, as the font chooser widget may
+normalize font names and thus return a string with a different
+structure. For example, “Helvetica Italic Bold 12” could be
+normalized to “Helvetica Bold Italic 12”.</p>
+<p>Use <code>Pango::FontDescription::equal()</code> if you want to compare two
+font descriptions.</p>
+<h5 id="deprecated-since-410"><a class="doc-anchor" href="#deprecated-since-410">§</a>Deprecated since 4.10</h5>
+<p>Use <a href="../struct.FontDialog.html" title="struct gtk4::FontDialog"><code>FontDialog</code></a> and <a href="../struct.FontDialogButton.html" title="struct gtk4::FontDialogButton"><code>FontDialogButton</code></a>
+instead</p>
+<h5 id="returns"><a class="doc-anchor" href="#returns">§</a>Returns</h5>
+<p>A string with the name
+of the current font</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.font_desc" class="method"><a class="src rightside" href="../../src/gtk4/auto/font_chooser.rs.html#162-168">Source</a><h4 class="code-header">fn <a href="#method.font_desc" class="fn">font_desc</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/pango/auto/font_description/struct.FontDescription.html" title="struct pango::auto::font_description::FontDescription">FontDescription</a>&gt;</h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span></summary><div class="docblock"><p>Gets the currently-selected font.</p>
+<p>Note that this can be a different string than what you set with
+<a href="trait.FontChooserExt.html#method.set_font"><code>set_font()</code></a>, as the font chooser widget may
+normalize font names and thus return a string with a different
+structure. For example, “Helvetica Italic Bold 12” could be
+normalized to “Helvetica Bold Italic 12”.</p>
+<p>Use <code>Pango::FontDescription::equal()</code> if you want to compare two
+font descriptions.</p>
+<h5 id="deprecated-since-410-1"><a class="doc-anchor" href="#deprecated-since-410-1">§</a>Deprecated since 4.10</h5>
+<p>Use <a href="../struct.FontDialog.html" title="struct gtk4::FontDialog"><code>FontDialog</code></a> and <a href="../struct.FontDialogButton.html" title="struct gtk4::FontDialogButton"><code>FontDialogButton</code></a>
+instead</p>
+<h5 id="returns-1"><a class="doc-anchor" href="#returns-1">§</a>Returns</h5>
+<p>A <a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/pango/auto/font_description/struct.FontDescription.html" title="struct pango::auto::font_description::FontDescription"><code>pango::FontDescription</code></a> for the
+current font</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.font_face" class="method"><a class="src rightside" href="../../src/gtk4/auto/font_chooser.rs.html#188-194">Source</a><h4 class="code-header">fn <a href="#method.font_face" class="fn">font_face</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/pango/auto/font_face/struct.FontFace.html" title="struct pango::auto::font_face::FontFace">FontFace</a>&gt;</h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span></summary><div class="docblock"><p>Gets the <a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/pango/auto/font_face/struct.FontFace.html" title="struct pango::auto::font_face::FontFace"><code>pango::FontFace</code></a> representing the selected font group
+details (i.e. family, slant, weight, width, etc).</p>
+<p>If the selected font is not installed, returns <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="variant core::option::Option::None"><code>None</code></a>.</p>
+<h5 id="deprecated-since-410-2"><a class="doc-anchor" href="#deprecated-since-410-2">§</a>Deprecated since 4.10</h5>
+<p>Use <a href="../struct.FontDialog.html" title="struct gtk4::FontDialog"><code>FontDialog</code></a> and <a href="../struct.FontDialogButton.html" title="struct gtk4::FontDialogButton"><code>FontDialogButton</code></a>
+instead</p>
+<h5 id="returns-2"><a class="doc-anchor" href="#returns-2">§</a>Returns</h5>
+<p>A <a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/pango/auto/font_face/struct.FontFace.html" title="struct pango::auto::font_face::FontFace"><code>pango::FontFace</code></a> representing the
+selected font group details</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.font_family" class="method"><a class="src rightside" href="../../src/gtk4/auto/font_chooser.rs.html#215-221">Source</a><h4 class="code-header">fn <a href="#method.font_family" class="fn">font_family</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/pango/auto/font_family/struct.FontFamily.html" title="struct pango::auto::font_family::FontFamily">FontFamily</a>&gt;</h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span></summary><div class="docblock"><p>Gets the <a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/pango/auto/font_family/struct.FontFamily.html" title="struct pango::auto::font_family::FontFamily"><code>pango::FontFamily</code></a> representing the selected font family.</p>
+<p>Font families are a collection of font faces.</p>
+<p>If the selected font is not installed, returns <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="variant core::option::Option::None"><code>None</code></a>.</p>
+<h5 id="deprecated-since-410-3"><a class="doc-anchor" href="#deprecated-since-410-3">§</a>Deprecated since 4.10</h5>
+<p>Use <a href="../struct.FontDialog.html" title="struct gtk4::FontDialog"><code>FontDialog</code></a> and <a href="../struct.FontDialogButton.html" title="struct gtk4::FontDialogButton"><code>FontDialogButton</code></a>
+instead</p>
+<h5 id="returns-3"><a class="doc-anchor" href="#returns-3">§</a>Returns</h5>
+<p>A <a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/pango/auto/font_family/struct.FontFamily.html" title="struct pango::auto::font_family::FontFamily"><code>pango::FontFamily</code></a> representing the
+selected font family</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.font_features" class="method"><a class="src rightside" href="../../src/gtk4/auto/font_chooser.rs.html#242-248">Source</a><h4 class="code-header">fn <a href="#method.font_features" class="fn">font_features</a>(&amp;self) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/gstring/struct.GString.html" title="struct glib::gstring::GString">GString</a></h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span></summary><div class="docblock"><p>Gets the currently-selected font features.</p>
+<p>The format of the returned string is compatible with the
+<a href="https://www.w3.org/TR/css-fonts-4/#font-rend-desc">CSS font-feature-settings property</a>.
+It can be passed to <code>Pango::AttrFontFeatures::new()</code>.</p>
+<h5 id="deprecated-since-410-4"><a class="doc-anchor" href="#deprecated-since-410-4">§</a>Deprecated since 4.10</h5>
+<p>Use <a href="../struct.FontDialog.html" title="struct gtk4::FontDialog"><code>FontDialog</code></a> and <a href="../struct.FontDialogButton.html" title="struct gtk4::FontDialogButton"><code>FontDialogButton</code></a>
+instead</p>
+<h5 id="returns-4"><a class="doc-anchor" href="#returns-4">§</a>Returns</h5>
+<p>the currently selected font features</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.font_map" class="method"><a class="src rightside" href="../../src/gtk4/auto/font_chooser.rs.html#265-271">Source</a><h4 class="code-header">fn <a href="#method.font_map" class="fn">font_map</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/pango/auto/font_map/struct.FontMap.html" title="struct pango::auto::font_map::FontMap">FontMap</a>&gt;</h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span></summary><div class="docblock"><p>Gets the custom font map of this font chooser widget,
+or <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="variant core::option::Option::None"><code>None</code></a> if it does not have one.</p>
+<h5 id="deprecated-since-410-5"><a class="doc-anchor" href="#deprecated-since-410-5">§</a>Deprecated since 4.10</h5>
+<p>Use <a href="../struct.FontDialog.html" title="struct gtk4::FontDialog"><code>FontDialog</code></a> and <a href="../struct.FontDialogButton.html" title="struct gtk4::FontDialogButton"><code>FontDialogButton</code></a>
+instead</p>
+<h5 id="returns-5"><a class="doc-anchor" href="#returns-5">§</a>Returns</h5>
+<p>a <a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/pango/auto/font_map/struct.FontMap.html" title="struct pango::auto::font_map::FontMap"><code>pango::FontMap</code></a></p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.font_size" class="method"><a class="src rightside" href="../../src/gtk4/auto/font_chooser.rs.html#288-290">Source</a><h4 class="code-header">fn <a href="#method.font_size" class="fn">font_size</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a></h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span></summary><div class="docblock"><p>The selected font size.</p>
+<h5 id="deprecated-since-410-6"><a class="doc-anchor" href="#deprecated-since-410-6">§</a>Deprecated since 4.10</h5>
+<p>Use <a href="../struct.FontDialog.html" title="struct gtk4::FontDialog"><code>FontDialog</code></a> and <a href="../struct.FontDialogButton.html" title="struct gtk4::FontDialogButton"><code>FontDialogButton</code></a>
+instead</p>
+<h5 id="returns-6"><a class="doc-anchor" href="#returns-6">§</a>Returns</h5>
+<p>A n integer representing the selected font size,
+or -1 if no font size is selected.</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.language" class="method"><a class="src rightside" href="../../src/gtk4/auto/font_chooser.rs.html#306-312">Source</a><h4 class="code-header">fn <a href="#method.language" class="fn">language</a>(&amp;self) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/gstring/struct.GString.html" title="struct glib::gstring::GString">GString</a></h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span></summary><div class="docblock"><p>Gets the language that is used for font features.</p>
+<h5 id="deprecated-since-410-7"><a class="doc-anchor" href="#deprecated-since-410-7">§</a>Deprecated since 4.10</h5>
+<p>Use <a href="../struct.FontDialog.html" title="struct gtk4::FontDialog"><code>FontDialog</code></a> and <a href="../struct.FontDialogButton.html" title="struct gtk4::FontDialogButton"><code>FontDialogButton</code></a>
+instead</p>
+<h5 id="returns-7"><a class="doc-anchor" href="#returns-7">§</a>Returns</h5>
+<p>the currently selected language</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.level" class="method"><a class="src rightside" href="../../src/gtk4/auto/font_chooser.rs.html#328-334">Source</a><h4 class="code-header">fn <a href="#method.level" class="fn">level</a>(&amp;self) -&gt; <a class="struct" href="../struct.FontChooserLevel.html" title="struct gtk4::FontChooserLevel">FontChooserLevel</a></h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span></summary><div class="docblock"><p>Returns the current level of granularity for selecting fonts.</p>
+<h5 id="deprecated-since-410-8"><a class="doc-anchor" href="#deprecated-since-410-8">§</a>Deprecated since 4.10</h5>
+<p>Use <a href="../struct.FontDialog.html" title="struct gtk4::FontDialog"><code>FontDialog</code></a> and <a href="../struct.FontDialogButton.html" title="struct gtk4::FontDialogButton"><code>FontDialogButton</code></a>
+instead</p>
+<h5 id="returns-8"><a class="doc-anchor" href="#returns-8">§</a>Returns</h5>
+<p>the current granularity level</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.preview_text" class="method"><a class="src rightside" href="../../src/gtk4/auto/font_chooser.rs.html#351-357">Source</a><h4 class="code-header">fn <a href="#method.preview_text" class="fn">preview_text</a>(&amp;self) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/gstring/struct.GString.html" title="struct glib::gstring::GString">GString</a></h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span></summary><div class="docblock"><p>Gets the text displayed in the preview area.</p>
+<h5 id="deprecated-since-410-9"><a class="doc-anchor" href="#deprecated-since-410-9">§</a>Deprecated since 4.10</h5>
+<p>Use <a href="../struct.FontDialog.html" title="struct gtk4::FontDialog"><code>FontDialog</code></a> and <a href="../struct.FontDialogButton.html" title="struct gtk4::FontDialogButton"><code>FontDialogButton</code></a>
+instead</p>
+<h5 id="returns-9"><a class="doc-anchor" href="#returns-9">§</a>Returns</h5>
+<p>the text displayed in the preview area</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.shows_preview_entry" class="method"><a class="src rightside" href="../../src/gtk4/auto/font_chooser.rs.html#374-380">Source</a><h4 class="code-header">fn <a href="#method.shows_preview_entry" class="fn">shows_preview_entry</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span></summary><div class="docblock"><p>Returns whether the preview entry is shown or not.</p>
+<h5 id="deprecated-since-410-10"><a class="doc-anchor" href="#deprecated-since-410-10">§</a>Deprecated since 4.10</h5>
+<p>Use <a href="../struct.FontDialog.html" title="struct gtk4::FontDialog"><code>FontDialog</code></a> and <a href="../struct.FontDialogButton.html" title="struct gtk4::FontDialogButton"><code>FontDialogButton</code></a>
+instead</p>
+<h5 id="returns-10"><a class="doc-anchor" href="#returns-10">§</a>Returns</h5>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>true</code></a> if the preview entry is shown or <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>false</code></a> if it is hidden.</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.set_filter_func" class="method"><a class="src rightside" href="../../src/gtk4/auto/font_chooser.rs.html#394-429">Source</a><h4 class="code-header">fn <a href="#method.set_filter_func" class="fn">set_filter_func</a>&lt;P: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/pango/auto/font_family/struct.FontFamily.html" title="struct pango::auto::font_family::FontFamily">FontFamily</a>, &amp;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/pango/auto/font_face/struct.FontFace.html" title="struct pango::auto::font_face::FontFace">FontFace</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> + 'static&gt;(
+    &amp;self,
+    filter: P,
+)</h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span></summary><div class="docblock"><p>Adds a filter function that decides which fonts to display
+in the font chooser.</p>
+<h5 id="deprecated-since-410-11"><a class="doc-anchor" href="#deprecated-since-410-11">§</a>Deprecated since 4.10</h5>
+<p>Use <a href="../struct.FontDialog.html" title="struct gtk4::FontDialog"><code>FontDialog</code></a> and <a href="../struct.FontDialogButton.html" title="struct gtk4::FontDialogButton"><code>FontDialogButton</code></a>
+instead</p>
+<h6 id="filter"><a class="doc-anchor" href="#filter">§</a><code>filter</code></h6>
+<p>a <code>GtkFontFilterFunc</code></p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.set_font" class="method"><a class="src rightside" href="../../src/gtk4/auto/font_chooser.rs.html#443-450">Source</a><h4 class="code-header">fn <a href="#method.set_font" class="fn">set_font</a>(&amp;self, fontname: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>)</h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span></summary><div class="docblock"><p>Sets the currently-selected font.</p>
+<h5 id="deprecated-since-410-12"><a class="doc-anchor" href="#deprecated-since-410-12">§</a>Deprecated since 4.10</h5>
+<p>Use <a href="../struct.FontDialog.html" title="struct gtk4::FontDialog"><code>FontDialog</code></a> and <a href="../struct.FontDialogButton.html" title="struct gtk4::FontDialogButton"><code>FontDialogButton</code></a>
+instead</p>
+<h6 id="fontname"><a class="doc-anchor" href="#fontname">§</a><code>fontname</code></h6>
+<p>a font name like “Helvetica 12” or “Times Bold 18”</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.set_font_desc" class="method"><a class="src rightside" href="../../src/gtk4/auto/font_chooser.rs.html#464-471">Source</a><h4 class="code-header">fn <a href="#method.set_font_desc" class="fn">set_font_desc</a>(&amp;self, font_desc: &amp;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/pango/auto/font_description/struct.FontDescription.html" title="struct pango::auto::font_description::FontDescription">FontDescription</a>)</h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span></summary><div class="docblock"><p>Sets the currently-selected font from @font_desc.</p>
+<h5 id="deprecated-since-410-13"><a class="doc-anchor" href="#deprecated-since-410-13">§</a>Deprecated since 4.10</h5>
+<p>Use <a href="../struct.FontDialog.html" title="struct gtk4::FontDialog"><code>FontDialog</code></a> and <a href="../struct.FontDialogButton.html" title="struct gtk4::FontDialogButton"><code>FontDialogButton</code></a>
+instead</p>
+<h6 id="font_desc"><a class="doc-anchor" href="#font_desc">§</a><code>font_desc</code></h6>
+<p>a <a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/pango/auto/font_description/struct.FontDescription.html" title="struct pango::auto::font_description::FontDescription"><code>pango::FontDescription</code></a></p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.set_font_map" class="method"><a class="src rightside" href="../../src/gtk4/auto/font_chooser.rs.html#512-519">Source</a><h4 class="code-header">fn <a href="#method.set_font_map" class="fn">set_font_map</a>(&amp;self, fontmap: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/pango/auto/font_map/struct.FontMap.html" title="struct pango::auto::font_map::FontMap">FontMap</a>&gt;&gt;)</h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span></summary><div class="docblock"><p>Sets a custom font map to use for this font chooser widget.</p>
+<p>A custom font map can be used to present application-specific
+fonts instead of or in addition to the normal system fonts.</p>
+<p><strong>⚠️ The following code is in c ⚠️</strong></p>
+<div class="example-wrap"><pre class="language-c"><code>FcConfig *config;
+PangoFontMap *fontmap;
+
+config = FcInitLoadConfigAndFonts ();
+FcConfigAppFontAddFile (config, my_app_font_file);
+
+fontmap = pango_cairo_font_map_new_for_font_type (CAIRO_FONT_TYPE_FT);
+pango_fc_font_map_set_config (PANGO_FC_FONT_MAP (fontmap), config);
+
+gtk_font_chooser_set_font_map (font_chooser, fontmap);</code></pre></div>
+<p>Note that other GTK widgets will only be able to use the
+application-specific font if it is present in the font map they use:</p>
+<p><strong>⚠️ The following code is in c ⚠️</strong></p>
+<div class="example-wrap"><pre class="language-c"><code>context = gtk_widget_get_pango_context (label);
+pango_context_set_font_map (context, fontmap);</code></pre></div><h5 id="deprecated-since-410-14"><a class="doc-anchor" href="#deprecated-since-410-14">§</a>Deprecated since 4.10</h5>
+<p>Use <a href="../struct.FontDialog.html" title="struct gtk4::FontDialog"><code>FontDialog</code></a> and <a href="../struct.FontDialogButton.html" title="struct gtk4::FontDialogButton"><code>FontDialogButton</code></a>
+instead</p>
+<h6 id="fontmap"><a class="doc-anchor" href="#fontmap">§</a><code>fontmap</code></h6>
+<p>a <a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/pango/auto/font_map/struct.FontMap.html" title="struct pango::auto::font_map::FontMap"><code>pango::FontMap</code></a></p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.set_language" class="method"><a class="src rightside" href="../../src/gtk4/auto/font_chooser.rs.html#533-540">Source</a><h4 class="code-header">fn <a href="#method.set_language" class="fn">set_language</a>(&amp;self, language: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>)</h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span></summary><div class="docblock"><p>Sets the language to use for font features.</p>
+<h5 id="deprecated-since-410-15"><a class="doc-anchor" href="#deprecated-since-410-15">§</a>Deprecated since 4.10</h5>
+<p>Use <a href="../struct.FontDialog.html" title="struct gtk4::FontDialog"><code>FontDialog</code></a> and <a href="../struct.FontDialogButton.html" title="struct gtk4::FontDialogButton"><code>FontDialogButton</code></a>
+instead</p>
+<h6 id="language"><a class="doc-anchor" href="#language">§</a><code>language</code></h6>
+<p>a language</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.set_level" class="method"><a class="src rightside" href="../../src/gtk4/auto/font_chooser.rs.html#554-558">Source</a><h4 class="code-header">fn <a href="#method.set_level" class="fn">set_level</a>(&amp;self, level: <a class="struct" href="../struct.FontChooserLevel.html" title="struct gtk4::FontChooserLevel">FontChooserLevel</a>)</h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span></summary><div class="docblock"><p>Sets the desired level of granularity for selecting fonts.</p>
+<h5 id="deprecated-since-410-16"><a class="doc-anchor" href="#deprecated-since-410-16">§</a>Deprecated since 4.10</h5>
+<p>Use <a href="../struct.FontDialog.html" title="struct gtk4::FontDialog"><code>FontDialog</code></a> and <a href="../struct.FontDialogButton.html" title="struct gtk4::FontDialogButton"><code>FontDialogButton</code></a>
+instead</p>
+<h6 id="level"><a class="doc-anchor" href="#level">§</a><code>level</code></h6>
+<p>the desired level of granularity</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.set_preview_text" class="method"><a class="src rightside" href="../../src/gtk4/auto/font_chooser.rs.html#574-581">Source</a><h4 class="code-header">fn <a href="#method.set_preview_text" class="fn">set_preview_text</a>(&amp;self, text: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>)</h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span></summary><div class="docblock"><p>Sets the text displayed in the preview area.</p>
+<p>The @text is used to show how the selected font looks.</p>
+<h5 id="deprecated-since-410-17"><a class="doc-anchor" href="#deprecated-since-410-17">§</a>Deprecated since 4.10</h5>
+<p>Use <a href="../struct.FontDialog.html" title="struct gtk4::FontDialog"><code>FontDialog</code></a> and <a href="../struct.FontDialogButton.html" title="struct gtk4::FontDialogButton"><code>FontDialogButton</code></a>
+instead</p>
+<h6 id="text"><a class="doc-anchor" href="#text">§</a><code>text</code></h6>
+<p>the text to display in the preview area</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.set_show_preview_entry" class="method"><a class="src rightside" href="../../src/gtk4/auto/font_chooser.rs.html#595-602">Source</a><h4 class="code-header">fn <a href="#method.set_show_preview_entry" class="fn">set_show_preview_entry</a>(&amp;self, show_preview_entry: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>)</h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span></summary><div class="docblock"><p>Shows or hides the editable preview entry.</p>
+<h5 id="deprecated-since-410-18"><a class="doc-anchor" href="#deprecated-since-410-18">§</a>Deprecated since 4.10</h5>
+<p>Use <a href="../struct.FontDialog.html" title="struct gtk4::FontDialog"><code>FontDialog</code></a> and <a href="../struct.FontDialogButton.html" title="struct gtk4::FontDialogButton"><code>FontDialogButton</code></a>
+instead</p>
+<h6 id="show_preview_entry"><a class="doc-anchor" href="#show_preview_entry">§</a><code>show_preview_entry</code></h6>
+<p>whether to show the editable preview entry or not</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.connect_font_activated" class="method"><a class="src rightside" href="../../src/gtk4/auto/font_chooser.rs.html#617-643">Source</a><h4 class="code-header">fn <a href="#method.connect_font_activated" class="fn">connect_font_activated</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;Self, &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>) + 'static&gt;(
+    &amp;self,
+    f: F,
+) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span></summary><div class="docblock"><p>Emitted when a font is activated.</p>
+<p>This usually happens when the user double clicks an item,
+or an item is selected and the user presses one of the keys
+Space, Shift+Space, Return or Enter.</p>
+<h5 id="deprecated-since-410-19"><a class="doc-anchor" href="#deprecated-since-410-19">§</a>Deprecated since 4.10</h5>
+<p>Use <a href="../struct.FontDialog.html" title="struct gtk4::FontDialog"><code>FontDialog</code></a> and <a href="../struct.FontDialogButton.html" title="struct gtk4::FontDialogButton"><code>FontDialogButton</code></a> instead</p>
+<h6 id="fontname-1"><a class="doc-anchor" href="#fontname-1">§</a><code>fontname</code></h6>
+<p>the font name</p>
+</div></details><section id="method.connect_font_notify" class="method"><a class="src rightside" href="../../src/gtk4/auto/font_chooser.rs.html#647-667">Source</a><h4 class="code-header">fn <a href="#method.connect_font_notify" class="fn">connect_font_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;Self) + 'static&gt;(&amp;self, f: F) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span><section id="method.connect_font_desc_notify" class="method"><a class="src rightside" href="../../src/gtk4/auto/font_chooser.rs.html#671-694">Source</a><h4 class="code-header">fn <a href="#method.connect_font_desc_notify" class="fn">connect_font_desc_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;Self) + 'static&gt;(
+    &amp;self,
+    f: F,
+) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span><section id="method.connect_font_features_notify" class="method"><a class="src rightside" href="../../src/gtk4/auto/font_chooser.rs.html#698-721">Source</a><h4 class="code-header">fn <a href="#method.connect_font_features_notify" class="fn">connect_font_features_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;Self) + 'static&gt;(
+    &amp;self,
+    f: F,
+) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span><section id="method.connect_language_notify" class="method"><a class="src rightside" href="../../src/gtk4/auto/font_chooser.rs.html#725-748">Source</a><h4 class="code-header">fn <a href="#method.connect_language_notify" class="fn">connect_language_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;Self) + 'static&gt;(
+    &amp;self,
+    f: F,
+) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span><section id="method.connect_level_notify" class="method"><a class="src rightside" href="../../src/gtk4/auto/font_chooser.rs.html#752-772">Source</a><h4 class="code-header">fn <a href="#method.connect_level_notify" class="fn">connect_level_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;Self) + 'static&gt;(&amp;self, f: F) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span><section id="method.connect_preview_text_notify" class="method"><a class="src rightside" href="../../src/gtk4/auto/font_chooser.rs.html#776-799">Source</a><h4 class="code-header">fn <a href="#method.connect_preview_text_notify" class="fn">connect_preview_text_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;Self) + 'static&gt;(
+    &amp;self,
+    f: F,
+) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span><section id="method.connect_show_preview_entry_notify" class="method"><a class="src rightside" href="../../src/gtk4/auto/font_chooser.rs.html#803-826">Source</a><h4 class="code-header">fn <a href="#method.connect_show_preview_entry_notify" class="fn">connect_show_preview_entry_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;Self) + 'static&gt;(
+    &amp;self,
+    f: F,
+) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span></div><h2 id="dyn-compatibility" class="section-header">Dyn Compatibility<a href="#dyn-compatibility" class="anchor">§</a></h2><div class="dyn-compatibility-info"><p>This trait is <b>not</b> <a href="https://doc.rust-lang.org/nightly/reference/items/traits.html#dyn-compatibility">dyn compatible</a>.</p><p><i>In older versions of Rust, dyn compatibility was called "object safety", so this trait is not object safe.</i></p></div><h2 id="implementors" class="section-header">Implementors<a href="#implementors" class="anchor">§</a></h2><div id="implementors-list"><section id="impl-FontChooserExt-for-O" class="impl"><a class="src rightside" href="../../src/gtk4/auto/font_chooser.rs.html#829">Source</a><a href="#impl-FontChooserExt-for-O" class="anchor">§</a><h3 class="code-header">impl&lt;O: <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.FontChooser.html" title="struct gtk4::FontChooser">FontChooser</a>&gt;&gt; <a class="trait" href="trait.FontChooserExt.html" title="trait gtk4::prelude::FontChooserExt">FontChooserExt</a> for O</h3></section></div><script src="../../trait.impl/gtk4/auto/font_chooser/trait.FontChooserExt.js" async></script></section></div></main></body></html>

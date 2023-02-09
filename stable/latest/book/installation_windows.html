@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html lang="en" class="sidebar-visible no-js rust">
+<html lang="en" class="rust sidebar-visible" dir="ltr">
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
@@ -7,10 +7,10 @@
 
 
         <!-- Custom HTML head -->
-        
+
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="theme-color" content="#ffffff" />
+        <meta name="theme-color" content="#ffffff">
 
         <link rel="icon" href="favicon.svg">
         <link rel="shortcut icon" href="favicon.png">
@@ -24,26 +24,41 @@
         <link rel="stylesheet" href="fonts/fonts.css">
 
         <!-- Highlight.js Stylesheets -->
-        <link rel="stylesheet" href="highlight.css">
-        <link rel="stylesheet" href="tomorrow-night.css">
-        <link rel="stylesheet" href="ayu-highlight.css">
+        <link rel="stylesheet" id="highlight-css" href="highlight.css">
+        <link rel="stylesheet" id="tomorrow-night-css" href="tomorrow-night.css">
+        <link rel="stylesheet" id="ayu-highlight-css" href="ayu-highlight.css">
 
         <!-- Custom theme stylesheets -->
         <link rel="stylesheet" href="theme/style.css">
 
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "";
+            const default_light_theme = "rust";
+            const default_dark_theme = "navy";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="toc.js"></script>
     </head>
     <body>
-        <!-- Provide site root to javascript -->
-        <script>
-            var path_to_root = "";
-            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "rust";
-        </script>
-
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="body-container">
         <!-- Work around some values being stored in localStorage wrapped in quotes -->
         <script>
             try {
-                var theme = localStorage.getItem('mdbook-theme');
-                var sidebar = localStorage.getItem('mdbook-sidebar');
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
 
                 if (theme.startsWith('"') && theme.endsWith('"')) {
                     localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
@@ -57,55 +72,65 @@
 
         <!-- Set the theme before any content is loaded, prevents flash -->
         <script>
-            var theme;
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
             try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
             if (theme === null || theme === undefined) { theme = default_theme; }
-            var html = document.querySelector('html');
-            html.classList.remove('no-js')
+            const html = document.documentElement;
             html.classList.remove('rust')
             html.classList.add(theme);
-            html.classList.add('js');
+            html.classList.add("js");
         </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
 
         <!-- Hide / unhide sidebar before it is displayed -->
         <script>
-            var html = document.querySelector('html');
-            var sidebar = 'hidden';
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
             }
+            sidebar_toggle.checked = sidebar === 'visible';
             html.classList.remove('sidebar-visible');
             html.classList.add("sidebar-" + sidebar);
         </script>
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
-            <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="introduction.html">Introduction</a></li><li class="chapter-item expanded "><a href="installation.html"><strong aria-hidden="true">1.</strong> Installation</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="installation_linux.html"><strong aria-hidden="true">1.1.</strong> Linux</a></li><li class="chapter-item expanded "><a href="installation_macos.html"><strong aria-hidden="true">1.2.</strong> macOS</a></li><li class="chapter-item expanded "><a href="installation_windows.html" class="active"><strong aria-hidden="true">1.3.</strong> Windows</a></li></ol></li><li class="chapter-item expanded "><a href="project_setup.html"><strong aria-hidden="true">2.</strong> Project Setup</a></li><li class="chapter-item expanded "><a href="hello_world.html"><strong aria-hidden="true">3.</strong> Hello World!</a></li><li class="chapter-item expanded "><a href="widgets.html"><strong aria-hidden="true">4.</strong> Widgets</a></li><li class="chapter-item expanded "><a href="g_object_concepts.html"><strong aria-hidden="true">5.</strong> GObject Concepts</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="g_object_memory_management.html"><strong aria-hidden="true">5.1.</strong> Memory Management</a></li><li class="chapter-item expanded "><a href="g_object_subclassing.html"><strong aria-hidden="true">5.2.</strong> Subclassing</a></li><li class="chapter-item expanded "><a href="g_object_values.html"><strong aria-hidden="true">5.3.</strong> Generic Values</a></li><li class="chapter-item expanded "><a href="g_object_properties.html"><strong aria-hidden="true">5.4.</strong> Properties</a></li><li class="chapter-item expanded "><a href="g_object_signals.html"><strong aria-hidden="true">5.5.</strong> Signals</a></li></ol></li><li class="chapter-item expanded "><a href="main_event_loop.html"><strong aria-hidden="true">6.</strong> The Main Event Loop</a></li><li class="chapter-item expanded "><a href="settings.html"><strong aria-hidden="true">7.</strong> Settings</a></li><li class="chapter-item expanded "><a href="saving_window_state.html"><strong aria-hidden="true">8.</strong> Saving Window State</a></li><li class="chapter-item expanded "><a href="list_widgets.html"><strong aria-hidden="true">9.</strong> List Widgets</a></li><li class="chapter-item expanded "><a href="composite_templates.html"><strong aria-hidden="true">10.</strong> Composite Templates</a></li><li class="chapter-item expanded "><a href="todo_1.html"><strong aria-hidden="true">11.</strong> Building a Simple To-Do App</a></li><li class="chapter-item expanded "><a href="actions.html"><strong aria-hidden="true">12.</strong> Actions</a></li><li class="chapter-item expanded "><a href="todo_2.html"><strong aria-hidden="true">13.</strong> Manipulating State of To-Do App</a></li><li class="chapter-item expanded "><a href="css.html"><strong aria-hidden="true">14.</strong> CSS</a></li><li class="chapter-item expanded "><a href="libadwaita.html"><strong aria-hidden="true">15.</strong> Libadwaita</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="todo_3.html"><strong aria-hidden="true">15.1.</strong> Let To-Do App use Libadwaita</a></li><li class="chapter-item expanded "><a href="todo_4.html"><strong aria-hidden="true">15.2.</strong> Adding Collections</a></li></ol></li></ol>
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="toc.html"></iframe>
+            </noscript>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
             </div>
-            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
 
         <div id="page-wrapper" class="page-wrapper">
 
             <div class="page">
-                                <div id="menu-bar-hover-placeholder"></div>
-                <div id="menu-bar" class="menu-bar sticky bordered">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
                     <div class="left-buttons">
-                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
                             <i class="fa fa-bars"></i>
-                        </button>
+                        </label>
                         <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
                             <i class="fa fa-paint-brush"></i>
                         </button>
                         <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="default_theme">Auto</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
                         </ul>
-                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                        <button id="search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="searchbar">
                             <i class="fa fa-search"></i>
                         </button>
                     </div>
@@ -116,7 +141,7 @@
                         <a href="print.html" title="Print this book" aria-label="Print this book">
                             <i id="print-button" class="fa fa-print"></i>
                         </a>
-                        <a href="https://github.com/gtk-rs/gtk4-rs/tree/master/book" title="Git repository" aria-label="Git repository">
+                        <a href="https://github.com/gtk-rs/gtk4-rs/tree/main/book" title="Git repository" aria-label="Git repository">
                             <i id="git-repository-button" class="fa fa-github"></i>
                         </a>
 
@@ -150,27 +175,27 @@
 If in doubt, go for MSVC since that is the default on Windows.
 You will want to go for the GNU toolchain if you depend on libraries that can only be compiled with the GNU toolchain.</p>
 <h2 id="install-rustup"><a class="header" href="#install-rustup">Install Rustup</a></h2>
-<p>Install the rust toolchain via <a href="https://rustup.rs/">rustup</a>.</p>
+<p>Install the Rust toolchain via <a href="https://rustup.rs/">rustup</a>.</p>
 <h2 id="install-gtk-4"><a class="header" href="#install-gtk-4">Install GTK 4</a></h2>
 <details>
 <summary>Build GTK 4 with gvsbuild and MSVC (recommended)</summary>
 <h3 id="set-rust-toolchain-to-msvc"><a class="header" href="#set-rust-toolchain-to-msvc">Set Rust toolchain to MSVC</a></h3>
-<p>Set the Rust toolchain to MSVC by executing:</p>
+<p>Tell Rust to use MSVC by executing:</p>
 <pre><code>rustup default stable-msvc
 </code></pre>
+<p>Note that this does not install the MSVC toolchain. If you don't have it yet, you will need to <a href="https://learn.microsoft.com/en-us/windows/dev-environment/rust/setup">install it separately</a>.</p>
 <h3 id="build-gtk-4"><a class="header" href="#build-gtk-4">Build GTK 4</a></h3>
-<p>Follow the <a href="https://github.com/wingtk/gvsbuild#development-environment"><code>gvsbuild</code> docs to build GTK 4</a>.
-When choosing the GTK version to build, select <code>gtk4</code> instead of <code>gtk3</code>: </p>
+<p>Follow the <a href="https://github.com/wingtk/gvsbuild#development-environment"><code>gvsbuild</code> docs to build GTK 4</a>. Be sure to build the right version:</p>
 <pre><code>gvsbuild build gtk4
 </code></pre>
-<h3 id="update-path-environment-variable"><a class="header" href="#update-path-environment-variable">Update <code>Path</code> environment variable</a></h3>
-<ol start="2">
-<li>Update your <code>Path</code> environment variable to include the GTK 4 libraries:
+<h3 id="update-environment-variables"><a class="header" href="#update-environment-variables">Update environment variables</a></h3>
 <ol>
-<li>Go to settings -&gt; Search and open <code>Advanced system settings</code> -&gt; Click on <code>Environment variables</code></li>
-<li>Select <code>Path</code> -&gt; Click on <code>Edit</code> -&gt; Add <code>C:\gtk-build\gtk\x64\release\bin</code></li>
-</ol>
-</li>
+<li>Go to Start</li>
+<li>Search for 'Advanced system settings'</li>
+<li>Click 'Environment Variables...'</li>
+<li>Ensure there is a user variable named <code>PKG_CONFIG_PATH</code> with value <code>C:\gtk-build\gtk\x64\release\lib\pkgconfig</code></li>
+<li>Edit the variable named <code>Path</code> and add <code>C:\gtk-build\gtk\x64\release\bin</code> to it</li>
+<li>Ensure there is a user variable named <code>Lib</code> with value <code>C:\gtk-build\gtk\x64\release\lib</code> (or add new value to existing variable if already exists)</li>
 </ol>
 <p>You can now continue with the <a href="./project_setup.html">project setup</a>.</p>
 </details>
@@ -184,7 +209,7 @@ can build GTK 4 and the minimum dependencies you need manually.</p>
 </code></pre>
 <h3 id="visual-studio"><a class="header" href="#visual-studio">Visual Studio</a></h3>
 <p>Install Visual Studio Community from <a href="https://visualstudio.microsoft.com/de/vs/community/">visualstudio.microsoft.com</a>.
-Make sure to check the box &quot;Desktop development with C++&quot; during the installation process.</p>
+Make sure to check the box "Desktop development with C++" during the installation process.</p>
 <div style="text-align:center"><img src="img/vs-install.png" /></div>
 <h3 id="git"><a class="header" href="#git">Git</a></h3>
 <p>Download git from <a href="https://gitforwindows.org/">gitforwindows.org</a>.</p>
@@ -203,7 +228,7 @@ Make sure to select the static version.</p>
 <h3 id="pkg-config"><a class="header" href="#pkg-config">Pkg-config</a></h3>
 <p>Download pkg-config-lite from <a href="https://sourceforge.net/projects/pkgconfiglite/">sourceforge.net</a>.
 Then extract and unpack it in <code>C:/</code>, so that the executable is in <code>C:\pkg-config-lite-0.28-1\bin</code>.</p>
-<h3 id="update-environment-variables"><a class="header" href="#update-environment-variables">Update environment variables</a></h3>
+<h3 id="update-environment-variables-1"><a class="header" href="#update-environment-variables-1">Update environment variables</a></h3>
 <ol>
 <li>Go to settings -&gt; Search and open <code>Advanced system settings</code> -&gt; Click on <code>Environment variables</code></li>
 <li>Select <code>Path</code> -&gt; Click on <code>Edit</code> -&gt; Add the following entries:</li>
@@ -231,6 +256,9 @@ git clone https://gitlab.gnome.org/GNOME/librsvg.git --depth 1
 :: Make sure that cmd finds pkg-config-lite when searching for pkg-config
 where pkg-config
 
+:: Make sure that setuptools is available.
+pip install setuptools
+
 cd gtk
 meson setup builddir --prefix=C:/gnome -Dbuild-tests=false -Dmedia-gstreamer=disabled
 meson install -C builddir
@@ -243,9 +271,7 @@ cmake --install build
 cd /
 
 cd librsvg/win32
-where python
-nmake /f generate-msvc.mak generate-nmake-files PYTHON=&lt;output from last command&gt;
-xcopy /s C:\gnome\include\cairo C:\gnome\include
+nmake /f generate-msvc.mak generate-nmake-files
 nmake /f Makefile.vc CFG=release install PREFIX=C:\gnome
 cd /
 </code></pre>
@@ -258,14 +284,14 @@ cd /
 <h3 id="remove-residues-from-the-msvc-toolchain"><a class="header" href="#remove-residues-from-the-msvc-toolchain">Remove residues from the MSVC toolchain</a></h3>
 <p>If you used the MSVC toolchain before, make sure to revert all changes you made to environment variables during the installation process.</p>
 <h3 id="msys2"><a class="header" href="#msys2">MSYS2</a></h3>
-<p>Install MSYS2 from <a href="https://www.msys2.org/">www.msys2.org</a> </p>
+<p>Install MSYS2 from <a href="https://www.msys2.org/">www.msys2.org</a></p>
 <h3 id="install-gtk-4-1"><a class="header" href="#install-gtk-4-1">Install GTK 4</a></h3>
 <p>From the Windows start menu, search for <code>MSYS2 MinGW 64-bit</code>.
 That will open a terminal configured to use MinGW x64 tools.</p>
 <p>There, execute the following commands to install <code>GTK 4</code>, <code>pkgconf</code> and <code>gcc</code>.</p>
 <pre><code class="language-sh">pacman -S mingw-w64-x86_64-gtk4 mingw-w64-x86_64-gettext mingw-w64-x86_64-libxml2 mingw-w64-x86_64-librsvg mingw-w64-x86_64-pkgconf mingw-w64-x86_64-gcc
 </code></pre>
-<h3 id="update-path-environment-variable-1"><a class="header" href="#update-path-environment-variable-1">Update <code>Path</code> environment variable</a></h3>
+<h3 id="update-path-environment-variable"><a class="header" href="#update-path-environment-variable">Update <code>Path</code> environment variable</a></h3>
 <ol>
 <li>Go to settings -&gt; Search and open <code>Advanced system settings</code> -&gt; Click on <code>Environment variables</code></li>
 <li>Select <code>Path</code> -&gt; Click on <code>Edit</code> -&gt; Add the following three entries:</li>
@@ -294,7 +320,7 @@ If it does not work anymore, please open an <a href="https://github.com/gtk-rs/g
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next" href="project_setup.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="project_setup.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -308,7 +334,7 @@ If it does not work anymore, please open an <a href="https://github.com/gtk-rs/g
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next" href="project_setup.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="project_setup.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>
@@ -334,5 +360,6 @@ If it does not work anymore, please open an <a href="https://github.com/gtk-rs/g
         <!-- Custom JS scripts -->
 
 
+    </div>
     </body>
 </html>

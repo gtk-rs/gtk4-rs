@@ -1,0 +1,131 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Trait containing all `struct@Popup` methods."><title>PopupExt in gdk4::prelude - Rust</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../static.files/rustdoc-84e720fa.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="gdk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.89.0-nightly (5526a2f47 2025-06-20)" data-channel="nightly" data-search-js="search-343419c9.js" data-settings-js="settings-5514c975.js" ><script src="../../static.files/storage-4e99c027.js"></script><script defer src="sidebar-items.js"></script><script defer src="../../static.files/main-fd3af306.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-32bb7600.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-6580c154.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-044be391.svg"></head><body class="rustdoc trait"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
+
+    function checkDocsLatestStable() {
+        function popup(msg, url) { return `
+            <style scoped="scoped">
+                .popup {
+                    max-width: 16em;
+                    background-color: #fff;
+                    position: fixed;
+                    z-index: 1;
+                    margin-left: auto;
+                    bottom: 1em;
+                    right: 1em;
+                    border-radius: 5px;
+                    box-shadow: 1px 1px 4px #777;
+                }
+
+                .popup a.version {
+                    color: #e57300;
+                    padding: 0.6em 1em;
+                    display: block;
+                }
+                .popup a.version:hover {
+                    color: #b25900;
+                }
+
+                .popup a.close {
+                    color: white;
+                    background: grey;
+                    border-radius: 99px;
+                    display: inline-block;
+                    width: 19px;
+                    line-height: 19px;
+                    font-weight: bold;
+                    text-align: center;
+                    margin: 0.6em;
+                    float: right;
+                }
+                .popup a.close:hover {
+                    background: black;
+                }
+            </style>
+            <section class="popup" id="gir_docs_popup">
+                <a class="close" href="#" onclick="document.getElementById('gir_docs_popup').remove(); return false">×</a>
+                <a class="version" href="https://gtk-rs.org/gtk4-rs/stable/latest/docs">
+                    ⚠ ${msg}
+                </a>
+            </section>
+        ` };
+
+        if ("0.9" == "main") {
+            document.body.insertAdjacentHTML(
+                'beforeend',
+                popup("This is the development version. Go to latest stable version.", "stable/latest")
+            );
+        } else {
+            fetch('https://gtk-rs.org/gtk4-rs/LATEST_RELEASE_BRANCH')
+                .then(response => response.text())
+                .then(latest_branch => {
+                    if (latest_branch.trim() != "0.9") {
+                        document.body.insertAdjacentHTML(
+                            'beforeend',
+                            popup("This version is outdated. Go to latest version.", "stable/latest")
+                        );
+                    }
+                });
+        }
+    }
+</script>
+
+
+<nav class="mobile-topbar"><button class="sidebar-menu-toggle" title="show sidebar"></button></nav><nav class="sidebar"><div class="sidebar-crate"><h2><a href="../../gdk4/index.html">gdk4</a><span class="version">0.9.7</span></h2></div><div class="sidebar-elems"><section id="rustdoc-toc"><h2 class="location"><a href="#">Popup<wbr>Ext</a></h2><h3><a href="#">Sections</a></h3><ul class="block top-toc"><li><a href="#implementors-1" title="Implementors">Implementors</a></li></ul><h3><a href="#provided-methods">Provided Methods</a></h3><ul class="block"><li><a href="#method.is_autohide" title="is_autohide">is_autohide</a></li><li><a href="#method.parent" title="parent">parent</a></li><li><a href="#method.position_x" title="position_x">position_x</a></li><li><a href="#method.position_y" title="position_y">position_y</a></li><li><a href="#method.present" title="present">present</a></li><li><a href="#method.rect_anchor" title="rect_anchor">rect_anchor</a></li><li><a href="#method.surface_anchor" title="surface_anchor">surface_anchor</a></li></ul><h3><a href="#dyn-compatibility">Dyn Compatibility</a></h3><h3><a href="#implementors">Implementors</a></h3></section><div id="rustdoc-modnav"><h2><a href="index.html">In gdk4::<wbr>prelude</a></h2></div></div></nav><div class="sidebar-resizer" title="Drag to resize sidebar"></div><main><div class="width-limiter"><rustdoc-search></rustdoc-search><section id="main-content" class="content"><div class="main-heading"><div class="rustdoc-breadcrumbs"><a href="../index.html">gdk4</a>::<wbr><a href="index.html">prelude</a></div><h1>Trait <span class="trait">PopupExt</span><button id="copy-path" title="Copy item path to clipboard">Copy item path</button></h1><rustdoc-toolbar></rustdoc-toolbar><span class="sub-heading"><a class="src" href="../../src/gdk4/auto/popup.rs.html#109-227">Source</a> </span></div><pre class="rust item-decl"><code>pub trait PopupExt:
+    <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Popup.html" title="struct gdk4::Popup">Popup</a>&gt;
+    + Sealed
+    + 'static {
+    // Provided methods
+    fn <a href="#method.is_autohide" class="fn">is_autohide</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.parent" class="fn">parent</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../struct.Surface.html" title="struct gdk4::Surface">Surface</a>&gt; { ... }
+<span class="item-spacer"></span>    fn <a href="#method.position_x" class="fn">position_x</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.position_y" class="fn">position_y</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.rect_anchor" class="fn">rect_anchor</a>(&amp;self) -&gt; <a class="enum" href="../enum.Gravity.html" title="enum gdk4::Gravity">Gravity</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.surface_anchor" class="fn">surface_anchor</a>(&amp;self) -&gt; <a class="enum" href="../enum.Gravity.html" title="enum gdk4::Gravity">Gravity</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.present" class="fn">present</a>(&amp;self, width: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, height: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, layout: &amp;<a class="struct" href="../struct.PopupLayout.html" title="struct gdk4::PopupLayout">PopupLayout</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> { ... }
+}</code></pre><details class="toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>Trait containing all <a href="../struct.Popup.html" title="struct gdk4::Popup"><code>Popup</code></a> methods.</p>
+<h2 id="implementors-1"><a class="doc-anchor" href="#implementors-1">§</a>Implementors</h2>
+<p><a href="../struct.Popup.html" title="struct gdk4::Popup"><code>Popup</code></a></p>
+</div></details><h2 id="provided-methods" class="section-header">Provided Methods<a href="#provided-methods" class="anchor">§</a></h2><div class="methods"><details class="toggle method-toggle" open><summary><section id="method.is_autohide" class="method"><a class="src rightside" href="../../src/gdk4/auto/popup.rs.html#118-120">Source</a><h4 class="code-header">fn <a href="#method.is_autohide" class="fn">is_autohide</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></section></summary><div class="docblock"><p>Returns whether this popup is set to hide on outside clicks.</p>
+<h5 id="returns"><a class="doc-anchor" href="#returns">§</a>Returns</h5>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>true</code></a> if @self will autohide</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.parent" class="method"><a class="src rightside" href="../../src/gdk4/auto/popup.rs.html#129-131">Source</a><h4 class="code-header">fn <a href="#method.parent" class="fn">parent</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../struct.Surface.html" title="struct gdk4::Surface">Surface</a>&gt;</h4></section></summary><div class="docblock"><p>Returns the parent surface of a popup.</p>
+<h5 id="returns-1"><a class="doc-anchor" href="#returns-1">§</a>Returns</h5>
+<p>the parent surface</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.position_x" class="method"><a class="src rightside" href="../../src/gdk4/auto/popup.rs.html#140-142">Source</a><h4 class="code-header">fn <a href="#method.position_x" class="fn">position_x</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a></h4></section></summary><div class="docblock"><p>Obtains the position of the popup relative to its parent.</p>
+<h5 id="returns-2"><a class="doc-anchor" href="#returns-2">§</a>Returns</h5>
+<p>the X coordinate of @self position</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.position_y" class="method"><a class="src rightside" href="../../src/gdk4/auto/popup.rs.html#151-153">Source</a><h4 class="code-header">fn <a href="#method.position_y" class="fn">position_y</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a></h4></section></summary><div class="docblock"><p>Obtains the position of the popup relative to its parent.</p>
+<h5 id="returns-3"><a class="doc-anchor" href="#returns-3">§</a>Returns</h5>
+<p>the Y coordinate of @self position</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.rect_anchor" class="method"><a class="src rightside" href="../../src/gdk4/auto/popup.rs.html#165-171">Source</a><h4 class="code-header">fn <a href="#method.rect_anchor" class="fn">rect_anchor</a>(&amp;self) -&gt; <a class="enum" href="../enum.Gravity.html" title="enum gdk4::Gravity">Gravity</a></h4></section></summary><div class="docblock"><p>Gets the current popup rectangle anchor.</p>
+<p>The value returned may change after calling <a href="trait.PopupExt.html#method.present"><code>present()</code></a>,
+or after the <a href="../struct.Surface.html#layout" title="struct gdk4::Surface"><code>layout</code></a> signal is emitted.</p>
+<h5 id="returns-4"><a class="doc-anchor" href="#returns-4">§</a>Returns</h5>
+<p>the current rectangle anchor value of @self</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.surface_anchor" class="method"><a class="src rightside" href="../../src/gdk4/auto/popup.rs.html#183-189">Source</a><h4 class="code-header">fn <a href="#method.surface_anchor" class="fn">surface_anchor</a>(&amp;self) -&gt; <a class="enum" href="../enum.Gravity.html" title="enum gdk4::Gravity">Gravity</a></h4></section></summary><div class="docblock"><p>Gets the current popup surface anchor.</p>
+<p>The value returned may change after calling <a href="trait.PopupExt.html#method.present"><code>present()</code></a>,
+or after the <a href="../struct.Surface.html#layout" title="struct gdk4::Surface"><code>layout</code></a> signal is emitted.</p>
+<h5 id="returns-5"><a class="doc-anchor" href="#returns-5">§</a>Returns</h5>
+<p>the current surface anchor value of @self</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.present" class="method"><a class="src rightside" href="../../src/gdk4/auto/popup.rs.html#217-226">Source</a><h4 class="code-header">fn <a href="#method.present" class="fn">present</a>(&amp;self, width: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, height: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, layout: &amp;<a class="struct" href="../struct.PopupLayout.html" title="struct gdk4::PopupLayout">PopupLayout</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></section></summary><div class="docblock"><p>Present @self after having processed the <a href="../struct.PopupLayout.html" title="struct gdk4::PopupLayout"><code>PopupLayout</code></a> rules.</p>
+<p>If the popup was previously not showing, it will be shown,
+otherwise it will change position according to @layout.</p>
+<p>After calling this function, the result should be handled in response
+to the <a href="../struct.Surface.html#layout" title="struct gdk4::Surface"><code>layout</code></a> signal being emitted. The resulting
+popup position can be queried using <a href="trait.PopupExt.html#method.position_x"><code>position_x()</code></a>,
+<a href="trait.PopupExt.html#method.position_y"><code>position_y()</code></a>, and the resulting size will be sent as
+parameters in the layout signal. Use <a href="trait.PopupExt.html#method.rect_anchor"><code>rect_anchor()</code></a>
+and <a href="trait.PopupExt.html#method.surface_anchor"><code>surface_anchor()</code></a> to get the resulting anchors.</p>
+<p>Presenting may fail, for example if the @self is set to autohide
+and is immediately hidden upon being presented. If presenting failed,
+the <a href="../struct.Surface.html#layout" title="struct gdk4::Surface"><code>layout</code></a> signal will not me emitted.</p>
+<h6 id="width"><a class="doc-anchor" href="#width">§</a><code>width</code></h6>
+<p>the unconstrained popup width to layout</p>
+<h6 id="height"><a class="doc-anchor" href="#height">§</a><code>height</code></h6>
+<p>the unconstrained popup height to layout</p>
+<h6 id="layout-1"><a class="doc-anchor" href="#layout-1">§</a><code>layout</code></h6>
+<p>the <a href="../struct.PopupLayout.html" title="struct gdk4::PopupLayout"><code>PopupLayout</code></a> object used to layout</p>
+<h5 id="returns-6"><a class="doc-anchor" href="#returns-6">§</a>Returns</h5>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>false</code></a> if it failed to be presented, otherwise <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>true</code></a>.</p>
+</div></details></div><h2 id="dyn-compatibility" class="section-header">Dyn Compatibility<a href="#dyn-compatibility" class="anchor">§</a></h2><div class="dyn-compatibility-info"><p>This trait is <b>not</b> <a href="https://doc.rust-lang.org/nightly/reference/items/traits.html#dyn-compatibility">dyn compatible</a>.</p><p><i>In older versions of Rust, dyn compatibility was called "object safety", so this trait is not object safe.</i></p></div><h2 id="implementors" class="section-header">Implementors<a href="#implementors" class="anchor">§</a></h2><div id="implementors-list"><section id="impl-PopupExt-for-O" class="impl"><a class="src rightside" href="../../src/gdk4/auto/popup.rs.html#229">Source</a><a href="#impl-PopupExt-for-O" class="anchor">§</a><h3 class="code-header">impl&lt;O: <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Popup.html" title="struct gdk4::Popup">Popup</a>&gt;&gt; <a class="trait" href="trait.PopupExt.html" title="trait gdk4::prelude::PopupExt">PopupExt</a> for O</h3></section></div><script src="../../trait.impl/gdk4/auto/popup/trait.PopupExt.js" async></script></section></div></main></body></html>

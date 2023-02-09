@@ -1,0 +1,238 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Trait containing all `struct@GLContext` methods."><title>GLContextExt in gdk4::prelude - Rust</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../static.files/rustdoc-84e720fa.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="gdk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.89.0-nightly (5526a2f47 2025-06-20)" data-channel="nightly" data-search-js="search-343419c9.js" data-settings-js="settings-5514c975.js" ><script src="../../static.files/storage-4e99c027.js"></script><script defer src="sidebar-items.js"></script><script defer src="../../static.files/main-fd3af306.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-32bb7600.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-6580c154.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-044be391.svg"></head><body class="rustdoc trait"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
+
+    function checkDocsLatestStable() {
+        function popup(msg, url) { return `
+            <style scoped="scoped">
+                .popup {
+                    max-width: 16em;
+                    background-color: #fff;
+                    position: fixed;
+                    z-index: 1;
+                    margin-left: auto;
+                    bottom: 1em;
+                    right: 1em;
+                    border-radius: 5px;
+                    box-shadow: 1px 1px 4px #777;
+                }
+
+                .popup a.version {
+                    color: #e57300;
+                    padding: 0.6em 1em;
+                    display: block;
+                }
+                .popup a.version:hover {
+                    color: #b25900;
+                }
+
+                .popup a.close {
+                    color: white;
+                    background: grey;
+                    border-radius: 99px;
+                    display: inline-block;
+                    width: 19px;
+                    line-height: 19px;
+                    font-weight: bold;
+                    text-align: center;
+                    margin: 0.6em;
+                    float: right;
+                }
+                .popup a.close:hover {
+                    background: black;
+                }
+            </style>
+            <section class="popup" id="gir_docs_popup">
+                <a class="close" href="#" onclick="document.getElementById('gir_docs_popup').remove(); return false">×</a>
+                <a class="version" href="https://gtk-rs.org/gtk4-rs/stable/latest/docs">
+                    ⚠ ${msg}
+                </a>
+            </section>
+        ` };
+
+        if ("0.9" == "main") {
+            document.body.insertAdjacentHTML(
+                'beforeend',
+                popup("This is the development version. Go to latest stable version.", "stable/latest")
+            );
+        } else {
+            fetch('https://gtk-rs.org/gtk4-rs/LATEST_RELEASE_BRANCH')
+                .then(response => response.text())
+                .then(latest_branch => {
+                    if (latest_branch.trim() != "0.9") {
+                        document.body.insertAdjacentHTML(
+                            'beforeend',
+                            popup("This version is outdated. Go to latest version.", "stable/latest")
+                        );
+                    }
+                });
+        }
+    }
+</script>
+
+
+<nav class="mobile-topbar"><button class="sidebar-menu-toggle" title="show sidebar"></button></nav><nav class="sidebar"><div class="sidebar-crate"><h2><a href="../../gdk4/index.html">gdk4</a><span class="version">0.9.7</span></h2></div><div class="sidebar-elems"><section id="rustdoc-toc"><h2 class="location"><a href="#">GLContext<wbr>Ext</a></h2><h3><a href="#">Sections</a></h3><ul class="block top-toc"><li><a href="#implementors-1" title="Implementors">Implementors</a></li></ul><h3><a href="#provided-methods">Provided Methods</a></h3><ul class="block"><li><a href="#method.allowed_apis" title="allowed_apis">allowed_apis</a></li><li><a href="#method.api" title="api">api</a></li><li><a href="#method.connect_allowed_apis_notify" title="connect_allowed_apis_notify">connect_allowed_apis_notify</a></li><li><a href="#method.connect_api_notify" title="connect_api_notify">connect_api_notify</a></li><li><a href="#method.display" title="display">display</a></li><li><a href="#method.is_debug_enabled" title="is_debug_enabled">is_debug_enabled</a></li><li><a href="#method.is_forward_compatible" title="is_forward_compatible">is_forward_compatible</a></li><li><a href="#method.is_legacy" title="is_legacy">is_legacy</a></li><li><a href="#method.is_shared" title="is_shared">is_shared</a></li><li><a href="#method.make_current" title="make_current">make_current</a></li><li><a href="#method.realize" title="realize">realize</a></li><li><a href="#method.required_version" title="required_version">required_version</a></li><li><a href="#method.set_allowed_apis" title="set_allowed_apis">set_allowed_apis</a></li><li><a href="#method.set_debug_enabled" title="set_debug_enabled">set_debug_enabled</a></li><li><a href="#method.set_forward_compatible" title="set_forward_compatible">set_forward_compatible</a></li><li><a href="#method.set_required_version" title="set_required_version">set_required_version</a></li><li><a href="#method.set_use_es" title="set_use_es">set_use_es</a></li><li><a href="#method.shared_context" title="shared_context">shared_context</a></li><li><a href="#method.surface" title="surface">surface</a></li><li><a href="#method.uses_es" title="uses_es">uses_es</a></li><li><a href="#method.version" title="version">version</a></li></ul><h3><a href="#dyn-compatibility">Dyn Compatibility</a></h3><h3><a href="#implementors">Implementors</a></h3></section><div id="rustdoc-modnav"><h2><a href="index.html">In gdk4::<wbr>prelude</a></h2></div></div></nav><div class="sidebar-resizer" title="Drag to resize sidebar"></div><main><div class="width-limiter"><rustdoc-search></rustdoc-search><section id="main-content" class="content"><div class="main-heading"><div class="rustdoc-breadcrumbs"><a href="../index.html">gdk4</a>::<wbr><a href="index.html">prelude</a></div><h1>Trait <span class="trait">GLContextExt</span><button id="copy-path" title="Copy item path to clipboard">Copy item path</button></h1><rustdoc-toolbar></rustdoc-toolbar><span class="sub-heading"><a class="src" href="../../src/gdk4/auto/gl_context.rs.html#159-600">Source</a> </span></div><pre class="rust item-decl"><code>pub trait GLContextExt:
+    <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.GLContext.html" title="struct gdk4::GLContext">GLContext</a>&gt;
+    + Sealed
+    + 'static {
+<details class="toggle type-contents-toggle"><summary class="hideme"><span>Show 21 methods</span></summary>    // Provided methods
+    fn <a href="#method.allowed_apis" class="fn">allowed_apis</a>(&amp;self) -&gt; <a class="struct" href="../struct.GLAPI.html" title="struct gdk4::GLAPI">GLAPI</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.api" class="fn">api</a>(&amp;self) -&gt; <a class="struct" href="../struct.GLAPI.html" title="struct gdk4::GLAPI">GLAPI</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.is_debug_enabled" class="fn">is_debug_enabled</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.display" class="fn">display</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../struct.Display.html" title="struct gdk4::Display">Display</a>&gt; { ... }
+<span class="item-spacer"></span>    fn <a href="#method.is_forward_compatible" class="fn">is_forward_compatible</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.required_version" class="fn">required_version</a>(&amp;self) -&gt; (<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.shared_context" class="fn">shared_context</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../struct.GLContext.html" title="struct gdk4::GLContext">GLContext</a>&gt; { ... }
+<span class="item-spacer"></span>    fn <a href="#method.surface" class="fn">surface</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../struct.Surface.html" title="struct gdk4::Surface">Surface</a>&gt; { ... }
+<span class="item-spacer"></span>    fn <a href="#method.uses_es" class="fn">uses_es</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.version" class="fn">version</a>(&amp;self) -&gt; (<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.is_legacy" class="fn">is_legacy</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.is_shared" class="fn">is_shared</a>(&amp;self, other: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.GLContext.html" title="struct gdk4::GLContext">GLContext</a>&gt;) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.make_current" class="fn">make_current</a>(&amp;self) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.realize" class="fn">realize</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.unit.html">()</a>, <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/error/struct.Error.html" title="struct glib::error::Error">Error</a>&gt; { ... }
+<span class="item-spacer"></span>    fn <a href="#method.set_allowed_apis" class="fn">set_allowed_apis</a>(&amp;self, apis: <a class="struct" href="../struct.GLAPI.html" title="struct gdk4::GLAPI">GLAPI</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.set_debug_enabled" class="fn">set_debug_enabled</a>(&amp;self, enabled: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.set_forward_compatible" class="fn">set_forward_compatible</a>(&amp;self, compatible: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.set_required_version" class="fn">set_required_version</a>(&amp;self, major: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, minor: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.set_use_es" class="fn">set_use_es</a>(&amp;self, use_es: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_allowed_apis_notify" class="fn">connect_allowed_apis_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;Self) + 'static&gt;(
+        &amp;self,
+        f: F,
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_api_notify" class="fn">connect_api_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;Self) + 'static&gt;(
+        &amp;self,
+        f: F,
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+</details>}</code></pre><details class="toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>Trait containing all <a href="../struct.GLContext.html" title="struct gdk4::GLContext"><code>GLContext</code></a> methods.</p>
+<h2 id="implementors-1"><a class="doc-anchor" href="#implementors-1">§</a>Implementors</h2>
+<p><a href="../struct.GLContext.html" title="struct gdk4::GLContext"><code>GLContext</code></a></p>
+</div></details><h2 id="provided-methods" class="section-header">Provided Methods<a href="#provided-methods" class="anchor">§</a></h2><div class="methods"><details class="toggle method-toggle" open><summary><section id="method.allowed_apis" class="method"><a class="src rightside" href="../../src/gdk4/auto/gl_context.rs.html#170-176">Source</a><h4 class="code-header">fn <a href="#method.allowed_apis" class="fn">allowed_apis</a>(&amp;self) -&gt; <a class="struct" href="../struct.GLAPI.html" title="struct gdk4::GLAPI">GLAPI</a></h4></section><span class="item-info"><div class="stab portability">Available on <strong>crate feature <code>v4_6</code></strong> only.</div></span></summary><div class="docblock"><p>Gets the allowed APIs set via gdk_gl_context_set_allowed_apis().</p>
+<h5 id="returns"><a class="doc-anchor" href="#returns">§</a>Returns</h5>
+<p>the allowed APIs</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.api" class="method"><a class="src rightside" href="../../src/gdk4/auto/gl_context.rs.html#189-191">Source</a><h4 class="code-header">fn <a href="#method.api" class="fn">api</a>(&amp;self) -&gt; <a class="struct" href="../struct.GLAPI.html" title="struct gdk4::GLAPI">GLAPI</a></h4></section><span class="item-info"><div class="stab portability">Available on <strong>crate feature <code>v4_6</code></strong> only.</div></span></summary><div class="docblock"><p>Gets the API currently in use.</p>
+<p>If the renderer has not been realized yet, 0 is returned.</p>
+<h5 id="returns-1"><a class="doc-anchor" href="#returns-1">§</a>Returns</h5>
+<p>the currently used API</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.is_debug_enabled" class="method"><a class="src rightside" href="../../src/gdk4/auto/gl_context.rs.html#202-208">Source</a><h4 class="code-header">fn <a href="#method.is_debug_enabled" class="fn">is_debug_enabled</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></section></summary><div class="docblock"><p>Retrieves whether the context is doing extra validations and runtime checking.</p>
+<p>See <a href="trait.GLContextExt.html#method.set_debug_enabled"><code>set_debug_enabled()</code></a>.</p>
+<h5 id="returns-2"><a class="doc-anchor" href="#returns-2">§</a>Returns</h5>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>true</code></a> if debugging is enabled</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.display" class="method"><a class="src rightside" href="../../src/gdk4/auto/gl_context.rs.html#217-223">Source</a><h4 class="code-header">fn <a href="#method.display" class="fn">display</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../struct.Display.html" title="struct gdk4::Display">Display</a>&gt;</h4></section></summary><div class="docblock"><p>Retrieves the display the @self is created for</p>
+<h5 id="returns-3"><a class="doc-anchor" href="#returns-3">§</a>Returns</h5>
+<p>a <a href="../struct.Display.html" title="struct gdk4::Display"><code>Display</code></a></p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.is_forward_compatible" class="method"><a class="src rightside" href="../../src/gdk4/auto/gl_context.rs.html#234-240">Source</a><h4 class="code-header">fn <a href="#method.is_forward_compatible" class="fn">is_forward_compatible</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></section></summary><div class="docblock"><p>Retrieves whether the context is forward-compatible.</p>
+<p>See <a href="trait.GLContextExt.html#method.set_forward_compatible"><code>set_forward_compatible()</code></a>.</p>
+<h5 id="returns-4"><a class="doc-anchor" href="#returns-4">§</a>Returns</h5>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>true</code></a> if the context should be forward-compatible</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.required_version" class="method"><a class="src rightside" href="../../src/gdk4/auto/gl_context.rs.html#259-270">Source</a><h4 class="code-header">fn <a href="#method.required_version" class="fn">required_version</a>(&amp;self) -&gt; (<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>)</h4></section></summary><div class="docblock"><p>Retrieves required OpenGL version set as a requirement for the @self
+realization. It will not change even if a greater OpenGL version is supported
+and used after the @self is realized. See
+<a href="trait.GLContextExt.html#method.version"><code>version()</code></a> for the real version in use.</p>
+<p>See <a href="trait.GLContextExt.html#method.set_required_version"><code>set_required_version()</code></a>.</p>
+<h5 id="returns-5"><a class="doc-anchor" href="#returns-5">§</a>Returns</h5><h6 id="major"><a class="doc-anchor" href="#major">§</a><code>major</code></h6>
+<p>return location for the major version to request</p>
+<h6 id="minor"><a class="doc-anchor" href="#minor">§</a><code>minor</code></h6>
+<p>return location for the minor version to request</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.shared_context" class="method"><a class="src rightside" href="../../src/gdk4/auto/gl_context.rs.html#291-297">Source</a><h4 class="code-header">fn <a href="#method.shared_context" class="fn">shared_context</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../struct.GLContext.html" title="struct gdk4::GLContext">GLContext</a>&gt;</h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.4</span></div></span></summary><div class="docblock"><p>Used to retrieves the <a href="../struct.GLContext.html" title="struct gdk4::GLContext"><code>GLContext</code></a> that this @self share data with.</p>
+<p>As many contexts can share data now and no single shared context exists
+anymore, this function has been deprecated and now always returns <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="variant core::option::Option::None"><code>None</code></a>.</p>
+<h5 id="deprecated-since-44"><a class="doc-anchor" href="#deprecated-since-44">§</a>Deprecated since 4.4</h5>
+<p>Use <a href="trait.GLContextExt.html#method.is_shared"><code>is_shared()</code></a> to check if contexts
+can be shared.</p>
+<h5 id="returns-6"><a class="doc-anchor" href="#returns-6">§</a>Returns</h5>
+<p><a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="variant core::option::Option::None"><code>None</code></a></p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.surface" class="method"><a class="src rightside" href="../../src/gdk4/auto/gl_context.rs.html#306-312">Source</a><h4 class="code-header">fn <a href="#method.surface" class="fn">surface</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../struct.Surface.html" title="struct gdk4::Surface">Surface</a>&gt;</h4></section></summary><div class="docblock"><p>Retrieves the surface used by the @self.</p>
+<h5 id="returns-7"><a class="doc-anchor" href="#returns-7">§</a>Returns</h5>
+<p>a <a href="../struct.Surface.html" title="struct gdk4::Surface"><code>Surface</code></a></p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.uses_es" class="method"><a class="src rightside" href="../../src/gdk4/auto/gl_context.rs.html#323-329">Source</a><h4 class="code-header">fn <a href="#method.uses_es" class="fn">uses_es</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></section></summary><div class="docblock"><p>Checks whether the @self is using an OpenGL or OpenGL ES profile.</p>
+<h5 id="returns-8"><a class="doc-anchor" href="#returns-8">§</a>Returns</h5>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>true</code></a> if the <a href="../struct.GLContext.html" title="struct gdk4::GLContext"><code>GLContext</code></a> is using an OpenGL ES profile;
+<a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>false</code></a> if other profile is in use of if the @self has not yet
+been realized.</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.version" class="method"><a class="src rightside" href="../../src/gdk4/auto/gl_context.rs.html#345-356">Source</a><h4 class="code-header">fn <a href="#method.version" class="fn">version</a>(&amp;self) -&gt; (<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>)</h4></section></summary><div class="docblock"><p>Retrieves the OpenGL version of the @self.</p>
+<p>The @self must be realized prior to calling this function.</p>
+<h5 id="returns-9"><a class="doc-anchor" href="#returns-9">§</a>Returns</h5><h6 id="major-1"><a class="doc-anchor" href="#major-1">§</a><code>major</code></h6>
+<p>return location for the major version</p>
+<h6 id="minor-1"><a class="doc-anchor" href="#minor-1">§</a><code>minor</code></h6>
+<p>return location for the minor version</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.is_legacy" class="method"><a class="src rightside" href="../../src/gdk4/auto/gl_context.rs.html#379-385">Source</a><h4 class="code-header">fn <a href="#method.is_legacy" class="fn">is_legacy</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></section></summary><div class="docblock"><p>Whether the <a href="../struct.GLContext.html" title="struct gdk4::GLContext"><code>GLContext</code></a> is in legacy mode or not.</p>
+<p>The <a href="../struct.GLContext.html" title="struct gdk4::GLContext"><code>GLContext</code></a> must be realized before calling this function.</p>
+<p>When realizing a GL context, GDK will try to use the OpenGL 3.2 core
+profile; this profile removes all the OpenGL API that was deprecated
+prior to the 3.2 version of the specification. If the realization is
+successful, this function will return <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>false</code></a>.</p>
+<p>If the underlying OpenGL implementation does not support core profiles,
+GDK will fall back to a pre-3.2 compatibility profile, and this function
+will return <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>true</code></a>.</p>
+<p>You can use the value returned by this function to decide which kind
+of OpenGL API to use, or whether to do extension discovery, or what
+kind of shader programs to load.</p>
+<h5 id="returns-10"><a class="doc-anchor" href="#returns-10">§</a>Returns</h5>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>true</code></a> if the GL context is in legacy mode</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.is_shared" class="method"><a class="src rightside" href="../../src/gdk4/auto/gl_context.rs.html#408-415">Source</a><h4 class="code-header">fn <a href="#method.is_shared" class="fn">is_shared</a>(&amp;self, other: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.GLContext.html" title="struct gdk4::GLContext">GLContext</a>&gt;) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></section><span class="item-info"><div class="stab portability">Available on <strong>crate feature <code>v4_4</code></strong> only.</div></span></summary><div class="docblock"><p>Checks if the two GL contexts can share resources.</p>
+<p>When they can, the texture IDs from @other can be used in @self. This
+is particularly useful when passing <a href="../struct.GLTexture.html" title="struct gdk4::GLTexture"><code>GLTexture</code></a> objects between
+different contexts.</p>
+<p>Contexts created for the same display with the same properties will
+always be compatible, even if they are created for different surfaces.
+For other contexts it depends on the GL backend.</p>
+<p>Both contexts must be realized for this check to succeed. If either one
+is not, this function will return <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>false</code></a>.</p>
+<h6 id="other"><a class="doc-anchor" href="#other">§</a><code>other</code></h6>
+<p>the <a href="../struct.GLContext.html" title="struct gdk4::GLContext"><code>GLContext</code></a> that should be compatible with @self</p>
+<h5 id="returns-11"><a class="doc-anchor" href="#returns-11">§</a>Returns</h5>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>true</code></a> if the two GL contexts are compatible.</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.make_current" class="method"><a class="src rightside" href="../../src/gdk4/auto/gl_context.rs.html#419-423">Source</a><h4 class="code-header">fn <a href="#method.make_current" class="fn">make_current</a>(&amp;self)</h4></section></summary><div class="docblock"><p>Makes the @self the current one.</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.realize" class="method"><a class="src rightside" href="../../src/gdk4/auto/gl_context.rs.html#433-444">Source</a><h4 class="code-header">fn <a href="#method.realize" class="fn">realize</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.unit.html">()</a>, <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/error/struct.Error.html" title="struct glib::error::Error">Error</a>&gt;</h4></section></summary><div class="docblock"><p>Realizes the given <a href="../struct.GLContext.html" title="struct gdk4::GLContext"><code>GLContext</code></a>.</p>
+<p>It is safe to call this function on a realized <a href="../struct.GLContext.html" title="struct gdk4::GLContext"><code>GLContext</code></a>.</p>
+<h5 id="returns-12"><a class="doc-anchor" href="#returns-12">§</a>Returns</h5>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>true</code></a> if the context is realized</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.set_allowed_apis" class="method"><a class="src rightside" href="../../src/gdk4/auto/gl_context.rs.html#459-463">Source</a><h4 class="code-header">fn <a href="#method.set_allowed_apis" class="fn">set_allowed_apis</a>(&amp;self, apis: <a class="struct" href="../struct.GLAPI.html" title="struct gdk4::GLAPI">GLAPI</a>)</h4></section><span class="item-info"><div class="stab portability">Available on <strong>crate feature <code>v4_6</code></strong> only.</div></span></summary><div class="docblock"><p>Sets the allowed APIs. When gdk_gl_context_realize() is called, only the
+allowed APIs will be tried. If you set this to 0, realizing will always fail.</p>
+<p>If you set it on a realized context, the property will not have any effect.
+It is only relevant during gdk_gl_context_realize().</p>
+<p>By default, all APIs are allowed.</p>
+<h6 id="apis"><a class="doc-anchor" href="#apis">§</a><code>apis</code></h6>
+<p>the allowed APIs</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.set_debug_enabled" class="method"><a class="src rightside" href="../../src/gdk4/auto/gl_context.rs.html#475-482">Source</a><h4 class="code-header">fn <a href="#method.set_debug_enabled" class="fn">set_debug_enabled</a>(&amp;self, enabled: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>)</h4></section></summary><div class="docblock"><p>Sets whether the <a href="../struct.GLContext.html" title="struct gdk4::GLContext"><code>GLContext</code></a> should perform extra validations and
+runtime checking.</p>
+<p>This is useful during development, but has additional overhead.</p>
+<p>The <a href="../struct.GLContext.html" title="struct gdk4::GLContext"><code>GLContext</code></a> must not be realized or made current prior to
+calling this function.</p>
+<h6 id="enabled"><a class="doc-anchor" href="#enabled">§</a><code>enabled</code></h6>
+<p>whether to enable debugging in the context</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.set_forward_compatible" class="method"><a class="src rightside" href="../../src/gdk4/auto/gl_context.rs.html#496-503">Source</a><h4 class="code-header">fn <a href="#method.set_forward_compatible" class="fn">set_forward_compatible</a>(&amp;self, compatible: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>)</h4></section></summary><div class="docblock"><p>Sets whether the <a href="../struct.GLContext.html" title="struct gdk4::GLContext"><code>GLContext</code></a> should be forward-compatible.</p>
+<p>Forward-compatible contexts must not support OpenGL functionality that
+has been marked as deprecated in the requested version; non-forward
+compatible contexts, on the other hand, must support both deprecated and
+non deprecated functionality.</p>
+<p>The <a href="../struct.GLContext.html" title="struct gdk4::GLContext"><code>GLContext</code></a> must not be realized or made current prior to calling
+this function.</p>
+<h6 id="compatible"><a class="doc-anchor" href="#compatible">§</a><code>compatible</code></h6>
+<p>whether the context should be forward-compatible</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.set_required_version" class="method"><a class="src rightside" href="../../src/gdk4/auto/gl_context.rs.html#519-523">Source</a><h4 class="code-header">fn <a href="#method.set_required_version" class="fn">set_required_version</a>(&amp;self, major: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, minor: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>)</h4></section></summary><div class="docblock"><p>Sets the major and minor version of OpenGL to request.</p>
+<p>Setting @major and @minor to zero will use the default values.</p>
+<p>Setting @major and @minor lower than the minimum versions required
+by GTK will result in the context choosing the minimum version.</p>
+<p>The @self must not be realized or made current prior to calling
+this function.</p>
+<h6 id="major-2"><a class="doc-anchor" href="#major-2">§</a><code>major</code></h6>
+<p>the major version to request</p>
+<h6 id="minor-2"><a class="doc-anchor" href="#minor-2">§</a><code>minor</code></h6>
+<p>the minor version to request</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.set_use_es" class="method"><a class="src rightside" href="../../src/gdk4/auto/gl_context.rs.html#542-546">Source</a><h4 class="code-header">fn <a href="#method.set_use_es" class="fn">set_use_es</a>(&amp;self, use_es: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>)</h4></section></summary><div class="docblock"><p>Requests that GDK create an OpenGL ES context instead of an OpenGL one.</p>
+<p>Not all platforms support OpenGL ES.</p>
+<p>The @self must not have been realized.</p>
+<p>By default, GDK will attempt to automatically detect whether the
+underlying GL implementation is OpenGL or OpenGL ES once the @self
+is realized.</p>
+<p>You should check the return value of <a href="trait.GLContextExt.html#method.uses_es"><code>uses_es()</code></a>
+after calling <a href="trait.GLContextExt.html#method.realize"><code>realize()</code></a> to decide whether to use
+the OpenGL or OpenGL ES API, extensions, or shaders.</p>
+<h6 id="use_es"><a class="doc-anchor" href="#use_es">§</a><code>use_es</code></h6>
+<p>whether the context should use OpenGL ES instead of OpenGL,
+or -1 to allow auto-detection</p>
+</div></details><section id="method.connect_allowed_apis_notify" class="method"><a class="src rightside" href="../../src/gdk4/auto/gl_context.rs.html#551-574">Source</a><h4 class="code-header">fn <a href="#method.connect_allowed_apis_notify" class="fn">connect_allowed_apis_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;Self) + 'static&gt;(
+    &amp;self,
+    f: F,
+) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><span class="item-info"><div class="stab portability">Available on <strong>crate feature <code>v4_6</code></strong> only.</div></span><section id="method.connect_api_notify" class="method"><a class="src rightside" href="../../src/gdk4/auto/gl_context.rs.html#579-599">Source</a><h4 class="code-header">fn <a href="#method.connect_api_notify" class="fn">connect_api_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;Self) + 'static&gt;(&amp;self, f: F) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><span class="item-info"><div class="stab portability">Available on <strong>crate feature <code>v4_6</code></strong> only.</div></span></div><h2 id="dyn-compatibility" class="section-header">Dyn Compatibility<a href="#dyn-compatibility" class="anchor">§</a></h2><div class="dyn-compatibility-info"><p>This trait is <b>not</b> <a href="https://doc.rust-lang.org/nightly/reference/items/traits.html#dyn-compatibility">dyn compatible</a>.</p><p><i>In older versions of Rust, dyn compatibility was called "object safety", so this trait is not object safe.</i></p></div><h2 id="implementors" class="section-header">Implementors<a href="#implementors" class="anchor">§</a></h2><div id="implementors-list"><section id="impl-GLContextExt-for-O" class="impl"><a class="src rightside" href="../../src/gdk4/auto/gl_context.rs.html#602">Source</a><a href="#impl-GLContextExt-for-O" class="anchor">§</a><h3 class="code-header">impl&lt;O: <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.GLContext.html" title="struct gdk4::GLContext">GLContext</a>&gt;&gt; <a class="trait" href="trait.GLContextExt.html" title="trait gdk4::prelude::GLContextExt">GLContextExt</a> for O</h3></section></div><script src="../../trait.impl/gdk4/auto/gl_context/trait.GLContextExt.js" async></script></section></div></main></body></html>

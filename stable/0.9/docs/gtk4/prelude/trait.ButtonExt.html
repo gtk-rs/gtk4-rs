@@ -1,0 +1,200 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Trait containing all `struct@Button` methods."><title>ButtonExt in gtk4::prelude - Rust</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../static.files/rustdoc-84e720fa.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.89.0-nightly (5526a2f47 2025-06-20)" data-channel="nightly" data-search-js="search-343419c9.js" data-settings-js="settings-5514c975.js" ><script src="../../static.files/storage-4e99c027.js"></script><script defer src="sidebar-items.js"></script><script defer src="../../static.files/main-fd3af306.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-32bb7600.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-6580c154.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-044be391.svg"></head><body class="rustdoc trait"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
+
+    function checkDocsLatestStable() {
+        function popup(msg, url) { return `
+            <style scoped="scoped">
+                .popup {
+                    max-width: 16em;
+                    background-color: #fff;
+                    position: fixed;
+                    z-index: 1;
+                    margin-left: auto;
+                    bottom: 1em;
+                    right: 1em;
+                    border-radius: 5px;
+                    box-shadow: 1px 1px 4px #777;
+                }
+
+                .popup a.version {
+                    color: #e57300;
+                    padding: 0.6em 1em;
+                    display: block;
+                }
+                .popup a.version:hover {
+                    color: #b25900;
+                }
+
+                .popup a.close {
+                    color: white;
+                    background: grey;
+                    border-radius: 99px;
+                    display: inline-block;
+                    width: 19px;
+                    line-height: 19px;
+                    font-weight: bold;
+                    text-align: center;
+                    margin: 0.6em;
+                    float: right;
+                }
+                .popup a.close:hover {
+                    background: black;
+                }
+            </style>
+            <section class="popup" id="gir_docs_popup">
+                <a class="close" href="#" onclick="document.getElementById('gir_docs_popup').remove(); return false">×</a>
+                <a class="version" href="https://gtk-rs.org/gtk4-rs/stable/latest/docs">
+                    ⚠ ${msg}
+                </a>
+            </section>
+        ` };
+
+        if ("0.9" == "main") {
+            document.body.insertAdjacentHTML(
+                'beforeend',
+                popup("This is the development version. Go to latest stable version.", "stable/latest")
+            );
+        } else {
+            fetch('https://gtk-rs.org/gtk4-rs/LATEST_RELEASE_BRANCH')
+                .then(response => response.text())
+                .then(latest_branch => {
+                    if (latest_branch.trim() != "0.9") {
+                        document.body.insertAdjacentHTML(
+                            'beforeend',
+                            popup("This version is outdated. Go to latest version.", "stable/latest")
+                        );
+                    }
+                });
+        }
+    }
+</script>
+
+
+<nav class="mobile-topbar"><button class="sidebar-menu-toggle" title="show sidebar"></button></nav><nav class="sidebar"><div class="sidebar-crate"><h2><a href="../../gtk4/index.html">gtk4</a><span class="version">0.9.7</span></h2></div><div class="sidebar-elems"><section id="rustdoc-toc"><h2 class="location"><a href="#">Button<wbr>Ext</a></h2><h3><a href="#">Sections</a></h3><ul class="block top-toc"><li><a href="#implementors-1" title="Implementors">Implementors</a></li></ul><h3><a href="#provided-methods">Provided Methods</a></h3><ul class="block"><li><a href="#method.can_shrink" title="can_shrink">can_shrink</a></li><li><a href="#method.child" title="child">child</a></li><li><a href="#method.connect_activate" title="connect_activate">connect_activate</a></li><li><a href="#method.connect_can_shrink_notify" title="connect_can_shrink_notify">connect_can_shrink_notify</a></li><li><a href="#method.connect_child_notify" title="connect_child_notify">connect_child_notify</a></li><li><a href="#method.connect_clicked" title="connect_clicked">connect_clicked</a></li><li><a href="#method.connect_has_frame_notify" title="connect_has_frame_notify">connect_has_frame_notify</a></li><li><a href="#method.connect_icon_name_notify" title="connect_icon_name_notify">connect_icon_name_notify</a></li><li><a href="#method.connect_label_notify" title="connect_label_notify">connect_label_notify</a></li><li><a href="#method.connect_use_underline_notify" title="connect_use_underline_notify">connect_use_underline_notify</a></li><li><a href="#method.emit_activate" title="emit_activate">emit_activate</a></li><li><a href="#method.emit_clicked" title="emit_clicked">emit_clicked</a></li><li><a href="#method.has_frame" title="has_frame">has_frame</a></li><li><a href="#method.icon_name" title="icon_name">icon_name</a></li><li><a href="#method.label" title="label">label</a></li><li><a href="#method.set_can_shrink" title="set_can_shrink">set_can_shrink</a></li><li><a href="#method.set_child" title="set_child">set_child</a></li><li><a href="#method.set_has_frame" title="set_has_frame">set_has_frame</a></li><li><a href="#method.set_icon_name" title="set_icon_name">set_icon_name</a></li><li><a href="#method.set_label" title="set_label">set_label</a></li><li><a href="#method.set_use_underline" title="set_use_underline">set_use_underline</a></li><li><a href="#method.uses_underline" title="uses_underline">uses_underline</a></li></ul><h3><a href="#dyn-compatibility">Dyn Compatibility</a></h3><h3><a href="#implementors">Implementors</a></h3></section><div id="rustdoc-modnav"><h2><a href="index.html">In gtk4::<wbr>prelude</a></h2></div></div></nav><div class="sidebar-resizer" title="Drag to resize sidebar"></div><main><div class="width-limiter"><rustdoc-search></rustdoc-search><section id="main-content" class="content"><div class="main-heading"><div class="rustdoc-breadcrumbs"><a href="../index.html">gtk4</a>::<wbr><a href="index.html">prelude</a></div><h1>Trait <span class="trait">ButtonExt</span><button id="copy-path" title="Copy item path to clipboard">Copy item path</button></h1><rustdoc-toolbar></rustdoc-toolbar><span class="sub-heading"><a class="src" href="../../src/gtk4/auto/button.rs.html#1070-1472">Source</a> </span></div><pre class="rust item-decl"><code>pub trait ButtonExt:
+    <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Button.html" title="struct gtk4::Button">Button</a>&gt;
+    + Sealed
+    + 'static {
+<details class="toggle type-contents-toggle"><summary class="hideme"><span>Show 22 methods</span></summary>    // Provided methods
+    fn <a href="#method.can_shrink" class="fn">can_shrink</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.child" class="fn">child</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt; { ... }
+<span class="item-spacer"></span>    fn <a href="#method.has_frame" class="fn">has_frame</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.icon_name" class="fn">icon_name</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/gstring/struct.GString.html" title="struct glib::gstring::GString">GString</a>&gt; { ... }
+<span class="item-spacer"></span>    fn <a href="#method.label" class="fn">label</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/gstring/struct.GString.html" title="struct glib::gstring::GString">GString</a>&gt; { ... }
+<span class="item-spacer"></span>    fn <a href="#method.uses_underline" class="fn">uses_underline</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.set_can_shrink" class="fn">set_can_shrink</a>(&amp;self, can_shrink: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.set_child" class="fn">set_child</a>(&amp;self, child: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;&gt;) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.set_has_frame" class="fn">set_has_frame</a>(&amp;self, has_frame: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.set_icon_name" class="fn">set_icon_name</a>(&amp;self, icon_name: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.set_label" class="fn">set_label</a>(&amp;self, label: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.set_use_underline" class="fn">set_use_underline</a>(&amp;self, use_underline: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_activate" class="fn">connect_activate</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;Self) + 'static&gt;(&amp;self, f: F) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.emit_activate" class="fn">emit_activate</a>(&amp;self) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_clicked" class="fn">connect_clicked</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;Self) + 'static&gt;(&amp;self, f: F) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.emit_clicked" class="fn">emit_clicked</a>(&amp;self) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_can_shrink_notify" class="fn">connect_can_shrink_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;Self) + 'static&gt;(
+        &amp;self,
+        f: F,
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_child_notify" class="fn">connect_child_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;Self) + 'static&gt;(
+        &amp;self,
+        f: F,
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_has_frame_notify" class="fn">connect_has_frame_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;Self) + 'static&gt;(
+        &amp;self,
+        f: F,
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_icon_name_notify" class="fn">connect_icon_name_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;Self) + 'static&gt;(
+        &amp;self,
+        f: F,
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_label_notify" class="fn">connect_label_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;Self) + 'static&gt;(
+        &amp;self,
+        f: F,
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_use_underline_notify" class="fn">connect_use_underline_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;Self) + 'static&gt;(
+        &amp;self,
+        f: F,
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+</details>}</code></pre><details class="toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>Trait containing all <a href="../struct.Button.html" title="struct gtk4::Button"><code>Button</code></a> methods.</p>
+<h2 id="implementors-1"><a class="doc-anchor" href="#implementors-1">§</a>Implementors</h2>
+<p><a href="../struct.Button.html" title="struct gtk4::Button"><code>Button</code></a>, <a href="../struct.LinkButton.html" title="struct gtk4::LinkButton"><code>LinkButton</code></a>, <a href="../struct.LockButton.html" title="struct gtk4::LockButton"><code>LockButton</code></a>, <a href="../struct.ToggleButton.html" title="struct gtk4::ToggleButton"><code>ToggleButton</code></a></p>
+</div></details><h2 id="provided-methods" class="section-header">Provided Methods<a href="#provided-methods" class="anchor">§</a></h2><div class="methods"><details class="toggle method-toggle" open><summary><section id="method.can_shrink" class="method"><a class="src rightside" href="../../src/gtk4/auto/button.rs.html#1082-1088">Source</a><h4 class="code-header">fn <a href="#method.can_shrink" class="fn">can_shrink</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></section><span class="item-info"><div class="stab portability">Available on <strong>crate feature <code>v4_12</code></strong> only.</div></span></summary><div class="docblock"><p>Retrieves whether the button can be smaller than the natural
+size of its contents.</p>
+<h5 id="returns"><a class="doc-anchor" href="#returns">§</a>Returns</h5>
+<p>true if the button can shrink, and false otherwise</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.child" class="method"><a class="src rightside" href="../../src/gtk4/auto/button.rs.html#1097-1099">Source</a><h4 class="code-header">fn <a href="#method.child" class="fn">child</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;</h4></section></summary><div class="docblock"><p>Gets the child widget of @self.</p>
+<h5 id="returns-1"><a class="doc-anchor" href="#returns-1">§</a>Returns</h5>
+<p>the child widget of @self</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.has_frame" class="method"><a class="src rightside" href="../../src/gtk4/auto/button.rs.html#1109-1115">Source</a><h4 class="code-header">fn <a href="#method.has_frame" class="fn">has_frame</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></section></summary><div class="docblock"><p>Returns whether the button has a frame.</p>
+<h5 id="returns-2"><a class="doc-anchor" href="#returns-2">§</a>Returns</h5>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>true</code></a> if the button has a frame</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.icon_name" class="method"><a class="src rightside" href="../../src/gtk4/auto/button.rs.html#1129-1135">Source</a><h4 class="code-header">fn <a href="#method.icon_name" class="fn">icon_name</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/gstring/struct.GString.html" title="struct glib::gstring::GString">GString</a>&gt;</h4></section></summary><div class="docblock"><p>Returns the icon name of the button.</p>
+<p>If the icon name has not been set with <a href="trait.ButtonExt.html#method.set_icon_name"><code>set_icon_name()</code></a>
+the return value will be <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="variant core::option::Option::None"><code>None</code></a>. This will be the case if you create
+an empty button with <a href="../struct.Button.html#method.new" title="associated function gtk4::Button::new"><code>Button::new()</code></a> to use as a container.</p>
+<h5 id="returns-3"><a class="doc-anchor" href="#returns-3">§</a>Returns</h5>
+<p>The icon name set via <a href="trait.ButtonExt.html#method.set_icon_name"><code>set_icon_name()</code></a></p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.label" class="method"><a class="src rightside" href="../../src/gtk4/auto/button.rs.html#1149-1151">Source</a><h4 class="code-header">fn <a href="#method.label" class="fn">label</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/gstring/struct.GString.html" title="struct glib::gstring::GString">GString</a>&gt;</h4></section></summary><div class="docblock"><p>Fetches the text from the label of the button.</p>
+<p>If the label text has not been set with <a href="trait.ButtonExt.html#method.set_label"><code>set_label()</code></a>
+the return value will be <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="variant core::option::Option::None"><code>None</code></a>. This will be the case if you create
+an empty button with <a href="../struct.Button.html#method.new" title="associated function gtk4::Button::new"><code>Button::new()</code></a> to use as a container.</p>
+<h5 id="returns-4"><a class="doc-anchor" href="#returns-4">§</a>Returns</h5>
+<p>The text of the label widget. This string is owned
+by the widget and must not be modified or freed.</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.uses_underline" class="method"><a class="src rightside" href="../../src/gtk4/auto/button.rs.html#1164-1170">Source</a><h4 class="code-header">fn <a href="#method.uses_underline" class="fn">uses_underline</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></section></summary><div class="docblock"><p>gets whether underlines are interpreted as mnemonics.</p>
+<p>See <a href="trait.ButtonExt.html#method.set_use_underline"><code>set_use_underline()</code></a>.</p>
+<h5 id="returns-5"><a class="doc-anchor" href="#returns-5">§</a>Returns</h5>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>true</code></a> if an embedded underline in the button label
+indicates the mnemonic accelerator keys.</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.set_can_shrink" class="method"><a class="src rightside" href="../../src/gtk4/auto/button.rs.html#1184-1188">Source</a><h4 class="code-header">fn <a href="#method.set_can_shrink" class="fn">set_can_shrink</a>(&amp;self, can_shrink: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>)</h4></section><span class="item-info"><div class="stab portability">Available on <strong>crate feature <code>v4_12</code></strong> only.</div></span></summary><div class="docblock"><p>Sets whether the button size can be smaller than the natural size of
+its contents.</p>
+<p>For text buttons, setting @can_shrink to true will ellipsize the label.</p>
+<p>For icons and custom children, this function has no effect.</p>
+<h6 id="can_shrink"><a class="doc-anchor" href="#can_shrink">§</a><code>can_shrink</code></h6>
+<p>whether the button can shrink</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.set_child" class="method"><a class="src rightside" href="../../src/gtk4/auto/button.rs.html#1201-1208">Source</a><h4 class="code-header">fn <a href="#method.set_child" class="fn">set_child</a>(&amp;self, child: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;&gt;)</h4></section></summary><div class="docblock"><p>Sets the child widget of @self.</p>
+<p>Note that by using this API, you take full responsibility for setting
+up the proper accessibility label and description information for @self.
+Most likely, you’ll either set the accessibility label or description
+for @self explicitly, or you’ll set a labelled-by or described-by
+relations from @child to @self.</p>
+<h6 id="child"><a class="doc-anchor" href="#child">§</a><code>child</code></h6>
+<p>the child widget</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.set_has_frame" class="method"><a class="src rightside" href="../../src/gtk4/auto/button.rs.html#1217-1221">Source</a><h4 class="code-header">fn <a href="#method.set_has_frame" class="fn">set_has_frame</a>(&amp;self, has_frame: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>)</h4></section></summary><div class="docblock"><p>Sets the style of the button.</p>
+<p>Buttons can have a flat appearance or have a frame drawn around them.</p>
+<h6 id="has_frame"><a class="doc-anchor" href="#has_frame">§</a><code>has_frame</code></h6>
+<p>whether the button should have a visible frame</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.set_icon_name" class="method"><a class="src rightside" href="../../src/gtk4/auto/button.rs.html#1231-1238">Source</a><h4 class="code-header">fn <a href="#method.set_icon_name" class="fn">set_icon_name</a>(&amp;self, icon_name: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>)</h4></section></summary><div class="docblock"><p>Adds a <a href="../struct.Image.html" title="struct gtk4::Image"><code>Image</code></a> with the given icon name as a child.</p>
+<p>If @self already contains a child widget, that child widget will
+be removed and replaced with the image.</p>
+<h6 id="icon_name"><a class="doc-anchor" href="#icon_name">§</a><code>icon_name</code></h6>
+<p>An icon name</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.set_label" class="method"><a class="src rightside" href="../../src/gtk4/auto/button.rs.html#1247-1251">Source</a><h4 class="code-header">fn <a href="#method.set_label" class="fn">set_label</a>(&amp;self, label: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>)</h4></section></summary><div class="docblock"><p>Sets the text of the label of the button to @label.</p>
+<p>This will also clear any previously set labels.</p>
+<h6 id="label"><a class="doc-anchor" href="#label">§</a><code>label</code></h6>
+<p>a string</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.set_use_underline" class="method"><a class="src rightside" href="../../src/gtk4/auto/button.rs.html#1261-1268">Source</a><h4 class="code-header">fn <a href="#method.set_use_underline" class="fn">set_use_underline</a>(&amp;self, use_underline: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>)</h4></section></summary><div class="docblock"><p>Sets whether to use underlines as mnemonics.</p>
+<p>If true, an underline in the text of the button label indicates
+the next character should be used for the mnemonic accelerator key.</p>
+<h6 id="use_underline"><a class="doc-anchor" href="#use_underline">§</a><code>use_underline</code></h6>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>true</code></a> if underlines in the text indicate mnemonics</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.connect_activate" class="method"><a class="src rightside" href="../../src/gtk4/auto/button.rs.html#1278-1297">Source</a><h4 class="code-header">fn <a href="#method.connect_activate" class="fn">connect_activate</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;Self) + 'static&gt;(&amp;self, f: F) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section></summary><div class="docblock"><p>Emitted to animate press then release.</p>
+<p>This is an action signal. Applications should never connect
+to this signal, but use the <a href="../struct.Button.html#clicked" title="struct gtk4::Button"><code>clicked</code></a> signal.</p>
+<p>The default bindings for this signal are all forms of the
+<kbd>␣</kbd> and <kbd>Enter</kbd> keys.</p>
+</div></details><section id="method.emit_activate" class="method"><a class="src rightside" href="../../src/gtk4/auto/button.rs.html#1299-1301">Source</a><h4 class="code-header">fn <a href="#method.emit_activate" class="fn">emit_activate</a>(&amp;self)</h4></section><details class="toggle method-toggle" open><summary><section id="method.connect_clicked" class="method"><a class="src rightside" href="../../src/gtk4/auto/button.rs.html#1305-1324">Source</a><h4 class="code-header">fn <a href="#method.connect_clicked" class="fn">connect_clicked</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;Self) + 'static&gt;(&amp;self, f: F) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section></summary><div class="docblock"><p>Emitted when the button has been activated (pressed and released).</p>
+</div></details><section id="method.emit_clicked" class="method"><a class="src rightside" href="../../src/gtk4/auto/button.rs.html#1326-1328">Source</a><h4 class="code-header">fn <a href="#method.emit_clicked" class="fn">emit_clicked</a>(&amp;self)</h4></section><section id="method.connect_can_shrink_notify" class="method"><a class="src rightside" href="../../src/gtk4/auto/button.rs.html#1333-1353">Source</a><h4 class="code-header">fn <a href="#method.connect_can_shrink_notify" class="fn">connect_can_shrink_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;Self) + 'static&gt;(
+    &amp;self,
+    f: F,
+) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><span class="item-info"><div class="stab portability">Available on <strong>crate feature <code>v4_12</code></strong> only.</div></span><section id="method.connect_child_notify" class="method"><a class="src rightside" href="../../src/gtk4/auto/button.rs.html#1356-1376">Source</a><h4 class="code-header">fn <a href="#method.connect_child_notify" class="fn">connect_child_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;Self) + 'static&gt;(&amp;self, f: F) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><section id="method.connect_has_frame_notify" class="method"><a class="src rightside" href="../../src/gtk4/auto/button.rs.html#1379-1399">Source</a><h4 class="code-header">fn <a href="#method.connect_has_frame_notify" class="fn">connect_has_frame_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;Self) + 'static&gt;(
+    &amp;self,
+    f: F,
+) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><section id="method.connect_icon_name_notify" class="method"><a class="src rightside" href="../../src/gtk4/auto/button.rs.html#1402-1422">Source</a><h4 class="code-header">fn <a href="#method.connect_icon_name_notify" class="fn">connect_icon_name_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;Self) + 'static&gt;(
+    &amp;self,
+    f: F,
+) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><section id="method.connect_label_notify" class="method"><a class="src rightside" href="../../src/gtk4/auto/button.rs.html#1425-1445">Source</a><h4 class="code-header">fn <a href="#method.connect_label_notify" class="fn">connect_label_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;Self) + 'static&gt;(&amp;self, f: F) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><section id="method.connect_use_underline_notify" class="method"><a class="src rightside" href="../../src/gtk4/auto/button.rs.html#1448-1471">Source</a><h4 class="code-header">fn <a href="#method.connect_use_underline_notify" class="fn">connect_use_underline_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;Self) + 'static&gt;(
+    &amp;self,
+    f: F,
+) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section></div><h2 id="dyn-compatibility" class="section-header">Dyn Compatibility<a href="#dyn-compatibility" class="anchor">§</a></h2><div class="dyn-compatibility-info"><p>This trait is <b>not</b> <a href="https://doc.rust-lang.org/nightly/reference/items/traits.html#dyn-compatibility">dyn compatible</a>.</p><p><i>In older versions of Rust, dyn compatibility was called "object safety", so this trait is not object safe.</i></p></div><h2 id="implementors" class="section-header">Implementors<a href="#implementors" class="anchor">§</a></h2><div id="implementors-list"><section id="impl-ButtonExt-for-O" class="impl"><a class="src rightside" href="../../src/gtk4/auto/button.rs.html#1474">Source</a><a href="#impl-ButtonExt-for-O" class="anchor">§</a><h3 class="code-header">impl&lt;O: <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Button.html" title="struct gtk4::Button">Button</a>&gt;&gt; <a class="trait" href="trait.ButtonExt.html" title="trait gtk4::prelude::ButtonExt">ButtonExt</a> for O</h3></section></div><script src="../../trait.impl/gtk4/auto/button/trait.ButtonExt.js" async></script></section></div></main></body></html>

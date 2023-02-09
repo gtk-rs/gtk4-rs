@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html lang="en" class="sidebar-visible no-js rust">
+<html lang="en" class="rust sidebar-visible" dir="ltr">
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
@@ -7,10 +7,10 @@
 
 
         <!-- Custom HTML head -->
-        
+
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="theme-color" content="#ffffff" />
+        <meta name="theme-color" content="#ffffff">
 
         <link rel="icon" href="favicon.svg">
         <link rel="shortcut icon" href="favicon.png">
@@ -24,26 +24,41 @@
         <link rel="stylesheet" href="fonts/fonts.css">
 
         <!-- Highlight.js Stylesheets -->
-        <link rel="stylesheet" href="highlight.css">
-        <link rel="stylesheet" href="tomorrow-night.css">
-        <link rel="stylesheet" href="ayu-highlight.css">
+        <link rel="stylesheet" id="highlight-css" href="highlight.css">
+        <link rel="stylesheet" id="tomorrow-night-css" href="tomorrow-night.css">
+        <link rel="stylesheet" id="ayu-highlight-css" href="ayu-highlight.css">
 
         <!-- Custom theme stylesheets -->
         <link rel="stylesheet" href="theme/style.css">
 
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "";
+            const default_light_theme = "rust";
+            const default_dark_theme = "navy";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="toc.js"></script>
     </head>
     <body>
-        <!-- Provide site root to javascript -->
-        <script>
-            var path_to_root = "";
-            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "rust";
-        </script>
-
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="body-container">
         <!-- Work around some values being stored in localStorage wrapped in quotes -->
         <script>
             try {
-                var theme = localStorage.getItem('mdbook-theme');
-                var sidebar = localStorage.getItem('mdbook-sidebar');
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
 
                 if (theme.startsWith('"') && theme.endsWith('"')) {
                     localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
@@ -57,55 +72,65 @@
 
         <!-- Set the theme before any content is loaded, prevents flash -->
         <script>
-            var theme;
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
             try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
             if (theme === null || theme === undefined) { theme = default_theme; }
-            var html = document.querySelector('html');
-            html.classList.remove('no-js')
+            const html = document.documentElement;
             html.classList.remove('rust')
             html.classList.add(theme);
-            html.classList.add('js');
+            html.classList.add("js");
         </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
 
         <!-- Hide / unhide sidebar before it is displayed -->
         <script>
-            var html = document.querySelector('html');
-            var sidebar = 'hidden';
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
             }
+            sidebar_toggle.checked = sidebar === 'visible';
             html.classList.remove('sidebar-visible');
             html.classList.add("sidebar-" + sidebar);
         </script>
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
-            <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="introduction.html">Introduction</a></li><li class="chapter-item expanded "><a href="installation.html"><strong aria-hidden="true">1.</strong> Installation</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="installation_linux.html"><strong aria-hidden="true">1.1.</strong> Linux</a></li><li class="chapter-item expanded "><a href="installation_macos.html"><strong aria-hidden="true">1.2.</strong> macOS</a></li><li class="chapter-item expanded "><a href="installation_windows.html"><strong aria-hidden="true">1.3.</strong> Windows</a></li></ol></li><li class="chapter-item expanded "><a href="project_setup.html"><strong aria-hidden="true">2.</strong> Project Setup</a></li><li class="chapter-item expanded "><a href="hello_world.html"><strong aria-hidden="true">3.</strong> Hello World!</a></li><li class="chapter-item expanded "><a href="widgets.html"><strong aria-hidden="true">4.</strong> Widgets</a></li><li class="chapter-item expanded "><a href="g_object_concepts.html"><strong aria-hidden="true">5.</strong> GObject Concepts</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="g_object_memory_management.html" class="active"><strong aria-hidden="true">5.1.</strong> Memory Management</a></li><li class="chapter-item expanded "><a href="g_object_subclassing.html"><strong aria-hidden="true">5.2.</strong> Subclassing</a></li><li class="chapter-item expanded "><a href="g_object_values.html"><strong aria-hidden="true">5.3.</strong> Generic Values</a></li><li class="chapter-item expanded "><a href="g_object_properties.html"><strong aria-hidden="true">5.4.</strong> Properties</a></li><li class="chapter-item expanded "><a href="g_object_signals.html"><strong aria-hidden="true">5.5.</strong> Signals</a></li></ol></li><li class="chapter-item expanded "><a href="main_event_loop.html"><strong aria-hidden="true">6.</strong> The Main Event Loop</a></li><li class="chapter-item expanded "><a href="settings.html"><strong aria-hidden="true">7.</strong> Settings</a></li><li class="chapter-item expanded "><a href="saving_window_state.html"><strong aria-hidden="true">8.</strong> Saving Window State</a></li><li class="chapter-item expanded "><a href="list_widgets.html"><strong aria-hidden="true">9.</strong> List Widgets</a></li><li class="chapter-item expanded "><a href="composite_templates.html"><strong aria-hidden="true">10.</strong> Composite Templates</a></li><li class="chapter-item expanded "><a href="todo_1.html"><strong aria-hidden="true">11.</strong> Building a Simple To-Do App</a></li><li class="chapter-item expanded "><a href="actions.html"><strong aria-hidden="true">12.</strong> Actions</a></li><li class="chapter-item expanded "><a href="todo_2.html"><strong aria-hidden="true">13.</strong> Manipulating State of To-Do App</a></li><li class="chapter-item expanded "><a href="css.html"><strong aria-hidden="true">14.</strong> CSS</a></li><li class="chapter-item expanded "><a href="libadwaita.html"><strong aria-hidden="true">15.</strong> Libadwaita</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="todo_3.html"><strong aria-hidden="true">15.1.</strong> Let To-Do App use Libadwaita</a></li><li class="chapter-item expanded "><a href="todo_4.html"><strong aria-hidden="true">15.2.</strong> Adding Collections</a></li></ol></li></ol>
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="toc.html"></iframe>
+            </noscript>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
             </div>
-            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
 
         <div id="page-wrapper" class="page-wrapper">
 
             <div class="page">
-                                <div id="menu-bar-hover-placeholder"></div>
-                <div id="menu-bar" class="menu-bar sticky bordered">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
                     <div class="left-buttons">
-                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
                             <i class="fa fa-bars"></i>
-                        </button>
+                        </label>
                         <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
                             <i class="fa fa-paint-brush"></i>
                         </button>
                         <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="default_theme">Auto</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
                         </ul>
-                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                        <button id="search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="searchbar">
                             <i class="fa fa-search"></i>
                         </button>
                     </div>
@@ -116,7 +141,7 @@
                         <a href="print.html" title="Print this book" aria-label="Print this book">
                             <i id="print-button" class="fa fa-print"></i>
                         </a>
-                        <a href="https://github.com/gtk-rs/gtk4-rs/tree/master/book" title="Git repository" aria-label="Git repository">
+                        <a href="https://github.com/gtk-rs/gtk4-rs/tree/main/book" title="Git repository" aria-label="Git repository">
                             <i id="git-repository-button" class="fa fa-github"></i>
                         </a>
 
@@ -146,35 +171,31 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="memory-management"><a class="header" href="#memory-management">Memory Management</a></h1>
-<p>A GObject (or <a href="https://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/object/struct.Object.html"><code>glib::Object</code></a> in Rust terms) is a reference-counted, mutable object.
-Let's see in a set of real life examples which consequences this has.</p>
-<pre><pre class="playground"><code class="language-rust  no_run compile_fail"><span class="boring">use gtk::prelude::*;
-</span><span class="boring">use gtk::{self, Application, ApplicationWindow, Button, Orientation};
+<p>Memory management when writing a gtk-rs app can be a bit tricky.
+Let's have a look why that is the case and how to deal with that.</p>
+<p>With our first example, we have window with a single button.
+Every button click should increment an integer <code>number</code> by one.</p>
+<pre><code class="language-rust  no_run compile_fail"><span class="boring">use gtk::prelude::*;
+</span><span class="boring">use gtk::{self, glib, Application, ApplicationWindow, Button};
 </span><span class="boring">
-</span><span class="boring">const APP_ID: &amp;str = &quot;org.gtk_rs.GObjectMemoryManagement0&quot;;
+</span><span class="boring">const APP_ID: &amp;str = "org.gtk_rs.GObjectMemoryManagement0";
 </span><span class="boring">
-</span>fn main() {
+</span>// DOES NOT COMPILE!
+fn main() -&gt; glib::ExitCode {
     // Create a new application
     let app = Application::builder().application_id(APP_ID).build();
 
-    // Connect to &quot;activate&quot; signal of `app`
+    // Connect to "activate" signal of `app`
     app.connect_activate(build_ui);
 
     // Run the application
-    app.run();
+    app.run()
 }
 
 fn build_ui(application: &amp;Application) {
     // Create two buttons
     let button_increase = Button::builder()
-        .label(&quot;Increase&quot;)
-        .margin_top(12)
-        .margin_bottom(12)
-        .margin_start(12)
-        .margin_end(12)
-        .build();
-    let button_decrease = Button::builder()
-        .label(&quot;Decrease&quot;)
+        .label("Increase")
         .margin_top(12)
         .margin_bottom(12)
         .margin_start(12)
@@ -187,108 +208,188 @@ fn build_ui(application: &amp;Application) {
     // Connect callbacks
     // When a button is clicked, `number` should be changed
     button_increase.connect_clicked(|_| number += 1);
-    button_decrease.connect_clicked(|_| number -= 1);
-
-    // Add buttons to `gtk_box`
-    let gtk_box = gtk::Box::builder()
-        .orientation(Orientation::Vertical)
-        .build();
-    gtk_box.append(&amp;button_increase);
-    gtk_box.append(&amp;button_decrease);
 
     // Create a window
     let window = ApplicationWindow::builder()
         .application(application)
-        .title(&quot;My GTK App&quot;)
-        .child(&amp;gtk_box)
+        .title("My GTK App")
+        .child(&amp;button_increase)
         .build();
 
     // Present the window
     window.present();
-}</code></pre></pre>
-<p>Here we would like to create a simple app with two buttons.
-If we click on one button, an integer number should be increased. If we press the other one, it should be decreased.
-The Rust compiler refuses to compile it though.</p>
-<p>For once the borrow checker kicked in:</p>
-<pre><code class="language-console">error[E0499]: cannot borrow `number` as mutable more than once at a time
-  --&gt; main.rs:27:37
-   |
-26 |     button_increase.connect_clicked(|_| number += 1);
-   |     ------------------------------------------------
-   |     |                               |   |
-   |     |                               |   first borrow occurs due to use of `number` in closure
-   |     |                               first mutable borrow occurs here
-   |     argument requires that `number` is borrowed for `'static`
-27 |     button_decrease.connect_clicked(|_| number -= 1);
-   |                                     ^^^ ------ second borrow occurs due to use of `number` in closure
-   |                                     |
-   |                                     second mutable borrow occurs here
-</code></pre>
-<p>Also, the compiler tells us that our closures may outlive <code>number</code>:</p>
+}</code></pre>
+<p>The Rust compiler refuses to compile this application while spitting out multiple error messages.
+Let's have a look at them one by one.</p>
 <pre><code class="language-console">
 error[E0373]: closure may outlive the current function, but it borrows `number`, which is owned by the current function
-  --&gt; main.rs:26:37
    |
-26 |     button_increase.connect_clicked(|_| number += 1);
+32 |     button_increase.connect_clicked(|_| number += 1);
    |                                     ^^^ ------ `number` is borrowed here
    |                                     |
    |                                     may outlive borrowed value `number`
    |
 note: function requires argument type to outlive `'static`
-  --&gt; main.rs:26:5
    |
-26 |     button_increase.connect_clicked(|_| number += 1);
+32 |     button_increase.connect_clicked(|_| number += 1);
    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 help: to force the closure to take ownership of `number` (and any other referenced variables), use the `move` keyword
    |
-26 |     button_increase.connect_clicked(move |_| number += 1);
-   |                                     ^^^^^^^^
+32 |     button_increase.connect_clicked(move |_| number += 1);
+   |
 </code></pre>
-<p>Thinking about the second error message, it makes sense that the closure requires the lifetimes of references to be <code>'static</code>.
-The compiler cannot know when the user presses a button, so references must live forever.
-And our <code>number</code> gets immediately deallocated after it reaches the end of its scope.
-The error message is also suggesting that we could take ownership of <code>number</code>.
-But is there actually a way that both closures could take ownership of the same value?</p>
-<p>Yes! That is exactly what the <a href="https://doc.rust-lang.org/std/rc/struct.Rc.html"><code>Rc</code></a> type is there for.
-The <code>Rc</code> counts the number of strong references created via <a href="https://doc.rust-lang.org/std/clone/trait.Clone.html#tymethod.clone"><code>Clone::clone</code></a> and released via <a href="https://doc.rust-lang.org/std/ops/trait.Drop.html#tymethod.drop"><code>Drop::drop</code></a>, and only deallocates it when this number drops to zero.
-We call every object containing a strong reference a shared owner of the value.
-If we want to modify the content of our <a href="https://doc.rust-lang.org/std/rc/struct.Rc.html"><code>Rc</code></a>,
-we can use the <a href="https://doc.rust-lang.org/std/cell/struct.Cell.html"><code>Cell</code></a> type.</p>
+<p>Our closure only borrows <code>number</code>.
+Signal handlers in GTK require <code>'static</code> lifetimes for their references, so we cannot borrow a variable that only lives for the scope of the function <code>build_ui</code>.
+The compiler also suggests how to fix this.
+By adding the <code>move</code> keyword in front of the closure, <code>number</code> will be moved into the closure.</p>
+<pre><code class="language-rust  no_run compile_fail"><span class="boring">use gtk::prelude::*;
+</span><span class="boring">use gtk::{self, glib, Application, ApplicationWindow, Button};
+</span><span class="boring">
+</span><span class="boring">const APP_ID: &amp;str = "org.gtk_rs.GObjectMemoryManagement0";
+</span><span class="boring">
+</span><span class="boring">fn main() -&gt; glib::ExitCode {
+</span><span class="boring">    // Create a new application
+</span><span class="boring">    let app = Application::builder().application_id(APP_ID).build();
+</span><span class="boring">
+</span><span class="boring">    // Connect to "activate" signal of `app`
+</span><span class="boring">    app.connect_activate(build_ui);
+</span><span class="boring">
+</span><span class="boring">    // Run the application
+</span><span class="boring">    app.run()
+</span><span class="boring">}
+</span><span class="boring">
+</span><span class="boring">fn build_ui(application: &amp;Application) {
+</span><span class="boring">    // Create two buttons
+</span><span class="boring">    let button_increase = Button::builder()
+</span><span class="boring">        .label("Increase")
+</span><span class="boring">        .margin_top(12)
+</span><span class="boring">        .margin_bottom(12)
+</span><span class="boring">        .margin_start(12)
+</span><span class="boring">        .margin_end(12)
+</span><span class="boring">        .build();
+</span><span class="boring">
+</span>    // DOES NOT COMPILE!
+    // A mutable integer
+    let mut number = 0;
+
+    // Connect callbacks
+    // When a button is clicked, `number` should be changed
+    button_increase.connect_clicked(move |_| number += 1);
+<span class="boring">
+</span><span class="boring">   // Create a window
+</span><span class="boring">   let window = ApplicationWindow::builder()
+</span><span class="boring">       .application(application)
+</span><span class="boring">       .title("My GTK App")
+</span><span class="boring">       .child(&amp;button_increase)
+</span><span class="boring">       .build();
+</span><span class="boring">
+</span><span class="boring">   // Present the window
+</span><span class="boring">   window.present();
+</span><span class="boring">}</span></code></pre>
+<p>This still leaves the following error message:</p>
+<pre><code class="language-console">
+error[E0594]: cannot assign to `number`, as it is a captured variable in a `Fn` closure
+   |
+32 |     button_increase.connect_clicked(move |_| number += 1);
+   |                                              ^^^^^^^^^^^ cannot assign
+</code></pre>
+<p>In order to understand that error message we have to understand the difference between the three closure traits <code>FnOnce</code>, <code>FnMut</code> and <code>Fn</code>.
+APIs that take closures implementing the <code>FnOnce</code> trait give the most freedom to the API consumer.
+The closure is called only once, so it can even consume its state.
+Signal handlers can be called multiple times, so they cannot accept <code>FnOnce</code>.</p>
+<p>The more restrictive <code>FnMut</code> trait doesn't allow closures to consume their state, but they can still mutate it.
+Signal handlers can't allow this either, because they can be called from inside themselves.
+This would lead to multiple mutable references which the borrow checker doesn't appreciate at all.</p>
+<p>This leaves <code>Fn</code>.
+State can be immutably borrowed, but then how can we modify <code>number</code>?
+We need a data type with interior mutability like <a href="https://doc.rust-lang.org/std/cell/struct.Cell.html"><code>std::cell::Cell</code></a>.</p>
 <blockquote>
 <p>The <code>Cell</code> class is only suitable for objects that implement the <a href="https://doc.rust-lang.org/core/marker/trait.Copy.html"><code>Copy</code></a> trait.
 For other objects, <a href="https://doc.rust-lang.org/std/cell/struct.RefCell.html"><code>RefCell</code></a> is the way to go.
 You can learn more about interior mutability in this <a href="https://marabos.nl/atomics/basics.html#interior-mutability">section</a> of the book <em>Rust Atomics and Locks</em>.</p>
 </blockquote>
-<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/g_object_memory_management/1/main.rs">listings/g_object_memory_management/1/main.rs</a></p>
-<pre><code class="language-rust  no_run noplayground"><span class="boring">use std::cell::Cell;
-</span><span class="boring">use std::rc::Rc;
+<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/g_object_memory_management/2/main.rs">listings/g_object_memory_management/1/main.rs</a></p>
+<pre><code class="language-rust"><span class="boring">use gtk::prelude::*;
+</span><span class="boring">use gtk::{glib, Application, ApplicationWindow, Button};
+</span><span class="boring">use std::cell::Cell;
 </span><span class="boring">
-</span><span class="boring">use gtk::prelude::*;
-</span><span class="boring">use gtk::{self, Application, ApplicationWindow, Button, Orientation};
+</span><span class="boring">const APP_ID: &amp;str = "org.gtk_rs.GObjectMemoryManagement1";
 </span><span class="boring">
-</span><span class="boring">const APP_ID: &amp;str = &quot;org.gtk_rs.GObjectMemoryManagement1&quot;;
-</span><span class="boring">
-</span><span class="boring">fn main() {
+</span><span class="boring">fn main() -&gt; glib::ExitCode {
 </span><span class="boring">    // Create a new application
 </span><span class="boring">    let app = Application::builder().application_id(APP_ID).build();
 </span><span class="boring">
-</span><span class="boring">    // Connect to &quot;activate&quot; signal of `app`
+</span><span class="boring">    // Connect to "activate" signal of `app`
 </span><span class="boring">    app.connect_activate(build_ui);
 </span><span class="boring">
 </span><span class="boring">    // Run the application
-</span><span class="boring">    app.run();
+</span><span class="boring">    app.run()
+</span><span class="boring">}
+</span><span class="boring">
+</span>fn build_ui(application: &amp;Application) {
+    // Create two buttons
+    let button_increase = Button::builder()
+        .label("Increase")
+        .margin_top(12)
+        .margin_bottom(12)
+        .margin_start(12)
+        .margin_end(12)
+        .build();
+
+    // A mutable integer
+    let number = Cell::new(0);
+
+    // Connect callbacks
+    // When a button is clicked, `number` should be changed
+    button_increase.connect_clicked(move |_| number.set(number.get() + 1));
+
+    // Create a window
+    let window = ApplicationWindow::builder()
+        .application(application)
+        .title("My GTK App")
+        .child(&amp;button_increase)
+        .build();
+
+    // Present the window
+    window.present();
+}</code></pre>
+<p>This now compiles as expected.
+Let's try a slightly more complicated example: two buttons which both modify the same <code>number</code>.
+For that, we need a way that both closures take ownership of the same value?</p>
+<p>That is exactly what the <a href="https://doc.rust-lang.org/std/rc/struct.Rc.html"><code>std::rc::Rc</code></a> type is there for.
+<code>Rc</code> counts the number of strong references created via <a href="https://doc.rust-lang.org/std/clone/trait.Clone.html#tymethod.clone"><code>Clone::clone</code></a> and released via <a href="https://doc.rust-lang.org/std/ops/trait.Drop.html#tymethod.drop"><code>Drop::drop</code></a>, and only deallocates the value when this number drops to zero.
+If we want to modify the content of our <a href="https://doc.rust-lang.org/std/rc/struct.Rc.html"><code>Rc</code></a>,
+we can again use the <a href="https://doc.rust-lang.org/std/cell/struct.Cell.html"><code>Cell</code></a> type.</p>
+<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/g_object_memory_management/2/main.rs">listings/g_object_memory_management/2/main.rs</a></p>
+<pre><code class="language-rust"><span class="boring">use std::cell::Cell;
+</span><span class="boring">use std::rc::Rc;
+</span><span class="boring">
+</span><span class="boring">use gtk::prelude::*;
+</span><span class="boring">use gtk::{self, glib, Application, ApplicationWindow, Button, Orientation};
+</span><span class="boring">
+</span><span class="boring">const APP_ID: &amp;str = "org.gtk_rs.GObjectMemoryManagement2";
+</span><span class="boring">
+</span><span class="boring">fn main() -&gt; glib::ExitCode {
+</span><span class="boring">    // Create a new application
+</span><span class="boring">    let app = Application::builder().application_id(APP_ID).build();
+</span><span class="boring">
+</span><span class="boring">    // Connect to "activate" signal of `app`
+</span><span class="boring">    app.connect_activate(build_ui);
+</span><span class="boring">
+</span><span class="boring">    // Run the application
+</span><span class="boring">    app.run()
 </span><span class="boring">}
 </span><span class="boring">fn build_ui(app: &amp;Application) {
 </span><span class="boring">    // Create two buttons
 </span><span class="boring">    let button_increase = Button::builder()
-</span><span class="boring">        .label(&quot;Increase&quot;)
+</span><span class="boring">        .label("Increase")
 </span><span class="boring">        .margin_top(12)
 </span><span class="boring">        .margin_bottom(12)
 </span><span class="boring">        .margin_start(12)
 </span><span class="boring">        .margin_end(12)
 </span><span class="boring">        .build();
 </span><span class="boring">    let button_decrease = Button::builder()
-</span><span class="boring">        .label(&quot;Decrease&quot;)
+</span><span class="boring">        .label("Decrease")
 </span><span class="boring">        .margin_top(12)
 </span><span class="boring">        .margin_bottom(12)
 </span><span class="boring">        .margin_start(12)
@@ -313,7 +414,7 @@ You can learn more about interior mutability in this <a href="https://marabos.nl
 </span><span class="boring">    // Create a window
 </span><span class="boring">    let window = ApplicationWindow::builder()
 </span><span class="boring">        .application(app)
-</span><span class="boring">        .title(&quot;My GTK App&quot;)
+</span><span class="boring">        .title("My GTK App")
 </span><span class="boring">        .child(&amp;gtk_box)
 </span><span class="boring">        .build();
 </span><span class="boring">
@@ -322,37 +423,37 @@ You can learn more about interior mutability in this <a href="https://marabos.nl
 </span><span class="boring">}</span></code></pre>
 <p>It is not very nice though to fill the scope with temporary variables like <code>number_copy</code>.
 We can improve that by using the <a href="https://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/macro.clone.html"><code>glib::clone!</code></a> macro.</p>
-<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/g_object_memory_management/2/main.rs">listings/g_object_memory_management/2/main.rs</a></p>
-<pre><code class="language-rust  no_run noplayground"><span class="boring">use std::cell::Cell;
+<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/g_object_memory_management/3/main.rs">listings/g_object_memory_management/3/main.rs</a></p>
+<pre><code class="language-rust"><span class="boring">use std::cell::Cell;
 </span><span class="boring">use std::rc::Rc;
 </span><span class="boring">
 </span><span class="boring">use glib::clone;
 </span><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::{self, glib, Application, ApplicationWindow, Button, Orientation};
 </span><span class="boring">
-</span><span class="boring">const APP_ID: &amp;str = &quot;org.gtk_rs.GObjectMemoryManagement2&quot;;
+</span><span class="boring">const APP_ID: &amp;str = "org.gtk_rs.GObjectMemoryManagement3";
 </span><span class="boring">
-</span><span class="boring">fn main() {
+</span><span class="boring">fn main() -&gt; glib::ExitCode {
 </span><span class="boring">    // Create a new application
 </span><span class="boring">    let app = Application::builder().application_id(APP_ID).build();
 </span><span class="boring">
-</span><span class="boring">    // Connect to &quot;activate&quot; signal of `app`
+</span><span class="boring">    // Connect to "activate" signal of `app`
 </span><span class="boring">    app.connect_activate(build_ui);
 </span><span class="boring">
 </span><span class="boring">    // Run the application
-</span><span class="boring">    app.run();
+</span><span class="boring">    app.run()
 </span><span class="boring">}
 </span><span class="boring">fn build_ui(app: &amp;Application) {
 </span><span class="boring">    // Create two buttons
 </span><span class="boring">    let button_increase = Button::builder()
-</span><span class="boring">        .label(&quot;Increase&quot;)
+</span><span class="boring">        .label("Increase")
 </span><span class="boring">        .margin_top(12)
 </span><span class="boring">        .margin_bottom(12)
 </span><span class="boring">        .margin_start(12)
 </span><span class="boring">        .margin_end(12)
 </span><span class="boring">        .build();
 </span><span class="boring">    let button_decrease = Button::builder()
-</span><span class="boring">        .label(&quot;Decrease&quot;)
+</span><span class="boring">        .label("Decrease")
 </span><span class="boring">        .margin_top(12)
 </span><span class="boring">        .margin_bottom(12)
 </span><span class="boring">        .margin_start(12)
@@ -363,9 +464,13 @@ We can improve that by using the <a href="https://gtk-rs.org/gtk-rs-core/stable/
 </span><span class="boring">    let number = Rc::new(Cell::new(0));
 </span><span class="boring">    // Connect callbacks
 </span><span class="boring">    // When a button is clicked, `number` will be changed
-</span>    button_increase.connect_clicked(clone!(@strong number =&gt; move |_| {
-        number.set(number.get() + 1);
-    }));
+</span>    button_increase.connect_clicked(clone!(
+        #[strong]
+        number,
+        move |_| {
+            number.set(number.get() + 1);
+        }
+    ));
     button_decrease.connect_clicked(move |_| {
         number.set(number.get() - 1);
     });
@@ -380,7 +485,7 @@ We can improve that by using the <a href="https://gtk-rs.org/gtk-rs-core/stable/
 </span><span class="boring">    // Create a window
 </span><span class="boring">    let window = ApplicationWindow::builder()
 </span><span class="boring">        .application(app)
-</span><span class="boring">        .title(&quot;My GTK App&quot;)
+</span><span class="boring">        .title("My GTK App")
 </span><span class="boring">        .child(&amp;gtk_box)
 </span><span class="boring">        .build();
 </span><span class="boring">
@@ -389,38 +494,38 @@ We can improve that by using the <a href="https://gtk-rs.org/gtk-rs-core/stable/
 </span><span class="boring">}</span></code></pre>
 <p>Just like <code>Rc&lt;Cell&lt;T&gt;&gt;</code>, GObjects are reference-counted and mutable.
 Therefore, we can pass the buttons the same way to the closure as we did with <code>number</code>.</p>
-<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/g_object_memory_management/3/main.rs">listings/g_object_memory_management/3/main.rs</a></p>
-<pre><code class="language-rust  no_run noplayground"><span class="boring">use std::cell::Cell;
+<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/g_object_memory_management/4/main.rs">listings/g_object_memory_management/4/main.rs</a></p>
+<pre><code class="language-rust"><span class="boring">use std::cell::Cell;
 </span><span class="boring">use std::rc::Rc;
 </span><span class="boring">
 </span><span class="boring">use glib::clone;
 </span><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::{self, glib, Application, ApplicationWindow, Button, Orientation};
 </span><span class="boring">
-</span><span class="boring">const APP_ID: &amp;str = &quot;org.gtk_rs.GObjectMemoryManagement3&quot;;
+</span><span class="boring">const APP_ID: &amp;str = "org.gtk_rs.GObjectMemoryManagement4";
 </span><span class="boring">
-</span><span class="boring">fn main() {
+</span><span class="boring">fn main() -&gt; glib::ExitCode {
 </span><span class="boring">    // Create a new application
 </span><span class="boring">    let app = Application::builder().application_id(APP_ID).build();
 </span><span class="boring">
-</span><span class="boring">    // Connect to &quot;activate&quot; signal of `app`
+</span><span class="boring">    // Connect to "activate" signal of `app`
 </span><span class="boring">    app.connect_activate(build_ui);
 </span><span class="boring">
 </span><span class="boring">    // Run the application
-</span><span class="boring">    app.run();
+</span><span class="boring">    app.run()
 </span><span class="boring">}
 </span><span class="boring">
 </span><span class="boring">fn build_ui(app: &amp;Application) {
 </span><span class="boring">    // Create two buttons
 </span><span class="boring">    let button_increase = Button::builder()
-</span><span class="boring">        .label(&quot;Increase&quot;)
+</span><span class="boring">        .label("Increase")
 </span><span class="boring">        .margin_top(12)
 </span><span class="boring">        .margin_bottom(12)
 </span><span class="boring">        .margin_start(12)
 </span><span class="boring">        .margin_end(12)
 </span><span class="boring">        .build();
 </span><span class="boring">    let button_decrease = Button::builder()
-</span><span class="boring">        .label(&quot;Decrease&quot;)
+</span><span class="boring">        .label("Decrease")
 </span><span class="boring">        .margin_top(12)
 </span><span class="boring">        .margin_bottom(12)
 </span><span class="boring">        .margin_start(12)
@@ -431,16 +536,24 @@ Therefore, we can pass the buttons the same way to the closure as we did with <c
 </span><span class="boring">
 </span>    // Connect callbacks
     // When a button is clicked, `number` and label of the other button will be changed
-    button_increase.connect_clicked(clone!(@weak number, @strong button_decrease =&gt;
+    button_increase.connect_clicked(clone!(
+        #[weak]
+        number,
+        #[strong]
+        button_decrease,
         move |_| {
             number.set(number.get() + 1);
             button_decrease.set_label(&amp;number.get().to_string());
-    }));
-    button_decrease.connect_clicked(clone!(@strong button_increase =&gt;
+        }
+    ));
+    button_decrease.connect_clicked(clone!(
+        #[strong]
+        button_increase,
         move |_| {
             number.set(number.get() - 1);
             button_increase.set_label(&amp;number.get().to_string());
-    }));
+        }
+    ));
 <span class="boring">
 </span><span class="boring">    // Add buttons to `gtk_box`
 </span><span class="boring">    let gtk_box = gtk::Box::builder()
@@ -452,7 +565,7 @@ Therefore, we can pass the buttons the same way to the closure as we did with <c
 </span><span class="boring">    // Create a window
 </span><span class="boring">    let window = ApplicationWindow::builder()
 </span><span class="boring">        .application(app)
-</span><span class="boring">        .title(&quot;My GTK App&quot;)
+</span><span class="boring">        .title("My GTK App")
 </span><span class="boring">        .child(&amp;gtk_box)
 </span><span class="boring">        .build();
 </span><span class="boring">
@@ -468,38 +581,38 @@ A strong reference keeps the referenced value from being deallocated.
 If this chain leads to a circle, none of the values in this cycle ever get deallocated.
 With weak references we can break this cycle, because they don't keep their value alive but instead provide a way to retrieve a strong reference if the value is still alive.
 Since we want our apps to free unneeded memory, we should use weak references for the buttons instead.</p>
-<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/g_object_memory_management/4/main.rs">listings/g_object_memory_management/4/main.rs</a></p>
-<pre><code class="language-rust  no_run noplayground"><span class="boring">use std::cell::Cell;
+<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/g_object_memory_management/5/main.rs">listings/g_object_memory_management/5/main.rs</a></p>
+<pre><code class="language-rust"><span class="boring">use std::cell::Cell;
 </span><span class="boring">use std::rc::Rc;
 </span><span class="boring">
 </span><span class="boring">use glib::clone;
 </span><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::{self, glib, Application, ApplicationWindow, Button, Orientation};
 </span><span class="boring">
-</span><span class="boring">const APP_ID: &amp;str = &quot;org.gtk_rs.GObjectMemoryManagement4&quot;;
+</span><span class="boring">const APP_ID: &amp;str = "org.gtk_rs.GObjectMemoryManagement5";
 </span><span class="boring">
-</span><span class="boring">fn main() {
+</span><span class="boring">fn main() -&gt; glib::ExitCode {
 </span><span class="boring">    // Create a new application
 </span><span class="boring">    let app = Application::builder().application_id(APP_ID).build();
 </span><span class="boring">
-</span><span class="boring">    // Connect to &quot;activate&quot; signal of `app`
+</span><span class="boring">    // Connect to "activate" signal of `app`
 </span><span class="boring">    app.connect_activate(build_ui);
 </span><span class="boring">
 </span><span class="boring">    // Run the application
-</span><span class="boring">    app.run();
+</span><span class="boring">    app.run()
 </span><span class="boring">}
 </span><span class="boring">
 </span><span class="boring">fn build_ui(app: &amp;Application) {
 </span><span class="boring">    // Create two buttons
 </span><span class="boring">    let button_increase = Button::builder()
-</span><span class="boring">        .label(&quot;Increase&quot;)
+</span><span class="boring">        .label("Increase")
 </span><span class="boring">        .margin_top(12)
 </span><span class="boring">        .margin_bottom(12)
 </span><span class="boring">        .margin_start(12)
 </span><span class="boring">        .margin_end(12)
 </span><span class="boring">        .build();
 </span><span class="boring">    let button_decrease = Button::builder()
-</span><span class="boring">        .label(&quot;Decrease&quot;)
+</span><span class="boring">        .label("Decrease")
 </span><span class="boring">        .margin_top(12)
 </span><span class="boring">        .margin_bottom(12)
 </span><span class="boring">        .margin_start(12)
@@ -511,16 +624,24 @@ Since we want our apps to free unneeded memory, we should use weak references fo
 </span><span class="boring">
 </span>    // Connect callbacks
     // When a button is clicked, `number` and label of the other button will be changed
-    button_increase.connect_clicked(clone!(@weak number, @weak button_decrease =&gt;
+    button_increase.connect_clicked(clone!(
+        #[weak]
+        number,
+        #[weak]
+        button_decrease,
         move |_| {
             number.set(number.get() + 1);
             button_decrease.set_label(&amp;number.get().to_string());
-    }));
-    button_decrease.connect_clicked(clone!(@weak button_increase =&gt;
+        }
+    ));
+    button_decrease.connect_clicked(clone!(
+        #[weak]
+        button_increase,
         move |_| {
             number.set(number.get() - 1);
             button_increase.set_label(&amp;number.get().to_string());
-    }));
+        }
+    ));
 <span class="boring">
 </span><span class="boring">    // Add buttons to `gtk_box`
 </span><span class="boring">    let gtk_box = gtk::Box::builder()
@@ -532,7 +653,7 @@ Since we want our apps to free unneeded memory, we should use weak references fo
 </span><span class="boring">    // Create a window
 </span><span class="boring">    let window = ApplicationWindow::builder()
 </span><span class="boring">        .application(app)
-</span><span class="boring">        .title(&quot;My GTK App&quot;)
+</span><span class="boring">        .title("My GTK App")
 </span><span class="boring">        .child(&amp;gtk_box)
 </span><span class="boring">        .build();
 </span><span class="boring">
@@ -548,38 +669,38 @@ In case the closure expects a different return value <code>@default-return</code
 If we had moved weak references in both closures, nothing would have kept <code>number</code> alive and the closure would have never been called.
 Thinking about this, <code>button_increase</code> and <code>button_decrease</code> are also dropped at the end of the scope of <code>build_ui</code>.
 Who then keeps the buttons alive?</p>
-<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/g_object_memory_management/4/main.rs">listings/g_object_memory_management/4/main.rs</a></p>
-<pre><code class="language-rust  no_run noplayground"><span class="boring">use std::cell::Cell;
+<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/g_object_memory_management/5/main.rs">listings/g_object_memory_management/5/main.rs</a></p>
+<pre><code class="language-rust"><span class="boring">use std::cell::Cell;
 </span><span class="boring">use std::rc::Rc;
 </span><span class="boring">
 </span><span class="boring">use glib::clone;
 </span><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::{self, glib, Application, ApplicationWindow, Button, Orientation};
 </span><span class="boring">
-</span><span class="boring">const APP_ID: &amp;str = &quot;org.gtk_rs.GObjectMemoryManagement4&quot;;
+</span><span class="boring">const APP_ID: &amp;str = "org.gtk_rs.GObjectMemoryManagement5";
 </span><span class="boring">
-</span><span class="boring">fn main() {
+</span><span class="boring">fn main() -&gt; glib::ExitCode {
 </span><span class="boring">    // Create a new application
 </span><span class="boring">    let app = Application::builder().application_id(APP_ID).build();
 </span><span class="boring">
-</span><span class="boring">    // Connect to &quot;activate&quot; signal of `app`
+</span><span class="boring">    // Connect to "activate" signal of `app`
 </span><span class="boring">    app.connect_activate(build_ui);
 </span><span class="boring">
 </span><span class="boring">    // Run the application
-</span><span class="boring">    app.run();
+</span><span class="boring">    app.run()
 </span><span class="boring">}
 </span><span class="boring">
 </span><span class="boring">fn build_ui(app: &amp;Application) {
 </span><span class="boring">    // Create two buttons
 </span><span class="boring">    let button_increase = Button::builder()
-</span><span class="boring">        .label(&quot;Increase&quot;)
+</span><span class="boring">        .label("Increase")
 </span><span class="boring">        .margin_top(12)
 </span><span class="boring">        .margin_bottom(12)
 </span><span class="boring">        .margin_start(12)
 </span><span class="boring">        .margin_end(12)
 </span><span class="boring">        .build();
 </span><span class="boring">    let button_decrease = Button::builder()
-</span><span class="boring">        .label(&quot;Decrease&quot;)
+</span><span class="boring">        .label("Decrease")
 </span><span class="boring">        .margin_top(12)
 </span><span class="boring">        .margin_bottom(12)
 </span><span class="boring">        .margin_start(12)
@@ -591,16 +712,24 @@ Who then keeps the buttons alive?</p>
 </span><span class="boring">
 </span><span class="boring">    // Connect callbacks
 </span><span class="boring">    // When a button is clicked, `number` and label of the other button will be changed
-</span><span class="boring">    button_increase.connect_clicked(clone!(@weak number, @weak button_decrease =&gt;
+</span><span class="boring">    button_increase.connect_clicked(clone!(
+</span><span class="boring">        #[weak]
+</span><span class="boring">        number,
+</span><span class="boring">        #[weak]
+</span><span class="boring">        button_decrease,
 </span><span class="boring">        move |_| {
 </span><span class="boring">            number.set(number.get() + 1);
 </span><span class="boring">            button_decrease.set_label(&amp;number.get().to_string());
-</span><span class="boring">    }));
-</span><span class="boring">    button_decrease.connect_clicked(clone!(@weak button_increase =&gt;
+</span><span class="boring">        }
+</span><span class="boring">    ));
+</span><span class="boring">    button_decrease.connect_clicked(clone!(
+</span><span class="boring">        #[weak]
+</span><span class="boring">        button_increase,
 </span><span class="boring">        move |_| {
 </span><span class="boring">            number.set(number.get() - 1);
 </span><span class="boring">            button_increase.set_label(&amp;number.get().to_string());
-</span><span class="boring">    }));
+</span><span class="boring">        }
+</span><span class="boring">    ));
 </span><span class="boring">
 </span>    // Add buttons to `gtk_box`
     let gtk_box = gtk::Box::builder()
@@ -612,7 +741,7 @@ Who then keeps the buttons alive?</p>
 </span><span class="boring">    // Create a window
 </span><span class="boring">    let window = ApplicationWindow::builder()
 </span><span class="boring">        .application(app)
-</span><span class="boring">        .title(&quot;My GTK App&quot;)
+</span><span class="boring">        .title("My GTK App")
 </span><span class="boring">        .child(&amp;gtk_box)
 </span><span class="boring">        .build();
 </span><span class="boring">
@@ -620,38 +749,38 @@ Who then keeps the buttons alive?</p>
 </span><span class="boring">    window.present();
 </span><span class="boring">}</span></code></pre>
 <p>When we append the buttons to the <code>gtk_box</code>, <code>gtk_box</code> keeps a strong reference to them.</p>
-<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/g_object_memory_management/4/main.rs">listings/g_object_memory_management/4/main.rs</a></p>
-<pre><code class="language-rust  no_run noplayground"><span class="boring">use std::cell::Cell;
+<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/g_object_memory_management/5/main.rs">listings/g_object_memory_management/5/main.rs</a></p>
+<pre><code class="language-rust"><span class="boring">use std::cell::Cell;
 </span><span class="boring">use std::rc::Rc;
 </span><span class="boring">
 </span><span class="boring">use glib::clone;
 </span><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::{self, glib, Application, ApplicationWindow, Button, Orientation};
 </span><span class="boring">
-</span><span class="boring">const APP_ID: &amp;str = &quot;org.gtk_rs.GObjectMemoryManagement4&quot;;
+</span><span class="boring">const APP_ID: &amp;str = "org.gtk_rs.GObjectMemoryManagement5";
 </span><span class="boring">
-</span><span class="boring">fn main() {
+</span><span class="boring">fn main() -&gt; glib::ExitCode {
 </span><span class="boring">    // Create a new application
 </span><span class="boring">    let app = Application::builder().application_id(APP_ID).build();
 </span><span class="boring">
-</span><span class="boring">    // Connect to &quot;activate&quot; signal of `app`
+</span><span class="boring">    // Connect to "activate" signal of `app`
 </span><span class="boring">    app.connect_activate(build_ui);
 </span><span class="boring">
 </span><span class="boring">    // Run the application
-</span><span class="boring">    app.run();
+</span><span class="boring">    app.run()
 </span><span class="boring">}
 </span><span class="boring">
 </span><span class="boring">fn build_ui(app: &amp;Application) {
 </span><span class="boring">    // Create two buttons
 </span><span class="boring">    let button_increase = Button::builder()
-</span><span class="boring">        .label(&quot;Increase&quot;)
+</span><span class="boring">        .label("Increase")
 </span><span class="boring">        .margin_top(12)
 </span><span class="boring">        .margin_bottom(12)
 </span><span class="boring">        .margin_start(12)
 </span><span class="boring">        .margin_end(12)
 </span><span class="boring">        .build();
 </span><span class="boring">    let button_decrease = Button::builder()
-</span><span class="boring">        .label(&quot;Decrease&quot;)
+</span><span class="boring">        .label("Decrease")
 </span><span class="boring">        .margin_top(12)
 </span><span class="boring">        .margin_bottom(12)
 </span><span class="boring">        .margin_start(12)
@@ -663,16 +792,24 @@ Who then keeps the buttons alive?</p>
 </span><span class="boring">
 </span><span class="boring">    // Connect callbacks
 </span><span class="boring">    // When a button is clicked, `number` and label of the other button will be changed
-</span><span class="boring">    button_increase.connect_clicked(clone!(@weak number, @weak button_decrease =&gt;
+</span><span class="boring">    button_increase.connect_clicked(clone!(
+</span><span class="boring">        #[weak]
+</span><span class="boring">        number,
+</span><span class="boring">        #[weak]
+</span><span class="boring">        button_decrease,
 </span><span class="boring">        move |_| {
 </span><span class="boring">            number.set(number.get() + 1);
 </span><span class="boring">            button_decrease.set_label(&amp;number.get().to_string());
-</span><span class="boring">    }));
-</span><span class="boring">    button_decrease.connect_clicked(clone!(@weak button_increase =&gt;
+</span><span class="boring">        }
+</span><span class="boring">    ));
+</span><span class="boring">    button_decrease.connect_clicked(clone!(
+</span><span class="boring">        #[weak]
+</span><span class="boring">        button_increase,
 </span><span class="boring">        move |_| {
 </span><span class="boring">            number.set(number.get() - 1);
 </span><span class="boring">            button_increase.set_label(&amp;number.get().to_string());
-</span><span class="boring">    }));
+</span><span class="boring">        }
+</span><span class="boring">    ));
 </span><span class="boring">
 </span><span class="boring">    // Add buttons to `gtk_box`
 </span><span class="boring">    let gtk_box = gtk::Box::builder()
@@ -684,7 +821,7 @@ Who then keeps the buttons alive?</p>
 </span>    // Create a window
     let window = ApplicationWindow::builder()
         .application(app)
-        .title(&quot;My GTK App&quot;)
+        .title("My GTK App")
         .child(&amp;gtk_box)
         .build();
 <span class="boring">
@@ -705,7 +842,7 @@ Without memory cycles, you can rely on GTK to properly manage the memory of GObj
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next" href="g_object_subclassing.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="g_object_subclassing.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -719,7 +856,7 @@ Without memory cycles, you can rely on GTK to properly manage the memory of GObj
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next" href="g_object_subclassing.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="g_object_subclassing.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>
@@ -745,5 +882,6 @@ Without memory cycles, you can rely on GTK to properly manage the memory of GObj
         <!-- Custom JS scripts -->
 
 
+    </div>
     </body>
 </html>

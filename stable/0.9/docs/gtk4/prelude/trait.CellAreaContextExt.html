@@ -1,0 +1,272 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Trait containing all `struct@CellAreaContext` methods."><title>CellAreaContextExt in gtk4::prelude - Rust</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../static.files/rustdoc-84e720fa.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.89.0-nightly (5526a2f47 2025-06-20)" data-channel="nightly" data-search-js="search-343419c9.js" data-settings-js="settings-5514c975.js" ><script src="../../static.files/storage-4e99c027.js"></script><script defer src="sidebar-items.js"></script><script defer src="../../static.files/main-fd3af306.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-32bb7600.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-6580c154.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-044be391.svg"></head><body class="rustdoc trait"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
+
+    function checkDocsLatestStable() {
+        function popup(msg, url) { return `
+            <style scoped="scoped">
+                .popup {
+                    max-width: 16em;
+                    background-color: #fff;
+                    position: fixed;
+                    z-index: 1;
+                    margin-left: auto;
+                    bottom: 1em;
+                    right: 1em;
+                    border-radius: 5px;
+                    box-shadow: 1px 1px 4px #777;
+                }
+
+                .popup a.version {
+                    color: #e57300;
+                    padding: 0.6em 1em;
+                    display: block;
+                }
+                .popup a.version:hover {
+                    color: #b25900;
+                }
+
+                .popup a.close {
+                    color: white;
+                    background: grey;
+                    border-radius: 99px;
+                    display: inline-block;
+                    width: 19px;
+                    line-height: 19px;
+                    font-weight: bold;
+                    text-align: center;
+                    margin: 0.6em;
+                    float: right;
+                }
+                .popup a.close:hover {
+                    background: black;
+                }
+            </style>
+            <section class="popup" id="gir_docs_popup">
+                <a class="close" href="#" onclick="document.getElementById('gir_docs_popup').remove(); return false">×</a>
+                <a class="version" href="https://gtk-rs.org/gtk4-rs/stable/latest/docs">
+                    ⚠ ${msg}
+                </a>
+            </section>
+        ` };
+
+        if ("0.9" == "main") {
+            document.body.insertAdjacentHTML(
+                'beforeend',
+                popup("This is the development version. Go to latest stable version.", "stable/latest")
+            );
+        } else {
+            fetch('https://gtk-rs.org/gtk4-rs/LATEST_RELEASE_BRANCH')
+                .then(response => response.text())
+                .then(latest_branch => {
+                    if (latest_branch.trim() != "0.9") {
+                        document.body.insertAdjacentHTML(
+                            'beforeend',
+                            popup("This version is outdated. Go to latest version.", "stable/latest")
+                        );
+                    }
+                });
+        }
+    }
+</script>
+
+
+<nav class="mobile-topbar"><button class="sidebar-menu-toggle" title="show sidebar"></button></nav><nav class="sidebar"><div class="sidebar-crate"><h2><a href="../../gtk4/index.html">gtk4</a><span class="version">0.9.7</span></h2></div><div class="sidebar-elems"><section id="rustdoc-toc"><h2 class="location"><a href="#">Cell<wbr>Area<wbr>Context<wbr>Ext</a></h2><h3><a href="#">Sections</a></h3><ul class="block top-toc"><li><a href="#implementors-1" title="Implementors">Implementors</a></li></ul><h3><a href="#provided-methods">Provided Methods</a></h3><ul class="block"><li><a href="#method.allocate" title="allocate">allocate</a></li><li><a href="#method.allocation" title="allocation">allocation</a></li><li><a href="#method.area" title="area">area</a></li><li><a href="#method.connect_minimum_height_notify" title="connect_minimum_height_notify">connect_minimum_height_notify</a></li><li><a href="#method.connect_minimum_width_notify" title="connect_minimum_width_notify">connect_minimum_width_notify</a></li><li><a href="#method.connect_natural_height_notify" title="connect_natural_height_notify">connect_natural_height_notify</a></li><li><a href="#method.connect_natural_width_notify" title="connect_natural_width_notify">connect_natural_width_notify</a></li><li><a href="#method.minimum_height" title="minimum_height">minimum_height</a></li><li><a href="#method.minimum_width" title="minimum_width">minimum_width</a></li><li><a href="#method.natural_height" title="natural_height">natural_height</a></li><li><a href="#method.natural_width" title="natural_width">natural_width</a></li><li><a href="#method.preferred_height" title="preferred_height">preferred_height</a></li><li><a href="#method.preferred_height_for_width" title="preferred_height_for_width">preferred_height_for_width</a></li><li><a href="#method.preferred_width" title="preferred_width">preferred_width</a></li><li><a href="#method.preferred_width_for_height" title="preferred_width_for_height">preferred_width_for_height</a></li><li><a href="#method.push_preferred_height" title="push_preferred_height">push_preferred_height</a></li><li><a href="#method.push_preferred_width" title="push_preferred_width">push_preferred_width</a></li><li><a href="#method.reset" title="reset">reset</a></li></ul><h3><a href="#dyn-compatibility">Dyn Compatibility</a></h3><h3><a href="#implementors">Implementors</a></h3></section><div id="rustdoc-modnav"><h2><a href="index.html">In gtk4::<wbr>prelude</a></h2></div></div></nav><div class="sidebar-resizer" title="Drag to resize sidebar"></div><main><div class="width-limiter"><rustdoc-search></rustdoc-search><section id="main-content" class="content"><div class="main-heading"><div class="rustdoc-breadcrumbs"><a href="../index.html">gtk4</a>::<wbr><a href="index.html">prelude</a></div><h1>Trait <span class="trait">CellAreaContextExt</span><button id="copy-path" title="Copy item path to clipboard">Copy item path</button></h1><rustdoc-toolbar></rustdoc-toolbar><span class="sub-heading"><a class="src" href="../../src/gtk4/auto/cell_area_context.rs.html#94-585">Source</a> </span></div><pre class="rust item-decl"><code>pub trait CellAreaContextExt:
+    <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.CellAreaContext.html" title="struct gtk4::CellAreaContext">CellAreaContext</a>&gt;
+    + Sealed
+    + 'static {
+<details class="toggle type-contents-toggle"><summary class="hideme"><span>Show 18 methods</span></summary>    // Provided methods
+    fn <a href="#method.allocate" class="fn">allocate</a>(&amp;self, width: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, height: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.allocation" class="fn">allocation</a>(&amp;self) -&gt; (<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.area" class="fn">area</a>(&amp;self) -&gt; <a class="struct" href="../struct.CellArea.html" title="struct gtk4::CellArea">CellArea</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.preferred_height" class="fn">preferred_height</a>(&amp;self) -&gt; (<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.preferred_height_for_width" class="fn">preferred_height_for_width</a>(&amp;self, width: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>) -&gt; (<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.preferred_width" class="fn">preferred_width</a>(&amp;self) -&gt; (<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.preferred_width_for_height" class="fn">preferred_width_for_height</a>(&amp;self, height: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>) -&gt; (<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.push_preferred_height" class="fn">push_preferred_height</a>(&amp;self, minimum_height: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, natural_height: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.push_preferred_width" class="fn">push_preferred_width</a>(&amp;self, minimum_width: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, natural_width: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.reset" class="fn">reset</a>(&amp;self) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.minimum_height" class="fn">minimum_height</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.minimum_width" class="fn">minimum_width</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.natural_height" class="fn">natural_height</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.natural_width" class="fn">natural_width</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_minimum_height_notify" class="fn">connect_minimum_height_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;Self) + 'static&gt;(
+        &amp;self,
+        f: F,
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_minimum_width_notify" class="fn">connect_minimum_width_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;Self) + 'static&gt;(
+        &amp;self,
+        f: F,
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_natural_height_notify" class="fn">connect_natural_height_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;Self) + 'static&gt;(
+        &amp;self,
+        f: F,
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_natural_width_notify" class="fn">connect_natural_width_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;Self) + 'static&gt;(
+        &amp;self,
+        f: F,
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+</details>}</code></pre><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span><details class="toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>Trait containing all <a href="../struct.CellAreaContext.html" title="struct gtk4::CellAreaContext"><code>CellAreaContext</code></a> methods.</p>
+<h2 id="implementors-1"><a class="doc-anchor" href="#implementors-1">§</a>Implementors</h2>
+<p><a href="../struct.CellAreaContext.html" title="struct gtk4::CellAreaContext"><code>CellAreaContext</code></a></p>
+</div></details><h2 id="provided-methods" class="section-header">Provided Methods<a href="#provided-methods" class="anchor">§</a></h2><div class="methods"><details class="toggle method-toggle" open><summary><section id="method.allocate" class="method"><a class="src rightside" href="../../src/gtk4/auto/cell_area_context.rs.html#118-122">Source</a><h4 class="code-header">fn <a href="#method.allocate" class="fn">allocate</a>(&amp;self, width: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, height: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>)</h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span></summary><div class="docblock"><p>Allocates a width and/or a height for all rows which are to be
+rendered with @self.</p>
+<p>Usually allocation is performed only horizontally or sometimes
+vertically since a group of rows are usually rendered side by
+side vertically or horizontally and share either the same width
+or the same height. Sometimes they are allocated in both horizontal
+and vertical orientations producing a homogeneous effect of the
+rows. This is generally the case for <a href="../struct.TreeView.html" title="struct gtk4::TreeView"><code>TreeView</code></a> when
+<code>GtkTreeView:fixed-height-mode</code> is enabled.</p>
+<h5 id="deprecated-since-410"><a class="doc-anchor" href="#deprecated-since-410">§</a>Deprecated since 4.10</h5>
+<p>This object will be removed in GTK 5</p>
+<h6 id="width"><a class="doc-anchor" href="#width">§</a><code>width</code></h6>
+<p>the allocated width for all <a href="../struct.TreeModel.html" title="struct gtk4::TreeModel"><code>TreeModel</code></a> rows rendered
+with @self, or -1</p>
+<h6 id="height"><a class="doc-anchor" href="#height">§</a><code>height</code></h6>
+<p>the allocated height for all <a href="../struct.TreeModel.html" title="struct gtk4::TreeModel"><code>TreeModel</code></a> rows rendered
+with @self, or -1</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.allocation" class="method"><a class="src rightside" href="../../src/gtk4/auto/cell_area_context.rs.html#146-157">Source</a><h4 class="code-header">fn <a href="#method.allocation" class="fn">allocation</a>(&amp;self) -&gt; (<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>)</h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span></summary><div class="docblock"><p>Fetches the current allocation size for @self.</p>
+<p>If the context was not allocated in width or height, or if the
+context was recently reset with gtk_cell_area_context_reset(),
+the returned value will be -1.</p>
+<h5 id="deprecated-since-410-1"><a class="doc-anchor" href="#deprecated-since-410-1">§</a>Deprecated since 4.10</h5>
+<p>This object will be removed in GTK 5</p>
+<h5 id="returns"><a class="doc-anchor" href="#returns">§</a>Returns</h5><h6 id="width-1"><a class="doc-anchor" href="#width-1">§</a><code>width</code></h6>
+<p>location to store the allocated width</p>
+<h6 id="height-1"><a class="doc-anchor" href="#height-1">§</a><code>height</code></h6>
+<p>location to store the allocated height</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.area" class="method"><a class="src rightside" href="../../src/gtk4/auto/cell_area_context.rs.html#181-187">Source</a><h4 class="code-header">fn <a href="#method.area" class="fn">area</a>(&amp;self) -&gt; <a class="struct" href="../struct.CellArea.html" title="struct gtk4::CellArea">CellArea</a></h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span></summary><div class="docblock"><p>Fetches the <a href="../struct.CellArea.html" title="struct gtk4::CellArea"><code>CellArea</code></a> this @self was created by.</p>
+<p>This is generally unneeded by layouting widgets; however,
+it is important for the context implementation itself to
+fetch information about the area it is being used for.</p>
+<p>For instance at <code>GtkCellAreaContextClass.allocate()</code> time
+it’s important to know details about any cell spacing
+that the <a href="../struct.CellArea.html" title="struct gtk4::CellArea"><code>CellArea</code></a> is configured with in order to
+compute a proper allocation.</p>
+<h5 id="deprecated-since-410-2"><a class="doc-anchor" href="#deprecated-since-410-2">§</a>Deprecated since 4.10</h5>
+<p>This object will be removed in GTK 5</p>
+<h5 id="returns-1"><a class="doc-anchor" href="#returns-1">§</a>Returns</h5>
+<p>the <a href="../struct.CellArea.html" title="struct gtk4::CellArea"><code>CellArea</code></a> this context was created by.</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.preferred_height" class="method"><a class="src rightside" href="../../src/gtk4/auto/cell_area_context.rs.html#211-222">Source</a><h4 class="code-header">fn <a href="#method.preferred_height" class="fn">preferred_height</a>(&amp;self) -&gt; (<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>)</h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span></summary><div class="docblock"><p>Gets the accumulative preferred height for all rows which have been
+requested with this context.</p>
+<p>After gtk_cell_area_context_reset() is called and/or before ever
+requesting the size of a <a href="../struct.CellArea.html" title="struct gtk4::CellArea"><code>CellArea</code></a>, the returned values are 0.</p>
+<h5 id="deprecated-since-410-3"><a class="doc-anchor" href="#deprecated-since-410-3">§</a>Deprecated since 4.10</h5>
+<p>This object will be removed in GTK 5</p>
+<h5 id="returns-2"><a class="doc-anchor" href="#returns-2">§</a>Returns</h5><h6 id="minimum_height"><a class="doc-anchor" href="#minimum_height">§</a><code>minimum_height</code></h6>
+<p>location to store the minimum height</p>
+<h6 id="natural_height"><a class="doc-anchor" href="#natural_height">§</a><code>natural_height</code></h6>
+<p>location to store the natural height</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.preferred_height_for_width" class="method"><a class="src rightside" href="../../src/gtk4/auto/cell_area_context.rs.html#248-260">Source</a><h4 class="code-header">fn <a href="#method.preferred_height_for_width" class="fn">preferred_height_for_width</a>(&amp;self, width: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>) -&gt; (<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>)</h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span></summary><div class="docblock"><p>Gets the accumulative preferred height for @width for all rows
+which have been requested for the same said @width with this context.</p>
+<p>After gtk_cell_area_context_reset() is called and/or before ever
+requesting the size of a <a href="../struct.CellArea.html" title="struct gtk4::CellArea"><code>CellArea</code></a>, the returned values are -1.</p>
+<h5 id="deprecated-since-410-4"><a class="doc-anchor" href="#deprecated-since-410-4">§</a>Deprecated since 4.10</h5>
+<p>This object will be removed in GTK 5</p>
+<h6 id="width-2"><a class="doc-anchor" href="#width-2">§</a><code>width</code></h6>
+<p>a proposed width for allocation</p>
+<h5 id="returns-3"><a class="doc-anchor" href="#returns-3">§</a>Returns</h5><h6 id="minimum_height-1"><a class="doc-anchor" href="#minimum_height-1">§</a><code>minimum_height</code></h6>
+<p>location to store the minimum height</p>
+<h6 id="natural_height-1"><a class="doc-anchor" href="#natural_height-1">§</a><code>natural_height</code></h6>
+<p>location to store the natural height</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.preferred_width" class="method"><a class="src rightside" href="../../src/gtk4/auto/cell_area_context.rs.html#284-295">Source</a><h4 class="code-header">fn <a href="#method.preferred_width" class="fn">preferred_width</a>(&amp;self) -&gt; (<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>)</h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span></summary><div class="docblock"><p>Gets the accumulative preferred width for all rows which have been
+requested with this context.</p>
+<p>After gtk_cell_area_context_reset() is called and/or before ever
+requesting the size of a <a href="../struct.CellArea.html" title="struct gtk4::CellArea"><code>CellArea</code></a>, the returned values are 0.</p>
+<h5 id="deprecated-since-410-5"><a class="doc-anchor" href="#deprecated-since-410-5">§</a>Deprecated since 4.10</h5>
+<p>This object will be removed in GTK 5</p>
+<h5 id="returns-4"><a class="doc-anchor" href="#returns-4">§</a>Returns</h5><h6 id="minimum_width"><a class="doc-anchor" href="#minimum_width">§</a><code>minimum_width</code></h6>
+<p>location to store the minimum width</p>
+<h6 id="natural_width"><a class="doc-anchor" href="#natural_width">§</a><code>natural_width</code></h6>
+<p>location to store the natural width</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.preferred_width_for_height" class="method"><a class="src rightside" href="../../src/gtk4/auto/cell_area_context.rs.html#321-333">Source</a><h4 class="code-header">fn <a href="#method.preferred_width_for_height" class="fn">preferred_width_for_height</a>(&amp;self, height: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>) -&gt; (<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>)</h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span></summary><div class="docblock"><p>Gets the accumulative preferred width for @height for all rows which
+have been requested for the same said @height with this context.</p>
+<p>After gtk_cell_area_context_reset() is called and/or before ever
+requesting the size of a <a href="../struct.CellArea.html" title="struct gtk4::CellArea"><code>CellArea</code></a>, the returned values are -1.</p>
+<h5 id="deprecated-since-410-6"><a class="doc-anchor" href="#deprecated-since-410-6">§</a>Deprecated since 4.10</h5>
+<p>This object will be removed in GTK 5</p>
+<h6 id="height-2"><a class="doc-anchor" href="#height-2">§</a><code>height</code></h6>
+<p>a proposed height for allocation</p>
+<h5 id="returns-5"><a class="doc-anchor" href="#returns-5">§</a>Returns</h5><h6 id="minimum_width-1"><a class="doc-anchor" href="#minimum_width-1">§</a><code>minimum_width</code></h6>
+<p>location to store the minimum width</p>
+<h6 id="natural_width-1"><a class="doc-anchor" href="#natural_width-1">§</a><code>natural_width</code></h6>
+<p>location to store the natural width</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.push_preferred_height" class="method"><a class="src rightside" href="../../src/gtk4/auto/cell_area_context.rs.html#353-361">Source</a><h4 class="code-header">fn <a href="#method.push_preferred_height" class="fn">push_preferred_height</a>(&amp;self, minimum_height: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, natural_height: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>)</h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span></summary><div class="docblock"><p>Causes the minimum and/or natural height to grow if the new
+proposed sizes exceed the current minimum and natural height.</p>
+<p>This is used by <a href="../struct.CellAreaContext.html" title="struct gtk4::CellAreaContext"><code>CellAreaContext</code></a> implementations during
+the request process over a series of <a href="../struct.TreeModel.html" title="struct gtk4::TreeModel"><code>TreeModel</code></a> rows to
+progressively push the requested height over a series of
+gtk_cell_area_get_preferred_height() requests.</p>
+<h5 id="deprecated-since-410-7"><a class="doc-anchor" href="#deprecated-since-410-7">§</a>Deprecated since 4.10</h5>
+<p>This object will be removed in GTK 5</p>
+<h6 id="minimum_height-2"><a class="doc-anchor" href="#minimum_height-2">§</a><code>minimum_height</code></h6>
+<p>the proposed new minimum height for @self</p>
+<h6 id="natural_height-2"><a class="doc-anchor" href="#natural_height-2">§</a><code>natural_height</code></h6>
+<p>the proposed new natural height for @self</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.push_preferred_width" class="method"><a class="src rightside" href="../../src/gtk4/auto/cell_area_context.rs.html#381-389">Source</a><h4 class="code-header">fn <a href="#method.push_preferred_width" class="fn">push_preferred_width</a>(&amp;self, minimum_width: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, natural_width: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>)</h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span></summary><div class="docblock"><p>Causes the minimum and/or natural width to grow if the new
+proposed sizes exceed the current minimum and natural width.</p>
+<p>This is used by <a href="../struct.CellAreaContext.html" title="struct gtk4::CellAreaContext"><code>CellAreaContext</code></a> implementations during
+the request process over a series of <a href="../struct.TreeModel.html" title="struct gtk4::TreeModel"><code>TreeModel</code></a> rows to
+progressively push the requested width over a series of
+gtk_cell_area_get_preferred_width() requests.</p>
+<h5 id="deprecated-since-410-8"><a class="doc-anchor" href="#deprecated-since-410-8">§</a>Deprecated since 4.10</h5>
+<p>This object will be removed in GTK 5</p>
+<h6 id="minimum_width-2"><a class="doc-anchor" href="#minimum_width-2">§</a><code>minimum_width</code></h6>
+<p>the proposed new minimum width for @self</p>
+<h6 id="natural_width-2"><a class="doc-anchor" href="#natural_width-2">§</a><code>natural_width</code></h6>
+<p>the proposed new natural width for @self</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.reset" class="method"><a class="src rightside" href="../../src/gtk4/auto/cell_area_context.rs.html#420-424">Source</a><h4 class="code-header">fn <a href="#method.reset" class="fn">reset</a>(&amp;self)</h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span></summary><div class="docblock"><p>Resets any previously cached request and allocation
+data.</p>
+<p>When underlying <a href="../struct.TreeModel.html" title="struct gtk4::TreeModel"><code>TreeModel</code></a> data changes its
+important to reset the context if the content
+size is allowed to shrink. If the content size
+is only allowed to grow (this is usually an option
+for views rendering large data stores as a measure
+of optimization), then only the row that changed
+or was inserted needs to be (re)requested with
+gtk_cell_area_get_preferred_width().</p>
+<p>When the new overall size of the context requires
+that the allocated size changes (or whenever this
+allocation changes at all), the variable row
+sizes need to be re-requested for every row.</p>
+<p>For instance, if the rows are displayed all with
+the same width from top to bottom then a change
+in the allocated width necessitates a recalculation
+of all the displayed row heights using
+gtk_cell_area_get_preferred_height_for_width().</p>
+<h5 id="deprecated-since-410-9"><a class="doc-anchor" href="#deprecated-since-410-9">§</a>Deprecated since 4.10</h5>
+<p>This object will be removed in GTK 5</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.minimum_height" class="method"><a class="src rightside" href="../../src/gtk4/auto/cell_area_context.rs.html#435-437">Source</a><h4 class="code-header">fn <a href="#method.minimum_height" class="fn">minimum_height</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a></h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span></summary><div class="docblock"><p>The minimum height for the <a href="../struct.CellArea.html" title="struct gtk4::CellArea"><code>CellArea</code></a> in this context
+for all <a href="../struct.TreeModel.html" title="struct gtk4::TreeModel"><code>TreeModel</code></a> rows that this context was requested
+for using gtk_cell_area_get_preferred_height().</p>
+<h5 id="deprecated-since-410-10"><a class="doc-anchor" href="#deprecated-since-410-10">§</a>Deprecated since 4.10</h5>
+<p>This object will be removed in GTK 5</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.minimum_width" class="method"><a class="src rightside" href="../../src/gtk4/auto/cell_area_context.rs.html#448-450">Source</a><h4 class="code-header">fn <a href="#method.minimum_width" class="fn">minimum_width</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a></h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span></summary><div class="docblock"><p>The minimum width for the <a href="../struct.CellArea.html" title="struct gtk4::CellArea"><code>CellArea</code></a> in this context
+for all <a href="../struct.TreeModel.html" title="struct gtk4::TreeModel"><code>TreeModel</code></a> rows that this context was requested
+for using gtk_cell_area_get_preferred_width().</p>
+<h5 id="deprecated-since-410-11"><a class="doc-anchor" href="#deprecated-since-410-11">§</a>Deprecated since 4.10</h5>
+<p>This object will be removed in GTK 5</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.natural_height" class="method"><a class="src rightside" href="../../src/gtk4/auto/cell_area_context.rs.html#461-463">Source</a><h4 class="code-header">fn <a href="#method.natural_height" class="fn">natural_height</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a></h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span></summary><div class="docblock"><p>The natural height for the <a href="../struct.CellArea.html" title="struct gtk4::CellArea"><code>CellArea</code></a> in this context
+for all <a href="../struct.TreeModel.html" title="struct gtk4::TreeModel"><code>TreeModel</code></a> rows that this context was requested
+for using gtk_cell_area_get_preferred_height().</p>
+<h5 id="deprecated-since-410-12"><a class="doc-anchor" href="#deprecated-since-410-12">§</a>Deprecated since 4.10</h5>
+<p>This object will be removed in GTK 5</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.natural_width" class="method"><a class="src rightside" href="../../src/gtk4/auto/cell_area_context.rs.html#474-476">Source</a><h4 class="code-header">fn <a href="#method.natural_width" class="fn">natural_width</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a></h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span></summary><div class="docblock"><p>The natural width for the <a href="../struct.CellArea.html" title="struct gtk4::CellArea"><code>CellArea</code></a> in this context
+for all <a href="../struct.TreeModel.html" title="struct gtk4::TreeModel"><code>TreeModel</code></a> rows that this context was requested
+for using gtk_cell_area_get_preferred_width().</p>
+<h5 id="deprecated-since-410-13"><a class="doc-anchor" href="#deprecated-since-410-13">§</a>Deprecated since 4.10</h5>
+<p>This object will be removed in GTK 5</p>
+</div></details><section id="method.connect_minimum_height_notify" class="method"><a class="src rightside" href="../../src/gtk4/auto/cell_area_context.rs.html#480-503">Source</a><h4 class="code-header">fn <a href="#method.connect_minimum_height_notify" class="fn">connect_minimum_height_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;Self) + 'static&gt;(
+    &amp;self,
+    f: F,
+) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span><section id="method.connect_minimum_width_notify" class="method"><a class="src rightside" href="../../src/gtk4/auto/cell_area_context.rs.html#507-530">Source</a><h4 class="code-header">fn <a href="#method.connect_minimum_width_notify" class="fn">connect_minimum_width_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;Self) + 'static&gt;(
+    &amp;self,
+    f: F,
+) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span><section id="method.connect_natural_height_notify" class="method"><a class="src rightside" href="../../src/gtk4/auto/cell_area_context.rs.html#534-557">Source</a><h4 class="code-header">fn <a href="#method.connect_natural_height_notify" class="fn">connect_natural_height_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;Self) + 'static&gt;(
+    &amp;self,
+    f: F,
+) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span><section id="method.connect_natural_width_notify" class="method"><a class="src rightside" href="../../src/gtk4/auto/cell_area_context.rs.html#561-584">Source</a><h4 class="code-header">fn <a href="#method.connect_natural_width_notify" class="fn">connect_natural_width_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;Self) + 'static&gt;(
+    &amp;self,
+    f: F,
+) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><span class="item-info"><div class="stab deprecated"><span class="emoji">👎</span><span>Deprecated: Since 4.10</span></div></span></div><h2 id="dyn-compatibility" class="section-header">Dyn Compatibility<a href="#dyn-compatibility" class="anchor">§</a></h2><div class="dyn-compatibility-info"><p>This trait is <b>not</b> <a href="https://doc.rust-lang.org/nightly/reference/items/traits.html#dyn-compatibility">dyn compatible</a>.</p><p><i>In older versions of Rust, dyn compatibility was called "object safety", so this trait is not object safe.</i></p></div><h2 id="implementors" class="section-header">Implementors<a href="#implementors" class="anchor">§</a></h2><div id="implementors-list"><section id="impl-CellAreaContextExt-for-O" class="impl"><a class="src rightside" href="../../src/gtk4/auto/cell_area_context.rs.html#587">Source</a><a href="#impl-CellAreaContextExt-for-O" class="anchor">§</a><h3 class="code-header">impl&lt;O: <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.CellAreaContext.html" title="struct gtk4::CellAreaContext">CellAreaContext</a>&gt;&gt; <a class="trait" href="trait.CellAreaContextExt.html" title="trait gtk4::prelude::CellAreaContextExt">CellAreaContextExt</a> for O</h3></section></div><script src="../../trait.impl/gtk4/auto/cell_area_context/trait.CellAreaContextExt.js" async></script></section></div></main></body></html>

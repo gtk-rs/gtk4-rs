@@ -1,0 +1,117 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Rust GDK 4 Wayland bindings"><title>gdk4_wayland - Rust</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2" crossorigin href="../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../static.files/rustdoc-84e720fa.css"><meta name="rustdoc-vars" data-root-path="../" data-static-root-path="../static.files/" data-current-crate="gdk4_wayland" data-themes="" data-resource-suffix="" data-rustdoc-version="1.89.0-nightly (5526a2f47 2025-06-20)" data-channel="nightly" data-search-js="search-343419c9.js" data-settings-js="settings-5514c975.js" ><script src="../static.files/storage-4e99c027.js"></script><script defer src="../crates.js"></script><script defer src="../static.files/main-fd3af306.js"></script><noscript><link rel="stylesheet" href="../static.files/noscript-32bb7600.css"></noscript><link rel="alternate icon" type="image/png" href="../static.files/favicon-32x32-6580c154.png"><link rel="icon" type="image/svg+xml" href="../static.files/favicon-044be391.svg"></head><body class="rustdoc mod crate"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
+
+    function checkDocsLatestStable() {
+        function popup(msg, url) { return `
+            <style scoped="scoped">
+                .popup {
+                    max-width: 16em;
+                    background-color: #fff;
+                    position: fixed;
+                    z-index: 1;
+                    margin-left: auto;
+                    bottom: 1em;
+                    right: 1em;
+                    border-radius: 5px;
+                    box-shadow: 1px 1px 4px #777;
+                }
+
+                .popup a.version {
+                    color: #e57300;
+                    padding: 0.6em 1em;
+                    display: block;
+                }
+                .popup a.version:hover {
+                    color: #b25900;
+                }
+
+                .popup a.close {
+                    color: white;
+                    background: grey;
+                    border-radius: 99px;
+                    display: inline-block;
+                    width: 19px;
+                    line-height: 19px;
+                    font-weight: bold;
+                    text-align: center;
+                    margin: 0.6em;
+                    float: right;
+                }
+                .popup a.close:hover {
+                    background: black;
+                }
+            </style>
+            <section class="popup" id="gir_docs_popup">
+                <a class="close" href="#" onclick="document.getElementById('gir_docs_popup').remove(); return false">×</a>
+                <a class="version" href="https://gtk-rs.org/gtk4-rs/stable/latest/docs">
+                    ⚠ ${msg}
+                </a>
+            </section>
+        ` };
+
+        if ("0.9" == "main") {
+            document.body.insertAdjacentHTML(
+                'beforeend',
+                popup("This is the development version. Go to latest stable version.", "stable/latest")
+            );
+        } else {
+            fetch('https://gtk-rs.org/gtk4-rs/LATEST_RELEASE_BRANCH')
+                .then(response => response.text())
+                .then(latest_branch => {
+                    if (latest_branch.trim() != "0.9") {
+                        document.body.insertAdjacentHTML(
+                            'beforeend',
+                            popup("This version is outdated. Go to latest version.", "stable/latest")
+                        );
+                    }
+                });
+        }
+    }
+</script>
+
+
+<nav class="mobile-topbar"><button class="sidebar-menu-toggle" title="show sidebar"></button></nav><nav class="sidebar"><div class="sidebar-crate"><h2><a href="../gdk4_wayland/index.html">gdk4_<wbr>wayland</a><span class="version">0.9.7</span></h2></div><div class="sidebar-elems"><ul class="block"><li><a id="all-types" href="all.html">All Items</a></li></ul><section id="rustdoc-toc"><h3><a href="#">Sections</a></h3><ul class="block top-toc"><li><a href="#rust-gdk-4-wayland-bindings" title="Rust GDK 4 Wayland bindings">Rust GDK 4 Wayland bindings</a><ul><li><a href="#minimum-supported-rust-version" title="Minimum supported Rust version">Minimum supported Rust version</a></li><li><a href="#documentation" title="Documentation">Documentation</a></li><li><a href="#using" title="Using">Using</a></li><li><a href="#license" title="License">License</a></li></ul></li></ul><h3><a href="#reexports">Crate Items</a></h3><ul class="block"><li><a href="#reexports" title="Re-exports">Re-exports</a></li><li><a href="#modules" title="Modules">Modules</a></li><li><a href="#structs" title="Structs">Structs</a></li></ul></section><div id="rustdoc-modnav"></div></div></nav><div class="sidebar-resizer" title="Drag to resize sidebar"></div><main><div class="width-limiter"><rustdoc-search></rustdoc-search><section id="main-content" class="content"><div class="main-heading"><h1>Crate <span>gdk4_wayland</span><button id="copy-path" title="Copy item path to clipboard">Copy item path</button></h1><rustdoc-toolbar></rustdoc-toolbar><span class="sub-heading"><a class="src" href="../src/gdk4_wayland/lib.rs.html#3-28">Source</a> </span></div><details class="toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><h2 id="rust-gdk-4-wayland-bindings"><a class="doc-anchor" href="#rust-gdk-4-wayland-bindings">§</a>Rust GDK 4 Wayland bindings</h2>
+<p>The project website is <a href="https://gtk-rs.org/">here</a>.</p>
+<p>Rust bindings of <a href="https://docs.gtk.org/gdk4-wayland/">GDK 4’s Wayland backend</a>,
+part of <a href="https://github.com/gtk-rs/gtk4-rs/">gtk4-rs</a>.</p>
+<p>GDK is an intermediate layer that isolates GTK from the details of the windowing system.
+GDK Wayland contains functions specific to the Wayland backend.</p>
+<h3 id="minimum-supported-rust-version"><a class="doc-anchor" href="#minimum-supported-rust-version">§</a>Minimum supported Rust version</h3>
+<p>Currently, the minimum supported Rust version is <code>1.70</code>.</p>
+<h3 id="documentation"><a class="doc-anchor" href="#documentation">§</a>Documentation</h3>
+<ul>
+<li>The Rust API <a href="https://gtk-rs.org/gtk4-rs/stable/latest/docs/gdk4_wayland/">Stable</a>/<a href="https://gtk-rs.org/gtk4-rs/git/docs/gdk4_wayland/">Development</a></li>
+<li><a href="https://docs.gtk.org/gdk4-wayland/">The C API</a></li>
+<li><a href="https://www.gtk.org/docs/installations/">GTK Installation instructions</a></li>
+</ul>
+<h3 id="using"><a class="doc-anchor" href="#using">§</a>Using</h3>
+<p>We recommend using <a href="https://crates.io/keywords/gtk-rs">crates from crates.io</a>,
+as <a href="https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/index.html#library-versions">demonstrated here</a>.</p>
+<p>If you want to track the bleeding edge, use the git dependency instead:</p>
+<div class="example-wrap"><pre class="language-toml"><code>[dependencies]
+gdk-wayland = { git = &quot;https://github.com/gtk-rs/gtk4-rs.git&quot;, package = &quot;gdk4-wayland&quot; }</code></pre></div>
+<p>Avoid mixing versioned and git crates like this:</p>
+<div class="example-wrap"><pre class="language-toml"><code># This will not compile
+[dependencies]
+gdk-x11 = {version = &quot;0.1&quot;, package = &quot;gdk4-x11&quot;}
+gdk-wayland = { git = &quot;https://github.com/gtk-rs/gtk4-rs.git&quot;, package = &quot;gdk4-wayland&quot; }</code></pre></div><h4 id="features"><a class="doc-anchor" href="#features">§</a>Features</h4><div><table><thead><tr><th>Feature</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>v4_18</code></td><td>Enable the new APIs part of GTK 4.18</td></tr>
+<tr><td><code>v4_16</code></td><td>Enable the new APIs part of GTK 4.16</td></tr>
+<tr><td><code>v4_12</code></td><td>Enable the new APIs part of GTK 4.12</td></tr>
+<tr><td><code>v4_10</code></td><td>Enable the new APIs part of GTK 4.10</td></tr>
+<tr><td><code>v4_4</code></td><td>Enable the new APIs part of GTK 4.4</td></tr>
+<tr><td><code>wayland_crate</code></td><td>Integration with the <a href="https://crates.io/crates/wayland-client">wayland-client</a> crate</td></tr>
+<tr><td><code>egl</code></td><td>Integration with the <a href="https://crates.io/crates/khronos-egl">khronos-egl</a> crate</td></tr>
+</tbody></table>
+</div><h4 id="see-also"><a class="doc-anchor" href="#see-also">§</a>See Also</h4>
+<ul>
+<li><a href="https://crates.io/crates/glib">glib</a></li>
+<li><a href="https://crates.io/crates/gio">gio</a></li>
+<li><a href="https://crates.io/crates/gsk4">gsk4</a></li>
+<li><a href="https://crates.io/crates/gdk4">gdk4</a></li>
+<li><a href="https://crates.io/crates/gtk4">gtk4</a></li>
+</ul>
+<h3 id="license"><a class="doc-anchor" href="#license">§</a>License</h3>
+<p>The Rust bindings of <strong>gdk4-wayland</strong> are available under the MIT License, please refer to it.</p>
+</div></details><h2 id="reexports" class="section-header">Re-exports<a href="#reexports" class="anchor">§</a></h2><dl class="item-table reexports"><dt id="reexport.gdk"><code>pub use <a class="mod" href="../gdk4/index.html" title="mod gdk4">gdk</a>;</code></dt><dt id="reexport.ffi"><code>pub use <a class="mod" href="../gdk4_wayland_sys/index.html" title="mod gdk4_wayland_sys">gdk4_wayland_sys</a> as ffi;</code></dt><dt id="reexport.gio"><code>pub use <a class="mod" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/gio/index.html" title="mod gio">gio</a>;</code></dt><dt id="reexport.glib"><code>pub use <a class="mod" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/index.html" title="mod glib">glib</a>;</code></dt><dt id="reexport.khronos_egl"><code>pub use <a class="mod" href="https://docs.rs/khronos-egl/latest/khronos_egl/index.html" title="mod khronos_egl">khronos_egl</a>;</code><wbr><span class="stab portability" title="Available on crate features `v4_4` and `egl` only"><code>v4_4</code> and <code>egl</code></span></dt><dt id="reexport.wayland_client"><code>pub use <a class="mod" href="https://smithay.github.io/wayland-rs/wayland_client/index.html" title="mod wayland_client">wayland_client</a>;</code><wbr><span class="stab portability" title="Available on crate feature `wayland_crate` only"><code>wayland_crate</code></span></dt></dl><h2 id="modules" class="section-header">Modules<a href="#modules" class="anchor">§</a></h2><dl class="item-table"><dt><a class="mod" href="prelude/index.html" title="mod gdk4_wayland::prelude">prelude</a></dt><dd>Traits intended for blanket imports.</dd></dl><h2 id="structs" class="section-header">Structs<a href="#structs" class="anchor">§</a></h2><dl class="item-table"><dt><a class="struct" href="struct.WaylandDevice.html" title="struct gdk4_wayland::WaylandDevice">Wayland<wbr>Device</a></dt><dd>The Wayland implementation of <a href="../gdk4/auto/device/struct.Device.html" title="struct gdk4::auto::device::Device"><code>gdk::Device</code></a>.</dd><dt><a class="struct" href="struct.WaylandDisplay.html" title="struct gdk4_wayland::WaylandDisplay">Wayland<wbr>Display</a></dt><dd>The Wayland implementation of <a href="../gdk4/auto/display/struct.Display.html" title="struct gdk4::auto::display::Display"><code>gdk::Display</code></a>.</dd><dt><a class="struct" href="struct.WaylandGLContext.html" title="struct gdk4_wayland::WaylandGLContext">WaylandGL<wbr>Context</a></dt><dd>The Wayland implementation of <a href="../gdk4/auto/gl_context/struct.GLContext.html" title="struct gdk4::auto::gl_context::GLContext"><code>gdk::GLContext</code></a>.</dd><dt><a class="struct" href="struct.WaylandMonitor.html" title="struct gdk4_wayland::WaylandMonitor">Wayland<wbr>Monitor</a></dt><dd>The Wayland implementation of <a href="../gdk4/auto/monitor/struct.Monitor.html" title="struct gdk4::auto::monitor::Monitor"><code>gdk::Monitor</code></a>.</dd><dt><a class="struct" href="struct.WaylandPopup.html" title="struct gdk4_wayland::WaylandPopup">Wayland<wbr>Popup</a></dt><dd>The Wayland implementation of <a href="../gdk4/auto/popup/struct.Popup.html" title="struct gdk4::auto::popup::Popup"><code>gdk::Popup</code></a>.</dd><dt><a class="struct" href="struct.WaylandSeat.html" title="struct gdk4_wayland::WaylandSeat">Wayland<wbr>Seat</a></dt><dd>The Wayland implementation of <a href="../gdk4/auto/seat/struct.Seat.html" title="struct gdk4::auto::seat::Seat"><code>gdk::Seat</code></a>.</dd><dt><a class="struct" href="struct.WaylandSurface.html" title="struct gdk4_wayland::WaylandSurface">Wayland<wbr>Surface</a></dt><dd>The Wayland implementation of <a href="../gdk4/auto/surface/struct.Surface.html" title="struct gdk4::auto::surface::Surface"><code>gdk::Surface</code></a>.</dd><dt><a class="struct" href="struct.WaylandToplevel.html" title="struct gdk4_wayland::WaylandToplevel">Wayland<wbr>Toplevel</a></dt><dd>The Wayland implementation of <a href="../gdk4/auto/toplevel/struct.Toplevel.html" title="struct gdk4::auto::toplevel::Toplevel"><code>gdk::Toplevel</code></a>.</dd></dl></section></div></main></body></html>

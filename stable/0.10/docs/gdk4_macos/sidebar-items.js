@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"mod":["prelude"],"struct":["MacosDevice","MacosDisplay","MacosGLContext","MacosKeymap","MacosMonitor","MacosSeat","MacosSurface"],"type":["id"]};

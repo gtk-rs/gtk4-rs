@@ -1,0 +1,123 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Trait containing all `struct@Sorter` methods."><title>SorterExt in gtk4::prelude - Rust</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../static.files/rustdoc-aa0817cf.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.90.0-nightly (a00149764 2025-07-14)" data-channel="nightly" data-search-js="search-179e01a3.js" data-settings-js="settings-5514c975.js" ><script src="../../static.files/storage-4e99c027.js"></script><script defer src="sidebar-items.js"></script><script defer src="../../static.files/main-673ee1e0.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-32bb7600.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-6580c154.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-044be391.svg"></head><body class="rustdoc trait"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
+
+    function checkDocsLatestStable() {
+        function popup(msg, url) { return `
+            <style scoped="scoped">
+                .popup {
+                    max-width: 16em;
+                    background-color: #fff;
+                    position: fixed;
+                    z-index: 1;
+                    margin-left: auto;
+                    bottom: 1em;
+                    right: 1em;
+                    border-radius: 5px;
+                    box-shadow: 1px 1px 4px #777;
+                }
+
+                .popup a.version {
+                    color: #e57300;
+                    padding: 0.6em 1em;
+                    display: block;
+                }
+                .popup a.version:hover {
+                    color: #b25900;
+                }
+
+                .popup a.close {
+                    color: white;
+                    background: grey;
+                    border-radius: 99px;
+                    display: inline-block;
+                    width: 19px;
+                    line-height: 19px;
+                    font-weight: bold;
+                    text-align: center;
+                    margin: 0.6em;
+                    float: right;
+                }
+                .popup a.close:hover {
+                    background: black;
+                }
+            </style>
+            <section class="popup" id="gir_docs_popup">
+                <a class="close" href="#" onclick="document.getElementById('gir_docs_popup').remove(); return false">×</a>
+                <a class="version" href="https://gtk-rs.org/gtk4-rs/stable/latest/docs">
+                    ⚠ ${msg}
+                </a>
+            </section>
+        ` };
+
+        if ("0.10" == "main") {
+            document.body.insertAdjacentHTML(
+                'beforeend',
+                popup("This is the development version. Go to latest stable version.", "stable/latest")
+            );
+        } else {
+            fetch('https://gtk-rs.org/gtk4-rs/LATEST_RELEASE_BRANCH')
+                .then(response => response.text())
+                .then(latest_branch => {
+                    if (latest_branch.trim() != "0.10") {
+                        document.body.insertAdjacentHTML(
+                            'beforeend',
+                            popup("This version is outdated. Go to latest version.", "stable/latest")
+                        );
+                    }
+                });
+        }
+    }
+</script>
+
+
+<nav class="mobile-topbar"><button class="sidebar-menu-toggle" title="show sidebar"></button></nav><nav class="sidebar"><div class="sidebar-crate"><h2><a href="../../gtk4/index.html">gtk4</a><span class="version">0.10.0</span></h2></div><div class="sidebar-elems"><section id="rustdoc-toc"><h2 class="location"><a href="#">Sorter<wbr>Ext</a></h2><h3><a href="#">Sections</a></h3><ul class="block top-toc"><li><a href="#implementors-1" title="Implementors">Implementors</a></li></ul><h3><a href="#provided-methods">Provided Methods</a></h3><ul class="block"><li><a href="#method.changed" title="changed">changed</a></li><li><a href="#method.compare" title="compare">compare</a></li><li><a href="#method.connect_changed" title="connect_changed">connect_changed</a></li><li><a href="#method.order" title="order">order</a></li></ul><h3><a href="#dyn-compatibility">Dyn Compatibility</a></h3><h3><a href="#implementors">Implementors</a></h3></section><div id="rustdoc-modnav"><h2><a href="index.html">In gtk4::<wbr>prelude</a></h2></div></div></nav><div class="sidebar-resizer" title="Drag to resize sidebar"></div><main><div class="width-limiter"><rustdoc-search></rustdoc-search><section id="main-content" class="content"><div class="main-heading"><div class="rustdoc-breadcrumbs"><a href="../index.html">gtk4</a>::<wbr><a href="index.html">prelude</a></div><h1>Trait <span class="trait">SorterExt</span><button id="copy-path" title="Copy item path to clipboard">Copy item path</button></h1><rustdoc-toolbar></rustdoc-toolbar><span class="sub-heading"><a class="src" href="../../src/gtk4/auto/sorter.rs.html#73-162">Source</a> </span></div><pre class="rust item-decl"><code>pub trait SorterExt: <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Sorter.html" title="struct gtk4::Sorter">Sorter</a>&gt; + 'static {
+    // Provided methods
+    fn <a href="#method.changed" class="fn">changed</a>(&amp;self, change: <a class="enum" href="../enum.SorterChange.html" title="enum gtk4::SorterChange">SorterChange</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.compare" class="fn">compare</a>(
+        &amp;self,
+        item1: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/object/struct.Object.html" title="struct glib::object::Object">Object</a>&gt;,
+        item2: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/object/struct.Object.html" title="struct glib::object::Object">Object</a>&gt;,
+    ) -&gt; <a class="enum" href="../enum.Ordering.html" title="enum gtk4::Ordering">Ordering</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.order" class="fn">order</a>(&amp;self) -&gt; <a class="enum" href="../enum.SorterOrder.html" title="enum gtk4::SorterOrder">SorterOrder</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_changed" class="fn">connect_changed</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;Self, <a class="enum" href="../enum.SorterChange.html" title="enum gtk4::SorterChange">SorterChange</a>) + 'static&gt;(
+        &amp;self,
+        f: F,
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+}</code></pre><details class="toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>Trait containing all <a href="../struct.Sorter.html" title="struct gtk4::Sorter"><code>Sorter</code></a> methods.</p>
+<h2 id="implementors-1"><a class="doc-anchor" href="#implementors-1">§</a>Implementors</h2>
+<p><a href="../struct.ColumnViewSorter.html" title="struct gtk4::ColumnViewSorter"><code>ColumnViewSorter</code></a>, <a href="../struct.CustomSorter.html" title="struct gtk4::CustomSorter"><code>CustomSorter</code></a>, <a href="../struct.MultiSorter.html" title="struct gtk4::MultiSorter"><code>MultiSorter</code></a>, <a href="../struct.NumericSorter.html" title="struct gtk4::NumericSorter"><code>NumericSorter</code></a>, <a href="../struct.Sorter.html" title="struct gtk4::Sorter"><code>Sorter</code></a>, <a href="../struct.StringSorter.html" title="struct gtk4::StringSorter"><code>StringSorter</code></a>, <a href="../struct.TreeListRowSorter.html" title="struct gtk4::TreeListRowSorter"><code>TreeListRowSorter</code></a></p>
+</div></details><h2 id="provided-methods" class="section-header">Provided Methods<a href="#provided-methods" class="anchor">§</a></h2><div class="methods"><details class="toggle method-toggle" open><summary><section id="method.changed" class="method"><a class="src rightside" href="../../src/gtk4/auto/sorter.rs.html#89-93">Source</a><h4 class="code-header">fn <a href="#method.changed" class="fn">changed</a>(&amp;self, change: <a class="enum" href="../enum.SorterChange.html" title="enum gtk4::SorterChange">SorterChange</a>)</h4></section></summary><div class="docblock"><p>Notifies all users of the sorter that it has changed.</p>
+<p>This emits the <a href="../struct.Sorter.html#changed" title="struct gtk4::Sorter"><code>changed</code></a> signal. Users
+of the sorter should then update the sort order via
+<code>Gtk::Sorter::compare()</code>.</p>
+<p>Depending on the @change parameter, it may be possible to
+update the sort order without a full resorting. Refer to
+the <a href="../enum.SorterChange.html" title="enum gtk4::SorterChange"><code>SorterChange</code></a> documentation for details.</p>
+<p>This function is intended for implementers of <a href="../struct.Sorter.html" title="struct gtk4::Sorter"><code>Sorter</code></a>
+subclasses and should not be called from other functions.</p>
+<h6 id="change"><a class="doc-anchor" href="#change">§</a><code>change</code></h6>
+<p>How the sorter changed</p>
+</div></details><section id="method.compare" class="method"><a class="src rightside" href="../../src/gtk4/auto/sorter.rs.html#96-104">Source</a><h4 class="code-header">fn <a href="#method.compare" class="fn">compare</a>(
+    &amp;self,
+    item1: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/object/struct.Object.html" title="struct glib::object::Object">Object</a>&gt;,
+    item2: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/object/struct.Object.html" title="struct glib::object::Object">Object</a>&gt;,
+) -&gt; <a class="enum" href="../enum.Ordering.html" title="enum gtk4::Ordering">Ordering</a></h4></section><details class="toggle method-toggle" open><summary><section id="method.order" class="method"><a class="src rightside" href="../../src/gtk4/auto/sorter.rs.html#118-120">Source</a><h4 class="code-header">fn <a href="#method.order" class="fn">order</a>(&amp;self) -&gt; <a class="enum" href="../enum.SorterOrder.html" title="enum gtk4::SorterOrder">SorterOrder</a></h4></section></summary><div class="docblock"><p>Gets the order that @self conforms to.</p>
+<p>See <a href="../enum.SorterOrder.html" title="enum gtk4::SorterOrder"><code>SorterOrder</code></a> for details
+of the possible return values.</p>
+<p>This function is intended to allow optimizations.</p>
+<h5 id="returns"><a class="doc-anchor" href="#returns">§</a>Returns</h5>
+<p>The order</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.connect_changed" class="method"><a class="src rightside" href="../../src/gtk4/auto/sorter.rs.html#135-161">Source</a><h4 class="code-header">fn <a href="#method.connect_changed" class="fn">connect_changed</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;Self, <a class="enum" href="../enum.SorterChange.html" title="enum gtk4::SorterChange">SorterChange</a>) + 'static&gt;(
+    &amp;self,
+    f: F,
+) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section></summary><div class="docblock"><p>Emitted whenever the sorter changed.</p>
+<p>Users of the sorter should then update the sort order
+again via gtk_sorter_compare().</p>
+<p><a href="../struct.SortListModel.html" title="struct gtk4::SortListModel"><code>SortListModel</code></a> handles this signal automatically.</p>
+<p>Depending on the @change parameter, it may be possible to update
+the sort order without a full resorting. Refer to the
+<a href="../enum.SorterChange.html" title="enum gtk4::SorterChange"><code>SorterChange</code></a> documentation for details.</p>
+<h6 id="change-1"><a class="doc-anchor" href="#change-1">§</a><code>change</code></h6>
+<p>how the sorter changed</p>
+</div></details></div><h2 id="dyn-compatibility" class="section-header">Dyn Compatibility<a href="#dyn-compatibility" class="anchor">§</a></h2><div class="dyn-compatibility-info"><p>This trait is <b>not</b> <a href="https://doc.rust-lang.org/nightly/reference/items/traits.html#dyn-compatibility">dyn compatible</a>.</p><p><i>In older versions of Rust, dyn compatibility was called "object safety", so this trait is not object safe.</i></p></div><h2 id="implementors" class="section-header">Implementors<a href="#implementors" class="anchor">§</a></h2><div id="implementors-list"><section id="impl-SorterExt-for-O" class="impl"><a class="src rightside" href="../../src/gtk4/auto/sorter.rs.html#164">Source</a><a href="#impl-SorterExt-for-O" class="anchor">§</a><h3 class="code-header">impl&lt;O: <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Sorter.html" title="struct gtk4::Sorter">Sorter</a>&gt;&gt; <a class="trait" href="trait.SorterExt.html" title="trait gtk4::prelude::SorterExt">SorterExt</a> for O</h3></section></div><script src="../../trait.impl/gtk4/auto/sorter/trait.SorterExt.js" async></script></section></div></main></body></html>

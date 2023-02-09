@@ -1,0 +1,144 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Trait containing all `struct@Texture` methods."><title>TextureExt in gdk4::prelude - Rust</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../static.files/rustdoc-aa0817cf.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="gdk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.90.0-nightly (a00149764 2025-07-14)" data-channel="nightly" data-search-js="search-179e01a3.js" data-settings-js="settings-5514c975.js" ><script src="../../static.files/storage-4e99c027.js"></script><script defer src="sidebar-items.js"></script><script defer src="../../static.files/main-673ee1e0.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-32bb7600.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-6580c154.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-044be391.svg"></head><body class="rustdoc trait"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
+
+    function checkDocsLatestStable() {
+        function popup(msg, url) { return `
+            <style scoped="scoped">
+                .popup {
+                    max-width: 16em;
+                    background-color: #fff;
+                    position: fixed;
+                    z-index: 1;
+                    margin-left: auto;
+                    bottom: 1em;
+                    right: 1em;
+                    border-radius: 5px;
+                    box-shadow: 1px 1px 4px #777;
+                }
+
+                .popup a.version {
+                    color: #e57300;
+                    padding: 0.6em 1em;
+                    display: block;
+                }
+                .popup a.version:hover {
+                    color: #b25900;
+                }
+
+                .popup a.close {
+                    color: white;
+                    background: grey;
+                    border-radius: 99px;
+                    display: inline-block;
+                    width: 19px;
+                    line-height: 19px;
+                    font-weight: bold;
+                    text-align: center;
+                    margin: 0.6em;
+                    float: right;
+                }
+                .popup a.close:hover {
+                    background: black;
+                }
+            </style>
+            <section class="popup" id="gir_docs_popup">
+                <a class="close" href="#" onclick="document.getElementById('gir_docs_popup').remove(); return false">×</a>
+                <a class="version" href="https://gtk-rs.org/gtk4-rs/stable/latest/docs">
+                    ⚠ ${msg}
+                </a>
+            </section>
+        ` };
+
+        if ("0.10" == "main") {
+            document.body.insertAdjacentHTML(
+                'beforeend',
+                popup("This is the development version. Go to latest stable version.", "stable/latest")
+            );
+        } else {
+            fetch('https://gtk-rs.org/gtk4-rs/LATEST_RELEASE_BRANCH')
+                .then(response => response.text())
+                .then(latest_branch => {
+                    if (latest_branch.trim() != "0.10") {
+                        document.body.insertAdjacentHTML(
+                            'beforeend',
+                            popup("This version is outdated. Go to latest version.", "stable/latest")
+                        );
+                    }
+                });
+        }
+    }
+</script>
+
+
+<nav class="mobile-topbar"><button class="sidebar-menu-toggle" title="show sidebar"></button></nav><nav class="sidebar"><div class="sidebar-crate"><h2><a href="../../gdk4/index.html">gdk4</a><span class="version">0.10.0</span></h2></div><div class="sidebar-elems"><section id="rustdoc-toc"><h2 class="location"><a href="#">Texture<wbr>Ext</a></h2><h3><a href="#">Sections</a></h3><ul class="block top-toc"><li><a href="#implementors-1" title="Implementors">Implementors</a></li></ul><h3><a href="#provided-methods">Provided Methods</a></h3><ul class="block"><li><a href="#method.color_state" title="color_state">color_state</a></li><li><a href="#method.format" title="format">format</a></li><li><a href="#method.height" title="height">height</a></li><li><a href="#method.save_to_png" title="save_to_png">save_to_png</a></li><li><a href="#method.save_to_png_bytes" title="save_to_png_bytes">save_to_png_bytes</a></li><li><a href="#method.save_to_tiff" title="save_to_tiff">save_to_tiff</a></li><li><a href="#method.save_to_tiff_bytes" title="save_to_tiff_bytes">save_to_tiff_bytes</a></li><li><a href="#method.width" title="width">width</a></li></ul><h3><a href="#dyn-compatibility">Dyn Compatibility</a></h3><h3><a href="#implementors">Implementors</a></h3></section><div id="rustdoc-modnav"><h2><a href="index.html">In gdk4::<wbr>prelude</a></h2></div></div></nav><div class="sidebar-resizer" title="Drag to resize sidebar"></div><main><div class="width-limiter"><rustdoc-search></rustdoc-search><section id="main-content" class="content"><div class="main-heading"><div class="rustdoc-breadcrumbs"><a href="../index.html">gdk4</a>::<wbr><a href="index.html">prelude</a></div><h1>Trait <span class="trait">TextureExt</span><button id="copy-path" title="Copy item path to clipboard">Copy item path</button></h1><rustdoc-toolbar></rustdoc-toolbar><span class="sub-heading"><a class="src" href="../../src/gdk4/auto/texture.rs.html#256-429">Source</a> </span></div><pre class="rust item-decl"><code>pub trait TextureExt: <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Texture.html" title="struct gdk4::Texture">Texture</a>&gt; + 'static {
+    // Provided methods
+    fn <a href="#method.color_state" class="fn">color_state</a>(&amp;self) -&gt; <a class="struct" href="../struct.ColorState.html" title="struct gdk4::ColorState">ColorState</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.format" class="fn">format</a>(&amp;self) -&gt; <a class="enum" href="../enum.MemoryFormat.html" title="enum gdk4::MemoryFormat">MemoryFormat</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.height" class="fn">height</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.width" class="fn">width</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.save_to_png" class="fn">save_to_png</a>(&amp;self, filename: impl <a class="trait" href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html" title="trait core::convert::AsRef">AsRef</a>&lt;<a class="struct" href="https://doc.rust-lang.org/nightly/std/path/struct.Path.html" title="struct std::path::Path">Path</a>&gt;) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.unit.html">()</a>, <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/error/struct.BoolError.html" title="struct glib::error::BoolError">BoolError</a>&gt; { ... }
+<span class="item-spacer"></span>    fn <a href="#method.save_to_png_bytes" class="fn">save_to_png_bytes</a>(&amp;self) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/bytes/struct.Bytes.html" title="struct glib::bytes::Bytes">Bytes</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.save_to_tiff" class="fn">save_to_tiff</a>(&amp;self, filename: impl <a class="trait" href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html" title="trait core::convert::AsRef">AsRef</a>&lt;<a class="struct" href="https://doc.rust-lang.org/nightly/std/path/struct.Path.html" title="struct std::path::Path">Path</a>&gt;) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.unit.html">()</a>, <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/error/struct.BoolError.html" title="struct glib::error::BoolError">BoolError</a>&gt; { ... }
+<span class="item-spacer"></span>    fn <a href="#method.save_to_tiff_bytes" class="fn">save_to_tiff_bytes</a>(&amp;self) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/bytes/struct.Bytes.html" title="struct glib::bytes::Bytes">Bytes</a> { ... }
+}</code></pre><details class="toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>Trait containing all <a href="../struct.Texture.html" title="struct gdk4::Texture"><code>Texture</code></a> methods.</p>
+<h2 id="implementors-1"><a class="doc-anchor" href="#implementors-1">§</a>Implementors</h2>
+<p><a href="../struct.DmabufTexture.html" title="struct gdk4::DmabufTexture"><code>DmabufTexture</code></a>, <a href="../struct.GLTexture.html" title="struct gdk4::GLTexture"><code>GLTexture</code></a>, <a href="../struct.MemoryTexture.html" title="struct gdk4::MemoryTexture"><code>MemoryTexture</code></a>, <a href="../struct.Texture.html" title="struct gdk4::Texture"><code>Texture</code></a></p>
+</div></details><h2 id="provided-methods" class="section-header">Provided Methods<a href="#provided-methods" class="anchor">§</a></h2><div class="methods"><details class="toggle method-toggle" open><summary><section id="method.color_state" class="method"><a class="src rightside" href="../../src/gdk4/auto/texture.rs.html#267-273">Source</a><h4 class="code-header">fn <a href="#method.color_state" class="fn">color_state</a>(&amp;self) -&gt; <a class="struct" href="../struct.ColorState.html" title="struct gdk4::ColorState">ColorState</a></h4></section><span class="item-info"><div class="stab portability">Available on <strong>crate feature <code>v4_16</code></strong> only.</div></span></summary><div class="docblock"><p>Returns the color state associated with the texture.</p>
+<h5 id="returns"><a class="doc-anchor" href="#returns">§</a>Returns</h5>
+<p>the color state of the <a href="../struct.Texture.html" title="struct gdk4::Texture"><code>Texture</code></a></p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.format" class="method"><a class="src rightside" href="../../src/gdk4/auto/texture.rs.html#292-294">Source</a><h4 class="code-header">fn <a href="#method.format" class="fn">format</a>(&amp;self) -&gt; <a class="enum" href="../enum.MemoryFormat.html" title="enum gdk4::MemoryFormat">MemoryFormat</a></h4></section><span class="item-info"><div class="stab portability">Available on <strong>crate feature <code>v4_10</code></strong> only.</div></span></summary><div class="docblock"><p>Gets the memory format most closely associated with the data of
+the texture.</p>
+<p>Note that it may not be an exact match for texture data
+stored on the GPU or with compression.</p>
+<p>The format can give an indication about the bit depth and opacity
+of the texture and is useful to determine the best format for
+downloading the texture.</p>
+<h5 id="returns-1"><a class="doc-anchor" href="#returns-1">§</a>Returns</h5>
+<p>the preferred format for the texture’s data</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.height" class="method"><a class="src rightside" href="../../src/gdk4/auto/texture.rs.html#303-305">Source</a><h4 class="code-header">fn <a href="#method.height" class="fn">height</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a></h4></section></summary><div class="docblock"><p>Returns the height of the @self, in pixels.</p>
+<h5 id="returns-2"><a class="doc-anchor" href="#returns-2">§</a>Returns</h5>
+<p>the height of the <a href="../struct.Texture.html" title="struct gdk4::Texture"><code>Texture</code></a></p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.width" class="method"><a class="src rightside" href="../../src/gdk4/auto/texture.rs.html#314-316">Source</a><h4 class="code-header">fn <a href="#method.width" class="fn">width</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a></h4></section></summary><div class="docblock"><p>Returns the width of @self, in pixels.</p>
+<h5 id="returns-3"><a class="doc-anchor" href="#returns-3">§</a>Returns</h5>
+<p>the width of the <a href="../struct.Texture.html" title="struct gdk4::Texture"><code>Texture</code></a></p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.save_to_png" class="method"><a class="src rightside" href="../../src/gdk4/auto/texture.rs.html#332-345">Source</a><h4 class="code-header">fn <a href="#method.save_to_png" class="fn">save_to_png</a>(&amp;self, filename: impl <a class="trait" href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html" title="trait core::convert::AsRef">AsRef</a>&lt;<a class="struct" href="https://doc.rust-lang.org/nightly/std/path/struct.Path.html" title="struct std::path::Path">Path</a>&gt;) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.unit.html">()</a>, <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/error/struct.BoolError.html" title="struct glib::error::BoolError">BoolError</a>&gt;</h4></section></summary><div class="docblock"><p>Store the given @self to the @filename as a PNG file.</p>
+<p>This is a utility function intended for debugging and testing.
+If you want more control over formats, proper error handling or
+want to store to a <a href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/gio/auto/file/struct.File.html" title="struct gio::auto::file::File"><code>gio::File</code></a> or other location, you might
+want to use <a href="trait.TextureExt.html#method.save_to_png_bytes"><code>save_to_png_bytes()</code></a> or look into
+the libglycin library.</p>
+<h6 id="filename"><a class="doc-anchor" href="#filename">§</a><code>filename</code></h6>
+<p>the filename to store to</p>
+<h5 id="returns-4"><a class="doc-anchor" href="#returns-4">§</a>Returns</h5>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>true</code></a> if saving succeeded, <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>false</code></a> on failure.</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.save_to_png_bytes" class="method"><a class="src rightside" href="../../src/gdk4/auto/texture.rs.html#368-374">Source</a><h4 class="code-header">fn <a href="#method.save_to_png_bytes" class="fn">save_to_png_bytes</a>(&amp;self) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/bytes/struct.Bytes.html" title="struct glib::bytes::Bytes">Bytes</a></h4></section><span class="item-info"><div class="stab portability">Available on <strong>crate feature <code>v4_6</code></strong> only.</div></span></summary><div class="docblock"><p>Store the given @self in memory as a PNG file.</p>
+<p>Use <a href="../struct.Texture.html#method.from_bytes" title="associated function gdk4::Texture::from_bytes"><code>Texture::from_bytes()</code></a> to read it back.</p>
+<p>If you want to serialize a texture, this is a convenient and
+portable way to do that.</p>
+<p>If you need more control over the generated image, such as
+attaching metadata, you should look into an image handling
+library such as the libglycin library.</p>
+<p>If you are dealing with high dynamic range float data, you
+might also want to consider <a href="trait.TextureExt.html#method.save_to_tiff_bytes"><code>save_to_tiff_bytes()</code></a>
+instead.</p>
+<h5 id="returns-5"><a class="doc-anchor" href="#returns-5">§</a>Returns</h5>
+<p>a newly allocated <code>GBytes</code> containing PNG data</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.save_to_tiff" class="method"><a class="src rightside" href="../../src/gdk4/auto/texture.rs.html#388-401">Source</a><h4 class="code-header">fn <a href="#method.save_to_tiff" class="fn">save_to_tiff</a>(&amp;self, filename: impl <a class="trait" href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html" title="trait core::convert::AsRef">AsRef</a>&lt;<a class="struct" href="https://doc.rust-lang.org/nightly/std/path/struct.Path.html" title="struct std::path::Path">Path</a>&gt;) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.unit.html">()</a>, <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/error/struct.BoolError.html" title="struct glib::error::BoolError">BoolError</a>&gt;</h4></section><span class="item-info"><div class="stab portability">Available on <strong>crate feature <code>v4_6</code></strong> only.</div></span></summary><div class="docblock"><p>Store the given @self to the @filename as a TIFF file.</p>
+<p>GTK will attempt to store data without loss.</p>
+<h6 id="filename-1"><a class="doc-anchor" href="#filename-1">§</a><code>filename</code></h6>
+<p>the filename to store to</p>
+<h5 id="returns-6"><a class="doc-anchor" href="#returns-6">§</a>Returns</h5>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>true</code></a> if saving succeeded, <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>false</code></a> on failure.</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.save_to_tiff_bytes" class="method"><a class="src rightside" href="../../src/gdk4/auto/texture.rs.html#422-428">Source</a><h4 class="code-header">fn <a href="#method.save_to_tiff_bytes" class="fn">save_to_tiff_bytes</a>(&amp;self) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/bytes/struct.Bytes.html" title="struct glib::bytes::Bytes">Bytes</a></h4></section><span class="item-info"><div class="stab portability">Available on <strong>crate feature <code>v4_6</code></strong> only.</div></span></summary><div class="docblock"><p>Store the given @self in memory as a TIFF file.</p>
+<p>Use <a href="../struct.Texture.html#method.from_bytes" title="associated function gdk4::Texture::from_bytes"><code>Texture::from_bytes()</code></a> to read it back.</p>
+<p>This function is intended to store a representation of the
+texture’s data that is as accurate as possible. This is
+particularly relevant when working with high dynamic range
+images and floating-point texture data.</p>
+<p>If that is not your concern and you are interested in a
+smaller size and a more portable format, you might want to
+use <a href="trait.TextureExt.html#method.save_to_png_bytes"><code>save_to_png_bytes()</code></a>.</p>
+<h5 id="returns-7"><a class="doc-anchor" href="#returns-7">§</a>Returns</h5>
+<p>a newly allocated <code>GBytes</code> containing TIFF data</p>
+</div></details></div><h2 id="dyn-compatibility" class="section-header">Dyn Compatibility<a href="#dyn-compatibility" class="anchor">§</a></h2><div class="dyn-compatibility-info"><p>This trait is <b>not</b> <a href="https://doc.rust-lang.org/nightly/reference/items/traits.html#dyn-compatibility">dyn compatible</a>.</p><p><i>In older versions of Rust, dyn compatibility was called "object safety", so this trait is not object safe.</i></p></div><h2 id="implementors" class="section-header">Implementors<a href="#implementors" class="anchor">§</a></h2><div id="implementors-list"><section id="impl-TextureExt-for-O" class="impl"><a class="src rightside" href="../../src/gdk4/auto/texture.rs.html#431">Source</a><a href="#impl-TextureExt-for-O" class="anchor">§</a><h3 class="code-header">impl&lt;O: <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.21/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Texture.html" title="struct gdk4::Texture">Texture</a>&gt;&gt; <a class="trait" href="trait.TextureExt.html" title="trait gdk4::prelude::TextureExt">TextureExt</a> for O</h3></section></div><script src="../../trait.impl/gdk4/auto/texture/trait.TextureExt.js" async></script></section></div></main></body></html>

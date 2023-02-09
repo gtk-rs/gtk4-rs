@@ -1,0 +1,355 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Trait containing all `struct@Editable` methods."><title>EditableExt in gtk4::prelude - Rust</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../static.files/rustdoc-84e720fa.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.89.0-nightly (5526a2f47 2025-06-20)" data-channel="nightly" data-search-js="search-343419c9.js" data-settings-js="settings-5514c975.js" ><script src="../../static.files/storage-4e99c027.js"></script><script defer src="sidebar-items.js"></script><script defer src="../../static.files/main-fd3af306.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-32bb7600.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-6580c154.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-044be391.svg"></head><body class="rustdoc trait"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
+
+    function checkDocsLatestStable() {
+        function popup(msg, url) { return `
+            <style scoped="scoped">
+                .popup {
+                    max-width: 16em;
+                    background-color: #fff;
+                    position: fixed;
+                    z-index: 1;
+                    margin-left: auto;
+                    bottom: 1em;
+                    right: 1em;
+                    border-radius: 5px;
+                    box-shadow: 1px 1px 4px #777;
+                }
+
+                .popup a.version {
+                    color: #e57300;
+                    padding: 0.6em 1em;
+                    display: block;
+                }
+                .popup a.version:hover {
+                    color: #b25900;
+                }
+
+                .popup a.close {
+                    color: white;
+                    background: grey;
+                    border-radius: 99px;
+                    display: inline-block;
+                    width: 19px;
+                    line-height: 19px;
+                    font-weight: bold;
+                    text-align: center;
+                    margin: 0.6em;
+                    float: right;
+                }
+                .popup a.close:hover {
+                    background: black;
+                }
+            </style>
+            <section class="popup" id="gir_docs_popup">
+                <a class="close" href="#" onclick="document.getElementById('gir_docs_popup').remove(); return false">×</a>
+                <a class="version" href="https://gtk-rs.org/gtk4-rs/stable/latest/docs">
+                    ⚠ ${msg}
+                </a>
+            </section>
+        ` };
+
+        if ("0.9" == "main") {
+            document.body.insertAdjacentHTML(
+                'beforeend',
+                popup("This is the development version. Go to latest stable version.", "stable/latest")
+            );
+        } else {
+            fetch('https://gtk-rs.org/gtk4-rs/LATEST_RELEASE_BRANCH')
+                .then(response => response.text())
+                .then(latest_branch => {
+                    if (latest_branch.trim() != "0.9") {
+                        document.body.insertAdjacentHTML(
+                            'beforeend',
+                            popup("This version is outdated. Go to latest version.", "stable/latest")
+                        );
+                    }
+                });
+        }
+    }
+</script>
+
+
+<nav class="mobile-topbar"><button class="sidebar-menu-toggle" title="show sidebar"></button></nav><nav class="sidebar"><div class="sidebar-crate"><h2><a href="../../gtk4/index.html">gtk4</a><span class="version">0.9.7</span></h2></div><div class="sidebar-elems"><section id="rustdoc-toc"><h2 class="location"><a href="#">Editable<wbr>Ext</a></h2><h3><a href="#">Sections</a></h3><ul class="block top-toc"><li><a href="#implementors-1" title="Implementors">Implementors</a></li></ul><h3><a href="#provided-methods">Provided Methods</a></h3><ul class="block"><li><a href="#method.alignment" title="alignment">alignment</a></li><li><a href="#method.chars" title="chars">chars</a></li><li><a href="#method.connect_changed" title="connect_changed">connect_changed</a></li><li><a href="#method.connect_cursor_position_notify" title="connect_cursor_position_notify">connect_cursor_position_notify</a></li><li><a href="#method.connect_delete_text" title="connect_delete_text">connect_delete_text</a></li><li><a href="#method.connect_editable_notify" title="connect_editable_notify">connect_editable_notify</a></li><li><a href="#method.connect_enable_undo_notify" title="connect_enable_undo_notify">connect_enable_undo_notify</a></li><li><a href="#method.connect_max_width_chars_notify" title="connect_max_width_chars_notify">connect_max_width_chars_notify</a></li><li><a href="#method.connect_selection_bound_notify" title="connect_selection_bound_notify">connect_selection_bound_notify</a></li><li><a href="#method.connect_text_notify" title="connect_text_notify">connect_text_notify</a></li><li><a href="#method.connect_width_chars_notify" title="connect_width_chars_notify">connect_width_chars_notify</a></li><li><a href="#method.connect_xalign_notify" title="connect_xalign_notify">connect_xalign_notify</a></li><li><a href="#method.delegate" title="delegate">delegate</a></li><li><a href="#method.delegate_get_accessible_platform_state" title="delegate_get_accessible_platform_state">delegate_get_accessible_platform_state</a></li><li><a href="#method.delete_selection" title="delete_selection">delete_selection</a></li><li><a href="#method.delete_text" title="delete_text">delete_text</a></li><li><a href="#method.enables_undo" title="enables_undo">enables_undo</a></li><li><a href="#method.finish_delegate" title="finish_delegate">finish_delegate</a></li><li><a href="#method.init_delegate" title="init_delegate">init_delegate</a></li><li><a href="#method.insert_text" title="insert_text">insert_text</a></li><li><a href="#method.is_editable" title="is_editable">is_editable</a></li><li><a href="#method.max_width_chars" title="max_width_chars">max_width_chars</a></li><li><a href="#method.position" title="position">position</a></li><li><a href="#method.select_region" title="select_region">select_region</a></li><li><a href="#method.selection_bound" title="selection_bound">selection_bound</a></li><li><a href="#method.selection_bounds" title="selection_bounds">selection_bounds</a></li><li><a href="#method.set_alignment" title="set_alignment">set_alignment</a></li><li><a href="#method.set_editable" title="set_editable">set_editable</a></li><li><a href="#method.set_enable_undo" title="set_enable_undo">set_enable_undo</a></li><li><a href="#method.set_max_width_chars" title="set_max_width_chars">set_max_width_chars</a></li><li><a href="#method.set_position" title="set_position">set_position</a></li><li><a href="#method.set_text" title="set_text">set_text</a></li><li><a href="#method.set_width_chars" title="set_width_chars">set_width_chars</a></li><li><a href="#method.text" title="text">text</a></li><li><a href="#method.width_chars" title="width_chars">width_chars</a></li></ul><h3><a href="#dyn-compatibility">Dyn Compatibility</a></h3><h3><a href="#implementors">Implementors</a></h3></section><div id="rustdoc-modnav"><h2><a href="index.html">In gtk4::<wbr>prelude</a></h2></div></div></nav><div class="sidebar-resizer" title="Drag to resize sidebar"></div><main><div class="width-limiter"><rustdoc-search></rustdoc-search><section id="main-content" class="content"><div class="main-heading"><div class="rustdoc-breadcrumbs"><a href="../index.html">gtk4</a>::<wbr><a href="index.html">prelude</a></div><h1>Trait <span class="trait">EditableExt</span><button id="copy-path" title="Copy item path to clipboard">Copy item path</button></h1><rustdoc-toolbar></rustdoc-toolbar><span class="sub-heading"><a class="src" href="../../src/gtk4/auto/editable.rs.html#704-1418">Source</a> </span></div><pre class="rust item-decl"><code>pub trait EditableExt:
+    <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Editable.html" title="struct gtk4::Editable">Editable</a>&gt;
+    + Sealed
+    + 'static {
+<details class="toggle type-contents-toggle"><summary class="hideme"><span>Show 35 methods</span></summary>    // Provided methods
+    fn <a href="#method.delegate_get_accessible_platform_state" class="fn">delegate_get_accessible_platform_state</a>(
+        &amp;self,
+        state: <a class="enum" href="../enum.AccessiblePlatformState.html" title="enum gtk4::AccessiblePlatformState">AccessiblePlatformState</a>,
+    ) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.delete_selection" class="fn">delete_selection</a>(&amp;self) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.delete_text" class="fn">delete_text</a>(&amp;self, start_pos: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, end_pos: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.finish_delegate" class="fn">finish_delegate</a>(&amp;self) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.alignment" class="fn">alignment</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f32.html">f32</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.chars" class="fn">chars</a>(&amp;self, start_pos: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, end_pos: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/gstring/struct.GString.html" title="struct glib::gstring::GString">GString</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.delegate" class="fn">delegate</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../struct.Editable.html" title="struct gtk4::Editable">Editable</a>&gt; { ... }
+<span class="item-spacer"></span>    fn <a href="#method.is_editable" class="fn">is_editable</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.enables_undo" class="fn">enables_undo</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.max_width_chars" class="fn">max_width_chars</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.position" class="fn">position</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.selection_bounds" class="fn">selection_bounds</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>)&gt; { ... }
+<span class="item-spacer"></span>    fn <a href="#method.text" class="fn">text</a>(&amp;self) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/gstring/struct.GString.html" title="struct glib::gstring::GString">GString</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.width_chars" class="fn">width_chars</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.init_delegate" class="fn">init_delegate</a>(&amp;self) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.insert_text" class="fn">insert_text</a>(&amp;self, text: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>, position: &amp;mut <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.select_region" class="fn">select_region</a>(&amp;self, start_pos: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, end_pos: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.set_alignment" class="fn">set_alignment</a>(&amp;self, xalign: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f32.html">f32</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.set_editable" class="fn">set_editable</a>(&amp;self, is_editable: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.set_enable_undo" class="fn">set_enable_undo</a>(&amp;self, enable_undo: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.set_max_width_chars" class="fn">set_max_width_chars</a>(&amp;self, n_chars: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.set_position" class="fn">set_position</a>(&amp;self, position: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.set_text" class="fn">set_text</a>(&amp;self, text: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.set_width_chars" class="fn">set_width_chars</a>(&amp;self, n_chars: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.selection_bound" class="fn">selection_bound</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_changed" class="fn">connect_changed</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;Self) + 'static&gt;(&amp;self, f: F) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_delete_text" class="fn">connect_delete_text</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;Self, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>) + 'static&gt;(
+        &amp;self,
+        f: F,
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_cursor_position_notify" class="fn">connect_cursor_position_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;Self) + 'static&gt;(
+        &amp;self,
+        f: F,
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_editable_notify" class="fn">connect_editable_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;Self) + 'static&gt;(
+        &amp;self,
+        f: F,
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_enable_undo_notify" class="fn">connect_enable_undo_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;Self) + 'static&gt;(
+        &amp;self,
+        f: F,
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_max_width_chars_notify" class="fn">connect_max_width_chars_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;Self) + 'static&gt;(
+        &amp;self,
+        f: F,
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_selection_bound_notify" class="fn">connect_selection_bound_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;Self) + 'static&gt;(
+        &amp;self,
+        f: F,
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_text_notify" class="fn">connect_text_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;Self) + 'static&gt;(
+        &amp;self,
+        f: F,
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_width_chars_notify" class="fn">connect_width_chars_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;Self) + 'static&gt;(
+        &amp;self,
+        f: F,
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_xalign_notify" class="fn">connect_xalign_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;Self) + 'static&gt;(
+        &amp;self,
+        f: F,
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+</details>}</code></pre><details class="toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>Trait containing all <a href="../struct.Editable.html" title="struct gtk4::Editable"><code>Editable</code></a> methods.</p>
+<h2 id="implementors-1"><a class="doc-anchor" href="#implementors-1">§</a>Implementors</h2>
+<p><a href="../struct.EditableLabel.html" title="struct gtk4::EditableLabel"><code>EditableLabel</code></a>, <a href="../struct.Editable.html" title="struct gtk4::Editable"><code>Editable</code></a>, <a href="../struct.Entry.html" title="struct gtk4::Entry"><code>Entry</code></a>, <a href="../struct.PasswordEntry.html" title="struct gtk4::PasswordEntry"><code>PasswordEntry</code></a>, <a href="../struct.SearchEntry.html" title="struct gtk4::SearchEntry"><code>SearchEntry</code></a>, <a href="../struct.SpinButton.html" title="struct gtk4::SpinButton"><code>SpinButton</code></a>, <a href="../struct.Text.html" title="struct gtk4::Text"><code>Text</code></a></p>
+</div></details><h2 id="provided-methods" class="section-header">Provided Methods<a href="#provided-methods" class="anchor">§</a></h2><div class="methods"><details class="toggle method-toggle" open><summary><section id="method.delegate_get_accessible_platform_state" class="method"><a class="src rightside" href="../../src/gtk4/auto/editable.rs.html#748-755">Source</a><h4 class="code-header">fn <a href="#method.delegate_get_accessible_platform_state" class="fn">delegate_get_accessible_platform_state</a>(
+    &amp;self,
+    state: <a class="enum" href="../enum.AccessiblePlatformState.html" title="enum gtk4::AccessiblePlatformState">AccessiblePlatformState</a>,
+) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></section><span class="item-info"><div class="stab portability">Available on <strong>crate feature <code>v4_10</code></strong> only.</div></span></summary><div class="docblock"><p>Retrieves the accessible platform state from the editable delegate.</p>
+<p>This is an helper function to retrieve the accessible state for
+<a href="../struct.Editable.html" title="struct gtk4::Editable"><code>Editable</code></a> interface implementations using a delegate pattern.</p>
+<p>You should call this function in your editable widget implementation
+of the <code>vfunc::Gtk::Accessible::get_platform_state</code> virtual function, for
+instance:</p>
+<p><strong>⚠️ The following code is in c ⚠️</strong></p>
+<div class="example-wrap"><pre class="language-c"><code>static void
+accessible_interface_init (GtkAccessibleInterface *iface)
+{
+  iface-&gt;get_platform_state = your_editable_get_accessible_platform_state;
+}
+
+static gboolean
+your_editable_get_accessible_platform_state (GtkAccessible *accessible,
+                                             GtkAccessiblePlatformState state)
+{
+  return gtk_editable_delegate_get_accessible_platform_state (GTK_EDITABLE (accessible), state);
+}</code></pre></div>
+<p>Note that the widget which is the delegate <em>must</em> be a direct child of
+this widget, otherwise your implementation of <code>vfunc::Gtk::Accessible::get_platform_state</code>
+might not even be called, as the platform change will originate from
+the parent of the delegate, and, as a result, will not work properly.</p>
+<p>So, if you can’t ensure the direct child condition, you should give the
+delegate the <a href="../enum.AccessibleRole.html#variant.TextBox" title="variant gtk4::AccessibleRole::TextBox"><code>AccessibleRole::TextBox</code></a> role, or you can
+change your tree to allow this function to work.</p>
+<h6 id="state"><a class="doc-anchor" href="#state">§</a><code>state</code></h6>
+<p>what kind of accessible state to retrieve</p>
+<h5 id="returns"><a class="doc-anchor" href="#returns">§</a>Returns</h5>
+<p>the accessible platform state of the delegate</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.delete_selection" class="method"><a class="src rightside" href="../../src/gtk4/auto/editable.rs.html#761-765">Source</a><h4 class="code-header">fn <a href="#method.delete_selection" class="fn">delete_selection</a>(&amp;self)</h4></section></summary><div class="docblock"><p>Deletes the currently selected text of the editable.</p>
+<p>This call doesn’t do anything if there is no selected text.</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.delete_text" class="method"><a class="src rightside" href="../../src/gtk4/auto/editable.rs.html#780-784">Source</a><h4 class="code-header">fn <a href="#method.delete_text" class="fn">delete_text</a>(&amp;self, start_pos: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, end_pos: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>)</h4></section></summary><div class="docblock"><p>Deletes a sequence of characters.</p>
+<p>The characters that are deleted are those characters at positions
+from @start_pos up to, but not including @end_pos. If @end_pos is
+negative, then the characters deleted are those from @start_pos to
+the end of the text.</p>
+<p>Note that the positions are specified in characters, not bytes.</p>
+<h6 id="start_pos"><a class="doc-anchor" href="#start_pos">§</a><code>start_pos</code></h6>
+<p>start position</p>
+<h6 id="end_pos"><a class="doc-anchor" href="#end_pos">§</a><code>end_pos</code></h6>
+<p>end position</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.finish_delegate" class="method"><a class="src rightside" href="../../src/gtk4/auto/editable.rs.html#791-795">Source</a><h4 class="code-header">fn <a href="#method.finish_delegate" class="fn">finish_delegate</a>(&amp;self)</h4></section></summary><div class="docblock"><p>Undoes the setup done by <a href="trait.EditableExt.html#method.init_delegate"><code>init_delegate()</code></a>.</p>
+<p>This is a helper function that should be called from dispose,
+before removing the delegate object.</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.alignment" class="method"><a class="src rightside" href="../../src/gtk4/auto/editable.rs.html#805-807">Source</a><h4 class="code-header">fn <a href="#method.alignment" class="fn">alignment</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f32.html">f32</a></h4></section></summary><div class="docblock"><p>Gets the alignment of the editable.</p>
+<h5 id="returns-1"><a class="doc-anchor" href="#returns-1">§</a>Returns</h5>
+<p>the alignment</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.chars" class="method"><a class="src rightside" href="../../src/gtk4/auto/editable.rs.html#829-837">Source</a><h4 class="code-header">fn <a href="#method.chars" class="fn">chars</a>(&amp;self, start_pos: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, end_pos: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/gstring/struct.GString.html" title="struct glib::gstring::GString">GString</a></h4></section></summary><div class="docblock"><p>Retrieves a sequence of characters.</p>
+<p>The characters that are retrieved are those characters at positions
+from @start_pos up to, but not including @end_pos. If @end_pos is negative,
+then the characters retrieved are those characters from @start_pos to
+the end of the text.</p>
+<p>Note that positions are specified in characters, not bytes.</p>
+<h6 id="start_pos-1"><a class="doc-anchor" href="#start_pos-1">§</a><code>start_pos</code></h6>
+<p>start of text</p>
+<h6 id="end_pos-1"><a class="doc-anchor" href="#end_pos-1">§</a><code>end_pos</code></h6>
+<p>end of text</p>
+<h5 id="returns-2"><a class="doc-anchor" href="#returns-2">§</a>Returns</h5>
+<p>a pointer to the contents of the widget as a
+string. This string is allocated by the <a href="../struct.Editable.html" title="struct gtk4::Editable"><code>Editable</code></a> implementation
+and should be freed by the caller.</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.delegate" class="method"><a class="src rightside" href="../../src/gtk4/auto/editable.rs.html#850-856">Source</a><h4 class="code-header">fn <a href="#method.delegate" class="fn">delegate</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../struct.Editable.html" title="struct gtk4::Editable">Editable</a>&gt;</h4></section></summary><div class="docblock"><p>Gets the <a href="../struct.Editable.html" title="struct gtk4::Editable"><code>Editable</code></a> that @self is delegating its
+implementation to.</p>
+<p>Typically, the delegate is a <a href="../struct.Text.html" title="struct gtk4::Text"><code>Text</code></a> widget.</p>
+<h5 id="returns-3"><a class="doc-anchor" href="#returns-3">§</a>Returns</h5>
+<p>the delegate <a href="../struct.Editable.html" title="struct gtk4::Editable"><code>Editable</code></a></p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.is_editable" class="method"><a class="src rightside" href="../../src/gtk4/auto/editable.rs.html#866-872">Source</a><h4 class="code-header">fn <a href="#method.is_editable" class="fn">is_editable</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></section></summary><div class="docblock"><p>Retrieves whether @self is editable.</p>
+<h5 id="returns-4"><a class="doc-anchor" href="#returns-4">§</a>Returns</h5>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>true</code></a> if @self is editable.</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.enables_undo" class="method"><a class="src rightside" href="../../src/gtk4/auto/editable.rs.html#882-888">Source</a><h4 class="code-header">fn <a href="#method.enables_undo" class="fn">enables_undo</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></section></summary><div class="docblock"><p>Gets if undo/redo actions are enabled for @self</p>
+<h5 id="returns-5"><a class="doc-anchor" href="#returns-5">§</a>Returns</h5>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>true</code></a> if undo is enabled</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.max_width_chars" class="method"><a class="src rightside" href="../../src/gtk4/auto/editable.rs.html#898-900">Source</a><h4 class="code-header">fn <a href="#method.max_width_chars" class="fn">max_width_chars</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a></h4></section></summary><div class="docblock"><p>Retrieves the desired maximum width of @self, in characters.</p>
+<h5 id="returns-6"><a class="doc-anchor" href="#returns-6">§</a>Returns</h5>
+<p>the maximum width of the entry, in characters</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.position" class="method"><a class="src rightside" href="../../src/gtk4/auto/editable.rs.html#913-915">Source</a><h4 class="code-header">fn <a href="#method.position" class="fn">position</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a></h4></section></summary><div class="docblock"><p>Retrieves the current position of the cursor relative
+to the start of the content of the editable.</p>
+<p>Note that this position is in characters, not in bytes.</p>
+<h5 id="returns-7"><a class="doc-anchor" href="#returns-7">§</a>Returns</h5>
+<p>the cursor position</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.selection_bounds" class="method"><a class="src rightside" href="../../src/gtk4/auto/editable.rs.html#936-951">Source</a><h4 class="code-header">fn <a href="#method.selection_bounds" class="fn">selection_bounds</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>)&gt;</h4></section></summary><div class="docblock"><p>Retrieves the selection bound of the editable.</p>
+<p>@start_pos will be filled with the start of the selection and
+@end_pos with end. If no text was selected both will be identical
+and <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>false</code></a> will be returned.</p>
+<p>Note that positions are specified in characters, not bytes.</p>
+<h5 id="returns-8"><a class="doc-anchor" href="#returns-8">§</a>Returns</h5>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>true</code></a> if there is a non-empty selection, <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>false</code></a> otherwise</p>
+<h6 id="start_pos-2"><a class="doc-anchor" href="#start_pos-2">§</a><code>start_pos</code></h6>
+<p>location to store the starting position</p>
+<h6 id="end_pos-2"><a class="doc-anchor" href="#end_pos-2">§</a><code>end_pos</code></h6>
+<p>location to store the end position</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.text" class="method"><a class="src rightside" href="../../src/gtk4/auto/editable.rs.html#962-964">Source</a><h4 class="code-header">fn <a href="#method.text" class="fn">text</a>(&amp;self) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/gstring/struct.GString.html" title="struct glib::gstring::GString">GString</a></h4></section></summary><div class="docblock"><p>Retrieves the contents of @self.</p>
+<p>The returned string is owned by GTK and must not be modified or freed.</p>
+<h5 id="returns-9"><a class="doc-anchor" href="#returns-9">§</a>Returns</h5>
+<p>a pointer to the contents of the editable</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.width_chars" class="method"><a class="src rightside" href="../../src/gtk4/auto/editable.rs.html#975-977">Source</a><h4 class="code-header">fn <a href="#method.width_chars" class="fn">width_chars</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a></h4></section></summary><div class="docblock"><p>Gets the number of characters of space reserved
+for the contents of the editable.</p>
+<h5 id="returns-10"><a class="doc-anchor" href="#returns-10">§</a>Returns</h5>
+<p>number of chars to request space for, or negative if unset</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.init_delegate" class="method"><a class="src rightside" href="../../src/gtk4/auto/editable.rs.html#987-991">Source</a><h4 class="code-header">fn <a href="#method.init_delegate" class="fn">init_delegate</a>(&amp;self)</h4></section></summary><div class="docblock"><p>Sets up a delegate for <a href="../struct.Editable.html" title="struct gtk4::Editable"><code>Editable</code></a>.</p>
+<p>This is assuming that the get_delegate vfunc in the <a href="../struct.Editable.html" title="struct gtk4::Editable"><code>Editable</code></a>
+interface has been set up for the @self’s type.</p>
+<p>This is a helper function that should be called in instance init,
+after creating the delegate object.</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.insert_text" class="method"><a class="src rightside" href="../../src/gtk4/auto/editable.rs.html#1006-1016">Source</a><h4 class="code-header">fn <a href="#method.insert_text" class="fn">insert_text</a>(&amp;self, text: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>, position: &amp;mut <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>)</h4></section></summary><div class="docblock"><p>Inserts @length bytes of @text into the contents of the
+widget, at position @position.</p>
+<p>Note that the position is in characters, not in bytes.
+The function updates @position to point after the newly
+inserted text.</p>
+<h6 id="text"><a class="doc-anchor" href="#text">§</a><code>text</code></h6>
+<p>the text to insert</p>
+<h6 id="length"><a class="doc-anchor" href="#length">§</a><code>length</code></h6>
+<p>the length of the text in bytes, or -1</p>
+<h6 id="position"><a class="doc-anchor" href="#position">§</a><code>position</code></h6>
+<p>location of the position text will be inserted at</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.select_region" class="method"><a class="src rightside" href="../../src/gtk4/auto/editable.rs.html#1031-1035">Source</a><h4 class="code-header">fn <a href="#method.select_region" class="fn">select_region</a>(&amp;self, start_pos: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, end_pos: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>)</h4></section></summary><div class="docblock"><p>Selects a region of text.</p>
+<p>The characters that are selected are those characters at positions
+from @start_pos up to, but not including @end_pos. If @end_pos is
+negative, then the characters selected are those characters from
+@start_pos to  the end of the text.</p>
+<p>Note that positions are specified in characters, not bytes.</p>
+<h6 id="start_pos-3"><a class="doc-anchor" href="#start_pos-3">§</a><code>start_pos</code></h6>
+<p>start of region</p>
+<h6 id="end_pos-3"><a class="doc-anchor" href="#end_pos-3">§</a><code>end_pos</code></h6>
+<p>end of region</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.set_alignment" class="method"><a class="src rightside" href="../../src/gtk4/auto/editable.rs.html#1046-1050">Source</a><h4 class="code-header">fn <a href="#method.set_alignment" class="fn">set_alignment</a>(&amp;self, xalign: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f32.html">f32</a>)</h4></section></summary><div class="docblock"><p>Sets the alignment for the contents of the editable.</p>
+<p>This controls the horizontal positioning of the contents when
+the displayed text is shorter than the width of the editable.</p>
+<h6 id="xalign"><a class="doc-anchor" href="#xalign">§</a><code>xalign</code></h6>
+<p>The horizontal alignment, from 0 (left) to 1 (right).
+Reversed for RTL layouts</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.set_editable" class="method"><a class="src rightside" href="../../src/gtk4/auto/editable.rs.html#1058-1062">Source</a><h4 class="code-header">fn <a href="#method.set_editable" class="fn">set_editable</a>(&amp;self, is_editable: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>)</h4></section></summary><div class="docblock"><p>Determines if the user can edit the text in the editable widget.</p>
+<h6 id="is_editable"><a class="doc-anchor" href="#is_editable">§</a><code>is_editable</code></h6>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>true</code></a> if the user is allowed to edit the text
+in the widget</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.set_enable_undo" class="method"><a class="src rightside" href="../../src/gtk4/auto/editable.rs.html#1074-1081">Source</a><h4 class="code-header">fn <a href="#method.set_enable_undo" class="fn">set_enable_undo</a>(&amp;self, enable_undo: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>)</h4></section></summary><div class="docblock"><p>If enabled, changes to @self will be saved for undo/redo
+actions.</p>
+<p>This results in an additional copy of text changes and are not
+stored in secure memory. As such, undo is forcefully disabled
+when <a href="../struct.Text.html#visibility" title="struct gtk4::Text"><code>visibility</code></a> is set to <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="primitive bool"><code>false</code></a>.</p>
+<h6 id="enable_undo"><a class="doc-anchor" href="#enable_undo">§</a><code>enable_undo</code></h6>
+<p>if undo/redo should be enabled</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.set_max_width_chars" class="method"><a class="src rightside" href="../../src/gtk4/auto/editable.rs.html#1088-1092">Source</a><h4 class="code-header">fn <a href="#method.set_max_width_chars" class="fn">set_max_width_chars</a>(&amp;self, n_chars: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>)</h4></section></summary><div class="docblock"><p>Sets the desired maximum width in characters of @self.</p>
+<h6 id="n_chars"><a class="doc-anchor" href="#n_chars">§</a><code>n_chars</code></h6>
+<p>the new desired maximum width, in characters</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.set_position" class="method"><a class="src rightside" href="../../src/gtk4/auto/editable.rs.html#1105-1109">Source</a><h4 class="code-header">fn <a href="#method.set_position" class="fn">set_position</a>(&amp;self, position: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>)</h4></section></summary><div class="docblock"><p>Sets the cursor position in the editable to the given value.</p>
+<p>The cursor is displayed before the character with the given (base 0)
+index in the contents of the editable. The value must be less than
+or equal to the number of characters in the editable. A value of -1
+indicates that the position should be set after the last character
+of the editable. Note that @position is in characters, not in bytes.</p>
+<h6 id="position-1"><a class="doc-anchor" href="#position-1">§</a><code>position</code></h6>
+<p>the position of the cursor</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.set_text" class="method"><a class="src rightside" href="../../src/gtk4/auto/editable.rs.html#1118-1122">Source</a><h4 class="code-header">fn <a href="#method.set_text" class="fn">set_text</a>(&amp;self, text: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>)</h4></section></summary><div class="docblock"><p>Sets the text in the editable to the given value.</p>
+<p>This is replacing the current contents.</p>
+<h6 id="text-1"><a class="doc-anchor" href="#text-1">§</a><code>text</code></h6>
+<p>the text to set</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.set_width_chars" class="method"><a class="src rightside" href="../../src/gtk4/auto/editable.rs.html#1134-1138">Source</a><h4 class="code-header">fn <a href="#method.set_width_chars" class="fn">set_width_chars</a>(&amp;self, n_chars: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>)</h4></section></summary><div class="docblock"><p>Changes the size request of the editable to be about the
+right size for @n_chars characters.</p>
+<p>Note that it changes the size request, the size can still
+be affected by how you pack the widget into containers.
+If @n_chars is -1, the size reverts to the default size.</p>
+<h6 id="n_chars-1"><a class="doc-anchor" href="#n_chars-1">§</a><code>n_chars</code></h6>
+<p>width in chars</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.selection_bound" class="method"><a class="src rightside" href="../../src/gtk4/auto/editable.rs.html#1142-1144">Source</a><h4 class="code-header">fn <a href="#method.selection_bound" class="fn">selection_bound</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a></h4></section></summary><div class="docblock"><p>The position of the opposite end of the selection from the cursor in chars.</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.connect_changed" class="method"><a class="src rightside" href="../../src/gtk4/auto/editable.rs.html#1155-1174">Source</a><h4 class="code-header">fn <a href="#method.connect_changed" class="fn">connect_changed</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;Self) + 'static&gt;(&amp;self, f: F) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section></summary><div class="docblock"><p>Emitted at the end of a single user-visible operation on the
+contents.</p>
+<p>E.g., a paste operation that replaces the contents of the
+selection will cause only one signal emission (even though it
+is implemented by first deleting the selection, then inserting
+the new content, and may cause multiple ::notify::text signals
+to be emitted).</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.connect_delete_text" class="method"><a class="src rightside" href="../../src/gtk4/auto/editable.rs.html#1190-1218">Source</a><h4 class="code-header">fn <a href="#method.connect_delete_text" class="fn">connect_delete_text</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;Self, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>) + 'static&gt;(
+    &amp;self,
+    f: F,
+) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section></summary><div class="docblock"><p>Emitted when text is deleted from the widget by the user.</p>
+<p>The default handler for this signal will normally be responsible for
+deleting the text, so by connecting to this signal and then stopping
+the signal with g_signal_stop_emission(), it is possible to modify the
+range of deleted text, or prevent it from being deleted entirely.</p>
+<p>The @start_pos and @end_pos parameters are interpreted as for
+<a href="trait.EditableExt.html#method.delete_text"><code>delete_text()</code></a>.</p>
+<h6 id="start_pos-4"><a class="doc-anchor" href="#start_pos-4">§</a><code>start_pos</code></h6>
+<p>the starting position</p>
+<h6 id="end_pos-4"><a class="doc-anchor" href="#end_pos-4">§</a><code>end_pos</code></h6>
+<p>the end position</p>
+</div></details><section id="method.connect_cursor_position_notify" class="method"><a class="src rightside" href="../../src/gtk4/auto/editable.rs.html#1221-1244">Source</a><h4 class="code-header">fn <a href="#method.connect_cursor_position_notify" class="fn">connect_cursor_position_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;Self) + 'static&gt;(
+    &amp;self,
+    f: F,
+) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><section id="method.connect_editable_notify" class="method"><a class="src rightside" href="../../src/gtk4/auto/editable.rs.html#1247-1267">Source</a><h4 class="code-header">fn <a href="#method.connect_editable_notify" class="fn">connect_editable_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;Self) + 'static&gt;(
+    &amp;self,
+    f: F,
+) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><section id="method.connect_enable_undo_notify" class="method"><a class="src rightside" href="../../src/gtk4/auto/editable.rs.html#1270-1293">Source</a><h4 class="code-header">fn <a href="#method.connect_enable_undo_notify" class="fn">connect_enable_undo_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;Self) + 'static&gt;(
+    &amp;self,
+    f: F,
+) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><section id="method.connect_max_width_chars_notify" class="method"><a class="src rightside" href="../../src/gtk4/auto/editable.rs.html#1296-1319">Source</a><h4 class="code-header">fn <a href="#method.connect_max_width_chars_notify" class="fn">connect_max_width_chars_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;Self) + 'static&gt;(
+    &amp;self,
+    f: F,
+) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><section id="method.connect_selection_bound_notify" class="method"><a class="src rightside" href="../../src/gtk4/auto/editable.rs.html#1322-1345">Source</a><h4 class="code-header">fn <a href="#method.connect_selection_bound_notify" class="fn">connect_selection_bound_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;Self) + 'static&gt;(
+    &amp;self,
+    f: F,
+) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><section id="method.connect_text_notify" class="method"><a class="src rightside" href="../../src/gtk4/auto/editable.rs.html#1348-1368">Source</a><h4 class="code-header">fn <a href="#method.connect_text_notify" class="fn">connect_text_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;Self) + 'static&gt;(&amp;self, f: F) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><section id="method.connect_width_chars_notify" class="method"><a class="src rightside" href="../../src/gtk4/auto/editable.rs.html#1371-1394">Source</a><h4 class="code-header">fn <a href="#method.connect_width_chars_notify" class="fn">connect_width_chars_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;Self) + 'static&gt;(
+    &amp;self,
+    f: F,
+) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><section id="method.connect_xalign_notify" class="method"><a class="src rightside" href="../../src/gtk4/auto/editable.rs.html#1397-1417">Source</a><h4 class="code-header">fn <a href="#method.connect_xalign_notify" class="fn">connect_xalign_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;Self) + 'static&gt;(&amp;self, f: F) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section></div><h2 id="dyn-compatibility" class="section-header">Dyn Compatibility<a href="#dyn-compatibility" class="anchor">§</a></h2><div class="dyn-compatibility-info"><p>This trait is <b>not</b> <a href="https://doc.rust-lang.org/nightly/reference/items/traits.html#dyn-compatibility">dyn compatible</a>.</p><p><i>In older versions of Rust, dyn compatibility was called "object safety", so this trait is not object safe.</i></p></div><h2 id="implementors" class="section-header">Implementors<a href="#implementors" class="anchor">§</a></h2><div id="implementors-list"><section id="impl-EditableExt-for-O" class="impl"><a class="src rightside" href="../../src/gtk4/auto/editable.rs.html#1420">Source</a><a href="#impl-EditableExt-for-O" class="anchor">§</a><h3 class="code-header">impl&lt;O: <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Editable.html" title="struct gtk4::Editable">Editable</a>&gt;&gt; <a class="trait" href="trait.EditableExt.html" title="trait gtk4::prelude::EditableExt">EditableExt</a> for O</h3></section></div><script src="../../trait.impl/gtk4/auto/editable/trait.EditableExt.js" async></script></section></div></main></body></html>

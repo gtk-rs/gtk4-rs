@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Attribute macro for creating template callbacks from Rust methods."><title>template_callbacks in gtk4_macros - Rust</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../static.files/SourceSerif4-Bold-a2c9cd1067f8b328.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../static.files/rustdoc-0ef3deca4ed45ad8.css" id="mainThemeStyle"><link rel="stylesheet" id="themeStyle" href="../static.files/light-f501212b8b071243.css"><link rel="stylesheet" disabled href="../static.files/dark-e92fc12c34ff89d3.css"><link rel="stylesheet" disabled href="../static.files/ayu-a0090c8b1ced384f.css"><script src="../static.files/storage-3891ce972e3a2bf8.js"></script><script defer src="sidebar-items.js"></script><script defer src="../static.files/main-364b95f387bc3166.js"></script><noscript><link rel="stylesheet" href="../static.files/noscript-13285aec31fa243e.css"></noscript><link rel="alternate icon" type="image/png" href="../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc attr"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Attribute macro for creating template callbacks from Rust methods."><title>template_callbacks in gtk4_macros - Rust</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2" crossorigin href="../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../static.files/rustdoc-aa0817cf.css"><meta name="rustdoc-vars" data-root-path="../" data-static-root-path="../static.files/" data-current-crate="gtk4_macros" data-themes="" data-resource-suffix="" data-rustdoc-version="1.90.0-nightly (a00149764 2025-07-14)" data-channel="nightly" data-search-js="search-179e01a3.js" data-settings-js="settings-5514c975.js" ><script src="../static.files/storage-4e99c027.js"></script><script defer src="sidebar-items.js"></script><script defer src="../static.files/main-673ee1e0.js"></script><noscript><link rel="stylesheet" href="../static.files/noscript-32bb7600.css"></noscript><link rel="alternate icon" type="image/png" href="../static.files/favicon-32x32-6580c154.png"><link rel="icon" type="image/svg+xml" href="../static.files/favicon-044be391.svg"></head><body class="rustdoc attr"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
 <script type="text/javascript">
     document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
 
@@ -50,7 +50,7 @@
             </section>
         ` };
 
-        if ("master" == "master") {
+        if ("main" == "main") {
             document.body.insertAdjacentHTML(
                 'beforeend',
                 popup("This is the development version. Go to latest stable version.", "stable/latest")
@@ -59,7 +59,7 @@
             fetch('https://gtk-rs.org/gtk4-rs/LATEST_RELEASE_BRANCH')
                 .then(response => response.text())
                 .then(latest_branch => {
-                    if (latest_branch.trim() != "master") {
+                    if (latest_branch.trim() != "main") {
                         document.body.insertAdjacentHTML(
                             'beforeend',
                             popup("This version is outdated. Go to latest version.", "stable/latest")
@@ -71,80 +71,90 @@
 </script>
 
 
-<nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="logo-container" href="../gtk4_macros/index.html"><img class="rust-logo" src="../static.files/rust-logo-151179464ae7ed46.svg" alt="logo"></a><h2></h2></nav><nav class="sidebar"><a class="logo-container" href="../gtk4_macros/index.html"><img class="rust-logo" src="../static.files/rust-logo-151179464ae7ed46.svg" alt="logo"></a><div class="sidebar-elems"><h2><a href="index.html">In gtk4_macros</a></h2></div></nav><main><div class="width-limiter"><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../static.files/wheel-5ec35bf9ca753509.svg"></a></div></form></nav><section id="main-content" class="content"><div class="main-heading"><h1>Attribute Macro <a href="index.html">gtk4_macros</a>::<wbr><a class="attr" href="#">template_callbacks</a><button id="copy-path" title="Copy item path to clipboard"><img src="../static.files/clipboard-7571035ce49a181d.svg" width="19" height="18" alt="Copy item path"></button></h1><span class="out-of-band"><a class="srclink" href="../src/gtk4_macros/lib.rs.html#324">source</a> · <button id="toggle-all-docs" title="collapse all docs">[<span>&#x2212;</span>]</button></span></div><pre class="rust item-decl"><code>#[template_callbacks]</code></pre><details class="toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>Attribute macro for creating template callbacks from Rust methods.</p>
-<p>Widgets with <a href="derive.CompositeTemplate.html" title="CompositeTemplate"><code>CompositeTemplate</code></a> can then make use of these callbacks from within their
-template XML definition. The attribute must be applied to an <code>impl</code> statement of a struct.
-Functions marked as callbacks within the <code>impl</code> will be stored in a static array. Then, in the
-<a href="../glib/subclass/types/trait.ObjectSubclass.html"><code>ObjectSubclass</code></a> implementation you will need to call <a href="../gtk4/subclass/widget/trait.CompositeTemplateCallbacksClass.html#tymethod.bind_template_callbacks"><code>bind_template_callbacks</code></a> and/or
+<nav class="mobile-topbar"><button class="sidebar-menu-toggle" title="show sidebar"></button></nav><nav class="sidebar"><div class="sidebar-crate"><h2><a href="../gtk4_macros/index.html">gtk4_<wbr>macros</a><span class="version">0.10.0</span></h2></div><div class="sidebar-elems"><section id="rustdoc-toc"><h2 class="location"><a href="#">template_<wbr>callbacks</a></h2><h3><a href="#">Sections</a></h3><ul class="block top-toc"><li><a href="#example" title="Example">Example</a></li></ul></section><div id="rustdoc-modnav"><h2 class="in-crate"><a href="index.html">In crate gtk4_<wbr>macros</a></h2></div></div></nav><div class="sidebar-resizer" title="Drag to resize sidebar"></div><main><div class="width-limiter"><rustdoc-search></rustdoc-search><section id="main-content" class="content"><div class="main-heading"><div class="rustdoc-breadcrumbs"><a href="index.html">gtk4_macros</a></div><h1>Attribute Macro <span class="attr">template_callbacks</span><button id="copy-path" title="Copy item path to clipboard">Copy item path</button></h1><rustdoc-toolbar></rustdoc-toolbar><span class="sub-heading"><a class="src" href="../src/gtk4_macros/lib.rs.html#401-414">Source</a> </span></div><pre class="rust item-decl"><code>#[template_callbacks]</code></pre><details class="toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>Attribute macro for creating template callbacks from Rust methods.</p>
+<p>Widgets with <a href="derive.CompositeTemplate.html" title="derive gtk4_macros::CompositeTemplate"><code>CompositeTemplate</code></a> can then make use of these callbacks from
+within their template XML definition. The attribute must be applied to an
+<code>impl</code> statement of a struct. Functions marked as callbacks within the
+<code>impl</code> will be stored in a static array. Then, in the <a href="../glib/subclass/types/trait.ObjectSubclass.html"><code>ObjectSubclass</code></a>
+implementation you will need to call <a href="../gtk4/subclass/widget/trait.CompositeTemplateCallbacksClass.html#tymethod.bind_template_callbacks"><code>bind_template_callbacks</code></a> and/or
 <a href="../gtk4/subclass/widget/trait.CompositeTemplateInstanceCallbacksClass.html#tymethod.bind_template_instance_callbacks"><code>bind_template_instance_callbacks</code></a> in the <a href="../glib/subclass/types/trait.ObjectSubclass.html#method.class_init"><code>class_init</code></a> function.</p>
-<p>Template callbacks can be specified on both a widget’s public wrapper <code>impl</code> or on its private
-subclass <code>impl</code>, or from external types. If callbacks are specified on the public wrapper, then
-<code>bind_template_instance_callbacks</code> must be called in <code>class_init</code>. If callbacks are specified
-on the private subclass, then <code>bind_template_callbacks</code> must be called in <code>class_init</code>. To use
-the callbacks from an external type, call <a href="../gtk4/subclass/widget/trait.CompositeTemplateCallbacks.html#method.bind_template_callbacks"><code>T::bind_template_callbacks</code></a> in <code>class_init</code>, where
-<code>T</code> is the other type. See the example below for usage of all three.</p>
-<p>These callbacks can be bound using the <code>&lt;signal&gt;</code> or <code>&lt;closure&gt;</code> tags in the template file.
-Note that the arguments and return type will only be checked at run time when the method is
-invoked.</p>
-<p>Template callbacks can optionally take <code>self</code> or <code>&amp;self</code> as a first parameter. In this case,
-the attribute <code>swapped=&quot;true&quot;</code> will usually have to be set on the <code>&lt;signal&gt;</code> or <code>&lt;closure&gt;</code> tag
-in order to invoke the function correctly. Note that by-value <code>self</code> will only work with
-template callbacks on the wrapper type.</p>
-<p>Template callbacks that have no return value can also be <code>async</code>, in which case the callback
-will be spawned as new future on the default main context using
-<a href="../glib/struct.MainContext.html#method.spawn_local"><code>glib::MainContext::spawn_local</code></a>. Invoking the callback multiple times will spawn an
-additional future each time it is invoked. This means that multiple futures for an async
-callback can be active at any given time, so care must be taken to avoid any kind of data
-races. Async callbacks may prefer communicating back to the caller or widget over channels
-instead of mutating internal widget state, or may want to make use of a locking flag to ensure
-only one future can be active at once. Widgets may also want to show a visual indicator such as
-a <a href="../gtk4/struct.Spinner.html"><code>Spinner</code></a> while the future is active to communicate to the user that a background task is
-running.</p>
+<p>Template callbacks can be specified on both a widget’s public wrapper <code>impl</code>
+or on its private subclass <code>impl</code>, or from external types. If callbacks are
+specified on the public wrapper, then <code>bind_template_instance_callbacks</code>
+must be called in <code>class_init</code>. If callbacks are specified on the private
+subclass, then <code>bind_template_callbacks</code> must be called in <code>class_init</code>. To
+use the callbacks from an external type, call <a href="../gtk4/subclass/widget/trait.CompositeTemplateCallbacks.html#method.bind_template_callbacks"><code>T::bind_template_callbacks</code></a>
+in <code>class_init</code>, where <code>T</code> is the other type. See the example below for
+usage of all three.</p>
+<p>These callbacks can be bound using the <code>&lt;signal&gt;</code> or <code>&lt;closure&gt;</code> tags in the
+template file. Note that the arguments and return type will only be checked
+at run time when the method is invoked.</p>
+<p>Template callbacks can optionally take <code>self</code> or <code>&amp;self</code> as a first
+parameter. In this case, the attribute <code>swapped="true"</code> will usually have to
+be set on the <code>&lt;signal&gt;</code> or <code>&lt;closure&gt;</code> tag in order to invoke the function
+correctly. Note that by-value <code>self</code> will only work with template callbacks
+on the wrapper type.</p>
+<p>Template callbacks that have no return value can also be <code>async</code>, in which
+case the callback will be spawned as new future on the default main context
+using <a href="../glib/struct.MainContext.html#method.spawn_local"><code>glib::MainContext::spawn_local</code></a>. Invoking the callback multiple
+times will spawn an additional future each time it is invoked. This means
+that multiple futures for an async callback can be active at any given time,
+so care must be taken to avoid any kind of data races. Async callbacks may
+prefer communicating back to the caller or widget over channels instead of
+mutating internal widget state, or may want to make use of a locking flag to
+ensure only one future can be active at once. Widgets may also want to show
+a visual indicator such as a <a href="../gtk4/struct.Spinner.html"><code>Spinner</code></a> while the future is active to
+communicate to the user that a background task is running.</p>
 <p>The following options are supported on the attribute:</p>
 <ul>
-<li><code>functions</code> makes all callbacks use the <code>function</code> attribute by default. (see below)</li>
+<li><code>functions</code> makes all callbacks use the <code>function</code> attribute by default.
+(see below)</li>
 </ul>
-<p>The <code>template_callback</code> attribute is used to mark methods that will be exposed to the template
-scope. It can take the following options:</p>
+<p>The <code>template_callback</code> attribute is used to mark methods that will be
+exposed to the template scope. It can take the following options:</p>
 <ul>
 <li><code>name</code> renames the callback. Defaults to the function name if not defined.</li>
-<li><code>function</code> ignores the first value when calling the callback and disallows <code>self</code>.  Useful
-for callbacks called from <code>&lt;closure&gt;</code> tags.</li>
-<li><code>function = false</code> reverts the effects of <code>functions</code> used on the <code>impl</code>, so the callback
-gets the first value and can take <code>self</code> again. Mainly useful for callbacks that are invoked
-with <code>swapped=&quot;true&quot;</code>.</li>
+<li><code>function</code> ignores the first value when calling the callback and disallows
+<code>self</code>.  Useful for callbacks called from <code>&lt;closure&gt;</code> tags.</li>
+<li><code>function = false</code> reverts the effects of <code>functions</code> used on the <code>impl</code>,
+so the callback gets the first value and can take <code>self</code> again. Mainly useful
+for callbacks that are invoked with <code>swapped="true"</code>.</li>
 </ul>
-<p>The <code>rest</code> attribute can be placed on the last argument of a template callback. This attribute
-must be used on an argument of type <code>&amp;[<a href="../glib/value/struct.Value.html">glib::Value</a>]</code> and will pass in the
-remaining arguments. The first and last values will be omitted from the slice if this callback
-is a <code>function</code>.</p>
-<p>Arguments and return types in template callbacks have some special restrictions, similar to the
-restrictions on <a href="../glib/macro.closure.html"><code>glib::closure</code></a>. Each argument’s type must implement
-<code><a href="https://doc.rust-lang.org/nightly/core/convert/trait.From.html" title="From">From</a>&lt;Type&gt; for <a href="../glib/value/struct.Value.html">glib::Value</a></code>. The last argument can also be
-<code>&amp;[<a href="../glib/value/struct.Value.html">glib::Value</a>]</code> annotated with <code>#[rest]</code> as described above. The return type of
-a callback, if present, must implement <a href="../glib/value/trait.FromValue.html"><code>glib::FromValue</code></a>. Type-checking of inputs and outputs
-is done at run-time; if the argument types or return type do not match the type of the signal
-or closure then the callback will panic. To implement your own type checking or to use dynamic
-typing, an argument’s type can be left as a <code>&amp;<a href="../glib/value/struct.Value.html">glib::Value</a></code>. This can also be used
-if you need custom unboxing, such as if the target type does not implement <code>FromValue</code>.</p>
-<h2 id="example"><a href="#example">Example</a></h2>
+<p>The <code>rest</code> attribute can be placed on the last argument of a template
+callback. This attribute must be used on an argument of type
+<code>&amp;[<a href="../glib/value/struct.Value.html">glib::Value</a>]</code> and will pass in the remaining arguments.
+The first and last values will be omitted from the slice if this callback is
+a <code>function</code>.</p>
+<p>Arguments and return types in template callbacks have some special
+restrictions, similar to the restrictions on <a href="../glib/macro.closure.html"><code>glib::closure</code></a>. Each
+argument’s type must implement <code><a href="https://doc.rust-lang.org/nightly/core/convert/trait.From.html" title="trait core::convert::From">From</a>&lt;Type&gt; for
+<a href="../glib/value/struct.Value.html">glib::Value</a></code>. The last argument can also be <code>&amp;[<a href="../glib/value/struct.Value.html">glib::Value</a><br />
+]</code> annotated with <code>#[rest]</code> as described above. The return type of
+a callback, if present, must implement <a href="../glib/value/trait.FromValue.html"><code>glib::FromValue</code></a>. Type-checking of
+inputs and outputs is done at run-time; if the argument types or return type
+do not match the type of the signal or closure then the callback will panic.
+To implement your own type checking or to use dynamic typing, an argument’s
+type can be left as a <code>&amp;<a href="../glib/value/struct.Value.html">glib::Value</a></code>. This can also be used
+if you need custom unboxing, such as if the target type does not implement
+<code>FromValue</code>.</p>
+<h2 id="example"><a class="doc-anchor" href="#example">§</a>Example</h2>
 <div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use </span>gtk::{glib, prelude::<span class="kw-2">*</span>, subclass::prelude::<span class="kw-2">*</span>};
 
 <span class="kw">mod </span>imp {
     <span class="kw">use super</span>::<span class="kw-2">*</span>;
 
     <span class="attr">#[derive(Debug, Default, gtk::CompositeTemplate)]
-    #[template(file = <span class="string">&quot;test/template_callbacks.ui&quot;</span>)]
+    #[template(file = <span class="string">"test/template_callbacks.ui"</span>)]
     </span><span class="kw">pub struct </span>MyWidget {
         <span class="attr">#[template_child]
         </span><span class="kw">pub </span>label: TemplateChild&lt;gtk::Label&gt;,
-        <span class="attr">#[template_child(id = <span class="string">&quot;my_button_id&quot;</span>)]
+        <span class="attr">#[template_child(id = <span class="string">"my_button_id"</span>)]
         </span><span class="kw">pub </span>button: TemplateChild&lt;gtk::Button&gt;,
     }
 
     <span class="attr">#[glib::object_subclass]
     </span><span class="kw">impl </span>ObjectSubclass <span class="kw">for </span>MyWidget {
-        <span class="kw">const </span>NAME: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str = <span class="string">&quot;MyWidget&quot;</span>;
+        <span class="kw">const </span>NAME: <span class="kw-2">&amp;</span><span class="lifetime">'static </span>str = <span class="string">"MyWidget"</span>;
         <span class="kw">type </span>Type = <span class="kw">super</span>::MyWidget;
         <span class="kw">type </span>ParentType = gtk::Box;
 
@@ -167,10 +177,10 @@ if you need custom unboxing, such as if the target type does not implement <code
     </span><span class="kw">impl </span>MyWidget {
         <span class="attr">#[template_callback]
         </span><span class="kw">fn </span>button_clicked(<span class="kw-2">&amp;</span><span class="self">self</span>, button: <span class="kw-2">&amp;</span>gtk::Button) {
-            button.set_label(<span class="string">&quot;I was clicked!&quot;</span>);
-            <span class="self">self</span>.label.set_label(<span class="string">&quot;The button was clicked!&quot;</span>);
+            button.set_label(<span class="string">"I was clicked!"</span>);
+            <span class="self">self</span>.label.set_label(<span class="string">"The button was clicked!"</span>);
         }
-        <span class="attr">#[template_callback(function, name = <span class="string">&quot;strlen&quot;</span>)]
+        <span class="attr">#[template_callback(function, name = <span class="string">"strlen"</span>)]
         </span><span class="kw">fn </span>string_length(s: <span class="kw-2">&amp;</span>str) -&gt; u64 {
             s.len() <span class="kw">as </span>u64
         }
@@ -181,8 +191,10 @@ if you need custom unboxing, such as if the target type does not implement <code
     <span class="kw">impl </span>BoxImpl <span class="kw">for </span>MyWidget {}
 }
 
-<span class="macro">glib::wrapper! </span>{
-    <span class="kw">pub struct </span>MyWidget(ObjectSubclass&lt;imp::MyWidget&gt;) @extends gtk::Widget, gtk::Box;
+<span class="macro">glib::wrapper!</span> {
+    <span class="kw">pub struct </span>MyWidget(ObjectSubclass&lt;imp::MyWidget&gt;)
+    @extends gtk::Widget, gtk::Box,
+    @implements gtk::Accessible, gtk::Buildable, gtk::ConstraintTarget;
 }
 
 <span class="attr">#[gtk::template_callbacks]
@@ -193,7 +205,11 @@ if you need custom unboxing, such as if the target type does not implement <code
     <span class="attr">#[template_callback]
     </span><span class="kw">pub fn </span>print_both_labels(<span class="kw-2">&amp;</span><span class="self">self</span>) {
         <span class="kw">let </span>imp = <span class="self">self</span>.imp();
-        <span class="macro">println!</span>(<span class="string">&quot;{} {}&quot;</span>, imp.label.label(), imp.button.label().unwrap().as_str());
+        <span class="macro">println!</span>(
+            <span class="string">"{} {}"</span>,
+            imp.label.label(),
+            imp.button.label().unwrap().as_str()
+        );
     }
 }
 
@@ -206,14 +222,14 @@ if you need custom unboxing, such as if the target type does not implement <code
         <span class="kw">let </span><span class="kw-2">mut </span>res = String::new();
         <span class="kw">for </span>(index, value) <span class="kw">in </span>values.iter().enumerate() {
             res.push_str(value.get::&lt;<span class="kw-2">&amp;</span>str&gt;().unwrap_or_else(|e| {
-                <span class="macro">panic!</span>(<span class="string">&quot;Expected string value for argument {}: {}&quot;</span>, index, e);
+                <span class="macro">panic!</span>(<span class="string">"Expected string value for argument {}: {}"</span>, index, e);
             }));
         }
         res
     }
     <span class="attr">#[template_callback(function = <span class="bool-val">false</span>)]
     </span><span class="kw">fn </span>reset_label(label: <span class="kw-2">&amp;</span>gtk::Label) {
-        label.set_label(<span class="string">&quot;&quot;</span>);
+        label.set_label(<span class="string">""</span>);
     }
 }</code></pre></div>
-</div></details></section></div></main><div id="rustdoc-vars" data-root-path="../" data-static-root-path="../static.files/" data-current-crate="gtk4_macros" data-themes="" data-resource-suffix="" data-rustdoc-version="1.69.0-nightly (ef934d9b6 2023-02-08)" data-search-js="search-28136cea55c34037.js" data-settings-js="settings-f0c5c39777a9a2f6.js" data-settings-css="settings-0bcba95ff279c1db.css" ></div></body></html>
+</div></details></section></div></main></body></html>

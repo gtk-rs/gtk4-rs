@@ -1,0 +1,199 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Trait containing all `struct@Box` methods."><title>BoxExt in gtk4::prelude - Rust</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../static.files/rustdoc-84e720fa.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.89.0-nightly (5526a2f47 2025-06-20)" data-channel="nightly" data-search-js="search-343419c9.js" data-settings-js="settings-5514c975.js" ><script src="../../static.files/storage-4e99c027.js"></script><script defer src="sidebar-items.js"></script><script defer src="../../static.files/main-fd3af306.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-32bb7600.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-6580c154.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-044be391.svg"></head><body class="rustdoc trait"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
+
+    function checkDocsLatestStable() {
+        function popup(msg, url) { return `
+            <style scoped="scoped">
+                .popup {
+                    max-width: 16em;
+                    background-color: #fff;
+                    position: fixed;
+                    z-index: 1;
+                    margin-left: auto;
+                    bottom: 1em;
+                    right: 1em;
+                    border-radius: 5px;
+                    box-shadow: 1px 1px 4px #777;
+                }
+
+                .popup a.version {
+                    color: #e57300;
+                    padding: 0.6em 1em;
+                    display: block;
+                }
+                .popup a.version:hover {
+                    color: #b25900;
+                }
+
+                .popup a.close {
+                    color: white;
+                    background: grey;
+                    border-radius: 99px;
+                    display: inline-block;
+                    width: 19px;
+                    line-height: 19px;
+                    font-weight: bold;
+                    text-align: center;
+                    margin: 0.6em;
+                    float: right;
+                }
+                .popup a.close:hover {
+                    background: black;
+                }
+            </style>
+            <section class="popup" id="gir_docs_popup">
+                <a class="close" href="#" onclick="document.getElementById('gir_docs_popup').remove(); return false">×</a>
+                <a class="version" href="https://gtk-rs.org/gtk4-rs/stable/latest/docs">
+                    ⚠ ${msg}
+                </a>
+            </section>
+        ` };
+
+        if ("0.9" == "main") {
+            document.body.insertAdjacentHTML(
+                'beforeend',
+                popup("This is the development version. Go to latest stable version.", "stable/latest")
+            );
+        } else {
+            fetch('https://gtk-rs.org/gtk4-rs/LATEST_RELEASE_BRANCH')
+                .then(response => response.text())
+                .then(latest_branch => {
+                    if (latest_branch.trim() != "0.9") {
+                        document.body.insertAdjacentHTML(
+                            'beforeend',
+                            popup("This version is outdated. Go to latest version.", "stable/latest")
+                        );
+                    }
+                });
+        }
+    }
+</script>
+
+
+<nav class="mobile-topbar"><button class="sidebar-menu-toggle" title="show sidebar"></button></nav><nav class="sidebar"><div class="sidebar-crate"><h2><a href="../../gtk4/index.html">gtk4</a><span class="version">0.9.7</span></h2></div><div class="sidebar-elems"><section id="rustdoc-toc"><h2 class="location"><a href="#">BoxExt</a></h2><h3><a href="#">Sections</a></h3><ul class="block top-toc"><li><a href="#implementors-1" title="Implementors">Implementors</a></li></ul><h3><a href="#provided-methods">Provided Methods</a></h3><ul class="block"><li><a href="#method.append" title="append">append</a></li><li><a href="#method.baseline_child" title="baseline_child">baseline_child</a></li><li><a href="#method.baseline_position" title="baseline_position">baseline_position</a></li><li><a href="#method.connect_baseline_child_notify" title="connect_baseline_child_notify">connect_baseline_child_notify</a></li><li><a href="#method.connect_baseline_position_notify" title="connect_baseline_position_notify">connect_baseline_position_notify</a></li><li><a href="#method.connect_homogeneous_notify" title="connect_homogeneous_notify">connect_homogeneous_notify</a></li><li><a href="#method.connect_spacing_notify" title="connect_spacing_notify">connect_spacing_notify</a></li><li><a href="#method.insert_child_after" title="insert_child_after">insert_child_after</a></li><li><a href="#method.is_homogeneous" title="is_homogeneous">is_homogeneous</a></li><li><a href="#method.prepend" title="prepend">prepend</a></li><li><a href="#method.remove" title="remove">remove</a></li><li><a href="#method.reorder_child_after" title="reorder_child_after">reorder_child_after</a></li><li><a href="#method.set_baseline_child" title="set_baseline_child">set_baseline_child</a></li><li><a href="#method.set_baseline_position" title="set_baseline_position">set_baseline_position</a></li><li><a href="#method.set_homogeneous" title="set_homogeneous">set_homogeneous</a></li><li><a href="#method.set_spacing" title="set_spacing">set_spacing</a></li><li><a href="#method.spacing" title="spacing">spacing</a></li></ul><h3><a href="#dyn-compatibility">Dyn Compatibility</a></h3><h3><a href="#implementors">Implementors</a></h3></section><div id="rustdoc-modnav"><h2><a href="index.html">In gtk4::<wbr>prelude</a></h2></div></div></nav><div class="sidebar-resizer" title="Drag to resize sidebar"></div><main><div class="width-limiter"><rustdoc-search></rustdoc-search><section id="main-content" class="content"><div class="main-heading"><div class="rustdoc-breadcrumbs"><a href="../index.html">gtk4</a>::<wbr><a href="index.html">prelude</a></div><h1>Trait <span class="trait">BoxExt</span><button id="copy-path" title="Copy item path to clipboard">Copy item path</button></h1><rustdoc-toolbar></rustdoc-toolbar><span class="sub-heading"><a class="src" href="../../src/gtk4/auto/box_.rs.html#809-1104">Source</a> </span></div><pre class="rust item-decl"><code>pub trait BoxExt:
+    <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Box.html" title="struct gtk4::Box">Box</a>&gt;
+    + Sealed
+    + 'static {
+<details class="toggle type-contents-toggle"><summary class="hideme"><span>Show 17 methods</span></summary>    // Provided methods
+    fn <a href="#method.append" class="fn">append</a>(&amp;self, child: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.baseline_child" class="fn">baseline_child</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.baseline_position" class="fn">baseline_position</a>(&amp;self) -&gt; <a class="enum" href="../enum.BaselinePosition.html" title="enum gtk4::BaselinePosition">BaselinePosition</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.is_homogeneous" class="fn">is_homogeneous</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.spacing" class="fn">spacing</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.insert_child_after" class="fn">insert_child_after</a>(
+        &amp;self,
+        child: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;,
+        sibling: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;&gt;,
+    ) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.prepend" class="fn">prepend</a>(&amp;self, child: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.remove" class="fn">remove</a>(&amp;self, child: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.reorder_child_after" class="fn">reorder_child_after</a>(
+        &amp;self,
+        child: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;,
+        sibling: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;&gt;,
+    ) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.set_baseline_child" class="fn">set_baseline_child</a>(&amp;self, child: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.set_baseline_position" class="fn">set_baseline_position</a>(&amp;self, position: <a class="enum" href="../enum.BaselinePosition.html" title="enum gtk4::BaselinePosition">BaselinePosition</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.set_homogeneous" class="fn">set_homogeneous</a>(&amp;self, homogeneous: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.set_spacing" class="fn">set_spacing</a>(&amp;self, spacing: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>) { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_baseline_child_notify" class="fn">connect_baseline_child_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;Self) + 'static&gt;(
+        &amp;self,
+        f: F,
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_baseline_position_notify" class="fn">connect_baseline_position_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;Self) + 'static&gt;(
+        &amp;self,
+        f: F,
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_homogeneous_notify" class="fn">connect_homogeneous_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;Self) + 'static&gt;(
+        &amp;self,
+        f: F,
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+<span class="item-spacer"></span>    fn <a href="#method.connect_spacing_notify" class="fn">connect_spacing_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;Self) + 'static&gt;(
+        &amp;self,
+        f: F,
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> { ... }
+</details>}</code></pre><details class="toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>Trait containing all <a href="../struct.Box.html" title="struct gtk4::Box"><code>Box</code></a> methods.</p>
+<h2 id="implementors-1"><a class="doc-anchor" href="#implementors-1">§</a>Implementors</h2>
+<p><a href="../struct.Box.html" title="struct gtk4::Box"><code>Box</code></a>, <a href="../struct.ShortcutsGroup.html" title="struct gtk4::ShortcutsGroup"><code>ShortcutsGroup</code></a>, <a href="../struct.ShortcutsSection.html" title="struct gtk4::ShortcutsSection"><code>ShortcutsSection</code></a></p>
+</div></details><h2 id="provided-methods" class="section-header">Provided Methods<a href="#provided-methods" class="anchor">§</a></h2><div class="methods"><details class="toggle method-toggle" open><summary><section id="method.append" class="method"><a class="src rightside" href="../../src/gtk4/auto/box_.rs.html#814-821">Source</a><h4 class="code-header">fn <a href="#method.append" class="fn">append</a>(&amp;self, child: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;)</h4></section></summary><div class="docblock"><p>Adds a child at the end.</p>
+<h6 id="child"><a class="doc-anchor" href="#child">§</a><code>child</code></h6>
+<p>the widget to append</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.baseline_child" class="method"><a class="src rightside" href="../../src/gtk4/auto/box_.rs.html#833-835">Source</a><h4 class="code-header">fn <a href="#method.baseline_child" class="fn">baseline_child</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a></h4></section><span class="item-info"><div class="stab portability">Available on <strong>crate feature <code>v4_12</code></strong> only.</div></span></summary><div class="docblock"><p>Gets the value set by <a href="trait.BoxExt.html#method.set_baseline_child"><code>set_baseline_child()</code></a>.</p>
+<h5 id="returns"><a class="doc-anchor" href="#returns">§</a>Returns</h5>
+<p>the baseline child</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.baseline_position" class="method"><a class="src rightside" href="../../src/gtk4/auto/box_.rs.html#845-851">Source</a><h4 class="code-header">fn <a href="#method.baseline_position" class="fn">baseline_position</a>(&amp;self) -&gt; <a class="enum" href="../enum.BaselinePosition.html" title="enum gtk4::BaselinePosition">BaselinePosition</a></h4></section></summary><div class="docblock"><p>Gets the value set by <a href="trait.BoxExt.html#method.set_baseline_position"><code>set_baseline_position()</code></a>.</p>
+<h5 id="returns-1"><a class="doc-anchor" href="#returns-1">§</a>Returns</h5>
+<p>the baseline position</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.is_homogeneous" class="method"><a class="src rightside" href="../../src/gtk4/auto/box_.rs.html#863-865">Source</a><h4 class="code-header">fn <a href="#method.is_homogeneous" class="fn">is_homogeneous</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></section></summary><div class="docblock"><p>Returns whether the box is homogeneous.</p>
+<p>In a homogeneous box all children are the same size.</p>
+<h5 id="returns-2"><a class="doc-anchor" href="#returns-2">§</a>Returns</h5>
+<p>true if the box is homogeneous</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.spacing" class="method"><a class="src rightside" href="../../src/gtk4/auto/box_.rs.html#874-876">Source</a><h4 class="code-header">fn <a href="#method.spacing" class="fn">spacing</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a></h4></section></summary><div class="docblock"><p>Gets the value set by <a href="trait.BoxExt.html#method.set_spacing"><code>set_spacing()</code></a>.</p>
+<h5 id="returns-3"><a class="doc-anchor" href="#returns-3">§</a>Returns</h5>
+<p>spacing between children</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.insert_child_after" class="method"><a class="src rightside" href="../../src/gtk4/auto/box_.rs.html#888-896">Source</a><h4 class="code-header">fn <a href="#method.insert_child_after" class="fn">insert_child_after</a>(
+    &amp;self,
+    child: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;,
+    sibling: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;&gt;,
+)</h4></section></summary><div class="docblock"><p>Inserts a child at a specific position.</p>
+<p>The child is added after @sibling in the list of @self children.</p>
+<p>If @sibling is <code>NULL</code>, the @child is placed at the beginning.</p>
+<h6 id="child-1"><a class="doc-anchor" href="#child-1">§</a><code>child</code></h6>
+<p>the widget to insert</p>
+<h6 id="sibling"><a class="doc-anchor" href="#sibling">§</a><code>sibling</code></h6>
+<p>the sibling after which to insert @child</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.prepend" class="method"><a class="src rightside" href="../../src/gtk4/auto/box_.rs.html#902-909">Source</a><h4 class="code-header">fn <a href="#method.prepend" class="fn">prepend</a>(&amp;self, child: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;)</h4></section></summary><div class="docblock"><p>Adds a child at the beginning.</p>
+<h6 id="child-2"><a class="doc-anchor" href="#child-2">§</a><code>child</code></h6>
+<p>the widget to prepend</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.remove" class="method"><a class="src rightside" href="../../src/gtk4/auto/box_.rs.html#919-926">Source</a><h4 class="code-header">fn <a href="#method.remove" class="fn">remove</a>(&amp;self, child: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;)</h4></section></summary><div class="docblock"><p>Removes a child widget from the box.</p>
+<p>The child must have been added before with
+<a href="trait.BoxExt.html#method.append"><code>append()</code></a>, <a href="trait.BoxExt.html#method.prepend"><code>prepend()</code></a>, or
+<a href="trait.BoxExt.html#method.insert_child_after"><code>insert_child_after()</code></a>.</p>
+<h6 id="child-3"><a class="doc-anchor" href="#child-3">§</a><code>child</code></h6>
+<p>the child to remove</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.reorder_child_after" class="method"><a class="src rightside" href="../../src/gtk4/auto/box_.rs.html#939-947">Source</a><h4 class="code-header">fn <a href="#method.reorder_child_after" class="fn">reorder_child_after</a>(
+    &amp;self,
+    child: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;,
+    sibling: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;&gt;,
+)</h4></section></summary><div class="docblock"><p>Moves a child to a different position.</p>
+<p>The child is moved to the position after @sibling in the list
+of @self children.</p>
+<p>If @sibling is <code>NULL</code>, the child is placed at the beginning.</p>
+<h6 id="child-4"><a class="doc-anchor" href="#child-4">§</a><code>child</code></h6>
+<p>the widget to move, must be a child of @self</p>
+<h6 id="sibling-1"><a class="doc-anchor" href="#sibling-1">§</a><code>sibling</code></h6>
+<p>the sibling to move @child after</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.set_baseline_child" class="method"><a class="src rightside" href="../../src/gtk4/auto/box_.rs.html#958-962">Source</a><h4 class="code-header">fn <a href="#method.set_baseline_child" class="fn">set_baseline_child</a>(&amp;self, child: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>)</h4></section><span class="item-info"><div class="stab portability">Available on <strong>crate feature <code>v4_12</code></strong> only.</div></span></summary><div class="docblock"><p>Sets the baseline child of a box.</p>
+<p>This affects only vertical boxes.</p>
+<h6 id="child-5"><a class="doc-anchor" href="#child-5">§</a><code>child</code></h6>
+<p>a child position, or -1</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.set_baseline_position" class="method"><a class="src rightside" href="../../src/gtk4/auto/box_.rs.html#975-982">Source</a><h4 class="code-header">fn <a href="#method.set_baseline_position" class="fn">set_baseline_position</a>(&amp;self, position: <a class="enum" href="../enum.BaselinePosition.html" title="enum gtk4::BaselinePosition">BaselinePosition</a>)</h4></section></summary><div class="docblock"><p>Sets the baseline position of a box.</p>
+<p>This affects only horizontal boxes with at least one baseline
+aligned child. If there is more vertical space available than
+requested, and the baseline is not allocated by the parent then
+@position is used to allocate the baseline with respect to the
+extra space available.</p>
+<h6 id="position"><a class="doc-anchor" href="#position">§</a><code>position</code></h6>
+<p>the baseline position</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.set_homogeneous" class="method"><a class="src rightside" href="../../src/gtk4/auto/box_.rs.html#991-995">Source</a><h4 class="code-header">fn <a href="#method.set_homogeneous" class="fn">set_homogeneous</a>(&amp;self, homogeneous: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>)</h4></section></summary><div class="docblock"><p>Sets whether or not all children are given equal space
+in the box.</p>
+<h6 id="homogeneous"><a class="doc-anchor" href="#homogeneous">§</a><code>homogeneous</code></h6>
+<p>true to create equal allotments,
+false for variable allotments</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.set_spacing" class="method"><a class="src rightside" href="../../src/gtk4/auto/box_.rs.html#1002-1006">Source</a><h4 class="code-header">fn <a href="#method.set_spacing" class="fn">set_spacing</a>(&amp;self, spacing: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>)</h4></section></summary><div class="docblock"><p>Sets the number of pixels to place between children.</p>
+<h6 id="spacing"><a class="doc-anchor" href="#spacing">§</a><code>spacing</code></h6>
+<p>the number of pixels to put between children</p>
+</div></details><section id="method.connect_baseline_child_notify" class="method"><a class="src rightside" href="../../src/gtk4/auto/box_.rs.html#1011-1031">Source</a><h4 class="code-header">fn <a href="#method.connect_baseline_child_notify" class="fn">connect_baseline_child_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;Self) + 'static&gt;(
+    &amp;self,
+    f: F,
+) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><span class="item-info"><div class="stab portability">Available on <strong>crate feature <code>v4_12</code></strong> only.</div></span><section id="method.connect_baseline_position_notify" class="method"><a class="src rightside" href="../../src/gtk4/auto/box_.rs.html#1034-1057">Source</a><h4 class="code-header">fn <a href="#method.connect_baseline_position_notify" class="fn">connect_baseline_position_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;Self) + 'static&gt;(
+    &amp;self,
+    f: F,
+) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><section id="method.connect_homogeneous_notify" class="method"><a class="src rightside" href="../../src/gtk4/auto/box_.rs.html#1060-1080">Source</a><h4 class="code-header">fn <a href="#method.connect_homogeneous_notify" class="fn">connect_homogeneous_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;Self) + 'static&gt;(
+    &amp;self,
+    f: F,
+) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><section id="method.connect_spacing_notify" class="method"><a class="src rightside" href="../../src/gtk4/auto/box_.rs.html#1083-1103">Source</a><h4 class="code-header">fn <a href="#method.connect_spacing_notify" class="fn">connect_spacing_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;Self) + 'static&gt;(
+    &amp;self,
+    f: F,
+) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section></div><h2 id="dyn-compatibility" class="section-header">Dyn Compatibility<a href="#dyn-compatibility" class="anchor">§</a></h2><div class="dyn-compatibility-info"><p>This trait is <b>not</b> <a href="https://doc.rust-lang.org/nightly/reference/items/traits.html#dyn-compatibility">dyn compatible</a>.</p><p><i>In older versions of Rust, dyn compatibility was called "object safety", so this trait is not object safe.</i></p></div><h2 id="implementors" class="section-header">Implementors<a href="#implementors" class="anchor">§</a></h2><div id="implementors-list"><section id="impl-BoxExt-for-O" class="impl"><a class="src rightside" href="../../src/gtk4/auto/box_.rs.html#1106">Source</a><a href="#impl-BoxExt-for-O" class="anchor">§</a><h3 class="code-header">impl&lt;O: <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.20/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Box.html" title="struct gtk4::Box">Box</a>&gt;&gt; <a class="trait" href="trait.BoxExt.html" title="trait gtk4::prelude::BoxExt">BoxExt</a> for O</h3></section></div><script src="../../trait.impl/gtk4/auto/box_/trait.BoxExt.js" async></script></section></div></main></body></html>

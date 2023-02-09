@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html lang="en" class="sidebar-visible no-js rust">
+<html lang="en" class="rust sidebar-visible" dir="ltr">
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
@@ -7,10 +7,10 @@
 
 
         <!-- Custom HTML head -->
-        
+
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="theme-color" content="#ffffff" />
+        <meta name="theme-color" content="#ffffff">
 
         <link rel="icon" href="favicon.svg">
         <link rel="shortcut icon" href="favicon.png">
@@ -24,26 +24,41 @@
         <link rel="stylesheet" href="fonts/fonts.css">
 
         <!-- Highlight.js Stylesheets -->
-        <link rel="stylesheet" href="highlight.css">
-        <link rel="stylesheet" href="tomorrow-night.css">
-        <link rel="stylesheet" href="ayu-highlight.css">
+        <link rel="stylesheet" id="highlight-css" href="highlight.css">
+        <link rel="stylesheet" id="tomorrow-night-css" href="tomorrow-night.css">
+        <link rel="stylesheet" id="ayu-highlight-css" href="ayu-highlight.css">
 
         <!-- Custom theme stylesheets -->
         <link rel="stylesheet" href="theme/style.css">
 
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "";
+            const default_light_theme = "rust";
+            const default_dark_theme = "navy";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="toc.js"></script>
     </head>
     <body>
-        <!-- Provide site root to javascript -->
-        <script>
-            var path_to_root = "";
-            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "rust";
-        </script>
-
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="body-container">
         <!-- Work around some values being stored in localStorage wrapped in quotes -->
         <script>
             try {
-                var theme = localStorage.getItem('mdbook-theme');
-                var sidebar = localStorage.getItem('mdbook-sidebar');
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
 
                 if (theme.startsWith('"') && theme.endsWith('"')) {
                     localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
@@ -57,55 +72,65 @@
 
         <!-- Set the theme before any content is loaded, prevents flash -->
         <script>
-            var theme;
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
             try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
             if (theme === null || theme === undefined) { theme = default_theme; }
-            var html = document.querySelector('html');
-            html.classList.remove('no-js')
+            const html = document.documentElement;
             html.classList.remove('rust')
             html.classList.add(theme);
-            html.classList.add('js');
+            html.classList.add("js");
         </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
 
         <!-- Hide / unhide sidebar before it is displayed -->
         <script>
-            var html = document.querySelector('html');
-            var sidebar = 'hidden';
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
             }
+            sidebar_toggle.checked = sidebar === 'visible';
             html.classList.remove('sidebar-visible');
             html.classList.add("sidebar-" + sidebar);
         </script>
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
-            <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="introduction.html">Introduction</a></li><li class="chapter-item expanded "><a href="installation.html"><strong aria-hidden="true">1.</strong> Installation</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="installation_linux.html"><strong aria-hidden="true">1.1.</strong> Linux</a></li><li class="chapter-item expanded "><a href="installation_macos.html"><strong aria-hidden="true">1.2.</strong> macOS</a></li><li class="chapter-item expanded "><a href="installation_windows.html"><strong aria-hidden="true">1.3.</strong> Windows</a></li></ol></li><li class="chapter-item expanded "><a href="project_setup.html"><strong aria-hidden="true">2.</strong> Project Setup</a></li><li class="chapter-item expanded "><a href="hello_world.html"><strong aria-hidden="true">3.</strong> Hello World!</a></li><li class="chapter-item expanded "><a href="widgets.html"><strong aria-hidden="true">4.</strong> Widgets</a></li><li class="chapter-item expanded "><a href="g_object_concepts.html"><strong aria-hidden="true">5.</strong> GObject Concepts</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="g_object_memory_management.html"><strong aria-hidden="true">5.1.</strong> Memory Management</a></li><li class="chapter-item expanded "><a href="g_object_subclassing.html"><strong aria-hidden="true">5.2.</strong> Subclassing</a></li><li class="chapter-item expanded "><a href="g_object_values.html"><strong aria-hidden="true">5.3.</strong> Generic Values</a></li><li class="chapter-item expanded "><a href="g_object_properties.html"><strong aria-hidden="true">5.4.</strong> Properties</a></li><li class="chapter-item expanded "><a href="g_object_signals.html"><strong aria-hidden="true">5.5.</strong> Signals</a></li></ol></li><li class="chapter-item expanded "><a href="main_event_loop.html"><strong aria-hidden="true">6.</strong> The Main Event Loop</a></li><li class="chapter-item expanded "><a href="settings.html"><strong aria-hidden="true">7.</strong> Settings</a></li><li class="chapter-item expanded "><a href="saving_window_state.html"><strong aria-hidden="true">8.</strong> Saving Window State</a></li><li class="chapter-item expanded "><a href="list_widgets.html"><strong aria-hidden="true">9.</strong> List Widgets</a></li><li class="chapter-item expanded "><a href="composite_templates.html" class="active"><strong aria-hidden="true">10.</strong> Composite Templates</a></li><li class="chapter-item expanded "><a href="todo_1.html"><strong aria-hidden="true">11.</strong> Building a Simple To-Do App</a></li><li class="chapter-item expanded "><a href="actions.html"><strong aria-hidden="true">12.</strong> Actions</a></li><li class="chapter-item expanded "><a href="todo_2.html"><strong aria-hidden="true">13.</strong> Manipulating State of To-Do App</a></li><li class="chapter-item expanded "><a href="css.html"><strong aria-hidden="true">14.</strong> CSS</a></li><li class="chapter-item expanded "><a href="libadwaita.html"><strong aria-hidden="true">15.</strong> Libadwaita</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="todo_3.html"><strong aria-hidden="true">15.1.</strong> Let To-Do App use Libadwaita</a></li><li class="chapter-item expanded "><a href="todo_4.html"><strong aria-hidden="true">15.2.</strong> Adding Collections</a></li></ol></li></ol>
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="toc.html"></iframe>
+            </noscript>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
             </div>
-            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
 
         <div id="page-wrapper" class="page-wrapper">
 
             <div class="page">
-                                <div id="menu-bar-hover-placeholder"></div>
-                <div id="menu-bar" class="menu-bar sticky bordered">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
                     <div class="left-buttons">
-                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
                             <i class="fa fa-bars"></i>
-                        </button>
+                        </label>
                         <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
                             <i class="fa fa-paint-brush"></i>
                         </button>
                         <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="default_theme">Auto</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
                         </ul>
-                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                        <button id="search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="searchbar">
                             <i class="fa fa-search"></i>
                         </button>
                     </div>
@@ -116,7 +141,7 @@
                         <a href="print.html" title="Print this book" aria-label="Print this book">
                             <i id="print-button" class="fa fa-print"></i>
                         </a>
-                        <a href="https://github.com/gtk-rs/gtk4-rs/tree/master/book" title="Git repository" aria-label="Git repository">
+                        <a href="https://github.com/gtk-rs/gtk4-rs/tree/main/book" title="Git repository" aria-label="Git repository">
                             <i id="git-repository-button" class="fa fa-github"></i>
                         </a>
 
@@ -147,43 +172,43 @@
                     <main>
                         <h1 id="composite-templates"><a class="header" href="#composite-templates">Composite Templates</a></h1>
 <p>Until now, whenever we constructed pre-defined widgets we relied on the <a href="https://rust-unofficial.github.io/patterns/patterns/creational/builder.html">builder pattern</a>.
-As a reminder, that is how we used it to build our trusty &quot;Hello World!&quot; app.</p>
-<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/hello_world/3/main.rs">listings/hello_world/3/main.rs</a></p>
-<pre><code class="language-rust  no_run noplayground">use gtk::prelude::*;
-use gtk::{Application, ApplicationWindow, Button};
-const APP_ID: &amp;str = &quot;org.gtk_rs.HelloWorld3&quot;;
+As a reminder, that is how we used it to build our trusty "Hello World!" app.</p>
+<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/hello_world/3/main.rs">listings/hello_world/3/main.rs</a></p>
+<pre><code class="language-rust">use gtk::prelude::*;
+use gtk::{glib, Application, ApplicationWindow, Button};
+const APP_ID: &amp;str = "org.gtk_rs.HelloWorld3";
 
-fn main() {
+fn main() -&gt; glib::ExitCode {
     // Create a new application
     let app = Application::builder().application_id(APP_ID).build();
 
-    // Connect to &quot;activate&quot; signal of `app`
+    // Connect to "activate" signal of `app`
     app.connect_activate(build_ui);
 
     // Run the application
-    app.run();
+    app.run()
 }
 
 fn build_ui(app: &amp;Application) {
     // Create a button with label and margins
     let button = Button::builder()
-        .label(&quot;Press me!&quot;)
+        .label("Press me!")
         .margin_top(12)
         .margin_bottom(12)
         .margin_start(12)
         .margin_end(12)
         .build();
 
-    // Connect to &quot;clicked&quot; signal of `button`
+    // Connect to "clicked" signal of `button`
     button.connect_clicked(|button| {
-        // Set the label to &quot;Hello World!&quot; after the button has been clicked on
-        button.set_label(&quot;Hello World!&quot;);
+        // Set the label to "Hello World!" after the button has been clicked on
+        button.set_label("Hello World!");
     });
 
     // Create a window
     let window = ApplicationWindow::builder()
         .application(app)
-        .title(&quot;My GTK App&quot;)
+        .title("My GTK App")
         .child(&amp;button)
         .build();
 
@@ -198,19 +223,19 @@ fn build_ui(app: &amp;Application) {
 </div>
 <p>Creating widgets directly from code is fine, but it makes it harder to separate the logic from the user interface.
 This is why most toolkits allow to describe the user interface with a markup language and GTK is no exception here.
-For example the following <code>xml</code> file describes the window widget of the &quot;Hello World!&quot; app.</p>
-<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/composite_templates/1/resources/window.ui">listings/composite_templates/1/resources/window.ui</a></p>
-<pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+For example the following <code>xml</code> file describes the window widget of the "Hello World!" app.</p>
+<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/composite_templates/1/resources/window.ui">listings/composite_templates/1/resources/window.ui</a></p>
+<pre><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
 &lt;interface&gt;
-  &lt;template class=&quot;MyGtkAppWindow&quot; parent=&quot;GtkApplicationWindow&quot;&gt;
-    &lt;property name=&quot;title&quot;&gt;My GTK App&lt;/property&gt;
+  &lt;template class="MyGtkAppWindow" parent="GtkApplicationWindow"&gt;
+    &lt;property name="title"&gt;My GTK App&lt;/property&gt;
     &lt;child&gt;
-      &lt;object class=&quot;GtkButton&quot; id=&quot;button&quot;&gt;
-        &lt;property name=&quot;label&quot;&gt;Press me!&lt;/property&gt;
-        &lt;property name=&quot;margin-top&quot;&gt;12&lt;/property&gt;
-        &lt;property name=&quot;margin-bottom&quot;&gt;12&lt;/property&gt;
-        &lt;property name=&quot;margin-start&quot;&gt;12&lt;/property&gt;
-        &lt;property name=&quot;margin-end&quot;&gt;12&lt;/property&gt;  
+      &lt;object class="GtkButton" id="button"&gt;
+        &lt;property name="label"&gt;Press me!&lt;/property&gt;
+        &lt;property name="margin-top"&gt;12&lt;/property&gt;
+        &lt;property name="margin-bottom"&gt;12&lt;/property&gt;
+        &lt;property name="margin-start"&gt;12&lt;/property&gt;
+        &lt;property name="margin-end"&gt;12&lt;/property&gt;  
       &lt;/object&gt;
     &lt;/child&gt;
   &lt;/template&gt;
@@ -218,21 +243,21 @@ For example the following <code>xml</code> file describes the window widget of t
 </code></pre>
 <p>The most outer tag always has to be the <code>&lt;interface&gt;</code>.
 Then you start listing the elements you want to describe.
-In order to define a composite template, we specify the name <code>MyGtkAppWindow</code> of the custom widget we want to create and the parent <a href="../docs/gtk4/struct.ApplicationWindow.html"><code>gtk::ApplicationWindow</code></a> it derives of.
+In order to define a composite template, we specify the name <code>MyGtkAppWindow</code> of the custom widget we want to create and the parent <a href="https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/struct.ApplicationWindow.html"><code>gtk::ApplicationWindow</code></a> it derives of.
 These <code>xml</code> files are independent of the programming language, which is why the classes have the original names.
 Luckily, they all convert like this: <code>gtk::ApplicationWindow</code> → <code>GtkApplicationWindow</code>.
-Then we can specify properties which are listed <a href="https://docs.gtk.org/gtk4/class.ApplicationWindow.html">here</a> for <code>ApplicationWindow</code>.
+Then we can specify properties which are listed <a href="https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/struct.ApplicationWindow.html#properties">here</a> for <code>ApplicationWindow</code>.
 Since <code>ApplicationWindow</code> can contain other widgets we use the <code>&lt;child&gt;</code> tag to add a <code>gtk::Button</code>.
 We want to be able to refer to the button later on so we also set its <code>id</code>.</p>
 <h2 id="resources"><a class="header" href="#resources">Resources</a></h2>
 <p>In order to embed the template file into our application we take advantage of <a href="https://gtk-rs.org/gtk-rs-core/stable/latest/docs/gio/struct.Resource.html"><code>gio::Resource</code></a>.
 The files to embed are again described by an <code>xml</code> file.
 For our template file we also add the <code>compressed</code> and <code>preprocess</code> attribute in order to reduce the final size of the resources.</p>
-<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/composite_templates/1/resources/resources.gresource.xml">listings/composite_templates/1/resources/resources.gresource.xml</a></p>
-<pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/composite_templates/1/resources/resources.gresource.xml">listings/composite_templates/1/resources/resources.gresource.xml</a></p>
+<pre><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
 &lt;gresources&gt;
-  &lt;gresource prefix=&quot;/org/gtk_rs/example/&quot;&gt;
-    &lt;file compressed=&quot;true&quot; preprocess=&quot;xml-stripblanks&quot;&gt;window.ui&lt;/file&gt;
+  &lt;gresource prefix="/org/gtk_rs/example/"&gt;
+    &lt;file compressed="true" preprocess="xml-stripblanks"&gt;window.ui&lt;/file&gt;
   &lt;/gresource&gt;
 &lt;/gresources&gt;
 </code></pre>
@@ -243,38 +268,38 @@ One way to do this is to execute <a href="https://gtk-rs.org/gtk-rs-core/stable/
 </code></pre>
 <p>Then, we create a <code>build.rs</code> at the root of our package with the following content.
 This will compile the resources whenever we trigger a build with cargo and then statically link our executable to them.</p>
-<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/build.rs">listings/build.rs</a></p>
-<pre><code class="language-rust  no_run noplayground">fn main() {
+<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/build.rs">listings/build.rs</a></p>
+<pre><code class="language-rust">fn main() {
     glib_build_tools::compile_resources(
-        &quot;composite_templates/1/resources&quot;,
-        &quot;composite_templates/1/resources/resources.gresource.xml&quot;,
-        &quot;composite_templates_1.gresource&quot;,
+        &amp;["composite_templates/1/resources"],
+        "composite_templates/1/resources/resources.gresource.xml",
+        "composite_templates_1.gresource",
     );
 }</code></pre>
 <p>Finally, we register and include the resources by calling the macro <a href="https://gtk-rs.org/gtk-rs-core/stable/latest/docs/gio/macro.resources_register_include.html"><code>gio::resources_register_include!</code></a>.
 In your own apps take care to register the resources before creating the <code>gtk::Application</code>.</p>
-<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/composite_templates/1/main.rs">listings/composite_templates/1/main.rs</a></p>
-<pre><code class="language-rust  no_run noplayground">mod window;
+<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/composite_templates/1/main.rs">listings/composite_templates/1/main.rs</a></p>
+<pre><code class="language-rust">mod window;
 
 use gtk::prelude::*;
-use gtk::{gio, Application};
+use gtk::{gio, glib, Application};
 use window::Window;
 
-const APP_ID: &amp;str = &quot;org.gtk_rs.CompositeTemplates1&quot;;
+const APP_ID: &amp;str = "org.gtk_rs.CompositeTemplates1";
 
-fn main() {
+fn main() -&gt; glib::ExitCode {
     // Register and include resources
-    gio::resources_register_include!(&quot;composite_templates_1.gresource&quot;)
-        .expect(&quot;Failed to register resources.&quot;);
+    gio::resources_register_include!("composite_templates_1.gresource")
+        .expect("Failed to register resources.");
 
     // Create a new application
     let app = Application::builder().application_id(APP_ID).build();
 
-    // Connect to &quot;activate&quot; signal of `app`
+    // Connect to "activate" signal of `app`
     app.connect_activate(build_ui);
 
     // Run the application
-    app.run();
+    app.run()
 }
 fn build_ui(app: &amp;Application) {
     // Create new window and present it
@@ -282,8 +307,8 @@ fn build_ui(app: &amp;Application) {
     window.present();
 }</code></pre>
 <p>Within our code we create a custom widget inheriting from <code>gtk::ApplicationWindow</code> to make use of our template.
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/composite_templates/1/window/mod.rs">listings/composite_templates/1/window/mod.rs</a></p>
-<pre><code class="language-rust  no_run noplayground">mod imp;
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/composite_templates/1/window/mod.rs">listings/composite_templates/1/window/mod.rs</a></p>
+<pre><code class="language-rust">mod imp;
 
 use glib::Object;
 use gtk::{gio, glib, Application};
@@ -298,24 +323,24 @@ glib::wrapper! {
 impl Window {
     pub fn new(app: &amp;Application) -&gt; Self {
         // Create new window
-        Object::builder().property(&quot;application&quot;, app).build()
+        Object::builder().property("application", app).build()
     }
 }</code></pre>
-<p>In the implementation struct, we then add the derive macro <a href="../docs/gtk4_macros/derive.CompositeTemplate.html"><code>gtk::CompositeTemplate</code></a>.
+<p>In the implementation struct, we then add the derive macro <a href="https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4_macros/derive.CompositeTemplate.html"><code>gtk::CompositeTemplate</code></a>.
 We also specify that the template information comes from a resource of prefix <code>/org/gtk-rs/example</code> containing a file <code>window.ui</code>.</p>
 <p>One very convenient feature of templates is the template child.
 You use it by adding a struct member with the same name as one <code>id</code> attribute in the template.
-<a href="../docs/gtk4/subclass/widget/struct.TemplateChild.html"><code>TemplateChild</code></a> then stores a reference to the widget for later use.
+<a href="https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/subclass/widget/struct.TemplateChild.html"><code>TemplateChild</code></a> then stores a reference to the widget for later use.
 This will be useful later, when we want to add a callback to our button.</p>
-<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/composite_templates/1/window/imp.rs">listings/composite_templates/1/window/imp.rs</a></p>
-<pre><code class="language-rust  no_run noplayground"><span class="boring">use glib::subclass::InitializingObject;
+<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/composite_templates/1/window/imp.rs">listings/composite_templates/1/window/imp.rs</a></p>
+<pre><code class="language-rust"><span class="boring">use glib::subclass::InitializingObject;
 </span><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::subclass::prelude::*;
 </span><span class="boring">use gtk::{glib, Button, CompositeTemplate};
 </span><span class="boring">
 </span>// Object holding the state
 #[derive(CompositeTemplate, Default)]
-#[template(resource = &quot;/org/gtk_rs/example/window.ui&quot;)]
+#[template(resource = "/org/gtk_rs/example/window.ui")]
 pub struct Window {
     #[template_child]
     pub button: TemplateChild&lt;Button&gt;,
@@ -325,7 +350,7 @@ pub struct Window {
 </span><span class="boring">#[glib::object_subclass]
 </span><span class="boring">impl ObjectSubclass for Window {
 </span><span class="boring">    // `NAME` needs to match `class` attribute of template
-</span><span class="boring">    const NAME: &amp;'static str = &quot;MyGtkAppWindow&quot;;
+</span><span class="boring">    const NAME: &amp;'static str = "MyGtkAppWindow";
 </span><span class="boring">    type Type = super::Window;
 </span><span class="boring">    type ParentType = gtk::ApplicationWindow;
 </span><span class="boring">
@@ -341,13 +366,13 @@ pub struct Window {
 </span><span class="boring">// Trait shared by all GObjects
 </span><span class="boring">impl ObjectImpl for Window {
 </span><span class="boring">    fn constructed(&amp;self) {
-</span><span class="boring">        // Call &quot;constructed&quot; on parent
+</span><span class="boring">        // Call "constructed" on parent
 </span><span class="boring">        self.parent_constructed();
 </span><span class="boring">
-</span><span class="boring">        // Connect to &quot;clicked&quot; signal of `button`
+</span><span class="boring">        // Connect to "clicked" signal of `button`
 </span><span class="boring">        self.button.connect_clicked(move |button| {
-</span><span class="boring">            // Set the label to &quot;Hello World!&quot; after the button has been clicked on
-</span><span class="boring">            button.set_label(&quot;Hello World!&quot;);
+</span><span class="boring">            // Set the label to "Hello World!" after the button has been clicked on
+</span><span class="boring">            button.set_label("Hello World!");
 </span><span class="boring">        });
 </span><span class="boring">    }
 </span><span class="boring">}
@@ -362,15 +387,15 @@ pub struct Window {
 </span><span class="boring">impl ApplicationWindowImpl for Window {}</span></code></pre>
 <p>Within the <code>ObjectSubclass</code> trait, we make sure that <code>NAME</code> corresponds to <code>class</code> in the template and <code>ParentType</code> corresponds to <code>parent</code> in the template.
 We also bind and initialize the template in <code>class_init</code> and <code>instance_init</code>.</p>
-<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/composite_templates/1/window/imp.rs">listings/composite_templates/1/window/imp.rs</a></p>
-<pre><code class="language-rust  no_run noplayground"><span class="boring">use glib::subclass::InitializingObject;
+<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/composite_templates/1/window/imp.rs">listings/composite_templates/1/window/imp.rs</a></p>
+<pre><code class="language-rust"><span class="boring">use glib::subclass::InitializingObject;
 </span><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::subclass::prelude::*;
 </span><span class="boring">use gtk::{glib, Button, CompositeTemplate};
 </span><span class="boring">
 </span><span class="boring">// Object holding the state
 </span><span class="boring">#[derive(CompositeTemplate, Default)]
-</span><span class="boring">#[template(resource = &quot;/org/gtk_rs/example/window.ui&quot;)]
+</span><span class="boring">#[template(resource = "/org/gtk_rs/example/window.ui")]
 </span><span class="boring">pub struct Window {
 </span><span class="boring">    #[template_child]
 </span><span class="boring">    pub button: TemplateChild&lt;Button&gt;,
@@ -380,7 +405,7 @@ We also bind and initialize the template in <code>class_init</code> and <code>in
 #[glib::object_subclass]
 impl ObjectSubclass for Window {
     // `NAME` needs to match `class` attribute of template
-    const NAME: &amp;'static str = &quot;MyGtkAppWindow&quot;;
+    const NAME: &amp;'static str = "MyGtkAppWindow";
     type Type = super::Window;
     type ParentType = gtk::ApplicationWindow;
 
@@ -396,13 +421,13 @@ impl ObjectSubclass for Window {
 </span><span class="boring">// Trait shared by all GObjects
 </span><span class="boring">impl ObjectImpl for Window {
 </span><span class="boring">    fn constructed(&amp;self) {
-</span><span class="boring">        // Call &quot;constructed&quot; on parent
+</span><span class="boring">        // Call "constructed" on parent
 </span><span class="boring">        self.parent_constructed();
 </span><span class="boring">
-</span><span class="boring">        // Connect to &quot;clicked&quot; signal of `button`
+</span><span class="boring">        // Connect to "clicked" signal of `button`
 </span><span class="boring">        self.button.connect_clicked(move |button| {
-</span><span class="boring">            // Set the label to &quot;Hello World!&quot; after the button has been clicked on
-</span><span class="boring">            button.set_label(&quot;Hello World!&quot;);
+</span><span class="boring">            // Set the label to "Hello World!" after the button has been clicked on
+</span><span class="boring">            button.set_label("Hello World!");
 </span><span class="boring">        });
 </span><span class="boring">    }
 </span><span class="boring">}
@@ -415,17 +440,17 @@ impl ObjectSubclass for Window {
 </span><span class="boring">
 </span><span class="boring">// Trait shared by all application windows
 </span><span class="boring">impl ApplicationWindowImpl for Window {}</span></code></pre>
-<p>Finally, we connect the callback to the &quot;clicked&quot; signal of <code>button</code> within <code>constructed</code>.
+<p>Finally, we connect the callback to the "clicked" signal of <code>button</code> within <code>constructed</code>.
 The button is easily available thanks to the stored reference in <code>self</code>.</p>
-<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/composite_templates/1/window/imp.rs">listings/composite_templates/1/window/imp.rs</a></p>
-<pre><code class="language-rust  no_run noplayground"><span class="boring">use glib::subclass::InitializingObject;
+<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/composite_templates/1/window/imp.rs">listings/composite_templates/1/window/imp.rs</a></p>
+<pre><code class="language-rust"><span class="boring">use glib::subclass::InitializingObject;
 </span><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::subclass::prelude::*;
 </span><span class="boring">use gtk::{glib, Button, CompositeTemplate};
 </span><span class="boring">
 </span><span class="boring">// Object holding the state
 </span><span class="boring">#[derive(CompositeTemplate, Default)]
-</span><span class="boring">#[template(resource = &quot;/org/gtk_rs/example/window.ui&quot;)]
+</span><span class="boring">#[template(resource = "/org/gtk_rs/example/window.ui")]
 </span><span class="boring">pub struct Window {
 </span><span class="boring">    #[template_child]
 </span><span class="boring">    pub button: TemplateChild&lt;Button&gt;,
@@ -435,7 +460,7 @@ The button is easily available thanks to the stored reference in <code>self</cod
 </span><span class="boring">#[glib::object_subclass]
 </span><span class="boring">impl ObjectSubclass for Window {
 </span><span class="boring">    // `NAME` needs to match `class` attribute of template
-</span><span class="boring">    const NAME: &amp;'static str = &quot;MyGtkAppWindow&quot;;
+</span><span class="boring">    const NAME: &amp;'static str = "MyGtkAppWindow";
 </span><span class="boring">    type Type = super::Window;
 </span><span class="boring">    type ParentType = gtk::ApplicationWindow;
 </span><span class="boring">
@@ -451,13 +476,13 @@ The button is easily available thanks to the stored reference in <code>self</cod
 </span>// Trait shared by all GObjects
 impl ObjectImpl for Window {
     fn constructed(&amp;self) {
-        // Call &quot;constructed&quot; on parent
+        // Call "constructed" on parent
         self.parent_constructed();
 
-        // Connect to &quot;clicked&quot; signal of `button`
+        // Connect to "clicked" signal of `button`
         self.button.connect_clicked(move |button| {
-            // Set the label to &quot;Hello World!&quot; after the button has been clicked on
-            button.set_label(&quot;Hello World!&quot;);
+            // Set the label to "Hello World!" after the button has been clicked on
+            button.set_label("Hello World!");
         });
     }
 }
@@ -475,8 +500,8 @@ impl ObjectImpl for Window {
 First we define <code>CustomButton</code> that inherits from <code>gtk::Button</code>.
 As usual, we define the implementation struct within <code>imp.rs</code>.
 Note the <code>NAME</code> we define here, we will need it later to refer to it in the template.</p>
-<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/composite_templates/2/custom_button/imp.rs">listings/composite_templates/2/custom_button/imp.rs</a></p>
-<pre><code class="language-rust  no_run noplayground"><span class="boring">use gtk::glib;
+<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/composite_templates/2/custom_button/imp.rs">listings/composite_templates/2/custom_button/imp.rs</a></p>
+<pre><code class="language-rust"><span class="boring">use gtk::glib;
 </span><span class="boring">use gtk::subclass::prelude::*;
 </span><span class="boring">
 </span>// Object holding the state
@@ -486,7 +511,7 @@ pub struct CustomButton;
 // The central trait for subclassing a GObject
 #[glib::object_subclass]
 impl ObjectSubclass for CustomButton {
-    const NAME: &amp;'static str = &quot;MyGtkAppCustomButton&quot;;
+    const NAME: &amp;'static str = "MyGtkAppCustomButton";
     type Type = super::CustomButton;
     type ParentType = gtk::Button;
 }
@@ -500,8 +525,8 @@ impl ObjectSubclass for CustomButton {
 </span><span class="boring">// Trait shared by all buttons
 </span><span class="boring">impl ButtonImpl for CustomButton {}</span></code></pre>
 <p>We also define the public struct in <code>mod.rs</code>.</p>
-<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/composite_templates/2/custom_button/mod.rs">listings/composite_templates/2/custom_button/mod.rs</a></p>
-<pre><code class="language-rust  no_run noplayground"><span class="boring">use glib::Object;
+<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/composite_templates/2/custom_button/mod.rs">listings/composite_templates/2/custom_button/mod.rs</a></p>
+<pre><code class="language-rust"><span class="boring">use glib::Object;
 </span><span class="boring">use gtk::glib;
 </span><span class="boring">
 </span>mod imp;
@@ -525,8 +550,8 @@ glib::wrapper! {
 </span><span class="boring">    }
 </span><span class="boring">}</span></code></pre>
 <p>Since we want to refer to a <code>CustomButton</code> now we also have to change the type of the template child to it.</p>
-<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/composite_templates/2/window/imp.rs">listings/composite_templates/2/window/imp.rs</a></p>
-<pre><code class="language-rust  no_run noplayground"><span class="boring">use glib::subclass::InitializingObject;
+<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/composite_templates/2/window/imp.rs">listings/composite_templates/2/window/imp.rs</a></p>
+<pre><code class="language-rust"><span class="boring">use glib::subclass::InitializingObject;
 </span><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::subclass::prelude::*;
 </span><span class="boring">use gtk::{glib, CompositeTemplate};
@@ -535,7 +560,7 @@ glib::wrapper! {
 </span><span class="boring">
 </span>// Object holding the state
 #[derive(CompositeTemplate, Default)]
-#[template(resource = &quot;/org/gtk_rs/example/window.ui&quot;)]
+#[template(resource = "/org/gtk_rs/example/window.ui")]
 pub struct Window {
     #[template_child]
     pub button: TemplateChild&lt;CustomButton&gt;,
@@ -545,7 +570,7 @@ pub struct Window {
 </span><span class="boring">#[glib::object_subclass]
 </span><span class="boring">impl ObjectSubclass for Window {
 </span><span class="boring">    // `NAME` needs to match `class` attribute of template
-</span><span class="boring">    const NAME: &amp;'static str = &quot;MyGtkAppWindow&quot;;
+</span><span class="boring">    const NAME: &amp;'static str = "MyGtkAppWindow";
 </span><span class="boring">    type Type = super::Window;
 </span><span class="boring">    type ParentType = gtk::ApplicationWindow;
 </span><span class="boring">
@@ -561,13 +586,13 @@ pub struct Window {
 </span><span class="boring">// Trait shared by all GObjects
 </span><span class="boring">impl ObjectImpl for Window {
 </span><span class="boring">    fn constructed(&amp;self) {
-</span><span class="boring">        // Call &quot;constructed&quot; on parent
+</span><span class="boring">        // Call "constructed" on parent
 </span><span class="boring">        self.parent_constructed();
 </span><span class="boring">
-</span><span class="boring">        // Connect to &quot;clicked&quot; signal of `button`
+</span><span class="boring">        // Connect to "clicked" signal of `button`
 </span><span class="boring">        self.button.connect_clicked(move |button| {
-</span><span class="boring">            // Set the label to &quot;Hello World!&quot; after the button has been clicked on
-</span><span class="boring">            button.set_label(&quot;Hello World!&quot;);
+</span><span class="boring">            // Set the label to "Hello World!" after the button has been clicked on
+</span><span class="boring">            button.set_label("Hello World!");
 </span><span class="boring">        });
 </span><span class="boring">    }
 </span><span class="boring">}
@@ -582,18 +607,18 @@ pub struct Window {
 </span><span class="boring">impl ApplicationWindowImpl for Window {}</span></code></pre>
 <p>Finally, we can replace <code>GtkButton</code> with <code>MyGtkAppCustomButton</code> within our composite template.
 Since the custom button is a direct subclass of <code>gtk::Button</code> without any modifications, the behavior of our app stays the same.</p>
-<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/composite_templates/2/resources/window.ui">listings/composite_templates/2/resources/window.ui</a></p>
-<pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/composite_templates/2/resources/window.ui">listings/composite_templates/2/resources/window.ui</a></p>
+<pre><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
 &lt;interface&gt;
-  &lt;template class=&quot;MyGtkAppWindow&quot; parent=&quot;GtkApplicationWindow&quot;&gt;
-    &lt;property name=&quot;title&quot;&gt;My GTK App&lt;/property&gt;
+  &lt;template class="MyGtkAppWindow" parent="GtkApplicationWindow"&gt;
+    &lt;property name="title"&gt;My GTK App&lt;/property&gt;
     &lt;child&gt;
-      &lt;object class=&quot;MyGtkAppCustomButton&quot; id=&quot;button&quot;&gt;
-        &lt;property name=&quot;label&quot;&gt;Press me!&lt;/property&gt;
-        &lt;property name=&quot;margin-top&quot;&gt;12&lt;/property&gt;
-        &lt;property name=&quot;margin-bottom&quot;&gt;12&lt;/property&gt;
-        &lt;property name=&quot;margin-start&quot;&gt;12&lt;/property&gt;
-        &lt;property name=&quot;margin-end&quot;&gt;12&lt;/property&gt;  
+      &lt;object class="MyGtkAppCustomButton" id="button"&gt;
+        &lt;property name="label"&gt;Press me!&lt;/property&gt;
+        &lt;property name="margin-top"&gt;12&lt;/property&gt;
+        &lt;property name="margin-bottom"&gt;12&lt;/property&gt;
+        &lt;property name="margin-start"&gt;12&lt;/property&gt;
+        &lt;property name="margin-end"&gt;12&lt;/property&gt;  
       &lt;/object&gt;
     &lt;/child&gt;
   &lt;/template&gt;
@@ -602,32 +627,32 @@ Since the custom button is a direct subclass of <code>gtk::Button</code> without
 <h2 id="template-callbacks"><a class="header" href="#template-callbacks">Template Callbacks</a></h2>
 <p>We can even specify the handlers of signals within composite templates.
 This can be done with a <code>&lt;signal&gt;</code> tag containing the name of the signal and the handler in our Rust code.</p>
-<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/composite_templates/3/resources/window.ui">listings/composite_templates/3/resources/window.ui</a></p>
-<pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/composite_templates/3/resources/window.ui">listings/composite_templates/3/resources/window.ui</a></p>
+<pre><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
 &lt;interface&gt;
-  &lt;template class=&quot;MyGtkAppWindow&quot; parent=&quot;GtkApplicationWindow&quot;&gt;
-    &lt;property name=&quot;title&quot;&gt;My GTK App&lt;/property&gt;
+  &lt;template class="MyGtkAppWindow" parent="GtkApplicationWindow"&gt;
+    &lt;property name="title"&gt;My GTK App&lt;/property&gt;
     &lt;child&gt;
-      &lt;object class=&quot;MyGtkAppCustomButton&quot; id=&quot;button&quot;&gt;
-        &lt;signal name=&quot;clicked&quot; handler=&quot;handle_button_clicked&quot;/&gt;
-        &lt;property name=&quot;label&quot;&gt;Press me!&lt;/property&gt;
-        &lt;property name=&quot;margin-top&quot;&gt;12&lt;/property&gt;
-        &lt;property name=&quot;margin-bottom&quot;&gt;12&lt;/property&gt;
-        &lt;property name=&quot;margin-start&quot;&gt;12&lt;/property&gt;
-        &lt;property name=&quot;margin-end&quot;&gt;12&lt;/property&gt;  
+      &lt;object class="MyGtkAppCustomButton" id="button"&gt;
+        &lt;signal name="clicked" handler="handle_button_clicked"/&gt;
+        &lt;property name="label"&gt;Press me!&lt;/property&gt;
+        &lt;property name="margin-top"&gt;12&lt;/property&gt;
+        &lt;property name="margin-bottom"&gt;12&lt;/property&gt;
+        &lt;property name="margin-start"&gt;12&lt;/property&gt;
+        &lt;property name="margin-end"&gt;12&lt;/property&gt;  
       &lt;/object&gt;
     &lt;/child&gt;
   &lt;/template&gt;
 &lt;/interface&gt;
 </code></pre>
-<p>Then we define the <code>handle_button_clicked</code> with the <a href="../docs/gtk4_macros/attr.template_callbacks.html"><code>template_callbacks</code></a> macro applied to it.
+<p>Then we define the <code>handle_button_clicked</code> with the <a href="https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4_macros/attr.template_callbacks.html"><code>template_callbacks</code></a> macro applied to it.
 We can determine the function signature by having a look at the <code>connect_*</code> method of the signal we want to handle.
-In our case that would be <a href="../docs/gtk4/prelude/trait.ButtonExt.html#tymethod.connect_clicked"><code>connect_clicked</code></a>.
+In our case that would be <a href="https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/prelude/trait.ButtonExt.html#tymethod.connect_clicked"><code>connect_clicked</code></a>.
 It takes a function of type <code>Fn(&amp;Self)</code>.
 <code>Self</code> refers to our button.
 This means that <code>handle_button_clicked</code> has a single parameter of type <code>&amp;CustomButton</code>.</p>
-<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/composite_templates/3/window/imp.rs">listings/composite_templates/3/window/imp.rs</a></p>
-<pre><code class="language-rust  no_run noplayground"><span class="boring">use glib::subclass::InitializingObject;
+<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/composite_templates/3/window/imp.rs">listings/composite_templates/3/window/imp.rs</a></p>
+<pre><code class="language-rust"><span class="boring">use glib::subclass::InitializingObject;
 </span><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::subclass::prelude::*;
 </span><span class="boring">use gtk::{glib, CompositeTemplate};
@@ -636,7 +661,7 @@ This means that <code>handle_button_clicked</code> has a single parameter of typ
 </span><span class="boring">
 </span><span class="boring">// Object holding the state
 </span><span class="boring">#[derive(CompositeTemplate, Default)]
-</span><span class="boring">#[template(resource = &quot;/org/gtk_rs/example/window.ui&quot;)]
+</span><span class="boring">#[template(resource = "/org/gtk_rs/example/window.ui")]
 </span><span class="boring">pub struct Window {
 </span><span class="boring">    #[template_child]
 </span><span class="boring">    pub button: TemplateChild&lt;CustomButton&gt;,
@@ -646,7 +671,7 @@ This means that <code>handle_button_clicked</code> has a single parameter of typ
 </span><span class="boring">#[glib::object_subclass]
 </span><span class="boring">impl ObjectSubclass for Window {
 </span><span class="boring">    // `NAME` needs to match `class` attribute of template
-</span><span class="boring">    const NAME: &amp;'static str = &quot;MyGtkAppWindow&quot;;
+</span><span class="boring">    const NAME: &amp;'static str = "MyGtkAppWindow";
 </span><span class="boring">    type Type = super::Window;
 </span><span class="boring">    type ParentType = gtk::ApplicationWindow;
 </span><span class="boring">
@@ -664,8 +689,8 @@ This means that <code>handle_button_clicked</code> has a single parameter of typ
 impl Window {
     #[template_callback]
     fn handle_button_clicked(button: &amp;CustomButton) {
-        // Set the label to &quot;Hello World!&quot; after the button has been clicked on
-        button.set_label(&quot;Hello World!&quot;);
+        // Set the label to "Hello World!" after the button has been clicked on
+        button.set_label("Hello World!");
     }
 }
 <span class="boring">
@@ -680,9 +705,10 @@ impl Window {
 </span><span class="boring">
 </span><span class="boring">// Trait shared by all application windows
 </span><span class="boring">impl ApplicationWindowImpl for Window {}</span></code></pre>
-<p>Then we have to bind the template callbacks with <a href="../docs/gtk4/subclass/widget/trait.CompositeTemplateCallbacksClass.html#tymethod.bind_template_callbacks"><code>bind_template_callbacks</code></a>.</p>
-<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/composite_templates/3/window/imp.rs">listings/composite_templates/3/window/imp.rs</a></p>
-<pre><code class="language-rust  no_run noplayground"><span class="boring">use glib::subclass::InitializingObject;
+<p>Then we have to bind the template callbacks with <a href="https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/subclass/widget/trait.CompositeTemplateCallbacksClass.html#tymethod.bind_template_callbacks"><code>bind_template_callbacks</code></a>.
+We also need to remove the <code>button.connect_clicked</code> callback implemented in <code>window/imp.rs</code>.</p>
+<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/composite_templates/3/window/imp.rs">listings/composite_templates/3/window/imp.rs</a></p>
+<pre><code class="language-rust"><span class="boring">use glib::subclass::InitializingObject;
 </span><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::subclass::prelude::*;
 </span><span class="boring">use gtk::{glib, CompositeTemplate};
@@ -691,7 +717,7 @@ impl Window {
 </span><span class="boring">
 </span><span class="boring">// Object holding the state
 </span><span class="boring">#[derive(CompositeTemplate, Default)]
-</span><span class="boring">#[template(resource = &quot;/org/gtk_rs/example/window.ui&quot;)]
+</span><span class="boring">#[template(resource = "/org/gtk_rs/example/window.ui")]
 </span><span class="boring">pub struct Window {
 </span><span class="boring">    #[template_child]
 </span><span class="boring">    pub button: TemplateChild&lt;CustomButton&gt;,
@@ -701,7 +727,7 @@ impl Window {
 #[glib::object_subclass]
 impl ObjectSubclass for Window {
     // `NAME` needs to match `class` attribute of template
-    const NAME: &amp;'static str = &quot;MyGtkAppWindow&quot;;
+    const NAME: &amp;'static str = "MyGtkAppWindow";
     type Type = super::Window;
     type ParentType = gtk::ApplicationWindow;
 
@@ -719,8 +745,8 @@ impl ObjectSubclass for Window {
 </span><span class="boring">impl Window {
 </span><span class="boring">    #[template_callback]
 </span><span class="boring">    fn handle_button_clicked(button: &amp;CustomButton) {
-</span><span class="boring">        // Set the label to &quot;Hello World!&quot; after the button has been clicked on
-</span><span class="boring">        button.set_label(&quot;Hello World!&quot;);
+</span><span class="boring">        // Set the label to "Hello World!" after the button has been clicked on
+</span><span class="boring">        button.set_label("Hello World!");
 </span><span class="boring">    }
 </span><span class="boring">}
 </span><span class="boring">
@@ -737,8 +763,8 @@ impl ObjectSubclass for Window {
 </span><span class="boring">impl ApplicationWindowImpl for Window {}</span></code></pre>
 <p>We can also access the state of our widget.
 Let's say we want to manipulate a <code>number</code> stored in <code>imp::Window</code>.</p>
-<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/composite_templates/4/window/imp.rs">listings/composite_templates/4/window/imp.rs</a></p>
-<pre><code class="language-rust  no_run noplayground"><span class="boring">use std::cell::Cell;
+<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/composite_templates/4/window/imp.rs">listings/composite_templates/4/window/imp.rs</a></p>
+<pre><code class="language-rust"><span class="boring">use std::cell::Cell;
 </span><span class="boring">
 </span><span class="boring">use glib::subclass::InitializingObject;
 </span><span class="boring">use gtk::prelude::*;
@@ -749,7 +775,7 @@ Let's say we want to manipulate a <code>number</code> stored in <code>imp::Windo
 </span><span class="boring">
 </span>// Object holding the state
 #[derive(CompositeTemplate, Default)]
-#[template(resource = &quot;/org/gtk_rs/example/window.ui&quot;)]
+#[template(resource = "/org/gtk_rs/example/window.ui")]
 pub struct Window {
     #[template_child]
     pub button: TemplateChild&lt;CustomButton&gt;,
@@ -760,7 +786,7 @@ pub struct Window {
 </span><span class="boring">#[glib::object_subclass]
 </span><span class="boring">impl ObjectSubclass for Window {
 </span><span class="boring">    // `NAME` needs to match `class` attribute of template
-</span><span class="boring">    const NAME: &amp;'static str = &quot;MyGtkAppWindow&quot;;
+</span><span class="boring">    const NAME: &amp;'static str = "MyGtkAppWindow";
 </span><span class="boring">    type Type = super::Window;
 </span><span class="boring">    type ParentType = gtk::ApplicationWindow;
 </span><span class="boring">
@@ -795,20 +821,20 @@ pub struct Window {
 </span><span class="boring">
 </span><span class="boring">// Trait shared by all application windows
 </span><span class="boring">impl ApplicationWindowImpl for Window {}</span></code></pre>
-<p>In order to access the widget's state we have to add <code>swapped=&quot;true&quot;</code> to the <code>signal</code> tag.</p>
-<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/composite_templates/4/resources/window.ui">listings/composite_templates/4/resources/window.ui</a></p>
-<pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+<p>In order to access the widget's state we have to add <code>swapped="true"</code> to the <code>signal</code> tag.</p>
+<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/composite_templates/4/resources/window.ui">listings/composite_templates/4/resources/window.ui</a></p>
+<pre><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
 &lt;interface&gt;
-  &lt;template class=&quot;MyGtkAppWindow&quot; parent=&quot;GtkApplicationWindow&quot;&gt;
-    &lt;property name=&quot;title&quot;&gt;My GTK App&lt;/property&gt;
+  &lt;template class="MyGtkAppWindow" parent="GtkApplicationWindow"&gt;
+    &lt;property name="title"&gt;My GTK App&lt;/property&gt;
     &lt;child&gt;
-      &lt;object class=&quot;MyGtkAppCustomButton&quot; id=&quot;button&quot;&gt;
-        &lt;signal name=&quot;clicked&quot; handler=&quot;handle_button_clicked&quot; swapped=&quot;true&quot;/&gt;
-        &lt;property name=&quot;label&quot;&gt;Press me!&lt;/property&gt;
-        &lt;property name=&quot;margin-top&quot;&gt;12&lt;/property&gt;
-        &lt;property name=&quot;margin-bottom&quot;&gt;12&lt;/property&gt;
-        &lt;property name=&quot;margin-start&quot;&gt;12&lt;/property&gt;
-        &lt;property name=&quot;margin-end&quot;&gt;12&lt;/property&gt;  
+      &lt;object class="MyGtkAppCustomButton" id="button"&gt;
+        &lt;signal name="clicked" handler="handle_button_clicked" swapped="true"/&gt;
+        &lt;property name="label"&gt;Press me!&lt;/property&gt;
+        &lt;property name="margin-top"&gt;12&lt;/property&gt;
+        &lt;property name="margin-bottom"&gt;12&lt;/property&gt;
+        &lt;property name="margin-start"&gt;12&lt;/property&gt;
+        &lt;property name="margin-end"&gt;12&lt;/property&gt;  
       &lt;/object&gt;
     &lt;/child&gt;
   &lt;/template&gt;
@@ -816,8 +842,8 @@ pub struct Window {
 </code></pre>
 <p>Now we can add <code>&amp;self</code> as first parameter to <code>handle_button_clicked</code>.
 This lets us access the state of the window and therefore manipulate <code>number</code>.</p>
-<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/composite_templates/4/window/imp.rs">listings/composite_templates/4/window/imp.rs</a></p>
-<pre><code class="language-rust  no_run noplayground"><span class="boring">use std::cell::Cell;
+<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/composite_templates/4/window/imp.rs">listings/composite_templates/4/window/imp.rs</a></p>
+<pre><code class="language-rust"><span class="boring">use std::cell::Cell;
 </span><span class="boring">
 </span><span class="boring">use glib::subclass::InitializingObject;
 </span><span class="boring">use gtk::prelude::*;
@@ -828,7 +854,7 @@ This lets us access the state of the window and therefore manipulate <code>numbe
 </span><span class="boring">
 </span><span class="boring">// Object holding the state
 </span><span class="boring">#[derive(CompositeTemplate, Default)]
-</span><span class="boring">#[template(resource = &quot;/org/gtk_rs/example/window.ui&quot;)]
+</span><span class="boring">#[template(resource = "/org/gtk_rs/example/window.ui")]
 </span><span class="boring">pub struct Window {
 </span><span class="boring">    #[template_child]
 </span><span class="boring">    pub button: TemplateChild&lt;CustomButton&gt;,
@@ -839,7 +865,7 @@ This lets us access the state of the window and therefore manipulate <code>numbe
 </span><span class="boring">#[glib::object_subclass]
 </span><span class="boring">impl ObjectSubclass for Window {
 </span><span class="boring">    // `NAME` needs to match `class` attribute of template
-</span><span class="boring">    const NAME: &amp;'static str = &quot;MyGtkAppWindow&quot;;
+</span><span class="boring">    const NAME: &amp;'static str = "MyGtkAppWindow";
 </span><span class="boring">    type Type = super::Window;
 </span><span class="boring">    type ParentType = gtk::ApplicationWindow;
 </span><span class="boring">
@@ -876,9 +902,9 @@ impl Window {
 </span><span class="boring">impl ApplicationWindowImpl for Window {}</span></code></pre>
 <h2 id="registering-types"><a class="header" href="#registering-types">Registering Types</a></h2>
 <p>Now that we use template callbacks we don't access the template child anymore.
-Let's remove it. </p>
-<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/composite_templates/5/window/imp.rs">listings/composite_templates/5/window/imp.rs</a></p>
-<pre><code class="language-rust  no_run noplayground"><span class="boring">use std::cell::Cell;
+Let's remove it.</p>
+<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/composite_templates/5/window/imp.rs">listings/composite_templates/5/window/imp.rs</a></p>
+<pre><code class="language-rust"><span class="boring">use std::cell::Cell;
 </span><span class="boring">
 </span><span class="boring">use glib::subclass::InitializingObject;
 </span><span class="boring">use gtk::prelude::*;
@@ -889,7 +915,7 @@ Let's remove it. </p>
 </span><span class="boring">
 </span>// Object holding the state
 #[derive(CompositeTemplate, Default)]
-#[template(resource = &quot;/org/gtk_rs/example/window.ui&quot;)]
+#[template(resource = "/org/gtk_rs/example/window.ui")]
 pub struct Window {
     pub number: Cell&lt;i32&gt;,
 }
@@ -898,7 +924,7 @@ pub struct Window {
 </span><span class="boring">#[glib::object_subclass]
 </span><span class="boring">impl ObjectSubclass for Window {
 </span><span class="boring">    // `NAME` needs to match `class` attribute of template
-</span><span class="boring">    const NAME: &amp;'static str = &quot;MyGtkAppWindow&quot;;
+</span><span class="boring">    const NAME: &amp;'static str = "MyGtkAppWindow";
 </span><span class="boring">    type Type = super::Window;
 </span><span class="boring">    type ParentType = gtk::ApplicationWindow;
 </span><span class="boring">
@@ -941,8 +967,8 @@ So what happened here?</p>
 <p>Turns out adding a template child not only gives a convenient reference to a widget within the template.
 It also ensures that the widget type is registered.
 Luckily we can also do that by ourselves.</p>
-<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/composite_templates/6/window/imp.rs">listings/composite_templates/6/window/imp.rs</a></p>
-<pre><code class="language-rust  no_run noplayground"><span class="boring">use std::cell::Cell;
+<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/main/book/listings/composite_templates/6/window/imp.rs">listings/composite_templates/6/window/imp.rs</a></p>
+<pre><code class="language-rust"><span class="boring">use std::cell::Cell;
 </span><span class="boring">
 </span><span class="boring">use glib::subclass::InitializingObject;
 </span><span class="boring">use gtk::prelude::*;
@@ -953,7 +979,7 @@ Luckily we can also do that by ourselves.</p>
 </span><span class="boring">
 </span><span class="boring">// Object holding the state
 </span><span class="boring">#[derive(CompositeTemplate, Default)]
-</span><span class="boring">#[template(resource = &quot;/org/gtk_rs/example/window.ui&quot;)]
+</span><span class="boring">#[template(resource = "/org/gtk_rs/example/window.ui")]
 </span><span class="boring">pub struct Window {
 </span><span class="boring">    pub number: Cell&lt;i32&gt;,
 </span><span class="boring">}
@@ -962,7 +988,7 @@ Luckily we can also do that by ourselves.</p>
 #[glib::object_subclass]
 impl ObjectSubclass for Window {
     // `NAME` needs to match `class` attribute of template
-    const NAME: &amp;'static str = &quot;MyGtkAppWindow&quot;;
+    const NAME: &amp;'static str = "MyGtkAppWindow";
     type Type = super::Window;
     type ParentType = gtk::ApplicationWindow;
 
@@ -1010,12 +1036,12 @@ impl ObjectSubclass for Window {
 </ul>
 <p>Thanks to composite templates we can</p>
 <ul>
-<li>describe complex user interfaces concisely, </li>
+<li>describe complex user interfaces concisely,</li>
 <li>easily access widgets within the template as well as</li>
-<li>specify handler functions for signals. </li>
+<li>specify handler functions for signals.</li>
 </ul>
 <p>The API involved here is extensive so especially at the beginning you will want to check out the documentation.
-The basic syntax of the <code>ui</code> files is explained within <a href="../docs/gtk4/struct.Builder.html#gtkbuilder-ui-definitions"><code>Builder</code></a>, syntax specific to widgets within <a href="../docs/gtk4/struct.Widget.html#gtkwidget-as-gtkbuildable"><code>Widget</code></a>.
+The basic syntax of the <code>ui</code> files is explained within <a href="https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/struct.Builder.html#gtkbuilder-ui-definitions"><code>Builder</code></a>, syntax specific to widgets within <a href="https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/struct.Widget.html#gtkwidget-as-gtkbuildable"><code>Widget</code></a>.
 If a certain widget accepts additional element, then they are typically explained in the docs of the widget.</p>
 <p>In the following chapter, we will see how composite templates help us to create slightly bigger apps such as a To-Do app.</p>
 
@@ -1027,7 +1053,7 @@ If a certain widget accepts additional element, then they are typically explaine
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next" href="todo_1.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="todo_1.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -1041,7 +1067,7 @@ If a certain widget accepts additional element, then they are typically explaine
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next" href="todo_1.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="todo_1.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>
@@ -1067,5 +1093,6 @@ If a certain widget accepts additional element, then they are typically explaine
         <!-- Custom JS scripts -->
 
 
+    </div>
     </body>
 </html>
