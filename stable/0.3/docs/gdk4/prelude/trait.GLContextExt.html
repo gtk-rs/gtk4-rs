@@ -1,0 +1,193 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Trait containing all [`struct@GLContext`] methods."><meta name="keywords" content="rust, rustlang, rust-lang, GLContextExt"><title>GLContextExt in gdk4::prelude - Rust</title><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled ><script id="default-settings" ></script><script src="../../storage.js"></script><script src="../../crates.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"><style type="text/css">#crate-search{background-image:url("../../down-arrow.svg");}</style></head><body class="rustdoc trait"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
+
+    function checkDocsLatestStable() {
+        function popup(msg, url) { return `
+            <style scoped="scoped">
+                .popup {
+                    max-width: 16em;
+                    background-color: #fff;
+                    position: fixed;
+                    z-index: 1;
+                    margin-left: auto;
+                    bottom: 1em;
+                    right: 1em;
+                    border-radius: 5px;
+                    box-shadow: 1px 1px 4px #777;
+                }
+
+                .popup a.version {
+                    color: #e57300;
+                    padding: 0.6em 1em;
+                    display: block;
+                }
+                .popup a.version:hover {
+                    color: #b25900;
+                }
+
+                .popup a.close {
+                    color: white;
+                    background: grey;
+                    border-radius: 99px;
+                    display: inline-block;
+                    width: 19px;
+                    line-height: 19px;
+                    font-weight: bold;
+                    text-align: center;
+                    margin: 0.6em;
+                    float: right;
+                }
+                .popup a.close:hover {
+                    background: black;
+                }
+            </style>
+            <section class="popup" id="gir_docs_popup">
+                <a class="close" href="#" onclick="document.getElementById('gir_docs_popup').remove(); return false">×</a>
+                <a class="version" href="https://gtk-rs.org/gtk4-rs/stable/latest/docs">
+                    ⚠ ${msg}
+                </a>
+            </section>
+        ` };
+
+        if ("0.3" == "master") {
+            document.body.insertAdjacentHTML(
+                'beforeend',
+                popup("This is the development version. Go to latest stable version.", "stable/latest")
+            );
+        } else {
+            fetch('https://gtk-rs.org/gtk4-rs/LATEST_RELEASE_BRANCH')
+                .then(response => response.text())
+                .then(latest_branch => {
+                    if (latest_branch.trim() != "0.3") {
+                        document.body.insertAdjacentHTML(
+                            'beforeend',
+                            popup("This version is outdated. Go to latest version.", "stable/latest")
+                        );
+                    }
+                });
+        }
+    }
+</script>
+
+
+<nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../gdk4/index.html'><div class='logo-container rust-logo'><img src='../../rust-logo.png' alt='logo'></div></a><h2 class="location">Trait GLContextExt</h2><div class="sidebar-elems"><div class="block items"><h3 class="sidebar-title"><a href="#required-methods">Required Methods</a></h3><div class="sidebar-links"><a href="#tymethod.is_debug_enabled">is_debug_enabled</a><a href="#tymethod.is_forward_compatible">is_forward_compatible</a><a href="#tymethod.is_legacy">is_legacy</a><a href="#tymethod.is_shared">is_shared</a><a href="#tymethod.make_current">make_current</a><a href="#tymethod.realize">realize</a><a href="#tymethod.required_version">required_version</a><a href="#tymethod.set_debug_enabled">set_debug_enabled</a><a href="#tymethod.set_forward_compatible">set_forward_compatible</a><a href="#tymethod.set_required_version">set_required_version</a><a href="#tymethod.set_use_es">set_use_es</a><a href="#tymethod.shared_context">shared_context</a><a href="#tymethod.uses_es">uses_es</a><a href="#tymethod.version">version</a></div><h3 class="sidebar-title"><a href="#implementors">Implementors</a></h3></div><h2 class="location">Other items in<br><a href="../index.html">gdk4</a>::<wbr><a href="index.html">prelude</a></h2><div id="sidebar-vars" data-name="GLContextExt" data-ty="trait" data-relpath=""></div><script defer src="sidebar-items.js"></script></div></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="18" height="18" alt="Pick another theme!" src="../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../settings.html" title="settings"><img width="18" height="18" alt="Change settings" src="../../wheel.svg"></a></div></form></nav><section id="main" class="content"><h1 class="fqn"><span class="in-band">Trait <a href="../index.html">gdk4</a>::<wbr><a href="index.html">prelude</a>::<wbr><a class="trait" href="#">GLContextExt</a><button id="copy-path" onclick="copy_path(this)" title="Copy item path to clipboard"><img src="../../clipboard.svg" width="19" height="18" alt="Copy item path"></button></span><span class="out-of-band"><span id="render-detail"><a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">[<span class="inner">&#x2212;</span>]</a></span><a class="srclink" href="../../src/gdk4/auto/gl_context.rs.html#111-310" title="goto source code">[src]</a></span></h1><div class="docblock type-decl"><pre class="rust trait"><code>pub trait GLContextExt: 'static {
+<details class="rustdoc-toggle type-contents-toggle"><summary class="hideme"><span>Show 14 methods</span></summary>    fn <a href="#tymethod.is_debug_enabled" class="fnname">is_debug_enabled</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>;
+<div class="item-spacer"></div>    fn <a href="#tymethod.is_forward_compatible" class="fnname">is_forward_compatible</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>;
+<div class="item-spacer"></div>    fn <a href="#tymethod.required_version" class="fnname">required_version</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.tuple.html">(</a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.tuple.html">)</a>;
+<div class="item-spacer"></div>    fn <a href="#tymethod.shared_context" class="fnname">shared_context</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../struct.GLContext.html" title="struct gdk4::GLContext">GLContext</a>&gt;;
+<div class="item-spacer"></div>    fn <a href="#tymethod.uses_es" class="fnname">uses_es</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>;
+<div class="item-spacer"></div>    fn <a href="#tymethod.version" class="fnname">version</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.tuple.html">(</a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.tuple.html">)</a>;
+<div class="item-spacer"></div>    fn <a href="#tymethod.is_legacy" class="fnname">is_legacy</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>;
+<div class="item-spacer"></div>    fn <a href="#tymethod.is_shared" class="fnname">is_shared</a>&lt;P:&nbsp;<a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.14/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.GLContext.html" title="struct gdk4::GLContext">GLContext</a>&gt;&gt;(&amp;self, other: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>P) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>;
+<div class="item-spacer"></div>    fn <a href="#tymethod.make_current" class="fnname">make_current</a>(&amp;self);
+<div class="item-spacer"></div>    fn <a href="#tymethod.realize" class="fnname">realize</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.unit.html">()</a>, <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.14/docs/glib/error/struct.Error.html" title="struct glib::error::Error">Error</a>&gt;;
+<div class="item-spacer"></div>    fn <a href="#tymethod.set_debug_enabled" class="fnname">set_debug_enabled</a>(&amp;self, enabled: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>);
+<div class="item-spacer"></div>    fn <a href="#tymethod.set_forward_compatible" class="fnname">set_forward_compatible</a>(&amp;self, compatible: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>);
+<div class="item-spacer"></div>    fn <a href="#tymethod.set_required_version" class="fnname">set_required_version</a>(&amp;self, major: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, minor: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>);
+<div class="item-spacer"></div>    fn <a href="#tymethod.set_use_es" class="fnname">set_use_es</a>(&amp;self, use_es: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>);
+</details>}</code></pre></div><details class="rustdoc-toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>Trait containing all <a href="../struct.GLContext.html" title="GLContext"><code>GLContext</code></a> methods.</p>
+<h2 id="implementors-1" class="section-header"><a href="#implementors-1">Implementors</a></h2>
+<p><a href="../struct.GLContext.html" title="crate::GLContext"><code>GLContext</code></a></p>
+</div></details><h2 id="required-methods" class="small-section-header">Required methods<a href="#required-methods" class="anchor"></a></h2><div class="methods"><details class="rustdoc-toggle" open><summary><div id="tymethod.is_debug_enabled" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gdk4/auto/gl_context.rs.html#121" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.is_debug_enabled" class="fnname">is_debug_enabled</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></div></summary><div class="docblock"><p>Retrieves whether the context is doing extra validations and runtime checking.</p>
+<p>See <a href="trait.GLContextExt.html#tymethod.set_debug_enabled" title="Self::set_debug_enabled()"><code>set_debug_enabled()</code></a>.</p>
+<h5 id="returns" class="section-header"><a href="#returns">Returns</a></h5>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if debugging is enabled</p>
+</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.is_forward_compatible" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gdk4/auto/gl_context.rs.html#132" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.is_forward_compatible" class="fnname">is_forward_compatible</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></div></summary><div class="docblock"><p>Retrieves whether the context is forward-compatible.</p>
+<p>See <a href="trait.GLContextExt.html#tymethod.set_forward_compatible" title="Self::set_forward_compatible()"><code>set_forward_compatible()</code></a>.</p>
+<h5 id="returns-1" class="section-header"><a href="#returns-1">Returns</a></h5>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if the context should be forward-compatible</p>
+</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.required_version" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gdk4/auto/gl_context.rs.html#148" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.required_version" class="fnname">required_version</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.tuple.html">(</a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.tuple.html">)</a></h4></div></summary><div class="docblock"><p>Retrieves required OpenGL version.</p>
+<p>See <a href="trait.GLContextExt.html#tymethod.set_required_version" title="Self::set_required_version()"><code>set_required_version()</code></a>.</p>
+<h5 id="returns-2" class="section-header"><a href="#returns-2">Returns</a></h5><h6 id="major" class="section-header"><a href="#major"><code>major</code></a></h6>
+<p>return location for the major version to request</p>
+<h6 id="minor" class="section-header"><a href="#minor"><code>minor</code></a></h6>
+<p>return location for the minor version to request</p>
+</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.shared_context" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gdk4/auto/gl_context.rs.html#166" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.shared_context" class="fnname">shared_context</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../struct.GLContext.html" title="struct gdk4::GLContext">GLContext</a>&gt;</h4></div></summary><div class="docblock"><p>Used to retrieves the <a href="../struct.GLContext.html" title="crate::GLContext"><code>GLContext</code></a> that this <code>self</code> share data with.</p>
+<p>As many contexts can share data now and no single shared context exists
+anymore, this function has been deprecated and now always returns <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a>.</p>
+<h5 id="deprecated-since-44" class="section-header"><a href="#deprecated-since-44">Deprecated since 4.4</a></h5>
+<p>Use <a href="trait.GLContextExt.html#tymethod.is_shared" title="Self::is_shared()"><code>is_shared()</code></a> to check if contexts
+can be shared.</p>
+<h5 id="returns-3" class="section-header"><a href="#returns-3">Returns</a></h5>
+<p><a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a></p>
+</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.uses_es" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gdk4/auto/gl_context.rs.html#175" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.uses_es" class="fnname">uses_es</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></div></summary><div class="docblock"><p>Checks whether the <code>self</code> is using an OpenGL or OpenGL ES profile.</p>
+<h5 id="returns-4" class="section-header"><a href="#returns-4">Returns</a></h5>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if the <a href="../struct.GLContext.html" title="crate::GLContext"><code>GLContext</code></a> is using an OpenGL ES profile</p>
+</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.version" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gdk4/auto/gl_context.rs.html#191" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.version" class="fnname">version</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.tuple.html">(</a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.tuple.html">)</a></h4></div></summary><div class="docblock"><p>Retrieves the OpenGL version of the <code>self</code>.</p>
+<p>The <code>self</code> must be realized prior to calling this function.</p>
+<h5 id="returns-5" class="section-header"><a href="#returns-5">Returns</a></h5><h6 id="major-1" class="section-header"><a href="#major-1"><code>major</code></a></h6>
+<p>return location for the major version</p>
+<h6 id="minor-1" class="section-header"><a href="#minor-1"><code>minor</code></a></h6>
+<p>return location for the minor version</p>
+</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.is_legacy" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gdk4/auto/gl_context.rs.html#214" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.is_legacy" class="fnname">is_legacy</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></div></summary><div class="docblock"><p>Whether the <a href="../struct.GLContext.html" title="crate::GLContext"><code>GLContext</code></a> is in legacy mode or not.</p>
+<p>The <a href="../struct.GLContext.html" title="crate::GLContext"><code>GLContext</code></a> must be realized before calling this function.</p>
+<p>When realizing a GL context, GDK will try to use the OpenGL 3.2 core
+profile; this profile removes all the OpenGL API that was deprecated
+prior to the 3.2 version of the specification. If the realization is
+successful, this function will return <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="false"><code>false</code></a>.</p>
+<p>If the underlying OpenGL implementation does not support core profiles,
+GDK will fall back to a pre-3.2 compatibility profile, and this function
+will return <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a>.</p>
+<p>You can use the value returned by this function to decide which kind
+of OpenGL API to use, or whether to do extension discovery, or what
+kind of shader programs to load.</p>
+<h5 id="returns-6" class="section-header"><a href="#returns-6">Returns</a></h5>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if the GL context is in legacy mode</p>
+</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.is_shared" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gdk4/auto/gl_context.rs.html#237" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.is_shared" class="fnname">is_shared</a>&lt;P:&nbsp;<a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.14/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.GLContext.html" title="struct gdk4::GLContext">GLContext</a>&gt;&gt;(&amp;self, other: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>P) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></div></summary><div class="item-info"><div class="stab portability">This is supported on <strong>crate feature <code>v4_4</code></strong> only.</div></div><div class="docblock"><p>Checks if the two GL contexts can share resources.</p>
+<p>When they can, the texture IDs from <code>other</code> can be used in <code>self</code>. This
+is particularly useful when passing <a href="../struct.GLTexture.html" title="crate::GLTexture"><code>GLTexture</code></a> objects between
+different contexts.</p>
+<p>Contexts created for the same display with the same properties will
+always be compatible, even if they are created for different surfaces.
+For other contexts it depends on the GL backend.</p>
+<p>Both contexts must be realized for this check to succeed. If either one
+is not, this function will return <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="false"><code>false</code></a>.</p>
+<h6 id="other" class="section-header"><a href="#other"><code>other</code></a></h6>
+<p>the <a href="../struct.GLContext.html" title="crate::GLContext"><code>GLContext</code></a> that should be compatible with <code>self</code></p>
+<h5 id="returns-7" class="section-header"><a href="#returns-7">Returns</a></h5>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if the two GL contexts are compatible.</p>
+</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.make_current" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gdk4/auto/gl_context.rs.html#241" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.make_current" class="fnname">make_current</a>(&amp;self)</h4></div></summary><div class="docblock"><p>Makes the <code>self</code> the current one.</p>
+</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.realize" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gdk4/auto/gl_context.rs.html#251" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.realize" class="fnname">realize</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.unit.html">()</a>, <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.14/docs/glib/error/struct.Error.html" title="struct glib::error::Error">Error</a>&gt;</h4></div></summary><div class="docblock"><p>Realizes the given <a href="../struct.GLContext.html" title="crate::GLContext"><code>GLContext</code></a>.</p>
+<p>It is safe to call this function on a realized <a href="../struct.GLContext.html" title="crate::GLContext"><code>GLContext</code></a>.</p>
+<h5 id="returns-8" class="section-header"><a href="#returns-8">Returns</a></h5>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if the context is realized</p>
+</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.set_debug_enabled" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gdk4/auto/gl_context.rs.html#263" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.set_debug_enabled" class="fnname">set_debug_enabled</a>(&amp;self, enabled: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>)</h4></div></summary><div class="docblock"><p>Sets whether the <a href="../struct.GLContext.html" title="crate::GLContext"><code>GLContext</code></a> should perform extra validations and
+runtime checking.</p>
+<p>This is useful during development, but has additional overhead.</p>
+<p>The <a href="../struct.GLContext.html" title="crate::GLContext"><code>GLContext</code></a> must not be realized or made current prior to
+calling this function.</p>
+<h6 id="enabled" class="section-header"><a href="#enabled"><code>enabled</code></a></h6>
+<p>whether to enable debugging in the context</p>
+</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.set_forward_compatible" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gdk4/auto/gl_context.rs.html#277" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.set_forward_compatible" class="fnname">set_forward_compatible</a>(&amp;self, compatible: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>)</h4></div></summary><div class="docblock"><p>Sets whether the <a href="../struct.GLContext.html" title="crate::GLContext"><code>GLContext</code></a> should be forward-compatible.</p>
+<p>Forward-compatible contexts must not support OpenGL functionality that
+has been marked as deprecated in the requested version; non-forward
+compatible contexts, on the other hand, must support both deprecated and
+non deprecated functionality.</p>
+<p>The <a href="../struct.GLContext.html" title="crate::GLContext"><code>GLContext</code></a> must not be realized or made current prior to calling
+this function.</p>
+<h6 id="compatible" class="section-header"><a href="#compatible"><code>compatible</code></a></h6>
+<p>whether the context should be forward-compatible</p>
+</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.set_required_version" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gdk4/auto/gl_context.rs.html#290" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.set_required_version" class="fnname">set_required_version</a>(&amp;self, major: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, minor: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>)</h4></div></summary><div class="docblock"><p>Sets the major and minor version of OpenGL to request.</p>
+<p>Setting <code>major</code> and <code>minor</code> to zero will use the default values.</p>
+<p>The <a href="../struct.GLContext.html" title="crate::GLContext"><code>GLContext</code></a> must not be realized or made current prior to calling
+this function.</p>
+<h6 id="major-2" class="section-header"><a href="#major-2"><code>major</code></a></h6>
+<p>the major version to request</p>
+<h6 id="minor-2" class="section-header"><a href="#minor-2"><code>minor</code></a></h6>
+<p>the minor version to request</p>
+</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.set_use_es" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gdk4/auto/gl_context.rs.html#309" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.set_use_es" class="fnname">set_use_es</a>(&amp;self, use_es: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>)</h4></div></summary><div class="docblock"><p>Requests that GDK create an OpenGL ES context instead of an OpenGL one.</p>
+<p>Not all platforms support OpenGL ES.</p>
+<p>The <code>self</code> must not have been realized.</p>
+<p>By default, GDK will attempt to automatically detect whether the
+underlying GL implementation is OpenGL or OpenGL ES once the <code>self</code>
+is realized.</p>
+<p>You should check the return value of <a href="trait.GLContextExt.html#tymethod.uses_es" title="Self::uses_es()"><code>uses_es()</code></a>
+after calling <a href="trait.GLContextExt.html#tymethod.realize" title="Self::realize()"><code>realize()</code></a> to decide whether to use
+the OpenGL or OpenGL ES API, extensions, or shaders.</p>
+<h6 id="use_es" class="section-header"><a href="#use_es"><code>use_es</code></a></h6>
+<p>whether the context should use OpenGL ES instead of OpenGL,
+or -1 to allow auto-detection</p>
+</div></details></div><h2 id="implementors" class="small-section-header">Implementors<a href="#implementors" class="anchor"></a></h2><div class="item-list" id="implementors-list"><div id="impl-GLContextExt" class="impl has-srclink"><div class="rightside"><a class="srclink" href="../../src/gdk4/auto/gl_context.rs.html#312-441" title="goto source code">[src]</a></div><a href="#impl-GLContextExt" class="anchor"></a><h3 class="code-header in-band">impl&lt;O:&nbsp;<a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.14/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.GLContext.html" title="struct gdk4::GLContext">GLContext</a>&gt;&gt; <a class="trait" href="trait.GLContextExt.html" title="trait gdk4::prelude::GLContextExt">GLContextExt</a> for O</h3></div></div><script type="text/javascript" src="../../implementors/gdk4/prelude/trait.GLContextExt.js" async></script></section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../" data-current-crate="gdk4" data-search-index-js="../../search-index.js" data-search-js="../../search.js"></div>
+    <script src="../../main.js"></script>
+</body></html>

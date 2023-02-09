@@ -1,0 +1,92 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Trait containing manually implemented methods of `Editable`."><meta name="keywords" content="rust, rustlang, rust-lang, EditableExtManual"><title>EditableExtManual in gtk4::prelude - Rust</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-1f7d512b176f0f72.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Bold-124a1ca42af929b6.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-34efc64c5083af8d.css" id="mainThemeStyle"><link rel="stylesheet" id="themeStyle" href="../../static.files/light-4743e13df3dfe8c4.css"><link rel="stylesheet" disabled href="../../static.files/dark-0e1b889528bd466b.css"><link rel="stylesheet" disabled href="../../static.files/ayu-65289d5d067c7c66.css"><script id="default-settings" ></script><script src="../../static.files/storage-d43fa987303ecbbb.js"></script><script defer src="sidebar-items.js"></script><script defer src="../../static.files/main-4a084badb5778746.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-13285aec31fa243e.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc trait"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
+
+    function checkDocsLatestStable() {
+        function popup(msg, url) { return `
+            <style scoped="scoped">
+                .popup {
+                    max-width: 16em;
+                    background-color: #fff;
+                    position: fixed;
+                    z-index: 1;
+                    margin-left: auto;
+                    bottom: 1em;
+                    right: 1em;
+                    border-radius: 5px;
+                    box-shadow: 1px 1px 4px #777;
+                }
+
+                .popup a.version {
+                    color: #e57300;
+                    padding: 0.6em 1em;
+                    display: block;
+                }
+                .popup a.version:hover {
+                    color: #b25900;
+                }
+
+                .popup a.close {
+                    color: white;
+                    background: grey;
+                    border-radius: 99px;
+                    display: inline-block;
+                    width: 19px;
+                    line-height: 19px;
+                    font-weight: bold;
+                    text-align: center;
+                    margin: 0.6em;
+                    float: right;
+                }
+                .popup a.close:hover {
+                    background: black;
+                }
+            </style>
+            <section class="popup" id="gir_docs_popup">
+                <a class="close" href="#" onclick="document.getElementById('gir_docs_popup').remove(); return false">×</a>
+                <a class="version" href="https://gtk-rs.org/gtk4-rs/stable/latest/docs">
+                    ⚠ ${msg}
+                </a>
+            </section>
+        ` };
+
+        if ("0.5" == "master") {
+            document.body.insertAdjacentHTML(
+                'beforeend',
+                popup("This is the development version. Go to latest stable version.", "stable/latest")
+            );
+        } else {
+            fetch('https://gtk-rs.org/gtk4-rs/LATEST_RELEASE_BRANCH')
+                .then(response => response.text())
+                .then(latest_branch => {
+                    if (latest_branch.trim() != "0.5") {
+                        document.body.insertAdjacentHTML(
+                            'beforeend',
+                            popup("This version is outdated. Go to latest version.", "stable/latest")
+                        );
+                    }
+                });
+        }
+    }
+</script>
+
+
+<nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../gtk4/index.html"><div class="logo-container"><img class="rust-logo" src="../../static.files/rust-logo-151179464ae7ed46.svg" alt="logo"></div></a><h2></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../gtk4/index.html"><div class="logo-container"><img class="rust-logo" src="../../static.files/rust-logo-151179464ae7ed46.svg" alt="logo"></div></a><h2 class="location"><a href="#">EditableExtManual</a></h2><div class="sidebar-elems"><section><h3><a href="#required-methods">Required Methods</a></h3><ul class="block"><li><a href="#tymethod.connect_insert_text">connect_insert_text</a></li></ul><h3><a href="#implementors">Implementors</a></h3></section><h2><a href="index.html">In gtk4::prelude</a></h2></div></nav><main><div class="width-limiter"><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-5ec35bf9ca753509.svg"></a></div></form></nav><section id="main-content" class="content"><div class="main-heading"><h1 class="fqn">Trait <a href="../index.html">gtk4</a>::<wbr><a href="index.html">prelude</a>::<wbr><a class="trait" href="#">EditableExtManual</a><button id="copy-path" onclick="copy_path(this)" title="Copy item path to clipboard"><img src="../../static.files/clipboard-7571035ce49a181d.svg" width="19" height="18" alt="Copy item path"></button></h1><span class="out-of-band"><a class="srclink" href="../../src/gtk4/editable.rs.html#16-36">source</a> · <button id="toggle-all-docs" title="collapse all docs">[<span>&#x2212;</span>]</button></span></div><div class="item-decl"><pre class="rust trait"><code>pub trait EditableExtManual: 'static {
+    fn <a href="#tymethod.connect_insert_text" class="fn">connect_insert_text</a>&lt;F&gt;(&amp;self, f: F) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.16/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a><br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="where">where<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>Self, &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>, &amp;mut <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>) + 'static</span>;
+}</code></pre></div><details class="rustdoc-toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>Trait containing manually implemented methods of <a href="../struct.Editable.html"><code>Editable</code></a>.</p>
+</div></details><h2 id="required-methods" class="small-section-header">Required Methods<a href="#required-methods" class="anchor">§</a></h2><div class="methods"><details class="rustdoc-toggle method-toggle" open><summary><section id="tymethod.connect_insert_text" class="method has-srclink"><a class="srclink rightside" href="../../src/gtk4/editable.rs.html#33-35">source</a><h4 class="code-header">fn <a href="#tymethod.connect_insert_text" class="fn">connect_insert_text</a>&lt;F&gt;(&amp;self, f: F) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.16/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a><span class="where fmt-newline">where<br>&nbsp;&nbsp;&nbsp;&nbsp;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>Self, &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>, &amp;mut <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>) + 'static,</span></h4></section></summary><div class="docblock"><p>Emitted when text is inserted into the widget by the user.</p>
+<p>The default handler for this signal will normally be responsible
+for inserting the text, so by connecting to this signal and then
+stopping the signal with g_signal_stop_emission(), it is possible
+to modify the inserted text, or prevent it from being inserted entirely.</p>
+<h6 id="text"><a href="#text"><code>text</code></a></h6>
+<p>the new text to insert</p>
+<h6 id="length"><a href="#length"><code>length</code></a></h6>
+<p>the length of the new text, in bytes,
+or -1 if new_text is nul-terminated</p>
+<h6 id="position"><a href="#position"><code>position</code></a></h6>
+<p>the position, in characters,
+at which to insert the new text. this is an in-out
+parameter.  After the signal emission is finished, it
+should point after the newly inserted text.</p>
+</div></details></div><h2 id="implementors" class="small-section-header">Implementors<a href="#implementors" class="anchor">§</a></h2><div id="implementors-list"><section id="impl-EditableExtManual-for-T" class="impl has-srclink"><a class="srclink rightside" href="../../src/gtk4/editable.rs.html#38-53">source</a><a href="#impl-EditableExtManual-for-T" class="anchor">§</a><h3 class="code-header">impl&lt;T:&nbsp;<a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.16/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Editable.html" title="struct gtk4::Editable">Editable</a>&gt;&gt; <a class="trait" href="trait.EditableExtManual.html" title="trait gtk4::prelude::EditableExtManual">EditableExtManual</a> for T</h3></section></div><script src="../../implementors/gtk4/editable/trait.EditableExtManual.js" async></script></section></div></main><div id="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.68.0-nightly (77429957a 2023-01-01)" data-search-js="search-181581080540673f.js" data-settings-js="settings-bebeae96e00e4617.js" data-settings-css="settings-58836c674e2f7bd2.css" ></div></body></html>

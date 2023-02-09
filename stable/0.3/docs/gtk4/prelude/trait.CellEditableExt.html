@@ -1,0 +1,110 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Trait containing all [`struct@CellEditable`] methods."><meta name="keywords" content="rust, rustlang, rust-lang, CellEditableExt"><title>CellEditableExt in gtk4::prelude - Rust</title><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled ><script id="default-settings" ></script><script src="../../storage.js"></script><script src="../../crates.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"><style type="text/css">#crate-search{background-image:url("../../down-arrow.svg");}</style></head><body class="rustdoc trait"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
+
+    function checkDocsLatestStable() {
+        function popup(msg, url) { return `
+            <style scoped="scoped">
+                .popup {
+                    max-width: 16em;
+                    background-color: #fff;
+                    position: fixed;
+                    z-index: 1;
+                    margin-left: auto;
+                    bottom: 1em;
+                    right: 1em;
+                    border-radius: 5px;
+                    box-shadow: 1px 1px 4px #777;
+                }
+
+                .popup a.version {
+                    color: #e57300;
+                    padding: 0.6em 1em;
+                    display: block;
+                }
+                .popup a.version:hover {
+                    color: #b25900;
+                }
+
+                .popup a.close {
+                    color: white;
+                    background: grey;
+                    border-radius: 99px;
+                    display: inline-block;
+                    width: 19px;
+                    line-height: 19px;
+                    font-weight: bold;
+                    text-align: center;
+                    margin: 0.6em;
+                    float: right;
+                }
+                .popup a.close:hover {
+                    background: black;
+                }
+            </style>
+            <section class="popup" id="gir_docs_popup">
+                <a class="close" href="#" onclick="document.getElementById('gir_docs_popup').remove(); return false">×</a>
+                <a class="version" href="https://gtk-rs.org/gtk4-rs/stable/latest/docs">
+                    ⚠ ${msg}
+                </a>
+            </section>
+        ` };
+
+        if ("0.3" == "master") {
+            document.body.insertAdjacentHTML(
+                'beforeend',
+                popup("This is the development version. Go to latest stable version.", "stable/latest")
+            );
+        } else {
+            fetch('https://gtk-rs.org/gtk4-rs/LATEST_RELEASE_BRANCH')
+                .then(response => response.text())
+                .then(latest_branch => {
+                    if (latest_branch.trim() != "0.3") {
+                        document.body.insertAdjacentHTML(
+                            'beforeend',
+                            popup("This version is outdated. Go to latest version.", "stable/latest")
+                        );
+                    }
+                });
+        }
+    }
+</script>
+
+
+<nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../gtk4/index.html'><div class='logo-container rust-logo'><img src='../../rust-logo.png' alt='logo'></div></a><h2 class="location">Trait CellEditableExt</h2><div class="sidebar-elems"><div class="block items"><h3 class="sidebar-title"><a href="#required-methods">Required Methods</a></h3><div class="sidebar-links"><a href="#tymethod.connect_editing_canceled_notify">connect_editing_canceled_notify</a><a href="#tymethod.connect_editing_done">connect_editing_done</a><a href="#tymethod.connect_remove_widget">connect_remove_widget</a><a href="#tymethod.editing_done">editing_done</a><a href="#tymethod.is_editing_canceled">is_editing_canceled</a><a href="#tymethod.remove_widget">remove_widget</a><a href="#tymethod.set_editing_canceled">set_editing_canceled</a></div><h3 class="sidebar-title"><a href="#implementors">Implementors</a></h3></div><h2 class="location">Other items in<br><a href="../index.html">gtk4</a>::<wbr><a href="index.html">prelude</a></h2><div id="sidebar-vars" data-name="CellEditableExt" data-ty="trait" data-relpath=""></div><script defer src="sidebar-items.js"></script></div></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="18" height="18" alt="Pick another theme!" src="../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../settings.html" title="settings"><img width="18" height="18" alt="Change settings" src="../../wheel.svg"></a></div></form></nav><section id="main" class="content"><h1 class="fqn"><span class="in-band">Trait <a href="../index.html">gtk4</a>::<wbr><a href="index.html">prelude</a>::<wbr><a class="trait" href="#">CellEditableExt</a><button id="copy-path" onclick="copy_path(this)" title="Copy item path to clipboard"><img src="../../clipboard.svg" width="19" height="18" alt="Copy item path"></button></span><span class="out-of-band"><span id="render-detail"><a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">[<span class="inner">&#x2212;</span>]</a></span><a class="srclink" href="../../src/gtk4/auto/cell_editable.rs.html#45-93" title="goto source code">[src]</a></span></h1><div class="docblock type-decl"><pre class="rust trait"><code>pub trait CellEditableExt: 'static {
+    fn <a href="#tymethod.editing_done" class="fnname">editing_done</a>(&amp;self);
+<div class="item-spacer"></div>    fn <a href="#tymethod.remove_widget" class="fnname">remove_widget</a>(&amp;self);
+<div class="item-spacer"></div>    fn <a href="#tymethod.is_editing_canceled" class="fnname">is_editing_canceled</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>;
+<div class="item-spacer"></div>    fn <a href="#tymethod.set_editing_canceled" class="fnname">set_editing_canceled</a>(&amp;self, editing_canceled: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>);
+<div class="item-spacer"></div>    fn <a href="#tymethod.connect_editing_done" class="fnname">connect_editing_done</a>&lt;F:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>Self) + 'static&gt;(<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;f: F<br>&nbsp;&nbsp;&nbsp;&nbsp;) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.14/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a>;
+<div class="item-spacer"></div>    fn <a href="#tymethod.connect_remove_widget" class="fnname">connect_remove_widget</a>&lt;F:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>Self) + 'static&gt;(<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;f: F<br>&nbsp;&nbsp;&nbsp;&nbsp;) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.14/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a>;
+<div class="item-spacer"></div>    fn <a href="#tymethod.connect_editing_canceled_notify" class="fnname">connect_editing_canceled_notify</a>&lt;F:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>Self) + 'static&gt;(<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;f: F<br>&nbsp;&nbsp;&nbsp;&nbsp;) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.14/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a>;
+}</code></pre></div><details class="rustdoc-toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>Trait containing all <a href="../struct.CellEditable.html" title="CellEditable"><code>CellEditable</code></a> methods.</p>
+<h2 id="implementors-1" class="section-header"><a href="#implementors-1">Implementors</a></h2>
+<p><a href="../struct.CellEditable.html" title="crate::CellEditable"><code>CellEditable</code></a>, <a href="../struct.ComboBoxText.html" title="crate::ComboBoxText"><code>ComboBoxText</code></a>, <a href="../struct.ComboBox.html" title="crate::ComboBox"><code>ComboBox</code></a>, <a href="../struct.Entry.html" title="crate::Entry"><code>Entry</code></a>, <a href="../struct.SpinButton.html" title="crate::SpinButton"><code>SpinButton</code></a></p>
+</div></details><h2 id="required-methods" class="small-section-header">Required methods<a href="#required-methods" class="anchor"></a></h2><div class="methods"><details class="rustdoc-toggle" open><summary><div id="tymethod.editing_done" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/cell_editable.rs.html#48" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.editing_done" class="fnname">editing_done</a>(&amp;self)</h4></div></summary><div class="docblock"><p>Emits the <code>GtkCellEditable::editing-done</code> signal.</p>
+</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.remove_widget" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/cell_editable.rs.html#52" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.remove_widget" class="fnname">remove_widget</a>(&amp;self)</h4></div></summary><div class="docblock"><p>Emits the <code>GtkCellEditable::remove-widget</code> signal.</p>
+</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.is_editing_canceled" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/cell_editable.rs.html#56" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.is_editing_canceled" class="fnname">is_editing_canceled</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></div></summary><div class="docblock"><p>Indicates whether editing on the cell has been canceled.</p>
+</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.set_editing_canceled" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/cell_editable.rs.html#60" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.set_editing_canceled" class="fnname">set_editing_canceled</a>(&amp;self, editing_canceled: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>)</h4></div></summary><div class="docblock"><p>Indicates whether editing on the cell has been canceled.</p>
+</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.connect_editing_done" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/cell_editable.rs.html#74" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.connect_editing_done" class="fnname">connect_editing_done</a>&lt;F:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>Self) + 'static&gt;(&amp;self, f: F) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.14/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></div></summary><div class="docblock"><p>This signal is a sign for the cell renderer to update its
+value from the <code>cell_editable</code>.</p>
+<p>Implementations of <a href="../struct.CellEditable.html" title="crate::CellEditable"><code>CellEditable</code></a> are responsible for
+emitting this signal when they are done editing, e.g.
+<a href="../struct.Entry.html" title="crate::Entry"><code>Entry</code></a> emits this signal when the user presses Enter. Typical things to
+do in a handler for ::editing-done are to capture the edited value,
+disconnect the <code>cell_editable</code> from signals on the <a href="../struct.CellRenderer.html" title="crate::CellRenderer"><code>CellRenderer</code></a>, etc.</p>
+<p><a href="trait.CellEditableExt.html#tymethod.editing_done" title="Self::editing_done()"><code>editing_done()</code></a> is a convenience method
+for emitting <code>GtkCellEditable::editing-done</code>.</p>
+</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.connect_remove_widget" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/cell_editable.rs.html#89" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.connect_remove_widget" class="fnname">connect_remove_widget</a>&lt;F:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>Self) + 'static&gt;(&amp;self, f: F) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.14/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></div></summary><div class="docblock"><p>This signal is meant to indicate that the cell is finished
+editing, and the <code>cell_editable</code> widget is being removed and may
+subsequently be destroyed.</p>
+<p>Implementations of <a href="../struct.CellEditable.html" title="crate::CellEditable"><code>CellEditable</code></a> are responsible for
+emitting this signal when they are done editing. It must
+be emitted after the <code>GtkCellEditable::editing-done</code> signal,
+to give the cell renderer a chance to update the cell’s value
+before the widget is removed.</p>
+<p><a href="trait.CellEditableExt.html#tymethod.remove_widget" title="Self::remove_widget()"><code>remove_widget()</code></a> is a convenience method
+for emitting <code>GtkCellEditable::remove-widget</code>.</p>
+</div></details><div id="tymethod.connect_editing_canceled_notify" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/cell_editable.rs.html#92" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.connect_editing_canceled_notify" class="fnname">connect_editing_canceled_notify</a>&lt;F:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>Self) + 'static&gt;(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;f: F<br>) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.14/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></div></div><h2 id="implementors" class="small-section-header">Implementors<a href="#implementors" class="anchor"></a></h2><div class="item-list" id="implementors-list"><div id="impl-CellEditableExt" class="impl has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/cell_editable.rs.html#95-198" title="goto source code">[src]</a></div><a href="#impl-CellEditableExt" class="anchor"></a><h3 class="code-header in-band">impl&lt;O:&nbsp;<a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.14/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.CellEditable.html" title="struct gtk4::CellEditable">CellEditable</a>&gt;&gt; <a class="trait" href="trait.CellEditableExt.html" title="trait gtk4::prelude::CellEditableExt">CellEditableExt</a> for O</h3></div></div><script type="text/javascript" src="../../implementors/gtk4/prelude/trait.CellEditableExt.js" async></script></section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../" data-current-crate="gtk4" data-search-index-js="../../search-index.js" data-search-js="../../search.js"></div>
+    <script src="../../main.js"></script>
+</body></html>

@@ -1,0 +1,147 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Rust GDK 4 X11 bindings"><meta name="keywords" content="rust, rustlang, rust-lang, gdk4_x11"><title>gdk4_x11 - Rust</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../normalize.css"><link rel="stylesheet" type="text/css" href="../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../dark.css" disabled><link rel="stylesheet" type="text/css" href="../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../storage.js"></script><script src="../crates.js"></script><script defer src="../main.js"></script>
+    <noscript><link rel="stylesheet" href="../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../favicon.svg"></head><body class="rustdoc mod crate"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
+
+    function checkDocsLatestStable() {
+        function popup(msg, url) { return `
+            <style scoped="scoped">
+                .popup {
+                    max-width: 16em;
+                    background-color: #fff;
+                    position: fixed;
+                    z-index: 1;
+                    margin-left: auto;
+                    bottom: 1em;
+                    right: 1em;
+                    border-radius: 5px;
+                    box-shadow: 1px 1px 4px #777;
+                }
+
+                .popup a.version {
+                    color: #e57300;
+                    padding: 0.6em 1em;
+                    display: block;
+                }
+                .popup a.version:hover {
+                    color: #b25900;
+                }
+
+                .popup a.close {
+                    color: white;
+                    background: grey;
+                    border-radius: 99px;
+                    display: inline-block;
+                    width: 19px;
+                    line-height: 19px;
+                    font-weight: bold;
+                    text-align: center;
+                    margin: 0.6em;
+                    float: right;
+                }
+                .popup a.close:hover {
+                    background: black;
+                }
+            </style>
+            <section class="popup" id="gir_docs_popup">
+                <a class="close" href="#" onclick="document.getElementById('gir_docs_popup').remove(); return false">×</a>
+                <a class="version" href="https://gtk-rs.org/gtk4-rs/stable/latest/docs">
+                    ⚠ ${msg}
+                </a>
+            </section>
+        ` };
+
+        if ("0.4" == "master") {
+            document.body.insertAdjacentHTML(
+                'beforeend',
+                popup("This is the development version. Go to latest stable version.", "stable/latest")
+            );
+        } else {
+            fetch('https://gtk-rs.org/gtk4-rs/LATEST_RELEASE_BRANCH')
+                .then(response => response.text())
+                .then(latest_branch => {
+                    if (latest_branch.trim() != "0.4") {
+                        document.body.insertAdjacentHTML(
+                            'beforeend',
+                            popup("This version is outdated. Go to latest version.", "stable/latest")
+                        );
+                    }
+                });
+        }
+    }
+</script>
+
+
+<nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../gdk4_x11/index.html"><div class="logo-container"><img class="rust-logo" src="../rust-logo.svg" alt="logo"></div>
+        </a><h2 class="location"></h2>
+    </nav>
+    <nav class="sidebar"><a class="sidebar-logo" href="../gdk4_x11/index.html"><div class="logo-container"><img class="rust-logo" src="../rust-logo.svg" alt="logo"></div>
+        </a><h2 class="location"><a href="#">Crate gdk4_x11</a></h2><div class="sidebar-elems"><div class="block"><ul><li class="version">Version 0.4.8</li><li><a id="all-types" href="all.html">All Items</a></li></ul></div><section><div class="block"><ul><li><a href="#reexports">Re-exports</a></li><li><a href="#modules">Modules</a></li><li><a href="#structs">Structs</a></li><li><a href="#enums">Enums</a></li><li><a href="#functions">Functions</a></li></ul></div></section><div id="sidebar-vars" data-name="gdk4_x11" data-ty="mod" data-relpath=""></div><script defer src="sidebar-items.js"></script></div></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../gdk4_x11/index.html"><img class="rust-logo" src="../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><button type="button" id="help-button" title="help">?</button><div id="settings-menu" tabindex="-1">
+                                <a href="../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../wheel.svg"></a></div>
+                        </div></form></nav></div><section id="main-content" class="content"><div class="main-heading">
+    <h1 class="fqn"><span class="in-band">Crate <a class="mod" href="#">gdk4_x11</a><button id="copy-path" onclick="copy_path(this)" title="Copy item path to clipboard"><img src="../clipboard.svg" width="19" height="18" alt="Copy item path"></button></span></h1><span class="out-of-band"><a class="srclink" href="../src/gdk4_x11/lib.rs.html#3-43">source</a> · <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">[<span class="inner">&#x2212;</span>]</a></span></div><details class="rustdoc-toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><h2 id="rust-gdk-4-x11-bindings"><a href="#rust-gdk-4-x11-bindings">Rust GDK 4 X11 bindings</a></h2>
+<p>The project website is <a href="https://gtk-rs.org/">here</a>.</p>
+<p>Rust bindings of <a href="https://docs.gtk.org/gdk4-x11/">GDK 4’s X11 backend</a>,
+part of <a href="https://github.com/gtk-rs/gtk4-rs/">gtk4-rs</a>.</p>
+<p>GDK is an intermediate layer that isolates GTK from the details of the windowing system.
+GDK X11 contains functions specific to the X11 backend.</p>
+<h3 id="minimum-supported-rust-version"><a href="#minimum-supported-rust-version">Minimum supported Rust version</a></h3>
+<p>Currently, the minimum supported Rust version is <code>1.56.0</code>.</p>
+<h3 id="documentation"><a href="#documentation">Documentation</a></h3>
+<ul>
+<li>The Rust API <a href="https://gtk-rs.org/gtk4-rs/stable/latest/docs/gdk4_x11">Stable</a>/<a href="https://gtk-rs.org/gtk4-rs/git/docs/gdk4_x11/">Development</a></li>
+<li><a href="https://docs.gtk.org/gdk4-x11/">The C API</a></li>
+<li><a href="https://www.gtk.org/docs/installations/">GTK Installation instructions</a></li>
+</ul>
+<h3 id="using"><a href="#using">Using</a></h3>
+<p>We recommend using <a href="https://crates.io/keywords/gtk-rs">crates from crates.io</a>,
+as <a href="https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/index.html#library-versions">demonstrated here</a>.</p>
+<p>If you want to track the bleeding edge, use the git dependency instead:</p>
+<div class="example-wrap"><pre class="language-toml"><code>[dependencies]
+gdk-wayland = { git = &quot;https://github.com/gtk-rs/gtk4-rs.git&quot;, package = &quot;gdk4-wayland&quot; }</code></pre></div>
+<p>Avoid mixing versioned and git crates like this:</p>
+<div class="example-wrap"><pre class="language-toml"><code>[dependencies]
+gdk-x11 = {version = &quot;0.1&quot;, package = &quot;gdk4-x11&quot;}
+gdk-wayland = { git = &quot;https://github.com/gtk-rs/gtk4-rs.git&quot;, package = &quot;gdk4-wayland&quot; }</code></pre></div><h4 id="features"><a href="#features">Features</a></h4><div><table><thead><tr><th>Feature</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>v4_4</code></td><td>Enable the new APIs part of GTK 4.4</td></tr>
+<tr><td><code>egl</code></td><td>Integration with the <a href="https://crates.io/crates/khronos-egl">khronos-egl</a> crate</td></tr>
+<tr><td><code>xlib</code></td><td>Integration with the <a href="https://crates.io/crates/x11">x11</a> crate</td></tr>
+</tbody></table>
+</div><h4 id="see-also"><a href="#see-also">See Also</a></h4>
+<ul>
+<li><a href="https://crates.io/crates/glib">glib</a></li>
+<li><a href="https://crates.io/crates/gio">gio</a></li>
+<li><a href="https://crates.io/crates/gsk4">gsk4</a></li>
+<li><a href="https://crates.io/crates/gdk4">gdk4</a></li>
+<li><a href="https://crates.io/crates/gtk4">gtk4</a></li>
+</ul>
+<h3 id="license"><a href="#license">License</a></h3>
+<p>The Rust bindings of <strong>gdk4-x11</strong> are available under the MIT License, please refer to it.</p>
+</div></details><h2 id="reexports" class="small-section-header"><a href="#reexports">Re-exports</a></h2>
+<div class="item-table"><div class="item-row"><div class="item-left import-item" id="reexport.ffi"><code>pub use <a class="mod" href="../gdk4_x11_sys/index.html" title="mod gdk4_x11_sys">ffi</a>;</code></div><div class="item-right docblock-short"></div></div><div class="item-row"><div class="item-left import-item" id="reexport.gdk"><code>pub use <a class="mod" href="../gdk4/index.html" title="mod gdk4">gdk</a>;</code></div><div class="item-right docblock-short"></div></div><div class="item-row"><div class="item-left import-item" id="reexport.gio"><code>pub use <a class="mod" href="https://gtk-rs.org/gtk-rs-core/stable/0.15/docs/gio/index.html" title="mod gio">gio</a>;</code></div><div class="item-right docblock-short"></div></div><div class="item-row"><div class="item-left import-item" id="reexport.glib"><code>pub use <a class="mod" href="https://gtk-rs.org/gtk-rs-core/stable/0.15/docs/glib/index.html" title="mod glib">glib</a>;</code></div><div class="item-right docblock-short"></div></div><div class="item-row"><div class="item-left import-item" id="reexport.x11"><code>pub use <a class="mod" href="https://docs.rs/x11/latest/x11/index.html" title="mod x11">x11</a>;</code></div><div class="item-right docblock-short"></div></div><div class="item-row"><div class="item-left import-item" id="reexport.khronos_egl"><code>pub use <a class="mod" href="https://docs.rs/khronos-egl/latest/khronos_egl/index.html" title="mod khronos_egl">khronos_egl</a>;</code></div><div class="item-right docblock-short"></div></div></div><h2 id="modules" class="small-section-header"><a href="#modules">Modules</a></h2>
+<div class="item-table"><div class="item-row"><div class="item-left module-item"><a class="mod" href="builders/index.html" title="gdk4_x11::builders mod">builders</a></div><div class="item-right docblock-short"><p>Builder pattern types.</p>
+</div></div><div class="item-row"><div class="item-left module-item"><a class="mod" href="functions/index.html" title="gdk4_x11::functions mod">functions</a></div><div class="item-right docblock-short"></div></div></div><h2 id="structs" class="small-section-header"><a href="#structs">Structs</a></h2>
+<div class="item-table"><div class="item-row"><div class="item-left module-item"><a class="struct" href="struct.X11AppLaunchContext.html" title="gdk4_x11::X11AppLaunchContext struct">X11AppLaunchContext</a></div><div class="item-right docblock-short"><p>Implements</p>
+</div></div><div class="item-row"><div class="item-left module-item"><a class="struct" href="struct.X11DeviceManagerXI2.html" title="gdk4_x11::X11DeviceManagerXI2 struct">X11DeviceManagerXI2</a></div><div class="item-right docblock-short"></div></div><div class="item-row"><div class="item-left module-item"><a class="struct" href="struct.X11DeviceXI2.html" title="gdk4_x11::X11DeviceXI2 struct">X11DeviceXI2</a></div><div class="item-right docblock-short"><p>Implements</p>
+</div></div><div class="item-row"><div class="item-left module-item"><a class="struct" href="struct.X11Display.html" title="gdk4_x11::X11Display struct">X11Display</a></div><div class="item-right docblock-short"><p>Implements</p>
+</div></div><div class="item-row"><div class="item-left module-item"><a class="struct" href="struct.X11Drag.html" title="gdk4_x11::X11Drag struct">X11Drag</a></div><div class="item-right docblock-short"><p>Implements</p>
+</div></div><div class="item-row"><div class="item-left module-item"><a class="struct" href="struct.X11GLContext.html" title="gdk4_x11::X11GLContext struct">X11GLContext</a></div><div class="item-right docblock-short"><p>This is an Abstract Base Class, you cannot instantiate it.</p>
+</div></div><div class="item-row"><div class="item-left module-item"><a class="struct" href="struct.X11Monitor.html" title="gdk4_x11::X11Monitor struct">X11Monitor</a></div><div class="item-right docblock-short"><p>Implements</p>
+</div></div><div class="item-row"><div class="item-left module-item"><a class="struct" href="struct.X11Screen.html" title="gdk4_x11::X11Screen struct">X11Screen</a></div><div class="item-right docblock-short"></div></div><div class="item-row"><div class="item-left module-item"><a class="struct" href="struct.X11Surface.html" title="gdk4_x11::X11Surface struct">X11Surface</a></div><div class="item-right docblock-short"><p>Implements</p>
+</div></div></div><h2 id="enums" class="small-section-header"><a href="#enums">Enums</a></h2>
+<div class="item-table"><div class="item-row"><div class="item-left module-item"><a class="enum" href="enum.X11DeviceType.html" title="gdk4_x11::X11DeviceType enum">X11DeviceType</a></div><div class="item-right docblock-short"></div></div></div><h2 id="functions" class="small-section-header"><a href="#functions">Functions</a></h2>
+<div class="item-table"><div class="item-row"><div class="item-left module-item"><a class="fn" href="fn.x11_device_get_id.html" title="gdk4_x11::x11_device_get_id fn">x11_device_get_id</a></div><div class="item-right docblock-short"><p>Returns the device ID as seen by XInput2.</p>
+</div></div><div class="item-row"><div class="item-left module-item"><a class="fn" href="fn.x11_device_manager_lookup.html" title="gdk4_x11::x11_device_manager_lookup fn">x11_device_manager_lookup</a></div><div class="item-right docblock-short"><p>Returns the <a href="../gdk4/auto/device/struct.Device.html" title="crate::gdk::Device"><code>gdk::Device</code></a> that wraps the given device ID.</p>
+</div></div><div class="item-row"><div class="item-left module-item"><a class="fn" href="fn.x11_get_server_time.html" title="gdk4_x11::x11_get_server_time fn">x11_get_server_time</a></div><div class="item-right docblock-short"><p>Routine to get the current X server time stamp.</p>
+</div></div><div class="item-row"><div class="item-left module-item"><a class="fn" href="fn.x11_get_xatom_by_name_for_display.html" title="gdk4_x11::x11_get_xatom_by_name_for_display fn">x11_get_xatom_by_name_for_display</a></div><div class="item-right docblock-short"><p>Returns the X atom for a <a href="../gdk4/auto/display/struct.Display.html" title="crate::gdk::Display"><code>gdk::Display</code></a> corresponding to @atom_name.
+This function caches the result, so if called repeatedly it is much
+faster than XInternAtom(), which is a round trip to the server each time.</p>
+</div></div><div class="item-row"><div class="item-left module-item"><a class="fn" href="fn.x11_get_xatom_name_for_display.html" title="gdk4_x11::x11_get_xatom_name_for_display fn">x11_get_xatom_name_for_display</a></div><div class="item-right docblock-short"><p>Returns the name of an X atom for its display. This
+function is meant mainly for debugging, so for convenience, unlike
+XAtomName() and the result doesn’t need to
+be freed.</p>
+</div></div><div class="item-row"><div class="item-left module-item"><a class="fn" href="fn.x11_set_sm_client_id.html" title="gdk4_x11::x11_set_sm_client_id fn">x11_set_sm_client_id</a></div><div class="item-right docblock-short"><p>Sets the <code>SM_CLIENT_ID</code> property on the application’s leader window so that
+the window manager can save the application’s state using the X11R6 ICCCM
+session management protocol.</p>
+</div></div></div></section></div></main><div id="rustdoc-vars" data-root-path="../" data-current-crate="gdk4_x11" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.63.0-nightly (a6b8c6954 2022-06-03)" ></div>
+</body></html>

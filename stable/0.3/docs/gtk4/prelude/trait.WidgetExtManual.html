@@ -1,0 +1,103 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="API documentation for the Rust `WidgetExtManual` trait in crate `gtk4`."><meta name="keywords" content="rust, rustlang, rust-lang, WidgetExtManual"><title>WidgetExtManual in gtk4::prelude - Rust</title><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled ><script id="default-settings" ></script><script src="../../storage.js"></script><script src="../../crates.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"><style type="text/css">#crate-search{background-image:url("../../down-arrow.svg");}</style></head><body class="rustdoc trait"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
+
+    function checkDocsLatestStable() {
+        function popup(msg, url) { return `
+            <style scoped="scoped">
+                .popup {
+                    max-width: 16em;
+                    background-color: #fff;
+                    position: fixed;
+                    z-index: 1;
+                    margin-left: auto;
+                    bottom: 1em;
+                    right: 1em;
+                    border-radius: 5px;
+                    box-shadow: 1px 1px 4px #777;
+                }
+
+                .popup a.version {
+                    color: #e57300;
+                    padding: 0.6em 1em;
+                    display: block;
+                }
+                .popup a.version:hover {
+                    color: #b25900;
+                }
+
+                .popup a.close {
+                    color: white;
+                    background: grey;
+                    border-radius: 99px;
+                    display: inline-block;
+                    width: 19px;
+                    line-height: 19px;
+                    font-weight: bold;
+                    text-align: center;
+                    margin: 0.6em;
+                    float: right;
+                }
+                .popup a.close:hover {
+                    background: black;
+                }
+            </style>
+            <section class="popup" id="gir_docs_popup">
+                <a class="close" href="#" onclick="document.getElementById('gir_docs_popup').remove(); return false">×</a>
+                <a class="version" href="https://gtk-rs.org/gtk4-rs/stable/latest/docs">
+                    ⚠ ${msg}
+                </a>
+            </section>
+        ` };
+
+        if ("0.3" == "master") {
+            document.body.insertAdjacentHTML(
+                'beforeend',
+                popup("This is the development version. Go to latest stable version.", "stable/latest")
+            );
+        } else {
+            fetch('https://gtk-rs.org/gtk4-rs/LATEST_RELEASE_BRANCH')
+                .then(response => response.text())
+                .then(latest_branch => {
+                    if (latest_branch.trim() != "0.3") {
+                        document.body.insertAdjacentHTML(
+                            'beforeend',
+                            popup("This version is outdated. Go to latest version.", "stable/latest")
+                        );
+                    }
+                });
+        }
+    }
+</script>
+
+
+<nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../gtk4/index.html'><div class='logo-container rust-logo'><img src='../../rust-logo.png' alt='logo'></div></a><h2 class="location">Trait WidgetExtManual</h2><div class="sidebar-elems"><div class="block items"><h3 class="sidebar-title"><a href="#required-methods">Required Methods</a></h3><div class="sidebar-links"><a href="#tymethod.add_tick_callback">add_tick_callback</a></div><h3 class="sidebar-title"><a href="#implementors">Implementors</a></h3></div><h2 class="location">Other items in<br><a href="../index.html">gtk4</a>::<wbr><a href="index.html">prelude</a></h2><div id="sidebar-vars" data-name="WidgetExtManual" data-ty="trait" data-relpath=""></div><script defer src="sidebar-items.js"></script></div></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="18" height="18" alt="Pick another theme!" src="../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../settings.html" title="settings"><img width="18" height="18" alt="Change settings" src="../../wheel.svg"></a></div></form></nav><section id="main" class="content"><h1 class="fqn"><span class="in-band">Trait <a href="../index.html">gtk4</a>::<wbr><a href="index.html">prelude</a>::<wbr><a class="trait" href="#">WidgetExtManual</a><button id="copy-path" onclick="copy_path(this)" title="Copy item path to clipboard"><img src="../../clipboard.svg" width="19" height="18" alt="Copy item path"></button></span><span class="out-of-band"><span id="render-detail"><a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">[<span class="inner">&#x2212;</span>]</a></span><a class="srclink" href="../../src/gtk4/widget.rs.html#11-47" title="goto source code">[src]</a></span></h1><div class="docblock type-decl"><pre class="rust trait"><code>pub trait WidgetExtManual: 'static {
+    fn <a href="#tymethod.add_tick_callback" class="fnname">add_tick_callback</a>&lt;P:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>Self, &amp;<a class="struct" href="../../gdk4/auto/frame_clock/struct.FrameClock.html" title="struct gdk4::auto::frame_clock::FrameClock">FrameClock</a>) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.14/docs/glib/source/struct.Continue.html" title="struct glib::source::Continue">Continue</a> + 'static&gt;(<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;callback: P<br>&nbsp;&nbsp;&nbsp;&nbsp;) -&gt; <a class="struct" href="../struct.TickCallbackId.html" title="struct gtk4::TickCallbackId">TickCallbackId</a>;
+}</code></pre></div><h2 id="required-methods" class="small-section-header">Required methods<a href="#required-methods" class="anchor"></a></h2><div class="methods"><details class="rustdoc-toggle" open><summary><div id="tymethod.add_tick_callback" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/widget.rs.html#43-46" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.add_tick_callback" class="fnname">add_tick_callback</a>&lt;P:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>Self, &amp;<a class="struct" href="../../gdk4/auto/frame_clock/struct.FrameClock.html" title="struct gdk4::auto::frame_clock::FrameClock">FrameClock</a>) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.14/docs/glib/source/struct.Continue.html" title="struct glib::source::Continue">Continue</a> + 'static&gt;(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;callback: P<br>) -&gt; <a class="struct" href="../struct.TickCallbackId.html" title="struct gtk4::TickCallbackId">TickCallbackId</a></h4></div></summary><div class="docblock"><p>Queues an animation frame update and adds a callback to be called
+before each frame.</p>
+<p>Until the tick callback is removed, it will be called frequently
+(usually at the frame rate of the output device or as quickly as
+the application can be repainted, whichever is slower). For this
+reason, is most suitable for handling graphics that change every
+frame or every few frames. The tick callback does not automatically
+imply a relayout or repaint. If you want a repaint or relayout, and
+aren’t changing widget properties that would trigger that (for example,
+changing the text of a <a href="../struct.Label.html" title="crate::Label"><code>Label</code></a>), then you will have to call
+<a href="trait.WidgetExt.html#tymethod.queue_resize" title="crate::prelude::WidgetExt::queue_resize()"><code>WidgetExt::queue_resize()</code></a> or <a href="trait.WidgetExt.html#tymethod.queue_draw" title="crate::prelude::WidgetExt::queue_draw()"><code>WidgetExt::queue_draw()</code></a>
+yourself.</p>
+<p><a href="../../gdk4/auto/frame_clock/struct.FrameClock.html#method.frame_time" title="crate::gdk::FrameClock::frame_time()"><code>FrameClock::frame_time()</code></a> should generally be used
+for timing continuous animations and
+<code>Gdk::</code>FrameTimings::get_predicted_presentation_time()`` if you are
+trying to display isolated frames at particular times.</p>
+<p>This is a more convenient alternative to connecting directly to the
+<code>signal::gdk::FrameClock::update</code> signal of <a href="../../gdk4/auto/frame_clock/struct.FrameClock.html" title="crate::gdk::FrameClock"><code>gdk::FrameClock</code></a>, since you
+don’t have to worry about when a <a href="../../gdk4/auto/frame_clock/struct.FrameClock.html" title="crate::gdk::FrameClock"><code>gdk::FrameClock</code></a> is assigned to a widget.</p>
+<h6 id="callback" class="section-header"><a href="#callback"><code>callback</code></a></h6>
+<p>function to call for updating animations</p>
+<h5 id="returns" class="section-header"><a href="#returns">Returns</a></h5>
+<p>an id for the connection of this callback. Remove the callback
+by passing the id returned from this function to
+<code>Gtk::</code>Widget::remove_tick_callback()``</p>
+</div></details></div><h2 id="implementors" class="small-section-header">Implementors<a href="#implementors" class="anchor"></a></h2><div class="item-list" id="implementors-list"><div id="impl-WidgetExtManual" class="impl has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/widget.rs.html#49-95" title="goto source code">[src]</a></div><a href="#impl-WidgetExtManual" class="anchor"></a><h3 class="code-header in-band">impl&lt;O:&nbsp;<a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.14/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;&gt; <a class="trait" href="trait.WidgetExtManual.html" title="trait gtk4::prelude::WidgetExtManual">WidgetExtManual</a> for O</h3></div></div><script type="text/javascript" src="../../implementors/gtk4/prelude/trait.WidgetExtManual.js" async></script></section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../" data-current-crate="gtk4" data-search-index-js="../../search-index.js" data-search-js="../../search.js"></div>
+    <script src="../../main.js"></script>
+</body></html>

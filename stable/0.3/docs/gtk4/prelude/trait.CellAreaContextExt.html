@@ -1,0 +1,218 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Trait containing all [`struct@CellAreaContext`] methods."><meta name="keywords" content="rust, rustlang, rust-lang, CellAreaContextExt"><title>CellAreaContextExt in gtk4::prelude - Rust</title><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled ><script id="default-settings" ></script><script src="../../storage.js"></script><script src="../../crates.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"><style type="text/css">#crate-search{background-image:url("../../down-arrow.svg");}</style></head><body class="rustdoc trait"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
+
+    function checkDocsLatestStable() {
+        function popup(msg, url) { return `
+            <style scoped="scoped">
+                .popup {
+                    max-width: 16em;
+                    background-color: #fff;
+                    position: fixed;
+                    z-index: 1;
+                    margin-left: auto;
+                    bottom: 1em;
+                    right: 1em;
+                    border-radius: 5px;
+                    box-shadow: 1px 1px 4px #777;
+                }
+
+                .popup a.version {
+                    color: #e57300;
+                    padding: 0.6em 1em;
+                    display: block;
+                }
+                .popup a.version:hover {
+                    color: #b25900;
+                }
+
+                .popup a.close {
+                    color: white;
+                    background: grey;
+                    border-radius: 99px;
+                    display: inline-block;
+                    width: 19px;
+                    line-height: 19px;
+                    font-weight: bold;
+                    text-align: center;
+                    margin: 0.6em;
+                    float: right;
+                }
+                .popup a.close:hover {
+                    background: black;
+                }
+            </style>
+            <section class="popup" id="gir_docs_popup">
+                <a class="close" href="#" onclick="document.getElementById('gir_docs_popup').remove(); return false">×</a>
+                <a class="version" href="https://gtk-rs.org/gtk4-rs/stable/latest/docs">
+                    ⚠ ${msg}
+                </a>
+            </section>
+        ` };
+
+        if ("0.3" == "master") {
+            document.body.insertAdjacentHTML(
+                'beforeend',
+                popup("This is the development version. Go to latest stable version.", "stable/latest")
+            );
+        } else {
+            fetch('https://gtk-rs.org/gtk4-rs/LATEST_RELEASE_BRANCH')
+                .then(response => response.text())
+                .then(latest_branch => {
+                    if (latest_branch.trim() != "0.3") {
+                        document.body.insertAdjacentHTML(
+                            'beforeend',
+                            popup("This version is outdated. Go to latest version.", "stable/latest")
+                        );
+                    }
+                });
+        }
+    }
+</script>
+
+
+<nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../gtk4/index.html'><div class='logo-container rust-logo'><img src='../../rust-logo.png' alt='logo'></div></a><h2 class="location">Trait CellAreaContextExt</h2><div class="sidebar-elems"><div class="block items"><h3 class="sidebar-title"><a href="#required-methods">Required Methods</a></h3><div class="sidebar-links"><a href="#tymethod.allocate">allocate</a><a href="#tymethod.allocation">allocation</a><a href="#tymethod.area">area</a><a href="#tymethod.connect_minimum_height_notify">connect_minimum_height_notify</a><a href="#tymethod.connect_minimum_width_notify">connect_minimum_width_notify</a><a href="#tymethod.connect_natural_height_notify">connect_natural_height_notify</a><a href="#tymethod.connect_natural_width_notify">connect_natural_width_notify</a><a href="#tymethod.minimum_height">minimum_height</a><a href="#tymethod.minimum_width">minimum_width</a><a href="#tymethod.natural_height">natural_height</a><a href="#tymethod.natural_width">natural_width</a><a href="#tymethod.preferred_height">preferred_height</a><a href="#tymethod.preferred_height_for_width">preferred_height_for_width</a><a href="#tymethod.preferred_width">preferred_width</a><a href="#tymethod.preferred_width_for_height">preferred_width_for_height</a><a href="#tymethod.push_preferred_height">push_preferred_height</a><a href="#tymethod.push_preferred_width">push_preferred_width</a><a href="#tymethod.reset">reset</a></div><h3 class="sidebar-title"><a href="#implementors">Implementors</a></h3></div><h2 class="location">Other items in<br><a href="../index.html">gtk4</a>::<wbr><a href="index.html">prelude</a></h2><div id="sidebar-vars" data-name="CellAreaContextExt" data-ty="trait" data-relpath=""></div><script defer src="sidebar-items.js"></script></div></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="18" height="18" alt="Pick another theme!" src="../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../settings.html" title="settings"><img width="18" height="18" alt="Change settings" src="../../wheel.svg"></a></div></form></nav><section id="main" class="content"><h1 class="fqn"><span class="in-band">Trait <a href="../index.html">gtk4</a>::<wbr><a href="index.html">prelude</a>::<wbr><a class="trait" href="#">CellAreaContextExt</a><button id="copy-path" onclick="copy_path(this)" title="Copy item path to clipboard"><img src="../../clipboard.svg" width="19" height="18" alt="Copy item path"></button></span><span class="out-of-band"><span id="render-detail"><a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">[<span class="inner">&#x2212;</span>]</a></span><a class="srclink" href="../../src/gtk4/auto/cell_area_context.rs.html#49-269" title="goto source code">[src]</a></span></h1><div class="docblock type-decl"><pre class="rust trait"><code>pub trait CellAreaContextExt: 'static {
+<details class="rustdoc-toggle type-contents-toggle"><summary class="hideme"><span>Show 18 methods</span></summary>    fn <a href="#tymethod.allocate" class="fnname">allocate</a>(&amp;self, width: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, height: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>);
+<div class="item-spacer"></div>    fn <a href="#tymethod.allocation" class="fnname">allocation</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.tuple.html">(</a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.tuple.html">)</a>;
+<div class="item-spacer"></div>    fn <a href="#tymethod.area" class="fnname">area</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../struct.CellArea.html" title="struct gtk4::CellArea">CellArea</a>&gt;;
+<div class="item-spacer"></div>    fn <a href="#tymethod.preferred_height" class="fnname">preferred_height</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.tuple.html">(</a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.tuple.html">)</a>;
+<div class="item-spacer"></div>    fn <a href="#tymethod.preferred_height_for_width" class="fnname">preferred_height_for_width</a>(&amp;self, width: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.tuple.html">(</a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.tuple.html">)</a>;
+<div class="item-spacer"></div>    fn <a href="#tymethod.preferred_width" class="fnname">preferred_width</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.tuple.html">(</a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.tuple.html">)</a>;
+<div class="item-spacer"></div>    fn <a href="#tymethod.preferred_width_for_height" class="fnname">preferred_width_for_height</a>(&amp;self, height: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.tuple.html">(</a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.tuple.html">)</a>;
+<div class="item-spacer"></div>    fn <a href="#tymethod.push_preferred_height" class="fnname">push_preferred_height</a>(&amp;self, minimum_height: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, natural_height: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>);
+<div class="item-spacer"></div>    fn <a href="#tymethod.push_preferred_width" class="fnname">push_preferred_width</a>(&amp;self, minimum_width: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, natural_width: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>);
+<div class="item-spacer"></div>    fn <a href="#tymethod.reset" class="fnname">reset</a>(&amp;self);
+<div class="item-spacer"></div>    fn <a href="#tymethod.minimum_height" class="fnname">minimum_height</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>;
+<div class="item-spacer"></div>    fn <a href="#tymethod.minimum_width" class="fnname">minimum_width</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>;
+<div class="item-spacer"></div>    fn <a href="#tymethod.natural_height" class="fnname">natural_height</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>;
+<div class="item-spacer"></div>    fn <a href="#tymethod.natural_width" class="fnname">natural_width</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>;
+<div class="item-spacer"></div>    fn <a href="#tymethod.connect_minimum_height_notify" class="fnname">connect_minimum_height_notify</a>&lt;F:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>Self) + 'static&gt;(<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;f: F<br>&nbsp;&nbsp;&nbsp;&nbsp;) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.14/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a>;
+<div class="item-spacer"></div>    fn <a href="#tymethod.connect_minimum_width_notify" class="fnname">connect_minimum_width_notify</a>&lt;F:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>Self) + 'static&gt;(<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;f: F<br>&nbsp;&nbsp;&nbsp;&nbsp;) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.14/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a>;
+<div class="item-spacer"></div>    fn <a href="#tymethod.connect_natural_height_notify" class="fnname">connect_natural_height_notify</a>&lt;F:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>Self) + 'static&gt;(<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;f: F<br>&nbsp;&nbsp;&nbsp;&nbsp;) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.14/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a>;
+<div class="item-spacer"></div>    fn <a href="#tymethod.connect_natural_width_notify" class="fnname">connect_natural_width_notify</a>&lt;F:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>Self) + 'static&gt;(<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;f: F<br>&nbsp;&nbsp;&nbsp;&nbsp;) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.14/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a>;
+</details>}</code></pre></div><details class="rustdoc-toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>Trait containing all <a href="../struct.CellAreaContext.html" title="CellAreaContext"><code>CellAreaContext</code></a> methods.</p>
+<h2 id="implementors-1" class="section-header"><a href="#implementors-1">Implementors</a></h2>
+<p><a href="../struct.CellAreaContext.html" title="crate::CellAreaContext"><code>CellAreaContext</code></a></p>
+</div></details><h2 id="required-methods" class="small-section-header">Required methods<a href="#required-methods" class="anchor"></a></h2><div class="methods"><details class="rustdoc-toggle" open><summary><div id="tymethod.allocate" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/cell_area_context.rs.html#67" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.allocate" class="fnname">allocate</a>(&amp;self, width: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, height: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>)</h4></div></summary><div class="docblock"><p>Allocates a width and/or a height for all rows which are to be
+rendered with <code>self</code>.</p>
+<p>Usually allocation is performed only horizontally or sometimes
+vertically since a group of rows are usually rendered side by
+side vertically or horizontally and share either the same width
+or the same height. Sometimes they are allocated in both horizontal
+and vertical orientations producing a homogeneous effect of the
+rows. This is generally the case for <a href="../struct.TreeView.html" title="crate::TreeView"><code>TreeView</code></a> when
+<code>GtkTreeView:fixed-height-mode</code> is enabled.</p>
+<h6 id="width" class="section-header"><a href="#width"><code>width</code></a></h6>
+<p>the allocated width for all <a href="../struct.TreeModel.html" title="crate::TreeModel"><code>TreeModel</code></a> rows rendered
+with <code>self</code>, or -1</p>
+<h6 id="height" class="section-header"><a href="#height"><code>height</code></a></h6>
+<p>the allocated height for all <a href="../struct.TreeModel.html" title="crate::TreeModel"><code>TreeModel</code></a> rows rendered
+with <code>self</code>, or -1</p>
+</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.allocation" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/cell_area_context.rs.html#85" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.allocation" class="fnname">allocation</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.tuple.html">(</a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.tuple.html">)</a></h4></div></summary><div class="docblock"><p>Fetches the current allocation size for <code>self</code>.</p>
+<p>If the context was not allocated in width or height, or if the
+context was recently reset with <a href="trait.CellAreaContextExt.html#tymethod.reset" title="Self::reset()"><code>reset()</code></a>,
+the returned value will be -1.</p>
+<h5 id="returns" class="section-header"><a href="#returns">Returns</a></h5><h6 id="width-1" class="section-header"><a href="#width-1"><code>width</code></a></h6>
+<p>location to store the allocated width</p>
+<h6 id="height-1" class="section-header"><a href="#height-1"><code>height</code></a></h6>
+<p>location to store the allocated height</p>
+</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.area" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/cell_area_context.rs.html#103" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.area" class="fnname">area</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../struct.CellArea.html" title="struct gtk4::CellArea">CellArea</a>&gt;</h4></div></summary><div class="docblock"><p>Fetches the <a href="../struct.CellArea.html" title="crate::CellArea"><code>CellArea</code></a> this <code>self</code> was created by.</p>
+<p>This is generally unneeded by layouting widgets; however,
+it is important for the context implementation itself to
+fetch information about the area it is being used for.</p>
+<p>For instance at <code>GtkCellAreaContextClass.allocate()</code> time
+it’s important to know details about any cell spacing
+that the <a href="../struct.CellArea.html" title="crate::CellArea"><code>CellArea</code></a> is configured with in order to
+compute a proper allocation.</p>
+<h5 id="returns-1" class="section-header"><a href="#returns-1">Returns</a></h5>
+<p>the <a href="../struct.CellArea.html" title="crate::CellArea"><code>CellArea</code></a> this context was created by.</p>
+</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.preferred_height" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/cell_area_context.rs.html#121" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.preferred_height" class="fnname">preferred_height</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.tuple.html">(</a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.tuple.html">)</a></h4></div></summary><div class="docblock"><p>Gets the accumulative preferred height for all rows which have been
+requested with this context.</p>
+<p>After <a href="trait.CellAreaContextExt.html#tymethod.reset" title="Self::reset()"><code>reset()</code></a> is called and/or before ever
+requesting the size of a <a href="../struct.CellArea.html" title="crate::CellArea"><code>CellArea</code></a>, the returned values are 0.</p>
+<h5 id="returns-2" class="section-header"><a href="#returns-2">Returns</a></h5><h6 id="minimum_height" class="section-header"><a href="#minimum_height"><code>minimum_height</code></a></h6>
+<p>location to store the minimum height</p>
+<h6 id="natural_height" class="section-header"><a href="#natural_height"><code>natural_height</code></a></h6>
+<p>location to store the natural height</p>
+</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.preferred_height_for_width" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/cell_area_context.rs.html#141" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.preferred_height_for_width" class="fnname">preferred_height_for_width</a>(&amp;self, width: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.tuple.html">(</a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.tuple.html">)</a></h4></div></summary><div class="docblock"><p>Gets the accumulative preferred height for <code>width</code> for all rows
+which have been requested for the same said <code>width</code> with this context.</p>
+<p>After <a href="trait.CellAreaContextExt.html#tymethod.reset" title="Self::reset()"><code>reset()</code></a> is called and/or before ever
+requesting the size of a <a href="../struct.CellArea.html" title="crate::CellArea"><code>CellArea</code></a>, the returned values are -1.</p>
+<h6 id="width-2" class="section-header"><a href="#width-2"><code>width</code></a></h6>
+<p>a proposed width for allocation</p>
+<h5 id="returns-3" class="section-header"><a href="#returns-3">Returns</a></h5><h6 id="minimum_height-1" class="section-header"><a href="#minimum_height-1"><code>minimum_height</code></a></h6>
+<p>location to store the minimum height</p>
+<h6 id="natural_height-1" class="section-header"><a href="#natural_height-1"><code>natural_height</code></a></h6>
+<p>location to store the natural height</p>
+</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.preferred_width" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/cell_area_context.rs.html#159" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.preferred_width" class="fnname">preferred_width</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.tuple.html">(</a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.tuple.html">)</a></h4></div></summary><div class="docblock"><p>Gets the accumulative preferred width for all rows which have been
+requested with this context.</p>
+<p>After <a href="trait.CellAreaContextExt.html#tymethod.reset" title="Self::reset()"><code>reset()</code></a> is called and/or before ever
+requesting the size of a <a href="../struct.CellArea.html" title="crate::CellArea"><code>CellArea</code></a>, the returned values are 0.</p>
+<h5 id="returns-4" class="section-header"><a href="#returns-4">Returns</a></h5><h6 id="minimum_width" class="section-header"><a href="#minimum_width"><code>minimum_width</code></a></h6>
+<p>location to store the minimum width</p>
+<h6 id="natural_width" class="section-header"><a href="#natural_width"><code>natural_width</code></a></h6>
+<p>location to store the natural width</p>
+</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.preferred_width_for_height" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/cell_area_context.rs.html#179" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.preferred_width_for_height" class="fnname">preferred_width_for_height</a>(&amp;self, height: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.tuple.html">(</a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.tuple.html">)</a></h4></div></summary><div class="docblock"><p>Gets the accumulative preferred width for <code>height</code> for all rows which
+have been requested for the same said <code>height</code> with this context.</p>
+<p>After <a href="trait.CellAreaContextExt.html#tymethod.reset" title="Self::reset()"><code>reset()</code></a> is called and/or before ever
+requesting the size of a <a href="../struct.CellArea.html" title="crate::CellArea"><code>CellArea</code></a>, the returned values are -1.</p>
+<h6 id="height-2" class="section-header"><a href="#height-2"><code>height</code></a></h6>
+<p>a proposed height for allocation</p>
+<h5 id="returns-5" class="section-header"><a href="#returns-5">Returns</a></h5><h6 id="minimum_width-1" class="section-header"><a href="#minimum_width-1"><code>minimum_width</code></a></h6>
+<p>location to store the minimum width</p>
+<h6 id="natural_width-1" class="section-header"><a href="#natural_width-1"><code>natural_width</code></a></h6>
+<p>location to store the natural width</p>
+</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.push_preferred_height" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/cell_area_context.rs.html#193" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.push_preferred_height" class="fnname">push_preferred_height</a>(&amp;self, minimum_height: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, natural_height: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>)</h4></div></summary><div class="docblock"><p>Causes the minimum and/or natural height to grow if the new
+proposed sizes exceed the current minimum and natural height.</p>
+<p>This is used by <a href="../struct.CellAreaContext.html" title="crate::CellAreaContext"><code>CellAreaContext</code></a> implementations during
+the request process over a series of <a href="../struct.TreeModel.html" title="crate::TreeModel"><code>TreeModel</code></a> rows to
+progressively push the requested height over a series of
+<a href="trait.CellAreaExt.html#tymethod.preferred_height" title="crate::prelude::CellAreaExt::preferred_height()"><code>CellAreaExt::preferred_height()</code></a> requests.</p>
+<h6 id="minimum_height-2" class="section-header"><a href="#minimum_height-2"><code>minimum_height</code></a></h6>
+<p>the proposed new minimum height for <code>self</code></p>
+<h6 id="natural_height-2" class="section-header"><a href="#natural_height-2"><code>natural_height</code></a></h6>
+<p>the proposed new natural height for <code>self</code></p>
+</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.push_preferred_width" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/cell_area_context.rs.html#207" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.push_preferred_width" class="fnname">push_preferred_width</a>(&amp;self, minimum_width: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, natural_width: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>)</h4></div></summary><div class="docblock"><p>Causes the minimum and/or natural width to grow if the new
+proposed sizes exceed the current minimum and natural width.</p>
+<p>This is used by <a href="../struct.CellAreaContext.html" title="crate::CellAreaContext"><code>CellAreaContext</code></a> implementations during
+the request process over a series of <a href="../struct.TreeModel.html" title="crate::TreeModel"><code>TreeModel</code></a> rows to
+progressively push the requested width over a series of
+<a href="trait.CellAreaExt.html#tymethod.preferred_width" title="crate::prelude::CellAreaExt::preferred_width()"><code>CellAreaExt::preferred_width()</code></a> requests.</p>
+<h6 id="minimum_width-2" class="section-header"><a href="#minimum_width-2"><code>minimum_width</code></a></h6>
+<p>the proposed new minimum width for <code>self</code></p>
+<h6 id="natural_width-2" class="section-header"><a href="#natural_width-2"><code>natural_width</code></a></h6>
+<p>the proposed new natural width for <code>self</code></p>
+</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.reset" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/cell_area_context.rs.html#232" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.reset" class="fnname">reset</a>(&amp;self)</h4></div></summary><div class="docblock"><p>Resets any previously cached request and allocation
+data.</p>
+<p>When underlying <a href="../struct.TreeModel.html" title="crate::TreeModel"><code>TreeModel</code></a> data changes its
+important to reset the context if the content
+size is allowed to shrink. If the content size
+is only allowed to grow (this is usually an option
+for views rendering large data stores as a measure
+of optimization), then only the row that changed
+or was inserted needs to be (re)requested with
+<a href="trait.CellAreaExt.html#tymethod.preferred_width" title="crate::prelude::CellAreaExt::preferred_width()"><code>CellAreaExt::preferred_width()</code></a>.</p>
+<p>When the new overall size of the context requires
+that the allocated size changes (or whenever this
+allocation changes at all), the variable row
+sizes need to be re-requested for every row.</p>
+<p>For instance, if the rows are displayed all with
+the same width from top to bottom then a change
+in the allocated width necessitates a recalculation
+of all the displayed row heights using
+<a href="trait.CellAreaExt.html#tymethod.preferred_height_for_width" title="crate::prelude::CellAreaExt::preferred_height_for_width()"><code>CellAreaExt::preferred_height_for_width()</code></a>.</p>
+</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.minimum_height" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/cell_area_context.rs.html#238" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.minimum_height" class="fnname">minimum_height</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a></h4></div></summary><div class="docblock"><p>The minimum height for the <a href="../struct.CellArea.html" title="crate::CellArea"><code>CellArea</code></a> in this context
+for all <a href="../struct.TreeModel.html" title="crate::TreeModel"><code>TreeModel</code></a> rows that this context was requested
+for using <a href="trait.CellAreaExt.html#tymethod.preferred_height" title="crate::prelude::CellAreaExt::preferred_height()"><code>CellAreaExt::preferred_height()</code></a>.</p>
+</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.minimum_width" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/cell_area_context.rs.html#244" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.minimum_width" class="fnname">minimum_width</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a></h4></div></summary><div class="docblock"><p>The minimum width for the <a href="../struct.CellArea.html" title="crate::CellArea"><code>CellArea</code></a> in this context
+for all <a href="../struct.TreeModel.html" title="crate::TreeModel"><code>TreeModel</code></a> rows that this context was requested
+for using <a href="trait.CellAreaExt.html#tymethod.preferred_width" title="crate::prelude::CellAreaExt::preferred_width()"><code>CellAreaExt::preferred_width()</code></a>.</p>
+</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.natural_height" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/cell_area_context.rs.html#250" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.natural_height" class="fnname">natural_height</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a></h4></div></summary><div class="docblock"><p>The natural height for the <a href="../struct.CellArea.html" title="crate::CellArea"><code>CellArea</code></a> in this context
+for all <a href="../struct.TreeModel.html" title="crate::TreeModel"><code>TreeModel</code></a> rows that this context was requested
+for using <a href="trait.CellAreaExt.html#tymethod.preferred_height" title="crate::prelude::CellAreaExt::preferred_height()"><code>CellAreaExt::preferred_height()</code></a>.</p>
+</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.natural_width" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/cell_area_context.rs.html#256" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.natural_width" class="fnname">natural_width</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a></h4></div></summary><div class="docblock"><p>The natural width for the <a href="../struct.CellArea.html" title="crate::CellArea"><code>CellArea</code></a> in this context
+for all <a href="../struct.TreeModel.html" title="crate::TreeModel"><code>TreeModel</code></a> rows that this context was requested
+for using <a href="trait.CellAreaExt.html#tymethod.preferred_width" title="crate::prelude::CellAreaExt::preferred_width()"><code>CellAreaExt::preferred_width()</code></a>.</p>
+</div></details><div id="tymethod.connect_minimum_height_notify" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/cell_area_context.rs.html#259" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.connect_minimum_height_notify" class="fnname">connect_minimum_height_notify</a>&lt;F:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>Self) + 'static&gt;(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;f: F<br>) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.14/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></div><div id="tymethod.connect_minimum_width_notify" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/cell_area_context.rs.html#262" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.connect_minimum_width_notify" class="fnname">connect_minimum_width_notify</a>&lt;F:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>Self) + 'static&gt;(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;f: F<br>) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.14/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></div><div id="tymethod.connect_natural_height_notify" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/cell_area_context.rs.html#265" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.connect_natural_height_notify" class="fnname">connect_natural_height_notify</a>&lt;F:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>Self) + 'static&gt;(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;f: F<br>) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.14/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></div><div id="tymethod.connect_natural_width_notify" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/cell_area_context.rs.html#268" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.connect_natural_width_notify" class="fnname">connect_natural_width_notify</a>&lt;F:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>Self) + 'static&gt;(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;f: F<br>) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.14/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></div></div><h2 id="implementors" class="small-section-header">Implementors<a href="#implementors" class="anchor"></a></h2><div class="item-list" id="implementors-list"><div id="impl-CellAreaContextExt" class="impl has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/cell_area_context.rs.html#271-544" title="goto source code">[src]</a></div><a href="#impl-CellAreaContextExt" class="anchor"></a><h3 class="code-header in-band">impl&lt;O:&nbsp;<a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.14/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.CellAreaContext.html" title="struct gtk4::CellAreaContext">CellAreaContext</a>&gt;&gt; <a class="trait" href="trait.CellAreaContextExt.html" title="trait gtk4::prelude::CellAreaContextExt">CellAreaContextExt</a> for O</h3></div></div><script type="text/javascript" src="../../implementors/gtk4/prelude/trait.CellAreaContextExt.js" async></script></section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../" data-current-crate="gtk4" data-search-index-js="../../search-index.js" data-search-js="../../search.js"></div>
+    <script src="../../main.js"></script>
+</body></html>

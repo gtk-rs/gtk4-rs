@@ -1,0 +1,178 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Trait containing all [`struct@Scale`] methods."><meta name="keywords" content="rust, rustlang, rust-lang, ScaleExt"><title>ScaleExt in gtk4::prelude - Rust</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-1f7d512b176f0f72.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Bold-124a1ca42af929b6.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-34efc64c5083af8d.css" id="mainThemeStyle"><link rel="stylesheet" id="themeStyle" href="../../static.files/light-4743e13df3dfe8c4.css"><link rel="stylesheet" disabled href="../../static.files/dark-0e1b889528bd466b.css"><link rel="stylesheet" disabled href="../../static.files/ayu-65289d5d067c7c66.css"><script id="default-settings" ></script><script src="../../static.files/storage-d43fa987303ecbbb.js"></script><script defer src="sidebar-items.js"></script><script defer src="../../static.files/main-4a084badb5778746.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-13285aec31fa243e.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc trait"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
+
+    function checkDocsLatestStable() {
+        function popup(msg, url) { return `
+            <style scoped="scoped">
+                .popup {
+                    max-width: 16em;
+                    background-color: #fff;
+                    position: fixed;
+                    z-index: 1;
+                    margin-left: auto;
+                    bottom: 1em;
+                    right: 1em;
+                    border-radius: 5px;
+                    box-shadow: 1px 1px 4px #777;
+                }
+
+                .popup a.version {
+                    color: #e57300;
+                    padding: 0.6em 1em;
+                    display: block;
+                }
+                .popup a.version:hover {
+                    color: #b25900;
+                }
+
+                .popup a.close {
+                    color: white;
+                    background: grey;
+                    border-radius: 99px;
+                    display: inline-block;
+                    width: 19px;
+                    line-height: 19px;
+                    font-weight: bold;
+                    text-align: center;
+                    margin: 0.6em;
+                    float: right;
+                }
+                .popup a.close:hover {
+                    background: black;
+                }
+            </style>
+            <section class="popup" id="gir_docs_popup">
+                <a class="close" href="#" onclick="document.getElementById('gir_docs_popup').remove(); return false">×</a>
+                <a class="version" href="https://gtk-rs.org/gtk4-rs/stable/latest/docs">
+                    ⚠ ${msg}
+                </a>
+            </section>
+        ` };
+
+        if ("0.5" == "master") {
+            document.body.insertAdjacentHTML(
+                'beforeend',
+                popup("This is the development version. Go to latest stable version.", "stable/latest")
+            );
+        } else {
+            fetch('https://gtk-rs.org/gtk4-rs/LATEST_RELEASE_BRANCH')
+                .then(response => response.text())
+                .then(latest_branch => {
+                    if (latest_branch.trim() != "0.5") {
+                        document.body.insertAdjacentHTML(
+                            'beforeend',
+                            popup("This version is outdated. Go to latest version.", "stable/latest")
+                        );
+                    }
+                });
+        }
+    }
+</script>
+
+
+<nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../gtk4/index.html"><div class="logo-container"><img class="rust-logo" src="../../static.files/rust-logo-151179464ae7ed46.svg" alt="logo"></div></a><h2></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../gtk4/index.html"><div class="logo-container"><img class="rust-logo" src="../../static.files/rust-logo-151179464ae7ed46.svg" alt="logo"></div></a><h2 class="location"><a href="#">ScaleExt</a></h2><div class="sidebar-elems"><section><h3><a href="#required-methods">Required Methods</a></h3><ul class="block"><li><a href="#tymethod.add_mark">add_mark</a></li><li><a href="#tymethod.clear_marks">clear_marks</a></li><li><a href="#tymethod.connect_digits_notify">connect_digits_notify</a></li><li><a href="#tymethod.connect_draw_value_notify">connect_draw_value_notify</a></li><li><a href="#tymethod.connect_has_origin_notify">connect_has_origin_notify</a></li><li><a href="#tymethod.connect_value_pos_notify">connect_value_pos_notify</a></li><li><a href="#tymethod.digits">digits</a></li><li><a href="#tymethod.draws_value">draws_value</a></li><li><a href="#tymethod.has_origin">has_origin</a></li><li><a href="#tymethod.layout">layout</a></li><li><a href="#tymethod.layout_offsets">layout_offsets</a></li><li><a href="#tymethod.set_digits">set_digits</a></li><li><a href="#tymethod.set_draw_value">set_draw_value</a></li><li><a href="#tymethod.set_format_value_func">set_format_value_func</a></li><li><a href="#tymethod.set_has_origin">set_has_origin</a></li><li><a href="#tymethod.set_value_pos">set_value_pos</a></li><li><a href="#tymethod.value_pos">value_pos</a></li></ul><h3><a href="#implementors">Implementors</a></h3></section><h2><a href="index.html">In gtk4::prelude</a></h2></div></nav><main><div class="width-limiter"><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-5ec35bf9ca753509.svg"></a></div></form></nav><section id="main-content" class="content"><div class="main-heading"><h1 class="fqn">Trait <a href="../index.html">gtk4</a>::<wbr><a href="index.html">prelude</a>::<wbr><a class="trait" href="#">ScaleExt</a><button id="copy-path" onclick="copy_path(this)" title="Copy item path to clipboard"><img src="../../static.files/clipboard-7571035ce49a181d.svg" width="19" height="18" alt="Copy item path"></button></h1><span class="out-of-band"><a class="srclink" href="../../src/gtk4/auto/scale.rs.html#732-898">source</a> · <button id="toggle-all-docs" title="collapse all docs">[<span>&#x2212;</span>]</button></span></div><div class="item-decl"><pre class="rust trait"><code>pub trait ScaleExt: 'static {
+<details class="rustdoc-toggle type-contents-toggle"><summary class="hideme"><span>Show 17 methods</span></summary>    fn <a href="#tymethod.add_mark" class="fn">add_mark</a>(&amp;self, value: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>, position: <a class="enum" href="../enum.PositionType.html" title="enum gtk4::PositionType">PositionType</a>, markup: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>&gt;);
+<span class="item-spacer"></span>    fn <a href="#tymethod.clear_marks" class="fn">clear_marks</a>(&amp;self);
+<span class="item-spacer"></span>    fn <a href="#tymethod.digits" class="fn">digits</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>;
+<span class="item-spacer"></span>    fn <a href="#tymethod.draws_value" class="fn">draws_value</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>;
+<span class="item-spacer"></span>    fn <a href="#tymethod.has_origin" class="fn">has_origin</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>;
+<span class="item-spacer"></span>    fn <a href="#tymethod.layout" class="fn">layout</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.16/docs/pango/auto/layout/struct.Layout.html" title="struct pango::auto::layout::Layout">Layout</a>&gt;;
+<span class="item-spacer"></span>    fn <a href="#tymethod.layout_offsets" class="fn">layout_offsets</a>(&amp;self) -&gt; (<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>);
+<span class="item-spacer"></span>    fn <a href="#tymethod.value_pos" class="fn">value_pos</a>(&amp;self) -&gt; <a class="enum" href="../enum.PositionType.html" title="enum gtk4::PositionType">PositionType</a>;
+<span class="item-spacer"></span>    fn <a href="#tymethod.set_digits" class="fn">set_digits</a>(&amp;self, digits: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>);
+<span class="item-spacer"></span>    fn <a href="#tymethod.set_draw_value" class="fn">set_draw_value</a>(&amp;self, draw_value: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>);
+<span class="item-spacer"></span>    fn <a href="#tymethod.set_format_value_func" class="fn">set_format_value_func</a>&lt;P:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;<a class="struct" href="../struct.Scale.html" title="struct gtk4::Scale">Scale</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>) -&gt; <a class="struct" href="https://doc.rust-lang.org/nightly/alloc/string/struct.String.html" title="struct alloc::string::String">String</a> + 'static&gt;(<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;self,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;func: P<br>&nbsp;&nbsp;&nbsp;&nbsp;);
+<span class="item-spacer"></span>    fn <a href="#tymethod.set_has_origin" class="fn">set_has_origin</a>(&amp;self, has_origin: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>);
+<span class="item-spacer"></span>    fn <a href="#tymethod.set_value_pos" class="fn">set_value_pos</a>(&amp;self, pos: <a class="enum" href="../enum.PositionType.html" title="enum gtk4::PositionType">PositionType</a>);
+<span class="item-spacer"></span>    fn <a href="#tymethod.connect_digits_notify" class="fn">connect_digits_notify</a>&lt;F:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>Self) + 'static&gt;(<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;self,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;f: F<br>&nbsp;&nbsp;&nbsp;&nbsp;) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.16/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a>;
+<span class="item-spacer"></span>    fn <a href="#tymethod.connect_draw_value_notify" class="fn">connect_draw_value_notify</a>&lt;F:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>Self) + 'static&gt;(<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;self,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;f: F<br>&nbsp;&nbsp;&nbsp;&nbsp;) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.16/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a>;
+<span class="item-spacer"></span>    fn <a href="#tymethod.connect_has_origin_notify" class="fn">connect_has_origin_notify</a>&lt;F:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>Self) + 'static&gt;(<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;self,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;f: F<br>&nbsp;&nbsp;&nbsp;&nbsp;) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.16/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a>;
+<span class="item-spacer"></span>    fn <a href="#tymethod.connect_value_pos_notify" class="fn">connect_value_pos_notify</a>&lt;F:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>Self) + 'static&gt;(<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;self,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;f: F<br>&nbsp;&nbsp;&nbsp;&nbsp;) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.16/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a>;
+</details>}</code></pre></div><details class="rustdoc-toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>Trait containing all <a href="../struct.Scale.html" title="Scale"><code>Scale</code></a> methods.</p>
+<h2 id="implementors-1"><a href="#implementors-1">Implementors</a></h2>
+<p><a href="../struct.Scale.html" title="crate::Scale"><code>Scale</code></a></p>
+</div></details><h2 id="required-methods" class="small-section-header">Required Methods<a href="#required-methods" class="anchor">§</a></h2><div class="methods"><details class="rustdoc-toggle method-toggle" open><summary><section id="tymethod.add_mark" class="method has-srclink"><a class="srclink rightside" href="../../src/gtk4/auto/scale.rs.html#753">source</a><h4 class="code-header">fn <a href="#tymethod.add_mark" class="fn">add_mark</a>(&amp;self, value: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>, position: <a class="enum" href="../enum.PositionType.html" title="enum gtk4::PositionType">PositionType</a>, markup: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>&gt;)</h4></section></summary><div class="docblock"><p>Adds a mark at @value.</p>
+<p>A mark is indicated visually by drawing a tick mark next to the scale,
+and GTK makes it easy for the user to position the scale exactly at the
+marks value.</p>
+<p>If @markup is not <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a>, text is shown next to the tick mark.</p>
+<p>To remove marks from a scale, use <a href="trait.ScaleExt.html#tymethod.clear_marks" title="Self::clear_marks()"><code>clear_marks()</code></a>.</p>
+<h6 id="value"><a href="#value"><code>value</code></a></h6>
+<p>the value at which the mark is placed, must be between
+the lower and upper limits of the scales’ adjustment</p>
+<h6 id="position"><a href="#position"><code>position</code></a></h6>
+<p>where to draw the mark. For a horizontal scale, <a href="../enum.PositionType.html#variant.Top" title="crate::PositionType::Top"><code>PositionType::Top</code></a>
+and <a href="../enum.PositionType.html#variant.Left" title="crate::PositionType::Left"><code>PositionType::Left</code></a> are drawn above the scale, anything else below.
+For a vertical scale, <a href="../enum.PositionType.html#variant.Left" title="crate::PositionType::Left"><code>PositionType::Left</code></a> and <a href="../enum.PositionType.html#variant.Top" title="crate::PositionType::Top"><code>PositionType::Top</code></a> are drawn to
+the left of the scale, anything else to the right.</p>
+<h6 id="markup"><a href="#markup"><code>markup</code></a></h6>
+<p>Text to be shown at the mark, using Pango markup</p>
+</div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="tymethod.clear_marks" class="method has-srclink"><a class="srclink rightside" href="../../src/gtk4/auto/scale.rs.html#757">source</a><h4 class="code-header">fn <a href="#tymethod.clear_marks" class="fn">clear_marks</a>(&amp;self)</h4></section></summary><div class="docblock"><p>Removes any marks that have been added.</p>
+</div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="tymethod.digits" class="method has-srclink"><a class="srclink rightside" href="../../src/gtk4/auto/scale.rs.html#766">source</a><h4 class="code-header">fn <a href="#tymethod.digits" class="fn">digits</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a></h4></section></summary><div class="docblock"><p>Gets the number of decimal places that are displayed in the value.</p>
+<h5 id="returns"><a href="#returns">Returns</a></h5>
+<p>the number of decimal places that are displayed</p>
+</div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="tymethod.draws_value" class="method has-srclink"><a class="srclink rightside" href="../../src/gtk4/auto/scale.rs.html#776">source</a><h4 class="code-header">fn <a href="#tymethod.draws_value" class="fn">draws_value</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></section></summary><div class="docblock"><p>Returns whether the current value is displayed as a string
+next to the slider.</p>
+<h5 id="returns-1"><a href="#returns-1">Returns</a></h5>
+<p>whether the current value is displayed as a string</p>
+</div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="tymethod.has_origin" class="method has-srclink"><a class="srclink rightside" href="../../src/gtk4/auto/scale.rs.html#785">source</a><h4 class="code-header">fn <a href="#tymethod.has_origin" class="fn">has_origin</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></section></summary><div class="docblock"><p>Returns whether the scale has an origin.</p>
+<h5 id="returns-2"><a href="#returns-2">Returns</a></h5>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if the scale has an origin.</p>
+</div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="tymethod.layout" class="method has-srclink"><a class="srclink rightside" href="../../src/gtk4/auto/scale.rs.html#799">source</a><h4 class="code-header">fn <a href="#tymethod.layout" class="fn">layout</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.16/docs/pango/auto/layout/struct.Layout.html" title="struct pango::auto::layout::Layout">Layout</a>&gt;</h4></section></summary><div class="docblock"><p>Gets the <a href="https://gtk-rs.org/gtk-rs-core/stable/0.16/docs/pango/auto/layout/struct.Layout.html" title="crate::pango::Layout"><code>pango::Layout</code></a> used to display the scale.</p>
+<p>The returned object is owned by the scale so does not need
+to be freed by the caller.</p>
+<h5 id="returns-3"><a href="#returns-3">Returns</a></h5>
+<p>the <a href="https://gtk-rs.org/gtk-rs-core/stable/0.16/docs/pango/auto/layout/struct.Layout.html" title="crate::pango::Layout"><code>pango::Layout</code></a>
+for this scale, or <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a> if the <code>property::GtkScale::draw-value</code>
+property is <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="false"><code>false</code></a>.</p>
+</div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="tymethod.layout_offsets" class="method has-srclink"><a class="srclink rightside" href="../../src/gtk4/auto/scale.rs.html#820">source</a><h4 class="code-header">fn <a href="#tymethod.layout_offsets" class="fn">layout_offsets</a>(&amp;self) -&gt; (<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>)</h4></section></summary><div class="docblock"><p>Obtains the coordinates where the scale will draw the
+<a href="https://gtk-rs.org/gtk-rs-core/stable/0.16/docs/pango/auto/layout/struct.Layout.html" title="crate::pango::Layout"><code>pango::Layout</code></a> representing the text in the scale.</p>
+<p>Remember when using the <a href="https://gtk-rs.org/gtk-rs-core/stable/0.16/docs/pango/auto/layout/struct.Layout.html" title="crate::pango::Layout"><code>pango::Layout</code></a> function you need to
+convert to and from pixels using <code>PANGO_PIXELS()</code> or <code>PANGO_SCALE</code>.</p>
+<p>If the <code>property::GtkScale::draw-value</code> property is <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="false"><code>false</code></a>, the return
+values are undefined.</p>
+<h5 id="returns-4"><a href="#returns-4">Returns</a></h5><h6 id="x"><a href="#x"><code>x</code></a></h6>
+<p>location to store X offset of layout</p>
+<h6 id="y"><a href="#y"><code>y</code></a></h6>
+<p>location to store Y offset of layout</p>
+</div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="tymethod.value_pos" class="method has-srclink"><a class="srclink rightside" href="../../src/gtk4/auto/scale.rs.html#829">source</a><h4 class="code-header">fn <a href="#tymethod.value_pos" class="fn">value_pos</a>(&amp;self) -&gt; <a class="enum" href="../enum.PositionType.html" title="enum gtk4::PositionType">PositionType</a></h4></section></summary><div class="docblock"><p>Gets the position in which the current value is displayed.</p>
+<h5 id="returns-5"><a href="#returns-5">Returns</a></h5>
+<p>the position in which the current value is displayed</p>
+</div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="tymethod.set_digits" class="method has-srclink"><a class="srclink rightside" href="../../src/gtk4/auto/scale.rs.html#847">source</a><h4 class="code-header">fn <a href="#tymethod.set_digits" class="fn">set_digits</a>(&amp;self, digits: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>)</h4></section></summary><div class="docblock"><p>Sets the number of decimal places that are displayed in the value.</p>
+<p>Also causes the value of the adjustment to be rounded to this number
+of digits, so the retrieved value matches the displayed one, if
+<code>property::GtkScale::draw-value</code> is <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> when the value changes. If
+you want to enforce rounding the value when <code>property::GtkScale::draw-value</code>
+is <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="false"><code>false</code></a>, you can set <code>property::GtkRange::round-digits</code> instead.</p>
+<p>Note that rounding to a small number of digits can interfere with
+the smooth autoscrolling that is built into <a href="../struct.Scale.html" title="crate::Scale"><code>Scale</code></a>. As an alternative,
+you can use <a href="trait.ScaleExt.html#tymethod.set_format_value_func" title="Self::set_format_value_func()"><code>set_format_value_func()</code></a> to format the displayed
+value yourself.</p>
+<h6 id="digits"><a href="#digits"><code>digits</code></a></h6>
+<p>the number of decimal places to display,
+e.g. use 1 to display 1.0, 2 to display 1.00, etc</p>
+</div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="tymethod.set_draw_value" class="method has-srclink"><a class="srclink rightside" href="../../src/gtk4/auto/scale.rs.html#854">source</a><h4 class="code-header">fn <a href="#tymethod.set_draw_value" class="fn">set_draw_value</a>(&amp;self, draw_value: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>)</h4></section></summary><div class="docblock"><p>Specifies whether the current value is displayed as a string next
+to the slider.</p>
+<h6 id="draw_value"><a href="#draw_value"><code>draw_value</code></a></h6>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> to draw the value</p>
+</div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="tymethod.set_format_value_func" class="method has-srclink"><a class="srclink rightside" href="../../src/gtk4/auto/scale.rs.html#869">source</a><h4 class="code-header">fn <a href="#tymethod.set_format_value_func" class="fn">set_format_value_func</a>&lt;P:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;<a class="struct" href="../struct.Scale.html" title="struct gtk4::Scale">Scale</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>) -&gt; <a class="struct" href="https://doc.rust-lang.org/nightly/alloc/string/struct.String.html" title="struct alloc::string::String">String</a> + 'static&gt;(&amp;self, func: P)</h4></section></summary><div class="docblock"><p>@func allows you to change how the scale value is displayed.</p>
+<p>The given function will return an allocated string representing
+@value. That string will then be used to display the scale’s value.</p>
+<p>If #NULL is passed as @func, the value will be displayed on
+its own, rounded according to the value of the
+<code>property::GtkScale::digits</code> property.</p>
+<h6 id="func"><a href="#func"><code>func</code></a></h6>
+<p>function that formats the value</p>
+<h6 id="destroy_notify"><a href="#destroy_notify"><code>destroy_notify</code></a></h6>
+<p>destroy function for @user_data</p>
+</div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="tymethod.set_has_origin" class="method has-srclink"><a class="srclink rightside" href="../../src/gtk4/auto/scale.rs.html#879">source</a><h4 class="code-header">fn <a href="#tymethod.set_has_origin" class="fn">set_has_origin</a>(&amp;self, has_origin: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>)</h4></section></summary><div class="docblock"><p>Sets whether the scale has an origin.</p>
+<p>If <code>property::GtkScale::has-origin</code> is set to <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> (the default),
+the scale will highlight the part of the trough between the origin
+(bottom or left side) and the current value.</p>
+<h6 id="has_origin"><a href="#has_origin"><code>has_origin</code></a></h6>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if the scale has an origin</p>
+</div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="tymethod.set_value_pos" class="method has-srclink"><a class="srclink rightside" href="../../src/gtk4/auto/scale.rs.html#885">source</a><h4 class="code-header">fn <a href="#tymethod.set_value_pos" class="fn">set_value_pos</a>(&amp;self, pos: <a class="enum" href="../enum.PositionType.html" title="enum gtk4::PositionType">PositionType</a>)</h4></section></summary><div class="docblock"><p>Sets the position in which the current value is displayed.</p>
+<h6 id="pos"><a href="#pos"><code>pos</code></a></h6>
+<p>the position in which the current value is displayed</p>
+</div></details><section id="tymethod.connect_digits_notify" class="method has-srclink"><a class="srclink rightside" href="../../src/gtk4/auto/scale.rs.html#888">source</a><h4 class="code-header">fn <a href="#tymethod.connect_digits_notify" class="fn">connect_digits_notify</a>&lt;F:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>Self) + 'static&gt;(&amp;self, f: F) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.16/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><section id="tymethod.connect_draw_value_notify" class="method has-srclink"><a class="srclink rightside" href="../../src/gtk4/auto/scale.rs.html#891">source</a><h4 class="code-header">fn <a href="#tymethod.connect_draw_value_notify" class="fn">connect_draw_value_notify</a>&lt;F:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>Self) + 'static&gt;(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;self,<br>&nbsp;&nbsp;&nbsp;&nbsp;f: F<br>) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.16/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><section id="tymethod.connect_has_origin_notify" class="method has-srclink"><a class="srclink rightside" href="../../src/gtk4/auto/scale.rs.html#894">source</a><h4 class="code-header">fn <a href="#tymethod.connect_has_origin_notify" class="fn">connect_has_origin_notify</a>&lt;F:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>Self) + 'static&gt;(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;self,<br>&nbsp;&nbsp;&nbsp;&nbsp;f: F<br>) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.16/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><section id="tymethod.connect_value_pos_notify" class="method has-srclink"><a class="srclink rightside" href="../../src/gtk4/auto/scale.rs.html#897">source</a><h4 class="code-header">fn <a href="#tymethod.connect_value_pos_notify" class="fn">connect_value_pos_notify</a>&lt;F:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>Self) + 'static&gt;(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;self,<br>&nbsp;&nbsp;&nbsp;&nbsp;f: F<br>) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.16/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section></div><h2 id="implementors" class="small-section-header">Implementors<a href="#implementors" class="anchor">§</a></h2><div id="implementors-list"><section id="impl-ScaleExt-for-O" class="impl has-srclink"><a class="srclink rightside" href="../../src/gtk4/auto/scale.rs.html#900-1100">source</a><a href="#impl-ScaleExt-for-O" class="anchor">§</a><h3 class="code-header">impl&lt;O:&nbsp;<a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.16/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Scale.html" title="struct gtk4::Scale">Scale</a>&gt;&gt; <a class="trait" href="trait.ScaleExt.html" title="trait gtk4::prelude::ScaleExt">ScaleExt</a> for O</h3></section></div><script src="../../implementors/gtk4/auto/scale/trait.ScaleExt.js" async></script></section></div></main><div id="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.68.0-nightly (77429957a 2023-01-01)" data-search-js="search-181581080540673f.js" data-settings-js="settings-bebeae96e00e4617.js" data-settings-css="settings-58836c674e2f7bd2.css" ></div></body></html>

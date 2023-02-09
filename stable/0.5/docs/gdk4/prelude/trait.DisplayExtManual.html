@@ -1,0 +1,157 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Trait containing manually implemented methods of `Display`."><meta name="keywords" content="rust, rustlang, rust-lang, DisplayExtManual"><title>DisplayExtManual in gdk4::prelude - Rust</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-1f7d512b176f0f72.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Bold-124a1ca42af929b6.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-34efc64c5083af8d.css" id="mainThemeStyle"><link rel="stylesheet" id="themeStyle" href="../../static.files/light-4743e13df3dfe8c4.css"><link rel="stylesheet" disabled href="../../static.files/dark-0e1b889528bd466b.css"><link rel="stylesheet" disabled href="../../static.files/ayu-65289d5d067c7c66.css"><script id="default-settings" ></script><script src="../../static.files/storage-d43fa987303ecbbb.js"></script><script defer src="sidebar-items.js"></script><script defer src="../../static.files/main-4a084badb5778746.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-13285aec31fa243e.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc trait"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
+
+    function checkDocsLatestStable() {
+        function popup(msg, url) { return `
+            <style scoped="scoped">
+                .popup {
+                    max-width: 16em;
+                    background-color: #fff;
+                    position: fixed;
+                    z-index: 1;
+                    margin-left: auto;
+                    bottom: 1em;
+                    right: 1em;
+                    border-radius: 5px;
+                    box-shadow: 1px 1px 4px #777;
+                }
+
+                .popup a.version {
+                    color: #e57300;
+                    padding: 0.6em 1em;
+                    display: block;
+                }
+                .popup a.version:hover {
+                    color: #b25900;
+                }
+
+                .popup a.close {
+                    color: white;
+                    background: grey;
+                    border-radius: 99px;
+                    display: inline-block;
+                    width: 19px;
+                    line-height: 19px;
+                    font-weight: bold;
+                    text-align: center;
+                    margin: 0.6em;
+                    float: right;
+                }
+                .popup a.close:hover {
+                    background: black;
+                }
+            </style>
+            <section class="popup" id="gir_docs_popup">
+                <a class="close" href="#" onclick="document.getElementById('gir_docs_popup').remove(); return false">×</a>
+                <a class="version" href="https://gtk-rs.org/gtk4-rs/stable/latest/docs">
+                    ⚠ ${msg}
+                </a>
+            </section>
+        ` };
+
+        if ("0.5" == "master") {
+            document.body.insertAdjacentHTML(
+                'beforeend',
+                popup("This is the development version. Go to latest stable version.", "stable/latest")
+            );
+        } else {
+            fetch('https://gtk-rs.org/gtk4-rs/LATEST_RELEASE_BRANCH')
+                .then(response => response.text())
+                .then(latest_branch => {
+                    if (latest_branch.trim() != "0.5") {
+                        document.body.insertAdjacentHTML(
+                            'beforeend',
+                            popup("This version is outdated. Go to latest version.", "stable/latest")
+                        );
+                    }
+                });
+        }
+    }
+</script>
+
+
+<nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../gdk4/index.html"><div class="logo-container"><img class="rust-logo" src="../../static.files/rust-logo-151179464ae7ed46.svg" alt="logo"></div></a><h2></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../gdk4/index.html"><div class="logo-container"><img class="rust-logo" src="../../static.files/rust-logo-151179464ae7ed46.svg" alt="logo"></div></a><h2 class="location"><a href="#">DisplayExtManual</a></h2><div class="sidebar-elems"><section><h3><a href="#required-methods">Required Methods</a></h3><ul class="block"><li><a href="#tymethod.backend">backend</a></li><li><a href="#tymethod.get_setting">get_setting</a></li><li><a href="#tymethod.map_keycode">map_keycode</a></li><li><a href="#tymethod.map_keyval">map_keyval</a></li><li><a href="#tymethod.translate_key">translate_key</a></li></ul><h3><a href="#implementors">Implementors</a></h3></section><h2><a href="index.html">In gdk4::prelude</a></h2></div></nav><main><div class="width-limiter"><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-5ec35bf9ca753509.svg"></a></div></form></nav><section id="main-content" class="content"><div class="main-heading"><h1 class="fqn">Trait <a href="../index.html">gdk4</a>::<wbr><a href="index.html">prelude</a>::<wbr><a class="trait" href="#">DisplayExtManual</a><button id="copy-path" onclick="copy_path(this)" title="Copy item path to clipboard"><img src="../../static.files/clipboard-7571035ce49a181d.svg" width="19" height="18" alt="Copy item path"></button></h1><span class="out-of-band"><a class="srclink" href="../../src/gdk4/display.rs.html#57-179">source</a> · <button id="toggle-all-docs" title="collapse all docs">[<span>&#x2212;</span>]</button></span></div><div class="item-decl"><pre class="rust trait"><code>pub trait DisplayExtManual: 'static {
+    fn <a href="#tymethod.translate_key" class="fn">translate_key</a>(<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;self,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;keycode: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;state: <a class="struct" href="../struct.ModifierType.html" title="struct gdk4::ModifierType">ModifierType</a>,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;group: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a><br>&nbsp;&nbsp;&nbsp;&nbsp;) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;(<a class="struct" href="../struct.Key.html" title="struct gdk4::Key">Key</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, <a class="struct" href="../struct.ModifierType.html" title="struct gdk4::ModifierType">ModifierType</a>)&gt;;
+<span class="item-spacer"></span>    fn <a href="#tymethod.get_setting" class="fn">get_setting</a>(&amp;self, name: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.16/docs/glib/value/struct.Value.html" title="struct glib::value::Value">Value</a>&gt;;
+<span class="item-spacer"></span>    fn <a href="#tymethod.map_keyval" class="fn">map_keyval</a>(&amp;self, keyval: <a class="struct" href="../struct.Key.html" title="struct gdk4::Key">Key</a>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://doc.rust-lang.org/nightly/alloc/vec/struct.Vec.html" title="struct alloc::vec::Vec">Vec</a>&lt;<a class="struct" href="../struct.KeymapKey.html" title="struct gdk4::KeymapKey">KeymapKey</a>&gt;&gt;;
+<span class="item-spacer"></span>    fn <a href="#tymethod.map_keycode" class="fn">map_keycode</a>(&amp;self, keycode: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://doc.rust-lang.org/nightly/alloc/vec/struct.Vec.html" title="struct alloc::vec::Vec">Vec</a>&lt;(<a class="struct" href="../struct.KeymapKey.html" title="struct gdk4::KeymapKey">KeymapKey</a>, <a class="struct" href="../struct.Key.html" title="struct gdk4::Key">Key</a>)&gt;&gt;;
+<span class="item-spacer"></span>    fn <a href="#tymethod.backend" class="fn">backend</a>(&amp;self) -&gt; <a class="enum" href="../enum.Backend.html" title="enum gdk4::Backend">Backend</a>;
+}</code></pre></div><details class="rustdoc-toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>Trait containing manually implemented methods of <a href="../struct.Display.html"><code>Display</code></a>.</p>
+</div></details><h2 id="required-methods" class="small-section-header">Required Methods<a href="#required-methods" class="anchor">§</a></h2><div class="methods"><details class="rustdoc-toggle method-toggle" open><summary><section id="tymethod.translate_key" class="method has-srclink"><a class="srclink rightside" href="../../src/gdk4/display.rs.html#101-106">source</a><h4 class="code-header">fn <a href="#tymethod.translate_key" class="fn">translate_key</a>(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;self,<br>&nbsp;&nbsp;&nbsp;&nbsp;keycode: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>,<br>&nbsp;&nbsp;&nbsp;&nbsp;state: <a class="struct" href="../struct.ModifierType.html" title="struct gdk4::ModifierType">ModifierType</a>,<br>&nbsp;&nbsp;&nbsp;&nbsp;group: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a><br>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;(<a class="struct" href="../struct.Key.html" title="struct gdk4::Key">Key</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, <a class="struct" href="../struct.ModifierType.html" title="struct gdk4::ModifierType">ModifierType</a>)&gt;</h4></section></summary><div class="docblock"><p>Translates the contents of a <code>GdkEventKey</code> into a keyval, effective group,
+and level.</p>
+<p>Modifiers that affected the translation and are thus unavailable for
+application use are returned in @consumed_modifiers.</p>
+<p>The @effective_group is the group that was actually used for the
+translation; some keys such as Enter are not affected by the active
+keyboard group. The @level is derived from @state.</p>
+<p>@consumed_modifiers gives modifiers that should be masked out
+from @state when comparing this key press to a keyboard shortcut.
+For instance, on a US keyboard, the <code>plus</code> symbol is shifted, so
+when comparing a key press to a <code>&lt;Control&gt;plus</code> accelerator <code>&lt;Shift&gt;</code>
+should be masked out.</p>
+<p>This function should rarely be needed, since <code>GdkEventKey</code> already
+contains the translated keyval. It is exported for the benefit of
+virtualized test environments.</p>
+<h6 id="keycode"><a href="#keycode"><code>keycode</code></a></h6>
+<p>a keycode</p>
+<h6 id="state"><a href="#state"><code>state</code></a></h6>
+<p>a modifier state</p>
+<h6 id="group"><a href="#group"><code>group</code></a></h6>
+<p>active keyboard group</p>
+<h5 id="returns"><a href="#returns">Returns</a></h5>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if there was a keyval bound to keycode/state/group.</p>
+<h6 id="keyval"><a href="#keyval"><code>keyval</code></a></h6>
+<p>return location for keyval</p>
+<h6 id="effective_group"><a href="#effective_group"><code>effective_group</code></a></h6>
+<p>return location for effective group</p>
+<h6 id="level"><a href="#level"><code>level</code></a></h6>
+<p>return location for level</p>
+<h6 id="consumed"><a href="#consumed"><code>consumed</code></a></h6>
+<p>return location for modifiers that were used
+to determine the group or level</p>
+</div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="tymethod.get_setting" class="method has-srclink"><a class="srclink rightside" href="../../src/gdk4/display.rs.html#120">source</a><h4 class="code-header">fn <a href="#tymethod.get_setting" class="fn">get_setting</a>(&amp;self, name: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.16/docs/glib/value/struct.Value.html" title="struct glib::value::Value">Value</a>&gt;</h4></section></summary><div class="docblock"><p>Retrieves a desktop-wide setting such as double-click time
+for the @self.</p>
+<h6 id="name"><a href="#name"><code>name</code></a></h6>
+<p>the name of the setting</p>
+<h6 id="value"><a href="#value"><code>value</code></a></h6>
+<p>location to store the value of the setting</p>
+<h5 id="returns-1"><a href="#returns-1">Returns</a></h5>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if the setting existed and a value was stored
+in @value, <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="false"><code>false</code></a> otherwise</p>
+</div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="tymethod.map_keyval" class="method has-srclink"><a class="srclink rightside" href="../../src/gdk4/display.rs.html#148">source</a><h4 class="code-header">fn <a href="#tymethod.map_keyval" class="fn">map_keyval</a>(&amp;self, keyval: <a class="struct" href="../struct.Key.html" title="struct gdk4::Key">Key</a>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://doc.rust-lang.org/nightly/alloc/vec/struct.Vec.html" title="struct alloc::vec::Vec">Vec</a>&lt;<a class="struct" href="../struct.KeymapKey.html" title="struct gdk4::KeymapKey">KeymapKey</a>&gt;&gt;</h4></section></summary><div class="docblock"><p>Obtains a list of keycode/group/level combinations that will
+generate @keyval.</p>
+<p>Groups and levels are two kinds of keyboard mode; in general, the level
+determines whether the top or bottom symbol on a key is used, and the
+group determines whether the left or right symbol is used.</p>
+<p>On US keyboards, the shift key changes the keyboard level, and there
+are no groups. A group switch key might convert a keyboard between
+Hebrew to English modes, for example.</p>
+<p><code>GdkEventKey</code> contains a <code>group</code> field that indicates the active
+keyboard group. The level is computed from the modifier mask.</p>
+<p>The returned array should be freed with g_free().</p>
+<h6 id="keyval-1"><a href="#keyval-1"><code>keyval</code></a></h6>
+<p>a keyval, such as <code>GDK_KEY_a</code>, <code>GDK_KEY_Up</code>, <code>GDK_KEY_Return</code>, etc.</p>
+<h5 id="returns-2"><a href="#returns-2">Returns</a></h5>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if keys were found and returned</p>
+<h6 id="keys"><a href="#keys"><code>keys</code></a></h6>
+<p>return location
+for an array of <a href="../struct.KeymapKey.html" title="crate::KeymapKey"><code>KeymapKey</code></a></p>
+</div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="tymethod.map_keycode" class="method has-srclink"><a class="srclink rightside" href="../../src/gdk4/display.rs.html#174">source</a><h4 class="code-header">fn <a href="#tymethod.map_keycode" class="fn">map_keycode</a>(&amp;self, keycode: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://doc.rust-lang.org/nightly/alloc/vec/struct.Vec.html" title="struct alloc::vec::Vec">Vec</a>&lt;(<a class="struct" href="../struct.KeymapKey.html" title="struct gdk4::KeymapKey">KeymapKey</a>, <a class="struct" href="../struct.Key.html" title="struct gdk4::Key">Key</a>)&gt;&gt;</h4></section></summary><div class="docblock"><p>Returns the keyvals bound to @keycode.</p>
+<p>The Nth <a href="../struct.KeymapKey.html" title="crate::KeymapKey"><code>KeymapKey</code></a> in @keys is bound to the Nth keyval in @keyvals.</p>
+<p>When a keycode is pressed by the user, the keyval from
+this list of entries is selected by considering the effective
+keyboard group and level.</p>
+<p>Free the returned arrays with g_free().</p>
+<h6 id="keycode-1"><a href="#keycode-1"><code>keycode</code></a></h6>
+<p>a keycode</p>
+<h5 id="returns-3"><a href="#returns-3">Returns</a></h5>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if there were any entries</p>
+<h6 id="keys-1"><a href="#keys-1"><code>keys</code></a></h6>
+<p>return
+location for array of <a href="../struct.KeymapKey.html" title="crate::KeymapKey"><code>KeymapKey</code></a></p>
+<h6 id="keyvals"><a href="#keyvals"><code>keyvals</code></a></h6>
+<p>return
+location for array of keyvals</p>
+</div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="tymethod.backend" class="method has-srclink"><a class="srclink rightside" href="../../src/gdk4/display.rs.html#178">source</a><h4 class="code-header">fn <a href="#tymethod.backend" class="fn">backend</a>(&amp;self) -&gt; <a class="enum" href="../enum.Backend.html" title="enum gdk4::Backend">Backend</a></h4></section></summary><div class="docblock"><p>Get the currently used display backend</p>
+</div></details></div><h2 id="implementors" class="small-section-header">Implementors<a href="#implementors" class="anchor">§</a></h2><div id="implementors-list"><section id="impl-DisplayExtManual-for-O" class="impl has-srclink"><a class="srclink rightside" href="../../src/gdk4/display.rs.html#181-292">source</a><a href="#impl-DisplayExtManual-for-O" class="anchor">§</a><h3 class="code-header">impl&lt;O:&nbsp;<a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.16/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Display.html" title="struct gdk4::Display">Display</a>&gt;&gt; <a class="trait" href="trait.DisplayExtManual.html" title="trait gdk4::prelude::DisplayExtManual">DisplayExtManual</a> for O</h3></section></div><script src="../../implementors/gdk4/display/trait.DisplayExtManual.js" async></script></section></div></main><div id="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="gdk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.68.0-nightly (77429957a 2023-01-01)" data-search-js="search-181581080540673f.js" data-settings-js="settings-bebeae96e00e4617.js" data-settings-css="settings-58836c674e2f7bd2.css" ></div></body></html>

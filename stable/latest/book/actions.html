@@ -1,0 +1,1489 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js rust">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Actions - GUI development with Rust and GTK 4</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="theme/style.css">
+
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "rust";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('rust')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="introduction.html">Introduction</a></li><li class="chapter-item expanded "><a href="installation.html"><strong aria-hidden="true">1.</strong> Installation</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="installation_linux.html"><strong aria-hidden="true">1.1.</strong> Linux</a></li><li class="chapter-item expanded "><a href="installation_macos.html"><strong aria-hidden="true">1.2.</strong> macOS</a></li><li class="chapter-item expanded "><a href="installation_windows.html"><strong aria-hidden="true">1.3.</strong> Windows</a></li></ol></li><li class="chapter-item expanded "><a href="project_setup.html"><strong aria-hidden="true">2.</strong> Project Setup</a></li><li class="chapter-item expanded "><a href="hello_world.html"><strong aria-hidden="true">3.</strong> Hello World!</a></li><li class="chapter-item expanded "><a href="widgets.html"><strong aria-hidden="true">4.</strong> Widgets</a></li><li class="chapter-item expanded "><a href="g_object_concepts.html"><strong aria-hidden="true">5.</strong> GObject Concepts</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="g_object_memory_management.html"><strong aria-hidden="true">5.1.</strong> Memory Management</a></li><li class="chapter-item expanded "><a href="g_object_subclassing.html"><strong aria-hidden="true">5.2.</strong> Subclassing</a></li><li class="chapter-item expanded "><a href="g_object_values.html"><strong aria-hidden="true">5.3.</strong> Generic Values</a></li><li class="chapter-item expanded "><a href="g_object_properties.html"><strong aria-hidden="true">5.4.</strong> Properties</a></li><li class="chapter-item expanded "><a href="g_object_signals.html"><strong aria-hidden="true">5.5.</strong> Signals</a></li></ol></li><li class="chapter-item expanded "><a href="main_event_loop.html"><strong aria-hidden="true">6.</strong> The Main Event Loop</a></li><li class="chapter-item expanded "><a href="settings.html"><strong aria-hidden="true">7.</strong> Settings</a></li><li class="chapter-item expanded "><a href="saving_window_state.html"><strong aria-hidden="true">8.</strong> Saving Window State</a></li><li class="chapter-item expanded "><a href="list_widgets.html"><strong aria-hidden="true">9.</strong> List Widgets</a></li><li class="chapter-item expanded "><a href="composite_templates.html"><strong aria-hidden="true">10.</strong> Composite Templates</a></li><li class="chapter-item expanded "><a href="todo_1.html"><strong aria-hidden="true">11.</strong> Building a Simple To-Do App</a></li><li class="chapter-item expanded "><a href="actions.html" class="active"><strong aria-hidden="true">12.</strong> Actions</a></li><li class="chapter-item expanded "><a href="todo_2.html"><strong aria-hidden="true">13.</strong> Manipulating State of To-Do App</a></li><li class="chapter-item expanded "><a href="css.html"><strong aria-hidden="true">14.</strong> CSS</a></li><li class="chapter-item expanded "><a href="libadwaita.html"><strong aria-hidden="true">15.</strong> Libadwaita</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="todo_3.html"><strong aria-hidden="true">15.1.</strong> Let To-Do App use Libadwaita</a></li><li class="chapter-item expanded "><a href="todo_4.html"><strong aria-hidden="true">15.2.</strong> Adding Collections</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">GUI development with Rust and GTK 4</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        <a href="https://github.com/gtk-rs/gtk4-rs/tree/master/book" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="actions"><a class="header" href="#actions">Actions</a></h1>
+<p>By now, we've already learned many ways to glue our widgets together.
+We can send messages through channels, emit signals, share reference-counted state and bind properties.
+Now, we will complete our set by learning about actions.</p>
+<p>An action is a piece of functionality bound to a certain GObject.
+Let's check out the simplest case where we activate an action without a parameter.</p>
+<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/actions/1/main.rs">listings/actions/1/main.rs</a></p>
+<pre><pre class="playground"><code class="language-rust no_run"><span class="boring">use gio::SimpleAction;
+</span><span class="boring">use glib::clone;
+</span><span class="boring">use gtk::prelude::*;
+</span><span class="boring">use gtk::{gio, glib, Application, ApplicationWindow};
+</span><span class="boring">
+</span><span class="boring">const APP_ID: &amp;str = &quot;org.gtk_rs.Actions1&quot;;
+</span><span class="boring">
+</span><span class="boring">fn main() {
+</span><span class="boring">    // Create a new application
+</span><span class="boring">    let app = Application::builder().application_id(APP_ID).build();
+</span><span class="boring">
+</span><span class="boring">    // Connect to &quot;activate&quot; signal of `app`
+</span><span class="boring">    app.connect_activate(build_ui);
+</span><span class="boring">
+</span><span class="boring">    // Set keyboard accelerator to trigger &quot;win.close&quot;.
+</span><span class="boring">    app.set_accels_for_action(&quot;win.close&quot;, &amp;[&quot;&lt;Ctrl&gt;W&quot;]);
+</span><span class="boring">
+</span><span class="boring">    // Run the application
+</span><span class="boring">    app.run();
+</span><span class="boring">}
+</span><span class="boring">
+</span>fn build_ui(app: &amp;Application) {
+    // Create a window and set the title
+    let window = ApplicationWindow::builder()
+        .application(app)
+        .title(&quot;My GTK App&quot;)
+        .width_request(360)
+        .build();
+
+    // Add action &quot;close&quot; to `window` taking no parameter
+    let action_close = SimpleAction::new(&quot;close&quot;, None);
+    action_close.connect_activate(clone!(@weak window =&gt; move |_, _| {
+        window.close();
+    }));
+    window.add_action(&amp;action_close);
+
+    // Present window
+    window.present();
+}</code></pre></pre>
+<p>First, we created a new <a href="https://gtk-rs.org/gtk-rs-core/stable/latest/docs/gio/struct.SimpleAction.html"><code>gio::SimpleAction</code></a> which is named &quot;close&quot; and takes no parameter.
+We also connected a callback which closes the window.</p>
+<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/actions/1/main.rs">listings/actions/1/main.rs</a></p>
+<pre><pre class="playground"><code class="language-rust no_run"><span class="boring">use gio::SimpleAction;
+</span><span class="boring">use glib::clone;
+</span><span class="boring">use gtk::prelude::*;
+</span><span class="boring">use gtk::{gio, glib, Application, ApplicationWindow};
+</span><span class="boring">
+</span>const APP_ID: &amp;str = &quot;org.gtk_rs.Actions1&quot;;
+
+fn main() {
+    // Create a new application
+    let app = Application::builder().application_id(APP_ID).build();
+
+    // Connect to &quot;activate&quot; signal of `app`
+    app.connect_activate(build_ui);
+
+    // Set keyboard accelerator to trigger &quot;win.close&quot;.
+    app.set_accels_for_action(&quot;win.close&quot;, &amp;[&quot;&lt;Ctrl&gt;W&quot;]);
+
+    // Run the application
+    app.run();
+}
+<span class="boring">
+</span><span class="boring">fn build_ui(app: &amp;Application) {
+</span><span class="boring">    // Create a window and set the title
+</span><span class="boring">    let window = ApplicationWindow::builder()
+</span><span class="boring">        .application(app)
+</span><span class="boring">        .title(&quot;My GTK App&quot;)
+</span><span class="boring">        .width_request(360)
+</span><span class="boring">        .build();
+</span><span class="boring">
+</span><span class="boring">    // Add action &quot;close&quot; to `window` taking no parameter
+</span><span class="boring">    let action_close = SimpleAction::new(&quot;close&quot;, None);
+</span><span class="boring">    action_close.connect_activate(clone!(@weak window =&gt; move |_, _| {
+</span><span class="boring">        window.close();
+</span><span class="boring">    }));
+</span><span class="boring">    window.add_action(&amp;action_close);
+</span><span class="boring">
+</span><span class="boring">    // Present window
+</span><span class="boring">    window.present();
+</span><span class="boring">}</span></code></pre></pre>
+<p>One of the most popular reasons to use actions are keyboard accelerators, so we added one here.
+With <a href="../docs/gtk4/prelude/trait.GtkApplicationExt.html#tymethod.set_accels_for_action"><code>set_accels_for_action</code></a> one can assign one or more accelerators to a certain action.
+Check the documentation of <a href="../docs/gtk4/functions/fn.accelerator_parse.html"><code>accelerator_parse</code></a> in order to learn more about its syntax.</p>
+<p>Before we move on to other aspects of actions, let's appreciate a few things that are curious here.
+The &quot;win&quot; part of &quot;win.close&quot; is the group of the action.
+But how does GTK know that &quot;win&quot; is the action group of our window?
+The answer is that it is so common to add actions to windows and applications that there are already two predefined groups available:</p>
+<ul>
+<li>&quot;app&quot; for actions global to the application, and</li>
+<li>&quot;win&quot; for actions tied to an application window.</li>
+</ul>
+<p>If that had not been the case, we would have to add the action group manually via <a href="https://gtk-rs.org/gtk-rs-core/stable/latest/docs/gio/struct.SimpleActionGroup.html"><code>gio::SimpleActionGroup</code></a>.</p>
+<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/actions/2/main.rs">listings/actions/2/main.rs</a></p>
+<pre><code class="language-rust  no_run noplayground"><span class="boring">use gio::SimpleAction;
+</span><span class="boring">use glib::clone;
+</span><span class="boring">use gtk::gio::SimpleActionGroup;
+</span><span class="boring">use gtk::prelude::*;
+</span><span class="boring">use gtk::{gio, glib, Application, ApplicationWindow};
+</span><span class="boring">
+</span><span class="boring">const APP_ID: &amp;str = &quot;org.gtk_rs.Actions2&quot;;
+</span><span class="boring">
+</span><span class="boring">fn main() {
+</span><span class="boring">    // Create a new application
+</span><span class="boring">    let app = Application::builder().application_id(APP_ID).build();
+</span><span class="boring">
+</span><span class="boring">    // Connect to &quot;activate&quot; signal of `app`
+</span><span class="boring">    app.connect_activate(build_ui);
+</span><span class="boring">
+</span><span class="boring">    // Set keyboard accelerator to trigger &quot;win.close&quot;.
+</span><span class="boring">    app.set_accels_for_action(&quot;win.close&quot;, &amp;[&quot;&lt;Ctrl&gt;W&quot;]);
+</span><span class="boring">
+</span><span class="boring">    // Run the application
+</span><span class="boring">    app.run();
+</span><span class="boring">}
+</span><span class="boring">
+</span><span class="boring">fn build_ui(app: &amp;Application) {
+</span><span class="boring">    // Create a window and set the title
+</span><span class="boring">    let window = ApplicationWindow::builder()
+</span><span class="boring">        .application(app)
+</span><span class="boring">        .title(&quot;My GTK App&quot;)
+</span><span class="boring">        .width_request(360)
+</span><span class="boring">        .build();
+</span><span class="boring">
+</span><span class="boring">    // Add action &quot;close&quot; to `window` taking no parameter
+</span><span class="boring">    let action_close = SimpleAction::new(&quot;close&quot;, None);
+</span><span class="boring">    action_close.connect_activate(clone!(@weak window =&gt; move |_, _| {
+</span><span class="boring">        window.close();
+</span><span class="boring">    }));
+</span><span class="boring">    window.add_action(&amp;action_close);
+</span><span class="boring">
+</span>    // Create a new action group and add actions to it
+    let actions = SimpleActionGroup::new();
+    window.insert_action_group(&quot;win&quot;, Some(&amp;actions));
+    actions.add_action(&amp;action_close);
+<span class="boring">
+</span><span class="boring">    // Present window
+</span><span class="boring">    window.present();
+</span><span class="boring">}</span></code></pre>
+<p>Also, if we had multiple instances of the same windows we would expect that only the currently focused window will be closed when activating &quot;win.close&quot;.
+And indeed, the &quot;win.close&quot; will be dispatched to the currently focused window.
+However, that also means that we actually define one action per window instance.
+If we want to have a single globally accessible action instead, we call <code>add_action</code> on our application instead.</p>
+<blockquote>
+<p>Adding &quot;win.close&quot; was useful as a simple example.
+However, in the future we will use the pre-defined <a href="../docs/gtk4/struct.Window.html#actions">&quot;window.close&quot;</a> action which does exactly the same thing.</p>
+</blockquote>
+<h2 id="parameter-and-state"><a class="header" href="#parameter-and-state">Parameter and State</a></h2>
+<p>An action, like most functions, can take a parameter.
+However, unlike most functions it can also be stateful.
+Let's see how this works.</p>
+<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/actions/3/main.rs">listings/actions/3/main.rs</a></p>
+<pre><code class="language-rust  no_run noplayground"><span class="boring">use gio::SimpleAction;
+</span><span class="boring">use glib::clone;
+</span><span class="boring">use gtk::prelude::*;
+</span><span class="boring">use gtk::{
+</span><span class="boring">    gio, glib, Align, Application, ApplicationWindow, Button, Label, Orientation,
+</span><span class="boring">};
+</span><span class="boring">
+</span><span class="boring">const APP_ID: &amp;str = &quot;org.gtk_rs.Actions3&quot;;
+</span><span class="boring">
+</span><span class="boring">fn main() {
+</span><span class="boring">    // Create a new application
+</span><span class="boring">    let app = Application::builder().application_id(APP_ID).build();
+</span><span class="boring">
+</span><span class="boring">    // Connect to &quot;activate&quot; signal of `app`
+</span><span class="boring">    app.connect_activate(build_ui);
+</span><span class="boring">
+</span><span class="boring">    // Run the application
+</span><span class="boring">    app.run();
+</span><span class="boring">}
+</span><span class="boring">
+</span>fn build_ui(app: &amp;Application) {
+    let original_state = 0;
+    let label = Label::builder()
+        .label(&amp;format!(&quot;Counter: {original_state}&quot;))
+        .build();
+
+    // Create a button with label
+    let button = Button::builder().label(&quot;Press me!&quot;).build();
+
+    // Connect to &quot;clicked&quot; signal of `button`
+    button.connect_clicked(move |button| {
+        // Activate &quot;win.count&quot; and pass &quot;1&quot; as parameter
+        let parameter = 1;
+        button
+            .activate_action(&quot;win.count&quot;, Some(&amp;parameter.to_variant()))
+            .expect(&quot;The action does not exist.&quot;);
+    });
+
+    // Create a `gtk::Box` and add `button` and `label` to it
+    let gtk_box = gtk::Box::builder()
+        .orientation(Orientation::Vertical)
+        .margin_top(12)
+        .margin_bottom(12)
+        .margin_start(12)
+        .margin_end(12)
+        .spacing(12)
+        .halign(Align::Center)
+        .build();
+    gtk_box.append(&amp;button);
+    gtk_box.append(&amp;label);
+
+    // Create a window, set the title and add `gtk_box` to it
+    let window = ApplicationWindow::builder()
+        .application(app)
+        .title(&quot;My GTK App&quot;)
+        .width_request(360)
+        .child(&amp;gtk_box)
+        .build();
+
+    // Add action &quot;count&quot; to `window` taking an integer as parameter
+    let action_count = SimpleAction::new_stateful(
+        &quot;count&quot;,
+        Some(&amp;i32::static_variant_type()),
+        &amp;original_state.to_variant(),
+    );
+    action_count.connect_activate(clone!(@weak label =&gt; move |action, parameter| {
+        // Get state
+        let mut state = action
+            .state()
+            .expect(&quot;Could not get state.&quot;)
+            .get::&lt;i32&gt;()
+            .expect(&quot;The variant needs to be of type `i32`.&quot;);
+
+        // Get parameter
+        let parameter = parameter
+            .expect(&quot;Could not get parameter.&quot;)
+            .get::&lt;i32&gt;()
+            .expect(&quot;The variant needs to be of type `i32`.&quot;);
+
+        // Increase state by parameter and store state
+        state += parameter;
+        action.set_state(&amp;state.to_variant());
+
+        // Update label with new state
+        label.set_label(&amp;format!(&quot;Counter: {state}&quot;));
+    }));
+    window.add_action(&amp;action_count);
+
+    // Present window
+    window.present();
+}</code></pre>
+<p>Here we created a &quot;win.count&quot; action that increases its state by the given parameter every time it is activated.
+It also takes care of updating the <code>label</code> with the current state.
+The button activates the action with each click while passing &quot;1&quot; as parameter.
+This is how our app works:</p>
+<div style="text-align:center">
+ <video autoplay muted loop>
+  <source src="vid/actions_counter.webm" type="video/webm">
+  <p>A video which shows that pressing on one button also changes the label below</p>
+ </video>
+</div>
+<h2 id="actionable"><a class="header" href="#actionable">Actionable</a></h2>
+<p>Connecting actions to the &quot;clicked&quot; signal of buttons is a typical use case, which is why all buttons implement the <a href="../docs/gtk4/struct.Actionable.html"><code>Actionable</code></a> interface.
+This way, the action can be specified by setting the &quot;action-name&quot; property.
+If the action accepts a parameter, it can be set via the &quot;action-target&quot; property.
+With <a href="../docs/gtk4/builders/struct.ButtonBuilder.html"><code>ButtonBuilder</code></a>, we can set everything up by calling its methods.</p>
+<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/actions/4/main.rs">listings/actions/4/main.rs</a></p>
+<pre><code class="language-rust  no_run noplayground"><span class="boring">use gio::SimpleAction;
+</span><span class="boring">use glib::clone;
+</span><span class="boring">use gtk::prelude::*;
+</span><span class="boring">use gtk::{
+</span><span class="boring">    gio, glib, Align, Application, ApplicationWindow, Button, Label, Orientation,
+</span><span class="boring">};
+</span><span class="boring">
+</span><span class="boring">const APP_ID: &amp;str = &quot;org.gtk_rs.Actions4&quot;;
+</span><span class="boring">
+</span><span class="boring">fn main() {
+</span><span class="boring">    // Create a new application
+</span><span class="boring">    let app = Application::builder().application_id(APP_ID).build();
+</span><span class="boring">
+</span><span class="boring">    // Connect to &quot;activate&quot; signal of `app`
+</span><span class="boring">    app.connect_activate(build_ui);
+</span><span class="boring">
+</span><span class="boring">    // Run the application
+</span><span class="boring">    app.run();
+</span><span class="boring">}
+</span><span class="boring">
+</span><span class="boring">fn build_ui(app: &amp;Application) {
+</span><span class="boring">    let original_state = 0;
+</span><span class="boring">    let label = Label::builder()
+</span><span class="boring">        .label(&amp;format!(&quot;Counter: {original_state}&quot;))
+</span><span class="boring">        .build();
+</span>    // Create a button with label and action
+    let button = Button::builder()
+        .label(&quot;Press me!&quot;)
+        .action_name(&quot;win.count&quot;)
+        .action_target(&amp;1.to_variant())
+        .build();
+<span class="boring">
+</span><span class="boring">    // Create `gtk_box` and add `button` and `label` to it
+</span><span class="boring">    let gtk_box = gtk::Box::builder()
+</span><span class="boring">        .orientation(Orientation::Vertical)
+</span><span class="boring">        .margin_top(12)
+</span><span class="boring">        .margin_bottom(12)
+</span><span class="boring">        .margin_start(12)
+</span><span class="boring">        .margin_end(12)
+</span><span class="boring">        .spacing(12)
+</span><span class="boring">        .halign(Align::Center)
+</span><span class="boring">        .build();
+</span><span class="boring">    gtk_box.append(&amp;button);
+</span><span class="boring">    gtk_box.append(&amp;label);
+</span><span class="boring">
+</span><span class="boring">    // Create a window and set the title
+</span><span class="boring">    let window = ApplicationWindow::builder()
+</span><span class="boring">        .application(app)
+</span><span class="boring">        .title(&quot;My GTK App&quot;)
+</span><span class="boring">        .width_request(360)
+</span><span class="boring">        .child(&amp;gtk_box)
+</span><span class="boring">        .build();
+</span><span class="boring">
+</span><span class="boring">    // Add action &quot;count&quot; to `window` taking an integer as parameter
+</span><span class="boring">    let action_count = SimpleAction::new_stateful(
+</span><span class="boring">        &quot;count&quot;,
+</span><span class="boring">        Some(&amp;i32::static_variant_type()),
+</span><span class="boring">        &amp;original_state.to_variant(),
+</span><span class="boring">    );
+</span><span class="boring">    action_count.connect_activate(clone!(@weak label =&gt; move |action, parameter| {
+</span><span class="boring">        // Get state
+</span><span class="boring">        let mut state = action
+</span><span class="boring">        .state()
+</span><span class="boring">        .expect(&quot;Could not get state.&quot;)
+</span><span class="boring">        .get::&lt;i32&gt;()
+</span><span class="boring">        .expect(&quot;The value needs to be of type `i32`.&quot;);
+</span><span class="boring">
+</span><span class="boring">        // Get parameter
+</span><span class="boring">        let parameter = parameter
+</span><span class="boring">            .expect(&quot;Could not get parameter.&quot;)
+</span><span class="boring">            .get::&lt;i32&gt;()
+</span><span class="boring">            .expect(&quot;The value needs to be of type `i32`.&quot;);
+</span><span class="boring">
+</span><span class="boring">        // Increase state by parameter and save state
+</span><span class="boring">        state += parameter;
+</span><span class="boring">        action.set_state(&amp;state.to_variant());
+</span><span class="boring">
+</span><span class="boring">        // Update label with new state
+</span><span class="boring">        label.set_label(&amp;format!(&quot;Counter: {state}&quot;));
+</span><span class="boring">    }));
+</span><span class="boring">
+</span><span class="boring">    window.add_action(&amp;action_count);
+</span><span class="boring">
+</span><span class="boring">    // Present window
+</span><span class="boring">    window.present();
+</span><span class="boring">}</span></code></pre>
+<p>Actionable widgets are also easily accessible through the interface builder.
+As usual, we build up the window via a composite template.
+Within the template we can then set the &quot;action-name&quot; and &quot;action-target&quot; properties.</p>
+<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/actions/5/resources/window.ui">listings/actions/5/resources/window.ui</a></p>
+<pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;interface&gt;
+  &lt;template class=&quot;MyGtkAppWindow&quot; parent=&quot;GtkApplicationWindow&quot;&gt;
+    &lt;property name=&quot;title&quot;&gt;My GTK App&lt;/property&gt;
+    &lt;child&gt;
+      &lt;object class=&quot;GtkBox&quot; id=&quot;gtk_box&quot;&gt;
+        &lt;property name=&quot;orientation&quot;&gt;vertical&lt;/property&gt;
+        &lt;property name=&quot;margin-top&quot;&gt;12&lt;/property&gt;
+        &lt;property name=&quot;margin-bottom&quot;&gt;12&lt;/property&gt;
+        &lt;property name=&quot;margin-start&quot;&gt;12&lt;/property&gt;
+        &lt;property name=&quot;margin-end&quot;&gt;12&lt;/property&gt;
+        &lt;property name=&quot;spacing&quot;&gt;12&lt;/property&gt;
+        &lt;property name=&quot;halign&quot;&gt;center&lt;/property&gt;
+        &lt;child&gt;
+          &lt;object class=&quot;GtkButton&quot; id=&quot;button&quot;&gt;
+            &lt;property name=&quot;label&quot;&gt;Press me!&lt;/property&gt;
+            &lt;property name=&quot;action-name&quot;&gt;win.count&lt;/property&gt;
+            &lt;property name=&quot;action-target&quot;&gt;1&lt;/property&gt;
+          &lt;/object&gt;
+        &lt;/child&gt;
+        &lt;child&gt;
+          &lt;object class=&quot;GtkLabel&quot; id=&quot;label&quot;&gt;
+            &lt;property name=&quot;label&quot;&gt;Counter: 0&lt;/property&gt;
+          &lt;/object&gt;
+        &lt;/child&gt;
+      &lt;/object&gt;
+    &lt;/child&gt;
+  &lt;/template&gt;
+&lt;/interface&gt;
+</code></pre>
+<p>We will connect the actions and add them to the window in the <code>Window::setup_actions</code> method.</p>
+<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/actions/5/window/mod.rs">listings/actions/5/window/mod.rs</a></p>
+<pre><code class="language-rust  no_run noplayground"><span class="boring">mod imp;
+</span><span class="boring">
+</span><span class="boring">use gio::SimpleAction;
+</span><span class="boring">use glib::{clone, Object};
+</span><span class="boring">use gtk::prelude::*;
+</span><span class="boring">use gtk::subclass::prelude::*;
+</span><span class="boring">use gtk::{gio, glib, Application};
+</span><span class="boring">
+</span><span class="boring">glib::wrapper! {
+</span><span class="boring">    pub struct Window(ObjectSubclass&lt;imp::Window&gt;)
+</span><span class="boring">        @extends gtk::ApplicationWindow, gtk::Window, gtk::Widget,
+</span><span class="boring">        @implements gio::ActionGroup, gio::ActionMap, gtk::Accessible, gtk::Buildable,
+</span><span class="boring">                    gtk::ConstraintTarget, gtk::Native, gtk::Root, gtk::ShortcutManager;
+</span><span class="boring">}
+</span><span class="boring">
+</span>impl Window {
+    pub fn new(app: &amp;Application) -&gt; Self {
+        // Create new window
+        Object::builder().property(&quot;application&quot;, app).build()
+    }
+
+    fn setup_actions(&amp;self) {
+        let label = self.imp().label.get();
+
+        // Add stateful action &quot;count&quot; to `window` taking an integer as parameter
+        let original_state = 0;
+        let action_count = SimpleAction::new_stateful(
+            &quot;count&quot;,
+            Some(&amp;i32::static_variant_type()),
+            &amp;original_state.to_variant(),
+        );
+
+        action_count.connect_activate(clone!(@weak label =&gt; move |action, parameter| {
+            // Get state
+            let mut state = action
+                .state()
+                .expect(&quot;Could not get state.&quot;)
+                .get::&lt;i32&gt;()
+                .expect(&quot;The value needs to be of type `i32`.&quot;);
+
+            // Get parameter
+            let parameter = parameter
+                .expect(&quot;Could not get parameter.&quot;)
+                .get::&lt;i32&gt;()
+                .expect(&quot;The value needs to be of type `i32`.&quot;);
+
+            // Increase state by parameter and save state
+            state += parameter;
+            action.set_state(&amp;state.to_variant());
+
+            // Update label with new state
+            label.set_label(&amp;format!(&quot;Counter: {state}&quot;));
+        }));
+        self.add_action(&amp;action_count);
+    }
+}</code></pre>
+<p>Finally, <code>setup_actions</code> will be called within <code>constructed</code>.</p>
+<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/actions/5/window/imp.rs">listings/actions/5/window/imp.rs</a></p>
+<pre><code class="language-rust  no_run noplayground"><span class="boring">use glib::subclass::InitializingObject;
+</span><span class="boring">use gtk::prelude::*;
+</span><span class="boring">use gtk::subclass::prelude::*;
+</span><span class="boring">use gtk::{glib, CompositeTemplate, Label};
+</span><span class="boring">
+</span><span class="boring">// Object holding the state
+</span><span class="boring">#[derive(CompositeTemplate, Default)]
+</span><span class="boring">#[template(resource = &quot;/org/gtk_rs/example/window.ui&quot;)]
+</span><span class="boring">pub struct Window {
+</span><span class="boring">    #[template_child]
+</span><span class="boring">    pub label: TemplateChild&lt;Label&gt;,
+</span><span class="boring">}
+</span><span class="boring">
+</span><span class="boring">// The central trait for subclassing a GObject
+</span><span class="boring">#[glib::object_subclass]
+</span><span class="boring">impl ObjectSubclass for Window {
+</span><span class="boring">    // `NAME` needs to match `class` attribute of template
+</span><span class="boring">    const NAME: &amp;'static str = &quot;MyGtkAppWindow&quot;;
+</span><span class="boring">    type Type = super::Window;
+</span><span class="boring">    type ParentType = gtk::ApplicationWindow;
+</span><span class="boring">
+</span><span class="boring">    fn class_init(klass: &amp;mut Self::Class) {
+</span><span class="boring">        klass.bind_template();
+</span><span class="boring">    }
+</span><span class="boring">
+</span><span class="boring">    fn instance_init(obj: &amp;InitializingObject&lt;Self&gt;) {
+</span><span class="boring">        obj.init_template();
+</span><span class="boring">    }
+</span><span class="boring">}
+</span><span class="boring">
+</span>// Trait shared by all GObjects
+impl ObjectImpl for Window {
+    fn constructed(&amp;self) {
+        // Call &quot;constructed&quot; on parent
+        self.parent_constructed();
+
+        // Add actions
+        self.obj().setup_actions();
+    }
+}
+<span class="boring">
+</span><span class="boring">// Trait shared by all widgets
+</span><span class="boring">impl WidgetImpl for Window {}
+</span><span class="boring">
+</span><span class="boring">// Trait shared by all windows
+</span><span class="boring">impl WindowImpl for Window {}
+</span><span class="boring">
+</span><span class="boring">// Trait shared by all application windows
+</span><span class="boring">impl ApplicationWindowImpl for Window {}</span></code></pre>
+<p>This app behaves the same as our previous example, but it leads us to menu creation.</p>
+<h2 id="menus"><a class="header" href="#menus">Menus</a></h2>
+<p>If you want to create a <a href="https://developer.gnome.org/hig/patterns/controls/menus.html">menu</a> you have to use actions and you will want to use the interface builder.
+Typically, a menu entry has an action fitting one of these three descriptions:</p>
+<ul>
+<li>no parameter and no state, or</li>
+<li>no parameter and boolean state, or</li>
+<li>string parameter and string state.</li>
+</ul>
+<p>Let's modify our small app to demonstrate these cases.
+First we extend <code>setup_actions</code>.
+For the action without parameter or state, we can use the pre-defined &quot;window.close&quot; action.
+Therefore we don't have to add anything here.</p>
+<p>With the action &quot;sensitive-button&quot;, we manipulate the &quot;sensitive&quot; property of <code>button</code>.
+Here, the convention is that actions with no parameter and boolean state should behave like toggle actions.
+This means that the caller can expect the boolean state to toggle after activating the action. Luckily for us, that is the default behavior for <a href="https://gtk-rs.org/gtk-rs-core/stable/latest/docs/gio/struct.PropertyAction.html"><code>gio::PropertyAction</code></a> with a boolean property.</p>
+<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/actions/6/window/mod.rs">listings/actions/6/window/mod.rs</a></p>
+<pre><code class="language-rust  no_run noplayground"><span class="boring">mod imp;
+</span><span class="boring">
+</span><span class="boring">use gio::{PropertyAction, SimpleAction};
+</span><span class="boring">use glib::{clone, Object};
+</span><span class="boring">use gtk::prelude::*;
+</span><span class="boring">use gtk::subclass::prelude::*;
+</span><span class="boring">use gtk::{gio, glib, Application, Orientation};
+</span><span class="boring">
+</span><span class="boring">glib::wrapper! {
+</span><span class="boring">    pub struct Window(ObjectSubclass&lt;imp::Window&gt;)
+</span><span class="boring">        @extends gtk::ApplicationWindow, gtk::Window, gtk::Widget,
+</span><span class="boring">        @implements gio::ActionGroup, gio::ActionMap, gtk::Accessible, gtk::Buildable,
+</span><span class="boring">                    gtk::ConstraintTarget, gtk::Native, gtk::Root, gtk::ShortcutManager;
+</span><span class="boring">}
+</span><span class="boring">
+</span><span class="boring">impl Window {
+</span><span class="boring">    pub fn new(app: &amp;Application) -&gt; Self {
+</span><span class="boring">        // Create new window
+</span><span class="boring">        Object::builder().property(&quot;application&quot;, app).build()
+</span><span class="boring">    }
+</span><span class="boring">
+</span><span class="boring">    fn setup_actions(&amp;self) {
+</span><span class="boring">        // Get state
+</span><span class="boring">        let label = self.imp().label.get();
+</span><span class="boring">
+</span><span class="boring">        // Add stateful action &quot;count&quot; to `window` taking an integer as parameter
+</span><span class="boring">        let original_state = 0;
+</span><span class="boring">        let action_count = SimpleAction::new_stateful(
+</span><span class="boring">            &quot;count&quot;,
+</span><span class="boring">            Some(&amp;i32::static_variant_type()),
+</span><span class="boring">            &amp;original_state.to_variant(),
+</span><span class="boring">        );
+</span><span class="boring">
+</span><span class="boring">        action_count.connect_activate(clone!(@weak label =&gt; move |action, parameter| {
+</span><span class="boring">            // Get state
+</span><span class="boring">            let mut state = action
+</span><span class="boring">                .state()
+</span><span class="boring">                .expect(&quot;Could not get state.&quot;)
+</span><span class="boring">                .get::&lt;i32&gt;()
+</span><span class="boring">                .expect(&quot;The value needs to be of type `i32`.&quot;);
+</span><span class="boring">
+</span><span class="boring">            // Get parameter
+</span><span class="boring">            let parameter = parameter
+</span><span class="boring">                .expect(&quot;Could not get parameter.&quot;)
+</span><span class="boring">                .get::&lt;i32&gt;()
+</span><span class="boring">                .expect(&quot;The value needs to be of type `i32`.&quot;);
+</span><span class="boring">
+</span><span class="boring">            // Increase state by parameter and save state
+</span><span class="boring">            state += parameter;
+</span><span class="boring">            action.set_state(&amp;state.to_variant());
+</span><span class="boring">
+</span><span class="boring">            // Update label with new state
+</span><span class="boring">            label.set_label(&amp;format!(&quot;Counter: {state}&quot;));
+</span><span class="boring">        }));
+</span><span class="boring">        self.add_action(&amp;action_count);
+</span><span class="boring">
+</span>        // Add property action &quot;sensitive-button&quot; to `window`
+        let button = self.imp().button.get();
+        let action_sensitive_button =
+            PropertyAction::new(&quot;sensitive-button&quot;, &amp;button, &quot;sensitive&quot;);
+        self.add_action(&amp;action_sensitive_button);
+<span class="boring">
+</span><span class="boring">
+</span><span class="boring">        // Add stateful action &quot;orientation&quot; to `window` taking a string as parameter
+</span><span class="boring">        let gtk_box = self.imp().gtk_box.get();
+</span><span class="boring">        let action_orientation = SimpleAction::new_stateful(
+</span><span class="boring">            &quot;orientation&quot;,
+</span><span class="boring">            Some(&amp;String::static_variant_type()),
+</span><span class="boring">            &amp;&quot;Vertical&quot;.to_variant(),
+</span><span class="boring">        );
+</span><span class="boring">
+</span><span class="boring">        action_orientation.connect_activate(clone!(@weak gtk_box =&gt;
+</span><span class="boring">            move |action, parameter| {
+</span><span class="boring">                // Get parameter
+</span><span class="boring">                let parameter = parameter
+</span><span class="boring">                    .expect(&quot;Could not get parameter.&quot;)
+</span><span class="boring">                    .get::&lt;String&gt;()
+</span><span class="boring">                    .expect(&quot;The value needs to be of type `String`.&quot;);
+</span><span class="boring">
+</span><span class="boring">                let orientation = match parameter.as_str() {
+</span><span class="boring">                    &quot;Horizontal&quot; =&gt; Orientation::Horizontal,
+</span><span class="boring">                    &quot;Vertical&quot; =&gt; Orientation::Vertical,
+</span><span class="boring">                    _ =&gt; unreachable!()
+</span><span class="boring">                };
+</span><span class="boring">
+</span><span class="boring">                // Set orientation and save state
+</span><span class="boring">                gtk_box.set_orientation(orientation);
+</span><span class="boring">                action.set_state(&amp;parameter.to_variant());
+</span><span class="boring">        }));
+</span><span class="boring">        self.add_action(&amp;action_orientation);
+</span><span class="boring">    }
+</span><span class="boring">}</span></code></pre>
+<blockquote>
+<p>A <code>PropertyAction</code> is useful when you need an action that manipulates the property of a GObject.
+The property then acts as the state of the action.
+As mentioned above, if the property is a boolean the action has no parameter and toggles the property on activation.
+In all other cases, the action has a parameter of the same type as the property.
+When activating the action, the property gets set to the same value as the parameter of the action.</p>
+</blockquote>
+<p>Finally, we add &quot;win.orientation&quot;, an action with string parameter and string state.
+This action can be used to change the orientation of <code>gtk_box</code>.
+Here the convention is that the state should be set to the given parameter.
+We don't need the action state to implement orientation switching, however it is useful for making the menu display the current orientation.</p>
+<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/actions/6/window/mod.rs">listings/actions/6/window/mod.rs</a></p>
+<pre><code class="language-rust  no_run noplayground"><span class="boring">mod imp;
+</span><span class="boring">
+</span><span class="boring">use gio::{PropertyAction, SimpleAction};
+</span><span class="boring">use glib::{clone, Object};
+</span><span class="boring">use gtk::prelude::*;
+</span><span class="boring">use gtk::subclass::prelude::*;
+</span><span class="boring">use gtk::{gio, glib, Application, Orientation};
+</span><span class="boring">
+</span><span class="boring">glib::wrapper! {
+</span><span class="boring">    pub struct Window(ObjectSubclass&lt;imp::Window&gt;)
+</span><span class="boring">        @extends gtk::ApplicationWindow, gtk::Window, gtk::Widget,
+</span><span class="boring">        @implements gio::ActionGroup, gio::ActionMap, gtk::Accessible, gtk::Buildable,
+</span><span class="boring">                    gtk::ConstraintTarget, gtk::Native, gtk::Root, gtk::ShortcutManager;
+</span><span class="boring">}
+</span><span class="boring">
+</span><span class="boring">impl Window {
+</span><span class="boring">    pub fn new(app: &amp;Application) -&gt; Self {
+</span><span class="boring">        // Create new window
+</span><span class="boring">        Object::builder().property(&quot;application&quot;, app).build()
+</span><span class="boring">    }
+</span><span class="boring">
+</span><span class="boring">    fn setup_actions(&amp;self) {
+</span><span class="boring">        // Get state
+</span><span class="boring">        let label = self.imp().label.get();
+</span><span class="boring">
+</span><span class="boring">        // Add stateful action &quot;count&quot; to `window` taking an integer as parameter
+</span><span class="boring">        let original_state = 0;
+</span><span class="boring">        let action_count = SimpleAction::new_stateful(
+</span><span class="boring">            &quot;count&quot;,
+</span><span class="boring">            Some(&amp;i32::static_variant_type()),
+</span><span class="boring">            &amp;original_state.to_variant(),
+</span><span class="boring">        );
+</span><span class="boring">
+</span><span class="boring">        action_count.connect_activate(clone!(@weak label =&gt; move |action, parameter| {
+</span><span class="boring">            // Get state
+</span><span class="boring">            let mut state = action
+</span><span class="boring">                .state()
+</span><span class="boring">                .expect(&quot;Could not get state.&quot;)
+</span><span class="boring">                .get::&lt;i32&gt;()
+</span><span class="boring">                .expect(&quot;The value needs to be of type `i32`.&quot;);
+</span><span class="boring">
+</span><span class="boring">            // Get parameter
+</span><span class="boring">            let parameter = parameter
+</span><span class="boring">                .expect(&quot;Could not get parameter.&quot;)
+</span><span class="boring">                .get::&lt;i32&gt;()
+</span><span class="boring">                .expect(&quot;The value needs to be of type `i32`.&quot;);
+</span><span class="boring">
+</span><span class="boring">            // Increase state by parameter and save state
+</span><span class="boring">            state += parameter;
+</span><span class="boring">            action.set_state(&amp;state.to_variant());
+</span><span class="boring">
+</span><span class="boring">            // Update label with new state
+</span><span class="boring">            label.set_label(&amp;format!(&quot;Counter: {state}&quot;));
+</span><span class="boring">        }));
+</span><span class="boring">        self.add_action(&amp;action_count);
+</span><span class="boring">
+</span><span class="boring">        // Add property action &quot;sensitive-button&quot; to `window`
+</span><span class="boring">        let button = self.imp().button.get();
+</span><span class="boring">        let action_sensitive_button =
+</span><span class="boring">            PropertyAction::new(&quot;sensitive-button&quot;, &amp;button, &quot;sensitive&quot;);
+</span><span class="boring">        self.add_action(&amp;action_sensitive_button);
+</span><span class="boring">
+</span>
+        // Add stateful action &quot;orientation&quot; to `window` taking a string as parameter
+        let gtk_box = self.imp().gtk_box.get();
+        let action_orientation = SimpleAction::new_stateful(
+            &quot;orientation&quot;,
+            Some(&amp;String::static_variant_type()),
+            &amp;&quot;Vertical&quot;.to_variant(),
+        );
+
+        action_orientation.connect_activate(clone!(@weak gtk_box =&gt;
+            move |action, parameter| {
+                // Get parameter
+                let parameter = parameter
+                    .expect(&quot;Could not get parameter.&quot;)
+                    .get::&lt;String&gt;()
+                    .expect(&quot;The value needs to be of type `String`.&quot;);
+
+                let orientation = match parameter.as_str() {
+                    &quot;Horizontal&quot; =&gt; Orientation::Horizontal,
+                    &quot;Vertical&quot; =&gt; Orientation::Vertical,
+                    _ =&gt; unreachable!()
+                };
+
+                // Set orientation and save state
+                gtk_box.set_orientation(orientation);
+                action.set_state(&amp;parameter.to_variant());
+        }));
+        self.add_action(&amp;action_orientation);
+<span class="boring">    }
+</span><span class="boring">}</span></code></pre>
+<p>Even though <a href="https://gtk-rs.org/gtk-rs-core/stable/latest/docs/gio/struct.Menu.html"><code>gio::Menu</code></a> can also be created with the bindings, the most convenient way is to use the interface builder for that.
+We do that by adding the menu in front of the template.</p>
+<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/actions/6/resources/window.ui">listings/actions/6/resources/window.ui</a></p>
+<pre><code class="language-diff"> &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+ &lt;interface&gt;
++  &lt;menu id=&quot;main-menu&quot;&gt;
++    &lt;item&gt;
++      &lt;attribute name=&quot;label&quot; translatable=&quot;yes&quot;&gt;_Close window&lt;/attribute&gt;
++      &lt;attribute name=&quot;action&quot;&gt;window.close&lt;/attribute&gt;
++    &lt;/item&gt;
++    &lt;item&gt;
++      &lt;attribute name=&quot;label&quot; translatable=&quot;yes&quot;&gt;_Sensitive button&lt;/attribute&gt;
++      &lt;attribute name=&quot;action&quot;&gt;win.sensitive-button&lt;/attribute&gt;
++    &lt;/item&gt;
++    &lt;section&gt;
++      &lt;attribute name=&quot;label&quot; translatable=&quot;yes&quot;&gt;Orientation&lt;/attribute&gt;
++      &lt;item&gt;
++        &lt;attribute name=&quot;label&quot; translatable=&quot;yes&quot;&gt;_Horizontal&lt;/attribute&gt;
++        &lt;attribute name=&quot;action&quot;&gt;win.orientation&lt;/attribute&gt;
++        &lt;attribute name=&quot;target&quot;&gt;Horizontal&lt;/attribute&gt;
++      &lt;/item&gt;
++      &lt;item&gt;
++        &lt;attribute name=&quot;label&quot; translatable=&quot;yes&quot;&gt;_Vertical&lt;/attribute&gt;
++        &lt;attribute name=&quot;action&quot;&gt;win.orientation&lt;/attribute&gt;
++        &lt;attribute name=&quot;target&quot;&gt;Vertical&lt;/attribute&gt;
++      &lt;/item&gt;
++    &lt;/section&gt;
++  &lt;/menu&gt;
+   &lt;template class=&quot;MyGtkAppWindow&quot; parent=&quot;GtkApplicationWindow&quot;&gt;
+     &lt;property name=&quot;title&quot;&gt;My GTK App&lt;/property&gt;
++    &lt;property name=&quot;width-request&quot;&gt;360&lt;/property&gt;
++    &lt;child type=&quot;titlebar&quot;&gt;
++      &lt;object class=&quot;GtkHeaderBar&quot;&gt;
++        &lt;child type =&quot;end&quot;&gt;
++          &lt;object class=&quot;GtkMenuButton&quot;&gt;
++            &lt;property name=&quot;icon-name&quot;&gt;open-menu-symbolic&lt;/property&gt;
++            &lt;property name=&quot;menu-model&quot;&gt;main-menu&lt;/property&gt;
++          &lt;/object&gt;
++        &lt;/child&gt;
++      &lt;/object&gt;
++    &lt;/child&gt;
+     &lt;child&gt;
+       &lt;object class=&quot;GtkBox&quot; id=&quot;gtk_box&quot;&gt;
+         &lt;property name=&quot;orientation&quot;&gt;vertical&lt;/property&gt;
+</code></pre>
+<p>Since we connect the menu to the <a href="../docs/gtk4/struct.MenuButton.html"><code>gtk::MenuButton</code></a> via the <a href="https://docs.gtk.org/gtk4/property.MenuButton.menu-model.html">menu-model</a> property, the <code>Menu</code> is expected to be a <a href="../docs/gtk4/struct.PopoverMenu.html"><code>gtk::PopoverMenu</code></a>.
+The <a href="../docs/gtk4/struct.PopoverMenu.html">documentation</a> for <code>PopoverMenu</code> also explains its <code>xml</code> syntax for the interface builder.</p>
+<p>Also note how we specified the target:</p>
+<pre><code class="language-xml">&lt;attribute name=&quot;target&quot;&gt;Horizontal&lt;/attribute&gt;
+</code></pre>
+<p>String is the default type of the target which is why we did not have to specify a type.
+With targets of other types you need to manually specify the correct <a href="https://docs.gtk.org/glib/gvariant-format-strings.html">GVariant format string</a>.
+For example, an <code>i32</code> variable with value &quot;5&quot; would correspond to this:</p>
+<pre><code class="language-xml">&lt;attribute name=&quot;target&quot; type=&quot;i&quot;&gt;5&lt;/attribute&gt;
+</code></pre>
+<p>This is how the app looks in action:</p>
+<div style="text-align:center">
+ <video autoplay muted loop>
+  <source src="vid/actions_menu.webm" type="video/webm">
+  <p>A video which now also shows the menu</p>
+ </video>
+</div>
+<blockquote>
+<p>We changed the icon of the <code>MenuButton</code> by setting its property &quot;icon-name&quot; to &quot;open-menu-symbolic&quot;.
+You can find more icons with the <a href="https://apps.gnome.org/app/org.gnome.design.IconLibrary/">Icon Library</a>.
+They can be embedded with <a href="https://gtk-rs.org/gtk-rs-core/stable/latest/docs/gio/struct.Resource.html"><code>gio::Resource</code></a> and then be referenced within the composite templates (or other places).</p>
+</blockquote>
+<h2 id="settings"><a class="header" href="#settings">Settings</a></h2>
+<p>The menu entries nicely display the state of our stateful actions, but after the app is closed all changes to that state are lost.
+As usual, we solve this problem with <a href="https://gtk-rs.org/gtk-rs-core/stable/latest/docs/gio/struct.Settings.html"><code>gio::Settings</code></a>.
+First we create a schema with settings corresponding to the stateful actions we created before.</p>
+<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/actions/7/org.gtk_rs.Actions7.gschema.xml">listings/actions/7/org.gtk_rs.Actions7.gschema.xml</a></p>
+<pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;schemalist&gt;
+  &lt;schema id=&quot;org.gtk_rs.Actions7&quot; path=&quot;/org/gtk_rs/Actions7/&quot;&gt;
+    &lt;key name=&quot;sensitive-button&quot; type=&quot;b&quot;&gt;
+      &lt;default&gt;true&lt;/default&gt;
+      &lt;summary&gt;Whether the button is sensitive&lt;/summary&gt;
+    &lt;/key&gt;
+    &lt;key name=&quot;orientation&quot; type=&quot;s&quot;&gt;
+      &lt;choices&gt;
+        &lt;choice value='Horizontal'/&gt;
+        &lt;choice value='Vertical'/&gt;
+      &lt;/choices&gt;
+      &lt;default&gt;'Vertical'&lt;/default&gt;
+      &lt;summary&gt;Orientation of GtkBox&lt;/summary&gt;
+    &lt;/key&gt;
+  &lt;/schema&gt;
+&lt;/schemalist&gt;
+</code></pre>
+<p>Again, we install the schema as described in the settings <a href="./settings.html">chapter</a>.
+Then we add the settings to <code>imp::Window</code>.
+Since <a href="https://gtk-rs.org/gtk-rs-core/stable/latest/docs/gio/struct.Settings.html"><code>gio::Settings</code></a> does not implement <code>Default</code>, we wrap it in a <a href="https://docs.rs/once_cell/latest/once_cell/sync/struct.OnceCell.html"><code>once_cell::sync::OnceCell</code></a>.</p>
+<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/actions/7/window/imp.rs">listings/actions/7/window/imp.rs</a></p>
+<pre><code class="language-rust  no_run noplayground"><span class="boring">use gio::Settings;
+</span><span class="boring">use glib::subclass::InitializingObject;
+</span><span class="boring">use gtk::prelude::*;
+</span><span class="boring">use gtk::subclass::prelude::*;
+</span><span class="boring">use gtk::{gio, glib, Button, CompositeTemplate, Label};
+</span><span class="boring">use once_cell::sync::OnceCell;
+</span><span class="boring">
+</span>// Object holding the state
+#[derive(CompositeTemplate, Default)]
+#[template(resource = &quot;/org/gtk_rs/example/window.ui&quot;)]
+pub struct Window {
+    #[template_child]
+    pub gtk_box: TemplateChild&lt;gtk::Box&gt;,
+    #[template_child]
+    pub button: TemplateChild&lt;Button&gt;,
+    #[template_child]
+    pub label: TemplateChild&lt;Label&gt;,
+    pub settings: OnceCell&lt;Settings&gt;,
+}
+<span class="boring">
+</span><span class="boring">// The central trait for subclassing a GObject
+</span><span class="boring">#[glib::object_subclass]
+</span><span class="boring">impl ObjectSubclass for Window {
+</span><span class="boring">    // `NAME` needs to match `class` attribute of template
+</span><span class="boring">    const NAME: &amp;'static str = &quot;MyGtkAppWindow&quot;;
+</span><span class="boring">    type Type = super::Window;
+</span><span class="boring">    type ParentType = gtk::ApplicationWindow;
+</span><span class="boring">
+</span><span class="boring">    fn class_init(klass: &amp;mut Self::Class) {
+</span><span class="boring">        klass.bind_template();
+</span><span class="boring">    }
+</span><span class="boring">
+</span><span class="boring">    fn instance_init(obj: &amp;InitializingObject&lt;Self&gt;) {
+</span><span class="boring">        obj.init_template();
+</span><span class="boring">    }
+</span><span class="boring">}
+</span><span class="boring">
+</span><span class="boring">// Trait shared by all GObjects
+</span><span class="boring">impl ObjectImpl for Window {
+</span><span class="boring">    fn constructed(&amp;self) {
+</span><span class="boring">        // Call &quot;constructed&quot; on parent
+</span><span class="boring">        self.parent_constructed();
+</span><span class="boring">
+</span><span class="boring">        // Setup
+</span><span class="boring">        let obj = self.obj();
+</span><span class="boring">        obj.setup_settings();
+</span><span class="boring">        obj.setup_actions();
+</span><span class="boring">        obj.bind_settings();
+</span><span class="boring">    }
+</span><span class="boring">}
+</span><span class="boring">
+</span><span class="boring">// Trait shared by all widgets
+</span><span class="boring">impl WidgetImpl for Window {}
+</span><span class="boring">
+</span><span class="boring">// Trait shared by all windows
+</span><span class="boring">impl WindowImpl for Window {}
+</span><span class="boring">
+</span><span class="boring">// Trait shared by all application windows
+</span><span class="boring">impl ApplicationWindowImpl for Window {}</span></code></pre>
+<p>Now we create functions to make it easier to access settings.</p>
+<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/actions/7/window/mod.rs">listings/actions/7/window/mod.rs</a></p>
+<pre><code class="language-rust  no_run noplayground"><span class="boring">mod imp;
+</span><span class="boring">
+</span><span class="boring">use gio::{Settings, SimpleAction};
+</span><span class="boring">use glib::{clone, Object};
+</span><span class="boring">use gtk::prelude::*;
+</span><span class="boring">use gtk::subclass::prelude::*;
+</span><span class="boring">use gtk::{gio, glib, Application, Orientation};
+</span><span class="boring">
+</span><span class="boring">use crate::APP_ID;
+</span><span class="boring">
+</span><span class="boring">glib::wrapper! {
+</span><span class="boring">    pub struct Window(ObjectSubclass&lt;imp::Window&gt;)
+</span><span class="boring">        @extends gtk::ApplicationWindow, gtk::Window, gtk::Widget,
+</span><span class="boring">        @implements gio::ActionGroup, gio::ActionMap, gtk::Accessible, gtk::Buildable,
+</span><span class="boring">                    gtk::ConstraintTarget, gtk::Native, gtk::Root, gtk::ShortcutManager;
+</span><span class="boring">}
+</span><span class="boring">
+</span><span class="boring">impl Window {
+</span><span class="boring">    pub fn new(app: &amp;Application) -&gt; Self {
+</span><span class="boring">        // Create new window
+</span><span class="boring">        Object::builder().property(&quot;application&quot;, app).build()
+</span><span class="boring">    }
+</span><span class="boring">
+</span>    fn setup_settings(&amp;self) {
+        let settings = Settings::new(APP_ID);
+        self.imp()
+            .settings
+            .set(settings)
+            .expect(&quot;`settings` should not be set before calling `setup_settings`.&quot;);
+    }
+
+    fn settings(&amp;self) -&gt; &amp;Settings {
+        self.imp()
+            .settings
+            .get()
+            .expect(&quot;`settings` should be set in `setup_settings`.&quot;)
+    }
+<span class="boring">
+</span><span class="boring">    fn setup_actions(&amp;self) {
+</span><span class="boring">        // Get state
+</span><span class="boring">        let label = self.imp().label.get();
+</span><span class="boring">
+</span><span class="boring">        // Add stateful action &quot;count&quot; to `window` taking an integer as parameter
+</span><span class="boring">        let original_state = 0;
+</span><span class="boring">        let action_count = SimpleAction::new_stateful(
+</span><span class="boring">            &quot;count&quot;,
+</span><span class="boring">            Some(&amp;i32::static_variant_type()),
+</span><span class="boring">            &amp;original_state.to_variant(),
+</span><span class="boring">        );
+</span><span class="boring">
+</span><span class="boring">        action_count.connect_activate(clone!(@weak label =&gt; move |action, parameter| {
+</span><span class="boring">            // Get state
+</span><span class="boring">            let mut state = action
+</span><span class="boring">            .state()
+</span><span class="boring">            .expect(&quot;Could not get state.&quot;)
+</span><span class="boring">            .get::&lt;i32&gt;()
+</span><span class="boring">            .expect(&quot;The variant needs to be of type `i32`.&quot;);
+</span><span class="boring">
+</span><span class="boring">            // Get parameter
+</span><span class="boring">            let parameter = parameter
+</span><span class="boring">                .expect(&quot;Could not get parameter.&quot;)
+</span><span class="boring">                .get::&lt;i32&gt;()
+</span><span class="boring">                .expect(&quot;The variant needs to be of type `i32`.&quot;);
+</span><span class="boring">
+</span><span class="boring">            // Increase state by parameter and save state
+</span><span class="boring">            state += parameter;
+</span><span class="boring">            action.set_state(&amp;state.to_variant());
+</span><span class="boring">
+</span><span class="boring">            // Update label with new state
+</span><span class="boring">            label.set_label(&amp;format!(&quot;Counter: {state}&quot;));
+</span><span class="boring">        }));
+</span><span class="boring">        self.add_action(&amp;action_count);
+</span><span class="boring">
+</span><span class="boring">        // Add action &quot;close&quot; to `window` taking no parameter
+</span><span class="boring">        let action_close = SimpleAction::new(&quot;close&quot;, None);
+</span><span class="boring">
+</span><span class="boring">        action_close.connect_activate(clone!(@weak self as window =&gt; move |_, _| {
+</span><span class="boring">            window.close();
+</span><span class="boring">        }));
+</span><span class="boring">        self.add_action(&amp;action_close);
+</span><span class="boring">
+</span><span class="boring">        // Create action from key &quot;sensitive-button&quot; and add to action group &quot;win&quot;
+</span><span class="boring">        let action_sensitive_button = self.settings().create_action(&quot;sensitive-button&quot;);
+</span><span class="boring">        self.add_action(&amp;action_sensitive_button);
+</span><span class="boring">
+</span><span class="boring">        // Create action from key &quot;orientation&quot; and add to action group &quot;win&quot;
+</span><span class="boring">        let action_orientation = self.settings().create_action(&quot;orientation&quot;);
+</span><span class="boring">        self.add_action(&amp;action_orientation);
+</span><span class="boring">    }
+</span><span class="boring">
+</span><span class="boring">    fn bind_settings(&amp;self) {
+</span><span class="boring">        // Get state
+</span><span class="boring">
+</span><span class="boring">        // Bind setting &quot;sensitive-button&quot; to &quot;sensitive&quot; property of `button`
+</span><span class="boring">        let button = self.imp().button.get();
+</span><span class="boring">        self.settings()
+</span><span class="boring">            .bind(&quot;sensitive-button&quot;, &amp;button, &quot;sensitive&quot;)
+</span><span class="boring">            .build();
+</span><span class="boring">
+</span><span class="boring">        // Bind setting &quot;orientation&quot; to &quot;orientation&quot; property of `button`
+</span><span class="boring">        let gtk_box = self.imp().gtk_box.get();
+</span><span class="boring">        self.settings()
+</span><span class="boring">            .bind(&quot;orientation&quot;, &amp;gtk_box, &quot;orientation&quot;)
+</span><span class="boring">            .mapping(|variant, _| {
+</span><span class="boring">                let orientation = variant
+</span><span class="boring">                    .get::&lt;String&gt;()
+</span><span class="boring">                    .expect(&quot;The variant needs to be of type `String`.&quot;);
+</span><span class="boring">
+</span><span class="boring">                let orientation = match orientation.as_str() {
+</span><span class="boring">                    &quot;Horizontal&quot; =&gt; Orientation::Horizontal,
+</span><span class="boring">                    &quot;Vertical&quot; =&gt; Orientation::Vertical,
+</span><span class="boring">                    _ =&gt; unreachable!(),
+</span><span class="boring">                };
+</span><span class="boring">
+</span><span class="boring">                Some(orientation.to_value())
+</span><span class="boring">            })
+</span><span class="boring">            .build();
+</span><span class="boring">    }
+</span><span class="boring">}</span></code></pre>
+<p>Creating stateful actions from setting entries is so common that <code>Settings</code> provides a method for that exact purpose.
+We create actions with the<a href="https://gtk-rs.org/gtk-rs-core/stable/latest/docs/gio/prelude/trait.SettingsExt.html#tymethod.create_action"> <code>create_action</code></a> method and then add them to the action group of our window.</p>
+<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/actions/7/window/mod.rs">listings/actions/7/window/mod.rs</a></p>
+<pre><code class="language-rust  no_run noplayground"><span class="boring">mod imp;
+</span><span class="boring">
+</span><span class="boring">use gio::{Settings, SimpleAction};
+</span><span class="boring">use glib::{clone, Object};
+</span><span class="boring">use gtk::prelude::*;
+</span><span class="boring">use gtk::subclass::prelude::*;
+</span><span class="boring">use gtk::{gio, glib, Application, Orientation};
+</span><span class="boring">
+</span><span class="boring">use crate::APP_ID;
+</span><span class="boring">
+</span><span class="boring">glib::wrapper! {
+</span><span class="boring">    pub struct Window(ObjectSubclass&lt;imp::Window&gt;)
+</span><span class="boring">        @extends gtk::ApplicationWindow, gtk::Window, gtk::Widget,
+</span><span class="boring">        @implements gio::ActionGroup, gio::ActionMap, gtk::Accessible, gtk::Buildable,
+</span><span class="boring">                    gtk::ConstraintTarget, gtk::Native, gtk::Root, gtk::ShortcutManager;
+</span><span class="boring">}
+</span><span class="boring">
+</span><span class="boring">impl Window {
+</span><span class="boring">    pub fn new(app: &amp;Application) -&gt; Self {
+</span><span class="boring">        // Create new window
+</span><span class="boring">        Object::builder().property(&quot;application&quot;, app).build()
+</span><span class="boring">    }
+</span><span class="boring">
+</span><span class="boring">    fn setup_settings(&amp;self) {
+</span><span class="boring">        let settings = Settings::new(APP_ID);
+</span><span class="boring">        self.imp()
+</span><span class="boring">            .settings
+</span><span class="boring">            .set(settings)
+</span><span class="boring">            .expect(&quot;`settings` should not be set before calling `setup_settings`.&quot;);
+</span><span class="boring">    }
+</span><span class="boring">
+</span><span class="boring">    fn settings(&amp;self) -&gt; &amp;Settings {
+</span><span class="boring">        self.imp()
+</span><span class="boring">            .settings
+</span><span class="boring">            .get()
+</span><span class="boring">            .expect(&quot;`settings` should be set in `setup_settings`.&quot;)
+</span><span class="boring">    }
+</span><span class="boring">
+</span><span class="boring">    fn setup_actions(&amp;self) {
+</span><span class="boring">        // Get state
+</span><span class="boring">        let label = self.imp().label.get();
+</span><span class="boring">
+</span><span class="boring">        // Add stateful action &quot;count&quot; to `window` taking an integer as parameter
+</span><span class="boring">        let original_state = 0;
+</span><span class="boring">        let action_count = SimpleAction::new_stateful(
+</span><span class="boring">            &quot;count&quot;,
+</span><span class="boring">            Some(&amp;i32::static_variant_type()),
+</span><span class="boring">            &amp;original_state.to_variant(),
+</span><span class="boring">        );
+</span><span class="boring">
+</span><span class="boring">        action_count.connect_activate(clone!(@weak label =&gt; move |action, parameter| {
+</span><span class="boring">            // Get state
+</span><span class="boring">            let mut state = action
+</span><span class="boring">            .state()
+</span><span class="boring">            .expect(&quot;Could not get state.&quot;)
+</span><span class="boring">            .get::&lt;i32&gt;()
+</span><span class="boring">            .expect(&quot;The variant needs to be of type `i32`.&quot;);
+</span><span class="boring">
+</span><span class="boring">            // Get parameter
+</span><span class="boring">            let parameter = parameter
+</span><span class="boring">                .expect(&quot;Could not get parameter.&quot;)
+</span><span class="boring">                .get::&lt;i32&gt;()
+</span><span class="boring">                .expect(&quot;The variant needs to be of type `i32`.&quot;);
+</span><span class="boring">
+</span><span class="boring">            // Increase state by parameter and save state
+</span><span class="boring">            state += parameter;
+</span><span class="boring">            action.set_state(&amp;state.to_variant());
+</span><span class="boring">
+</span><span class="boring">            // Update label with new state
+</span><span class="boring">            label.set_label(&amp;format!(&quot;Counter: {state}&quot;));
+</span><span class="boring">        }));
+</span><span class="boring">        self.add_action(&amp;action_count);
+</span><span class="boring">
+</span><span class="boring">        // Add action &quot;close&quot; to `window` taking no parameter
+</span><span class="boring">        let action_close = SimpleAction::new(&quot;close&quot;, None);
+</span><span class="boring">
+</span><span class="boring">        action_close.connect_activate(clone!(@weak self as window =&gt; move |_, _| {
+</span><span class="boring">            window.close();
+</span><span class="boring">        }));
+</span><span class="boring">        self.add_action(&amp;action_close);
+</span><span class="boring">
+</span>        // Create action from key &quot;sensitive-button&quot; and add to action group &quot;win&quot;
+        let action_sensitive_button = self.settings().create_action(&quot;sensitive-button&quot;);
+        self.add_action(&amp;action_sensitive_button);
+
+        // Create action from key &quot;orientation&quot; and add to action group &quot;win&quot;
+        let action_orientation = self.settings().create_action(&quot;orientation&quot;);
+        self.add_action(&amp;action_orientation);
+<span class="boring">    }
+</span><span class="boring">
+</span><span class="boring">    fn bind_settings(&amp;self) {
+</span><span class="boring">        // Get state
+</span><span class="boring">
+</span><span class="boring">        // Bind setting &quot;sensitive-button&quot; to &quot;sensitive&quot; property of `button`
+</span><span class="boring">        let button = self.imp().button.get();
+</span><span class="boring">        self.settings()
+</span><span class="boring">            .bind(&quot;sensitive-button&quot;, &amp;button, &quot;sensitive&quot;)
+</span><span class="boring">            .build();
+</span><span class="boring">
+</span><span class="boring">        // Bind setting &quot;orientation&quot; to &quot;orientation&quot; property of `button`
+</span><span class="boring">        let gtk_box = self.imp().gtk_box.get();
+</span><span class="boring">        self.settings()
+</span><span class="boring">            .bind(&quot;orientation&quot;, &amp;gtk_box, &quot;orientation&quot;)
+</span><span class="boring">            .mapping(|variant, _| {
+</span><span class="boring">                let orientation = variant
+</span><span class="boring">                    .get::&lt;String&gt;()
+</span><span class="boring">                    .expect(&quot;The variant needs to be of type `String`.&quot;);
+</span><span class="boring">
+</span><span class="boring">                let orientation = match orientation.as_str() {
+</span><span class="boring">                    &quot;Horizontal&quot; =&gt; Orientation::Horizontal,
+</span><span class="boring">                    &quot;Vertical&quot; =&gt; Orientation::Vertical,
+</span><span class="boring">                    _ =&gt; unreachable!(),
+</span><span class="boring">                };
+</span><span class="boring">
+</span><span class="boring">                Some(orientation.to_value())
+</span><span class="boring">            })
+</span><span class="boring">            .build();
+</span><span class="boring">    }
+</span><span class="boring">}</span></code></pre>
+<p>Since actions from <code>create_action</code> follow the aforementioned conventions, we can keep further changes to a minimum.
+The action &quot;win.sensitive-button&quot; toggles its state with each activation and the state of the &quot;win.orientation&quot; action follows the given parameter.</p>
+<p>We still have to specify what should happen when the actions are activated though.
+For the stateful actions, instead of adding callbacks to their &quot;activate&quot; signals we bind the settings to properties we want to manipulate.</p>
+<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/actions/7/window/mod.rs">listings/actions/7/window/mod.rs</a></p>
+<pre><code class="language-rust  no_run noplayground"><span class="boring">mod imp;
+</span><span class="boring">
+</span><span class="boring">use gio::{Settings, SimpleAction};
+</span><span class="boring">use glib::{clone, Object};
+</span><span class="boring">use gtk::prelude::*;
+</span><span class="boring">use gtk::subclass::prelude::*;
+</span><span class="boring">use gtk::{gio, glib, Application, Orientation};
+</span><span class="boring">
+</span><span class="boring">use crate::APP_ID;
+</span><span class="boring">
+</span><span class="boring">glib::wrapper! {
+</span><span class="boring">    pub struct Window(ObjectSubclass&lt;imp::Window&gt;)
+</span><span class="boring">        @extends gtk::ApplicationWindow, gtk::Window, gtk::Widget,
+</span><span class="boring">        @implements gio::ActionGroup, gio::ActionMap, gtk::Accessible, gtk::Buildable,
+</span><span class="boring">                    gtk::ConstraintTarget, gtk::Native, gtk::Root, gtk::ShortcutManager;
+</span><span class="boring">}
+</span><span class="boring">
+</span><span class="boring">impl Window {
+</span><span class="boring">    pub fn new(app: &amp;Application) -&gt; Self {
+</span><span class="boring">        // Create new window
+</span><span class="boring">        Object::builder().property(&quot;application&quot;, app).build()
+</span><span class="boring">    }
+</span><span class="boring">
+</span><span class="boring">    fn setup_settings(&amp;self) {
+</span><span class="boring">        let settings = Settings::new(APP_ID);
+</span><span class="boring">        self.imp()
+</span><span class="boring">            .settings
+</span><span class="boring">            .set(settings)
+</span><span class="boring">            .expect(&quot;`settings` should not be set before calling `setup_settings`.&quot;);
+</span><span class="boring">    }
+</span><span class="boring">
+</span><span class="boring">    fn settings(&amp;self) -&gt; &amp;Settings {
+</span><span class="boring">        self.imp()
+</span><span class="boring">            .settings
+</span><span class="boring">            .get()
+</span><span class="boring">            .expect(&quot;`settings` should be set in `setup_settings`.&quot;)
+</span><span class="boring">    }
+</span><span class="boring">
+</span><span class="boring">    fn setup_actions(&amp;self) {
+</span><span class="boring">        // Get state
+</span><span class="boring">        let label = self.imp().label.get();
+</span><span class="boring">
+</span><span class="boring">        // Add stateful action &quot;count&quot; to `window` taking an integer as parameter
+</span><span class="boring">        let original_state = 0;
+</span><span class="boring">        let action_count = SimpleAction::new_stateful(
+</span><span class="boring">            &quot;count&quot;,
+</span><span class="boring">            Some(&amp;i32::static_variant_type()),
+</span><span class="boring">            &amp;original_state.to_variant(),
+</span><span class="boring">        );
+</span><span class="boring">
+</span><span class="boring">        action_count.connect_activate(clone!(@weak label =&gt; move |action, parameter| {
+</span><span class="boring">            // Get state
+</span><span class="boring">            let mut state = action
+</span><span class="boring">            .state()
+</span><span class="boring">            .expect(&quot;Could not get state.&quot;)
+</span><span class="boring">            .get::&lt;i32&gt;()
+</span><span class="boring">            .expect(&quot;The variant needs to be of type `i32`.&quot;);
+</span><span class="boring">
+</span><span class="boring">            // Get parameter
+</span><span class="boring">            let parameter = parameter
+</span><span class="boring">                .expect(&quot;Could not get parameter.&quot;)
+</span><span class="boring">                .get::&lt;i32&gt;()
+</span><span class="boring">                .expect(&quot;The variant needs to be of type `i32`.&quot;);
+</span><span class="boring">
+</span><span class="boring">            // Increase state by parameter and save state
+</span><span class="boring">            state += parameter;
+</span><span class="boring">            action.set_state(&amp;state.to_variant());
+</span><span class="boring">
+</span><span class="boring">            // Update label with new state
+</span><span class="boring">            label.set_label(&amp;format!(&quot;Counter: {state}&quot;));
+</span><span class="boring">        }));
+</span><span class="boring">        self.add_action(&amp;action_count);
+</span><span class="boring">
+</span><span class="boring">        // Add action &quot;close&quot; to `window` taking no parameter
+</span><span class="boring">        let action_close = SimpleAction::new(&quot;close&quot;, None);
+</span><span class="boring">
+</span><span class="boring">        action_close.connect_activate(clone!(@weak self as window =&gt; move |_, _| {
+</span><span class="boring">            window.close();
+</span><span class="boring">        }));
+</span><span class="boring">        self.add_action(&amp;action_close);
+</span><span class="boring">
+</span><span class="boring">        // Create action from key &quot;sensitive-button&quot; and add to action group &quot;win&quot;
+</span><span class="boring">        let action_sensitive_button = self.settings().create_action(&quot;sensitive-button&quot;);
+</span><span class="boring">        self.add_action(&amp;action_sensitive_button);
+</span><span class="boring">
+</span><span class="boring">        // Create action from key &quot;orientation&quot; and add to action group &quot;win&quot;
+</span><span class="boring">        let action_orientation = self.settings().create_action(&quot;orientation&quot;);
+</span><span class="boring">        self.add_action(&amp;action_orientation);
+</span><span class="boring">    }
+</span><span class="boring">
+</span>    fn bind_settings(&amp;self) {
+        // Get state
+
+        // Bind setting &quot;sensitive-button&quot; to &quot;sensitive&quot; property of `button`
+        let button = self.imp().button.get();
+        self.settings()
+            .bind(&quot;sensitive-button&quot;, &amp;button, &quot;sensitive&quot;)
+            .build();
+
+        // Bind setting &quot;orientation&quot; to &quot;orientation&quot; property of `button`
+        let gtk_box = self.imp().gtk_box.get();
+        self.settings()
+            .bind(&quot;orientation&quot;, &amp;gtk_box, &quot;orientation&quot;)
+            .mapping(|variant, _| {
+                let orientation = variant
+                    .get::&lt;String&gt;()
+                    .expect(&quot;The variant needs to be of type `String`.&quot;);
+
+                let orientation = match orientation.as_str() {
+                    &quot;Horizontal&quot; =&gt; Orientation::Horizontal,
+                    &quot;Vertical&quot; =&gt; Orientation::Vertical,
+                    _ =&gt; unreachable!(),
+                };
+
+                Some(orientation.to_value())
+            })
+            .build();
+    }
+<span class="boring">}</span></code></pre>
+<p>Finally, we make sure that <code>bind_settings</code> is called within <code>constructed</code>.</p>
+<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/actions/7/window/imp.rs">listings/actions/7/window/imp.rs</a></p>
+<pre><code class="language-rust  no_run noplayground"><span class="boring">use gio::Settings;
+</span><span class="boring">use glib::subclass::InitializingObject;
+</span><span class="boring">use gtk::prelude::*;
+</span><span class="boring">use gtk::subclass::prelude::*;
+</span><span class="boring">use gtk::{gio, glib, Button, CompositeTemplate, Label};
+</span><span class="boring">use once_cell::sync::OnceCell;
+</span><span class="boring">
+</span><span class="boring">// Object holding the state
+</span><span class="boring">#[derive(CompositeTemplate, Default)]
+</span><span class="boring">#[template(resource = &quot;/org/gtk_rs/example/window.ui&quot;)]
+</span><span class="boring">pub struct Window {
+</span><span class="boring">    #[template_child]
+</span><span class="boring">    pub gtk_box: TemplateChild&lt;gtk::Box&gt;,
+</span><span class="boring">    #[template_child]
+</span><span class="boring">    pub button: TemplateChild&lt;Button&gt;,
+</span><span class="boring">    #[template_child]
+</span><span class="boring">    pub label: TemplateChild&lt;Label&gt;,
+</span><span class="boring">    pub settings: OnceCell&lt;Settings&gt;,
+</span><span class="boring">}
+</span><span class="boring">
+</span><span class="boring">// The central trait for subclassing a GObject
+</span><span class="boring">#[glib::object_subclass]
+</span><span class="boring">impl ObjectSubclass for Window {
+</span><span class="boring">    // `NAME` needs to match `class` attribute of template
+</span><span class="boring">    const NAME: &amp;'static str = &quot;MyGtkAppWindow&quot;;
+</span><span class="boring">    type Type = super::Window;
+</span><span class="boring">    type ParentType = gtk::ApplicationWindow;
+</span><span class="boring">
+</span><span class="boring">    fn class_init(klass: &amp;mut Self::Class) {
+</span><span class="boring">        klass.bind_template();
+</span><span class="boring">    }
+</span><span class="boring">
+</span><span class="boring">    fn instance_init(obj: &amp;InitializingObject&lt;Self&gt;) {
+</span><span class="boring">        obj.init_template();
+</span><span class="boring">    }
+</span><span class="boring">}
+</span><span class="boring">
+</span>// Trait shared by all GObjects
+impl ObjectImpl for Window {
+    fn constructed(&amp;self) {
+        // Call &quot;constructed&quot; on parent
+        self.parent_constructed();
+
+        // Setup
+        let obj = self.obj();
+        obj.setup_settings();
+        obj.setup_actions();
+        obj.bind_settings();
+    }
+}
+<span class="boring">
+</span><span class="boring">// Trait shared by all widgets
+</span><span class="boring">impl WidgetImpl for Window {}
+</span><span class="boring">
+</span><span class="boring">// Trait shared by all windows
+</span><span class="boring">impl WindowImpl for Window {}
+</span><span class="boring">
+</span><span class="boring">// Trait shared by all application windows
+</span><span class="boring">impl ApplicationWindowImpl for Window {}</span></code></pre>
+<p>Actions are extremely powerful and we are only scratching the surface here.
+If you want to learn more about them, the <a href="https://developer.gnome.org/documentation/tutorials/actions.html">GNOME developer documentation</a> is a good place to start.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="todo_1.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="todo_2.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="todo_1.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="todo_2.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </body>
+</html>

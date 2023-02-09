@@ -1,0 +1,1 @@
+initSidebarItems({"trait":[["WaylandSurfaceExtManual","Trait containing manually implemented methods of `WaylandSurface`."]]});

@@ -1,0 +1,353 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Trait containing all [`struct@FileChooser`] methods."><title>FileChooserExt in gtk4::prelude - Rust</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Bold-a2c9cd1067f8b328.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-0ef3deca4ed45ad8.css" id="mainThemeStyle"><link rel="stylesheet" id="themeStyle" href="../../static.files/light-f501212b8b071243.css"><link rel="stylesheet" disabled href="../../static.files/dark-e92fc12c34ff89d3.css"><link rel="stylesheet" disabled href="../../static.files/ayu-a0090c8b1ced384f.css"><script src="../../static.files/storage-3891ce972e3a2bf8.js"></script><script defer src="sidebar-items.js"></script><script defer src="../../static.files/main-364b95f387bc3166.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-13285aec31fa243e.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc trait"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
+
+    function checkDocsLatestStable() {
+        function popup(msg, url) { return `
+            <style scoped="scoped">
+                .popup {
+                    max-width: 16em;
+                    background-color: #fff;
+                    position: fixed;
+                    z-index: 1;
+                    margin-left: auto;
+                    bottom: 1em;
+                    right: 1em;
+                    border-radius: 5px;
+                    box-shadow: 1px 1px 4px #777;
+                }
+
+                .popup a.version {
+                    color: #e57300;
+                    padding: 0.6em 1em;
+                    display: block;
+                }
+                .popup a.version:hover {
+                    color: #b25900;
+                }
+
+                .popup a.close {
+                    color: white;
+                    background: grey;
+                    border-radius: 99px;
+                    display: inline-block;
+                    width: 19px;
+                    line-height: 19px;
+                    font-weight: bold;
+                    text-align: center;
+                    margin: 0.6em;
+                    float: right;
+                }
+                .popup a.close:hover {
+                    background: black;
+                }
+            </style>
+            <section class="popup" id="gir_docs_popup">
+                <a class="close" href="#" onclick="document.getElementById('gir_docs_popup').remove(); return false">×</a>
+                <a class="version" href="https://gtk-rs.org/gtk4-rs/stable/latest/docs">
+                    ⚠ ${msg}
+                </a>
+            </section>
+        ` };
+
+        if ("0.6" == "master") {
+            document.body.insertAdjacentHTML(
+                'beforeend',
+                popup("This is the development version. Go to latest stable version.", "stable/latest")
+            );
+        } else {
+            fetch('https://gtk-rs.org/gtk4-rs/LATEST_RELEASE_BRANCH')
+                .then(response => response.text())
+                .then(latest_branch => {
+                    if (latest_branch.trim() != "0.6") {
+                        document.body.insertAdjacentHTML(
+                            'beforeend',
+                            popup("This version is outdated. Go to latest version.", "stable/latest")
+                        );
+                    }
+                });
+        }
+    }
+</script>
+
+
+<nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="logo-container" href="../../gtk4/index.html"><img class="rust-logo" src="../../static.files/rust-logo-151179464ae7ed46.svg" alt="logo"></a><h2></h2></nav><nav class="sidebar"><a class="logo-container" href="../../gtk4/index.html"><img class="rust-logo" src="../../static.files/rust-logo-151179464ae7ed46.svg" alt="logo"></a><h2 class="location"><a href="#">FileChooserExt</a></h2><div class="sidebar-elems"><section><h3><a href="#required-methods">Required Methods</a></h3><ul class="block"><li><a href="#tymethod.action">action</a></li><li><a href="#tymethod.add_filter">add_filter</a></li><li><a href="#tymethod.add_shortcut_folder">add_shortcut_folder</a></li><li><a href="#tymethod.choice">choice</a></li><li><a href="#tymethod.connect_action_notify">connect_action_notify</a></li><li><a href="#tymethod.connect_create_folders_notify">connect_create_folders_notify</a></li><li><a href="#tymethod.connect_filter_notify">connect_filter_notify</a></li><li><a href="#tymethod.connect_filters_notify">connect_filters_notify</a></li><li><a href="#tymethod.connect_select_multiple_notify">connect_select_multiple_notify</a></li><li><a href="#tymethod.connect_shortcut_folders_notify">connect_shortcut_folders_notify</a></li><li><a href="#tymethod.creates_folders">creates_folders</a></li><li><a href="#tymethod.current_folder">current_folder</a></li><li><a href="#tymethod.current_name">current_name</a></li><li><a href="#tymethod.file">file</a></li><li><a href="#tymethod.files">files</a></li><li><a href="#tymethod.filter">filter</a></li><li><a href="#tymethod.filters">filters</a></li><li><a href="#tymethod.remove_choice">remove_choice</a></li><li><a href="#tymethod.remove_filter">remove_filter</a></li><li><a href="#tymethod.remove_shortcut_folder">remove_shortcut_folder</a></li><li><a href="#tymethod.selects_multiple">selects_multiple</a></li><li><a href="#tymethod.set_action">set_action</a></li><li><a href="#tymethod.set_choice">set_choice</a></li><li><a href="#tymethod.set_create_folders">set_create_folders</a></li><li><a href="#tymethod.set_current_name">set_current_name</a></li><li><a href="#tymethod.set_file">set_file</a></li><li><a href="#tymethod.set_filter">set_filter</a></li><li><a href="#tymethod.set_select_multiple">set_select_multiple</a></li><li><a href="#tymethod.shortcut_folders">shortcut_folders</a></li></ul><h3><a href="#implementors">Implementors</a></h3></section><h2><a href="index.html">In gtk4::prelude</a></h2></div></nav><main><div class="width-limiter"><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-5ec35bf9ca753509.svg"></a></div></form></nav><section id="main-content" class="content"><div class="main-heading"><h1>Trait <a href="../index.html">gtk4</a>::<wbr><a href="index.html">prelude</a>::<wbr><a class="trait" href="#">FileChooserExt</a><button id="copy-path" title="Copy item path to clipboard"><img src="../../static.files/clipboard-7571035ce49a181d.svg" width="19" height="18" alt="Copy item path"></button></h1><span class="out-of-band"><a class="srclink" href="../../src/gtk4/auto/file_chooser.rs.html#124-590">source</a> · <button id="toggle-all-docs" title="collapse all docs">[<span>&#x2212;</span>]</button></span></div><pre class="rust item-decl"><code>pub trait FileChooserExt: 'static {
+<details class="toggle type-contents-toggle"><summary class="hideme"><span>Show 29 methods</span></summary>    // Required methods
+    fn <a href="#tymethod.add_filter" class="fn">add_filter</a>(&amp;self, filter: &amp;<a class="struct" href="../struct.FileFilter.html" title="struct gtk4::FileFilter">FileFilter</a>);
+<span class="item-spacer"></span>    fn <a href="#tymethod.add_shortcut_folder" class="fn">add_shortcut_folder</a>(&amp;self, folder: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.17/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.17/docs/gio/auto/file/struct.File.html" title="struct gio::auto::file::File">File</a>&gt;) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.unit.html">()</a>, <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.17/docs/glib/error/struct.Error.html" title="struct glib::error::Error">Error</a>&gt;;
+<span class="item-spacer"></span>    fn <a href="#tymethod.action" class="fn">action</a>(&amp;self) -&gt; <a class="enum" href="../enum.FileChooserAction.html" title="enum gtk4::FileChooserAction">FileChooserAction</a>;
+<span class="item-spacer"></span>    fn <a href="#tymethod.choice" class="fn">choice</a>(&amp;self, id: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.17/docs/glib/gstring/struct.GString.html" title="struct glib::gstring::GString">GString</a>&gt;;
+<span class="item-spacer"></span>    fn <a href="#tymethod.creates_folders" class="fn">creates_folders</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>;
+<span class="item-spacer"></span>    fn <a href="#tymethod.current_folder" class="fn">current_folder</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.17/docs/gio/auto/file/struct.File.html" title="struct gio::auto::file::File">File</a>&gt;;
+<span class="item-spacer"></span>    fn <a href="#tymethod.current_name" class="fn">current_name</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.17/docs/glib/gstring/struct.GString.html" title="struct glib::gstring::GString">GString</a>&gt;;
+<span class="item-spacer"></span>    fn <a href="#tymethod.file" class="fn">file</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.17/docs/gio/auto/file/struct.File.html" title="struct gio::auto::file::File">File</a>&gt;;
+<span class="item-spacer"></span>    fn <a href="#tymethod.files" class="fn">files</a>(&amp;self) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.17/docs/gio/auto/list_model/struct.ListModel.html" title="struct gio::auto::list_model::ListModel">ListModel</a>;
+<span class="item-spacer"></span>    fn <a href="#tymethod.filter" class="fn">filter</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../struct.FileFilter.html" title="struct gtk4::FileFilter">FileFilter</a>&gt;;
+<span class="item-spacer"></span>    fn <a href="#tymethod.filters" class="fn">filters</a>(&amp;self) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.17/docs/gio/auto/list_model/struct.ListModel.html" title="struct gio::auto::list_model::ListModel">ListModel</a>;
+<span class="item-spacer"></span>    fn <a href="#tymethod.selects_multiple" class="fn">selects_multiple</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>;
+<span class="item-spacer"></span>    fn <a href="#tymethod.shortcut_folders" class="fn">shortcut_folders</a>(&amp;self) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.17/docs/gio/auto/list_model/struct.ListModel.html" title="struct gio::auto::list_model::ListModel">ListModel</a>;
+<span class="item-spacer"></span>    fn <a href="#tymethod.remove_choice" class="fn">remove_choice</a>(&amp;self, id: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>);
+<span class="item-spacer"></span>    fn <a href="#tymethod.remove_filter" class="fn">remove_filter</a>(&amp;self, filter: &amp;<a class="struct" href="../struct.FileFilter.html" title="struct gtk4::FileFilter">FileFilter</a>);
+<span class="item-spacer"></span>    fn <a href="#tymethod.remove_shortcut_folder" class="fn">remove_shortcut_folder</a>(
+        &amp;self,
+        folder: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.17/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.17/docs/gio/auto/file/struct.File.html" title="struct gio::auto::file::File">File</a>&gt;
+    ) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.unit.html">()</a>, <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.17/docs/glib/error/struct.Error.html" title="struct glib::error::Error">Error</a>&gt;;
+<span class="item-spacer"></span>    fn <a href="#tymethod.set_action" class="fn">set_action</a>(&amp;self, action: <a class="enum" href="../enum.FileChooserAction.html" title="enum gtk4::FileChooserAction">FileChooserAction</a>);
+<span class="item-spacer"></span>    fn <a href="#tymethod.set_choice" class="fn">set_choice</a>(&amp;self, id: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>, option: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>);
+<span class="item-spacer"></span>    fn <a href="#tymethod.set_create_folders" class="fn">set_create_folders</a>(&amp;self, create_folders: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>);
+<span class="item-spacer"></span>    fn <a href="#tymethod.set_current_name" class="fn">set_current_name</a>(&amp;self, name: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>);
+<span class="item-spacer"></span>    fn <a href="#tymethod.set_file" class="fn">set_file</a>(&amp;self, file: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.17/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.17/docs/gio/auto/file/struct.File.html" title="struct gio::auto::file::File">File</a>&gt;) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.unit.html">()</a>, <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.17/docs/glib/error/struct.Error.html" title="struct glib::error::Error">Error</a>&gt;;
+<span class="item-spacer"></span>    fn <a href="#tymethod.set_filter" class="fn">set_filter</a>(&amp;self, filter: &amp;<a class="struct" href="../struct.FileFilter.html" title="struct gtk4::FileFilter">FileFilter</a>);
+<span class="item-spacer"></span>    fn <a href="#tymethod.set_select_multiple" class="fn">set_select_multiple</a>(&amp;self, select_multiple: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>);
+<span class="item-spacer"></span>    fn <a href="#tymethod.connect_action_notify" class="fn">connect_action_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
+        &amp;self,
+        f: F
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.17/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a>;
+<span class="item-spacer"></span>    fn <a href="#tymethod.connect_create_folders_notify" class="fn">connect_create_folders_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
+        &amp;self,
+        f: F
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.17/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a>;
+<span class="item-spacer"></span>    fn <a href="#tymethod.connect_filter_notify" class="fn">connect_filter_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
+        &amp;self,
+        f: F
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.17/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a>;
+<span class="item-spacer"></span>    fn <a href="#tymethod.connect_filters_notify" class="fn">connect_filters_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
+        &amp;self,
+        f: F
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.17/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a>;
+<span class="item-spacer"></span>    fn <a href="#tymethod.connect_select_multiple_notify" class="fn">connect_select_multiple_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
+        &amp;self,
+        f: F
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.17/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a>;
+<span class="item-spacer"></span>    fn <a href="#tymethod.connect_shortcut_folders_notify" class="fn">connect_shortcut_folders_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
+        &amp;self,
+        f: F
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.17/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a>;
+</details>}</code></pre><details class="toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>Trait containing all <a href="../struct.FileChooser.html" title="FileChooser"><code>FileChooser</code></a> methods.</p>
+<h2 id="implementors-1"><a href="#implementors-1">Implementors</a></h2>
+<p><a href="../struct.FileChooserDialog.html" title="crate::FileChooserDialog"><code>FileChooserDialog</code></a>, <a href="../struct.FileChooserNative.html" title="crate::FileChooserNative"><code>FileChooserNative</code></a>, <a href="../struct.FileChooserWidget.html" title="crate::FileChooserWidget"><code>FileChooserWidget</code></a>, <a href="../struct.FileChooser.html" title="crate::FileChooser"><code>FileChooser</code></a></p>
+</div></details><h2 id="required-methods" class="small-section-header">Required Methods<a href="#required-methods" class="anchor">§</a></h2><div class="methods"><details class="toggle method-toggle" open><summary><section id="tymethod.add_filter" class="method"><a class="srclink rightside" href="../../src/gtk4/auto/file_chooser.rs.html#141">source</a><h4 class="code-header">fn <a href="#tymethod.add_filter" class="fn">add_filter</a>(&amp;self, filter: &amp;<a class="struct" href="../struct.FileFilter.html" title="struct gtk4::FileFilter">FileFilter</a>)</h4></section></summary><div class="docblock"><p>Adds @filter to the list of filters that the user can select between.</p>
+<p>When a filter is selected, only files that are passed by that
+filter are displayed.</p>
+<p>Note that the @self takes ownership of the filter if it is floating,
+so you have to ref and sink it if you want to keep a reference.</p>
+<h5 id="deprecated-since-410"><a href="#deprecated-since-410">Deprecated since 4.10</a></h5>
+<p>Use <a href="../struct.FileDialog.html" title="crate::FileDialog"><code>FileDialog</code></a> instead</p>
+<h6 id="filter"><a href="#filter"><code>filter</code></a></h6>
+<p>a <a href="../struct.FileFilter.html" title="crate::FileFilter"><code>FileFilter</code></a></p>
+</div></details><details class="toggle method-toggle" open><summary><section id="tymethod.add_shortcut_folder" class="method"><a class="srclink rightside" href="../../src/gtk4/auto/file_chooser.rs.html#159">source</a><h4 class="code-header">fn <a href="#tymethod.add_shortcut_folder" class="fn">add_shortcut_folder</a>(&amp;self, folder: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.17/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.17/docs/gio/auto/file/struct.File.html" title="struct gio::auto::file::File">File</a>&gt;) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.unit.html">()</a>, <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.17/docs/glib/error/struct.Error.html" title="struct glib::error::Error">Error</a>&gt;</h4></section></summary><div class="docblock"><p>Adds a folder to be displayed with the shortcut folders
+in a file chooser.</p>
+<h5 id="deprecated-since-410-1"><a href="#deprecated-since-410-1">Deprecated since 4.10</a></h5>
+<p>Use <a href="../struct.FileDialog.html" title="crate::FileDialog"><code>FileDialog</code></a> instead</p>
+<h6 id="folder"><a href="#folder"><code>folder</code></a></h6>
+<p>a <code>GFile</code> for the folder to add</p>
+<h5 id="returns"><a href="#returns">Returns</a></h5>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if the folder could be added successfully,
+<a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="false"><code>false</code></a> otherwise.</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="tymethod.action" class="method"><a class="srclink rightside" href="../../src/gtk4/auto/file_chooser.rs.html#174">source</a><h4 class="code-header">fn <a href="#tymethod.action" class="fn">action</a>(&amp;self) -&gt; <a class="enum" href="../enum.FileChooserAction.html" title="enum gtk4::FileChooserAction">FileChooserAction</a></h4></section></summary><div class="docblock"><p>Gets the type of operation that the file chooser is performing.</p>
+<h5 id="deprecated-since-410-2"><a href="#deprecated-since-410-2">Deprecated since 4.10</a></h5>
+<p>Use <a href="../struct.FileDialog.html" title="crate::FileDialog"><code>FileDialog</code></a> instead</p>
+<h5 id="returns-1"><a href="#returns-1">Returns</a></h5>
+<p>the action that the file selector is performing</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="tymethod.choice" class="method"><a class="srclink rightside" href="../../src/gtk4/auto/file_chooser.rs.html#191">source</a><h4 class="code-header">fn <a href="#tymethod.choice" class="fn">choice</a>(&amp;self, id: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.17/docs/glib/gstring/struct.GString.html" title="struct glib::gstring::GString">GString</a>&gt;</h4></section></summary><div class="docblock"><p>Gets the currently selected option in the ‘choice’ with the given ID.</p>
+<h5 id="deprecated-since-410-3"><a href="#deprecated-since-410-3">Deprecated since 4.10</a></h5>
+<p>Use <a href="../struct.FileDialog.html" title="crate::FileDialog"><code>FileDialog</code></a> instead</p>
+<h6 id="id"><a href="#id"><code>id</code></a></h6>
+<p>the ID of the choice to get</p>
+<h5 id="returns-2"><a href="#returns-2">Returns</a></h5>
+<p>the ID of the currently selected option</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="tymethod.creates_folders" class="method"><a class="srclink rightside" href="../../src/gtk4/auto/file_chooser.rs.html#206">source</a><h4 class="code-header">fn <a href="#tymethod.creates_folders" class="fn">creates_folders</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></section></summary><div class="docblock"><p>Gets whether file chooser will offer to create new folders.</p>
+<h5 id="deprecated-since-410-4"><a href="#deprecated-since-410-4">Deprecated since 4.10</a></h5>
+<p>Use <a href="../struct.FileDialog.html" title="crate::FileDialog"><code>FileDialog</code></a> instead</p>
+<h5 id="returns-3"><a href="#returns-3">Returns</a></h5>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if the Create Folder button should be displayed.</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="tymethod.current_folder" class="method"><a class="srclink rightside" href="../../src/gtk4/auto/file_chooser.rs.html#221">source</a><h4 class="code-header">fn <a href="#tymethod.current_folder" class="fn">current_folder</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.17/docs/gio/auto/file/struct.File.html" title="struct gio::auto::file::File">File</a>&gt;</h4></section></summary><div class="docblock"><p>Gets the current folder of @self as <code>GFile</code>.</p>
+<h5 id="deprecated-since-410-5"><a href="#deprecated-since-410-5">Deprecated since 4.10</a></h5>
+<p>Use <a href="../struct.FileDialog.html" title="crate::FileDialog"><code>FileDialog</code></a> instead</p>
+<h5 id="returns-4"><a href="#returns-4">Returns</a></h5>
+<p>the <code>GFile</code> for the current folder.</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="tymethod.current_name" class="method"><a class="srclink rightside" href="../../src/gtk4/auto/file_chooser.rs.html#243">source</a><h4 class="code-header">fn <a href="#tymethod.current_name" class="fn">current_name</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.17/docs/glib/gstring/struct.GString.html" title="struct glib::gstring::GString">GString</a>&gt;</h4></section></summary><div class="docblock"><p>Gets the current name in the file selector, as entered by the user.</p>
+<p>This is meant to be used in save dialogs, to get the currently typed
+filename when the file itself does not exist yet.</p>
+<h5 id="deprecated-since-410-6"><a href="#deprecated-since-410-6">Deprecated since 4.10</a></h5>
+<p>Use <a href="../struct.FileDialog.html" title="crate::FileDialog"><code>FileDialog</code></a> instead</p>
+<h5 id="returns-5"><a href="#returns-5">Returns</a></h5>
+<p>The raw text from the file chooser’s “Name” entry. Free with
+g_free(). Note that this string is not a full pathname or URI; it is
+whatever the contents of the entry are. Note also that this string is
+in UTF-8 encoding, which is not necessarily the system’s encoding for
+filenames.</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="tymethod.file" class="method"><a class="srclink rightside" href="../../src/gtk4/auto/file_chooser.rs.html#266">source</a><h4 class="code-header">fn <a href="#tymethod.file" class="fn">file</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.17/docs/gio/auto/file/struct.File.html" title="struct gio::auto::file::File">File</a>&gt;</h4></section></summary><div class="docblock"><p>Gets the <code>GFile</code> for the currently selected file in
+the file selector.</p>
+<p>If multiple files are selected, one of the files will be
+returned at random.</p>
+<p>If the file chooser is in folder mode, this function returns
+the selected folder.</p>
+<h5 id="deprecated-since-410-7"><a href="#deprecated-since-410-7">Deprecated since 4.10</a></h5>
+<p>Use <a href="../struct.FileDialog.html" title="crate::FileDialog"><code>FileDialog</code></a> instead</p>
+<h5 id="returns-6"><a href="#returns-6">Returns</a></h5>
+<p>a selected <code>GFile</code>. You own the
+returned file; use g_object_unref() to release it.</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="tymethod.files" class="method"><a class="srclink rightside" href="../../src/gtk4/auto/file_chooser.rs.html#284">source</a><h4 class="code-header">fn <a href="#tymethod.files" class="fn">files</a>(&amp;self) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.17/docs/gio/auto/list_model/struct.ListModel.html" title="struct gio::auto::list_model::ListModel">ListModel</a></h4></section></summary><div class="docblock"><p>Lists all the selected files and subfolders in the current folder
+of @self as <code>GFile</code>.</p>
+<h5 id="deprecated-since-410-8"><a href="#deprecated-since-410-8">Deprecated since 4.10</a></h5>
+<p>Use <a href="../struct.FileDialog.html" title="crate::FileDialog"><code>FileDialog</code></a> instead</p>
+<h5 id="returns-7"><a href="#returns-7">Returns</a></h5>
+<p>a list model containing a <code>GFile</code> for each
+selected file and subfolder in the current folder. Free the returned
+list with g_object_unref().</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="tymethod.filter" class="method"><a class="srclink rightside" href="../../src/gtk4/auto/file_chooser.rs.html#299">source</a><h4 class="code-header">fn <a href="#tymethod.filter" class="fn">filter</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../struct.FileFilter.html" title="struct gtk4::FileFilter">FileFilter</a>&gt;</h4></section></summary><div class="docblock"><p>Gets the current filter.</p>
+<h5 id="deprecated-since-410-9"><a href="#deprecated-since-410-9">Deprecated since 4.10</a></h5>
+<p>Use <a href="../struct.FileDialog.html" title="crate::FileDialog"><code>FileDialog</code></a> instead</p>
+<h5 id="returns-8"><a href="#returns-8">Returns</a></h5>
+<p>the current filter</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="tymethod.filters" class="method"><a class="srclink rightside" href="../../src/gtk4/auto/file_chooser.rs.html#321">source</a><h4 class="code-header">fn <a href="#tymethod.filters" class="fn">filters</a>(&amp;self) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.17/docs/gio/auto/list_model/struct.ListModel.html" title="struct gio::auto::list_model::ListModel">ListModel</a></h4></section></summary><div class="docblock"><p>Gets the current set of user-selectable filters, as a list model.</p>
+<p>See <a href="trait.FileChooserExt.html#tymethod.add_filter" title="Self::add_filter()"><code>add_filter()</code></a> and
+<a href="trait.FileChooserExt.html#tymethod.remove_filter" title="Self::remove_filter()"><code>remove_filter()</code></a> for changing individual filters.</p>
+<p>You should not modify the returned list model. Future changes to
+@self may or may not affect the returned model.</p>
+<h5 id="deprecated-since-410-10"><a href="#deprecated-since-410-10">Deprecated since 4.10</a></h5>
+<p>Use <a href="../struct.FileDialog.html" title="crate::FileDialog"><code>FileDialog</code></a> instead</p>
+<h5 id="returns-9"><a href="#returns-9">Returns</a></h5>
+<p>a <code>GListModel</code> containing the current set
+of user-selectable filters.</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="tymethod.selects_multiple" class="method"><a class="srclink rightside" href="../../src/gtk4/auto/file_chooser.rs.html#337">source</a><h4 class="code-header">fn <a href="#tymethod.selects_multiple" class="fn">selects_multiple</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></section></summary><div class="docblock"><p>Gets whether multiple files can be selected in the file
+chooser.</p>
+<h5 id="deprecated-since-410-11"><a href="#deprecated-since-410-11">Deprecated since 4.10</a></h5>
+<p>Use <a href="../struct.FileDialog.html" title="crate::FileDialog"><code>FileDialog</code></a> instead</p>
+<h5 id="returns-10"><a href="#returns-10">Returns</a></h5>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if multiple files can be selected.</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="tymethod.shortcut_folders" class="method"><a class="srclink rightside" href="../../src/gtk4/auto/file_chooser.rs.html#355">source</a><h4 class="code-header">fn <a href="#tymethod.shortcut_folders" class="fn">shortcut_folders</a>(&amp;self) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.17/docs/gio/auto/list_model/struct.ListModel.html" title="struct gio::auto::list_model::ListModel">ListModel</a></h4></section></summary><div class="docblock"><p>Queries the list of shortcut folders in the file chooser.</p>
+<p>You should not modify the returned list model. Future changes to
+@self may or may not affect the returned model.</p>
+<h5 id="deprecated-since-410-12"><a href="#deprecated-since-410-12">Deprecated since 4.10</a></h5>
+<p>Use <a href="../struct.FileDialog.html" title="crate::FileDialog"><code>FileDialog</code></a> instead</p>
+<h5 id="returns-11"><a href="#returns-11">Returns</a></h5>
+<p>A list model of <code>GFile</code>s</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="tymethod.remove_choice" class="method"><a class="srclink rightside" href="../../src/gtk4/auto/file_chooser.rs.html#367">source</a><h4 class="code-header">fn <a href="#tymethod.remove_choice" class="fn">remove_choice</a>(&amp;self, id: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>)</h4></section></summary><div class="docblock"><p>Removes a ‘choice’ that has been added with gtk_file_chooser_add_choice().</p>
+<h5 id="deprecated-since-410-13"><a href="#deprecated-since-410-13">Deprecated since 4.10</a></h5>
+<p>Use <a href="../struct.FileDialog.html" title="crate::FileDialog"><code>FileDialog</code></a> instead</p>
+<h6 id="id-1"><a href="#id-1"><code>id</code></a></h6>
+<p>the ID of the choice to remove</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="tymethod.remove_filter" class="method"><a class="srclink rightside" href="../../src/gtk4/auto/file_chooser.rs.html#379">source</a><h4 class="code-header">fn <a href="#tymethod.remove_filter" class="fn">remove_filter</a>(&amp;self, filter: &amp;<a class="struct" href="../struct.FileFilter.html" title="struct gtk4::FileFilter">FileFilter</a>)</h4></section></summary><div class="docblock"><p>Removes @filter from the list of filters that the user can select between.</p>
+<h5 id="deprecated-since-410-14"><a href="#deprecated-since-410-14">Deprecated since 4.10</a></h5>
+<p>Use <a href="../struct.FileDialog.html" title="crate::FileDialog"><code>FileDialog</code></a> instead</p>
+<h6 id="filter-1"><a href="#filter-1"><code>filter</code></a></h6>
+<p>a <a href="../struct.FileFilter.html" title="crate::FileFilter"><code>FileFilter</code></a></p>
+</div></details><details class="toggle method-toggle" open><summary><section id="tymethod.remove_shortcut_folder" class="method"><a class="srclink rightside" href="../../src/gtk4/auto/file_chooser.rs.html#396">source</a><h4 class="code-header">fn <a href="#tymethod.remove_shortcut_folder" class="fn">remove_shortcut_folder</a>(&amp;self, folder: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.17/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.17/docs/gio/auto/file/struct.File.html" title="struct gio::auto::file::File">File</a>&gt;) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.unit.html">()</a>, <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.17/docs/glib/error/struct.Error.html" title="struct glib::error::Error">Error</a>&gt;</h4></section></summary><div class="docblock"><p>Removes a folder from the shortcut folders in a file chooser.</p>
+<h5 id="deprecated-since-410-15"><a href="#deprecated-since-410-15">Deprecated since 4.10</a></h5>
+<p>Use <a href="../struct.FileDialog.html" title="crate::FileDialog"><code>FileDialog</code></a> instead</p>
+<h6 id="folder-1"><a href="#folder-1"><code>folder</code></a></h6>
+<p>a <code>GFile</code> for the folder to remove</p>
+<h5 id="returns-12"><a href="#returns-12">Returns</a></h5>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if the folder could be removed successfully,
+<a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="false"><code>false</code></a> otherwise.</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="tymethod.set_action" class="method"><a class="srclink rightside" href="../../src/gtk4/auto/file_chooser.rs.html#414">source</a><h4 class="code-header">fn <a href="#tymethod.set_action" class="fn">set_action</a>(&amp;self, action: <a class="enum" href="../enum.FileChooserAction.html" title="enum gtk4::FileChooserAction">FileChooserAction</a>)</h4></section></summary><div class="docblock"><p>Sets the type of operation that the chooser is performing.</p>
+<p>The user interface is adapted to suit the selected action.</p>
+<p>For example, an option to create a new folder might be shown
+if the action is <a href="../enum.FileChooserAction.html#variant.Save" title="crate::FileChooserAction::Save"><code>FileChooserAction::Save</code></a> but not if the
+action is <a href="../enum.FileChooserAction.html#variant.Open" title="crate::FileChooserAction::Open"><code>FileChooserAction::Open</code></a>.</p>
+<h5 id="deprecated-since-410-16"><a href="#deprecated-since-410-16">Deprecated since 4.10</a></h5>
+<p>Use <a href="../struct.FileDialog.html" title="crate::FileDialog"><code>FileDialog</code></a> instead</p>
+<h6 id="action"><a href="#action"><code>action</code></a></h6>
+<p>the action that the file selector is performing</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="tymethod.set_choice" class="method"><a class="srclink rightside" href="../../src/gtk4/auto/file_chooser.rs.html#431">source</a><h4 class="code-header">fn <a href="#tymethod.set_choice" class="fn">set_choice</a>(&amp;self, id: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>, option: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>)</h4></section></summary><div class="docblock"><p>Selects an option in a ‘choice’ that has been added with
+gtk_file_chooser_add_choice().</p>
+<p>For a boolean choice, the possible options are “true” and “false”.</p>
+<h5 id="deprecated-since-410-17"><a href="#deprecated-since-410-17">Deprecated since 4.10</a></h5>
+<p>Use <a href="../struct.FileDialog.html" title="crate::FileDialog"><code>FileDialog</code></a> instead</p>
+<h6 id="id-2"><a href="#id-2"><code>id</code></a></h6>
+<p>the ID of the choice to set</p>
+<h6 id="option"><a href="#option"><code>option</code></a></h6>
+<p>the ID of the option to select</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="tymethod.set_create_folders" class="method"><a class="srclink rightside" href="../../src/gtk4/auto/file_chooser.rs.html#446">source</a><h4 class="code-header">fn <a href="#tymethod.set_create_folders" class="fn">set_create_folders</a>(&amp;self, create_folders: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>)</h4></section></summary><div class="docblock"><p>Sets whether file chooser will offer to create new folders.</p>
+<p>This is only relevant if the action is not set to be
+<a href="../enum.FileChooserAction.html#variant.Open" title="crate::FileChooserAction::Open"><code>FileChooserAction::Open</code></a>.</p>
+<h5 id="deprecated-since-410-18"><a href="#deprecated-since-410-18">Deprecated since 4.10</a></h5>
+<p>Use <a href="../struct.FileDialog.html" title="crate::FileDialog"><code>FileDialog</code></a> instead</p>
+<h6 id="create_folders"><a href="#create_folders"><code>create_folders</code></a></h6>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if the Create Folder button should be displayed</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="tymethod.set_current_name" class="method"><a class="srclink rightside" href="../../src/gtk4/auto/file_chooser.rs.html#470">source</a><h4 class="code-header">fn <a href="#tymethod.set_current_name" class="fn">set_current_name</a>(&amp;self, name: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>)</h4></section></summary><div class="docblock"><p>Sets the current name in the file selector, as if entered
+by the user.</p>
+<p>Note that the name passed in here is a UTF-8 string rather
+than a filename. This function is meant for such uses as a
+suggested name in a “Save As…” dialog.  You can pass
+“Untitled.doc” or a similarly suitable suggestion for the @name.</p>
+<p>If you want to preselect a particular existing file, you should
+use <a href="trait.FileChooserExt.html#tymethod.set_file" title="Self::set_file()"><code>set_file()</code></a> instead.</p>
+<p>Please see the documentation for those functions for an example
+of using <a href="trait.FileChooserExt.html#tymethod.set_current_name" title="Self::set_current_name()"><code>set_current_name()</code></a> as well.</p>
+<h5 id="deprecated-since-410-19"><a href="#deprecated-since-410-19">Deprecated since 4.10</a></h5>
+<p>Use <a href="../struct.FileDialog.html" title="crate::FileDialog"><code>FileDialog</code></a> instead</p>
+<h6 id="name"><a href="#name"><code>name</code></a></h6>
+<p>the filename to use, as a UTF-8 string</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="tymethod.set_file" class="method"><a class="srclink rightside" href="../../src/gtk4/auto/file_chooser.rs.html#529">source</a><h4 class="code-header">fn <a href="#tymethod.set_file" class="fn">set_file</a>(&amp;self, file: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.17/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.17/docs/gio/auto/file/struct.File.html" title="struct gio::auto::file::File">File</a>&gt;) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.unit.html">()</a>, <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.17/docs/glib/error/struct.Error.html" title="struct glib::error::Error">Error</a>&gt;</h4></section></summary><div class="docblock"><p>Sets @file as the current filename for the file chooser.</p>
+<p>This includes changing to the file’s parent folder and actually selecting
+the file in list. If the @self is in <a href="../enum.FileChooserAction.html#variant.Save" title="crate::FileChooserAction::Save"><code>FileChooserAction::Save</code></a> mode,
+the file’s base name will also appear in the dialog’s file name entry.</p>
+<p>If the file name isn’t in the current folder of @self, then the current
+folder of @self will be changed to the folder containing @file.</p>
+<p>Note that the file must exist, or nothing will be done except
+for the directory change.</p>
+<p>If you are implementing a save dialog, you should use this function if
+you already have a file name to which the user may save; for example,
+when the user opens an existing file and then does “Save As…”. If you
+don’t have a file name already — for example, if the user just created
+a new file and is saving it for the first time, do not call this function.</p>
+<p>Instead, use something similar to this:</p>
+<p><strong>⚠️ The following code is in c ⚠️</strong></p>
+<div class="example-wrap"><pre class="language-c"><code>static void
+prepare_file_chooser (GtkFileChooser *chooser,
+                      GFile          *existing_file)
+{
+  gboolean document_is_new = (existing_file == NULL);
+
+  if (document_is_new)
+    {
+      GFile *default_file_for_saving = g_file_new_for_path (&quot;./out.txt&quot;);
+      // the user just created a new document
+      gtk_file_chooser_set_current_folder (chooser, default_file_for_saving, NULL);
+      gtk_file_chooser_set_current_name (chooser, &quot;Untitled document&quot;);
+      g_object_unref (default_file_for_saving);
+    }
+  else
+    {
+      // the user edited an existing document
+      gtk_file_chooser_set_file (chooser, existing_file, NULL);
+    }
+}
+</code></pre></div><h5 id="deprecated-since-410-20"><a href="#deprecated-since-410-20">Deprecated since 4.10</a></h5>
+<p>Use <a href="../struct.FileDialog.html" title="crate::FileDialog"><code>FileDialog</code></a> instead</p>
+<h6 id="file"><a href="#file"><code>file</code></a></h6>
+<p>the <code>GFile</code> to set as current</p>
+<h5 id="returns-13"><a href="#returns-13">Returns</a></h5>
+<p>Not useful</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="tymethod.set_filter" class="method"><a class="srclink rightside" href="../../src/gtk4/auto/file_chooser.rs.html#549">source</a><h4 class="code-header">fn <a href="#tymethod.set_filter" class="fn">set_filter</a>(&amp;self, filter: &amp;<a class="struct" href="../struct.FileFilter.html" title="struct gtk4::FileFilter">FileFilter</a>)</h4></section></summary><div class="docblock"><p>Sets the current filter.</p>
+<p>Only the files that pass the filter will be displayed.
+If the user-selectable list of filters is non-empty, then
+the filter should be one of the filters in that list.</p>
+<p>Setting the current filter when the list of filters is
+empty is useful if you want to restrict the displayed
+set of files without letting the user change it.</p>
+<h5 id="deprecated-since-410-21"><a href="#deprecated-since-410-21">Deprecated since 4.10</a></h5>
+<p>Use <a href="../struct.FileDialog.html" title="crate::FileDialog"><code>FileDialog</code></a> instead</p>
+<h6 id="filter-2"><a href="#filter-2"><code>filter</code></a></h6>
+<p>a <a href="../struct.FileFilter.html" title="crate::FileFilter"><code>FileFilter</code></a></p>
+</div></details><details class="toggle method-toggle" open><summary><section id="tymethod.set_select_multiple" class="method"><a class="srclink rightside" href="../../src/gtk4/auto/file_chooser.rs.html#565">source</a><h4 class="code-header">fn <a href="#tymethod.set_select_multiple" class="fn">set_select_multiple</a>(&amp;self, select_multiple: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>)</h4></section></summary><div class="docblock"><p>Sets whether multiple files can be selected in the file chooser.</p>
+<p>This is only relevant if the action is set to be
+<a href="../enum.FileChooserAction.html#variant.Open" title="crate::FileChooserAction::Open"><code>FileChooserAction::Open</code></a> or
+<a href="../enum.FileChooserAction.html#variant.SelectFolder" title="crate::FileChooserAction::SelectFolder"><code>FileChooserAction::SelectFolder</code></a>.</p>
+<h5 id="deprecated-since-410-22"><a href="#deprecated-since-410-22">Deprecated since 4.10</a></h5>
+<p>Use <a href="../struct.FileDialog.html" title="crate::FileDialog"><code>FileDialog</code></a> instead</p>
+<h6 id="select_multiple"><a href="#select_multiple"><code>select_multiple</code></a></h6>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if multiple files can be selected.</p>
+</div></details><section id="tymethod.connect_action_notify" class="method"><a class="srclink rightside" href="../../src/gtk4/auto/file_chooser.rs.html#569">source</a><h4 class="code-header">fn <a href="#tymethod.connect_action_notify" class="fn">connect_action_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(&amp;self, f: F) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.17/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><section id="tymethod.connect_create_folders_notify" class="method"><a class="srclink rightside" href="../../src/gtk4/auto/file_chooser.rs.html#573">source</a><h4 class="code-header">fn <a href="#tymethod.connect_create_folders_notify" class="fn">connect_create_folders_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
+    &amp;self,
+    f: F
+) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.17/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><section id="tymethod.connect_filter_notify" class="method"><a class="srclink rightside" href="../../src/gtk4/auto/file_chooser.rs.html#577">source</a><h4 class="code-header">fn <a href="#tymethod.connect_filter_notify" class="fn">connect_filter_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(&amp;self, f: F) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.17/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><section id="tymethod.connect_filters_notify" class="method"><a class="srclink rightside" href="../../src/gtk4/auto/file_chooser.rs.html#581">source</a><h4 class="code-header">fn <a href="#tymethod.connect_filters_notify" class="fn">connect_filters_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(&amp;self, f: F) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.17/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><section id="tymethod.connect_select_multiple_notify" class="method"><a class="srclink rightside" href="../../src/gtk4/auto/file_chooser.rs.html#585">source</a><h4 class="code-header">fn <a href="#tymethod.connect_select_multiple_notify" class="fn">connect_select_multiple_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
+    &amp;self,
+    f: F
+) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.17/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><section id="tymethod.connect_shortcut_folders_notify" class="method"><a class="srclink rightside" href="../../src/gtk4/auto/file_chooser.rs.html#589">source</a><h4 class="code-header">fn <a href="#tymethod.connect_shortcut_folders_notify" class="fn">connect_shortcut_folders_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
+    &amp;self,
+    f: F
+) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.17/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section></div><h2 id="implementors" class="small-section-header">Implementors<a href="#implementors" class="anchor">§</a></h2><div id="implementors-list"><section id="impl-FileChooserExt-for-O" class="impl"><a class="srclink rightside" href="../../src/gtk4/auto/file_chooser.rs.html#592-975">source</a><a href="#impl-FileChooserExt-for-O" class="anchor">§</a><h3 class="code-header">impl&lt;O: <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.17/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.FileChooser.html" title="struct gtk4::FileChooser">FileChooser</a>&gt;&gt; <a class="trait" href="trait.FileChooserExt.html" title="trait gtk4::prelude::FileChooserExt">FileChooserExt</a> for O</h3></section></div><script src="../../implementors/gtk4/auto/file_chooser/trait.FileChooserExt.js" async></script></section></div></main><div id="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.69.0-nightly (ef934d9b6 2023-02-08)" data-search-js="search-28136cea55c34037.js" data-settings-js="settings-f0c5c39777a9a2f6.js" data-settings-css="settings-0bcba95ff279c1db.css" ></div></body></html>

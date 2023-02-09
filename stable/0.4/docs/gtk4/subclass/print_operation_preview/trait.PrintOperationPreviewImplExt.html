@@ -1,0 +1,89 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="API documentation for the Rust `PrintOperationPreviewImplExt` trait in crate `gtk4`."><meta name="keywords" content="rust, rustlang, rust-lang, PrintOperationPreviewImplExt"><title>PrintOperationPreviewImplExt in gtk4::subclass::print_operation_preview - Rust</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script src="../../../crates.js"></script><script defer src="../../../main.js"></script>
+    <noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc trait"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
+
+    function checkDocsLatestStable() {
+        function popup(msg, url) { return `
+            <style scoped="scoped">
+                .popup {
+                    max-width: 16em;
+                    background-color: #fff;
+                    position: fixed;
+                    z-index: 1;
+                    margin-left: auto;
+                    bottom: 1em;
+                    right: 1em;
+                    border-radius: 5px;
+                    box-shadow: 1px 1px 4px #777;
+                }
+
+                .popup a.version {
+                    color: #e57300;
+                    padding: 0.6em 1em;
+                    display: block;
+                }
+                .popup a.version:hover {
+                    color: #b25900;
+                }
+
+                .popup a.close {
+                    color: white;
+                    background: grey;
+                    border-radius: 99px;
+                    display: inline-block;
+                    width: 19px;
+                    line-height: 19px;
+                    font-weight: bold;
+                    text-align: center;
+                    margin: 0.6em;
+                    float: right;
+                }
+                .popup a.close:hover {
+                    background: black;
+                }
+            </style>
+            <section class="popup" id="gir_docs_popup">
+                <a class="close" href="#" onclick="document.getElementById('gir_docs_popup').remove(); return false">×</a>
+                <a class="version" href="https://gtk-rs.org/gtk4-rs/stable/latest/docs">
+                    ⚠ ${msg}
+                </a>
+            </section>
+        ` };
+
+        if ("0.4" == "master") {
+            document.body.insertAdjacentHTML(
+                'beforeend',
+                popup("This is the development version. Go to latest stable version.", "stable/latest")
+            );
+        } else {
+            fetch('https://gtk-rs.org/gtk4-rs/LATEST_RELEASE_BRANCH')
+                .then(response => response.text())
+                .then(latest_branch => {
+                    if (latest_branch.trim() != "0.4") {
+                        document.body.insertAdjacentHTML(
+                            'beforeend',
+                            popup("This version is outdated. Go to latest version.", "stable/latest")
+                        );
+                    }
+                });
+        }
+    }
+</script>
+
+
+<nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../../gtk4/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div>
+        </a><h2 class="location"></h2>
+    </nav>
+    <nav class="sidebar"><a class="sidebar-logo" href="../../../gtk4/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div>
+        </a><h2 class="location"><a href="#">PrintOperationPreviewImplExt</a></h2><div class="sidebar-elems"><section><div class="block"><h3 class="sidebar-title"><a href="#required-methods">Required Methods</a></h3><ul><li><a href="#tymethod.parent_end_preview">parent_end_preview</a></li><li><a href="#tymethod.parent_got_page_size">parent_got_page_size</a></li><li><a href="#tymethod.parent_is_selected">parent_is_selected</a></li><li><a href="#tymethod.parent_ready">parent_ready</a></li><li><a href="#tymethod.parent_render_page">parent_render_page</a></li></ul></div><div class="block"><h3 class="sidebar-title"><a href="#implementors">Implementors</a></h3></div></section><h2 class="location"><a href="index.html">In gtk4::subclass::print_operation_preview</a></h2><div id="sidebar-vars" data-name="PrintOperationPreviewImplExt" data-ty="trait" data-relpath=""></div><script defer src="sidebar-items.js"></script></div></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../../gtk4/index.html"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><button type="button" id="help-button" title="help">?</button><div id="settings-menu" tabindex="-1">
+                                <a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div>
+                        </div></form></nav></div><section id="main-content" class="content"><div class="main-heading">
+    <h1 class="fqn"><span class="in-band">Trait <a href="../../index.html">gtk4</a>::<wbr><a href="../index.html">subclass</a>::<wbr><a href="index.html">print_operation_preview</a>::<wbr><a class="trait" href="#">PrintOperationPreviewImplExt</a><button id="copy-path" onclick="copy_path(this)" title="Copy item path to clipboard"><img src="../../../clipboard.svg" width="19" height="18" alt="Copy item path"></button></span></h1><span class="out-of-band"><a class="srclink" href="../../../src/gtk4/subclass/print_operation_preview.rs.html#30-41">source</a> · <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">[<span class="inner">&#x2212;</span>]</a></span></div><div class="docblock item-decl"><pre class="rust trait"><code>pub trait PrintOperationPreviewImplExt: <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.15/docs/glib/subclass/types/trait.ObjectSubclass.html" title="trait glib::subclass::types::ObjectSubclass">ObjectSubclass</a> {
+    fn <a href="#tymethod.parent_ready" class="fnname">parent_ready</a>(<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print_operation_preview: &amp;Self::<a class="associatedtype" href="https://gtk-rs.org/gtk-rs-core/stable/0.15/docs/glib/subclass/types/trait.ObjectSubclass.html#associatedtype.Type" title="type glib::subclass::types::ObjectSubclass::Type">Type</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;context: &amp;<a class="struct" href="../../struct.PrintContext.html" title="struct gtk4::PrintContext">PrintContext</a><br>&nbsp;&nbsp;&nbsp;&nbsp;);
+<span class="item-spacer"></span>    fn <a href="#tymethod.parent_got_page_size" class="fnname">parent_got_page_size</a>(<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print_operation_preview: &amp;Self::<a class="associatedtype" href="https://gtk-rs.org/gtk-rs-core/stable/0.15/docs/glib/subclass/types/trait.ObjectSubclass.html#associatedtype.Type" title="type glib::subclass::types::ObjectSubclass::Type">Type</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;context: &amp;<a class="struct" href="../../struct.PrintContext.html" title="struct gtk4::PrintContext">PrintContext</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;page_setup: &amp;<a class="struct" href="../../struct.PageSetup.html" title="struct gtk4::PageSetup">PageSetup</a><br>&nbsp;&nbsp;&nbsp;&nbsp;);
+<span class="item-spacer"></span>    fn <a href="#tymethod.parent_render_page" class="fnname">parent_render_page</a>(<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print_operation_preview: &amp;Self::<a class="associatedtype" href="https://gtk-rs.org/gtk-rs-core/stable/0.15/docs/glib/subclass/types/trait.ObjectSubclass.html#associatedtype.Type" title="type glib::subclass::types::ObjectSubclass::Type">Type</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;page_nr: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a><br>&nbsp;&nbsp;&nbsp;&nbsp;);
+<span class="item-spacer"></span>    fn <a href="#tymethod.parent_is_selected" class="fnname">parent_is_selected</a>(<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print_operation_preview: &amp;Self::<a class="associatedtype" href="https://gtk-rs.org/gtk-rs-core/stable/0.15/docs/glib/subclass/types/trait.ObjectSubclass.html#associatedtype.Type" title="type glib::subclass::types::ObjectSubclass::Type">Type</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;page_nr: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a><br>&nbsp;&nbsp;&nbsp;&nbsp;) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>;
+<span class="item-spacer"></span>    fn <a href="#tymethod.parent_end_preview" class="fnname">parent_end_preview</a>(&amp;self, print_operation_preview: &amp;Self::<a class="associatedtype" href="https://gtk-rs.org/gtk-rs-core/stable/0.15/docs/glib/subclass/types/trait.ObjectSubclass.html#associatedtype.Type" title="type glib::subclass::types::ObjectSubclass::Type">Type</a>);
+}</code></pre></div><h2 id="required-methods" class="small-section-header">Required Methods<a href="#required-methods" class="anchor"></a></h2><div class="methods"><div id="tymethod.parent_ready" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../../src/gtk4/subclass/print_operation_preview.rs.html#31">source</a></div><h4 class="code-header">fn <a href="#tymethod.parent_ready" class="fnname">parent_ready</a>(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;print_operation_preview: &amp;Self::<a class="associatedtype" href="https://gtk-rs.org/gtk-rs-core/stable/0.15/docs/glib/subclass/types/trait.ObjectSubclass.html#associatedtype.Type" title="type glib::subclass::types::ObjectSubclass::Type">Type</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;context: &amp;<a class="struct" href="../../struct.PrintContext.html" title="struct gtk4::PrintContext">PrintContext</a><br>)</h4></div><div id="tymethod.parent_got_page_size" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../../src/gtk4/subclass/print_operation_preview.rs.html#32-37">source</a></div><h4 class="code-header">fn <a href="#tymethod.parent_got_page_size" class="fnname">parent_got_page_size</a>(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;print_operation_preview: &amp;Self::<a class="associatedtype" href="https://gtk-rs.org/gtk-rs-core/stable/0.15/docs/glib/subclass/types/trait.ObjectSubclass.html#associatedtype.Type" title="type glib::subclass::types::ObjectSubclass::Type">Type</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;context: &amp;<a class="struct" href="../../struct.PrintContext.html" title="struct gtk4::PrintContext">PrintContext</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;page_setup: &amp;<a class="struct" href="../../struct.PageSetup.html" title="struct gtk4::PageSetup">PageSetup</a><br>)</h4></div><div id="tymethod.parent_render_page" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../../src/gtk4/subclass/print_operation_preview.rs.html#38">source</a></div><h4 class="code-header">fn <a href="#tymethod.parent_render_page" class="fnname">parent_render_page</a>(&amp;self, print_operation_preview: &amp;Self::<a class="associatedtype" href="https://gtk-rs.org/gtk-rs-core/stable/0.15/docs/glib/subclass/types/trait.ObjectSubclass.html#associatedtype.Type" title="type glib::subclass::types::ObjectSubclass::Type">Type</a>, page_nr: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>)</h4></div><div id="tymethod.parent_is_selected" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../../src/gtk4/subclass/print_operation_preview.rs.html#39">source</a></div><h4 class="code-header">fn <a href="#tymethod.parent_is_selected" class="fnname">parent_is_selected</a>(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;print_operation_preview: &amp;Self::<a class="associatedtype" href="https://gtk-rs.org/gtk-rs-core/stable/0.15/docs/glib/subclass/types/trait.ObjectSubclass.html#associatedtype.Type" title="type glib::subclass::types::ObjectSubclass::Type">Type</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;page_nr: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a><br>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></div><div id="tymethod.parent_end_preview" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../../src/gtk4/subclass/print_operation_preview.rs.html#40">source</a></div><h4 class="code-header">fn <a href="#tymethod.parent_end_preview" class="fnname">parent_end_preview</a>(&amp;self, print_operation_preview: &amp;Self::<a class="associatedtype" href="https://gtk-rs.org/gtk-rs-core/stable/0.15/docs/glib/subclass/types/trait.ObjectSubclass.html#associatedtype.Type" title="type glib::subclass::types::ObjectSubclass::Type">Type</a>)</h4></div></div><h2 id="implementors" class="small-section-header">Implementors<a href="#implementors" class="anchor"></a></h2><div class="item-list" id="implementors-list"><section id="impl-PrintOperationPreviewImplExt" class="impl has-srclink"><span class="rightside"><a class="srclink" href="../../../src/gtk4/subclass/print_operation_preview.rs.html#43-149">source</a></span><a href="#impl-PrintOperationPreviewImplExt" class="anchor"></a><h3 class="code-header in-band">impl&lt;T:&nbsp;<a class="trait" href="trait.PrintOperationPreviewImpl.html" title="trait gtk4::subclass::print_operation_preview::PrintOperationPreviewImpl">PrintOperationPreviewImpl</a>&gt; <a class="trait" href="trait.PrintOperationPreviewImplExt.html" title="trait gtk4::subclass::print_operation_preview::PrintOperationPreviewImplExt">PrintOperationPreviewImplExt</a> for T</h3></section></div><script type="text/javascript" src="../../../implementors/gtk4/subclass/print_operation_preview/trait.PrintOperationPreviewImplExt.js" data-ignore-extern-crates="" async></script></section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="gtk4" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.63.0-nightly (a6b8c6954 2022-06-03)" ></div>
+</body></html>

@@ -1,0 +1,221 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Trait containing all [`struct@SelectionModel`] methods."><title>SelectionModelExt in gtk4::prelude - Rust</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Bold-a2c9cd1067f8b328.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-0ef3deca4ed45ad8.css" id="mainThemeStyle"><link rel="stylesheet" id="themeStyle" href="../../static.files/light-f501212b8b071243.css"><link rel="stylesheet" disabled href="../../static.files/dark-e92fc12c34ff89d3.css"><link rel="stylesheet" disabled href="../../static.files/ayu-a0090c8b1ced384f.css"><script src="../../static.files/storage-3891ce972e3a2bf8.js"></script><script defer src="sidebar-items.js"></script><script defer src="../../static.files/main-364b95f387bc3166.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-13285aec31fa243e.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc trait"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
+
+    function checkDocsLatestStable() {
+        function popup(msg, url) { return `
+            <style scoped="scoped">
+                .popup {
+                    max-width: 16em;
+                    background-color: #fff;
+                    position: fixed;
+                    z-index: 1;
+                    margin-left: auto;
+                    bottom: 1em;
+                    right: 1em;
+                    border-radius: 5px;
+                    box-shadow: 1px 1px 4px #777;
+                }
+
+                .popup a.version {
+                    color: #e57300;
+                    padding: 0.6em 1em;
+                    display: block;
+                }
+                .popup a.version:hover {
+                    color: #b25900;
+                }
+
+                .popup a.close {
+                    color: white;
+                    background: grey;
+                    border-radius: 99px;
+                    display: inline-block;
+                    width: 19px;
+                    line-height: 19px;
+                    font-weight: bold;
+                    text-align: center;
+                    margin: 0.6em;
+                    float: right;
+                }
+                .popup a.close:hover {
+                    background: black;
+                }
+            </style>
+            <section class="popup" id="gir_docs_popup">
+                <a class="close" href="#" onclick="document.getElementById('gir_docs_popup').remove(); return false">×</a>
+                <a class="version" href="https://gtk-rs.org/gtk4-rs/stable/latest/docs">
+                    ⚠ ${msg}
+                </a>
+            </section>
+        ` };
+
+        if ("0.6" == "master") {
+            document.body.insertAdjacentHTML(
+                'beforeend',
+                popup("This is the development version. Go to latest stable version.", "stable/latest")
+            );
+        } else {
+            fetch('https://gtk-rs.org/gtk4-rs/LATEST_RELEASE_BRANCH')
+                .then(response => response.text())
+                .then(latest_branch => {
+                    if (latest_branch.trim() != "0.6") {
+                        document.body.insertAdjacentHTML(
+                            'beforeend',
+                            popup("This version is outdated. Go to latest version.", "stable/latest")
+                        );
+                    }
+                });
+        }
+    }
+</script>
+
+
+<nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="logo-container" href="../../gtk4/index.html"><img class="rust-logo" src="../../static.files/rust-logo-151179464ae7ed46.svg" alt="logo"></a><h2></h2></nav><nav class="sidebar"><a class="logo-container" href="../../gtk4/index.html"><img class="rust-logo" src="../../static.files/rust-logo-151179464ae7ed46.svg" alt="logo"></a><h2 class="location"><a href="#">SelectionModelExt</a></h2><div class="sidebar-elems"><section><h3><a href="#required-methods">Required Methods</a></h3><ul class="block"><li><a href="#tymethod.connect_selection_changed">connect_selection_changed</a></li><li><a href="#tymethod.is_selected">is_selected</a></li><li><a href="#tymethod.select_all">select_all</a></li><li><a href="#tymethod.select_item">select_item</a></li><li><a href="#tymethod.select_range">select_range</a></li><li><a href="#tymethod.selection">selection</a></li><li><a href="#tymethod.selection_changed">selection_changed</a></li><li><a href="#tymethod.selection_in_range">selection_in_range</a></li><li><a href="#tymethod.set_selection">set_selection</a></li><li><a href="#tymethod.unselect_all">unselect_all</a></li><li><a href="#tymethod.unselect_item">unselect_item</a></li><li><a href="#tymethod.unselect_range">unselect_range</a></li></ul><h3><a href="#implementors">Implementors</a></h3></section><h2><a href="index.html">In gtk4::prelude</a></h2></div></nav><main><div class="width-limiter"><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-5ec35bf9ca753509.svg"></a></div></form></nav><section id="main-content" class="content"><div class="main-heading"><h1>Trait <a href="../index.html">gtk4</a>::<wbr><a href="index.html">prelude</a>::<wbr><a class="trait" href="#">SelectionModelExt</a><button id="copy-path" title="Copy item path to clipboard"><img src="../../static.files/clipboard-7571035ce49a181d.svg" width="19" height="18" alt="Copy item path"></button></h1><span class="out-of-band"><a class="srclink" href="../../src/gtk4/auto/selection_model.rs.html#98-286">source</a> · <button id="toggle-all-docs" title="collapse all docs">[<span>&#x2212;</span>]</button></span></div><pre class="rust item-decl"><code>pub trait SelectionModelExt: 'static {
+    // Required methods
+    fn <a href="#tymethod.selection" class="fn">selection</a>(&amp;self) -&gt; <a class="struct" href="../struct.Bitset.html" title="struct gtk4::Bitset">Bitset</a>;
+<span class="item-spacer"></span>    fn <a href="#tymethod.selection_in_range" class="fn">selection_in_range</a>(&amp;self, position: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>, n_items: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>) -&gt; <a class="struct" href="../struct.Bitset.html" title="struct gtk4::Bitset">Bitset</a>;
+<span class="item-spacer"></span>    fn <a href="#tymethod.is_selected" class="fn">is_selected</a>(&amp;self, position: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>;
+<span class="item-spacer"></span>    fn <a href="#tymethod.select_all" class="fn">select_all</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>;
+<span class="item-spacer"></span>    fn <a href="#tymethod.select_item" class="fn">select_item</a>(&amp;self, position: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>, unselect_rest: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>;
+<span class="item-spacer"></span>    fn <a href="#tymethod.select_range" class="fn">select_range</a>(
+        &amp;self,
+        position: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>,
+        n_items: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>,
+        unselect_rest: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>
+    ) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>;
+<span class="item-spacer"></span>    fn <a href="#tymethod.selection_changed" class="fn">selection_changed</a>(&amp;self, position: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>, n_items: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>);
+<span class="item-spacer"></span>    fn <a href="#tymethod.set_selection" class="fn">set_selection</a>(&amp;self, selected: &amp;<a class="struct" href="../struct.Bitset.html" title="struct gtk4::Bitset">Bitset</a>, mask: &amp;<a class="struct" href="../struct.Bitset.html" title="struct gtk4::Bitset">Bitset</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>;
+<span class="item-spacer"></span>    fn <a href="#tymethod.unselect_all" class="fn">unselect_all</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>;
+<span class="item-spacer"></span>    fn <a href="#tymethod.unselect_item" class="fn">unselect_item</a>(&amp;self, position: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>;
+<span class="item-spacer"></span>    fn <a href="#tymethod.unselect_range" class="fn">unselect_range</a>(&amp;self, position: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>, n_items: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>;
+<span class="item-spacer"></span>    fn <a href="#tymethod.connect_selection_changed" class="fn">connect_selection_changed</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>) + 'static&gt;(
+        &amp;self,
+        f: F
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.17/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a>;
+}</code></pre><details class="toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>Trait containing all <a href="../struct.SelectionModel.html" title="SelectionModel"><code>SelectionModel</code></a> methods.</p>
+<h2 id="implementors-1"><a href="#implementors-1">Implementors</a></h2>
+<p><a href="../struct.MultiSelection.html" title="crate::MultiSelection"><code>MultiSelection</code></a>, <a href="../struct.NoSelection.html" title="crate::NoSelection"><code>NoSelection</code></a>, <a href="../struct.SelectionModel.html" title="crate::SelectionModel"><code>SelectionModel</code></a>, <a href="../struct.SingleSelection.html" title="crate::SingleSelection"><code>SingleSelection</code></a></p>
+</div></details><h2 id="required-methods" class="small-section-header">Required Methods<a href="#required-methods" class="anchor">§</a></h2><div class="methods"><details class="toggle method-toggle" open><summary><section id="tymethod.selection" class="method"><a class="srclink rightside" href="../../src/gtk4/auto/selection_model.rs.html#112">source</a><h4 class="code-header">fn <a href="#tymethod.selection" class="fn">selection</a>(&amp;self) -&gt; <a class="struct" href="../struct.Bitset.html" title="struct gtk4::Bitset">Bitset</a></h4></section></summary><div class="docblock"><p>Gets the set containing all currently selected items in the model.</p>
+<p>This function may be slow, so if you are only interested in single item,
+consider using <a href="trait.SelectionModelExt.html#tymethod.is_selected" title="Self::is_selected()"><code>is_selected()</code></a> or if you are only
+interested in a few, consider <a href="trait.SelectionModelExt.html#tymethod.selection_in_range" title="Self::selection_in_range()"><code>selection_in_range()</code></a>.</p>
+<h5 id="returns"><a href="#returns">Returns</a></h5>
+<p>a <a href="../struct.Bitset.html" title="crate::Bitset"><code>Bitset</code></a> containing all the values currently
+selected in @self. If no items are selected, the bitset is empty.
+The bitset must not be modified.</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="tymethod.selection_in_range" class="method"><a class="srclink rightside" href="../../src/gtk4/auto/selection_model.rs.html#133">source</a><h4 class="code-header">fn <a href="#tymethod.selection_in_range" class="fn">selection_in_range</a>(&amp;self, position: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>, n_items: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>) -&gt; <a class="struct" href="../struct.Bitset.html" title="struct gtk4::Bitset">Bitset</a></h4></section></summary><div class="docblock"><p>Gets the set of selected items in a range.</p>
+<p>This function is an optimization for
+<a href="trait.SelectionModelExt.html#tymethod.selection" title="Self::selection()"><code>selection()</code></a> when you are only
+interested in part of the model’s selected state. A common use
+case is in response to the <a href="../struct.SelectionModel.html#selection-changed" title="crate::SelectionModel"><code>selection-changed</code></a>
+signal.</p>
+<h6 id="position"><a href="#position"><code>position</code></a></h6>
+<p>start of the queried range</p>
+<h6 id="n_items"><a href="#n_items"><code>n_items</code></a></h6>
+<p>number of items in the queried range</p>
+<h5 id="returns-1"><a href="#returns-1">Returns</a></h5>
+<p>A <a href="../struct.Bitset.html" title="crate::Bitset"><code>Bitset</code></a> that matches the selection state
+for the given range with all other values being undefined.
+The bitset must not be modified.</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="tymethod.is_selected" class="method"><a class="srclink rightside" href="../../src/gtk4/auto/selection_model.rs.html#143">source</a><h4 class="code-header">fn <a href="#tymethod.is_selected" class="fn">is_selected</a>(&amp;self, position: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></section></summary><div class="docblock"><p>Checks if the given item is selected.</p>
+<h6 id="position-1"><a href="#position-1"><code>position</code></a></h6>
+<p>the position of the item to query</p>
+<h5 id="returns-2"><a href="#returns-2">Returns</a></h5>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if the item is selected</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="tymethod.select_all" class="method"><a class="srclink rightside" href="../../src/gtk4/auto/selection_model.rs.html#152">source</a><h4 class="code-header">fn <a href="#tymethod.select_all" class="fn">select_all</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></section></summary><div class="docblock"><p>Requests to select all items in the model.</p>
+<h5 id="returns-3"><a href="#returns-3">Returns</a></h5>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if this action was supported and no fallback should be
+tried. This does not mean that all items are now selected.</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="tymethod.select_item" class="method"><a class="srclink rightside" href="../../src/gtk4/auto/selection_model.rs.html#165">source</a><h4 class="code-header">fn <a href="#tymethod.select_item" class="fn">select_item</a>(&amp;self, position: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>, unselect_rest: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></section></summary><div class="docblock"><p>Requests to select an item in the model.</p>
+<h6 id="position-2"><a href="#position-2"><code>position</code></a></h6>
+<p>the position of the item to select</p>
+<h6 id="unselect_rest"><a href="#unselect_rest"><code>unselect_rest</code></a></h6>
+<p>whether previously selected items should be unselected</p>
+<h5 id="returns-4"><a href="#returns-4">Returns</a></h5>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if this action was supported and no fallback should be
+tried. This does not mean the item was selected.</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="tymethod.select_range" class="method"><a class="srclink rightside" href="../../src/gtk4/auto/selection_model.rs.html#180">source</a><h4 class="code-header">fn <a href="#tymethod.select_range" class="fn">select_range</a>(&amp;self, position: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>, n_items: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>, unselect_rest: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></section></summary><div class="docblock"><p>Requests to select a range of items in the model.</p>
+<h6 id="position-3"><a href="#position-3"><code>position</code></a></h6>
+<p>the first item to select</p>
+<h6 id="n_items-1"><a href="#n_items-1"><code>n_items</code></a></h6>
+<p>the number of items to select</p>
+<h6 id="unselect_rest-1"><a href="#unselect_rest-1"><code>unselect_rest</code></a></h6>
+<p>whether previously selected items should be unselected</p>
+<h5 id="returns-5"><a href="#returns-5">Returns</a></h5>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if this action was supported and no fallback should be
+tried. This does not mean the range was selected.</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="tymethod.selection_changed" class="method"><a class="srclink rightside" href="../../src/gtk4/auto/selection_model.rs.html#191">source</a><h4 class="code-header">fn <a href="#tymethod.selection_changed" class="fn">selection_changed</a>(&amp;self, position: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>, n_items: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>)</h4></section></summary><div class="docblock"><p>Helper function for implementations of <a href="../struct.SelectionModel.html" title="crate::SelectionModel"><code>SelectionModel</code></a>.</p>
+<p>Call this when the selection changes to emit the
+<a href="../struct.SelectionModel.html#selection-changed" title="crate::SelectionModel"><code>selection-changed</code></a> signal.</p>
+<h6 id="position-4"><a href="#position-4"><code>position</code></a></h6>
+<p>the first changed item</p>
+<h6 id="n_items-2"><a href="#n_items-2"><code>n_items</code></a></h6>
+<p>the number of changed items</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="tymethod.set_selection" class="method"><a class="srclink rightside" href="../../src/gtk4/auto/selection_model.rs.html#239">source</a><h4 class="code-header">fn <a href="#tymethod.set_selection" class="fn">set_selection</a>(&amp;self, selected: &amp;<a class="struct" href="../struct.Bitset.html" title="struct gtk4::Bitset">Bitset</a>, mask: &amp;<a class="struct" href="../struct.Bitset.html" title="struct gtk4::Bitset">Bitset</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></section></summary><div class="docblock"><p>Make selection changes.</p>
+<p>This is the most advanced selection updating method that allows
+the most fine-grained control over selection changes. If you can,
+you should try the simpler versions, as implementations are more
+likely to implement support for those.</p>
+<p>Requests that the selection state of all positions set in @mask
+be updated to the respective value in the @selected bitmask.</p>
+<p>In pseudocode, it would look something like this:</p>
+<p><strong>⚠️ The following code is in c ⚠️</strong></p>
+<div class="example-wrap"><pre class="language-c"><code>for (i = 0; i &lt; n_items; i++)
+  {
+    // don&#39;t change values not in the mask
+    if (!gtk_bitset_contains (mask, i))
+      continue;
+
+    if (gtk_bitset_contains (selected, i))
+      select_item (i);
+    else
+      unselect_item (i);
+  }
+
+gtk_selection_model_selection_changed (model,
+                                       first_changed_item,
+                                       n_changed_items);
+</code></pre></div>
+<p>@mask and @selected must not be modified. They may refer to the
+same bitset, which would mean that every item in the set should
+be selected.</p>
+<h6 id="selected"><a href="#selected"><code>selected</code></a></h6>
+<p>bitmask specifying if items should be selected or unselected</p>
+<h6 id="mask"><a href="#mask"><code>mask</code></a></h6>
+<p>bitmask specifying which items should be updated</p>
+<h5 id="returns-6"><a href="#returns-6">Returns</a></h5>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if this action was supported and no fallback should be
+tried. This does not mean that all items were updated according
+to the inputs.</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="tymethod.unselect_all" class="method"><a class="srclink rightside" href="../../src/gtk4/auto/selection_model.rs.html#248">source</a><h4 class="code-header">fn <a href="#tymethod.unselect_all" class="fn">unselect_all</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></section></summary><div class="docblock"><p>Requests to unselect all items in the model.</p>
+<h5 id="returns-7"><a href="#returns-7">Returns</a></h5>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if this action was supported and no fallback should be
+tried. This does not mean that all items are now unselected.</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="tymethod.unselect_item" class="method"><a class="srclink rightside" href="../../src/gtk4/auto/selection_model.rs.html#259">source</a><h4 class="code-header">fn <a href="#tymethod.unselect_item" class="fn">unselect_item</a>(&amp;self, position: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></section></summary><div class="docblock"><p>Requests to unselect an item in the model.</p>
+<h6 id="position-5"><a href="#position-5"><code>position</code></a></h6>
+<p>the position of the item to unselect</p>
+<h5 id="returns-8"><a href="#returns-8">Returns</a></h5>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if this action was supported and no fallback should be
+tried. This does not mean the item was unselected.</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="tymethod.unselect_range" class="method"><a class="srclink rightside" href="../../src/gtk4/auto/selection_model.rs.html#272">source</a><h4 class="code-header">fn <a href="#tymethod.unselect_range" class="fn">unselect_range</a>(&amp;self, position: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>, n_items: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></section></summary><div class="docblock"><p>Requests to unselect a range of items in the model.</p>
+<h6 id="position-6"><a href="#position-6"><code>position</code></a></h6>
+<p>the first item to unselect</p>
+<h6 id="n_items-3"><a href="#n_items-3"><code>n_items</code></a></h6>
+<p>the number of items to unselect</p>
+<h5 id="returns-9"><a href="#returns-9">Returns</a></h5>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if this action was supported and no fallback should be
+tried. This does not mean the range was unselected.</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="tymethod.connect_selection_changed" class="method"><a class="srclink rightside" href="../../src/gtk4/auto/selection_model.rs.html#285">source</a><h4 class="code-header">fn <a href="#tymethod.connect_selection_changed" class="fn">connect_selection_changed</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>) + 'static&gt;(
+    &amp;self,
+    f: F
+) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.17/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section></summary><div class="docblock"><p>Emitted when the selection state of some of the items in @model changes.</p>
+<p>Note that this signal does not specify the new selection state of the
+items, they need to be queried manually. It is also not necessary for
+a model to change the selection state of any of the items in the selection
+model, though it would be rather useless to emit such a signal.</p>
+<h6 id="position-7"><a href="#position-7"><code>position</code></a></h6>
+<p>The first item that may have changed</p>
+<h6 id="n_items-4"><a href="#n_items-4"><code>n_items</code></a></h6>
+<p>number of items with changes</p>
+</div></details></div><h2 id="implementors" class="small-section-header">Implementors<a href="#implementors" class="anchor">§</a></h2><div id="implementors-list"><section id="impl-SelectionModelExt-for-O" class="impl"><a class="srclink rightside" href="../../src/gtk4/auto/selection_model.rs.html#288-421">source</a><a href="#impl-SelectionModelExt-for-O" class="anchor">§</a><h3 class="code-header">impl&lt;O: <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.17/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.SelectionModel.html" title="struct gtk4::SelectionModel">SelectionModel</a>&gt;&gt; <a class="trait" href="trait.SelectionModelExt.html" title="trait gtk4::prelude::SelectionModelExt">SelectionModelExt</a> for O</h3></section></div><script src="../../implementors/gtk4/auto/selection_model/trait.SelectionModelExt.js" async></script></section></div></main><div id="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.69.0-nightly (ef934d9b6 2023-02-08)" data-search-js="search-28136cea55c34037.js" data-settings-js="settings-f0c5c39777a9a2f6.js" data-settings-css="settings-0bcba95ff279c1db.css" ></div></body></html>

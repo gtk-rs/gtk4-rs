@@ -1,0 +1,142 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Derive macro for using a composite template in a widget."><meta name="keywords" content="rust, rustlang, rust-lang, CompositeTemplate"><title>CompositeTemplate in gtk4_macros - Rust</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../static.files/SourceSerif4-Regular-1f7d512b176f0f72.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../static.files/SourceSerif4-Bold-124a1ca42af929b6.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../static.files/rustdoc-34efc64c5083af8d.css" id="mainThemeStyle"><link rel="stylesheet" id="themeStyle" href="../static.files/light-4743e13df3dfe8c4.css"><link rel="stylesheet" disabled href="../static.files/dark-0e1b889528bd466b.css"><link rel="stylesheet" disabled href="../static.files/ayu-65289d5d067c7c66.css"><script id="default-settings" ></script><script src="../static.files/storage-d43fa987303ecbbb.js"></script><script defer src="sidebar-items.js"></script><script defer src="../static.files/main-4a084badb5778746.js"></script><noscript><link rel="stylesheet" href="../static.files/noscript-13285aec31fa243e.css"></noscript><link rel="alternate icon" type="image/png" href="../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc derive"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
+
+    function checkDocsLatestStable() {
+        function popup(msg, url) { return `
+            <style scoped="scoped">
+                .popup {
+                    max-width: 16em;
+                    background-color: #fff;
+                    position: fixed;
+                    z-index: 1;
+                    margin-left: auto;
+                    bottom: 1em;
+                    right: 1em;
+                    border-radius: 5px;
+                    box-shadow: 1px 1px 4px #777;
+                }
+
+                .popup a.version {
+                    color: #e57300;
+                    padding: 0.6em 1em;
+                    display: block;
+                }
+                .popup a.version:hover {
+                    color: #b25900;
+                }
+
+                .popup a.close {
+                    color: white;
+                    background: grey;
+                    border-radius: 99px;
+                    display: inline-block;
+                    width: 19px;
+                    line-height: 19px;
+                    font-weight: bold;
+                    text-align: center;
+                    margin: 0.6em;
+                    float: right;
+                }
+                .popup a.close:hover {
+                    background: black;
+                }
+            </style>
+            <section class="popup" id="gir_docs_popup">
+                <a class="close" href="#" onclick="document.getElementById('gir_docs_popup').remove(); return false">×</a>
+                <a class="version" href="https://gtk-rs.org/gtk4-rs/stable/latest/docs">
+                    ⚠ ${msg}
+                </a>
+            </section>
+        ` };
+
+        if ("0.5" == "master") {
+            document.body.insertAdjacentHTML(
+                'beforeend',
+                popup("This is the development version. Go to latest stable version.", "stable/latest")
+            );
+        } else {
+            fetch('https://gtk-rs.org/gtk4-rs/LATEST_RELEASE_BRANCH')
+                .then(response => response.text())
+                .then(latest_branch => {
+                    if (latest_branch.trim() != "0.5") {
+                        document.body.insertAdjacentHTML(
+                            'beforeend',
+                            popup("This version is outdated. Go to latest version.", "stable/latest")
+                        );
+                    }
+                });
+        }
+    }
+</script>
+
+
+<nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../gtk4_macros/index.html"><div class="logo-container"><img class="rust-logo" src="../static.files/rust-logo-151179464ae7ed46.svg" alt="logo"></div></a><h2></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../gtk4_macros/index.html"><div class="logo-container"><img class="rust-logo" src="../static.files/rust-logo-151179464ae7ed46.svg" alt="logo"></div></a><div class="sidebar-elems"><h2><a href="index.html">In gtk4_macros</a></h2></div></nav><main><div class="width-limiter"><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../static.files/wheel-5ec35bf9ca753509.svg"></a></div></form></nav><section id="main-content" class="content"><div class="main-heading"><h1 class="fqn">Derive Macro <a href="index.html">gtk4_macros</a>::<wbr><a class="derive" href="#">CompositeTemplate</a><button id="copy-path" onclick="copy_path(this)" title="Copy item path to clipboard"><img src="../static.files/clipboard-7571035ce49a181d.svg" width="19" height="18" alt="Copy item path"></button></h1><span class="out-of-band"><a class="srclink" href="../src/gtk4_macros/lib.rs.html#91">source</a> · <button id="toggle-all-docs" title="collapse all docs">[<span>&#x2212;</span>]</button></span></div><div class="item-decl"><pre class="rust derive"><code>#[derive(CompositeTemplate)]
+{
+    // Attributes available to this derive:
+    #[template]
+    #[template_child]
+}
+</code></pre></div><details class="rustdoc-toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>Derive macro for using a composite template in a widget.</p>
+<p>The <code>template</code> attribute specifies where the template should be loaded
+from;  it can be a <code>file</code>, a <code>resource</code>, or a <code>string</code>.</p>
+<p>The <code>template_child</code> attribute is used to mark all internal widgets
+we need to have programmatic access to. It can take two parameters:</p>
+<ul>
+<li><code>id</code> which defaults to the item name if not defined</li>
+<li><code>internal_child</code> whether the child should be accessible as an “internal-child”, defaults to <code>false</code></li>
+</ul>
+<h2 id="example"><a href="#example">Example</a></h2>
+<p>Specify that <code>MyWidget</code> is using a composite template and load the
+template file the <code>composite_template.ui</code> file.</p>
+<p>Then, in the <a href="../glib/subclass/types/trait.ObjectSubclass.html"><code>ObjectSubclass</code></a> implementation you will need to call
+<a href="../gtk4/subclass/widget/trait.CompositeTemplate.html#tymethod.bind_template"><code>bind_template</code></a> in the <a href="../glib/subclass/types/trait.ObjectSubclass.html#method.class_init"><code>class_init</code></a> function, and <a href="../gtk4/prelude/trait.InitializingWidgetExt.html#tymethod.init_template"><code>init_template</code></a> in
+<a href="../glib/subclass/types/trait.ObjectSubclass.html#method.instance_init"><code>instance_init</code></a> function.</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use </span>gtk::prelude::<span class="kw-2">*</span>;
+<span class="kw">use </span>gtk::glib;
+<span class="kw">use </span>gtk::CompositeTemplate;
+<span class="kw">use </span>gtk::subclass::prelude::<span class="kw-2">*</span>;
+
+<span class="kw">mod </span>imp {
+    <span class="kw">use super</span>::<span class="kw-2">*</span>;
+
+    <span class="attr">#[derive(Debug, Default, CompositeTemplate)]
+    #[template(file = <span class="string">&quot;test/template.ui&quot;</span>)]
+    </span><span class="kw">pub struct </span>MyWidget {
+        <span class="attr">#[template_child]
+        </span><span class="kw">pub </span>label: TemplateChild&lt;gtk::Label&gt;,
+        <span class="attr">#[template_child(id = <span class="string">&quot;my_button_id&quot;</span>)]
+        </span><span class="kw">pub </span>button: TemplateChild&lt;gtk::Button&gt;,
+    }
+
+    <span class="attr">#[glib::object_subclass]
+    </span><span class="kw">impl </span>ObjectSubclass <span class="kw">for </span>MyWidget {
+        <span class="kw">const </span>NAME: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str = <span class="string">&quot;MyWidget&quot;</span>;
+        <span class="kw">type </span>Type = <span class="kw">super</span>::MyWidget;
+        <span class="kw">type </span>ParentType = gtk::Box;
+
+        <span class="kw">fn </span>class_init(klass: <span class="kw-2">&amp;mut </span><span class="self">Self</span>::Class) {
+            klass.bind_template();
+        }
+
+        <span class="kw">fn </span>instance_init(obj: <span class="kw-2">&amp;</span>glib::subclass::InitializingObject&lt;<span class="self">Self</span>&gt;) {
+            obj.init_template();
+        }
+    }
+
+    <span class="kw">impl </span>ObjectImpl <span class="kw">for </span>MyWidget {}
+    <span class="kw">impl </span>WidgetImpl <span class="kw">for </span>MyWidget {}
+    <span class="kw">impl </span>BoxImpl <span class="kw">for </span>MyWidget {}
+}
+
+<span class="macro">glib::wrapper! </span>{
+    <span class="kw">pub struct </span>MyWidget(ObjectSubclass&lt;imp::MyWidget&gt;) @extends gtk::Widget, gtk::Box;
+}
+
+<span class="kw">impl </span>MyWidget {
+    <span class="kw">pub fn </span>new() -&gt; <span class="self">Self </span>{
+        glib::Object::new(<span class="kw-2">&amp;</span>[])
+    }
+}</code></pre></div>
+</div></details></section></div></main><div id="rustdoc-vars" data-root-path="../" data-static-root-path="../static.files/" data-current-crate="gtk4_macros" data-themes="" data-resource-suffix="" data-rustdoc-version="1.68.0-nightly (77429957a 2023-01-01)" data-search-js="search-181581080540673f.js" data-settings-js="settings-bebeae96e00e4617.js" data-settings-css="settings-58836c674e2f7bd2.css" ></div></body></html>

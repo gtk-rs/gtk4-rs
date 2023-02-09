@@ -1,0 +1,311 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js rust">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Hello World! - GUI development with Rust and GTK 4</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="theme/style.css">
+
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "rust";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('rust')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="introduction.html">Introduction</a></li><li class="chapter-item expanded "><a href="installation.html"><strong aria-hidden="true">1.</strong> Installation</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="installation_linux.html"><strong aria-hidden="true">1.1.</strong> Linux</a></li><li class="chapter-item expanded "><a href="installation_macos.html"><strong aria-hidden="true">1.2.</strong> macOS</a></li><li class="chapter-item expanded "><a href="installation_windows.html"><strong aria-hidden="true">1.3.</strong> Windows</a></li></ol></li><li class="chapter-item expanded "><a href="project_setup.html"><strong aria-hidden="true">2.</strong> Project Setup</a></li><li class="chapter-item expanded "><a href="hello_world.html" class="active"><strong aria-hidden="true">3.</strong> Hello World!</a></li><li class="chapter-item expanded "><a href="widgets.html"><strong aria-hidden="true">4.</strong> Widgets</a></li><li class="chapter-item expanded "><a href="g_object_concepts.html"><strong aria-hidden="true">5.</strong> GObject Concepts</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="g_object_memory_management.html"><strong aria-hidden="true">5.1.</strong> Memory Management</a></li><li class="chapter-item expanded "><a href="g_object_subclassing.html"><strong aria-hidden="true">5.2.</strong> Subclassing</a></li><li class="chapter-item expanded "><a href="g_object_values.html"><strong aria-hidden="true">5.3.</strong> Generic Values</a></li><li class="chapter-item expanded "><a href="g_object_properties.html"><strong aria-hidden="true">5.4.</strong> Properties</a></li><li class="chapter-item expanded "><a href="g_object_signals.html"><strong aria-hidden="true">5.5.</strong> Signals</a></li></ol></li><li class="chapter-item expanded "><a href="main_event_loop.html"><strong aria-hidden="true">6.</strong> The Main Event Loop</a></li><li class="chapter-item expanded "><a href="settings.html"><strong aria-hidden="true">7.</strong> Settings</a></li><li class="chapter-item expanded "><a href="saving_window_state.html"><strong aria-hidden="true">8.</strong> Saving Window State</a></li><li class="chapter-item expanded "><a href="list_widgets.html"><strong aria-hidden="true">9.</strong> List Widgets</a></li><li class="chapter-item expanded "><a href="composite_templates.html"><strong aria-hidden="true">10.</strong> Composite Templates</a></li><li class="chapter-item expanded "><a href="todo_1.html"><strong aria-hidden="true">11.</strong> Building a Simple To-Do App</a></li><li class="chapter-item expanded "><a href="actions.html"><strong aria-hidden="true">12.</strong> Actions</a></li><li class="chapter-item expanded "><a href="todo_2.html"><strong aria-hidden="true">13.</strong> Manipulating State of To-Do App</a></li><li class="chapter-item expanded "><a href="css.html"><strong aria-hidden="true">14.</strong> CSS</a></li><li class="chapter-item expanded "><a href="libadwaita.html"><strong aria-hidden="true">15.</strong> Libadwaita</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="todo_3.html"><strong aria-hidden="true">15.1.</strong> Let To-Do App use Libadwaita</a></li><li class="chapter-item expanded "><a href="todo_4.html"><strong aria-hidden="true">15.2.</strong> Adding Collections</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">GUI development with Rust and GTK 4</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        <a href="https://github.com/gtk-rs/gtk4-rs/tree/master/book" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="hello-world"><a class="header" href="#hello-world">Hello World!</a></h1>
+<p>Now that we've got a working installation, let's get right into it!</p>
+<p>At the very least, we need to create a <a href="../docs/gtk4/struct.Application.html"><code>gtk::Application</code></a> instance with an <a href="https://developer.gnome.org/documentation/tutorials/application-id.html">application id</a>.
+For that we use the <a href="https://rust-unofficial.github.io/patterns/patterns/creational/builder.html">builder pattern</a> which many <code>gtk-rs</code> objects support.
+Note that we also import the prelude to bring the necessary traits into scope.</p>
+<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/hello_world/1/main.rs">listings/hello_world/1/main.rs</a></p>
+<pre><code class="language-rust  no_run noplayground">use gtk::prelude::*;
+use gtk::Application;
+
+const APP_ID: &amp;str = &quot;org.gtk_rs.HelloWorld1&quot;;
+
+fn main() {
+    // Create a new application
+    let app = Application::builder().application_id(APP_ID).build();
+
+    // Run the application
+    app.run();
+}</code></pre>
+<p>It builds fine, but nothing but a warning in our terminal appears.</p>
+<pre><code>GLib-GIO-WARNING: Your application does not implement g_application_activate()
+and has no handlers connected to the 'activate' signal. It should do one of these.
+</code></pre>
+<p>GTK tells us that something should be called in its <code>activate</code> step.
+So let's create a <a href="../docs/gtk4/struct.ApplicationWindow.html"><code>gtk::ApplicationWindow</code></a> there.</p>
+<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/hello_world/2/main.rs">listings/hello_world/2/main.rs</a></p>
+<pre><code class="language-rust  no_run noplayground">use gtk::prelude::*;
+use gtk::{Application, ApplicationWindow};
+
+const APP_ID: &amp;str = &quot;org.gtk_rs.HelloWorld2&quot;;
+
+fn main() {
+    // Create a new application
+    let app = Application::builder().application_id(APP_ID).build();
+
+    // Connect to &quot;activate&quot; signal of `app`
+    app.connect_activate(build_ui);
+
+    // Run the application
+    app.run();
+}
+
+fn build_ui(app: &amp;Application) {
+    // Create a window and set the title
+    let window = ApplicationWindow::builder()
+        .application(app)
+        .title(&quot;My GTK App&quot;)
+        .build();
+
+    // Present window
+    window.present();
+}</code></pre>
+<p>That is better!</p>
+<div style="text-align:center"><img src="img/hello_world_empty.png" alt="An empty window with a header bar with label 'My GTK App'"/></div>
+<p>Normally we expect to be able to interact with the user interface.
+Also, the name of the chapter suggests that the phrase &quot;Hello World!&quot; will be involved.</p>
+<p>Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/hello_world/3/main.rs">listings/hello_world/3/main.rs</a></p>
+<pre><code class="language-rust  no_run noplayground"><span class="boring">use gtk::prelude::*;
+</span><span class="boring">use gtk::{Application, ApplicationWindow, Button};
+</span><span class="boring">const APP_ID: &amp;str = &quot;org.gtk_rs.HelloWorld3&quot;;
+</span><span class="boring">
+</span><span class="boring">fn main() {
+</span><span class="boring">    // Create a new application
+</span><span class="boring">    let app = Application::builder().application_id(APP_ID).build();
+</span><span class="boring">
+</span><span class="boring">    // Connect to &quot;activate&quot; signal of `app`
+</span><span class="boring">    app.connect_activate(build_ui);
+</span><span class="boring">
+</span><span class="boring">    // Run the application
+</span><span class="boring">    app.run();
+</span><span class="boring">}
+</span><span class="boring">
+</span>fn build_ui(app: &amp;Application) {
+    // Create a button with label and margins
+    let button = Button::builder()
+        .label(&quot;Press me!&quot;)
+        .margin_top(12)
+        .margin_bottom(12)
+        .margin_start(12)
+        .margin_end(12)
+        .build();
+
+    // Connect to &quot;clicked&quot; signal of `button`
+    button.connect_clicked(|button| {
+        // Set the label to &quot;Hello World!&quot; after the button has been clicked on
+        button.set_label(&quot;Hello World!&quot;);
+    });
+
+    // Create a window
+    let window = ApplicationWindow::builder()
+        .application(app)
+        .title(&quot;My GTK App&quot;)
+        .child(&amp;button)
+        .build();
+
+    // Present window
+    window.present();
+}</code></pre>
+<blockquote>
+<p>If you look closely at the code snippet you will notice that it has a small eye symbol on its top right.
+After you press on it you can see the full code of the listing.
+We will use this throughout the book to hide details which are not important to bring the message across.
+Pay attention to this if you want to write apps by following the book step-by-step.
+Here, we've hidden that we brought <code>gtk::Button</code> into scope.</p>
+</blockquote>
+<p>There is now a button and if we click on it, its label becomes &quot;Hello World!&quot;.</p>
+<div style="text-align:center">
+ <video autoplay muted loop>
+  <source src="vid/hello_world_button.webm" type="video/webm">
+  <p>A video which shows that pressing on the button changes it's label</p>
+ </video>
+</div>
+<p>Wasn't that hard to create our first <code>gtk-rs</code> app, right?
+Let's now get a better understanding of what we did here.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="project_setup.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="widgets.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="project_setup.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="widgets.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </body>
+</html>

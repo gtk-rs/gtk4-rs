@@ -1,0 +1,130 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Trait containing all [`struct@FlowBoxChild`] methods."><meta name="keywords" content="rust, rustlang, rust-lang, FlowBoxChildExt"><title>FlowBoxChildExt in gtk4::prelude - Rust</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script src="../../crates.js"></script><script defer src="../../main.js"></script>
+    <noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc trait"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
+
+    function checkDocsLatestStable() {
+        function popup(msg, url) { return `
+            <style scoped="scoped">
+                .popup {
+                    max-width: 16em;
+                    background-color: #fff;
+                    position: fixed;
+                    z-index: 1;
+                    margin-left: auto;
+                    bottom: 1em;
+                    right: 1em;
+                    border-radius: 5px;
+                    box-shadow: 1px 1px 4px #777;
+                }
+
+                .popup a.version {
+                    color: #e57300;
+                    padding: 0.6em 1em;
+                    display: block;
+                }
+                .popup a.version:hover {
+                    color: #b25900;
+                }
+
+                .popup a.close {
+                    color: white;
+                    background: grey;
+                    border-radius: 99px;
+                    display: inline-block;
+                    width: 19px;
+                    line-height: 19px;
+                    font-weight: bold;
+                    text-align: center;
+                    margin: 0.6em;
+                    float: right;
+                }
+                .popup a.close:hover {
+                    background: black;
+                }
+            </style>
+            <section class="popup" id="gir_docs_popup">
+                <a class="close" href="#" onclick="document.getElementById('gir_docs_popup').remove(); return false">×</a>
+                <a class="version" href="https://gtk-rs.org/gtk4-rs/stable/latest/docs">
+                    ⚠ ${msg}
+                </a>
+            </section>
+        ` };
+
+        if ("0.4" == "master") {
+            document.body.insertAdjacentHTML(
+                'beforeend',
+                popup("This is the development version. Go to latest stable version.", "stable/latest")
+            );
+        } else {
+            fetch('https://gtk-rs.org/gtk4-rs/LATEST_RELEASE_BRANCH')
+                .then(response => response.text())
+                .then(latest_branch => {
+                    if (latest_branch.trim() != "0.4") {
+                        document.body.insertAdjacentHTML(
+                            'beforeend',
+                            popup("This version is outdated. Go to latest version.", "stable/latest")
+                        );
+                    }
+                });
+        }
+    }
+</script>
+
+
+<nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../gtk4/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div>
+        </a><h2 class="location"></h2>
+    </nav>
+    <nav class="sidebar"><a class="sidebar-logo" href="../../gtk4/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div>
+        </a><h2 class="location"><a href="#">FlowBoxChildExt</a></h2><div class="sidebar-elems"><section><div class="block"><h3 class="sidebar-title"><a href="#required-methods">Required Methods</a></h3><ul><li><a href="#tymethod.changed">changed</a></li><li><a href="#tymethod.child">child</a></li><li><a href="#tymethod.connect_activate">connect_activate</a></li><li><a href="#tymethod.connect_child_notify">connect_child_notify</a></li><li><a href="#tymethod.emit_activate">emit_activate</a></li><li><a href="#tymethod.index">index</a></li><li><a href="#tymethod.is_selected">is_selected</a></li><li><a href="#tymethod.set_child">set_child</a></li></ul></div><div class="block"><h3 class="sidebar-title"><a href="#implementors">Implementors</a></h3></div></section><h2 class="location"><a href="index.html">In gtk4::prelude</a></h2><div id="sidebar-vars" data-name="FlowBoxChildExt" data-ty="trait" data-relpath=""></div><script defer src="sidebar-items.js"></script></div></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../gtk4/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><button type="button" id="help-button" title="help">?</button><div id="settings-menu" tabindex="-1">
+                                <a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div>
+                        </div></form></nav></div><section id="main-content" class="content"><div class="main-heading">
+    <h1 class="fqn"><span class="in-band">Trait <a href="../index.html">gtk4</a>::<wbr><a href="index.html">prelude</a>::<wbr><a class="trait" href="#">FlowBoxChildExt</a><button id="copy-path" onclick="copy_path(this)" title="Copy item path to clipboard"><img src="../../clipboard.svg" width="19" height="18" alt="Copy item path"></button></span></h1><span class="out-of-band"><a class="srclink" href="../../src/gtk4/auto/flow_box_child.rs.html#482-555">source</a> · <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">[<span class="inner">&#x2212;</span>]</a></span></div><div class="docblock item-decl"><pre class="rust trait"><code>pub trait FlowBoxChildExt: 'static {
+    fn <a href="#tymethod.changed" class="fnname">changed</a>(&amp;self);
+<span class="item-spacer"></span>    fn <a href="#tymethod.child" class="fnname">child</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;;
+<span class="item-spacer"></span>    fn <a href="#tymethod.index" class="fnname">index</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>;
+<span class="item-spacer"></span>    fn <a href="#tymethod.is_selected" class="fnname">is_selected</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>;
+<span class="item-spacer"></span>    fn <a href="#tymethod.set_child" class="fnname">set_child</a>(&amp;self, child: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.15/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;&gt;);
+<span class="item-spacer"></span>    fn <a href="#tymethod.connect_activate" class="fnname">connect_activate</a>&lt;F:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>Self) + 'static&gt;(&amp;self, f: F) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.15/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a>;
+<span class="item-spacer"></span>    fn <a href="#tymethod.emit_activate" class="fnname">emit_activate</a>(&amp;self);
+<span class="item-spacer"></span>    fn <a href="#tymethod.connect_child_notify" class="fnname">connect_child_notify</a>&lt;F:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>Self) + 'static&gt;(<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;f: F<br>&nbsp;&nbsp;&nbsp;&nbsp;) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.15/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a>;
+}</code></pre></div><details class="rustdoc-toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>Trait containing all <a href="../struct.FlowBoxChild.html" title="FlowBoxChild"><code>FlowBoxChild</code></a> methods.</p>
+<h2 id="implementors-1"><a href="#implementors-1">Implementors</a></h2>
+<p><a href="../struct.FlowBoxChild.html" title="crate::FlowBoxChild"><code>FlowBoxChild</code></a></p>
+</div></details><h2 id="required-methods" class="small-section-header">Required Methods<a href="#required-methods" class="anchor"></a></h2><div class="methods"><details class="rustdoc-toggle" open><summary><div id="tymethod.changed" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/flow_box_child.rs.html#503">source</a></div><h4 class="code-header">fn <a href="#tymethod.changed" class="fnname">changed</a>(&amp;self)</h4></div></summary><div class="docblock"><p>Marks @self as changed, causing any state that depends on this
+to be updated.</p>
+<p>This affects sorting and filtering.</p>
+<p>Note that calls to this method must be in sync with the data
+used for the sorting and filtering functions. For instance, if
+the list is mirroring some external data set, and <em>two</em> children
+changed in the external data set when you call
+gtk_flow_box_child_changed() on the first child, the sort function
+must only read the new data for the first of the two changed
+children, otherwise the resorting of the children will be wrong.</p>
+<p>This generally means that if you don’t fully control the data
+model, you have to duplicate the data that affects the sorting
+and filtering functions into the widgets themselves.</p>
+<p>Another alternative is to call <a href="../struct.FlowBox.html#method.invalidate_sort" title="crate::FlowBox::invalidate_sort()"><code>FlowBox::invalidate_sort()</code></a>
+on any model change, but that is more expensive.</p>
+</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.child" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/flow_box_child.rs.html#512">source</a></div><h4 class="code-header">fn <a href="#tymethod.child" class="fnname">child</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;</h4></div></summary><div class="docblock"><p>Gets the child widget of @self.</p>
+<h5 id="returns"><a href="#returns">Returns</a></h5>
+<p>the child widget of @self</p>
+</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.index" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/flow_box_child.rs.html#522">source</a></div><h4 class="code-header">fn <a href="#tymethod.index" class="fnname">index</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a></h4></div></summary><div class="docblock"><p>Gets the current index of the @self in its <a href="../struct.FlowBox.html" title="crate::FlowBox"><code>FlowBox</code></a> container.</p>
+<h5 id="returns-1"><a href="#returns-1">Returns</a></h5>
+<p>the index of the @self, or -1 if the @self is not
+in a flow box</p>
+</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.is_selected" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/flow_box_child.rs.html#531">source</a></div><h4 class="code-header">fn <a href="#tymethod.is_selected" class="fnname">is_selected</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></div></summary><div class="docblock"><p>Returns whether the @self is currently selected in its
+<a href="../struct.FlowBox.html" title="crate::FlowBox"><code>FlowBox</code></a> container.</p>
+<h5 id="returns-2"><a href="#returns-2">Returns</a></h5>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if @self is selected</p>
+</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.set_child" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/flow_box_child.rs.html#537">source</a></div><h4 class="code-header">fn <a href="#tymethod.set_child" class="fnname">set_child</a>(&amp;self, child: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.15/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;&gt;)</h4></div></summary><div class="docblock"><p>Sets the child widget of @self.</p>
+<h6 id="child"><a href="#child"><code>child</code></a></h6>
+<p>the child widget</p>
+</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.connect_activate" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/flow_box_child.rs.html#549">source</a></div><h4 class="code-header">fn <a href="#tymethod.connect_activate" class="fnname">connect_activate</a>&lt;F:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>Self) + 'static&gt;(&amp;self, f: F) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.15/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></div></summary><div class="docblock"><p>Emitted when the user activates a child widget in a <a href="../struct.FlowBox.html" title="crate::FlowBox"><code>FlowBox</code></a>.</p>
+<p>This can be happen either by clicking or double-clicking,
+or via a keybinding.</p>
+<p>This is a <a href="class.SignalAction.html">keybinding signal</a>,
+but it can be used by applications for their own purposes.</p>
+<p>The default bindings are <kbd>Space</kbd> and <kbd>Enter</kbd>.</p>
+</div></details><div id="tymethod.emit_activate" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/flow_box_child.rs.html#551">source</a></div><h4 class="code-header">fn <a href="#tymethod.emit_activate" class="fnname">emit_activate</a>(&amp;self)</h4></div><div id="tymethod.connect_child_notify" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/flow_box_child.rs.html#554">source</a></div><h4 class="code-header">fn <a href="#tymethod.connect_child_notify" class="fnname">connect_child_notify</a>&lt;F:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>Self) + 'static&gt;(&amp;self, f: F) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.15/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></div></div><h2 id="implementors" class="small-section-header">Implementors<a href="#implementors" class="anchor"></a></h2><div class="item-list" id="implementors-list"><section id="impl-FlowBoxChildExt" class="impl has-srclink"><span class="rightside"><a class="srclink" href="../../src/gtk4/auto/flow_box_child.rs.html#557-639">source</a></span><a href="#impl-FlowBoxChildExt" class="anchor"></a><h3 class="code-header in-band">impl&lt;O:&nbsp;<a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.15/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.FlowBoxChild.html" title="struct gtk4::FlowBoxChild">FlowBoxChild</a>&gt;&gt; <a class="trait" href="trait.FlowBoxChildExt.html" title="trait gtk4::prelude::FlowBoxChildExt">FlowBoxChildExt</a> for O</h3></section></div><script type="text/javascript" src="../../implementors/gtk4/auto/flow_box_child/trait.FlowBoxChildExt.js" data-ignore-extern-crates="" async></script></section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="gtk4" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.63.0-nightly (a6b8c6954 2022-06-03)" ></div>
+</body></html>

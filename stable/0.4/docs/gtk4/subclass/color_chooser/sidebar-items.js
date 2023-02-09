@@ -1,0 +1,1 @@
+initSidebarItems({"trait":[["ColorChooserImpl",""],["ColorChooserImplExt",""]]});

@@ -1,0 +1,122 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="API documentation for the Rust `DialogExtManual` trait in crate `gtk4`."><meta name="keywords" content="rust, rustlang, rust-lang, DialogExtManual"><title>DialogExtManual in gtk4::prelude - Rust</title><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled ><script id="default-settings" ></script><script src="../../storage.js"></script><script src="../../crates.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"><style type="text/css">#crate-search{background-image:url("../../down-arrow.svg");}</style></head><body class="rustdoc trait"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
+
+    function checkDocsLatestStable() {
+        function popup(msg, url) { return `
+            <style scoped="scoped">
+                .popup {
+                    max-width: 16em;
+                    background-color: #fff;
+                    position: fixed;
+                    z-index: 1;
+                    margin-left: auto;
+                    bottom: 1em;
+                    right: 1em;
+                    border-radius: 5px;
+                    box-shadow: 1px 1px 4px #777;
+                }
+
+                .popup a.version {
+                    color: #e57300;
+                    padding: 0.6em 1em;
+                    display: block;
+                }
+                .popup a.version:hover {
+                    color: #b25900;
+                }
+
+                .popup a.close {
+                    color: white;
+                    background: grey;
+                    border-radius: 99px;
+                    display: inline-block;
+                    width: 19px;
+                    line-height: 19px;
+                    font-weight: bold;
+                    text-align: center;
+                    margin: 0.6em;
+                    float: right;
+                }
+                .popup a.close:hover {
+                    background: black;
+                }
+            </style>
+            <section class="popup" id="gir_docs_popup">
+                <a class="close" href="#" onclick="document.getElementById('gir_docs_popup').remove(); return false">×</a>
+                <a class="version" href="https://gtk-rs.org/gtk4-rs/stable/latest/docs">
+                    ⚠ ${msg}
+                </a>
+            </section>
+        ` };
+
+        if ("0.3" == "master") {
+            document.body.insertAdjacentHTML(
+                'beforeend',
+                popup("This is the development version. Go to latest stable version.", "stable/latest")
+            );
+        } else {
+            fetch('https://gtk-rs.org/gtk4-rs/LATEST_RELEASE_BRANCH')
+                .then(response => response.text())
+                .then(latest_branch => {
+                    if (latest_branch.trim() != "0.3") {
+                        document.body.insertAdjacentHTML(
+                            'beforeend',
+                            popup("This version is outdated. Go to latest version.", "stable/latest")
+                        );
+                    }
+                });
+        }
+    }
+</script>
+
+
+<nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../gtk4/index.html'><div class='logo-container rust-logo'><img src='../../rust-logo.png' alt='logo'></div></a><h2 class="location">Trait DialogExtManual</h2><div class="sidebar-elems"><div class="block items"><h3 class="sidebar-title"><a href="#required-methods">Required Methods</a></h3><div class="sidebar-links"><a href="#tymethod.add_buttons">add_buttons</a><a href="#tymethod.response_for_widget">response_for_widget</a><a href="#tymethod.run_async">run_async</a><a href="#tymethod.run_future">run_future</a></div><h3 class="sidebar-title"><a href="#implementors">Implementors</a></h3></div><h2 class="location">Other items in<br><a href="../index.html">gtk4</a>::<wbr><a href="index.html">prelude</a></h2><div id="sidebar-vars" data-name="DialogExtManual" data-ty="trait" data-relpath=""></div><script defer src="sidebar-items.js"></script></div></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="18" height="18" alt="Pick another theme!" src="../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../settings.html" title="settings"><img width="18" height="18" alt="Change settings" src="../../wheel.svg"></a></div></form></nav><section id="main" class="content"><h1 class="fqn"><span class="in-band">Trait <a href="../index.html">gtk4</a>::<wbr><a href="index.html">prelude</a>::<wbr><a class="trait" href="#">DialogExtManual</a><button id="copy-path" onclick="copy_path(this)" title="Copy item path to clipboard"><img src="../../clipboard.svg" width="19" height="18" alt="Copy item path"></button></span><span class="out-of-band"><span id="render-detail"><a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">[<span class="inner">&#x2212;</span>]</a></span><a class="srclink" href="../../src/gtk4/dialog.rs.html#86-150" title="goto source code">[src]</a></span></h1><div class="docblock type-decl"><pre class="rust trait"><code>pub trait DialogExtManual: 'static {
+    fn <a href="#tymethod.add_buttons" class="fnname">add_buttons</a>(&amp;self, buttons: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.slice.html">&amp;[</a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.tuple.html">(</a>&amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>, <a class="enum" href="../enum.ResponseType.html" title="enum gtk4::ResponseType">ResponseType</a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.tuple.html">)</a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.slice.html">]</a>);
+<div class="item-spacer"></div>    fn <a href="#tymethod.response_for_widget" class="fnname">response_for_widget</a>&lt;P:&nbsp;<a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.14/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;&gt;(&amp;self, widget: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>P) -&gt; <a class="enum" href="../enum.ResponseType.html" title="enum gtk4::ResponseType">ResponseType</a>;
+<div class="item-spacer"></div>    fn <a href="#tymethod.run_future" class="fnname">run_future</a>&lt;'a&gt;(<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;'a self<br>&nbsp;&nbsp;&nbsp;&nbsp;) -&gt; <a class="struct" href="https://doc.rust-lang.org/nightly/core/pin/struct.Pin.html" title="struct core::pin::Pin">Pin</a>&lt;<a class="struct" href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html" title="struct alloc::boxed::Box">Box</a>&lt;dyn <a class="trait" href="https://doc.rust-lang.org/nightly/core/future/future/trait.Future.html" title="trait core::future::future::Future">Future</a>&lt;Output = <a class="enum" href="../enum.ResponseType.html" title="enum gtk4::ResponseType">ResponseType</a>&gt; + 'a&gt;&gt;;
+<div class="item-spacer"></div>    fn <a href="#tymethod.run_async" class="fnname">run_async</a>&lt;F:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.FnOnce.html" title="trait core::ops::function::FnOnce">FnOnce</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>Self, <a class="enum" href="../enum.ResponseType.html" title="enum gtk4::ResponseType">ResponseType</a>) + 'static&gt;(&amp;self, f: F);
+}</code></pre></div><h2 id="required-methods" class="small-section-header">Required methods<a href="#required-methods" class="anchor"></a></h2><div class="methods"><details class="rustdoc-toggle" open><summary><div id="tymethod.add_buttons" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/dialog.rs.html#96" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.add_buttons" class="fnname">add_buttons</a>(&amp;self, buttons: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.slice.html">&amp;[</a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.tuple.html">(</a>&amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>, <a class="enum" href="../enum.ResponseType.html" title="enum gtk4::ResponseType">ResponseType</a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.tuple.html">)</a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.slice.html">]</a>)</h4></div></summary><div class="docblock"><p>Adds multiple buttons.</p>
+<p>This is the same as calling <a href="trait.DialogExt.html#tymethod.add_button" title="crate::prelude::DialogExt::add_button()"><code>DialogExt::add_button()</code></a>
+repeatedly. The variable argument list should be <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a>-terminated
+as with <a href="../struct.Dialog.html#method.with_buttons" title="crate::Dialog::with_buttons()"><code>Dialog::with_buttons()</code></a>. Each button must have both
+text and response ID.</p>
+<h6 id="first_button_text" class="section-header"><a href="#first_button_text"><code>first_button_text</code></a></h6>
+<p>button text</p>
+</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.response_for_widget" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/dialog.rs.html#109" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.response_for_widget" class="fnname">response_for_widget</a>&lt;P:&nbsp;<a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.14/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;&gt;(&amp;self, widget: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>P) -&gt; <a class="enum" href="../enum.ResponseType.html" title="enum gtk4::ResponseType">ResponseType</a></h4></div></summary><div class="docblock"><p>Gets the response id of a widget in the action area
+of a dialog.</p>
+<h6 id="widget" class="section-header"><a href="#widget"><code>widget</code></a></h6>
+<p>a widget in the action area of <code>self</code></p>
+<h5 id="returns" class="section-header"><a href="#returns">Returns</a></h5>
+<p>the response id of <code>widget</code>, or <a href="../enum.ResponseType.html#variant.None" title="crate::ResponseType::None"><code>ResponseType::None</code></a>
+if <code>widget</code> doesn’t have a response id set.</p>
+</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.run_future" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/dialog.rs.html#129" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.run_future" class="fnname">run_future</a>&lt;'a&gt;(&amp;'a self) -&gt; <a class="struct" href="https://doc.rust-lang.org/nightly/core/pin/struct.Pin.html" title="struct core::pin::Pin">Pin</a>&lt;<a class="struct" href="https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html" title="struct alloc::boxed::Box">Box</a>&lt;dyn <a class="trait" href="https://doc.rust-lang.org/nightly/core/future/future/trait.Future.html" title="trait core::future::future::Future">Future</a>&lt;Output = <a class="enum" href="../enum.ResponseType.html" title="enum gtk4::ResponseType">ResponseType</a>&gt; + 'a&gt;&gt;</h4></div></summary><div class="docblock"><p>Shows the dialog and returns a <code>Future</code> that resolves to the
+<code>ResponseType</code> on response.</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use</span> <span class="ident">gtk4::prelude</span>::<span class="kw-2">*</span>;
+
+<span class="kw">let</span> <span class="ident">dialog</span> <span class="op">=</span> <span class="ident">gtk4::MessageDialogBuilder::new</span>()
+   .<span class="ident">buttons</span>(<span class="ident">gtk4::ButtonsType::OkCancel</span>)
+   .<span class="ident">text</span>(<span class="string">&quot;What is your answer?&quot;</span>)
+   .<span class="ident">build</span>();
+
+<span class="kw">let</span> <span class="ident">answer</span> <span class="op">=</span> <span class="ident">dialog</span>.<span class="ident">run_future</span>().<span class="kw">await</span>;
+<span class="ident">dialog</span>.<span class="ident">close</span>();
+<span class="macro">println!</span>(<span class="string">&quot;Answer: {:?}&quot;</span>, <span class="ident">answer</span>);</code></pre></div>
+</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.run_async" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/dialog.rs.html#149" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.run_async" class="fnname">run_async</a>&lt;F:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.FnOnce.html" title="trait core::ops::function::FnOnce">FnOnce</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>Self, <a class="enum" href="../enum.ResponseType.html" title="enum gtk4::ResponseType">ResponseType</a>) + 'static&gt;(&amp;self, f: F)</h4></div></summary><div class="docblock"><p>Shows the dialog and calls the callback when a response has been received.</p>
+<p><strong>Important</strong>: this function isn’t blocking.</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use</span> <span class="ident">gtk4::prelude</span>::<span class="kw-2">*</span>;
+
+<span class="kw">let</span> <span class="ident">dialog</span> <span class="op">=</span> <span class="ident">gtk4::MessageDialogBuilder::new</span>()
+   .<span class="ident">buttons</span>(<span class="ident">gtk4::ButtonsType::OkCancel</span>)
+   .<span class="ident">text</span>(<span class="string">&quot;What is your answer?&quot;</span>)
+   .<span class="ident">build</span>();
+
+<span class="ident">dialog</span>.<span class="ident">run_async</span>(<span class="op">|</span><span class="ident">obj</span>, <span class="ident">answer</span><span class="op">|</span> {
+    <span class="ident">obj</span>.<span class="ident">close</span>();
+    <span class="macro">println!</span>(<span class="string">&quot;Answer: {:?}&quot;</span>, <span class="ident">answer</span>);
+});</code></pre></div>
+</div></details></div><h2 id="implementors" class="small-section-header">Implementors<a href="#implementors" class="anchor"></a></h2><div class="item-list" id="implementors-list"><div id="impl-DialogExtManual" class="impl has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/dialog.rs.html#152-203" title="goto source code">[src]</a></div><a href="#impl-DialogExtManual" class="anchor"></a><h3 class="code-header in-band">impl&lt;O:&nbsp;<a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.14/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Dialog.html" title="struct gtk4::Dialog">Dialog</a>&gt; + <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.14/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;&gt; <a class="trait" href="trait.DialogExtManual.html" title="trait gtk4::prelude::DialogExtManual">DialogExtManual</a> for O</h3></div></div><script type="text/javascript" src="../../implementors/gtk4/prelude/trait.DialogExtManual.js" async></script></section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../" data-current-crate="gtk4" data-search-index-js="../../search-index.js" data-search-js="../../search.js"></div>
+    <script src="../../main.js"></script>
+</body></html>

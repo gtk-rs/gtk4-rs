@@ -1,0 +1,106 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Trait containing all [`struct@MountOperation`] methods."><meta name="keywords" content="rust, rustlang, rust-lang, MountOperationExt"><title>MountOperationExt in gtk4::prelude - Rust</title><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled ><script id="default-settings" ></script><script src="../../storage.js"></script><script src="../../crates.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"><style type="text/css">#crate-search{background-image:url("../../down-arrow.svg");}</style></head><body class="rustdoc trait"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
+
+    function checkDocsLatestStable() {
+        function popup(msg, url) { return `
+            <style scoped="scoped">
+                .popup {
+                    max-width: 16em;
+                    background-color: #fff;
+                    position: fixed;
+                    z-index: 1;
+                    margin-left: auto;
+                    bottom: 1em;
+                    right: 1em;
+                    border-radius: 5px;
+                    box-shadow: 1px 1px 4px #777;
+                }
+
+                .popup a.version {
+                    color: #e57300;
+                    padding: 0.6em 1em;
+                    display: block;
+                }
+                .popup a.version:hover {
+                    color: #b25900;
+                }
+
+                .popup a.close {
+                    color: white;
+                    background: grey;
+                    border-radius: 99px;
+                    display: inline-block;
+                    width: 19px;
+                    line-height: 19px;
+                    font-weight: bold;
+                    text-align: center;
+                    margin: 0.6em;
+                    float: right;
+                }
+                .popup a.close:hover {
+                    background: black;
+                }
+            </style>
+            <section class="popup" id="gir_docs_popup">
+                <a class="close" href="#" onclick="document.getElementById('gir_docs_popup').remove(); return false">×</a>
+                <a class="version" href="https://gtk-rs.org/gtk4-rs/stable/latest/docs">
+                    ⚠ ${msg}
+                </a>
+            </section>
+        ` };
+
+        if ("0.3" == "master") {
+            document.body.insertAdjacentHTML(
+                'beforeend',
+                popup("This is the development version. Go to latest stable version.", "stable/latest")
+            );
+        } else {
+            fetch('https://gtk-rs.org/gtk4-rs/LATEST_RELEASE_BRANCH')
+                .then(response => response.text())
+                .then(latest_branch => {
+                    if (latest_branch.trim() != "0.3") {
+                        document.body.insertAdjacentHTML(
+                            'beforeend',
+                            popup("This version is outdated. Go to latest version.", "stable/latest")
+                        );
+                    }
+                });
+        }
+    }
+</script>
+
+
+<nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../gtk4/index.html'><div class='logo-container rust-logo'><img src='../../rust-logo.png' alt='logo'></div></a><h2 class="location">Trait MountOperationExt</h2><div class="sidebar-elems"><div class="block items"><h3 class="sidebar-title"><a href="#required-methods">Required Methods</a></h3><div class="sidebar-links"><a href="#tymethod.connect_display_notify">connect_display_notify</a><a href="#tymethod.connect_is_showing_notify">connect_is_showing_notify</a><a href="#tymethod.connect_parent_notify">connect_parent_notify</a><a href="#tymethod.display">display</a><a href="#tymethod.is_showing">is_showing</a><a href="#tymethod.parent">parent</a><a href="#tymethod.set_display">set_display</a><a href="#tymethod.set_parent">set_parent</a></div><h3 class="sidebar-title"><a href="#implementors">Implementors</a></h3></div><h2 class="location">Other items in<br><a href="../index.html">gtk4</a>::<wbr><a href="index.html">prelude</a></h2><div id="sidebar-vars" data-name="MountOperationExt" data-ty="trait" data-relpath=""></div><script defer src="sidebar-items.js"></script></div></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="18" height="18" alt="Pick another theme!" src="../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../settings.html" title="settings"><img width="18" height="18" alt="Change settings" src="../../wheel.svg"></a></div></form></nav><section id="main" class="content"><h1 class="fqn"><span class="in-band">Trait <a href="../index.html">gtk4</a>::<wbr><a href="index.html">prelude</a>::<wbr><a class="trait" href="#">MountOperationExt</a><button id="copy-path" onclick="copy_path(this)" title="Copy item path to clipboard"><img src="../../clipboard.svg" width="19" height="18" alt="Copy item path"></button></span><span class="out-of-band"><span id="render-detail"><a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">[<span class="inner">&#x2212;</span>]</a></span><a class="srclink" href="../../src/gtk4/auto/mount_operation.rs.html#228-278" title="goto source code">[src]</a></span></h1><div class="docblock type-decl"><pre class="rust trait"><code>pub trait MountOperationExt: 'static {
+    fn <a href="#tymethod.display" class="fnname">display</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../../gdk4/auto/display/struct.Display.html" title="struct gdk4::auto::display::Display">Display</a>&gt;;
+<div class="item-spacer"></div>    fn <a href="#tymethod.parent" class="fnname">parent</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../struct.Window.html" title="struct gtk4::Window">Window</a>&gt;;
+<div class="item-spacer"></div>    fn <a href="#tymethod.is_showing" class="fnname">is_showing</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>;
+<div class="item-spacer"></div>    fn <a href="#tymethod.set_display" class="fnname">set_display</a>&lt;P:&nbsp;<a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.14/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../../gdk4/auto/display/struct.Display.html" title="struct gdk4::auto::display::Display">Display</a>&gt;&gt;(&amp;self, display: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>P);
+<div class="item-spacer"></div>    fn <a href="#tymethod.set_parent" class="fnname">set_parent</a>&lt;P:&nbsp;<a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.14/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Window.html" title="struct gtk4::Window">Window</a>&gt;&gt;(&amp;self, parent: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>P&gt;);
+<div class="item-spacer"></div>    fn <a href="#tymethod.connect_display_notify" class="fnname">connect_display_notify</a>&lt;F:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>Self) + 'static&gt;(<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;f: F<br>&nbsp;&nbsp;&nbsp;&nbsp;) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.14/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a>;
+<div class="item-spacer"></div>    fn <a href="#tymethod.connect_is_showing_notify" class="fnname">connect_is_showing_notify</a>&lt;F:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>Self) + 'static&gt;(<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;f: F<br>&nbsp;&nbsp;&nbsp;&nbsp;) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.14/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a>;
+<div class="item-spacer"></div>    fn <a href="#tymethod.connect_parent_notify" class="fnname">connect_parent_notify</a>&lt;F:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>Self) + 'static&gt;(<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;f: F<br>&nbsp;&nbsp;&nbsp;&nbsp;) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.14/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a>;
+}</code></pre></div><details class="rustdoc-toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>Trait containing all <a href="../struct.MountOperation.html" title="MountOperation"><code>MountOperation</code></a> methods.</p>
+<h2 id="implementors-1" class="section-header"><a href="#implementors-1">Implementors</a></h2>
+<p><a href="../struct.MountOperation.html" title="crate::MountOperation"><code>MountOperation</code></a></p>
+</div></details><h2 id="required-methods" class="small-section-header">Required methods<a href="#required-methods" class="anchor"></a></h2><div class="methods"><details class="rustdoc-toggle" open><summary><div id="tymethod.display" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/mount_operation.rs.html#237" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.display" class="fnname">display</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../../gdk4/auto/display/struct.Display.html" title="struct gdk4::auto::display::Display">Display</a>&gt;</h4></div></summary><div class="docblock"><p>Gets the display on which windows of the <a href="../struct.MountOperation.html" title="crate::MountOperation"><code>MountOperation</code></a>
+will be shown.</p>
+<h5 id="returns" class="section-header"><a href="#returns">Returns</a></h5>
+<p>the display on which windows of <code>self</code> are shown</p>
+</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.parent" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/mount_operation.rs.html#246" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.parent" class="fnname">parent</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../struct.Window.html" title="struct gtk4::Window">Window</a>&gt;</h4></div></summary><div class="docblock"><p>Gets the transient parent used by the <a href="../struct.MountOperation.html" title="crate::MountOperation"><code>MountOperation</code></a>.</p>
+<h5 id="returns-1" class="section-header"><a href="#returns-1">Returns</a></h5>
+<p>the transient parent for windows shown by <code>self</code></p>
+</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.is_showing" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/mount_operation.rs.html#255" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.is_showing" class="fnname">is_showing</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></div></summary><div class="docblock"><p>Returns whether the <a href="../struct.MountOperation.html" title="crate::MountOperation"><code>MountOperation</code></a> is currently displaying
+a window.</p>
+<h5 id="returns-2" class="section-header"><a href="#returns-2">Returns</a></h5>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if <code>self</code> is currently displaying a window</p>
+</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.set_display" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/mount_operation.rs.html#261" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.set_display" class="fnname">set_display</a>&lt;P:&nbsp;<a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.14/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../../gdk4/auto/display/struct.Display.html" title="struct gdk4::auto::display::Display">Display</a>&gt;&gt;(&amp;self, display: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>P)</h4></div></summary><div class="docblock"><p>Sets the display to show windows of the <a href="../struct.MountOperation.html" title="crate::MountOperation"><code>MountOperation</code></a> on.</p>
+<h6 id="display" class="section-header"><a href="#display"><code>display</code></a></h6>
+<p>a <a href="../../gdk4/auto/display/struct.Display.html" title="crate::gdk::Display"><code>gdk::Display</code></a></p>
+</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.set_parent" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/mount_operation.rs.html#268" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.set_parent" class="fnname">set_parent</a>&lt;P:&nbsp;<a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.14/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Window.html" title="struct gtk4::Window">Window</a>&gt;&gt;(&amp;self, parent: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>P&gt;)</h4></div></summary><div class="docblock"><p>Sets the transient parent for windows shown by the
+<a href="../struct.MountOperation.html" title="crate::MountOperation"><code>MountOperation</code></a>.</p>
+<h6 id="parent" class="section-header"><a href="#parent"><code>parent</code></a></h6>
+<p>transient parent of the window</p>
+</div></details><div id="tymethod.connect_display_notify" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/mount_operation.rs.html#271" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.connect_display_notify" class="fnname">connect_display_notify</a>&lt;F:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>Self) + 'static&gt;(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;f: F<br>) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.14/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></div><div id="tymethod.connect_is_showing_notify" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/mount_operation.rs.html#274" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.connect_is_showing_notify" class="fnname">connect_is_showing_notify</a>&lt;F:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>Self) + 'static&gt;(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;f: F<br>) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.14/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></div><div id="tymethod.connect_parent_notify" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/mount_operation.rs.html#277" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.connect_parent_notify" class="fnname">connect_parent_notify</a>&lt;F:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>Self) + 'static&gt;(&amp;self, f: F) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.14/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></div></div><h2 id="implementors" class="small-section-header">Implementors<a href="#implementors" class="anchor"></a></h2><div class="item-list" id="implementors-list"><div id="impl-MountOperationExt" class="impl has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/mount_operation.rs.html#280-397" title="goto source code">[src]</a></div><a href="#impl-MountOperationExt" class="anchor"></a><h3 class="code-header in-band">impl&lt;O:&nbsp;<a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.14/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.MountOperation.html" title="struct gtk4::MountOperation">MountOperation</a>&gt;&gt; <a class="trait" href="trait.MountOperationExt.html" title="trait gtk4::prelude::MountOperationExt">MountOperationExt</a> for O</h3></div></div><script type="text/javascript" src="../../implementors/gtk4/prelude/trait.MountOperationExt.js" async></script></section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../" data-current-crate="gtk4" data-search-index-js="../../search-index.js" data-search-js="../../search.js"></div>
+    <script src="../../main.js"></script>
+</body></html>

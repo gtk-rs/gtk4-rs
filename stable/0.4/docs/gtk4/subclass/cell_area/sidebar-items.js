@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["CellCallback",""],["CellCallbackAllocate",""]],"trait":[["CellAreaClassSubclassExt",""],["CellAreaImpl",""],["CellAreaImplExt",""]]});

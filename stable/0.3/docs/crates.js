@@ -1,0 +1,1 @@
+window.ALL_CRATES = ["gdk4","gdk4_sys","gdk4_wayland","gdk4_wayland_sys","gdk4_x11","gdk4_x11_sys","gsk4","gsk4_sys","gtk4","gtk4_macros","gtk4_sys"];

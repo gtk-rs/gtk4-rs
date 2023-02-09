@@ -1,0 +1,273 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Trait containing all [`struct@Device`] methods."><title>DeviceExt in gdk4::prelude - Rust</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Bold-a2c9cd1067f8b328.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-0ef3deca4ed45ad8.css" id="mainThemeStyle"><link rel="stylesheet" id="themeStyle" href="../../static.files/light-f501212b8b071243.css"><link rel="stylesheet" disabled href="../../static.files/dark-e92fc12c34ff89d3.css"><link rel="stylesheet" disabled href="../../static.files/ayu-a0090c8b1ced384f.css"><script src="../../static.files/storage-3891ce972e3a2bf8.js"></script><script defer src="sidebar-items.js"></script><script defer src="../../static.files/main-364b95f387bc3166.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-13285aec31fa243e.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc trait"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
+
+    function checkDocsLatestStable() {
+        function popup(msg, url) { return `
+            <style scoped="scoped">
+                .popup {
+                    max-width: 16em;
+                    background-color: #fff;
+                    position: fixed;
+                    z-index: 1;
+                    margin-left: auto;
+                    bottom: 1em;
+                    right: 1em;
+                    border-radius: 5px;
+                    box-shadow: 1px 1px 4px #777;
+                }
+
+                .popup a.version {
+                    color: #e57300;
+                    padding: 0.6em 1em;
+                    display: block;
+                }
+                .popup a.version:hover {
+                    color: #b25900;
+                }
+
+                .popup a.close {
+                    color: white;
+                    background: grey;
+                    border-radius: 99px;
+                    display: inline-block;
+                    width: 19px;
+                    line-height: 19px;
+                    font-weight: bold;
+                    text-align: center;
+                    margin: 0.6em;
+                    float: right;
+                }
+                .popup a.close:hover {
+                    background: black;
+                }
+            </style>
+            <section class="popup" id="gir_docs_popup">
+                <a class="close" href="#" onclick="document.getElementById('gir_docs_popup').remove(); return false">×</a>
+                <a class="version" href="https://gtk-rs.org/gtk4-rs/stable/latest/docs">
+                    ⚠ ${msg}
+                </a>
+            </section>
+        ` };
+
+        if ("master" == "master") {
+            document.body.insertAdjacentHTML(
+                'beforeend',
+                popup("This is the development version. Go to latest stable version.", "stable/latest")
+            );
+        } else {
+            fetch('https://gtk-rs.org/gtk4-rs/LATEST_RELEASE_BRANCH')
+                .then(response => response.text())
+                .then(latest_branch => {
+                    if (latest_branch.trim() != "master") {
+                        document.body.insertAdjacentHTML(
+                            'beforeend',
+                            popup("This version is outdated. Go to latest version.", "stable/latest")
+                        );
+                    }
+                });
+        }
+    }
+</script>
+
+
+<nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="logo-container" href="../../gdk4/index.html"><img class="rust-logo" src="../../static.files/rust-logo-151179464ae7ed46.svg" alt="logo"></a><h2></h2></nav><nav class="sidebar"><a class="logo-container" href="../../gdk4/index.html"><img class="rust-logo" src="../../static.files/rust-logo-151179464ae7ed46.svg" alt="logo"></a><h2 class="location"><a href="#">DeviceExt</a></h2><div class="sidebar-elems"><section><h3><a href="#required-methods">Required Methods</a></h3><ul class="block"><li><a href="#tymethod.connect_caps_lock_state_notify">connect_caps_lock_state_notify</a></li><li><a href="#tymethod.connect_changed">connect_changed</a></li><li><a href="#tymethod.connect_direction_notify">connect_direction_notify</a></li><li><a href="#tymethod.connect_has_bidi_layouts_notify">connect_has_bidi_layouts_notify</a></li><li><a href="#tymethod.connect_modifier_state_notify">connect_modifier_state_notify</a></li><li><a href="#tymethod.connect_n_axes_notify">connect_n_axes_notify</a></li><li><a href="#tymethod.connect_num_lock_state_notify">connect_num_lock_state_notify</a></li><li><a href="#tymethod.connect_scroll_lock_state_notify">connect_scroll_lock_state_notify</a></li><li><a href="#tymethod.connect_seat_notify">connect_seat_notify</a></li><li><a href="#tymethod.connect_tool_changed">connect_tool_changed</a></li><li><a href="#tymethod.connect_tool_notify">connect_tool_notify</a></li><li><a href="#tymethod.device_tool">device_tool</a></li><li><a href="#tymethod.direction">direction</a></li><li><a href="#tymethod.display">display</a></li><li><a href="#tymethod.has_bidi_layouts">has_bidi_layouts</a></li><li><a href="#tymethod.has_cursor">has_cursor</a></li><li><a href="#tymethod.is_caps_locked">is_caps_locked</a></li><li><a href="#tymethod.is_num_locked">is_num_locked</a></li><li><a href="#tymethod.is_scroll_locked">is_scroll_locked</a></li><li><a href="#tymethod.modifier_state">modifier_state</a></li><li><a href="#tymethod.n_axes">n_axes</a></li><li><a href="#tymethod.name">name</a></li><li><a href="#tymethod.num_touches">num_touches</a></li><li><a href="#tymethod.product_id">product_id</a></li><li><a href="#tymethod.seat">seat</a></li><li><a href="#tymethod.set_seat">set_seat</a></li><li><a href="#tymethod.source">source</a></li><li><a href="#tymethod.surface_at_position">surface_at_position</a></li><li><a href="#tymethod.timestamp">timestamp</a></li><li><a href="#tymethod.vendor_id">vendor_id</a></li></ul><h3><a href="#implementors">Implementors</a></h3></section><h2><a href="index.html">In gdk4::prelude</a></h2></div></nav><main><div class="width-limiter"><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-5ec35bf9ca753509.svg"></a></div></form></nav><section id="main-content" class="content"><div class="main-heading"><h1>Trait <a href="../index.html">gdk4</a>::<wbr><a href="index.html">prelude</a>::<wbr><a class="trait" href="#">DeviceExt</a><button id="copy-path" title="Copy item path to clipboard"><img src="../../static.files/clipboard-7571035ce49a181d.svg" width="19" height="18" alt="Copy item path"></button></h1><span class="out-of-band"><a class="srclink" href="../../src/gdk4/auto/device.rs.html#186-460">source</a> · <button id="toggle-all-docs" title="collapse all docs">[<span>&#x2212;</span>]</button></span></div><pre class="rust item-decl"><code>pub trait DeviceExt: 'static {
+<details class="toggle type-contents-toggle"><summary class="hideme"><span>Show 30 methods</span></summary>    // Required methods
+    fn <a href="#tymethod.is_caps_locked" class="fn">is_caps_locked</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>;
+<span class="item-spacer"></span>    fn <a href="#tymethod.device_tool" class="fn">device_tool</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../struct.DeviceTool.html" title="struct gdk4::DeviceTool">DeviceTool</a>&gt;;
+<span class="item-spacer"></span>    fn <a href="#tymethod.direction" class="fn">direction</a>(&amp;self) -&gt; <a class="enum" href="https://gtk-rs.org/gtk-rs-core/git/docs/pango/auto/enums/enum.Direction.html" title="enum pango::auto::enums::Direction">Direction</a>;
+<span class="item-spacer"></span>    fn <a href="#tymethod.display" class="fn">display</a>(&amp;self) -&gt; <a class="struct" href="../struct.Display.html" title="struct gdk4::Display">Display</a>;
+<span class="item-spacer"></span>    fn <a href="#tymethod.has_cursor" class="fn">has_cursor</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>;
+<span class="item-spacer"></span>    fn <a href="#tymethod.modifier_state" class="fn">modifier_state</a>(&amp;self) -&gt; <a class="struct" href="../struct.ModifierType.html" title="struct gdk4::ModifierType">ModifierType</a>;
+<span class="item-spacer"></span>    fn <a href="#tymethod.name" class="fn">name</a>(&amp;self) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/gstring/struct.GString.html" title="struct glib::gstring::GString">GString</a>;
+<span class="item-spacer"></span>    fn <a href="#tymethod.is_num_locked" class="fn">is_num_locked</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>;
+<span class="item-spacer"></span>    fn <a href="#tymethod.num_touches" class="fn">num_touches</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>;
+<span class="item-spacer"></span>    fn <a href="#tymethod.product_id" class="fn">product_id</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/gstring/struct.GString.html" title="struct glib::gstring::GString">GString</a>&gt;;
+<span class="item-spacer"></span>    fn <a href="#tymethod.is_scroll_locked" class="fn">is_scroll_locked</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>;
+<span class="item-spacer"></span>    fn <a href="#tymethod.seat" class="fn">seat</a>(&amp;self) -&gt; <a class="struct" href="../struct.Seat.html" title="struct gdk4::Seat">Seat</a>;
+<span class="item-spacer"></span>    fn <a href="#tymethod.source" class="fn">source</a>(&amp;self) -&gt; <a class="enum" href="../enum.InputSource.html" title="enum gdk4::InputSource">InputSource</a>;
+<span class="item-spacer"></span>    fn <a href="#tymethod.surface_at_position" class="fn">surface_at_position</a>(&amp;self) -&gt; (<a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../struct.Surface.html" title="struct gdk4::Surface">Surface</a>&gt;, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>);
+<span class="item-spacer"></span>    fn <a href="#tymethod.timestamp" class="fn">timestamp</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>;
+<span class="item-spacer"></span>    fn <a href="#tymethod.vendor_id" class="fn">vendor_id</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/gstring/struct.GString.html" title="struct glib::gstring::GString">GString</a>&gt;;
+<span class="item-spacer"></span>    fn <a href="#tymethod.has_bidi_layouts" class="fn">has_bidi_layouts</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>;
+<span class="item-spacer"></span>    fn <a href="#tymethod.n_axes" class="fn">n_axes</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>;
+<span class="item-spacer"></span>    fn <a href="#tymethod.set_seat" class="fn">set_seat</a>&lt;P: <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Seat.html" title="struct gdk4::Seat">Seat</a>&gt;&gt;(&amp;self, seat: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;P</a>&gt;);
+<span class="item-spacer"></span>    fn <a href="#tymethod.connect_changed" class="fn">connect_changed</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(&amp;self, f: F) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a>;
+<span class="item-spacer"></span>    fn <a href="#tymethod.connect_tool_changed" class="fn">connect_tool_changed</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>, &amp;<a class="struct" href="../struct.DeviceTool.html" title="struct gdk4::DeviceTool">DeviceTool</a>) + 'static&gt;(
+        &amp;self,
+        f: F
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a>;
+<span class="item-spacer"></span>    fn <a href="#tymethod.connect_caps_lock_state_notify" class="fn">connect_caps_lock_state_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
+        &amp;self,
+        f: F
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a>;
+<span class="item-spacer"></span>    fn <a href="#tymethod.connect_direction_notify" class="fn">connect_direction_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
+        &amp;self,
+        f: F
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a>;
+<span class="item-spacer"></span>    fn <a href="#tymethod.connect_has_bidi_layouts_notify" class="fn">connect_has_bidi_layouts_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
+        &amp;self,
+        f: F
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a>;
+<span class="item-spacer"></span>    fn <a href="#tymethod.connect_modifier_state_notify" class="fn">connect_modifier_state_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
+        &amp;self,
+        f: F
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a>;
+<span class="item-spacer"></span>    fn <a href="#tymethod.connect_n_axes_notify" class="fn">connect_n_axes_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
+        &amp;self,
+        f: F
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a>;
+<span class="item-spacer"></span>    fn <a href="#tymethod.connect_num_lock_state_notify" class="fn">connect_num_lock_state_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
+        &amp;self,
+        f: F
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a>;
+<span class="item-spacer"></span>    fn <a href="#tymethod.connect_scroll_lock_state_notify" class="fn">connect_scroll_lock_state_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
+        &amp;self,
+        f: F
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a>;
+<span class="item-spacer"></span>    fn <a href="#tymethod.connect_seat_notify" class="fn">connect_seat_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
+        &amp;self,
+        f: F
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a>;
+<span class="item-spacer"></span>    fn <a href="#tymethod.connect_tool_notify" class="fn">connect_tool_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
+        &amp;self,
+        f: F
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a>;
+</details>}</code></pre><details class="toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>Trait containing all <a href="../struct.Device.html" title="Device"><code>Device</code></a> methods.</p>
+<h2 id="implementors-1"><a href="#implementors-1">Implementors</a></h2>
+<p><a href="../struct.DevicePad.html" title="crate::DevicePad"><code>DevicePad</code></a>, <a href="../struct.Device.html" title="crate::Device"><code>Device</code></a></p>
+</div></details><h2 id="required-methods" class="small-section-header">Required Methods<a href="#required-methods" class="anchor">§</a></h2><div class="methods"><details class="toggle method-toggle" open><summary><section id="tymethod.is_caps_locked" class="method"><a class="srclink rightside" href="../../src/gdk4/auto/device.rs.html#196">source</a><h4 class="code-header">fn <a href="#tymethod.is_caps_locked" class="fn">is_caps_locked</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></section></summary><div class="docblock"><p>Retrieves whether the Caps Lock modifier of the keyboard is locked.</p>
+<p>This is only relevant for keyboard devices.</p>
+<h5 id="returns"><a href="#returns">Returns</a></h5>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if Caps Lock is on for @self</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="tymethod.device_tool" class="method"><a class="srclink rightside" href="../../src/gdk4/auto/device.rs.html#205">source</a><h4 class="code-header">fn <a href="#tymethod.device_tool" class="fn">device_tool</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../struct.DeviceTool.html" title="struct gdk4::DeviceTool">DeviceTool</a>&gt;</h4></section></summary><div class="docblock"><p>Retrieves the current tool for @self.</p>
+<h5 id="returns-1"><a href="#returns-1">Returns</a></h5>
+<p>the <a href="../struct.DeviceTool.html" title="crate::DeviceTool"><code>DeviceTool</code></a></p>
+</div></details><details class="toggle method-toggle" open><summary><section id="tymethod.direction" class="method"><a class="srclink rightside" href="../../src/gdk4/auto/device.rs.html#221">source</a><h4 class="code-header">fn <a href="#tymethod.direction" class="fn">direction</a>(&amp;self) -&gt; <a class="enum" href="https://gtk-rs.org/gtk-rs-core/git/docs/pango/auto/enums/enum.Direction.html" title="enum pango::auto::enums::Direction">Direction</a></h4></section></summary><div class="docblock"><p>Returns the direction of effective layout of the keyboard.</p>
+<p>This is only relevant for keyboard devices.</p>
+<p>The direction of a layout is the direction of the majority
+of its symbols. See <code>unichar_direction()</code>.</p>
+<h5 id="returns-2"><a href="#returns-2">Returns</a></h5>
+<p><a href="https://gtk-rs.org/gtk-rs-core/git/docs/pango/auto/enums/enum.Direction.html#variant.Ltr" title="crate::pango::Direction::Ltr"><code>pango::Direction::Ltr</code></a> or <a href="https://gtk-rs.org/gtk-rs-core/git/docs/pango/auto/enums/enum.Direction.html#variant.Rtl" title="crate::pango::Direction::Rtl"><code>pango::Direction::Rtl</code></a>
+if it can determine the direction. <a href="https://gtk-rs.org/gtk-rs-core/git/docs/pango/auto/enums/enum.Direction.html#variant.Neutral" title="crate::pango::Direction::Neutral"><code>pango::Direction::Neutral</code></a>
+otherwise</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="tymethod.display" class="method"><a class="srclink rightside" href="../../src/gdk4/auto/device.rs.html#230">source</a><h4 class="code-header">fn <a href="#tymethod.display" class="fn">display</a>(&amp;self) -&gt; <a class="struct" href="../struct.Display.html" title="struct gdk4::Display">Display</a></h4></section></summary><div class="docblock"><p>Returns the <a href="../struct.Display.html" title="crate::Display"><code>Display</code></a> to which @self pertains.</p>
+<h5 id="returns-3"><a href="#returns-3">Returns</a></h5>
+<p>a <a href="../struct.Display.html" title="crate::Display"><code>Display</code></a></p>
+</div></details><details class="toggle method-toggle" open><summary><section id="tymethod.has_cursor" class="method"><a class="srclink rightside" href="../../src/gdk4/auto/device.rs.html#242">source</a><h4 class="code-header">fn <a href="#tymethod.has_cursor" class="fn">has_cursor</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></section></summary><div class="docblock"><p>Determines whether the pointer follows device motion.</p>
+<p>This is not meaningful for keyboard devices, which
+don’t have a pointer.</p>
+<h5 id="returns-4"><a href="#returns-4">Returns</a></h5>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if the pointer follows device motion</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="tymethod.modifier_state" class="method"><a class="srclink rightside" href="../../src/gdk4/auto/device.rs.html#253">source</a><h4 class="code-header">fn <a href="#tymethod.modifier_state" class="fn">modifier_state</a>(&amp;self) -&gt; <a class="struct" href="../struct.ModifierType.html" title="struct gdk4::ModifierType">ModifierType</a></h4></section></summary><div class="docblock"><p>Retrieves the current modifier state of the keyboard.</p>
+<p>This is only relevant for keyboard devices.</p>
+<h5 id="returns-5"><a href="#returns-5">Returns</a></h5>
+<p>the current modifier state</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="tymethod.name" class="method"><a class="srclink rightside" href="../../src/gdk4/auto/device.rs.html#262">source</a><h4 class="code-header">fn <a href="#tymethod.name" class="fn">name</a>(&amp;self) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/gstring/struct.GString.html" title="struct glib::gstring::GString">GString</a></h4></section></summary><div class="docblock"><p>The name of the device, suitable for showing in a user interface.</p>
+<h5 id="returns-6"><a href="#returns-6">Returns</a></h5>
+<p>a name</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="tymethod.is_num_locked" class="method"><a class="srclink rightside" href="../../src/gdk4/auto/device.rs.html#273">source</a><h4 class="code-header">fn <a href="#tymethod.is_num_locked" class="fn">is_num_locked</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></section></summary><div class="docblock"><p>Retrieves whether the Num Lock modifier of the keyboard is locked.</p>
+<p>This is only relevant for keyboard devices.</p>
+<h5 id="returns-7"><a href="#returns-7">Returns</a></h5>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if Num Lock is on for @self</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="tymethod.num_touches" class="method"><a class="srclink rightside" href="../../src/gdk4/auto/device.rs.html#282">source</a><h4 class="code-header">fn <a href="#tymethod.num_touches" class="fn">num_touches</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a></h4></section></summary><div class="docblock"><p>Retrieves the number of touch points associated to @self.</p>
+<h5 id="returns-8"><a href="#returns-8">Returns</a></h5>
+<p>the number of touch points</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="tymethod.product_id" class="method"><a class="srclink rightside" href="../../src/gdk4/auto/device.rs.html#294">source</a><h4 class="code-header">fn <a href="#tymethod.product_id" class="fn">product_id</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/gstring/struct.GString.html" title="struct glib::gstring::GString">GString</a>&gt;</h4></section></summary><div class="docblock"><p>Returns the product ID of this device.</p>
+<p>This ID is retrieved from the device, and does not change.
+See <a href="trait.DeviceExt.html#tymethod.vendor_id" title="Self::vendor_id()"><code>vendor_id()</code></a> for more information.</p>
+<h5 id="returns-9"><a href="#returns-9">Returns</a></h5>
+<p>the product ID</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="tymethod.is_scroll_locked" class="method"><a class="srclink rightside" href="../../src/gdk4/auto/device.rs.html#305">source</a><h4 class="code-header">fn <a href="#tymethod.is_scroll_locked" class="fn">is_scroll_locked</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></section></summary><div class="docblock"><p>Retrieves whether the Scroll Lock modifier of the keyboard is locked.</p>
+<p>This is only relevant for keyboard devices.</p>
+<h5 id="returns-10"><a href="#returns-10">Returns</a></h5>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if Scroll Lock is on for @self</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="tymethod.seat" class="method"><a class="srclink rightside" href="../../src/gdk4/auto/device.rs.html#314">source</a><h4 class="code-header">fn <a href="#tymethod.seat" class="fn">seat</a>(&amp;self) -&gt; <a class="struct" href="../struct.Seat.html" title="struct gdk4::Seat">Seat</a></h4></section></summary><div class="docblock"><p>Returns the <a href="../struct.Seat.html" title="crate::Seat"><code>Seat</code></a> the device belongs to.</p>
+<h5 id="returns-11"><a href="#returns-11">Returns</a></h5>
+<p>a <a href="../struct.Seat.html" title="crate::Seat"><code>Seat</code></a></p>
+</div></details><details class="toggle method-toggle" open><summary><section id="tymethod.source" class="method"><a class="srclink rightside" href="../../src/gdk4/auto/device.rs.html#323">source</a><h4 class="code-header">fn <a href="#tymethod.source" class="fn">source</a>(&amp;self) -&gt; <a class="enum" href="../enum.InputSource.html" title="enum gdk4::InputSource">InputSource</a></h4></section></summary><div class="docblock"><p>Determines the type of the device.</p>
+<h5 id="returns-12"><a href="#returns-12">Returns</a></h5>
+<p>a <a href="../enum.InputSource.html" title="crate::InputSource"><code>InputSource</code></a></p>
+</div></details><details class="toggle method-toggle" open><summary><section id="tymethod.surface_at_position" class="method"><a class="srclink rightside" href="../../src/gdk4/auto/device.rs.html#345">source</a><h4 class="code-header">fn <a href="#tymethod.surface_at_position" class="fn">surface_at_position</a>(&amp;self) -&gt; (<a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../struct.Surface.html" title="struct gdk4::Surface">Surface</a>&gt;, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>)</h4></section></summary><div class="docblock"><p>Obtains the surface underneath @self, returning the location of the
+device in @win_x and @win_y.</p>
+<p>Returns <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a> if the surface tree under @self is not known to GDK
+(for example, belongs to another application).</p>
+<h5 id="returns-13"><a href="#returns-13">Returns</a></h5>
+<p>the <a href="../struct.Surface.html" title="crate::Surface"><code>Surface</code></a> under the
+device position</p>
+<h6 id="win_x"><a href="#win_x"><code>win_x</code></a></h6>
+<p>return location for the X coordinate
+of the device location relative to the surface origin</p>
+<h6 id="win_y"><a href="#win_y"><code>win_y</code></a></h6>
+<p>return location for the Y coordinate
+of the device location relative to the surface origin</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="tymethod.timestamp" class="method"><a class="srclink rightside" href="../../src/gdk4/auto/device.rs.html#361">source</a><h4 class="code-header">fn <a href="#tymethod.timestamp" class="fn">timestamp</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a></h4></section></summary><span class="item-info"><div class="stab portability">Available on <strong>crate feature <code>v4_2</code></strong> only.</div></span><div class="docblock"><p>Returns the timestamp of the last activity for this device.</p>
+<p>In practice, this means the timestamp of the last event that was
+received from the OS for this device. (GTK may occasionally produce
+events for a device that are not received from the OS, and will not
+update the timestamp).</p>
+<h5 id="returns-14"><a href="#returns-14">Returns</a></h5>
+<p>the timestamp of the last activity for this device</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="tymethod.vendor_id" class="method"><a class="srclink rightside" href="../../src/gdk4/auto/device.rs.html#398">source</a><h4 class="code-header">fn <a href="#tymethod.vendor_id" class="fn">vendor_id</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/gstring/struct.GString.html" title="struct glib::gstring::GString">GString</a>&gt;</h4></section></summary><div class="docblock"><p>Returns the vendor ID of this device.</p>
+<p>This ID is retrieved from the device, and does not change.</p>
+<p>This function, together with <a href="trait.DeviceExt.html#tymethod.product_id" title="Self::product_id()"><code>product_id()</code></a>,
+can be used to eg. compose <code>GSettings</code> paths to store settings
+for this device.</p>
+<p><strong>⚠️ The following code is in c ⚠️</strong></p>
+<div class="example-wrap"><pre class="language-c"><code> static GSettings *
+ get_device_settings (GdkDevice *device)
+ {
+   const char *vendor, *product;
+   GSettings *settings;
+   GdkDevice *device;
+   char *path;
+
+   vendor = gdk_device_get_vendor_id (device);
+   product = gdk_device_get_product_id (device);
+
+   path = g_strdup_printf (&quot;/org/example/app/devices/%s:%s/&quot;, vendor, product);
+   settings = g_settings_new_with_path (DEVICE_SCHEMA, path);
+   g_free (path);
+
+   return settings;
+ }
+</code></pre></div><h5 id="returns-15"><a href="#returns-15">Returns</a></h5>
+<p>the vendor ID</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="tymethod.has_bidi_layouts" class="method"><a class="srclink rightside" href="../../src/gdk4/auto/device.rs.html#409">source</a><h4 class="code-header">fn <a href="#tymethod.has_bidi_layouts" class="fn">has_bidi_layouts</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></section></summary><div class="docblock"><p>Determines if layouts for both right-to-left and
+left-to-right languages are in use on the keyboard.</p>
+<p>This is only relevant for keyboard devices.</p>
+<h5 id="returns-16"><a href="#returns-16">Returns</a></h5>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if there are layouts with both directions, <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="false"><code>false</code></a> otherwise</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="tymethod.n_axes" class="method"><a class="srclink rightside" href="../../src/gdk4/auto/device.rs.html#413">source</a><h4 class="code-header">fn <a href="#tymethod.n_axes" class="fn">n_axes</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a></h4></section></summary><div class="docblock"><p>Number of axes in the device.</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="tymethod.set_seat" class="method"><a class="srclink rightside" href="../../src/gdk4/auto/device.rs.html#416">source</a><h4 class="code-header">fn <a href="#tymethod.set_seat" class="fn">set_seat</a>&lt;P: <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Seat.html" title="struct gdk4::Seat">Seat</a>&gt;&gt;(&amp;self, seat: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;P</a>&gt;)</h4></section></summary><div class="docblock"><p><a href="../struct.Seat.html" title="crate::Seat"><code>Seat</code></a> of this device.</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="tymethod.connect_changed" class="method"><a class="srclink rightside" href="../../src/gdk4/auto/device.rs.html#426">source</a><h4 class="code-header">fn <a href="#tymethod.connect_changed" class="fn">connect_changed</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(&amp;self, f: F) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section></summary><div class="docblock"><p>Emitted either when the number of either axes or keys changes.</p>
+<p>On X11 this will normally happen when the physical device
+routing events through the logical device changes (for
+example, user switches from the USB mouse to a tablet); in
+that case the logical device will change to reflect the axes
+and keys on the new physical device.</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="tymethod.connect_tool_changed" class="method"><a class="srclink rightside" href="../../src/gdk4/auto/device.rs.html#432">source</a><h4 class="code-header">fn <a href="#tymethod.connect_tool_changed" class="fn">connect_tool_changed</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>, &amp;<a class="struct" href="../struct.DeviceTool.html" title="struct gdk4::DeviceTool">DeviceTool</a>) + 'static&gt;(
+    &amp;self,
+    f: F
+) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section></summary><div class="docblock"><p>Emitted on pen/eraser devices whenever tools enter or leave proximity.</p>
+<h6 id="tool"><a href="#tool"><code>tool</code></a></h6>
+<p>The new current tool</p>
+</div></details><section id="tymethod.connect_caps_lock_state_notify" class="method"><a class="srclink rightside" href="../../src/gdk4/auto/device.rs.html#435">source</a><h4 class="code-header">fn <a href="#tymethod.connect_caps_lock_state_notify" class="fn">connect_caps_lock_state_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
+    &amp;self,
+    f: F
+) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><section id="tymethod.connect_direction_notify" class="method"><a class="srclink rightside" href="../../src/gdk4/auto/device.rs.html#438">source</a><h4 class="code-header">fn <a href="#tymethod.connect_direction_notify" class="fn">connect_direction_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
+    &amp;self,
+    f: F
+) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><section id="tymethod.connect_has_bidi_layouts_notify" class="method"><a class="srclink rightside" href="../../src/gdk4/auto/device.rs.html#441">source</a><h4 class="code-header">fn <a href="#tymethod.connect_has_bidi_layouts_notify" class="fn">connect_has_bidi_layouts_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
+    &amp;self,
+    f: F
+) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><section id="tymethod.connect_modifier_state_notify" class="method"><a class="srclink rightside" href="../../src/gdk4/auto/device.rs.html#444">source</a><h4 class="code-header">fn <a href="#tymethod.connect_modifier_state_notify" class="fn">connect_modifier_state_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
+    &amp;self,
+    f: F
+) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><section id="tymethod.connect_n_axes_notify" class="method"><a class="srclink rightside" href="../../src/gdk4/auto/device.rs.html#447">source</a><h4 class="code-header">fn <a href="#tymethod.connect_n_axes_notify" class="fn">connect_n_axes_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(&amp;self, f: F) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><section id="tymethod.connect_num_lock_state_notify" class="method"><a class="srclink rightside" href="../../src/gdk4/auto/device.rs.html#450">source</a><h4 class="code-header">fn <a href="#tymethod.connect_num_lock_state_notify" class="fn">connect_num_lock_state_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
+    &amp;self,
+    f: F
+) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><section id="tymethod.connect_scroll_lock_state_notify" class="method"><a class="srclink rightside" href="../../src/gdk4/auto/device.rs.html#453">source</a><h4 class="code-header">fn <a href="#tymethod.connect_scroll_lock_state_notify" class="fn">connect_scroll_lock_state_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
+    &amp;self,
+    f: F
+) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><section id="tymethod.connect_seat_notify" class="method"><a class="srclink rightside" href="../../src/gdk4/auto/device.rs.html#456">source</a><h4 class="code-header">fn <a href="#tymethod.connect_seat_notify" class="fn">connect_seat_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(&amp;self, f: F) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><section id="tymethod.connect_tool_notify" class="method"><a class="srclink rightside" href="../../src/gdk4/auto/device.rs.html#459">source</a><h4 class="code-header">fn <a href="#tymethod.connect_tool_notify" class="fn">connect_tool_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(&amp;self, f: F) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section></div><h2 id="implementors" class="small-section-header">Implementors<a href="#implementors" class="anchor">§</a></h2><div id="implementors-list"><section id="impl-DeviceExt-for-O" class="impl"><a class="srclink rightside" href="../../src/gdk4/auto/device.rs.html#462-851">source</a><a href="#impl-DeviceExt-for-O" class="anchor">§</a><h3 class="code-header">impl&lt;O: <a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Device.html" title="struct gdk4::Device">Device</a>&gt;&gt; <a class="trait" href="trait.DeviceExt.html" title="trait gdk4::prelude::DeviceExt">DeviceExt</a> for O</h3></section></div><script src="../../implementors/gdk4/auto/device/trait.DeviceExt.js" async></script></section></div></main><div id="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="gdk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.69.0-nightly (ef934d9b6 2023-02-08)" data-search-js="search-28136cea55c34037.js" data-settings-js="settings-f0c5c39777a9a2f6.js" data-settings-css="settings-0bcba95ff279c1db.css" ></div></body></html>

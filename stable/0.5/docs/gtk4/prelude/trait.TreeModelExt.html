@@ -1,0 +1,283 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Trait containing all [`struct@TreeModel`] methods."><meta name="keywords" content="rust, rustlang, rust-lang, TreeModelExt"><title>TreeModelExt in gtk4::prelude - Rust</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-1f7d512b176f0f72.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Bold-124a1ca42af929b6.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-34efc64c5083af8d.css" id="mainThemeStyle"><link rel="stylesheet" id="themeStyle" href="../../static.files/light-4743e13df3dfe8c4.css"><link rel="stylesheet" disabled href="../../static.files/dark-0e1b889528bd466b.css"><link rel="stylesheet" disabled href="../../static.files/ayu-65289d5d067c7c66.css"><script id="default-settings" ></script><script src="../../static.files/storage-d43fa987303ecbbb.js"></script><script defer src="sidebar-items.js"></script><script defer src="../../static.files/main-4a084badb5778746.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-13285aec31fa243e.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc trait"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
+
+    function checkDocsLatestStable() {
+        function popup(msg, url) { return `
+            <style scoped="scoped">
+                .popup {
+                    max-width: 16em;
+                    background-color: #fff;
+                    position: fixed;
+                    z-index: 1;
+                    margin-left: auto;
+                    bottom: 1em;
+                    right: 1em;
+                    border-radius: 5px;
+                    box-shadow: 1px 1px 4px #777;
+                }
+
+                .popup a.version {
+                    color: #e57300;
+                    padding: 0.6em 1em;
+                    display: block;
+                }
+                .popup a.version:hover {
+                    color: #b25900;
+                }
+
+                .popup a.close {
+                    color: white;
+                    background: grey;
+                    border-radius: 99px;
+                    display: inline-block;
+                    width: 19px;
+                    line-height: 19px;
+                    font-weight: bold;
+                    text-align: center;
+                    margin: 0.6em;
+                    float: right;
+                }
+                .popup a.close:hover {
+                    background: black;
+                }
+            </style>
+            <section class="popup" id="gir_docs_popup">
+                <a class="close" href="#" onclick="document.getElementById('gir_docs_popup').remove(); return false">×</a>
+                <a class="version" href="https://gtk-rs.org/gtk4-rs/stable/latest/docs">
+                    ⚠ ${msg}
+                </a>
+            </section>
+        ` };
+
+        if ("0.5" == "master") {
+            document.body.insertAdjacentHTML(
+                'beforeend',
+                popup("This is the development version. Go to latest stable version.", "stable/latest")
+            );
+        } else {
+            fetch('https://gtk-rs.org/gtk4-rs/LATEST_RELEASE_BRANCH')
+                .then(response => response.text())
+                .then(latest_branch => {
+                    if (latest_branch.trim() != "0.5") {
+                        document.body.insertAdjacentHTML(
+                            'beforeend',
+                            popup("This version is outdated. Go to latest version.", "stable/latest")
+                        );
+                    }
+                });
+        }
+    }
+</script>
+
+
+<nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../gtk4/index.html"><div class="logo-container"><img class="rust-logo" src="../../static.files/rust-logo-151179464ae7ed46.svg" alt="logo"></div></a><h2></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../gtk4/index.html"><div class="logo-container"><img class="rust-logo" src="../../static.files/rust-logo-151179464ae7ed46.svg" alt="logo"></div></a><h2 class="location"><a href="#">TreeModelExt</a></h2><div class="sidebar-elems"><section><h3><a href="#required-methods">Required Methods</a></h3><ul class="block"><li><a href="#tymethod.column_type">column_type</a></li><li><a href="#tymethod.connect_row_changed">connect_row_changed</a></li><li><a href="#tymethod.connect_row_deleted">connect_row_deleted</a></li><li><a href="#tymethod.connect_row_has_child_toggled">connect_row_has_child_toggled</a></li><li><a href="#tymethod.connect_row_inserted">connect_row_inserted</a></li><li><a href="#tymethod.flags">flags</a></li><li><a href="#tymethod.foreach">foreach</a></li><li><a href="#tymethod.iter">iter</a></li><li><a href="#tymethod.iter_children">iter_children</a></li><li><a href="#tymethod.iter_first">iter_first</a></li><li><a href="#tymethod.iter_from_string">iter_from_string</a></li><li><a href="#tymethod.iter_has_child">iter_has_child</a></li><li><a href="#tymethod.iter_n_children">iter_n_children</a></li><li><a href="#tymethod.iter_next">iter_next</a></li><li><a href="#tymethod.iter_nth_child">iter_nth_child</a></li><li><a href="#tymethod.iter_parent">iter_parent</a></li><li><a href="#tymethod.iter_previous">iter_previous</a></li><li><a href="#tymethod.n_columns">n_columns</a></li><li><a href="#tymethod.path">path</a></li><li><a href="#tymethod.row_changed">row_changed</a></li><li><a href="#tymethod.row_deleted">row_deleted</a></li><li><a href="#tymethod.row_has_child_toggled">row_has_child_toggled</a></li><li><a href="#tymethod.row_inserted">row_inserted</a></li><li><a href="#tymethod.string_from_iter">string_from_iter</a></li></ul><h3><a href="#implementors">Implementors</a></h3></section><h2><a href="index.html">In gtk4::prelude</a></h2></div></nav><main><div class="width-limiter"><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-5ec35bf9ca753509.svg"></a></div></form></nav><section id="main-content" class="content"><div class="main-heading"><h1 class="fqn">Trait <a href="../index.html">gtk4</a>::<wbr><a href="index.html">prelude</a>::<wbr><a class="trait" href="#">TreeModelExt</a><button id="copy-path" onclick="copy_path(this)" title="Copy item path to clipboard"><img src="../../static.files/clipboard-7571035ce49a181d.svg" width="19" height="18" alt="Copy item path"></button></h1><span class="out-of-band"><a class="srclink" href="../../src/gtk4/auto/tree_model.rs.html#240-654">source</a> · <button id="toggle-all-docs" title="collapse all docs">[<span>&#x2212;</span>]</button></span></div><div class="item-decl"><pre class="rust trait"><code>pub trait TreeModelExt: 'static {
+<details class="rustdoc-toggle type-contents-toggle"><summary class="hideme"><span>Show 24 methods</span></summary>    fn <a href="#tymethod.foreach" class="fn">foreach</a>&lt;P:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.FnMut.html" title="trait core::ops::function::FnMut">FnMut</a>(&amp;<a class="struct" href="../struct.TreeModel.html" title="struct gtk4::TreeModel">TreeModel</a>, &amp;<a class="struct" href="../struct.TreePath.html" title="struct gtk4::TreePath">TreePath</a>, &amp;<a class="struct" href="../struct.TreeIter.html" title="struct gtk4::TreeIter">TreeIter</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>&gt;(<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;self,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;func: P<br>&nbsp;&nbsp;&nbsp;&nbsp;);
+<span class="item-spacer"></span>    fn <a href="#tymethod.column_type" class="fn">column_type</a>(&amp;self, index_: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.16/docs/glib/types/struct.Type.html" title="struct glib::types::Type">Type</a>;
+<span class="item-spacer"></span>    fn <a href="#tymethod.flags" class="fn">flags</a>(&amp;self) -&gt; <a class="struct" href="../struct.TreeModelFlags.html" title="struct gtk4::TreeModelFlags">TreeModelFlags</a>;
+<span class="item-spacer"></span>    fn <a href="#tymethod.iter" class="fn">iter</a>(&amp;self, path: &amp;<a class="struct" href="../struct.TreePath.html" title="struct gtk4::TreePath">TreePath</a>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../struct.TreeIter.html" title="struct gtk4::TreeIter">TreeIter</a>&gt;;
+<span class="item-spacer"></span>    fn <a href="#tymethod.iter_first" class="fn">iter_first</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../struct.TreeIter.html" title="struct gtk4::TreeIter">TreeIter</a>&gt;;
+<span class="item-spacer"></span>    fn <a href="#tymethod.iter_from_string" class="fn">iter_from_string</a>(&amp;self, path_string: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../struct.TreeIter.html" title="struct gtk4::TreeIter">TreeIter</a>&gt;;
+<span class="item-spacer"></span>    fn <a href="#tymethod.n_columns" class="fn">n_columns</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>;
+<span class="item-spacer"></span>    fn <a href="#tymethod.path" class="fn">path</a>(&amp;self, iter: &amp;<a class="struct" href="../struct.TreeIter.html" title="struct gtk4::TreeIter">TreeIter</a>) -&gt; <a class="struct" href="../struct.TreePath.html" title="struct gtk4::TreePath">TreePath</a>;
+<span class="item-spacer"></span>    fn <a href="#tymethod.string_from_iter" class="fn">string_from_iter</a>(&amp;self, iter: &amp;<a class="struct" href="../struct.TreeIter.html" title="struct gtk4::TreeIter">TreeIter</a>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.16/docs/glib/gstring/struct.GString.html" title="struct glib::gstring::GString">GString</a>&gt;;
+<span class="item-spacer"></span>    fn <a href="#tymethod.iter_children" class="fn">iter_children</a>(&amp;self, parent: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;<a class="struct" href="../struct.TreeIter.html" title="struct gtk4::TreeIter">TreeIter</a>&gt;) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../struct.TreeIter.html" title="struct gtk4::TreeIter">TreeIter</a>&gt;;
+<span class="item-spacer"></span>    fn <a href="#tymethod.iter_has_child" class="fn">iter_has_child</a>(&amp;self, iter: &amp;<a class="struct" href="../struct.TreeIter.html" title="struct gtk4::TreeIter">TreeIter</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>;
+<span class="item-spacer"></span>    fn <a href="#tymethod.iter_n_children" class="fn">iter_n_children</a>(&amp;self, iter: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;<a class="struct" href="../struct.TreeIter.html" title="struct gtk4::TreeIter">TreeIter</a>&gt;) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>;
+<span class="item-spacer"></span>    fn <a href="#tymethod.iter_next" class="fn">iter_next</a>(&amp;self, iter: &amp;<a class="struct" href="../struct.TreeIter.html" title="struct gtk4::TreeIter">TreeIter</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>;
+<span class="item-spacer"></span>    fn <a href="#tymethod.iter_nth_child" class="fn">iter_nth_child</a>(<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;self,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;parent: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;<a class="struct" href="../struct.TreeIter.html" title="struct gtk4::TreeIter">TreeIter</a>&gt;,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;n: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a><br>&nbsp;&nbsp;&nbsp;&nbsp;) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../struct.TreeIter.html" title="struct gtk4::TreeIter">TreeIter</a>&gt;;
+<span class="item-spacer"></span>    fn <a href="#tymethod.iter_parent" class="fn">iter_parent</a>(&amp;self, child: &amp;<a class="struct" href="../struct.TreeIter.html" title="struct gtk4::TreeIter">TreeIter</a>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../struct.TreeIter.html" title="struct gtk4::TreeIter">TreeIter</a>&gt;;
+<span class="item-spacer"></span>    fn <a href="#tymethod.iter_previous" class="fn">iter_previous</a>(&amp;self, iter: &amp;<a class="struct" href="../struct.TreeIter.html" title="struct gtk4::TreeIter">TreeIter</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>;
+<span class="item-spacer"></span>    fn <a href="#tymethod.row_changed" class="fn">row_changed</a>(&amp;self, path: &amp;<a class="struct" href="../struct.TreePath.html" title="struct gtk4::TreePath">TreePath</a>, iter: &amp;<a class="struct" href="../struct.TreeIter.html" title="struct gtk4::TreeIter">TreeIter</a>);
+<span class="item-spacer"></span>    fn <a href="#tymethod.row_deleted" class="fn">row_deleted</a>(&amp;self, path: &amp;<a class="struct" href="../struct.TreePath.html" title="struct gtk4::TreePath">TreePath</a>);
+<span class="item-spacer"></span>    fn <a href="#tymethod.row_has_child_toggled" class="fn">row_has_child_toggled</a>(&amp;self, path: &amp;<a class="struct" href="../struct.TreePath.html" title="struct gtk4::TreePath">TreePath</a>, iter: &amp;<a class="struct" href="../struct.TreeIter.html" title="struct gtk4::TreeIter">TreeIter</a>);
+<span class="item-spacer"></span>    fn <a href="#tymethod.row_inserted" class="fn">row_inserted</a>(&amp;self, path: &amp;<a class="struct" href="../struct.TreePath.html" title="struct gtk4::TreePath">TreePath</a>, iter: &amp;<a class="struct" href="../struct.TreeIter.html" title="struct gtk4::TreeIter">TreeIter</a>);
+<span class="item-spacer"></span>    fn <a href="#tymethod.connect_row_changed" class="fn">connect_row_changed</a>&lt;F:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>Self, &amp;<a class="struct" href="../struct.TreePath.html" title="struct gtk4::TreePath">TreePath</a>, &amp;<a class="struct" href="../struct.TreeIter.html" title="struct gtk4::TreeIter">TreeIter</a>) + 'static&gt;(<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;self,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;f: F<br>&nbsp;&nbsp;&nbsp;&nbsp;) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.16/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a>;
+<span class="item-spacer"></span>    fn <a href="#tymethod.connect_row_deleted" class="fn">connect_row_deleted</a>&lt;F:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>Self, &amp;<a class="struct" href="../struct.TreePath.html" title="struct gtk4::TreePath">TreePath</a>) + 'static&gt;(<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;self,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;f: F<br>&nbsp;&nbsp;&nbsp;&nbsp;) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.16/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a>;
+<span class="item-spacer"></span>    fn <a href="#tymethod.connect_row_has_child_toggled" class="fn">connect_row_has_child_toggled</a>&lt;F:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>Self, &amp;<a class="struct" href="../struct.TreePath.html" title="struct gtk4::TreePath">TreePath</a>, &amp;<a class="struct" href="../struct.TreeIter.html" title="struct gtk4::TreeIter">TreeIter</a>) + 'static&gt;(<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;self,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;f: F<br>&nbsp;&nbsp;&nbsp;&nbsp;) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.16/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a>;
+<span class="item-spacer"></span>    fn <a href="#tymethod.connect_row_inserted" class="fn">connect_row_inserted</a>&lt;F:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>Self, &amp;<a class="struct" href="../struct.TreePath.html" title="struct gtk4::TreePath">TreePath</a>, &amp;<a class="struct" href="../struct.TreeIter.html" title="struct gtk4::TreeIter">TreeIter</a>) + 'static&gt;(<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;self,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;f: F<br>&nbsp;&nbsp;&nbsp;&nbsp;) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.16/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a>;
+</details>}</code></pre></div><details class="rustdoc-toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>Trait containing all <a href="../struct.TreeModel.html" title="TreeModel"><code>TreeModel</code></a> methods.</p>
+<h2 id="implementors-1"><a href="#implementors-1">Implementors</a></h2>
+<p><a href="../struct.ListStore.html" title="crate::ListStore"><code>ListStore</code></a>, <a href="../struct.TreeModelFilter.html" title="crate::TreeModelFilter"><code>TreeModelFilter</code></a>, <a href="../struct.TreeModelSort.html" title="crate::TreeModelSort"><code>TreeModelSort</code></a>, <a href="../struct.TreeModel.html" title="crate::TreeModel"><code>TreeModel</code></a>, <a href="../struct.TreeSortable.html" title="crate::TreeSortable"><code>TreeSortable</code></a>, <a href="../struct.TreeStore.html" title="crate::TreeStore"><code>TreeStore</code></a></p>
+</div></details><h2 id="required-methods" class="small-section-header">Required Methods<a href="#required-methods" class="anchor">§</a></h2><div class="methods"><details class="rustdoc-toggle method-toggle" open><summary><section id="tymethod.foreach" class="method has-srclink"><a class="srclink rightside" href="../../src/gtk4/auto/tree_model.rs.html#252">source</a><h4 class="code-header">fn <a href="#tymethod.foreach" class="fn">foreach</a>&lt;P:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.FnMut.html" title="trait core::ops::function::FnMut">FnMut</a>(&amp;<a class="struct" href="../struct.TreeModel.html" title="struct gtk4::TreeModel">TreeModel</a>, &amp;<a class="struct" href="../struct.TreePath.html" title="struct gtk4::TreePath">TreePath</a>, &amp;<a class="struct" href="../struct.TreeIter.html" title="struct gtk4::TreeIter">TreeIter</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>&gt;(&amp;self, func: P)</h4></section></summary><div class="docblock"><p>Calls @func on each node in model in a depth-first fashion.</p>
+<p>If @func returns <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a>, then the tree ceases to be walked,
+and gtk_tree_model_foreach() returns.</p>
+<h5 id="deprecated-since-410"><a href="#deprecated-since-410">Deprecated since 4.10</a></h5><h6 id="func"><a href="#func"><code>func</code></a></h6>
+<p>a function to be called on each row</p>
+</div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="tymethod.column_type" class="method has-srclink"><a class="srclink rightside" href="../../src/gtk4/auto/tree_model.rs.html#267">source</a><h4 class="code-header">fn <a href="#tymethod.column_type" class="fn">column_type</a>(&amp;self, index_: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.16/docs/glib/types/struct.Type.html" title="struct glib::types::Type">Type</a></h4></section></summary><div class="docblock"><p>Returns the type of the column.</p>
+<h5 id="deprecated-since-410-1"><a href="#deprecated-since-410-1">Deprecated since 4.10</a></h5><h6 id="index_"><a href="#index_"><code>index_</code></a></h6>
+<p>the column index</p>
+<h5 id="returns"><a href="#returns">Returns</a></h5>
+<p>the type of the column</p>
+</div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="tymethod.flags" class="method has-srclink"><a class="srclink rightside" href="../../src/gtk4/auto/tree_model.rs.html#284">source</a><h4 class="code-header">fn <a href="#tymethod.flags" class="fn">flags</a>(&amp;self) -&gt; <a class="struct" href="../struct.TreeModelFlags.html" title="struct gtk4::TreeModelFlags">TreeModelFlags</a></h4></section></summary><div class="docblock"><p>Returns a set of flags supported by this interface.</p>
+<p>The flags are a bitwise combination of <a href="../struct.TreeModel.html" title="crate::TreeModel"><code>TreeModel</code></a>Flags.
+The flags supported should not change during the lifetime
+of the @self.</p>
+<h5 id="deprecated-since-410-2"><a href="#deprecated-since-410-2">Deprecated since 4.10</a></h5><h5 id="returns-1"><a href="#returns-1">Returns</a></h5>
+<p>the flags supported by this interface</p>
+</div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="tymethod.iter" class="method has-srclink"><a class="srclink rightside" href="../../src/gtk4/auto/tree_model.rs.html#305">source</a><h4 class="code-header">fn <a href="#tymethod.iter" class="fn">iter</a>(&amp;self, path: &amp;<a class="struct" href="../struct.TreePath.html" title="struct gtk4::TreePath">TreePath</a>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../struct.TreeIter.html" title="struct gtk4::TreeIter">TreeIter</a>&gt;</h4></section></summary><div class="docblock"><p>Sets @iter to a valid iterator pointing to @path.</p>
+<p>If @path does not exist, @iter is set to an invalid
+iterator and <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="false"><code>false</code></a> is returned.</p>
+<h5 id="deprecated-since-410-3"><a href="#deprecated-since-410-3">Deprecated since 4.10</a></h5><h6 id="path"><a href="#path"><code>path</code></a></h6>
+<p>the <a href="../struct.TreePath.html" title="crate::TreePath"><code>TreePath</code></a></p>
+<h5 id="returns-2"><a href="#returns-2">Returns</a></h5>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a>, if @iter was set</p>
+<h6 id="iter"><a href="#iter"><code>iter</code></a></h6>
+<p>the uninitialized <a href="../struct.TreeIter.html" title="crate::TreeIter"><code>TreeIter</code></a></p>
+</div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="tymethod.iter_first" class="method has-srclink"><a class="srclink rightside" href="../../src/gtk4/auto/tree_model.rs.html#324">source</a><h4 class="code-header">fn <a href="#tymethod.iter_first" class="fn">iter_first</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../struct.TreeIter.html" title="struct gtk4::TreeIter">TreeIter</a>&gt;</h4></section></summary><div class="docblock"><p>Initializes @iter with the first iterator in the tree
+(the one at the path “0”).</p>
+<p>Returns <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="false"><code>false</code></a> if the tree is empty, <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> otherwise.</p>
+<h5 id="deprecated-since-410-4"><a href="#deprecated-since-410-4">Deprecated since 4.10</a></h5><h5 id="returns-3"><a href="#returns-3">Returns</a></h5>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a>, if @iter was set</p>
+<h6 id="iter-1"><a href="#iter-1"><code>iter</code></a></h6>
+<p>the uninitialized <a href="../struct.TreeIter.html" title="crate::TreeIter"><code>TreeIter</code></a></p>
+</div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="tymethod.iter_from_string" class="method has-srclink"><a class="srclink rightside" href="../../src/gtk4/auto/tree_model.rs.html#345">source</a><h4 class="code-header">fn <a href="#tymethod.iter_from_string" class="fn">iter_from_string</a>(&amp;self, path_string: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../struct.TreeIter.html" title="struct gtk4::TreeIter">TreeIter</a>&gt;</h4></section></summary><div class="docblock"><p>Sets @iter to a valid iterator pointing to @path_string, if it
+exists.</p>
+<p>Otherwise, @iter is left invalid and <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="false"><code>false</code></a> is returned.</p>
+<h5 id="deprecated-since-410-5"><a href="#deprecated-since-410-5">Deprecated since 4.10</a></h5><h6 id="path_string"><a href="#path_string"><code>path_string</code></a></h6>
+<p>a string representation of a <a href="../struct.TreePath.html" title="crate::TreePath"><code>TreePath</code></a></p>
+<h5 id="returns-4"><a href="#returns-4">Returns</a></h5>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a>, if @iter was set</p>
+<h6 id="iter-2"><a href="#iter-2"><code>iter</code></a></h6>
+<p>an uninitialized <a href="../struct.TreeIter.html" title="crate::TreeIter"><code>TreeIter</code></a></p>
+</div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="tymethod.n_columns" class="method has-srclink"><a class="srclink rightside" href="../../src/gtk4/auto/tree_model.rs.html#358">source</a><h4 class="code-header">fn <a href="#tymethod.n_columns" class="fn">n_columns</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a></h4></section></summary><div class="docblock"><p>Returns the number of columns supported by @self.</p>
+<h5 id="deprecated-since-410-6"><a href="#deprecated-since-410-6">Deprecated since 4.10</a></h5><h5 id="returns-5"><a href="#returns-5">Returns</a></h5>
+<p>the number of columns</p>
+</div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="tymethod.path" class="method has-srclink"><a class="srclink rightside" href="../../src/gtk4/auto/tree_model.rs.html#375">source</a><h4 class="code-header">fn <a href="#tymethod.path" class="fn">path</a>(&amp;self, iter: &amp;<a class="struct" href="../struct.TreeIter.html" title="struct gtk4::TreeIter">TreeIter</a>) -&gt; <a class="struct" href="../struct.TreePath.html" title="struct gtk4::TreePath">TreePath</a></h4></section></summary><div class="docblock"><p>Returns a newly-created <a href="../struct.TreePath.html" title="crate::TreePath"><code>TreePath</code></a> referenced by @iter.</p>
+<p>This path should be freed with gtk_tree_path_free().</p>
+<h5 id="deprecated-since-410-7"><a href="#deprecated-since-410-7">Deprecated since 4.10</a></h5><h6 id="iter-3"><a href="#iter-3"><code>iter</code></a></h6>
+<p>the <a href="../struct.TreeIter.html" title="crate::TreeIter"><code>TreeIter</code></a></p>
+<h5 id="returns-6"><a href="#returns-6">Returns</a></h5>
+<p>a newly-created <a href="../struct.TreePath.html" title="crate::TreePath"><code>TreePath</code></a></p>
+</div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="tymethod.string_from_iter" class="method has-srclink"><a class="srclink rightside" href="../../src/gtk4/auto/tree_model.rs.html#394">source</a><h4 class="code-header">fn <a href="#tymethod.string_from_iter" class="fn">string_from_iter</a>(&amp;self, iter: &amp;<a class="struct" href="../struct.TreeIter.html" title="struct gtk4::TreeIter">TreeIter</a>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.16/docs/glib/gstring/struct.GString.html" title="struct glib::gstring::GString">GString</a>&gt;</h4></section></summary><div class="docblock"><p>Generates a string representation of the iter.</p>
+<p>This string is a “:” separated list of numbers.
+For example, “4:10:0:3” would be an acceptable
+return value for this string.</p>
+<h5 id="deprecated-since-410-8"><a href="#deprecated-since-410-8">Deprecated since 4.10</a></h5><h6 id="iter-4"><a href="#iter-4"><code>iter</code></a></h6>
+<p>a <a href="../struct.TreeIter.html" title="crate::TreeIter"><code>TreeIter</code></a></p>
+<h5 id="returns-7"><a href="#returns-7">Returns</a></h5>
+<p>a newly-allocated string</p>
+</div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="tymethod.iter_children" class="method has-srclink"><a class="srclink rightside" href="../../src/gtk4/auto/tree_model.rs.html#418">source</a><h4 class="code-header">fn <a href="#tymethod.iter_children" class="fn">iter_children</a>(&amp;self, parent: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;<a class="struct" href="../struct.TreeIter.html" title="struct gtk4::TreeIter">TreeIter</a>&gt;) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../struct.TreeIter.html" title="struct gtk4::TreeIter">TreeIter</a>&gt;</h4></section></summary><div class="docblock"><p>Sets @iter to point to the first child of @parent.</p>
+<p>If @parent has no children, <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="false"><code>false</code></a> is returned and @iter is
+set to be invalid. @parent will remain a valid node after this
+function has been called.</p>
+<p>If @parent is <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a> returns the first node, equivalent to
+<code>gtk_tree_model_get_iter_first (tree_model, iter);</code></p>
+<h5 id="deprecated-since-410-9"><a href="#deprecated-since-410-9">Deprecated since 4.10</a></h5><h6 id="parent"><a href="#parent"><code>parent</code></a></h6>
+<p>the <a href="../struct.TreeIter.html" title="crate::TreeIter"><code>TreeIter</code></a></p>
+<h5 id="returns-8"><a href="#returns-8">Returns</a></h5>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a>, if @iter has been set to the first child</p>
+<h6 id="iter-5"><a href="#iter-5"><code>iter</code></a></h6>
+<p>the new <a href="../struct.TreeIter.html" title="crate::TreeIter"><code>TreeIter</code></a> to be set to the child</p>
+</div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="tymethod.iter_has_child" class="method has-srclink"><a class="srclink rightside" href="../../src/gtk4/auto/tree_model.rs.html#432">source</a><h4 class="code-header">fn <a href="#tymethod.iter_has_child" class="fn">iter_has_child</a>(&amp;self, iter: &amp;<a class="struct" href="../struct.TreeIter.html" title="struct gtk4::TreeIter">TreeIter</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></section></summary><div class="docblock"><p>Returns <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if @iter has children, <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="false"><code>false</code></a> otherwise.</p>
+<h5 id="deprecated-since-410-10"><a href="#deprecated-since-410-10">Deprecated since 4.10</a></h5><h6 id="iter-6"><a href="#iter-6"><code>iter</code></a></h6>
+<p>the <a href="../struct.TreeIter.html" title="crate::TreeIter"><code>TreeIter</code></a> to test for children</p>
+<h5 id="returns-9"><a href="#returns-9">Returns</a></h5>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if @iter has children</p>
+</div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="tymethod.iter_n_children" class="method has-srclink"><a class="srclink rightside" href="../../src/gtk4/auto/tree_model.rs.html#449">source</a><h4 class="code-header">fn <a href="#tymethod.iter_n_children" class="fn">iter_n_children</a>(&amp;self, iter: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;<a class="struct" href="../struct.TreeIter.html" title="struct gtk4::TreeIter">TreeIter</a>&gt;) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a></h4></section></summary><div class="docblock"><p>Returns the number of children that @iter has.</p>
+<p>As a special case, if @iter is <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a>, then the number
+of toplevel nodes is returned.</p>
+<h5 id="deprecated-since-410-11"><a href="#deprecated-since-410-11">Deprecated since 4.10</a></h5><h6 id="iter-7"><a href="#iter-7"><code>iter</code></a></h6>
+<p>the <a href="../struct.TreeIter.html" title="crate::TreeIter"><code>TreeIter</code></a></p>
+<h5 id="returns-10"><a href="#returns-10">Returns</a></h5>
+<p>the number of children of @iter</p>
+</div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="tymethod.iter_next" class="method has-srclink"><a class="srclink rightside" href="../../src/gtk4/auto/tree_model.rs.html#466">source</a><h4 class="code-header">fn <a href="#tymethod.iter_next" class="fn">iter_next</a>(&amp;self, iter: &amp;<a class="struct" href="../struct.TreeIter.html" title="struct gtk4::TreeIter">TreeIter</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></section></summary><div class="docblock"><p>Sets @iter to point to the node following it at the current level.</p>
+<p>If there is no next @iter, <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="false"><code>false</code></a> is returned and @iter is set
+to be invalid.</p>
+<h5 id="deprecated-since-410-12"><a href="#deprecated-since-410-12">Deprecated since 4.10</a></h5><h6 id="iter-8"><a href="#iter-8"><code>iter</code></a></h6>
+<p>the <a href="../struct.TreeIter.html" title="crate::TreeIter"><code>TreeIter</code></a></p>
+<h5 id="returns-11"><a href="#returns-11">Returns</a></h5>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if @iter has been changed to the next node</p>
+</div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="tymethod.iter_nth_child" class="method has-srclink"><a class="srclink rightside" href="../../src/gtk4/auto/tree_model.rs.html#491">source</a><h4 class="code-header">fn <a href="#tymethod.iter_nth_child" class="fn">iter_nth_child</a>(&amp;self, parent: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;<a class="struct" href="../struct.TreeIter.html" title="struct gtk4::TreeIter">TreeIter</a>&gt;, n: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../struct.TreeIter.html" title="struct gtk4::TreeIter">TreeIter</a>&gt;</h4></section></summary><div class="docblock"><p>Sets @iter to be the child of @parent, using the given index.</p>
+<p>The first index is 0. If @n is too big, or @parent has no children,
+@iter is set to an invalid iterator and <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="false"><code>false</code></a> is returned. @parent
+will remain a valid node after this function has been called. As a
+special case, if @parent is <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a>, then the @n-th root node
+is set.</p>
+<h5 id="deprecated-since-410-13"><a href="#deprecated-since-410-13">Deprecated since 4.10</a></h5><h6 id="parent-1"><a href="#parent-1"><code>parent</code></a></h6>
+<p>the <a href="../struct.TreeIter.html" title="crate::TreeIter"><code>TreeIter</code></a> to get the child from</p>
+<h6 id="n"><a href="#n"><code>n</code></a></h6>
+<p>the index of the desired child</p>
+<h5 id="returns-12"><a href="#returns-12">Returns</a></h5>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a>, if @parent has an @n-th child</p>
+<h6 id="iter-9"><a href="#iter-9"><code>iter</code></a></h6>
+<p>the <a href="../struct.TreeIter.html" title="crate::TreeIter"><code>TreeIter</code></a> to set to the nth child</p>
+</div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="tymethod.iter_parent" class="method has-srclink"><a class="srclink rightside" href="../../src/gtk4/auto/tree_model.rs.html#516">source</a><h4 class="code-header">fn <a href="#tymethod.iter_parent" class="fn">iter_parent</a>(&amp;self, child: &amp;<a class="struct" href="../struct.TreeIter.html" title="struct gtk4::TreeIter">TreeIter</a>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../struct.TreeIter.html" title="struct gtk4::TreeIter">TreeIter</a>&gt;</h4></section></summary><div class="docblock"><p>Sets @iter to be the parent of @child.</p>
+<p>If @child is at the toplevel, and doesn’t have a parent, then
+@iter is set to an invalid iterator and <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="false"><code>false</code></a> is returned.
+@child will remain a valid node after this function has been
+called.</p>
+<p>@iter will be initialized before the lookup is performed, so @child
+and @iter cannot point to the same memory location.</p>
+<h5 id="deprecated-since-410-14"><a href="#deprecated-since-410-14">Deprecated since 4.10</a></h5><h6 id="child"><a href="#child"><code>child</code></a></h6>
+<p>the <a href="../struct.TreeIter.html" title="crate::TreeIter"><code>TreeIter</code></a></p>
+<h5 id="returns-13"><a href="#returns-13">Returns</a></h5>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a>, if @iter is set to the parent of @child</p>
+<h6 id="iter-10"><a href="#iter-10"><code>iter</code></a></h6>
+<p>the new <a href="../struct.TreeIter.html" title="crate::TreeIter"><code>TreeIter</code></a> to set to the parent</p>
+</div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="tymethod.iter_previous" class="method has-srclink"><a class="srclink rightside" href="../../src/gtk4/auto/tree_model.rs.html#533">source</a><h4 class="code-header">fn <a href="#tymethod.iter_previous" class="fn">iter_previous</a>(&amp;self, iter: &amp;<a class="struct" href="../struct.TreeIter.html" title="struct gtk4::TreeIter">TreeIter</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></section></summary><div class="docblock"><p>Sets @iter to point to the previous node at the current level.</p>
+<p>If there is no previous @iter, <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="false"><code>false</code></a> is returned and @iter is
+set to be invalid.</p>
+<h5 id="deprecated-since-410-15"><a href="#deprecated-since-410-15">Deprecated since 4.10</a></h5><h6 id="iter-11"><a href="#iter-11"><code>iter</code></a></h6>
+<p>the <a href="../struct.TreeIter.html" title="crate::TreeIter"><code>TreeIter</code></a></p>
+<h5 id="returns-14"><a href="#returns-14">Returns</a></h5>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if @iter has been changed to the previous node</p>
+</div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="tymethod.row_changed" class="method has-srclink"><a class="srclink rightside" href="../../src/gtk4/auto/tree_model.rs.html#547">source</a><h4 class="code-header">fn <a href="#tymethod.row_changed" class="fn">row_changed</a>(&amp;self, path: &amp;<a class="struct" href="../struct.TreePath.html" title="struct gtk4::TreePath">TreePath</a>, iter: &amp;<a class="struct" href="../struct.TreeIter.html" title="struct gtk4::TreeIter">TreeIter</a>)</h4></section></summary><div class="docblock"><p>Emits the ::row-changed signal on @self.</p>
+<p>See <code>signal::TreeModel::row-changed</code>.</p>
+<h5 id="deprecated-since-410-16"><a href="#deprecated-since-410-16">Deprecated since 4.10</a></h5><h6 id="path-1"><a href="#path-1"><code>path</code></a></h6>
+<p>a <a href="../struct.TreePath.html" title="crate::TreePath"><code>TreePath</code></a> pointing to the changed row</p>
+<h6 id="iter-12"><a href="#iter-12"><code>iter</code></a></h6>
+<p>a valid <a href="../struct.TreeIter.html" title="crate::TreeIter"><code>TreeIter</code></a> pointing to the changed row</p>
+</div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="tymethod.row_deleted" class="method has-srclink"><a class="srclink rightside" href="../../src/gtk4/auto/tree_model.rs.html#567">source</a><h4 class="code-header">fn <a href="#tymethod.row_deleted" class="fn">row_deleted</a>(&amp;self, path: &amp;<a class="struct" href="../struct.TreePath.html" title="struct gtk4::TreePath">TreePath</a>)</h4></section></summary><div class="docblock"><p>Emits the ::row-deleted signal on @self.</p>
+<p>See <code>signal::TreeModel::row-deleted</code>.</p>
+<p>This should be called by models after a row has been removed.
+The location pointed to by @path should be the location that
+the row previously was at. It may not be a valid location anymore.</p>
+<p>Nodes that are deleted are not unreffed, this means that any
+outstanding references on the deleted node should not be released.</p>
+<h5 id="deprecated-since-410-17"><a href="#deprecated-since-410-17">Deprecated since 4.10</a></h5><h6 id="path-2"><a href="#path-2"><code>path</code></a></h6>
+<p>a <a href="../struct.TreePath.html" title="crate::TreePath"><code>TreePath</code></a> pointing to the previous location of
+the deleted row</p>
+</div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="tymethod.row_has_child_toggled" class="method has-srclink"><a class="srclink rightside" href="../../src/gtk4/auto/tree_model.rs.html#584">source</a><h4 class="code-header">fn <a href="#tymethod.row_has_child_toggled" class="fn">row_has_child_toggled</a>(&amp;self, path: &amp;<a class="struct" href="../struct.TreePath.html" title="struct gtk4::TreePath">TreePath</a>, iter: &amp;<a class="struct" href="../struct.TreeIter.html" title="struct gtk4::TreeIter">TreeIter</a>)</h4></section></summary><div class="docblock"><p>Emits the ::row-has-child-toggled signal on @self.</p>
+<p>See <code>signal::TreeModel::row-has-child-toggled</code>.</p>
+<p>This should be called by models after the child
+state of a node changes.</p>
+<h5 id="deprecated-since-410-18"><a href="#deprecated-since-410-18">Deprecated since 4.10</a></h5><h6 id="path-3"><a href="#path-3"><code>path</code></a></h6>
+<p>a <a href="../struct.TreePath.html" title="crate::TreePath"><code>TreePath</code></a> pointing to the changed row</p>
+<h6 id="iter-13"><a href="#iter-13"><code>iter</code></a></h6>
+<p>a valid <a href="../struct.TreeIter.html" title="crate::TreeIter"><code>TreeIter</code></a> pointing to the changed row</p>
+</div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="tymethod.row_inserted" class="method has-srclink"><a class="srclink rightside" href="../../src/gtk4/auto/tree_model.rs.html#598">source</a><h4 class="code-header">fn <a href="#tymethod.row_inserted" class="fn">row_inserted</a>(&amp;self, path: &amp;<a class="struct" href="../struct.TreePath.html" title="struct gtk4::TreePath">TreePath</a>, iter: &amp;<a class="struct" href="../struct.TreeIter.html" title="struct gtk4::TreeIter">TreeIter</a>)</h4></section></summary><div class="docblock"><p>Emits the ::row-inserted signal on @self.</p>
+<p>See <code>signal::TreeModel::row-inserted</code>.</p>
+<h5 id="deprecated-since-410-19"><a href="#deprecated-since-410-19">Deprecated since 4.10</a></h5><h6 id="path-4"><a href="#path-4"><code>path</code></a></h6>
+<p>a <a href="../struct.TreePath.html" title="crate::TreePath"><code>TreePath</code></a> pointing to the inserted row</p>
+<h6 id="iter-14"><a href="#iter-14"><code>iter</code></a></h6>
+<p>a valid <a href="../struct.TreeIter.html" title="crate::TreeIter"><code>TreeIter</code></a> pointing to the inserted row</p>
+</div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="tymethod.connect_row_changed" class="method has-srclink"><a class="srclink rightside" href="../../src/gtk4/auto/tree_model.rs.html#606-609">source</a><h4 class="code-header">fn <a href="#tymethod.connect_row_changed" class="fn">connect_row_changed</a>&lt;F:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>Self, &amp;<a class="struct" href="../struct.TreePath.html" title="struct gtk4::TreePath">TreePath</a>, &amp;<a class="struct" href="../struct.TreeIter.html" title="struct gtk4::TreeIter">TreeIter</a>) + 'static&gt;(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;self,<br>&nbsp;&nbsp;&nbsp;&nbsp;f: F<br>) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.16/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section></summary><div class="docblock"><p>This signal is emitted when a row in the model has changed.</p>
+<h6 id="path-5"><a href="#path-5"><code>path</code></a></h6>
+<p>a <a href="../struct.TreePath.html" title="crate::TreePath"><code>TreePath</code></a> identifying the changed row</p>
+<h6 id="iter-15"><a href="#iter-15"><code>iter</code></a></h6>
+<p>a valid <a href="../struct.TreeIter.html" title="crate::TreeIter"><code>TreeIter</code></a> pointing to the changed row</p>
+</div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="tymethod.connect_row_deleted" class="method has-srclink"><a class="srclink rightside" href="../../src/gtk4/auto/tree_model.rs.html#622">source</a><h4 class="code-header">fn <a href="#tymethod.connect_row_deleted" class="fn">connect_row_deleted</a>&lt;F:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>Self, &amp;<a class="struct" href="../struct.TreePath.html" title="struct gtk4::TreePath">TreePath</a>) + 'static&gt;(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;self,<br>&nbsp;&nbsp;&nbsp;&nbsp;f: F<br>) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.16/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section></summary><div class="docblock"><p>This signal is emitted when a row has been deleted.</p>
+<p>Note that no iterator is passed to the signal handler,
+since the row is already deleted.</p>
+<p>This should be called by models after a row has been removed.
+The location pointed to by @path should be the location that
+the row previously was at. It may not be a valid location anymore.</p>
+<h6 id="path-6"><a href="#path-6"><code>path</code></a></h6>
+<p>a <a href="../struct.TreePath.html" title="crate::TreePath"><code>TreePath</code></a> identifying the row</p>
+</div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="tymethod.connect_row_has_child_toggled" class="method has-srclink"><a class="srclink rightside" href="../../src/gtk4/auto/tree_model.rs.html#631-634">source</a><h4 class="code-header">fn <a href="#tymethod.connect_row_has_child_toggled" class="fn">connect_row_has_child_toggled</a>&lt;F:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>Self, &amp;<a class="struct" href="../struct.TreePath.html" title="struct gtk4::TreePath">TreePath</a>, &amp;<a class="struct" href="../struct.TreeIter.html" title="struct gtk4::TreeIter">TreeIter</a>) + 'static&gt;(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;self,<br>&nbsp;&nbsp;&nbsp;&nbsp;f: F<br>) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.16/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section></summary><div class="docblock"><p>This signal is emitted when a row has gotten the first child
+row or lost its last child row.</p>
+<h6 id="path-7"><a href="#path-7"><code>path</code></a></h6>
+<p>a <a href="../struct.TreePath.html" title="crate::TreePath"><code>TreePath</code></a> identifying the row</p>
+<h6 id="iter-16"><a href="#iter-16"><code>iter</code></a></h6>
+<p>a valid <a href="../struct.TreeIter.html" title="crate::TreeIter"><code>TreeIter</code></a> pointing to the row</p>
+</div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="tymethod.connect_row_inserted" class="method has-srclink"><a class="srclink rightside" href="../../src/gtk4/auto/tree_model.rs.html#647-650">source</a><h4 class="code-header">fn <a href="#tymethod.connect_row_inserted" class="fn">connect_row_inserted</a>&lt;F:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>Self, &amp;<a class="struct" href="../struct.TreePath.html" title="struct gtk4::TreePath">TreePath</a>, &amp;<a class="struct" href="../struct.TreeIter.html" title="struct gtk4::TreeIter">TreeIter</a>) + 'static&gt;(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;self,<br>&nbsp;&nbsp;&nbsp;&nbsp;f: F<br>) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.16/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section></summary><div class="docblock"><p>This signal is emitted when a new row has been inserted in
+the model.</p>
+<p>Note that the row may still be empty at this point, since
+it is a common pattern to first insert an empty row, and
+then fill it with the desired values.</p>
+<h6 id="path-8"><a href="#path-8"><code>path</code></a></h6>
+<p>a <a href="../struct.TreePath.html" title="crate::TreePath"><code>TreePath</code></a> identifying the new row</p>
+<h6 id="iter-17"><a href="#iter-17"><code>iter</code></a></h6>
+<p>a valid <a href="../struct.TreeIter.html" title="crate::TreeIter"><code>TreeIter</code></a> pointing to the new row</p>
+</div></details></div><h2 id="implementors" class="small-section-header">Implementors<a href="#implementors" class="anchor">§</a></h2><div id="implementors-list"><section id="impl-TreeModelExt-for-O" class="impl has-srclink"><a class="srclink rightside" href="../../src/gtk4/auto/tree_model.rs.html#656-1023">source</a><a href="#impl-TreeModelExt-for-O" class="anchor">§</a><h3 class="code-header">impl&lt;O:&nbsp;<a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.16/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.TreeModel.html" title="struct gtk4::TreeModel">TreeModel</a>&gt;&gt; <a class="trait" href="trait.TreeModelExt.html" title="trait gtk4::prelude::TreeModelExt">TreeModelExt</a> for O</h3></section></div><script src="../../implementors/gtk4/auto/tree_model/trait.TreeModelExt.js" async></script></section></div></main><div id="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.68.0-nightly (77429957a 2023-01-01)" data-search-js="search-181581080540673f.js" data-settings-js="settings-bebeae96e00e4617.js" data-settings-css="settings-58836c674e2f7bd2.css" ></div></body></html>

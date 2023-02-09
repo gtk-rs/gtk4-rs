@@ -1,0 +1,1 @@
+initSidebarItems({"enum":[["Property","Type-safe enum container for `AccessibleProperty` values."],["Relation","Type-safe enum container for `AccessibleRelation` values."],["State","Type-safe enum container for `AccessibleState` values."]],"trait":[["AccessibleExtManual","Trait containing manually implemented methods of `Accessible`."]]});

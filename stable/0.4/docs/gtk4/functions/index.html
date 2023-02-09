@@ -1,0 +1,139 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="API documentation for the Rust `functions` mod in crate `gtk4`."><meta name="keywords" content="rust, rustlang, rust-lang, functions"><title>gtk4::functions - Rust</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script src="../../crates.js"></script><script defer src="../../main.js"></script>
+    <noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc mod"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
+
+    function checkDocsLatestStable() {
+        function popup(msg, url) { return `
+            <style scoped="scoped">
+                .popup {
+                    max-width: 16em;
+                    background-color: #fff;
+                    position: fixed;
+                    z-index: 1;
+                    margin-left: auto;
+                    bottom: 1em;
+                    right: 1em;
+                    border-radius: 5px;
+                    box-shadow: 1px 1px 4px #777;
+                }
+
+                .popup a.version {
+                    color: #e57300;
+                    padding: 0.6em 1em;
+                    display: block;
+                }
+                .popup a.version:hover {
+                    color: #b25900;
+                }
+
+                .popup a.close {
+                    color: white;
+                    background: grey;
+                    border-radius: 99px;
+                    display: inline-block;
+                    width: 19px;
+                    line-height: 19px;
+                    font-weight: bold;
+                    text-align: center;
+                    margin: 0.6em;
+                    float: right;
+                }
+                .popup a.close:hover {
+                    background: black;
+                }
+            </style>
+            <section class="popup" id="gir_docs_popup">
+                <a class="close" href="#" onclick="document.getElementById('gir_docs_popup').remove(); return false">×</a>
+                <a class="version" href="https://gtk-rs.org/gtk4-rs/stable/latest/docs">
+                    ⚠ ${msg}
+                </a>
+            </section>
+        ` };
+
+        if ("0.4" == "master") {
+            document.body.insertAdjacentHTML(
+                'beforeend',
+                popup("This is the development version. Go to latest stable version.", "stable/latest")
+            );
+        } else {
+            fetch('https://gtk-rs.org/gtk4-rs/LATEST_RELEASE_BRANCH')
+                .then(response => response.text())
+                .then(latest_branch => {
+                    if (latest_branch.trim() != "0.4") {
+                        document.body.insertAdjacentHTML(
+                            'beforeend',
+                            popup("This version is outdated. Go to latest version.", "stable/latest")
+                        );
+                    }
+                });
+        }
+    }
+</script>
+
+
+<nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../gtk4/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div>
+        </a><h2 class="location"></h2>
+    </nav>
+    <nav class="sidebar"><a class="sidebar-logo" href="../../gtk4/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div>
+        </a><h2 class="location"><a href="#">Module functions</a></h2><div class="sidebar-elems"><section><div class="block"><ul><li><a href="#functions">Functions</a></li></ul></div></section><div id="sidebar-vars" data-name="functions" data-ty="mod" data-relpath="./"></div><script defer src="./sidebar-items.js"></script></div></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../gtk4/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><button type="button" id="help-button" title="help">?</button><div id="settings-menu" tabindex="-1">
+                                <a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div>
+                        </div></form></nav></div><section id="main-content" class="content"><div class="main-heading">
+    <h1 class="fqn"><span class="in-band">Module <a href="../index.html">gtk4</a>::<wbr><a class="mod" href="#">functions</a><button id="copy-path" onclick="copy_path(this)" title="Copy item path to clipboard"><img src="../../clipboard.svg" width="19" height="18" alt="Copy item path"></button></span></h1><span class="out-of-band"><a class="srclink" href="../../src/gtk4/auto/functions.rs.html#5-1172">source</a> · <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">[<span class="inner">&#x2212;</span>]</a></span></div><h2 id="functions" class="small-section-header"><a href="#functions">Functions</a></h2>
+<div class="item-table"><div class="item-row"><div class="item-left module-item"><a class="fn" href="fn.accelerator_get_default_mod_mask.html" title="gtk4::functions::accelerator_get_default_mod_mask fn">accelerator_get_default_mod_mask</a></div><div class="item-right docblock-short"><p>Gets the modifier mask.</p>
+</div></div><div class="item-row"><div class="item-left module-item"><a class="fn" href="fn.binary_age.html" title="gtk4::functions::binary_age fn">binary_age</a></div><div class="item-right docblock-short"><p>Returns the binary age as passed to <code>libtool</code>.</p>
+</div></div><div class="item-row"><div class="item-left module-item"><a class="fn" href="fn.check_version.html" title="gtk4::functions::check_version fn">check_version</a></div><div class="item-right docblock-short"><p>Checks that the GTK library in use is compatible with the
+given version.</p>
+</div></div><div class="item-row"><div class="item-left module-item"><a class="fn" href="fn.debug_flags.html" title="gtk4::functions::debug_flags fn">debug_flags</a></div><div class="item-right docblock-short"><p>Returns the GTK debug flags that are currently active.</p>
+</div></div><div class="item-row"><div class="item-left module-item"><a class="fn" href="fn.default_language.html" title="gtk4::functions::default_language fn">default_language</a></div><div class="item-right docblock-short"><p>Returns the <a href="https://gtk-rs.org/gtk-rs-core/stable/0.15/docs/pango/language/struct.Language.html" title="crate::pango::Language"><code>pango::Language</code></a> for the default language
+currently in effect.</p>
+</div></div><div class="item-row"><div class="item-left module-item"><a class="fn" href="fn.disable_setlocale.html" title="gtk4::functions::disable_setlocale fn">disable_setlocale</a></div><div class="item-right docblock-short"><p>Prevents <code>gtk_init</code> and <code>gtk_init_check</code> from automatically calling
+<code>setlocale (LC_ALL, &quot;&quot;)</code>.</p>
+</div></div><div class="item-row"><div class="item-left module-item"><a class="fn" href="fn.enumerate_printers.html" title="gtk4::functions::enumerate_printers fn">enumerate_printers</a><span class="stab portability" title="Available on Linux only">Linux</span></div><div class="item-right docblock-short"><p>Calls a function for all <a href="../struct.Printer.html" title="crate::Printer"><code>Printer</code></a>s.</p>
+</div></div><div class="item-row"><div class="item-left module-item"><a class="fn" href="fn.hsv_to_rgb.html" title="gtk4::functions::hsv_to_rgb fn">hsv_to_rgb</a></div><div class="item-right docblock-short"><p>Converts a color from HSV space to RGB.</p>
+</div></div><div class="item-row"><div class="item-left module-item"><a class="fn" href="fn.interface_age.html" title="gtk4::functions::interface_age fn">interface_age</a></div><div class="item-right docblock-short"><p>Returns the interface age as passed to <code>libtool</code>.</p>
+</div></div><div class="item-row"><div class="item-left module-item"><a class="fn" href="fn.locale_direction.html" title="gtk4::functions::locale_direction fn">locale_direction</a></div><div class="item-right docblock-short"><p>Get the direction of the current locale. This is the expected
+reading direction for text and UI.</p>
+</div></div><div class="item-row"><div class="item-left module-item"><a class="fn" href="fn.major_version.html" title="gtk4::functions::major_version fn">major_version</a></div><div class="item-right docblock-short"><p>Returns the major version number of the GTK library.</p>
+</div></div><div class="item-row"><div class="item-left module-item"><a class="fn" href="fn.micro_version.html" title="gtk4::functions::micro_version fn">micro_version</a></div><div class="item-right docblock-short"><p>Returns the micro version number of the GTK library.</p>
+</div></div><div class="item-row"><div class="item-left module-item"><a class="fn" href="fn.minor_version.html" title="gtk4::functions::minor_version fn">minor_version</a></div><div class="item-right docblock-short"><p>Returns the minor version number of the GTK library.</p>
+</div></div><div class="item-row"><div class="item-left module-item"><a class="fn" href="fn.print_run_page_setup_dialog.html" title="gtk4::functions::print_run_page_setup_dialog fn">print_run_page_setup_dialog</a></div><div class="item-right docblock-short"><p>Runs a page setup dialog, letting the user modify the values from
+@page_setup. If the user cancels the dialog, the returned <a href="../struct.PageSetup.html" title="crate::PageSetup"><code>PageSetup</code></a>
+is identical to the passed in @page_setup, otherwise it contains the
+modifications done in the dialog.</p>
+</div></div><div class="item-row"><div class="item-left module-item"><a class="fn" href="fn.print_run_page_setup_dialog_async.html" title="gtk4::functions::print_run_page_setup_dialog_async fn">print_run_page_setup_dialog_async</a></div><div class="item-right docblock-short"><p>Runs a page setup dialog, letting the user modify the values from @page_setup.</p>
+</div></div><div class="item-row"><div class="item-left module-item"><a class="fn" href="fn.render_activity.html" title="gtk4::functions::render_activity fn">render_activity</a></div><div class="item-right docblock-short"><p>Renders an activity indicator (such as in <a href="../struct.Spinner.html" title="crate::Spinner"><code>Spinner</code></a>).
+The state <a href="../struct.StateFlags.html#associatedconstant.CHECKED" title="crate::StateFlags::CHECKED"><code>StateFlags::CHECKED</code></a> determines whether there is
+activity going on.</p>
+</div></div><div class="item-row"><div class="item-left module-item"><a class="fn" href="fn.render_arrow.html" title="gtk4::functions::render_arrow fn">render_arrow</a></div><div class="item-right docblock-short"><p>Renders an arrow pointing to @angle.</p>
+</div></div><div class="item-row"><div class="item-left module-item"><a class="fn" href="fn.render_background.html" title="gtk4::functions::render_background fn">render_background</a></div><div class="item-right docblock-short"><p>Renders the background of an element.</p>
+</div></div><div class="item-row"><div class="item-left module-item"><a class="fn" href="fn.render_check.html" title="gtk4::functions::render_check fn">render_check</a></div><div class="item-right docblock-short"><p>Renders a checkmark (as in a <a href="../struct.CheckButton.html" title="crate::CheckButton"><code>CheckButton</code></a>).</p>
+</div></div><div class="item-row"><div class="item-left module-item"><a class="fn" href="fn.render_expander.html" title="gtk4::functions::render_expander fn">render_expander</a></div><div class="item-right docblock-short"><p>Renders an expander (as used in <a href="../struct.TreeView.html" title="crate::TreeView"><code>TreeView</code></a> and <a href="../struct.Expander.html" title="crate::Expander"><code>Expander</code></a>) in the area
+defined by @x, @y, @width, @height. The state <a href="../struct.StateFlags.html#associatedconstant.CHECKED" title="crate::StateFlags::CHECKED"><code>StateFlags::CHECKED</code></a>
+determines whether the expander is collapsed or expanded.</p>
+</div></div><div class="item-row"><div class="item-left module-item"><a class="fn" href="fn.render_focus.html" title="gtk4::functions::render_focus fn">render_focus</a></div><div class="item-right docblock-short"><p>Renders a focus indicator on the rectangle determined by @x, @y, @width, @height.</p>
+</div></div><div class="item-row"><div class="item-left module-item"><a class="fn" href="fn.render_frame.html" title="gtk4::functions::render_frame fn">render_frame</a></div><div class="item-right docblock-short"><p>Renders a frame around the rectangle defined by @x, @y, @width, @height.</p>
+</div></div><div class="item-row"><div class="item-left module-item"><a class="fn" href="fn.render_handle.html" title="gtk4::functions::render_handle fn">render_handle</a></div><div class="item-right docblock-short"><p>Renders a handle (as in <a href="../struct.Paned.html" title="crate::Paned"><code>Paned</code></a> and <a href="../struct.Window.html" title="crate::Window"><code>Window</code></a>’s resize grip),
+in the rectangle determined by @x, @y, @width, @height.</p>
+</div></div><div class="item-row"><div class="item-left module-item"><a class="fn" href="fn.render_icon.html" title="gtk4::functions::render_icon fn">render_icon</a></div><div class="item-right docblock-short"><p>Renders the icon in @texture at the specified @x and @y coordinates.</p>
+</div></div><div class="item-row"><div class="item-left module-item"><a class="fn" href="fn.render_layout.html" title="gtk4::functions::render_layout fn">render_layout</a></div><div class="item-right docblock-short"><p>Renders @layout on the coordinates @x, @y</p>
+</div></div><div class="item-row"><div class="item-left module-item"><a class="fn" href="fn.render_line.html" title="gtk4::functions::render_line fn">render_line</a></div><div class="item-right docblock-short"><p>Renders a line from (x0, y0) to (x1, y1).</p>
+</div></div><div class="item-row"><div class="item-left module-item"><a class="fn" href="fn.render_option.html" title="gtk4::functions::render_option fn">render_option</a></div><div class="item-right docblock-short"><p>Renders an option mark (as in a radio button), the <a href="../struct.StateFlags.html#associatedconstant.CHECKED" title="crate::StateFlags::CHECKED"><code>StateFlags::CHECKED</code></a>
+state will determine whether the option is on or off, and
+<a href="../struct.StateFlags.html#associatedconstant.INCONSISTENT" title="crate::StateFlags::INCONSISTENT"><code>StateFlags::INCONSISTENT</code></a> whether it should be marked as undefined.</p>
+</div></div><div class="item-row"><div class="item-left module-item"><a class="fn" href="fn.rgb_to_hsv.html" title="gtk4::functions::rgb_to_hsv fn">rgb_to_hsv</a></div><div class="item-right docblock-short"><p>Converts a color from RGB space to HSV.</p>
+</div></div><div class="item-row"><div class="item-left module-item"><a class="fn" href="fn.set_debug_flags.html" title="gtk4::functions::set_debug_flags fn">set_debug_flags</a></div><div class="item-right docblock-short"><p>Sets the GTK debug flags.</p>
+</div></div><div class="item-row"><div class="item-left module-item"><a class="fn" href="fn.show_uri.html" title="gtk4::functions::show_uri fn">show_uri</a></div><div class="item-right docblock-short"><p>This function launches the default application for showing
+a given uri, or shows an error dialog if that fails.</p>
+</div></div><div class="item-row"><div class="item-left module-item"><a class="fn" href="fn.test_accessible_assertion_message_role.html" title="gtk4::functions::test_accessible_assertion_message_role fn">test_accessible_assertion_message_role</a></div><div class="item-right docblock-short"></div></div><div class="item-row"><div class="item-left module-item"><a class="fn" href="fn.test_accessible_has_property.html" title="gtk4::functions::test_accessible_has_property fn">test_accessible_has_property</a></div><div class="item-right docblock-short"><p>Checks whether the <a href="../struct.Accessible.html" title="crate::Accessible"><code>Accessible</code></a> has @property set.</p>
+</div></div><div class="item-row"><div class="item-left module-item"><a class="fn" href="fn.test_accessible_has_relation.html" title="gtk4::functions::test_accessible_has_relation fn">test_accessible_has_relation</a></div><div class="item-right docblock-short"><p>Checks whether the <a href="../struct.Accessible.html" title="crate::Accessible"><code>Accessible</code></a> has @relation set.</p>
+</div></div><div class="item-row"><div class="item-left module-item"><a class="fn" href="fn.test_accessible_has_role.html" title="gtk4::functions::test_accessible_has_role fn">test_accessible_has_role</a></div><div class="item-right docblock-short"><p>Checks whether the <code>GtkAccessible:accessible-role</code> of the accessible
+is @role.</p>
+</div></div><div class="item-row"><div class="item-left module-item"><a class="fn" href="fn.test_accessible_has_state.html" title="gtk4::functions::test_accessible_has_state fn">test_accessible_has_state</a></div><div class="item-right docblock-short"><p>Checks whether the <a href="../struct.Accessible.html" title="crate::Accessible"><code>Accessible</code></a> has @state set.</p>
+</div></div><div class="item-row"><div class="item-left module-item"><a class="fn" href="fn.test_register_all_types.html" title="gtk4::functions::test_register_all_types fn">test_register_all_types</a></div><div class="item-right docblock-short"><p>Force registration of all core GTK object types.</p>
+</div></div><div class="item-row"><div class="item-left module-item"><a class="fn" href="fn.test_widget_wait_for_draw.html" title="gtk4::functions::test_widget_wait_for_draw fn">test_widget_wait_for_draw</a></div><div class="item-right docblock-short"><p>Enters the main loop and waits for @widget to be “drawn”.</p>
+</div></div><div class="item-row"><div class="item-left module-item"><a class="fn" href="fn.tree_create_row_drag_content.html" title="gtk4::functions::tree_create_row_drag_content fn">tree_create_row_drag_content</a></div><div class="item-right docblock-short"><p>Creates a content provider for dragging @path from @tree_model.</p>
+</div></div><div class="item-row"><div class="item-left module-item"><a class="fn" href="fn.tree_get_row_drag_data.html" title="gtk4::functions::tree_get_row_drag_data fn">tree_get_row_drag_data</a></div><div class="item-right docblock-short"><p>Obtains a @tree_model and @path from value of target type
+<code>GTK_TYPE_TREE_ROW_DATA</code>.</p>
+</div></div></div></section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="gtk4" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.63.0-nightly (a6b8c6954 2022-06-03)" ></div>
+</body></html>

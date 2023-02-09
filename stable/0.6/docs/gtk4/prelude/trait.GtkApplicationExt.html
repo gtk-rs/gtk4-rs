@@ -1,0 +1,321 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Trait containing all [`struct@Application`] methods."><title>GtkApplicationExt in gtk4::prelude - Rust</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Bold-a2c9cd1067f8b328.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-0ef3deca4ed45ad8.css" id="mainThemeStyle"><link rel="stylesheet" id="themeStyle" href="../../static.files/light-f501212b8b071243.css"><link rel="stylesheet" disabled href="../../static.files/dark-e92fc12c34ff89d3.css"><link rel="stylesheet" disabled href="../../static.files/ayu-a0090c8b1ced384f.css"><script src="../../static.files/storage-3891ce972e3a2bf8.js"></script><script defer src="sidebar-items.js"></script><script defer src="../../static.files/main-364b95f387bc3166.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-13285aec31fa243e.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc trait"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
+
+    function checkDocsLatestStable() {
+        function popup(msg, url) { return `
+            <style scoped="scoped">
+                .popup {
+                    max-width: 16em;
+                    background-color: #fff;
+                    position: fixed;
+                    z-index: 1;
+                    margin-left: auto;
+                    bottom: 1em;
+                    right: 1em;
+                    border-radius: 5px;
+                    box-shadow: 1px 1px 4px #777;
+                }
+
+                .popup a.version {
+                    color: #e57300;
+                    padding: 0.6em 1em;
+                    display: block;
+                }
+                .popup a.version:hover {
+                    color: #b25900;
+                }
+
+                .popup a.close {
+                    color: white;
+                    background: grey;
+                    border-radius: 99px;
+                    display: inline-block;
+                    width: 19px;
+                    line-height: 19px;
+                    font-weight: bold;
+                    text-align: center;
+                    margin: 0.6em;
+                    float: right;
+                }
+                .popup a.close:hover {
+                    background: black;
+                }
+            </style>
+            <section class="popup" id="gir_docs_popup">
+                <a class="close" href="#" onclick="document.getElementById('gir_docs_popup').remove(); return false">×</a>
+                <a class="version" href="https://gtk-rs.org/gtk4-rs/stable/latest/docs">
+                    ⚠ ${msg}
+                </a>
+            </section>
+        ` };
+
+        if ("0.6" == "master") {
+            document.body.insertAdjacentHTML(
+                'beforeend',
+                popup("This is the development version. Go to latest stable version.", "stable/latest")
+            );
+        } else {
+            fetch('https://gtk-rs.org/gtk4-rs/LATEST_RELEASE_BRANCH')
+                .then(response => response.text())
+                .then(latest_branch => {
+                    if (latest_branch.trim() != "0.6") {
+                        document.body.insertAdjacentHTML(
+                            'beforeend',
+                            popup("This version is outdated. Go to latest version.", "stable/latest")
+                        );
+                    }
+                });
+        }
+    }
+</script>
+
+
+<nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="logo-container" href="../../gtk4/index.html"><img class="rust-logo" src="../../static.files/rust-logo-151179464ae7ed46.svg" alt="logo"></a><h2></h2></nav><nav class="sidebar"><a class="logo-container" href="../../gtk4/index.html"><img class="rust-logo" src="../../static.files/rust-logo-151179464ae7ed46.svg" alt="logo"></a><h2 class="location"><a href="#">GtkApplicationExt</a></h2><div class="sidebar-elems"><section><h3><a href="#required-methods">Required Methods</a></h3><ul class="block"><li><a href="#tymethod.accels_for_action">accels_for_action</a></li><li><a href="#tymethod.actions_for_accel">actions_for_accel</a></li><li><a href="#tymethod.active_window">active_window</a></li><li><a href="#tymethod.add_window">add_window</a></li><li><a href="#tymethod.connect_active_window_notify">connect_active_window_notify</a></li><li><a href="#tymethod.connect_menubar_notify">connect_menubar_notify</a></li><li><a href="#tymethod.connect_query_end">connect_query_end</a></li><li><a href="#tymethod.connect_register_session_notify">connect_register_session_notify</a></li><li><a href="#tymethod.connect_screensaver_active_notify">connect_screensaver_active_notify</a></li><li><a href="#tymethod.connect_window_added">connect_window_added</a></li><li><a href="#tymethod.connect_window_removed">connect_window_removed</a></li><li><a href="#tymethod.inhibit">inhibit</a></li><li><a href="#tymethod.is_register_session">is_register_session</a></li><li><a href="#tymethod.is_screensaver_active">is_screensaver_active</a></li><li><a href="#tymethod.list_action_descriptions">list_action_descriptions</a></li><li><a href="#tymethod.menu_by_id">menu_by_id</a></li><li><a href="#tymethod.menubar">menubar</a></li><li><a href="#tymethod.remove_window">remove_window</a></li><li><a href="#tymethod.set_accels_for_action">set_accels_for_action</a></li><li><a href="#tymethod.set_menubar">set_menubar</a></li><li><a href="#tymethod.set_register_session">set_register_session</a></li><li><a href="#tymethod.uninhibit">uninhibit</a></li><li><a href="#tymethod.window_by_id">window_by_id</a></li><li><a href="#tymethod.windows">windows</a></li></ul><h3><a href="#implementors">Implementors</a></h3></section><h2><a href="index.html">In gtk4::prelude</a></h2></div></nav><main><div class="width-limiter"><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-5ec35bf9ca753509.svg"></a></div></form></nav><section id="main-content" class="content"><div class="main-heading"><h1>Trait <a href="../index.html">gtk4</a>::<wbr><a href="index.html">prelude</a>::<wbr><a class="trait" href="#">GtkApplicationExt</a><button id="copy-path" title="Copy item path to clipboard"><img src="../../static.files/clipboard-7571035ce49a181d.svg" width="19" height="18" alt="Copy item path"></button></h1><span class="out-of-band"><a class="srclink" href="../../src/gtk4/auto/application.rs.html#419-734">source</a> · <button id="toggle-all-docs" title="collapse all docs">[<span>&#x2212;</span>]</button></span></div><pre class="rust item-decl"><code>pub trait GtkApplicationExt: 'static {
+<details class="toggle type-contents-toggle"><summary class="hideme"><span>Show 24 methods</span></summary>    // Required methods
+    fn <a href="#tymethod.add_window" class="fn">add_window</a>(&amp;self, window: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.17/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Window.html" title="struct gtk4::Window">Window</a>&gt;);
+<span class="item-spacer"></span>    fn <a href="#tymethod.accels_for_action" class="fn">accels_for_action</a>(&amp;self, detailed_action_name: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>) -&gt; <a class="struct" href="https://doc.rust-lang.org/nightly/alloc/vec/struct.Vec.html" title="struct alloc::vec::Vec">Vec</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.17/docs/glib/gstring/struct.GString.html" title="struct glib::gstring::GString">GString</a>&gt;;
+<span class="item-spacer"></span>    fn <a href="#tymethod.actions_for_accel" class="fn">actions_for_accel</a>(&amp;self, accel: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>) -&gt; <a class="struct" href="https://doc.rust-lang.org/nightly/alloc/vec/struct.Vec.html" title="struct alloc::vec::Vec">Vec</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.17/docs/glib/gstring/struct.GString.html" title="struct glib::gstring::GString">GString</a>&gt;;
+<span class="item-spacer"></span>    fn <a href="#tymethod.active_window" class="fn">active_window</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../struct.Window.html" title="struct gtk4::Window">Window</a>&gt;;
+<span class="item-spacer"></span>    fn <a href="#tymethod.menu_by_id" class="fn">menu_by_id</a>(&amp;self, id: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.17/docs/gio/auto/menu/struct.Menu.html" title="struct gio::auto::menu::Menu">Menu</a>&gt;;
+<span class="item-spacer"></span>    fn <a href="#tymethod.menubar" class="fn">menubar</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.17/docs/gio/auto/menu_model/struct.MenuModel.html" title="struct gio::auto::menu_model::MenuModel">MenuModel</a>&gt;;
+<span class="item-spacer"></span>    fn <a href="#tymethod.window_by_id" class="fn">window_by_id</a>(&amp;self, id: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../struct.Window.html" title="struct gtk4::Window">Window</a>&gt;;
+<span class="item-spacer"></span>    fn <a href="#tymethod.windows" class="fn">windows</a>(&amp;self) -&gt; <a class="struct" href="https://doc.rust-lang.org/nightly/alloc/vec/struct.Vec.html" title="struct alloc::vec::Vec">Vec</a>&lt;<a class="struct" href="../struct.Window.html" title="struct gtk4::Window">Window</a>&gt;;
+<span class="item-spacer"></span>    fn <a href="#tymethod.inhibit" class="fn">inhibit</a>(
+        &amp;self,
+        window: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.17/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Window.html" title="struct gtk4::Window">Window</a>&gt;&gt;,
+        flags: <a class="struct" href="../struct.ApplicationInhibitFlags.html" title="struct gtk4::ApplicationInhibitFlags">ApplicationInhibitFlags</a>,
+        reason: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>&gt;
+    ) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>;
+<span class="item-spacer"></span>    fn <a href="#tymethod.list_action_descriptions" class="fn">list_action_descriptions</a>(&amp;self) -&gt; <a class="struct" href="https://doc.rust-lang.org/nightly/alloc/vec/struct.Vec.html" title="struct alloc::vec::Vec">Vec</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.17/docs/glib/gstring/struct.GString.html" title="struct glib::gstring::GString">GString</a>&gt;;
+<span class="item-spacer"></span>    fn <a href="#tymethod.remove_window" class="fn">remove_window</a>(&amp;self, window: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.17/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Window.html" title="struct gtk4::Window">Window</a>&gt;);
+<span class="item-spacer"></span>    fn <a href="#tymethod.set_accels_for_action" class="fn">set_accels_for_action</a>(&amp;self, detailed_action_name: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>, accels: &amp;[&amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>]);
+<span class="item-spacer"></span>    fn <a href="#tymethod.set_menubar" class="fn">set_menubar</a>(&amp;self, menubar: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.17/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.17/docs/gio/auto/menu_model/struct.MenuModel.html" title="struct gio::auto::menu_model::MenuModel">MenuModel</a>&gt;&gt;);
+<span class="item-spacer"></span>    fn <a href="#tymethod.uninhibit" class="fn">uninhibit</a>(&amp;self, cookie: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>);
+<span class="item-spacer"></span>    fn <a href="#tymethod.is_register_session" class="fn">is_register_session</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>;
+<span class="item-spacer"></span>    fn <a href="#tymethod.set_register_session" class="fn">set_register_session</a>(&amp;self, register_session: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>);
+<span class="item-spacer"></span>    fn <a href="#tymethod.is_screensaver_active" class="fn">is_screensaver_active</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>;
+<span class="item-spacer"></span>    fn <a href="#tymethod.connect_query_end" class="fn">connect_query_end</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(&amp;self, f: F) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.17/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a>;
+<span class="item-spacer"></span>    fn <a href="#tymethod.connect_window_added" class="fn">connect_window_added</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>, &amp;<a class="struct" href="../struct.Window.html" title="struct gtk4::Window">Window</a>) + 'static&gt;(
+        &amp;self,
+        f: F
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.17/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a>;
+<span class="item-spacer"></span>    fn <a href="#tymethod.connect_window_removed" class="fn">connect_window_removed</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>, &amp;<a class="struct" href="../struct.Window.html" title="struct gtk4::Window">Window</a>) + 'static&gt;(
+        &amp;self,
+        f: F
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.17/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a>;
+<span class="item-spacer"></span>    fn <a href="#tymethod.connect_active_window_notify" class="fn">connect_active_window_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
+        &amp;self,
+        f: F
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.17/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a>;
+<span class="item-spacer"></span>    fn <a href="#tymethod.connect_menubar_notify" class="fn">connect_menubar_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
+        &amp;self,
+        f: F
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.17/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a>;
+<span class="item-spacer"></span>    fn <a href="#tymethod.connect_register_session_notify" class="fn">connect_register_session_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
+        &amp;self,
+        f: F
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.17/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a>;
+<span class="item-spacer"></span>    fn <a href="#tymethod.connect_screensaver_active_notify" class="fn">connect_screensaver_active_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
+        &amp;self,
+        f: F
+    ) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.17/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a>;
+</details>}</code></pre><details class="toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>Trait containing all <a href="../struct.Application.html" title="Application"><code>Application</code></a> methods.</p>
+<h2 id="implementors-1"><a href="#implementors-1">Implementors</a></h2>
+<p><a href="../struct.Application.html" title="crate::Application"><code>Application</code></a></p>
+</div></details><h2 id="required-methods" class="small-section-header">Required Methods<a href="#required-methods" class="anchor">§</a></h2><div class="methods"><details class="toggle method-toggle" open><summary><section id="tymethod.add_window" class="method"><a class="srclink rightside" href="../../src/gtk4/auto/application.rs.html#438">source</a><h4 class="code-header">fn <a href="#tymethod.add_window" class="fn">add_window</a>(&amp;self, window: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.17/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Window.html" title="struct gtk4::Window">Window</a>&gt;)</h4></section></summary><div class="docblock"><p>Adds a window to <code>application</code>.</p>
+<p>This call can only happen after the <code>application</code> has started;
+typically, you should add new application windows in response
+to the emission of the <code>GApplication::activate</code> signal.</p>
+<p>This call is equivalent to setting the <a href="../struct.Window.html#application" title="crate::Window"><code>application</code></a>
+property of <code>window</code> to <code>application</code>.</p>
+<p>Normally, the connection between the application and the window
+will remain until the window is destroyed, but you can explicitly
+remove it with <a href="trait.GtkApplicationExt.html#tymethod.remove_window" title="Self::remove_window()"><code>remove_window()</code></a>.</p>
+<p>GTK will keep the <code>application</code> running as long as it has
+any windows.</p>
+<h6 id="window"><a href="#window"><code>window</code></a></h6>
+<p>a <a href="../struct.Window.html" title="crate::Window"><code>Window</code></a></p>
+</div></details><details class="toggle method-toggle" open><summary><section id="tymethod.accels_for_action" class="method"><a class="srclink rightside" href="../../src/gtk4/auto/application.rs.html#452">source</a><h4 class="code-header">fn <a href="#tymethod.accels_for_action" class="fn">accels_for_action</a>(&amp;self, detailed_action_name: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>) -&gt; <a class="struct" href="https://doc.rust-lang.org/nightly/alloc/vec/struct.Vec.html" title="struct alloc::vec::Vec">Vec</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.17/docs/glib/gstring/struct.GString.html" title="struct glib::gstring::GString">GString</a>&gt;</h4></section></summary><div class="docblock"><p>Gets the accelerators that are currently associated with
+the given action.</p>
+<h6 id="detailed_action_name"><a href="#detailed_action_name"><code>detailed_action_name</code></a></h6>
+<p>a detailed action name, specifying an action
+and target to obtain accelerators for</p>
+<h5 id="returns"><a href="#returns">Returns</a></h5>
+<p>accelerators for <code>detailed_action_name</code></p>
+</div></details><details class="toggle method-toggle" open><summary><section id="tymethod.actions_for_accel" class="method"><a class="srclink rightside" href="../../src/gtk4/auto/application.rs.html#479">source</a><h4 class="code-header">fn <a href="#tymethod.actions_for_accel" class="fn">actions_for_accel</a>(&amp;self, accel: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>) -&gt; <a class="struct" href="https://doc.rust-lang.org/nightly/alloc/vec/struct.Vec.html" title="struct alloc::vec::Vec">Vec</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.17/docs/glib/gstring/struct.GString.html" title="struct glib::gstring::GString">GString</a>&gt;</h4></section></summary><div class="docblock"><p>Returns the list of actions (possibly empty) that <code>accel</code> maps to.</p>
+<p>Each item in the list is a detailed action name in the usual form.</p>
+<p>This might be useful to discover if an accel already exists in
+order to prevent installation of a conflicting accelerator (from
+an accelerator editor or a plugin system, for example). Note that
+having more than one action per accelerator may not be a bad thing
+and might make sense in cases where the actions never appear in the
+same context.</p>
+<p>In case there are no actions for a given accelerator, an empty array
+is returned. <code>NULL</code> is never returned.</p>
+<p>It is a programmer error to pass an invalid accelerator string.</p>
+<p>If you are unsure, check it with <a href="../fn.accelerator_parse.html" title="crate::accelerator_parse()"><code>accelerator_parse()</code></a> first.</p>
+<h6 id="accel"><a href="#accel"><code>accel</code></a></h6>
+<p>an accelerator that can be parsed by <a href="../fn.accelerator_parse.html" title="crate::accelerator_parse()"><code>accelerator_parse()</code></a></p>
+<h5 id="returns-1"><a href="#returns-1">Returns</a></h5>
+<p>a <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a>-terminated array of actions for <code>accel</code></p>
+</div></details><details class="toggle method-toggle" open><summary><section id="tymethod.active_window" class="method"><a class="srclink rightside" href="../../src/gtk4/auto/application.rs.html#493">source</a><h4 class="code-header">fn <a href="#tymethod.active_window" class="fn">active_window</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../struct.Window.html" title="struct gtk4::Window">Window</a>&gt;</h4></section></summary><div class="docblock"><p>Gets the “active” window for the application.</p>
+<p>The active window is the one that was most recently focused (within
+the application).  This window may not have the focus at the moment
+if another application has it — this is just the most
+recently-focused window within this application.</p>
+<h5 id="returns-2"><a href="#returns-2">Returns</a></h5>
+<p>the active window</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="tymethod.menu_by_id" class="method"><a class="srclink rightside" href="../../src/gtk4/auto/application.rs.html#508">source</a><h4 class="code-header">fn <a href="#tymethod.menu_by_id" class="fn">menu_by_id</a>(&amp;self, id: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.17/docs/gio/auto/menu/struct.Menu.html" title="struct gio::auto::menu::Menu">Menu</a>&gt;</h4></section></summary><div class="docblock"><p>Gets a menu from automatically loaded resources.</p>
+<p>See <a href="class.Application.html#automatic-resources">the section on Automatic resources</a>
+for more information.</p>
+<h6 id="id"><a href="#id"><code>id</code></a></h6>
+<p>the id of the menu to look up</p>
+<h5 id="returns-3"><a href="#returns-3">Returns</a></h5>
+<p>Gets the menu with the
+given id from the automatically loaded resources</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="tymethod.menubar" class="method"><a class="srclink rightside" href="../../src/gtk4/auto/application.rs.html#518">source</a><h4 class="code-header">fn <a href="#tymethod.menubar" class="fn">menubar</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.17/docs/gio/auto/menu_model/struct.MenuModel.html" title="struct gio::auto::menu_model::MenuModel">MenuModel</a>&gt;</h4></section></summary><div class="docblock"><p>Returns the menu model that has been set with
+<a href="trait.GtkApplicationExt.html#tymethod.set_menubar" title="Self::set_menubar()"><code>set_menubar()</code></a>.</p>
+<h5 id="returns-4"><a href="#returns-4">Returns</a></h5>
+<p>the menubar for windows of <code>application</code></p>
+</div></details><details class="toggle method-toggle" open><summary><section id="tymethod.window_by_id" class="method"><a class="srclink rightside" href="../../src/gtk4/auto/application.rs.html#532">source</a><h4 class="code-header">fn <a href="#tymethod.window_by_id" class="fn">window_by_id</a>(&amp;self, id: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../struct.Window.html" title="struct gtk4::Window">Window</a>&gt;</h4></section></summary><div class="docblock"><p>Returns the <a href="../struct.ApplicationWindow.html" title="crate::ApplicationWindow"><code>ApplicationWindow</code></a> with the given ID.</p>
+<p>The ID of a <a href="../struct.ApplicationWindow.html" title="crate::ApplicationWindow"><code>ApplicationWindow</code></a> can be retrieved with
+<a href="trait.ApplicationWindowExt.html#tymethod.id" title="crate::prelude::ApplicationWindowExt::id()"><code>ApplicationWindowExt::id()</code></a>.</p>
+<h6 id="id-1"><a href="#id-1"><code>id</code></a></h6>
+<p>an identifier number</p>
+<h5 id="returns-5"><a href="#returns-5">Returns</a></h5>
+<p>the window for the given <code>id</code></p>
+</div></details><details class="toggle method-toggle" open><summary><section id="tymethod.windows" class="method"><a class="srclink rightside" href="../../src/gtk4/auto/application.rs.html#550">source</a><h4 class="code-header">fn <a href="#tymethod.windows" class="fn">windows</a>(&amp;self) -&gt; <a class="struct" href="https://doc.rust-lang.org/nightly/alloc/vec/struct.Vec.html" title="struct alloc::vec::Vec">Vec</a>&lt;<a class="struct" href="../struct.Window.html" title="struct gtk4::Window">Window</a>&gt;</h4></section></summary><div class="docblock"><p>Gets a list of the <a href="../struct.Window.html" title="crate::Window"><code>Window</code></a> instances associated with <code>application</code>.</p>
+<p>The list is sorted by most recently focused window, such that the first
+element is the currently focused window. (Useful for choosing a parent
+for a transient window.)</p>
+<p>The list that is returned should not be modified in any way. It will
+only remain valid until the next focus change or window creation or
+deletion.</p>
+<h5 id="returns-6"><a href="#returns-6">Returns</a></h5>
+<p>a <code>GList</code> of <a href="../struct.Window.html" title="crate::Window"><code>Window</code></a>
+instances</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="tymethod.inhibit" class="method"><a class="srclink rightside" href="../../src/gtk4/auto/application.rs.html#590-595">source</a><h4 class="code-header">fn <a href="#tymethod.inhibit" class="fn">inhibit</a>(
+    &amp;self,
+    window: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.17/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Window.html" title="struct gtk4::Window">Window</a>&gt;&gt;,
+    flags: <a class="struct" href="../struct.ApplicationInhibitFlags.html" title="struct gtk4::ApplicationInhibitFlags">ApplicationInhibitFlags</a>,
+    reason: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>&gt;
+) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a></h4></section></summary><div class="docblock"><p>Inform the session manager that certain types of actions should be
+inhibited.</p>
+<p>This is not guaranteed to work on all platforms and for all types of
+actions.</p>
+<p>Applications should invoke this method when they begin an operation
+that should not be interrupted, such as creating a CD or DVD. The
+types of actions that may be blocked are specified by the <code>flags</code>
+parameter. When the application completes the operation it should
+call <a href="trait.GtkApplicationExt.html#tymethod.uninhibit" title="Self::uninhibit()"><code>uninhibit()</code></a> to remove the inhibitor. Note
+that an application can have multiple inhibitors, and all of them must
+be individually removed. Inhibitors are also cleared when the
+application exits.</p>
+<p>Applications should not expect that they will always be able to block
+the action. In most cases, users will be given the option to force
+the action to take place.</p>
+<p>The <code>reason</code> message should be short and to the point.</p>
+<p>If <code>window</code> is given, the session manager may point the user to
+this window to find out more about why the action is inhibited.</p>
+<h6 id="window-1"><a href="#window-1"><code>window</code></a></h6>
+<p>a <a href="../struct.Window.html" title="crate::Window"><code>Window</code></a></p>
+<h6 id="flags"><a href="#flags"><code>flags</code></a></h6>
+<p>what types of actions should be inhibited</p>
+<h6 id="reason"><a href="#reason"><code>reason</code></a></h6>
+<p>a short, human-readable string that explains
+why these operations are inhibited</p>
+<h5 id="returns-7"><a href="#returns-7">Returns</a></h5>
+<p>A non-zero cookie that is used to uniquely identify this
+request. It should be used as an argument to <a href="trait.GtkApplicationExt.html#tymethod.uninhibit" title="Self::uninhibit()"><code>uninhibit()</code></a>
+in order to remove the request. If the platform does not support
+inhibiting or the request failed for some reason, 0 is returned.</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="tymethod.list_action_descriptions" class="method"><a class="srclink rightside" href="../../src/gtk4/auto/application.rs.html#605">source</a><h4 class="code-header">fn <a href="#tymethod.list_action_descriptions" class="fn">list_action_descriptions</a>(&amp;self) -&gt; <a class="struct" href="https://doc.rust-lang.org/nightly/alloc/vec/struct.Vec.html" title="struct alloc::vec::Vec">Vec</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.17/docs/glib/gstring/struct.GString.html" title="struct glib::gstring::GString">GString</a>&gt;</h4></section></summary><div class="docblock"><p>Lists the detailed action names which have associated accelerators.</p>
+<p>See <a href="trait.GtkApplicationExt.html#tymethod.set_accels_for_action" title="Self::set_accels_for_action()"><code>set_accels_for_action()</code></a>.</p>
+<h5 id="returns-8"><a href="#returns-8">Returns</a></h5>
+<p>the detailed action names</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="tymethod.remove_window" class="method"><a class="srclink rightside" href="../../src/gtk4/auto/application.rs.html#618">source</a><h4 class="code-header">fn <a href="#tymethod.remove_window" class="fn">remove_window</a>(&amp;self, window: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.17/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Window.html" title="struct gtk4::Window">Window</a>&gt;)</h4></section></summary><div class="docblock"><p>Remove a window from <code>application</code>.</p>
+<p>If <code>window</code> belongs to <code>application</code> then this call is equivalent to
+setting the <a href="../struct.Window.html#application" title="crate::Window"><code>application</code></a> property of <code>window</code> to
+<code>NULL</code>.</p>
+<p>The application may stop running as a result of a call to this
+function, if <code>window</code> was the last window of the <code>application</code>.</p>
+<h6 id="window-2"><a href="#window-2"><code>window</code></a></h6>
+<p>a <a href="../struct.Window.html" title="crate::Window"><code>Window</code></a></p>
+</div></details><details class="toggle method-toggle" open><summary><section id="tymethod.set_accels_for_action" class="method"><a class="srclink rightside" href="../../src/gtk4/auto/application.rs.html#638">source</a><h4 class="code-header">fn <a href="#tymethod.set_accels_for_action" class="fn">set_accels_for_action</a>(&amp;self, detailed_action_name: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>, accels: &amp;[&amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>])</h4></section></summary><div class="docblock"><p>Sets zero or more keyboard accelerators that will trigger the
+given action.</p>
+<p>The first item in <code>accels</code> will be the primary accelerator, which may be
+displayed in the UI.</p>
+<p>To remove all accelerators for an action, use an empty, zero-terminated
+array for <code>accels</code>.</p>
+<p>For the <code>detailed_action_name</code>, see <code>g_action_parse_detailed_name()</code> and
+<code>g_action_print_detailed_name()</code>.</p>
+<h6 id="detailed_action_name-1"><a href="#detailed_action_name-1"><code>detailed_action_name</code></a></h6>
+<p>a detailed action name, specifying an action
+and target to associate accelerators with</p>
+<h6 id="accels"><a href="#accels"><code>accels</code></a></h6>
+<p>a list of accelerators in the format
+understood by <a href="../fn.accelerator_parse.html" title="crate::accelerator_parse()"><code>accelerator_parse()</code></a></p>
+</div></details><details class="toggle method-toggle" open><summary><section id="tymethod.set_menubar" class="method"><a class="srclink rightside" href="../../src/gtk4/auto/application.rs.html#661">source</a><h4 class="code-header">fn <a href="#tymethod.set_menubar" class="fn">set_menubar</a>(&amp;self, menubar: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.17/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.17/docs/gio/auto/menu_model/struct.MenuModel.html" title="struct gio::auto::menu_model::MenuModel">MenuModel</a>&gt;&gt;)</h4></section></summary><div class="docblock"><p>Sets or unsets the menubar for windows of <code>application</code>.</p>
+<p>This is a menubar in the traditional sense.</p>
+<p>This can only be done in the primary instance of the application,
+after it has been registered. <code>GApplication::startup</code> is a good place
+to call this.</p>
+<p>Depending on the desktop environment, this may appear at the top of
+each window, or at the top of the screen.  In some environments, if
+both the application menu and the menubar are set, the application
+menu will be presented as if it were the first item of the menubar.
+Other environments treat the two as completely separate — for example,
+the application menu may be rendered by the desktop shell while the
+menubar (if set) remains in each individual window.</p>
+<p>Use the base <code>GActionMap</code> interface to add actions, to respond to the
+user selecting these menu items.</p>
+<h6 id="menubar"><a href="#menubar"><code>menubar</code></a></h6>
+<p>a <code>GMenuModel</code></p>
+</div></details><details class="toggle method-toggle" open><summary><section id="tymethod.uninhibit" class="method"><a class="srclink rightside" href="../../src/gtk4/auto/application.rs.html#671">source</a><h4 class="code-header">fn <a href="#tymethod.uninhibit" class="fn">uninhibit</a>(&amp;self, cookie: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>)</h4></section></summary><div class="docblock"><p>Removes an inhibitor that has been previously established.</p>
+<p>See <a href="trait.GtkApplicationExt.html#tymethod.inhibit" title="Self::inhibit()"><code>inhibit()</code></a>.</p>
+<p>Inhibitors are also cleared when the application exits.</p>
+<h6 id="cookie"><a href="#cookie"><code>cookie</code></a></h6>
+<p>a cookie that was returned by <a href="trait.GtkApplicationExt.html#tymethod.inhibit" title="Self::inhibit()"><code>inhibit()</code></a></p>
+</div></details><details class="toggle method-toggle" open><summary><section id="tymethod.is_register_session" class="method"><a class="srclink rightside" href="../../src/gtk4/auto/application.rs.html#678">source</a><h4 class="code-header">fn <a href="#tymethod.is_register_session" class="fn">is_register_session</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></section></summary><div class="docblock"><p>Set this property to <code>TRUE</code> to register with the session manager.</p>
+<p>This will make GTK track the session state (such as the
+<a href="../struct.Application.html#screensaver-active" title="crate::Application"><code>screensaver-active</code></a> property).</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="tymethod.set_register_session" class="method"><a class="srclink rightside" href="../../src/gtk4/auto/application.rs.html#685">source</a><h4 class="code-header">fn <a href="#tymethod.set_register_session" class="fn">set_register_session</a>(&amp;self, register_session: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>)</h4></section></summary><div class="docblock"><p>Set this property to <code>TRUE</code> to register with the session manager.</p>
+<p>This will make GTK track the session state (such as the
+<a href="../struct.Application.html#screensaver-active" title="crate::Application"><code>screensaver-active</code></a> property).</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="tymethod.is_screensaver_active" class="method"><a class="srclink rightside" href="../../src/gtk4/auto/application.rs.html#696">source</a><h4 class="code-header">fn <a href="#tymethod.is_screensaver_active" class="fn">is_screensaver_active</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></section></summary><div class="docblock"><p>This property is <code>TRUE</code> if GTK believes that the screensaver is
+currently active.</p>
+<p>GTK only tracks session state (including this) when
+<a href="../struct.Application.html#register-session" title="crate::Application"><code>register-session</code></a> is set to <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a>.</p>
+<p>Tracking the screensaver state is currently only supported on
+Linux.</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="tymethod.connect_query_end" class="method"><a class="srclink rightside" href="../../src/gtk4/auto/application.rs.html#705">source</a><h4 class="code-header">fn <a href="#tymethod.connect_query_end" class="fn">connect_query_end</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(&amp;self, f: F) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.17/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section></summary><div class="docblock"><p>Emitted when the session manager is about to end the session.</p>
+<p>This signal is only emitted if <a href="../struct.Application.html#register-session" title="crate::Application"><code>register-session</code></a>
+is <code>TRUE</code>. Applications can connect to this signal and call
+<a href="trait.GtkApplicationExt.html#tymethod.inhibit" title="Self::inhibit()"><code>inhibit()</code></a> with <code>GTK_APPLICATION_INHIBIT_LOGOUT</code>
+to delay the end of the session until state has been saved.</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="tymethod.connect_window_added" class="method"><a class="srclink rightside" href="../../src/gtk4/auto/application.rs.html#712">source</a><h4 class="code-header">fn <a href="#tymethod.connect_window_added" class="fn">connect_window_added</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>, &amp;<a class="struct" href="../struct.Window.html" title="struct gtk4::Window">Window</a>) + 'static&gt;(
+    &amp;self,
+    f: F
+) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.17/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section></summary><div class="docblock"><p>Emitted when a <a href="../struct.Window.html" title="crate::Window"><code>Window</code></a> is added to <code>application</code> through
+<a href="trait.GtkApplicationExt.html#tymethod.add_window" title="Self::add_window()"><code>add_window()</code></a>.</p>
+<h6 id="window-3"><a href="#window-3"><code>window</code></a></h6>
+<p>the newly-added <a href="../struct.Window.html" title="crate::Window"><code>Window</code></a></p>
+</div></details><details class="toggle method-toggle" open><summary><section id="tymethod.connect_window_removed" class="method"><a class="srclink rightside" href="../../src/gtk4/auto/application.rs.html#721">source</a><h4 class="code-header">fn <a href="#tymethod.connect_window_removed" class="fn">connect_window_removed</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>, &amp;<a class="struct" href="../struct.Window.html" title="struct gtk4::Window">Window</a>) + 'static&gt;(
+    &amp;self,
+    f: F
+) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.17/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section></summary><div class="docblock"><p>Emitted when a <a href="../struct.Window.html" title="crate::Window"><code>Window</code></a> is removed from <code>application</code>.</p>
+<p>This can happen as a side-effect of the window being destroyed
+or explicitly through <a href="trait.GtkApplicationExt.html#tymethod.remove_window" title="Self::remove_window()"><code>remove_window()</code></a>.</p>
+<h6 id="window-4"><a href="#window-4"><code>window</code></a></h6>
+<p>the <a href="../struct.Window.html" title="crate::Window"><code>Window</code></a> that is being removed</p>
+</div></details><section id="tymethod.connect_active_window_notify" class="method"><a class="srclink rightside" href="../../src/gtk4/auto/application.rs.html#724">source</a><h4 class="code-header">fn <a href="#tymethod.connect_active_window_notify" class="fn">connect_active_window_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
+    &amp;self,
+    f: F
+) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.17/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><section id="tymethod.connect_menubar_notify" class="method"><a class="srclink rightside" href="../../src/gtk4/auto/application.rs.html#727">source</a><h4 class="code-header">fn <a href="#tymethod.connect_menubar_notify" class="fn">connect_menubar_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(&amp;self, f: F) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.17/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><section id="tymethod.connect_register_session_notify" class="method"><a class="srclink rightside" href="../../src/gtk4/auto/application.rs.html#730">source</a><h4 class="code-header">fn <a href="#tymethod.connect_register_session_notify" class="fn">connect_register_session_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
+    &amp;self,
+    f: F
+) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.17/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section><section id="tymethod.connect_screensaver_active_notify" class="method"><a class="srclink rightside" href="../../src/gtk4/auto/application.rs.html#733">source</a><h4 class="code-header">fn <a href="#tymethod.connect_screensaver_active_notify" class="fn">connect_screensaver_active_notify</a>&lt;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;Self</a>) + 'static&gt;(
+    &amp;self,
+    f: F
+) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.17/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></section></div><h2 id="implementors" class="small-section-header">Implementors<a href="#implementors" class="anchor">§</a></h2><div id="implementors-list"><section id="impl-GtkApplicationExt-for-O" class="impl"><a class="srclink rightside" href="../../src/gtk4/auto/application.rs.html#736-1049">source</a><a href="#impl-GtkApplicationExt-for-O" class="anchor">§</a><h3 class="code-header">impl&lt;O: <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.17/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Application.html" title="struct gtk4::Application">Application</a>&gt;&gt; <a class="trait" href="trait.GtkApplicationExt.html" title="trait gtk4::prelude::GtkApplicationExt">GtkApplicationExt</a> for O</h3></section></div><script src="../../implementors/gtk4/auto/application/trait.GtkApplicationExt.js" async></script></section></div></main><div id="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.69.0-nightly (ef934d9b6 2023-02-08)" data-search-js="search-28136cea55c34037.js" data-settings-js="settings-f0c5c39777a9a2f6.js" data-settings-css="settings-0bcba95ff279c1db.css" ></div></body></html>

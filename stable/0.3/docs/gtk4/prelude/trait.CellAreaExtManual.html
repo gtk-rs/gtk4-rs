@@ -1,0 +1,121 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="API documentation for the Rust `CellAreaExtManual` trait in crate `gtk4`."><meta name="keywords" content="rust, rustlang, rust-lang, CellAreaExtManual"><title>CellAreaExtManual in gtk4::prelude - Rust</title><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled ><script id="default-settings" ></script><script src="../../storage.js"></script><script src="../../crates.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"><style type="text/css">#crate-search{background-image:url("../../down-arrow.svg");}</style></head><body class="rustdoc trait"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
+
+    function checkDocsLatestStable() {
+        function popup(msg, url) { return `
+            <style scoped="scoped">
+                .popup {
+                    max-width: 16em;
+                    background-color: #fff;
+                    position: fixed;
+                    z-index: 1;
+                    margin-left: auto;
+                    bottom: 1em;
+                    right: 1em;
+                    border-radius: 5px;
+                    box-shadow: 1px 1px 4px #777;
+                }
+
+                .popup a.version {
+                    color: #e57300;
+                    padding: 0.6em 1em;
+                    display: block;
+                }
+                .popup a.version:hover {
+                    color: #b25900;
+                }
+
+                .popup a.close {
+                    color: white;
+                    background: grey;
+                    border-radius: 99px;
+                    display: inline-block;
+                    width: 19px;
+                    line-height: 19px;
+                    font-weight: bold;
+                    text-align: center;
+                    margin: 0.6em;
+                    float: right;
+                }
+                .popup a.close:hover {
+                    background: black;
+                }
+            </style>
+            <section class="popup" id="gir_docs_popup">
+                <a class="close" href="#" onclick="document.getElementById('gir_docs_popup').remove(); return false">×</a>
+                <a class="version" href="https://gtk-rs.org/gtk4-rs/stable/latest/docs">
+                    ⚠ ${msg}
+                </a>
+            </section>
+        ` };
+
+        if ("0.3" == "master") {
+            document.body.insertAdjacentHTML(
+                'beforeend',
+                popup("This is the development version. Go to latest stable version.", "stable/latest")
+            );
+        } else {
+            fetch('https://gtk-rs.org/gtk4-rs/LATEST_RELEASE_BRANCH')
+                .then(response => response.text())
+                .then(latest_branch => {
+                    if (latest_branch.trim() != "0.3") {
+                        document.body.insertAdjacentHTML(
+                            'beforeend',
+                            popup("This version is outdated. Go to latest version.", "stable/latest")
+                        );
+                    }
+                });
+        }
+    }
+</script>
+
+
+<nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../gtk4/index.html'><div class='logo-container rust-logo'><img src='../../rust-logo.png' alt='logo'></div></a><h2 class="location">Trait CellAreaExtManual</h2><div class="sidebar-elems"><div class="block items"><h3 class="sidebar-title"><a href="#required-methods">Required Methods</a></h3><div class="sidebar-links"><a href="#tymethod.activate_cell">activate_cell</a><a href="#tymethod.cell_get">cell_get</a><a href="#tymethod.cell_set">cell_set</a><a href="#tymethod.event">event</a></div><h3 class="sidebar-title"><a href="#implementors">Implementors</a></h3></div><h2 class="location">Other items in<br><a href="../index.html">gtk4</a>::<wbr><a href="index.html">prelude</a></h2><div id="sidebar-vars" data-name="CellAreaExtManual" data-ty="trait" data-relpath=""></div><script defer src="sidebar-items.js"></script></div></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="18" height="18" alt="Pick another theme!" src="../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../settings.html" title="settings"><img width="18" height="18" alt="Change settings" src="../../wheel.svg"></a></div></form></nav><section id="main" class="content"><h1 class="fqn"><span class="in-band">Trait <a href="../index.html">gtk4</a>::<wbr><a href="index.html">prelude</a>::<wbr><a class="trait" href="#">CellAreaExtManual</a><button id="copy-path" onclick="copy_path(this)" title="Copy item path to clipboard"><img src="../../clipboard.svg" width="19" height="18" alt="Copy item path"></button></span><span class="out-of-band"><span id="render-detail"><a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">[<span class="inner">&#x2212;</span>]</a></span><a class="srclink" href="../../src/gtk4/cell_area.rs.html#8-85" title="goto source code">[src]</a></span></h1><div class="docblock type-decl"><pre class="rust trait"><code>pub trait CellAreaExtManual {
+    fn <a href="#tymethod.activate_cell" class="fnname">activate_cell</a>&lt;P:&nbsp;<a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.14/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;, Q:&nbsp;<a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.14/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.CellRenderer.html" title="struct gtk4::CellRenderer">CellRenderer</a>&gt;, R:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html" title="trait core::convert::AsRef">AsRef</a>&lt;<a class="struct" href="../../gdk4/event/struct.Event.html" title="struct gdk4::event::Event">Event</a>&gt;&gt;(<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;widget: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>P, <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;renderer: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>Q, <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;event: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>R, <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cell_area: &amp;<a class="struct" href="../../gdk4/rectangle/struct.Rectangle.html" title="struct gdk4::rectangle::Rectangle">Rectangle</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;flags: <a class="struct" href="../struct.CellRendererState.html" title="struct gtk4::CellRendererState">CellRendererState</a><br>&nbsp;&nbsp;&nbsp;&nbsp;) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>;
+<div class="item-spacer"></div>    fn <a href="#tymethod.event" class="fnname">event</a>&lt;P:&nbsp;<a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.14/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.CellAreaContext.html" title="struct gtk4::CellAreaContext">CellAreaContext</a>&gt;, Q:&nbsp;<a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.14/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;, R:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html" title="trait core::convert::AsRef">AsRef</a>&lt;<a class="struct" href="../../gdk4/event/struct.Event.html" title="struct gdk4::event::Event">Event</a>&gt;&gt;(<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;context: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>P, <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;widget: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>Q, <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;event: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>R, <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cell_area: &amp;<a class="struct" href="../../gdk4/rectangle/struct.Rectangle.html" title="struct gdk4::rectangle::Rectangle">Rectangle</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;flags: <a class="struct" href="../struct.CellRendererState.html" title="struct gtk4::CellRendererState">CellRendererState</a><br>&nbsp;&nbsp;&nbsp;&nbsp;) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>;
+<div class="item-spacer"></div>    fn <a href="#tymethod.cell_get" class="fnname">cell_get</a>&lt;P:&nbsp;<a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.14/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.CellRenderer.html" title="struct gtk4::CellRenderer">CellRenderer</a>&gt;&gt;(<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;renderer: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>P, <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;property_name: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a><br>&nbsp;&nbsp;&nbsp;&nbsp;) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.14/docs/glib/value/struct.Value.html" title="struct glib::value::Value">Value</a>;
+<div class="item-spacer"></div>    fn <a href="#tymethod.cell_set" class="fnname">cell_set</a>&lt;P:&nbsp;<a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.14/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.CellRenderer.html" title="struct gtk4::CellRenderer">CellRenderer</a>&gt;&gt;(<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;renderer: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>P, <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;property_name: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;value: &amp;dyn <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.14/docs/glib/value/trait.ToValue.html" title="trait glib::value::ToValue">ToValue</a><br>&nbsp;&nbsp;&nbsp;&nbsp;);
+}</code></pre></div><h2 id="required-methods" class="small-section-header">Required methods<a href="#required-methods" class="anchor"></a></h2><div class="methods"><details class="rustdoc-toggle" open><summary><div id="tymethod.activate_cell" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/cell_area.rs.html#29-36" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.activate_cell" class="fnname">activate_cell</a>&lt;P:&nbsp;<a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.14/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;, Q:&nbsp;<a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.14/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.CellRenderer.html" title="struct gtk4::CellRenderer">CellRenderer</a>&gt;, R:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html" title="trait core::convert::AsRef">AsRef</a>&lt;<a class="struct" href="../../gdk4/event/struct.Event.html" title="struct gdk4::event::Event">Event</a>&gt;&gt;(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;widget: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>P, <br>&nbsp;&nbsp;&nbsp;&nbsp;renderer: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>Q, <br>&nbsp;&nbsp;&nbsp;&nbsp;event: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>R, <br>&nbsp;&nbsp;&nbsp;&nbsp;cell_area: &amp;<a class="struct" href="../../gdk4/rectangle/struct.Rectangle.html" title="struct gdk4::rectangle::Rectangle">Rectangle</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;flags: <a class="struct" href="../struct.CellRendererState.html" title="struct gtk4::CellRendererState">CellRendererState</a><br>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></div></summary><div class="docblock"><p>This is used by <a href="../struct.CellArea.html" title="crate::CellArea"><code>CellArea</code></a> subclasses when handling events
+to activate cells, the base <a href="../struct.CellArea.html" title="crate::CellArea"><code>CellArea</code></a> class activates cells
+for keyboard events for free in its own GtkCellArea-&gt;<code>activate()</code>
+implementation.</p>
+<h6 id="widget" class="section-header"><a href="#widget"><code>widget</code></a></h6>
+<p>the <a href="../struct.Widget.html" title="crate::Widget"><code>Widget</code></a> that <code>self</code> is rendering onto</p>
+<h6 id="renderer" class="section-header"><a href="#renderer"><code>renderer</code></a></h6>
+<p>the <a href="../struct.CellRenderer.html" title="crate::CellRenderer"><code>CellRenderer</code></a> in <code>self</code> to activate</p>
+<h6 id="event" class="section-header"><a href="#event"><code>event</code></a></h6>
+<p>the <a href="../../gdk4/event/struct.Event.html" title="crate::gdk::Event"><code>gdk::Event</code></a> for which cell activation should occur</p>
+<h6 id="cell_area" class="section-header"><a href="#cell_area"><code>cell_area</code></a></h6>
+<p>the <a href="../../gdk4/rectangle/struct.Rectangle.html" title="crate::gdk::Rectangle"><code>gdk::Rectangle</code></a> in <code>widget</code> relative coordinates
+of <code>renderer</code> for the current row.</p>
+<h6 id="flags" class="section-header"><a href="#flags"><code>flags</code></a></h6>
+<p>the <a href="../struct.CellRenderer.html" title="crate::CellRenderer"><code>CellRenderer</code></a>State for <code>renderer</code></p>
+<h5 id="returns" class="section-header"><a href="#returns">Returns</a></h5>
+<p>whether cell activation was successful</p>
+</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.event" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/cell_area.rs.html#54-61" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.event" class="fnname">event</a>&lt;P:&nbsp;<a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.14/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.CellAreaContext.html" title="struct gtk4::CellAreaContext">CellAreaContext</a>&gt;, Q:&nbsp;<a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.14/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;, R:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html" title="trait core::convert::AsRef">AsRef</a>&lt;<a class="struct" href="../../gdk4/event/struct.Event.html" title="struct gdk4::event::Event">Event</a>&gt;&gt;(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;context: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>P, <br>&nbsp;&nbsp;&nbsp;&nbsp;widget: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>Q, <br>&nbsp;&nbsp;&nbsp;&nbsp;event: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>R, <br>&nbsp;&nbsp;&nbsp;&nbsp;cell_area: &amp;<a class="struct" href="../../gdk4/rectangle/struct.Rectangle.html" title="struct gdk4::rectangle::Rectangle">Rectangle</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;flags: <a class="struct" href="../struct.CellRendererState.html" title="struct gtk4::CellRendererState">CellRendererState</a><br>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a></h4></div></summary><div class="docblock"><p>Delegates event handling to a <a href="../struct.CellArea.html" title="crate::CellArea"><code>CellArea</code></a>.</p>
+<h6 id="context" class="section-header"><a href="#context"><code>context</code></a></h6>
+<p>the <a href="../struct.CellArea.html" title="crate::CellArea"><code>CellArea</code></a>Context for this row of data.</p>
+<h6 id="widget-1" class="section-header"><a href="#widget-1"><code>widget</code></a></h6>
+<p>the <a href="../struct.Widget.html" title="crate::Widget"><code>Widget</code></a> that <code>self</code> is rendering to</p>
+<h6 id="event-1" class="section-header"><a href="#event-1"><code>event</code></a></h6>
+<p>the <a href="../../gdk4/event/struct.Event.html" title="crate::gdk::Event"><code>gdk::Event</code></a> to handle</p>
+<h6 id="cell_area-1" class="section-header"><a href="#cell_area-1"><code>cell_area</code></a></h6>
+<p>the <code>widget</code> relative coordinates for <code>self</code></p>
+<h6 id="flags-1" class="section-header"><a href="#flags-1"><code>flags</code></a></h6>
+<p>the <a href="../struct.CellRenderer.html" title="crate::CellRenderer"><code>CellRenderer</code></a>State for <code>self</code> in this row.</p>
+<h5 id="returns-1" class="section-header"><a href="#returns-1">Returns</a></h5>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if the event was handled by <code>self</code>.</p>
+</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.cell_get" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/cell_area.rs.html#70" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.cell_get" class="fnname">cell_get</a>&lt;P:&nbsp;<a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.14/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.CellRenderer.html" title="struct gtk4::CellRenderer">CellRenderer</a>&gt;&gt;(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;renderer: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>P, <br>&nbsp;&nbsp;&nbsp;&nbsp;property_name: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a><br>) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.14/docs/glib/value/struct.Value.html" title="struct glib::value::Value">Value</a></h4></div></summary><div class="docblock"><p>Gets the values of one or more cell properties for <code>renderer</code> in <code>self</code>.</p>
+<h6 id="renderer-1" class="section-header"><a href="#renderer-1"><code>renderer</code></a></h6>
+<p>a <a href="../struct.CellRenderer.html" title="crate::CellRenderer"><code>CellRenderer</code></a> which is inside <code>self</code></p>
+<h6 id="first_prop_name" class="section-header"><a href="#first_prop_name"><code>first_prop_name</code></a></h6>
+<p>the name of the first cell property to get</p>
+</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.cell_set" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/cell_area.rs.html#79-84" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.cell_set" class="fnname">cell_set</a>&lt;P:&nbsp;<a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.14/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.CellRenderer.html" title="struct gtk4::CellRenderer">CellRenderer</a>&gt;&gt;(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;renderer: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>P, <br>&nbsp;&nbsp;&nbsp;&nbsp;property_name: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;value: &amp;dyn <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.14/docs/glib/value/trait.ToValue.html" title="trait glib::value::ToValue">ToValue</a><br>)</h4></div></summary><div class="docblock"><p>Sets one or more cell properties for <code>cell</code> in <code>self</code>.</p>
+<h6 id="renderer-2" class="section-header"><a href="#renderer-2"><code>renderer</code></a></h6>
+<p>a <a href="../struct.CellRenderer.html" title="crate::CellRenderer"><code>CellRenderer</code></a> which is a cell inside <code>self</code></p>
+<h6 id="first_prop_name-1" class="section-header"><a href="#first_prop_name-1"><code>first_prop_name</code></a></h6>
+<p>the name of the first cell property to set</p>
+</div></details></div><h2 id="implementors" class="small-section-header">Implementors<a href="#implementors" class="anchor"></a></h2><div class="item-list" id="implementors-list"><div id="impl-CellAreaExtManual" class="impl has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/cell_area.rs.html#87-182" title="goto source code">[src]</a></div><a href="#impl-CellAreaExtManual" class="anchor"></a><h3 class="code-header in-band">impl&lt;O:&nbsp;<a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.14/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.CellArea.html" title="struct gtk4::CellArea">CellArea</a>&gt;&gt; <a class="trait" href="trait.CellAreaExtManual.html" title="trait gtk4::prelude::CellAreaExtManual">CellAreaExtManual</a> for O</h3></div></div><script type="text/javascript" src="../../implementors/gtk4/prelude/trait.CellAreaExtManual.js" async></script></section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../" data-current-crate="gtk4" data-search-index-js="../../search-index.js" data-search-js="../../search.js"></div>
+    <script src="../../main.js"></script>
+</body></html>

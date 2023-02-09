@@ -1,0 +1,160 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Trait containing all [`struct@ScaleButton`] methods."><meta name="keywords" content="rust, rustlang, rust-lang, ScaleButtonExt"><title>ScaleButtonExt in gtk4::prelude - Rust</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script src="../../crates.js"></script><script defer src="../../main.js"></script>
+    <noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc trait"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
+
+    function checkDocsLatestStable() {
+        function popup(msg, url) { return `
+            <style scoped="scoped">
+                .popup {
+                    max-width: 16em;
+                    background-color: #fff;
+                    position: fixed;
+                    z-index: 1;
+                    margin-left: auto;
+                    bottom: 1em;
+                    right: 1em;
+                    border-radius: 5px;
+                    box-shadow: 1px 1px 4px #777;
+                }
+
+                .popup a.version {
+                    color: #e57300;
+                    padding: 0.6em 1em;
+                    display: block;
+                }
+                .popup a.version:hover {
+                    color: #b25900;
+                }
+
+                .popup a.close {
+                    color: white;
+                    background: grey;
+                    border-radius: 99px;
+                    display: inline-block;
+                    width: 19px;
+                    line-height: 19px;
+                    font-weight: bold;
+                    text-align: center;
+                    margin: 0.6em;
+                    float: right;
+                }
+                .popup a.close:hover {
+                    background: black;
+                }
+            </style>
+            <section class="popup" id="gir_docs_popup">
+                <a class="close" href="#" onclick="document.getElementById('gir_docs_popup').remove(); return false">×</a>
+                <a class="version" href="https://gtk-rs.org/gtk4-rs/stable/latest/docs">
+                    ⚠ ${msg}
+                </a>
+            </section>
+        ` };
+
+        if ("0.4" == "master") {
+            document.body.insertAdjacentHTML(
+                'beforeend',
+                popup("This is the development version. Go to latest stable version.", "stable/latest")
+            );
+        } else {
+            fetch('https://gtk-rs.org/gtk4-rs/LATEST_RELEASE_BRANCH')
+                .then(response => response.text())
+                .then(latest_branch => {
+                    if (latest_branch.trim() != "0.4") {
+                        document.body.insertAdjacentHTML(
+                            'beforeend',
+                            popup("This version is outdated. Go to latest version.", "stable/latest")
+                        );
+                    }
+                });
+        }
+    }
+</script>
+
+
+<nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../gtk4/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div>
+        </a><h2 class="location"></h2>
+    </nav>
+    <nav class="sidebar"><a class="sidebar-logo" href="../../gtk4/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div>
+        </a><h2 class="location"><a href="#">ScaleButtonExt</a></h2><div class="sidebar-elems"><section><div class="block"><h3 class="sidebar-title"><a href="#required-methods">Required Methods</a></h3><ul><li><a href="#tymethod.adjustment">adjustment</a></li><li><a href="#tymethod.connect_adjustment_notify">connect_adjustment_notify</a></li><li><a href="#tymethod.connect_icons_notify">connect_icons_notify</a></li><li><a href="#tymethod.connect_popdown">connect_popdown</a></li><li><a href="#tymethod.connect_popup">connect_popup</a></li><li><a href="#tymethod.connect_value_changed">connect_value_changed</a></li><li><a href="#tymethod.connect_value_notify">connect_value_notify</a></li><li><a href="#tymethod.emit_popdown">emit_popdown</a></li><li><a href="#tymethod.emit_popup">emit_popup</a></li><li><a href="#tymethod.icons">icons</a></li><li><a href="#tymethod.minus_button">minus_button</a></li><li><a href="#tymethod.plus_button">plus_button</a></li><li><a href="#tymethod.popup">popup</a></li><li><a href="#tymethod.set_adjustment">set_adjustment</a></li><li><a href="#tymethod.set_icons">set_icons</a></li><li><a href="#tymethod.set_value">set_value</a></li><li><a href="#tymethod.value">value</a></li></ul></div><div class="block"><h3 class="sidebar-title"><a href="#implementors">Implementors</a></h3></div></section><h2 class="location"><a href="index.html">In gtk4::prelude</a></h2><div id="sidebar-vars" data-name="ScaleButtonExt" data-ty="trait" data-relpath=""></div><script defer src="sidebar-items.js"></script></div></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../gtk4/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><button type="button" id="help-button" title="help">?</button><div id="settings-menu" tabindex="-1">
+                                <a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div>
+                        </div></form></nav></div><section id="main-content" class="content"><div class="main-heading">
+    <h1 class="fqn"><span class="in-band">Trait <a href="../index.html">gtk4</a>::<wbr><a href="index.html">prelude</a>::<wbr><a class="trait" href="#">ScaleButtonExt</a><button id="copy-path" onclick="copy_path(this)" title="Copy item path to clipboard"><img src="../../clipboard.svg" width="19" height="18" alt="Copy item path"></button></span></h1><span class="out-of-band"><a class="srclink" href="../../src/gtk4/auto/scale_button.rs.html#561-691">source</a> · <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">[<span class="inner">&#x2212;</span>]</a></span></div><div class="docblock item-decl"><pre class="rust trait"><code>pub trait ScaleButtonExt: 'static {
+<details class="rustdoc-toggle type-contents-toggle"><summary class="hideme"><span>Show 17 methods</span></summary>    fn <a href="#tymethod.adjustment" class="fnname">adjustment</a>(&amp;self) -&gt; <a class="struct" href="../struct.Adjustment.html" title="struct gtk4::Adjustment">Adjustment</a>;
+<span class="item-spacer"></span>    fn <a href="#tymethod.minus_button" class="fnname">minus_button</a>(&amp;self) -&gt; <a class="struct" href="../struct.Button.html" title="struct gtk4::Button">Button</a>;
+<span class="item-spacer"></span>    fn <a href="#tymethod.plus_button" class="fnname">plus_button</a>(&amp;self) -&gt; <a class="struct" href="../struct.Button.html" title="struct gtk4::Button">Button</a>;
+<span class="item-spacer"></span>    fn <a href="#tymethod.popup" class="fnname">popup</a>(&amp;self) -&gt; <a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>;
+<span class="item-spacer"></span>    fn <a href="#tymethod.value" class="fnname">value</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>;
+<span class="item-spacer"></span>    fn <a href="#tymethod.set_adjustment" class="fnname">set_adjustment</a>(&amp;self, adjustment: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.15/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Adjustment.html" title="struct gtk4::Adjustment">Adjustment</a>&gt;);
+<span class="item-spacer"></span>    fn <a href="#tymethod.set_icons" class="fnname">set_icons</a>(&amp;self, icons: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.slice.html">&amp;[</a>&amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.slice.html">]</a>);
+<span class="item-spacer"></span>    fn <a href="#tymethod.set_value" class="fnname">set_value</a>(&amp;self, value: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>);
+<span class="item-spacer"></span>    fn <a href="#tymethod.icons" class="fnname">icons</a>(&amp;self) -&gt; <a class="struct" href="https://doc.rust-lang.org/nightly/alloc/vec/struct.Vec.html" title="struct alloc::vec::Vec">Vec</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.15/docs/glib/gstring/struct.GString.html" title="struct glib::gstring::GString">GString</a>&gt;;
+<span class="item-spacer"></span>    fn <a href="#tymethod.connect_popdown" class="fnname">connect_popdown</a>&lt;F:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>Self) + 'static&gt;(&amp;self, f: F) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.15/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a>;
+<span class="item-spacer"></span>    fn <a href="#tymethod.emit_popdown" class="fnname">emit_popdown</a>(&amp;self);
+<span class="item-spacer"></span>    fn <a href="#tymethod.connect_popup" class="fnname">connect_popup</a>&lt;F:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>Self) + 'static&gt;(&amp;self, f: F) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.15/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a>;
+<span class="item-spacer"></span>    fn <a href="#tymethod.emit_popup" class="fnname">emit_popup</a>(&amp;self);
+<span class="item-spacer"></span>    fn <a href="#tymethod.connect_value_changed" class="fnname">connect_value_changed</a>&lt;F:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>Self, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>) + 'static&gt;(<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;f: F<br>&nbsp;&nbsp;&nbsp;&nbsp;) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.15/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a>;
+<span class="item-spacer"></span>    fn <a href="#tymethod.connect_adjustment_notify" class="fnname">connect_adjustment_notify</a>&lt;F:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>Self) + 'static&gt;(<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;f: F<br>&nbsp;&nbsp;&nbsp;&nbsp;) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.15/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a>;
+<span class="item-spacer"></span>    fn <a href="#tymethod.connect_icons_notify" class="fnname">connect_icons_notify</a>&lt;F:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>Self) + 'static&gt;(<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;f: F<br>&nbsp;&nbsp;&nbsp;&nbsp;) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.15/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a>;
+<span class="item-spacer"></span>    fn <a href="#tymethod.connect_value_notify" class="fnname">connect_value_notify</a>&lt;F:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>Self) + 'static&gt;(<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;f: F<br>&nbsp;&nbsp;&nbsp;&nbsp;) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.15/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a>;
+</details>}</code></pre></div><details class="rustdoc-toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>Trait containing all <a href="../struct.ScaleButton.html" title="ScaleButton"><code>ScaleButton</code></a> methods.</p>
+<h2 id="implementors-1"><a href="#implementors-1">Implementors</a></h2>
+<p><a href="../struct.ScaleButton.html" title="crate::ScaleButton"><code>ScaleButton</code></a>, <a href="../struct.VolumeButton.html" title="crate::VolumeButton"><code>VolumeButton</code></a></p>
+</div></details><h2 id="required-methods" class="small-section-header">Required Methods<a href="#required-methods" class="anchor"></a></h2><div class="methods"><details class="rustdoc-toggle" open><summary><div id="tymethod.adjustment" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/scale_button.rs.html#571">source</a></div><h4 class="code-header">fn <a href="#tymethod.adjustment" class="fnname">adjustment</a>(&amp;self) -&gt; <a class="struct" href="../struct.Adjustment.html" title="struct gtk4::Adjustment">Adjustment</a></h4></div></summary><div class="docblock"><p>Gets the <a href="../struct.Adjustment.html" title="crate::Adjustment"><code>Adjustment</code></a> associated with the <a href="../struct.ScaleButton.html" title="crate::ScaleButton"><code>ScaleButton</code></a>’s scale.</p>
+<p>See <a href="trait.RangeExt.html#tymethod.adjustment" title="crate::prelude::RangeExt::adjustment()"><code>RangeExt::adjustment()</code></a> for details.</p>
+<h5 id="returns"><a href="#returns">Returns</a></h5>
+<p>the adjustment associated with the scale</p>
+</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.minus_button" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/scale_button.rs.html#581">source</a></div><h4 class="code-header">fn <a href="#tymethod.minus_button" class="fnname">minus_button</a>(&amp;self) -&gt; <a class="struct" href="../struct.Button.html" title="struct gtk4::Button">Button</a></h4></div></summary><div class="docblock"><p>Retrieves the minus button of the <a href="../struct.ScaleButton.html" title="crate::ScaleButton"><code>ScaleButton</code></a>.</p>
+<h5 id="returns-1"><a href="#returns-1">Returns</a></h5>
+<p>the minus button
+of the <a href="../struct.ScaleButton.html" title="crate::ScaleButton"><code>ScaleButton</code></a></p>
+</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.plus_button" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/scale_button.rs.html#591">source</a></div><h4 class="code-header">fn <a href="#tymethod.plus_button" class="fnname">plus_button</a>(&amp;self) -&gt; <a class="struct" href="../struct.Button.html" title="struct gtk4::Button">Button</a></h4></div></summary><div class="docblock"><p>Retrieves the plus button of the <a href="../struct.ScaleButton.html" title="crate::ScaleButton"><code>ScaleButton</code></a></p>
+<h5 id="returns-2"><a href="#returns-2">Returns</a></h5>
+<p>the plus button
+of the <a href="../struct.ScaleButton.html" title="crate::ScaleButton"><code>ScaleButton</code></a></p>
+</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.popup" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/scale_button.rs.html#600">source</a></div><h4 class="code-header">fn <a href="#tymethod.popup" class="fnname">popup</a>(&amp;self) -&gt; <a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a></h4></div></summary><div class="docblock"><p>Retrieves the popup of the <a href="../struct.ScaleButton.html" title="crate::ScaleButton"><code>ScaleButton</code></a>.</p>
+<h5 id="returns-3"><a href="#returns-3">Returns</a></h5>
+<p>the popup of the <a href="../struct.ScaleButton.html" title="crate::ScaleButton"><code>ScaleButton</code></a></p>
+</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.value" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/scale_button.rs.html#609">source</a></div><h4 class="code-header">fn <a href="#tymethod.value" class="fnname">value</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a></h4></div></summary><div class="docblock"><p>Gets the current value of the scale button.</p>
+<h5 id="returns-4"><a href="#returns-4">Returns</a></h5>
+<p>current value of the scale button</p>
+</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.set_adjustment" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/scale_button.rs.html#618">source</a></div><h4 class="code-header">fn <a href="#tymethod.set_adjustment" class="fnname">set_adjustment</a>(&amp;self, adjustment: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.15/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Adjustment.html" title="struct gtk4::Adjustment">Adjustment</a>&gt;)</h4></div></summary><div class="docblock"><p>Sets the <a href="../struct.Adjustment.html" title="crate::Adjustment"><code>Adjustment</code></a> to be used as a model
+for the <a href="../struct.ScaleButton.html" title="crate::ScaleButton"><code>ScaleButton</code></a>’s scale.</p>
+<p>See <a href="trait.RangeExt.html#tymethod.set_adjustment" title="crate::prelude::RangeExt::set_adjustment()"><code>RangeExt::set_adjustment()</code></a> for details.</p>
+<h6 id="adjustment"><a href="#adjustment"><code>adjustment</code></a></h6>
+<p>a <a href="../struct.Adjustment.html" title="crate::Adjustment"><code>Adjustment</code></a></p>
+</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.set_icons" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/scale_button.rs.html#624">source</a></div><h4 class="code-header">fn <a href="#tymethod.set_icons" class="fnname">set_icons</a>(&amp;self, icons: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.slice.html">&amp;[</a>&amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.slice.html">]</a>)</h4></div></summary><div class="docblock"><p>Sets the icons to be used by the scale button.</p>
+<h6 id="icons"><a href="#icons"><code>icons</code></a></h6>
+<p>a <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a>-terminated array of icon names</p>
+</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.set_value" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/scale_button.rs.html#636">source</a></div><h4 class="code-header">fn <a href="#tymethod.set_value" class="fnname">set_value</a>(&amp;self, value: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>)</h4></div></summary><div class="docblock"><p>Sets the current value of the scale.</p>
+<p>If the value is outside the minimum or maximum range values,
+it will be clamped to fit inside them.</p>
+<p>The scale button emits the <code>signal::ScaleButton::value-changed</code>
+signal if the value changes.</p>
+<h6 id="value"><a href="#value"><code>value</code></a></h6>
+<p>new value of the scale button</p>
+</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.icons" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/scale_button.rs.html#654">source</a></div><h4 class="code-header">fn <a href="#tymethod.icons" class="fnname">icons</a>(&amp;self) -&gt; <a class="struct" href="https://doc.rust-lang.org/nightly/alloc/vec/struct.Vec.html" title="struct alloc::vec::Vec">Vec</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.15/docs/glib/gstring/struct.GString.html" title="struct glib::gstring::GString">GString</a>&gt;</h4></div></summary><div class="docblock"><p>The names of the icons to be used by the scale button.</p>
+<p>The first item in the array will be used in the button
+when the current value is the lowest value, the second
+item for the highest value. All the subsequent icons will
+be used for all the other values, spread evenly over the
+range of values.</p>
+<p>If there’s only one icon name in the @icons array, it will
+be used for all the values. If only two icon names are in
+the @icons array, the first one will be used for the bottom
+50% of the scale, and the second one for the top 50%.</p>
+<p>It is recommended to use at least 3 icons so that the
+<a href="../struct.ScaleButton.html" title="crate::ScaleButton"><code>ScaleButton</code></a> reflects the current value of the scale
+better for the users.</p>
+</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.connect_popdown" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/scale_button.rs.html#662">source</a></div><h4 class="code-header">fn <a href="#tymethod.connect_popdown" class="fnname">connect_popdown</a>&lt;F:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>Self) + 'static&gt;(&amp;self, f: F) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.15/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></div></summary><div class="docblock"><p>Emitted to dismiss the popup.</p>
+<p>This is a <a href="class.SignalAction.html">keybinding signal</a>.</p>
+<p>The default binding for this signal is <kbd>Escape</kbd>.</p>
+</div></details><div id="tymethod.emit_popdown" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/scale_button.rs.html#664">source</a></div><h4 class="code-header">fn <a href="#tymethod.emit_popdown" class="fnname">emit_popdown</a>(&amp;self)</h4></div><details class="rustdoc-toggle" open><summary><div id="tymethod.connect_popup" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/scale_button.rs.html#673">source</a></div><h4 class="code-header">fn <a href="#tymethod.connect_popup" class="fnname">connect_popup</a>&lt;F:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>Self) + 'static&gt;(&amp;self, f: F) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.15/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></div></summary><div class="docblock"><p>Emitted to popup the scale widget.</p>
+<p>This is a <a href="class.SignalAction.html">keybinding signal</a>.</p>
+<p>The default bindings for this signal are <kbd>Space</kbd>,
+<kbd>Enter</kbd> and <kbd>Return</kbd>.</p>
+</div></details><div id="tymethod.emit_popup" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/scale_button.rs.html#675">source</a></div><h4 class="code-header">fn <a href="#tymethod.emit_popup" class="fnname">emit_popup</a>(&amp;self)</h4></div><details class="rustdoc-toggle" open><summary><div id="tymethod.connect_value_changed" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/scale_button.rs.html#681">source</a></div><h4 class="code-header">fn <a href="#tymethod.connect_value_changed" class="fnname">connect_value_changed</a>&lt;F:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>Self, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>) + 'static&gt;(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;f: F<br>) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.15/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></div></summary><div class="docblock"><p>Emitted when the value field has changed.</p>
+<h6 id="value-1"><a href="#value-1"><code>value</code></a></h6>
+<p>the new value</p>
+</div></details><div id="tymethod.connect_adjustment_notify" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/scale_button.rs.html#684">source</a></div><h4 class="code-header">fn <a href="#tymethod.connect_adjustment_notify" class="fnname">connect_adjustment_notify</a>&lt;F:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>Self) + 'static&gt;(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;f: F<br>) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.15/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></div><div id="tymethod.connect_icons_notify" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/scale_button.rs.html#687">source</a></div><h4 class="code-header">fn <a href="#tymethod.connect_icons_notify" class="fnname">connect_icons_notify</a>&lt;F:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>Self) + 'static&gt;(&amp;self, f: F) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.15/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></div><div id="tymethod.connect_value_notify" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/scale_button.rs.html#690">source</a></div><h4 class="code-header">fn <a href="#tymethod.connect_value_notify" class="fnname">connect_value_notify</a>&lt;F:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>Self) + 'static&gt;(&amp;self, f: F) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.15/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></div></div><h2 id="implementors" class="small-section-header">Implementors<a href="#implementors" class="anchor"></a></h2><div class="item-list" id="implementors-list"><section id="impl-ScaleButtonExt" class="impl has-srclink"><span class="rightside"><a class="srclink" href="../../src/gtk4/auto/scale_button.rs.html#693-898">source</a></span><a href="#impl-ScaleButtonExt" class="anchor"></a><h3 class="code-header in-band">impl&lt;O:&nbsp;<a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.15/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.ScaleButton.html" title="struct gtk4::ScaleButton">ScaleButton</a>&gt;&gt; <a class="trait" href="trait.ScaleButtonExt.html" title="trait gtk4::prelude::ScaleButtonExt">ScaleButtonExt</a> for O</h3></section></div><script type="text/javascript" src="../../implementors/gtk4/auto/scale_button/trait.ScaleButtonExt.js" data-ignore-extern-crates="" async></script></section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="gtk4" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.63.0-nightly (a6b8c6954 2022-06-03)" ></div>
+</body></html>

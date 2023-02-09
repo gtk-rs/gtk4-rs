@@ -1,0 +1,142 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Trait containing all [`struct@TreeModelSort`] methods."><meta name="keywords" content="rust, rustlang, rust-lang, TreeModelSortExt"><title>TreeModelSortExt in gtk4::prelude - Rust</title><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled ><script id="default-settings" ></script><script src="../../storage.js"></script><script src="../../crates.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"><style type="text/css">#crate-search{background-image:url("../../down-arrow.svg");}</style></head><body class="rustdoc trait"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
+
+    function checkDocsLatestStable() {
+        function popup(msg, url) { return `
+            <style scoped="scoped">
+                .popup {
+                    max-width: 16em;
+                    background-color: #fff;
+                    position: fixed;
+                    z-index: 1;
+                    margin-left: auto;
+                    bottom: 1em;
+                    right: 1em;
+                    border-radius: 5px;
+                    box-shadow: 1px 1px 4px #777;
+                }
+
+                .popup a.version {
+                    color: #e57300;
+                    padding: 0.6em 1em;
+                    display: block;
+                }
+                .popup a.version:hover {
+                    color: #b25900;
+                }
+
+                .popup a.close {
+                    color: white;
+                    background: grey;
+                    border-radius: 99px;
+                    display: inline-block;
+                    width: 19px;
+                    line-height: 19px;
+                    font-weight: bold;
+                    text-align: center;
+                    margin: 0.6em;
+                    float: right;
+                }
+                .popup a.close:hover {
+                    background: black;
+                }
+            </style>
+            <section class="popup" id="gir_docs_popup">
+                <a class="close" href="#" onclick="document.getElementById('gir_docs_popup').remove(); return false">×</a>
+                <a class="version" href="https://gtk-rs.org/gtk4-rs/stable/latest/docs">
+                    ⚠ ${msg}
+                </a>
+            </section>
+        ` };
+
+        if ("0.3" == "master") {
+            document.body.insertAdjacentHTML(
+                'beforeend',
+                popup("This is the development version. Go to latest stable version.", "stable/latest")
+            );
+        } else {
+            fetch('https://gtk-rs.org/gtk4-rs/LATEST_RELEASE_BRANCH')
+                .then(response => response.text())
+                .then(latest_branch => {
+                    if (latest_branch.trim() != "0.3") {
+                        document.body.insertAdjacentHTML(
+                            'beforeend',
+                            popup("This version is outdated. Go to latest version.", "stable/latest")
+                        );
+                    }
+                });
+        }
+    }
+</script>
+
+
+<nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../gtk4/index.html'><div class='logo-container rust-logo'><img src='../../rust-logo.png' alt='logo'></div></a><h2 class="location">Trait TreeModelSortExt</h2><div class="sidebar-elems"><div class="block items"><h3 class="sidebar-title"><a href="#required-methods">Required Methods</a></h3><div class="sidebar-links"><a href="#tymethod.clear_cache">clear_cache</a><a href="#tymethod.convert_child_iter_to_iter">convert_child_iter_to_iter</a><a href="#tymethod.convert_child_path_to_path">convert_child_path_to_path</a><a href="#tymethod.convert_iter_to_child_iter">convert_iter_to_child_iter</a><a href="#tymethod.convert_path_to_child_path">convert_path_to_child_path</a><a href="#tymethod.iter_is_valid">iter_is_valid</a><a href="#tymethod.model">model</a><a href="#tymethod.reset_default_sort_func">reset_default_sort_func</a></div><h3 class="sidebar-title"><a href="#implementors">Implementors</a></h3></div><h2 class="location">Other items in<br><a href="../index.html">gtk4</a>::<wbr><a href="index.html">prelude</a></h2><div id="sidebar-vars" data-name="TreeModelSortExt" data-ty="trait" data-relpath=""></div><script defer src="sidebar-items.js"></script></div></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="18" height="18" alt="Pick another theme!" src="../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../settings.html" title="settings"><img width="18" height="18" alt="Change settings" src="../../wheel.svg"></a></div></form></nav><section id="main" class="content"><h1 class="fqn"><span class="in-band">Trait <a href="../index.html">gtk4</a>::<wbr><a href="index.html">prelude</a>::<wbr><a class="trait" href="#">TreeModelSortExt</a><button id="copy-path" onclick="copy_path(this)" title="Copy item path to clipboard"><img src="../../clipboard.svg" width="19" height="18" alt="Copy item path"></button></span><span class="out-of-band"><span id="render-detail"><a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">[<span class="inner">&#x2212;</span>]</a></span><a class="srclink" href="../../src/gtk4/auto/tree_model_sort.rs.html#158-251" title="goto source code">[src]</a></span></h1><div class="docblock type-decl"><pre class="rust trait"><code>pub trait TreeModelSortExt: 'static {
+    fn <a href="#tymethod.clear_cache" class="fnname">clear_cache</a>(&amp;self);
+<div class="item-spacer"></div>    fn <a href="#tymethod.convert_child_iter_to_iter" class="fnname">convert_child_iter_to_iter</a>(<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;child_iter: &amp;<a class="struct" href="../struct.TreeIter.html" title="struct gtk4::TreeIter">TreeIter</a><br>&nbsp;&nbsp;&nbsp;&nbsp;) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../struct.TreeIter.html" title="struct gtk4::TreeIter">TreeIter</a>&gt;;
+<div class="item-spacer"></div>    fn <a href="#tymethod.convert_child_path_to_path" class="fnname">convert_child_path_to_path</a>(<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;child_path: &amp;<a class="struct" href="../struct.TreePath.html" title="struct gtk4::TreePath">TreePath</a><br>&nbsp;&nbsp;&nbsp;&nbsp;) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../struct.TreePath.html" title="struct gtk4::TreePath">TreePath</a>&gt;;
+<div class="item-spacer"></div>    fn <a href="#tymethod.convert_iter_to_child_iter" class="fnname">convert_iter_to_child_iter</a>(&amp;self, sorted_iter: &amp;<a class="struct" href="../struct.TreeIter.html" title="struct gtk4::TreeIter">TreeIter</a>) -&gt; <a class="struct" href="../struct.TreeIter.html" title="struct gtk4::TreeIter">TreeIter</a>;
+<div class="item-spacer"></div>    fn <a href="#tymethod.convert_path_to_child_path" class="fnname">convert_path_to_child_path</a>(<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sorted_path: &amp;<a class="struct" href="../struct.TreePath.html" title="struct gtk4::TreePath">TreePath</a><br>&nbsp;&nbsp;&nbsp;&nbsp;) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../struct.TreePath.html" title="struct gtk4::TreePath">TreePath</a>&gt;;
+<div class="item-spacer"></div>    fn <a href="#tymethod.model" class="fnname">model</a>(&amp;self) -&gt; <a class="struct" href="../struct.TreeModel.html" title="struct gtk4::TreeModel">TreeModel</a>;
+<div class="item-spacer"></div>    fn <a href="#tymethod.iter_is_valid" class="fnname">iter_is_valid</a>(&amp;self, iter: &amp;<a class="struct" href="../struct.TreeIter.html" title="struct gtk4::TreeIter">TreeIter</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>;
+<div class="item-spacer"></div>    fn <a href="#tymethod.reset_default_sort_func" class="fnname">reset_default_sort_func</a>(&amp;self);
+}</code></pre></div><details class="rustdoc-toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>Trait containing all <a href="../struct.TreeModelSort.html" title="TreeModelSort"><code>TreeModelSort</code></a> methods.</p>
+<h2 id="implementors-1" class="section-header"><a href="#implementors-1">Implementors</a></h2>
+<p><a href="../struct.TreeModelSort.html" title="crate::TreeModelSort"><code>TreeModelSort</code></a></p>
+</div></details><h2 id="required-methods" class="small-section-header">Required methods<a href="#required-methods" class="anchor"></a></h2><div class="methods"><details class="rustdoc-toggle" open><summary><div id="tymethod.clear_cache" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/tree_model_sort.rs.html#166" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.clear_cache" class="fnname">clear_cache</a>(&amp;self)</h4></div></summary><div class="docblock"><p>This function should almost never be called. It clears the <code>self</code>
+of any cached iterators that haven’t been reffed with
+<code>gtk_tree_model_ref_node()</code>. This might be useful if the child model being
+sorted is static (and doesn’t change often) and there has been a lot of
+unreffed access to nodes. As a side effect of this function, all unreffed
+iters will be invalid.</p>
+</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.convert_child_iter_to_iter" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/tree_model_sort.rs.html#182" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.convert_child_iter_to_iter" class="fnname">convert_child_iter_to_iter</a>(&amp;self, child_iter: &amp;<a class="struct" href="../struct.TreeIter.html" title="struct gtk4::TreeIter">TreeIter</a>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../struct.TreeIter.html" title="struct gtk4::TreeIter">TreeIter</a>&gt;</h4></div></summary><div class="docblock"><p>Sets <code>sort_iter</code> to point to the row in <code>self</code> that corresponds to
+the row pointed at by <code>child_iter</code>. If <code>sort_iter</code> was not set, <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="false"><code>false</code></a>
+is returned. Note: a boolean is only returned since 2.14.</p>
+<h6 id="child_iter" class="section-header"><a href="#child_iter"><code>child_iter</code></a></h6>
+<p>A valid <a href="../struct.TreeIter.html" title="crate::TreeIter"><code>TreeIter</code></a> pointing to a row on the child model</p>
+<h5 id="returns" class="section-header"><a href="#returns">Returns</a></h5>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a>, if <code>sort_iter</code> was set, i.e. if <code>sort_iter</code> is a
+valid iterator pointer to a visible row in the child model.</p>
+<h6 id="sort_iter" class="section-header"><a href="#sort_iter"><code>sort_iter</code></a></h6>
+<p>An uninitialized <a href="../struct.TreeIter.html" title="crate::TreeIter"><code>TreeIter</code></a></p>
+</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.convert_child_path_to_path" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/tree_model_sort.rs.html#195" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.convert_child_path_to_path" class="fnname">convert_child_path_to_path</a>(&amp;self, child_path: &amp;<a class="struct" href="../struct.TreePath.html" title="struct gtk4::TreePath">TreePath</a>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../struct.TreePath.html" title="struct gtk4::TreePath">TreePath</a>&gt;</h4></div></summary><div class="docblock"><p>Converts <code>child_path</code> to a path relative to <code>self</code>. That is,
+<code>child_path</code> points to a path in the child model. The returned path will
+point to the same row in the sorted model. If <code>child_path</code> isn’t a valid
+path on the child model, then <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a> is returned.</p>
+<h6 id="child_path" class="section-header"><a href="#child_path"><code>child_path</code></a></h6>
+<p>A <a href="../struct.TreePath.html" title="crate::TreePath"><code>TreePath</code></a> to convert</p>
+<h5 id="returns-1" class="section-header"><a href="#returns-1">Returns</a></h5>
+<p>A newly allocated <a href="../struct.TreePath.html" title="crate::TreePath"><code>TreePath</code></a></p>
+</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.convert_iter_to_child_iter" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/tree_model_sort.rs.html#207" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.convert_iter_to_child_iter" class="fnname">convert_iter_to_child_iter</a>(&amp;self, sorted_iter: &amp;<a class="struct" href="../struct.TreeIter.html" title="struct gtk4::TreeIter">TreeIter</a>) -&gt; <a class="struct" href="../struct.TreeIter.html" title="struct gtk4::TreeIter">TreeIter</a></h4></div></summary><div class="docblock"><p>Sets <code>child_iter</code> to point to the row pointed to by <code>sorted_iter</code>.</p>
+<h6 id="sorted_iter" class="section-header"><a href="#sorted_iter"><code>sorted_iter</code></a></h6>
+<p>A valid <a href="../struct.TreeIter.html" title="crate::TreeIter"><code>TreeIter</code></a> pointing to a row on <code>self</code>.</p>
+<h5 id="returns-2" class="section-header"><a href="#returns-2">Returns</a></h5><h6 id="child_iter-1" class="section-header"><a href="#child_iter-1"><code>child_iter</code></a></h6>
+<p>An uninitialized <a href="../struct.TreeIter.html" title="crate::TreeIter"><code>TreeIter</code></a></p>
+</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.convert_path_to_child_path" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/tree_model_sort.rs.html#221" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.convert_path_to_child_path" class="fnname">convert_path_to_child_path</a>(&amp;self, sorted_path: &amp;<a class="struct" href="../struct.TreePath.html" title="struct gtk4::TreePath">TreePath</a>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../struct.TreePath.html" title="struct gtk4::TreePath">TreePath</a>&gt;</h4></div></summary><div class="docblock"><p>Converts <code>sorted_path</code> to a path on the child model of <code>self</code>.
+That is, <code>sorted_path</code> points to a location in <code>self</code>. The
+returned path will point to the same location in the model not being
+sorted. If <code>sorted_path</code> does not point to a location in the child model,
+<a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a> is returned.</p>
+<h6 id="sorted_path" class="section-header"><a href="#sorted_path"><code>sorted_path</code></a></h6>
+<p>A <a href="../struct.TreePath.html" title="crate::TreePath"><code>TreePath</code></a> to convert</p>
+<h5 id="returns-3" class="section-header"><a href="#returns-3">Returns</a></h5>
+<p>A newly allocated <a href="../struct.TreePath.html" title="crate::TreePath"><code>TreePath</code></a></p>
+</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.model" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/tree_model_sort.rs.html#230" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.model" class="fnname">model</a>(&amp;self) -&gt; <a class="struct" href="../struct.TreeModel.html" title="struct gtk4::TreeModel">TreeModel</a></h4></div></summary><div class="docblock"><p>Returns the model the <a href="../struct.TreeModelSort.html" title="crate::TreeModelSort"><code>TreeModelSort</code></a> is sorting.</p>
+<h5 id="returns-4" class="section-header"><a href="#returns-4">Returns</a></h5>
+<p>the “child model” being sorted</p>
+</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.iter_is_valid" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/tree_model_sort.rs.html#243" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.iter_is_valid" class="fnname">iter_is_valid</a>(&amp;self, iter: &amp;<a class="struct" href="../struct.TreeIter.html" title="struct gtk4::TreeIter">TreeIter</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></div></summary><div class="docblock"><blockquote>
+<p>This function is slow. Only use it for debugging and/or testing
+purposes.</p>
+</blockquote>
+<p>Checks if the given iter is a valid iter for this <a href="../struct.TreeModelSort.html" title="crate::TreeModelSort"><code>TreeModelSort</code></a>.</p>
+<h6 id="iter" class="section-header"><a href="#iter"><code>iter</code></a></h6>
+<p>A <a href="../struct.TreeIter.html" title="crate::TreeIter"><code>TreeIter</code></a></p>
+<h5 id="returns-5" class="section-header"><a href="#returns-5">Returns</a></h5>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if the iter is valid, <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="false"><code>false</code></a> if the iter is invalid.</p>
+</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.reset_default_sort_func" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/tree_model_sort.rs.html#250" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.reset_default_sort_func" class="fnname">reset_default_sort_func</a>(&amp;self)</h4></div></summary><div class="docblock"><p>This resets the default sort function to be in the “unsorted” state. That
+is, it is in the same order as the child model. It will re-sort the model
+to be in the same order as the child model only if the <a href="../struct.TreeModelSort.html" title="crate::TreeModelSort"><code>TreeModelSort</code></a>
+is in “unsorted” state.</p>
+</div></details></div><h2 id="implementors" class="small-section-header">Implementors<a href="#implementors" class="anchor"></a></h2><div class="item-list" id="implementors-list"><div id="impl-TreeModelSortExt" class="impl has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/tree_model_sort.rs.html#253-328" title="goto source code">[src]</a></div><a href="#impl-TreeModelSortExt" class="anchor"></a><h3 class="code-header in-band">impl&lt;O:&nbsp;<a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.14/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.TreeModelSort.html" title="struct gtk4::TreeModelSort">TreeModelSort</a>&gt;&gt; <a class="trait" href="trait.TreeModelSortExt.html" title="trait gtk4::prelude::TreeModelSortExt">TreeModelSortExt</a> for O</h3></div></div><script type="text/javascript" src="../../implementors/gtk4/prelude/trait.TreeModelSortExt.js" async></script></section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../" data-current-crate="gtk4" data-search-index-js="../../search-index.js" data-search-js="../../search.js"></div>
+    <script src="../../main.js"></script>
+</body></html>

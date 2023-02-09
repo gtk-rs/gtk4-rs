@@ -1,0 +1,147 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Trait containing manually implemented methods of `EntryBuffer`."><meta name="keywords" content="rust, rustlang, rust-lang, EntryBufferExtManual"><title>EntryBufferExtManual in gtk4::prelude - Rust</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-1f7d512b176f0f72.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Bold-124a1ca42af929b6.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-34efc64c5083af8d.css" id="mainThemeStyle"><link rel="stylesheet" id="themeStyle" href="../../static.files/light-4743e13df3dfe8c4.css"><link rel="stylesheet" disabled href="../../static.files/dark-0e1b889528bd466b.css"><link rel="stylesheet" disabled href="../../static.files/ayu-65289d5d067c7c66.css"><script id="default-settings" ></script><script src="../../static.files/storage-d43fa987303ecbbb.js"></script><script defer src="sidebar-items.js"></script><script defer src="../../static.files/main-4a084badb5778746.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-13285aec31fa243e.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc trait"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
+
+    function checkDocsLatestStable() {
+        function popup(msg, url) { return `
+            <style scoped="scoped">
+                .popup {
+                    max-width: 16em;
+                    background-color: #fff;
+                    position: fixed;
+                    z-index: 1;
+                    margin-left: auto;
+                    bottom: 1em;
+                    right: 1em;
+                    border-radius: 5px;
+                    box-shadow: 1px 1px 4px #777;
+                }
+
+                .popup a.version {
+                    color: #e57300;
+                    padding: 0.6em 1em;
+                    display: block;
+                }
+                .popup a.version:hover {
+                    color: #b25900;
+                }
+
+                .popup a.close {
+                    color: white;
+                    background: grey;
+                    border-radius: 99px;
+                    display: inline-block;
+                    width: 19px;
+                    line-height: 19px;
+                    font-weight: bold;
+                    text-align: center;
+                    margin: 0.6em;
+                    float: right;
+                }
+                .popup a.close:hover {
+                    background: black;
+                }
+            </style>
+            <section class="popup" id="gir_docs_popup">
+                <a class="close" href="#" onclick="document.getElementById('gir_docs_popup').remove(); return false">×</a>
+                <a class="version" href="https://gtk-rs.org/gtk4-rs/stable/latest/docs">
+                    ⚠ ${msg}
+                </a>
+            </section>
+        ` };
+
+        if ("0.5" == "master") {
+            document.body.insertAdjacentHTML(
+                'beforeend',
+                popup("This is the development version. Go to latest stable version.", "stable/latest")
+            );
+        } else {
+            fetch('https://gtk-rs.org/gtk4-rs/LATEST_RELEASE_BRANCH')
+                .then(response => response.text())
+                .then(latest_branch => {
+                    if (latest_branch.trim() != "0.5") {
+                        document.body.insertAdjacentHTML(
+                            'beforeend',
+                            popup("This version is outdated. Go to latest version.", "stable/latest")
+                        );
+                    }
+                });
+        }
+    }
+</script>
+
+
+<nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../gtk4/index.html"><div class="logo-container"><img class="rust-logo" src="../../static.files/rust-logo-151179464ae7ed46.svg" alt="logo"></div></a><h2></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../gtk4/index.html"><div class="logo-container"><img class="rust-logo" src="../../static.files/rust-logo-151179464ae7ed46.svg" alt="logo"></div></a><h2 class="location"><a href="#">EntryBufferExtManual</a></h2><div class="sidebar-elems"><section><h3><a href="#required-methods">Required Methods</a></h3><ul class="block"><li><a href="#tymethod.bytes">bytes</a></li><li><a href="#tymethod.delete_text">delete_text</a></li><li><a href="#tymethod.insert_text">insert_text</a></li><li><a href="#tymethod.length">length</a></li><li><a href="#tymethod.max_length">max_length</a></li><li><a href="#tymethod.set_max_length">set_max_length</a></li><li><a href="#tymethod.set_text">set_text</a></li><li><a href="#tymethod.text">text</a></li></ul><h3><a href="#implementors">Implementors</a></h3></section><h2><a href="index.html">In gtk4::prelude</a></h2></div></nav><main><div class="width-limiter"><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-5ec35bf9ca753509.svg"></a></div></form></nav><section id="main-content" class="content"><div class="main-heading"><h1 class="fqn">Trait <a href="../index.html">gtk4</a>::<wbr><a href="index.html">prelude</a>::<wbr><a class="trait" href="#">EntryBufferExtManual</a><button id="copy-path" onclick="copy_path(this)" title="Copy item path to clipboard"><img src="../../static.files/clipboard-7571035ce49a181d.svg" width="19" height="18" alt="Copy item path"></button></h1><span class="out-of-band"><a class="srclink" href="../../src/gtk4/entry_buffer.rs.html#34-147">source</a> · <button id="toggle-all-docs" title="collapse all docs">[<span>&#x2212;</span>]</button></span></div><div class="item-decl"><pre class="rust trait"><code>pub trait EntryBufferExtManual: 'static {
+    fn <a href="#tymethod.delete_text" class="fn">delete_text</a>(&amp;self, position: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u16.html">u16</a>, n_chars: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u16.html">u16</a>&gt;) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u16.html">u16</a>;
+<span class="item-spacer"></span>    fn <a href="#tymethod.bytes" class="fn">bytes</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.usize.html">usize</a>;
+<span class="item-spacer"></span>    fn <a href="#tymethod.length" class="fn">length</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u16.html">u16</a>;
+<span class="item-spacer"></span>    fn <a href="#tymethod.max_length" class="fn">max_length</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u16.html">u16</a>&gt;;
+<span class="item-spacer"></span>    fn <a href="#tymethod.text" class="fn">text</a>(&amp;self) -&gt; <a class="struct" href="https://doc.rust-lang.org/nightly/alloc/string/struct.String.html" title="struct alloc::string::String">String</a>;
+<span class="item-spacer"></span>    fn <a href="#tymethod.insert_text" class="fn">insert_text</a>(&amp;self, position: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u16.html">u16</a>, chars: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u16.html">u16</a>;
+<span class="item-spacer"></span>    fn <a href="#tymethod.set_max_length" class="fn">set_max_length</a>(&amp;self, max_length: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u16.html">u16</a>&gt;);
+<span class="item-spacer"></span>    fn <a href="#tymethod.set_text" class="fn">set_text</a>(&amp;self, chars: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>);
+}</code></pre></div><details class="rustdoc-toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>Trait containing manually implemented methods of <a href="../struct.EntryBuffer.html"><code>EntryBuffer</code></a>.</p>
+</div></details><h2 id="required-methods" class="small-section-header">Required Methods<a href="#required-methods" class="anchor">§</a></h2><div class="methods"><details class="rustdoc-toggle method-toggle" open><summary><section id="tymethod.delete_text" class="method has-srclink"><a class="srclink rightside" href="../../src/gtk4/entry_buffer.rs.html#55">source</a><h4 class="code-header">fn <a href="#tymethod.delete_text" class="fn">delete_text</a>(&amp;self, position: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u16.html">u16</a>, n_chars: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u16.html">u16</a>&gt;) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u16.html">u16</a></h4></section></summary><div class="docblock"><p>Deletes a sequence of characters from the buffer.</p>
+<p>@n_chars characters are deleted starting at @position.
+If @n_chars is negative, then all characters until the
+end of the text are deleted.</p>
+<p>If @position or @n_chars are out of bounds, then they
+are coerced to sane values.</p>
+<p>Note that the positions are specified in characters,
+not bytes.</p>
+<h6 id="position"><a href="#position"><code>position</code></a></h6>
+<p>position at which to delete text</p>
+<h6 id="n_chars"><a href="#n_chars"><code>n_chars</code></a></h6>
+<p>number of characters to delete</p>
+<h5 id="returns"><a href="#returns">Returns</a></h5>
+<p>The number of characters deleted.</p>
+</div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="tymethod.bytes" class="method has-srclink"><a class="srclink rightside" href="../../src/gtk4/entry_buffer.rs.html#66">source</a><h4 class="code-header">fn <a href="#tymethod.bytes" class="fn">bytes</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.usize.html">usize</a></h4></section></summary><div class="docblock"><p>Retrieves the length in bytes of the buffer.</p>
+<p>See <a href="trait.EntryBufferExtManual.html#tymethod.length" title="crate::prelude::EntryBufferExtManual::length()"><code>EntryBufferExtManual::length()</code></a>.</p>
+<h5 id="returns-1"><a href="#returns-1">Returns</a></h5>
+<p>The byte length of the buffer.</p>
+</div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="tymethod.length" class="method has-srclink"><a class="srclink rightside" href="../../src/gtk4/entry_buffer.rs.html#75">source</a><h4 class="code-header">fn <a href="#tymethod.length" class="fn">length</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u16.html">u16</a></h4></section></summary><div class="docblock"><p>Retrieves the length in characters of the buffer.</p>
+<h5 id="returns-2"><a href="#returns-2">Returns</a></h5>
+<p>The number of characters in the buffer.</p>
+</div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="tymethod.max_length" class="method has-srclink"><a class="srclink rightside" href="../../src/gtk4/entry_buffer.rs.html#85">source</a><h4 class="code-header">fn <a href="#tymethod.max_length" class="fn">max_length</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u16.html">u16</a>&gt;</h4></section></summary><div class="docblock"><p>Retrieves the maximum allowed length of the text in @self.</p>
+<h5 id="returns-3"><a href="#returns-3">Returns</a></h5>
+<p>the maximum allowed number of characters
+in <a href="../struct.EntryBuffer.html" title="crate::EntryBuffer"><code>EntryBuffer</code></a>, or 0 if there is no maximum.</p>
+</div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="tymethod.text" class="method has-srclink"><a class="srclink rightside" href="../../src/gtk4/entry_buffer.rs.html#99">source</a><h4 class="code-header">fn <a href="#tymethod.text" class="fn">text</a>(&amp;self) -&gt; <a class="struct" href="https://doc.rust-lang.org/nightly/alloc/string/struct.String.html" title="struct alloc::string::String">String</a></h4></section></summary><div class="docblock"><p>Retrieves the contents of the buffer.</p>
+<p>The memory pointer returned by this call will not change
+unless this object emits a signal, or is finalized.</p>
+<h5 id="returns-4"><a href="#returns-4">Returns</a></h5>
+<p>a pointer to the contents of the widget as a
+string. This string points to internally allocated storage
+in the buffer and must not be freed, modified or stored.</p>
+</div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="tymethod.insert_text" class="method has-srclink"><a class="srclink rightside" href="../../src/gtk4/entry_buffer.rs.html#121">source</a><h4 class="code-header">fn <a href="#tymethod.insert_text" class="fn">insert_text</a>(&amp;self, position: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u16.html">u16</a>, chars: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u16.html">u16</a></h4></section></summary><div class="docblock"><p>Inserts @n_chars characters of @chars into the contents of the
+buffer, at position @position.</p>
+<p>If @n_chars is negative, then characters from chars will be inserted
+until a null-terminator is found. If @position or @n_chars are out of
+bounds, or the maximum buffer text length is exceeded, then they are
+coerced to sane values.</p>
+<p>Note that the position and length are in characters, not in bytes.</p>
+<h6 id="position-1"><a href="#position-1"><code>position</code></a></h6>
+<p>the position at which to insert text.</p>
+<h6 id="chars"><a href="#chars"><code>chars</code></a></h6>
+<p>the text to insert into the buffer.</p>
+<h6 id="n_chars-1"><a href="#n_chars-1"><code>n_chars</code></a></h6>
+<p>the length of the text in characters, or -1</p>
+<h5 id="returns-5"><a href="#returns-5">Returns</a></h5>
+<p>The number of characters actually inserted.</p>
+</div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="tymethod.set_max_length" class="method has-srclink"><a class="srclink rightside" href="../../src/gtk4/entry_buffer.rs.html#132">source</a><h4 class="code-header">fn <a href="#tymethod.set_max_length" class="fn">set_max_length</a>(&amp;self, max_length: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u16.html">u16</a>&gt;)</h4></section></summary><div class="docblock"><p>Sets the maximum allowed length of the contents of the buffer.</p>
+<p>If the current contents are longer than the given length, then
+they will be truncated to fit.</p>
+<h6 id="max_length"><a href="#max_length"><code>max_length</code></a></h6>
+<p>the maximum length of the entry buffer, or 0 for no maximum.
+(other than the maximum length of entries.) The value passed in will
+be clamped to the range 0-65536.</p>
+</div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="tymethod.set_text" class="method has-srclink"><a class="srclink rightside" href="../../src/gtk4/entry_buffer.rs.html#146">source</a><h4 class="code-header">fn <a href="#tymethod.set_text" class="fn">set_text</a>(&amp;self, chars: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>)</h4></section></summary><div class="docblock"><p>Sets the text in the buffer.</p>
+<p>This is roughly equivalent to calling
+<a href="trait.EntryBufferExtManual.html#tymethod.delete_text" title="crate::prelude::EntryBufferExtManual::delete_text()"><code>EntryBufferExtManual::delete_text()</code></a> and
+<a href="trait.EntryBufferExtManual.html#tymethod.insert_text" title="crate::prelude::EntryBufferExtManual::insert_text()"><code>EntryBufferExtManual::insert_text()</code></a>.</p>
+<p>Note that @n_chars is in characters, not in bytes.</p>
+<h6 id="chars-1"><a href="#chars-1"><code>chars</code></a></h6>
+<p>the new text</p>
+<h6 id="n_chars-2"><a href="#n_chars-2"><code>n_chars</code></a></h6>
+<p>the number of characters in @text, or -1</p>
+</div></details></div><h2 id="implementors" class="small-section-header">Implementors<a href="#implementors" class="anchor">§</a></h2><div id="implementors-list"><section id="impl-EntryBufferExtManual-for-O" class="impl has-srclink"><a class="srclink rightside" href="../../src/gtk4/entry_buffer.rs.html#160-230">source</a><a href="#impl-EntryBufferExtManual-for-O" class="anchor">§</a><h3 class="code-header">impl&lt;O:&nbsp;<a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.16/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.EntryBuffer.html" title="struct gtk4::EntryBuffer">EntryBuffer</a>&gt;&gt; <a class="trait" href="trait.EntryBufferExtManual.html" title="trait gtk4::prelude::EntryBufferExtManual">EntryBufferExtManual</a> for O</h3></section></div><script src="../../implementors/gtk4/entry_buffer/trait.EntryBufferExtManual.js" async></script></section></div></main><div id="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.68.0-nightly (77429957a 2023-01-01)" data-search-js="search-181581080540673f.js" data-settings-js="settings-bebeae96e00e4617.js" data-settings-css="settings-58836c674e2f7bd2.css" ></div></body></html>

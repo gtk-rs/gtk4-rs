@@ -1,0 +1,140 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Trait containing all [`struct@TreeModelSort`] methods."><meta name="keywords" content="rust, rustlang, rust-lang, TreeModelSortExt"><title>TreeModelSortExt in gtk4::prelude - Rust</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-1f7d512b176f0f72.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Bold-124a1ca42af929b6.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-34efc64c5083af8d.css" id="mainThemeStyle"><link rel="stylesheet" id="themeStyle" href="../../static.files/light-4743e13df3dfe8c4.css"><link rel="stylesheet" disabled href="../../static.files/dark-0e1b889528bd466b.css"><link rel="stylesheet" disabled href="../../static.files/ayu-65289d5d067c7c66.css"><script id="default-settings" ></script><script src="../../static.files/storage-d43fa987303ecbbb.js"></script><script defer src="sidebar-items.js"></script><script defer src="../../static.files/main-4a084badb5778746.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-13285aec31fa243e.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc trait"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
+
+    function checkDocsLatestStable() {
+        function popup(msg, url) { return `
+            <style scoped="scoped">
+                .popup {
+                    max-width: 16em;
+                    background-color: #fff;
+                    position: fixed;
+                    z-index: 1;
+                    margin-left: auto;
+                    bottom: 1em;
+                    right: 1em;
+                    border-radius: 5px;
+                    box-shadow: 1px 1px 4px #777;
+                }
+
+                .popup a.version {
+                    color: #e57300;
+                    padding: 0.6em 1em;
+                    display: block;
+                }
+                .popup a.version:hover {
+                    color: #b25900;
+                }
+
+                .popup a.close {
+                    color: white;
+                    background: grey;
+                    border-radius: 99px;
+                    display: inline-block;
+                    width: 19px;
+                    line-height: 19px;
+                    font-weight: bold;
+                    text-align: center;
+                    margin: 0.6em;
+                    float: right;
+                }
+                .popup a.close:hover {
+                    background: black;
+                }
+            </style>
+            <section class="popup" id="gir_docs_popup">
+                <a class="close" href="#" onclick="document.getElementById('gir_docs_popup').remove(); return false">×</a>
+                <a class="version" href="https://gtk-rs.org/gtk4-rs/stable/latest/docs">
+                    ⚠ ${msg}
+                </a>
+            </section>
+        ` };
+
+        if ("0.5" == "master") {
+            document.body.insertAdjacentHTML(
+                'beforeend',
+                popup("This is the development version. Go to latest stable version.", "stable/latest")
+            );
+        } else {
+            fetch('https://gtk-rs.org/gtk4-rs/LATEST_RELEASE_BRANCH')
+                .then(response => response.text())
+                .then(latest_branch => {
+                    if (latest_branch.trim() != "0.5") {
+                        document.body.insertAdjacentHTML(
+                            'beforeend',
+                            popup("This version is outdated. Go to latest version.", "stable/latest")
+                        );
+                    }
+                });
+        }
+    }
+</script>
+
+
+<nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../gtk4/index.html"><div class="logo-container"><img class="rust-logo" src="../../static.files/rust-logo-151179464ae7ed46.svg" alt="logo"></div></a><h2></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../gtk4/index.html"><div class="logo-container"><img class="rust-logo" src="../../static.files/rust-logo-151179464ae7ed46.svg" alt="logo"></div></a><h2 class="location"><a href="#">TreeModelSortExt</a></h2><div class="sidebar-elems"><section><h3><a href="#required-methods">Required Methods</a></h3><ul class="block"><li><a href="#tymethod.clear_cache">clear_cache</a></li><li><a href="#tymethod.convert_child_iter_to_iter">convert_child_iter_to_iter</a></li><li><a href="#tymethod.convert_child_path_to_path">convert_child_path_to_path</a></li><li><a href="#tymethod.convert_iter_to_child_iter">convert_iter_to_child_iter</a></li><li><a href="#tymethod.convert_path_to_child_path">convert_path_to_child_path</a></li><li><a href="#tymethod.iter_is_valid">iter_is_valid</a></li><li><a href="#tymethod.model">model</a></li><li><a href="#tymethod.reset_default_sort_func">reset_default_sort_func</a></li></ul><h3><a href="#implementors">Implementors</a></h3></section><h2><a href="index.html">In gtk4::prelude</a></h2></div></nav><main><div class="width-limiter"><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-5ec35bf9ca753509.svg"></a></div></form></nav><section id="main-content" class="content"><div class="main-heading"><h1 class="fqn">Trait <a href="../index.html">gtk4</a>::<wbr><a href="index.html">prelude</a>::<wbr><a class="trait" href="#">TreeModelSortExt</a><button id="copy-path" onclick="copy_path(this)" title="Copy item path to clipboard"><img src="../../static.files/clipboard-7571035ce49a181d.svg" width="19" height="18" alt="Copy item path"></button></h1><span class="out-of-band"><a class="srclink" href="../../src/gtk4/auto/tree_model_sort.rs.html#159-280">source</a> · <button id="toggle-all-docs" title="collapse all docs">[<span>&#x2212;</span>]</button></span></div><div class="item-decl"><pre class="rust trait"><code>pub trait TreeModelSortExt: 'static {
+    fn <a href="#tymethod.clear_cache" class="fn">clear_cache</a>(&amp;self);
+<span class="item-spacer"></span>    fn <a href="#tymethod.convert_child_iter_to_iter" class="fn">convert_child_iter_to_iter</a>(<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;self,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;child_iter: &amp;<a class="struct" href="../struct.TreeIter.html" title="struct gtk4::TreeIter">TreeIter</a><br>&nbsp;&nbsp;&nbsp;&nbsp;) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../struct.TreeIter.html" title="struct gtk4::TreeIter">TreeIter</a>&gt;;
+<span class="item-spacer"></span>    fn <a href="#tymethod.convert_child_path_to_path" class="fn">convert_child_path_to_path</a>(<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;self,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;child_path: &amp;<a class="struct" href="../struct.TreePath.html" title="struct gtk4::TreePath">TreePath</a><br>&nbsp;&nbsp;&nbsp;&nbsp;) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../struct.TreePath.html" title="struct gtk4::TreePath">TreePath</a>&gt;;
+<span class="item-spacer"></span>    fn <a href="#tymethod.convert_iter_to_child_iter" class="fn">convert_iter_to_child_iter</a>(&amp;self, sorted_iter: &amp;<a class="struct" href="../struct.TreeIter.html" title="struct gtk4::TreeIter">TreeIter</a>) -&gt; <a class="struct" href="../struct.TreeIter.html" title="struct gtk4::TreeIter">TreeIter</a>;
+<span class="item-spacer"></span>    fn <a href="#tymethod.convert_path_to_child_path" class="fn">convert_path_to_child_path</a>(<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;self,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sorted_path: &amp;<a class="struct" href="../struct.TreePath.html" title="struct gtk4::TreePath">TreePath</a><br>&nbsp;&nbsp;&nbsp;&nbsp;) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../struct.TreePath.html" title="struct gtk4::TreePath">TreePath</a>&gt;;
+<span class="item-spacer"></span>    fn <a href="#tymethod.model" class="fn">model</a>(&amp;self) -&gt; <a class="struct" href="../struct.TreeModel.html" title="struct gtk4::TreeModel">TreeModel</a>;
+<span class="item-spacer"></span>    fn <a href="#tymethod.iter_is_valid" class="fn">iter_is_valid</a>(&amp;self, iter: &amp;<a class="struct" href="../struct.TreeIter.html" title="struct gtk4::TreeIter">TreeIter</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>;
+<span class="item-spacer"></span>    fn <a href="#tymethod.reset_default_sort_func" class="fn">reset_default_sort_func</a>(&amp;self);
+}</code></pre></div><details class="rustdoc-toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>Trait containing all <a href="../struct.TreeModelSort.html" title="TreeModelSort"><code>TreeModelSort</code></a> methods.</p>
+<h2 id="implementors-1"><a href="#implementors-1">Implementors</a></h2>
+<p><a href="../struct.TreeModelSort.html" title="crate::TreeModelSort"><code>TreeModelSort</code></a></p>
+</div></details><h2 id="required-methods" class="small-section-header">Required Methods<a href="#required-methods" class="anchor">§</a></h2><div class="methods"><details class="rustdoc-toggle method-toggle" open><summary><section id="tymethod.clear_cache" class="method has-srclink"><a class="srclink rightside" href="../../src/gtk4/auto/tree_model_sort.rs.html#171">source</a><h4 class="code-header">fn <a href="#tymethod.clear_cache" class="fn">clear_cache</a>(&amp;self)</h4></section></summary><div class="docblock"><p>This function should almost never be called.  It clears the @self
+of any cached iterators that haven’t been reffed with
+gtk_tree_model_ref_node().  This might be useful if the child model being
+sorted is static (and doesn’t change often) and there has been a lot of
+unreffed access to nodes.  As a side effect of this function, all unreffed
+iters will be invalid.</p>
+<h5 id="deprecated-since-410"><a href="#deprecated-since-410">Deprecated since 4.10</a></h5></div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="tymethod.convert_child_iter_to_iter" class="method has-srclink"><a class="srclink rightside" href="../../src/gtk4/auto/tree_model_sort.rs.html#191">source</a><h4 class="code-header">fn <a href="#tymethod.convert_child_iter_to_iter" class="fn">convert_child_iter_to_iter</a>(&amp;self, child_iter: &amp;<a class="struct" href="../struct.TreeIter.html" title="struct gtk4::TreeIter">TreeIter</a>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../struct.TreeIter.html" title="struct gtk4::TreeIter">TreeIter</a>&gt;</h4></section></summary><div class="docblock"><p>Sets @sort_iter to point to the row in @self that corresponds to
+the row pointed at by @child_iter.  If @sort_iter was not set, <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="false"><code>false</code></a>
+is returned.  Note: a boolean is only returned since 2.14.</p>
+<h5 id="deprecated-since-410-1"><a href="#deprecated-since-410-1">Deprecated since 4.10</a></h5><h6 id="child_iter"><a href="#child_iter"><code>child_iter</code></a></h6>
+<p>A valid <a href="../struct.TreeIter.html" title="crate::TreeIter"><code>TreeIter</code></a> pointing to a row on the child model</p>
+<h5 id="returns"><a href="#returns">Returns</a></h5>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a>, if @sort_iter was set, i.e. if @sort_iter is a
+valid iterator pointer to a visible row in the child model.</p>
+<h6 id="sort_iter"><a href="#sort_iter"><code>sort_iter</code></a></h6>
+<p>An uninitialized <a href="../struct.TreeIter.html" title="crate::TreeIter"><code>TreeIter</code></a></p>
+</div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="tymethod.convert_child_path_to_path" class="method has-srclink"><a class="srclink rightside" href="../../src/gtk4/auto/tree_model_sort.rs.html#208">source</a><h4 class="code-header">fn <a href="#tymethod.convert_child_path_to_path" class="fn">convert_child_path_to_path</a>(&amp;self, child_path: &amp;<a class="struct" href="../struct.TreePath.html" title="struct gtk4::TreePath">TreePath</a>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../struct.TreePath.html" title="struct gtk4::TreePath">TreePath</a>&gt;</h4></section></summary><div class="docblock"><p>Converts @child_path to a path relative to @self.  That is,
+@child_path points to a path in the child model.  The returned path will
+point to the same row in the sorted model.  If @child_path isn’t a valid
+path on the child model, then <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a> is returned.</p>
+<h5 id="deprecated-since-410-2"><a href="#deprecated-since-410-2">Deprecated since 4.10</a></h5><h6 id="child_path"><a href="#child_path"><code>child_path</code></a></h6>
+<p>A <a href="../struct.TreePath.html" title="crate::TreePath"><code>TreePath</code></a> to convert</p>
+<h5 id="returns-1"><a href="#returns-1">Returns</a></h5>
+<p>A newly allocated <a href="../struct.TreePath.html" title="crate::TreePath"><code>TreePath</code></a></p>
+</div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="tymethod.convert_iter_to_child_iter" class="method has-srclink"><a class="srclink rightside" href="../../src/gtk4/auto/tree_model_sort.rs.html#224">source</a><h4 class="code-header">fn <a href="#tymethod.convert_iter_to_child_iter" class="fn">convert_iter_to_child_iter</a>(&amp;self, sorted_iter: &amp;<a class="struct" href="../struct.TreeIter.html" title="struct gtk4::TreeIter">TreeIter</a>) -&gt; <a class="struct" href="../struct.TreeIter.html" title="struct gtk4::TreeIter">TreeIter</a></h4></section></summary><div class="docblock"><p>Sets @child_iter to point to the row pointed to by @sorted_iter.</p>
+<h5 id="deprecated-since-410-3"><a href="#deprecated-since-410-3">Deprecated since 4.10</a></h5><h6 id="sorted_iter"><a href="#sorted_iter"><code>sorted_iter</code></a></h6>
+<p>A valid <a href="../struct.TreeIter.html" title="crate::TreeIter"><code>TreeIter</code></a> pointing to a row on @self.</p>
+<h5 id="returns-2"><a href="#returns-2">Returns</a></h5><h6 id="child_iter-1"><a href="#child_iter-1"><code>child_iter</code></a></h6>
+<p>An uninitialized <a href="../struct.TreeIter.html" title="crate::TreeIter"><code>TreeIter</code></a></p>
+</div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="tymethod.convert_path_to_child_path" class="method has-srclink"><a class="srclink rightside" href="../../src/gtk4/auto/tree_model_sort.rs.html#242">source</a><h4 class="code-header">fn <a href="#tymethod.convert_path_to_child_path" class="fn">convert_path_to_child_path</a>(&amp;self, sorted_path: &amp;<a class="struct" href="../struct.TreePath.html" title="struct gtk4::TreePath">TreePath</a>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../struct.TreePath.html" title="struct gtk4::TreePath">TreePath</a>&gt;</h4></section></summary><div class="docblock"><p>Converts @sorted_path to a path on the child model of @self.
+That is, @sorted_path points to a location in @self.  The
+returned path will point to the same location in the model not being
+sorted.  If @sorted_path does not point to a location in the child model,
+<a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a> is returned.</p>
+<h5 id="deprecated-since-410-4"><a href="#deprecated-since-410-4">Deprecated since 4.10</a></h5><h6 id="sorted_path"><a href="#sorted_path"><code>sorted_path</code></a></h6>
+<p>A <a href="../struct.TreePath.html" title="crate::TreePath"><code>TreePath</code></a> to convert</p>
+<h5 id="returns-3"><a href="#returns-3">Returns</a></h5>
+<p>A newly allocated <a href="../struct.TreePath.html" title="crate::TreePath"><code>TreePath</code></a></p>
+</div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="tymethod.model" class="method has-srclink"><a class="srclink rightside" href="../../src/gtk4/auto/tree_model_sort.rs.html#251">source</a><h4 class="code-header">fn <a href="#tymethod.model" class="fn">model</a>(&amp;self) -&gt; <a class="struct" href="../struct.TreeModel.html" title="struct gtk4::TreeModel">TreeModel</a></h4></section></summary><div class="docblock"><p>Returns the model the <a href="../struct.TreeModelSort.html" title="crate::TreeModelSort"><code>TreeModelSort</code></a> is sorting.</p>
+<h5 id="returns-4"><a href="#returns-4">Returns</a></h5>
+<p>the “child model” being sorted</p>
+</div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="tymethod.iter_is_valid" class="method has-srclink"><a class="srclink rightside" href="../../src/gtk4/auto/tree_model_sort.rs.html#268">source</a><h4 class="code-header">fn <a href="#tymethod.iter_is_valid" class="fn">iter_is_valid</a>(&amp;self, iter: &amp;<a class="struct" href="../struct.TreeIter.html" title="struct gtk4::TreeIter">TreeIter</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></section></summary><div class="docblock"><blockquote>
+<p>This function is slow. Only use it for debugging and/or testing
+purposes.</p>
+</blockquote>
+<p>Checks if the given iter is a valid iter for this <a href="../struct.TreeModelSort.html" title="crate::TreeModelSort"><code>TreeModelSort</code></a>.</p>
+<h5 id="deprecated-since-410-5"><a href="#deprecated-since-410-5">Deprecated since 4.10</a></h5><h6 id="iter"><a href="#iter"><code>iter</code></a></h6>
+<p>A <a href="../struct.TreeIter.html" title="crate::TreeIter"><code>TreeIter</code></a></p>
+<h5 id="returns-5"><a href="#returns-5">Returns</a></h5>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if the iter is valid, <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="false"><code>false</code></a> if the iter is invalid.</p>
+</div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="tymethod.reset_default_sort_func" class="method has-srclink"><a class="srclink rightside" href="../../src/gtk4/auto/tree_model_sort.rs.html#279">source</a><h4 class="code-header">fn <a href="#tymethod.reset_default_sort_func" class="fn">reset_default_sort_func</a>(&amp;self)</h4></section></summary><div class="docblock"><p>This resets the default sort function to be in the “unsorted” state.  That
+is, it is in the same order as the child model. It will re-sort the model
+to be in the same order as the child model only if the <a href="../struct.TreeModelSort.html" title="crate::TreeModelSort"><code>TreeModelSort</code></a>
+is in “unsorted” state.</p>
+<h5 id="deprecated-since-410-6"><a href="#deprecated-since-410-6">Deprecated since 4.10</a></h5></div></details></div><h2 id="implementors" class="small-section-header">Implementors<a href="#implementors" class="anchor">§</a></h2><div id="implementors-list"><section id="impl-TreeModelSortExt-for-O" class="impl has-srclink"><a class="srclink rightside" href="../../src/gtk4/auto/tree_model_sort.rs.html#282-357">source</a><a href="#impl-TreeModelSortExt-for-O" class="anchor">§</a><h3 class="code-header">impl&lt;O:&nbsp;<a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.16/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.TreeModelSort.html" title="struct gtk4::TreeModelSort">TreeModelSort</a>&gt;&gt; <a class="trait" href="trait.TreeModelSortExt.html" title="trait gtk4::prelude::TreeModelSortExt">TreeModelSortExt</a> for O</h3></section></div><script src="../../implementors/gtk4/auto/tree_model_sort/trait.TreeModelSortExt.js" async></script></section></div></main><div id="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="gtk4" data-themes="" data-resource-suffix="" data-rustdoc-version="1.68.0-nightly (77429957a 2023-01-01)" data-search-js="search-181581080540673f.js" data-settings-js="settings-bebeae96e00e4617.js" data-settings-css="settings-58836c674e2f7bd2.css" ></div></body></html>

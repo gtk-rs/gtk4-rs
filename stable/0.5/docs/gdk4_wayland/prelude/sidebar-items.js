@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"trait":[["WaylandSurfaceExtManual","Trait containing manually implemented methods of `WaylandSurface`."]]};

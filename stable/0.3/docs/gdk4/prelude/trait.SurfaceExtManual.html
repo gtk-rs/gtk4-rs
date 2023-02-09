@@ -1,0 +1,112 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="API documentation for the Rust `SurfaceExtManual` trait in crate `gdk4`."><meta name="keywords" content="rust, rustlang, rust-lang, SurfaceExtManual"><title>SurfaceExtManual in gdk4::prelude - Rust</title><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled ><script id="default-settings" ></script><script src="../../storage.js"></script><script src="../../crates.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"><style type="text/css">#crate-search{background-image:url("../../down-arrow.svg");}</style></head><body class="rustdoc trait"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
+
+    function checkDocsLatestStable() {
+        function popup(msg, url) { return `
+            <style scoped="scoped">
+                .popup {
+                    max-width: 16em;
+                    background-color: #fff;
+                    position: fixed;
+                    z-index: 1;
+                    margin-left: auto;
+                    bottom: 1em;
+                    right: 1em;
+                    border-radius: 5px;
+                    box-shadow: 1px 1px 4px #777;
+                }
+
+                .popup a.version {
+                    color: #e57300;
+                    padding: 0.6em 1em;
+                    display: block;
+                }
+                .popup a.version:hover {
+                    color: #b25900;
+                }
+
+                .popup a.close {
+                    color: white;
+                    background: grey;
+                    border-radius: 99px;
+                    display: inline-block;
+                    width: 19px;
+                    line-height: 19px;
+                    font-weight: bold;
+                    text-align: center;
+                    margin: 0.6em;
+                    float: right;
+                }
+                .popup a.close:hover {
+                    background: black;
+                }
+            </style>
+            <section class="popup" id="gir_docs_popup">
+                <a class="close" href="#" onclick="document.getElementById('gir_docs_popup').remove(); return false">×</a>
+                <a class="version" href="https://gtk-rs.org/gtk4-rs/stable/latest/docs">
+                    ⚠ ${msg}
+                </a>
+            </section>
+        ` };
+
+        if ("0.3" == "master") {
+            document.body.insertAdjacentHTML(
+                'beforeend',
+                popup("This is the development version. Go to latest stable version.", "stable/latest")
+            );
+        } else {
+            fetch('https://gtk-rs.org/gtk4-rs/LATEST_RELEASE_BRANCH')
+                .then(response => response.text())
+                .then(latest_branch => {
+                    if (latest_branch.trim() != "0.3") {
+                        document.body.insertAdjacentHTML(
+                            'beforeend',
+                            popup("This version is outdated. Go to latest version.", "stable/latest")
+                        );
+                    }
+                });
+        }
+    }
+</script>
+
+
+<nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../gdk4/index.html'><div class='logo-container rust-logo'><img src='../../rust-logo.png' alt='logo'></div></a><h2 class="location">Trait SurfaceExtManual</h2><div class="sidebar-elems"><div class="block items"><h3 class="sidebar-title"><a href="#required-methods">Required Methods</a></h3><div class="sidebar-links"><a href="#tymethod.create_similar_surface">create_similar_surface</a><a href="#tymethod.translate_coordinates">translate_coordinates</a></div><h3 class="sidebar-title"><a href="#implementors">Implementors</a></h3></div><h2 class="location">Other items in<br><a href="../index.html">gdk4</a>::<wbr><a href="index.html">prelude</a></h2><div id="sidebar-vars" data-name="SurfaceExtManual" data-ty="trait" data-relpath=""></div><script defer src="sidebar-items.js"></script></div></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="18" height="18" alt="Pick another theme!" src="../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../settings.html" title="settings"><img width="18" height="18" alt="Change settings" src="../../wheel.svg"></a></div></form></nav><section id="main" class="content"><h1 class="fqn"><span class="in-band">Trait <a href="../index.html">gdk4</a>::<wbr><a href="index.html">prelude</a>::<wbr><a class="trait" href="#">SurfaceExtManual</a><button id="copy-path" onclick="copy_path(this)" title="Copy item path to clipboard"><img src="../../clipboard.svg" width="19" height="18" alt="Copy item path"></button></span><span class="out-of-band"><span id="render-detail"><a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">[<span class="inner">&#x2212;</span>]</a></span><a class="srclink" href="../../src/gdk4/surface.rs.html#7-59" title="goto source code">[src]</a></span></h1><div class="docblock type-decl"><pre class="rust trait"><code>pub trait SurfaceExtManual: 'static {
+    fn <a href="#tymethod.create_similar_surface" class="fnname">create_similar_surface</a>(<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;content: <a class="enum" href="https://gtk-rs.org/gtk-rs-core/stable/0.14/docs/cairo/enums/enum.Content.html" title="enum cairo::enums::Content">Content</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;width: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;height: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a><br>&nbsp;&nbsp;&nbsp;&nbsp;) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.14/docs/cairo/surface/struct.Surface.html" title="struct cairo::surface::Surface">Surface</a>&gt;;
+<div class="item-spacer"></div>    fn <a href="#tymethod.translate_coordinates" class="fnname">translate_coordinates</a>(&amp;self, to: &amp;<a class="struct" href="../struct.Surface.html" title="struct gdk4::Surface">Surface</a>, x: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>, y: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>;
+}</code></pre></div><h2 id="required-methods" class="small-section-header">Required methods<a href="#required-methods" class="anchor"></a></h2><div class="methods"><details class="rustdoc-toggle" open><summary><div id="tymethod.create_similar_surface" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gdk4/surface.rs.html#36-41" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.create_similar_surface" class="fnname">create_similar_surface</a>(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;content: <a class="enum" href="https://gtk-rs.org/gtk-rs-core/stable/0.14/docs/cairo/enums/enum.Content.html" title="enum cairo::enums::Content">Content</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;width: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;height: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a><br>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.14/docs/cairo/surface/struct.Surface.html" title="struct cairo::surface::Surface">Surface</a>&gt;</h4></div></summary><div class="docblock"><p>Create a new Cairo surface that is as compatible as possible with the
+given <code>self</code>.</p>
+<p>For example the new surface will have the same fallback resolution
+and font options as <code>self</code>. Generally, the new surface will also
+use the same backend as <code>self</code>, unless that is not possible for
+some reason. The type of the returned surface may be examined with
+<code>cairo_surface_get_type()</code>.</p>
+<p>Initially the surface contents are all 0 (transparent if contents
+have transparency, black otherwise.)</p>
+<p>This function always returns a valid pointer, but it will return a
+pointer to a “nil” surface if <code>other</code> is already in an error state
+or any other error occurs.</p>
+<h6 id="content" class="section-header"><a href="#content"><code>content</code></a></h6>
+<p>the content for the new surface</p>
+<h6 id="width" class="section-header"><a href="#width"><code>width</code></a></h6>
+<p>width of the new surface</p>
+<h6 id="height" class="section-header"><a href="#height"><code>height</code></a></h6>
+<p>height of the new surface</p>
+<h5 id="returns" class="section-header"><a href="#returns">Returns</a></h5>
+<p>a pointer to the newly allocated surface. The caller
+owns the surface and should call <code>cairo_surface_destroy()</code> when done
+with it.</p>
+</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.translate_coordinates" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gdk4/surface.rs.html#58" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.translate_coordinates" class="fnname">translate_coordinates</a>(&amp;self, to: &amp;<a class="struct" href="../struct.Surface.html" title="struct gdk4::Surface">Surface</a>, x: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>, y: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></div></summary><div class="docblock"><p>Translates coordinates between two surfaces.</p>
+<p>Note that this only works if <code>to</code> and <code>self</code> are popups or
+transient-for to the same toplevel (directly or indirectly).</p>
+<h6 id="to" class="section-header"><a href="#to"><code>to</code></a></h6>
+<p>the target surface</p>
+<h6 id="x" class="section-header"><a href="#x"><code>x</code></a></h6>
+<p>coordinates to translate</p>
+<h6 id="y" class="section-header"><a href="#y"><code>y</code></a></h6>
+<p>coordinates to translate</p>
+<h5 id="returns-1" class="section-header"><a href="#returns-1">Returns</a></h5>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if the coordinates were successfully translated</p>
+</div></details></div><h2 id="implementors" class="small-section-header">Implementors<a href="#implementors" class="anchor"></a></h2><div class="item-list" id="implementors-list"><div id="impl-SurfaceExtManual" class="impl has-srclink"><div class="rightside"><a class="srclink" href="../../src/gdk4/surface.rs.html#61-88" title="goto source code">[src]</a></div><a href="#impl-SurfaceExtManual" class="anchor"></a><h3 class="code-header in-band">impl&lt;O:&nbsp;<a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.14/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Surface.html" title="struct gdk4::Surface">Surface</a>&gt;&gt; <a class="trait" href="trait.SurfaceExtManual.html" title="trait gdk4::prelude::SurfaceExtManual">SurfaceExtManual</a> for O</h3></div></div><script type="text/javascript" src="../../implementors/gdk4/prelude/trait.SurfaceExtManual.js" async></script></section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../" data-current-crate="gdk4" data-search-index-js="../../search-index.js" data-search-js="../../search.js"></div>
+    <script src="../../main.js"></script>
+</body></html>

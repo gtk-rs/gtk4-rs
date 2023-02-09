@@ -1,0 +1,153 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Trait containing all [`struct@Box`] methods."><meta name="keywords" content="rust, rustlang, rust-lang, BoxExt"><title>BoxExt in gtk4::prelude - Rust</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script src="../../crates.js"></script><script defer src="../../main.js"></script>
+    <noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc trait"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
+
+    function checkDocsLatestStable() {
+        function popup(msg, url) { return `
+            <style scoped="scoped">
+                .popup {
+                    max-width: 16em;
+                    background-color: #fff;
+                    position: fixed;
+                    z-index: 1;
+                    margin-left: auto;
+                    bottom: 1em;
+                    right: 1em;
+                    border-radius: 5px;
+                    box-shadow: 1px 1px 4px #777;
+                }
+
+                .popup a.version {
+                    color: #e57300;
+                    padding: 0.6em 1em;
+                    display: block;
+                }
+                .popup a.version:hover {
+                    color: #b25900;
+                }
+
+                .popup a.close {
+                    color: white;
+                    background: grey;
+                    border-radius: 99px;
+                    display: inline-block;
+                    width: 19px;
+                    line-height: 19px;
+                    font-weight: bold;
+                    text-align: center;
+                    margin: 0.6em;
+                    float: right;
+                }
+                .popup a.close:hover {
+                    background: black;
+                }
+            </style>
+            <section class="popup" id="gir_docs_popup">
+                <a class="close" href="#" onclick="document.getElementById('gir_docs_popup').remove(); return false">×</a>
+                <a class="version" href="https://gtk-rs.org/gtk4-rs/stable/latest/docs">
+                    ⚠ ${msg}
+                </a>
+            </section>
+        ` };
+
+        if ("0.4" == "master") {
+            document.body.insertAdjacentHTML(
+                'beforeend',
+                popup("This is the development version. Go to latest stable version.", "stable/latest")
+            );
+        } else {
+            fetch('https://gtk-rs.org/gtk4-rs/LATEST_RELEASE_BRANCH')
+                .then(response => response.text())
+                .then(latest_branch => {
+                    if (latest_branch.trim() != "0.4") {
+                        document.body.insertAdjacentHTML(
+                            'beforeend',
+                            popup("This version is outdated. Go to latest version.", "stable/latest")
+                        );
+                    }
+                });
+        }
+    }
+</script>
+
+
+<nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../gtk4/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div>
+        </a><h2 class="location"></h2>
+    </nav>
+    <nav class="sidebar"><a class="sidebar-logo" href="../../gtk4/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div>
+        </a><h2 class="location"><a href="#">BoxExt</a></h2><div class="sidebar-elems"><section><div class="block"><h3 class="sidebar-title"><a href="#required-methods">Required Methods</a></h3><ul><li><a href="#tymethod.append">append</a></li><li><a href="#tymethod.baseline_position">baseline_position</a></li><li><a href="#tymethod.connect_baseline_position_notify">connect_baseline_position_notify</a></li><li><a href="#tymethod.connect_homogeneous_notify">connect_homogeneous_notify</a></li><li><a href="#tymethod.connect_spacing_notify">connect_spacing_notify</a></li><li><a href="#tymethod.insert_child_after">insert_child_after</a></li><li><a href="#tymethod.is_homogeneous">is_homogeneous</a></li><li><a href="#tymethod.prepend">prepend</a></li><li><a href="#tymethod.remove">remove</a></li><li><a href="#tymethod.reorder_child_after">reorder_child_after</a></li><li><a href="#tymethod.set_baseline_position">set_baseline_position</a></li><li><a href="#tymethod.set_homogeneous">set_homogeneous</a></li><li><a href="#tymethod.set_spacing">set_spacing</a></li><li><a href="#tymethod.spacing">spacing</a></li></ul></div><div class="block"><h3 class="sidebar-title"><a href="#implementors">Implementors</a></h3></div></section><h2 class="location"><a href="index.html">In gtk4::prelude</a></h2><div id="sidebar-vars" data-name="BoxExt" data-ty="trait" data-relpath=""></div><script defer src="sidebar-items.js"></script></div></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../gtk4/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><button type="button" id="help-button" title="help">?</button><div id="settings-menu" tabindex="-1">
+                                <a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div>
+                        </div></form></nav></div><section id="main-content" class="content"><div class="main-heading">
+    <h1 class="fqn"><span class="in-band">Trait <a href="../index.html">gtk4</a>::<wbr><a href="index.html">prelude</a>::<wbr><a class="trait" href="#">BoxExt</a><button id="copy-path" onclick="copy_path(this)" title="Copy item path to clipboard"><img src="../../clipboard.svg" width="19" height="18" alt="Copy item path"></button></span></h1><span class="out-of-band"><a class="srclink" href="../../src/gtk4/auto/box_.rs.html#549-656">source</a> · <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">[<span class="inner">&#x2212;</span>]</a></span></div><div class="docblock item-decl"><pre class="rust trait"><code>pub trait BoxExt: 'static {
+<details class="rustdoc-toggle type-contents-toggle"><summary class="hideme"><span>Show 14 methods</span></summary>    fn <a href="#tymethod.append" class="fnname">append</a>(&amp;self, child: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.15/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;);
+<span class="item-spacer"></span>    fn <a href="#tymethod.baseline_position" class="fnname">baseline_position</a>(&amp;self) -&gt; <a class="enum" href="../enum.BaselinePosition.html" title="enum gtk4::BaselinePosition">BaselinePosition</a>;
+<span class="item-spacer"></span>    fn <a href="#tymethod.is_homogeneous" class="fnname">is_homogeneous</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>;
+<span class="item-spacer"></span>    fn <a href="#tymethod.spacing" class="fnname">spacing</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>;
+<span class="item-spacer"></span>    fn <a href="#tymethod.insert_child_after" class="fnname">insert_child_after</a>(<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;child: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.15/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;, <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sibling: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.15/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;);
+<span class="item-spacer"></span>    fn <a href="#tymethod.prepend" class="fnname">prepend</a>(&amp;self, child: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.15/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;);
+<span class="item-spacer"></span>    fn <a href="#tymethod.remove" class="fnname">remove</a>(&amp;self, child: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.15/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;);
+<span class="item-spacer"></span>    fn <a href="#tymethod.reorder_child_after" class="fnname">reorder_child_after</a>(<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;child: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.15/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;, <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sibling: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.15/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;);
+<span class="item-spacer"></span>    fn <a href="#tymethod.set_baseline_position" class="fnname">set_baseline_position</a>(&amp;self, position: <a class="enum" href="../enum.BaselinePosition.html" title="enum gtk4::BaselinePosition">BaselinePosition</a>);
+<span class="item-spacer"></span>    fn <a href="#tymethod.set_homogeneous" class="fnname">set_homogeneous</a>(&amp;self, homogeneous: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>);
+<span class="item-spacer"></span>    fn <a href="#tymethod.set_spacing" class="fnname">set_spacing</a>(&amp;self, spacing: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>);
+<span class="item-spacer"></span>    fn <a href="#tymethod.connect_baseline_position_notify" class="fnname">connect_baseline_position_notify</a>&lt;F:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>Self) + 'static&gt;(<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;f: F<br>&nbsp;&nbsp;&nbsp;&nbsp;) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.15/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a>;
+<span class="item-spacer"></span>    fn <a href="#tymethod.connect_homogeneous_notify" class="fnname">connect_homogeneous_notify</a>&lt;F:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>Self) + 'static&gt;(<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;f: F<br>&nbsp;&nbsp;&nbsp;&nbsp;) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.15/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a>;
+<span class="item-spacer"></span>    fn <a href="#tymethod.connect_spacing_notify" class="fnname">connect_spacing_notify</a>&lt;F:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>Self) + 'static&gt;(<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;f: F<br>&nbsp;&nbsp;&nbsp;&nbsp;) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.15/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a>;
+</details>}</code></pre></div><details class="rustdoc-toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>Trait containing all <a href="../struct.Box.html" title="Box"><code>Box</code></a> methods.</p>
+<h2 id="implementors-1"><a href="#implementors-1">Implementors</a></h2>
+<p><a href="../struct.Box.html" title="crate::Box"><code>Box</code></a>, <a href="../struct.ShortcutsGroup.html" title="crate::ShortcutsGroup"><code>ShortcutsGroup</code></a>, <a href="../struct.ShortcutsSection.html" title="crate::ShortcutsSection"><code>ShortcutsSection</code></a></p>
+</div></details><h2 id="required-methods" class="small-section-header">Required Methods<a href="#required-methods" class="anchor"></a></h2><div class="methods"><details class="rustdoc-toggle" open><summary><div id="tymethod.append" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/box_.rs.html#554">source</a></div><h4 class="code-header">fn <a href="#tymethod.append" class="fnname">append</a>(&amp;self, child: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.15/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;)</h4></div></summary><div class="docblock"><p>Adds @child as the last child to @self.</p>
+<h6 id="child"><a href="#child"><code>child</code></a></h6>
+<p>the <a href="../struct.Widget.html" title="crate::Widget"><code>Widget</code></a> to append</p>
+</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.baseline_position" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/box_.rs.html#563">source</a></div><h4 class="code-header">fn <a href="#tymethod.baseline_position" class="fnname">baseline_position</a>(&amp;self) -&gt; <a class="enum" href="../enum.BaselinePosition.html" title="enum gtk4::BaselinePosition">BaselinePosition</a></h4></div></summary><div class="docblock"><p>Gets the value set by gtk_box_set_baseline_position().</p>
+<h5 id="returns"><a href="#returns">Returns</a></h5>
+<p>the baseline position</p>
+</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.is_homogeneous" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/box_.rs.html#573">source</a></div><h4 class="code-header">fn <a href="#tymethod.is_homogeneous" class="fnname">is_homogeneous</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></div></summary><div class="docblock"><p>Returns whether the box is homogeneous (all children are the
+same size).</p>
+<h5 id="returns-1"><a href="#returns-1">Returns</a></h5>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if the box is homogeneous.</p>
+</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.spacing" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/box_.rs.html#582">source</a></div><h4 class="code-header">fn <a href="#tymethod.spacing" class="fnname">spacing</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a></h4></div></summary><div class="docblock"><p>Gets the value set by gtk_box_set_spacing().</p>
+<h5 id="returns-2"><a href="#returns-2">Returns</a></h5>
+<p>spacing between children</p>
+</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.insert_child_after" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/box_.rs.html#593">source</a></div><h4 class="code-header">fn <a href="#tymethod.insert_child_after" class="fnname">insert_child_after</a>(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;child: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.15/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;, <br>&nbsp;&nbsp;&nbsp;&nbsp;sibling: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.15/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;&gt;<br>)</h4></div></summary><div class="docblock"><p>Inserts @child in the position after @sibling in the list
+of @self children.</p>
+<p>If @sibling is <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a>, insert @child at the first position.</p>
+<h6 id="child-1"><a href="#child-1"><code>child</code></a></h6>
+<p>the <a href="../struct.Widget.html" title="crate::Widget"><code>Widget</code></a> to insert</p>
+<h6 id="sibling"><a href="#sibling"><code>sibling</code></a></h6>
+<p>the sibling after which to insert @child</p>
+</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.prepend" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/box_.rs.html#599">source</a></div><h4 class="code-header">fn <a href="#tymethod.prepend" class="fnname">prepend</a>(&amp;self, child: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.15/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;)</h4></div></summary><div class="docblock"><p>Adds @child as the first child to @self.</p>
+<h6 id="child-2"><a href="#child-2"><code>child</code></a></h6>
+<p>the <a href="../struct.Widget.html" title="crate::Widget"><code>Widget</code></a> to prepend</p>
+</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.remove" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/box_.rs.html#609">source</a></div><h4 class="code-header">fn <a href="#tymethod.remove" class="fnname">remove</a>(&amp;self, child: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.15/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;)</h4></div></summary><div class="docblock"><p>Removes a child widget from @self.</p>
+<p>The child must have been added before with
+<a href="trait.BoxExt.html#tymethod.append" title="Self::append()"><code>append()</code></a>, <a href="trait.BoxExt.html#tymethod.prepend" title="Self::prepend()"><code>prepend()</code></a>, or
+<a href="trait.BoxExt.html#tymethod.insert_child_after" title="Self::insert_child_after()"><code>insert_child_after()</code></a>.</p>
+<h6 id="child-3"><a href="#child-3"><code>child</code></a></h6>
+<p>the child to remove</p>
+</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.reorder_child_after" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/box_.rs.html#620">source</a></div><h4 class="code-header">fn <a href="#tymethod.reorder_child_after" class="fnname">reorder_child_after</a>(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;child: &amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.15/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;, <br>&nbsp;&nbsp;&nbsp;&nbsp;sibling: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;impl <a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.15/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;&gt;<br>)</h4></div></summary><div class="docblock"><p>Moves @child to the position after @sibling in the list
+of @self children.</p>
+<p>If @sibling is <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a>, move @child to the first position.</p>
+<h6 id="child-4"><a href="#child-4"><code>child</code></a></h6>
+<p>the <a href="../struct.Widget.html" title="crate::Widget"><code>Widget</code></a> to move, must be a child of @self</p>
+<h6 id="sibling-1"><a href="#sibling-1"><code>sibling</code></a></h6>
+<p>the sibling to move @child after</p>
+</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.set_baseline_position" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/box_.rs.html#632">source</a></div><h4 class="code-header">fn <a href="#tymethod.set_baseline_position" class="fnname">set_baseline_position</a>(&amp;self, position: <a class="enum" href="../enum.BaselinePosition.html" title="enum gtk4::BaselinePosition">BaselinePosition</a>)</h4></div></summary><div class="docblock"><p>Sets the baseline position of a box.</p>
+<p>This affects only horizontal boxes with at least one baseline
+aligned child. If there is more vertical space available than
+requested, and the baseline is not allocated by the parent then
+@position is used to allocate the baseline with respect to the
+extra space available.</p>
+<h6 id="position"><a href="#position"><code>position</code></a></h6>
+<p>a <a href="../enum.BaselinePosition.html" title="crate::BaselinePosition"><code>BaselinePosition</code></a></p>
+</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.set_homogeneous" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/box_.rs.html#640">source</a></div><h4 class="code-header">fn <a href="#tymethod.set_homogeneous" class="fnname">set_homogeneous</a>(&amp;self, homogeneous: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>)</h4></div></summary><div class="docblock"><p>Sets whether or not all children of @self are given equal space
+in the box.</p>
+<h6 id="homogeneous"><a href="#homogeneous"><code>homogeneous</code></a></h6>
+<p>a boolean value, <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> to create equal allotments,
+<a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="false"><code>false</code></a> for variable allotments</p>
+</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.set_spacing" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/box_.rs.html#646">source</a></div><h4 class="code-header">fn <a href="#tymethod.set_spacing" class="fnname">set_spacing</a>(&amp;self, spacing: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>)</h4></div></summary><div class="docblock"><p>Sets the number of pixels to place between children of @self.</p>
+<h6 id="spacing"><a href="#spacing"><code>spacing</code></a></h6>
+<p>the number of pixels to put between children</p>
+</div></details><div id="tymethod.connect_baseline_position_notify" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/box_.rs.html#649">source</a></div><h4 class="code-header">fn <a href="#tymethod.connect_baseline_position_notify" class="fnname">connect_baseline_position_notify</a>&lt;F:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>Self) + 'static&gt;(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;f: F<br>) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.15/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></div><div id="tymethod.connect_homogeneous_notify" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/box_.rs.html#652">source</a></div><h4 class="code-header">fn <a href="#tymethod.connect_homogeneous_notify" class="fnname">connect_homogeneous_notify</a>&lt;F:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>Self) + 'static&gt;(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;f: F<br>) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.15/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></div><div id="tymethod.connect_spacing_notify" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/box_.rs.html#655">source</a></div><h4 class="code-header">fn <a href="#tymethod.connect_spacing_notify" class="fnname">connect_spacing_notify</a>&lt;F:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>Self) + 'static&gt;(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;f: F<br>) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.15/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></div></div><h2 id="implementors" class="small-section-header">Implementors<a href="#implementors" class="anchor"></a></h2><div class="item-list" id="implementors-list"><section id="impl-BoxExt" class="impl has-srclink"><span class="rightside"><a class="srclink" href="../../src/gtk4/auto/box_.rs.html#658-811">source</a></span><a href="#impl-BoxExt" class="anchor"></a><h3 class="code-header in-band">impl&lt;O:&nbsp;<a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.15/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Box.html" title="struct gtk4::Box">Box</a>&gt;&gt; <a class="trait" href="trait.BoxExt.html" title="trait gtk4::prelude::BoxExt">BoxExt</a> for O</h3></section></div><script type="text/javascript" src="../../implementors/gtk4/auto/box_/trait.BoxExt.js" data-ignore-extern-crates="" async></script></section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="gtk4" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.63.0-nightly (a6b8c6954 2022-06-03)" ></div>
+</body></html>

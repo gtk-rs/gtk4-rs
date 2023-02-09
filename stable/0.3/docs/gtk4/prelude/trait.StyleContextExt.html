@@ -1,0 +1,206 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Trait containing all [`struct@StyleContext`] methods."><meta name="keywords" content="rust, rustlang, rust-lang, StyleContextExt"><title>StyleContextExt in gtk4::prelude - Rust</title><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled ><script id="default-settings" ></script><script src="../../storage.js"></script><script src="../../crates.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"><style type="text/css">#crate-search{background-image:url("../../down-arrow.svg");}</style></head><body class="rustdoc trait"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
+
+    function checkDocsLatestStable() {
+        function popup(msg, url) { return `
+            <style scoped="scoped">
+                .popup {
+                    max-width: 16em;
+                    background-color: #fff;
+                    position: fixed;
+                    z-index: 1;
+                    margin-left: auto;
+                    bottom: 1em;
+                    right: 1em;
+                    border-radius: 5px;
+                    box-shadow: 1px 1px 4px #777;
+                }
+
+                .popup a.version {
+                    color: #e57300;
+                    padding: 0.6em 1em;
+                    display: block;
+                }
+                .popup a.version:hover {
+                    color: #b25900;
+                }
+
+                .popup a.close {
+                    color: white;
+                    background: grey;
+                    border-radius: 99px;
+                    display: inline-block;
+                    width: 19px;
+                    line-height: 19px;
+                    font-weight: bold;
+                    text-align: center;
+                    margin: 0.6em;
+                    float: right;
+                }
+                .popup a.close:hover {
+                    background: black;
+                }
+            </style>
+            <section class="popup" id="gir_docs_popup">
+                <a class="close" href="#" onclick="document.getElementById('gir_docs_popup').remove(); return false">×</a>
+                <a class="version" href="https://gtk-rs.org/gtk4-rs/stable/latest/docs">
+                    ⚠ ${msg}
+                </a>
+            </section>
+        ` };
+
+        if ("0.3" == "master") {
+            document.body.insertAdjacentHTML(
+                'beforeend',
+                popup("This is the development version. Go to latest stable version.", "stable/latest")
+            );
+        } else {
+            fetch('https://gtk-rs.org/gtk4-rs/LATEST_RELEASE_BRANCH')
+                .then(response => response.text())
+                .then(latest_branch => {
+                    if (latest_branch.trim() != "0.3") {
+                        document.body.insertAdjacentHTML(
+                            'beforeend',
+                            popup("This version is outdated. Go to latest version.", "stable/latest")
+                        );
+                    }
+                });
+        }
+    }
+</script>
+
+
+<nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../gtk4/index.html'><div class='logo-container rust-logo'><img src='../../rust-logo.png' alt='logo'></div></a><h2 class="location">Trait StyleContextExt</h2><div class="sidebar-elems"><div class="block items"><h3 class="sidebar-title"><a href="#required-methods">Required Methods</a></h3><div class="sidebar-links"><a href="#tymethod.add_class">add_class</a><a href="#tymethod.add_provider">add_provider</a><a href="#tymethod.border">border</a><a href="#tymethod.color">color</a><a href="#tymethod.connect_display_notify">connect_display_notify</a><a href="#tymethod.display">display</a><a href="#tymethod.has_class">has_class</a><a href="#tymethod.lookup_color">lookup_color</a><a href="#tymethod.margin">margin</a><a href="#tymethod.padding">padding</a><a href="#tymethod.remove_class">remove_class</a><a href="#tymethod.remove_provider">remove_provider</a><a href="#tymethod.restore">restore</a><a href="#tymethod.save">save</a><a href="#tymethod.scale">scale</a><a href="#tymethod.set_display">set_display</a><a href="#tymethod.set_scale">set_scale</a><a href="#tymethod.set_state">set_state</a><a href="#tymethod.state">state</a><a href="#tymethod.to_string">to_string</a></div><h3 class="sidebar-title"><a href="#implementors">Implementors</a></h3></div><h2 class="location">Other items in<br><a href="../index.html">gtk4</a>::<wbr><a href="index.html">prelude</a></h2><div id="sidebar-vars" data-name="StyleContextExt" data-ty="trait" data-relpath=""></div><script defer src="sidebar-items.js"></script></div></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="18" height="18" alt="Pick another theme!" src="../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../settings.html" title="settings"><img width="18" height="18" alt="Change settings" src="../../wheel.svg"></a></div></form></nav><section id="main" class="content"><h1 class="fqn"><span class="in-band">Trait <a href="../index.html">gtk4</a>::<wbr><a href="index.html">prelude</a>::<wbr><a class="trait" href="#">StyleContextExt</a><button id="copy-path" onclick="copy_path(this)" title="Copy item path to clipboard"><img src="../../clipboard.svg" width="19" height="18" alt="Copy item path"></button></span><span class="out-of-band"><span id="render-detail"><a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">[<span class="inner">&#x2212;</span>]</a></span><a class="srclink" href="../../src/gtk4/auto/style_context.rs.html#131-351" title="goto source code">[src]</a></span></h1><div class="docblock type-decl"><pre class="rust trait"><code>pub trait StyleContextExt: 'static {
+<details class="rustdoc-toggle type-contents-toggle"><summary class="hideme"><span>Show 20 methods</span></summary>    fn <a href="#tymethod.add_class" class="fnname">add_class</a>(&amp;self, class_name: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>);
+<div class="item-spacer"></div>    fn <a href="#tymethod.add_provider" class="fnname">add_provider</a>&lt;P:&nbsp;<a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.14/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.StyleProvider.html" title="struct gtk4::StyleProvider">StyleProvider</a>&gt;&gt;(&amp;self, provider: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>P, priority: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>);
+<div class="item-spacer"></div>    fn <a href="#tymethod.border" class="fnname">border</a>(&amp;self) -&gt; <a class="struct" href="../struct.Border.html" title="struct gtk4::Border">Border</a>;
+<div class="item-spacer"></div>    fn <a href="#tymethod.color" class="fnname">color</a>(&amp;self) -&gt; <a class="struct" href="../../gdk4/rgba/struct.RGBA.html" title="struct gdk4::rgba::RGBA">RGBA</a>;
+<div class="item-spacer"></div>    fn <a href="#tymethod.display" class="fnname">display</a>(&amp;self) -&gt; <a class="struct" href="../../gdk4/auto/display/struct.Display.html" title="struct gdk4::auto::display::Display">Display</a>;
+<div class="item-spacer"></div>    fn <a href="#tymethod.margin" class="fnname">margin</a>(&amp;self) -&gt; <a class="struct" href="../struct.Border.html" title="struct gtk4::Border">Border</a>;
+<div class="item-spacer"></div>    fn <a href="#tymethod.padding" class="fnname">padding</a>(&amp;self) -&gt; <a class="struct" href="../struct.Border.html" title="struct gtk4::Border">Border</a>;
+<div class="item-spacer"></div>    fn <a href="#tymethod.scale" class="fnname">scale</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>;
+<div class="item-spacer"></div>    fn <a href="#tymethod.state" class="fnname">state</a>(&amp;self) -&gt; <a class="struct" href="../struct.StateFlags.html" title="struct gtk4::StateFlags">StateFlags</a>;
+<div class="item-spacer"></div>    fn <a href="#tymethod.has_class" class="fnname">has_class</a>(&amp;self, class_name: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>;
+<div class="item-spacer"></div>    fn <a href="#tymethod.lookup_color" class="fnname">lookup_color</a>(&amp;self, color_name: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../../gdk4/rgba/struct.RGBA.html" title="struct gdk4::rgba::RGBA">RGBA</a>&gt;;
+<div class="item-spacer"></div>    fn <a href="#tymethod.remove_class" class="fnname">remove_class</a>(&amp;self, class_name: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>);
+<div class="item-spacer"></div>    fn <a href="#tymethod.remove_provider" class="fnname">remove_provider</a>&lt;P:&nbsp;<a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.14/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.StyleProvider.html" title="struct gtk4::StyleProvider">StyleProvider</a>&gt;&gt;(&amp;self, provider: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>P);
+<div class="item-spacer"></div>    fn <a href="#tymethod.restore" class="fnname">restore</a>(&amp;self);
+<div class="item-spacer"></div>    fn <a href="#tymethod.save" class="fnname">save</a>(&amp;self);
+<div class="item-spacer"></div>    fn <a href="#tymethod.set_display" class="fnname">set_display</a>&lt;P:&nbsp;<a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.14/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../../gdk4/auto/display/struct.Display.html" title="struct gdk4::auto::display::Display">Display</a>&gt;&gt;(&amp;self, display: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>P);
+<div class="item-spacer"></div>    fn <a href="#tymethod.set_scale" class="fnname">set_scale</a>(&amp;self, scale: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>);
+<div class="item-spacer"></div>    fn <a href="#tymethod.set_state" class="fnname">set_state</a>(&amp;self, flags: <a class="struct" href="../struct.StateFlags.html" title="struct gtk4::StateFlags">StateFlags</a>);
+<div class="item-spacer"></div>    fn <a href="#tymethod.to_string" class="fnname">to_string</a>(&amp;self, flags: <a class="struct" href="../struct.StyleContextPrintFlags.html" title="struct gtk4::StyleContextPrintFlags">StyleContextPrintFlags</a>) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.14/docs/glib/gstring/struct.GString.html" title="struct glib::gstring::GString">GString</a>;
+<div class="item-spacer"></div>    fn <a href="#tymethod.connect_display_notify" class="fnname">connect_display_notify</a>&lt;F:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>Self) + 'static&gt;(<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;f: F<br>&nbsp;&nbsp;&nbsp;&nbsp;) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.14/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a>;
+</details>}</code></pre></div><details class="rustdoc-toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>Trait containing all <a href="../struct.StyleContext.html" title="StyleContext"><code>StyleContext</code></a> methods.</p>
+<h2 id="implementors-1" class="section-header"><a href="#implementors-1">Implementors</a></h2>
+<p><a href="../struct.StyleContext.html" title="crate::StyleContext"><code>StyleContext</code></a></p>
+</div></details><h2 id="required-methods" class="small-section-header">Required methods<a href="#required-methods" class="anchor"></a></h2><div class="methods"><details class="rustdoc-toggle" open><summary><div id="tymethod.add_class" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/style_context.rs.html#150" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.add_class" class="fnname">add_class</a>(&amp;self, class_name: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>)</h4></div></summary><div class="docblock"><p>Adds a style class to <code>self</code>, so later uses of the
+style context will make use of this new class for styling.</p>
+<p>In the CSS file format, a <a href="../struct.Entry.html" title="crate::Entry"><code>Entry</code></a> defining a “search”
+class, would be matched by:</p>
+<div class="example-wrap"><pre class="language-css"><code>entry.search { ... }</code></pre></div>
+<p>While any widget defining a “search” class would be
+matched by:</p>
+<div class="example-wrap"><pre class="language-css"><code>.search { ... }</code></pre></div><h6 id="class_name" class="section-header"><a href="#class_name"><code>class_name</code></a></h6>
+<p>class name to use in styling</p>
+</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.add_provider" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/style_context.rs.html#171" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.add_provider" class="fnname">add_provider</a>&lt;P:&nbsp;<a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.14/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.StyleProvider.html" title="struct gtk4::StyleProvider">StyleProvider</a>&gt;&gt;(&amp;self, provider: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>P, priority: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>)</h4></div></summary><div class="docblock"><p>Adds a style provider to <code>self</code>, to be used in style construction.</p>
+<p>Note that a style provider added by this function only affects
+the style of the widget to which <code>self</code> belongs. If you want
+to affect the style of all widgets, use
+<a href="../struct.StyleContext.html#method.add_provider_for_display" title="crate::StyleContext::add_provider_for_display()"><code>StyleContext::add_provider_for_display()</code></a>.</p>
+<p>Note: If both priorities are the same, a <a href="../struct.StyleProvider.html" title="crate::StyleProvider"><code>StyleProvider</code></a>
+added through this function takes precedence over another added
+through <a href="../struct.StyleContext.html#method.add_provider_for_display" title="crate::StyleContext::add_provider_for_display()"><code>StyleContext::add_provider_for_display()</code></a>.</p>
+<h6 id="provider" class="section-header"><a href="#provider"><code>provider</code></a></h6>
+<p>a <a href="../struct.StyleProvider.html" title="crate::StyleProvider"><code>StyleProvider</code></a></p>
+<h6 id="priority" class="section-header"><a href="#priority"><code>priority</code></a></h6>
+<p>the priority of the style provider. The lower
+it is, the earlier it will be used in the style construction.
+Typically this will be in the range between
+<code>GTK_STYLE_PROVIDER_PRIORITY_FALLBACK</code> and
+<code>GTK_STYLE_PROVIDER_PRIORITY_USER</code></p>
+</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.border" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/style_context.rs.html#182" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.border" class="fnname">border</a>(&amp;self) -&gt; <a class="struct" href="../struct.Border.html" title="struct gtk4::Border">Border</a></h4></div></summary><div class="docblock"><p>Gets the border for a given state as a <a href="../struct.Border.html" title="crate::Border"><code>Border</code></a>.</p>
+<h5 id="returns" class="section-header"><a href="#returns">Returns</a></h5><h6 id="border" class="section-header"><a href="#border"><code>border</code></a></h6>
+<p>return value for the border settings</p>
+</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.color" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/style_context.rs.html#193" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.color" class="fnname">color</a>(&amp;self) -&gt; <a class="struct" href="../../gdk4/rgba/struct.RGBA.html" title="struct gdk4::rgba::RGBA">RGBA</a></h4></div></summary><div class="docblock"><p>Gets the foreground color for a given state.</p>
+<h5 id="returns-1" class="section-header"><a href="#returns-1">Returns</a></h5><h6 id="color" class="section-header"><a href="#color"><code>color</code></a></h6>
+<p>return value for the foreground color</p>
+</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.display" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/style_context.rs.html#202" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.display" class="fnname">display</a>(&amp;self) -&gt; <a class="struct" href="../../gdk4/auto/display/struct.Display.html" title="struct gdk4::auto::display::Display">Display</a></h4></div></summary><div class="docblock"><p>Returns the <a href="../../gdk4/auto/display/struct.Display.html" title="crate::gdk::Display"><code>gdk::Display</code></a> to which <code>self</code> is attached.</p>
+<h5 id="returns-2" class="section-header"><a href="#returns-2">Returns</a></h5>
+<p>a <a href="../../gdk4/auto/display/struct.Display.html" title="crate::gdk::Display"><code>gdk::Display</code></a>.</p>
+</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.margin" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/style_context.rs.html#213" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.margin" class="fnname">margin</a>(&amp;self) -&gt; <a class="struct" href="../struct.Border.html" title="struct gtk4::Border">Border</a></h4></div></summary><div class="docblock"><p>Gets the margin for a given state as a <a href="../struct.Border.html" title="crate::Border"><code>Border</code></a>.</p>
+<h5 id="returns-3" class="section-header"><a href="#returns-3">Returns</a></h5><h6 id="margin" class="section-header"><a href="#margin"><code>margin</code></a></h6>
+<p>return value for the margin settings</p>
+</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.padding" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/style_context.rs.html#224" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.padding" class="fnname">padding</a>(&amp;self) -&gt; <a class="struct" href="../struct.Border.html" title="struct gtk4::Border">Border</a></h4></div></summary><div class="docblock"><p>Gets the padding for a given state as a <a href="../struct.Border.html" title="crate::Border"><code>Border</code></a>.</p>
+<h5 id="returns-4" class="section-header"><a href="#returns-4">Returns</a></h5><h6 id="padding" class="section-header"><a href="#padding"><code>padding</code></a></h6>
+<p>return value for the padding settings</p>
+</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.scale" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/style_context.rs.html#233" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.scale" class="fnname">scale</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a></h4></div></summary><div class="docblock"><p>Returns the scale used for assets.</p>
+<h5 id="returns-5" class="section-header"><a href="#returns-5">Returns</a></h5>
+<p>the scale</p>
+</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.state" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/style_context.rs.html#248" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.state" class="fnname">state</a>(&amp;self) -&gt; <a class="struct" href="../struct.StateFlags.html" title="struct gtk4::StateFlags">StateFlags</a></h4></div></summary><div class="docblock"><p>Returns the state used for style matching.</p>
+<p>This method should only be used to retrieve the <a href="../struct.StateFlags.html" title="crate::StateFlags"><code>StateFlags</code></a>
+to pass to <a href="../struct.StyleContext.html" title="crate::StyleContext"><code>StyleContext</code></a> methods, like
+<a href="trait.StyleContextExt.html#tymethod.padding" title="Self::padding()"><code>padding()</code></a>.
+If you need to retrieve the current state of a <a href="../struct.Widget.html" title="crate::Widget"><code>Widget</code></a>, use
+<a href="trait.WidgetExt.html#tymethod.state_flags" title="crate::prelude::WidgetExt::state_flags()"><code>WidgetExt::state_flags()</code></a>.</p>
+<h5 id="returns-6" class="section-header"><a href="#returns-6">Returns</a></h5>
+<p>the state flags</p>
+</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.has_class" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/style_context.rs.html#259" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.has_class" class="fnname">has_class</a>(&amp;self, class_name: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></div></summary><div class="docblock"><p>Returns <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if <code>self</code> currently has defined the
+given class name.</p>
+<h6 id="class_name-1" class="section-header"><a href="#class_name-1"><code>class_name</code></a></h6>
+<p>a class name</p>
+<h5 id="returns-7" class="section-header"><a href="#returns-7">Returns</a></h5>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if <code>self</code> has <code>class_name</code> defined</p>
+</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.lookup_color" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/style_context.rs.html#272" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.lookup_color" class="fnname">lookup_color</a>(&amp;self, color_name: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../../gdk4/rgba/struct.RGBA.html" title="struct gdk4::rgba::RGBA">RGBA</a>&gt;</h4></div></summary><div class="docblock"><p>Looks up and resolves a color name in the <code>self</code> color map.</p>
+<h6 id="color_name" class="section-header"><a href="#color_name"><code>color_name</code></a></h6>
+<p>color name to lookup</p>
+<h5 id="returns-8" class="section-header"><a href="#returns-8">Returns</a></h5>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if <code>color_name</code> was found and resolved, <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="false"><code>false</code></a> otherwise</p>
+<h6 id="color-1" class="section-header"><a href="#color-1"><code>color</code></a></h6>
+<p>Return location for the looked up color</p>
+</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.remove_class" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/style_context.rs.html#278" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.remove_class" class="fnname">remove_class</a>(&amp;self, class_name: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>)</h4></div></summary><div class="docblock"><p>Removes <code>class_name</code> from <code>self</code>.</p>
+<h6 id="class_name-2" class="section-header"><a href="#class_name-2"><code>class_name</code></a></h6>
+<p>class name to remove</p>
+</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.remove_provider" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/style_context.rs.html#284" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.remove_provider" class="fnname">remove_provider</a>&lt;P:&nbsp;<a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.14/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.StyleProvider.html" title="struct gtk4::StyleProvider">StyleProvider</a>&gt;&gt;(&amp;self, provider: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>P)</h4></div></summary><div class="docblock"><p>Removes <code>provider</code> from the style providers list in <code>self</code>.</p>
+<h6 id="provider-1" class="section-header"><a href="#provider-1"><code>provider</code></a></h6>
+<p>a <a href="../struct.StyleProvider.html" title="crate::StyleProvider"><code>StyleProvider</code></a></p>
+</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.restore" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/style_context.rs.html#290" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.restore" class="fnname">restore</a>(&amp;self)</h4></div></summary><div class="docblock"><p>Restores <code>self</code> state to a previous stage.</p>
+<p>See <a href="trait.StyleContextExt.html#tymethod.save" title="Self::save()"><code>save()</code></a>.</p>
+</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.save" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/style_context.rs.html#303" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.save" class="fnname">save</a>(&amp;self)</h4></div></summary><div class="docblock"><p>Saves the <code>self</code> state.</p>
+<p>This allows temporary modifications done through
+<a href="trait.StyleContextExt.html#tymethod.add_class" title="Self::add_class()"><code>add_class()</code></a>,
+<a href="trait.StyleContextExt.html#tymethod.remove_class" title="Self::remove_class()"><code>remove_class()</code></a>,
+<a href="trait.StyleContextExt.html#tymethod.set_state" title="Self::set_state()"><code>set_state()</code></a> to be quickly
+reverted in one go through <a href="trait.StyleContextExt.html#tymethod.restore" title="Self::restore()"><code>restore()</code></a>.</p>
+<p>The matching call to <a href="trait.StyleContextExt.html#tymethod.restore" title="Self::restore()"><code>restore()</code></a>
+must be done before GTK returns to the main loop.</p>
+</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.set_display" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/style_context.rs.html#316" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.set_display" class="fnname">set_display</a>&lt;P:&nbsp;<a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.14/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../../gdk4/auto/display/struct.Display.html" title="struct gdk4::auto::display::Display">Display</a>&gt;&gt;(&amp;self, display: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>P)</h4></div></summary><div class="docblock"><p>Attaches <code>self</code> to the given display.</p>
+<p>The display is used to add style information from “global”
+style providers, such as the display’s <a href="../struct.Settings.html" title="crate::Settings"><code>Settings</code></a> instance.</p>
+<p>If you are using a <a href="../struct.StyleContext.html" title="crate::StyleContext"><code>StyleContext</code></a> returned from
+<a href="trait.WidgetExt.html#tymethod.style_context" title="crate::prelude::WidgetExt::style_context()"><code>WidgetExt::style_context()</code></a>, you do not need to
+call this yourself.</p>
+<h6 id="display" class="section-header"><a href="#display"><code>display</code></a></h6>
+<p>a <a href="../../gdk4/auto/display/struct.Display.html" title="crate::gdk::Display"><code>gdk::Display</code></a></p>
+</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.set_scale" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/style_context.rs.html#322" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.set_scale" class="fnname">set_scale</a>(&amp;self, scale: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>)</h4></div></summary><div class="docblock"><p>Sets the scale to use when getting image assets for the style.</p>
+<h6 id="scale" class="section-header"><a href="#scale"><code>scale</code></a></h6>
+<p>scale</p>
+</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.set_state" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/style_context.rs.html#328" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.set_state" class="fnname">set_state</a>(&amp;self, flags: <a class="struct" href="../struct.StateFlags.html" title="struct gtk4::StateFlags">StateFlags</a>)</h4></div></summary><div class="docblock"><p>Sets the state to be used for style matching.</p>
+<h6 id="flags" class="section-header"><a href="#flags"><code>flags</code></a></h6>
+<p>state to represent</p>
+</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.to_string" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/style_context.rs.html#347" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.to_string" class="fnname">to_string</a>(&amp;self, flags: <a class="struct" href="../struct.StyleContextPrintFlags.html" title="struct gtk4::StyleContextPrintFlags">StyleContextPrintFlags</a>) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.14/docs/glib/gstring/struct.GString.html" title="struct glib::gstring::GString">GString</a></h4></div></summary><div class="docblock"><p>Converts the style context into a string representation.</p>
+<p>The string representation always includes information about
+the name, state, id, visibility and style classes of the CSS
+node that is backing <code>self</code>. Depending on the flags, more
+information may be included.</p>
+<p>This function is intended for testing and debugging of the
+CSS implementation in GTK. There are no guarantees about
+the format of the returned string, it may change.</p>
+<h6 id="flags-1" class="section-header"><a href="#flags-1"><code>flags</code></a></h6>
+<p>Flags that determine what to print</p>
+<h5 id="returns-9" class="section-header"><a href="#returns-9">Returns</a></h5>
+<p>a newly allocated string representing <code>self</code></p>
+</div></details><div id="tymethod.connect_display_notify" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/style_context.rs.html#350" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.connect_display_notify" class="fnname">connect_display_notify</a>&lt;F:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>Self) + 'static&gt;(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;f: F<br>) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.14/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></div></div><h2 id="implementors" class="small-section-header">Implementors<a href="#implementors" class="anchor"></a></h2><div class="item-list" id="implementors-list"><div id="impl-StyleContextExt" class="impl has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/style_context.rs.html#353-546" title="goto source code">[src]</a></div><a href="#impl-StyleContextExt" class="anchor"></a><h3 class="code-header in-band">impl&lt;O:&nbsp;<a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.14/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.StyleContext.html" title="struct gtk4::StyleContext">StyleContext</a>&gt;&gt; <a class="trait" href="trait.StyleContextExt.html" title="trait gtk4::prelude::StyleContextExt">StyleContextExt</a> for O</h3></div></div><script type="text/javascript" src="../../implementors/gtk4/prelude/trait.StyleContextExt.js" async></script></section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../" data-current-crate="gtk4" data-search-index-js="../../search-index.js" data-search-js="../../search.js"></div>
+    <script src="../../main.js"></script>
+</body></html>

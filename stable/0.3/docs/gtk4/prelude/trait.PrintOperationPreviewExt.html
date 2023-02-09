@@ -1,0 +1,116 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Trait containing all [`struct@PrintOperationPreview`] methods."><meta name="keywords" content="rust, rustlang, rust-lang, PrintOperationPreviewExt"><title>PrintOperationPreviewExt in gtk4::prelude - Rust</title><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled ><script id="default-settings" ></script><script src="../../storage.js"></script><script src="../../crates.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"><style type="text/css">#crate-search{background-image:url("../../down-arrow.svg");}</style></head><body class="rustdoc trait"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", checkDocsLatestStable);
+
+    function checkDocsLatestStable() {
+        function popup(msg, url) { return `
+            <style scoped="scoped">
+                .popup {
+                    max-width: 16em;
+                    background-color: #fff;
+                    position: fixed;
+                    z-index: 1;
+                    margin-left: auto;
+                    bottom: 1em;
+                    right: 1em;
+                    border-radius: 5px;
+                    box-shadow: 1px 1px 4px #777;
+                }
+
+                .popup a.version {
+                    color: #e57300;
+                    padding: 0.6em 1em;
+                    display: block;
+                }
+                .popup a.version:hover {
+                    color: #b25900;
+                }
+
+                .popup a.close {
+                    color: white;
+                    background: grey;
+                    border-radius: 99px;
+                    display: inline-block;
+                    width: 19px;
+                    line-height: 19px;
+                    font-weight: bold;
+                    text-align: center;
+                    margin: 0.6em;
+                    float: right;
+                }
+                .popup a.close:hover {
+                    background: black;
+                }
+            </style>
+            <section class="popup" id="gir_docs_popup">
+                <a class="close" href="#" onclick="document.getElementById('gir_docs_popup').remove(); return false">×</a>
+                <a class="version" href="https://gtk-rs.org/gtk4-rs/stable/latest/docs">
+                    ⚠ ${msg}
+                </a>
+            </section>
+        ` };
+
+        if ("0.3" == "master") {
+            document.body.insertAdjacentHTML(
+                'beforeend',
+                popup("This is the development version. Go to latest stable version.", "stable/latest")
+            );
+        } else {
+            fetch('https://gtk-rs.org/gtk4-rs/LATEST_RELEASE_BRANCH')
+                .then(response => response.text())
+                .then(latest_branch => {
+                    if (latest_branch.trim() != "0.3") {
+                        document.body.insertAdjacentHTML(
+                            'beforeend',
+                            popup("This version is outdated. Go to latest version.", "stable/latest")
+                        );
+                    }
+                });
+        }
+    }
+</script>
+
+
+<nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../gtk4/index.html'><div class='logo-container rust-logo'><img src='../../rust-logo.png' alt='logo'></div></a><h2 class="location">Trait PrintOperationPreviewExt</h2><div class="sidebar-elems"><div class="block items"><h3 class="sidebar-title"><a href="#required-methods">Required Methods</a></h3><div class="sidebar-links"><a href="#tymethod.connect_got_page_size">connect_got_page_size</a><a href="#tymethod.connect_ready">connect_ready</a><a href="#tymethod.end_preview">end_preview</a><a href="#tymethod.is_selected">is_selected</a><a href="#tymethod.render_page">render_page</a></div><h3 class="sidebar-title"><a href="#implementors">Implementors</a></h3></div><h2 class="location">Other items in<br><a href="../index.html">gtk4</a>::<wbr><a href="index.html">prelude</a></h2><div id="sidebar-vars" data-name="PrintOperationPreviewExt" data-ty="trait" data-relpath=""></div><script defer src="sidebar-items.js"></script></div></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="18" height="18" alt="Pick another theme!" src="../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../settings.html" title="settings"><img width="18" height="18" alt="Change settings" src="../../wheel.svg"></a></div></form></nav><section id="main" class="content"><h1 class="fqn"><span class="in-band">Trait <a href="../index.html">gtk4</a>::<wbr><a href="index.html">prelude</a>::<wbr><a class="trait" href="#">PrintOperationPreviewExt</a><button id="copy-path" onclick="copy_path(this)" title="Copy item path to clipboard"><img src="../../clipboard.svg" width="19" height="18" alt="Copy item path"></button></span><span class="out-of-band"><span id="render-detail"><a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">[<span class="inner">&#x2212;</span>]</a></span><a class="srclink" href="../../src/gtk4/auto/print_operation_preview.rs.html#42-99" title="goto source code">[src]</a></span></h1><div class="docblock type-decl"><pre class="rust trait"><code>pub trait PrintOperationPreviewExt: 'static {
+    fn <a href="#tymethod.end_preview" class="fnname">end_preview</a>(&amp;self);
+<div class="item-spacer"></div>    fn <a href="#tymethod.is_selected" class="fnname">is_selected</a>(&amp;self, page_nr: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>;
+<div class="item-spacer"></div>    fn <a href="#tymethod.render_page" class="fnname">render_page</a>(&amp;self, page_nr: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>);
+<div class="item-spacer"></div>    fn <a href="#tymethod.connect_got_page_size" class="fnname">connect_got_page_size</a>&lt;F:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>Self, &amp;<a class="struct" href="../struct.PrintContext.html" title="struct gtk4::PrintContext">PrintContext</a>, &amp;<a class="struct" href="../struct.PageSetup.html" title="struct gtk4::PageSetup">PageSetup</a>) + 'static&gt;(<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;f: F<br>&nbsp;&nbsp;&nbsp;&nbsp;) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.14/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a>;
+<div class="item-spacer"></div>    fn <a href="#tymethod.connect_ready" class="fnname">connect_ready</a>&lt;F:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>Self, &amp;<a class="struct" href="../struct.PrintContext.html" title="struct gtk4::PrintContext">PrintContext</a>) + 'static&gt;(<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;f: F<br>&nbsp;&nbsp;&nbsp;&nbsp;) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.14/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a>;
+}</code></pre></div><details class="rustdoc-toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>Trait containing all <a href="../struct.PrintOperationPreview.html" title="PrintOperationPreview"><code>PrintOperationPreview</code></a> methods.</p>
+<h2 id="implementors-1" class="section-header"><a href="#implementors-1">Implementors</a></h2>
+<p><a href="../struct.PrintOperationPreview.html" title="crate::PrintOperationPreview"><code>PrintOperationPreview</code></a>, <a href="../struct.PrintOperation.html" title="crate::PrintOperation"><code>PrintOperation</code></a></p>
+</div></details><h2 id="required-methods" class="small-section-header">Required methods<a href="#required-methods" class="anchor"></a></h2><div class="methods"><details class="rustdoc-toggle" open><summary><div id="tymethod.end_preview" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/print_operation_preview.rs.html#47" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.end_preview" class="fnname">end_preview</a>(&amp;self)</h4></div></summary><div class="docblock"><p>Ends a preview.</p>
+<p>This function must be called to finish a custom print preview.</p>
+</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.is_selected" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/print_operation_preview.rs.html#58" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.is_selected" class="fnname">is_selected</a>(&amp;self, page_nr: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></h4></div></summary><div class="docblock"><p>Returns whether the given page is included in the set of pages that
+have been selected for printing.</p>
+<h6 id="page_nr" class="section-header"><a href="#page_nr"><code>page_nr</code></a></h6>
+<p>a page number</p>
+<h5 id="returns" class="section-header"><a href="#returns">Returns</a></h5>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if the page has been selected for printing</p>
+</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.render_page" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/print_operation_preview.rs.html#74" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.render_page" class="fnname">render_page</a>(&amp;self, page_nr: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>)</h4></div></summary><div class="docblock"><p>Renders a page to the preview.</p>
+<p>This is using the print context that was passed to the
+<code>signal::PrintOperation::preview</code> handler together
+with <code>self</code>.</p>
+<p>A custom print preview should use this function to render
+the currently selected page.</p>
+<p>Note that this function requires a suitable cairo context to
+be associated with the print context.</p>
+<h6 id="page_nr-1" class="section-header"><a href="#page_nr-1"><code>page_nr</code></a></h6>
+<p>the page to render</p>
+</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.connect_got_page_size" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/print_operation_preview.rs.html#86-89" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.connect_got_page_size" class="fnname">connect_got_page_size</a>&lt;F:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>Self, &amp;<a class="struct" href="../struct.PrintContext.html" title="struct gtk4::PrintContext">PrintContext</a>, &amp;<a class="struct" href="../struct.PageSetup.html" title="struct gtk4::PageSetup">PageSetup</a>) + 'static&gt;(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;f: F<br>) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.14/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></div></summary><div class="docblock"><p>Emitted once for each page that gets rendered to the preview.</p>
+<p>A handler for this signal should update the <code>context</code>
+according to <code>page_setup</code> and set up a suitable cairo
+context, using <a href="../struct.PrintContext.html#method.set_cairo_context" title="crate::PrintContext::set_cairo_context()"><code>PrintContext::set_cairo_context()</code></a>.</p>
+<h6 id="context" class="section-header"><a href="#context"><code>context</code></a></h6>
+<p>the current <a href="../struct.PrintContext.html" title="crate::PrintContext"><code>PrintContext</code></a></p>
+<h6 id="page_setup" class="section-header"><a href="#page_setup"><code>page_setup</code></a></h6>
+<p>the <a href="../struct.PageSetup.html" title="crate::PageSetup"><code>PageSetup</code></a> for the current page</p>
+</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.connect_ready" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/print_operation_preview.rs.html#98" title="goto source code">[src]</a></div><h4 class="code-header">fn <a href="#tymethod.connect_ready" class="fnname">connect_ready</a>&lt;F:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>Self, &amp;<a class="struct" href="../struct.PrintContext.html" title="struct gtk4::PrintContext">PrintContext</a>) + 'static&gt;(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;f: F<br>) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/stable/0.14/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></h4></div></summary><div class="docblock"><p>The ::ready signal gets emitted once per preview operation,
+before the first page is rendered.</p>
+<p>A handler for this signal can be used for setup tasks.</p>
+<h6 id="context-1" class="section-header"><a href="#context-1"><code>context</code></a></h6>
+<p>the current <a href="../struct.PrintContext.html" title="crate::PrintContext"><code>PrintContext</code></a></p>
+</div></details></div><h2 id="implementors" class="small-section-header">Implementors<a href="#implementors" class="anchor"></a></h2><div class="item-list" id="implementors-list"><div id="impl-PrintOperationPreviewExt" class="impl has-srclink"><div class="rightside"><a class="srclink" href="../../src/gtk4/auto/print_operation_preview.rs.html#101-183" title="goto source code">[src]</a></div><a href="#impl-PrintOperationPreviewExt" class="anchor"></a><h3 class="code-header in-band">impl&lt;O:&nbsp;<a class="trait" href="https://gtk-rs.org/gtk-rs-core/stable/0.14/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.PrintOperationPreview.html" title="struct gtk4::PrintOperationPreview">PrintOperationPreview</a>&gt;&gt; <a class="trait" href="trait.PrintOperationPreviewExt.html" title="trait gtk4::prelude::PrintOperationPreviewExt">PrintOperationPreviewExt</a> for O</h3></div></div><script type="text/javascript" src="../../implementors/gtk4/prelude/trait.PrintOperationPreviewExt.js" async></script></section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../" data-current-crate="gtk4" data-search-index-js="../../search-index.js" data-search-js="../../search.js"></div>
+    <script src="../../main.js"></script>
+</body></html>
