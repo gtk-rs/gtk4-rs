@@ -46,11 +46,13 @@ version = "0.6"
 
 [dependencies.gio]
 git = "https://github.com/gtk-rs/gtk-rs-core"
+branch = "0.17"
 version = "0.17"
 features = ["v2_66"]
 
 [dependencies.glib]
 git = "https://github.com/gtk-rs/gtk-rs-core"
+branch = "0.17"
 version = "0.17"
 features = ["v2_66"]
 

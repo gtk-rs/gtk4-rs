@@ -27,13 +27,13 @@ features = ["dox"]
 
 [dependencies]
 bitflags = "1.0"
-cairo-rs = {git = "https://github.com/gtk-rs/gtk-rs-core", version = "0.17"}
+cairo-rs = {git = "https://github.com/gtk-rs/gtk-rs-core", branch = "0.17", version = "0.17"}
 ffi = {package = "gdk4-sys", path = "./sys", version = "0.6"}
-gdk-pixbuf = {git = "https://github.com/gtk-rs/gtk-rs-core", version = "0.17"}
-gio = {git = "https://github.com/gtk-rs/gtk-rs-core", version = "0.17", features = ["v2_66"]}
-glib = {git = "https://github.com/gtk-rs/gtk-rs-core", version = "0.17", features = ["v2_66"]}
+gdk-pixbuf = {git = "https://github.com/gtk-rs/gtk-rs-core", branch = "0.17", version = "0.17"}
+gio = {git = "https://github.com/gtk-rs/gtk-rs-core", branch = "0.17", version = "0.17", features = ["v2_66"]}
+glib = {git = "https://github.com/gtk-rs/gtk-rs-core", branch = "0.17", version = "0.17", features = ["v2_66"]}
 libc = "0.2"
-pango = {git = "https://github.com/gtk-rs/gtk-rs-core", version = "0.17", features = ["v1_46"]}
+pango = {git = "https://github.com/gtk-rs/gtk-rs-core", branch = "0.17", version = "0.17", features = ["v1_46"]}
 
 [dev-dependencies]
 gir-format-check = "^0.1"

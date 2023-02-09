@@ -25,8 +25,8 @@ features = ["dox"]
 [dependencies]
 ffi = {path = "./sys", package = "gdk4-wayland-sys", version = "0.6"}
 gdk = {path = "../gdk4", package = "gdk4", version = "0.6"}
-gio = {git = "https://github.com/gtk-rs/gtk-rs-core", version = "0.17", features = ["v2_66"]}
-glib = {git = "https://github.com/gtk-rs/gtk-rs-core", version = "0.17", features = ["v2_66"]}
+gio = {git = "https://github.com/gtk-rs/gtk-rs-core", branch = "0.17", version = "0.17", features = ["v2_66"]}
+glib = {git = "https://github.com/gtk-rs/gtk-rs-core", branch = "0.17", version = "0.17", features = ["v2_66"]}
 libc = "0.2"
 wayland-client = {version = "0.30.0", optional = true}
 wayland-backend = {version = "0.1.0", optional = true, features = ["client_system"]}
