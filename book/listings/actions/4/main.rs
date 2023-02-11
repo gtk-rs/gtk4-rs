@@ -22,7 +22,7 @@ fn main() {
 fn build_ui(app: &Application) {
     let original_state = 0;
     let label = Label::builder()
-        .label(&format!("Counter: {original_state}"))
+        .label(format!("Counter: {original_state}"))
         .build();
     // ANCHOR: button_builder
     // Create a button with label and action

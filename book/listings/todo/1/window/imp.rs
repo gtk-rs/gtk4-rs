@@ -1,7 +1,6 @@
 use std::cell::RefCell;
 
 use glib::subclass::InitializingObject;
-use gtk::prelude::*;
 use gtk::subclass::prelude::*;
 use gtk::{gio, glib, CompositeTemplate, Entry, ListView};
 
