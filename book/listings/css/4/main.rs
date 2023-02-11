@@ -19,7 +19,7 @@ fn main() {
 fn load_css() {
     // Load the CSS file and add it to the provider
     let provider = CssProvider::new();
-    provider.load_from_data(include_bytes!("style.css"));
+    provider.load_from_data(include_str!("style.css"));
 
     // Add the provider to the default screen
     StyleContext::add_provider_for_display(

@@ -180,8 +180,8 @@ impl Window {
     fn set_current_collection(&self, collection: CollectionObject) {
         // Wrap model with filter and selection and pass it to the list box
         let tasks = collection.tasks();
-        let filter_model = FilterListModel::new(Some(&tasks), self.filter().as_ref());
-        let selection_model = NoSelection::new(Some(&filter_model));
+        let filter_model = FilterListModel::new(Some(tasks.clone()), self.filter());
+        let selection_model = NoSelection::new(Some(filter_model.clone()));
         self.imp().tasks_list.bind_model(
             Some(&selection_model),
             clone!(@weak self as window => @default-panic, move |obj| {
@@ -346,7 +346,7 @@ impl Window {
     fn new_task(&self) {
         // Get content from entry and clear it
         let buffer = self.imp().entry.buffer();
-        let content = buffer.text();
+        let content = buffer.text().to_string();
         if content.is_empty() {
             return;
         }

@@ -29,7 +29,7 @@ impl Window {
         let action_count = SimpleAction::new_stateful(
             "count",
             Some(&i32::static_variant_type()),
-            &original_state.to_variant(),
+            original_state.to_variant(),
         );
 
         action_count.connect_activate(clone!(@weak label => move |action, parameter| {
@@ -48,7 +48,7 @@ impl Window {
 
             // Increase state by parameter and save state
             state += parameter;
-            action.set_state(&state.to_variant());
+            action.set_state(state.to_variant());
 
             // Update label with new state
             label.set_label(&format!("Counter: {state}"));
@@ -70,7 +70,7 @@ impl Window {
         let action_orientation = SimpleAction::new_stateful(
             "orientation",
             Some(&String::static_variant_type()),
-            &"Vertical".to_variant(),
+            "Vertical".to_variant(),
         );
 
         action_orientation.connect_activate(clone!(@weak gtk_box =>
@@ -89,7 +89,7 @@ impl Window {
 
                 // Set orientation and save state
                 gtk_box.set_orientation(orientation);
-                action.set_state(&parameter.to_variant());
+                action.set_state(parameter.to_variant());
         }));
         self.add_action(&action_orientation);
         //ANCHOR_END: action_orientation

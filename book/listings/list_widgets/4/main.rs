@@ -49,8 +49,8 @@ fn build_ui(app: &Application) {
     });
     // ANCHOR_END: factory_setup
 
-    let selection_model = SingleSelection::new(Some(&model));
-    let list_view = ListView::new(Some(&selection_model), Some(&factory));
+    let selection_model = SingleSelection::new(Some(model));
+    let list_view = ListView::new(Some(selection_model), Some(factory));
 
     list_view.connect_activate(move |list_view, position| {
         // Get `IntegerObject` from model
