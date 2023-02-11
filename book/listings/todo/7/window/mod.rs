@@ -94,9 +94,8 @@ impl Window {
 
         // ANCHOR: bind_model
         // Wrap model with filter and selection and pass it to the list box
-        let filter_model =
-            FilterListModel::new(Some(&self.tasks()), self.filter().as_ref());
-        let selection_model = NoSelection::new(Some(&filter_model));
+        let filter_model = FilterListModel::new(Some(self.tasks()), self.filter());
+        let selection_model = NoSelection::new(Some(filter_model.clone()));
         self.imp().tasks_list.bind_model(
             Some(&selection_model),
             clone!(@weak self as window => @default-panic, move |obj| {
@@ -200,7 +199,7 @@ impl Window {
     fn new_task(&self) {
         // Get content from entry and clear it
         let buffer = self.imp().entry.buffer();
-        let content = buffer.text();
+        let content = buffer.text().to_string();
         if content.is_empty() {
             return;
         }
