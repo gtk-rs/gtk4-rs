@@ -41,7 +41,7 @@ impl Window {
         self.imp().tasks.replace(Some(model));
 
         // Wrap model with selection and pass it to the list view
-        let selection_model = NoSelection::new(Some(&self.tasks()));
+        let selection_model = NoSelection::new(Some(self.tasks()));
         self.imp().tasks_list.set_model(Some(&selection_model));
     }
     // ANCHOR_END: tasks
@@ -68,7 +68,7 @@ impl Window {
     fn new_task(&self) {
         // Get content from entry and clear it
         let buffer = self.imp().entry.buffer();
-        let content = buffer.text();
+        let content = buffer.text().to_string();
         if content.is_empty() {
             return;
         }

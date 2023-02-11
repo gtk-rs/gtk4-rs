@@ -71,8 +71,8 @@ fn build_ui(app: &Application) {
     // ANCHOR_END: factory_bind
 
     // ANCHOR: selection_list
-    let selection_model = SingleSelection::new(Some(&model));
-    let list_view = ListView::new(Some(&selection_model), Some(&factory));
+    let selection_model = SingleSelection::new(Some(model));
+    let list_view = ListView::new(Some(selection_model), Some(factory));
     // ANCHOR_END: selection_list
 
     // ANCHOR: scrolled_window

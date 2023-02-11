@@ -63,7 +63,7 @@ fn build_ui(app: &Application) {
         // Only allow even numbers
         number % 2 == 0
     });
-    let filter_model = FilterListModel::new(Some(&model), Some(&filter));
+    let filter_model = FilterListModel::new(Some(model), Some(filter.clone()));
     // ANCHOR_END: filter
 
     // ANCHOR: sorter
@@ -83,11 +83,11 @@ fn build_ui(app: &Application) {
         // Reverse sorting order -> large numbers come first
         number_2.cmp(&number_1).into()
     });
-    let sort_model = SortListModel::new(Some(&filter_model), Some(&sorter));
+    let sort_model = SortListModel::new(Some(filter_model), Some(sorter.clone()));
     // ANCHOR_END: sorter
 
-    let selection_model = SingleSelection::new(Some(&sort_model));
-    let list_view = ListView::new(Some(&selection_model), Some(&factory));
+    let selection_model = SingleSelection::new(Some(sort_model));
+    let list_view = ListView::new(Some(selection_model), Some(factory));
 
     // ANCHOR: activate
     list_view.connect_activate(move |list_view, position| {
