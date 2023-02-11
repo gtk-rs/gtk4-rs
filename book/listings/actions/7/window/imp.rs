@@ -1,6 +1,5 @@
 use gio::Settings;
 use glib::subclass::InitializingObject;
-use gtk::prelude::*;
 use gtk::subclass::prelude::*;
 use gtk::{gio, glib, Button, CompositeTemplate, Label};
 use once_cell::sync::OnceCell;
