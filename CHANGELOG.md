@@ -2,6 +2,19 @@
 
 ## [Unreleased]
 
+## [0.6.1]
+
+Julian Hofer:
+- Update book to 0.6
+- book: Fix clippy warnings
+
+Mițca Dumitru:
+- book: Adapt to glib-build-tools breaking change
+
+Sebastian Dröge:
+- gtk4: Use correct length for the `StrV` when passing to C in
+  `ConstraintLayout::add_constraint_from_description()`
+
 ## [0.6.0]
 
 Bilal Elmoussaoui:
