@@ -45,8 +45,8 @@ fn build_ui(app: &Application) {
     });
     // ANCHOR_END: factory_setup
 
-    let selection_model = NoSelection::new(Some(&model));
-    let list_view = ListView::new(Some(&selection_model), Some(&factory));
+    let selection_model = NoSelection::new(Some(model));
+    let list_view = ListView::new(Some(selection_model), Some(factory));
 
     let scrolled_window = ScrolledWindow::builder()
         .hscrollbar_policy(PolicyType::Never) // Disable horizontal scrolling

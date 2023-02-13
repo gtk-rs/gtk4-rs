@@ -47,7 +47,7 @@ impl Window {
         let action_count = SimpleAction::new_stateful(
             "count",
             Some(&i32::static_variant_type()),
-            &original_state.to_variant(),
+            original_state.to_variant(),
         );
 
         action_count.connect_activate(clone!(@weak label => move |action, parameter| {
@@ -66,7 +66,7 @@ impl Window {
 
             // Increase state by parameter and save state
             state += parameter;
-            action.set_state(&state.to_variant());
+            action.set_state(state.to_variant());
 
             // Update label with new state
             label.set_label(&format!("Counter: {state}"));
