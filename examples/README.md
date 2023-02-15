@@ -33,6 +33,7 @@ cargo run --bin basics
 - [Entry Completion](./entry_completion/)
 - [Entry Undo](./entry_undo/)
 - [Expressions](./expressions/)
+- [FemtoVG Area](./femtovg_area/)
 - [FlowBox](./flow_box/)
 - [Glium GL-Area](./glium_gl_area/)
 - [Grid Packing](./grid_packing)

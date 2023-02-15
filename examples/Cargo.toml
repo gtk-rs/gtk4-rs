@@ -8,7 +8,9 @@ edition = "2021"
 chrono = "0.4"
 once_cell = "1.0"
 
+femtovg = { version = "0.6", optional = true, default-features = false }
 glium = { version = "0.32", optional = true, default-features = false }
+glow = { version = "0.12.0", optional = true }
 epoxy = { version = "0.1.0", optional = true }
 libloading = { version = "0.7.0", optional = true }
 
@@ -26,6 +28,7 @@ optional = true
 
 [features]
 default = []
+femtovg-support = ["epoxy", "femtovg", "glow", "libloading"]
 glium-support = ["glium", "epoxy", "libloading"]
 
 [[bin]]
@@ -107,6 +110,11 @@ path = "entry_undo/main.rs"
 [[bin]]
 name = "expressions"
 path = "expressions/main.rs"
+
+[[bin]]
+name = "femtovg_area"
+path = "femtovg_area/main.rs"
+required-features = ["femtovg-support"]
 
 [[bin]]
 name = "flow_box"
