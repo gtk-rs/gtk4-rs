@@ -43,6 +43,7 @@ gdk-wayland = { git = "https://github.com/gtk-rs/gtk4-rs.git", package = "gdk4-w
 
 | Feature | Description |
 | ---     | ----------- |
+| `v4_10` | Enable the new APIs part of GTK 4.10 |
 | `v4_4` | Enable the new APIs part of GTK 4.4 |
 | `wayland_crate` | Integration with the [wayland-client](https://crates.io/crates/wayland-client) crate |
 | `egl` | Integration with the [khronos-egl](https://crates.io/crates/khronos-egl) crate |
