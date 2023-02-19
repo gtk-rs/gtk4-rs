@@ -208,7 +208,6 @@ generate = [
     "Gtk.ScrolledWindow",
     "Gtk.ScrollStep",
     "Gtk.ScrollType",
-    "Gtk.SearchEntry",
     "Gtk.SelectionMode",
     "Gtk.SelectionModel",
     "Gtk.SensitivityType",
@@ -1880,6 +1879,20 @@ status = "generate"
     [[object.property]]
     name = "search-mode-enabled"
     generate = ["notify"] # the prop has a getter/setter already
+
+[[object]]
+name = "Gtk.SearchEntry"
+status = "generate"
+    [[object.function]]
+    name = "get_placeholder_text"
+    # Use the property that is available since 4.0 instead of the function
+    # that is only available since 4.10
+    ignore = true
+    [[object.function]]
+    name = "set_placeholder_text"
+    # Use the property that is available since 4.0 instead of the function
+    # that is only available since 4.10
+    ignore = true
 
 [[object]]
 name = "Gtk.SelectionFilterModel"
