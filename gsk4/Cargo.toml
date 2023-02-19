@@ -20,6 +20,7 @@ dox = ["ffi/dox", "gdk/dox", "graphene/dox", "glib/dox", "cairo-rs/dox", "pango/
 v4_2 = ["ffi/v4_2", "gdk/v4_2"]
 v4_4 = ["ffi/v4_4", "gdk/v4_4", "v4_2"]
 v4_6 = ["ffi/v4_6", "gdk/v4_6", "v4_4"]
+v4_10 = ["ffi/v4_10", "gdk/v4_10", "v4_6"]
 
 [package.metadata.docs.rs]
 features = ["dox"]
