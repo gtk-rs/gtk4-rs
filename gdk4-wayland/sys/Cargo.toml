@@ -19,6 +19,9 @@ version = "4.0.0"
 [package.metadata.system-deps.gtk4_wayland.v4_4]
 version = "4.4"
 
+[package.metadata.system-deps.gtk4_wayland.v4_10]
+version = "4.9"
+
 [package.metadata.docs.rs]
 features = ["dox"]
 
@@ -28,6 +31,7 @@ name = "gdk4_wayland_sys"
 [features]
 dox = ["glib/dox"]
 v4_4 = []
+v4_10 = ["v4_4"]
 
 [dependencies]
 libc = "0.2"
