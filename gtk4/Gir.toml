@@ -19,6 +19,7 @@ generate = [
     # "Gtk.RequestedSize", a record
     "Gtk.AccessibleAutocomplete",
     "Gtk.AccessibleInvalidState",
+    "Gtk.AccessiblePlatformState",
     "Gtk.AccessibleProperty",
     "Gtk.AccessibleRange",
     "Gtk.AccessibleRelation",
@@ -351,9 +352,12 @@ manual = [
     "Gsk.CairoNode", # docs only
     "Gsk.ColorStop",
     "Gsk.GLShaderNode", # docs only
+    "Gsk.MaskMode",
+    "Gsk.MaskNode",
     "Gsk.Renderer",
     "Gsk.RenderNode",
     "Gsk.RoundedRect",
+    "Gsk.ScalingFilter",
     "Gsk.Shadow",
     "Gsk.Transform",
     "Gtk.BitsetIter",

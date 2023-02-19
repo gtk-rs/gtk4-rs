@@ -55,6 +55,7 @@ generate = [
     "Gdk.SeatCapabilities",
     "Gdk.SubpixelLayout",
     "Gdk.SurfaceEdge",
+    "Gdk.TextureDownloader",
     "Gdk.TextureError",
     "Gdk.TitlebarGesture",
     "Gdk.ToplevelLayout",
