@@ -233,6 +233,13 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         },
     ),
     (
+        "GskMaskMode",
+        Layout {
+            size: size_of::<GskMaskMode>(),
+            alignment: align_of::<GskMaskMode>(),
+        },
+    ),
+    (
         "GskParseLocation",
         Layout {
             size: size_of::<GskParseLocation>(),
@@ -326,6 +333,11 @@ const RUST_CONSTANTS: &[(&str, &str)] = &[
     ("(gint) GSK_GL_UNIFORM_TYPE_VEC4", "7"),
     ("(gint) GSK_INSET_SHADOW_NODE", "11"),
     ("(gint) GSK_LINEAR_GRADIENT_NODE", "4"),
+    ("(gint) GSK_MASK_MODE_ALPHA", "0"),
+    ("(gint) GSK_MASK_MODE_INVERTED_ALPHA", "1"),
+    ("(gint) GSK_MASK_MODE_INVERTED_LUMINANCE", "3"),
+    ("(gint) GSK_MASK_MODE_LUMINANCE", "2"),
+    ("(gint) GSK_MASK_NODE", "27"),
     ("(gint) GSK_NOT_A_RENDER_NODE", "0"),
     ("(gint) GSK_OPACITY_NODE", "14"),
     ("(gint) GSK_OUTSET_SHADOW_NODE", "12"),
@@ -342,6 +354,7 @@ const RUST_CONSTANTS: &[(&str, &str)] = &[
     ("(gint) GSK_SERIALIZATION_UNSUPPORTED_VERSION", "1"),
     ("(gint) GSK_SHADOW_NODE", "19"),
     ("(gint) GSK_TEXTURE_NODE", "10"),
+    ("(gint) GSK_TEXTURE_SCALE_NODE", "26"),
     ("(gint) GSK_TEXT_NODE", "22"),
     ("(gint) GSK_TRANSFORM_CATEGORY_2D", "3"),
     ("(gint) GSK_TRANSFORM_CATEGORY_2D_AFFINE", "4"),

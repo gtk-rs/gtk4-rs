@@ -97,6 +97,8 @@ pub trait DisplayExt: 'static {
     #[doc(alias = "get_primary_clipboard")]
     fn primary_clipboard(&self) -> Clipboard;
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
+    #[allow(deprecated)]
     #[doc(alias = "gdk_display_get_startup_notification_id")]
     #[doc(alias = "get_startup_notification_id")]
     fn startup_notification_id(&self) -> Option<glib::GString>;
@@ -258,6 +260,7 @@ impl<O: IsA<Display>> DisplayExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn startup_notification_id(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::gdk_display_get_startup_notification_id(

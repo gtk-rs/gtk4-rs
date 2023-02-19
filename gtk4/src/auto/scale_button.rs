@@ -304,6 +304,12 @@ impl ScaleButtonBuilder {
 }
 
 pub trait ScaleButtonExt: 'static {
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    #[doc(alias = "gtk_scale_button_get_active")]
+    #[doc(alias = "get_active")]
+    fn is_active(&self) -> bool;
+
     #[doc(alias = "gtk_scale_button_get_adjustment")]
     #[doc(alias = "get_adjustment")]
     fn adjustment(&self) -> Adjustment;
@@ -348,6 +354,11 @@ pub trait ScaleButtonExt: 'static {
     #[doc(alias = "value-changed")]
     fn connect_value_changed<F: Fn(&Self, f64) + 'static>(&self, f: F) -> SignalHandlerId;
 
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    #[doc(alias = "active")]
+    fn connect_active_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+
     #[doc(alias = "adjustment")]
     fn connect_adjustment_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
@@ -359,6 +370,16 @@ pub trait ScaleButtonExt: 'static {
 }
 
 impl<O: IsA<ScaleButton>> ScaleButtonExt for O {
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    fn is_active(&self) -> bool {
+        unsafe {
+            from_glib(ffi::gtk_scale_button_get_active(
+                self.as_ref().to_glib_none().0,
+            ))
+        }
+    }
+
     fn adjustment(&self) -> Adjustment {
         unsafe {
             from_glib_none(ffi::gtk_scale_button_get_adjustment(
@@ -489,6 +510,30 @@ impl<O: IsA<ScaleButton>> ScaleButtonExt for O {
                 b"value-changed\0".as_ptr() as *const _,
                 Some(transmute::<_, unsafe extern "C" fn()>(
                     value_changed_trampoline::<Self, F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    fn connect_active_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_active_trampoline<P: IsA<ScaleButton>, F: Fn(&P) + 'static>(
+            this: *mut ffi::GtkScaleButton,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(ScaleButton::from_glib_borrow(this).unsafe_cast_ref())
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::active\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_active_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
             )

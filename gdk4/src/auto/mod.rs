@@ -159,6 +159,13 @@ pub use self::rgba::RGBA;
 mod rectangle;
 pub use self::rectangle::Rectangle;
 
+#[cfg(any(feature = "v4_10", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+mod texture_downloader;
+#[cfg(any(feature = "v4_10", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+pub use self::texture_downloader::TextureDownloader;
+
 mod toplevel_layout;
 pub use self::toplevel_layout::ToplevelLayout;
 
