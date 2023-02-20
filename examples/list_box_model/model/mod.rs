@@ -25,7 +25,7 @@ impl Model {
             // before we emit the items_changed signal because the view
             // could call get_item / get_n_item from the signal handler to update its state
             let mut data = imp.0.borrow_mut();
-            data.push(obj.clone());
+            data.push_back(obj.clone());
             data.len() - 1
         };
         // Emits a signal that 1 item was added, 0 removed at the position index

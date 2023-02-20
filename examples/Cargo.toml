@@ -13,6 +13,7 @@ glium = { version = "0.32", optional = true, default-features = false }
 glow = { version = "0.12.0", optional = true }
 epoxy = { version = "0.1.0", optional = true }
 libloading = { version = "0.7.0", optional = true }
+im-rc = { version = "15", optional = true }
 
 [dependencies.gtk]
 path = "../gtk4"
@@ -141,6 +142,7 @@ path = "gtk_builder/main.rs"
 [[bin]]
 name = "list_box_model"
 path = "list_box_model/main.rs"
+required-features = ["im-rc"]
 
 [[bin]]
 name = "list_view_apps_launcher"
