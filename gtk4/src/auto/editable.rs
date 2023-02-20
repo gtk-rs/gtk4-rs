@@ -2,6 +2,9 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+#[cfg(any(feature = "v4_10", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+use crate::AccessiblePlatformState;
 use crate::{Accessible, Buildable, ConstraintTarget, Widget};
 use glib::{
     prelude::*,
@@ -24,6 +27,11 @@ impl Editable {
 }
 
 pub trait EditableExt: 'static {
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    #[doc(alias = "gtk_editable_delegate_get_accessible_platform_state")]
+    fn delegate_get_accessible_platform_state(&self, state: AccessiblePlatformState) -> bool;
+
     #[doc(alias = "gtk_editable_delete_selection")]
     fn delete_selection(&self);
 
@@ -146,6 +154,17 @@ pub trait EditableExt: 'static {
 }
 
 impl<O: IsA<Editable>> EditableExt for O {
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    fn delegate_get_accessible_platform_state(&self, state: AccessiblePlatformState) -> bool {
+        unsafe {
+            from_glib(ffi::gtk_editable_delegate_get_accessible_platform_state(
+                self.as_ref().to_glib_none().0,
+                state.into_glib(),
+            ))
+        }
+    }
+
     fn delete_selection(&self) {
         unsafe {
             ffi::gtk_editable_delete_selection(self.as_ref().to_glib_none().0);

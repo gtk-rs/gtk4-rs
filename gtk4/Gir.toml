@@ -19,6 +19,7 @@ generate = [
     # "Gtk.RequestedSize", a record
     "Gtk.AccessibleAutocomplete",
     "Gtk.AccessibleInvalidState",
+    "Gtk.AccessiblePlatformState",
     "Gtk.AccessibleProperty",
     "Gtk.AccessibleRange",
     "Gtk.AccessibleRelation",
@@ -207,7 +208,6 @@ generate = [
     "Gtk.ScrolledWindow",
     "Gtk.ScrollStep",
     "Gtk.ScrollType",
-    "Gtk.SearchEntry",
     "Gtk.SelectionMode",
     "Gtk.SelectionModel",
     "Gtk.SensitivityType",
@@ -351,9 +351,12 @@ manual = [
     "Gsk.CairoNode", # docs only
     "Gsk.ColorStop",
     "Gsk.GLShaderNode", # docs only
+    "Gsk.MaskMode",
+    "Gsk.MaskNode",
     "Gsk.Renderer",
     "Gsk.RenderNode",
     "Gsk.RoundedRect",
+    "Gsk.ScalingFilter",
     "Gsk.Shadow",
     "Gsk.Transform",
     "Gtk.BitsetIter",
@@ -1876,6 +1879,20 @@ status = "generate"
     [[object.property]]
     name = "search-mode-enabled"
     generate = ["notify"] # the prop has a getter/setter already
+
+[[object]]
+name = "Gtk.SearchEntry"
+status = "generate"
+    [[object.function]]
+    name = "get_placeholder_text"
+    # Use the property that is available since 4.0 instead of the function
+    # that is only available since 4.10
+    ignore = true
+    [[object.function]]
+    name = "set_placeholder_text"
+    # Use the property that is available since 4.0 instead of the function
+    # that is only available since 4.10
+    ignore = true
 
 [[object]]
 name = "Gtk.SelectionFilterModel"

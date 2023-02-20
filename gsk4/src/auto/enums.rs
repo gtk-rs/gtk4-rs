@@ -442,6 +442,145 @@ impl From<GLUniformType> for glib::Value {
     }
 }
 
+#[cfg(any(feature = "v4_10", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
+#[doc(alias = "GskMaskMode")]
+pub enum MaskMode {
+    #[doc(alias = "GSK_MASK_MODE_ALPHA")]
+    Alpha,
+    #[doc(alias = "GSK_MASK_MODE_INVERTED_ALPHA")]
+    InvertedAlpha,
+    #[doc(alias = "GSK_MASK_MODE_LUMINANCE")]
+    Luminance,
+    #[doc(alias = "GSK_MASK_MODE_INVERTED_LUMINANCE")]
+    InvertedLuminance,
+    #[doc(hidden)]
+    __Unknown(i32),
+}
+
+#[cfg(any(feature = "v4_10", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+impl fmt::Display for MaskMode {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(
+            f,
+            "MaskMode::{}",
+            match *self {
+                Self::Alpha => "Alpha",
+                Self::InvertedAlpha => "InvertedAlpha",
+                Self::Luminance => "Luminance",
+                Self::InvertedLuminance => "InvertedLuminance",
+                _ => "Unknown",
+            }
+        )
+    }
+}
+
+#[cfg(any(feature = "v4_10", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+#[doc(hidden)]
+impl IntoGlib for MaskMode {
+    type GlibType = ffi::GskMaskMode;
+
+    #[inline]
+    fn into_glib(self) -> ffi::GskMaskMode {
+        match self {
+            Self::Alpha => ffi::GSK_MASK_MODE_ALPHA,
+            Self::InvertedAlpha => ffi::GSK_MASK_MODE_INVERTED_ALPHA,
+            Self::Luminance => ffi::GSK_MASK_MODE_LUMINANCE,
+            Self::InvertedLuminance => ffi::GSK_MASK_MODE_INVERTED_LUMINANCE,
+            Self::__Unknown(value) => value,
+        }
+    }
+}
+
+#[cfg(any(feature = "v4_10", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+#[doc(hidden)]
+impl FromGlib<ffi::GskMaskMode> for MaskMode {
+    #[inline]
+    unsafe fn from_glib(value: ffi::GskMaskMode) -> Self {
+        skip_assert_initialized!();
+
+        match value {
+            ffi::GSK_MASK_MODE_ALPHA => Self::Alpha,
+            ffi::GSK_MASK_MODE_INVERTED_ALPHA => Self::InvertedAlpha,
+            ffi::GSK_MASK_MODE_LUMINANCE => Self::Luminance,
+            ffi::GSK_MASK_MODE_INVERTED_LUMINANCE => Self::InvertedLuminance,
+            value => Self::__Unknown(value),
+        }
+    }
+}
+
+#[cfg(any(feature = "v4_10", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+impl StaticType for MaskMode {
+    #[inline]
+    fn static_type() -> Type {
+        unsafe { from_glib(ffi::gsk_mask_mode_get_type()) }
+    }
+}
+
+#[cfg(any(feature = "v4_10", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+impl glib::HasParamSpec for MaskMode {
+    type ParamSpec = glib::ParamSpecEnum;
+    type SetValue = Self;
+    type BuilderFn = fn(&str, Self) -> glib::ParamSpecEnumBuilder<Self>;
+
+    fn param_spec_builder() -> Self::BuilderFn {
+        |name, default_value| Self::ParamSpec::builder_with_default(name, default_value)
+    }
+}
+
+#[cfg(any(feature = "v4_10", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+impl glib::value::ValueType for MaskMode {
+    type Type = Self;
+}
+
+#[cfg(any(feature = "v4_10", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+unsafe impl<'a> FromValue<'a> for MaskMode {
+    type Checker = glib::value::GenericValueTypeChecker<Self>;
+
+    #[inline]
+    unsafe fn from_value(value: &'a glib::Value) -> Self {
+        skip_assert_initialized!();
+        from_glib(glib::gobject_ffi::g_value_get_enum(value.to_glib_none().0))
+    }
+}
+
+#[cfg(any(feature = "v4_10", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+impl ToValue for MaskMode {
+    #[inline]
+    fn to_value(&self) -> glib::Value {
+        let mut value = glib::Value::for_value_type::<Self>();
+        unsafe {
+            glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.into_glib());
+        }
+        value
+    }
+
+    #[inline]
+    fn value_type(&self) -> glib::Type {
+        Self::static_type()
+    }
+}
+
+#[cfg(any(feature = "v4_10", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+impl From<MaskMode> for glib::Value {
+    #[inline]
+    fn from(v: MaskMode) -> Self {
+        skip_assert_initialized!();
+        ToValue::to_value(&v)
+    }
+}
+
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
 #[doc(alias = "GskRenderNodeType")]
@@ -498,6 +637,10 @@ pub enum RenderNodeType {
     DebugNode,
     #[doc(alias = "GSK_GL_SHADER_NODE")]
     GlShaderNode,
+    #[doc(alias = "GSK_TEXTURE_SCALE_NODE")]
+    TextureScaleNode,
+    #[doc(alias = "GSK_MASK_NODE")]
+    MaskNode,
     #[doc(hidden)]
     __Unknown(i32),
 }
@@ -534,6 +677,8 @@ impl fmt::Display for RenderNodeType {
                 Self::BlurNode => "BlurNode",
                 Self::DebugNode => "DebugNode",
                 Self::GlShaderNode => "GlShaderNode",
+                Self::TextureScaleNode => "TextureScaleNode",
+                Self::MaskNode => "MaskNode",
                 _ => "Unknown",
             }
         )
@@ -572,6 +717,8 @@ impl IntoGlib for RenderNodeType {
             Self::BlurNode => ffi::GSK_BLUR_NODE,
             Self::DebugNode => ffi::GSK_DEBUG_NODE,
             Self::GlShaderNode => ffi::GSK_GL_SHADER_NODE,
+            Self::TextureScaleNode => ffi::GSK_TEXTURE_SCALE_NODE,
+            Self::MaskNode => ffi::GSK_MASK_NODE,
             Self::__Unknown(value) => value,
         }
     }
@@ -609,6 +756,8 @@ impl FromGlib<ffi::GskRenderNodeType> for RenderNodeType {
             ffi::GSK_BLUR_NODE => Self::BlurNode,
             ffi::GSK_DEBUG_NODE => Self::DebugNode,
             ffi::GSK_GL_SHADER_NODE => Self::GlShaderNode,
+            ffi::GSK_TEXTURE_SCALE_NODE => Self::TextureScaleNode,
+            ffi::GSK_MASK_NODE => Self::MaskNode,
             value => Self::__Unknown(value),
         }
     }

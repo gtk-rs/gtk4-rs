@@ -245,6 +245,140 @@ impl From<AccessibleInvalidState> for glib::Value {
     }
 }
 
+#[cfg(any(feature = "v4_10", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
+#[doc(alias = "GtkAccessiblePlatformState")]
+pub enum AccessiblePlatformState {
+    #[doc(alias = "GTK_ACCESSIBLE_PLATFORM_STATE_FOCUSABLE")]
+    Focusable,
+    #[doc(alias = "GTK_ACCESSIBLE_PLATFORM_STATE_FOCUSED")]
+    Focused,
+    #[doc(alias = "GTK_ACCESSIBLE_PLATFORM_STATE_ACTIVE")]
+    Active,
+    #[doc(hidden)]
+    __Unknown(i32),
+}
+
+#[cfg(any(feature = "v4_10", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+impl fmt::Display for AccessiblePlatformState {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(
+            f,
+            "AccessiblePlatformState::{}",
+            match *self {
+                Self::Focusable => "Focusable",
+                Self::Focused => "Focused",
+                Self::Active => "Active",
+                _ => "Unknown",
+            }
+        )
+    }
+}
+
+#[cfg(any(feature = "v4_10", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+#[doc(hidden)]
+impl IntoGlib for AccessiblePlatformState {
+    type GlibType = ffi::GtkAccessiblePlatformState;
+
+    #[inline]
+    fn into_glib(self) -> ffi::GtkAccessiblePlatformState {
+        match self {
+            Self::Focusable => ffi::GTK_ACCESSIBLE_PLATFORM_STATE_FOCUSABLE,
+            Self::Focused => ffi::GTK_ACCESSIBLE_PLATFORM_STATE_FOCUSED,
+            Self::Active => ffi::GTK_ACCESSIBLE_PLATFORM_STATE_ACTIVE,
+            Self::__Unknown(value) => value,
+        }
+    }
+}
+
+#[cfg(any(feature = "v4_10", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+#[doc(hidden)]
+impl FromGlib<ffi::GtkAccessiblePlatformState> for AccessiblePlatformState {
+    #[inline]
+    unsafe fn from_glib(value: ffi::GtkAccessiblePlatformState) -> Self {
+        skip_assert_initialized!();
+
+        match value {
+            ffi::GTK_ACCESSIBLE_PLATFORM_STATE_FOCUSABLE => Self::Focusable,
+            ffi::GTK_ACCESSIBLE_PLATFORM_STATE_FOCUSED => Self::Focused,
+            ffi::GTK_ACCESSIBLE_PLATFORM_STATE_ACTIVE => Self::Active,
+            value => Self::__Unknown(value),
+        }
+    }
+}
+
+#[cfg(any(feature = "v4_10", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+impl StaticType for AccessiblePlatformState {
+    #[inline]
+    fn static_type() -> Type {
+        unsafe { from_glib(ffi::gtk_accessible_platform_state_get_type()) }
+    }
+}
+
+#[cfg(any(feature = "v4_10", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+impl glib::HasParamSpec for AccessiblePlatformState {
+    type ParamSpec = glib::ParamSpecEnum;
+    type SetValue = Self;
+    type BuilderFn = fn(&str, Self) -> glib::ParamSpecEnumBuilder<Self>;
+
+    fn param_spec_builder() -> Self::BuilderFn {
+        |name, default_value| Self::ParamSpec::builder_with_default(name, default_value)
+    }
+}
+
+#[cfg(any(feature = "v4_10", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+impl glib::value::ValueType for AccessiblePlatformState {
+    type Type = Self;
+}
+
+#[cfg(any(feature = "v4_10", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+unsafe impl<'a> FromValue<'a> for AccessiblePlatformState {
+    type Checker = glib::value::GenericValueTypeChecker<Self>;
+
+    #[inline]
+    unsafe fn from_value(value: &'a glib::Value) -> Self {
+        skip_assert_initialized!();
+        from_glib(glib::gobject_ffi::g_value_get_enum(value.to_glib_none().0))
+    }
+}
+
+#[cfg(any(feature = "v4_10", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+impl ToValue for AccessiblePlatformState {
+    #[inline]
+    fn to_value(&self) -> glib::Value {
+        let mut value = glib::Value::for_value_type::<Self>();
+        unsafe {
+            glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.into_glib());
+        }
+        value
+    }
+
+    #[inline]
+    fn value_type(&self) -> glib::Type {
+        Self::static_type()
+    }
+}
+
+#[cfg(any(feature = "v4_10", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+impl From<AccessiblePlatformState> for glib::Value {
+    #[inline]
+    fn from(v: AccessiblePlatformState) -> Self {
+        skip_assert_initialized!();
+        ToValue::to_value(&v)
+    }
+}
+
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
 #[doc(alias = "GtkAccessibleProperty")]

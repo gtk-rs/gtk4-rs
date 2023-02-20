@@ -2907,6 +2907,19 @@ pub struct _GdkTextureClass {
 
 pub type GdkTextureClass = *mut _GdkTextureClass;
 
+#[repr(C)]
+pub struct GdkTextureDownloader {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
+
+impl ::std::fmt::Debug for GdkTextureDownloader {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("GdkTextureDownloader @ {self:p}"))
+            .finish()
+    }
+}
+
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct GdkTimeCoord {
@@ -3871,6 +3884,58 @@ extern "C" {
     );
 
     //=========================================================================
+    // GdkTextureDownloader
+    //=========================================================================
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gdk_texture_downloader_get_type() -> GType;
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gdk_texture_downloader_new(texture: *mut GdkTexture) -> *mut GdkTextureDownloader;
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gdk_texture_downloader_copy(
+        self_: *const GdkTextureDownloader,
+    ) -> *mut GdkTextureDownloader;
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gdk_texture_downloader_download_bytes(
+        self_: *const GdkTextureDownloader,
+        out_stride: *mut size_t,
+    ) -> *mut glib::GBytes;
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gdk_texture_downloader_download_into(
+        self_: *const GdkTextureDownloader,
+        data: *mut u8,
+        stride: size_t,
+    );
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gdk_texture_downloader_free(self_: *mut GdkTextureDownloader);
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gdk_texture_downloader_get_format(self_: *const GdkTextureDownloader)
+        -> GdkMemoryFormat;
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gdk_texture_downloader_get_texture(
+        self_: *const GdkTextureDownloader,
+    ) -> *mut GdkTexture;
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gdk_texture_downloader_set_format(
+        self_: *mut GdkTextureDownloader,
+        format: GdkMemoryFormat,
+    );
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gdk_texture_downloader_set_texture(
+        self_: *mut GdkTextureDownloader,
+        texture: *mut GdkTexture,
+    );
+
+    //=========================================================================
     // GdkToplevelLayout
     //=========================================================================
     pub fn gdk_toplevel_layout_get_type() -> GType;
@@ -4572,6 +4637,9 @@ extern "C" {
     //=========================================================================
     pub fn gdk_monitor_get_type() -> GType;
     pub fn gdk_monitor_get_connector(monitor: *mut GdkMonitor) -> *const c_char;
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gdk_monitor_get_description(monitor: *mut GdkMonitor) -> *const c_char;
     pub fn gdk_monitor_get_display(monitor: *mut GdkMonitor) -> *mut GdkDisplay;
     pub fn gdk_monitor_get_geometry(monitor: *mut GdkMonitor, geometry: *mut GdkRectangle);
     pub fn gdk_monitor_get_height_mm(monitor: *mut GdkMonitor) -> c_int;
@@ -4732,6 +4800,9 @@ extern "C" {
     ) -> *mut GdkTexture;
     pub fn gdk_texture_new_from_resource(resource_path: *const c_char) -> *mut GdkTexture;
     pub fn gdk_texture_download(texture: *mut GdkTexture, data: *mut u8, stride: size_t);
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gdk_texture_get_format(self_: *mut GdkTexture) -> GdkMemoryFormat;
     pub fn gdk_texture_get_height(texture: *mut GdkTexture) -> c_int;
     pub fn gdk_texture_get_width(texture: *mut GdkTexture) -> c_int;
     pub fn gdk_texture_save_to_png(texture: *mut GdkTexture, filename: *const c_char) -> gboolean;

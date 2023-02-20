@@ -13,6 +13,7 @@ version = "0.7.0"
 rust-version = "1.64"
 [features]
 v4_4 = ["ffi/v4_4"]
+v4_10 = ["ffi/v4_10", "v4_4"]
 dox = ["ffi/dox", "gdk/dox", "gio/dox", "glib/dox", "egl", "xlib"]
 egl = ["khronos-egl"]
 xlib = ["x11"]

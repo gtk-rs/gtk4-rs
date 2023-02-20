@@ -28,6 +28,8 @@ generate = [
     "Gsk.GLUniformType",
     "Gsk.InsetShadowNode",
     "Gsk.LinearGradientNode",
+    "Gsk.MaskMode",
+    "Gsk.MaskNode",
     "Gsk.OpacityNode",
     "Gsk.OutsetShadowNode",
     "Gsk.RadialGradientNode",
@@ -39,6 +41,7 @@ generate = [
     "Gsk.ScalingFilter",
     "Gsk.SerializationError",
     "Gsk.TextureNode",
+    "Gsk.TextureScaleNode",
     "Gsk.TransformCategory",
     "Gsk.TransformNode",
 ]
