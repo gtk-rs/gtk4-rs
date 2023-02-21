@@ -71,7 +71,7 @@ pub trait AccessibleExt: 'static {
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
     #[doc(alias = "gtk_accessible_get_platform_state")]
     #[doc(alias = "get_platform_state")]
-    fn is_platform_state(&self, state: AccessiblePlatformState) -> bool;
+    fn platform_state(&self, state: AccessiblePlatformState) -> bool;
 
     #[doc(alias = "gtk_accessible_reset_property")]
     fn reset_property(&self, property: AccessibleProperty);
@@ -182,7 +182,7 @@ impl<O: IsA<Accessible>> AccessibleExt for O {
 
     #[cfg(any(feature = "v4_10", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
-    fn is_platform_state(&self, state: AccessiblePlatformState) -> bool {
+    fn platform_state(&self, state: AccessiblePlatformState) -> bool {
         unsafe {
             from_glib(ffi::gtk_accessible_get_platform_state(
                 self.as_ref().to_glib_none().0,
