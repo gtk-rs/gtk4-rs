@@ -578,6 +578,10 @@ manual_traits = ["AccessibleExtManual"]
     rename = "update_relation"
     doc_trait_name = "AccessibleExtManual"
     manual = true
+    [[object.function]]
+    name = "get_platform_state"
+    # Don't rename to is_platform_state
+    rename = "platform_state"
 
 [[object]]
 name = "Gtk.Actionable"
