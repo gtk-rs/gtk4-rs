@@ -186,6 +186,15 @@ impl RGBA {
             alpha: 1f32,
         },
     };
+
+    pub const TRANSPARENT: RGBA = Self {
+        inner: ffi::GdkRGBA {
+            red: 0f32,
+            green: 0f32,
+            blue: 0f32,
+            alpha: 0f32,
+        },
+    };
 }
 
 impl fmt::Debug for RGBA {
