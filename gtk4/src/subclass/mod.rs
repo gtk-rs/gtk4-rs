@@ -16,6 +16,9 @@ impl<T, F: Fn(*mut T) + 'static> Drop for PtrHolder<T, F> {
 
 #[cfg(any(feature = "v4_10", feature = "dox"))]
 #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+pub mod accessible;
+#[cfg(any(feature = "v4_10", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
 pub mod accessible_range;
 pub mod actionable;
 pub mod adjustment;
@@ -92,6 +95,9 @@ pub mod prelude {
     #[doc(hidden)]
     pub use glib::subclass::prelude::*;
 
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub use super::accessible::{AccessibleImpl, AccessibleImplExt};
     #[cfg(any(feature = "v4_10", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
     pub use super::accessible_range::{AccessibleRangeImpl, AccessibleRangeImplExt};
