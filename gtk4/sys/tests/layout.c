@@ -8,7 +8,9 @@
 
 int main() {
     printf("%s;%zu;%zu\n", "GtkAccessibleAutocomplete", sizeof(GtkAccessibleAutocomplete), alignof(GtkAccessibleAutocomplete));
+    printf("%s;%zu;%zu\n", "GtkAccessibleInterface", sizeof(GtkAccessibleInterface), alignof(GtkAccessibleInterface));
     printf("%s;%zu;%zu\n", "GtkAccessibleInvalidState", sizeof(GtkAccessibleInvalidState), alignof(GtkAccessibleInvalidState));
+    printf("%s;%zu;%zu\n", "GtkAccessiblePlatformState", sizeof(GtkAccessiblePlatformState), alignof(GtkAccessiblePlatformState));
     printf("%s;%zu;%zu\n", "GtkAccessibleProperty", sizeof(GtkAccessibleProperty), alignof(GtkAccessibleProperty));
     printf("%s;%zu;%zu\n", "GtkAccessibleRangeInterface", sizeof(GtkAccessibleRangeInterface), alignof(GtkAccessibleRangeInterface));
     printf("%s;%zu;%zu\n", "GtkAccessibleRelation", sizeof(GtkAccessibleRelation), alignof(GtkAccessibleRelation));

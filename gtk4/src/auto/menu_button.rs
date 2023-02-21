@@ -37,6 +37,14 @@ impl MenuButton {
         MenuButtonBuilder::new()
     }
 
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    #[doc(alias = "gtk_menu_button_get_active")]
+    #[doc(alias = "get_active")]
+    pub fn is_active(&self) -> bool {
+        unsafe { from_glib(ffi::gtk_menu_button_get_active(self.to_glib_none().0)) }
+    }
+
     #[cfg(any(feature = "v4_4", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_4")))]
     #[doc(alias = "gtk_menu_button_get_always_show_arrow")]
@@ -122,6 +130,15 @@ impl MenuButton {
     pub fn popup(&self) {
         unsafe {
             ffi::gtk_menu_button_popup(self.to_glib_none().0);
+        }
+    }
+
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    #[doc(alias = "gtk_menu_button_set_active")]
+    pub fn set_active(&self, active: bool) {
+        unsafe {
+            ffi::gtk_menu_button_set_active(self.to_glib_none().0, active.into_glib());
         }
     }
 
@@ -273,6 +290,31 @@ impl MenuButton {
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_4")))]
     pub fn emit_activate(&self) {
         self.emit_by_name::<()>("activate", &[]);
+    }
+
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    #[doc(alias = "active")]
+    pub fn connect_active_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_active_trampoline<F: Fn(&MenuButton) + 'static>(
+            this: *mut ffi::GtkMenuButton,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::active\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_active_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
     }
 
     #[cfg(any(feature = "v4_4", feature = "dox"))]
@@ -534,6 +576,14 @@ impl MenuButtonBuilder {
     fn new() -> Self {
         Self {
             builder: glib::object::Object::builder(),
+        }
+    }
+
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn active(self, active: bool) -> Self {
+        Self {
+            builder: self.builder.property("active", active),
         }
     }
 

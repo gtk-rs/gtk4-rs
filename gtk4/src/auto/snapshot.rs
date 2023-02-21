@@ -118,6 +118,16 @@ pub trait SnapshotExt: 'static {
         stops: &[gsk::ColorStop],
     );
 
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    #[doc(alias = "gtk_snapshot_append_scaled_texture")]
+    fn append_scaled_texture(
+        &self,
+        texture: &impl IsA<gdk::Texture>,
+        filter: gsk::ScalingFilter,
+        bounds: &graphene::Rect,
+    );
+
     #[doc(alias = "gtk_snapshot_append_texture")]
     fn append_texture(&self, texture: &impl IsA<gdk::Texture>, bounds: &graphene::Rect);
 
@@ -152,6 +162,11 @@ pub trait SnapshotExt: 'static {
         bounds: &graphene::Rect,
         take_args: glib::Bytes,
     );
+
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    #[doc(alias = "gtk_snapshot_push_mask")]
+    fn push_mask(&self, mask_mode: gsk::MaskMode);
 
     #[doc(alias = "gtk_snapshot_push_opacity")]
     fn push_opacity(&self, opacity: f64);
@@ -457,6 +472,24 @@ impl<O: IsA<Snapshot>> SnapshotExt for O {
         }
     }
 
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    fn append_scaled_texture(
+        &self,
+        texture: &impl IsA<gdk::Texture>,
+        filter: gsk::ScalingFilter,
+        bounds: &graphene::Rect,
+    ) {
+        unsafe {
+            ffi::gtk_snapshot_append_scaled_texture(
+                self.as_ref().to_glib_none().0,
+                texture.as_ref().to_glib_none().0,
+                filter.into_glib(),
+                bounds.to_glib_none().0,
+            );
+        }
+    }
+
     fn append_texture(&self, texture: &impl IsA<gdk::Texture>, bounds: &graphene::Rect) {
         unsafe {
             ffi::gtk_snapshot_append_texture(
@@ -532,6 +565,14 @@ impl<O: IsA<Snapshot>> SnapshotExt for O {
                 bounds.to_glib_none().0,
                 take_args.into_glib_ptr(),
             );
+        }
+    }
+
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    fn push_mask(&self, mask_mode: gsk::MaskMode) {
+        unsafe {
+            ffi::gtk_snapshot_push_mask(self.as_ref().to_glib_none().0, mask_mode.into_glib());
         }
     }
 

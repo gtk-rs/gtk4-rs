@@ -2,6 +2,9 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+#[cfg(any(feature = "v4_10", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+use crate::MemoryFormat;
 use crate::Paintable;
 use glib::{prelude::*, translate::*};
 use std::{fmt, ptr};
@@ -91,6 +94,12 @@ unsafe impl Send for Texture {}
 unsafe impl Sync for Texture {}
 
 pub trait TextureExt: 'static {
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    #[doc(alias = "gdk_texture_get_format")]
+    #[doc(alias = "get_format")]
+    fn format(&self) -> MemoryFormat;
+
     #[doc(alias = "gdk_texture_get_height")]
     #[doc(alias = "get_height")]
     fn height(&self) -> i32;
@@ -125,6 +134,12 @@ pub trait TextureExt: 'static {
 }
 
 impl<O: IsA<Texture>> TextureExt for O {
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    fn format(&self) -> MemoryFormat {
+        unsafe { from_glib(ffi::gdk_texture_get_format(self.as_ref().to_glib_none().0)) }
+    }
+
     fn height(&self) -> i32 {
         unsafe { ffi::gdk_texture_get_height(self.as_ref().to_glib_none().0) }
     }

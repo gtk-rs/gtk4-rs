@@ -205,10 +205,24 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         },
     ),
     (
+        "GtkAccessibleInterface",
+        Layout {
+            size: size_of::<GtkAccessibleInterface>(),
+            alignment: align_of::<GtkAccessibleInterface>(),
+        },
+    ),
+    (
         "GtkAccessibleInvalidState",
         Layout {
             size: size_of::<GtkAccessibleInvalidState>(),
             alignment: align_of::<GtkAccessibleInvalidState>(),
+        },
+    ),
+    (
+        "GtkAccessiblePlatformState",
+        Layout {
+            size: size_of::<GtkAccessiblePlatformState>(),
+            alignment: align_of::<GtkAccessiblePlatformState>(),
         },
     ),
     (
@@ -2462,6 +2476,9 @@ const RUST_CONSTANTS: &[(&str, &str)] = &[
     ("(gint) GTK_ACCESSIBLE_INVALID_GRAMMAR", "2"),
     ("(gint) GTK_ACCESSIBLE_INVALID_SPELLING", "3"),
     ("(gint) GTK_ACCESSIBLE_INVALID_TRUE", "1"),
+    ("(gint) GTK_ACCESSIBLE_PLATFORM_STATE_ACTIVE", "2"),
+    ("(gint) GTK_ACCESSIBLE_PLATFORM_STATE_FOCUSABLE", "0"),
+    ("(gint) GTK_ACCESSIBLE_PLATFORM_STATE_FOCUSED", "1"),
     ("(gint) GTK_ACCESSIBLE_PROPERTY_AUTOCOMPLETE", "0"),
     ("(gint) GTK_ACCESSIBLE_PROPERTY_DESCRIPTION", "1"),
     ("(gint) GTK_ACCESSIBLE_PROPERTY_HAS_POPUP", "2"),

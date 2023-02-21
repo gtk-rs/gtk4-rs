@@ -38,6 +38,11 @@ pub const GTK_ACCESSIBLE_INVALID_TRUE: GtkAccessibleInvalidState = 1;
 pub const GTK_ACCESSIBLE_INVALID_GRAMMAR: GtkAccessibleInvalidState = 2;
 pub const GTK_ACCESSIBLE_INVALID_SPELLING: GtkAccessibleInvalidState = 3;
 
+pub type GtkAccessiblePlatformState = c_int;
+pub const GTK_ACCESSIBLE_PLATFORM_STATE_FOCUSABLE: GtkAccessiblePlatformState = 0;
+pub const GTK_ACCESSIBLE_PLATFORM_STATE_FOCUSED: GtkAccessiblePlatformState = 1;
+pub const GTK_ACCESSIBLE_PLATFORM_STATE_ACTIVE: GtkAccessiblePlatformState = 2;
+
 pub type GtkAccessibleProperty = c_int;
 pub const GTK_ACCESSIBLE_PROPERTY_AUTOCOMPLETE: GtkAccessibleProperty = 0;
 pub const GTK_ACCESSIBLE_PROPERTY_DESCRIPTION: GtkAccessibleProperty = 1;
@@ -1191,13 +1196,49 @@ pub struct _GtkATContextClass {
 
 pub type GtkATContextClass = *mut _GtkATContextClass;
 
+#[derive(Copy, Clone)]
 #[repr(C)]
-pub struct _GtkAccessibleInterface {
-    _data: [u8; 0],
-    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+pub struct GtkAccessibleInterface {
+    pub g_iface: gobject::GTypeInterface,
+    pub get_at_context: Option<unsafe extern "C" fn(*mut GtkAccessible) -> *mut GtkATContext>,
+    pub get_platform_state:
+        Option<unsafe extern "C" fn(*mut GtkAccessible, GtkAccessiblePlatformState) -> gboolean>,
+    pub get_accessible_parent:
+        Option<unsafe extern "C" fn(*mut GtkAccessible) -> *mut GtkAccessible>,
+    pub get_first_accessible_child:
+        Option<unsafe extern "C" fn(*mut GtkAccessible) -> *mut GtkAccessible>,
+    pub get_next_accessible_sibling:
+        Option<unsafe extern "C" fn(*mut GtkAccessible) -> *mut GtkAccessible>,
+    pub get_bounds: Option<
+        unsafe extern "C" fn(
+            *mut GtkAccessible,
+            *mut c_int,
+            *mut c_int,
+            *mut c_int,
+            *mut c_int,
+        ) -> gboolean,
+    >,
 }
 
-pub type GtkAccessibleInterface = *mut _GtkAccessibleInterface;
+impl ::std::fmt::Debug for GtkAccessibleInterface {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("GtkAccessibleInterface @ {self:p}"))
+            .field("g_iface", &self.g_iface)
+            .field("get_at_context", &self.get_at_context)
+            .field("get_platform_state", &self.get_platform_state)
+            .field("get_accessible_parent", &self.get_accessible_parent)
+            .field(
+                "get_first_accessible_child",
+                &self.get_first_accessible_child,
+            )
+            .field(
+                "get_next_accessible_sibling",
+                &self.get_next_accessible_sibling,
+            )
+            .field("get_bounds", &self.get_bounds)
+            .finish()
+    }
+}
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -9056,6 +9097,13 @@ extern "C" {
     pub fn gtk_accessible_invalid_state_get_type() -> GType;
 
     //=========================================================================
+    // GtkAccessiblePlatformState
+    //=========================================================================
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gtk_accessible_platform_state_get_type() -> GType;
+
+    //=========================================================================
     // GtkAccessibleProperty
     //=========================================================================
     pub fn gtk_accessible_property_get_type() -> GType;
@@ -14707,6 +14755,9 @@ extern "C" {
     //=========================================================================
     pub fn gtk_menu_button_get_type() -> GType;
     pub fn gtk_menu_button_new() -> *mut GtkWidget;
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gtk_menu_button_get_active(menu_button: *mut GtkMenuButton) -> gboolean;
     #[cfg(any(feature = "v4_4", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_4")))]
     pub fn gtk_menu_button_get_always_show_arrow(menu_button: *mut GtkMenuButton) -> gboolean;
@@ -14725,6 +14776,9 @@ extern "C" {
     pub fn gtk_menu_button_get_use_underline(menu_button: *mut GtkMenuButton) -> gboolean;
     pub fn gtk_menu_button_popdown(menu_button: *mut GtkMenuButton);
     pub fn gtk_menu_button_popup(menu_button: *mut GtkMenuButton);
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gtk_menu_button_set_active(menu_button: *mut GtkMenuButton, active: gboolean);
     #[cfg(any(feature = "v4_4", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_4")))]
     pub fn gtk_menu_button_set_always_show_arrow(
@@ -16054,6 +16108,9 @@ extern "C" {
         step: c_double,
         icons: *mut *const c_char,
     ) -> *mut GtkWidget;
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gtk_scale_button_get_active(button: *mut GtkScaleButton) -> gboolean;
     pub fn gtk_scale_button_get_adjustment(button: *mut GtkScaleButton) -> *mut GtkAdjustment;
     pub fn gtk_scale_button_get_minus_button(button: *mut GtkScaleButton) -> *mut GtkButton;
     pub fn gtk_scale_button_get_plus_button(button: *mut GtkScaleButton) -> *mut GtkButton;
@@ -16209,6 +16266,9 @@ extern "C" {
     pub fn gtk_search_entry_get_type() -> GType;
     pub fn gtk_search_entry_new() -> *mut GtkWidget;
     pub fn gtk_search_entry_get_key_capture_widget(entry: *mut GtkSearchEntry) -> *mut GtkWidget;
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gtk_search_entry_get_placeholder_text(entry: *mut GtkSearchEntry) -> *const c_char;
     #[cfg(any(feature = "v4_8", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
     pub fn gtk_search_entry_get_search_delay(entry: *mut GtkSearchEntry) -> c_uint;
@@ -16216,6 +16276,9 @@ extern "C" {
         entry: *mut GtkSearchEntry,
         widget: *mut GtkWidget,
     );
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gtk_search_entry_set_placeholder_text(entry: *mut GtkSearchEntry, text: *const c_char);
     #[cfg(any(feature = "v4_8", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
     pub fn gtk_search_entry_set_search_delay(entry: *mut GtkSearchEntry, delay: c_uint);
@@ -16535,6 +16598,14 @@ extern "C" {
         stops: *const gsk::GskColorStop,
         n_stops: size_t,
     );
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gtk_snapshot_append_scaled_texture(
+        snapshot: *mut GtkSnapshot,
+        texture: *mut gdk::GdkTexture,
+        filter: gsk::GskScalingFilter,
+        bounds: *const graphene::graphene_rect_t,
+    );
     pub fn gtk_snapshot_append_texture(
         snapshot: *mut GtkSnapshot,
         texture: *mut gdk::GdkTexture,
@@ -16567,6 +16638,9 @@ extern "C" {
         bounds: *const graphene::graphene_rect_t,
         take_args: *mut glib::GBytes,
     );
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gtk_snapshot_push_mask(snapshot: *mut GtkSnapshot, mask_mode: gsk::GskMaskMode);
     pub fn gtk_snapshot_push_opacity(snapshot: *mut GtkSnapshot, opacity: c_double);
     pub fn gtk_snapshot_push_repeat(
         snapshot: *mut GtkSnapshot,
@@ -18887,7 +18961,38 @@ extern "C" {
     // GtkAccessible
     //=========================================================================
     pub fn gtk_accessible_get_type() -> GType;
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gtk_accessible_get_accessible_parent(self_: *mut GtkAccessible) -> *mut GtkAccessible;
     pub fn gtk_accessible_get_accessible_role(self_: *mut GtkAccessible) -> GtkAccessibleRole;
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gtk_accessible_get_at_context(self_: *mut GtkAccessible) -> *mut GtkATContext;
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gtk_accessible_get_bounds(
+        self_: *mut GtkAccessible,
+        x: *mut c_int,
+        y: *mut c_int,
+        width: *mut c_int,
+        height: *mut c_int,
+    ) -> gboolean;
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gtk_accessible_get_first_accessible_child(
+        self_: *mut GtkAccessible,
+    ) -> *mut GtkAccessible;
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gtk_accessible_get_next_accessible_sibling(
+        self_: *mut GtkAccessible,
+    ) -> *mut GtkAccessible;
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gtk_accessible_get_platform_state(
+        self_: *mut GtkAccessible,
+        state: GtkAccessiblePlatformState,
+    ) -> gboolean;
     pub fn gtk_accessible_reset_property(
         self_: *mut GtkAccessible,
         property: GtkAccessibleProperty,
@@ -18897,6 +19002,19 @@ extern "C" {
         relation: GtkAccessibleRelation,
     );
     pub fn gtk_accessible_reset_state(self_: *mut GtkAccessible, state: GtkAccessibleState);
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gtk_accessible_set_accessible_parent(
+        self_: *mut GtkAccessible,
+        parent: *mut GtkAccessible,
+        next_sibling: *mut GtkAccessible,
+    );
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gtk_accessible_update_next_accessible_sibling(
+        self_: *mut GtkAccessible,
+        new_sibling: *mut GtkAccessible,
+    );
     pub fn gtk_accessible_update_property(
         self_: *mut GtkAccessible,
         first_property: GtkAccessibleProperty,
@@ -19080,6 +19198,12 @@ extern "C" {
         object_class: *mut gobject::GObjectClass,
         first_prop: c_uint,
     ) -> c_uint;
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gtk_editable_delegate_get_accessible_platform_state(
+        editable: *mut GtkEditable,
+        state: GtkAccessiblePlatformState,
+    ) -> gboolean;
     pub fn gtk_editable_delete_selection(editable: *mut GtkEditable);
     pub fn gtk_editable_delete_text(editable: *mut GtkEditable, start_pos: c_int, end_pos: c_int);
     pub fn gtk_editable_finish_delegate(editable: *mut GtkEditable);

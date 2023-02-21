@@ -12,6 +12,7 @@ int main() {
     printf("%s;%zu;%zu\n", "GskCorner", sizeof(GskCorner), alignof(GskCorner));
     printf("%s;%zu;%zu\n", "GskGLShaderClass", sizeof(GskGLShaderClass), alignof(GskGLShaderClass));
     printf("%s;%zu;%zu\n", "GskGLUniformType", sizeof(GskGLUniformType), alignof(GskGLUniformType));
+    printf("%s;%zu;%zu\n", "GskMaskMode", sizeof(GskMaskMode), alignof(GskMaskMode));
     printf("%s;%zu;%zu\n", "GskParseLocation", sizeof(GskParseLocation), alignof(GskParseLocation));
     printf("%s;%zu;%zu\n", "GskRenderNodeType", sizeof(GskRenderNodeType), alignof(GskRenderNodeType));
     printf("%s;%zu;%zu\n", "GskRoundedRect", sizeof(GskRoundedRect), alignof(GskRoundedRect));

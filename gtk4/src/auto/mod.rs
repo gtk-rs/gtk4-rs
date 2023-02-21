@@ -72,10 +72,14 @@ pub use self::application_window::ApplicationWindow;
 mod aspect_frame;
 pub use self::aspect_frame::AspectFrame;
 
+#[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 mod assistant;
+#[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 pub use self::assistant::Assistant;
 
+#[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 mod assistant_page;
+#[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 pub use self::assistant_page::AssistantPage;
 
 mod bin_layout;
@@ -124,7 +128,9 @@ mod cell_area_box;
 #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 pub use self::cell_area_box::CellAreaBox;
 
+#[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 mod cell_area_context;
+#[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 pub use self::cell_area_context::CellAreaContext;
 
 #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
@@ -578,7 +584,9 @@ pub use self::list_store::ListStore;
 mod list_view;
 pub use self::list_view::ListView;
 
+#[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 mod lock_button;
+#[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 pub use self::lock_button::LockButton;
 
 mod map_list_model;
@@ -855,7 +863,9 @@ pub use self::stack_sidebar::StackSidebar;
 mod stack_switcher;
 pub use self::stack_switcher::StackSwitcher;
 
+#[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 mod statusbar;
+#[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 pub use self::statusbar::Statusbar;
 
 mod string_filter;
@@ -990,7 +1000,9 @@ pub use self::video::Video;
 mod viewport;
 pub use self::viewport::Viewport;
 
+#[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 mod volume_button;
+#[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 pub use self::volume_button::VolumeButton;
 
 mod widget;
@@ -1041,6 +1053,9 @@ pub use self::tree_row_reference::TreeRowReference;
 mod enums;
 pub use self::enums::AccessibleAutocomplete;
 pub use self::enums::AccessibleInvalidState;
+#[cfg(any(feature = "v4_10", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+pub use self::enums::AccessiblePlatformState;
 pub use self::enums::AccessibleProperty;
 pub use self::enums::AccessibleRelation;
 pub use self::enums::AccessibleRole;
@@ -1243,6 +1258,7 @@ pub mod traits {
     pub use super::button::ButtonExt;
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     pub use super::cell_area::CellAreaExt;
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     pub use super::cell_area_context::CellAreaContextExt;
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     pub use super::cell_editable::CellEditableExt;
@@ -1351,6 +1367,7 @@ pub mod builders {
     pub use super::application::ApplicationBuilder;
     pub use super::application_window::ApplicationWindowBuilder;
     pub use super::aspect_frame::AspectFrameBuilder;
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     pub use super::assistant::AssistantBuilder;
     pub use super::bool_filter::BoolFilterBuilder;
     pub use super::box_::BoxBuilder;
@@ -1475,6 +1492,7 @@ pub mod builders {
     pub use super::list_box::ListBoxBuilder;
     pub use super::list_box_row::ListBoxRowBuilder;
     pub use super::list_view::ListViewBuilder;
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     pub use super::lock_button::LockButtonBuilder;
     pub use super::media_controls::MediaControlsBuilder;
     pub use super::menu_button::MenuButtonBuilder;
@@ -1525,6 +1543,7 @@ pub mod builders {
     pub use super::stack::StackBuilder;
     pub use super::stack_sidebar::StackSidebarBuilder;
     pub use super::stack_switcher::StackSwitcherBuilder;
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     pub use super::statusbar::StatusbarBuilder;
     pub use super::string_filter::StringFilterBuilder;
     pub use super::string_sorter::StringSorterBuilder;
@@ -1545,6 +1564,7 @@ pub mod builders {
     pub use super::uri_launcher::UriLauncherBuilder;
     pub use super::video::VideoBuilder;
     pub use super::viewport::ViewportBuilder;
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     pub use super::volume_button::VolumeButtonBuilder;
     pub use super::window::WindowBuilder;
     pub use super::window_controls::WindowControlsBuilder;
