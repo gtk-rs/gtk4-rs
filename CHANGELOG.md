@@ -2,6 +2,14 @@
 
 ## [Unreleased]
 
+## [0.6.2]
+
+Bilal Elmoussaoui:
+- gtk: Add Accessible interface implementation support
+
+Sebastian Dröge:
+- Add various new GTK 4.10 APIs 
+
 ## [0.6.1]
 
 Julian Hofer:
