@@ -28,6 +28,12 @@ pub trait MonitorExt: 'static {
     #[doc(alias = "get_connector")]
     fn connector(&self) -> Option<glib::GString>;
 
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    #[doc(alias = "gdk_monitor_get_description")]
+    #[doc(alias = "get_description")]
+    fn description(&self) -> Option<glib::GString>;
+
     #[doc(alias = "gdk_monitor_get_display")]
     #[doc(alias = "get_display")]
     fn display(&self) -> Display;
@@ -73,6 +79,11 @@ pub trait MonitorExt: 'static {
     #[doc(alias = "connector")]
     fn connect_connector_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    #[doc(alias = "description")]
+    fn connect_description_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+
     #[doc(alias = "geometry")]
     fn connect_geometry_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
@@ -105,6 +116,16 @@ impl<O: IsA<Monitor>> MonitorExt for O {
     fn connector(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::gdk_monitor_get_connector(
+                self.as_ref().to_glib_none().0,
+            ))
+        }
+    }
+
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    fn description(&self) -> Option<glib::GString> {
+        unsafe {
+            from_glib_none(ffi::gdk_monitor_get_description(
                 self.as_ref().to_glib_none().0,
             ))
         }
@@ -202,6 +223,30 @@ impl<O: IsA<Monitor>> MonitorExt for O {
                 b"notify::connector\0".as_ptr() as *const _,
                 Some(transmute::<_, unsafe extern "C" fn()>(
                     notify_connector_trampoline::<Self, F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    fn connect_description_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_description_trampoline<P: IsA<Monitor>, F: Fn(&P) + 'static>(
+            this: *mut ffi::GdkMonitor,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(Monitor::from_glib_borrow(this).unsafe_cast_ref())
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::description\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_description_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
             )

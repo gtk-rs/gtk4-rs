@@ -55,6 +55,12 @@ pub const GSK_GL_UNIFORM_TYPE_VEC2: GskGLUniformType = 5;
 pub const GSK_GL_UNIFORM_TYPE_VEC3: GskGLUniformType = 6;
 pub const GSK_GL_UNIFORM_TYPE_VEC4: GskGLUniformType = 7;
 
+pub type GskMaskMode = c_int;
+pub const GSK_MASK_MODE_ALPHA: GskMaskMode = 0;
+pub const GSK_MASK_MODE_INVERTED_ALPHA: GskMaskMode = 1;
+pub const GSK_MASK_MODE_LUMINANCE: GskMaskMode = 2;
+pub const GSK_MASK_MODE_INVERTED_LUMINANCE: GskMaskMode = 3;
+
 pub type GskRenderNodeType = c_int;
 pub const GSK_NOT_A_RENDER_NODE: GskRenderNodeType = 0;
 pub const GSK_CONTAINER_NODE: GskRenderNodeType = 1;
@@ -82,6 +88,8 @@ pub const GSK_TEXT_NODE: GskRenderNodeType = 22;
 pub const GSK_BLUR_NODE: GskRenderNodeType = 23;
 pub const GSK_DEBUG_NODE: GskRenderNodeType = 24;
 pub const GSK_GL_SHADER_NODE: GskRenderNodeType = 25;
+pub const GSK_TEXTURE_SCALE_NODE: GskRenderNodeType = 26;
+pub const GSK_MASK_NODE: GskRenderNodeType = 27;
 
 pub type GskScalingFilter = c_int;
 pub const GSK_SCALING_FILTER_LINEAR: GskScalingFilter = 0;
@@ -487,6 +495,18 @@ impl ::std::fmt::Debug for GskLinearGradientNode {
 }
 
 #[repr(C)]
+pub struct GskMaskNode {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
+
+impl ::std::fmt::Debug for GskMaskNode {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("GskMaskNode @ {self:p}")).finish()
+    }
+}
+
+#[repr(C)]
 pub struct GskNglRenderer {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -654,6 +674,19 @@ impl ::std::fmt::Debug for GskTextureNode {
 }
 
 #[repr(C)]
+pub struct GskTextureScaleNode {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
+
+impl ::std::fmt::Debug for GskTextureScaleNode {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("GskTextureScaleNode @ {self:p}"))
+            .finish()
+    }
+}
+
+#[repr(C)]
 pub struct GskTransformNode {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -683,6 +716,13 @@ extern "C" {
     // GskGLUniformType
     //=========================================================================
     pub fn gsk_gl_uniform_type_get_type() -> GType;
+
+    //=========================================================================
+    // GskMaskMode
+    //=========================================================================
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gsk_mask_mode_get_type() -> GType;
 
     //=========================================================================
     // GskRenderNodeType
@@ -1201,6 +1241,29 @@ extern "C" {
     ) -> *const graphene::graphene_point_t;
 
     //=========================================================================
+    // GskMaskNode
+    //=========================================================================
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gsk_mask_node_get_type() -> GType;
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gsk_mask_node_new(
+        source: *mut GskRenderNode,
+        mask: *mut GskRenderNode,
+        mask_mode: GskMaskMode,
+    ) -> *mut GskMaskNode;
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gsk_mask_node_get_mask(node: *const GskMaskNode) -> *mut GskRenderNode;
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gsk_mask_node_get_mask_mode(node: *const GskMaskNode) -> GskMaskMode;
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gsk_mask_node_get_source(node: *const GskMaskNode) -> *mut GskRenderNode;
+
+    //=========================================================================
     // GskNglRenderer
     //=========================================================================
     pub fn gsk_ngl_renderer_get_type() -> GType;
@@ -1411,6 +1474,28 @@ extern "C" {
         bounds: *const graphene::graphene_rect_t,
     ) -> *mut GskTextureNode;
     pub fn gsk_texture_node_get_texture(node: *const GskTextureNode) -> *mut gdk::GdkTexture;
+
+    //=========================================================================
+    // GskTextureScaleNode
+    //=========================================================================
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gsk_texture_scale_node_get_type() -> GType;
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gsk_texture_scale_node_new(
+        texture: *mut gdk::GdkTexture,
+        bounds: *const graphene::graphene_rect_t,
+        filter: GskScalingFilter,
+    ) -> *mut GskTextureScaleNode;
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gsk_texture_scale_node_get_filter(node: *const GskTextureScaleNode) -> GskScalingFilter;
+    #[cfg(any(feature = "v4_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    pub fn gsk_texture_scale_node_get_texture(
+        node: *const GskTextureScaleNode,
+    ) -> *mut gdk::GdkTexture;
 
     //=========================================================================
     // GskTransformNode
