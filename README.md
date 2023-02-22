@@ -56,13 +56,17 @@ crates like `glib-rs`.
 
 ### Built with GTK4 Rust bindings
 
-Below is a list of applications built using the Rust bindings of GTK 4
+A small list of applications built with gtk4-rs:
 
-- [Solanum](https://gitlab.gnome.org/World/Solanum)
-- [Shortwave](https://gitlab.gnome.org/World/Shortwave)
-- [Authenticator](https://gitlab.gnome.org/World/Authenticator)
-- [Health](https://gitlab.gnome.org/Cogitri/Health)
-- [Video Trimmer](https://gitlab.gnome.org/YaLTeR/video-trimmer)
+- [Solanum](https://gitlab.gnome.org/World/Solanum): A pomodoro timer
+- [Shortwave](https://gitlab.gnome.org/World/Shortwave): An internet radio player
+- [Authenticator](https://gitlab.gnome.org/World/Authenticator): A two-factor code generator
+- [Health](https://gitlab.gnome.org/Cogitri/Health): A health tracking app
+- [Video Trimmer](https://gitlab.gnome.org/YaLTeR/video-trimmer): A fast video trimmer
+
+Libraries built with gtk4-rs:
+
+- [Relm4](https://github.com/Relm4/relm4): An idiomatic GUI library inspired by Elm
 
 ## Contributing
 
