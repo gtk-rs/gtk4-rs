@@ -313,7 +313,6 @@ manual = [
     "Gdk.Snapshot",
     "Gdk.SurfaceEdge",
     "Gdk.Texture",
-    "Gdk.TimeCoord",
     "GdkPixbuf.Pixbuf",
     "Gio.Action",
     "Gio.ActionGroup",
@@ -364,7 +363,6 @@ manual = [
     "Gtk.CssLocation",
     "Gtk.ExpressionWatch", # can't be auto because of get_type being public until v4_2
     "Gtk.PadActionEntry",
-    "Gtk.PageRange",
     "Gtk.RecentData",
     "Gtk.ResponseType",
     "Pango.Alignment",
@@ -410,6 +408,11 @@ final_type = false
     [[object.function]]
     name = "get_scale_factor"
     ignore = true # docs only, otherwise it gets picked as ExtManual
+
+[[object]]
+name = "Gdk.TimeCoord"
+status = "manual"
+boxed_inline = true
 
 [[object]]
 name = "Gio.Application"
@@ -1705,6 +1708,11 @@ status = "generate"
 name = "Gtk.OverlayLayoutChild"
 status = "generate"
 generate_builder = false
+
+[[object]]
+name = "Gtk.PageRange"
+status = "manual"
+boxed_inline = true
 
 [[object]]
 name = "Gtk.PageSetup"

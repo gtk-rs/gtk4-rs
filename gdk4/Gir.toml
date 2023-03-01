@@ -73,7 +73,6 @@ manual = [
     "cairo.Region",
     "cairo.Surface",
     "Gdk.KeymapKey",
-    "Gdk.TimeCoord",
     "Gdk.ToplevelSize",
     "GdkPixbuf.Pixbuf",
     "Gio.AppLaunchContext",
@@ -607,6 +606,11 @@ concurrency = "send+sync"
     name = "save_to_tiff"
         [object.function.return]
         bool_return_is_error = "Failed to save the texture as tiff"
+
+[[object]]
+name = "Gdk.TimeCoord"
+status = "manual"
+boxed_inline = true
 
 [[object]]
 name = "Gdk.Toplevel"

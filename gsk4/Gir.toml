@@ -66,14 +66,12 @@ manual = [
     "Graphene.Vec2",
     "Graphene.Vec3",
     "Graphene.Vec4",
-    "Gsk.ColorStop",
     "Gsk.NglRenderer",
     "Gsk.ParseLocation",
     "Gsk.RoundedRect",
     "Gsk.Shadow",
     "Gtk.Snapshot", # docs specific
     "Pango.Font",
-    "Pango.GlyphInfo",
     "Pango.GlyphString",
 ]
 
@@ -101,6 +99,11 @@ status = "generate"
 name = "Gsk.BroadwayRenderer"
 status = "generate"
 cfg_condition = "feature = \"broadway\""
+
+[[object]]
+name = "Gsk.ColorStop"
+status = "manual"
+boxed_inline = true
 
 [[object]]
 name = "Gsk.ContainerNode"
@@ -202,3 +205,8 @@ status = "generate"
     [[object.function]]
     name = "parse"
     manual = true # bool_return_is_error doesn't seem to work for it
+
+[[object]]
+name = "Pango.GlyphInfo"
+status = "manual"
+boxed_inline = true
