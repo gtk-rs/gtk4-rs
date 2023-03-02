@@ -36,7 +36,7 @@ impl ConstraintLayout {
                 let out = ffi::gtk_constraint_layout_add_constraints_from_descriptionv(
                     self.to_glib_none().0,
                     lines.as_ptr() as *const _,
-                    lines.len().saturating_sub(1) as _,
+                    lines.len() as _,
                     hspacing,
                     vspacing,
                     hash_table,
