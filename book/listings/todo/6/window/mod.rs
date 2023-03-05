@@ -84,7 +84,7 @@ impl Window {
 
     fn setup_tasks(&self) {
         // Create new model
-        let model = gio::ListStore::new(TaskObject::static_type());
+        let model = gio::ListStore::new::<TaskObject>();
 
         // Get state and set model
         self.imp().tasks.replace(Some(model));

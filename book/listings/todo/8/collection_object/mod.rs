@@ -50,7 +50,7 @@ impl CollectionObject {
             .map(TaskObject::from_task_data)
             .collect();
 
-        let tasks = gio::ListStore::new(TaskObject::static_type());
+        let tasks = gio::ListStore::new::<TaskObject>();
         tasks.extend_from_slice(&tasks_to_extend);
 
         Self::new(&title, tasks)

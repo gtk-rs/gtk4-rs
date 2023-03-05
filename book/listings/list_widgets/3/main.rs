@@ -27,7 +27,7 @@ fn build_ui(app: &Application) {
         (0..=100_000).into_iter().map(IntegerObject::new).collect();
 
     // Create new model
-    let model = gio::ListStore::new(IntegerObject::static_type());
+    let model = gio::ListStore::new::<IntegerObject>();
 
     // Add the vector to the model
     model.extend_from_slice(&vector);

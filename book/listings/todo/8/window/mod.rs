@@ -112,7 +112,7 @@ impl Window {
 
     // ANCHOR: setup_collections
     fn setup_collections(&self) {
-        let collections = gio::ListStore::new(CollectionObject::static_type());
+        let collections = gio::ListStore::new::<CollectionObject>();
         self.imp()
             .collections
             .set(collections.clone())
@@ -457,7 +457,7 @@ impl Window {
                 }
 
                 // Create a new list store
-                let tasks = gio::ListStore::new(TaskObject::static_type());
+                let tasks = gio::ListStore::new::<TaskObject>();
 
                 // Create a new collection object from the title the user provided
                 let title = entry.text().to_string();
