@@ -145,7 +145,7 @@ impl FlowBox {
 
     #[doc(alias = "gtk_flow_box_get_selected_children")]
     #[doc(alias = "get_selected_children")]
-    pub fn selected_children(&self) -> Vec<FlowBoxChild> {
+    pub fn selected_children(&self) -> glib::List<FlowBoxChild> {
         unsafe {
             FromGlibPtrContainer::from_glib_container(ffi::gtk_flow_box_get_selected_children(
                 self.to_glib_none().0,

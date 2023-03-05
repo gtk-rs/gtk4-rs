@@ -191,7 +191,7 @@ pub trait CellAreaExt: 'static {
     #[allow(deprecated)]
     #[doc(alias = "gtk_cell_area_get_focus_siblings")]
     #[doc(alias = "get_focus_siblings")]
-    fn focus_siblings(&self, renderer: &impl IsA<CellRenderer>) -> Vec<CellRenderer>;
+    fn focus_siblings(&self, renderer: &impl IsA<CellRenderer>) -> glib::List<CellRenderer>;
 
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
@@ -675,7 +675,7 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
     }
 
     #[allow(deprecated)]
-    fn focus_siblings(&self, renderer: &impl IsA<CellRenderer>) -> Vec<CellRenderer> {
+    fn focus_siblings(&self, renderer: &impl IsA<CellRenderer>) -> glib::List<CellRenderer> {
         unsafe {
             FromGlibPtrContainer::from_glib_none(ffi::gtk_cell_area_get_focus_siblings(
                 self.as_ref().to_glib_none().0,

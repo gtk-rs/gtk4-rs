@@ -165,7 +165,7 @@ pub trait WidgetExt: 'static {
 
     #[doc(alias = "gtk_widget_get_css_classes")]
     #[doc(alias = "get_css_classes")]
-    fn css_classes(&self) -> Vec<glib::GString>;
+    fn css_classes(&self) -> glib::StrV;
 
     #[doc(alias = "gtk_widget_get_css_name")]
     #[doc(alias = "get_css_name")]
@@ -428,7 +428,7 @@ pub trait WidgetExt: 'static {
     fn keynav_failed(&self, direction: DirectionType) -> bool;
 
     #[doc(alias = "gtk_widget_list_mnemonic_labels")]
-    fn list_mnemonic_labels(&self) -> Vec<Widget>;
+    fn list_mnemonic_labels(&self) -> glib::List<Widget>;
 
     #[doc(alias = "gtk_widget_map")]
     fn map(&self);
@@ -1054,7 +1054,7 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    fn css_classes(&self) -> Vec<glib::GString> {
+    fn css_classes(&self) -> glib::StrV {
         unsafe {
             FromGlibPtrContainer::from_glib_full(ffi::gtk_widget_get_css_classes(
                 self.as_ref().to_glib_none().0,
@@ -1485,7 +1485,7 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    fn list_mnemonic_labels(&self) -> Vec<Widget> {
+    fn list_mnemonic_labels(&self) -> glib::List<Widget> {
         unsafe {
             FromGlibPtrContainer::from_glib_container(ffi::gtk_widget_list_mnemonic_labels(
                 self.as_ref().to_glib_none().0,

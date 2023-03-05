@@ -54,7 +54,7 @@ impl GestureStylus {
 
     #[doc(alias = "gtk_gesture_stylus_get_backlog")]
     #[doc(alias = "get_backlog")]
-    pub fn backlog(&self) -> Option<Vec<gdk::TimeCoord>> {
+    pub fn backlog(&self) -> Option<glib::Slice<gdk::TimeCoord>> {
         unsafe {
             let mut backlog = ptr::null_mut();
             let mut n_elems = mem::MaybeUninit::uninit();

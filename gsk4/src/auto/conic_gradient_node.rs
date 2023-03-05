@@ -63,7 +63,7 @@ impl ConicGradientNode {
 
     #[doc(alias = "gsk_conic_gradient_node_get_color_stops")]
     #[doc(alias = "get_color_stops")]
-    pub fn color_stops(&self) -> Vec<ColorStop> {
+    pub fn color_stops(&self) -> glib::Slice<ColorStop> {
         unsafe {
             let mut n_stops = mem::MaybeUninit::uninit();
             let ret = FromGlibContainer::from_glib_none_num(

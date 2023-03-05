@@ -223,7 +223,7 @@ impl Builder {
 
     #[doc(alias = "gtk_builder_get_objects")]
     #[doc(alias = "get_objects")]
-    pub fn objects(&self) -> Vec<glib::Object> {
+    pub fn objects(&self) -> glib::SList<glib::Object> {
         unsafe {
             FromGlibPtrContainer::from_glib_container(ffi::gtk_builder_get_objects(
                 self.to_glib_none().0,

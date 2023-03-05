@@ -31,7 +31,7 @@ impl DisplayManager {
     }
 
     #[doc(alias = "gdk_display_manager_list_displays")]
-    pub fn list_displays(&self) -> Vec<Display> {
+    pub fn list_displays(&self) -> glib::SList<Display> {
         unsafe {
             FromGlibPtrContainer::from_glib_container(ffi::gdk_display_manager_list_displays(
                 self.to_glib_none().0,

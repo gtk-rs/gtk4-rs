@@ -30,7 +30,7 @@ pub trait SeatExt: 'static {
 
     #[doc(alias = "gdk_seat_get_devices")]
     #[doc(alias = "get_devices")]
-    fn devices(&self, capabilities: SeatCapabilities) -> Vec<Device>;
+    fn devices(&self, capabilities: SeatCapabilities) -> glib::List<Device>;
 
     #[doc(alias = "gdk_seat_get_display")]
     #[doc(alias = "get_display")]
@@ -46,7 +46,7 @@ pub trait SeatExt: 'static {
 
     #[doc(alias = "gdk_seat_get_tools")]
     #[doc(alias = "get_tools")]
-    fn tools(&self) -> Vec<DeviceTool>;
+    fn tools(&self) -> glib::List<DeviceTool>;
 
     #[doc(alias = "device-added")]
     fn connect_device_added<F: Fn(&Self, &Device) + 'static>(&self, f: F) -> SignalHandlerId;
@@ -70,7 +70,7 @@ impl<O: IsA<Seat>> SeatExt for O {
         }
     }
 
-    fn devices(&self, capabilities: SeatCapabilities) -> Vec<Device> {
+    fn devices(&self, capabilities: SeatCapabilities) -> glib::List<Device> {
         unsafe {
             FromGlibPtrContainer::from_glib_container(ffi::gdk_seat_get_devices(
                 self.as_ref().to_glib_none().0,
@@ -91,7 +91,7 @@ impl<O: IsA<Seat>> SeatExt for O {
         unsafe { from_glib_none(ffi::gdk_seat_get_pointer(self.as_ref().to_glib_none().0)) }
     }
 
-    fn tools(&self) -> Vec<DeviceTool> {
+    fn tools(&self) -> glib::List<DeviceTool> {
         unsafe {
             FromGlibPtrContainer::from_glib_container(ffi::gdk_seat_get_tools(
                 self.as_ref().to_glib_none().0,

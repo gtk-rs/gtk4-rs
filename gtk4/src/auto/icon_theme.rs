@@ -59,7 +59,7 @@ impl IconTheme {
 
     #[doc(alias = "gtk_icon_theme_get_icon_names")]
     #[doc(alias = "get_icon_names")]
-    pub fn icon_names(&self) -> Vec<glib::GString> {
+    pub fn icon_names(&self) -> glib::StrV {
         unsafe {
             FromGlibPtrContainer::from_glib_full(ffi::gtk_icon_theme_get_icon_names(
                 self.to_glib_none().0,
@@ -69,7 +69,7 @@ impl IconTheme {
 
     #[doc(alias = "gtk_icon_theme_get_resource_path")]
     #[doc(alias = "get_resource_path")]
-    pub fn resource_path(&self) -> Vec<glib::GString> {
+    pub fn resource_path(&self) -> glib::StrV {
         unsafe {
             FromGlibPtrContainer::from_glib_full(ffi::gtk_icon_theme_get_resource_path(
                 self.to_glib_none().0,

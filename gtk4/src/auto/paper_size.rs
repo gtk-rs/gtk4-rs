@@ -260,7 +260,7 @@ impl PaperSize {
 
     #[doc(alias = "gtk_paper_size_get_paper_sizes")]
     #[doc(alias = "get_paper_sizes")]
-    pub fn paper_sizes(include_custom: bool) -> Vec<PaperSize> {
+    pub fn paper_sizes(include_custom: bool) -> glib::List<PaperSize> {
         assert_initialized_main_thread!();
         unsafe {
             FromGlibPtrContainer::from_glib_full(ffi::gtk_paper_size_get_paper_sizes(

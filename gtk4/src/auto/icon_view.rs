@@ -374,7 +374,7 @@ impl IconView {
     #[allow(deprecated)]
     #[doc(alias = "gtk_icon_view_get_selected_items")]
     #[doc(alias = "get_selected_items")]
-    pub fn selected_items(&self) -> Vec<TreePath> {
+    pub fn selected_items(&self) -> glib::List<TreePath> {
         unsafe {
             FromGlibPtrContainer::from_glib_full(ffi::gtk_icon_view_get_selected_items(
                 self.to_glib_none().0,

@@ -41,7 +41,7 @@ impl SizeGroup {
 
     #[doc(alias = "gtk_size_group_get_widgets")]
     #[doc(alias = "get_widgets")]
-    pub fn widgets(&self) -> Vec<Widget> {
+    pub fn widgets(&self) -> glib::SList<Widget> {
         unsafe {
             FromGlibPtrContainer::from_glib_none(ffi::gtk_size_group_get_widgets(
                 self.to_glib_none().0,

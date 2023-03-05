@@ -136,7 +136,7 @@ impl ListBox {
 
     #[doc(alias = "gtk_list_box_get_selected_rows")]
     #[doc(alias = "get_selected_rows")]
-    pub fn selected_rows(&self) -> Vec<ListBoxRow> {
+    pub fn selected_rows(&self) -> glib::List<ListBoxRow> {
         unsafe {
             FromGlibPtrContainer::from_glib_container(ffi::gtk_list_box_get_selected_rows(
                 self.to_glib_none().0,

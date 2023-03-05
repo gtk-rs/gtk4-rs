@@ -33,7 +33,7 @@ impl FileList {
 
     #[doc(alias = "gdk_file_list_get_files")]
     #[doc(alias = "get_files")]
-    pub fn files(&self) -> Vec<gio::File> {
+    pub fn files(&self) -> glib::SList<gio::File> {
         unsafe {
             FromGlibPtrContainer::from_glib_container(ffi::gdk_file_list_get_files(mut_override(
                 self.to_glib_none().0,

@@ -66,7 +66,7 @@ impl PrintJob {
 
     #[doc(alias = "gtk_print_job_get_page_ranges")]
     #[doc(alias = "get_page_ranges")]
-    pub fn page_ranges(&self) -> Vec<PageRange> {
+    pub fn page_ranges(&self) -> glib::Slice<PageRange> {
         unsafe {
             let mut n_ranges = mem::MaybeUninit::uninit();
             let ret = FromGlibContainer::from_glib_none_num(

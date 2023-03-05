@@ -54,7 +54,7 @@ impl TextNode {
 
     #[doc(alias = "gsk_text_node_get_glyphs")]
     #[doc(alias = "get_glyphs")]
-    pub fn glyphs(&self) -> Vec<pango::GlyphInfo> {
+    pub fn glyphs(&self) -> glib::Slice<pango::GlyphInfo> {
         unsafe {
             let mut n_glyphs = mem::MaybeUninit::uninit();
             let ret = FromGlibContainer::from_glib_none_num(

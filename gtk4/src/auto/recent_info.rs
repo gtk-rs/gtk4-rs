@@ -82,7 +82,7 @@ impl RecentInfo {
 
     #[doc(alias = "gtk_recent_info_get_applications")]
     #[doc(alias = "get_applications")]
-    pub fn applications(&self) -> Vec<glib::GString> {
+    pub fn applications(&self) -> glib::StrV {
         unsafe {
             let mut length = mem::MaybeUninit::uninit();
             let ret = FromGlibContainer::from_glib_full_num(
@@ -113,7 +113,7 @@ impl RecentInfo {
 
     #[doc(alias = "gtk_recent_info_get_groups")]
     #[doc(alias = "get_groups")]
-    pub fn groups(&self) -> Vec<glib::GString> {
+    pub fn groups(&self) -> glib::StrV {
         unsafe {
             let mut length = mem::MaybeUninit::uninit();
             let ret = FromGlibContainer::from_glib_full_num(

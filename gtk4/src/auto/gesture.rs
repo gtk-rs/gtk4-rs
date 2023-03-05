@@ -39,7 +39,7 @@ pub trait GestureExt: 'static {
 
     #[doc(alias = "gtk_gesture_get_group")]
     #[doc(alias = "get_group")]
-    fn group(&self) -> Vec<Gesture>;
+    fn group(&self) -> glib::List<Gesture>;
 
     #[doc(alias = "gtk_gesture_get_last_event")]
     #[doc(alias = "get_last_event")]
@@ -59,7 +59,7 @@ pub trait GestureExt: 'static {
 
     #[doc(alias = "gtk_gesture_get_sequences")]
     #[doc(alias = "get_sequences")]
-    fn sequences(&self) -> Vec<gdk::EventSequence>;
+    fn sequences(&self) -> glib::List<gdk::EventSequence>;
 
     #[doc(alias = "gtk_gesture_group")]
     #[doc(alias = "group")]
@@ -161,7 +161,7 @@ impl<O: IsA<Gesture>> GestureExt for O {
         unsafe { from_glib_none(ffi::gtk_gesture_get_device(self.as_ref().to_glib_none().0)) }
     }
 
-    fn group(&self) -> Vec<Gesture> {
+    fn group(&self) -> glib::List<Gesture> {
         unsafe {
             FromGlibPtrContainer::from_glib_container(ffi::gtk_gesture_get_group(
                 self.as_ref().to_glib_none().0,
@@ -213,7 +213,7 @@ impl<O: IsA<Gesture>> GestureExt for O {
         }
     }
 
-    fn sequences(&self) -> Vec<gdk::EventSequence> {
+    fn sequences(&self) -> glib::List<gdk::EventSequence> {
         unsafe {
             FromGlibPtrContainer::from_glib_container(ffi::gtk_gesture_get_sequences(
                 self.as_ref().to_glib_none().0,

@@ -113,7 +113,7 @@ pub trait DisplayExt: 'static {
     fn is_rgba(&self) -> bool;
 
     #[doc(alias = "gdk_display_list_seats")]
-    fn list_seats(&self) -> Vec<Seat>;
+    fn list_seats(&self) -> glib::List<Seat>;
 
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
@@ -285,7 +285,7 @@ impl<O: IsA<Display>> DisplayExt for O {
         unsafe { from_glib(ffi::gdk_display_is_rgba(self.as_ref().to_glib_none().0)) }
     }
 
-    fn list_seats(&self) -> Vec<Seat> {
+    fn list_seats(&self) -> glib::List<Seat> {
         unsafe {
             FromGlibPtrContainer::from_glib_container(ffi::gdk_display_list_seats(
                 self.as_ref().to_glib_none().0,

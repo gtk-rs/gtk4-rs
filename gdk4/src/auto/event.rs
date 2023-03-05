@@ -112,7 +112,7 @@ impl Event {
 
     #[doc(alias = "gdk_event_get_history")]
     #[doc(alias = "get_history")]
-    pub fn history(&self) -> Vec<TimeCoord> {
+    pub fn history(&self) -> glib::Slice<TimeCoord> {
         unsafe {
             let mut out_n_coords = mem::MaybeUninit::uninit();
             let ret = FromGlibContainer::from_glib_container_num(

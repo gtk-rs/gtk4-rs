@@ -51,7 +51,7 @@ pub trait TextChildAnchorExt: 'static {
 
     #[doc(alias = "gtk_text_child_anchor_get_widgets")]
     #[doc(alias = "get_widgets")]
-    fn widgets(&self) -> Vec<Widget>;
+    fn widgets(&self) -> glib::PtrSlice<Widget>;
 }
 
 impl<O: IsA<TextChildAnchor>> TextChildAnchorExt for O {
@@ -63,7 +63,7 @@ impl<O: IsA<TextChildAnchor>> TextChildAnchorExt for O {
         }
     }
 
-    fn widgets(&self) -> Vec<Widget> {
+    fn widgets(&self) -> glib::PtrSlice<Widget> {
         unsafe {
             let mut out_len = mem::MaybeUninit::uninit();
             let ret = FromGlibContainer::from_glib_container_num(

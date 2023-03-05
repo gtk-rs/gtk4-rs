@@ -54,7 +54,7 @@ impl Window {
     }
 
     #[doc(alias = "gtk_window_list_toplevels")]
-    pub fn list_toplevels() -> Vec<Widget> {
+    pub fn list_toplevels() -> glib::List<Widget> {
         assert_initialized_main_thread!();
         unsafe { FromGlibPtrContainer::from_glib_container(ffi::gtk_window_list_toplevels()) }
     }

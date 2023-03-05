@@ -61,7 +61,7 @@ impl TreeSelection {
     #[allow(deprecated)]
     #[doc(alias = "gtk_tree_selection_get_selected_rows")]
     #[doc(alias = "get_selected_rows")]
-    pub fn selected_rows(&self) -> (Vec<TreePath>, TreeModel) {
+    pub fn selected_rows(&self) -> (glib::List<TreePath>, TreeModel) {
         unsafe {
             let mut model = ptr::null_mut();
             let ret = FromGlibPtrContainer::from_glib_full(

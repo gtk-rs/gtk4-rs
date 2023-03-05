@@ -178,7 +178,7 @@ impl Printer {
     }
 
     #[doc(alias = "gtk_printer_list_papers")]
-    pub fn list_papers(&self) -> Vec<PageSetup> {
+    pub fn list_papers(&self) -> glib::List<PageSetup> {
         unsafe {
             FromGlibPtrContainer::from_glib_full(ffi::gtk_printer_list_papers(
                 self.to_glib_none().0,

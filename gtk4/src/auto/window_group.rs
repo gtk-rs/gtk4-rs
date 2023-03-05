@@ -36,7 +36,7 @@ pub trait WindowGroupExt: 'static {
     fn add_window(&self, window: &impl IsA<Window>);
 
     #[doc(alias = "gtk_window_group_list_windows")]
-    fn list_windows(&self) -> Vec<Window>;
+    fn list_windows(&self) -> glib::List<Window>;
 
     #[doc(alias = "gtk_window_group_remove_window")]
     fn remove_window(&self, window: &impl IsA<Window>);
@@ -52,7 +52,7 @@ impl<O: IsA<WindowGroup>> WindowGroupExt for O {
         }
     }
 
-    fn list_windows(&self) -> Vec<Window> {
+    fn list_windows(&self) -> glib::List<Window> {
         unsafe {
             FromGlibPtrContainer::from_glib_container(ffi::gtk_window_group_list_windows(
                 self.as_ref().to_glib_none().0,
