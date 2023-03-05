@@ -21,7 +21,7 @@ fn build_ui(app: &gtk::Application) {
         .title("ListView: Applications Launcher")
         .build();
 
-    let model = gio::ListStore::new(gio::AppInfo::static_type());
+    let model = gio::ListStore::new::<gio::AppInfo>();
     gio::AppInfo::all().iter().for_each(|app_info| {
         model.append(app_info);
     });

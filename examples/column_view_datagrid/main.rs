@@ -30,7 +30,7 @@ fn build_ui(application: &gtk::Application) {
         .title("ColumnView Example")
         .build();
 
-    let store = gio::ListStore::new(BoxedAnyObject::static_type());
+    let store = gio::ListStore::new::<BoxedAnyObject>();
 
     (0..10000).for_each(|i| {
         store.append(&BoxedAnyObject::new(Row {

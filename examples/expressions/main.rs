@@ -93,7 +93,7 @@ fn data() -> gio::ListStore {
         vector.push(note);
     }
 
-    let list_store = gio::ListStore::new(Note::static_type());
+    let list_store = gio::ListStore::new::<Note>();
     list_store.splice(0, 0, &vector);
     list_store
 }
