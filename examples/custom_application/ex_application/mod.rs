@@ -15,8 +15,7 @@ impl Default for ExApplication {
 impl ExApplication {
     pub fn new() -> Self {
         glib::Object::builder()
-            .property("application-id", &"org.gtk_rs.application-subclass")
-            .property("flags", &gio::ApplicationFlags::empty())
+            .property("application-id", "org.gtk_rs.application-subclass")
             .build()
     }
 }
