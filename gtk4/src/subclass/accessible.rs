@@ -3,10 +3,8 @@
 // rustdoc-stripper-ignore-next
 //! Traits intended for implementing the [`Acessible`](crate::Acessible) interface.
 
-use super::PtrHolder;
 use crate::{prelude::*, subclass::prelude::*, ATContext, Accessible, AccessiblePlatformState};
-use glib::{translate::*, Quark};
-use once_cell::sync::Lazy;
+use glib::translate::*;
 use std::mem::MaybeUninit;
 
 pub trait AccessibleImpl: ObjectImpl {
@@ -112,7 +110,7 @@ impl<T: AccessibleImpl> AccessibleImplExt for T {
                 .get_at_context
                 .expect("no parent \"get_at_context\" implementation");
 
-            from_glib_none(func(
+            from_glib_full(func(
                 self.obj().unsafe_cast_ref::<Accessible>().to_glib_none().0,
             ))
         }
@@ -128,7 +126,7 @@ impl<T: AccessibleImpl> AccessibleImplExt for T {
                 .get_accessible_parent
                 .expect("no parent \"get_accessible_parent\" implementation");
 
-            from_glib_none(func(
+            from_glib_full(func(
                 self.obj().unsafe_cast_ref::<Accessible>().to_glib_none().0,
             ))
         }
@@ -144,7 +142,7 @@ impl<T: AccessibleImpl> AccessibleImplExt for T {
                 .get_first_accessible_child
                 .expect("no parent \"get_first_accessible_child\" implementation");
 
-            from_glib_none(func(
+            from_glib_full(func(
                 self.obj().unsafe_cast_ref::<Accessible>().to_glib_none().0,
             ))
         }
@@ -160,7 +158,7 @@ impl<T: AccessibleImpl> AccessibleImplExt for T {
                 .get_next_accessible_sibling
                 .expect("no parent \"get_next_accessible_sibling\" implementation");
 
-            from_glib_none(func(
+            from_glib_full(func(
                 self.obj().unsafe_cast_ref::<Accessible>().to_glib_none().0,
             ))
         }
@@ -212,90 +210,38 @@ unsafe extern "C" fn accessible_get_bounds<T: AccessibleImpl>(
     }
 }
 
-static ACCESSIBLE_GET_AT_CONTEXT_QUARK: Lazy<Quark> =
-    Lazy::new(|| Quark::from_str("gtk4-rs-subclass-accessible-get-at-context"));
 unsafe extern "C" fn accessible_get_at_context<T: AccessibleImpl>(
     accessible: *mut ffi::GtkAccessible,
 ) -> *mut ffi::GtkATContext {
     let instance = &*(accessible as *mut T::Instance);
     let imp = instance.imp();
 
-    if let Some(at_context) = imp.at_context() {
-        let at_context = at_context.into_glib_ptr();
-        imp.obj().set_qdata(
-            *ACCESSIBLE_GET_AT_CONTEXT_QUARK,
-            PtrHolder(at_context, |ptr| {
-                glib::gobject_ffi::g_object_unref(ptr as *mut _)
-            }),
-        );
-        at_context
-    } else {
-        std::ptr::null_mut()
-    }
+    imp.at_context().into_glib_ptr()
 }
 
-static ACCESSIBLE_GET_ACCESSIBLE_PARENT: Lazy<Quark> =
-    Lazy::new(|| Quark::from_str("gtk4-rs-subclass-accessible-get-accessible-parent"));
 unsafe extern "C" fn accessible_get_accessible_parent<T: AccessibleImpl>(
     accessible: *mut ffi::GtkAccessible,
 ) -> *mut ffi::GtkAccessible {
     let instance = &*(accessible as *mut T::Instance);
     let imp = instance.imp();
 
-    if let Some(accessible_parent) = imp.accessible_parent() {
-        let accessible_parent = accessible_parent.into_glib_ptr();
-        imp.obj().set_qdata(
-            *ACCESSIBLE_GET_ACCESSIBLE_PARENT,
-            PtrHolder(accessible_parent, |ptr| {
-                glib::gobject_ffi::g_object_unref(ptr as *mut _)
-            }),
-        );
-        accessible_parent
-    } else {
-        std::ptr::null_mut()
-    }
+    imp.accessible_parent().into_glib_ptr()
 }
 
-static ACCESSIBLE_GET_FIRST_ACCESSIBLE_CHILD: Lazy<Quark> =
-    Lazy::new(|| Quark::from_str("gtk4-rs-subclass-accessible-get-first)accessible-child"));
 unsafe extern "C" fn accessible_get_first_accessible_child<T: AccessibleImpl>(
     accessible: *mut ffi::GtkAccessible,
 ) -> *mut ffi::GtkAccessible {
     let instance = &*(accessible as *mut T::Instance);
     let imp = instance.imp();
 
-    if let Some(first_accessible_child) = imp.first_accessible_child() {
-        let first_accessible_child = first_accessible_child.into_glib_ptr();
-        imp.obj().set_qdata(
-            *ACCESSIBLE_GET_FIRST_ACCESSIBLE_CHILD,
-            PtrHolder(first_accessible_child, |ptr| {
-                glib::gobject_ffi::g_object_unref(ptr as *mut _)
-            }),
-        );
-        first_accessible_child
-    } else {
-        std::ptr::null_mut()
-    }
+    imp.first_accessible_child().into_glib_ptr()
 }
 
-static ACCESSIBLE_GET_NEXT_ACCESSIBLE_SIBLING: Lazy<Quark> =
-    Lazy::new(|| Quark::from_str("gtk4-rs-subclass-accessible-get-next-accessible-sibling"));
 unsafe extern "C" fn accessible_get_next_accessible_sibling<T: AccessibleImpl>(
     accessible: *mut ffi::GtkAccessible,
 ) -> *mut ffi::GtkAccessible {
     let instance = &*(accessible as *mut T::Instance);
     let imp = instance.imp();
 
-    if let Some(next_accessible_sibling) = imp.next_accessible_sibling() {
-        let next_accessible_sibling = next_accessible_sibling.into_glib_ptr();
-        imp.obj().set_qdata(
-            *ACCESSIBLE_GET_NEXT_ACCESSIBLE_SIBLING,
-            PtrHolder(next_accessible_sibling, |ptr| {
-                glib::gobject_ffi::g_object_unref(ptr as *mut _)
-            }),
-        );
-        next_accessible_sibling
-    } else {
-        std::ptr::null_mut()
-    }
+    imp.next_accessible_sibling().into_glib_ptr()
 }
