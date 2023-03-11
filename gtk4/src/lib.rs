@@ -88,7 +88,7 @@ static TEST_THREAD_WORKER: once_cell::sync::Lazy<glib::ThreadPool> =
         pool
     });
 
-#[allow(clippy::derive_hash_xor_eq)]
+#[allow(clippy::derived_hash_with_manual_eq)]
 #[allow(clippy::too_many_arguments)]
 #[allow(clippy::type_complexity)]
 mod auto;
