@@ -383,7 +383,7 @@ impl<O: IsA<Frame>> FrameExt for O {
     }
 
     fn set_label_xalign(&self, label_xalign: f32) {
-        glib::ObjectExt::set_property(self.as_ref(), "label-xalign", &label_xalign)
+        glib::ObjectExt::set_property(self.as_ref(), "label-xalign", label_xalign)
     }
 
     fn connect_child_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {

@@ -92,7 +92,7 @@ impl ConstraintGuide {
 
     #[doc(alias = "max-height")]
     pub fn set_max_height(&self, max_height: i32) {
-        glib::ObjectExt::set_property(self, "max-height", &max_height)
+        glib::ObjectExt::set_property(self, "max-height", max_height)
     }
 
     #[doc(alias = "max-width")]
@@ -102,7 +102,7 @@ impl ConstraintGuide {
 
     #[doc(alias = "max-width")]
     pub fn set_max_width(&self, max_width: i32) {
-        glib::ObjectExt::set_property(self, "max-width", &max_width)
+        glib::ObjectExt::set_property(self, "max-width", max_width)
     }
 
     #[doc(alias = "min-height")]
@@ -112,7 +112,7 @@ impl ConstraintGuide {
 
     #[doc(alias = "min-height")]
     pub fn set_min_height(&self, min_height: i32) {
-        glib::ObjectExt::set_property(self, "min-height", &min_height)
+        glib::ObjectExt::set_property(self, "min-height", min_height)
     }
 
     #[doc(alias = "min-width")]
@@ -122,7 +122,7 @@ impl ConstraintGuide {
 
     #[doc(alias = "min-width")]
     pub fn set_min_width(&self, min_width: i32) {
-        glib::ObjectExt::set_property(self, "min-width", &min_width)
+        glib::ObjectExt::set_property(self, "min-width", min_width)
     }
 
     #[doc(alias = "nat-height")]
@@ -132,7 +132,7 @@ impl ConstraintGuide {
 
     #[doc(alias = "nat-height")]
     pub fn set_nat_height(&self, nat_height: i32) {
-        glib::ObjectExt::set_property(self, "nat-height", &nat_height)
+        glib::ObjectExt::set_property(self, "nat-height", nat_height)
     }
 
     #[doc(alias = "nat-width")]
@@ -142,7 +142,7 @@ impl ConstraintGuide {
 
     #[doc(alias = "nat-width")]
     pub fn set_nat_width(&self, nat_width: i32) {
-        glib::ObjectExt::set_property(self, "nat-width", &nat_width)
+        glib::ObjectExt::set_property(self, "nat-width", nat_width)
     }
 
     #[doc(alias = "max-height")]

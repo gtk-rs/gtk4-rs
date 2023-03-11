@@ -243,7 +243,7 @@ impl<O: IsA<Accessible>> AccessibleExt for O {
     }
 
     fn set_accessible_role(&self, accessible_role: AccessibleRole) {
-        glib::ObjectExt::set_property(self.as_ref(), "accessible-role", &accessible_role)
+        glib::ObjectExt::set_property(self.as_ref(), "accessible-role", accessible_role)
     }
 
     fn connect_accessible_role_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {

@@ -312,7 +312,7 @@ impl<O: IsA<IMContext>> IMContextExt for O {
     }
 
     fn set_input_hints(&self, input_hints: InputHints) {
-        glib::ObjectExt::set_property(self.as_ref(), "input-hints", &input_hints)
+        glib::ObjectExt::set_property(self.as_ref(), "input-hints", input_hints)
     }
 
     fn input_purpose(&self) -> InputPurpose {
@@ -320,7 +320,7 @@ impl<O: IsA<IMContext>> IMContextExt for O {
     }
 
     fn set_input_purpose(&self, input_purpose: InputPurpose) {
-        glib::ObjectExt::set_property(self.as_ref(), "input-purpose", &input_purpose)
+        glib::ObjectExt::set_property(self.as_ref(), "input-purpose", input_purpose)
     }
 
     fn connect_commit<F: Fn(&Self, &str) + 'static>(&self, f: F) -> SignalHandlerId {

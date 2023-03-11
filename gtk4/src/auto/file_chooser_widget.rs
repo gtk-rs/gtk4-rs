@@ -50,7 +50,7 @@ impl FileChooserWidget {
 
     #[doc(alias = "search-mode")]
     pub fn set_search_mode(&self, search_mode: bool) {
-        glib::ObjectExt::set_property(self, "search-mode", &search_mode)
+        glib::ObjectExt::set_property(self, "search-mode", search_mode)
     }
 
     #[cfg(any(feature = "v4_10", feature = "dox"))]

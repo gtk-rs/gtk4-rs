@@ -38,7 +38,7 @@ impl ShortcutsWindow {
 
     #[doc(alias = "section-name")]
     pub fn set_section_name(&self, section_name: Option<&str>) {
-        glib::ObjectExt::set_property(self, "section-name", &section_name)
+        glib::ObjectExt::set_property(self, "section-name", section_name)
     }
 
     #[doc(alias = "view-name")]
@@ -48,7 +48,7 @@ impl ShortcutsWindow {
 
     #[doc(alias = "view-name")]
     pub fn set_view_name(&self, view_name: Option<&str>) {
-        glib::ObjectExt::set_property(self, "view-name", &view_name)
+        glib::ObjectExt::set_property(self, "view-name", view_name)
     }
 
     #[doc(alias = "close")]

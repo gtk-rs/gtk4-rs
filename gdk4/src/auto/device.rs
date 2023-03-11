@@ -264,7 +264,7 @@ impl<O: IsA<Device>> DeviceExt for O {
     }
 
     fn set_seat<P: IsA<Seat>>(&self, seat: Option<&P>) {
-        glib::ObjectExt::set_property(self.as_ref(), "seat", &seat)
+        glib::ObjectExt::set_property(self.as_ref(), "seat", seat)
     }
 
     fn connect_changed<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {

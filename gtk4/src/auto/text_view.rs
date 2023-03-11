@@ -1505,7 +1505,7 @@ impl<O: IsA<TextView>> TextViewExt for O {
     }
 
     fn set_im_module(&self, im_module: Option<&str>) {
-        glib::ObjectExt::set_property(self.as_ref(), "im-module", &im_module)
+        glib::ObjectExt::set_property(self.as_ref(), "im-module", im_module)
     }
 
     fn connect_backspace<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
