@@ -47,7 +47,7 @@ macro_rules! skip_assert_initialized {
     () => {};
 }
 
-#[allow(clippy::derive_hash_xor_eq)]
+#[allow(clippy::derived_hash_with_manual_eq)]
 #[allow(clippy::type_complexity)]
 mod auto;
 

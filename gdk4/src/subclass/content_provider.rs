@@ -297,7 +297,7 @@ unsafe impl<T: ContentProviderImpl> IsSubclassable<T> for ContentProvider {
         klass.ref_formats = Some(content_provider_formats::<T>);
         klass.ref_storable_formats = Some(content_provider_storable_formats::<T>);
         klass.write_mime_type_async = Some(content_provider_write_mime_type_async::<T>);
-        klass.write_mime_type_finish = Some(content_provider_write_mime_type_finish::<T>);
+        klass.write_mime_type_finish = Some(content_provider_write_mime_type_finish);
         klass.get_value = Some(content_provider_get_value::<T>);
     }
 }
@@ -392,7 +392,7 @@ unsafe extern "C" fn content_provider_write_mime_type_async<T: ContentProviderIm
     });
 }
 
-unsafe extern "C" fn content_provider_write_mime_type_finish<T: ContentProviderImpl>(
+unsafe extern "C" fn content_provider_write_mime_type_finish(
     _ptr: *mut ffi::GdkContentProvider,
     res_ptr: *mut gio::ffi::GAsyncResult,
     error_ptr: *mut *mut glib::ffi::GError,
