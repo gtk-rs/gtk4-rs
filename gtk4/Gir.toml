@@ -23,7 +23,6 @@ generate = [
     "Gtk.AccessibleProperty",
     "Gtk.AccessibleRange",
     "Gtk.AccessibleRelation",
-    "Gtk.AccessibleRole",
     "Gtk.AccessibleSort",
     "Gtk.AccessibleState",
     "Gtk.AccessibleTristate",
@@ -585,6 +584,13 @@ manual_traits = ["AccessibleExtManual"]
     name = "get_platform_state"
     # Don't rename to is_platform_state
     rename = "platform_state"
+
+[[object]]
+name = "Gtk.AccessibleRole"
+status = "generate"
+    [[object.member]]
+    name = "toggle_button"
+    version = "4.10"
 
 [[object]]
 name = "Gtk.Actionable"
