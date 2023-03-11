@@ -83,7 +83,7 @@ impl<O: IsA<CellEditable>> CellEditableExt for O {
     }
 
     fn set_editing_canceled(&self, editing_canceled: bool) {
-        glib::ObjectExt::set_property(self.as_ref(), "editing-canceled", &editing_canceled)
+        glib::ObjectExt::set_property(self.as_ref(), "editing-canceled", editing_canceled)
     }
 
     fn connect_editing_done<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {

@@ -44,7 +44,7 @@ impl CellRendererCombo {
 
     #[doc(alias = "has-entry")]
     pub fn set_has_entry(&self, has_entry: bool) {
-        glib::ObjectExt::set_property(self, "has-entry", &has_entry)
+        glib::ObjectExt::set_property(self, "has-entry", has_entry)
     }
 
     pub fn model(&self) -> Option<TreeModel> {
@@ -52,7 +52,7 @@ impl CellRendererCombo {
     }
 
     pub fn set_model<P: IsA<TreeModel>>(&self, model: Option<&P>) {
-        glib::ObjectExt::set_property(self, "model", &model)
+        glib::ObjectExt::set_property(self, "model", model)
     }
 
     #[doc(alias = "text-column")]
@@ -62,7 +62,7 @@ impl CellRendererCombo {
 
     #[doc(alias = "text-column")]
     pub fn set_text_column(&self, text_column: i32) {
-        glib::ObjectExt::set_property(self, "text-column", &text_column)
+        glib::ObjectExt::set_property(self, "text-column", text_column)
     }
 
     #[doc(alias = "changed")]

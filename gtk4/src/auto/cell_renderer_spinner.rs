@@ -42,7 +42,7 @@ impl CellRendererSpinner {
     }
 
     pub fn set_active(&self, active: bool) {
-        glib::ObjectExt::set_property(self, "active", &active)
+        glib::ObjectExt::set_property(self, "active", active)
     }
 
     pub fn pulse(&self) -> u32 {
@@ -50,7 +50,7 @@ impl CellRendererSpinner {
     }
 
     pub fn set_pulse(&self, pulse: u32) {
-        glib::ObjectExt::set_property(self, "pulse", &pulse)
+        glib::ObjectExt::set_property(self, "pulse", pulse)
     }
 
     pub fn size(&self) -> IconSize {
@@ -58,7 +58,7 @@ impl CellRendererSpinner {
     }
 
     pub fn set_size(&self, size: IconSize) {
-        glib::ObjectExt::set_property(self, "size", &size)
+        glib::ObjectExt::set_property(self, "size", size)
     }
 
     #[doc(alias = "active")]

@@ -36,7 +36,7 @@ impl AssistantPage {
 
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     pub fn set_complete(&self, complete: bool) {
-        glib::ObjectExt::set_property(self, "complete", &complete)
+        glib::ObjectExt::set_property(self, "complete", complete)
     }
 
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
@@ -48,7 +48,7 @@ impl AssistantPage {
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "page-type")]
     pub fn set_page_type(&self, page_type: AssistantPageType) {
-        glib::ObjectExt::set_property(self, "page-type", &page_type)
+        glib::ObjectExt::set_property(self, "page-type", page_type)
     }
 
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
@@ -58,7 +58,7 @@ impl AssistantPage {
 
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     pub fn set_title(&self, title: Option<&str>) {
-        glib::ObjectExt::set_property(self, "title", &title)
+        glib::ObjectExt::set_property(self, "title", title)
     }
 
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]

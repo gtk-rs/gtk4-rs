@@ -761,7 +761,7 @@ impl<O: IsA<ComboBox>> ComboBoxExt for O {
     }
 
     fn set_has_frame(&self, has_frame: bool) {
-        glib::ObjectExt::set_property(self.as_ref(), "has-frame", &has_frame)
+        glib::ObjectExt::set_property(self.as_ref(), "has-frame", has_frame)
     }
 
     fn is_popup_shown(&self) -> bool {

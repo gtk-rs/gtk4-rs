@@ -129,7 +129,7 @@ impl Calendar {
     }
 
     pub fn set_day(&self, day: i32) {
-        glib::ObjectExt::set_property(self, "day", &day)
+        glib::ObjectExt::set_property(self, "day", day)
     }
 
     pub fn month(&self) -> i32 {
@@ -137,7 +137,7 @@ impl Calendar {
     }
 
     pub fn set_month(&self, month: i32) {
-        glib::ObjectExt::set_property(self, "month", &month)
+        glib::ObjectExt::set_property(self, "month", month)
     }
 
     pub fn year(&self) -> i32 {
@@ -145,7 +145,7 @@ impl Calendar {
     }
 
     pub fn set_year(&self, year: i32) {
-        glib::ObjectExt::set_property(self, "year", &year)
+        glib::ObjectExt::set_property(self, "year", year)
     }
 
     #[doc(alias = "day-selected")]

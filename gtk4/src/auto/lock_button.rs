@@ -74,7 +74,7 @@ impl LockButton {
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "text-lock")]
     pub fn set_text_lock(&self, text_lock: Option<&str>) {
-        glib::ObjectExt::set_property(self, "text-lock", &text_lock)
+        glib::ObjectExt::set_property(self, "text-lock", text_lock)
     }
 
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
@@ -86,7 +86,7 @@ impl LockButton {
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "text-unlock")]
     pub fn set_text_unlock(&self, text_unlock: Option<&str>) {
-        glib::ObjectExt::set_property(self, "text-unlock", &text_unlock)
+        glib::ObjectExt::set_property(self, "text-unlock", text_unlock)
     }
 
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
@@ -98,7 +98,7 @@ impl LockButton {
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "tooltip-lock")]
     pub fn set_tooltip_lock(&self, tooltip_lock: Option<&str>) {
-        glib::ObjectExt::set_property(self, "tooltip-lock", &tooltip_lock)
+        glib::ObjectExt::set_property(self, "tooltip-lock", tooltip_lock)
     }
 
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
@@ -110,7 +110,7 @@ impl LockButton {
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "tooltip-not-authorized")]
     pub fn set_tooltip_not_authorized(&self, tooltip_not_authorized: Option<&str>) {
-        glib::ObjectExt::set_property(self, "tooltip-not-authorized", &tooltip_not_authorized)
+        glib::ObjectExt::set_property(self, "tooltip-not-authorized", tooltip_not_authorized)
     }
 
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
@@ -122,7 +122,7 @@ impl LockButton {
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "tooltip-unlock")]
     pub fn set_tooltip_unlock(&self, tooltip_unlock: Option<&str>) {
-        glib::ObjectExt::set_property(self, "tooltip-unlock", &tooltip_unlock)
+        glib::ObjectExt::set_property(self, "tooltip-unlock", tooltip_unlock)
     }
 
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]

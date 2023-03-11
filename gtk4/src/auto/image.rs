@@ -217,20 +217,20 @@ impl Image {
     }
 
     pub fn set_file(&self, file: Option<&str>) {
-        glib::ObjectExt::set_property(self, "file", &file)
+        glib::ObjectExt::set_property(self, "file", file)
     }
 
     pub fn set_gicon<P: IsA<gio::Icon>>(&self, gicon: Option<&P>) {
-        glib::ObjectExt::set_property(self, "gicon", &gicon)
+        glib::ObjectExt::set_property(self, "gicon", gicon)
     }
 
     #[doc(alias = "icon-name")]
     pub fn set_icon_name(&self, icon_name: Option<&str>) {
-        glib::ObjectExt::set_property(self, "icon-name", &icon_name)
+        glib::ObjectExt::set_property(self, "icon-name", icon_name)
     }
 
     pub fn set_paintable<P: IsA<gdk::Paintable>>(&self, paintable: Option<&P>) {
-        glib::ObjectExt::set_property(self, "paintable", &paintable)
+        glib::ObjectExt::set_property(self, "paintable", paintable)
     }
 
     pub fn resource(&self) -> Option<glib::GString> {
@@ -238,7 +238,7 @@ impl Image {
     }
 
     pub fn set_resource(&self, resource: Option<&str>) {
-        glib::ObjectExt::set_property(self, "resource", &resource)
+        glib::ObjectExt::set_property(self, "resource", resource)
     }
 
     #[doc(alias = "use-fallback")]
@@ -248,7 +248,7 @@ impl Image {
 
     #[doc(alias = "use-fallback")]
     pub fn set_use_fallback(&self, use_fallback: bool) {
-        glib::ObjectExt::set_property(self, "use-fallback", &use_fallback)
+        glib::ObjectExt::set_property(self, "use-fallback", use_fallback)
     }
 
     #[doc(alias = "file")]

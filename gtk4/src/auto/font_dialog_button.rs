@@ -169,7 +169,7 @@ impl FontDialogButton {
     }
 
     pub fn set_property_level(&self, level: FontLevel) {
-        glib::ObjectExt::set_property(self, "level", &level)
+        glib::ObjectExt::set_property(self, "level", level)
     }
 
     #[doc(alias = "use-font")]
@@ -179,7 +179,7 @@ impl FontDialogButton {
 
     #[doc(alias = "use-font")]
     pub fn set_property_use_font(&self, use_font: bool) {
-        glib::ObjectExt::set_property(self, "use-font", &use_font)
+        glib::ObjectExt::set_property(self, "use-font", use_font)
     }
 
     #[doc(alias = "use-size")]
@@ -189,7 +189,7 @@ impl FontDialogButton {
 
     #[doc(alias = "use-size")]
     pub fn set_property_use_size(&self, use_size: bool) {
-        glib::ObjectExt::set_property(self, "use-size", &use_size)
+        glib::ObjectExt::set_property(self, "use-size", use_size)
     }
 
     #[cfg(any(feature = "v4_10", feature = "dox"))]

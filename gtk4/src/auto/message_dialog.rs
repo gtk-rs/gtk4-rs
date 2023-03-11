@@ -60,7 +60,7 @@ impl MessageDialog {
 
     #[doc(alias = "message-type")]
     pub fn set_message_type(&self, message_type: MessageType) {
-        glib::ObjectExt::set_property(self, "message-type", &message_type)
+        glib::ObjectExt::set_property(self, "message-type", message_type)
     }
 
     #[doc(alias = "secondary-text")]
@@ -70,7 +70,7 @@ impl MessageDialog {
 
     #[doc(alias = "secondary-text")]
     pub fn set_secondary_text(&self, secondary_text: Option<&str>) {
-        glib::ObjectExt::set_property(self, "secondary-text", &secondary_text)
+        glib::ObjectExt::set_property(self, "secondary-text", secondary_text)
     }
 
     #[doc(alias = "secondary-use-markup")]
@@ -80,7 +80,7 @@ impl MessageDialog {
 
     #[doc(alias = "secondary-use-markup")]
     pub fn set_secondary_use_markup(&self, secondary_use_markup: bool) {
-        glib::ObjectExt::set_property(self, "secondary-use-markup", &secondary_use_markup)
+        glib::ObjectExt::set_property(self, "secondary-use-markup", secondary_use_markup)
     }
 
     pub fn text(&self) -> Option<glib::GString> {
@@ -88,7 +88,7 @@ impl MessageDialog {
     }
 
     pub fn set_text(&self, text: Option<&str>) {
-        glib::ObjectExt::set_property(self, "text", &text)
+        glib::ObjectExt::set_property(self, "text", text)
     }
 
     #[doc(alias = "use-markup")]
@@ -98,7 +98,7 @@ impl MessageDialog {
 
     #[doc(alias = "use-markup")]
     pub fn set_use_markup(&self, use_markup: bool) {
-        glib::ObjectExt::set_property(self, "use-markup", &use_markup)
+        glib::ObjectExt::set_property(self, "use-markup", use_markup)
     }
 
     #[doc(alias = "message-area")]
