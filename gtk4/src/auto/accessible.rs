@@ -108,7 +108,7 @@ impl<O: IsA<Accessible>> AccessibleExt for O {
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
     fn accessible_parent(&self) -> Option<Accessible> {
         unsafe {
-            from_glib_none(ffi::gtk_accessible_get_accessible_parent(
+            from_glib_full(ffi::gtk_accessible_get_accessible_parent(
                 self.as_ref().to_glib_none().0,
             ))
         }
@@ -126,7 +126,7 @@ impl<O: IsA<Accessible>> AccessibleExt for O {
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
     fn at_context(&self) -> ATContext {
         unsafe {
-            from_glib_none(ffi::gtk_accessible_get_at_context(
+            from_glib_full(ffi::gtk_accessible_get_at_context(
                 self.as_ref().to_glib_none().0,
             ))
         }
@@ -164,7 +164,7 @@ impl<O: IsA<Accessible>> AccessibleExt for O {
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
     fn first_accessible_child(&self) -> Option<Accessible> {
         unsafe {
-            from_glib_none(ffi::gtk_accessible_get_first_accessible_child(
+            from_glib_full(ffi::gtk_accessible_get_first_accessible_child(
                 self.as_ref().to_glib_none().0,
             ))
         }
@@ -174,7 +174,7 @@ impl<O: IsA<Accessible>> AccessibleExt for O {
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
     fn next_accessible_sibling(&self) -> Option<Accessible> {
         unsafe {
-            from_glib_none(ffi::gtk_accessible_get_next_accessible_sibling(
+            from_glib_full(ffi::gtk_accessible_get_next_accessible_sibling(
                 self.as_ref().to_glib_none().0,
             ))
         }
