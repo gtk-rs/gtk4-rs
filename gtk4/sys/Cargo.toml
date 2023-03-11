@@ -33,7 +33,7 @@ version = "4.6"
 version = "4.7"
 
 [package.metadata.system-deps.gtk4.v4_10]
-version = "4.9"
+version = "4.10"
 
 [package.metadata.system-deps.gtk4.v4_12]
 version = "4.12"
