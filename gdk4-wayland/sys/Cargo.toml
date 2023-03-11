@@ -20,7 +20,7 @@ version = "4.0.0"
 version = "4.4"
 
 [package.metadata.system-deps.gtk4_wayland.v4_10]
-version = "4.9"
+version = "4.10"
 
 [package.metadata.docs.rs]
 features = ["dox"]
