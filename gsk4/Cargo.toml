@@ -26,7 +26,7 @@ v4_10 = ["ffi/v4_10", "gdk/v4_10", "v4_6"]
 features = ["dox"]
 
 [dependencies]
-bitflags = "1.0"
+bitflags = "2.0"
 cairo-rs = {git = "https://github.com/gtk-rs/gtk-rs-core", version = "0.18"}
 ffi = {package = "gsk4-sys", path = "./sys", version = "0.7"}
 gdk = {package = "gdk4", path = "../gdk4", version = "0.7"}
