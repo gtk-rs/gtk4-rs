@@ -37,7 +37,7 @@ impl TemplateSource {
                 return Ok(Self::Xml(source));
             }
         }
-        bail!("Unknown lanuage")
+        bail!("Unknown language")
     }
 }
 
