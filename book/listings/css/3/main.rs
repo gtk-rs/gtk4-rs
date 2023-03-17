@@ -58,6 +58,6 @@ fn build_ui(app: &Application) {
         .title("My GTK App")
         .child(&gtk_box)
         .build();
-    window.show();
+    window.present();
 }
 // ANCHOR_END: build_ui

@@ -47,5 +47,5 @@ fn build_ui(app: &Application) {
         .title("My GTK App")
         .child(&button)
         .build();
-    window.show();
+    window.present();
 }
