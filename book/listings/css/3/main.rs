@@ -38,7 +38,7 @@ fn build_ui(app: &Application) {
     let button_1 = Button::with_label("Press me!");
     let button_2 = Button::with_label("Press me!");
 
-    button_1.add_css_class("button_1");
+    button_1.add_css_class("button-1");
     // ANCHOR_END: buttons
 
     // Create `gtk_box` and add buttons
