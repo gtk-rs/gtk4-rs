@@ -79,7 +79,7 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 ```
 
 We install the schema as described in the settings [chapter](./settings.html)
-Then we add a reference to `settings` and a reference to `clear_button` to `imp::Window`.
+Then we add a reference to `settings` to `imp::Window`.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/2/window/imp.rs">listings/todo/2/window/imp.rs</a>
 
