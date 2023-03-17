@@ -649,7 +649,7 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
     }
 
     fn set_cell_background(&self, cell_background: Option<&str>) {
-        glib::ObjectExt::set_property(self.as_ref(), "cell-background", &cell_background)
+        glib::ObjectExt::set_property(self.as_ref(), "cell-background", cell_background)
     }
 
     fn cell_background_rgba(&self) -> Option<gdk::RGBA> {
@@ -657,7 +657,7 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
     }
 
     fn set_cell_background_rgba(&self, cell_background_rgba: Option<&gdk::RGBA>) {
-        glib::ObjectExt::set_property(self.as_ref(), "cell-background-rgba", &cell_background_rgba)
+        glib::ObjectExt::set_property(self.as_ref(), "cell-background-rgba", cell_background_rgba)
     }
 
     fn is_cell_background_set(&self) -> bool {
@@ -673,7 +673,7 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
     }
 
     fn set_height(&self, height: i32) {
-        glib::ObjectExt::set_property(self.as_ref(), "height", &height)
+        glib::ObjectExt::set_property(self.as_ref(), "height", height)
     }
 
     fn mode(&self) -> CellRendererMode {
@@ -681,7 +681,7 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
     }
 
     fn set_mode(&self, mode: CellRendererMode) {
-        glib::ObjectExt::set_property(self.as_ref(), "mode", &mode)
+        glib::ObjectExt::set_property(self.as_ref(), "mode", mode)
     }
 
     fn width(&self) -> i32 {
@@ -689,7 +689,7 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
     }
 
     fn set_width(&self, width: i32) {
-        glib::ObjectExt::set_property(self.as_ref(), "width", &width)
+        glib::ObjectExt::set_property(self.as_ref(), "width", width)
     }
 
     fn xalign(&self) -> f32 {
@@ -697,7 +697,7 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
     }
 
     fn set_xalign(&self, xalign: f32) {
-        glib::ObjectExt::set_property(self.as_ref(), "xalign", &xalign)
+        glib::ObjectExt::set_property(self.as_ref(), "xalign", xalign)
     }
 
     fn xpad(&self) -> u32 {
@@ -705,7 +705,7 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
     }
 
     fn set_xpad(&self, xpad: u32) {
-        glib::ObjectExt::set_property(self.as_ref(), "xpad", &xpad)
+        glib::ObjectExt::set_property(self.as_ref(), "xpad", xpad)
     }
 
     fn yalign(&self) -> f32 {
@@ -713,7 +713,7 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
     }
 
     fn set_yalign(&self, yalign: f32) {
-        glib::ObjectExt::set_property(self.as_ref(), "yalign", &yalign)
+        glib::ObjectExt::set_property(self.as_ref(), "yalign", yalign)
     }
 
     fn ypad(&self) -> u32 {
@@ -721,7 +721,7 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
     }
 
     fn set_ypad(&self, ypad: u32) {
-        glib::ObjectExt::set_property(self.as_ref(), "ypad", &ypad)
+        glib::ObjectExt::set_property(self.as_ref(), "ypad", ypad)
     }
 
     fn connect_editing_canceled<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {

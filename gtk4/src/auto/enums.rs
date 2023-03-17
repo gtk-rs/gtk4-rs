@@ -938,6 +938,8 @@ pub enum AccessibleRole {
     Widget,
     #[doc(alias = "GTK_ACCESSIBLE_ROLE_WINDOW")]
     Window,
+    #[doc(alias = "GTK_ACCESSIBLE_ROLE_TOGGLE_BUTTON")]
+    ToggleButton,
     #[doc(hidden)]
     __Unknown(i32),
 }
@@ -1026,6 +1028,7 @@ impl fmt::Display for AccessibleRole {
                 Self::TreeItem => "TreeItem",
                 Self::Widget => "Widget",
                 Self::Window => "Window",
+                Self::ToggleButton => "ToggleButton",
                 _ => "Unknown",
             }
         )
@@ -1116,6 +1119,7 @@ impl IntoGlib for AccessibleRole {
             Self::TreeItem => ffi::GTK_ACCESSIBLE_ROLE_TREE_ITEM,
             Self::Widget => ffi::GTK_ACCESSIBLE_ROLE_WIDGET,
             Self::Window => ffi::GTK_ACCESSIBLE_ROLE_WINDOW,
+            Self::ToggleButton => ffi::GTK_ACCESSIBLE_ROLE_TOGGLE_BUTTON,
             Self::__Unknown(value) => value,
         }
     }
@@ -1205,6 +1209,7 @@ impl FromGlib<ffi::GtkAccessibleRole> for AccessibleRole {
             ffi::GTK_ACCESSIBLE_ROLE_TREE_ITEM => Self::TreeItem,
             ffi::GTK_ACCESSIBLE_ROLE_WIDGET => Self::Widget,
             ffi::GTK_ACCESSIBLE_ROLE_WINDOW => Self::Window,
+            ffi::GTK_ACCESSIBLE_ROLE_TOGGLE_BUTTON => Self::ToggleButton,
             value => Self::__Unknown(value),
         }
     }

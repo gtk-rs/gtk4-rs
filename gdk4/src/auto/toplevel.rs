@@ -321,7 +321,7 @@ impl<O: IsA<Toplevel>> ToplevelExt for O {
     }
 
     fn set_fullscreen_mode(&self, fullscreen_mode: FullscreenMode) {
-        glib::ObjectExt::set_property(self.as_ref(), "fullscreen-mode", &fullscreen_mode)
+        glib::ObjectExt::set_property(self.as_ref(), "fullscreen-mode", fullscreen_mode)
     }
 
     //fn icon_list(&self) -> /*Unimplemented*/Basic: Pointer {

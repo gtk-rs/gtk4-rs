@@ -408,7 +408,7 @@ impl<O: IsA<MediaStream>> MediaStreamExt for O {
     }
 
     fn set_prepared(&self, prepared: bool) {
-        glib::ObjectExt::set_property(self.as_ref(), "prepared", &prepared)
+        glib::ObjectExt::set_property(self.as_ref(), "prepared", prepared)
     }
 
     fn connect_duration_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {

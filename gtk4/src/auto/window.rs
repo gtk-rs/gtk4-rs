@@ -1155,7 +1155,7 @@ impl<O: IsA<Window>> GtkWindowExt for O {
     }
 
     fn set_default_height(&self, default_height: i32) {
-        glib::ObjectExt::set_property(self.as_ref(), "default-height", &default_height)
+        glib::ObjectExt::set_property(self.as_ref(), "default-height", default_height)
     }
 
     fn default_width(&self) -> i32 {
@@ -1163,7 +1163,7 @@ impl<O: IsA<Window>> GtkWindowExt for O {
     }
 
     fn set_default_width(&self, default_width: i32) {
-        glib::ObjectExt::set_property(self.as_ref(), "default-width", &default_width)
+        glib::ObjectExt::set_property(self.as_ref(), "default-width", default_width)
     }
 
     fn focus_widget(&self) -> Option<Widget> {
@@ -1171,7 +1171,7 @@ impl<O: IsA<Window>> GtkWindowExt for O {
     }
 
     fn set_focus_widget<P: IsA<Widget>>(&self, focus_widget: Option<&P>) {
-        glib::ObjectExt::set_property(self.as_ref(), "focus-widget", &focus_widget)
+        glib::ObjectExt::set_property(self.as_ref(), "focus-widget", focus_widget)
     }
 
     fn is_fullscreened(&self) -> bool {
@@ -1179,11 +1179,11 @@ impl<O: IsA<Window>> GtkWindowExt for O {
     }
 
     fn set_fullscreened(&self, fullscreened: bool) {
-        glib::ObjectExt::set_property(self.as_ref(), "fullscreened", &fullscreened)
+        glib::ObjectExt::set_property(self.as_ref(), "fullscreened", fullscreened)
     }
 
     fn set_maximized(&self, maximized: bool) {
-        glib::ObjectExt::set_property(self.as_ref(), "maximized", &maximized)
+        glib::ObjectExt::set_property(self.as_ref(), "maximized", maximized)
     }
 
     fn connect_activate_default<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {

@@ -2275,7 +2275,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
     }
 
     fn set_enable_grid_lines(&self, enable_grid_lines: TreeViewGridLines) {
-        glib::ObjectExt::set_property(self.as_ref(), "enable-grid-lines", &enable_grid_lines)
+        glib::ObjectExt::set_property(self.as_ref(), "enable-grid-lines", enable_grid_lines)
     }
 
     fn connect_columns_changed<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {

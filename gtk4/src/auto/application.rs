@@ -328,7 +328,7 @@ impl<O: IsA<Application>> GtkApplicationExt for O {
     }
 
     fn set_register_session(&self, register_session: bool) {
-        glib::ObjectExt::set_property(self.as_ref(), "register-session", &register_session)
+        glib::ObjectExt::set_property(self.as_ref(), "register-session", register_session)
     }
 
     fn is_screensaver_active(&self) -> bool {

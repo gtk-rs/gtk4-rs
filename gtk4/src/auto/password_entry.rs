@@ -84,7 +84,7 @@ impl PasswordEntry {
 
     #[doc(alias = "activates-default")]
     pub fn set_activates_default(&self, activates_default: bool) {
-        glib::ObjectExt::set_property(self, "activates-default", &activates_default)
+        glib::ObjectExt::set_property(self, "activates-default", activates_default)
     }
 
     #[doc(alias = "placeholder-text")]
@@ -94,7 +94,7 @@ impl PasswordEntry {
 
     #[doc(alias = "placeholder-text")]
     pub fn set_placeholder_text(&self, placeholder_text: Option<&str>) {
-        glib::ObjectExt::set_property(self, "placeholder-text", &placeholder_text)
+        glib::ObjectExt::set_property(self, "placeholder-text", placeholder_text)
     }
 
     #[doc(alias = "activate")]

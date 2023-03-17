@@ -38,7 +38,7 @@ impl ShortcutsSection {
 
     #[doc(alias = "max-height")]
     pub fn set_max_height(&self, max_height: u32) {
-        glib::ObjectExt::set_property(self, "max-height", &max_height)
+        glib::ObjectExt::set_property(self, "max-height", max_height)
     }
 
     #[doc(alias = "section-name")]
@@ -48,7 +48,7 @@ impl ShortcutsSection {
 
     #[doc(alias = "section-name")]
     pub fn set_section_name(&self, section_name: Option<&str>) {
-        glib::ObjectExt::set_property(self, "section-name", &section_name)
+        glib::ObjectExt::set_property(self, "section-name", section_name)
     }
 
     pub fn title(&self) -> Option<glib::GString> {
@@ -56,7 +56,7 @@ impl ShortcutsSection {
     }
 
     pub fn set_title(&self, title: Option<&str>) {
-        glib::ObjectExt::set_property(self, "title", &title)
+        glib::ObjectExt::set_property(self, "title", title)
     }
 
     #[doc(alias = "view-name")]
@@ -66,7 +66,7 @@ impl ShortcutsSection {
 
     #[doc(alias = "view-name")]
     pub fn set_view_name(&self, view_name: Option<&str>) {
-        glib::ObjectExt::set_property(self, "view-name", &view_name)
+        glib::ObjectExt::set_property(self, "view-name", view_name)
     }
 
     #[doc(alias = "max-height")]

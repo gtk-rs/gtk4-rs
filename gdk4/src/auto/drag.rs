@@ -164,11 +164,11 @@ impl<O: IsA<Drag>> DragExt for O {
     }
 
     fn set_actions(&self, actions: DragAction) {
-        glib::ObjectExt::set_property(self.as_ref(), "actions", &actions)
+        glib::ObjectExt::set_property(self.as_ref(), "actions", actions)
     }
 
     fn set_selected_action(&self, selected_action: DragAction) {
-        glib::ObjectExt::set_property(self.as_ref(), "selected-action", &selected_action)
+        glib::ObjectExt::set_property(self.as_ref(), "selected-action", selected_action)
     }
 
     fn connect_cancel<F: Fn(&Self, DragCancelReason) + 'static>(&self, f: F) -> SignalHandlerId {

@@ -2587,6 +2587,7 @@ const RUST_CONSTANTS: &[(&str, &str)] = &[
     ("(gint) GTK_ACCESSIBLE_ROLE_TEXT_BOX", "68"),
     ("(gint) GTK_ACCESSIBLE_ROLE_TIME", "69"),
     ("(gint) GTK_ACCESSIBLE_ROLE_TIMER", "70"),
+    ("(gint) GTK_ACCESSIBLE_ROLE_TOGGLE_BUTTON", "78"),
     ("(gint) GTK_ACCESSIBLE_ROLE_TOOLBAR", "71"),
     ("(gint) GTK_ACCESSIBLE_ROLE_TOOLTIP", "72"),
     ("(gint) GTK_ACCESSIBLE_ROLE_TREE", "73"),
