@@ -108,7 +108,7 @@ impl CellRendererToggle {
     }
 
     pub fn set_inconsistent(&self, inconsistent: bool) {
-        glib::ObjectExt::set_property(self, "inconsistent", &inconsistent)
+        glib::ObjectExt::set_property(self, "inconsistent", inconsistent)
     }
 
     #[doc(alias = "toggled")]

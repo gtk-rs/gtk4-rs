@@ -152,7 +152,7 @@ impl<O: IsA<NativeDialog>> NativeDialogExt for O {
     }
 
     fn set_visible(&self, visible: bool) {
-        glib::ObjectExt::set_property(self.as_ref(), "visible", &visible)
+        glib::ObjectExt::set_property(self.as_ref(), "visible", visible)
     }
 
     fn connect_response<F: Fn(&Self, ResponseType) + 'static>(&self, f: F) -> SignalHandlerId {

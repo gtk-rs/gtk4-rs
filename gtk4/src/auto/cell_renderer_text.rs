@@ -793,7 +793,7 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
     }
 
     fn set_alignment(&self, alignment: pango::Alignment) {
-        glib::ObjectExt::set_property(self.as_ref(), "alignment", &alignment)
+        glib::ObjectExt::set_property(self.as_ref(), "alignment", alignment)
     }
 
     fn attributes(&self) -> Option<pango::AttrList> {
@@ -801,11 +801,11 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
     }
 
     fn set_attributes(&self, attributes: Option<&pango::AttrList>) {
-        glib::ObjectExt::set_property(self.as_ref(), "attributes", &attributes)
+        glib::ObjectExt::set_property(self.as_ref(), "attributes", attributes)
     }
 
     fn set_background(&self, background: Option<&str>) {
-        glib::ObjectExt::set_property(self.as_ref(), "background", &background)
+        glib::ObjectExt::set_property(self.as_ref(), "background", background)
     }
 
     fn background_rgba(&self) -> Option<gdk::RGBA> {
@@ -813,7 +813,7 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
     }
 
     fn set_background_rgba(&self, background_rgba: Option<&gdk::RGBA>) {
-        glib::ObjectExt::set_property(self.as_ref(), "background-rgba", &background_rgba)
+        glib::ObjectExt::set_property(self.as_ref(), "background-rgba", background_rgba)
     }
 
     fn is_background_set(&self) -> bool {
@@ -825,7 +825,7 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
     }
 
     fn set_editable(&self, editable: bool) {
-        glib::ObjectExt::set_property(self.as_ref(), "editable", &editable)
+        glib::ObjectExt::set_property(self.as_ref(), "editable", editable)
     }
 
     fn is_editable_set(&self) -> bool {
@@ -837,7 +837,7 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
     }
 
     fn set_ellipsize(&self, ellipsize: pango::EllipsizeMode) {
-        glib::ObjectExt::set_property(self.as_ref(), "ellipsize", &ellipsize)
+        glib::ObjectExt::set_property(self.as_ref(), "ellipsize", ellipsize)
     }
 
     fn is_ellipsize_set(&self) -> bool {
@@ -849,7 +849,7 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
     }
 
     fn set_family(&self, family: Option<&str>) {
-        glib::ObjectExt::set_property(self.as_ref(), "family", &family)
+        glib::ObjectExt::set_property(self.as_ref(), "family", family)
     }
 
     fn is_family_set(&self) -> bool {
@@ -861,7 +861,7 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
     }
 
     fn set_font(&self, font: Option<&str>) {
-        glib::ObjectExt::set_property(self.as_ref(), "font", &font)
+        glib::ObjectExt::set_property(self.as_ref(), "font", font)
     }
 
     fn font_desc(&self) -> Option<pango::FontDescription> {
@@ -869,11 +869,11 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
     }
 
     fn set_font_desc(&self, font_desc: Option<&pango::FontDescription>) {
-        glib::ObjectExt::set_property(self.as_ref(), "font-desc", &font_desc)
+        glib::ObjectExt::set_property(self.as_ref(), "font-desc", font_desc)
     }
 
     fn set_foreground(&self, foreground: Option<&str>) {
-        glib::ObjectExt::set_property(self.as_ref(), "foreground", &foreground)
+        glib::ObjectExt::set_property(self.as_ref(), "foreground", foreground)
     }
 
     fn foreground_rgba(&self) -> Option<gdk::RGBA> {
@@ -881,7 +881,7 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
     }
 
     fn set_foreground_rgba(&self, foreground_rgba: Option<&gdk::RGBA>) {
-        glib::ObjectExt::set_property(self.as_ref(), "foreground-rgba", &foreground_rgba)
+        glib::ObjectExt::set_property(self.as_ref(), "foreground-rgba", foreground_rgba)
     }
 
     fn is_foreground_set(&self) -> bool {
@@ -893,7 +893,7 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
     }
 
     fn set_language(&self, language: Option<&str>) {
-        glib::ObjectExt::set_property(self.as_ref(), "language", &language)
+        glib::ObjectExt::set_property(self.as_ref(), "language", language)
     }
 
     fn is_language_set(&self) -> bool {
@@ -901,7 +901,7 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
     }
 
     fn set_markup(&self, markup: Option<&str>) {
-        glib::ObjectExt::set_property(self.as_ref(), "markup", &markup)
+        glib::ObjectExt::set_property(self.as_ref(), "markup", markup)
     }
 
     fn max_width_chars(&self) -> i32 {
@@ -909,7 +909,7 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
     }
 
     fn set_max_width_chars(&self, max_width_chars: i32) {
-        glib::ObjectExt::set_property(self.as_ref(), "max-width-chars", &max_width_chars)
+        glib::ObjectExt::set_property(self.as_ref(), "max-width-chars", max_width_chars)
     }
 
     fn placeholder_text(&self) -> Option<glib::GString> {
@@ -917,7 +917,7 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
     }
 
     fn set_placeholder_text(&self, placeholder_text: Option<&str>) {
-        glib::ObjectExt::set_property(self.as_ref(), "placeholder-text", &placeholder_text)
+        glib::ObjectExt::set_property(self.as_ref(), "placeholder-text", placeholder_text)
     }
 
     fn rise(&self) -> i32 {
@@ -925,7 +925,7 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
     }
 
     fn set_rise(&self, rise: i32) {
-        glib::ObjectExt::set_property(self.as_ref(), "rise", &rise)
+        glib::ObjectExt::set_property(self.as_ref(), "rise", rise)
     }
 
     fn is_rise_set(&self) -> bool {
@@ -937,7 +937,7 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
     }
 
     fn set_scale(&self, scale: f64) {
-        glib::ObjectExt::set_property(self.as_ref(), "scale", &scale)
+        glib::ObjectExt::set_property(self.as_ref(), "scale", scale)
     }
 
     fn is_scale_set(&self) -> bool {
@@ -952,7 +952,7 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
         glib::ObjectExt::set_property(
             self.as_ref(),
             "single-paragraph-mode",
-            &single_paragraph_mode,
+            single_paragraph_mode,
         )
     }
 
@@ -961,7 +961,7 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
     }
 
     fn set_size(&self, size: i32) {
-        glib::ObjectExt::set_property(self.as_ref(), "size", &size)
+        glib::ObjectExt::set_property(self.as_ref(), "size", size)
     }
 
     fn size_points(&self) -> f64 {
@@ -969,7 +969,7 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
     }
 
     fn set_size_points(&self, size_points: f64) {
-        glib::ObjectExt::set_property(self.as_ref(), "size-points", &size_points)
+        glib::ObjectExt::set_property(self.as_ref(), "size-points", size_points)
     }
 
     fn is_size_set(&self) -> bool {
@@ -981,7 +981,7 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
     }
 
     fn set_stretch(&self, stretch: pango::Stretch) {
-        glib::ObjectExt::set_property(self.as_ref(), "stretch", &stretch)
+        glib::ObjectExt::set_property(self.as_ref(), "stretch", stretch)
     }
 
     fn is_stretch_set(&self) -> bool {
@@ -993,7 +993,7 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
     }
 
     fn set_strikethrough(&self, strikethrough: bool) {
-        glib::ObjectExt::set_property(self.as_ref(), "strikethrough", &strikethrough)
+        glib::ObjectExt::set_property(self.as_ref(), "strikethrough", strikethrough)
     }
 
     fn is_strikethrough_set(&self) -> bool {
@@ -1005,7 +1005,7 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
     }
 
     fn set_style(&self, style: pango::Style) {
-        glib::ObjectExt::set_property(self.as_ref(), "style", &style)
+        glib::ObjectExt::set_property(self.as_ref(), "style", style)
     }
 
     fn is_style_set(&self) -> bool {
@@ -1017,7 +1017,7 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
     }
 
     fn set_text(&self, text: Option<&str>) {
-        glib::ObjectExt::set_property(self.as_ref(), "text", &text)
+        glib::ObjectExt::set_property(self.as_ref(), "text", text)
     }
 
     fn underline(&self) -> pango::Underline {
@@ -1025,7 +1025,7 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
     }
 
     fn set_underline(&self, underline: pango::Underline) {
-        glib::ObjectExt::set_property(self.as_ref(), "underline", &underline)
+        glib::ObjectExt::set_property(self.as_ref(), "underline", underline)
     }
 
     fn is_underline_set(&self) -> bool {
@@ -1037,7 +1037,7 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
     }
 
     fn set_variant(&self, variant: pango::Variant) {
-        glib::ObjectExt::set_property(self.as_ref(), "variant", &variant)
+        glib::ObjectExt::set_property(self.as_ref(), "variant", variant)
     }
 
     fn is_variant_set(&self) -> bool {
@@ -1049,7 +1049,7 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
     }
 
     fn set_weight(&self, weight: i32) {
-        glib::ObjectExt::set_property(self.as_ref(), "weight", &weight)
+        glib::ObjectExt::set_property(self.as_ref(), "weight", weight)
     }
 
     fn is_weight_set(&self) -> bool {
@@ -1061,7 +1061,7 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
     }
 
     fn set_width_chars(&self, width_chars: i32) {
-        glib::ObjectExt::set_property(self.as_ref(), "width-chars", &width_chars)
+        glib::ObjectExt::set_property(self.as_ref(), "width-chars", width_chars)
     }
 
     fn wrap_mode(&self) -> pango::WrapMode {
@@ -1069,7 +1069,7 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
     }
 
     fn set_wrap_mode(&self, wrap_mode: pango::WrapMode) {
-        glib::ObjectExt::set_property(self.as_ref(), "wrap-mode", &wrap_mode)
+        glib::ObjectExt::set_property(self.as_ref(), "wrap-mode", wrap_mode)
     }
 
     fn wrap_width(&self) -> i32 {
@@ -1077,7 +1077,7 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
     }
 
     fn set_wrap_width(&self, wrap_width: i32) {
-        glib::ObjectExt::set_property(self.as_ref(), "wrap-width", &wrap_width)
+        glib::ObjectExt::set_property(self.as_ref(), "wrap-width", wrap_width)
     }
 
     fn connect_edited<F: Fn(&Self, TreePath, &str) + 'static>(&self, f: F) -> SignalHandlerId {

@@ -376,7 +376,7 @@ impl ListBox {
 
     #[doc(alias = "accept-unpaired-release")]
     pub fn set_accept_unpaired_release(&self, accept_unpaired_release: bool) {
-        glib::ObjectExt::set_property(self, "accept-unpaired-release", &accept_unpaired_release)
+        glib::ObjectExt::set_property(self, "accept-unpaired-release", accept_unpaired_release)
     }
 
     #[doc(alias = "activate-cursor-row")]

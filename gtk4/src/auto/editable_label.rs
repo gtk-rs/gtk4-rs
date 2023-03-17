@@ -58,7 +58,7 @@ impl EditableLabel {
     #[cfg(any(feature = "v4_8", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
     pub fn set_editing(&self, editing: bool) {
-        glib::ObjectExt::set_property(self, "editing", &editing)
+        glib::ObjectExt::set_property(self, "editing", editing)
     }
 }
 

@@ -215,7 +215,7 @@ impl PrintUnixDialog {
 
     #[doc(alias = "print-settings")]
     pub fn set_print_settings(&self, print_settings: Option<&PrintSettings>) {
-        glib::ObjectExt::set_property(self, "print-settings", &print_settings)
+        glib::ObjectExt::set_property(self, "print-settings", print_settings)
     }
 
     #[doc(alias = "current-page")]

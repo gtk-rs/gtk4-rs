@@ -336,7 +336,7 @@ impl<O: IsA<Editable>> EditableExt for O {
     }
 
     fn set_xalign(&self, xalign: f32) {
-        glib::ObjectExt::set_property(self.as_ref(), "xalign", &xalign)
+        glib::ObjectExt::set_property(self.as_ref(), "xalign", xalign)
     }
 
     fn connect_changed<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {

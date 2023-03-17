@@ -53,7 +53,7 @@ impl ColorChooserDialog {
 
     #[doc(alias = "show-editor")]
     pub fn set_show_editor(&self, show_editor: bool) {
-        glib::ObjectExt::set_property(self, "show-editor", &show_editor)
+        glib::ObjectExt::set_property(self, "show-editor", show_editor)
     }
 
     #[doc(alias = "show-editor")]

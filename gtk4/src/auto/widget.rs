@@ -1955,7 +1955,7 @@ impl<O: IsA<Widget>> WidgetExt for O {
     }
 
     fn set_height_request(&self, height_request: i32) {
-        glib::ObjectExt::set_property(self.as_ref(), "height-request", &height_request)
+        glib::ObjectExt::set_property(self.as_ref(), "height-request", height_request)
     }
 
     fn width_request(&self) -> i32 {
@@ -1963,7 +1963,7 @@ impl<O: IsA<Widget>> WidgetExt for O {
     }
 
     fn set_width_request(&self, width_request: i32) {
-        glib::ObjectExt::set_property(self.as_ref(), "width-request", &width_request)
+        glib::ObjectExt::set_property(self.as_ref(), "width-request", width_request)
     }
 
     fn connect_destroy<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {

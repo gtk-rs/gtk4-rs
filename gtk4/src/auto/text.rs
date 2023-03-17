@@ -313,7 +313,7 @@ impl Text {
 
     #[doc(alias = "im-module")]
     pub fn set_im_module(&self, im_module: Option<&str>) {
-        glib::ObjectExt::set_property(self, "im-module", &im_module)
+        glib::ObjectExt::set_property(self, "im-module", im_module)
     }
 
     #[doc(alias = "invisible-char-set")]

@@ -44,7 +44,7 @@ impl CellRendererAccel {
 
     #[doc(alias = "accel-key")]
     pub fn set_accel_key(&self, accel_key: u32) {
-        glib::ObjectExt::set_property(self, "accel-key", &accel_key)
+        glib::ObjectExt::set_property(self, "accel-key", accel_key)
     }
 
     #[doc(alias = "accel-mode")]
@@ -54,7 +54,7 @@ impl CellRendererAccel {
 
     #[doc(alias = "accel-mode")]
     pub fn set_accel_mode(&self, accel_mode: CellRendererAccelMode) {
-        glib::ObjectExt::set_property(self, "accel-mode", &accel_mode)
+        glib::ObjectExt::set_property(self, "accel-mode", accel_mode)
     }
 
     #[doc(alias = "accel-mods")]
@@ -64,7 +64,7 @@ impl CellRendererAccel {
 
     #[doc(alias = "accel-mods")]
     pub fn set_accel_mods(&self, accel_mods: gdk::ModifierType) {
-        glib::ObjectExt::set_property(self, "accel-mods", &accel_mods)
+        glib::ObjectExt::set_property(self, "accel-mods", accel_mods)
     }
 
     pub fn keycode(&self) -> u32 {
@@ -72,7 +72,7 @@ impl CellRendererAccel {
     }
 
     pub fn set_keycode(&self, keycode: u32) {
-        glib::ObjectExt::set_property(self, "keycode", &keycode)
+        glib::ObjectExt::set_property(self, "keycode", keycode)
     }
 
     #[doc(alias = "accel-cleared")]

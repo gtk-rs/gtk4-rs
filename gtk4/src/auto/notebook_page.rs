@@ -31,7 +31,7 @@ impl NotebookPage {
     }
 
     pub fn set_detachable(&self, detachable: bool) {
-        glib::ObjectExt::set_property(self, "detachable", &detachable)
+        glib::ObjectExt::set_property(self, "detachable", detachable)
     }
 
     pub fn menu(&self) -> Option<Widget> {
@@ -45,7 +45,7 @@ impl NotebookPage {
 
     #[doc(alias = "menu-label")]
     pub fn set_menu_label(&self, menu_label: Option<&str>) {
-        glib::ObjectExt::set_property(self, "menu-label", &menu_label)
+        glib::ObjectExt::set_property(self, "menu-label", menu_label)
     }
 
     pub fn position(&self) -> i32 {
@@ -53,7 +53,7 @@ impl NotebookPage {
     }
 
     pub fn set_position(&self, position: i32) {
-        glib::ObjectExt::set_property(self, "position", &position)
+        glib::ObjectExt::set_property(self, "position", position)
     }
 
     pub fn is_reorderable(&self) -> bool {
@@ -61,7 +61,7 @@ impl NotebookPage {
     }
 
     pub fn set_reorderable(&self, reorderable: bool) {
-        glib::ObjectExt::set_property(self, "reorderable", &reorderable)
+        glib::ObjectExt::set_property(self, "reorderable", reorderable)
     }
 
     pub fn tab(&self) -> Option<Widget> {
@@ -75,7 +75,7 @@ impl NotebookPage {
 
     #[doc(alias = "tab-expand")]
     pub fn set_tab_expand(&self, tab_expand: bool) {
-        glib::ObjectExt::set_property(self, "tab-expand", &tab_expand)
+        glib::ObjectExt::set_property(self, "tab-expand", tab_expand)
     }
 
     #[doc(alias = "tab-fill")]
@@ -85,7 +85,7 @@ impl NotebookPage {
 
     #[doc(alias = "tab-fill")]
     pub fn set_tab_fill(&self, tab_fill: bool) {
-        glib::ObjectExt::set_property(self, "tab-fill", &tab_fill)
+        glib::ObjectExt::set_property(self, "tab-fill", tab_fill)
     }
 
     #[doc(alias = "tab-label")]
@@ -95,7 +95,7 @@ impl NotebookPage {
 
     #[doc(alias = "tab-label")]
     pub fn set_tab_label(&self, tab_label: Option<&str>) {
-        glib::ObjectExt::set_property(self, "tab-label", &tab_label)
+        glib::ObjectExt::set_property(self, "tab-label", tab_label)
     }
 
     #[doc(alias = "detachable")]

@@ -42,7 +42,7 @@ impl CellRendererSpin {
     }
 
     pub fn set_adjustment<P: IsA<Adjustment>>(&self, adjustment: Option<&P>) {
-        glib::ObjectExt::set_property(self, "adjustment", &adjustment)
+        glib::ObjectExt::set_property(self, "adjustment", adjustment)
     }
 
     #[doc(alias = "climb-rate")]
@@ -52,7 +52,7 @@ impl CellRendererSpin {
 
     #[doc(alias = "climb-rate")]
     pub fn set_climb_rate(&self, climb_rate: f64) {
-        glib::ObjectExt::set_property(self, "climb-rate", &climb_rate)
+        glib::ObjectExt::set_property(self, "climb-rate", climb_rate)
     }
 
     pub fn digits(&self) -> u32 {
@@ -60,7 +60,7 @@ impl CellRendererSpin {
     }
 
     pub fn set_digits(&self, digits: u32) {
-        glib::ObjectExt::set_property(self, "digits", &digits)
+        glib::ObjectExt::set_property(self, "digits", digits)
     }
 
     #[doc(alias = "adjustment")]

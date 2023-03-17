@@ -163,6 +163,7 @@ pub const GTK_ACCESSIBLE_ROLE_TREE_GRID: GtkAccessibleRole = 74;
 pub const GTK_ACCESSIBLE_ROLE_TREE_ITEM: GtkAccessibleRole = 75;
 pub const GTK_ACCESSIBLE_ROLE_WIDGET: GtkAccessibleRole = 76;
 pub const GTK_ACCESSIBLE_ROLE_WINDOW: GtkAccessibleRole = 77;
+pub const GTK_ACCESSIBLE_ROLE_TOGGLE_BUTTON: GtkAccessibleRole = 78;
 
 pub type GtkAccessibleSort = c_int;
 pub const GTK_ACCESSIBLE_SORT_NONE: GtkAccessibleSort = 0;

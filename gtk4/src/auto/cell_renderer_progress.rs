@@ -42,7 +42,7 @@ impl CellRendererProgress {
     }
 
     pub fn set_inverted(&self, inverted: bool) {
-        glib::ObjectExt::set_property(self, "inverted", &inverted)
+        glib::ObjectExt::set_property(self, "inverted", inverted)
     }
 
     pub fn pulse(&self) -> i32 {
@@ -50,7 +50,7 @@ impl CellRendererProgress {
     }
 
     pub fn set_pulse(&self, pulse: i32) {
-        glib::ObjectExt::set_property(self, "pulse", &pulse)
+        glib::ObjectExt::set_property(self, "pulse", pulse)
     }
 
     pub fn text(&self) -> Option<glib::GString> {
@@ -58,7 +58,7 @@ impl CellRendererProgress {
     }
 
     pub fn set_text(&self, text: Option<&str>) {
-        glib::ObjectExt::set_property(self, "text", &text)
+        glib::ObjectExt::set_property(self, "text", text)
     }
 
     #[doc(alias = "text-xalign")]
@@ -68,7 +68,7 @@ impl CellRendererProgress {
 
     #[doc(alias = "text-xalign")]
     pub fn set_text_xalign(&self, text_xalign: f32) {
-        glib::ObjectExt::set_property(self, "text-xalign", &text_xalign)
+        glib::ObjectExt::set_property(self, "text-xalign", text_xalign)
     }
 
     #[doc(alias = "text-yalign")]
@@ -78,7 +78,7 @@ impl CellRendererProgress {
 
     #[doc(alias = "text-yalign")]
     pub fn set_text_yalign(&self, text_yalign: f32) {
-        glib::ObjectExt::set_property(self, "text-yalign", &text_yalign)
+        glib::ObjectExt::set_property(self, "text-yalign", text_yalign)
     }
 
     pub fn value(&self) -> i32 {
@@ -86,7 +86,7 @@ impl CellRendererProgress {
     }
 
     pub fn set_value(&self, value: i32) {
-        glib::ObjectExt::set_property(self, "value", &value)
+        glib::ObjectExt::set_property(self, "value", value)
     }
 
     #[doc(alias = "inverted")]
