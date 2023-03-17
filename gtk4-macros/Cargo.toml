@@ -9,7 +9,7 @@ keywords = ["gtk", "gtk4", "gtk-rs", "gnome", "GUI"]
 license = "MIT"
 name = "gtk4-macros"
 repository = "https://github.com/gtk-rs/gtk4-rs"
-version = "0.6.2"
+version = "0.6.3"
 rust-version = "1.64"
 [lib]
 proc-macro = true

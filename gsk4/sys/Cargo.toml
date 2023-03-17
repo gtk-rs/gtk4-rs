@@ -9,7 +9,7 @@ keywords = ["gsk", "ffi", "gtk-rs", "gnome"]
 license = "MIT"
 name = "gsk4-sys"
 repository = "https://github.com/gtk-rs/gtk4-rs"
-version = "0.6.2"
+version = "0.6.3"
 rust-version = "1.64"
 
 [package.metadata.docs.rs]
