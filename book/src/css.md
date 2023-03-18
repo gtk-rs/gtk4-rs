@@ -265,14 +265,14 @@ We can change that by adding the `frame` and the `separators` style class to our
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/4/resources/task_row.ui">listings/todo/4/resources/window.ui</a>
 
-```xml
-<object class="GtkListView" id="tasks_list">
-  <property name="valign">start</property>
-  <style>
-    <class name="frame"/>
-    <class name="separators"/>
-  </style>
-</object>
+```diff
+ <object class="GtkListView" id="tasks_list">
+   <property name="valign">start</property>
++  <style>
++    <class name="frame"/>
++    <class name="separators"/>
++  </style>
+ </object>
 ```
 
 <div style="text-align:center"><img src="img/todo_4.png" alt="To-Do app with borders for its task widget"/></div>
