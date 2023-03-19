@@ -188,6 +188,7 @@ gtk = { git = "https://github.com/gtk-rs/gtk4-rs.git", package = "gtk4" }
 | `v4_6` | Enable the new APIs part of GTK 4.6 |
 | `v4_4` | Enable the new APIs part of GTK 4.4 |
 | `v4_2` | Enable the new APIs part of GTK 4.2 |
+| `gnome_44` | Enable all version feature flags of this crate and its dependencies to match the GNOME 44 SDK |
 | `gnome_43` | Enable all version feature flags of this crate and its dependencies to match the GNOME 43 SDK |
 | `gnome_42` | Enable all version feature flags of this crate and its dependencies to match the GNOME 42 SDK |
 | `unsafe-assume-initialized` | Disable checks that gtk is initialized, for use in C ABI libraries |
