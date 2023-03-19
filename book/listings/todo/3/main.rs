@@ -17,11 +17,13 @@ fn main() -> glib::ExitCode {
     // Create a new application
     let app = Application::builder().application_id(APP_ID).build();
 
+    // ANCHOR: connect_startup
     // Connect to signals
     app.connect_startup(|app| {
         setup_shortcuts(app);
         load_css()
     });
+    // ANCHOR_END: connect_startup
     app.connect_activate(build_ui);
 
     // Run the application
@@ -34,6 +36,7 @@ fn setup_shortcuts(app: &Application) {
     app.set_accels_for_action("win.filter('Done')", &["<Ctrl>d"]);
 }
 
+// ANCHOR: load_css
 fn load_css() {
     // Load the CSS file and add it to the provider
     let provider = CssProvider::new();
@@ -46,6 +49,7 @@ fn load_css() {
         gtk::STYLE_PROVIDER_PRIORITY_APPLICATION,
     );
 }
+// ANCHOR_END: load_css
 
 fn build_ui(app: &Application) {
     // Create a new custom window and show it
