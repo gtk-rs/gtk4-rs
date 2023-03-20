@@ -268,7 +268,7 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
    </gresource>
  </gresources>
 ```
-and call of `load_css()` function in `connect_startup` handler.
+and call the `load_css()` function in `connect_startup` handler.
 `load_css()` is almost identical to one shown at the beginning of the chapter but this time we load styles from resources using `load_from_resource()` method of `gtk::CssProvider`.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/3/main.rs">listings/todo/3/main.rs</a>
