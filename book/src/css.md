@@ -264,7 +264,7 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
      <file compressed="true" preprocess="xml-stripblanks" alias="gtk/help-overlay.ui">shortcuts.ui</file>
      <file compressed="true" preprocess="xml-stripblanks">task_row.ui</file>
      <file compressed="true" preprocess="xml-stripblanks">window.ui</file>
-+     <file compressed="true">style.css</file>
++    <file compressed="true">style.css</file>
    </gresource>
  </gresources>
 ```
