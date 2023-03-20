@@ -252,6 +252,39 @@ As of this writing, these exported colors can only be found in its [source code]
 
 There we find the color `success_color`, which in real scenarios should be used to indicate success.
 We can then access the pre-defined color by adding an `@` in front of its name.
+
+We also have to add `style.css` to `resources.gresource.xml`.
+
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/3/resources/resources.gresource.xml">listings/todo/3/resources/resources.gresource.xml</a>
+
+```diff
+ <?xml version="1.0" encoding="UTF-8"?>
+ <gresources>
+   <gresource prefix="/org/gtk_rs/Todo3/">
+     <file compressed="true" preprocess="xml-stripblanks" alias="gtk/help-overlay.ui">shortcuts.ui</file>
+     <file compressed="true" preprocess="xml-stripblanks">task_row.ui</file>
+     <file compressed="true" preprocess="xml-stripblanks">window.ui</file>
++    <file compressed="true">style.css</file>
+   </gresource>
+ </gresources>
+```
+
+Additionally, we call `load_css()` in `connect_startup`.
+
+
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/3/main.rs">listings/todo/3/main.rs</a>
+
+```rust ,no_run,noplayground
+{{#rustdoc_include ../listings/todo/3/main.rs:connect_startup}}
+```
+
+`load_css()` is very similar to the one shown at the beginning of the chapter.
+However, this time we load styles using `load_from_resource()`.
+
+```rust ,no_run,noplayground
+{{#rustdoc_include ../listings/todo/3/main.rs:load_css}}
+```
+
 And that is how the task rows look like after the change.
 Probably better to revert this immediately again.
 
