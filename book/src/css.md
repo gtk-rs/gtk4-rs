@@ -253,7 +253,7 @@ As of this writing, these exported colors can only be found in its [source code]
 There we find the color `success_color`, which in real scenarios should be used to indicate success.
 We can then access the pre-defined color by adding an `@` in front of its name.
 
-Let's add some finishing touches to include `style.css` into `resources.gresource.xml`
+We also have to add `style.css` to `resources.gresource.xml`.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/3/resources/resources.gresource.xml">listings/todo/3/resources/resources.gresource.xml</a>
 
@@ -268,14 +268,18 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
    </gresource>
  </gresources>
 ```
-and call the `load_css()` function in `connect_startup` handler.
-`load_css()` is almost identical to the one shown at the beginning of the chapter but this time we load styles from resources using `load_from_resource()` method of `gtk::CssProvider`.
+
+Additionally, we call `load_css()` in `connect_startup`.
+
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/3/main.rs">listings/todo/3/main.rs</a>
 
 ```rust ,no_run,noplayground
 {{#rustdoc_include ../listings/todo/3/main.rs:connect_startup}}
 ```
+
+`load_css()` is very similar to the one shown at the beginning of the chapter.
+However, this time we load styles using `load_from_resource()`.
 
 ```rust ,no_run,noplayground
 {{#rustdoc_include ../listings/todo/3/main.rs:load_css}}
