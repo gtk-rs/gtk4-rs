@@ -428,7 +428,7 @@ impl Window {
             .build();
         dialog.content_area().append(&entry);
 
-        // Set entry's css class to "error", when there is not text in it
+        // Set entry's css class to "error", when there is no text in it
         entry.connect_changed(clone!(@weak dialog => move |entry| {
             let text = entry.text();
             let dialog_button = dialog.
