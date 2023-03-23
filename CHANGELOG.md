@@ -2,6 +2,27 @@
 
 ## [Unreleased]
 
+## [0.6.5]
+
+Fabio Valentini:
+- gtk4-macros: enable default features of syn
+
+## [0.6.4]
+
+Bilal Elmoussaoui:
+- gtk: Add missing guard to AccesibleRoleToggleButton
+
+## [0.6.3]
+
+Bilal Elmoussaoui:
+- gtk/subclass: Adapt per Accessible transfer type changes
+- Bump GTK requirement for `v4_10` feature
+- Fix nightly clippy warnings
+- Fix docs generation
+
+Maximiliano Sandoval R:
+ - rgba: Add TRANSPARENT const
+
 ## [0.6.2]
 
 Bilal Elmoussaoui:
