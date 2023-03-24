@@ -68,12 +68,12 @@ impl X11Display {
     #[cfg(any(feature = "xlib", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "xlib")))]
     #[doc(alias = "xevent")]
-    pub unsafe fn connect_xevent<F: Fn(&Self, *mut xlib::XEvent) -> glib::Continue + 'static>(
+    pub unsafe fn connect_xevent<F: Fn(&Self, *mut xlib::XEvent) -> glib::ControlFlow + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn xevent_trampoline<
-            F: Fn(&X11Display, *mut xlib::XEvent) -> glib::Continue + 'static,
+            F: Fn(&X11Display, *mut xlib::XEvent) -> glib::ControlFlow + 'static,
         >(
             this: *mut ffi::GdkX11Display,
             xevent: glib::ffi::gpointer,

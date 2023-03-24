@@ -1,7 +1,7 @@
 mod imp;
 
 use crate::custom_layout::CustomLayout;
-use glib::clone;
+use glib::{clone, ControlFlow};
 use gtk::glib;
 use gtk::prelude::*;
 use gtk::subclass::prelude::*;
@@ -41,7 +41,7 @@ impl SimpleWidget {
         imp.tick_id.replace(Some(tick_id));
     }
 
-    pub fn transition(&self) -> glib::Continue {
+    pub fn transition(&self) -> ControlFlow {
         let imp = self.imp();
         let now = std::time::Instant::now();
         self.queue_allocate();
@@ -73,9 +73,9 @@ impl SimpleWidget {
                 layout_manager.set_position(0.0);
             }
             let _ = imp.tick_id.borrow_mut().take();
-            return glib::Continue(false);
+            return ControlFlow::Break;
         }
 
-        glib::Continue(true)
+        ControlFlow::Continue
     }
 }

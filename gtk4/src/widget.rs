@@ -2,20 +2,20 @@
 
 use crate::{prelude::*, Widget};
 
-use glib::{translate::*, Continue, WeakRef};
+use glib::{translate::*, ControlFlow, WeakRef};
 
 // rustdoc-stripper-ignore-next
 /// Trait containing manually implemented methods of [`Widget`](crate::Widget).
 pub trait WidgetExtManual: 'static {
     #[doc(alias = "gtk_widget_add_tick_callback")]
-    fn add_tick_callback<P: Fn(&Self, &gdk::FrameClock) -> Continue + 'static>(
+    fn add_tick_callback<P: Fn(&Self, &gdk::FrameClock) -> ControlFlow + 'static>(
         &self,
         callback: P,
     ) -> TickCallbackId;
 }
 
 impl<O: IsA<Widget>> WidgetExtManual for O {
-    fn add_tick_callback<P: Fn(&Self, &gdk::FrameClock) -> Continue + 'static>(
+    fn add_tick_callback<P: Fn(&Self, &gdk::FrameClock) -> ControlFlow + 'static>(
         &self,
         callback: P,
     ) -> TickCallbackId {
@@ -23,7 +23,7 @@ impl<O: IsA<Widget>> WidgetExtManual for O {
 
         unsafe extern "C" fn callback_func<
             O: IsA<Widget>,
-            P: Fn(&O, &gdk::FrameClock) -> Continue + 'static,
+            P: Fn(&O, &gdk::FrameClock) -> ControlFlow + 'static,
         >(
             widget: *mut ffi::GtkWidget,
             frame_clock: *mut gdk::ffi::GdkFrameClock,
@@ -39,7 +39,7 @@ impl<O: IsA<Widget>> WidgetExtManual for O {
 
         unsafe extern "C" fn notify_func<
             O: IsA<Widget>,
-            P: Fn(&O, &gdk::FrameClock) -> Continue + 'static,
+            P: Fn(&O, &gdk::FrameClock) -> ControlFlow + 'static,
         >(
             data: glib::ffi::gpointer,
         ) {
