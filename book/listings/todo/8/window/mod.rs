@@ -4,13 +4,13 @@ use std::fs::File;
 
 use adw::prelude::*;
 use adw::subclass::prelude::*;
-use adw::{ActionRow, NavigationDirection};
+use adw::{ActionRow, MessageDialog, NavigationDirection, ResponseAppearance};
 use gio::Settings;
 use glib::{clone, Object};
 use gtk::glib::BindingFlags;
 use gtk::{
-    gio, glib, pango, Align, CheckButton, CustomFilter, Dialog, DialogFlags, Entry,
-    FilterListModel, Label, ListBoxRow, NoSelection, ResponseType, SelectionMode,
+    gio, glib, pango, Align, CheckButton, CustomFilter, Entry, FilterListModel, Label,
+    ListBoxRow, NoSelection, SelectionMode,
 };
 
 use crate::collection_object::{CollectionData, CollectionObject};
@@ -397,46 +397,37 @@ impl Window {
 
     // ANCHOR: new_collection
     fn new_collection(&self) {
-        // Create new Dialog
-        let dialog = Dialog::with_buttons(
-            Some("New Collection"),
-            Some(self),
-            DialogFlags::MODAL
-                | DialogFlags::DESTROY_WITH_PARENT
-                | DialogFlags::USE_HEADER_BAR,
-            &[
-                ("Cancel", ResponseType::Cancel),
-                ("Create", ResponseType::Accept),
-            ],
-        );
-        dialog.set_default_response(ResponseType::Accept);
-
-        // Make the dialog button insensitive initially
-        let dialog_button = dialog
-            .widget_for_response(ResponseType::Accept)
-            .expect("The dialog needs to have a widget for response type `Accept`.");
-        dialog_button.set_sensitive(false);
-
-        // Create entry and add it to the dialog
+        // Create entry
         let entry = Entry::builder()
-            .margin_top(12)
-            .margin_bottom(12)
-            .margin_start(12)
-            .margin_end(12)
             .placeholder_text("Name")
             .activates_default(true)
             .build();
-        dialog.content_area().append(&entry);
+
+        let cancel_response = "cancel";
+        let create_response = "create";
+
+        // Create new dialog
+        let dialog = MessageDialog::builder()
+            .heading("New Collection")
+            .transient_for(self)
+            .modal(true)
+            .destroy_with_parent(true)
+            .close_response(cancel_response)
+            .default_response(create_response)
+            .extra_child(&entry)
+            .build();
+        dialog
+            .add_responses(&[(cancel_response, "Cancel"), (create_response, "Create")]);
+        // Make the dialog button insensitive initially
+        dialog.set_response_enabled(create_response, false);
+        dialog.set_response_appearance(create_response, ResponseAppearance::Suggested);
 
         // Set entry's css class to "error", when there is no text in it
         entry.connect_changed(clone!(@weak dialog => move |entry| {
             let text = entry.text();
-            let dialog_button = dialog.
-                widget_for_response(ResponseType::Accept).
-                expect("The dialog needs to have a widget for response type `Accept`.");
             let empty = text.is_empty();
 
-            dialog_button.set_sensitive(!empty);
+            dialog.set_response_enabled(create_response, !empty);
 
             if empty {
                 entry.add_css_class("error");
@@ -447,12 +438,13 @@ impl Window {
 
         // Connect response to dialog
         dialog.connect_response(
+            None,
             clone!(@weak self as window, @weak entry => move |dialog, response| {
                 // Destroy dialog
                 dialog.destroy();
 
-                // Return if the user chose a response different than `Accept`
-                if response != ResponseType::Accept {
+                // Return if the user chose a response different than `create_response`
+                if response != create_response {
                     return;
                 }
 
