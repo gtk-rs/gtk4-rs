@@ -397,14 +397,14 @@ impl Window {
 
     // ANCHOR: new_collection
     fn new_collection(&self) {
-        let cancel_response = "cancel";
-        let create_response = "create";
-
         // Create entry
         let entry = Entry::builder()
             .placeholder_text("Name")
             .activates_default(true)
             .build();
+
+        let cancel_response = "cancel";
+        let create_response = "create";
 
         // Create new dialog
         let dialog = MessageDialog::builder()
