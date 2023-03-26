@@ -5,12 +5,6 @@
 use crate::Texture;
 use glib::{prelude::*, translate::*};
 
-#[doc(alias = "gdk_drag_surface_size_get_type")]
-pub fn drag_surface_size_get_type() -> glib::types::Type {
-    assert_initialized_main_thread!();
-    unsafe { from_glib(ffi::gdk_drag_surface_size_get_type()) }
-}
-
 #[doc(alias = "gdk_intern_mime_type")]
 pub fn intern_mime_type(string: &str) -> Option<glib::GString> {
     assert_initialized_main_thread!();
