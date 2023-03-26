@@ -1414,6 +1414,8 @@ pub enum AccessibleState {
     Pressed,
     #[doc(alias = "GTK_ACCESSIBLE_STATE_SELECTED")]
     Selected,
+    #[cfg(any(feature = "v4_12", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_12")))]
     #[doc(alias = "GTK_ACCESSIBLE_STATE_VISITED")]
     Visited,
     #[doc(hidden)]
@@ -1444,6 +1446,7 @@ impl fmt::Display for AccessibleState {
                 Self::Invalid => "Invalid",
                 Self::Pressed => "Pressed",
                 Self::Selected => "Selected",
+                #[cfg(any(feature = "v4_12", feature = "dox"))]
                 Self::Visited => "Visited",
                 _ => "Unknown",
             }
@@ -1466,6 +1469,7 @@ impl IntoGlib for AccessibleState {
             Self::Invalid => ffi::GTK_ACCESSIBLE_STATE_INVALID,
             Self::Pressed => ffi::GTK_ACCESSIBLE_STATE_PRESSED,
             Self::Selected => ffi::GTK_ACCESSIBLE_STATE_SELECTED,
+            #[cfg(any(feature = "v4_12", feature = "dox"))]
             Self::Visited => ffi::GTK_ACCESSIBLE_STATE_VISITED,
             Self::__Unknown(value) => value,
         }
@@ -1487,6 +1491,7 @@ impl FromGlib<ffi::GtkAccessibleState> for AccessibleState {
             ffi::GTK_ACCESSIBLE_STATE_INVALID => Self::Invalid,
             ffi::GTK_ACCESSIBLE_STATE_PRESSED => Self::Pressed,
             ffi::GTK_ACCESSIBLE_STATE_SELECTED => Self::Selected,
+            #[cfg(any(feature = "v4_12", feature = "dox"))]
             ffi::GTK_ACCESSIBLE_STATE_VISITED => Self::Visited,
             value => Self::__Unknown(value),
         }
