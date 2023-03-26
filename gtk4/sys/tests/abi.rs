@@ -2607,6 +2607,7 @@ const RUST_CONSTANTS: &[(&str, &str)] = &[
     ("(gint) GTK_ACCESSIBLE_STATE_INVALID", "5"),
     ("(gint) GTK_ACCESSIBLE_STATE_PRESSED", "6"),
     ("(gint) GTK_ACCESSIBLE_STATE_SELECTED", "7"),
+    ("(gint) GTK_ACCESSIBLE_STATE_VISITED", "8"),
     ("(gint) GTK_ACCESSIBLE_TRISTATE_FALSE", "0"),
     ("(gint) GTK_ACCESSIBLE_TRISTATE_MIXED", "2"),
     ("(gint) GTK_ACCESSIBLE_TRISTATE_TRUE", "1"),

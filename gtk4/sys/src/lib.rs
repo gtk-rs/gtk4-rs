@@ -180,6 +180,7 @@ pub const GTK_ACCESSIBLE_STATE_HIDDEN: GtkAccessibleState = 4;
 pub const GTK_ACCESSIBLE_STATE_INVALID: GtkAccessibleState = 5;
 pub const GTK_ACCESSIBLE_STATE_PRESSED: GtkAccessibleState = 6;
 pub const GTK_ACCESSIBLE_STATE_SELECTED: GtkAccessibleState = 7;
+pub const GTK_ACCESSIBLE_STATE_VISITED: GtkAccessibleState = 8;
 
 pub type GtkAccessibleTristate = c_int;
 pub const GTK_ACCESSIBLE_TRISTATE_FALSE: GtkAccessibleTristate = 0;
