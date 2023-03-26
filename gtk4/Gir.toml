@@ -24,7 +24,6 @@ generate = [
     "Gtk.AccessibleRange",
     "Gtk.AccessibleRelation",
     "Gtk.AccessibleSort",
-    "Gtk.AccessibleState",
     "Gtk.AccessibleTristate",
     "Gtk.ActionBar",
     "Gtk.ActivateAction",
@@ -591,6 +590,13 @@ status = "generate"
     [[object.member]]
     name = "toggle_button"
     version = "4.10"
+
+[[object]]
+name = "Gtk.AccessibleState"
+status = "generate"
+    [[object.member]]
+    name = "visited"
+    version = "4.12"
 
 [[object]]
 name = "Gtk.Actionable"
