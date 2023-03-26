@@ -219,6 +219,9 @@ status = "generate"
     [[object.function]]
     name = "set_allowed_backends"
     assertion = "skip"
+    [[object.function]]
+    name = "drag_surface_size_get_type"
+    ignore = true # Used by glib::wrapper!
 
 [[object]]
 name = "Gdk.AppLaunchContext"

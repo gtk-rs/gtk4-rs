@@ -5053,6 +5053,8 @@ extern "C" {
         result: *mut gio::GAsyncResult,
         error: *mut *mut glib::GError,
     ) -> gboolean;
+    #[cfg(any(feature = "v4_12", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_12")))]
     pub fn gdk_drag_surface_size_get_type() -> GType;
     pub fn gdk_events_get_angle(
         event1: *mut GdkEvent,
