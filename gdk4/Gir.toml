@@ -28,7 +28,6 @@ generate = [
     "Gdk.DNDEvent",
     "Gdk.DragAction",
     "Gdk.DragCancelReason",
-    "Gdk.DragSurface",
     "Gdk.Event",
     "Gdk.EventSequence",
     "Gdk.FocusEvent",
@@ -72,6 +71,7 @@ manual = [
     "cairo.Context",
     "cairo.Region",
     "cairo.Surface",
+    "Gdk.DragSurfaceSize",
     "Gdk.KeymapKey",
     "Gdk.ToplevelSize",
     "GdkPixbuf.Pixbuf",
@@ -420,6 +420,14 @@ generate_builder = false
 name = "Gdk.Drag"
 status = "generate"
 final_type = false
+
+[[object]]
+name = "Gdk.DragSurface"
+status = "generate"
+manual_traits = ["DragSurfaceExtManual"]
+    [[object.signal]]
+    name = "compute-size"
+    manual = true
 
 [[object]]
 name = "Gdk.DrawContext"
