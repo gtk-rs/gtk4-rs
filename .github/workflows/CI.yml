@@ -41,10 +41,10 @@ jobs:
           - nightly
           - "1.64.0"
         conf:
-          - { name: "gtk4", features: "v4_10,xml_validation,blueprint", test_sys: false }
-          - { name: "gsk4", features: "v4_6,broadway", test_sys: true }
-          - { name: "gdk4", features: "v4_8", test_sys: true }
-          - { name: "gdk4-wayland", features: "v4_4,wayland_crate,egl,xkb_crate", test_sys: true }
+          - { name: "gtk4", features: "v4_12,xml_validation,blueprint", test_sys: false }
+          - { name: "gsk4", features: "v4_10,broadway", test_sys: true }
+          - { name: "gdk4", features: "v4_12", test_sys: true }
+          - { name: "gdk4-wayland", features: "v4_10,wayland_crate,egl,xkb_crate", test_sys: true }
           - { name: "gdk4-x11", features: "v4_4,xlib,egl", test_sys: false }
           - { name: "gtk4-macros", features: "xml_validation,blueprint", test_sys: false }
     steps:
