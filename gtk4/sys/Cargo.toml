@@ -10,7 +10,7 @@ license = "MIT"
 links = "gtk-4"
 name = "gtk4-sys"
 repository = "https://github.com/gtk-rs/gtk4-rs"
-version = "0.4.8"
+version = "0.4.9"
 rust-version = "1.56"
 [package.metadata.docs.rs]
 features = ["dox"]
@@ -58,7 +58,7 @@ branch = "0.15"
 [dependencies.gdk]
 package = "gdk4-sys"
 path = "../../gdk4/sys"
-version = "0.4.8"
+version = "0.4.9"
 
 [dependencies.gio]
 package = "gio-sys"
@@ -87,7 +87,7 @@ branch = "0.15"
 [dependencies.gsk]
 package = "gsk4-sys"
 path = "../../gsk4/sys"
-version = "0.4.8"
+version = "0.4.9"
 
 [dependencies.pango]
 package = "pango-sys"

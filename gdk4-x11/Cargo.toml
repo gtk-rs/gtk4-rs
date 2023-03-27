@@ -9,7 +9,7 @@ license = "MIT"
 name = "gdk4-x11"
 readme = "README.md"
 repository = "https://github.com/gtk-rs/gtk4-rs"
-version = "0.4.8"
+version = "0.4.9"
 rust-version = "1.56"
 
 [features]
@@ -22,8 +22,8 @@ xlib = ["x11"]
 features = ["dox"]
 
 [dependencies]
-ffi = {path = "./sys", package = "gdk4-x11-sys", version = "0.4.8"}
-gdk = {path = "../gdk4", package = "gdk4", version = "0.4.8"}
+ffi = {path = "./sys", package = "gdk4-x11-sys", version = "0.4.9"}
+gdk = {path = "../gdk4", package = "gdk4", version = "0.4.9"}
 gio = {features = ["v2_66"], version = "0.15.2", git = "https://github.com/gtk-rs/gtk-rs-core", branch = "0.15"}
 glib = {features = ["v2_66"], version = "0.15.2", git = "https://github.com/gtk-rs/gtk-rs-core", branch = "0.15"}
 libc = "0.2"

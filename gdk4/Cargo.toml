@@ -9,7 +9,7 @@ license = "MIT"
 name = "gdk4"
 readme = "README.md"
 repository = "https://github.com/gtk-rs/gtk4-rs"
-version = "0.4.8"
+version = "0.4.9"
 rust-version = "1.56"
 
 [lib]
@@ -28,7 +28,7 @@ features = ["dox"]
 [dependencies]
 bitflags = "1.0"
 cairo-rs = {version = "0.15.1", git = "https://github.com/gtk-rs/gtk-rs-core", branch = "0.15" }
-ffi = {package = "gdk4-sys", path = "./sys", version = "0.4.8"}
+ffi = {package = "gdk4-sys", path = "./sys", version = "0.4.9"}
 gdk-pixbuf = {version = "0.15.1", git = "https://github.com/gtk-rs/gtk-rs-core", branch = "0.15" }
 gio = {version = "0.15.2", features = ["v2_66"], git = "https://github.com/gtk-rs/gtk-rs-core", branch = "0.15"}
 glib = {version = "0.15.3", features = ["v2_66"], git = "https://github.com/gtk-rs/gtk-rs-core", branch = "0.15"}
