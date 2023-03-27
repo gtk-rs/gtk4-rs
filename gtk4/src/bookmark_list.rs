@@ -3,6 +3,16 @@
 use crate::BookmarkList;
 use glib::translate::*;
 
+/// # Example
+/// To iterate over `BookmarkList` call `iter::<gio::FileInfo>` to get an iterator.
+/// ```rust
+/// let bookmarks = gtk::BookmarkList::new(Some("bookmarks.xbel"), None);
+/// for bookmark in bookmarks.iter::<gio::FileInfo>() {
+///     if let Ok(bookmark) = bookmark {
+///         //
+///     }
+/// }
+/// ```
 impl BookmarkList {
     #[doc(alias = "gtk_bookmark_list_get_io_priority")]
     #[doc(alias = "get_io_priority")]
