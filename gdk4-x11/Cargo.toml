@@ -9,7 +9,7 @@ license = "MIT"
 name = "gdk4-x11"
 readme = "README.md"
 repository = "https://github.com/gtk-rs/gtk4-rs"
-version = "0.4.9"
+version = "0.4.10"
 rust-version = "1.56"
 
 [features]

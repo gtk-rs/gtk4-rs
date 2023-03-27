@@ -10,7 +10,7 @@ license = "MIT"
 links = "gtk-4"
 name = "gtk4-sys"
 repository = "https://github.com/gtk-rs/gtk4-rs"
-version = "0.4.9"
+version = "0.4.10"
 rust-version = "1.56"
 [package.metadata.docs.rs]
 features = ["dox"]

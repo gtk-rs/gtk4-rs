@@ -9,7 +9,7 @@ keywords = ["gdk4", "gdk4-x11", "ffi", "gtk-rs", "gnome"]
 license = "MIT"
 name = "gdk4-x11-sys"
 repository = "https://github.com/gtk-rs/gtk4-rs"
-version = "0.4.9"
+version = "0.4.10"
 rust-version = "1.56"
 [package.metadata.system-deps.gtk4_x11]
 name = "gtk4-x11"
