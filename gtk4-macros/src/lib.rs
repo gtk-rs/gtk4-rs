@@ -15,6 +15,49 @@ use proc_macro::TokenStream;
 use proc_macro_error::proc_macro_error;
 use syn::{parse_macro_input, DeriveInput};
 
+/// That macro includes and compiles blueprint file by path relative to project rood
+///
+/// It expected to run inside composite_template_derive, not by users
+#[cfg(feature = "blueprint")]
+#[proc_macro]
+pub fn include_blueprint(input: TokenStream) -> TokenStream {
+    use quote::quote;
+
+    let tokens: Vec<_> = input.into_iter().collect();
+
+    if tokens.len() != 1 {
+        panic!("File name not found");
+    }
+
+    let root = std::env::var("CARGO_MANIFEST_DIR").unwrap_or_else(|_| ".".into());
+
+    let file_name = tokens[0].to_string();
+    let file_name = file_name.trim();
+    let file_name = &file_name[1..file_name.len() - 1];
+
+    let path = std::path::Path::new(&root).join(file_name);
+
+    if !path.exists() {
+        panic!("{path:?} not found");
+    }
+
+    let path = path.to_string_lossy().to_string();
+
+    let template = blueprint::compile_blueprint(
+        std::fs::read_to_string(&path)
+            .unwrap_or_else(|err| panic!("{err}"))
+            .as_bytes(),
+    )
+    .unwrap();
+
+    quote!({
+        // Compiler reruns macro if file changed
+        _ = include_str!(#path);
+        #template
+    })
+    .into()
+}
+
 /// Derive macro for using a composite template in a widget.
 ///
 /// The `template` attribute specifies where the template should be loaded
