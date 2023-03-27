@@ -17,12 +17,28 @@ use crate::{attribute_parser::*, util::*};
 
 fn gen_set_template(source: &TemplateSource, crate_ident: &proc_macro2::Ident) -> TokenStream {
     match source {
-        TemplateSource::File(file) => quote! {
-            #crate_ident::subclass::widget::WidgetClassSubclassExt::set_template_static(
-                klass,
-                include_bytes!(#file),
-            );
-        },
+        TemplateSource::File(file) => {
+            let template = if file.ends_with(".blp") {
+                if cfg!(feature = "blueprint") {
+                    quote! {
+                        #crate_ident::gtk4_macros::include_blueprint!(#file).as_bytes()
+                    }
+                } else {
+                    panic!("blueprint feature is disabled")
+                }
+            } else {
+                quote! {
+                    include_bytes!(#file)
+                }
+            };
+
+            quote! {
+                #crate_ident::subclass::widget::WidgetClassSubclassExt::set_template_static(
+                        klass,
+                        #template,
+                );
+            }
+        }
         TemplateSource::Resource(resource) => quote! {
             #crate_ident::subclass::widget::WidgetClassSubclassExt::set_template_from_resource(
                 klass,
