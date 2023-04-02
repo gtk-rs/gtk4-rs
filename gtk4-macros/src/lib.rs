@@ -132,6 +132,7 @@ pub fn include_blueprint(input: TokenStream) -> TokenStream {
 ///
 /// The [`CompositeTemplate`] macro can also be used with [Blueprint](https://jwestman.pages.gitlab.gnome.org/blueprint-compiler/)
 /// if the feature `blueprint` is enabled.
+/// you can use `string` or `file` relative to the project directory but not `resource`
 ///
 /// ```ignore
 /// # fn main() {}
