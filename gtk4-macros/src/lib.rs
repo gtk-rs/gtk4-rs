@@ -20,13 +20,16 @@ use syn::{parse_macro_input, DeriveInput};
 /// It expected to run inside composite_template_derive, not by users
 #[cfg(feature = "blueprint")]
 #[proc_macro]
+#[proc_macro_error]
+#[doc(hidden)]
 pub fn include_blueprint(input: TokenStream) -> TokenStream {
+    use proc_macro_error::abort_call_site;
     use quote::quote;
 
     let tokens: Vec<_> = input.into_iter().collect();
 
     if tokens.len() != 1 {
-        panic!("File name not found");
+        abort_call_site!("File name not found");
     }
 
     let root = std::env::var("CARGO_MANIFEST_DIR").unwrap_or_else(|_| ".".into());
@@ -38,14 +41,14 @@ pub fn include_blueprint(input: TokenStream) -> TokenStream {
     let path = std::path::Path::new(&root).join(file_name);
 
     if !path.exists() {
-        panic!("{path:?} not found");
+        abort_call_site!("{} not found", &path.to_string_lossy());
     }
 
     let path = path.to_string_lossy().to_string();
 
     let template = blueprint::compile_blueprint(
         std::fs::read_to_string(&path)
-            .unwrap_or_else(|err| panic!("{err}"))
+            .unwrap_or_else(|err| abort_call_site!("{}", err))
             .as_bytes(),
     )
     .unwrap();
