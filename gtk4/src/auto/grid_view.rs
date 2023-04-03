@@ -2,6 +2,9 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+#[cfg(any(feature = "v4_12", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_12")))]
+use crate::ListTabBehavior;
 use crate::{
     Accessible, AccessibleRole, Adjustment, Align, Buildable, ConstraintTarget, LayoutManager,
     ListBase, ListItemFactory, Orientable, Orientation, Overflow, Scrollable, ScrollablePolicy,
@@ -91,6 +94,14 @@ impl GridView {
         }
     }
 
+    #[cfg(any(feature = "v4_12", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_12")))]
+    #[doc(alias = "gtk_grid_view_get_tab_behavior")]
+    #[doc(alias = "get_tab_behavior")]
+    pub fn is_tab_behavior(&self) -> bool {
+        unsafe { from_glib(ffi::gtk_grid_view_get_tab_behavior(self.to_glib_none().0)) }
+    }
+
     #[doc(alias = "gtk_grid_view_set_enable_rubberband")]
     pub fn set_enable_rubberband(&self, enable_rubberband: bool) {
         unsafe {
@@ -142,6 +153,15 @@ impl GridView {
                 self.to_glib_none().0,
                 single_click_activate.into_glib(),
             );
+        }
+    }
+
+    #[cfg(any(feature = "v4_12", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_12")))]
+    #[doc(alias = "gtk_grid_view_set_tab_behavior")]
+    pub fn set_tab_behavior(&self, tab_behavior: ListTabBehavior) {
+        unsafe {
+            ffi::gtk_grid_view_set_tab_behavior(self.to_glib_none().0, tab_behavior.into_glib());
         }
     }
 
@@ -311,6 +331,31 @@ impl GridView {
             )
         }
     }
+
+    #[cfg(any(feature = "v4_12", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_12")))]
+    #[doc(alias = "tab-behavior")]
+    pub fn connect_tab_behavior_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_tab_behavior_trampoline<F: Fn(&GridView) + 'static>(
+            this: *mut ffi::GtkGridView,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::tab-behavior\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_tab_behavior_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
 }
 
 impl Default for GridView {
@@ -372,6 +417,14 @@ impl GridViewBuilder {
             builder: self
                 .builder
                 .property("single-click-activate", single_click_activate),
+        }
+    }
+
+    #[cfg(any(feature = "v4_12", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_12")))]
+    pub fn tab_behavior(self, tab_behavior: ListTabBehavior) -> Self {
+        Self {
+            builder: self.builder.property("tab-behavior", tab_behavior),
         }
     }
 

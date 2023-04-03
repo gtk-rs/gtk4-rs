@@ -464,6 +464,11 @@ pub const GTK_LICENSE_BSD_3: GtkLicense = 15;
 pub const GTK_LICENSE_APACHE_2_0: GtkLicense = 16;
 pub const GTK_LICENSE_MPL_2_0: GtkLicense = 17;
 
+pub type GtkListTabBehavior = c_int;
+pub const GTK_LIST_TAB_ALL: GtkListTabBehavior = 0;
+pub const GTK_LIST_TAB_ITEM: GtkListTabBehavior = 1;
+pub const GTK_LIST_TAB_CELL: GtkListTabBehavior = 2;
+
 pub type GtkMessageType = c_int;
 pub const GTK_MESSAGE_INFO: GtkMessageType = 0;
 pub const GTK_MESSAGE_WARNING: GtkMessageType = 1;
@@ -9342,6 +9347,13 @@ extern "C" {
     pub fn gtk_license_get_type() -> GType;
 
     //=========================================================================
+    // GtkListTabBehavior
+    //=========================================================================
+    #[cfg(any(feature = "v4_12", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_12")))]
+    pub fn gtk_list_tab_behavior_get_type() -> GType;
+
+    //=========================================================================
     // GtkMessageType
     //=========================================================================
     pub fn gtk_message_type_get_type() -> GType;
@@ -11767,6 +11779,9 @@ extern "C" {
     pub fn gtk_column_view_get_show_row_separators(self_: *mut GtkColumnView) -> gboolean;
     pub fn gtk_column_view_get_single_click_activate(self_: *mut GtkColumnView) -> gboolean;
     pub fn gtk_column_view_get_sorter(self_: *mut GtkColumnView) -> *mut GtkSorter;
+    #[cfg(any(feature = "v4_12", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_12")))]
+    pub fn gtk_column_view_get_tab_behavior(self_: *mut GtkColumnView) -> gboolean;
     pub fn gtk_column_view_insert_column(
         self_: *mut GtkColumnView,
         position: c_uint,
@@ -11793,6 +11808,12 @@ extern "C" {
     pub fn gtk_column_view_set_single_click_activate(
         self_: *mut GtkColumnView,
         single_click_activate: gboolean,
+    );
+    #[cfg(any(feature = "v4_12", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_12")))]
+    pub fn gtk_column_view_set_tab_behavior(
+        self_: *mut GtkColumnView,
+        tab_behavior: GtkListTabBehavior,
     );
     pub fn gtk_column_view_sort_by_column(
         self_: *mut GtkColumnView,
@@ -13763,6 +13784,9 @@ extern "C" {
     pub fn gtk_grid_view_get_min_columns(self_: *mut GtkGridView) -> c_uint;
     pub fn gtk_grid_view_get_model(self_: *mut GtkGridView) -> *mut GtkSelectionModel;
     pub fn gtk_grid_view_get_single_click_activate(self_: *mut GtkGridView) -> gboolean;
+    #[cfg(any(feature = "v4_12", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_12")))]
+    pub fn gtk_grid_view_get_tab_behavior(self_: *mut GtkGridView) -> gboolean;
     pub fn gtk_grid_view_set_enable_rubberband(
         self_: *mut GtkGridView,
         enable_rubberband: gboolean,
@@ -13774,6 +13798,12 @@ extern "C" {
     pub fn gtk_grid_view_set_single_click_activate(
         self_: *mut GtkGridView,
         single_click_activate: gboolean,
+    );
+    #[cfg(any(feature = "v4_12", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_12")))]
+    pub fn gtk_grid_view_set_tab_behavior(
+        self_: *mut GtkGridView,
+        tab_behavior: GtkListTabBehavior,
     );
 
     //=========================================================================
@@ -14612,6 +14642,9 @@ extern "C" {
     pub fn gtk_list_view_get_model(self_: *mut GtkListView) -> *mut GtkSelectionModel;
     pub fn gtk_list_view_get_show_separators(self_: *mut GtkListView) -> gboolean;
     pub fn gtk_list_view_get_single_click_activate(self_: *mut GtkListView) -> gboolean;
+    #[cfg(any(feature = "v4_12", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_12")))]
+    pub fn gtk_list_view_get_tab_behavior(self_: *mut GtkListView) -> gboolean;
     pub fn gtk_list_view_set_enable_rubberband(
         self_: *mut GtkListView,
         enable_rubberband: gboolean,
@@ -14622,6 +14655,12 @@ extern "C" {
     pub fn gtk_list_view_set_single_click_activate(
         self_: *mut GtkListView,
         single_click_activate: gboolean,
+    );
+    #[cfg(any(feature = "v4_12", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_12")))]
+    pub fn gtk_list_view_set_tab_behavior(
+        self_: *mut GtkListView,
+        tab_behavior: GtkListTabBehavior,
     );
 
     //=========================================================================

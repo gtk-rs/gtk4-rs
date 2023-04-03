@@ -169,6 +169,7 @@ int main() {
     printf("%s;%zu;%zu\n", "GtkListBoxRowClass", sizeof(GtkListBoxRowClass), alignof(GtkListBoxRowClass));
     printf("%s;%zu;%zu\n", "GtkListStore", sizeof(GtkListStore), alignof(GtkListStore));
     printf("%s;%zu;%zu\n", "GtkListStoreClass", sizeof(GtkListStoreClass), alignof(GtkListStoreClass));
+    printf("%s;%zu;%zu\n", "GtkListTabBehavior", sizeof(GtkListTabBehavior), alignof(GtkListTabBehavior));
     printf("%s;%zu;%zu\n", "GtkMapListModelClass", sizeof(GtkMapListModelClass), alignof(GtkMapListModelClass));
     printf("%s;%zu;%zu\n", "GtkMediaControlsClass", sizeof(GtkMediaControlsClass), alignof(GtkMediaControlsClass));
     printf("%s;%zu;%zu\n", "GtkMediaFile", sizeof(GtkMediaFile), alignof(GtkMediaFile));

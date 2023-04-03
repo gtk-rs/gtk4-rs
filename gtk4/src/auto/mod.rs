@@ -1110,6 +1110,9 @@ pub use self::enums::InscriptionOverflow;
 pub use self::enums::Justification;
 pub use self::enums::LevelBarMode;
 pub use self::enums::License;
+#[cfg(any(feature = "v4_12", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_12")))]
+pub use self::enums::ListTabBehavior;
 pub use self::enums::MessageType;
 pub use self::enums::MovementStep;
 #[cfg(any(feature = "v4_6", feature = "dox"))]

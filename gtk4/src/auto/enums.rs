@@ -6563,6 +6563,140 @@ impl From<License> for glib::Value {
     }
 }
 
+#[cfg(any(feature = "v4_12", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_12")))]
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
+#[doc(alias = "GtkListTabBehavior")]
+pub enum ListTabBehavior {
+    #[doc(alias = "GTK_LIST_TAB_ALL")]
+    All,
+    #[doc(alias = "GTK_LIST_TAB_ITEM")]
+    Item,
+    #[doc(alias = "GTK_LIST_TAB_CELL")]
+    Cell,
+    #[doc(hidden)]
+    __Unknown(i32),
+}
+
+#[cfg(any(feature = "v4_12", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_12")))]
+impl fmt::Display for ListTabBehavior {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(
+            f,
+            "ListTabBehavior::{}",
+            match *self {
+                Self::All => "All",
+                Self::Item => "Item",
+                Self::Cell => "Cell",
+                _ => "Unknown",
+            }
+        )
+    }
+}
+
+#[cfg(any(feature = "v4_12", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_12")))]
+#[doc(hidden)]
+impl IntoGlib for ListTabBehavior {
+    type GlibType = ffi::GtkListTabBehavior;
+
+    #[inline]
+    fn into_glib(self) -> ffi::GtkListTabBehavior {
+        match self {
+            Self::All => ffi::GTK_LIST_TAB_ALL,
+            Self::Item => ffi::GTK_LIST_TAB_ITEM,
+            Self::Cell => ffi::GTK_LIST_TAB_CELL,
+            Self::__Unknown(value) => value,
+        }
+    }
+}
+
+#[cfg(any(feature = "v4_12", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_12")))]
+#[doc(hidden)]
+impl FromGlib<ffi::GtkListTabBehavior> for ListTabBehavior {
+    #[inline]
+    unsafe fn from_glib(value: ffi::GtkListTabBehavior) -> Self {
+        skip_assert_initialized!();
+
+        match value {
+            ffi::GTK_LIST_TAB_ALL => Self::All,
+            ffi::GTK_LIST_TAB_ITEM => Self::Item,
+            ffi::GTK_LIST_TAB_CELL => Self::Cell,
+            value => Self::__Unknown(value),
+        }
+    }
+}
+
+#[cfg(any(feature = "v4_12", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_12")))]
+impl StaticType for ListTabBehavior {
+    #[inline]
+    fn static_type() -> Type {
+        unsafe { from_glib(ffi::gtk_list_tab_behavior_get_type()) }
+    }
+}
+
+#[cfg(any(feature = "v4_12", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_12")))]
+impl glib::HasParamSpec for ListTabBehavior {
+    type ParamSpec = glib::ParamSpecEnum;
+    type SetValue = Self;
+    type BuilderFn = fn(&str, Self) -> glib::ParamSpecEnumBuilder<Self>;
+
+    fn param_spec_builder() -> Self::BuilderFn {
+        |name, default_value| Self::ParamSpec::builder_with_default(name, default_value)
+    }
+}
+
+#[cfg(any(feature = "v4_12", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_12")))]
+impl glib::value::ValueType for ListTabBehavior {
+    type Type = Self;
+}
+
+#[cfg(any(feature = "v4_12", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_12")))]
+unsafe impl<'a> FromValue<'a> for ListTabBehavior {
+    type Checker = glib::value::GenericValueTypeChecker<Self>;
+
+    #[inline]
+    unsafe fn from_value(value: &'a glib::Value) -> Self {
+        skip_assert_initialized!();
+        from_glib(glib::gobject_ffi::g_value_get_enum(value.to_glib_none().0))
+    }
+}
+
+#[cfg(any(feature = "v4_12", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_12")))]
+impl ToValue for ListTabBehavior {
+    #[inline]
+    fn to_value(&self) -> glib::Value {
+        let mut value = glib::Value::for_value_type::<Self>();
+        unsafe {
+            glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.into_glib());
+        }
+        value
+    }
+
+    #[inline]
+    fn value_type(&self) -> glib::Type {
+        Self::static_type()
+    }
+}
+
+#[cfg(any(feature = "v4_12", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_12")))]
+impl From<ListTabBehavior> for glib::Value {
+    #[inline]
+    fn from(v: ListTabBehavior) -> Self {
+        skip_assert_initialized!();
+        ToValue::to_value(&v)
+    }
+}
+
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
 #[doc(alias = "GtkMessageType")]
