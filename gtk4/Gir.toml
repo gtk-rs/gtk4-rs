@@ -148,6 +148,7 @@ generate = [
     "Gtk.ListBase",
     "Gtk.ListBoxRow",
     "Gtk.ListItemFactory",
+    "Gtk.ListTabBehavior",
     "Gtk.ListView",
     "Gtk.LockButton",
     "Gtk.MediaControls",

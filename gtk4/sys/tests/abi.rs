@@ -1332,6 +1332,13 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         },
     ),
     (
+        "GtkListTabBehavior",
+        Layout {
+            size: size_of::<GtkListTabBehavior>(),
+            alignment: align_of::<GtkListTabBehavior>(),
+        },
+    ),
+    (
         "GtkMapListModelClass",
         Layout {
             size: size_of::<GtkMapListModelClass>(),
@@ -2892,6 +2899,9 @@ const RUST_CONSTANTS: &[(&str, &str)] = &[
     ("(gint) GTK_LICENSE_UNKNOWN", "0"),
     ("(gint) GTK_LIMIT_NONE", "0"),
     ("(gint) GTK_LIMIT_SAME_NATIVE", "1"),
+    ("(gint) GTK_LIST_TAB_ALL", "0"),
+    ("(gint) GTK_LIST_TAB_CELL", "2"),
+    ("(gint) GTK_LIST_TAB_ITEM", "1"),
     ("GTK_MAX_COMPOSE_LEN", "7"),
     ("GTK_MEDIA_FILE_EXTENSION_POINT_NAME", "gtk-media-file"),
     ("(gint) GTK_MESSAGE_ERROR", "3"),
