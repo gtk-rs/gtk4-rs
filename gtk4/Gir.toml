@@ -72,6 +72,7 @@ generate = [
     "Gtk.ColorDialogButton",
     "Gtk.ColumnView",
     "Gtk.ColumnViewColumn",
+    "Gtk.ColumnViewRow",
     "Gtk.ColumnViewSorter",
     "Gtk.ComboBoxText",
     "Gtk.Constraint",
