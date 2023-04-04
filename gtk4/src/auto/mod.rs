@@ -245,6 +245,13 @@ pub use self::column_view::ColumnView;
 mod column_view_column;
 pub use self::column_view_column::ColumnViewColumn;
 
+#[cfg(any(feature = "v4_12", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_12")))]
+mod column_view_row;
+#[cfg(any(feature = "v4_12", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_12")))]
+pub use self::column_view_row::ColumnViewRow;
+
 #[cfg(any(feature = "v4_10", feature = "dox"))]
 #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
 mod column_view_sorter;
@@ -1414,6 +1421,9 @@ pub mod builders {
     pub use super::color_dialog_button::ColorDialogButtonBuilder;
     pub use super::column_view::ColumnViewBuilder;
     pub use super::column_view_column::ColumnViewColumnBuilder;
+    #[cfg(any(feature = "v4_12", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_12")))]
+    pub use super::column_view_row::ColumnViewRowBuilder;
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     pub use super::combo_box::ComboBoxBuilder;
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
