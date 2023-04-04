@@ -202,6 +202,15 @@ impl ListBox {
         }
     }
 
+    #[cfg(any(feature = "v4_12", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_12")))]
+    #[doc(alias = "gtk_list_box_remove_all")]
+    pub fn remove_all(&self) {
+        unsafe {
+            ffi::gtk_list_box_remove_all(self.to_glib_none().0);
+        }
+    }
+
     #[doc(alias = "gtk_list_box_select_all")]
     pub fn select_all(&self) {
         unsafe {

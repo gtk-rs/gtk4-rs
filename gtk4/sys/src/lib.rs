@@ -2206,6 +2206,14 @@ impl ::std::fmt::Debug for GtkColorDialogClass {
 }
 
 #[repr(C)]
+pub struct _GtkColumnViewCellClass {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
+
+pub type GtkColumnViewCellClass = *mut _GtkColumnViewCellClass;
+
+#[repr(C)]
 pub struct _GtkColumnViewClass {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -2220,6 +2228,14 @@ pub struct _GtkColumnViewColumnClass {
 }
 
 pub type GtkColumnViewColumnClass = *mut _GtkColumnViewColumnClass;
+
+#[repr(C)]
+pub struct _GtkColumnViewRowClass {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
+
+pub type GtkColumnViewRowClass = *mut _GtkColumnViewRowClass;
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -6042,6 +6058,19 @@ impl ::std::fmt::Debug for GtkColumnView {
 }
 
 #[repr(C)]
+pub struct GtkColumnViewCell {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
+
+impl ::std::fmt::Debug for GtkColumnViewCell {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("GtkColumnViewCell @ {self:p}"))
+            .finish()
+    }
+}
+
+#[repr(C)]
 pub struct GtkColumnViewColumn {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -6050,6 +6079,19 @@ pub struct GtkColumnViewColumn {
 impl ::std::fmt::Debug for GtkColumnViewColumn {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("GtkColumnViewColumn @ {self:p}"))
+            .finish()
+    }
+}
+
+#[repr(C)]
+pub struct GtkColumnViewRow {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
+
+impl ::std::fmt::Debug for GtkColumnViewRow {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("GtkColumnViewRow @ {self:p}"))
             .finish()
     }
 }
@@ -11775,13 +11817,16 @@ extern "C" {
     pub fn gtk_column_view_get_enable_rubberband(self_: *mut GtkColumnView) -> gboolean;
     pub fn gtk_column_view_get_model(self_: *mut GtkColumnView) -> *mut GtkSelectionModel;
     pub fn gtk_column_view_get_reorderable(self_: *mut GtkColumnView) -> gboolean;
+    #[cfg(any(feature = "v4_12", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_12")))]
+    pub fn gtk_column_view_get_row_factory(self_: *mut GtkColumnView) -> *mut GtkListItemFactory;
     pub fn gtk_column_view_get_show_column_separators(self_: *mut GtkColumnView) -> gboolean;
     pub fn gtk_column_view_get_show_row_separators(self_: *mut GtkColumnView) -> gboolean;
     pub fn gtk_column_view_get_single_click_activate(self_: *mut GtkColumnView) -> gboolean;
     pub fn gtk_column_view_get_sorter(self_: *mut GtkColumnView) -> *mut GtkSorter;
     #[cfg(any(feature = "v4_12", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_12")))]
-    pub fn gtk_column_view_get_tab_behavior(self_: *mut GtkColumnView) -> gboolean;
+    pub fn gtk_column_view_get_tab_behavior(self_: *mut GtkColumnView) -> GtkListTabBehavior;
     pub fn gtk_column_view_insert_column(
         self_: *mut GtkColumnView,
         position: c_uint,
@@ -11797,6 +11842,12 @@ extern "C" {
     );
     pub fn gtk_column_view_set_model(self_: *mut GtkColumnView, model: *mut GtkSelectionModel);
     pub fn gtk_column_view_set_reorderable(self_: *mut GtkColumnView, reorderable: gboolean);
+    #[cfg(any(feature = "v4_12", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_12")))]
+    pub fn gtk_column_view_set_row_factory(
+        self_: *mut GtkColumnView,
+        factory: *mut GtkListItemFactory,
+    );
     pub fn gtk_column_view_set_show_column_separators(
         self_: *mut GtkColumnView,
         show_column_separators: gboolean,
@@ -11820,6 +11871,34 @@ extern "C" {
         column: *mut GtkColumnViewColumn,
         direction: GtkSortType,
     );
+
+    //=========================================================================
+    // GtkColumnViewCell
+    //=========================================================================
+    #[cfg(any(feature = "v4_12", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_12")))]
+    pub fn gtk_column_view_cell_get_type() -> GType;
+    #[cfg(any(feature = "v4_12", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_12")))]
+    pub fn gtk_column_view_cell_get_child(self_: *mut GtkColumnViewCell) -> *mut GtkWidget;
+    #[cfg(any(feature = "v4_12", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_12")))]
+    pub fn gtk_column_view_cell_get_focusable(self_: *mut GtkColumnViewCell) -> gboolean;
+    #[cfg(any(feature = "v4_12", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_12")))]
+    pub fn gtk_column_view_cell_get_item(self_: *mut GtkColumnViewCell) -> *mut gobject::GObject;
+    #[cfg(any(feature = "v4_12", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_12")))]
+    pub fn gtk_column_view_cell_get_position(self_: *mut GtkColumnViewCell) -> c_uint;
+    #[cfg(any(feature = "v4_12", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_12")))]
+    pub fn gtk_column_view_cell_get_selected(self_: *mut GtkColumnViewCell) -> gboolean;
+    #[cfg(any(feature = "v4_12", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_12")))]
+    pub fn gtk_column_view_cell_set_child(self_: *mut GtkColumnViewCell, child: *mut GtkWidget);
+    #[cfg(any(feature = "v4_12", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_12")))]
+    pub fn gtk_column_view_cell_set_focusable(self_: *mut GtkColumnViewCell, focusable: gboolean);
 
     //=========================================================================
     // GtkColumnViewColumn
@@ -11873,6 +11952,40 @@ extern "C" {
     );
     pub fn gtk_column_view_column_set_title(self_: *mut GtkColumnViewColumn, title: *const c_char);
     pub fn gtk_column_view_column_set_visible(self_: *mut GtkColumnViewColumn, visible: gboolean);
+
+    //=========================================================================
+    // GtkColumnViewRow
+    //=========================================================================
+    #[cfg(any(feature = "v4_12", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_12")))]
+    pub fn gtk_column_view_row_get_type() -> GType;
+    #[cfg(any(feature = "v4_12", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_12")))]
+    pub fn gtk_column_view_row_get_activatable(self_: *mut GtkColumnViewRow) -> gboolean;
+    #[cfg(any(feature = "v4_12", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_12")))]
+    pub fn gtk_column_view_row_get_focusable(self_: *mut GtkColumnViewRow) -> gboolean;
+    #[cfg(any(feature = "v4_12", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_12")))]
+    pub fn gtk_column_view_row_get_item(self_: *mut GtkColumnViewRow) -> *mut gobject::GObject;
+    #[cfg(any(feature = "v4_12", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_12")))]
+    pub fn gtk_column_view_row_get_position(self_: *mut GtkColumnViewRow) -> c_uint;
+    #[cfg(any(feature = "v4_12", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_12")))]
+    pub fn gtk_column_view_row_get_selectable(self_: *mut GtkColumnViewRow) -> gboolean;
+    #[cfg(any(feature = "v4_12", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_12")))]
+    pub fn gtk_column_view_row_get_selected(self_: *mut GtkColumnViewRow) -> gboolean;
+    #[cfg(any(feature = "v4_12", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_12")))]
+    pub fn gtk_column_view_row_set_activatable(self_: *mut GtkColumnViewRow, activatable: gboolean);
+    #[cfg(any(feature = "v4_12", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_12")))]
+    pub fn gtk_column_view_row_set_focusable(self_: *mut GtkColumnViewRow, focusable: gboolean);
+    #[cfg(any(feature = "v4_12", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_12")))]
+    pub fn gtk_column_view_row_set_selectable(self_: *mut GtkColumnViewRow, selectable: gboolean);
 
     //=========================================================================
     // GtkColumnViewSorter
@@ -13200,6 +13313,9 @@ extern "C" {
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
     pub fn gtk_flow_box_prepend(self_: *mut GtkFlowBox, child: *mut GtkWidget);
     pub fn gtk_flow_box_remove(box_: *mut GtkFlowBox, widget: *mut GtkWidget);
+    #[cfg(any(feature = "v4_12", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_12")))]
+    pub fn gtk_flow_box_remove_all(box_: *mut GtkFlowBox);
     pub fn gtk_flow_box_select_all(box_: *mut GtkFlowBox);
     pub fn gtk_flow_box_select_child(box_: *mut GtkFlowBox, child: *mut GtkFlowBoxChild);
     pub fn gtk_flow_box_selected_foreach(
@@ -13786,7 +13902,7 @@ extern "C" {
     pub fn gtk_grid_view_get_single_click_activate(self_: *mut GtkGridView) -> gboolean;
     #[cfg(any(feature = "v4_12", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_12")))]
-    pub fn gtk_grid_view_get_tab_behavior(self_: *mut GtkGridView) -> gboolean;
+    pub fn gtk_grid_view_get_tab_behavior(self_: *mut GtkGridView) -> GtkListTabBehavior;
     pub fn gtk_grid_view_set_enable_rubberband(
         self_: *mut GtkGridView,
         enable_rubberband: gboolean,
@@ -14483,6 +14599,9 @@ extern "C" {
     pub fn gtk_list_box_invalidate_sort(box_: *mut GtkListBox);
     pub fn gtk_list_box_prepend(box_: *mut GtkListBox, child: *mut GtkWidget);
     pub fn gtk_list_box_remove(box_: *mut GtkListBox, child: *mut GtkWidget);
+    #[cfg(any(feature = "v4_12", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_12")))]
+    pub fn gtk_list_box_remove_all(box_: *mut GtkListBox);
     pub fn gtk_list_box_select_all(box_: *mut GtkListBox);
     pub fn gtk_list_box_select_row(box_: *mut GtkListBox, row: *mut GtkListBoxRow);
     pub fn gtk_list_box_selected_foreach(
@@ -14539,12 +14658,18 @@ extern "C" {
     pub fn gtk_list_item_get_type() -> GType;
     pub fn gtk_list_item_get_activatable(self_: *mut GtkListItem) -> gboolean;
     pub fn gtk_list_item_get_child(self_: *mut GtkListItem) -> *mut GtkWidget;
+    #[cfg(any(feature = "v4_12", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_12")))]
+    pub fn gtk_list_item_get_focusable(self_: *mut GtkListItem) -> gboolean;
     pub fn gtk_list_item_get_item(self_: *mut GtkListItem) -> *mut gobject::GObject;
     pub fn gtk_list_item_get_position(self_: *mut GtkListItem) -> c_uint;
     pub fn gtk_list_item_get_selectable(self_: *mut GtkListItem) -> gboolean;
     pub fn gtk_list_item_get_selected(self_: *mut GtkListItem) -> gboolean;
     pub fn gtk_list_item_set_activatable(self_: *mut GtkListItem, activatable: gboolean);
     pub fn gtk_list_item_set_child(self_: *mut GtkListItem, child: *mut GtkWidget);
+    #[cfg(any(feature = "v4_12", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_12")))]
+    pub fn gtk_list_item_set_focusable(self_: *mut GtkListItem, focusable: gboolean);
     pub fn gtk_list_item_set_selectable(self_: *mut GtkListItem, selectable: gboolean);
 
     //=========================================================================
@@ -14644,7 +14769,7 @@ extern "C" {
     pub fn gtk_list_view_get_single_click_activate(self_: *mut GtkListView) -> gboolean;
     #[cfg(any(feature = "v4_12", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_12")))]
-    pub fn gtk_list_view_get_tab_behavior(self_: *mut GtkListView) -> gboolean;
+    pub fn gtk_list_view_get_tab_behavior(self_: *mut GtkListView) -> GtkListTabBehavior;
     pub fn gtk_list_view_set_enable_rubberband(
         self_: *mut GtkListView,
         enable_rubberband: gboolean,
