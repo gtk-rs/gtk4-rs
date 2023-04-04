@@ -2,14 +2,14 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-#[cfg(any(feature = "v4_12", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_12")))]
-use crate::ListTabBehavior;
 use crate::{
     Accessible, AccessibleRole, Adjustment, Align, Buildable, ColumnViewColumn, ConstraintTarget,
     LayoutManager, Overflow, Scrollable, ScrollablePolicy, SelectionModel, SortType, Sorter,
     Widget,
 };
+#[cfg(any(feature = "v4_12", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_12")))]
+use crate::{ListItemFactory, ListTabBehavior};
 use glib::{
     prelude::*,
     signal::{connect_raw, SignalHandlerId},
@@ -81,6 +81,14 @@ impl ColumnView {
         unsafe { from_glib(ffi::gtk_column_view_get_reorderable(self.to_glib_none().0)) }
     }
 
+    #[cfg(any(feature = "v4_12", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_12")))]
+    #[doc(alias = "gtk_column_view_get_row_factory")]
+    #[doc(alias = "get_row_factory")]
+    pub fn row_factory(&self) -> Option<ListItemFactory> {
+        unsafe { from_glib_none(ffi::gtk_column_view_get_row_factory(self.to_glib_none().0)) }
+    }
+
     #[doc(alias = "gtk_column_view_get_show_column_separators")]
     #[doc(alias = "get_show_column_separators")]
     pub fn shows_column_separators(&self) -> bool {
@@ -121,7 +129,7 @@ impl ColumnView {
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_12")))]
     #[doc(alias = "gtk_column_view_get_tab_behavior")]
     #[doc(alias = "get_tab_behavior")]
-    pub fn is_tab_behavior(&self) -> bool {
+    pub fn tab_behavior(&self) -> ListTabBehavior {
         unsafe { from_glib(ffi::gtk_column_view_get_tab_behavior(self.to_glib_none().0)) }
     }
 
@@ -167,6 +175,18 @@ impl ColumnView {
     pub fn set_reorderable(&self, reorderable: bool) {
         unsafe {
             ffi::gtk_column_view_set_reorderable(self.to_glib_none().0, reorderable.into_glib());
+        }
+    }
+
+    #[cfg(any(feature = "v4_12", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_12")))]
+    #[doc(alias = "gtk_column_view_set_row_factory")]
+    pub fn set_row_factory(&self, factory: Option<&impl IsA<ListItemFactory>>) {
+        unsafe {
+            ffi::gtk_column_view_set_row_factory(
+                self.to_glib_none().0,
+                factory.map(|p| p.as_ref()).to_glib_none().0,
+            );
         }
     }
 
@@ -332,6 +352,31 @@ impl ColumnView {
                 b"notify::reorderable\0".as_ptr() as *const _,
                 Some(transmute::<_, unsafe extern "C" fn()>(
                     notify_reorderable_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    #[cfg(any(feature = "v4_12", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_12")))]
+    #[doc(alias = "row-factory")]
+    pub fn connect_row_factory_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_row_factory_trampoline<F: Fn(&ColumnView) + 'static>(
+            this: *mut ffi::GtkColumnView,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::row-factory\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_row_factory_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
@@ -508,6 +553,16 @@ impl ColumnViewBuilder {
     pub fn reorderable(self, reorderable: bool) -> Self {
         Self {
             builder: self.builder.property("reorderable", reorderable),
+        }
+    }
+
+    #[cfg(any(feature = "v4_12", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_12")))]
+    pub fn row_factory(self, row_factory: &impl IsA<ListItemFactory>) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("row-factory", row_factory.clone().upcast()),
         }
     }
 

@@ -1302,6 +1302,7 @@ pub mod traits {
     pub use super::layout_child::LayoutChildExt;
     pub use super::layout_manager::LayoutManagerExt;
     pub use super::list_box_row::ListBoxRowExt;
+    pub use super::list_item::ListItemExt;
     pub use super::media_file::MediaFileExt;
     pub use super::media_stream::MediaStreamExt;
     pub use super::mount_operation::MountOperationExt;

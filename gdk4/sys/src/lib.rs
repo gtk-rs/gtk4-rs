@@ -4769,6 +4769,9 @@ extern "C" {
     pub fn gdk_surface_get_frame_clock(surface: *mut GdkSurface) -> *mut GdkFrameClock;
     pub fn gdk_surface_get_height(surface: *mut GdkSurface) -> c_int;
     pub fn gdk_surface_get_mapped(surface: *mut GdkSurface) -> gboolean;
+    #[cfg(any(feature = "v4_12", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_12")))]
+    pub fn gdk_surface_get_scale(surface: *mut GdkSurface) -> c_double;
     pub fn gdk_surface_get_scale_factor(surface: *mut GdkSurface) -> c_int;
     pub fn gdk_surface_get_width(surface: *mut GdkSurface) -> c_int;
     pub fn gdk_surface_hide(surface: *mut GdkSurface);

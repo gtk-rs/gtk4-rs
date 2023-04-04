@@ -98,7 +98,7 @@ impl GridView {
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_12")))]
     #[doc(alias = "gtk_grid_view_get_tab_behavior")]
     #[doc(alias = "get_tab_behavior")]
-    pub fn is_tab_behavior(&self) -> bool {
+    pub fn tab_behavior(&self) -> ListTabBehavior {
         unsafe { from_glib(ffi::gtk_grid_view_get_tab_behavior(self.to_glib_none().0)) }
     }
 
