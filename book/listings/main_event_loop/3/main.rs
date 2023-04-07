@@ -1,7 +1,7 @@
 use std::thread;
 use std::time::Duration;
 
-use glib::{clone, Continue, MainContext, PRIORITY_DEFAULT};
+use glib::{clone, Continue, MainContext, Priority};
 use gtk::prelude::*;
 use gtk::{glib, Application, ApplicationWindow, Button};
 
@@ -29,7 +29,7 @@ fn build_ui(app: &Application) {
         .build();
 
     // ANCHOR: callback
-    let (sender, receiver) = MainContext::channel(PRIORITY_DEFAULT);
+    let (sender, receiver) = MainContext::channel(Priority::DEFAULT);
     // Connect to "clicked" signal of `button`
     button.connect_clicked(move |_| {
         let sender = sender.clone();
