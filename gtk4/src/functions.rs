@@ -1,6 +1,6 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::{prelude::*, AboutDialog, Window};
+use crate::{prelude::*, AboutDialog, StyleProvider, Window};
 use glib::{translate::*, IntoGStr, Quark, Slice, ToValue};
 use once_cell::sync::Lazy;
 use std::{boxed::Box as Box_, mem, pin::Pin, ptr};
@@ -252,5 +252,37 @@ pub fn test_list_all_types() -> Slice<glib::Type> {
         let mut n_types = std::mem::MaybeUninit::uninit();
         let types = ffi::gtk_test_list_all_types(n_types.as_mut_ptr());
         Slice::from_glib_container_num(types as *mut _, n_types.assume_init() as usize)
+    }
+}
+
+#[doc(alias = "gtk_style_context_add_provider_for_display")]
+#[doc(alias = "add_provider_for_display")]
+pub fn style_context_add_provider_for_display(
+    display: &impl IsA<gdk::Display>,
+    provider: &impl IsA<StyleProvider>,
+    priority: u32,
+) {
+    skip_assert_initialized!();
+    unsafe {
+        ffi::gtk_style_context_add_provider_for_display(
+            display.as_ref().to_glib_none().0,
+            provider.as_ref().to_glib_none().0,
+            priority,
+        );
+    }
+}
+
+#[doc(alias = "gtk_style_context_remove_provider_for_display")]
+#[doc(alias = "remove_provider_for_display")]
+pub fn style_context_remove_provider_for_display(
+    display: &impl IsA<gdk::Display>,
+    provider: &impl IsA<StyleProvider>,
+) {
+    skip_assert_initialized!();
+    unsafe {
+        ffi::gtk_style_context_remove_provider_for_display(
+            display.as_ref().to_glib_none().0,
+            provider.as_ref().to_glib_none().0,
+        );
     }
 }
