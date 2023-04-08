@@ -183,6 +183,7 @@ mod signal_list_item_factory;
 mod snapshot;
 mod spin_button;
 mod string_list;
+mod string_object;
 mod text;
 mod text_buffer;
 mod tree_model;

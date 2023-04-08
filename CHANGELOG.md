@@ -2,6 +2,12 @@
 
 ## [Unreleased]
 
+<<<<<<< HEAD
+=======
+Bilal Elmoussaoui:
+- gtk: Implement convenience traits for StringObject
+
+>>>>>>> 0b4dd7717 (gtk: Implement convenience traits for StringObject)
 ## [0.6.5]
 
 Fabio Valentini:
