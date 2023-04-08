@@ -4,6 +4,9 @@
 
 Bilal Elmoussaoui:
 - gtk: Implement convenience traits for StringObject
+- gtk: Move `gtk::StyleContext::add_provider_for_display` & `gtk::StyleContext::remove_provider_for_display` functions
+outside of `gtk::StyleContext` type as it was deprecated in GTK 4.10 causing a wrong deprecation warning.
+Switch to `gtk::style_context_add_provider_for_display` & `gtk::style_context_remove_provider_for_display` instead.
 
 ## [0.6.5]
 

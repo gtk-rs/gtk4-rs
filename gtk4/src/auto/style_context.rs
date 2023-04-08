@@ -22,36 +22,6 @@ glib::wrapper! {
 
 impl StyleContext {
     pub const NONE: Option<&'static StyleContext> = None;
-
-    #[doc(alias = "gtk_style_context_add_provider_for_display")]
-    pub fn add_provider_for_display(
-        display: &impl IsA<gdk::Display>,
-        provider: &impl IsA<StyleProvider>,
-        priority: u32,
-    ) {
-        skip_assert_initialized!();
-        unsafe {
-            ffi::gtk_style_context_add_provider_for_display(
-                display.as_ref().to_glib_none().0,
-                provider.as_ref().to_glib_none().0,
-                priority,
-            );
-        }
-    }
-
-    #[doc(alias = "gtk_style_context_remove_provider_for_display")]
-    pub fn remove_provider_for_display(
-        display: &impl IsA<gdk::Display>,
-        provider: &impl IsA<StyleProvider>,
-    ) {
-        skip_assert_initialized!();
-        unsafe {
-            ffi::gtk_style_context_remove_provider_for_display(
-                display.as_ref().to_glib_none().0,
-                provider.as_ref().to_glib_none().0,
-            );
-        }
-    }
 }
 
 pub trait StyleContextExt: 'static {
