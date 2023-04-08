@@ -4,7 +4,7 @@ use gtk::prelude::*;
 use gtk::gdk::Display;
 use gtk::{
     Application, ApplicationWindow, Box as Box_, Button, ComboBoxText, CssProvider, Entry,
-    Orientation, StyleContext, STYLE_PROVIDER_PRIORITY_APPLICATION,
+    Orientation, STYLE_PROVIDER_PRIORITY_APPLICATION,
 };
 
 fn main() -> glib::ExitCode {
@@ -15,7 +15,7 @@ fn main() -> glib::ExitCode {
         provider.load_from_data(include_str!("style.css"));
         // We give the CssProvided to the default screen so the CSS rules we added
         // can be applied to our window.
-        StyleContext::add_provider_for_display(
+        gtk::style_context_add_provider_for_display(
             &Display::default().expect("Could not connect to a display."),
             &provider,
             STYLE_PROVIDER_PRIORITY_APPLICATION,

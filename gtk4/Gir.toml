@@ -2064,6 +2064,11 @@ generate_builder = false
 name = "Gtk.StyleContext"
 status = "generate"
 generate_builder = false
+    [[object.function]]
+    pattern = "(add|remove)_provider_for_display"
+    # To avoid them being marked as deprecated along with StyleContext
+    # see https://github.com/gtk-rs/gtk4-rs/issues/1317
+    manual = true
 
 [[object]]
 name = "Gtk.Switch"

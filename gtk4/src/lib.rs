@@ -184,6 +184,7 @@ mod snapshot;
 mod spin_button;
 mod string_list;
 mod string_object;
+mod style_context;
 mod text;
 mod text_buffer;
 mod tree_model;
