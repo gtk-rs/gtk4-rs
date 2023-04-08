@@ -1,14 +1,15 @@
 use std::cell::Cell;
 
-use glib::{BindingFlags, ParamSpec, ParamSpecInt, Value};
+use glib::{BindingFlags, ParamSpec, Properties, Value};
 use gtk::glib;
 use gtk::prelude::*;
 use gtk::subclass::prelude::*;
-use once_cell::sync::Lazy;
 
 // Object holding the state
-#[derive(Default)]
+#[derive(Default, Properties)]
+#[properties(wrapper_type = super::CustomButton)]
 pub struct CustomButton {
+    #[property(get, set)]
     number: Cell<i32>,
 }
 
@@ -24,27 +25,15 @@ impl ObjectSubclass for CustomButton {
 // Trait shared by all GObjects
 impl ObjectImpl for CustomButton {
     fn properties() -> &'static [ParamSpec] {
-        static PROPERTIES: Lazy<Vec<ParamSpec>> =
-            Lazy::new(|| vec![ParamSpecInt::builder("number").build()]);
-        PROPERTIES.as_ref()
+        Self::derived_properties()
     }
 
-    fn set_property(&self, _id: usize, value: &Value, pspec: &ParamSpec) {
-        match pspec.name() {
-            "number" => {
-                let input_number =
-                    value.get().expect("The value needs to be of type `i32`.");
-                self.number.replace(input_number);
-            }
-            _ => unimplemented!(),
-        }
+    fn set_property(&self, id: usize, value: &Value, pspec: &ParamSpec) {
+        self.derived_set_property(id, value, pspec)
     }
 
-    fn property(&self, _id: usize, pspec: &ParamSpec) -> Value {
-        match pspec.name() {
-            "number" => self.number.get().to_value(),
-            _ => unimplemented!(),
-        }
+    fn property(&self, id: usize, pspec: &ParamSpec) -> Value {
+        self.derived_property(id, pspec)
     }
 
     fn constructed(&self) {
