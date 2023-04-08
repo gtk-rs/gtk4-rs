@@ -1,12 +1,15 @@
 use std::cell::Cell;
 
+use glib::Properties;
 use gtk::glib;
 use gtk::prelude::*;
 use gtk::subclass::prelude::*;
 
 // Object holding the state
-#[derive(Default)]
+#[derive(Default, Properties)]
+#[properties(wrapper_type = super::CustomButton)]
 pub struct CustomButton {
+    #[property(get, set)]
     number: Cell<i32>,
 }
 
