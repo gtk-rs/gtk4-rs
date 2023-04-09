@@ -67,7 +67,7 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 ```
 
 We also have to adapt the `clicked` method.
-Before we modified `number` directly, now we can use the generated wrapper method `set_number`.
+Before we modified `number` directly, now we can use the generated wrapper methods `number` and `set_number`.
 This way the "notify" signal will be emitted, which is necessary for the bindings to work as expected.
 
 ```rust ,no_run,noplayground
