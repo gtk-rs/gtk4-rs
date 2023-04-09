@@ -44,10 +44,21 @@ Now when we click on one of the two switches, the other one is toggled as well.
 
 We can also add properties to custom GObjects.
 We can demonstrate that by binding the `number` of our `CustomButton` to a property.
-The `properties` method describes our set of properties.
-When naming our property, we make sure to do that in [kebab-case](https://en.wikipedia.org/wiki/Letter_case#Kebab_case).
-`set_property` describes how the underlying values can be changed.
-`property` takes care of returning the underlying value.
+Most of the work is done by the [`glib::Properties`](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/derive.Properties.html) derive macro.
+We tell it that the wrapper type is `super::CustomButton`.
+We also annotate `number`, so that macro knows that it should create a property "number" that is readable and writable.
+It also generates [wrapper methods](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/derive.Properties.html#generated-wrapper-methods) which we are going to use later in this chapter.
+
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/g_object_properties/3/custom_button/imp.rs">listings/g_object_properties/3/custom_button/imp.rs</a>
+
+```rust ,no_run,noplayground
+{{#rustdoc_include ../listings/g_object_properties/3/custom_button/imp.rs:custom_button}}
+```
+
+The implementation of `properties`, `set_property` and `property` is boilerplate that is the same for every GObject that generates its properties with the `Property` macro.
+In `constructed` we use our new property "number" by binding the "label" property to it.
+`bind_property` converts the integer value of "number" to the string of "label" on its own.
+Now we don't have to adapt the label in the "clicked" callback anymore.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/g_object_properties/3/custom_button/imp.rs">listings/g_object_properties/3/custom_button/imp.rs</a>
 
@@ -55,13 +66,9 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 {{#rustdoc_include ../listings/g_object_properties/3/custom_button/imp.rs:object_impl}}
 ```
 
-We could immediately take advantage of this new property by binding the "label" property to it.
-It even converts the integer value of "number" to the string of "label".
-Now we don't have to adapt the label in the "clicked" callback anymore.
-
 We also have to adapt the `clicked` method.
-Before we modified `number` directly, now we do it through `set_property`.
-This way the "notify" signal will be emitted which bindings work as expected.
+Before we modified `number` directly, now we can use the generated wrapper method `set_number`.
+This way the "notify" signal will be emitted, which is necessary for the bindings to work as expected.
 
 ```rust ,no_run,noplayground
 {{#rustdoc_include ../listings/g_object_properties/3/custom_button/imp.rs:button_impl}}
@@ -92,7 +99,7 @@ Now if we click on one button, the "number" and "label" properties of the other 
  </video>
 </div>
 
-The final nice feature of properties is, that you can connect a callback to the event when a property gets changed.
+Another nice feature of properties is, that you can connect a callback to the event, when a property gets changed.
 For example like this:
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/g_object_properties/3/main.rs">listings/g_object_properties/3/main.rs</a>
