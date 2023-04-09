@@ -46,7 +46,7 @@ fn build_ui(app: &Application) {
     // ANCHOR: connect_notify
     // The closure will be called
     // whenever the property "number" of `button_1` gets changed
-    button_1.connect_notify_local(Some("number"), move |button, _| {
+    button_1.connect_number_notify(|button| {
         println!("The current number of `button_1` is {}.", button.number());
     });
     // ANCHOR_END: connect_notify

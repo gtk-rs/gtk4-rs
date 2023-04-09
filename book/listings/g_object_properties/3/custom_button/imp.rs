@@ -5,6 +5,7 @@ use gtk::glib;
 use gtk::prelude::*;
 use gtk::subclass::prelude::*;
 
+// ANCHOR: custom_button
 // Object holding the state
 #[derive(Properties, Default)]
 #[properties(wrapper_type = super::CustomButton)]
@@ -12,6 +13,7 @@ pub struct CustomButton {
     #[property(get, set)]
     number: Cell<i32>,
 }
+// ANCHOR_END: custom_button
 
 // The central trait for subclassing a GObject
 #[glib::object_subclass]

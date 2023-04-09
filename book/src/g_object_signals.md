@@ -21,7 +21,7 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 {{#rustdoc_include ../listings/g_object_signals/1/main.rs:callback}}
 ```
 
-Similar to the generic way of accessing properties, the advantage of `connect_closure` is that it also works with custom signals.
+The advantage of `connect_closure` is that it also works with custom signals.
 
 > If you need to clone reference counted objects into your closure you don't have to wrap it within another `clone!` macro.
 > `closure_local!` accepts the same syntax for creating strong/weak references, plus a [watch](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/macro.closure.html#object-watching) feature that automatically disconnects the closure once the watched object is dropped. 
