@@ -23,7 +23,6 @@ impl ObjectSubclass for TaskObject {
     const NAME: &'static str = "TodoTaskObject";
     type Type = super::TaskObject;
 }
-// ANCHOR_END: struct_and_subclass
 
 // Trait shared by all GObjects
 impl ObjectImpl for TaskObject {
@@ -39,3 +38,4 @@ impl ObjectImpl for TaskObject {
         self.derived_property(id, pspec)
     }
 }
+// ANCHOR_END: struct_and_subclass

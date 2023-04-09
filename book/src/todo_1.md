@@ -60,7 +60,7 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 ```
 
 
-## To-Do Object
+## Task Object
 
 So far so good.
 The main user interface is done, but the entry does not react to input yet.
@@ -91,8 +91,9 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 {{#rustdoc_include ../listings/todo/1/task_object/mod.rs:task_data}}
 ```
 
-Exposing `completed` and `content` as properties does not become much different that way, so we will not discuss it further.
-If you are curious, you can press on the small eye symbol on the top right of the code snippet to read the implementation.
+We are going to expose `completed` and `content` as properties.
+Since the data is now inside a struct rather than individual member variables we have to add more annotations.
+For each property we additionally specify the name, the type and which member variable of `TaskData` we want to access.  
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/1/task_object/imp.rs">listings/todo/1/task_object/imp.rs</a>
 
@@ -100,7 +101,7 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 {{#rustdoc_include ../listings/todo/1/task_object/imp.rs:struct_and_subclass}}
 ```
 
-## To-Do Row
+## Task Row
 
 Let's move on to the individual tasks.
 The row of a task should look like this:
