@@ -6,7 +6,7 @@ use gtk::prelude::*;
 use gtk::subclass::prelude::*;
 
 // Object holding the state
-#[derive(Default, Properties)]
+#[derive(Properties, Default)]
 #[properties(wrapper_type = super::CustomButton)]
 pub struct CustomButton {
     #[property(get, set)]

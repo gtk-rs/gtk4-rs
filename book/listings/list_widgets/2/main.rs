@@ -54,9 +54,6 @@ fn build_ui(app: &Application) {
             .and_downcast::<IntegerObject>()
             .expect("The item has to be an `IntegerObject`.");
 
-        // Get `i32` from `IntegerObject`
-        let number = integer_object.property::<i32>("number");
-
         // Get `Label` from `ListItem`
         let label = list_item
             .downcast_ref::<ListItem>()
@@ -66,7 +63,7 @@ fn build_ui(app: &Application) {
             .expect("The child has to be a `Label`.");
 
         // Set "label" to "number"
-        label.set_label(&number.to_string());
+        label.set_label(&integer_object.number().to_string());
     });
     // ANCHOR_END: factory_bind
 

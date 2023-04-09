@@ -8,7 +8,7 @@ use gtk::subclass::prelude::*;
 use once_cell::sync::Lazy;
 
 // Object holding the state
-#[derive(Default, Properties)]
+#[derive(Properties, Default)]
 #[properties(wrapper_type = super::CustomButton)]
 pub struct CustomButton {
     #[property(get, set)]
@@ -75,9 +75,9 @@ impl ButtonImpl for CustomButton {
         // emit "max-number-reached" signal and set `number` back to 0
         if incremented_number == MAX_NUMBER {
             obj.emit_by_name::<()>("max-number-reached", &[&incremented_number]);
-            obj.set_property("number", &0);
+            obj.set_number(0);
         } else {
-            obj.set_property("number", &incremented_number);
+            obj.set_number(incremented_number);
         }
     }
 }

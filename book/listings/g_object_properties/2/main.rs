@@ -1,7 +1,8 @@
+use glib::BindingFlags;
 use gtk::prelude::*;
 use gtk::{glib, Align, Application, ApplicationWindow, Box, Orientation, Switch};
 
-const APP_ID: &str = "org.gtk_rs.GObjectProperties2";
+const APP_ID: &str = "org.gtk_rs.GObjectProperties3";
 
 fn main() -> glib::ExitCode {
     // Create a new application
@@ -16,17 +17,18 @@ fn main() -> glib::ExitCode {
 
 // ANCHOR: activate
 fn build_ui(app: &Application) {
-    // ANCHOR: switch
-    // Create the switch
-    let switch = Switch::new();
+    // ANCHOR: switches
+    // Create the switches
+    let switch_1 = Switch::new();
+    let switch_2 = Switch::new();
+    // ANCHOR_END: switches
 
-    // Set and then immediately obtain state
-    switch.set_property("state", &true);
-    let current_state = switch.property::<bool>("state");
-
-    // This prints: "The current state is true"
-    println!("The current state is {}", current_state);
-    // ANCHOR_END: switch
+    // ANCHOR: bind_state
+    switch_1
+        .bind_property("state", &switch_2, "state")
+        .flags(BindingFlags::BIDIRECTIONAL)
+        .build();
+    // ANCHOR_END: bind_state
 
     // Set up box
     let gtk_box = Box::builder()
@@ -39,7 +41,8 @@ fn build_ui(app: &Application) {
         .spacing(12)
         .orientation(Orientation::Vertical)
         .build();
-    gtk_box.append(&switch);
+    gtk_box.append(&switch_1);
+    gtk_box.append(&switch_2);
 
     // Create a window
     let window = ApplicationWindow::builder()
