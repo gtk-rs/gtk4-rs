@@ -36,7 +36,7 @@ the [features](#features) section for how to do this globally in your `Cargo.tom
 ```rust,no_run
 use gtk4 as gtk;
 use gtk::prelude::*;
-use gtk::{Application, ApplicationWindow};
+use gtk::{glib, Application, ApplicationWindow};
 
 fn main() -> glib::ExitCode {
     let app = Application::builder()
@@ -68,7 +68,7 @@ and run the main event loop.
 ```rust,no_run
 use gtk4 as gtk;
 use gtk::prelude::*;
-use gtk::{Application, ApplicationWindow, Button};
+use gtk::{glib, Application, ApplicationWindow, Button};
 
 fn main() -> glib::ExitCode {
     let application = Application::builder()
