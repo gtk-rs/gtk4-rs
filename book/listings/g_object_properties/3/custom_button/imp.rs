@@ -58,7 +58,7 @@ impl WidgetImpl for CustomButton {}
 // Trait shared by all buttons
 impl ButtonImpl for CustomButton {
     fn clicked(&self) {
-        let incremented_number = self.number.get() + 1;
+        let incremented_number = self.obj().number() + 1;
         self.obj().set_number(incremented_number);
     }
 }

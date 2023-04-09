@@ -69,7 +69,7 @@ static MAX_NUMBER: i32 = 8;
 // Trait shared by all buttons
 impl ButtonImpl for CustomButton {
     fn clicked(&self) {
-        let incremented_number = self.number.get() + 1;
+        let incremented_number = self.obj().number() + 1;
         let obj = self.obj();
         // If `number` reached `MAX_NUMBER`,
         // emit "max-number-reached" signal and set `number` back to 0
