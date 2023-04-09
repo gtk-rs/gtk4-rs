@@ -23,8 +23,7 @@ fn main() -> glib::ExitCode {
 
 fn build_ui(app: &Application) {
     // Create a `Vec<IntegerObject>` with numbers from 0 to 100_000
-    let vector: Vec<IntegerObject> =
-        (0..=100_000).into_iter().map(IntegerObject::new).collect();
+    let vector: Vec<IntegerObject> = (0..=100_000).map(IntegerObject::new).collect();
 
     // Create new model
     let model = gio::ListStore::new(IntegerObject::static_type());
