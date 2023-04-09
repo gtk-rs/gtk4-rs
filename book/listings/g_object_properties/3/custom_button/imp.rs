@@ -6,7 +6,7 @@ use gtk::prelude::*;
 use gtk::subclass::prelude::*;
 
 // Object holding the state
-#[derive(Default, Properties)]
+#[derive(Properties, Default)]
 #[properties(wrapper_type = super::CustomButton)]
 pub struct CustomButton {
     #[property(get, set)]
@@ -57,7 +57,7 @@ impl WidgetImpl for CustomButton {}
 impl ButtonImpl for CustomButton {
     fn clicked(&self) {
         let incremented_number = self.number.get() + 1;
-        self.obj().set_property("number", &incremented_number);
+        self.obj().set_number(incremented_number);
     }
 }
 // ANCHOR_END: button_impl

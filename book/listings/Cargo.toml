@@ -115,10 +115,6 @@ path = "g_object_properties/2/main.rs"
 name = "g_object_properties_3"
 path = "g_object_properties/3/main.rs"
 
-[[bin]]
-name = "g_object_properties_4"
-path = "g_object_properties/4/main.rs"
-
 # g_object_signals
 [[bin]]
 name = "g_object_signals_1"

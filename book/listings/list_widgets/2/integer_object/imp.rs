@@ -7,7 +7,7 @@ use gtk::subclass::prelude::*;
 
 // ANCHOR: integer_object
 // Object holding the state
-#[derive(Default, Properties)]
+#[derive(Properties, Default)]
 #[properties(wrapper_type = super::IntegerObject)]
 pub struct IntegerObject {
     #[property(get, set)]

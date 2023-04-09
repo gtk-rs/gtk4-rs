@@ -21,14 +21,6 @@ impl CollectionObject {
             .build()
     }
 
-    pub fn tasks(&self) -> gio::ListStore {
-        self.imp()
-            .tasks
-            .get()
-            .expect("Could not get tasks.")
-            .clone()
-    }
-
     pub fn to_collection_data(&self) -> CollectionData {
         let title = self.imp().title.borrow().clone();
         let tasks_data = self
