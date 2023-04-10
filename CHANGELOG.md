@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+## [0.6.6]
+
 Bilal Elmoussaoui:
 
 -   gtk: Implement convenience traits for StringObject
