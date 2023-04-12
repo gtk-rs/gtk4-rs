@@ -1434,8 +1434,8 @@ where
 }
 
 pub trait CompositeTemplateDisposeExt {
-    #[cfg(any(feature = "v4_8", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+    #[cfg(any(feature = "v4_8", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
     fn dispose_template(&self);
 }
 
@@ -1444,8 +1444,8 @@ where
     T: WidgetImpl + CompositeTemplate,
     <T as ObjectSubclass>::Type: IsA<Widget>,
 {
-    #[cfg(any(feature = "v4_8", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+    #[cfg(any(feature = "v4_8", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
     fn dispose_template(&self) {
         unsafe {
             ffi::gtk_widget_dispose_template(

@@ -102,8 +102,8 @@ impl DropDown {
         unsafe { from_glib_none(ffi::gtk_drop_down_get_selected_item(self.to_glib_none().0)) }
     }
 
-    #[cfg(any(feature = "v4_6", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    #[cfg(any(feature = "v4_6", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     #[doc(alias = "gtk_drop_down_get_show_arrow")]
     #[doc(alias = "get_show_arrow")]
     pub fn shows_arrow(&self) -> bool {
@@ -164,8 +164,8 @@ impl DropDown {
         }
     }
 
-    #[cfg(any(feature = "v4_6", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    #[cfg(any(feature = "v4_6", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     #[doc(alias = "gtk_drop_down_set_show_arrow")]
     pub fn set_show_arrow(&self, show_arrow: bool) {
         unsafe {
@@ -173,8 +173,8 @@ impl DropDown {
         }
     }
 
-    #[cfg(any(feature = "v4_6", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    #[cfg(any(feature = "v4_6", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     #[doc(alias = "activate")]
     pub fn connect_activate<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn activate_trampoline<F: Fn(&DropDown) + 'static>(
@@ -197,8 +197,8 @@ impl DropDown {
         }
     }
 
-    #[cfg(any(feature = "v4_6", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    #[cfg(any(feature = "v4_6", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     pub fn emit_activate(&self) {
         self.emit_by_name::<()>("activate", &[]);
     }
@@ -364,8 +364,8 @@ impl DropDown {
         }
     }
 
-    #[cfg(any(feature = "v4_6", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    #[cfg(any(feature = "v4_6", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     #[doc(alias = "show-arrow")]
     pub fn connect_show_arrow_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_show_arrow_trampoline<F: Fn(&DropDown) + 'static>(
@@ -452,8 +452,8 @@ impl DropDownBuilder {
         }
     }
 
-    #[cfg(any(feature = "v4_6", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    #[cfg(any(feature = "v4_6", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     pub fn show_arrow(self, show_arrow: bool) -> Self {
         Self {
             builder: self.builder.property("show-arrow", show_arrow),

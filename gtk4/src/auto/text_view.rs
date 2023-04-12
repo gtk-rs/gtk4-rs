@@ -529,8 +529,8 @@ pub trait TextViewExt: 'static {
     #[doc(alias = "get_line_yrange")]
     fn line_yrange(&self, iter: &TextIter) -> (i32, i32);
 
-    #[cfg(any(feature = "v4_4", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_4")))]
+    #[cfg(any(feature = "v4_4", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_4")))]
     #[doc(alias = "gtk_text_view_get_ltr_context")]
     #[doc(alias = "get_ltr_context")]
     fn ltr_context(&self) -> pango::Context;
@@ -559,8 +559,8 @@ pub trait TextViewExt: 'static {
     #[doc(alias = "get_right_margin")]
     fn right_margin(&self) -> i32;
 
-    #[cfg(any(feature = "v4_4", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_4")))]
+    #[cfg(any(feature = "v4_4", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_4")))]
     #[doc(alias = "gtk_text_view_get_rtl_context")]
     #[doc(alias = "get_rtl_context")]
     fn rtl_context(&self) -> pango::Context;
@@ -1114,8 +1114,8 @@ impl<O: IsA<TextView>> TextViewExt for O {
         }
     }
 
-    #[cfg(any(feature = "v4_4", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_4")))]
+    #[cfg(any(feature = "v4_4", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_4")))]
     fn ltr_context(&self) -> pango::Context {
         unsafe {
             from_glib_none(ffi::gtk_text_view_get_ltr_context(
@@ -1156,8 +1156,8 @@ impl<O: IsA<TextView>> TextViewExt for O {
         unsafe { ffi::gtk_text_view_get_right_margin(self.as_ref().to_glib_none().0) }
     }
 
-    #[cfg(any(feature = "v4_4", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_4")))]
+    #[cfg(any(feature = "v4_4", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_4")))]
     fn rtl_context(&self) -> pango::Context {
         unsafe {
             from_glib_none(ffi::gtk_text_view_get_rtl_context(

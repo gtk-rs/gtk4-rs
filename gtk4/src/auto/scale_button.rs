@@ -2,8 +2,8 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-#[cfg(any(feature = "v4_10", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+#[cfg(any(feature = "v4_10", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 use crate::AccessibleRange;
 use crate::{
     Accessible, AccessibleRole, Adjustment, Align, Buildable, Button, ConstraintTarget,
@@ -16,8 +16,8 @@ use glib::{
 };
 use std::{boxed::Box as Box_, fmt, mem::transmute};
 
-#[cfg(any(feature = "v4_10", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+#[cfg(any(feature = "v4_10", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 glib::wrapper! {
     #[doc(alias = "GtkScaleButton")]
     pub struct ScaleButton(Object<ffi::GtkScaleButton, ffi::GtkScaleButtonClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, AccessibleRange, Orientable;
@@ -27,7 +27,7 @@ glib::wrapper! {
     }
 }
 
-#[cfg(not(any(feature = "v4_10", feature = "dox")))]
+#[cfg(not(any(feature = "v4_10", docsrs)))]
 glib::wrapper! {
     #[doc(alias = "GtkScaleButton")]
     pub struct ScaleButton(Object<ffi::GtkScaleButton, ffi::GtkScaleButtonClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, Orientable;
@@ -304,8 +304,8 @@ impl ScaleButtonBuilder {
 }
 
 pub trait ScaleButtonExt: 'static {
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     #[doc(alias = "gtk_scale_button_get_active")]
     #[doc(alias = "get_active")]
     fn is_active(&self) -> bool;
@@ -354,8 +354,8 @@ pub trait ScaleButtonExt: 'static {
     #[doc(alias = "value-changed")]
     fn connect_value_changed<F: Fn(&Self, f64) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     #[doc(alias = "active")]
     fn connect_active_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
@@ -370,8 +370,8 @@ pub trait ScaleButtonExt: 'static {
 }
 
 impl<O: IsA<ScaleButton>> ScaleButtonExt for O {
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     fn is_active(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_scale_button_get_active(
@@ -516,8 +516,8 @@ impl<O: IsA<ScaleButton>> ScaleButtonExt for O {
         }
     }
 
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     fn connect_active_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_active_trampoline<P: IsA<ScaleButton>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkScaleButton,

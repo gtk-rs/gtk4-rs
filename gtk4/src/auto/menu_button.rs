@@ -37,16 +37,16 @@ impl MenuButton {
         MenuButtonBuilder::new()
     }
 
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     #[doc(alias = "gtk_menu_button_get_active")]
     #[doc(alias = "get_active")]
     pub fn is_active(&self) -> bool {
         unsafe { from_glib(ffi::gtk_menu_button_get_active(self.to_glib_none().0)) }
     }
 
-    #[cfg(any(feature = "v4_4", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_4")))]
+    #[cfg(any(feature = "v4_4", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_4")))]
     #[doc(alias = "gtk_menu_button_get_always_show_arrow")]
     #[doc(alias = "get_always_show_arrow")]
     pub fn must_always_show_arrow(&self) -> bool {
@@ -57,8 +57,8 @@ impl MenuButton {
         }
     }
 
-    #[cfg(any(feature = "v4_6", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    #[cfg(any(feature = "v4_6", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     #[doc(alias = "gtk_menu_button_get_child")]
     #[doc(alias = "get_child")]
     pub fn child(&self) -> Option<Widget> {
@@ -101,8 +101,8 @@ impl MenuButton {
         unsafe { from_glib_none(ffi::gtk_menu_button_get_popover(self.to_glib_none().0)) }
     }
 
-    #[cfg(any(feature = "v4_4", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_4")))]
+    #[cfg(any(feature = "v4_4", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_4")))]
     #[doc(alias = "gtk_menu_button_get_primary")]
     #[doc(alias = "get_primary")]
     pub fn is_primary(&self) -> bool {
@@ -133,8 +133,8 @@ impl MenuButton {
         }
     }
 
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     #[doc(alias = "gtk_menu_button_set_active")]
     pub fn set_active(&self, active: bool) {
         unsafe {
@@ -142,8 +142,8 @@ impl MenuButton {
         }
     }
 
-    #[cfg(any(feature = "v4_4", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_4")))]
+    #[cfg(any(feature = "v4_4", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_4")))]
     #[doc(alias = "gtk_menu_button_set_always_show_arrow")]
     pub fn set_always_show_arrow(&self, always_show_arrow: bool) {
         unsafe {
@@ -154,8 +154,8 @@ impl MenuButton {
         }
     }
 
-    #[cfg(any(feature = "v4_6", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    #[cfg(any(feature = "v4_6", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     #[doc(alias = "gtk_menu_button_set_child")]
     pub fn set_child(&self, child: Option<&impl IsA<Widget>>) {
         unsafe {
@@ -243,8 +243,8 @@ impl MenuButton {
         }
     }
 
-    #[cfg(any(feature = "v4_4", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_4")))]
+    #[cfg(any(feature = "v4_4", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_4")))]
     #[doc(alias = "gtk_menu_button_set_primary")]
     pub fn set_primary(&self, primary: bool) {
         unsafe {
@@ -262,8 +262,8 @@ impl MenuButton {
         }
     }
 
-    #[cfg(any(feature = "v4_4", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_4")))]
+    #[cfg(any(feature = "v4_4", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_4")))]
     #[doc(alias = "activate")]
     pub fn connect_activate<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn activate_trampoline<F: Fn(&MenuButton) + 'static>(
@@ -286,14 +286,14 @@ impl MenuButton {
         }
     }
 
-    #[cfg(any(feature = "v4_4", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_4")))]
+    #[cfg(any(feature = "v4_4", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_4")))]
     pub fn emit_activate(&self) {
         self.emit_by_name::<()>("activate", &[]);
     }
 
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     #[doc(alias = "active")]
     pub fn connect_active_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_active_trampoline<F: Fn(&MenuButton) + 'static>(
@@ -317,8 +317,8 @@ impl MenuButton {
         }
     }
 
-    #[cfg(any(feature = "v4_4", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_4")))]
+    #[cfg(any(feature = "v4_4", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_4")))]
     #[doc(alias = "always-show-arrow")]
     pub fn connect_always_show_arrow_notify<F: Fn(&Self) + 'static>(
         &self,
@@ -345,8 +345,8 @@ impl MenuButton {
         }
     }
 
-    #[cfg(any(feature = "v4_6", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    #[cfg(any(feature = "v4_6", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     #[doc(alias = "child")]
     pub fn connect_child_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_child_trampoline<F: Fn(&MenuButton) + 'static>(
@@ -508,8 +508,8 @@ impl MenuButton {
         }
     }
 
-    #[cfg(any(feature = "v4_4", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_4")))]
+    #[cfg(any(feature = "v4_4", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_4")))]
     #[doc(alias = "primary")]
     pub fn connect_primary_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_primary_trampoline<F: Fn(&MenuButton) + 'static>(
@@ -579,16 +579,16 @@ impl MenuButtonBuilder {
         }
     }
 
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn active(self, active: bool) -> Self {
         Self {
             builder: self.builder.property("active", active),
         }
     }
 
-    #[cfg(any(feature = "v4_4", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_4")))]
+    #[cfg(any(feature = "v4_4", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_4")))]
     pub fn always_show_arrow(self, always_show_arrow: bool) -> Self {
         Self {
             builder: self
@@ -597,8 +597,8 @@ impl MenuButtonBuilder {
         }
     }
 
-    #[cfg(any(feature = "v4_6", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    #[cfg(any(feature = "v4_6", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     pub fn child(self, child: &impl IsA<Widget>) -> Self {
         Self {
             builder: self.builder.property("child", child.clone().upcast()),
@@ -643,8 +643,8 @@ impl MenuButtonBuilder {
         }
     }
 
-    #[cfg(any(feature = "v4_4", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_4")))]
+    #[cfg(any(feature = "v4_4", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_4")))]
     pub fn primary(self, primary: bool) -> Self {
         Self {
             builder: self.builder.property("primary", primary),

@@ -23,13 +23,12 @@ version = "4.4"
 version = "4.10"
 
 [package.metadata.docs.rs]
-features = ["dox"]
+features = []
 
 [lib]
 name = "gdk4_wayland_sys"
 
 [features]
-dox = ["glib/dox"]
 v4_4 = []
 v4_10 = ["v4_4"]
 

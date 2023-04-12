@@ -14,12 +14,11 @@ rust-version = "1.64"
 [features]
 v4_4 = ["ffi/v4_4"]
 v4_10 = ["ffi/v4_10", "v4_4"]
-dox = ["ffi/dox", "gdk/dox", "gio/dox", "glib/dox", "egl", "xlib"]
 egl = ["khronos-egl"]
 xlib = ["x11"]
 
 [package.metadata.docs.rs]
-features = ["dox"]
+rustdoc-args = ["--cfg", "docsrs"]
 
 [dependencies]
 ffi = {path = "./sys", package = "gdk4-x11-sys", version = "0.7"}

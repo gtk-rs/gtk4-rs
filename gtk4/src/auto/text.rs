@@ -49,8 +49,8 @@ impl Text {
         TextBuilder::new()
     }
 
-    #[cfg(any(feature = "v4_4", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_4")))]
+    #[cfg(any(feature = "v4_4", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_4")))]
     #[doc(alias = "gtk_text_compute_cursor_extents")]
     pub fn compute_cursor_extents(&self, position: usize) -> (graphene::Rect, graphene::Rect) {
         unsafe {

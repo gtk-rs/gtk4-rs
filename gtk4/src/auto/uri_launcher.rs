@@ -111,8 +111,8 @@ impl UriLauncher {
         }
     }
 
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     #[doc(alias = "uri")]
     pub fn connect_uri_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_uri_trampoline<F: Fn(&UriLauncher) + 'static>(
@@ -137,8 +137,8 @@ impl UriLauncher {
     }
 }
 
-#[cfg(any(feature = "v4_10", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+#[cfg(any(feature = "v4_10", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 impl Default for UriLauncher {
     fn default() -> Self {
         glib::object::Object::new::<Self>()
@@ -161,8 +161,8 @@ impl UriLauncherBuilder {
         }
     }
 
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn uri(self, uri: impl Into<glib::GString>) -> Self {
         Self {
             builder: self.builder.property("uri", uri.into()),

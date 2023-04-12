@@ -490,13 +490,13 @@ pub trait ComboBoxExt: 'static {
     #[doc(alias = "popup-shown")]
     fn is_popup_shown(&self) -> bool;
 
-    #[cfg(any(feature = "v4_6", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    #[cfg(any(feature = "v4_6", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     #[doc(alias = "activate")]
     fn connect_activate<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    #[cfg(any(feature = "v4_6", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    #[cfg(any(feature = "v4_6", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     fn emit_activate(&self);
 
     #[doc(alias = "changed")]
@@ -768,8 +768,8 @@ impl<O: IsA<ComboBox>> ComboBoxExt for O {
         glib::ObjectExt::property(self.as_ref(), "popup-shown")
     }
 
-    #[cfg(any(feature = "v4_6", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    #[cfg(any(feature = "v4_6", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     fn connect_activate<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn activate_trampoline<P: IsA<ComboBox>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkComboBox,
@@ -791,8 +791,8 @@ impl<O: IsA<ComboBox>> ComboBoxExt for O {
         }
     }
 
-    #[cfg(any(feature = "v4_6", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    #[cfg(any(feature = "v4_6", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     fn emit_activate(&self) {
         self.emit_by_name::<()>("activate", &[]);
     }

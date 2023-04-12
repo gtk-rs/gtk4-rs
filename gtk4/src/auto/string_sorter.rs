@@ -2,8 +2,8 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-#[cfg(any(feature = "v4_10", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+#[cfg(any(feature = "v4_10", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 use crate::Collation;
 use crate::{Expression, Sorter};
 use glib::{
@@ -43,8 +43,8 @@ impl StringSorter {
         StringSorterBuilder::new()
     }
 
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     #[doc(alias = "gtk_string_sorter_get_collation")]
     #[doc(alias = "get_collation")]
     pub fn collation(&self) -> Collation {
@@ -67,8 +67,8 @@ impl StringSorter {
         }
     }
 
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     #[doc(alias = "gtk_string_sorter_set_collation")]
     pub fn set_collation(&self, collation: Collation) {
         unsafe {
@@ -93,8 +93,8 @@ impl StringSorter {
         }
     }
 
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     #[doc(alias = "collation")]
     pub fn connect_collation_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_collation_trampoline<F: Fn(&StringSorter) + 'static>(
@@ -187,8 +187,8 @@ impl StringSorterBuilder {
         }
     }
 
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn collation(self, collation: Collation) -> Self {
         Self {
             builder: self.builder.property("collation", collation),

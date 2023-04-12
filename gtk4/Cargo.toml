@@ -16,7 +16,6 @@ rust-version = "1.64"
 name = "gtk4"
 
 [features]
-dox = ["gdk/dox", "gsk/dox", "ffi/dox", "cairo-rs/dox", "gdk-pixbuf/dox", "gio/dox", "glib/dox", "graphene/dox", "pango/dox"]
 v4_2 = ["ffi/v4_2", "gdk/v4_2", "gsk/v4_2"]
 v4_4 = ["ffi/v4_4", "v4_2", "gdk/v4_4", "gsk/v4_4"]
 v4_6 = ["ffi/v4_6", "v4_4", "gdk/v4_6", "gsk/v4_6", "pango/v1_50"]
@@ -35,7 +34,7 @@ gnome_43 = ["v4_8", "cairo-rs/v1_16", "gdk-pixbuf/v2_42", "gio/v2_74"]
 gnome_42 = ["v4_6", "cairo-rs/v1_16", "gdk-pixbuf/v2_42", "gio/v2_72"]
 
 [package.metadata.docs.rs]
-features = ["dox"]
+rustdoc-args = ["--cfg", "docsrs"]
 
 [dependencies]
 bitflags = "1.0"

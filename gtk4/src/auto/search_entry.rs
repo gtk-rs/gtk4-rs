@@ -47,8 +47,8 @@ impl SearchEntry {
         }
     }
 
-    #[cfg(any(feature = "v4_8", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+    #[cfg(any(feature = "v4_8", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
     #[doc(alias = "gtk_search_entry_get_search_delay")]
     #[doc(alias = "get_search_delay")]
     pub fn search_delay(&self) -> u32 {
@@ -65,8 +65,8 @@ impl SearchEntry {
         }
     }
 
-    #[cfg(any(feature = "v4_8", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+    #[cfg(any(feature = "v4_8", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
     #[doc(alias = "gtk_search_entry_set_search_delay")]
     pub fn set_search_delay(&self, delay: u32) {
         unsafe {
@@ -291,8 +291,8 @@ impl SearchEntry {
         }
     }
 
-    #[cfg(any(feature = "v4_8", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+    #[cfg(any(feature = "v4_8", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
     #[doc(alias = "search-delay")]
     pub fn connect_search_delay_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_search_delay_trampoline<F: Fn(&SearchEntry) + 'static>(
@@ -355,8 +355,8 @@ impl SearchEntryBuilder {
         }
     }
 
-    #[cfg(any(feature = "v4_8", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+    #[cfg(any(feature = "v4_8", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
     pub fn search_delay(self, search_delay: u32) -> Self {
         Self {
             builder: self.builder.property("search-delay", search_delay),

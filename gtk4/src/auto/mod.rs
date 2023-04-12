@@ -11,11 +11,11 @@ pub use self::about_dialog::AboutDialog;
 mod accessible;
 pub use self::accessible::Accessible;
 
-#[cfg(any(feature = "v4_10", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+#[cfg(any(feature = "v4_10", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 mod accessible_range;
-#[cfg(any(feature = "v4_10", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+#[cfg(any(feature = "v4_10", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 pub use self::accessible_range::AccessibleRange;
 
 mod action_bar;
@@ -30,11 +30,11 @@ pub use self::activate_action::ActivateAction;
 mod adjustment;
 pub use self::adjustment::Adjustment;
 
-#[cfg(any(feature = "v4_10", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+#[cfg(any(feature = "v4_10", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 mod alert_dialog;
-#[cfg(any(feature = "v4_10", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+#[cfg(any(feature = "v4_10", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 pub use self::alert_dialog::AlertDialog;
 
 mod alternative_trigger;
@@ -225,18 +225,18 @@ mod color_chooser_widget;
 #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 pub use self::color_chooser_widget::ColorChooserWidget;
 
-#[cfg(any(feature = "v4_10", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+#[cfg(any(feature = "v4_10", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 mod color_dialog;
-#[cfg(any(feature = "v4_10", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+#[cfg(any(feature = "v4_10", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 pub use self::color_dialog::ColorDialog;
 
-#[cfg(any(feature = "v4_10", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+#[cfg(any(feature = "v4_10", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 mod color_dialog_button;
-#[cfg(any(feature = "v4_10", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+#[cfg(any(feature = "v4_10", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 pub use self::color_dialog_button::ColorDialogButton;
 
 mod column_view;
@@ -245,18 +245,18 @@ pub use self::column_view::ColumnView;
 mod column_view_column;
 pub use self::column_view_column::ColumnViewColumn;
 
-#[cfg(any(feature = "v4_12", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_12")))]
+#[cfg(any(feature = "v4_12", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
 mod column_view_row;
-#[cfg(any(feature = "v4_12", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_12")))]
+#[cfg(any(feature = "v4_12", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
 pub use self::column_view_row::ColumnViewRow;
 
-#[cfg(any(feature = "v4_10", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+#[cfg(any(feature = "v4_10", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 mod column_view_sorter;
-#[cfg(any(feature = "v4_10", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+#[cfg(any(feature = "v4_10", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 pub use self::column_view_sorter::ColumnViewSorter;
 
 #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
@@ -392,21 +392,21 @@ mod file_chooser_widget;
 #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 pub use self::file_chooser_widget::FileChooserWidget;
 
-#[cfg(any(feature = "v4_10", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+#[cfg(any(feature = "v4_10", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 mod file_dialog;
-#[cfg(any(feature = "v4_10", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+#[cfg(any(feature = "v4_10", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 pub use self::file_dialog::FileDialog;
 
 mod file_filter;
 pub use self::file_filter::FileFilter;
 
-#[cfg(any(feature = "v4_10", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+#[cfg(any(feature = "v4_10", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 mod file_launcher;
-#[cfg(any(feature = "v4_10", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+#[cfg(any(feature = "v4_10", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 pub use self::file_launcher::FileLauncher;
 
 mod filter;
@@ -453,18 +453,18 @@ mod font_chooser_widget;
 #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 pub use self::font_chooser_widget::FontChooserWidget;
 
-#[cfg(any(feature = "v4_10", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+#[cfg(any(feature = "v4_10", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 mod font_dialog;
-#[cfg(any(feature = "v4_10", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+#[cfg(any(feature = "v4_10", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 pub use self::font_dialog::FontDialog;
 
-#[cfg(any(feature = "v4_10", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+#[cfg(any(feature = "v4_10", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 mod font_dialog_button;
-#[cfg(any(feature = "v4_10", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+#[cfg(any(feature = "v4_10", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 pub use self::font_dialog_button::FontDialogButton;
 
 mod frame;
@@ -546,11 +546,11 @@ mod info_bar;
 #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 pub use self::info_bar::InfoBar;
 
-#[cfg(any(feature = "v4_8", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+#[cfg(any(feature = "v4_8", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
 mod inscription;
-#[cfg(any(feature = "v4_8", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+#[cfg(any(feature = "v4_8", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
 pub use self::inscription::Inscription;
 
 mod label;
@@ -679,11 +679,11 @@ pub use self::pad_controller::PadController;
 mod page_setup;
 pub use self::page_setup::PageSetup;
 
-#[cfg(any(target_os = "linux", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(target_os = "linux")))]
+#[cfg(any(target_os = "linux", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(target_os = "linux")))]
 mod page_setup_unix_dialog;
-#[cfg(any(target_os = "linux", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(target_os = "linux")))]
+#[cfg(any(target_os = "linux", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(target_os = "linux")))]
 pub use self::page_setup_unix_dialog::PageSetupUnixDialog;
 
 mod paned;
@@ -695,11 +695,11 @@ pub use self::param_spec_expression::ParamSpecExpression;
 mod password_entry;
 pub use self::password_entry::PasswordEntry;
 
-#[cfg(any(feature = "v4_4", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_4")))]
+#[cfg(any(feature = "v4_4", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_4")))]
 mod password_entry_buffer;
-#[cfg(any(feature = "v4_4", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_4")))]
+#[cfg(any(feature = "v4_4", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_4")))]
 pub use self::password_entry_buffer::PasswordEntryBuffer;
 
 mod picture;
@@ -717,11 +717,11 @@ pub use self::popover_menu_bar::PopoverMenuBar;
 mod print_context;
 pub use self::print_context::PrintContext;
 
-#[cfg(any(target_os = "linux", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(target_os = "linux")))]
+#[cfg(any(target_os = "linux", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(target_os = "linux")))]
 mod print_job;
-#[cfg(any(target_os = "linux", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(target_os = "linux")))]
+#[cfg(any(target_os = "linux", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(target_os = "linux")))]
 pub use self::print_job::PrintJob;
 
 mod print_operation;
@@ -733,18 +733,18 @@ pub use self::print_operation_preview::PrintOperationPreview;
 mod print_settings;
 pub use self::print_settings::PrintSettings;
 
-#[cfg(any(target_os = "linux", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(target_os = "linux")))]
+#[cfg(any(target_os = "linux", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(target_os = "linux")))]
 mod print_unix_dialog;
-#[cfg(any(target_os = "linux", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(target_os = "linux")))]
+#[cfg(any(target_os = "linux", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(target_os = "linux")))]
 pub use self::print_unix_dialog::PrintUnixDialog;
 
-#[cfg(any(target_os = "linux", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(target_os = "linux")))]
+#[cfg(any(target_os = "linux", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(target_os = "linux")))]
 mod printer;
-#[cfg(any(target_os = "linux", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(target_os = "linux")))]
+#[cfg(any(target_os = "linux", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(target_os = "linux")))]
 pub use self::printer::Printer;
 
 mod progress_bar;
@@ -898,11 +898,11 @@ pub use self::style_provider::StyleProvider;
 mod switch;
 pub use self::switch::Switch;
 
-#[cfg(any(feature = "v4_6", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+#[cfg(any(feature = "v4_6", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
 mod symbolic_paintable;
-#[cfg(any(feature = "v4_6", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+#[cfg(any(feature = "v4_6", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
 pub use self::symbolic_paintable::SymbolicPaintable;
 
 mod text;
@@ -994,11 +994,11 @@ mod tree_view_column;
 #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 pub use self::tree_view_column::TreeViewColumn;
 
-#[cfg(any(feature = "v4_10", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+#[cfg(any(feature = "v4_10", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 mod uri_launcher;
-#[cfg(any(feature = "v4_10", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+#[cfg(any(feature = "v4_10", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 pub use self::uri_launcher::UriLauncher;
 
 mod video;
@@ -1060,8 +1060,8 @@ pub use self::tree_row_reference::TreeRowReference;
 mod enums;
 pub use self::enums::AccessibleAutocomplete;
 pub use self::enums::AccessibleInvalidState;
-#[cfg(any(feature = "v4_10", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+#[cfg(any(feature = "v4_10", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 pub use self::enums::AccessiblePlatformState;
 pub use self::enums::AccessibleProperty;
 pub use self::enums::AccessibleRelation;
@@ -1078,22 +1078,22 @@ pub use self::enums::BuilderError;
 pub use self::enums::ButtonsType;
 pub use self::enums::CellRendererAccelMode;
 pub use self::enums::CellRendererMode;
-#[cfg(any(feature = "v4_10", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+#[cfg(any(feature = "v4_10", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 pub use self::enums::Collation;
 pub use self::enums::ConstraintAttribute;
 pub use self::enums::ConstraintRelation;
 pub use self::enums::ConstraintStrength;
 pub use self::enums::ConstraintVflParserError;
-#[cfg(any(feature = "v4_8", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+#[cfg(any(feature = "v4_8", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
 pub use self::enums::ContentFit;
 pub use self::enums::CornerType;
 pub use self::enums::CssParserError;
 pub use self::enums::CssParserWarning;
 pub use self::enums::DeleteType;
-#[cfg(any(feature = "v4_10", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+#[cfg(any(feature = "v4_10", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 pub use self::enums::DialogError;
 pub use self::enums::DirectionType;
 pub use self::enums::EditableProperties;
@@ -1103,27 +1103,27 @@ pub use self::enums::FileChooserAction;
 pub use self::enums::FileChooserError;
 pub use self::enums::FilterChange;
 pub use self::enums::FilterMatch;
-#[cfg(any(feature = "v4_10", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+#[cfg(any(feature = "v4_10", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 pub use self::enums::FontLevel;
 pub use self::enums::IconSize;
 pub use self::enums::IconThemeError;
 pub use self::enums::IconViewDropPosition;
 pub use self::enums::ImageType;
 pub use self::enums::InputPurpose;
-#[cfg(any(feature = "v4_8", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+#[cfg(any(feature = "v4_8", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
 pub use self::enums::InscriptionOverflow;
 pub use self::enums::Justification;
 pub use self::enums::LevelBarMode;
 pub use self::enums::License;
-#[cfg(any(feature = "v4_12", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_12")))]
+#[cfg(any(feature = "v4_12", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
 pub use self::enums::ListTabBehavior;
 pub use self::enums::MessageType;
 pub use self::enums::MovementStep;
-#[cfg(any(feature = "v4_6", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+#[cfg(any(feature = "v4_6", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
 pub use self::enums::NaturalWrapMode;
 pub use self::enums::NotebookTab;
 pub use self::enums::NumberUpLayout;
@@ -1164,8 +1164,8 @@ pub use self::enums::SpinButtonUpdatePolicy;
 pub use self::enums::SpinType;
 pub use self::enums::StackTransitionType;
 pub use self::enums::StringFilterMatchMode;
-#[cfg(any(feature = "v4_6", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+#[cfg(any(feature = "v4_6", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
 pub use self::enums::SymbolicColor;
 pub use self::enums::SystemSetting;
 pub use self::enums::TextDirection;
@@ -1190,8 +1190,8 @@ pub use self::flags::IconLookupFlags;
 pub use self::flags::InputHints;
 pub use self::flags::PickFlags;
 pub use self::flags::PopoverMenuFlags;
-#[cfg(any(target_os = "linux", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(target_os = "linux")))]
+#[cfg(any(target_os = "linux", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(target_os = "linux")))]
 pub use self::flags::PrintCapabilities;
 pub use self::flags::ShortcutActionFlags;
 pub use self::flags::StateFlags;
@@ -1253,8 +1253,8 @@ pub use self::constants::PRINT_SETTINGS_WIN32_DRIVER_VERSION;
 #[doc(hidden)]
 pub mod traits {
     pub use super::accessible::AccessibleExt;
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub use super::accessible_range::AccessibleRangeExt;
     pub use super::actionable::ActionableExt;
     pub use super::adjustment::AdjustmentExt;
@@ -1335,8 +1335,8 @@ pub mod traits {
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     pub use super::style_context::StyleContextExt;
     pub use super::style_provider::StyleProviderExt;
-    #[cfg(any(feature = "v4_6", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    #[cfg(any(feature = "v4_6", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     pub use super::symbolic_paintable::SymbolicPaintableExt;
     pub use super::text_buffer::TextBufferExt;
     pub use super::text_child_anchor::TextChildAnchorExt;
@@ -1367,8 +1367,8 @@ pub mod builders {
     pub use super::about_dialog::AboutDialogBuilder;
     pub use super::action_bar::ActionBarBuilder;
     pub use super::adjustment::AdjustmentBuilder;
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub use super::alert_dialog::AlertDialogBuilder;
     pub use super::alternative_trigger::AlternativeTriggerBuilder;
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
@@ -1413,16 +1413,16 @@ pub mod builders {
     pub use super::color_chooser_dialog::ColorChooserDialogBuilder;
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     pub use super::color_chooser_widget::ColorChooserWidgetBuilder;
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub use super::color_dialog::ColorDialogBuilder;
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub use super::color_dialog_button::ColorDialogButtonBuilder;
     pub use super::column_view::ColumnViewBuilder;
     pub use super::column_view_column::ColumnViewColumnBuilder;
-    #[cfg(any(feature = "v4_12", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_12")))]
+    #[cfg(any(feature = "v4_12", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
     pub use super::column_view_row::ColumnViewRowBuilder;
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     pub use super::combo_box::ComboBoxBuilder;
@@ -1456,8 +1456,8 @@ pub mod builders {
     pub use super::file_chooser_native::FileChooserNativeBuilder;
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     pub use super::file_chooser_widget::FileChooserWidgetBuilder;
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub use super::file_dialog::FileDialogBuilder;
     pub use super::filter_list_model::FilterListModelBuilder;
     pub use super::fixed::FixedBuilder;
@@ -1469,11 +1469,11 @@ pub mod builders {
     pub use super::font_chooser_dialog::FontChooserDialogBuilder;
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     pub use super::font_chooser_widget::FontChooserWidgetBuilder;
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub use super::font_dialog::FontDialogBuilder;
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub use super::font_dialog_button::FontDialogButtonBuilder;
     pub use super::frame::FrameBuilder;
     pub use super::gesture_click::GestureClickBuilder;
@@ -1497,8 +1497,8 @@ pub mod builders {
     pub use super::image::ImageBuilder;
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     pub use super::info_bar::InfoBarBuilder;
-    #[cfg(any(feature = "v4_8", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+    #[cfg(any(feature = "v4_8", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
     pub use super::inscription::InscriptionBuilder;
     pub use super::label::LabelBuilder;
     pub use super::level_bar::LevelBarBuilder;
@@ -1517,21 +1517,21 @@ pub mod builders {
     pub use super::numeric_sorter::NumericSorterBuilder;
     pub use super::overlay::OverlayBuilder;
     pub use super::pad_controller::PadControllerBuilder;
-    #[cfg(any(target_os = "linux", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(target_os = "linux")))]
+    #[cfg(any(target_os = "linux", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(target_os = "linux")))]
     pub use super::page_setup_unix_dialog::PageSetupUnixDialogBuilder;
     pub use super::paned::PanedBuilder;
     pub use super::password_entry::PasswordEntryBuilder;
-    #[cfg(any(feature = "v4_4", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_4")))]
+    #[cfg(any(feature = "v4_4", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_4")))]
     pub use super::password_entry_buffer::PasswordEntryBufferBuilder;
     pub use super::picture::PictureBuilder;
     pub use super::popover::PopoverBuilder;
     pub use super::popover_menu::PopoverMenuBuilder;
     pub use super::popover_menu_bar::PopoverMenuBarBuilder;
     pub use super::print_operation::PrintOperationBuilder;
-    #[cfg(any(target_os = "linux", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(target_os = "linux")))]
+    #[cfg(any(target_os = "linux", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(target_os = "linux")))]
     pub use super::print_unix_dialog::PrintUnixDialogBuilder;
     pub use super::progress_bar::ProgressBarBuilder;
     pub use super::revealer::RevealerBuilder;
@@ -1573,8 +1573,8 @@ pub mod builders {
     pub use super::tree_view::TreeViewBuilder;
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     pub use super::tree_view_column::TreeViewColumnBuilder;
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub use super::uri_launcher::UriLauncherBuilder;
     pub use super::video::VideoBuilder;
     pub use super::viewport::ViewportBuilder;

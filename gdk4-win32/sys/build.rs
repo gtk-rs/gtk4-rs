@@ -2,13 +2,13 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-#[cfg(not(feature = "dox"))]
+#[cfg(not(docsrs))]
 use std::process;
 
-#[cfg(feature = "dox")]
+#[cfg(docsrs)]
 fn main() {} // prevent linking libraries to avoid documentation failure
 
-#[cfg(not(feature = "dox"))]
+#[cfg(not(docsrs))]
 fn main() {
     if let Err(s) = system_deps::Config::new().probe() {
         println!("cargo:warning={s}");

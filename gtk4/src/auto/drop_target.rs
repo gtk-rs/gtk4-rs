@@ -46,8 +46,8 @@ impl DropTarget {
         unsafe { from_glib(ffi::gtk_drop_target_get_actions(self.to_glib_none().0)) }
     }
 
-    #[cfg(any(feature = "v4_4", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_4")))]
+    #[cfg(any(feature = "v4_4", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_4")))]
     #[doc(alias = "gtk_drop_target_get_current_drop")]
     #[doc(alias = "get_current_drop")]
     pub fn current_drop(&self) -> Option<gdk::Drop> {
@@ -230,8 +230,8 @@ impl DropTarget {
         }
     }
 
-    #[cfg(any(feature = "v4_4", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_4")))]
+    #[cfg(any(feature = "v4_4", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_4")))]
     #[doc(alias = "current-drop")]
     pub fn connect_current_drop_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_current_drop_trampoline<F: Fn(&DropTarget) + 'static>(

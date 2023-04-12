@@ -2,8 +2,8 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-#[cfg(any(feature = "v4_10", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+#[cfg(any(feature = "v4_10", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 use crate::MemoryFormat;
 use crate::Paintable;
 use glib::{prelude::*, translate::*};
@@ -28,8 +28,8 @@ impl Texture {
         unsafe { from_glib_full(ffi::gdk_texture_new_for_pixbuf(pixbuf.to_glib_none().0)) }
     }
 
-    #[cfg(any(feature = "v4_6", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    #[cfg(any(feature = "v4_6", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     #[doc(alias = "gdk_texture_new_from_bytes")]
     #[doc(alias = "new_from_bytes")]
     pub fn from_bytes(bytes: &glib::Bytes) -> Result<Texture, glib::Error> {
@@ -60,8 +60,8 @@ impl Texture {
         }
     }
 
-    #[cfg(any(feature = "v4_6", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    #[cfg(any(feature = "v4_6", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     #[doc(alias = "gdk_texture_new_from_filename")]
     #[doc(alias = "new_from_filename")]
     pub fn from_filename(path: impl AsRef<std::path::Path>) -> Result<Texture, glib::Error> {
@@ -94,8 +94,8 @@ unsafe impl Send for Texture {}
 unsafe impl Sync for Texture {}
 
 pub trait TextureExt: 'static {
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     #[doc(alias = "gdk_texture_get_format")]
     #[doc(alias = "get_format")]
     fn format(&self) -> MemoryFormat;
@@ -114,28 +114,28 @@ pub trait TextureExt: 'static {
         filename: impl AsRef<std::path::Path>,
     ) -> Result<(), glib::error::BoolError>;
 
-    #[cfg(any(feature = "v4_6", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    #[cfg(any(feature = "v4_6", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     #[doc(alias = "gdk_texture_save_to_png_bytes")]
     fn save_to_png_bytes(&self) -> glib::Bytes;
 
-    #[cfg(any(feature = "v4_6", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    #[cfg(any(feature = "v4_6", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     #[doc(alias = "gdk_texture_save_to_tiff")]
     fn save_to_tiff(
         &self,
         filename: impl AsRef<std::path::Path>,
     ) -> Result<(), glib::error::BoolError>;
 
-    #[cfg(any(feature = "v4_6", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    #[cfg(any(feature = "v4_6", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     #[doc(alias = "gdk_texture_save_to_tiff_bytes")]
     fn save_to_tiff_bytes(&self) -> glib::Bytes;
 }
 
 impl<O: IsA<Texture>> TextureExt for O {
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     fn format(&self) -> MemoryFormat {
         unsafe { from_glib(ffi::gdk_texture_get_format(self.as_ref().to_glib_none().0)) }
     }
@@ -163,8 +163,8 @@ impl<O: IsA<Texture>> TextureExt for O {
         }
     }
 
-    #[cfg(any(feature = "v4_6", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    #[cfg(any(feature = "v4_6", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     fn save_to_png_bytes(&self) -> glib::Bytes {
         unsafe {
             from_glib_full(ffi::gdk_texture_save_to_png_bytes(
@@ -173,8 +173,8 @@ impl<O: IsA<Texture>> TextureExt for O {
         }
     }
 
-    #[cfg(any(feature = "v4_6", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    #[cfg(any(feature = "v4_6", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     fn save_to_tiff(
         &self,
         filename: impl AsRef<std::path::Path>,
@@ -190,8 +190,8 @@ impl<O: IsA<Texture>> TextureExt for O {
         }
     }
 
-    #[cfg(any(feature = "v4_6", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    #[cfg(any(feature = "v4_6", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     fn save_to_tiff_bytes(&self) -> glib::Bytes {
         unsafe {
             from_glib_full(ffi::gdk_texture_save_to_tiff_bytes(

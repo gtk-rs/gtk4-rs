@@ -1,12 +1,12 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
 use crate::{prelude::*, WaylandSurface};
-#[cfg(any(feature = "wayland_crate", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "wayland_crate")))]
+#[cfg(any(feature = "wayland_crate", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "wayland_crate")))]
 use glib::translate::*;
 
-#[cfg(any(feature = "wayland_crate", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "wayland_crate")))]
+#[cfg(any(feature = "wayland_crate", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "wayland_crate")))]
 use wayland_client::{backend::ObjectId, protocol::wl_surface::WlSurface, Proxy};
 
 // rustdoc-stripper-ignore-next
@@ -14,14 +14,14 @@ use wayland_client::{backend::ObjectId, protocol::wl_surface::WlSurface, Proxy};
 pub trait WaylandSurfaceExtManual: 'static {
     #[doc(alias = "gdk_wayland_surface_get_wl_surface")]
     #[doc(alias = "get_wl_surface")]
-    #[cfg(any(feature = "wayland_crate", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "wayland_crate")))]
+    #[cfg(any(feature = "wayland_crate", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "wayland_crate")))]
     fn wl_surface(&self) -> Option<WlSurface>;
 }
 
 impl<O: IsA<WaylandSurface>> WaylandSurfaceExtManual for O {
-    #[cfg(any(feature = "wayland_crate", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "wayland_crate")))]
+    #[cfg(any(feature = "wayland_crate", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "wayland_crate")))]
     fn wl_surface(&self) -> Option<WlSurface> {
         let display = self
             .as_ref()

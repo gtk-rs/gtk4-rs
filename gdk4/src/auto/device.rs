@@ -87,8 +87,8 @@ pub trait DeviceExt: 'static {
     #[doc(alias = "get_surface_at_position")]
     fn surface_at_position(&self) -> (Option<Surface>, f64, f64);
 
-    #[cfg(any(feature = "v4_2", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_2")))]
+    #[cfg(any(feature = "v4_2", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_2")))]
     #[doc(alias = "gdk_device_get_timestamp")]
     #[doc(alias = "get_timestamp")]
     fn timestamp(&self) -> u32;
@@ -237,8 +237,8 @@ impl<O: IsA<Device>> DeviceExt for O {
         }
     }
 
-    #[cfg(any(feature = "v4_2", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_2")))]
+    #[cfg(any(feature = "v4_2", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_2")))]
     fn timestamp(&self) -> u32 {
         unsafe { ffi::gdk_device_get_timestamp(self.as_ref().to_glib_none().0) }
     }

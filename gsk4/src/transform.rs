@@ -86,8 +86,8 @@ impl Transform {
         }
     }
 
-    #[cfg(any(feature = "v4_6", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    #[cfg(any(feature = "v4_6", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     #[doc(alias = "gsk_transform_skew")]
     #[must_use]
     pub fn skew(self, skew_x: f32, skew_y: f32) -> Self {

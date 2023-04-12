@@ -14,7 +14,7 @@ version = "0.7.0"
 rust-version = "1.64"
 
 [package.metadata.docs.rs]
-features = ["dox"]
+features = []
 
 [package.metadata.system-deps.gtk4]
 name = "gtk4"
@@ -42,7 +42,6 @@ version = "4.11"
 name = "gtk4_sys"
 
 [features]
-dox = ["glib/dox", "gobject/dox", "gio/dox", "gdk_pixbuf/dox", "pango/dox", "cairo/dox", "graphene/dox", "gdk/dox", "gsk/dox"]
 v4_2 = []
 v4_4 = ["v4_2"]
 v4_6 = ["v4_4"]

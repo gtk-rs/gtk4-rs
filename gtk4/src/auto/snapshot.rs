@@ -118,8 +118,8 @@ pub trait SnapshotExt: 'static {
         stops: &[gsk::ColorStop],
     );
 
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     #[doc(alias = "gtk_snapshot_append_scaled_texture")]
     fn append_scaled_texture(
         &self,
@@ -163,8 +163,8 @@ pub trait SnapshotExt: 'static {
         take_args: glib::Bytes,
     );
 
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     #[doc(alias = "gtk_snapshot_push_mask")]
     fn push_mask(&self, mask_mode: gsk::MaskMode);
 
@@ -472,8 +472,8 @@ impl<O: IsA<Snapshot>> SnapshotExt for O {
         }
     }
 
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     fn append_scaled_texture(
         &self,
         texture: &impl IsA<gdk::Texture>,
@@ -568,8 +568,8 @@ impl<O: IsA<Snapshot>> SnapshotExt for O {
         }
     }
 
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     fn push_mask(&self, mask_mode: gsk::MaskMode) {
         unsafe {
             ffi::gtk_snapshot_push_mask(self.as_ref().to_glib_none().0, mask_mode.into_glib());

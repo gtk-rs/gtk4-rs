@@ -3,8 +3,8 @@
 // DO NOT EDIT
 
 use crate::ScrollDirection;
-#[cfg(any(feature = "v4_8", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+#[cfg(any(feature = "v4_8", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
 use crate::ScrollUnit;
 use glib::translate::*;
 use std::{fmt, mem};
@@ -47,8 +47,8 @@ impl ScrollEvent {
         unsafe { from_glib(ffi::gdk_scroll_event_get_direction(self.to_glib_none().0)) }
     }
 
-    #[cfg(any(feature = "v4_8", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+    #[cfg(any(feature = "v4_8", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
     #[doc(alias = "gdk_scroll_event_get_unit")]
     #[doc(alias = "get_unit")]
     pub fn unit(&self) -> ScrollUnit {

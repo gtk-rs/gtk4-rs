@@ -111,18 +111,18 @@ pub trait MediaStreamExt: 'static {
     #[doc(alias = "gtk_media_stream_set_volume")]
     fn set_volume(&self, volume: f64);
 
-    #[cfg(any(feature = "v4_4", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_4")))]
+    #[cfg(any(feature = "v4_4", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_4")))]
     #[doc(alias = "gtk_media_stream_stream_ended")]
     fn stream_ended(&self);
 
-    #[cfg(any(feature = "v4_4", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_4")))]
+    #[cfg(any(feature = "v4_4", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_4")))]
     #[doc(alias = "gtk_media_stream_stream_prepared")]
     fn stream_prepared(&self, has_audio: bool, has_video: bool, seekable: bool, duration: i64);
 
-    #[cfg(any(feature = "v4_4", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_4")))]
+    #[cfg(any(feature = "v4_4", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_4")))]
     #[doc(alias = "gtk_media_stream_stream_unprepared")]
     fn stream_unprepared(&self);
 
@@ -355,16 +355,16 @@ impl<O: IsA<MediaStream>> MediaStreamExt for O {
         }
     }
 
-    #[cfg(any(feature = "v4_4", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_4")))]
+    #[cfg(any(feature = "v4_4", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_4")))]
     fn stream_ended(&self) {
         unsafe {
             ffi::gtk_media_stream_stream_ended(self.as_ref().to_glib_none().0);
         }
     }
 
-    #[cfg(any(feature = "v4_4", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_4")))]
+    #[cfg(any(feature = "v4_4", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_4")))]
     fn stream_prepared(&self, has_audio: bool, has_video: bool, seekable: bool, duration: i64) {
         unsafe {
             ffi::gtk_media_stream_stream_prepared(
@@ -377,8 +377,8 @@ impl<O: IsA<MediaStream>> MediaStreamExt for O {
         }
     }
 
-    #[cfg(any(feature = "v4_4", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_4")))]
+    #[cfg(any(feature = "v4_4", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_4")))]
     fn stream_unprepared(&self) {
         unsafe {
             ffi::gtk_media_stream_stream_unprepared(self.as_ref().to_glib_none().0);

@@ -1,19 +1,19 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
 use crate::WaylandMonitor;
-#[cfg(any(feature = "wayland_crate", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "wayland_crate")))]
+#[cfg(any(feature = "wayland_crate", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "wayland_crate")))]
 use {crate::prelude::*, glib::translate::*};
 
-#[cfg(any(feature = "wayland_crate", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "wayland_crate")))]
+#[cfg(any(feature = "wayland_crate", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "wayland_crate")))]
 use wayland_client::{backend::ObjectId, protocol::wl_output::WlOutput, Proxy};
 
 impl WaylandMonitor {
     #[doc(alias = "gdk_wayland_monitor_get_wl_output")]
     #[doc(alias = "get_wl_output")]
-    #[cfg(any(feature = "wayland_crate", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "wayland_crate")))]
+    #[cfg(any(feature = "wayland_crate", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "wayland_crate")))]
     pub fn wl_output(&self) -> Option<WlOutput> {
         let display = self.display().downcast::<crate::WaylandDisplay>().unwrap();
         unsafe {

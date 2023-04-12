@@ -14,7 +14,7 @@ rust-version = "1.64"
 build = "build.rs"
 
 [package.metadata.docs.rs]
-features = ["dox"]
+rustdoc-args = ["--cfg", "docsrs"]
 
 [package.metadata.system-deps.gtk4_win32]
 name = "gtk4-win32"
@@ -22,7 +22,6 @@ version = "4"
 
 [features]
 v4_4 = ["ffi/v4_4"]
-dox = ["ffi/dox", "gdk/dox", "gio/dox", "glib/dox", "egl", "win32"]
 egl = ["khronos-egl"]
 win32 = ["windows"]
 

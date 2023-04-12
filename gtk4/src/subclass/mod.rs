@@ -14,11 +14,11 @@ impl<T, F: Fn(*mut T) + 'static> Drop for PtrHolder<T, F> {
     }
 }
 
-#[cfg(any(feature = "v4_10", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+#[cfg(any(feature = "v4_10", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 pub mod accessible;
-#[cfg(any(feature = "v4_10", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+#[cfg(any(feature = "v4_10", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 pub mod accessible_range;
 pub mod actionable;
 pub mod adjustment;
@@ -72,8 +72,8 @@ pub mod selection_model;
 pub mod shortcut_manager;
 pub mod sorter;
 pub mod style_context;
-#[cfg(any(feature = "v4_6", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+#[cfg(any(feature = "v4_6", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
 pub mod symbolic_paintable;
 pub mod text_buffer;
 pub mod text_view;
@@ -95,11 +95,11 @@ pub mod prelude {
     #[doc(hidden)]
     pub use glib::subclass::prelude::*;
 
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub use super::accessible::{AccessibleImpl, AccessibleImplExt};
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub use super::accessible_range::{AccessibleRangeImpl, AccessibleRangeImplExt};
     pub use super::actionable::{ActionableImpl, ActionableImplExt};
     pub use super::adjustment::{AdjustmentImpl, AdjustmentImplExt};
@@ -153,8 +153,8 @@ pub mod prelude {
     pub use super::shortcut_manager::{ShortcutManagerImpl, ShortcutManagerImplExt};
     pub use super::sorter::{SorterImpl, SorterImplExt};
     pub use super::style_context::{StyleContextImpl, StyleContextImplExt};
-    #[cfg(any(feature = "v4_6", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    #[cfg(any(feature = "v4_6", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     pub use super::symbolic_paintable::{SymbolicPaintableImpl, SymbolicPaintableImplExt};
     pub use super::text_buffer::{TextBufferImpl, TextBufferImplExt};
     pub use super::text_view::{TextViewImpl, TextViewImplExt};

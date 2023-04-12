@@ -51,8 +51,8 @@ impl X11Display {
         }
     }
 
-    #[cfg(any(feature = "v4_4", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_4")))]
+    #[cfg(any(feature = "v4_4", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_4")))]
     #[doc(alias = "gdk_x11_display_get_egl_version")]
     #[doc(alias = "get_egl_version")]
     pub fn egl_version(&self) -> Option<(i32, i32)> {

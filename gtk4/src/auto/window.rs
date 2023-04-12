@@ -186,8 +186,8 @@ impl WindowBuilder {
         }
     }
 
-    #[cfg(any(feature = "v4_2", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_2")))]
+    #[cfg(any(feature = "v4_2", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_2")))]
     pub fn handle_menubar_accel(self, handle_menubar_accel: bool) -> Self {
         Self {
             builder: self
@@ -246,8 +246,8 @@ impl WindowBuilder {
         }
     }
 
-    #[cfg(any(feature = "v4_6", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    #[cfg(any(feature = "v4_6", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     pub fn titlebar(self, titlebar: &impl IsA<Widget>) -> Self {
         Self {
             builder: self.builder.property("titlebar", titlebar.clone().upcast()),
@@ -507,8 +507,8 @@ pub trait GtkWindowExt: 'static {
     #[doc(alias = "get_group")]
     fn group(&self) -> WindowGroup;
 
-    #[cfg(any(feature = "v4_2", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_2")))]
+    #[cfg(any(feature = "v4_2", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_2")))]
     #[doc(alias = "gtk_window_get_handle_menubar_accel")]
     #[doc(alias = "get_handle_menubar_accel")]
     fn is_handle_menubar_accel(&self) -> bool;
@@ -600,8 +600,8 @@ pub trait GtkWindowExt: 'static {
     #[doc(alias = "gtk_window_set_focus_visible")]
     fn set_focus_visible(&self, setting: bool);
 
-    #[cfg(any(feature = "v4_2", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_2")))]
+    #[cfg(any(feature = "v4_2", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_2")))]
     #[doc(alias = "gtk_window_set_handle_menubar_accel")]
     fn set_handle_menubar_accel(&self, handle_menubar_accel: bool);
 
@@ -729,8 +729,8 @@ pub trait GtkWindowExt: 'static {
     #[doc(alias = "fullscreened")]
     fn connect_fullscreened_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    #[cfg(any(feature = "v4_2", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_2")))]
+    #[cfg(any(feature = "v4_2", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_2")))]
     #[doc(alias = "handle-menubar-accel")]
     fn connect_handle_menubar_accel_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
@@ -761,8 +761,8 @@ pub trait GtkWindowExt: 'static {
     #[doc(alias = "title")]
     fn connect_title_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    #[cfg(any(feature = "v4_6", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    #[cfg(any(feature = "v4_6", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     #[doc(alias = "titlebar")]
     fn connect_titlebar_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
@@ -871,8 +871,8 @@ impl<O: IsA<Window>> GtkWindowExt for O {
         unsafe { from_glib_none(ffi::gtk_window_get_group(self.as_ref().to_glib_none().0)) }
     }
 
-    #[cfg(any(feature = "v4_2", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_2")))]
+    #[cfg(any(feature = "v4_2", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_2")))]
     fn is_handle_menubar_accel(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_window_get_handle_menubar_accel(
@@ -1055,8 +1055,8 @@ impl<O: IsA<Window>> GtkWindowExt for O {
         }
     }
 
-    #[cfg(any(feature = "v4_2", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_2")))]
+    #[cfg(any(feature = "v4_2", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_2")))]
     fn set_handle_menubar_accel(&self, handle_menubar_accel: bool) {
         unsafe {
             ffi::gtk_window_set_handle_menubar_accel(
@@ -1599,8 +1599,8 @@ impl<O: IsA<Window>> GtkWindowExt for O {
         }
     }
 
-    #[cfg(any(feature = "v4_2", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_2")))]
+    #[cfg(any(feature = "v4_2", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_2")))]
     fn connect_handle_menubar_accel_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_handle_menubar_accel_trampoline<
             P: IsA<Window>,
@@ -1830,8 +1830,8 @@ impl<O: IsA<Window>> GtkWindowExt for O {
         }
     }
 
-    #[cfg(any(feature = "v4_6", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    #[cfg(any(feature = "v4_6", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     fn connect_titlebar_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_titlebar_trampoline<P: IsA<Window>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkWindow,

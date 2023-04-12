@@ -2,8 +2,8 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-#[cfg(any(feature = "v4_6", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+#[cfg(any(feature = "v4_6", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
 use crate::NaturalWrapMode;
 use crate::{
     Accessible, AccessibleRole, Align, Buildable, ConstraintTarget, Justification, LayoutManager,
@@ -125,8 +125,8 @@ impl Label {
         unsafe { from_glib_none(ffi::gtk_label_get_mnemonic_widget(self.to_glib_none().0)) }
     }
 
-    #[cfg(any(feature = "v4_6", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    #[cfg(any(feature = "v4_6", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     #[doc(alias = "gtk_label_get_natural_wrap_mode")]
     #[doc(alias = "get_natural_wrap_mode")]
     pub fn natural_wrap_mode(&self) -> NaturalWrapMode {
@@ -164,8 +164,8 @@ impl Label {
         unsafe { from_glib(ffi::gtk_label_get_single_line_mode(self.to_glib_none().0)) }
     }
 
-    #[cfg(any(feature = "v4_8", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+    #[cfg(any(feature = "v4_8", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
     #[doc(alias = "gtk_label_get_tabs")]
     #[doc(alias = "get_tabs")]
     pub fn tabs(&self) -> Option<pango::TabArray> {
@@ -303,8 +303,8 @@ impl Label {
         }
     }
 
-    #[cfg(any(feature = "v4_6", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    #[cfg(any(feature = "v4_6", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     #[doc(alias = "gtk_label_set_natural_wrap_mode")]
     pub fn set_natural_wrap_mode(&self, wrap_mode: NaturalWrapMode) {
         unsafe {
@@ -329,8 +329,8 @@ impl Label {
         }
     }
 
-    #[cfg(any(feature = "v4_8", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+    #[cfg(any(feature = "v4_8", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
     #[doc(alias = "gtk_label_set_tabs")]
     pub fn set_tabs(&self, tabs: Option<&pango::TabArray>) {
         unsafe {
@@ -731,8 +731,8 @@ impl Label {
         }
     }
 
-    #[cfg(any(feature = "v4_6", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    #[cfg(any(feature = "v4_6", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     #[doc(alias = "natural-wrap-mode")]
     pub fn connect_natural_wrap_mode_notify<F: Fn(&Self) + 'static>(
         &self,
@@ -805,8 +805,8 @@ impl Label {
         }
     }
 
-    #[cfg(any(feature = "v4_8", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+    #[cfg(any(feature = "v4_8", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
     #[doc(alias = "tabs")]
     pub fn connect_tabs_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_tabs_trampoline<F: Fn(&Label) + 'static>(
@@ -1066,8 +1066,8 @@ impl LabelBuilder {
         }
     }
 
-    #[cfg(any(feature = "v4_6", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    #[cfg(any(feature = "v4_6", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     pub fn natural_wrap_mode(self, natural_wrap_mode: NaturalWrapMode) -> Self {
         Self {
             builder: self
@@ -1088,8 +1088,8 @@ impl LabelBuilder {
         }
     }
 
-    #[cfg(any(feature = "v4_8", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+    #[cfg(any(feature = "v4_8", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
     pub fn tabs(self, tabs: &pango::TabArray) -> Self {
         Self {
             builder: self.builder.property("tabs", tabs),

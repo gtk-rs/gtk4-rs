@@ -9,7 +9,7 @@
     clippy::unreadable_literal,
     clippy::upper_case_acronyms
 )]
-#![cfg_attr(feature = "dox", feature(doc_cfg))]
+#![cfg_attr(docsrs, feature(doc_cfg))]
 
 #[allow(unused_imports)]
 use libc::{
@@ -181,16 +181,16 @@ extern "C" {
     pub fn gdk_wayland_device_get_wl_keyboard(device: *mut GdkWaylandDevice) -> gpointer;
     pub fn gdk_wayland_device_get_wl_pointer(device: *mut GdkWaylandDevice) -> gpointer;
     pub fn gdk_wayland_device_get_wl_seat(device: *mut GdkWaylandDevice) -> gpointer;
-    #[cfg(any(feature = "v4_4", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_4")))]
+    #[cfg(any(feature = "v4_4", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_4")))]
     pub fn gdk_wayland_device_get_xkb_keymap(device: *mut GdkWaylandDevice) -> gpointer;
 
     //=========================================================================
     // GdkWaylandDisplay
     //=========================================================================
     pub fn gdk_wayland_display_get_type() -> GType;
-    #[cfg(any(feature = "v4_4", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_4")))]
+    #[cfg(any(feature = "v4_4", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_4")))]
     pub fn gdk_wayland_display_get_egl_display(display: *mut GdkWaylandDisplay) -> gpointer;
     pub fn gdk_wayland_display_get_startup_notification_id(
         display: *mut GdkWaylandDisplay,

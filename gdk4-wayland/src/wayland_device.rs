@@ -1,36 +1,33 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-#[cfg(any(feature = "wayland_crate", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "wayland_crate")))]
+#[cfg(any(feature = "wayland_crate", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "wayland_crate")))]
 use crate::prelude::*;
 use crate::WaylandDevice;
-#[cfg(any(feature = "wayland_crate", feature = "dox", feature = "xkb_crate"))]
+#[cfg(any(feature = "wayland_crate", docsrs, feature = "xkb_crate"))]
 #[cfg_attr(
-    feature = "dox",
+    docsrs,
     doc(cfg(any(feature = "wayland_crate", feature = "xkb_crate")))
 )]
 use glib::translate::*;
 
-#[cfg(any(feature = "wayland_crate", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "wayland_crate")))]
+#[cfg(any(feature = "wayland_crate", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "wayland_crate")))]
 use wayland_client::{
     backend::ObjectId,
     protocol::{wl_keyboard::WlKeyboard, wl_pointer::WlPointer, wl_seat::WlSeat},
     Proxy,
 };
 
-#[cfg(any(all(feature = "v4_4", feature = "xkb_crate"), feature = "dox"))]
-#[cfg_attr(
-    feature = "dox",
-    doc(cfg(all(feature = "v4_4", feature = "xkb_crate")))
-)]
+#[cfg(any(all(feature = "v4_4", feature = "xkb_crate"), docsrs))]
+#[cfg_attr(docsrs, doc(cfg(all(feature = "v4_4", feature = "xkb_crate"))))]
 use xkb::Keymap;
 
 impl WaylandDevice {
     #[doc(alias = "gdk_wayland_device_get_wl_keyboard")]
     #[doc(alias = "get_wl_keyboard")]
-    #[cfg(any(feature = "wayland_crate", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "wayland_crate")))]
+    #[cfg(any(feature = "wayland_crate", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "wayland_crate")))]
     pub fn wl_keyboard(&self) -> Option<WlKeyboard> {
         let display = self.display().downcast::<crate::WaylandDisplay>().unwrap();
         unsafe {
@@ -49,8 +46,8 @@ impl WaylandDevice {
 
     #[doc(alias = "gdk_wayland_device_get_wl_pointer")]
     #[doc(alias = "get_wl_pointer")]
-    #[cfg(any(feature = "wayland_crate", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "wayland_crate")))]
+    #[cfg(any(feature = "wayland_crate", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "wayland_crate")))]
     pub fn wl_pointer(&self) -> Option<WlPointer> {
         let display = self.display().downcast::<crate::WaylandDisplay>().unwrap();
         unsafe {
@@ -68,8 +65,8 @@ impl WaylandDevice {
 
     #[doc(alias = "gdk_wayland_device_get_wl_seat")]
     #[doc(alias = "get_wl_seat")]
-    #[cfg(any(feature = "wayland_crate", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "wayland_crate")))]
+    #[cfg(any(feature = "wayland_crate", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "wayland_crate")))]
     pub fn wl_seat(&self) -> Option<WlSeat> {
         let display = self.display().downcast::<crate::WaylandDisplay>().unwrap();
         unsafe {
@@ -85,11 +82,8 @@ impl WaylandDevice {
         }
     }
 
-    #[cfg(any(all(feature = "v4_4", feature = "xkb_crate"), feature = "dox"))]
-    #[cfg_attr(
-        feature = "dox",
-        doc(cfg(all(feature = "v4_4", feature = "xkb_crate")))
-    )]
+    #[cfg(any(all(feature = "v4_4", feature = "xkb_crate"), docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(all(feature = "v4_4", feature = "xkb_crate"))))]
     #[doc(alias = "gdk_wayland_device_get_xkb_keymap")]
     #[doc(alias = "get_xkb_keymap")]
     pub fn xkb_keymap(&self) -> Option<Keymap> {

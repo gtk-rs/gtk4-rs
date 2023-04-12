@@ -3,8 +3,8 @@
 // DO NOT EDIT
 #![allow(deprecated)]
 
-#[cfg(any(feature = "v4_6", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+#[cfg(any(feature = "v4_6", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
 use crate::GLContext;
 use crate::{AppLaunchContext, Clipboard, Device, Event, Monitor, Seat, Surface};
 use glib::{
@@ -12,8 +12,8 @@ use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
-#[cfg(any(feature = "v4_4", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_4")))]
+#[cfg(any(feature = "v4_4", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_4")))]
 use std::ptr;
 use std::{boxed::Box as Box_, fmt, mem::transmute};
 
@@ -58,8 +58,8 @@ pub trait DisplayExt: 'static {
     #[doc(alias = "gdk_display_close")]
     fn close(&self);
 
-    #[cfg(any(feature = "v4_6", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    #[cfg(any(feature = "v4_6", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     #[doc(alias = "gdk_display_create_gl_context")]
     fn create_gl_context(&self) -> Result<GLContext, glib::Error>;
 
@@ -120,8 +120,8 @@ pub trait DisplayExt: 'static {
     #[doc(alias = "gdk_display_notify_startup_complete")]
     fn notify_startup_complete(&self, startup_id: &str);
 
-    #[cfg(any(feature = "v4_4", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_4")))]
+    #[cfg(any(feature = "v4_4", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_4")))]
     #[doc(alias = "gdk_display_prepare_gl")]
     fn prepare_gl(&self) -> Result<(), glib::Error>;
 
@@ -177,8 +177,8 @@ impl<O: IsA<Display>> DisplayExt for O {
         }
     }
 
-    #[cfg(any(feature = "v4_6", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    #[cfg(any(feature = "v4_6", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     fn create_gl_context(&self) -> Result<GLContext, glib::Error> {
         unsafe {
             let mut error = ptr::null_mut();
@@ -303,8 +303,8 @@ impl<O: IsA<Display>> DisplayExt for O {
         }
     }
 
-    #[cfg(any(feature = "v4_4", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_4")))]
+    #[cfg(any(feature = "v4_4", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_4")))]
     fn prepare_gl(&self) -> Result<(), glib::Error> {
         unsafe {
             let mut error = ptr::null_mut();

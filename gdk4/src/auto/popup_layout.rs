@@ -4,8 +4,8 @@
 
 use crate::{AnchorHints, Gravity, Rectangle};
 use glib::translate::*;
-#[cfg(any(feature = "v4_2", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_2")))]
+#[cfg(any(feature = "v4_2", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_2")))]
 use std::mem;
 
 glib::wrapper! {
@@ -74,8 +74,8 @@ impl PopupLayout {
         unsafe { from_glib(ffi::gdk_popup_layout_get_rect_anchor(self.to_glib_none().0)) }
     }
 
-    #[cfg(any(feature = "v4_2", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_2")))]
+    #[cfg(any(feature = "v4_2", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_2")))]
     #[doc(alias = "gdk_popup_layout_get_shadow_width")]
     #[doc(alias = "get_shadow_width")]
     pub fn shadow_width(&self) -> (i32, i32, i32, i32) {
@@ -141,8 +141,8 @@ impl PopupLayout {
         }
     }
 
-    #[cfg(any(feature = "v4_2", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_2")))]
+    #[cfg(any(feature = "v4_2", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_2")))]
     #[doc(alias = "gdk_popup_layout_set_shadow_width")]
     pub fn set_shadow_width(&self, left: i32, right: i32, top: i32, bottom: i32) {
         unsafe {

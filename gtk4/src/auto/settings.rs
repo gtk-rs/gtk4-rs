@@ -295,15 +295,15 @@ impl Settings {
         glib::ObjectExt::set_property(self, "gtk-fontconfig-timestamp", gtk_fontconfig_timestamp)
     }
 
-    #[cfg(any(feature = "v4_6", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    #[cfg(any(feature = "v4_6", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     #[doc(alias = "gtk-hint-font-metrics")]
     pub fn is_gtk_hint_font_metrics(&self) -> bool {
         glib::ObjectExt::property(self, "gtk-hint-font-metrics")
     }
 
-    #[cfg(any(feature = "v4_6", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    #[cfg(any(feature = "v4_6", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     #[doc(alias = "gtk-hint-font-metrics")]
     pub fn set_gtk_hint_font_metrics(&self, gtk_hint_font_metrics: bool) {
         glib::ObjectExt::set_property(self, "gtk-hint-font-metrics", gtk_hint_font_metrics)
@@ -1225,8 +1225,8 @@ impl Settings {
         }
     }
 
-    #[cfg(any(feature = "v4_6", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    #[cfg(any(feature = "v4_6", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     #[doc(alias = "gtk-hint-font-metrics")]
     pub fn connect_gtk_hint_font_metrics_notify<F: Fn(&Self) + 'static>(
         &self,
@@ -2116,8 +2116,8 @@ impl SettingsBuilder {
         }
     }
 
-    #[cfg(any(feature = "v4_6", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    #[cfg(any(feature = "v4_6", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     pub fn gtk_hint_font_metrics(self, gtk_hint_font_metrics: bool) -> Self {
         Self {
             builder: self

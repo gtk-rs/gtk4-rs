@@ -245,8 +245,8 @@ impl From<AccessibleInvalidState> for glib::Value {
     }
 }
 
-#[cfg(any(feature = "v4_10", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+#[cfg(any(feature = "v4_10", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
 #[doc(alias = "GtkAccessiblePlatformState")]
@@ -261,8 +261,8 @@ pub enum AccessiblePlatformState {
     __Unknown(i32),
 }
 
-#[cfg(any(feature = "v4_10", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+#[cfg(any(feature = "v4_10", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 impl fmt::Display for AccessiblePlatformState {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
@@ -278,8 +278,8 @@ impl fmt::Display for AccessiblePlatformState {
     }
 }
 
-#[cfg(any(feature = "v4_10", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+#[cfg(any(feature = "v4_10", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 #[doc(hidden)]
 impl IntoGlib for AccessiblePlatformState {
     type GlibType = ffi::GtkAccessiblePlatformState;
@@ -295,8 +295,8 @@ impl IntoGlib for AccessiblePlatformState {
     }
 }
 
-#[cfg(any(feature = "v4_10", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+#[cfg(any(feature = "v4_10", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 #[doc(hidden)]
 impl FromGlib<ffi::GtkAccessiblePlatformState> for AccessiblePlatformState {
     #[inline]
@@ -312,8 +312,8 @@ impl FromGlib<ffi::GtkAccessiblePlatformState> for AccessiblePlatformState {
     }
 }
 
-#[cfg(any(feature = "v4_10", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+#[cfg(any(feature = "v4_10", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 impl StaticType for AccessiblePlatformState {
     #[inline]
     fn static_type() -> Type {
@@ -321,8 +321,8 @@ impl StaticType for AccessiblePlatformState {
     }
 }
 
-#[cfg(any(feature = "v4_10", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+#[cfg(any(feature = "v4_10", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 impl glib::HasParamSpec for AccessiblePlatformState {
     type ParamSpec = glib::ParamSpecEnum;
     type SetValue = Self;
@@ -333,14 +333,14 @@ impl glib::HasParamSpec for AccessiblePlatformState {
     }
 }
 
-#[cfg(any(feature = "v4_10", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+#[cfg(any(feature = "v4_10", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 impl glib::value::ValueType for AccessiblePlatformState {
     type Type = Self;
 }
 
-#[cfg(any(feature = "v4_10", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+#[cfg(any(feature = "v4_10", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 unsafe impl<'a> FromValue<'a> for AccessiblePlatformState {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
@@ -351,8 +351,8 @@ unsafe impl<'a> FromValue<'a> for AccessiblePlatformState {
     }
 }
 
-#[cfg(any(feature = "v4_10", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+#[cfg(any(feature = "v4_10", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 impl ToValue for AccessiblePlatformState {
     #[inline]
     fn to_value(&self) -> glib::Value {
@@ -369,8 +369,8 @@ impl ToValue for AccessiblePlatformState {
     }
 }
 
-#[cfg(any(feature = "v4_10", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+#[cfg(any(feature = "v4_10", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 impl From<AccessiblePlatformState> for glib::Value {
     #[inline]
     fn from(v: AccessiblePlatformState) -> Self {
@@ -938,8 +938,8 @@ pub enum AccessibleRole {
     Widget,
     #[doc(alias = "GTK_ACCESSIBLE_ROLE_WINDOW")]
     Window,
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     #[doc(alias = "GTK_ACCESSIBLE_ROLE_TOGGLE_BUTTON")]
     ToggleButton,
     #[doc(hidden)]
@@ -1030,7 +1030,7 @@ impl fmt::Display for AccessibleRole {
                 Self::TreeItem => "TreeItem",
                 Self::Widget => "Widget",
                 Self::Window => "Window",
-                #[cfg(any(feature = "v4_10", feature = "dox"))]
+                #[cfg(any(feature = "v4_10", docsrs))]
                 Self::ToggleButton => "ToggleButton",
                 _ => "Unknown",
             }
@@ -1122,7 +1122,7 @@ impl IntoGlib for AccessibleRole {
             Self::TreeItem => ffi::GTK_ACCESSIBLE_ROLE_TREE_ITEM,
             Self::Widget => ffi::GTK_ACCESSIBLE_ROLE_WIDGET,
             Self::Window => ffi::GTK_ACCESSIBLE_ROLE_WINDOW,
-            #[cfg(any(feature = "v4_10", feature = "dox"))]
+            #[cfg(any(feature = "v4_10", docsrs))]
             Self::ToggleButton => ffi::GTK_ACCESSIBLE_ROLE_TOGGLE_BUTTON,
             Self::__Unknown(value) => value,
         }
@@ -1213,7 +1213,7 @@ impl FromGlib<ffi::GtkAccessibleRole> for AccessibleRole {
             ffi::GTK_ACCESSIBLE_ROLE_TREE_ITEM => Self::TreeItem,
             ffi::GTK_ACCESSIBLE_ROLE_WIDGET => Self::Widget,
             ffi::GTK_ACCESSIBLE_ROLE_WINDOW => Self::Window,
-            #[cfg(any(feature = "v4_10", feature = "dox"))]
+            #[cfg(any(feature = "v4_10", docsrs))]
             ffi::GTK_ACCESSIBLE_ROLE_TOGGLE_BUTTON => Self::ToggleButton,
             value => Self::__Unknown(value),
         }
@@ -1414,8 +1414,8 @@ pub enum AccessibleState {
     Pressed,
     #[doc(alias = "GTK_ACCESSIBLE_STATE_SELECTED")]
     Selected,
-    #[cfg(any(feature = "v4_12", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_12")))]
+    #[cfg(any(feature = "v4_12", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
     #[doc(alias = "GTK_ACCESSIBLE_STATE_VISITED")]
     Visited,
     #[doc(hidden)]
@@ -1446,7 +1446,7 @@ impl fmt::Display for AccessibleState {
                 Self::Invalid => "Invalid",
                 Self::Pressed => "Pressed",
                 Self::Selected => "Selected",
-                #[cfg(any(feature = "v4_12", feature = "dox"))]
+                #[cfg(any(feature = "v4_12", docsrs))]
                 Self::Visited => "Visited",
                 _ => "Unknown",
             }
@@ -1469,7 +1469,7 @@ impl IntoGlib for AccessibleState {
             Self::Invalid => ffi::GTK_ACCESSIBLE_STATE_INVALID,
             Self::Pressed => ffi::GTK_ACCESSIBLE_STATE_PRESSED,
             Self::Selected => ffi::GTK_ACCESSIBLE_STATE_SELECTED,
-            #[cfg(any(feature = "v4_12", feature = "dox"))]
+            #[cfg(any(feature = "v4_12", docsrs))]
             Self::Visited => ffi::GTK_ACCESSIBLE_STATE_VISITED,
             Self::__Unknown(value) => value,
         }
@@ -1491,7 +1491,7 @@ impl FromGlib<ffi::GtkAccessibleState> for AccessibleState {
             ffi::GTK_ACCESSIBLE_STATE_INVALID => Self::Invalid,
             ffi::GTK_ACCESSIBLE_STATE_PRESSED => Self::Pressed,
             ffi::GTK_ACCESSIBLE_STATE_SELECTED => Self::Selected,
-            #[cfg(any(feature = "v4_12", feature = "dox"))]
+            #[cfg(any(feature = "v4_12", docsrs))]
             ffi::GTK_ACCESSIBLE_STATE_VISITED => Self::Visited,
             value => Self::__Unknown(value),
         }
@@ -2854,8 +2854,8 @@ impl From<CellRendererMode> for glib::Value {
     }
 }
 
-#[cfg(any(feature = "v4_10", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+#[cfg(any(feature = "v4_10", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
 #[doc(alias = "GtkCollation")]
@@ -2870,8 +2870,8 @@ pub enum Collation {
     __Unknown(i32),
 }
 
-#[cfg(any(feature = "v4_10", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+#[cfg(any(feature = "v4_10", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 impl fmt::Display for Collation {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
@@ -2887,8 +2887,8 @@ impl fmt::Display for Collation {
     }
 }
 
-#[cfg(any(feature = "v4_10", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+#[cfg(any(feature = "v4_10", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 #[doc(hidden)]
 impl IntoGlib for Collation {
     type GlibType = ffi::GtkCollation;
@@ -2904,8 +2904,8 @@ impl IntoGlib for Collation {
     }
 }
 
-#[cfg(any(feature = "v4_10", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+#[cfg(any(feature = "v4_10", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 #[doc(hidden)]
 impl FromGlib<ffi::GtkCollation> for Collation {
     #[inline]
@@ -2921,8 +2921,8 @@ impl FromGlib<ffi::GtkCollation> for Collation {
     }
 }
 
-#[cfg(any(feature = "v4_10", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+#[cfg(any(feature = "v4_10", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 impl StaticType for Collation {
     #[inline]
     fn static_type() -> Type {
@@ -2930,8 +2930,8 @@ impl StaticType for Collation {
     }
 }
 
-#[cfg(any(feature = "v4_10", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+#[cfg(any(feature = "v4_10", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 impl glib::HasParamSpec for Collation {
     type ParamSpec = glib::ParamSpecEnum;
     type SetValue = Self;
@@ -2942,14 +2942,14 @@ impl glib::HasParamSpec for Collation {
     }
 }
 
-#[cfg(any(feature = "v4_10", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+#[cfg(any(feature = "v4_10", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 impl glib::value::ValueType for Collation {
     type Type = Self;
 }
 
-#[cfg(any(feature = "v4_10", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+#[cfg(any(feature = "v4_10", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 unsafe impl<'a> FromValue<'a> for Collation {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
@@ -2960,8 +2960,8 @@ unsafe impl<'a> FromValue<'a> for Collation {
     }
 }
 
-#[cfg(any(feature = "v4_10", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+#[cfg(any(feature = "v4_10", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 impl ToValue for Collation {
     #[inline]
     fn to_value(&self) -> glib::Value {
@@ -2978,8 +2978,8 @@ impl ToValue for Collation {
     }
 }
 
-#[cfg(any(feature = "v4_10", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+#[cfg(any(feature = "v4_10", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 impl From<Collation> for glib::Value {
     #[inline]
     fn from(v: Collation) -> Self {
@@ -3532,8 +3532,8 @@ impl From<ConstraintVflParserError> for glib::Value {
     }
 }
 
-#[cfg(any(feature = "v4_8", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+#[cfg(any(feature = "v4_8", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
 #[doc(alias = "GtkContentFit")]
@@ -3550,8 +3550,8 @@ pub enum ContentFit {
     __Unknown(i32),
 }
 
-#[cfg(any(feature = "v4_8", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+#[cfg(any(feature = "v4_8", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
 impl fmt::Display for ContentFit {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
@@ -3568,8 +3568,8 @@ impl fmt::Display for ContentFit {
     }
 }
 
-#[cfg(any(feature = "v4_8", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+#[cfg(any(feature = "v4_8", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
 #[doc(hidden)]
 impl IntoGlib for ContentFit {
     type GlibType = ffi::GtkContentFit;
@@ -3586,8 +3586,8 @@ impl IntoGlib for ContentFit {
     }
 }
 
-#[cfg(any(feature = "v4_8", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+#[cfg(any(feature = "v4_8", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
 #[doc(hidden)]
 impl FromGlib<ffi::GtkContentFit> for ContentFit {
     #[inline]
@@ -3604,8 +3604,8 @@ impl FromGlib<ffi::GtkContentFit> for ContentFit {
     }
 }
 
-#[cfg(any(feature = "v4_8", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+#[cfg(any(feature = "v4_8", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
 impl StaticType for ContentFit {
     #[inline]
     fn static_type() -> Type {
@@ -3613,8 +3613,8 @@ impl StaticType for ContentFit {
     }
 }
 
-#[cfg(any(feature = "v4_8", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+#[cfg(any(feature = "v4_8", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
 impl glib::HasParamSpec for ContentFit {
     type ParamSpec = glib::ParamSpecEnum;
     type SetValue = Self;
@@ -3625,14 +3625,14 @@ impl glib::HasParamSpec for ContentFit {
     }
 }
 
-#[cfg(any(feature = "v4_8", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+#[cfg(any(feature = "v4_8", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
 impl glib::value::ValueType for ContentFit {
     type Type = Self;
 }
 
-#[cfg(any(feature = "v4_8", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+#[cfg(any(feature = "v4_8", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
 unsafe impl<'a> FromValue<'a> for ContentFit {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
@@ -3643,8 +3643,8 @@ unsafe impl<'a> FromValue<'a> for ContentFit {
     }
 }
 
-#[cfg(any(feature = "v4_8", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+#[cfg(any(feature = "v4_8", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
 impl ToValue for ContentFit {
     #[inline]
     fn to_value(&self) -> glib::Value {
@@ -3661,8 +3661,8 @@ impl ToValue for ContentFit {
     }
 }
 
-#[cfg(any(feature = "v4_8", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+#[cfg(any(feature = "v4_8", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
 impl From<ContentFit> for glib::Value {
     #[inline]
     fn from(v: ContentFit) -> Self {
@@ -4081,8 +4081,8 @@ impl From<DeleteType> for glib::Value {
     }
 }
 
-#[cfg(any(feature = "v4_10", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+#[cfg(any(feature = "v4_10", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
 #[doc(alias = "GtkDialogError")]
@@ -4097,8 +4097,8 @@ pub enum DialogError {
     __Unknown(i32),
 }
 
-#[cfg(any(feature = "v4_10", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+#[cfg(any(feature = "v4_10", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 impl fmt::Display for DialogError {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
@@ -4114,8 +4114,8 @@ impl fmt::Display for DialogError {
     }
 }
 
-#[cfg(any(feature = "v4_10", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+#[cfg(any(feature = "v4_10", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 #[doc(hidden)]
 impl IntoGlib for DialogError {
     type GlibType = ffi::GtkDialogError;
@@ -4131,8 +4131,8 @@ impl IntoGlib for DialogError {
     }
 }
 
-#[cfg(any(feature = "v4_10", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+#[cfg(any(feature = "v4_10", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 #[doc(hidden)]
 impl FromGlib<ffi::GtkDialogError> for DialogError {
     #[inline]
@@ -4148,8 +4148,8 @@ impl FromGlib<ffi::GtkDialogError> for DialogError {
     }
 }
 
-#[cfg(any(feature = "v4_10", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+#[cfg(any(feature = "v4_10", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 impl ErrorDomain for DialogError {
     #[inline]
     fn domain() -> Quark {
@@ -4174,8 +4174,8 @@ impl ErrorDomain for DialogError {
     }
 }
 
-#[cfg(any(feature = "v4_10", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+#[cfg(any(feature = "v4_10", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 impl StaticType for DialogError {
     #[inline]
     fn static_type() -> Type {
@@ -4183,8 +4183,8 @@ impl StaticType for DialogError {
     }
 }
 
-#[cfg(any(feature = "v4_10", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+#[cfg(any(feature = "v4_10", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 impl glib::HasParamSpec for DialogError {
     type ParamSpec = glib::ParamSpecEnum;
     type SetValue = Self;
@@ -4195,14 +4195,14 @@ impl glib::HasParamSpec for DialogError {
     }
 }
 
-#[cfg(any(feature = "v4_10", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+#[cfg(any(feature = "v4_10", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 impl glib::value::ValueType for DialogError {
     type Type = Self;
 }
 
-#[cfg(any(feature = "v4_10", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+#[cfg(any(feature = "v4_10", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 unsafe impl<'a> FromValue<'a> for DialogError {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
@@ -4213,8 +4213,8 @@ unsafe impl<'a> FromValue<'a> for DialogError {
     }
 }
 
-#[cfg(any(feature = "v4_10", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+#[cfg(any(feature = "v4_10", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 impl ToValue for DialogError {
     #[inline]
     fn to_value(&self) -> glib::Value {
@@ -4231,8 +4231,8 @@ impl ToValue for DialogError {
     }
 }
 
-#[cfg(any(feature = "v4_10", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+#[cfg(any(feature = "v4_10", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 impl From<DialogError> for glib::Value {
     #[inline]
     fn from(v: DialogError) -> Self {
@@ -5221,8 +5221,8 @@ impl From<FilterMatch> for glib::Value {
     }
 }
 
-#[cfg(any(feature = "v4_10", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+#[cfg(any(feature = "v4_10", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
 #[doc(alias = "GtkFontLevel")]
@@ -5239,8 +5239,8 @@ pub enum FontLevel {
     __Unknown(i32),
 }
 
-#[cfg(any(feature = "v4_10", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+#[cfg(any(feature = "v4_10", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 impl fmt::Display for FontLevel {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
@@ -5257,8 +5257,8 @@ impl fmt::Display for FontLevel {
     }
 }
 
-#[cfg(any(feature = "v4_10", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+#[cfg(any(feature = "v4_10", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 #[doc(hidden)]
 impl IntoGlib for FontLevel {
     type GlibType = ffi::GtkFontLevel;
@@ -5275,8 +5275,8 @@ impl IntoGlib for FontLevel {
     }
 }
 
-#[cfg(any(feature = "v4_10", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+#[cfg(any(feature = "v4_10", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 #[doc(hidden)]
 impl FromGlib<ffi::GtkFontLevel> for FontLevel {
     #[inline]
@@ -5293,8 +5293,8 @@ impl FromGlib<ffi::GtkFontLevel> for FontLevel {
     }
 }
 
-#[cfg(any(feature = "v4_10", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+#[cfg(any(feature = "v4_10", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 impl StaticType for FontLevel {
     #[inline]
     fn static_type() -> Type {
@@ -5302,8 +5302,8 @@ impl StaticType for FontLevel {
     }
 }
 
-#[cfg(any(feature = "v4_10", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+#[cfg(any(feature = "v4_10", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 impl glib::HasParamSpec for FontLevel {
     type ParamSpec = glib::ParamSpecEnum;
     type SetValue = Self;
@@ -5314,14 +5314,14 @@ impl glib::HasParamSpec for FontLevel {
     }
 }
 
-#[cfg(any(feature = "v4_10", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+#[cfg(any(feature = "v4_10", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 impl glib::value::ValueType for FontLevel {
     type Type = Self;
 }
 
-#[cfg(any(feature = "v4_10", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+#[cfg(any(feature = "v4_10", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 unsafe impl<'a> FromValue<'a> for FontLevel {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
@@ -5332,8 +5332,8 @@ unsafe impl<'a> FromValue<'a> for FontLevel {
     }
 }
 
-#[cfg(any(feature = "v4_10", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+#[cfg(any(feature = "v4_10", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 impl ToValue for FontLevel {
     #[inline]
     fn to_value(&self) -> glib::Value {
@@ -5350,8 +5350,8 @@ impl ToValue for FontLevel {
     }
 }
 
-#[cfg(any(feature = "v4_10", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+#[cfg(any(feature = "v4_10", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 impl From<FontLevel> for glib::Value {
     #[inline]
     fn from(v: FontLevel) -> Self {
@@ -6009,8 +6009,8 @@ impl From<InputPurpose> for glib::Value {
     }
 }
 
-#[cfg(any(feature = "v4_8", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+#[cfg(any(feature = "v4_8", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
 #[doc(alias = "GtkInscriptionOverflow")]
@@ -6027,8 +6027,8 @@ pub enum InscriptionOverflow {
     __Unknown(i32),
 }
 
-#[cfg(any(feature = "v4_8", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+#[cfg(any(feature = "v4_8", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
 impl fmt::Display for InscriptionOverflow {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
@@ -6045,8 +6045,8 @@ impl fmt::Display for InscriptionOverflow {
     }
 }
 
-#[cfg(any(feature = "v4_8", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+#[cfg(any(feature = "v4_8", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
 #[doc(hidden)]
 impl IntoGlib for InscriptionOverflow {
     type GlibType = ffi::GtkInscriptionOverflow;
@@ -6063,8 +6063,8 @@ impl IntoGlib for InscriptionOverflow {
     }
 }
 
-#[cfg(any(feature = "v4_8", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+#[cfg(any(feature = "v4_8", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
 #[doc(hidden)]
 impl FromGlib<ffi::GtkInscriptionOverflow> for InscriptionOverflow {
     #[inline]
@@ -6081,8 +6081,8 @@ impl FromGlib<ffi::GtkInscriptionOverflow> for InscriptionOverflow {
     }
 }
 
-#[cfg(any(feature = "v4_8", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+#[cfg(any(feature = "v4_8", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
 impl StaticType for InscriptionOverflow {
     #[inline]
     fn static_type() -> Type {
@@ -6090,8 +6090,8 @@ impl StaticType for InscriptionOverflow {
     }
 }
 
-#[cfg(any(feature = "v4_8", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+#[cfg(any(feature = "v4_8", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
 impl glib::HasParamSpec for InscriptionOverflow {
     type ParamSpec = glib::ParamSpecEnum;
     type SetValue = Self;
@@ -6102,14 +6102,14 @@ impl glib::HasParamSpec for InscriptionOverflow {
     }
 }
 
-#[cfg(any(feature = "v4_8", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+#[cfg(any(feature = "v4_8", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
 impl glib::value::ValueType for InscriptionOverflow {
     type Type = Self;
 }
 
-#[cfg(any(feature = "v4_8", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+#[cfg(any(feature = "v4_8", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
 unsafe impl<'a> FromValue<'a> for InscriptionOverflow {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
@@ -6120,8 +6120,8 @@ unsafe impl<'a> FromValue<'a> for InscriptionOverflow {
     }
 }
 
-#[cfg(any(feature = "v4_8", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+#[cfg(any(feature = "v4_8", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
 impl ToValue for InscriptionOverflow {
     #[inline]
     fn to_value(&self) -> glib::Value {
@@ -6138,8 +6138,8 @@ impl ToValue for InscriptionOverflow {
     }
 }
 
-#[cfg(any(feature = "v4_8", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+#[cfg(any(feature = "v4_8", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
 impl From<InscriptionOverflow> for glib::Value {
     #[inline]
     fn from(v: InscriptionOverflow) -> Self {
@@ -6563,8 +6563,8 @@ impl From<License> for glib::Value {
     }
 }
 
-#[cfg(any(feature = "v4_12", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_12")))]
+#[cfg(any(feature = "v4_12", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
 #[doc(alias = "GtkListTabBehavior")]
@@ -6579,8 +6579,8 @@ pub enum ListTabBehavior {
     __Unknown(i32),
 }
 
-#[cfg(any(feature = "v4_12", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_12")))]
+#[cfg(any(feature = "v4_12", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
 impl fmt::Display for ListTabBehavior {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
@@ -6596,8 +6596,8 @@ impl fmt::Display for ListTabBehavior {
     }
 }
 
-#[cfg(any(feature = "v4_12", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_12")))]
+#[cfg(any(feature = "v4_12", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
 #[doc(hidden)]
 impl IntoGlib for ListTabBehavior {
     type GlibType = ffi::GtkListTabBehavior;
@@ -6613,8 +6613,8 @@ impl IntoGlib for ListTabBehavior {
     }
 }
 
-#[cfg(any(feature = "v4_12", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_12")))]
+#[cfg(any(feature = "v4_12", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
 #[doc(hidden)]
 impl FromGlib<ffi::GtkListTabBehavior> for ListTabBehavior {
     #[inline]
@@ -6630,8 +6630,8 @@ impl FromGlib<ffi::GtkListTabBehavior> for ListTabBehavior {
     }
 }
 
-#[cfg(any(feature = "v4_12", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_12")))]
+#[cfg(any(feature = "v4_12", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
 impl StaticType for ListTabBehavior {
     #[inline]
     fn static_type() -> Type {
@@ -6639,8 +6639,8 @@ impl StaticType for ListTabBehavior {
     }
 }
 
-#[cfg(any(feature = "v4_12", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_12")))]
+#[cfg(any(feature = "v4_12", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
 impl glib::HasParamSpec for ListTabBehavior {
     type ParamSpec = glib::ParamSpecEnum;
     type SetValue = Self;
@@ -6651,14 +6651,14 @@ impl glib::HasParamSpec for ListTabBehavior {
     }
 }
 
-#[cfg(any(feature = "v4_12", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_12")))]
+#[cfg(any(feature = "v4_12", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
 impl glib::value::ValueType for ListTabBehavior {
     type Type = Self;
 }
 
-#[cfg(any(feature = "v4_12", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_12")))]
+#[cfg(any(feature = "v4_12", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
 unsafe impl<'a> FromValue<'a> for ListTabBehavior {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
@@ -6669,8 +6669,8 @@ unsafe impl<'a> FromValue<'a> for ListTabBehavior {
     }
 }
 
-#[cfg(any(feature = "v4_12", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_12")))]
+#[cfg(any(feature = "v4_12", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
 impl ToValue for ListTabBehavior {
     #[inline]
     fn to_value(&self) -> glib::Value {
@@ -6687,8 +6687,8 @@ impl ToValue for ListTabBehavior {
     }
 }
 
-#[cfg(any(feature = "v4_12", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_12")))]
+#[cfg(any(feature = "v4_12", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
 impl From<ListTabBehavior> for glib::Value {
     #[inline]
     fn from(v: ListTabBehavior) -> Self {
@@ -6970,8 +6970,8 @@ impl From<MovementStep> for glib::Value {
     }
 }
 
-#[cfg(any(feature = "v4_6", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+#[cfg(any(feature = "v4_6", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
 #[doc(alias = "GtkNaturalWrapMode")]
@@ -6986,8 +6986,8 @@ pub enum NaturalWrapMode {
     __Unknown(i32),
 }
 
-#[cfg(any(feature = "v4_6", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+#[cfg(any(feature = "v4_6", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
 impl fmt::Display for NaturalWrapMode {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
@@ -7003,8 +7003,8 @@ impl fmt::Display for NaturalWrapMode {
     }
 }
 
-#[cfg(any(feature = "v4_6", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+#[cfg(any(feature = "v4_6", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
 #[doc(hidden)]
 impl IntoGlib for NaturalWrapMode {
     type GlibType = ffi::GtkNaturalWrapMode;
@@ -7020,8 +7020,8 @@ impl IntoGlib for NaturalWrapMode {
     }
 }
 
-#[cfg(any(feature = "v4_6", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+#[cfg(any(feature = "v4_6", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
 #[doc(hidden)]
 impl FromGlib<ffi::GtkNaturalWrapMode> for NaturalWrapMode {
     #[inline]
@@ -7037,8 +7037,8 @@ impl FromGlib<ffi::GtkNaturalWrapMode> for NaturalWrapMode {
     }
 }
 
-#[cfg(any(feature = "v4_6", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+#[cfg(any(feature = "v4_6", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
 impl StaticType for NaturalWrapMode {
     #[inline]
     fn static_type() -> Type {
@@ -7046,8 +7046,8 @@ impl StaticType for NaturalWrapMode {
     }
 }
 
-#[cfg(any(feature = "v4_6", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+#[cfg(any(feature = "v4_6", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
 impl glib::HasParamSpec for NaturalWrapMode {
     type ParamSpec = glib::ParamSpecEnum;
     type SetValue = Self;
@@ -7058,14 +7058,14 @@ impl glib::HasParamSpec for NaturalWrapMode {
     }
 }
 
-#[cfg(any(feature = "v4_6", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+#[cfg(any(feature = "v4_6", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
 impl glib::value::ValueType for NaturalWrapMode {
     type Type = Self;
 }
 
-#[cfg(any(feature = "v4_6", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+#[cfg(any(feature = "v4_6", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
 unsafe impl<'a> FromValue<'a> for NaturalWrapMode {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
@@ -7076,8 +7076,8 @@ unsafe impl<'a> FromValue<'a> for NaturalWrapMode {
     }
 }
 
-#[cfg(any(feature = "v4_6", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+#[cfg(any(feature = "v4_6", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
 impl ToValue for NaturalWrapMode {
     #[inline]
     fn to_value(&self) -> glib::Value {
@@ -7094,8 +7094,8 @@ impl ToValue for NaturalWrapMode {
     }
 }
 
-#[cfg(any(feature = "v4_6", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+#[cfg(any(feature = "v4_6", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
 impl From<NaturalWrapMode> for glib::Value {
     #[inline]
     fn from(v: NaturalWrapMode) -> Self {
@@ -11966,8 +11966,8 @@ impl From<StringFilterMatchMode> for glib::Value {
     }
 }
 
-#[cfg(any(feature = "v4_6", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+#[cfg(any(feature = "v4_6", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
 #[doc(alias = "GtkSymbolicColor")]
@@ -11984,8 +11984,8 @@ pub enum SymbolicColor {
     __Unknown(i32),
 }
 
-#[cfg(any(feature = "v4_6", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+#[cfg(any(feature = "v4_6", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
 impl fmt::Display for SymbolicColor {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
@@ -12002,8 +12002,8 @@ impl fmt::Display for SymbolicColor {
     }
 }
 
-#[cfg(any(feature = "v4_6", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+#[cfg(any(feature = "v4_6", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
 #[doc(hidden)]
 impl IntoGlib for SymbolicColor {
     type GlibType = ffi::GtkSymbolicColor;
@@ -12020,8 +12020,8 @@ impl IntoGlib for SymbolicColor {
     }
 }
 
-#[cfg(any(feature = "v4_6", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+#[cfg(any(feature = "v4_6", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
 #[doc(hidden)]
 impl FromGlib<ffi::GtkSymbolicColor> for SymbolicColor {
     #[inline]
@@ -12038,8 +12038,8 @@ impl FromGlib<ffi::GtkSymbolicColor> for SymbolicColor {
     }
 }
 
-#[cfg(any(feature = "v4_6", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+#[cfg(any(feature = "v4_6", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
 impl StaticType for SymbolicColor {
     #[inline]
     fn static_type() -> Type {
@@ -12047,8 +12047,8 @@ impl StaticType for SymbolicColor {
     }
 }
 
-#[cfg(any(feature = "v4_6", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+#[cfg(any(feature = "v4_6", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
 impl glib::HasParamSpec for SymbolicColor {
     type ParamSpec = glib::ParamSpecEnum;
     type SetValue = Self;
@@ -12059,14 +12059,14 @@ impl glib::HasParamSpec for SymbolicColor {
     }
 }
 
-#[cfg(any(feature = "v4_6", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+#[cfg(any(feature = "v4_6", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
 impl glib::value::ValueType for SymbolicColor {
     type Type = Self;
 }
 
-#[cfg(any(feature = "v4_6", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+#[cfg(any(feature = "v4_6", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
 unsafe impl<'a> FromValue<'a> for SymbolicColor {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
@@ -12077,8 +12077,8 @@ unsafe impl<'a> FromValue<'a> for SymbolicColor {
     }
 }
 
-#[cfg(any(feature = "v4_6", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+#[cfg(any(feature = "v4_6", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
 impl ToValue for SymbolicColor {
     #[inline]
     fn to_value(&self) -> glib::Value {
@@ -12095,8 +12095,8 @@ impl ToValue for SymbolicColor {
     }
 }
 
-#[cfg(any(feature = "v4_6", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+#[cfg(any(feature = "v4_6", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
 impl From<SymbolicColor> for glib::Value {
     #[inline]
     fn from(v: SymbolicColor) -> Self {

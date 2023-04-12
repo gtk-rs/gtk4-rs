@@ -1,6 +1,6 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-#![cfg_attr(feature = "dox", feature(doc_cfg))]
+#![cfg_attr(docsrs, feature(doc_cfg))]
 #![allow(deprecated)]
 #![doc = include_str!("../README.md")]
 
@@ -142,8 +142,8 @@ mod file_chooser;
 mod file_chooser_dialog;
 mod flow_box;
 mod font_chooser;
-#[cfg(any(feature = "v4_10", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+#[cfg(any(feature = "v4_10", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 mod font_dialog;
 mod functions;
 mod gesture_stylus;
@@ -166,8 +166,8 @@ mod overlay;
 mod pad_action_entry;
 mod page_range;
 mod param_spec_expression;
-#[cfg(any(target_os = "linux", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(target_os = "linux")))]
+#[cfg(any(target_os = "linux", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(target_os = "linux")))]
 mod print_job;
 mod print_operation;
 mod print_settings;

@@ -164,14 +164,14 @@ macro_rules! define_render_node {
             }
         }
 
-        #[cfg(any(feature = "v4_6", feature = "dox"))]
-        #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+        #[cfg(any(feature = "v4_6", docsrs))]
+        #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
         impl glib::value::ValueType for $rust_type {
             type Type = Self;
         }
 
-        #[cfg(any(feature = "v4_6", feature = "dox"))]
-        #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+        #[cfg(any(feature = "v4_6", docsrs))]
+        #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
         unsafe impl<'a> glib::value::FromValue<'a> for $rust_type {
             type Checker = glib::value::GenericValueTypeOrNoneChecker<Self>;
 
@@ -184,8 +184,8 @@ macro_rules! define_render_node {
             }
         }
 
-        #[cfg(any(feature = "v4_6", feature = "dox"))]
-        #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+        #[cfg(any(feature = "v4_6", docsrs))]
+        #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
         impl glib::value::ToValue for $rust_type {
             #[inline]
             fn to_value(&self) -> glib::Value {
@@ -206,8 +206,8 @@ macro_rules! define_render_node {
             }
         }
 
-        #[cfg(any(feature = "v4_6", feature = "dox"))]
-        #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+        #[cfg(any(feature = "v4_6", docsrs))]
+        #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
         impl glib::value::ToValueOptional for $rust_type {
             #[inline]
             fn to_value_optional(s: Option<&Self>) -> glib::Value {
