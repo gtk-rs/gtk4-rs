@@ -140,11 +140,11 @@ pub use self::content_formats_builder::ContentFormatsBuilder;
 mod event_sequence;
 pub use self::event_sequence::EventSequence;
 
-#[cfg(any(feature = "v4_6", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+#[cfg(any(feature = "v4_6", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
 mod file_list;
-#[cfg(any(feature = "v4_6", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+#[cfg(any(feature = "v4_6", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
 pub use self::file_list::FileList;
 
 mod frame_timings;
@@ -159,11 +159,11 @@ pub use self::rgba::RGBA;
 mod rectangle;
 pub use self::rectangle::Rectangle;
 
-#[cfg(any(feature = "v4_10", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+#[cfg(any(feature = "v4_10", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 mod texture_downloader;
-#[cfg(any(feature = "v4_10", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+#[cfg(any(feature = "v4_10", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 pub use self::texture_downloader::TextureDownloader;
 
 mod toplevel_layout;
@@ -184,16 +184,16 @@ pub use self::enums::KeyMatch;
 pub use self::enums::MemoryFormat;
 pub use self::enums::NotifyType;
 pub use self::enums::ScrollDirection;
-#[cfg(any(feature = "v4_8", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+#[cfg(any(feature = "v4_8", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
 pub use self::enums::ScrollUnit;
 pub use self::enums::SubpixelLayout;
 pub use self::enums::SurfaceEdge;
-#[cfg(any(feature = "v4_6", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+#[cfg(any(feature = "v4_6", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
 pub use self::enums::TextureError;
-#[cfg(any(feature = "v4_4", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_4")))]
+#[cfg(any(feature = "v4_4", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_4")))]
 pub use self::enums::TitlebarGesture;
 pub use self::enums::TouchpadGesturePhase;
 pub use self::enums::VulkanError;
@@ -207,8 +207,8 @@ pub use self::flags::ModifierType;
 pub use self::flags::PaintableFlags;
 pub use self::flags::SeatCapabilities;
 pub use self::flags::ToplevelState;
-#[cfg(any(feature = "v4_6", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+#[cfg(any(feature = "v4_6", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
 pub use self::flags::GLAPI;
 
 pub mod functions;

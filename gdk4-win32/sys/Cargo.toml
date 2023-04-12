@@ -23,13 +23,12 @@ version = "4.4"
 version = "4.8"
 
 [package.metadata.docs.rs]
-features = ["dox"]
+features = []
 
 [lib]
 name = "gdk4_win32_sys"
 
 [features]
-dox = ["glib/dox", "gdk/dox"]
 v4_4 = []
 v4_8 = ["v4_4"]
 

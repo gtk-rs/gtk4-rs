@@ -32,8 +32,8 @@ pub trait ListItemExt: 'static {
     #[doc(alias = "get_child")]
     fn child(&self) -> Option<Widget>;
 
-    #[cfg(any(feature = "v4_12", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_12")))]
+    #[cfg(any(feature = "v4_12", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
     #[doc(alias = "gtk_list_item_get_focusable")]
     #[doc(alias = "get_focusable")]
     fn is_focusable(&self) -> bool;
@@ -60,8 +60,8 @@ pub trait ListItemExt: 'static {
     #[doc(alias = "gtk_list_item_set_child")]
     fn set_child(&self, child: Option<&impl IsA<Widget>>);
 
-    #[cfg(any(feature = "v4_12", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_12")))]
+    #[cfg(any(feature = "v4_12", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
     #[doc(alias = "gtk_list_item_set_focusable")]
     fn set_focusable(&self, focusable: bool);
 
@@ -74,8 +74,8 @@ pub trait ListItemExt: 'static {
     #[doc(alias = "child")]
     fn connect_child_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    #[cfg(any(feature = "v4_12", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_12")))]
+    #[cfg(any(feature = "v4_12", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
     #[doc(alias = "focusable")]
     fn connect_focusable_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
@@ -105,8 +105,8 @@ impl<O: IsA<ListItem>> ListItemExt for O {
         unsafe { from_glib_none(ffi::gtk_list_item_get_child(self.as_ref().to_glib_none().0)) }
     }
 
-    #[cfg(any(feature = "v4_12", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_12")))]
+    #[cfg(any(feature = "v4_12", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
     fn is_focusable(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_list_item_get_focusable(
@@ -157,8 +157,8 @@ impl<O: IsA<ListItem>> ListItemExt for O {
         }
     }
 
-    #[cfg(any(feature = "v4_12", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_12")))]
+    #[cfg(any(feature = "v4_12", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
     fn set_focusable(&self, focusable: bool) {
         unsafe {
             ffi::gtk_list_item_set_focusable(self.as_ref().to_glib_none().0, focusable.into_glib());
@@ -221,8 +221,8 @@ impl<O: IsA<ListItem>> ListItemExt for O {
         }
     }
 
-    #[cfg(any(feature = "v4_12", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_12")))]
+    #[cfg(any(feature = "v4_12", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
     fn connect_focusable_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_focusable_trampoline<P: IsA<ListItem>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkListItem,

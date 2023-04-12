@@ -1,14 +1,14 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
 #![doc = include_str!("../README.md")]
-#![cfg_attr(feature = "dox", feature(doc_cfg))]
+#![cfg_attr(docsrs, feature(doc_cfg))]
 
 pub use ffi;
 pub use gdk;
 pub use gio;
 pub use glib;
-#[cfg(any(feature = "win32", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "win32")))]
+#[cfg(any(feature = "win32", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "win32")))]
 pub use windows;
 
 #[macro_use]

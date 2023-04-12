@@ -2,8 +2,8 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-#[cfg(any(feature = "v4_12", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_12")))]
+#[cfg(any(feature = "v4_12", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
 use crate::ListTabBehavior;
 use crate::{
     Accessible, AccessibleRole, Adjustment, Align, Buildable, ConstraintTarget, LayoutManager,
@@ -94,8 +94,8 @@ impl GridView {
         }
     }
 
-    #[cfg(any(feature = "v4_12", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_12")))]
+    #[cfg(any(feature = "v4_12", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
     #[doc(alias = "gtk_grid_view_get_tab_behavior")]
     #[doc(alias = "get_tab_behavior")]
     pub fn tab_behavior(&self) -> ListTabBehavior {
@@ -156,8 +156,8 @@ impl GridView {
         }
     }
 
-    #[cfg(any(feature = "v4_12", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_12")))]
+    #[cfg(any(feature = "v4_12", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
     #[doc(alias = "gtk_grid_view_set_tab_behavior")]
     pub fn set_tab_behavior(&self, tab_behavior: ListTabBehavior) {
         unsafe {
@@ -332,8 +332,8 @@ impl GridView {
         }
     }
 
-    #[cfg(any(feature = "v4_12", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_12")))]
+    #[cfg(any(feature = "v4_12", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
     #[doc(alias = "tab-behavior")]
     pub fn connect_tab_behavior_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_tab_behavior_trampoline<F: Fn(&GridView) + 'static>(
@@ -420,8 +420,8 @@ impl GridViewBuilder {
         }
     }
 
-    #[cfg(any(feature = "v4_12", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_12")))]
+    #[cfg(any(feature = "v4_12", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
     pub fn tab_behavior(self, tab_behavior: ListTabBehavior) -> Self {
         Self {
             builder: self.builder.property("tab-behavior", tab_behavior),

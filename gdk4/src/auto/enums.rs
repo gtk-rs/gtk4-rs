@@ -737,8 +737,8 @@ pub enum EventType {
     PadStrip,
     #[doc(alias = "GDK_PAD_GROUP_MODE")]
     PadGroupMode,
-    #[cfg(any(feature = "v4_8", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+    #[cfg(any(feature = "v4_8", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
     #[doc(alias = "GDK_TOUCHPAD_HOLD")]
     TouchpadHold,
     #[doc(hidden)]
@@ -779,7 +779,7 @@ impl fmt::Display for EventType {
                 Self::PadRing => "PadRing",
                 Self::PadStrip => "PadStrip",
                 Self::PadGroupMode => "PadGroupMode",
-                #[cfg(any(feature = "v4_8", feature = "dox"))]
+                #[cfg(any(feature = "v4_8", docsrs))]
                 Self::TouchpadHold => "TouchpadHold",
                 _ => "Unknown",
             }
@@ -821,7 +821,7 @@ impl IntoGlib for EventType {
             Self::PadRing => ffi::GDK_PAD_RING,
             Self::PadStrip => ffi::GDK_PAD_STRIP,
             Self::PadGroupMode => ffi::GDK_PAD_GROUP_MODE,
-            #[cfg(any(feature = "v4_8", feature = "dox"))]
+            #[cfg(any(feature = "v4_8", docsrs))]
             Self::TouchpadHold => ffi::GDK_TOUCHPAD_HOLD,
             Self::__Unknown(value) => value,
         }
@@ -862,7 +862,7 @@ impl FromGlib<ffi::GdkEventType> for EventType {
             ffi::GDK_PAD_RING => Self::PadRing,
             ffi::GDK_PAD_STRIP => Self::PadStrip,
             ffi::GDK_PAD_GROUP_MODE => Self::PadGroupMode,
-            #[cfg(any(feature = "v4_8", feature = "dox"))]
+            #[cfg(any(feature = "v4_8", docsrs))]
             ffi::GDK_TOUCHPAD_HOLD => Self::TouchpadHold,
             value => Self::__Unknown(value),
         }
@@ -1599,40 +1599,40 @@ pub enum MemoryFormat {
     R8g8b8,
     #[doc(alias = "GDK_MEMORY_B8G8R8")]
     B8g8r8,
-    #[cfg(any(feature = "v4_6", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    #[cfg(any(feature = "v4_6", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     #[doc(alias = "GDK_MEMORY_R16G16B16")]
     R16g16b16,
-    #[cfg(any(feature = "v4_6", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    #[cfg(any(feature = "v4_6", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     #[doc(alias = "GDK_MEMORY_R16G16B16A16_PREMULTIPLIED")]
     R16g16b16a16Premultiplied,
-    #[cfg(any(feature = "v4_6", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    #[cfg(any(feature = "v4_6", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     #[doc(alias = "GDK_MEMORY_R16G16B16A16")]
     R16g16b16a16,
-    #[cfg(any(feature = "v4_6", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    #[cfg(any(feature = "v4_6", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     #[doc(alias = "GDK_MEMORY_R16G16B16_FLOAT")]
     R16g16b16Float,
-    #[cfg(any(feature = "v4_6", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    #[cfg(any(feature = "v4_6", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     #[doc(alias = "GDK_MEMORY_R16G16B16A16_FLOAT_PREMULTIPLIED")]
     R16g16b16a16FloatPremultiplied,
-    #[cfg(any(feature = "v4_6", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    #[cfg(any(feature = "v4_6", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     #[doc(alias = "GDK_MEMORY_R16G16B16A16_FLOAT")]
     R16g16b16a16Float,
-    #[cfg(any(feature = "v4_6", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    #[cfg(any(feature = "v4_6", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     #[doc(alias = "GDK_MEMORY_R32G32B32_FLOAT")]
     R32g32b32Float,
-    #[cfg(any(feature = "v4_6", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    #[cfg(any(feature = "v4_6", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     #[doc(alias = "GDK_MEMORY_R32G32B32A32_FLOAT_PREMULTIPLIED")]
     R32g32b32a32FloatPremultiplied,
-    #[cfg(any(feature = "v4_6", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    #[cfg(any(feature = "v4_6", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     #[doc(alias = "GDK_MEMORY_R32G32B32A32_FLOAT")]
     R32g32b32a32Float,
     #[doc(hidden)]
@@ -1654,23 +1654,23 @@ impl fmt::Display for MemoryFormat {
                 Self::A8b8g8r8 => "A8b8g8r8",
                 Self::R8g8b8 => "R8g8b8",
                 Self::B8g8r8 => "B8g8r8",
-                #[cfg(any(feature = "v4_6", feature = "dox"))]
+                #[cfg(any(feature = "v4_6", docsrs))]
                 Self::R16g16b16 => "R16g16b16",
-                #[cfg(any(feature = "v4_6", feature = "dox"))]
+                #[cfg(any(feature = "v4_6", docsrs))]
                 Self::R16g16b16a16Premultiplied => "R16g16b16a16Premultiplied",
-                #[cfg(any(feature = "v4_6", feature = "dox"))]
+                #[cfg(any(feature = "v4_6", docsrs))]
                 Self::R16g16b16a16 => "R16g16b16a16",
-                #[cfg(any(feature = "v4_6", feature = "dox"))]
+                #[cfg(any(feature = "v4_6", docsrs))]
                 Self::R16g16b16Float => "R16g16b16Float",
-                #[cfg(any(feature = "v4_6", feature = "dox"))]
+                #[cfg(any(feature = "v4_6", docsrs))]
                 Self::R16g16b16a16FloatPremultiplied => "R16g16b16a16FloatPremultiplied",
-                #[cfg(any(feature = "v4_6", feature = "dox"))]
+                #[cfg(any(feature = "v4_6", docsrs))]
                 Self::R16g16b16a16Float => "R16g16b16a16Float",
-                #[cfg(any(feature = "v4_6", feature = "dox"))]
+                #[cfg(any(feature = "v4_6", docsrs))]
                 Self::R32g32b32Float => "R32g32b32Float",
-                #[cfg(any(feature = "v4_6", feature = "dox"))]
+                #[cfg(any(feature = "v4_6", docsrs))]
                 Self::R32g32b32a32FloatPremultiplied => "R32g32b32a32FloatPremultiplied",
-                #[cfg(any(feature = "v4_6", feature = "dox"))]
+                #[cfg(any(feature = "v4_6", docsrs))]
                 Self::R32g32b32a32Float => "R32g32b32a32Float",
                 _ => "Unknown",
             }
@@ -1693,27 +1693,27 @@ impl IntoGlib for MemoryFormat {
             Self::A8b8g8r8 => ffi::GDK_MEMORY_A8B8G8R8,
             Self::R8g8b8 => ffi::GDK_MEMORY_R8G8B8,
             Self::B8g8r8 => ffi::GDK_MEMORY_B8G8R8,
-            #[cfg(any(feature = "v4_6", feature = "dox"))]
+            #[cfg(any(feature = "v4_6", docsrs))]
             Self::R16g16b16 => ffi::GDK_MEMORY_R16G16B16,
-            #[cfg(any(feature = "v4_6", feature = "dox"))]
+            #[cfg(any(feature = "v4_6", docsrs))]
             Self::R16g16b16a16Premultiplied => ffi::GDK_MEMORY_R16G16B16A16_PREMULTIPLIED,
-            #[cfg(any(feature = "v4_6", feature = "dox"))]
+            #[cfg(any(feature = "v4_6", docsrs))]
             Self::R16g16b16a16 => ffi::GDK_MEMORY_R16G16B16A16,
-            #[cfg(any(feature = "v4_6", feature = "dox"))]
+            #[cfg(any(feature = "v4_6", docsrs))]
             Self::R16g16b16Float => ffi::GDK_MEMORY_R16G16B16_FLOAT,
-            #[cfg(any(feature = "v4_6", feature = "dox"))]
+            #[cfg(any(feature = "v4_6", docsrs))]
             Self::R16g16b16a16FloatPremultiplied => {
                 ffi::GDK_MEMORY_R16G16B16A16_FLOAT_PREMULTIPLIED
             }
-            #[cfg(any(feature = "v4_6", feature = "dox"))]
+            #[cfg(any(feature = "v4_6", docsrs))]
             Self::R16g16b16a16Float => ffi::GDK_MEMORY_R16G16B16A16_FLOAT,
-            #[cfg(any(feature = "v4_6", feature = "dox"))]
+            #[cfg(any(feature = "v4_6", docsrs))]
             Self::R32g32b32Float => ffi::GDK_MEMORY_R32G32B32_FLOAT,
-            #[cfg(any(feature = "v4_6", feature = "dox"))]
+            #[cfg(any(feature = "v4_6", docsrs))]
             Self::R32g32b32a32FloatPremultiplied => {
                 ffi::GDK_MEMORY_R32G32B32A32_FLOAT_PREMULTIPLIED
             }
-            #[cfg(any(feature = "v4_6", feature = "dox"))]
+            #[cfg(any(feature = "v4_6", docsrs))]
             Self::R32g32b32a32Float => ffi::GDK_MEMORY_R32G32B32A32_FLOAT,
             Self::__Unknown(value) => value,
         }
@@ -1735,27 +1735,27 @@ impl FromGlib<ffi::GdkMemoryFormat> for MemoryFormat {
             ffi::GDK_MEMORY_A8B8G8R8 => Self::A8b8g8r8,
             ffi::GDK_MEMORY_R8G8B8 => Self::R8g8b8,
             ffi::GDK_MEMORY_B8G8R8 => Self::B8g8r8,
-            #[cfg(any(feature = "v4_6", feature = "dox"))]
+            #[cfg(any(feature = "v4_6", docsrs))]
             ffi::GDK_MEMORY_R16G16B16 => Self::R16g16b16,
-            #[cfg(any(feature = "v4_6", feature = "dox"))]
+            #[cfg(any(feature = "v4_6", docsrs))]
             ffi::GDK_MEMORY_R16G16B16A16_PREMULTIPLIED => Self::R16g16b16a16Premultiplied,
-            #[cfg(any(feature = "v4_6", feature = "dox"))]
+            #[cfg(any(feature = "v4_6", docsrs))]
             ffi::GDK_MEMORY_R16G16B16A16 => Self::R16g16b16a16,
-            #[cfg(any(feature = "v4_6", feature = "dox"))]
+            #[cfg(any(feature = "v4_6", docsrs))]
             ffi::GDK_MEMORY_R16G16B16_FLOAT => Self::R16g16b16Float,
-            #[cfg(any(feature = "v4_6", feature = "dox"))]
+            #[cfg(any(feature = "v4_6", docsrs))]
             ffi::GDK_MEMORY_R16G16B16A16_FLOAT_PREMULTIPLIED => {
                 Self::R16g16b16a16FloatPremultiplied
             }
-            #[cfg(any(feature = "v4_6", feature = "dox"))]
+            #[cfg(any(feature = "v4_6", docsrs))]
             ffi::GDK_MEMORY_R16G16B16A16_FLOAT => Self::R16g16b16a16Float,
-            #[cfg(any(feature = "v4_6", feature = "dox"))]
+            #[cfg(any(feature = "v4_6", docsrs))]
             ffi::GDK_MEMORY_R32G32B32_FLOAT => Self::R32g32b32Float,
-            #[cfg(any(feature = "v4_6", feature = "dox"))]
+            #[cfg(any(feature = "v4_6", docsrs))]
             ffi::GDK_MEMORY_R32G32B32A32_FLOAT_PREMULTIPLIED => {
                 Self::R32g32b32a32FloatPremultiplied
             }
-            #[cfg(any(feature = "v4_6", feature = "dox"))]
+            #[cfg(any(feature = "v4_6", docsrs))]
             ffi::GDK_MEMORY_R32G32B32A32_FLOAT => Self::R32g32b32a32Float,
             value => Self::__Unknown(value),
         }
@@ -2070,8 +2070,8 @@ impl From<ScrollDirection> for glib::Value {
     }
 }
 
-#[cfg(any(feature = "v4_8", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+#[cfg(any(feature = "v4_8", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
 #[doc(alias = "GdkScrollUnit")]
@@ -2084,8 +2084,8 @@ pub enum ScrollUnit {
     __Unknown(i32),
 }
 
-#[cfg(any(feature = "v4_8", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+#[cfg(any(feature = "v4_8", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
 impl fmt::Display for ScrollUnit {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
@@ -2100,8 +2100,8 @@ impl fmt::Display for ScrollUnit {
     }
 }
 
-#[cfg(any(feature = "v4_8", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+#[cfg(any(feature = "v4_8", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
 #[doc(hidden)]
 impl IntoGlib for ScrollUnit {
     type GlibType = ffi::GdkScrollUnit;
@@ -2116,8 +2116,8 @@ impl IntoGlib for ScrollUnit {
     }
 }
 
-#[cfg(any(feature = "v4_8", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+#[cfg(any(feature = "v4_8", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
 #[doc(hidden)]
 impl FromGlib<ffi::GdkScrollUnit> for ScrollUnit {
     #[inline]
@@ -2132,8 +2132,8 @@ impl FromGlib<ffi::GdkScrollUnit> for ScrollUnit {
     }
 }
 
-#[cfg(any(feature = "v4_8", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+#[cfg(any(feature = "v4_8", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
 impl StaticType for ScrollUnit {
     #[inline]
     fn static_type() -> Type {
@@ -2141,8 +2141,8 @@ impl StaticType for ScrollUnit {
     }
 }
 
-#[cfg(any(feature = "v4_8", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+#[cfg(any(feature = "v4_8", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
 impl glib::HasParamSpec for ScrollUnit {
     type ParamSpec = glib::ParamSpecEnum;
     type SetValue = Self;
@@ -2153,14 +2153,14 @@ impl glib::HasParamSpec for ScrollUnit {
     }
 }
 
-#[cfg(any(feature = "v4_8", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+#[cfg(any(feature = "v4_8", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
 impl glib::value::ValueType for ScrollUnit {
     type Type = Self;
 }
 
-#[cfg(any(feature = "v4_8", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+#[cfg(any(feature = "v4_8", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
 unsafe impl<'a> FromValue<'a> for ScrollUnit {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
@@ -2171,8 +2171,8 @@ unsafe impl<'a> FromValue<'a> for ScrollUnit {
     }
 }
 
-#[cfg(any(feature = "v4_8", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+#[cfg(any(feature = "v4_8", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
 impl ToValue for ScrollUnit {
     #[inline]
     fn to_value(&self) -> glib::Value {
@@ -2189,8 +2189,8 @@ impl ToValue for ScrollUnit {
     }
 }
 
-#[cfg(any(feature = "v4_8", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+#[cfg(any(feature = "v4_8", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
 impl From<ScrollUnit> for glib::Value {
     #[inline]
     fn from(v: ScrollUnit) -> Self {
@@ -2467,8 +2467,8 @@ impl From<SurfaceEdge> for glib::Value {
     }
 }
 
-#[cfg(any(feature = "v4_6", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+#[cfg(any(feature = "v4_6", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
 #[doc(alias = "GdkTextureError")]
@@ -2485,8 +2485,8 @@ pub enum TextureError {
     __Unknown(i32),
 }
 
-#[cfg(any(feature = "v4_6", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+#[cfg(any(feature = "v4_6", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
 impl fmt::Display for TextureError {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
@@ -2503,8 +2503,8 @@ impl fmt::Display for TextureError {
     }
 }
 
-#[cfg(any(feature = "v4_6", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+#[cfg(any(feature = "v4_6", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
 #[doc(hidden)]
 impl IntoGlib for TextureError {
     type GlibType = ffi::GdkTextureError;
@@ -2521,8 +2521,8 @@ impl IntoGlib for TextureError {
     }
 }
 
-#[cfg(any(feature = "v4_6", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+#[cfg(any(feature = "v4_6", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
 #[doc(hidden)]
 impl FromGlib<ffi::GdkTextureError> for TextureError {
     #[inline]
@@ -2539,8 +2539,8 @@ impl FromGlib<ffi::GdkTextureError> for TextureError {
     }
 }
 
-#[cfg(any(feature = "v4_6", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+#[cfg(any(feature = "v4_6", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
 impl ErrorDomain for TextureError {
     #[inline]
     fn domain() -> Quark {
@@ -2564,8 +2564,8 @@ impl ErrorDomain for TextureError {
     }
 }
 
-#[cfg(any(feature = "v4_6", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+#[cfg(any(feature = "v4_6", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
 impl StaticType for TextureError {
     #[inline]
     fn static_type() -> Type {
@@ -2573,8 +2573,8 @@ impl StaticType for TextureError {
     }
 }
 
-#[cfg(any(feature = "v4_6", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+#[cfg(any(feature = "v4_6", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
 impl glib::HasParamSpec for TextureError {
     type ParamSpec = glib::ParamSpecEnum;
     type SetValue = Self;
@@ -2585,14 +2585,14 @@ impl glib::HasParamSpec for TextureError {
     }
 }
 
-#[cfg(any(feature = "v4_6", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+#[cfg(any(feature = "v4_6", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
 impl glib::value::ValueType for TextureError {
     type Type = Self;
 }
 
-#[cfg(any(feature = "v4_6", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+#[cfg(any(feature = "v4_6", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
 unsafe impl<'a> FromValue<'a> for TextureError {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
@@ -2603,8 +2603,8 @@ unsafe impl<'a> FromValue<'a> for TextureError {
     }
 }
 
-#[cfg(any(feature = "v4_6", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+#[cfg(any(feature = "v4_6", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
 impl ToValue for TextureError {
     #[inline]
     fn to_value(&self) -> glib::Value {
@@ -2621,8 +2621,8 @@ impl ToValue for TextureError {
     }
 }
 
-#[cfg(any(feature = "v4_6", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+#[cfg(any(feature = "v4_6", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
 impl From<TextureError> for glib::Value {
     #[inline]
     fn from(v: TextureError) -> Self {
@@ -2631,8 +2631,8 @@ impl From<TextureError> for glib::Value {
     }
 }
 
-#[cfg(any(feature = "v4_4", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_4")))]
+#[cfg(any(feature = "v4_4", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_4")))]
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
 #[doc(alias = "GdkTitlebarGesture")]
@@ -2647,8 +2647,8 @@ pub enum TitlebarGesture {
     __Unknown(i32),
 }
 
-#[cfg(any(feature = "v4_4", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_4")))]
+#[cfg(any(feature = "v4_4", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_4")))]
 impl fmt::Display for TitlebarGesture {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
@@ -2664,8 +2664,8 @@ impl fmt::Display for TitlebarGesture {
     }
 }
 
-#[cfg(any(feature = "v4_4", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_4")))]
+#[cfg(any(feature = "v4_4", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_4")))]
 #[doc(hidden)]
 impl IntoGlib for TitlebarGesture {
     type GlibType = ffi::GdkTitlebarGesture;
@@ -2681,8 +2681,8 @@ impl IntoGlib for TitlebarGesture {
     }
 }
 
-#[cfg(any(feature = "v4_4", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_4")))]
+#[cfg(any(feature = "v4_4", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_4")))]
 #[doc(hidden)]
 impl FromGlib<ffi::GdkTitlebarGesture> for TitlebarGesture {
     #[inline]
@@ -2698,8 +2698,8 @@ impl FromGlib<ffi::GdkTitlebarGesture> for TitlebarGesture {
     }
 }
 
-#[cfg(any(feature = "v4_4", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_4")))]
+#[cfg(any(feature = "v4_4", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_4")))]
 impl StaticType for TitlebarGesture {
     #[inline]
     fn static_type() -> Type {
@@ -2707,8 +2707,8 @@ impl StaticType for TitlebarGesture {
     }
 }
 
-#[cfg(any(feature = "v4_4", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_4")))]
+#[cfg(any(feature = "v4_4", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_4")))]
 impl glib::HasParamSpec for TitlebarGesture {
     type ParamSpec = glib::ParamSpecEnum;
     type SetValue = Self;
@@ -2719,14 +2719,14 @@ impl glib::HasParamSpec for TitlebarGesture {
     }
 }
 
-#[cfg(any(feature = "v4_4", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_4")))]
+#[cfg(any(feature = "v4_4", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_4")))]
 impl glib::value::ValueType for TitlebarGesture {
     type Type = Self;
 }
 
-#[cfg(any(feature = "v4_4", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_4")))]
+#[cfg(any(feature = "v4_4", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_4")))]
 unsafe impl<'a> FromValue<'a> for TitlebarGesture {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
@@ -2737,8 +2737,8 @@ unsafe impl<'a> FromValue<'a> for TitlebarGesture {
     }
 }
 
-#[cfg(any(feature = "v4_4", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_4")))]
+#[cfg(any(feature = "v4_4", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_4")))]
 impl ToValue for TitlebarGesture {
     #[inline]
     fn to_value(&self) -> glib::Value {
@@ -2755,8 +2755,8 @@ impl ToValue for TitlebarGesture {
     }
 }
 
-#[cfg(any(feature = "v4_4", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_4")))]
+#[cfg(any(feature = "v4_4", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_4")))]
 impl From<TitlebarGesture> for glib::Value {
     #[inline]
     fn from(v: TitlebarGesture) -> Self {

@@ -90,8 +90,8 @@ impl CheckButtonBuilder {
         }
     }
 
-    #[cfg(any(feature = "v4_8", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+    #[cfg(any(feature = "v4_8", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
     pub fn child(self, child: &impl IsA<Widget>) -> Self {
         Self {
             builder: self.builder.property("child", child.clone().upcast()),
@@ -333,8 +333,8 @@ pub trait CheckButtonExt: 'static {
     #[doc(alias = "get_active")]
     fn is_active(&self) -> bool;
 
-    #[cfg(any(feature = "v4_8", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+    #[cfg(any(feature = "v4_8", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
     #[doc(alias = "gtk_check_button_get_child")]
     #[doc(alias = "get_child")]
     fn child(&self) -> Option<Widget>;
@@ -354,8 +354,8 @@ pub trait CheckButtonExt: 'static {
     #[doc(alias = "gtk_check_button_set_active")]
     fn set_active(&self, setting: bool);
 
-    #[cfg(any(feature = "v4_8", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+    #[cfg(any(feature = "v4_8", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
     #[doc(alias = "gtk_check_button_set_child")]
     fn set_child(&self, child: Option<&impl IsA<Widget>>);
 
@@ -371,13 +371,13 @@ pub trait CheckButtonExt: 'static {
     #[doc(alias = "gtk_check_button_set_use_underline")]
     fn set_use_underline(&self, setting: bool);
 
-    #[cfg(any(feature = "v4_2", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_2")))]
+    #[cfg(any(feature = "v4_2", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_2")))]
     #[doc(alias = "activate")]
     fn connect_activate<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    #[cfg(any(feature = "v4_2", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_2")))]
+    #[cfg(any(feature = "v4_2", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_2")))]
     fn emit_activate(&self);
 
     #[doc(alias = "toggled")]
@@ -386,8 +386,8 @@ pub trait CheckButtonExt: 'static {
     #[doc(alias = "active")]
     fn connect_active_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    #[cfg(any(feature = "v4_8", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+    #[cfg(any(feature = "v4_8", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
     #[doc(alias = "child")]
     fn connect_child_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
@@ -413,8 +413,8 @@ impl<O: IsA<CheckButton>> CheckButtonExt for O {
         }
     }
 
-    #[cfg(any(feature = "v4_8", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+    #[cfg(any(feature = "v4_8", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
     fn child(&self) -> Option<Widget> {
         unsafe {
             from_glib_none(ffi::gtk_check_button_get_child(
@@ -453,8 +453,8 @@ impl<O: IsA<CheckButton>> CheckButtonExt for O {
         }
     }
 
-    #[cfg(any(feature = "v4_8", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+    #[cfg(any(feature = "v4_8", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
     fn set_child(&self, child: Option<&impl IsA<Widget>>) {
         unsafe {
             ffi::gtk_check_button_set_child(
@@ -497,8 +497,8 @@ impl<O: IsA<CheckButton>> CheckButtonExt for O {
         }
     }
 
-    #[cfg(any(feature = "v4_2", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_2")))]
+    #[cfg(any(feature = "v4_2", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_2")))]
     fn connect_activate<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn activate_trampoline<P: IsA<CheckButton>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkCheckButton,
@@ -520,8 +520,8 @@ impl<O: IsA<CheckButton>> CheckButtonExt for O {
         }
     }
 
-    #[cfg(any(feature = "v4_2", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_2")))]
+    #[cfg(any(feature = "v4_2", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_2")))]
     fn emit_activate(&self) {
         self.emit_by_name::<()>("activate", &[]);
     }
@@ -569,8 +569,8 @@ impl<O: IsA<CheckButton>> CheckButtonExt for O {
         }
     }
 
-    #[cfg(any(feature = "v4_8", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_8")))]
+    #[cfg(any(feature = "v4_8", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
     fn connect_child_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_child_trampoline<P: IsA<CheckButton>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkCheckButton,

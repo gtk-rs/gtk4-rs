@@ -53,8 +53,8 @@ impl FileChooserWidget {
         glib::ObjectExt::set_property(self, "search-mode", search_mode)
     }
 
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     #[doc(alias = "show-time")]
     pub fn shows_time(&self) -> bool {
         glib::ObjectExt::property(self, "show-time")
@@ -410,8 +410,8 @@ impl FileChooserWidget {
         }
     }
 
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     #[doc(alias = "show-time")]
     pub fn connect_show_time_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_show_time_trampoline<F: Fn(&FileChooserWidget) + 'static>(

@@ -202,8 +202,8 @@ impl ListBox {
         }
     }
 
-    #[cfg(any(feature = "v4_12", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_12")))]
+    #[cfg(any(feature = "v4_12", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
     #[doc(alias = "gtk_list_box_remove_all")]
     pub fn remove_all(&self) {
         unsafe {

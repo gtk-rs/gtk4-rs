@@ -7,8 +7,8 @@ use crate::{
     LayoutManager, Overflow, Scrollable, ScrollablePolicy, SelectionModel, SortType, Sorter,
     Widget,
 };
-#[cfg(any(feature = "v4_12", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_12")))]
+#[cfg(any(feature = "v4_12", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
 use crate::{ListItemFactory, ListTabBehavior};
 use glib::{
     prelude::*,
@@ -81,8 +81,8 @@ impl ColumnView {
         unsafe { from_glib(ffi::gtk_column_view_get_reorderable(self.to_glib_none().0)) }
     }
 
-    #[cfg(any(feature = "v4_12", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_12")))]
+    #[cfg(any(feature = "v4_12", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
     #[doc(alias = "gtk_column_view_get_row_factory")]
     #[doc(alias = "get_row_factory")]
     pub fn row_factory(&self) -> Option<ListItemFactory> {
@@ -125,8 +125,8 @@ impl ColumnView {
         unsafe { from_glib_none(ffi::gtk_column_view_get_sorter(self.to_glib_none().0)) }
     }
 
-    #[cfg(any(feature = "v4_12", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_12")))]
+    #[cfg(any(feature = "v4_12", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
     #[doc(alias = "gtk_column_view_get_tab_behavior")]
     #[doc(alias = "get_tab_behavior")]
     pub fn tab_behavior(&self) -> ListTabBehavior {
@@ -178,8 +178,8 @@ impl ColumnView {
         }
     }
 
-    #[cfg(any(feature = "v4_12", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_12")))]
+    #[cfg(any(feature = "v4_12", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
     #[doc(alias = "gtk_column_view_set_row_factory")]
     pub fn set_row_factory(&self, factory: Option<&impl IsA<ListItemFactory>>) {
         unsafe {
@@ -220,8 +220,8 @@ impl ColumnView {
         }
     }
 
-    #[cfg(any(feature = "v4_12", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_12")))]
+    #[cfg(any(feature = "v4_12", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
     #[doc(alias = "gtk_column_view_set_tab_behavior")]
     pub fn set_tab_behavior(&self, tab_behavior: ListTabBehavior) {
         unsafe {
@@ -358,8 +358,8 @@ impl ColumnView {
         }
     }
 
-    #[cfg(any(feature = "v4_12", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_12")))]
+    #[cfg(any(feature = "v4_12", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
     #[doc(alias = "row-factory")]
     pub fn connect_row_factory_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_row_factory_trampoline<F: Fn(&ColumnView) + 'static>(
@@ -488,8 +488,8 @@ impl ColumnView {
         }
     }
 
-    #[cfg(any(feature = "v4_12", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_12")))]
+    #[cfg(any(feature = "v4_12", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
     #[doc(alias = "tab-behavior")]
     pub fn connect_tab_behavior_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_tab_behavior_trampoline<F: Fn(&ColumnView) + 'static>(
@@ -556,8 +556,8 @@ impl ColumnViewBuilder {
         }
     }
 
-    #[cfg(any(feature = "v4_12", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_12")))]
+    #[cfg(any(feature = "v4_12", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
     pub fn row_factory(self, row_factory: &impl IsA<ListItemFactory>) -> Self {
         Self {
             builder: self
@@ -590,8 +590,8 @@ impl ColumnViewBuilder {
         }
     }
 
-    #[cfg(any(feature = "v4_12", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_12")))]
+    #[cfg(any(feature = "v4_12", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
     pub fn tab_behavior(self, tab_behavior: ListTabBehavior) -> Self {
         Self {
             builder: self.builder.property("tab-behavior", tab_behavior),

@@ -15,7 +15,6 @@ rust-version = "1.64"
 name = "gdk4"
 
 [features]
-dox = ["ffi/dox", "glib/dox", "gio/dox", "gdk-pixbuf/dox", "cairo-rs/dox", "pango/dox"]
 v4_2 = ["ffi/v4_2"]
 v4_4 = ["ffi/v4_4", "v4_2"]
 v4_6 = ["ffi/v4_6", "v4_4"]
@@ -24,7 +23,7 @@ v4_10 = ["ffi/v4_10", "v4_8"]
 v4_12 = ["ffi/v4_12", "v4_10"]
 
 [package.metadata.docs.rs]
-features = ["dox"]
+rustdoc-args = ["--cfg", "docsrs"]
 
 [dependencies]
 bitflags = "1.0"

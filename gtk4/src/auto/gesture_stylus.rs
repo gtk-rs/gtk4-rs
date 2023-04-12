@@ -84,8 +84,8 @@ impl GestureStylus {
         }
     }
 
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     #[doc(alias = "gtk_gesture_stylus_get_stylus_only")]
     #[doc(alias = "get_stylus_only")]
     pub fn is_stylus_only(&self) -> bool {
@@ -96,8 +96,8 @@ impl GestureStylus {
         }
     }
 
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     #[doc(alias = "gtk_gesture_stylus_set_stylus_only")]
     pub fn set_stylus_only(&self, stylus_only: bool) {
         unsafe {
@@ -201,8 +201,8 @@ impl GestureStylus {
         }
     }
 
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     #[doc(alias = "stylus-only")]
     pub fn connect_stylus_only_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_stylus_only_trampoline<F: Fn(&GestureStylus) + 'static>(
@@ -249,8 +249,8 @@ impl GestureStylusBuilder {
         }
     }
 
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn stylus_only(self, stylus_only: bool) -> Self {
         Self {
             builder: self.builder.property("stylus-only", stylus_only),

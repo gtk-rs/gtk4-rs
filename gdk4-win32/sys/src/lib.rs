@@ -9,7 +9,7 @@
     clippy::unreadable_literal,
     clippy::upper_case_acronyms
 )]
-#![cfg_attr(feature = "dox", feature(doc_cfg))]
+#![cfg_attr(docsrs, feature(doc_cfg))]
 
 #[allow(unused_imports)]
 use libc::{
@@ -224,8 +224,8 @@ extern "C" {
         function: GdkWin32MessageFilterFunc,
         data: gpointer,
     );
-    #[cfg(any(feature = "v4_4", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_4")))]
+    #[cfg(any(feature = "v4_4", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_4")))]
     pub fn gdk_win32_display_get_egl_display(display: *mut GdkWin32Display) -> gpointer;
     pub fn gdk_win32_display_get_win32hcursor(
         display: *mut GdkWin32Display,

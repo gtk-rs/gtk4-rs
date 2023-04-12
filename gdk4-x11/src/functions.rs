@@ -5,8 +5,8 @@ use glib::{translate::*, IntoGStr};
 
 #[cfg(not(feature = "xlib"))]
 use crate::XAtom;
-#[cfg(any(feature = "xlib", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "xlib")))]
+#[cfg(any(feature = "xlib", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "xlib")))]
 use x11::xlib::Atom as XAtom;
 
 #[doc(alias = "gdk_x11_get_xatom_by_name_for_display")]

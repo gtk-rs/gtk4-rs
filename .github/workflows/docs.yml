@@ -40,6 +40,7 @@ jobs:
         0.5=0.5
         0.4=0.4
         0.3=0.3
+      RUSTFLAGS: --cfg docsrs
     steps:
       - uses: actions/checkout@v2
         with:
@@ -77,7 +78,7 @@ jobs:
             -p gsk4 -p gsk4-sys
             -p gtk4 -p gtk4-sys
             -p gtk4-macros
-            --features "dox" --no-deps
+            --no-deps
 
       - name: Fix broken URLs
         run: |

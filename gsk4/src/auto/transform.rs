@@ -86,8 +86,8 @@ impl Transform {
         }
     }
 
-    #[cfg(any(feature = "v4_6", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    #[cfg(any(feature = "v4_6", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     #[doc(alias = "gsk_transform_to_2d_components")]
     pub fn to_2d_components(&self) -> (f32, f32, f32, f32, f32, f32, f32) {
         unsafe {

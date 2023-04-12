@@ -157,8 +157,8 @@ pub trait WidgetExt: 'static {
     #[doc(alias = "get_clipboard")]
     fn clipboard(&self) -> gdk::Clipboard;
 
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     #[doc(alias = "gtk_widget_get_color")]
     #[doc(alias = "get_color")]
     fn color(&self) -> gdk::RGBA;
@@ -1046,8 +1046,8 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     fn color(&self) -> gdk::RGBA {
         unsafe {
             let mut color = gdk::RGBA::uninitialized();

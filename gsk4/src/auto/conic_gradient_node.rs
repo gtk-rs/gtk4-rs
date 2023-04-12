@@ -43,8 +43,8 @@ impl ConicGradientNode {
         }
     }
 
-    #[cfg(any(feature = "v4_2", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_2")))]
+    #[cfg(any(feature = "v4_2", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_2")))]
     #[doc(alias = "gsk_conic_gradient_node_get_angle")]
     #[doc(alias = "get_angle")]
     pub fn angle(&self) -> f32 {

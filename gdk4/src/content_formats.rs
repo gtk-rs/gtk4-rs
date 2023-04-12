@@ -25,8 +25,8 @@ impl ContentFormats {
     }
 }
 
-#[cfg(any(feature = "v4_4", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_4")))]
+#[cfg(any(feature = "v4_4", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_4")))]
 impl std::str::FromStr for ContentFormats {
     type Err = glib::BoolError;
     fn from_str(s: &str) -> Result<Self, Self::Err> {

@@ -164,8 +164,8 @@ impl ContentFormats {
         }
     }
 
-    #[cfg(any(feature = "v4_4", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_4")))]
+    #[cfg(any(feature = "v4_4", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_4")))]
     #[doc(alias = "gdk_content_formats_parse")]
     pub fn parse(string: &str) -> Result<ContentFormats, glib::BoolError> {
         assert_initialized_main_thread!();

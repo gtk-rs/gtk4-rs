@@ -11,11 +11,11 @@ pub use self::blur_node::BlurNode;
 mod border_node;
 pub use self::border_node::BorderNode;
 
-#[cfg(any(feature = "broadway", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "broadway")))]
+#[cfg(any(feature = "broadway", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "broadway")))]
 mod broadway_renderer;
-#[cfg(any(feature = "broadway", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "broadway")))]
+#[cfg(any(feature = "broadway", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "broadway")))]
 pub use self::broadway_renderer::BroadwayRenderer;
 
 mod cairo_node;
@@ -60,11 +60,11 @@ pub use self::inset_shadow_node::InsetShadowNode;
 mod linear_gradient_node;
 pub use self::linear_gradient_node::LinearGradientNode;
 
-#[cfg(any(feature = "v4_10", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+#[cfg(any(feature = "v4_10", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 mod mask_node;
-#[cfg(any(feature = "v4_10", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+#[cfg(any(feature = "v4_10", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 pub use self::mask_node::MaskNode;
 
 mod opacity_node;
@@ -103,11 +103,11 @@ pub use self::text_node::TextNode;
 mod texture_node;
 pub use self::texture_node::TextureNode;
 
-#[cfg(any(feature = "v4_10", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+#[cfg(any(feature = "v4_10", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 mod texture_scale_node;
-#[cfg(any(feature = "v4_10", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+#[cfg(any(feature = "v4_10", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 pub use self::texture_scale_node::TextureScaleNode;
 
 mod transform_node;
@@ -123,8 +123,8 @@ mod enums;
 pub use self::enums::BlendMode;
 pub use self::enums::Corner;
 pub use self::enums::GLUniformType;
-#[cfg(any(feature = "v4_10", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+#[cfg(any(feature = "v4_10", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 pub use self::enums::MaskMode;
 pub use self::enums::RenderNodeType;
 pub use self::enums::ScalingFilter;

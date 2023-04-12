@@ -9,7 +9,7 @@
     clippy::unreadable_literal,
     clippy::upper_case_acronyms
 )]
-#![cfg_attr(feature = "dox", feature(doc_cfg))]
+#![cfg_attr(docsrs, feature(doc_cfg))]
 
 #[allow(unused_imports)]
 use libc::{
@@ -720,8 +720,8 @@ extern "C" {
     //=========================================================================
     // GskMaskMode
     //=========================================================================
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gsk_mask_mode_get_type() -> GType;
 
     //=========================================================================
@@ -877,8 +877,8 @@ extern "C" {
         factor_y: c_float,
         factor_z: c_float,
     ) -> *mut GskTransform;
-    #[cfg(any(feature = "v4_6", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    #[cfg(any(feature = "v4_6", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     pub fn gsk_transform_skew(
         next: *mut GskTransform,
         skew_x: c_float,
@@ -893,8 +893,8 @@ extern "C" {
         out_dx: *mut c_float,
         out_dy: *mut c_float,
     );
-    #[cfg(any(feature = "v4_6", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    #[cfg(any(feature = "v4_6", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     pub fn gsk_transform_to_2d_components(
         self_: *mut GskTransform,
         out_skew_x: *mut c_float,
@@ -1053,8 +1053,8 @@ extern "C" {
         color_stops: *const GskColorStop,
         n_color_stops: size_t,
     ) -> *mut GskConicGradientNode;
-    #[cfg(any(feature = "v4_2", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_2")))]
+    #[cfg(any(feature = "v4_2", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_2")))]
     pub fn gsk_conic_gradient_node_get_angle(node: *const GskConicGradientNode) -> c_float;
     pub fn gsk_conic_gradient_node_get_center(
         node: *const GskConicGradientNode,
@@ -1107,8 +1107,8 @@ extern "C" {
     // GskGLRenderer
     //=========================================================================
     pub fn gsk_gl_renderer_get_type() -> GType;
-    #[cfg(any(feature = "v4_2", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_2")))]
+    #[cfg(any(feature = "v4_2", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_2")))]
     pub fn gsk_gl_renderer_new() -> *mut GskRenderer;
 
     //=========================================================================
@@ -1243,24 +1243,24 @@ extern "C" {
     //=========================================================================
     // GskMaskNode
     //=========================================================================
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gsk_mask_node_get_type() -> GType;
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gsk_mask_node_new(
         source: *mut GskRenderNode,
         mask: *mut GskRenderNode,
         mask_mode: GskMaskMode,
     ) -> *mut GskMaskNode;
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gsk_mask_node_get_mask(node: *const GskMaskNode) -> *mut GskRenderNode;
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gsk_mask_node_get_mask_mode(node: *const GskMaskNode) -> GskMaskMode;
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gsk_mask_node_get_source(node: *const GskMaskNode) -> *mut GskRenderNode;
 
     //=========================================================================
@@ -1461,8 +1461,8 @@ extern "C" {
     ) -> *const pango::PangoGlyphInfo;
     pub fn gsk_text_node_get_num_glyphs(node: *const GskTextNode) -> c_uint;
     pub fn gsk_text_node_get_offset(node: *const GskTextNode) -> *const graphene::graphene_point_t;
-    #[cfg(any(feature = "v4_2", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_2")))]
+    #[cfg(any(feature = "v4_2", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_2")))]
     pub fn gsk_text_node_has_color_glyphs(node: *const GskTextNode) -> gboolean;
 
     //=========================================================================
@@ -1478,21 +1478,21 @@ extern "C" {
     //=========================================================================
     // GskTextureScaleNode
     //=========================================================================
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gsk_texture_scale_node_get_type() -> GType;
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gsk_texture_scale_node_new(
         texture: *mut gdk::GdkTexture,
         bounds: *const graphene::graphene_rect_t,
         filter: GskScalingFilter,
     ) -> *mut GskTextureScaleNode;
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gsk_texture_scale_node_get_filter(node: *const GskTextureScaleNode) -> GskScalingFilter;
-    #[cfg(any(feature = "v4_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gsk_texture_scale_node_get_texture(
         node: *const GskTextureScaleNode,
     ) -> *mut gdk::GdkTexture;
@@ -1511,17 +1511,17 @@ extern "C" {
     //=========================================================================
     // Other functions
     //=========================================================================
-    #[cfg(any(feature = "v4_6", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    #[cfg(any(feature = "v4_6", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     pub fn gsk_value_dup_render_node(value: *const gobject::GValue) -> *mut GskRenderNode;
-    #[cfg(any(feature = "v4_6", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    #[cfg(any(feature = "v4_6", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     pub fn gsk_value_get_render_node(value: *const gobject::GValue) -> *mut GskRenderNode;
-    #[cfg(any(feature = "v4_6", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    #[cfg(any(feature = "v4_6", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     pub fn gsk_value_set_render_node(value: *mut gobject::GValue, node: *mut GskRenderNode);
-    #[cfg(any(feature = "v4_6", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_6")))]
+    #[cfg(any(feature = "v4_6", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     pub fn gsk_value_take_render_node(value: *mut gobject::GValue, node: *mut GskRenderNode);
 
 }

@@ -1,6 +1,6 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-#![cfg_attr(feature = "dox", feature(doc_cfg))]
+#![cfg_attr(docsrs, feature(doc_cfg))]
 #![doc = include_str!("../README.md")]
 
 pub use cairo;
@@ -49,11 +49,11 @@ mod gl_shader;
 mod gl_shader_node;
 mod inset_shadow_node;
 mod linear_gradient_node;
-#[cfg(any(feature = "v4_10", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+#[cfg(any(feature = "v4_10", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 mod mask_node;
-#[cfg(any(feature = "v4_2", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_2")))]
+#[cfg(any(feature = "v4_2", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_2")))]
 mod ngl_renderer;
 mod opacity_node;
 mod outset_shadow_node;
@@ -66,15 +66,15 @@ mod rounded_clip_node;
 mod shadow_node;
 mod text_node;
 mod texture_node;
-#[cfg(any(feature = "v4_10", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_10")))]
+#[cfg(any(feature = "v4_10", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 mod texture_scale_node;
 mod transform;
 mod transform_node;
 
 pub use color_stop::ColorStop;
-#[cfg(any(feature = "v4_2", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_2")))]
+#[cfg(any(feature = "v4_2", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_2")))]
 #[cfg_attr(feature = "v4_4", deprecated = "Since 4.4")]
 pub use ngl_renderer::NglRenderer;
 pub use parse_location::ParseLocation;
