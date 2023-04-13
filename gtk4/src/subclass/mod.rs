@@ -84,6 +84,7 @@ pub mod tree_model_filter;
 pub mod tree_view;
 pub mod widget;
 pub mod window;
+pub mod window_group;
 
 // rustdoc-stripper-ignore-next
 /// Traits intended for blanket imports.
@@ -174,4 +175,5 @@ pub mod prelude {
         CompositeTemplateDisposeExt, CompositeTemplateInitializingExt, WidgetImpl, WidgetImplExt,
     };
     pub use super::window::{WindowImpl, WindowImplExt};
+    pub use super::window_group::WindowGroupImpl;
 }
