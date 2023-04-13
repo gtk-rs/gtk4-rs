@@ -31,7 +31,7 @@ fn build_ui(app: &Application) {
 
     // ANCHOR: settings_bind
     settings
-        .bind("is-switch-enabled", &switch, "state")
+        .bind("is-switch-enabled", &switch, "active")
         .flags(SettingsBindFlags::DEFAULT)
         .build();
     // ANCHOR_END: settings_bind

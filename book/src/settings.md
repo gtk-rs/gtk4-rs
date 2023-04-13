@@ -76,7 +76,7 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 
 The `Switch` now retains its state even after closing the application.
 But we can make this even better.
-The `Switch` has a property "state" and `Settings` allows us to bind properties to a specific setting.
+The `Switch` has a property "active" and `Settings` allows us to bind properties to a specific setting.
 So let's do exactly that.
 
 We can remove the [`boolean`](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/gio/prelude/trait.SettingsExt.html#tymethod.boolean) call before initializing the `Switch` as well as the [`connect_state_set`](../docs/gtk4/struct.Switch.html#method.connect_state_set) call.
