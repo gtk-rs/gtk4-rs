@@ -119,6 +119,7 @@ generate = [
     "Gtk.FontChooserWidget",
     "Gtk.FontLevel",
     "Gtk.Frame",
+    "Gtk.GestureClick",
     "Gtk.GestureDrag",
     "Gtk.GestureLongPress",
     "Gtk.GesturePan",
@@ -1325,16 +1326,6 @@ status = "generate"
         [[object.function.parameter]]
         name = "sequence"
         const = true
-
-[[object]]
-name = "Gtk.GestureClick"
-status = "generate"
-    # See https://gitlab.gnome.org/GNOME/gtk/-/merge_requests/4777
-    [[object.signal]]
-    name = "unpaired-release"
-        [[object.signal.parameter]]
-        name = "sequence"
-        nullable = true
 
 [[object]]
 name = "Gtk.GestureSingle"
