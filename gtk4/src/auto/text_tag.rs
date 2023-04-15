@@ -289,7 +289,7 @@ impl TextTagBuilder {
         }
     }
 
-    #[cfg(any(feature = "v4_6", docsrs))]
+    #[cfg(feature = "v4_6")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     pub fn line_height(self, line_height: f32) -> Self {
         Self {
@@ -297,7 +297,7 @@ impl TextTagBuilder {
         }
     }
 
-    #[cfg(any(feature = "v4_6", docsrs))]
+    #[cfg(feature = "v4_6")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     pub fn line_height_set(self, line_height_set: bool) -> Self {
         Self {
@@ -445,7 +445,7 @@ impl TextTagBuilder {
         }
     }
 
-    #[cfg(any(feature = "v4_6", docsrs))]
+    #[cfg(feature = "v4_6")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     pub fn sentence(self, sentence: bool) -> Self {
         Self {
@@ -453,7 +453,7 @@ impl TextTagBuilder {
         }
     }
 
-    #[cfg(any(feature = "v4_6", docsrs))]
+    #[cfg(feature = "v4_6")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     pub fn sentence_set(self, sentence_set: bool) -> Self {
         Self {
@@ -557,7 +557,7 @@ impl TextTagBuilder {
         }
     }
 
-    #[cfg(any(feature = "v4_6", docsrs))]
+    #[cfg(feature = "v4_6")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     pub fn text_transform(self, text_transform: pango::TextTransform) -> Self {
         Self {
@@ -565,7 +565,7 @@ impl TextTagBuilder {
         }
     }
 
-    #[cfg(any(feature = "v4_6", docsrs))]
+    #[cfg(feature = "v4_6")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     pub fn text_transform_set(self, text_transform_set: bool) -> Self {
         Self {
@@ -625,7 +625,7 @@ impl TextTagBuilder {
         }
     }
 
-    #[cfg(any(feature = "v4_6", docsrs))]
+    #[cfg(feature = "v4_6")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     pub fn word(self, word: bool) -> Self {
         Self {
@@ -633,7 +633,7 @@ impl TextTagBuilder {
         }
     }
 
-    #[cfg(any(feature = "v4_6", docsrs))]
+    #[cfg(feature = "v4_6")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     pub fn word_set(self, word_set: bool) -> Self {
         Self {
@@ -817,17 +817,17 @@ pub trait TextTagExt: 'static {
     #[doc(alias = "letter-spacing-set")]
     fn is_letter_spacing_set(&self) -> bool;
 
-    #[cfg(any(feature = "v4_6", docsrs))]
+    #[cfg(feature = "v4_6")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     #[doc(alias = "line-height")]
     fn line_height(&self) -> f32;
 
-    #[cfg(any(feature = "v4_6", docsrs))]
+    #[cfg(feature = "v4_6")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     #[doc(alias = "line-height")]
     fn set_line_height(&self, line_height: f32);
 
-    #[cfg(any(feature = "v4_6", docsrs))]
+    #[cfg(feature = "v4_6")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     #[doc(alias = "line-height-set")]
     fn is_line_height_set(&self) -> bool;
@@ -912,15 +912,15 @@ pub trait TextTagExt: 'static {
     #[doc(alias = "scale-set")]
     fn is_scale_set(&self) -> bool;
 
-    #[cfg(any(feature = "v4_6", docsrs))]
+    #[cfg(feature = "v4_6")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     fn is_sentence(&self) -> bool;
 
-    #[cfg(any(feature = "v4_6", docsrs))]
+    #[cfg(feature = "v4_6")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     fn set_sentence(&self, sentence: bool);
 
-    #[cfg(any(feature = "v4_6", docsrs))]
+    #[cfg(feature = "v4_6")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     #[doc(alias = "sentence-set")]
     fn is_sentence_set(&self) -> bool;
@@ -984,17 +984,17 @@ pub trait TextTagExt: 'static {
     #[doc(alias = "tabs-set")]
     fn is_tabs_set(&self) -> bool;
 
-    #[cfg(any(feature = "v4_6", docsrs))]
+    #[cfg(feature = "v4_6")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     #[doc(alias = "text-transform")]
     fn text_transform(&self) -> pango::TextTransform;
 
-    #[cfg(any(feature = "v4_6", docsrs))]
+    #[cfg(feature = "v4_6")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     #[doc(alias = "text-transform")]
     fn set_text_transform(&self, text_transform: pango::TextTransform);
 
-    #[cfg(any(feature = "v4_6", docsrs))]
+    #[cfg(feature = "v4_6")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     #[doc(alias = "text-transform-set")]
     fn is_text_transform_set(&self) -> bool;
@@ -1029,15 +1029,15 @@ pub trait TextTagExt: 'static {
     #[doc(alias = "weight-set")]
     fn is_weight_set(&self) -> bool;
 
-    #[cfg(any(feature = "v4_6", docsrs))]
+    #[cfg(feature = "v4_6")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     fn is_word(&self) -> bool;
 
-    #[cfg(any(feature = "v4_6", docsrs))]
+    #[cfg(feature = "v4_6")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     fn set_word(&self, word: bool);
 
-    #[cfg(any(feature = "v4_6", docsrs))]
+    #[cfg(feature = "v4_6")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     #[doc(alias = "word-set")]
     fn is_word_set(&self) -> bool;
@@ -1165,12 +1165,12 @@ pub trait TextTagExt: 'static {
     #[doc(alias = "letter-spacing-set")]
     fn connect_letter_spacing_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    #[cfg(any(feature = "v4_6", docsrs))]
+    #[cfg(feature = "v4_6")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     #[doc(alias = "line-height")]
     fn connect_line_height_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    #[cfg(any(feature = "v4_6", docsrs))]
+    #[cfg(feature = "v4_6")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     #[doc(alias = "line-height-set")]
     fn connect_line_height_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
@@ -1247,12 +1247,12 @@ pub trait TextTagExt: 'static {
     #[doc(alias = "scale-set")]
     fn connect_scale_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    #[cfg(any(feature = "v4_6", docsrs))]
+    #[cfg(feature = "v4_6")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     #[doc(alias = "sentence")]
     fn connect_sentence_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    #[cfg(any(feature = "v4_6", docsrs))]
+    #[cfg(feature = "v4_6")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     #[doc(alias = "sentence-set")]
     fn connect_sentence_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
@@ -1305,12 +1305,12 @@ pub trait TextTagExt: 'static {
     #[doc(alias = "tabs-set")]
     fn connect_tabs_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    #[cfg(any(feature = "v4_6", docsrs))]
+    #[cfg(feature = "v4_6")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     #[doc(alias = "text-transform")]
     fn connect_text_transform_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    #[cfg(any(feature = "v4_6", docsrs))]
+    #[cfg(feature = "v4_6")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     #[doc(alias = "text-transform-set")]
     fn connect_text_transform_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
@@ -1339,12 +1339,12 @@ pub trait TextTagExt: 'static {
     #[doc(alias = "weight-set")]
     fn connect_weight_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    #[cfg(any(feature = "v4_6", docsrs))]
+    #[cfg(feature = "v4_6")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     #[doc(alias = "word")]
     fn connect_word_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    #[cfg(any(feature = "v4_6", docsrs))]
+    #[cfg(feature = "v4_6")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     #[doc(alias = "word-set")]
     fn connect_word_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
@@ -1597,19 +1597,19 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         glib::ObjectExt::property(self.as_ref(), "letter-spacing-set")
     }
 
-    #[cfg(any(feature = "v4_6", docsrs))]
+    #[cfg(feature = "v4_6")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     fn line_height(&self) -> f32 {
         glib::ObjectExt::property(self.as_ref(), "line-height")
     }
 
-    #[cfg(any(feature = "v4_6", docsrs))]
+    #[cfg(feature = "v4_6")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     fn set_line_height(&self, line_height: f32) {
         glib::ObjectExt::set_property(self.as_ref(), "line-height", line_height)
     }
 
-    #[cfg(any(feature = "v4_6", docsrs))]
+    #[cfg(feature = "v4_6")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     fn is_line_height_set(&self) -> bool {
         glib::ObjectExt::property(self.as_ref(), "line-height-set")
@@ -1735,19 +1735,19 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         glib::ObjectExt::property(self.as_ref(), "scale-set")
     }
 
-    #[cfg(any(feature = "v4_6", docsrs))]
+    #[cfg(feature = "v4_6")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     fn is_sentence(&self) -> bool {
         glib::ObjectExt::property(self.as_ref(), "sentence")
     }
 
-    #[cfg(any(feature = "v4_6", docsrs))]
+    #[cfg(feature = "v4_6")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     fn set_sentence(&self, sentence: bool) {
         glib::ObjectExt::set_property(self.as_ref(), "sentence", sentence)
     }
 
-    #[cfg(any(feature = "v4_6", docsrs))]
+    #[cfg(feature = "v4_6")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     fn is_sentence_set(&self) -> bool {
         glib::ObjectExt::property(self.as_ref(), "sentence-set")
@@ -1845,19 +1845,19 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         glib::ObjectExt::property(self.as_ref(), "tabs-set")
     }
 
-    #[cfg(any(feature = "v4_6", docsrs))]
+    #[cfg(feature = "v4_6")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     fn text_transform(&self) -> pango::TextTransform {
         glib::ObjectExt::property(self.as_ref(), "text-transform")
     }
 
-    #[cfg(any(feature = "v4_6", docsrs))]
+    #[cfg(feature = "v4_6")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     fn set_text_transform(&self, text_transform: pango::TextTransform) {
         glib::ObjectExt::set_property(self.as_ref(), "text-transform", text_transform)
     }
 
-    #[cfg(any(feature = "v4_6", docsrs))]
+    #[cfg(feature = "v4_6")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     fn is_text_transform_set(&self) -> bool {
         glib::ObjectExt::property(self.as_ref(), "text-transform-set")
@@ -1911,19 +1911,19 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         glib::ObjectExt::property(self.as_ref(), "weight-set")
     }
 
-    #[cfg(any(feature = "v4_6", docsrs))]
+    #[cfg(feature = "v4_6")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     fn is_word(&self) -> bool {
         glib::ObjectExt::property(self.as_ref(), "word")
     }
 
-    #[cfg(any(feature = "v4_6", docsrs))]
+    #[cfg(feature = "v4_6")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     fn set_word(&self, word: bool) {
         glib::ObjectExt::set_property(self.as_ref(), "word", word)
     }
 
-    #[cfg(any(feature = "v4_6", docsrs))]
+    #[cfg(feature = "v4_6")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     fn is_word_set(&self) -> bool {
         glib::ObjectExt::property(self.as_ref(), "word-set")
@@ -2805,7 +2805,7 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    #[cfg(any(feature = "v4_6", docsrs))]
+    #[cfg(feature = "v4_6")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     fn connect_line_height_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_line_height_trampoline<P: IsA<TextTag>, F: Fn(&P) + 'static>(
@@ -2829,7 +2829,7 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    #[cfg(any(feature = "v4_6", docsrs))]
+    #[cfg(feature = "v4_6")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     fn connect_line_height_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_line_height_set_trampoline<
@@ -3331,7 +3331,7 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    #[cfg(any(feature = "v4_6", docsrs))]
+    #[cfg(feature = "v4_6")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     fn connect_sentence_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_sentence_trampoline<P: IsA<TextTag>, F: Fn(&P) + 'static>(
@@ -3355,7 +3355,7 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    #[cfg(any(feature = "v4_6", docsrs))]
+    #[cfg(feature = "v4_6")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     fn connect_sentence_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_sentence_set_trampoline<
@@ -3730,7 +3730,7 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    #[cfg(any(feature = "v4_6", docsrs))]
+    #[cfg(feature = "v4_6")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     fn connect_text_transform_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_text_transform_trampoline<
@@ -3757,7 +3757,7 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    #[cfg(any(feature = "v4_6", docsrs))]
+    #[cfg(feature = "v4_6")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     fn connect_text_transform_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_text_transform_set_trampoline<
@@ -3969,7 +3969,7 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    #[cfg(any(feature = "v4_6", docsrs))]
+    #[cfg(feature = "v4_6")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     fn connect_word_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_word_trampoline<P: IsA<TextTag>, F: Fn(&P) + 'static>(
@@ -3993,7 +3993,7 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    #[cfg(any(feature = "v4_6", docsrs))]
+    #[cfg(feature = "v4_6")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     fn connect_word_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_word_set_trampoline<P: IsA<TextTag>, F: Fn(&P) + 'static>(

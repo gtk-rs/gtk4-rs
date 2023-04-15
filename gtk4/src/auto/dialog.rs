@@ -152,7 +152,7 @@ impl DialogBuilder {
         }
     }
 
-    #[cfg(any(feature = "v4_2", docsrs))]
+    #[cfg(feature = "v4_2")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_2")))]
     pub fn handle_menubar_accel(self, handle_menubar_accel: bool) -> Self {
         Self {
@@ -212,7 +212,7 @@ impl DialogBuilder {
         }
     }
 
-    #[cfg(any(feature = "v4_6", docsrs))]
+    #[cfg(feature = "v4_6")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     pub fn titlebar(self, titlebar: &impl IsA<Widget>) -> Self {
         Self {

@@ -47,7 +47,7 @@ impl EventControllerScroll {
         }
     }
 
-    #[cfg(any(feature = "v4_8", docsrs))]
+    #[cfg(feature = "v4_8")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
     #[doc(alias = "gtk_event_controller_scroll_get_unit")]
     #[doc(alias = "get_unit")]

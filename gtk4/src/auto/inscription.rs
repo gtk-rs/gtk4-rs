@@ -180,7 +180,7 @@ impl Inscription {
         }
     }
 
-    #[cfg(any(feature = "v4_8", docsrs))]
+    #[cfg(feature = "v4_8")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
     #[doc(alias = "attributes")]
     pub fn connect_attributes_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
@@ -205,7 +205,7 @@ impl Inscription {
         }
     }
 
-    #[cfg(any(feature = "v4_8", docsrs))]
+    #[cfg(feature = "v4_8")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
     #[doc(alias = "markup")]
     pub fn connect_markup_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
@@ -230,7 +230,7 @@ impl Inscription {
         }
     }
 
-    #[cfg(any(feature = "v4_8", docsrs))]
+    #[cfg(feature = "v4_8")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
     #[doc(alias = "min-chars")]
     pub fn connect_min_chars_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
@@ -255,7 +255,7 @@ impl Inscription {
         }
     }
 
-    #[cfg(any(feature = "v4_8", docsrs))]
+    #[cfg(feature = "v4_8")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
     #[doc(alias = "min-lines")]
     pub fn connect_min_lines_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
@@ -280,7 +280,7 @@ impl Inscription {
         }
     }
 
-    #[cfg(any(feature = "v4_8", docsrs))]
+    #[cfg(feature = "v4_8")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
     #[doc(alias = "nat-chars")]
     pub fn connect_nat_chars_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
@@ -305,7 +305,7 @@ impl Inscription {
         }
     }
 
-    #[cfg(any(feature = "v4_8", docsrs))]
+    #[cfg(feature = "v4_8")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
     #[doc(alias = "nat-lines")]
     pub fn connect_nat_lines_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
@@ -330,7 +330,7 @@ impl Inscription {
         }
     }
 
-    #[cfg(any(feature = "v4_8", docsrs))]
+    #[cfg(feature = "v4_8")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
     #[doc(alias = "text")]
     pub fn connect_text_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
@@ -355,7 +355,7 @@ impl Inscription {
         }
     }
 
-    #[cfg(any(feature = "v4_8", docsrs))]
+    #[cfg(feature = "v4_8")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
     #[doc(alias = "text-overflow")]
     pub fn connect_text_overflow_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
@@ -380,7 +380,7 @@ impl Inscription {
         }
     }
 
-    #[cfg(any(feature = "v4_8", docsrs))]
+    #[cfg(feature = "v4_8")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
     #[doc(alias = "wrap-mode")]
     pub fn connect_wrap_mode_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
@@ -405,7 +405,7 @@ impl Inscription {
         }
     }
 
-    #[cfg(any(feature = "v4_8", docsrs))]
+    #[cfg(feature = "v4_8")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
     #[doc(alias = "xalign")]
     pub fn connect_xalign_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
@@ -430,7 +430,7 @@ impl Inscription {
         }
     }
 
-    #[cfg(any(feature = "v4_8", docsrs))]
+    #[cfg(feature = "v4_8")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
     #[doc(alias = "yalign")]
     pub fn connect_yalign_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
@@ -456,7 +456,7 @@ impl Inscription {
     }
 }
 
-#[cfg(any(feature = "v4_8", docsrs))]
+#[cfg(feature = "v4_8")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
 impl Default for Inscription {
     fn default() -> Self {
@@ -480,7 +480,7 @@ impl InscriptionBuilder {
         }
     }
 
-    #[cfg(any(feature = "v4_8", docsrs))]
+    #[cfg(feature = "v4_8")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
     pub fn attributes(self, attributes: &pango::AttrList) -> Self {
         Self {
@@ -488,7 +488,7 @@ impl InscriptionBuilder {
         }
     }
 
-    #[cfg(any(feature = "v4_8", docsrs))]
+    #[cfg(feature = "v4_8")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
     pub fn markup(self, markup: impl Into<glib::GString>) -> Self {
         Self {
@@ -496,7 +496,7 @@ impl InscriptionBuilder {
         }
     }
 
-    #[cfg(any(feature = "v4_8", docsrs))]
+    #[cfg(feature = "v4_8")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
     pub fn min_chars(self, min_chars: u32) -> Self {
         Self {
@@ -504,7 +504,7 @@ impl InscriptionBuilder {
         }
     }
 
-    #[cfg(any(feature = "v4_8", docsrs))]
+    #[cfg(feature = "v4_8")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
     pub fn min_lines(self, min_lines: u32) -> Self {
         Self {
@@ -512,7 +512,7 @@ impl InscriptionBuilder {
         }
     }
 
-    #[cfg(any(feature = "v4_8", docsrs))]
+    #[cfg(feature = "v4_8")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
     pub fn nat_chars(self, nat_chars: u32) -> Self {
         Self {
@@ -520,7 +520,7 @@ impl InscriptionBuilder {
         }
     }
 
-    #[cfg(any(feature = "v4_8", docsrs))]
+    #[cfg(feature = "v4_8")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
     pub fn nat_lines(self, nat_lines: u32) -> Self {
         Self {
@@ -528,7 +528,7 @@ impl InscriptionBuilder {
         }
     }
 
-    #[cfg(any(feature = "v4_8", docsrs))]
+    #[cfg(feature = "v4_8")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
     pub fn text(self, text: impl Into<glib::GString>) -> Self {
         Self {
@@ -536,7 +536,7 @@ impl InscriptionBuilder {
         }
     }
 
-    #[cfg(any(feature = "v4_8", docsrs))]
+    #[cfg(feature = "v4_8")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
     pub fn text_overflow(self, text_overflow: InscriptionOverflow) -> Self {
         Self {
@@ -544,7 +544,7 @@ impl InscriptionBuilder {
         }
     }
 
-    #[cfg(any(feature = "v4_8", docsrs))]
+    #[cfg(feature = "v4_8")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
     pub fn wrap_mode(self, wrap_mode: pango::WrapMode) -> Self {
         Self {
@@ -552,7 +552,7 @@ impl InscriptionBuilder {
         }
     }
 
-    #[cfg(any(feature = "v4_8", docsrs))]
+    #[cfg(feature = "v4_8")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
     pub fn xalign(self, xalign: f32) -> Self {
         Self {
@@ -560,7 +560,7 @@ impl InscriptionBuilder {
         }
     }
 
-    #[cfg(any(feature = "v4_8", docsrs))]
+    #[cfg(feature = "v4_8")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
     pub fn yalign(self, yalign: f32) -> Self {
         Self {

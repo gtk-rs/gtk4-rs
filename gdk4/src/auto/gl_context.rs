@@ -3,15 +3,15 @@
 // DO NOT EDIT
 #![allow(deprecated)]
 
-#[cfg(any(feature = "v4_6", docsrs))]
+#[cfg(feature = "v4_6")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
 use crate::GLAPI;
 use crate::{Display, DrawContext, Surface};
-#[cfg(any(feature = "v4_6", docsrs))]
+#[cfg(feature = "v4_6")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
 use glib::signal::{connect_raw, SignalHandlerId};
 use glib::{prelude::*, translate::*};
-#[cfg(any(feature = "v4_6", docsrs))]
+#[cfg(feature = "v4_6")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
 use std::{boxed::Box as Box_, mem::transmute};
 use std::{fmt, mem, ptr};
@@ -45,13 +45,13 @@ impl GLContext {
 }
 
 pub trait GLContextExt: 'static {
-    #[cfg(any(feature = "v4_6", docsrs))]
+    #[cfg(feature = "v4_6")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     #[doc(alias = "gdk_gl_context_get_allowed_apis")]
     #[doc(alias = "get_allowed_apis")]
     fn allowed_apis(&self) -> GLAPI;
 
-    #[cfg(any(feature = "v4_6", docsrs))]
+    #[cfg(feature = "v4_6")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     #[doc(alias = "gdk_gl_context_get_api")]
     #[doc(alias = "get_api")]
@@ -95,7 +95,7 @@ pub trait GLContextExt: 'static {
     #[doc(alias = "gdk_gl_context_is_legacy")]
     fn is_legacy(&self) -> bool;
 
-    #[cfg(any(feature = "v4_4", docsrs))]
+    #[cfg(feature = "v4_4")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_4")))]
     #[doc(alias = "gdk_gl_context_is_shared")]
     fn is_shared(&self, other: &impl IsA<GLContext>) -> bool;
@@ -106,7 +106,7 @@ pub trait GLContextExt: 'static {
     #[doc(alias = "gdk_gl_context_realize")]
     fn realize(&self) -> Result<(), glib::Error>;
 
-    #[cfg(any(feature = "v4_6", docsrs))]
+    #[cfg(feature = "v4_6")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     #[doc(alias = "gdk_gl_context_set_allowed_apis")]
     fn set_allowed_apis(&self, apis: GLAPI);
@@ -123,19 +123,19 @@ pub trait GLContextExt: 'static {
     #[doc(alias = "gdk_gl_context_set_use_es")]
     fn set_use_es(&self, use_es: i32);
 
-    #[cfg(any(feature = "v4_6", docsrs))]
+    #[cfg(feature = "v4_6")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     #[doc(alias = "allowed-apis")]
     fn connect_allowed_apis_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    #[cfg(any(feature = "v4_6", docsrs))]
+    #[cfg(feature = "v4_6")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     #[doc(alias = "api")]
     fn connect_api_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 }
 
 impl<O: IsA<GLContext>> GLContextExt for O {
-    #[cfg(any(feature = "v4_6", docsrs))]
+    #[cfg(feature = "v4_6")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     fn allowed_apis(&self) -> GLAPI {
         unsafe {
@@ -145,7 +145,7 @@ impl<O: IsA<GLContext>> GLContextExt for O {
         }
     }
 
-    #[cfg(any(feature = "v4_6", docsrs))]
+    #[cfg(feature = "v4_6")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     fn api(&self) -> GLAPI {
         unsafe { from_glib(ffi::gdk_gl_context_get_api(self.as_ref().to_glib_none().0)) }
@@ -234,7 +234,7 @@ impl<O: IsA<GLContext>> GLContextExt for O {
         }
     }
 
-    #[cfg(any(feature = "v4_4", docsrs))]
+    #[cfg(feature = "v4_4")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_4")))]
     fn is_shared(&self, other: &impl IsA<GLContext>) -> bool {
         unsafe {
@@ -264,7 +264,7 @@ impl<O: IsA<GLContext>> GLContextExt for O {
         }
     }
 
-    #[cfg(any(feature = "v4_6", docsrs))]
+    #[cfg(feature = "v4_6")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     fn set_allowed_apis(&self, apis: GLAPI) {
         unsafe {
@@ -302,7 +302,7 @@ impl<O: IsA<GLContext>> GLContextExt for O {
         }
     }
 
-    #[cfg(any(feature = "v4_6", docsrs))]
+    #[cfg(feature = "v4_6")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     fn connect_allowed_apis_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_allowed_apis_trampoline<
@@ -329,7 +329,7 @@ impl<O: IsA<GLContext>> GLContextExt for O {
         }
     }
 
-    #[cfg(any(feature = "v4_6", docsrs))]
+    #[cfg(feature = "v4_6")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     fn connect_api_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_api_trampoline<P: IsA<GLContext>, F: Fn(&P) + 'static>(

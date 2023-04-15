@@ -68,7 +68,7 @@ pub trait EventControllerExt: 'static {
     #[doc(alias = "gtk_event_controller_set_propagation_phase")]
     fn set_propagation_phase(&self, phase: PropagationPhase);
 
-    #[cfg(any(feature = "v4_8", docsrs))]
+    #[cfg(feature = "v4_8")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
     #[doc(alias = "gtk_event_controller_set_static_name")]
     fn set_static_name(&self, name: Option<&str>);
@@ -180,7 +180,7 @@ impl<O: IsA<EventController>> EventControllerExt for O {
         }
     }
 
-    #[cfg(any(feature = "v4_8", docsrs))]
+    #[cfg(feature = "v4_8")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
     fn set_static_name(&self, name: Option<&str>) {
         unsafe {

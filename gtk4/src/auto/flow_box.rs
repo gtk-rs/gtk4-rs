@@ -37,7 +37,7 @@ impl FlowBox {
         FlowBoxBuilder::new()
     }
 
-    #[cfg(any(feature = "v4_6", docsrs))]
+    #[cfg(feature = "v4_6")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     #[doc(alias = "gtk_flow_box_append")]
     pub fn append(&self, child: &impl IsA<Widget>) {
@@ -184,7 +184,7 @@ impl FlowBox {
         }
     }
 
-    #[cfg(any(feature = "v4_6", docsrs))]
+    #[cfg(feature = "v4_6")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     #[doc(alias = "gtk_flow_box_prepend")]
     pub fn prepend(&self, child: &impl IsA<Widget>) {
@@ -200,7 +200,7 @@ impl FlowBox {
         }
     }
 
-    #[cfg(any(feature = "v4_12", docsrs))]
+    #[cfg(feature = "v4_12")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
     #[doc(alias = "gtk_flow_box_remove_all")]
     pub fn remove_all(&self) {

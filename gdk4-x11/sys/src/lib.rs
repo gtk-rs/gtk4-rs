@@ -251,10 +251,10 @@ extern "C" {
     pub fn gdk_x11_display_error_trap_pop_ignored(display: *mut GdkX11Display);
     pub fn gdk_x11_display_error_trap_push(display: *mut GdkX11Display);
     pub fn gdk_x11_display_get_default_group(display: *mut GdkX11Display) -> *mut gdk::GdkSurface;
-    #[cfg(any(feature = "v4_4", docsrs))]
+    #[cfg(feature = "v4_4")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_4")))]
     pub fn gdk_x11_display_get_egl_display(display: *mut GdkX11Display) -> gpointer;
-    #[cfg(any(feature = "v4_4", docsrs))]
+    #[cfg(feature = "v4_4")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_4")))]
     pub fn gdk_x11_display_get_egl_version(
         display: *mut GdkX11Display,

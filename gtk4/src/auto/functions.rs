@@ -2,7 +2,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-#[cfg(any(target_os = "linux", docsrs))]
+#[cfg(any(target_os = "linux"))]
 #[cfg_attr(docsrs, doc(cfg(target_os = "linux")))]
 use crate::Printer;
 use crate::{
@@ -48,7 +48,7 @@ pub fn disable_setlocale() {
 //    unsafe { TODO: call ffi:gtk_distribute_natural_allocation() }
 //}
 
-#[cfg(any(target_os = "linux", docsrs))]
+#[cfg(target_os = "linux")]
 #[cfg_attr(docsrs, doc(cfg(target_os = "linux")))]
 #[doc(alias = "gtk_enumerate_printers")]
 pub fn enumerate_printers<P: Fn(&Printer) -> bool + Send + Sync + 'static>(func: P, wait: bool) {

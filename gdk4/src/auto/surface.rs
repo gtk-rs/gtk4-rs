@@ -92,7 +92,7 @@ pub trait SurfaceExt: 'static {
     #[doc(alias = "get_mapped")]
     fn is_mapped(&self) -> bool;
 
-    #[cfg(any(feature = "v4_12", docsrs))]
+    #[cfg(feature = "v4_12")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
     #[doc(alias = "gdk_surface_get_scale")]
     #[doc(alias = "get_scale")]
@@ -157,7 +157,7 @@ pub trait SurfaceExt: 'static {
     #[doc(alias = "mapped")]
     fn connect_mapped_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    #[cfg(any(feature = "v4_12", docsrs))]
+    #[cfg(feature = "v4_12")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
     #[doc(alias = "scale")]
     fn connect_scale_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
@@ -273,7 +273,7 @@ impl<O: IsA<Surface>> SurfaceExt for O {
         unsafe { from_glib(ffi::gdk_surface_get_mapped(self.as_ref().to_glib_none().0)) }
     }
 
-    #[cfg(any(feature = "v4_12", docsrs))]
+    #[cfg(feature = "v4_12")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
     fn scale(&self) -> f64 {
         unsafe { ffi::gdk_surface_get_scale(self.as_ref().to_glib_none().0) }
@@ -557,7 +557,7 @@ impl<O: IsA<Surface>> SurfaceExt for O {
         }
     }
 
-    #[cfg(any(feature = "v4_12", docsrs))]
+    #[cfg(feature = "v4_12")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
     fn connect_scale_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_scale_trampoline<P: IsA<Surface>, F: Fn(&P) + 'static>(

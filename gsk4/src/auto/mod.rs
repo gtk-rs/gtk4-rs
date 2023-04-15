@@ -11,10 +11,10 @@ pub use self::blur_node::BlurNode;
 mod border_node;
 pub use self::border_node::BorderNode;
 
-#[cfg(any(feature = "broadway", docsrs))]
+#[cfg(feature = "broadway")]
 #[cfg_attr(docsrs, doc(cfg(feature = "broadway")))]
 mod broadway_renderer;
-#[cfg(any(feature = "broadway", docsrs))]
+#[cfg(feature = "broadway")]
 #[cfg_attr(docsrs, doc(cfg(feature = "broadway")))]
 pub use self::broadway_renderer::BroadwayRenderer;
 
@@ -60,10 +60,10 @@ pub use self::inset_shadow_node::InsetShadowNode;
 mod linear_gradient_node;
 pub use self::linear_gradient_node::LinearGradientNode;
 
-#[cfg(any(feature = "v4_10", docsrs))]
+#[cfg(feature = "v4_10")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 mod mask_node;
-#[cfg(any(feature = "v4_10", docsrs))]
+#[cfg(feature = "v4_10")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 pub use self::mask_node::MaskNode;
 
@@ -103,10 +103,10 @@ pub use self::text_node::TextNode;
 mod texture_node;
 pub use self::texture_node::TextureNode;
 
-#[cfg(any(feature = "v4_10", docsrs))]
+#[cfg(feature = "v4_10")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 mod texture_scale_node;
-#[cfg(any(feature = "v4_10", docsrs))]
+#[cfg(feature = "v4_10")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 pub use self::texture_scale_node::TextureScaleNode;
 
@@ -123,7 +123,7 @@ mod enums;
 pub use self::enums::BlendMode;
 pub use self::enums::Corner;
 pub use self::enums::GLUniformType;
-#[cfg(any(feature = "v4_10", docsrs))]
+#[cfg(feature = "v4_10")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 pub use self::enums::MaskMode;
 pub use self::enums::RenderNodeType;

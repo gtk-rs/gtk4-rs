@@ -60,7 +60,7 @@ impl ColumnViewSorter {
         }
     }
 
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     #[doc(alias = "primary-sort-column")]
     pub fn connect_primary_sort_column_notify<F: Fn(&Self) + 'static>(
@@ -90,7 +90,7 @@ impl ColumnViewSorter {
         }
     }
 
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     #[doc(alias = "primary-sort-order")]
     pub fn connect_primary_sort_order_notify<F: Fn(&Self) + 'static>(

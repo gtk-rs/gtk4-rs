@@ -77,7 +77,7 @@ impl TextNode {
         unsafe { from_glib_none(ffi::gsk_text_node_get_offset(self.to_glib_none().0)) }
     }
 
-    #[cfg(any(feature = "v4_2", docsrs))]
+    #[cfg(feature = "v4_2")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_2")))]
     #[doc(alias = "gsk_text_node_has_color_glyphs")]
     pub fn has_color_glyphs(&self) -> bool {

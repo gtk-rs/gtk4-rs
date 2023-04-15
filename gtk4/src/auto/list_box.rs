@@ -202,7 +202,7 @@ impl ListBox {
         }
     }
 
-    #[cfg(any(feature = "v4_12", docsrs))]
+    #[cfg(feature = "v4_12")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
     #[doc(alias = "gtk_list_box_remove_all")]
     pub fn remove_all(&self) {

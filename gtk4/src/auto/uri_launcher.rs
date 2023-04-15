@@ -111,7 +111,7 @@ impl UriLauncher {
         }
     }
 
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     #[doc(alias = "uri")]
     pub fn connect_uri_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
@@ -137,7 +137,7 @@ impl UriLauncher {
     }
 }
 
-#[cfg(any(feature = "v4_10", docsrs))]
+#[cfg(feature = "v4_10")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 impl Default for UriLauncher {
     fn default() -> Self {
@@ -161,7 +161,7 @@ impl UriLauncherBuilder {
         }
     }
 
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn uri(self, uri: impl Into<glib::GString>) -> Self {
         Self {

@@ -111,17 +111,17 @@ pub trait MediaStreamExt: 'static {
     #[doc(alias = "gtk_media_stream_set_volume")]
     fn set_volume(&self, volume: f64);
 
-    #[cfg(any(feature = "v4_4", docsrs))]
+    #[cfg(feature = "v4_4")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_4")))]
     #[doc(alias = "gtk_media_stream_stream_ended")]
     fn stream_ended(&self);
 
-    #[cfg(any(feature = "v4_4", docsrs))]
+    #[cfg(feature = "v4_4")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_4")))]
     #[doc(alias = "gtk_media_stream_stream_prepared")]
     fn stream_prepared(&self, has_audio: bool, has_video: bool, seekable: bool, duration: i64);
 
-    #[cfg(any(feature = "v4_4", docsrs))]
+    #[cfg(feature = "v4_4")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_4")))]
     #[doc(alias = "gtk_media_stream_stream_unprepared")]
     fn stream_unprepared(&self);
@@ -355,7 +355,7 @@ impl<O: IsA<MediaStream>> MediaStreamExt for O {
         }
     }
 
-    #[cfg(any(feature = "v4_4", docsrs))]
+    #[cfg(feature = "v4_4")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_4")))]
     fn stream_ended(&self) {
         unsafe {
@@ -363,7 +363,7 @@ impl<O: IsA<MediaStream>> MediaStreamExt for O {
         }
     }
 
-    #[cfg(any(feature = "v4_4", docsrs))]
+    #[cfg(feature = "v4_4")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_4")))]
     fn stream_prepared(&self, has_audio: bool, has_video: bool, seekable: bool, duration: i64) {
         unsafe {
@@ -377,7 +377,7 @@ impl<O: IsA<MediaStream>> MediaStreamExt for O {
         }
     }
 
-    #[cfg(any(feature = "v4_4", docsrs))]
+    #[cfg(feature = "v4_4")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_4")))]
     fn stream_unprepared(&self) {
         unsafe {

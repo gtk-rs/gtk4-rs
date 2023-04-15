@@ -224,7 +224,7 @@ extern "C" {
         function: GdkWin32MessageFilterFunc,
         data: gpointer,
     );
-    #[cfg(any(feature = "v4_4", docsrs))]
+    #[cfg(feature = "v4_4")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_4")))]
     pub fn gdk_win32_display_get_egl_display(display: *mut GdkWin32Display) -> gpointer;
     pub fn gdk_win32_display_get_win32hcursor(

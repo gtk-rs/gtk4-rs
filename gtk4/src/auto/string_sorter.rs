@@ -2,7 +2,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-#[cfg(any(feature = "v4_10", docsrs))]
+#[cfg(feature = "v4_10")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 use crate::Collation;
 use crate::{Expression, Sorter};
@@ -43,7 +43,7 @@ impl StringSorter {
         StringSorterBuilder::new()
     }
 
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     #[doc(alias = "gtk_string_sorter_get_collation")]
     #[doc(alias = "get_collation")]
@@ -67,7 +67,7 @@ impl StringSorter {
         }
     }
 
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     #[doc(alias = "gtk_string_sorter_set_collation")]
     pub fn set_collation(&self, collation: Collation) {
@@ -93,7 +93,7 @@ impl StringSorter {
         }
     }
 
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     #[doc(alias = "collation")]
     pub fn connect_collation_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
@@ -187,7 +187,7 @@ impl StringSorterBuilder {
         }
     }
 
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn collation(self, collation: Collation) -> Self {
         Self {

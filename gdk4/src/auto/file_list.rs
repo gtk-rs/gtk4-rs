@@ -16,7 +16,7 @@ glib::wrapper! {
 }
 
 impl FileList {
-    #[cfg(any(feature = "v4_8", docsrs))]
+    #[cfg(feature = "v4_8")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
     #[doc(alias = "gdk_file_list_new_from_array")]
     #[doc(alias = "new_from_array")]

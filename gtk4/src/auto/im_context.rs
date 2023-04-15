@@ -59,7 +59,7 @@ pub trait IMContextExt: 'static {
     #[doc(alias = "get_surrounding")]
     fn surrounding(&self) -> Option<(glib::GString, i32)>;
 
-    #[cfg(any(feature = "v4_2", docsrs))]
+    #[cfg(feature = "v4_2")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_2")))]
     #[doc(alias = "gtk_im_context_get_surrounding_with_selection")]
     #[doc(alias = "get_surrounding_with_selection")]
@@ -79,7 +79,7 @@ pub trait IMContextExt: 'static {
     #[doc(alias = "gtk_im_context_set_surrounding")]
     fn set_surrounding(&self, text: &str, cursor_index: i32);
 
-    #[cfg(any(feature = "v4_2", docsrs))]
+    #[cfg(feature = "v4_2")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_2")))]
     #[doc(alias = "gtk_im_context_set_surrounding_with_selection")]
     fn set_surrounding_with_selection(&self, text: &str, cursor_index: i32, anchor_index: i32);
@@ -221,7 +221,7 @@ impl<O: IsA<IMContext>> IMContextExt for O {
         }
     }
 
-    #[cfg(any(feature = "v4_2", docsrs))]
+    #[cfg(feature = "v4_2")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_2")))]
     fn surrounding_with_selection(&self) -> Option<(glib::GString, i32, i32)> {
         unsafe {
@@ -283,7 +283,7 @@ impl<O: IsA<IMContext>> IMContextExt for O {
         }
     }
 
-    #[cfg(any(feature = "v4_2", docsrs))]
+    #[cfg(feature = "v4_2")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_2")))]
     fn set_surrounding_with_selection(&self, text: &str, cursor_index: i32, anchor_index: i32) {
         let len = text.len() as _;

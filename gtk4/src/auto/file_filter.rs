@@ -58,7 +58,7 @@ impl FileFilter {
         }
     }
 
-    #[cfg(any(feature = "v4_4", docsrs))]
+    #[cfg(feature = "v4_4")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_4")))]
     #[doc(alias = "gtk_file_filter_add_suffix")]
     pub fn add_suffix(&self, suffix: &str) {

@@ -70,7 +70,7 @@ impl ColorDialogButton {
         }
     }
 
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     #[doc(alias = "dialog")]
     pub fn connect_dialog_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
@@ -95,7 +95,7 @@ impl ColorDialogButton {
         }
     }
 
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     #[doc(alias = "rgba")]
     pub fn connect_rgba_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
@@ -121,7 +121,7 @@ impl ColorDialogButton {
     }
 }
 
-#[cfg(any(feature = "v4_10", docsrs))]
+#[cfg(feature = "v4_10")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 impl Default for ColorDialogButton {
     fn default() -> Self {
@@ -145,7 +145,7 @@ impl ColorDialogButtonBuilder {
         }
     }
 
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn dialog(self, dialog: &ColorDialog) -> Self {
         Self {
@@ -153,7 +153,7 @@ impl ColorDialogButtonBuilder {
         }
     }
 
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn rgba(self, rgba: &gdk::RGBA) -> Self {
         Self {

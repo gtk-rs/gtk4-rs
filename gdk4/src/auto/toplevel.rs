@@ -2,7 +2,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-#[cfg(any(feature = "v4_4", docsrs))]
+#[cfg(feature = "v4_4")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_4")))]
 use crate::TitlebarGesture;
 use crate::{
@@ -92,7 +92,7 @@ pub trait ToplevelExt: 'static {
     #[doc(alias = "gdk_toplevel_supports_edge_constraints")]
     fn supports_edge_constraints(&self) -> bool;
 
-    #[cfg(any(feature = "v4_4", docsrs))]
+    #[cfg(feature = "v4_4")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_4")))]
     #[doc(alias = "gdk_toplevel_titlebar_gesture")]
     fn titlebar_gesture(&self, gesture: TitlebarGesture) -> bool;
@@ -297,7 +297,7 @@ impl<O: IsA<Toplevel>> ToplevelExt for O {
         }
     }
 
-    #[cfg(any(feature = "v4_4", docsrs))]
+    #[cfg(feature = "v4_4")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_4")))]
     fn titlebar_gesture(&self, gesture: TitlebarGesture) -> bool {
         unsafe {

@@ -46,7 +46,7 @@ impl DropTarget {
         unsafe { from_glib(ffi::gtk_drop_target_get_actions(self.to_glib_none().0)) }
     }
 
-    #[cfg(any(feature = "v4_4", docsrs))]
+    #[cfg(feature = "v4_4")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_4")))]
     #[doc(alias = "gtk_drop_target_get_current_drop")]
     #[doc(alias = "get_current_drop")]
@@ -230,7 +230,7 @@ impl DropTarget {
         }
     }
 
-    #[cfg(any(feature = "v4_4", docsrs))]
+    #[cfg(feature = "v4_4")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_4")))]
     #[doc(alias = "current-drop")]
     pub fn connect_current_drop_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
