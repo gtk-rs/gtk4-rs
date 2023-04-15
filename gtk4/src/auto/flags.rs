@@ -329,7 +329,7 @@ bitflags! {
         const A11Y = ffi::GTK_DEBUG_A11Y as _;
         #[doc(alias = "GTK_DEBUG_ICONFALLBACK")]
         const ICONFALLBACK = ffi::GTK_DEBUG_ICONFALLBACK as _;
-        #[cfg(any(feature = "v4_8", docsrs))]
+        #[cfg(feature = "v4_8")]
         #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
         #[doc(alias = "GTK_DEBUG_INVERT_TEXT_DIR")]
         const INVERT_TEXT_DIR = ffi::GTK_DEBUG_INVERT_TEXT_DIR as _;
@@ -1086,7 +1086,7 @@ impl From<PopoverMenuFlags> for glib::Value {
     }
 }
 
-#[cfg(any(target_os = "linux", docsrs))]
+#[cfg(target_os = "linux")]
 bitflags! {
     #[cfg_attr(docsrs, doc(cfg(target_os = "linux")))]
     #[doc(alias = "GtkPrintCapabilities")]
@@ -1114,14 +1114,14 @@ bitflags! {
     }
 }
 
-#[cfg(any(target_os = "linux", docsrs))]
+#[cfg(target_os = "linux")]
 impl fmt::Display for PrintCapabilities {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         <Self as fmt::Debug>::fmt(self, f)
     }
 }
 
-#[cfg(any(target_os = "linux", docsrs))]
+#[cfg(target_os = "linux")]
 #[doc(hidden)]
 impl IntoGlib for PrintCapabilities {
     type GlibType = ffi::GtkPrintCapabilities;
@@ -1132,7 +1132,7 @@ impl IntoGlib for PrintCapabilities {
     }
 }
 
-#[cfg(any(target_os = "linux", docsrs))]
+#[cfg(target_os = "linux")]
 #[doc(hidden)]
 impl FromGlib<ffi::GtkPrintCapabilities> for PrintCapabilities {
     #[inline]
@@ -1142,7 +1142,7 @@ impl FromGlib<ffi::GtkPrintCapabilities> for PrintCapabilities {
     }
 }
 
-#[cfg(any(target_os = "linux", docsrs))]
+#[cfg(target_os = "linux")]
 impl StaticType for PrintCapabilities {
     #[inline]
     fn static_type() -> Type {
@@ -1150,7 +1150,7 @@ impl StaticType for PrintCapabilities {
     }
 }
 
-#[cfg(any(target_os = "linux", docsrs))]
+#[cfg(target_os = "linux")]
 impl glib::HasParamSpec for PrintCapabilities {
     type ParamSpec = glib::ParamSpecFlags;
     type SetValue = Self;
@@ -1161,12 +1161,12 @@ impl glib::HasParamSpec for PrintCapabilities {
     }
 }
 
-#[cfg(any(target_os = "linux", docsrs))]
+#[cfg(target_os = "linux")]
 impl glib::value::ValueType for PrintCapabilities {
     type Type = Self;
 }
 
-#[cfg(any(target_os = "linux", docsrs))]
+#[cfg(target_os = "linux")]
 unsafe impl<'a> FromValue<'a> for PrintCapabilities {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
@@ -1177,7 +1177,7 @@ unsafe impl<'a> FromValue<'a> for PrintCapabilities {
     }
 }
 
-#[cfg(any(target_os = "linux", docsrs))]
+#[cfg(target_os = "linux")]
 impl ToValue for PrintCapabilities {
     #[inline]
     fn to_value(&self) -> glib::Value {
@@ -1194,7 +1194,7 @@ impl ToValue for PrintCapabilities {
     }
 }
 
-#[cfg(any(target_os = "linux", docsrs))]
+#[cfg(target_os = "linux")]
 impl From<PrintCapabilities> for glib::Value {
     #[inline]
     fn from(v: PrintCapabilities) -> Self {

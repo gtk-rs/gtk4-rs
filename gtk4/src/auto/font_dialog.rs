@@ -333,7 +333,7 @@ impl FontDialog {
         }
     }
 
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     #[doc(alias = "filter")]
     pub fn connect_filter_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
@@ -358,7 +358,7 @@ impl FontDialog {
         }
     }
 
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     #[doc(alias = "font-map")]
     pub fn connect_font_map_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
@@ -383,7 +383,7 @@ impl FontDialog {
         }
     }
 
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     #[doc(alias = "language")]
     pub fn connect_language_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
@@ -408,7 +408,7 @@ impl FontDialog {
         }
     }
 
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     #[doc(alias = "modal")]
     pub fn connect_modal_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
@@ -433,7 +433,7 @@ impl FontDialog {
         }
     }
 
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     #[doc(alias = "title")]
     pub fn connect_title_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
@@ -459,7 +459,7 @@ impl FontDialog {
     }
 }
 
-#[cfg(any(feature = "v4_10", docsrs))]
+#[cfg(feature = "v4_10")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 impl Default for FontDialog {
     fn default() -> Self {
@@ -483,7 +483,7 @@ impl FontDialogBuilder {
         }
     }
 
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn filter(self, filter: &impl IsA<Filter>) -> Self {
         Self {
@@ -491,7 +491,7 @@ impl FontDialogBuilder {
         }
     }
 
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn font_map(self, font_map: &impl IsA<pango::FontMap>) -> Self {
         Self {
@@ -499,7 +499,7 @@ impl FontDialogBuilder {
         }
     }
 
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn language(self, language: &pango::Language) -> Self {
         Self {
@@ -507,7 +507,7 @@ impl FontDialogBuilder {
         }
     }
 
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn modal(self, modal: bool) -> Self {
         Self {
@@ -515,7 +515,7 @@ impl FontDialogBuilder {
         }
     }
 
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn title(self, title: impl Into<glib::GString>) -> Self {
         Self {

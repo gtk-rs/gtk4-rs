@@ -3,12 +3,12 @@
 // DO NOT EDIT
 
 use crate::ListItemFactory;
-#[cfg(any(feature = "v4_8", docsrs))]
+#[cfg(feature = "v4_8")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
 use glib::signal::{connect_raw, SignalHandlerId};
 use glib::{prelude::*, translate::*};
 use std::fmt;
-#[cfg(any(feature = "v4_8", docsrs))]
+#[cfg(feature = "v4_8")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
 use std::{boxed::Box as Box_, mem::transmute};
 
@@ -30,7 +30,7 @@ impl SignalListItemFactory {
         }
     }
 
-    #[cfg(any(feature = "v4_8", docsrs))]
+    #[cfg(feature = "v4_8")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
     #[doc(alias = "bind")]
     pub fn connect_bind<F: Fn(&Self, &glib::Object) + 'static>(&self, f: F) -> SignalHandlerId {
@@ -57,7 +57,7 @@ impl SignalListItemFactory {
         }
     }
 
-    #[cfg(any(feature = "v4_8", docsrs))]
+    #[cfg(feature = "v4_8")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
     #[doc(alias = "setup")]
     pub fn connect_setup<F: Fn(&Self, &glib::Object) + 'static>(&self, f: F) -> SignalHandlerId {
@@ -84,7 +84,7 @@ impl SignalListItemFactory {
         }
     }
 
-    #[cfg(any(feature = "v4_8", docsrs))]
+    #[cfg(feature = "v4_8")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
     #[doc(alias = "teardown")]
     pub fn connect_teardown<F: Fn(&Self, &glib::Object) + 'static>(&self, f: F) -> SignalHandlerId {
@@ -111,7 +111,7 @@ impl SignalListItemFactory {
         }
     }
 
-    #[cfg(any(feature = "v4_8", docsrs))]
+    #[cfg(feature = "v4_8")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
     #[doc(alias = "unbind")]
     pub fn connect_unbind<F: Fn(&Self, &glib::Object) + 'static>(&self, f: F) -> SignalHandlerId {

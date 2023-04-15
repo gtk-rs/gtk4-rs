@@ -43,7 +43,7 @@ impl TreeExpander {
         unsafe { from_glib_none(ffi::gtk_tree_expander_get_child(self.to_glib_none().0)) }
     }
 
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     #[doc(alias = "gtk_tree_expander_get_hide_expander")]
     #[doc(alias = "get_hide_expander")]
@@ -55,7 +55,7 @@ impl TreeExpander {
         }
     }
 
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     #[doc(alias = "gtk_tree_expander_get_indent_for_depth")]
     #[doc(alias = "get_indent_for_depth")]
@@ -67,7 +67,7 @@ impl TreeExpander {
         }
     }
 
-    #[cfg(any(feature = "v4_6", docsrs))]
+    #[cfg(feature = "v4_6")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     #[doc(alias = "gtk_tree_expander_get_indent_for_icon")]
     #[doc(alias = "get_indent_for_icon")]
@@ -101,7 +101,7 @@ impl TreeExpander {
         }
     }
 
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     #[doc(alias = "gtk_tree_expander_set_hide_expander")]
     pub fn set_hide_expander(&self, hide_expander: bool) {
@@ -113,7 +113,7 @@ impl TreeExpander {
         }
     }
 
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     #[doc(alias = "gtk_tree_expander_set_indent_for_depth")]
     pub fn set_indent_for_depth(&self, indent_for_depth: bool) {
@@ -125,7 +125,7 @@ impl TreeExpander {
         }
     }
 
-    #[cfg(any(feature = "v4_6", docsrs))]
+    #[cfg(feature = "v4_6")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     #[doc(alias = "gtk_tree_expander_set_indent_for_icon")]
     pub fn set_indent_for_icon(&self, indent_for_icon: bool) {
@@ -167,7 +167,7 @@ impl TreeExpander {
         }
     }
 
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     #[doc(alias = "hide-expander")]
     pub fn connect_hide_expander_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
@@ -192,7 +192,7 @@ impl TreeExpander {
         }
     }
 
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     #[doc(alias = "indent-for-depth")]
     pub fn connect_indent_for_depth_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
@@ -217,7 +217,7 @@ impl TreeExpander {
         }
     }
 
-    #[cfg(any(feature = "v4_6", docsrs))]
+    #[cfg(feature = "v4_6")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     #[doc(alias = "indent-for-icon")]
     pub fn connect_indent_for_icon_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
@@ -317,7 +317,7 @@ impl TreeExpanderBuilder {
         }
     }
 
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn hide_expander(self, hide_expander: bool) -> Self {
         Self {
@@ -325,7 +325,7 @@ impl TreeExpanderBuilder {
         }
     }
 
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn indent_for_depth(self, indent_for_depth: bool) -> Self {
         Self {
@@ -333,7 +333,7 @@ impl TreeExpanderBuilder {
         }
     }
 
-    #[cfg(any(feature = "v4_6", docsrs))]
+    #[cfg(feature = "v4_6")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     pub fn indent_for_icon(self, indent_for_icon: bool) -> Self {
         Self {

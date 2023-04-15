@@ -164,7 +164,7 @@ impl ContentFormats {
         }
     }
 
-    #[cfg(any(feature = "v4_4", docsrs))]
+    #[cfg(feature = "v4_4")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_4")))]
     #[doc(alias = "gdk_content_formats_parse")]
     pub fn parse(string: &str) -> Result<ContentFormats, glib::BoolError> {

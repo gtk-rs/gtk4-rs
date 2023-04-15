@@ -9148,7 +9148,7 @@ extern "C" {
     //=========================================================================
     // GtkAccessiblePlatformState
     //=========================================================================
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_accessible_platform_state_get_type() -> GType;
 
@@ -9240,7 +9240,7 @@ extern "C" {
     //=========================================================================
     // GtkCollation
     //=========================================================================
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_collation_get_type() -> GType;
 
@@ -9268,7 +9268,7 @@ extern "C" {
     //=========================================================================
     // GtkContentFit
     //=========================================================================
-    #[cfg(any(feature = "v4_8", docsrs))]
+    #[cfg(feature = "v4_8")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
     pub fn gtk_content_fit_get_type() -> GType;
 
@@ -9285,10 +9285,10 @@ extern "C" {
     //=========================================================================
     // GtkDialogError
     //=========================================================================
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_dialog_error_get_type() -> GType;
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_dialog_error_quark() -> glib::GQuark;
 
@@ -9336,7 +9336,7 @@ extern "C" {
     //=========================================================================
     // GtkFontLevel
     //=========================================================================
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_font_level_get_type() -> GType;
 
@@ -9369,7 +9369,7 @@ extern "C" {
     //=========================================================================
     // GtkInscriptionOverflow
     //=========================================================================
-    #[cfg(any(feature = "v4_8", docsrs))]
+    #[cfg(feature = "v4_8")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
     pub fn gtk_inscription_overflow_get_type() -> GType;
 
@@ -9391,7 +9391,7 @@ extern "C" {
     //=========================================================================
     // GtkListTabBehavior
     //=========================================================================
-    #[cfg(any(feature = "v4_12", docsrs))]
+    #[cfg(feature = "v4_12")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
     pub fn gtk_list_tab_behavior_get_type() -> GType;
 
@@ -9408,7 +9408,7 @@ extern "C" {
     //=========================================================================
     // GtkNaturalWrapMode
     //=========================================================================
-    #[cfg(any(feature = "v4_6", docsrs))]
+    #[cfg(feature = "v4_6")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     pub fn gtk_natural_wrap_mode_get_type() -> GType;
 
@@ -9426,7 +9426,7 @@ extern "C" {
     // GtkOrdering
     //=========================================================================
     pub fn gtk_ordering_get_type() -> GType;
-    #[cfg(any(feature = "v4_2", docsrs))]
+    #[cfg(feature = "v4_2")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_2")))]
     pub fn gtk_ordering_from_cmpfunc(cmpfunc_result: c_int) -> GtkOrdering;
 
@@ -9620,7 +9620,7 @@ extern "C" {
     //=========================================================================
     // GtkSymbolicColor
     //=========================================================================
-    #[cfg(any(feature = "v4_6", docsrs))]
+    #[cfg(feature = "v4_6")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     pub fn gtk_symbolic_color_get_type() -> GType;
 
@@ -9909,7 +9909,7 @@ extern "C" {
     //=========================================================================
     // GtkExpressionWatch
     //=========================================================================
-    #[cfg(any(feature = "v4_2", docsrs))]
+    #[cfg(feature = "v4_2")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_2")))]
     pub fn gtk_expression_watch_get_type() -> GType;
     pub fn gtk_expression_watch_evaluate(
@@ -10528,13 +10528,13 @@ extern "C" {
     //=========================================================================
     // GtkAlertDialog
     //=========================================================================
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_alert_dialog_get_type() -> GType;
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_alert_dialog_new(format: *const c_char, ...) -> *mut GtkAlertDialog;
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_alert_dialog_choose(
         self_: *mut GtkAlertDialog,
@@ -10543,50 +10543,50 @@ extern "C" {
         callback: gio::GAsyncReadyCallback,
         user_data: gpointer,
     );
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_alert_dialog_choose_finish(
         self_: *mut GtkAlertDialog,
         result: *mut gio::GAsyncResult,
         error: *mut *mut glib::GError,
     ) -> c_int;
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_alert_dialog_get_buttons(self_: *mut GtkAlertDialog) -> *const *const c_char;
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_alert_dialog_get_cancel_button(self_: *mut GtkAlertDialog) -> c_int;
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_alert_dialog_get_default_button(self_: *mut GtkAlertDialog) -> c_int;
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_alert_dialog_get_detail(self_: *mut GtkAlertDialog) -> *const c_char;
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_alert_dialog_get_message(self_: *mut GtkAlertDialog) -> *const c_char;
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_alert_dialog_get_modal(self_: *mut GtkAlertDialog) -> gboolean;
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_alert_dialog_set_buttons(self_: *mut GtkAlertDialog, labels: *const *const c_char);
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_alert_dialog_set_cancel_button(self_: *mut GtkAlertDialog, button: c_int);
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_alert_dialog_set_default_button(self_: *mut GtkAlertDialog, button: c_int);
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_alert_dialog_set_detail(self_: *mut GtkAlertDialog, detail: *const c_char);
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_alert_dialog_set_message(self_: *mut GtkAlertDialog, message: *const c_char);
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_alert_dialog_set_modal(self_: *mut GtkAlertDialog, modal: gboolean);
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_alert_dialog_show(self_: *mut GtkAlertDialog, parent: *mut GtkWindow);
 
@@ -11672,14 +11672,14 @@ extern "C" {
     pub fn gtk_check_button_new_with_label(label: *const c_char) -> *mut GtkWidget;
     pub fn gtk_check_button_new_with_mnemonic(label: *const c_char) -> *mut GtkWidget;
     pub fn gtk_check_button_get_active(self_: *mut GtkCheckButton) -> gboolean;
-    #[cfg(any(feature = "v4_8", docsrs))]
+    #[cfg(feature = "v4_8")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
     pub fn gtk_check_button_get_child(button: *mut GtkCheckButton) -> *mut GtkWidget;
     pub fn gtk_check_button_get_inconsistent(check_button: *mut GtkCheckButton) -> gboolean;
     pub fn gtk_check_button_get_label(self_: *mut GtkCheckButton) -> *const c_char;
     pub fn gtk_check_button_get_use_underline(self_: *mut GtkCheckButton) -> gboolean;
     pub fn gtk_check_button_set_active(self_: *mut GtkCheckButton, setting: gboolean);
-    #[cfg(any(feature = "v4_8", docsrs))]
+    #[cfg(feature = "v4_8")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
     pub fn gtk_check_button_set_child(button: *mut GtkCheckButton, child: *mut GtkWidget);
     pub fn gtk_check_button_set_group(self_: *mut GtkCheckButton, group: *mut GtkCheckButton);
@@ -11730,13 +11730,13 @@ extern "C" {
     //=========================================================================
     // GtkColorDialog
     //=========================================================================
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_color_dialog_get_type() -> GType;
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_color_dialog_new() -> *mut GtkColorDialog;
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_color_dialog_choose_rgba(
         self_: *mut GtkColorDialog,
@@ -11746,58 +11746,58 @@ extern "C" {
         callback: gio::GAsyncReadyCallback,
         user_data: gpointer,
     );
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_color_dialog_choose_rgba_finish(
         self_: *mut GtkColorDialog,
         result: *mut gio::GAsyncResult,
         error: *mut *mut glib::GError,
     ) -> *mut gdk::GdkRGBA;
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_color_dialog_get_modal(self_: *mut GtkColorDialog) -> gboolean;
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_color_dialog_get_title(self_: *mut GtkColorDialog) -> *const c_char;
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_color_dialog_get_with_alpha(self_: *mut GtkColorDialog) -> gboolean;
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_color_dialog_set_modal(self_: *mut GtkColorDialog, modal: gboolean);
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_color_dialog_set_title(self_: *mut GtkColorDialog, title: *const c_char);
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_color_dialog_set_with_alpha(self_: *mut GtkColorDialog, with_alpha: gboolean);
 
     //=========================================================================
     // GtkColorDialogButton
     //=========================================================================
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_color_dialog_button_get_type() -> GType;
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_color_dialog_button_new(dialog: *mut GtkColorDialog) -> *mut GtkWidget;
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_color_dialog_button_get_dialog(
         self_: *mut GtkColorDialogButton,
     ) -> *mut GtkColorDialog;
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_color_dialog_button_get_rgba(
         self_: *mut GtkColorDialogButton,
     ) -> *const gdk::GdkRGBA;
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_color_dialog_button_set_dialog(
         self_: *mut GtkColorDialogButton,
         dialog: *mut GtkColorDialog,
     );
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_color_dialog_button_set_rgba(
         self_: *mut GtkColorDialogButton,
@@ -11817,14 +11817,14 @@ extern "C" {
     pub fn gtk_column_view_get_enable_rubberband(self_: *mut GtkColumnView) -> gboolean;
     pub fn gtk_column_view_get_model(self_: *mut GtkColumnView) -> *mut GtkSelectionModel;
     pub fn gtk_column_view_get_reorderable(self_: *mut GtkColumnView) -> gboolean;
-    #[cfg(any(feature = "v4_12", docsrs))]
+    #[cfg(feature = "v4_12")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
     pub fn gtk_column_view_get_row_factory(self_: *mut GtkColumnView) -> *mut GtkListItemFactory;
     pub fn gtk_column_view_get_show_column_separators(self_: *mut GtkColumnView) -> gboolean;
     pub fn gtk_column_view_get_show_row_separators(self_: *mut GtkColumnView) -> gboolean;
     pub fn gtk_column_view_get_single_click_activate(self_: *mut GtkColumnView) -> gboolean;
     pub fn gtk_column_view_get_sorter(self_: *mut GtkColumnView) -> *mut GtkSorter;
-    #[cfg(any(feature = "v4_12", docsrs))]
+    #[cfg(feature = "v4_12")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
     pub fn gtk_column_view_get_tab_behavior(self_: *mut GtkColumnView) -> GtkListTabBehavior;
     pub fn gtk_column_view_insert_column(
@@ -11842,7 +11842,7 @@ extern "C" {
     );
     pub fn gtk_column_view_set_model(self_: *mut GtkColumnView, model: *mut GtkSelectionModel);
     pub fn gtk_column_view_set_reorderable(self_: *mut GtkColumnView, reorderable: gboolean);
-    #[cfg(any(feature = "v4_12", docsrs))]
+    #[cfg(feature = "v4_12")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
     pub fn gtk_column_view_set_row_factory(
         self_: *mut GtkColumnView,
@@ -11860,7 +11860,7 @@ extern "C" {
         self_: *mut GtkColumnView,
         single_click_activate: gboolean,
     );
-    #[cfg(any(feature = "v4_12", docsrs))]
+    #[cfg(feature = "v4_12")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
     pub fn gtk_column_view_set_tab_behavior(
         self_: *mut GtkColumnView,
@@ -11875,28 +11875,28 @@ extern "C" {
     //=========================================================================
     // GtkColumnViewCell
     //=========================================================================
-    #[cfg(any(feature = "v4_12", docsrs))]
+    #[cfg(feature = "v4_12")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
     pub fn gtk_column_view_cell_get_type() -> GType;
-    #[cfg(any(feature = "v4_12", docsrs))]
+    #[cfg(feature = "v4_12")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
     pub fn gtk_column_view_cell_get_child(self_: *mut GtkColumnViewCell) -> *mut GtkWidget;
-    #[cfg(any(feature = "v4_12", docsrs))]
+    #[cfg(feature = "v4_12")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
     pub fn gtk_column_view_cell_get_focusable(self_: *mut GtkColumnViewCell) -> gboolean;
-    #[cfg(any(feature = "v4_12", docsrs))]
+    #[cfg(feature = "v4_12")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
     pub fn gtk_column_view_cell_get_item(self_: *mut GtkColumnViewCell) -> *mut gobject::GObject;
-    #[cfg(any(feature = "v4_12", docsrs))]
+    #[cfg(feature = "v4_12")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
     pub fn gtk_column_view_cell_get_position(self_: *mut GtkColumnViewCell) -> c_uint;
-    #[cfg(any(feature = "v4_12", docsrs))]
+    #[cfg(feature = "v4_12")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
     pub fn gtk_column_view_cell_get_selected(self_: *mut GtkColumnViewCell) -> gboolean;
-    #[cfg(any(feature = "v4_12", docsrs))]
+    #[cfg(feature = "v4_12")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
     pub fn gtk_column_view_cell_set_child(self_: *mut GtkColumnViewCell, child: *mut GtkWidget);
-    #[cfg(any(feature = "v4_12", docsrs))]
+    #[cfg(feature = "v4_12")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
     pub fn gtk_column_view_cell_set_focusable(self_: *mut GtkColumnViewCell, focusable: gboolean);
 
@@ -11919,7 +11919,7 @@ extern "C" {
     pub fn gtk_column_view_column_get_header_menu(
         self_: *mut GtkColumnViewColumn,
     ) -> *mut gio::GMenuModel;
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_column_view_column_get_id(self_: *mut GtkColumnViewColumn) -> *const c_char;
     pub fn gtk_column_view_column_get_resizable(self_: *mut GtkColumnViewColumn) -> gboolean;
@@ -11939,7 +11939,7 @@ extern "C" {
         self_: *mut GtkColumnViewColumn,
         menu: *mut gio::GMenuModel,
     );
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_column_view_column_set_id(self_: *mut GtkColumnViewColumn, id: *const c_char);
     pub fn gtk_column_view_column_set_resizable(
@@ -11956,59 +11956,59 @@ extern "C" {
     //=========================================================================
     // GtkColumnViewRow
     //=========================================================================
-    #[cfg(any(feature = "v4_12", docsrs))]
+    #[cfg(feature = "v4_12")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
     pub fn gtk_column_view_row_get_type() -> GType;
-    #[cfg(any(feature = "v4_12", docsrs))]
+    #[cfg(feature = "v4_12")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
     pub fn gtk_column_view_row_get_activatable(self_: *mut GtkColumnViewRow) -> gboolean;
-    #[cfg(any(feature = "v4_12", docsrs))]
+    #[cfg(feature = "v4_12")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
     pub fn gtk_column_view_row_get_focusable(self_: *mut GtkColumnViewRow) -> gboolean;
-    #[cfg(any(feature = "v4_12", docsrs))]
+    #[cfg(feature = "v4_12")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
     pub fn gtk_column_view_row_get_item(self_: *mut GtkColumnViewRow) -> *mut gobject::GObject;
-    #[cfg(any(feature = "v4_12", docsrs))]
+    #[cfg(feature = "v4_12")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
     pub fn gtk_column_view_row_get_position(self_: *mut GtkColumnViewRow) -> c_uint;
-    #[cfg(any(feature = "v4_12", docsrs))]
+    #[cfg(feature = "v4_12")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
     pub fn gtk_column_view_row_get_selectable(self_: *mut GtkColumnViewRow) -> gboolean;
-    #[cfg(any(feature = "v4_12", docsrs))]
+    #[cfg(feature = "v4_12")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
     pub fn gtk_column_view_row_get_selected(self_: *mut GtkColumnViewRow) -> gboolean;
-    #[cfg(any(feature = "v4_12", docsrs))]
+    #[cfg(feature = "v4_12")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
     pub fn gtk_column_view_row_set_activatable(self_: *mut GtkColumnViewRow, activatable: gboolean);
-    #[cfg(any(feature = "v4_12", docsrs))]
+    #[cfg(feature = "v4_12")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
     pub fn gtk_column_view_row_set_focusable(self_: *mut GtkColumnViewRow, focusable: gboolean);
-    #[cfg(any(feature = "v4_12", docsrs))]
+    #[cfg(feature = "v4_12")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
     pub fn gtk_column_view_row_set_selectable(self_: *mut GtkColumnViewRow, selectable: gboolean);
 
     //=========================================================================
     // GtkColumnViewSorter
     //=========================================================================
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_column_view_sorter_get_type() -> GType;
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_column_view_sorter_get_n_sort_columns(self_: *mut GtkColumnViewSorter) -> c_uint;
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_column_view_sorter_get_nth_sort_column(
         self_: *mut GtkColumnViewSorter,
         position: c_uint,
         sort_order: *mut GtkSortType,
     ) -> *mut GtkColumnViewColumn;
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_column_view_sorter_get_primary_sort_column(
         self_: *mut GtkColumnViewSorter,
     ) -> *mut GtkColumnViewColumn;
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_column_view_sorter_get_primary_sort_order(
         self_: *mut GtkColumnViewSorter,
@@ -12455,7 +12455,7 @@ extern "C" {
     pub fn gtk_drop_down_get_model(self_: *mut GtkDropDown) -> *mut gio::GListModel;
     pub fn gtk_drop_down_get_selected(self_: *mut GtkDropDown) -> c_uint;
     pub fn gtk_drop_down_get_selected_item(self_: *mut GtkDropDown) -> *mut gobject::GObject;
-    #[cfg(any(feature = "v4_6", docsrs))]
+    #[cfg(feature = "v4_6")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     pub fn gtk_drop_down_get_show_arrow(self_: *mut GtkDropDown) -> gboolean;
     pub fn gtk_drop_down_set_enable_search(self_: *mut GtkDropDown, enable_search: gboolean);
@@ -12467,7 +12467,7 @@ extern "C" {
     );
     pub fn gtk_drop_down_set_model(self_: *mut GtkDropDown, model: *mut gio::GListModel);
     pub fn gtk_drop_down_set_selected(self_: *mut GtkDropDown, position: c_uint);
-    #[cfg(any(feature = "v4_6", docsrs))]
+    #[cfg(feature = "v4_6")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     pub fn gtk_drop_down_set_show_arrow(self_: *mut GtkDropDown, show_arrow: gboolean);
 
@@ -12477,7 +12477,7 @@ extern "C" {
     pub fn gtk_drop_target_get_type() -> GType;
     pub fn gtk_drop_target_new(type_: GType, actions: gdk::GdkDragAction) -> *mut GtkDropTarget;
     pub fn gtk_drop_target_get_actions(self_: *mut GtkDropTarget) -> gdk::GdkDragAction;
-    #[cfg(any(feature = "v4_4", docsrs))]
+    #[cfg(feature = "v4_4")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_4")))]
     pub fn gtk_drop_target_get_current_drop(self_: *mut GtkDropTarget) -> *mut gdk::GdkDrop;
     pub fn gtk_drop_target_get_drop(self_: *mut GtkDropTarget) -> *mut gdk::GdkDrop;
@@ -12809,7 +12809,7 @@ extern "C" {
         controller: *mut GtkEventController,
         phase: GtkPropagationPhase,
     );
-    #[cfg(any(feature = "v4_8", docsrs))]
+    #[cfg(feature = "v4_8")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
     pub fn gtk_event_controller_set_static_name(
         controller: *mut GtkEventController,
@@ -12871,7 +12871,7 @@ extern "C" {
     pub fn gtk_event_controller_scroll_get_flags(
         scroll: *mut GtkEventControllerScroll,
     ) -> GtkEventControllerScrollFlags;
-    #[cfg(any(feature = "v4_8", docsrs))]
+    #[cfg(feature = "v4_8")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
     pub fn gtk_event_controller_scroll_get_unit(
         scroll: *mut GtkEventControllerScroll,
@@ -12982,37 +12982,37 @@ extern "C" {
     //=========================================================================
     // GtkFileDialog
     //=========================================================================
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_file_dialog_get_type() -> GType;
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_file_dialog_new() -> *mut GtkFileDialog;
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_file_dialog_get_accept_label(self_: *mut GtkFileDialog) -> *const c_char;
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_file_dialog_get_default_filter(self_: *mut GtkFileDialog) -> *mut GtkFileFilter;
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_file_dialog_get_filters(self_: *mut GtkFileDialog) -> *mut gio::GListModel;
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_file_dialog_get_initial_file(self_: *mut GtkFileDialog) -> *mut gio::GFile;
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_file_dialog_get_initial_folder(self_: *mut GtkFileDialog) -> *mut gio::GFile;
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_file_dialog_get_initial_name(self_: *mut GtkFileDialog) -> *const c_char;
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_file_dialog_get_modal(self_: *mut GtkFileDialog) -> gboolean;
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_file_dialog_get_title(self_: *mut GtkFileDialog) -> *const c_char;
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_file_dialog_open(
         self_: *mut GtkFileDialog,
@@ -13021,14 +13021,14 @@ extern "C" {
         callback: gio::GAsyncReadyCallback,
         user_data: gpointer,
     );
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_file_dialog_open_finish(
         self_: *mut GtkFileDialog,
         result: *mut gio::GAsyncResult,
         error: *mut *mut glib::GError,
     ) -> *mut gio::GFile;
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_file_dialog_open_multiple(
         self_: *mut GtkFileDialog,
@@ -13037,14 +13037,14 @@ extern "C" {
         callback: gio::GAsyncReadyCallback,
         user_data: gpointer,
     );
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_file_dialog_open_multiple_finish(
         self_: *mut GtkFileDialog,
         result: *mut gio::GAsyncResult,
         error: *mut *mut glib::GError,
     ) -> *mut gio::GListModel;
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_file_dialog_save(
         self_: *mut GtkFileDialog,
@@ -13053,14 +13053,14 @@ extern "C" {
         callback: gio::GAsyncReadyCallback,
         user_data: gpointer,
     );
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_file_dialog_save_finish(
         self_: *mut GtkFileDialog,
         result: *mut gio::GAsyncResult,
         error: *mut *mut glib::GError,
     ) -> *mut gio::GFile;
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_file_dialog_select_folder(
         self_: *mut GtkFileDialog,
@@ -13069,14 +13069,14 @@ extern "C" {
         callback: gio::GAsyncReadyCallback,
         user_data: gpointer,
     );
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_file_dialog_select_folder_finish(
         self_: *mut GtkFileDialog,
         result: *mut gio::GAsyncResult,
         error: *mut *mut glib::GError,
     ) -> *mut gio::GFile;
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_file_dialog_select_multiple_folders(
         self_: *mut GtkFileDialog,
@@ -13085,38 +13085,38 @@ extern "C" {
         callback: gio::GAsyncReadyCallback,
         user_data: gpointer,
     );
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_file_dialog_select_multiple_folders_finish(
         self_: *mut GtkFileDialog,
         result: *mut gio::GAsyncResult,
         error: *mut *mut glib::GError,
     ) -> *mut gio::GListModel;
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_file_dialog_set_accept_label(self_: *mut GtkFileDialog, accept_label: *const c_char);
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_file_dialog_set_default_filter(
         self_: *mut GtkFileDialog,
         filter: *mut GtkFileFilter,
     );
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_file_dialog_set_filters(self_: *mut GtkFileDialog, filters: *mut gio::GListModel);
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_file_dialog_set_initial_file(self_: *mut GtkFileDialog, file: *mut gio::GFile);
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_file_dialog_set_initial_folder(self_: *mut GtkFileDialog, folder: *mut gio::GFile);
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_file_dialog_set_initial_name(self_: *mut GtkFileDialog, name: *const c_char);
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_file_dialog_set_modal(self_: *mut GtkFileDialog, modal: gboolean);
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_file_dialog_set_title(self_: *mut GtkFileDialog, title: *const c_char);
 
@@ -13129,7 +13129,7 @@ extern "C" {
     pub fn gtk_file_filter_add_mime_type(filter: *mut GtkFileFilter, mime_type: *const c_char);
     pub fn gtk_file_filter_add_pattern(filter: *mut GtkFileFilter, pattern: *const c_char);
     pub fn gtk_file_filter_add_pixbuf_formats(filter: *mut GtkFileFilter);
-    #[cfg(any(feature = "v4_4", docsrs))]
+    #[cfg(feature = "v4_4")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_4")))]
     pub fn gtk_file_filter_add_suffix(filter: *mut GtkFileFilter, suffix: *const c_char);
     pub fn gtk_file_filter_get_attributes(filter: *mut GtkFileFilter) -> *mut *const c_char;
@@ -13140,16 +13140,16 @@ extern "C" {
     //=========================================================================
     // GtkFileLauncher
     //=========================================================================
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_file_launcher_get_type() -> GType;
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_file_launcher_new(file: *mut gio::GFile) -> *mut GtkFileLauncher;
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_file_launcher_get_file(self_: *mut GtkFileLauncher) -> *mut gio::GFile;
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_file_launcher_launch(
         self_: *mut GtkFileLauncher,
@@ -13158,14 +13158,14 @@ extern "C" {
         callback: gio::GAsyncReadyCallback,
         user_data: gpointer,
     );
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_file_launcher_launch_finish(
         self_: *mut GtkFileLauncher,
         result: *mut gio::GAsyncResult,
         error: *mut *mut glib::GError,
     ) -> gboolean;
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_file_launcher_open_containing_folder(
         self_: *mut GtkFileLauncher,
@@ -13174,14 +13174,14 @@ extern "C" {
         callback: gio::GAsyncReadyCallback,
         user_data: gpointer,
     );
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_file_launcher_open_containing_folder_finish(
         self_: *mut GtkFileLauncher,
         result: *mut gio::GAsyncResult,
         error: *mut *mut glib::GError,
     ) -> gboolean;
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_file_launcher_set_file(self_: *mut GtkFileLauncher, file: *mut gio::GFile);
 
@@ -13279,7 +13279,7 @@ extern "C" {
     //=========================================================================
     pub fn gtk_flow_box_get_type() -> GType;
     pub fn gtk_flow_box_new() -> *mut GtkWidget;
-    #[cfg(any(feature = "v4_6", docsrs))]
+    #[cfg(feature = "v4_6")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     pub fn gtk_flow_box_append(self_: *mut GtkFlowBox, child: *mut GtkWidget);
     pub fn gtk_flow_box_bind_model(
@@ -13309,11 +13309,11 @@ extern "C" {
     pub fn gtk_flow_box_insert(box_: *mut GtkFlowBox, widget: *mut GtkWidget, position: c_int);
     pub fn gtk_flow_box_invalidate_filter(box_: *mut GtkFlowBox);
     pub fn gtk_flow_box_invalidate_sort(box_: *mut GtkFlowBox);
-    #[cfg(any(feature = "v4_6", docsrs))]
+    #[cfg(feature = "v4_6")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     pub fn gtk_flow_box_prepend(self_: *mut GtkFlowBox, child: *mut GtkWidget);
     pub fn gtk_flow_box_remove(box_: *mut GtkFlowBox, widget: *mut GtkWidget);
-    #[cfg(any(feature = "v4_12", docsrs))]
+    #[cfg(feature = "v4_12")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
     pub fn gtk_flow_box_remove_all(box_: *mut GtkFlowBox);
     pub fn gtk_flow_box_select_all(box_: *mut GtkFlowBox);
@@ -13391,13 +13391,13 @@ extern "C" {
     //=========================================================================
     // GtkFontDialog
     //=========================================================================
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_font_dialog_get_type() -> GType;
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_font_dialog_new() -> *mut GtkFontDialog;
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_font_dialog_choose_face(
         self_: *mut GtkFontDialog,
@@ -13407,14 +13407,14 @@ extern "C" {
         callback: gio::GAsyncReadyCallback,
         user_data: gpointer,
     );
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_font_dialog_choose_face_finish(
         self_: *mut GtkFontDialog,
         result: *mut gio::GAsyncResult,
         error: *mut *mut glib::GError,
     ) -> *mut pango::PangoFontFace;
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_font_dialog_choose_family(
         self_: *mut GtkFontDialog,
@@ -13424,14 +13424,14 @@ extern "C" {
         callback: gio::GAsyncReadyCallback,
         user_data: gpointer,
     );
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_font_dialog_choose_family_finish(
         self_: *mut GtkFontDialog,
         result: *mut gio::GAsyncResult,
         error: *mut *mut glib::GError,
     ) -> *mut pango::PangoFontFamily;
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_font_dialog_choose_font(
         self_: *mut GtkFontDialog,
@@ -13441,7 +13441,7 @@ extern "C" {
         callback: gio::GAsyncReadyCallback,
         user_data: gpointer,
     );
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_font_dialog_choose_font_and_features(
         self_: *mut GtkFontDialog,
@@ -13451,7 +13451,7 @@ extern "C" {
         callback: gio::GAsyncReadyCallback,
         user_data: gpointer,
     );
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_font_dialog_choose_font_and_features_finish(
         self_: *mut GtkFontDialog,
@@ -13461,118 +13461,118 @@ extern "C" {
         language: *mut *mut pango::PangoLanguage,
         error: *mut *mut glib::GError,
     ) -> gboolean;
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_font_dialog_choose_font_finish(
         self_: *mut GtkFontDialog,
         result: *mut gio::GAsyncResult,
         error: *mut *mut glib::GError,
     ) -> *mut pango::PangoFontDescription;
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_font_dialog_get_filter(self_: *mut GtkFontDialog) -> *mut GtkFilter;
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_font_dialog_get_font_map(self_: *mut GtkFontDialog) -> *mut pango::PangoFontMap;
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_font_dialog_get_language(self_: *mut GtkFontDialog) -> *mut pango::PangoLanguage;
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_font_dialog_get_modal(self_: *mut GtkFontDialog) -> gboolean;
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_font_dialog_get_title(self_: *mut GtkFontDialog) -> *const c_char;
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_font_dialog_set_filter(self_: *mut GtkFontDialog, filter: *mut GtkFilter);
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_font_dialog_set_font_map(
         self_: *mut GtkFontDialog,
         fontmap: *mut pango::PangoFontMap,
     );
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_font_dialog_set_language(
         self_: *mut GtkFontDialog,
         language: *mut pango::PangoLanguage,
     );
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_font_dialog_set_modal(self_: *mut GtkFontDialog, modal: gboolean);
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_font_dialog_set_title(self_: *mut GtkFontDialog, title: *const c_char);
 
     //=========================================================================
     // GtkFontDialogButton
     //=========================================================================
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_font_dialog_button_get_type() -> GType;
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_font_dialog_button_new(dialog: *mut GtkFontDialog) -> *mut GtkWidget;
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_font_dialog_button_get_dialog(self_: *mut GtkFontDialogButton)
         -> *mut GtkFontDialog;
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_font_dialog_button_get_font_desc(
         self_: *mut GtkFontDialogButton,
     ) -> *mut pango::PangoFontDescription;
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_font_dialog_button_get_font_features(
         self_: *mut GtkFontDialogButton,
     ) -> *const c_char;
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_font_dialog_button_get_language(
         self_: *mut GtkFontDialogButton,
     ) -> *mut pango::PangoLanguage;
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_font_dialog_button_get_level(self_: *mut GtkFontDialogButton) -> GtkFontLevel;
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_font_dialog_button_get_use_font(self_: *mut GtkFontDialogButton) -> gboolean;
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_font_dialog_button_get_use_size(self_: *mut GtkFontDialogButton) -> gboolean;
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_font_dialog_button_set_dialog(
         self_: *mut GtkFontDialogButton,
         dialog: *mut GtkFontDialog,
     );
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_font_dialog_button_set_font_desc(
         self_: *mut GtkFontDialogButton,
         font_desc: *const pango::PangoFontDescription,
     );
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_font_dialog_button_set_font_features(
         self_: *mut GtkFontDialogButton,
         font_features: *const c_char,
     );
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_font_dialog_button_set_language(
         self_: *mut GtkFontDialogButton,
         language: *mut pango::PangoLanguage,
     );
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_font_dialog_button_set_level(self_: *mut GtkFontDialogButton, level: GtkFontLevel);
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_font_dialog_button_set_use_font(self_: *mut GtkFontDialogButton, use_font: gboolean);
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_font_dialog_button_set_use_size(self_: *mut GtkFontDialogButton, use_size: gboolean);
 
@@ -13760,10 +13760,10 @@ extern "C" {
     pub fn gtk_gesture_stylus_get_device_tool(
         gesture: *mut GtkGestureStylus,
     ) -> *mut gdk::GdkDeviceTool;
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_gesture_stylus_get_stylus_only(gesture: *mut GtkGestureStylus) -> gboolean;
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_gesture_stylus_set_stylus_only(
         gesture: *mut GtkGestureStylus,
@@ -13900,7 +13900,7 @@ extern "C" {
     pub fn gtk_grid_view_get_min_columns(self_: *mut GtkGridView) -> c_uint;
     pub fn gtk_grid_view_get_model(self_: *mut GtkGridView) -> *mut GtkSelectionModel;
     pub fn gtk_grid_view_get_single_click_activate(self_: *mut GtkGridView) -> gboolean;
-    #[cfg(any(feature = "v4_12", docsrs))]
+    #[cfg(feature = "v4_12")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
     pub fn gtk_grid_view_get_tab_behavior(self_: *mut GtkGridView) -> GtkListTabBehavior;
     pub fn gtk_grid_view_set_enable_rubberband(
@@ -13915,7 +13915,7 @@ extern "C" {
         self_: *mut GtkGridView,
         single_click_activate: gboolean,
     );
-    #[cfg(any(feature = "v4_12", docsrs))]
+    #[cfg(feature = "v4_12")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
     pub fn gtk_grid_view_set_tab_behavior(
         self_: *mut GtkGridView,
@@ -13973,7 +13973,7 @@ extern "C" {
         text: *mut *mut c_char,
         cursor_index: *mut c_int,
     ) -> gboolean;
-    #[cfg(any(feature = "v4_2", docsrs))]
+    #[cfg(feature = "v4_2")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_2")))]
     pub fn gtk_im_context_get_surrounding_with_selection(
         context: *mut GtkIMContext,
@@ -13993,7 +13993,7 @@ extern "C" {
         len: c_int,
         cursor_index: c_int,
     );
-    #[cfg(any(feature = "v4_2", docsrs))]
+    #[cfg(feature = "v4_2")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_2")))]
     pub fn gtk_im_context_set_surrounding_with_selection(
         context: *mut GtkIMContext,
@@ -14061,7 +14061,7 @@ extern "C" {
     pub fn gtk_icon_theme_get_resource_path(self_: *mut GtkIconTheme) -> *mut *mut c_char;
     pub fn gtk_icon_theme_get_search_path(self_: *mut GtkIconTheme) -> *mut *mut c_char;
     pub fn gtk_icon_theme_get_theme_name(self_: *mut GtkIconTheme) -> *mut c_char;
-    #[cfg(any(feature = "v4_2", docsrs))]
+    #[cfg(feature = "v4_2")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_2")))]
     pub fn gtk_icon_theme_has_gicon(self_: *mut GtkIconTheme, gicon: *mut gio::GIcon) -> gboolean;
     pub fn gtk_icon_theme_has_icon(self_: *mut GtkIconTheme, icon_name: *const c_char) -> gboolean;
@@ -14319,82 +14319,82 @@ extern "C" {
     //=========================================================================
     // GtkInscription
     //=========================================================================
-    #[cfg(any(feature = "v4_8", docsrs))]
+    #[cfg(feature = "v4_8")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
     pub fn gtk_inscription_get_type() -> GType;
-    #[cfg(any(feature = "v4_8", docsrs))]
+    #[cfg(feature = "v4_8")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
     pub fn gtk_inscription_new(text: *const c_char) -> *mut GtkWidget;
-    #[cfg(any(feature = "v4_8", docsrs))]
+    #[cfg(feature = "v4_8")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
     pub fn gtk_inscription_get_attributes(self_: *mut GtkInscription) -> *mut pango::PangoAttrList;
-    #[cfg(any(feature = "v4_8", docsrs))]
+    #[cfg(feature = "v4_8")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
     pub fn gtk_inscription_get_min_chars(self_: *mut GtkInscription) -> c_uint;
-    #[cfg(any(feature = "v4_8", docsrs))]
+    #[cfg(feature = "v4_8")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
     pub fn gtk_inscription_get_min_lines(self_: *mut GtkInscription) -> c_uint;
-    #[cfg(any(feature = "v4_8", docsrs))]
+    #[cfg(feature = "v4_8")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
     pub fn gtk_inscription_get_nat_chars(self_: *mut GtkInscription) -> c_uint;
-    #[cfg(any(feature = "v4_8", docsrs))]
+    #[cfg(feature = "v4_8")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
     pub fn gtk_inscription_get_nat_lines(self_: *mut GtkInscription) -> c_uint;
-    #[cfg(any(feature = "v4_8", docsrs))]
+    #[cfg(feature = "v4_8")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
     pub fn gtk_inscription_get_text(self_: *mut GtkInscription) -> *const c_char;
-    #[cfg(any(feature = "v4_8", docsrs))]
+    #[cfg(feature = "v4_8")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
     pub fn gtk_inscription_get_text_overflow(self_: *mut GtkInscription) -> GtkInscriptionOverflow;
-    #[cfg(any(feature = "v4_8", docsrs))]
+    #[cfg(feature = "v4_8")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
     pub fn gtk_inscription_get_wrap_mode(self_: *mut GtkInscription) -> pango::PangoWrapMode;
-    #[cfg(any(feature = "v4_8", docsrs))]
+    #[cfg(feature = "v4_8")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
     pub fn gtk_inscription_get_xalign(self_: *mut GtkInscription) -> c_float;
-    #[cfg(any(feature = "v4_8", docsrs))]
+    #[cfg(feature = "v4_8")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
     pub fn gtk_inscription_get_yalign(self_: *mut GtkInscription) -> c_float;
-    #[cfg(any(feature = "v4_8", docsrs))]
+    #[cfg(feature = "v4_8")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
     pub fn gtk_inscription_set_attributes(
         self_: *mut GtkInscription,
         attrs: *mut pango::PangoAttrList,
     );
-    #[cfg(any(feature = "v4_8", docsrs))]
+    #[cfg(feature = "v4_8")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
     pub fn gtk_inscription_set_markup(self_: *mut GtkInscription, markup: *const c_char);
-    #[cfg(any(feature = "v4_8", docsrs))]
+    #[cfg(feature = "v4_8")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
     pub fn gtk_inscription_set_min_chars(self_: *mut GtkInscription, min_chars: c_uint);
-    #[cfg(any(feature = "v4_8", docsrs))]
+    #[cfg(feature = "v4_8")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
     pub fn gtk_inscription_set_min_lines(self_: *mut GtkInscription, min_lines: c_uint);
-    #[cfg(any(feature = "v4_8", docsrs))]
+    #[cfg(feature = "v4_8")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
     pub fn gtk_inscription_set_nat_chars(self_: *mut GtkInscription, nat_chars: c_uint);
-    #[cfg(any(feature = "v4_8", docsrs))]
+    #[cfg(feature = "v4_8")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
     pub fn gtk_inscription_set_nat_lines(self_: *mut GtkInscription, nat_lines: c_uint);
-    #[cfg(any(feature = "v4_8", docsrs))]
+    #[cfg(feature = "v4_8")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
     pub fn gtk_inscription_set_text(self_: *mut GtkInscription, text: *const c_char);
-    #[cfg(any(feature = "v4_8", docsrs))]
+    #[cfg(feature = "v4_8")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
     pub fn gtk_inscription_set_text_overflow(
         self_: *mut GtkInscription,
         overflow: GtkInscriptionOverflow,
     );
-    #[cfg(any(feature = "v4_8", docsrs))]
+    #[cfg(feature = "v4_8")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
     pub fn gtk_inscription_set_wrap_mode(
         self_: *mut GtkInscription,
         wrap_mode: pango::PangoWrapMode,
     );
-    #[cfg(any(feature = "v4_8", docsrs))]
+    #[cfg(feature = "v4_8")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
     pub fn gtk_inscription_set_xalign(self_: *mut GtkInscription, xalign: c_float);
-    #[cfg(any(feature = "v4_8", docsrs))]
+    #[cfg(feature = "v4_8")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
     pub fn gtk_inscription_set_yalign(self_: *mut GtkInscription, yalign: c_float);
 
@@ -14427,7 +14427,7 @@ extern "C" {
     pub fn gtk_label_get_max_width_chars(self_: *mut GtkLabel) -> c_int;
     pub fn gtk_label_get_mnemonic_keyval(self_: *mut GtkLabel) -> c_uint;
     pub fn gtk_label_get_mnemonic_widget(self_: *mut GtkLabel) -> *mut GtkWidget;
-    #[cfg(any(feature = "v4_6", docsrs))]
+    #[cfg(feature = "v4_6")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     pub fn gtk_label_get_natural_wrap_mode(self_: *mut GtkLabel) -> GtkNaturalWrapMode;
     pub fn gtk_label_get_selectable(self_: *mut GtkLabel) -> gboolean;
@@ -14437,7 +14437,7 @@ extern "C" {
         end: *mut c_int,
     ) -> gboolean;
     pub fn gtk_label_get_single_line_mode(self_: *mut GtkLabel) -> gboolean;
-    #[cfg(any(feature = "v4_8", docsrs))]
+    #[cfg(feature = "v4_8")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
     pub fn gtk_label_get_tabs(self_: *mut GtkLabel) -> *mut pango::PangoTabArray;
     pub fn gtk_label_get_text(self_: *mut GtkLabel) -> *const c_char;
@@ -14459,12 +14459,12 @@ extern "C" {
     pub fn gtk_label_set_markup_with_mnemonic(self_: *mut GtkLabel, str: *const c_char);
     pub fn gtk_label_set_max_width_chars(self_: *mut GtkLabel, n_chars: c_int);
     pub fn gtk_label_set_mnemonic_widget(self_: *mut GtkLabel, widget: *mut GtkWidget);
-    #[cfg(any(feature = "v4_6", docsrs))]
+    #[cfg(feature = "v4_6")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     pub fn gtk_label_set_natural_wrap_mode(self_: *mut GtkLabel, wrap_mode: GtkNaturalWrapMode);
     pub fn gtk_label_set_selectable(self_: *mut GtkLabel, setting: gboolean);
     pub fn gtk_label_set_single_line_mode(self_: *mut GtkLabel, single_line_mode: gboolean);
-    #[cfg(any(feature = "v4_8", docsrs))]
+    #[cfg(feature = "v4_8")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
     pub fn gtk_label_set_tabs(self_: *mut GtkLabel, tabs: *mut pango::PangoTabArray);
     pub fn gtk_label_set_text(self_: *mut GtkLabel, str: *const c_char);
@@ -14599,7 +14599,7 @@ extern "C" {
     pub fn gtk_list_box_invalidate_sort(box_: *mut GtkListBox);
     pub fn gtk_list_box_prepend(box_: *mut GtkListBox, child: *mut GtkWidget);
     pub fn gtk_list_box_remove(box_: *mut GtkListBox, child: *mut GtkWidget);
-    #[cfg(any(feature = "v4_12", docsrs))]
+    #[cfg(feature = "v4_12")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
     pub fn gtk_list_box_remove_all(box_: *mut GtkListBox);
     pub fn gtk_list_box_select_all(box_: *mut GtkListBox);
@@ -14658,7 +14658,7 @@ extern "C" {
     pub fn gtk_list_item_get_type() -> GType;
     pub fn gtk_list_item_get_activatable(self_: *mut GtkListItem) -> gboolean;
     pub fn gtk_list_item_get_child(self_: *mut GtkListItem) -> *mut GtkWidget;
-    #[cfg(any(feature = "v4_12", docsrs))]
+    #[cfg(feature = "v4_12")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
     pub fn gtk_list_item_get_focusable(self_: *mut GtkListItem) -> gboolean;
     pub fn gtk_list_item_get_item(self_: *mut GtkListItem) -> *mut gobject::GObject;
@@ -14667,7 +14667,7 @@ extern "C" {
     pub fn gtk_list_item_get_selected(self_: *mut GtkListItem) -> gboolean;
     pub fn gtk_list_item_set_activatable(self_: *mut GtkListItem, activatable: gboolean);
     pub fn gtk_list_item_set_child(self_: *mut GtkListItem, child: *mut GtkWidget);
-    #[cfg(any(feature = "v4_12", docsrs))]
+    #[cfg(feature = "v4_12")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
     pub fn gtk_list_item_set_focusable(self_: *mut GtkListItem, focusable: gboolean);
     pub fn gtk_list_item_set_selectable(self_: *mut GtkListItem, selectable: gboolean);
@@ -14767,7 +14767,7 @@ extern "C" {
     pub fn gtk_list_view_get_model(self_: *mut GtkListView) -> *mut GtkSelectionModel;
     pub fn gtk_list_view_get_show_separators(self_: *mut GtkListView) -> gboolean;
     pub fn gtk_list_view_get_single_click_activate(self_: *mut GtkListView) -> gboolean;
-    #[cfg(any(feature = "v4_12", docsrs))]
+    #[cfg(feature = "v4_12")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
     pub fn gtk_list_view_get_tab_behavior(self_: *mut GtkListView) -> GtkListTabBehavior;
     pub fn gtk_list_view_set_enable_rubberband(
@@ -14781,7 +14781,7 @@ extern "C" {
         self_: *mut GtkListView,
         single_click_activate: gboolean,
     );
-    #[cfg(any(feature = "v4_12", docsrs))]
+    #[cfg(feature = "v4_12")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
     pub fn gtk_list_view_set_tab_behavior(
         self_: *mut GtkListView,
@@ -14897,10 +14897,10 @@ extern "C" {
     pub fn gtk_media_stream_set_muted(self_: *mut GtkMediaStream, muted: gboolean);
     pub fn gtk_media_stream_set_playing(self_: *mut GtkMediaStream, playing: gboolean);
     pub fn gtk_media_stream_set_volume(self_: *mut GtkMediaStream, volume: c_double);
-    #[cfg(any(feature = "v4_4", docsrs))]
+    #[cfg(feature = "v4_4")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_4")))]
     pub fn gtk_media_stream_stream_ended(self_: *mut GtkMediaStream);
-    #[cfg(any(feature = "v4_4", docsrs))]
+    #[cfg(feature = "v4_4")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_4")))]
     pub fn gtk_media_stream_stream_prepared(
         self_: *mut GtkMediaStream,
@@ -14909,7 +14909,7 @@ extern "C" {
         seekable: gboolean,
         duration: i64,
     );
-    #[cfg(any(feature = "v4_4", docsrs))]
+    #[cfg(feature = "v4_4")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_4")))]
     pub fn gtk_media_stream_stream_unprepared(self_: *mut GtkMediaStream);
     pub fn gtk_media_stream_unprepared(self_: *mut GtkMediaStream);
@@ -14921,13 +14921,13 @@ extern "C" {
     //=========================================================================
     pub fn gtk_menu_button_get_type() -> GType;
     pub fn gtk_menu_button_new() -> *mut GtkWidget;
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_menu_button_get_active(menu_button: *mut GtkMenuButton) -> gboolean;
-    #[cfg(any(feature = "v4_4", docsrs))]
+    #[cfg(feature = "v4_4")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_4")))]
     pub fn gtk_menu_button_get_always_show_arrow(menu_button: *mut GtkMenuButton) -> gboolean;
-    #[cfg(any(feature = "v4_6", docsrs))]
+    #[cfg(feature = "v4_6")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     pub fn gtk_menu_button_get_child(menu_button: *mut GtkMenuButton) -> *mut GtkWidget;
     pub fn gtk_menu_button_get_direction(menu_button: *mut GtkMenuButton) -> GtkArrowType;
@@ -14936,22 +14936,22 @@ extern "C" {
     pub fn gtk_menu_button_get_label(menu_button: *mut GtkMenuButton) -> *const c_char;
     pub fn gtk_menu_button_get_menu_model(menu_button: *mut GtkMenuButton) -> *mut gio::GMenuModel;
     pub fn gtk_menu_button_get_popover(menu_button: *mut GtkMenuButton) -> *mut GtkPopover;
-    #[cfg(any(feature = "v4_4", docsrs))]
+    #[cfg(feature = "v4_4")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_4")))]
     pub fn gtk_menu_button_get_primary(menu_button: *mut GtkMenuButton) -> gboolean;
     pub fn gtk_menu_button_get_use_underline(menu_button: *mut GtkMenuButton) -> gboolean;
     pub fn gtk_menu_button_popdown(menu_button: *mut GtkMenuButton);
     pub fn gtk_menu_button_popup(menu_button: *mut GtkMenuButton);
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_menu_button_set_active(menu_button: *mut GtkMenuButton, active: gboolean);
-    #[cfg(any(feature = "v4_4", docsrs))]
+    #[cfg(feature = "v4_4")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_4")))]
     pub fn gtk_menu_button_set_always_show_arrow(
         menu_button: *mut GtkMenuButton,
         always_show_arrow: gboolean,
     );
-    #[cfg(any(feature = "v4_6", docsrs))]
+    #[cfg(feature = "v4_6")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     pub fn gtk_menu_button_set_child(menu_button: *mut GtkMenuButton, child: *mut GtkWidget);
     pub fn gtk_menu_button_set_create_popup_func(
@@ -14969,7 +14969,7 @@ extern "C" {
         menu_model: *mut gio::GMenuModel,
     );
     pub fn gtk_menu_button_set_popover(menu_button: *mut GtkMenuButton, popover: *mut GtkWidget);
-    #[cfg(any(feature = "v4_4", docsrs))]
+    #[cfg(feature = "v4_4")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_4")))]
     pub fn gtk_menu_button_set_primary(menu_button: *mut GtkMenuButton, primary: gboolean);
     pub fn gtk_menu_button_set_use_underline(
@@ -15486,10 +15486,10 @@ extern "C" {
     //=========================================================================
     // GtkPasswordEntryBuffer
     //=========================================================================
-    #[cfg(any(feature = "v4_4", docsrs))]
+    #[cfg(feature = "v4_4")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_4")))]
     pub fn gtk_password_entry_buffer_get_type() -> GType;
-    #[cfg(any(feature = "v4_4", docsrs))]
+    #[cfg(feature = "v4_4")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_4")))]
     pub fn gtk_password_entry_buffer_new() -> *mut GtkEntryBuffer;
 
@@ -15505,7 +15505,7 @@ extern "C" {
     pub fn gtk_picture_new_for_resource(resource_path: *const c_char) -> *mut GtkWidget;
     pub fn gtk_picture_get_alternative_text(self_: *mut GtkPicture) -> *const c_char;
     pub fn gtk_picture_get_can_shrink(self_: *mut GtkPicture) -> gboolean;
-    #[cfg(any(feature = "v4_8", docsrs))]
+    #[cfg(feature = "v4_8")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
     pub fn gtk_picture_get_content_fit(self_: *mut GtkPicture) -> GtkContentFit;
     pub fn gtk_picture_get_file(self_: *mut GtkPicture) -> *mut gio::GFile;
@@ -15516,7 +15516,7 @@ extern "C" {
         alternative_text: *const c_char,
     );
     pub fn gtk_picture_set_can_shrink(self_: *mut GtkPicture, can_shrink: gboolean);
-    #[cfg(any(feature = "v4_8", docsrs))]
+    #[cfg(feature = "v4_8")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
     pub fn gtk_picture_set_content_fit(self_: *mut GtkPicture, content_fit: GtkContentFit);
     pub fn gtk_picture_set_file(self_: *mut GtkPicture, file: *mut gio::GFile);
@@ -16274,7 +16274,7 @@ extern "C" {
         step: c_double,
         icons: *mut *const c_char,
     ) -> *mut GtkWidget;
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_scale_button_get_active(button: *mut GtkScaleButton) -> gboolean;
     pub fn gtk_scale_button_get_adjustment(button: *mut GtkScaleButton) -> *mut GtkAdjustment;
@@ -16432,20 +16432,20 @@ extern "C" {
     pub fn gtk_search_entry_get_type() -> GType;
     pub fn gtk_search_entry_new() -> *mut GtkWidget;
     pub fn gtk_search_entry_get_key_capture_widget(entry: *mut GtkSearchEntry) -> *mut GtkWidget;
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_search_entry_get_placeholder_text(entry: *mut GtkSearchEntry) -> *const c_char;
-    #[cfg(any(feature = "v4_8", docsrs))]
+    #[cfg(feature = "v4_8")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
     pub fn gtk_search_entry_get_search_delay(entry: *mut GtkSearchEntry) -> c_uint;
     pub fn gtk_search_entry_set_key_capture_widget(
         entry: *mut GtkSearchEntry,
         widget: *mut GtkWidget,
     );
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_search_entry_set_placeholder_text(entry: *mut GtkSearchEntry, text: *const c_char);
-    #[cfg(any(feature = "v4_8", docsrs))]
+    #[cfg(feature = "v4_8")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
     pub fn gtk_search_entry_set_search_delay(entry: *mut GtkSearchEntry, delay: c_uint);
 
@@ -16764,7 +16764,7 @@ extern "C" {
         stops: *const gsk::GskColorStop,
         n_stops: size_t,
     );
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_snapshot_append_scaled_texture(
         snapshot: *mut GtkSnapshot,
@@ -16804,7 +16804,7 @@ extern "C" {
         bounds: *const graphene::graphene_rect_t,
         take_args: *mut glib::GBytes,
     );
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_snapshot_push_mask(snapshot: *mut GtkSnapshot, mask_mode: gsk::GskMaskMode);
     pub fn gtk_snapshot_push_opacity(snapshot: *mut GtkSnapshot, opacity: c_double);
@@ -17155,12 +17155,12 @@ extern "C" {
     //=========================================================================
     pub fn gtk_string_sorter_get_type() -> GType;
     pub fn gtk_string_sorter_new(expression: *mut GtkExpression) -> *mut GtkStringSorter;
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_string_sorter_get_collation(self_: *mut GtkStringSorter) -> GtkCollation;
     pub fn gtk_string_sorter_get_expression(self_: *mut GtkStringSorter) -> *mut GtkExpression;
     pub fn gtk_string_sorter_get_ignore_case(self_: *mut GtkStringSorter) -> gboolean;
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_string_sorter_set_collation(self_: *mut GtkStringSorter, collation: GtkCollation);
     pub fn gtk_string_sorter_set_expression(
@@ -17238,7 +17238,7 @@ extern "C" {
     pub fn gtk_text_get_type() -> GType;
     pub fn gtk_text_new() -> *mut GtkWidget;
     pub fn gtk_text_new_with_buffer(buffer: *mut GtkEntryBuffer) -> *mut GtkWidget;
-    #[cfg(any(feature = "v4_4", docsrs))]
+    #[cfg(feature = "v4_4")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_4")))]
     pub fn gtk_text_compute_cursor_extents(
         self_: *mut GtkText,
@@ -17560,7 +17560,7 @@ extern "C" {
     //=========================================================================
     pub fn gtk_text_child_anchor_get_type() -> GType;
     pub fn gtk_text_child_anchor_new() -> *mut GtkTextChildAnchor;
-    #[cfg(any(feature = "v4_6", docsrs))]
+    #[cfg(feature = "v4_6")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     pub fn gtk_text_child_anchor_new_with_replacement(
         character: *const c_char,
@@ -17702,7 +17702,7 @@ extern "C" {
         y: *mut c_int,
         height: *mut c_int,
     );
-    #[cfg(any(feature = "v4_4", docsrs))]
+    #[cfg(feature = "v4_4")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_4")))]
     pub fn gtk_text_view_get_ltr_context(text_view: *mut GtkTextView) -> *mut pango::PangoContext;
     pub fn gtk_text_view_get_monospace(text_view: *mut GtkTextView) -> gboolean;
@@ -17711,7 +17711,7 @@ extern "C" {
     pub fn gtk_text_view_get_pixels_below_lines(text_view: *mut GtkTextView) -> c_int;
     pub fn gtk_text_view_get_pixels_inside_wrap(text_view: *mut GtkTextView) -> c_int;
     pub fn gtk_text_view_get_right_margin(text_view: *mut GtkTextView) -> c_int;
-    #[cfg(any(feature = "v4_4", docsrs))]
+    #[cfg(feature = "v4_4")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_4")))]
     pub fn gtk_text_view_get_rtl_context(text_view: *mut GtkTextView) -> *mut pango::PangoContext;
     pub fn gtk_text_view_get_tabs(text_view: *mut GtkTextView) -> *mut pango::PangoTabArray;
@@ -17844,31 +17844,31 @@ extern "C" {
     pub fn gtk_tree_expander_get_type() -> GType;
     pub fn gtk_tree_expander_new() -> *mut GtkWidget;
     pub fn gtk_tree_expander_get_child(self_: *mut GtkTreeExpander) -> *mut GtkWidget;
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_tree_expander_get_hide_expander(self_: *mut GtkTreeExpander) -> gboolean;
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_tree_expander_get_indent_for_depth(self_: *mut GtkTreeExpander) -> gboolean;
-    #[cfg(any(feature = "v4_6", docsrs))]
+    #[cfg(feature = "v4_6")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     pub fn gtk_tree_expander_get_indent_for_icon(self_: *mut GtkTreeExpander) -> gboolean;
     pub fn gtk_tree_expander_get_item(self_: *mut GtkTreeExpander) -> *mut gobject::GObject;
     pub fn gtk_tree_expander_get_list_row(self_: *mut GtkTreeExpander) -> *mut GtkTreeListRow;
     pub fn gtk_tree_expander_set_child(self_: *mut GtkTreeExpander, child: *mut GtkWidget);
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_tree_expander_set_hide_expander(
         self_: *mut GtkTreeExpander,
         hide_expander: gboolean,
     );
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_tree_expander_set_indent_for_depth(
         self_: *mut GtkTreeExpander,
         indent_for_depth: gboolean,
     );
-    #[cfg(any(feature = "v4_6", docsrs))]
+    #[cfg(feature = "v4_6")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     pub fn gtk_tree_expander_set_indent_for_icon(
         self_: *mut GtkTreeExpander,
@@ -18640,16 +18640,16 @@ extern "C" {
     //=========================================================================
     // GtkUriLauncher
     //=========================================================================
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_uri_launcher_get_type() -> GType;
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_uri_launcher_new(uri: *const c_char) -> *mut GtkUriLauncher;
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_uri_launcher_get_uri(self_: *mut GtkUriLauncher) -> *const c_char;
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_uri_launcher_launch(
         self_: *mut GtkUriLauncher,
@@ -18658,14 +18658,14 @@ extern "C" {
         callback: gio::GAsyncReadyCallback,
         user_data: gpointer,
     );
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_uri_launcher_launch_finish(
         self_: *mut GtkUriLauncher,
         result: *mut gio::GAsyncResult,
         error: *mut *mut glib::GError,
     ) -> gboolean;
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_uri_launcher_set_uri(self_: *mut GtkUriLauncher, uri: *const c_char);
 
@@ -18775,7 +18775,7 @@ extern "C" {
         widget: *mut GtkWidget,
         text: *const c_char,
     ) -> *mut pango::PangoLayout;
-    #[cfg(any(feature = "v4_8", docsrs))]
+    #[cfg(feature = "v4_8")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
     pub fn gtk_widget_dispose_template(widget: *mut GtkWidget, widget_type: GType);
     pub fn gtk_drag_check_threshold(
@@ -18795,7 +18795,7 @@ extern "C" {
     pub fn gtk_widget_get_can_target(widget: *mut GtkWidget) -> gboolean;
     pub fn gtk_widget_get_child_visible(widget: *mut GtkWidget) -> gboolean;
     pub fn gtk_widget_get_clipboard(widget: *mut GtkWidget) -> *mut gdk::GdkClipboard;
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_widget_get_color(widget: *mut GtkWidget, color: *mut gdk::GdkRGBA);
     pub fn gtk_widget_get_css_classes(widget: *mut GtkWidget) -> *mut *mut c_char;
@@ -19039,7 +19039,7 @@ extern "C" {
     pub fn gtk_window_get_focus(window: *mut GtkWindow) -> *mut GtkWidget;
     pub fn gtk_window_get_focus_visible(window: *mut GtkWindow) -> gboolean;
     pub fn gtk_window_get_group(window: *mut GtkWindow) -> *mut GtkWindowGroup;
-    #[cfg(any(feature = "v4_2", docsrs))]
+    #[cfg(feature = "v4_2")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_2")))]
     pub fn gtk_window_get_handle_menubar_accel(window: *mut GtkWindow) -> gboolean;
     pub fn gtk_window_get_hide_on_close(window: *mut GtkWindow) -> gboolean;
@@ -19068,7 +19068,7 @@ extern "C" {
     pub fn gtk_window_set_display(window: *mut GtkWindow, display: *mut gdk::GdkDisplay);
     pub fn gtk_window_set_focus(window: *mut GtkWindow, focus: *mut GtkWidget);
     pub fn gtk_window_set_focus_visible(window: *mut GtkWindow, setting: gboolean);
-    #[cfg(any(feature = "v4_2", docsrs))]
+    #[cfg(feature = "v4_2")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_2")))]
     pub fn gtk_window_set_handle_menubar_accel(
         window: *mut GtkWindow,
@@ -19127,14 +19127,14 @@ extern "C" {
     // GtkAccessible
     //=========================================================================
     pub fn gtk_accessible_get_type() -> GType;
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_accessible_get_accessible_parent(self_: *mut GtkAccessible) -> *mut GtkAccessible;
     pub fn gtk_accessible_get_accessible_role(self_: *mut GtkAccessible) -> GtkAccessibleRole;
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_accessible_get_at_context(self_: *mut GtkAccessible) -> *mut GtkATContext;
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_accessible_get_bounds(
         self_: *mut GtkAccessible,
@@ -19143,17 +19143,17 @@ extern "C" {
         width: *mut c_int,
         height: *mut c_int,
     ) -> gboolean;
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_accessible_get_first_accessible_child(
         self_: *mut GtkAccessible,
     ) -> *mut GtkAccessible;
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_accessible_get_next_accessible_sibling(
         self_: *mut GtkAccessible,
     ) -> *mut GtkAccessible;
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_accessible_get_platform_state(
         self_: *mut GtkAccessible,
@@ -19168,14 +19168,14 @@ extern "C" {
         relation: GtkAccessibleRelation,
     );
     pub fn gtk_accessible_reset_state(self_: *mut GtkAccessible, state: GtkAccessibleState);
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_accessible_set_accessible_parent(
         self_: *mut GtkAccessible,
         parent: *mut GtkAccessible,
         next_sibling: *mut GtkAccessible,
     );
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_accessible_update_next_accessible_sibling(
         self_: *mut GtkAccessible,
@@ -19218,7 +19218,7 @@ extern "C" {
     //=========================================================================
     // GtkAccessibleRange
     //=========================================================================
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_accessible_range_get_type() -> GType;
 
@@ -19364,7 +19364,7 @@ extern "C" {
         object_class: *mut gobject::GObjectClass,
         first_prop: c_uint,
     ) -> c_uint;
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_editable_delegate_get_accessible_platform_state(
         editable: *mut GtkEditable,
@@ -19658,10 +19658,10 @@ extern "C" {
     //=========================================================================
     // GtkSymbolicPaintable
     //=========================================================================
-    #[cfg(any(feature = "v4_6", docsrs))]
+    #[cfg(feature = "v4_6")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     pub fn gtk_symbolic_paintable_get_type() -> GType;
-    #[cfg(any(feature = "v4_6", docsrs))]
+    #[cfg(feature = "v4_6")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     pub fn gtk_symbolic_paintable_snapshot_symbolic(
         paintable: *mut GtkSymbolicPaintable,

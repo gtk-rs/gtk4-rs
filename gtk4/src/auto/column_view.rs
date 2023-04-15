@@ -7,7 +7,7 @@ use crate::{
     LayoutManager, Overflow, Scrollable, ScrollablePolicy, SelectionModel, SortType, Sorter,
     Widget,
 };
-#[cfg(any(feature = "v4_12", docsrs))]
+#[cfg(feature = "v4_12")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
 use crate::{ListItemFactory, ListTabBehavior};
 use glib::{
@@ -81,7 +81,7 @@ impl ColumnView {
         unsafe { from_glib(ffi::gtk_column_view_get_reorderable(self.to_glib_none().0)) }
     }
 
-    #[cfg(any(feature = "v4_12", docsrs))]
+    #[cfg(feature = "v4_12")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
     #[doc(alias = "gtk_column_view_get_row_factory")]
     #[doc(alias = "get_row_factory")]
@@ -125,7 +125,7 @@ impl ColumnView {
         unsafe { from_glib_none(ffi::gtk_column_view_get_sorter(self.to_glib_none().0)) }
     }
 
-    #[cfg(any(feature = "v4_12", docsrs))]
+    #[cfg(feature = "v4_12")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
     #[doc(alias = "gtk_column_view_get_tab_behavior")]
     #[doc(alias = "get_tab_behavior")]
@@ -178,7 +178,7 @@ impl ColumnView {
         }
     }
 
-    #[cfg(any(feature = "v4_12", docsrs))]
+    #[cfg(feature = "v4_12")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
     #[doc(alias = "gtk_column_view_set_row_factory")]
     pub fn set_row_factory(&self, factory: Option<&impl IsA<ListItemFactory>>) {
@@ -220,7 +220,7 @@ impl ColumnView {
         }
     }
 
-    #[cfg(any(feature = "v4_12", docsrs))]
+    #[cfg(feature = "v4_12")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
     #[doc(alias = "gtk_column_view_set_tab_behavior")]
     pub fn set_tab_behavior(&self, tab_behavior: ListTabBehavior) {
@@ -358,7 +358,7 @@ impl ColumnView {
         }
     }
 
-    #[cfg(any(feature = "v4_12", docsrs))]
+    #[cfg(feature = "v4_12")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
     #[doc(alias = "row-factory")]
     pub fn connect_row_factory_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
@@ -488,7 +488,7 @@ impl ColumnView {
         }
     }
 
-    #[cfg(any(feature = "v4_12", docsrs))]
+    #[cfg(feature = "v4_12")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
     #[doc(alias = "tab-behavior")]
     pub fn connect_tab_behavior_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
@@ -556,7 +556,7 @@ impl ColumnViewBuilder {
         }
     }
 
-    #[cfg(any(feature = "v4_12", docsrs))]
+    #[cfg(feature = "v4_12")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
     pub fn row_factory(self, row_factory: &impl IsA<ListItemFactory>) -> Self {
         Self {
@@ -590,7 +590,7 @@ impl ColumnViewBuilder {
         }
     }
 
-    #[cfg(any(feature = "v4_12", docsrs))]
+    #[cfg(feature = "v4_12")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
     pub fn tab_behavior(self, tab_behavior: ListTabBehavior) -> Self {
         Self {

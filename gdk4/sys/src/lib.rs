@@ -3594,7 +3594,7 @@ extern "C" {
     //=========================================================================
     // GdkScrollUnit
     //=========================================================================
-    #[cfg(any(feature = "v4_8", docsrs))]
+    #[cfg(feature = "v4_8")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
     pub fn gdk_scroll_unit_get_type() -> GType;
 
@@ -3611,17 +3611,17 @@ extern "C" {
     //=========================================================================
     // GdkTextureError
     //=========================================================================
-    #[cfg(any(feature = "v4_6", docsrs))]
+    #[cfg(feature = "v4_6")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     pub fn gdk_texture_error_get_type() -> GType;
-    #[cfg(any(feature = "v4_6", docsrs))]
+    #[cfg(feature = "v4_6")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     pub fn gdk_texture_error_quark() -> glib::GQuark;
 
     //=========================================================================
     // GdkTitlebarGesture
     //=========================================================================
-    #[cfg(any(feature = "v4_4", docsrs))]
+    #[cfg(feature = "v4_4")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_4")))]
     pub fn gdk_titlebar_gesture_get_type() -> GType;
 
@@ -3660,7 +3660,7 @@ extern "C" {
     //=========================================================================
     // GdkGLAPI
     //=========================================================================
-    #[cfg(any(feature = "v4_6", docsrs))]
+    #[cfg(feature = "v4_6")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     pub fn gdk_gl_api_get_type() -> GType;
 
@@ -3741,7 +3741,7 @@ extern "C" {
         formats: *mut GdkContentFormats,
     ) -> *mut GdkContentFormats;
     pub fn gdk_content_formats_unref(formats: *mut GdkContentFormats);
-    #[cfg(any(feature = "v4_4", docsrs))]
+    #[cfg(feature = "v4_4")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_4")))]
     pub fn gdk_content_formats_parse(string: *const c_char) -> *mut GdkContentFormats;
 
@@ -3776,7 +3776,7 @@ extern "C" {
     //=========================================================================
     // GdkDragSurfaceSize
     //=========================================================================
-    #[cfg(any(feature = "v4_12", docsrs))]
+    #[cfg(feature = "v4_12")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
     pub fn gdk_drag_surface_size_set_size(
         size: *mut GdkDragSurfaceSize,
@@ -3792,19 +3792,19 @@ extern "C" {
     //=========================================================================
     // GdkFileList
     //=========================================================================
-    #[cfg(any(feature = "v4_6", docsrs))]
+    #[cfg(feature = "v4_6")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     pub fn gdk_file_list_get_type() -> GType;
-    #[cfg(any(feature = "v4_8", docsrs))]
+    #[cfg(feature = "v4_8")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
     pub fn gdk_file_list_new_from_array(
         files: *mut *mut gio::GFile,
         n_files: size_t,
     ) -> *mut GdkFileList;
-    #[cfg(any(feature = "v4_8", docsrs))]
+    #[cfg(feature = "v4_8")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
     pub fn gdk_file_list_new_from_list(files: *mut glib::GSList) -> *mut GdkFileList;
-    #[cfg(any(feature = "v4_6", docsrs))]
+    #[cfg(feature = "v4_6")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     pub fn gdk_file_list_get_files(file_list: *mut GdkFileList) -> *mut glib::GSList;
 
@@ -3839,7 +3839,7 @@ extern "C" {
     pub fn gdk_popup_layout_get_anchor_rect(layout: *mut GdkPopupLayout) -> *const GdkRectangle;
     pub fn gdk_popup_layout_get_offset(layout: *mut GdkPopupLayout, dx: *mut c_int, dy: *mut c_int);
     pub fn gdk_popup_layout_get_rect_anchor(layout: *mut GdkPopupLayout) -> GdkGravity;
-    #[cfg(any(feature = "v4_2", docsrs))]
+    #[cfg(feature = "v4_2")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_2")))]
     pub fn gdk_popup_layout_get_shadow_width(
         layout: *mut GdkPopupLayout,
@@ -3860,7 +3860,7 @@ extern "C" {
     );
     pub fn gdk_popup_layout_set_offset(layout: *mut GdkPopupLayout, dx: c_int, dy: c_int);
     pub fn gdk_popup_layout_set_rect_anchor(layout: *mut GdkPopupLayout, anchor: GdkGravity);
-    #[cfg(any(feature = "v4_2", docsrs))]
+    #[cfg(feature = "v4_2")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_2")))]
     pub fn gdk_popup_layout_set_shadow_width(
         layout: *mut GdkPopupLayout,
@@ -3905,49 +3905,49 @@ extern "C" {
     //=========================================================================
     // GdkTextureDownloader
     //=========================================================================
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gdk_texture_downloader_get_type() -> GType;
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gdk_texture_downloader_new(texture: *mut GdkTexture) -> *mut GdkTextureDownloader;
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gdk_texture_downloader_copy(
         self_: *const GdkTextureDownloader,
     ) -> *mut GdkTextureDownloader;
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gdk_texture_downloader_download_bytes(
         self_: *const GdkTextureDownloader,
         out_stride: *mut size_t,
     ) -> *mut glib::GBytes;
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gdk_texture_downloader_download_into(
         self_: *const GdkTextureDownloader,
         data: *mut u8,
         stride: size_t,
     );
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gdk_texture_downloader_free(self_: *mut GdkTextureDownloader);
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gdk_texture_downloader_get_format(self_: *const GdkTextureDownloader)
         -> GdkMemoryFormat;
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gdk_texture_downloader_get_texture(
         self_: *const GdkTextureDownloader,
     ) -> *mut GdkTexture;
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gdk_texture_downloader_set_format(
         self_: *mut GdkTextureDownloader,
         format: GdkMemoryFormat,
     );
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gdk_texture_downloader_set_texture(
         self_: *mut GdkTextureDownloader,
@@ -4288,7 +4288,7 @@ extern "C" {
         win_x: *mut c_double,
         win_y: *mut c_double,
     ) -> *mut GdkSurface;
-    #[cfg(any(feature = "v4_2", docsrs))]
+    #[cfg(feature = "v4_2")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_2")))]
     pub fn gdk_device_get_timestamp(device: *mut GdkDevice) -> u32;
     pub fn gdk_device_get_vendor_id(device: *mut GdkDevice) -> *const c_char;
@@ -4311,7 +4311,7 @@ extern "C" {
     pub fn gdk_display_open(display_name: *const c_char) -> *mut GdkDisplay;
     pub fn gdk_display_beep(display: *mut GdkDisplay);
     pub fn gdk_display_close(display: *mut GdkDisplay);
-    #[cfg(any(feature = "v4_6", docsrs))]
+    #[cfg(feature = "v4_6")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     pub fn gdk_display_create_gl_context(
         self_: *mut GdkDisplay,
@@ -4357,7 +4357,7 @@ extern "C" {
         n_keys: *mut c_int,
     ) -> gboolean;
     pub fn gdk_display_notify_startup_complete(display: *mut GdkDisplay, startup_id: *const c_char);
-    #[cfg(any(feature = "v4_4", docsrs))]
+    #[cfg(feature = "v4_4")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_4")))]
     pub fn gdk_display_prepare_gl(
         self_: *mut GdkDisplay,
@@ -4551,10 +4551,10 @@ extern "C" {
     pub fn gdk_gl_context_get_type() -> GType;
     pub fn gdk_gl_context_clear_current();
     pub fn gdk_gl_context_get_current() -> *mut GdkGLContext;
-    #[cfg(any(feature = "v4_6", docsrs))]
+    #[cfg(feature = "v4_6")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     pub fn gdk_gl_context_get_allowed_apis(self_: *mut GdkGLContext) -> GdkGLAPI;
-    #[cfg(any(feature = "v4_6", docsrs))]
+    #[cfg(feature = "v4_6")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     pub fn gdk_gl_context_get_api(self_: *mut GdkGLContext) -> GdkGLAPI;
     pub fn gdk_gl_context_get_debug_enabled(context: *mut GdkGLContext) -> gboolean;
@@ -4574,7 +4574,7 @@ extern "C" {
         minor: *mut c_int,
     );
     pub fn gdk_gl_context_is_legacy(context: *mut GdkGLContext) -> gboolean;
-    #[cfg(any(feature = "v4_4", docsrs))]
+    #[cfg(feature = "v4_4")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_4")))]
     pub fn gdk_gl_context_is_shared(self_: *mut GdkGLContext, other: *mut GdkGLContext)
         -> gboolean;
@@ -4583,7 +4583,7 @@ extern "C" {
         context: *mut GdkGLContext,
         error: *mut *mut glib::GError,
     ) -> gboolean;
-    #[cfg(any(feature = "v4_6", docsrs))]
+    #[cfg(feature = "v4_6")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     pub fn gdk_gl_context_set_allowed_apis(self_: *mut GdkGLContext, apis: GdkGLAPI);
     pub fn gdk_gl_context_set_debug_enabled(context: *mut GdkGLContext, enabled: gboolean);
@@ -4656,7 +4656,7 @@ extern "C" {
     //=========================================================================
     pub fn gdk_monitor_get_type() -> GType;
     pub fn gdk_monitor_get_connector(monitor: *mut GdkMonitor) -> *const c_char;
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gdk_monitor_get_description(monitor: *mut GdkMonitor) -> *const c_char;
     pub fn gdk_monitor_get_display(monitor: *mut GdkMonitor) -> *mut GdkDisplay;
@@ -4706,7 +4706,7 @@ extern "C" {
         delta_y: *mut c_double,
     );
     pub fn gdk_scroll_event_get_direction(event: *mut GdkScrollEvent) -> GdkScrollDirection;
-    #[cfg(any(feature = "v4_8", docsrs))]
+    #[cfg(feature = "v4_8")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
     pub fn gdk_scroll_event_get_unit(event: *mut GdkScrollEvent) -> GdkScrollUnit;
     pub fn gdk_scroll_event_is_stop(event: *mut GdkScrollEvent) -> gboolean;
@@ -4769,7 +4769,7 @@ extern "C" {
     pub fn gdk_surface_get_frame_clock(surface: *mut GdkSurface) -> *mut GdkFrameClock;
     pub fn gdk_surface_get_height(surface: *mut GdkSurface) -> c_int;
     pub fn gdk_surface_get_mapped(surface: *mut GdkSurface) -> gboolean;
-    #[cfg(any(feature = "v4_12", docsrs))]
+    #[cfg(feature = "v4_12")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
     pub fn gdk_surface_get_scale(surface: *mut GdkSurface) -> c_double;
     pub fn gdk_surface_get_scale_factor(surface: *mut GdkSurface) -> c_int;
@@ -4804,7 +4804,7 @@ extern "C" {
     //=========================================================================
     pub fn gdk_texture_get_type() -> GType;
     pub fn gdk_texture_new_for_pixbuf(pixbuf: *mut gdk_pixbuf::GdkPixbuf) -> *mut GdkTexture;
-    #[cfg(any(feature = "v4_6", docsrs))]
+    #[cfg(feature = "v4_6")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     pub fn gdk_texture_new_from_bytes(
         bytes: *mut glib::GBytes,
@@ -4814,7 +4814,7 @@ extern "C" {
         file: *mut gio::GFile,
         error: *mut *mut glib::GError,
     ) -> *mut GdkTexture;
-    #[cfg(any(feature = "v4_6", docsrs))]
+    #[cfg(feature = "v4_6")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     pub fn gdk_texture_new_from_filename(
         path: *const c_char,
@@ -4822,19 +4822,19 @@ extern "C" {
     ) -> *mut GdkTexture;
     pub fn gdk_texture_new_from_resource(resource_path: *const c_char) -> *mut GdkTexture;
     pub fn gdk_texture_download(texture: *mut GdkTexture, data: *mut u8, stride: size_t);
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gdk_texture_get_format(self_: *mut GdkTexture) -> GdkMemoryFormat;
     pub fn gdk_texture_get_height(texture: *mut GdkTexture) -> c_int;
     pub fn gdk_texture_get_width(texture: *mut GdkTexture) -> c_int;
     pub fn gdk_texture_save_to_png(texture: *mut GdkTexture, filename: *const c_char) -> gboolean;
-    #[cfg(any(feature = "v4_6", docsrs))]
+    #[cfg(feature = "v4_6")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     pub fn gdk_texture_save_to_png_bytes(texture: *mut GdkTexture) -> *mut glib::GBytes;
-    #[cfg(any(feature = "v4_6", docsrs))]
+    #[cfg(feature = "v4_6")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     pub fn gdk_texture_save_to_tiff(texture: *mut GdkTexture, filename: *const c_char) -> gboolean;
-    #[cfg(any(feature = "v4_6", docsrs))]
+    #[cfg(feature = "v4_6")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     pub fn gdk_texture_save_to_tiff_bytes(texture: *mut GdkTexture) -> *mut glib::GBytes;
 
@@ -4979,7 +4979,7 @@ extern "C" {
         event: *mut GdkEvent,
     ) -> gboolean;
     pub fn gdk_toplevel_supports_edge_constraints(toplevel: *mut GdkToplevel) -> gboolean;
-    #[cfg(any(feature = "v4_4", docsrs))]
+    #[cfg(feature = "v4_4")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_4")))]
     pub fn gdk_toplevel_titlebar_gesture(
         toplevel: *mut GdkToplevel,
@@ -5053,7 +5053,7 @@ extern "C" {
         result: *mut gio::GAsyncResult,
         error: *mut *mut glib::GError,
     ) -> gboolean;
-    #[cfg(any(feature = "v4_12", docsrs))]
+    #[cfg(feature = "v4_12")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
     pub fn gdk_drag_surface_size_get_type() -> GType;
     pub fn gdk_events_get_angle(

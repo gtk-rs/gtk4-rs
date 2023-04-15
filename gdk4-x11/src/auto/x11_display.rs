@@ -51,7 +51,7 @@ impl X11Display {
         }
     }
 
-    #[cfg(any(feature = "v4_4", docsrs))]
+    #[cfg(feature = "v4_4")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_4")))]
     #[doc(alias = "gdk_x11_display_get_egl_version")]
     #[doc(alias = "get_egl_version")]

@@ -28,7 +28,7 @@ pub trait MonitorExt: 'static {
     #[doc(alias = "get_connector")]
     fn connector(&self) -> Option<glib::GString>;
 
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     #[doc(alias = "gdk_monitor_get_description")]
     #[doc(alias = "get_description")]
@@ -79,7 +79,7 @@ pub trait MonitorExt: 'static {
     #[doc(alias = "connector")]
     fn connect_connector_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     #[doc(alias = "description")]
     fn connect_description_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
@@ -121,7 +121,7 @@ impl<O: IsA<Monitor>> MonitorExt for O {
         }
     }
 
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     fn description(&self) -> Option<glib::GString> {
         unsafe {
@@ -229,7 +229,7 @@ impl<O: IsA<Monitor>> MonitorExt for O {
         }
     }
 
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     fn connect_description_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_description_trampoline<P: IsA<Monitor>, F: Fn(&P) + 'static>(

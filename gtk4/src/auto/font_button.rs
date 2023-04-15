@@ -122,7 +122,7 @@ impl FontButton {
         }
     }
 
-    #[cfg(any(feature = "v4_4", docsrs))]
+    #[cfg(feature = "v4_4")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_4")))]
     #[doc(alias = "activate")]
     pub fn connect_activate<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
@@ -146,7 +146,7 @@ impl FontButton {
         }
     }
 
-    #[cfg(any(feature = "v4_4", docsrs))]
+    #[cfg(feature = "v4_4")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_4")))]
     pub fn emit_activate(&self) {
         self.emit_by_name::<()>("activate", &[]);

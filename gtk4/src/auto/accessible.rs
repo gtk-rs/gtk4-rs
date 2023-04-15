@@ -2,7 +2,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-#[cfg(any(feature = "v4_10", docsrs))]
+#[cfg(feature = "v4_10")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 use crate::{ATContext, AccessiblePlatformState};
 use crate::{AccessibleProperty, AccessibleRelation, AccessibleRole, AccessibleState};
@@ -11,7 +11,7 @@ use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
-#[cfg(any(feature = "v4_10", docsrs))]
+#[cfg(feature = "v4_10")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 use std::mem;
 use std::{boxed::Box as Box_, fmt, mem::transmute};
@@ -30,7 +30,7 @@ impl Accessible {
 }
 
 pub trait AccessibleExt: 'static {
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     #[doc(alias = "gtk_accessible_get_accessible_parent")]
     #[doc(alias = "get_accessible_parent")]
@@ -41,33 +41,33 @@ pub trait AccessibleExt: 'static {
     #[doc(alias = "get_accessible_role")]
     fn accessible_role(&self) -> AccessibleRole;
 
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     #[doc(alias = "gtk_accessible_get_at_context")]
     #[doc(alias = "get_at_context")]
     fn at_context(&self) -> ATContext;
 
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     #[doc(alias = "gtk_accessible_get_bounds")]
     #[doc(alias = "get_bounds")]
     fn bounds(&self) -> Option<(i32, i32, i32, i32)>;
 
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     #[doc(alias = "gtk_accessible_get_first_accessible_child")]
     #[doc(alias = "get_first_accessible_child")]
     #[must_use]
     fn first_accessible_child(&self) -> Option<Accessible>;
 
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     #[doc(alias = "gtk_accessible_get_next_accessible_sibling")]
     #[doc(alias = "get_next_accessible_sibling")]
     #[must_use]
     fn next_accessible_sibling(&self) -> Option<Accessible>;
 
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     #[doc(alias = "gtk_accessible_get_platform_state")]
     #[doc(alias = "get_platform_state")]
@@ -82,7 +82,7 @@ pub trait AccessibleExt: 'static {
     #[doc(alias = "gtk_accessible_reset_state")]
     fn reset_state(&self, state: AccessibleState);
 
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     #[doc(alias = "gtk_accessible_set_accessible_parent")]
     fn set_accessible_parent(
@@ -91,7 +91,7 @@ pub trait AccessibleExt: 'static {
         next_sibling: Option<&impl IsA<Accessible>>,
     );
 
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     #[doc(alias = "gtk_accessible_update_next_accessible_sibling")]
     fn update_next_accessible_sibling(&self, new_sibling: Option<&impl IsA<Accessible>>);
@@ -104,7 +104,7 @@ pub trait AccessibleExt: 'static {
 }
 
 impl<O: IsA<Accessible>> AccessibleExt for O {
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     fn accessible_parent(&self) -> Option<Accessible> {
         unsafe {
@@ -122,7 +122,7 @@ impl<O: IsA<Accessible>> AccessibleExt for O {
         }
     }
 
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     fn at_context(&self) -> ATContext {
         unsafe {
@@ -132,7 +132,7 @@ impl<O: IsA<Accessible>> AccessibleExt for O {
         }
     }
 
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     fn bounds(&self) -> Option<(i32, i32, i32, i32)> {
         unsafe {
@@ -160,7 +160,7 @@ impl<O: IsA<Accessible>> AccessibleExt for O {
         }
     }
 
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     fn first_accessible_child(&self) -> Option<Accessible> {
         unsafe {
@@ -170,7 +170,7 @@ impl<O: IsA<Accessible>> AccessibleExt for O {
         }
     }
 
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     fn next_accessible_sibling(&self) -> Option<Accessible> {
         unsafe {
@@ -180,7 +180,7 @@ impl<O: IsA<Accessible>> AccessibleExt for O {
         }
     }
 
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     fn platform_state(&self, state: AccessiblePlatformState) -> bool {
         unsafe {
@@ -215,7 +215,7 @@ impl<O: IsA<Accessible>> AccessibleExt for O {
         }
     }
 
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     fn set_accessible_parent(
         &self,
@@ -231,7 +231,7 @@ impl<O: IsA<Accessible>> AccessibleExt for O {
         }
     }
 
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     fn update_next_accessible_sibling(&self, new_sibling: Option<&impl IsA<Accessible>>) {
         unsafe {

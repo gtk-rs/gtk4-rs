@@ -507,7 +507,7 @@ impl FileDialog {
         }
     }
 
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     #[doc(alias = "accept-label")]
     pub fn connect_accept_label_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
@@ -532,7 +532,7 @@ impl FileDialog {
         }
     }
 
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     #[doc(alias = "default-filter")]
     pub fn connect_default_filter_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
@@ -557,7 +557,7 @@ impl FileDialog {
         }
     }
 
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     #[doc(alias = "filters")]
     pub fn connect_filters_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
@@ -582,7 +582,7 @@ impl FileDialog {
         }
     }
 
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     #[doc(alias = "initial-file")]
     pub fn connect_initial_file_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
@@ -607,7 +607,7 @@ impl FileDialog {
         }
     }
 
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     #[doc(alias = "initial-folder")]
     pub fn connect_initial_folder_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
@@ -632,7 +632,7 @@ impl FileDialog {
         }
     }
 
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     #[doc(alias = "initial-name")]
     pub fn connect_initial_name_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
@@ -657,7 +657,7 @@ impl FileDialog {
         }
     }
 
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     #[doc(alias = "modal")]
     pub fn connect_modal_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
@@ -682,7 +682,7 @@ impl FileDialog {
         }
     }
 
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     #[doc(alias = "title")]
     pub fn connect_title_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
@@ -708,7 +708,7 @@ impl FileDialog {
     }
 }
 
-#[cfg(any(feature = "v4_10", docsrs))]
+#[cfg(feature = "v4_10")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 impl Default for FileDialog {
     fn default() -> Self {
@@ -732,7 +732,7 @@ impl FileDialogBuilder {
         }
     }
 
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn accept_label(self, accept_label: impl Into<glib::GString>) -> Self {
         Self {
@@ -740,7 +740,7 @@ impl FileDialogBuilder {
         }
     }
 
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn default_filter(self, default_filter: &FileFilter) -> Self {
         Self {
@@ -750,7 +750,7 @@ impl FileDialogBuilder {
         }
     }
 
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn filters(self, filters: &impl IsA<gio::ListModel>) -> Self {
         Self {
@@ -758,7 +758,7 @@ impl FileDialogBuilder {
         }
     }
 
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn initial_file(self, initial_file: &impl IsA<gio::File>) -> Self {
         Self {
@@ -768,7 +768,7 @@ impl FileDialogBuilder {
         }
     }
 
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn initial_folder(self, initial_folder: &impl IsA<gio::File>) -> Self {
         Self {
@@ -778,7 +778,7 @@ impl FileDialogBuilder {
         }
     }
 
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn initial_name(self, initial_name: impl Into<glib::GString>) -> Self {
         Self {
@@ -786,7 +786,7 @@ impl FileDialogBuilder {
         }
     }
 
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn modal(self, modal: bool) -> Self {
         Self {
@@ -794,7 +794,7 @@ impl FileDialogBuilder {
         }
     }
 
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn title(self, title: impl Into<glib::GString>) -> Self {
         Self {

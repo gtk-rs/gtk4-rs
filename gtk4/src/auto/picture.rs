@@ -3,7 +3,7 @@
 // DO NOT EDIT
 #![allow(deprecated)]
 
-#[cfg(any(feature = "v4_8", docsrs))]
+#[cfg(feature = "v4_8")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
 use crate::ContentFit;
 use crate::{
@@ -110,7 +110,7 @@ impl Picture {
         unsafe { from_glib(ffi::gtk_picture_get_can_shrink(self.to_glib_none().0)) }
     }
 
-    #[cfg(any(feature = "v4_8", docsrs))]
+    #[cfg(feature = "v4_8")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
     #[doc(alias = "gtk_picture_get_content_fit")]
     #[doc(alias = "get_content_fit")]
@@ -159,7 +159,7 @@ impl Picture {
         }
     }
 
-    #[cfg(any(feature = "v4_8", docsrs))]
+    #[cfg(feature = "v4_8")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
     #[doc(alias = "gtk_picture_set_content_fit")]
     pub fn set_content_fit(&self, content_fit: ContentFit) {
@@ -270,7 +270,7 @@ impl Picture {
         }
     }
 
-    #[cfg(any(feature = "v4_8", docsrs))]
+    #[cfg(feature = "v4_8")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
     #[doc(alias = "content-fit")]
     pub fn connect_content_fit_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
@@ -405,7 +405,7 @@ impl PictureBuilder {
         }
     }
 
-    #[cfg(any(feature = "v4_8", docsrs))]
+    #[cfg(feature = "v4_8")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
     pub fn content_fit(self, content_fit: ContentFit) -> Self {
         Self {

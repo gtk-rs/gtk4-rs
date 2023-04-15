@@ -422,7 +422,7 @@ impl From<FrameClockPhase> for glib::Value {
     }
 }
 
-#[cfg(any(feature = "v4_6", docsrs))]
+#[cfg(feature = "v4_6")]
 bitflags! {
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     #[doc(alias = "GdkGLAPI")]
@@ -434,7 +434,7 @@ bitflags! {
     }
 }
 
-#[cfg(any(feature = "v4_6", docsrs))]
+#[cfg(feature = "v4_6")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
 impl fmt::Display for GLAPI {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
@@ -442,7 +442,7 @@ impl fmt::Display for GLAPI {
     }
 }
 
-#[cfg(any(feature = "v4_6", docsrs))]
+#[cfg(feature = "v4_6")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
 #[doc(hidden)]
 impl IntoGlib for GLAPI {
@@ -454,7 +454,7 @@ impl IntoGlib for GLAPI {
     }
 }
 
-#[cfg(any(feature = "v4_6", docsrs))]
+#[cfg(feature = "v4_6")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
 #[doc(hidden)]
 impl FromGlib<ffi::GdkGLAPI> for GLAPI {
@@ -465,7 +465,7 @@ impl FromGlib<ffi::GdkGLAPI> for GLAPI {
     }
 }
 
-#[cfg(any(feature = "v4_6", docsrs))]
+#[cfg(feature = "v4_6")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
 impl StaticType for GLAPI {
     #[inline]
@@ -474,7 +474,7 @@ impl StaticType for GLAPI {
     }
 }
 
-#[cfg(any(feature = "v4_6", docsrs))]
+#[cfg(feature = "v4_6")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
 impl glib::HasParamSpec for GLAPI {
     type ParamSpec = glib::ParamSpecFlags;
@@ -486,13 +486,13 @@ impl glib::HasParamSpec for GLAPI {
     }
 }
 
-#[cfg(any(feature = "v4_6", docsrs))]
+#[cfg(feature = "v4_6")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
 impl glib::value::ValueType for GLAPI {
     type Type = Self;
 }
 
-#[cfg(any(feature = "v4_6", docsrs))]
+#[cfg(feature = "v4_6")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
 unsafe impl<'a> FromValue<'a> for GLAPI {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
@@ -504,7 +504,7 @@ unsafe impl<'a> FromValue<'a> for GLAPI {
     }
 }
 
-#[cfg(any(feature = "v4_6", docsrs))]
+#[cfg(feature = "v4_6")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
 impl ToValue for GLAPI {
     #[inline]
@@ -522,7 +522,7 @@ impl ToValue for GLAPI {
     }
 }
 
-#[cfg(any(feature = "v4_6", docsrs))]
+#[cfg(feature = "v4_6")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
 impl From<GLAPI> for glib::Value {
     #[inline]

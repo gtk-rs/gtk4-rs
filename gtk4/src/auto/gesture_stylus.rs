@@ -84,7 +84,7 @@ impl GestureStylus {
         }
     }
 
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     #[doc(alias = "gtk_gesture_stylus_get_stylus_only")]
     #[doc(alias = "get_stylus_only")]
@@ -96,7 +96,7 @@ impl GestureStylus {
         }
     }
 
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     #[doc(alias = "gtk_gesture_stylus_set_stylus_only")]
     pub fn set_stylus_only(&self, stylus_only: bool) {
@@ -201,7 +201,7 @@ impl GestureStylus {
         }
     }
 
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     #[doc(alias = "stylus-only")]
     pub fn connect_stylus_only_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
@@ -249,7 +249,7 @@ impl GestureStylusBuilder {
         }
     }
 
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn stylus_only(self, stylus_only: bool) -> Self {
         Self {

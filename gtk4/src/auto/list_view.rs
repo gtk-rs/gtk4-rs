@@ -2,7 +2,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-#[cfg(any(feature = "v4_12", docsrs))]
+#[cfg(feature = "v4_12")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
 use crate::ListTabBehavior;
 use crate::{
@@ -92,7 +92,7 @@ impl ListView {
         }
     }
 
-    #[cfg(any(feature = "v4_12", docsrs))]
+    #[cfg(feature = "v4_12")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
     #[doc(alias = "gtk_list_view_get_tab_behavior")]
     #[doc(alias = "get_tab_behavior")]
@@ -150,7 +150,7 @@ impl ListView {
         }
     }
 
-    #[cfg(any(feature = "v4_12", docsrs))]
+    #[cfg(feature = "v4_12")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
     #[doc(alias = "gtk_list_view_set_tab_behavior")]
     pub fn set_tab_behavior(&self, tab_behavior: ListTabBehavior) {
@@ -303,7 +303,7 @@ impl ListView {
         }
     }
 
-    #[cfg(any(feature = "v4_12", docsrs))]
+    #[cfg(feature = "v4_12")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
     #[doc(alias = "tab-behavior")]
     pub fn connect_tab_behavior_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
@@ -385,7 +385,7 @@ impl ListViewBuilder {
         }
     }
 
-    #[cfg(any(feature = "v4_12", docsrs))]
+    #[cfg(feature = "v4_12")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
     pub fn tab_behavior(self, tab_behavior: ListTabBehavior) -> Self {
         Self {
