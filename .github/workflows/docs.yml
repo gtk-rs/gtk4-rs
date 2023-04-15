@@ -78,6 +78,7 @@ jobs:
             -p gsk4 -p gsk4-sys
             -p gtk4 -p gtk4-sys
             -p gtk4-macros
+            --all-features
             --no-deps
 
       - name: Fix broken URLs
