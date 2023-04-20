@@ -301,6 +301,7 @@ manual = [
     "Gdk.Event",
     "Gdk.EventSequence",
     "Gdk.FrameClock",
+    "Gdk.GLAPI",
     "Gdk.GLContext",
     "Gdk.Gravity",
     "Gdk.KeyMatch",

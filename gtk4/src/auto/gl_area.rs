@@ -62,11 +62,13 @@ impl GLAreaBuilder {
         }
     }
 
-    //    #[cfg(feature = "v4_12")]
+    #[cfg(feature = "v4_12")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
-    //pub fn allowed_apis(self, allowed_apis: /*Ignored*/gdk::GLAPI) -> Self {
-    //    Self { builder: self.builder.property("allowed-apis", allowed_apis), }
-    //}
+    pub fn allowed_apis(self, allowed_apis: gdk::GLAPI) -> Self {
+        Self {
+            builder: self.builder.property("allowed-apis", allowed_apis),
+        }
+    }
 
     pub fn auto_render(self, auto_render: bool) -> Self {
         Self {
@@ -291,17 +293,17 @@ pub trait GLAreaExt: 'static {
     #[doc(alias = "gtk_gl_area_attach_buffers")]
     fn attach_buffers(&self);
 
-    //#[cfg(feature = "v4_12")]
-    //#[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
-    //#[doc(alias = "gtk_gl_area_get_allowed_apis")]
-    //#[doc(alias = "get_allowed_apis")]
-    //fn allowed_apis(&self) -> /*Ignored*/gdk::GLAPI;
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    #[doc(alias = "gtk_gl_area_get_allowed_apis")]
+    #[doc(alias = "get_allowed_apis")]
+    fn allowed_apis(&self) -> gdk::GLAPI;
 
-    //#[cfg(feature = "v4_12")]
-    //#[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
-    //#[doc(alias = "gtk_gl_area_get_api")]
-    //#[doc(alias = "get_api")]
-    //fn api(&self) -> /*Ignored*/gdk::GLAPI;
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    #[doc(alias = "gtk_gl_area_get_api")]
+    #[doc(alias = "get_api")]
+    fn api(&self) -> gdk::GLAPI;
 
     #[doc(alias = "gtk_gl_area_get_auto_render")]
     #[doc(alias = "get_auto_render")]
@@ -339,10 +341,10 @@ pub trait GLAreaExt: 'static {
     #[doc(alias = "gtk_gl_area_queue_render")]
     fn queue_render(&self);
 
-    //#[cfg(feature = "v4_12")]
-    //#[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
-    //#[doc(alias = "gtk_gl_area_set_allowed_apis")]
-    //fn set_allowed_apis(&self, apis: /*Ignored*/gdk::GLAPI);
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    #[doc(alias = "gtk_gl_area_set_allowed_apis")]
+    fn set_allowed_apis(&self, apis: gdk::GLAPI);
 
     #[doc(alias = "gtk_gl_area_set_auto_render")]
     fn set_auto_render(&self, auto_render: bool);
@@ -413,17 +415,21 @@ impl<O: IsA<GLArea>> GLAreaExt for O {
         }
     }
 
-    //#[cfg(feature = "v4_12")]
-    //#[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
-    //fn allowed_apis(&self) -> /*Ignored*/gdk::GLAPI {
-    //    unsafe { TODO: call ffi:gtk_gl_area_get_allowed_apis() }
-    //}
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    fn allowed_apis(&self) -> gdk::GLAPI {
+        unsafe {
+            from_glib(ffi::gtk_gl_area_get_allowed_apis(
+                self.as_ref().to_glib_none().0,
+            ))
+        }
+    }
 
-    //#[cfg(feature = "v4_12")]
-    //#[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
-    //fn api(&self) -> /*Ignored*/gdk::GLAPI {
-    //    unsafe { TODO: call ffi:gtk_gl_area_get_api() }
-    //}
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    fn api(&self) -> gdk::GLAPI {
+        unsafe { from_glib(ffi::gtk_gl_area_get_api(self.as_ref().to_glib_none().0)) }
+    }
 
     fn is_auto_render(&self) -> bool {
         unsafe {
@@ -487,11 +493,13 @@ impl<O: IsA<GLArea>> GLAreaExt for O {
         }
     }
 
-    //#[cfg(feature = "v4_12")]
-    //#[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
-    //fn set_allowed_apis(&self, apis: /*Ignored*/gdk::GLAPI) {
-    //    unsafe { TODO: call ffi:gtk_gl_area_set_allowed_apis() }
-    //}
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    fn set_allowed_apis(&self, apis: gdk::GLAPI) {
+        unsafe {
+            ffi::gtk_gl_area_set_allowed_apis(self.as_ref().to_glib_none().0, apis.into_glib());
+        }
+    }
 
     fn set_auto_render(&self, auto_render: bool) {
         unsafe {
