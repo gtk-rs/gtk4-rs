@@ -59,6 +59,18 @@ impl CenterBox {
         unsafe { from_glib_none(ffi::gtk_center_box_get_end_widget(self.to_glib_none().0)) }
     }
 
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    #[doc(alias = "gtk_center_box_get_shrink_center_last")]
+    #[doc(alias = "get_shrink_center_last")]
+    pub fn shrinks_center_last(&self) -> bool {
+        unsafe {
+            from_glib(ffi::gtk_center_box_get_shrink_center_last(
+                self.to_glib_none().0,
+            ))
+        }
+    }
+
     #[doc(alias = "gtk_center_box_get_start_widget")]
     #[doc(alias = "get_start_widget")]
     pub fn start_widget(&self) -> Option<Widget> {
@@ -88,6 +100,18 @@ impl CenterBox {
             ffi::gtk_center_box_set_end_widget(
                 self.to_glib_none().0,
                 child.map(|p| p.as_ref()).to_glib_none().0,
+            );
+        }
+    }
+
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    #[doc(alias = "gtk_center_box_set_shrink_center_last")]
+    pub fn set_shrink_center_last(&self, shrink_center_last: bool) {
+        unsafe {
+            ffi::gtk_center_box_set_shrink_center_last(
+                self.to_glib_none().0,
+                shrink_center_last.into_glib(),
             );
         }
     }
@@ -178,6 +202,34 @@ impl CenterBox {
         }
     }
 
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    #[doc(alias = "shrink-center-last")]
+    pub fn connect_shrink_center_last_notify<F: Fn(&Self) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_shrink_center_last_trampoline<F: Fn(&CenterBox) + 'static>(
+            this: *mut ffi::GtkCenterBox,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::shrink-center-last\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_shrink_center_last_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
     #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     #[doc(alias = "start-widget")]
@@ -251,6 +303,16 @@ impl CenterBoxBuilder {
             builder: self
                 .builder
                 .property("end-widget", end_widget.clone().upcast()),
+        }
+    }
+
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    pub fn shrink_center_last(self, shrink_center_last: bool) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("shrink-center-last", shrink_center_last),
         }
     }
 
