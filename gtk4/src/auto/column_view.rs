@@ -2,14 +2,14 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-#[cfg(any(feature = "v4_12", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_12")))]
-use crate::ListItemFactory;
 use crate::{
     Accessible, AccessibleRole, Adjustment, Align, Buildable, ColumnViewColumn, ConstraintTarget,
     LayoutManager, Overflow, Scrollable, ScrollablePolicy, SelectionModel, SortType, Sorter,
     Widget,
 };
+#[cfg(any(feature = "v4_12", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_12")))]
+use crate::{ListItemFactory, ListTabBehavior};
 use glib::{
     prelude::*,
     signal::{connect_raw, SignalHandlerId},
@@ -125,13 +125,13 @@ impl ColumnView {
         unsafe { from_glib_none(ffi::gtk_column_view_get_sorter(self.to_glib_none().0)) }
     }
 
-    //#[cfg(any(feature = "v4_12", feature = "dox"))]
-    //#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_12")))]
-    //#[doc(alias = "gtk_column_view_get_tab_behavior")]
-    //#[doc(alias = "get_tab_behavior")]
-    //pub fn tab_behavior(&self) -> /*Ignored*/ListTabBehavior {
-    //    unsafe { TODO: call ffi:gtk_column_view_get_tab_behavior() }
-    //}
+    #[cfg(any(feature = "v4_12", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_12")))]
+    #[doc(alias = "gtk_column_view_get_tab_behavior")]
+    #[doc(alias = "get_tab_behavior")]
+    pub fn tab_behavior(&self) -> ListTabBehavior {
+        unsafe { from_glib(ffi::gtk_column_view_get_tab_behavior(self.to_glib_none().0)) }
+    }
 
     #[doc(alias = "gtk_column_view_insert_column")]
     pub fn insert_column(&self, position: u32, column: &ColumnViewColumn) {
@@ -220,12 +220,14 @@ impl ColumnView {
         }
     }
 
-    //#[cfg(any(feature = "v4_12", feature = "dox"))]
-    //#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_12")))]
-    //#[doc(alias = "gtk_column_view_set_tab_behavior")]
-    //pub fn set_tab_behavior(&self, tab_behavior: /*Ignored*/ListTabBehavior) {
-    //    unsafe { TODO: call ffi:gtk_column_view_set_tab_behavior() }
-    //}
+    #[cfg(any(feature = "v4_12", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_12")))]
+    #[doc(alias = "gtk_column_view_set_tab_behavior")]
+    pub fn set_tab_behavior(&self, tab_behavior: ListTabBehavior) {
+        unsafe {
+            ffi::gtk_column_view_set_tab_behavior(self.to_glib_none().0, tab_behavior.into_glib());
+        }
+    }
 
     #[doc(alias = "gtk_column_view_sort_by_column")]
     pub fn sort_by_column(&self, column: Option<&ColumnViewColumn>, direction: SortType) {
@@ -588,11 +590,13 @@ impl ColumnViewBuilder {
         }
     }
 
-    //    #[cfg(any(feature = "v4_12", feature = "dox"))]
+    #[cfg(any(feature = "v4_12", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_12")))]
-    //pub fn tab_behavior(self, tab_behavior: /*Ignored*/ListTabBehavior) -> Self {
-    //    Self { builder: self.builder.property("tab-behavior", tab_behavior), }
-    //}
+    pub fn tab_behavior(self, tab_behavior: ListTabBehavior) -> Self {
+        Self {
+            builder: self.builder.property("tab-behavior", tab_behavior),
+        }
+    }
 
     pub fn can_focus(self, can_focus: bool) -> Self {
         Self {
