@@ -64,7 +64,6 @@ generate = [
     "Gtk.CellRendererSpinner",
     "Gtk.CellRendererState",
     "Gtk.CenterBox",
-    "Gtk.CenterLayout",
     "Gtk.Collation",
     "Gtk.ColorButton",
     "Gtk.ColorChooserDialog",
@@ -826,6 +825,11 @@ status = "generate"
         [[object.function.parameter]]
         name = "path"
         const = true
+
+[[object]]
+name = "Gtk.CenterLayout"
+status = "generate"
+generate_builder = false
 
 [[object]]
 name = "Gtk.CheckButton"
