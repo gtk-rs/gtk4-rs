@@ -22,6 +22,11 @@ impl DragSurface {
 pub trait DragSurfaceExt: 'static {
     #[doc(alias = "gdk_drag_surface_present")]
     fn present(&self, width: i32, height: i32) -> bool;
+
+    //#[cfg(any(feature = "v4_12", feature = "dox"))]
+    //#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_12")))]
+    //#[doc(alias = "compute-size")]
+    //fn connect_compute_size<Unsupported or ignored types>(&self, f: F) -> SignalHandlerId;
 }
 
 impl<O: IsA<DragSurface>> DragSurfaceExt for O {
@@ -34,6 +39,12 @@ impl<O: IsA<DragSurface>> DragSurfaceExt for O {
             ))
         }
     }
+
+    //#[cfg(any(feature = "v4_12", feature = "dox"))]
+    //#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_12")))]
+    //fn connect_compute_size<Unsupported or ignored types>(&self, f: F) -> SignalHandlerId {
+    //    Ignored size: Gdk.DragSurfaceSize
+    //}
 }
 
 impl fmt::Display for DragSurface {

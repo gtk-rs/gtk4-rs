@@ -590,6 +590,8 @@ pub trait WidgetExt: 'static {
     #[doc(alias = "gtk_widget_snapshot_child")]
     fn snapshot_child(&self, child: &impl IsA<Widget>, snapshot: &impl IsA<Snapshot>);
 
+    #[cfg_attr(feature = "v4_12", deprecated = "Since 4.12")]
+    #[allow(deprecated)]
     #[doc(alias = "gtk_widget_translate_coordinates")]
     fn translate_coordinates(
         &self,
@@ -1895,6 +1897,7 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn translate_coordinates(
         &self,
         dest_widget: &impl IsA<Widget>,

@@ -2,6 +2,9 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+#[cfg(any(feature = "v4_12", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_12")))]
+use crate::ListItemFactory;
 use crate::{
     Accessible, AccessibleRole, Adjustment, Align, Buildable, ColumnViewColumn, ConstraintTarget,
     LayoutManager, Overflow, Scrollable, ScrollablePolicy, SelectionModel, SortType, Sorter,
@@ -78,6 +81,14 @@ impl ColumnView {
         unsafe { from_glib(ffi::gtk_column_view_get_reorderable(self.to_glib_none().0)) }
     }
 
+    #[cfg(any(feature = "v4_12", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_12")))]
+    #[doc(alias = "gtk_column_view_get_row_factory")]
+    #[doc(alias = "get_row_factory")]
+    pub fn row_factory(&self) -> Option<ListItemFactory> {
+        unsafe { from_glib_none(ffi::gtk_column_view_get_row_factory(self.to_glib_none().0)) }
+    }
+
     #[doc(alias = "gtk_column_view_get_show_column_separators")]
     #[doc(alias = "get_show_column_separators")]
     pub fn shows_column_separators(&self) -> bool {
@@ -113,6 +124,14 @@ impl ColumnView {
     pub fn sorter(&self) -> Option<Sorter> {
         unsafe { from_glib_none(ffi::gtk_column_view_get_sorter(self.to_glib_none().0)) }
     }
+
+    //#[cfg(any(feature = "v4_12", feature = "dox"))]
+    //#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_12")))]
+    //#[doc(alias = "gtk_column_view_get_tab_behavior")]
+    //#[doc(alias = "get_tab_behavior")]
+    //pub fn tab_behavior(&self) -> /*Ignored*/ListTabBehavior {
+    //    unsafe { TODO: call ffi:gtk_column_view_get_tab_behavior() }
+    //}
 
     #[doc(alias = "gtk_column_view_insert_column")]
     pub fn insert_column(&self, position: u32, column: &ColumnViewColumn) {
@@ -159,6 +178,18 @@ impl ColumnView {
         }
     }
 
+    #[cfg(any(feature = "v4_12", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_12")))]
+    #[doc(alias = "gtk_column_view_set_row_factory")]
+    pub fn set_row_factory(&self, factory: Option<&impl IsA<ListItemFactory>>) {
+        unsafe {
+            ffi::gtk_column_view_set_row_factory(
+                self.to_glib_none().0,
+                factory.map(|p| p.as_ref()).to_glib_none().0,
+            );
+        }
+    }
+
     #[doc(alias = "gtk_column_view_set_show_column_separators")]
     pub fn set_show_column_separators(&self, show_column_separators: bool) {
         unsafe {
@@ -188,6 +219,13 @@ impl ColumnView {
             );
         }
     }
+
+    //#[cfg(any(feature = "v4_12", feature = "dox"))]
+    //#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_12")))]
+    //#[doc(alias = "gtk_column_view_set_tab_behavior")]
+    //pub fn set_tab_behavior(&self, tab_behavior: /*Ignored*/ListTabBehavior) {
+    //    unsafe { TODO: call ffi:gtk_column_view_set_tab_behavior() }
+    //}
 
     #[doc(alias = "gtk_column_view_sort_by_column")]
     pub fn sort_by_column(&self, column: Option<&ColumnViewColumn>, direction: SortType) {
@@ -318,6 +356,31 @@ impl ColumnView {
         }
     }
 
+    #[cfg(any(feature = "v4_12", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_12")))]
+    #[doc(alias = "row-factory")]
+    pub fn connect_row_factory_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_row_factory_trampoline<F: Fn(&ColumnView) + 'static>(
+            this: *mut ffi::GtkColumnView,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::row-factory\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_row_factory_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
     #[doc(alias = "show-column-separators")]
     pub fn connect_show_column_separators_notify<F: Fn(&Self) + 'static>(
         &self,
@@ -422,6 +485,31 @@ impl ColumnView {
             )
         }
     }
+
+    #[cfg(any(feature = "v4_12", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_12")))]
+    #[doc(alias = "tab-behavior")]
+    pub fn connect_tab_behavior_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_tab_behavior_trampoline<F: Fn(&ColumnView) + 'static>(
+            this: *mut ffi::GtkColumnView,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::tab-behavior\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_tab_behavior_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
 }
 
 impl Default for ColumnView {
@@ -466,6 +554,16 @@ impl ColumnViewBuilder {
         }
     }
 
+    #[cfg(any(feature = "v4_12", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_12")))]
+    pub fn row_factory(self, row_factory: &impl IsA<ListItemFactory>) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("row-factory", row_factory.clone().upcast()),
+        }
+    }
+
     pub fn show_column_separators(self, show_column_separators: bool) -> Self {
         Self {
             builder: self
@@ -489,6 +587,12 @@ impl ColumnViewBuilder {
                 .property("single-click-activate", single_click_activate),
         }
     }
+
+    //    #[cfg(any(feature = "v4_12", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_12")))]
+    //pub fn tab_behavior(self, tab_behavior: /*Ignored*/ListTabBehavior) -> Self {
+    //    Self { builder: self.builder.property("tab-behavior", tab_behavior), }
+    //}
 
     pub fn can_focus(self, can_focus: bool) -> Self {
         Self {

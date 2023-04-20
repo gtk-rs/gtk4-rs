@@ -457,11 +457,11 @@ impl FileDialog {
     }
 
     #[doc(alias = "gtk_file_dialog_set_filters")]
-    pub fn set_filters(&self, filters: &impl IsA<gio::ListModel>) {
+    pub fn set_filters(&self, filters: Option<&impl IsA<gio::ListModel>>) {
         unsafe {
             ffi::gtk_file_dialog_set_filters(
                 self.to_glib_none().0,
-                filters.as_ref().to_glib_none().0,
+                filters.map(|p| p.as_ref()).to_glib_none().0,
             );
         }
     }

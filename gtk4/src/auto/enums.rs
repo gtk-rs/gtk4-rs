@@ -1414,6 +1414,8 @@ pub enum AccessibleState {
     Pressed,
     #[doc(alias = "GTK_ACCESSIBLE_STATE_SELECTED")]
     Selected,
+    #[doc(alias = "GTK_ACCESSIBLE_STATE_VISITED")]
+    Visited,
     #[doc(hidden)]
     __Unknown(i32),
 }
@@ -1442,6 +1444,7 @@ impl fmt::Display for AccessibleState {
                 Self::Invalid => "Invalid",
                 Self::Pressed => "Pressed",
                 Self::Selected => "Selected",
+                Self::Visited => "Visited",
                 _ => "Unknown",
             }
         )
@@ -1463,6 +1466,7 @@ impl IntoGlib for AccessibleState {
             Self::Invalid => ffi::GTK_ACCESSIBLE_STATE_INVALID,
             Self::Pressed => ffi::GTK_ACCESSIBLE_STATE_PRESSED,
             Self::Selected => ffi::GTK_ACCESSIBLE_STATE_SELECTED,
+            Self::Visited => ffi::GTK_ACCESSIBLE_STATE_VISITED,
             Self::__Unknown(value) => value,
         }
     }
@@ -1483,6 +1487,7 @@ impl FromGlib<ffi::GtkAccessibleState> for AccessibleState {
             ffi::GTK_ACCESSIBLE_STATE_INVALID => Self::Invalid,
             ffi::GTK_ACCESSIBLE_STATE_PRESSED => Self::Pressed,
             ffi::GTK_ACCESSIBLE_STATE_SELECTED => Self::Selected,
+            ffi::GTK_ACCESSIBLE_STATE_VISITED => Self::Visited,
             value => Self::__Unknown(value),
         }
     }

@@ -2698,6 +2698,14 @@ pub struct _GdkDragSurfaceInterface {
 pub type GdkDragSurfaceInterface = *mut _GdkDragSurfaceInterface;
 
 #[repr(C)]
+pub struct _GdkDragSurfaceSize {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
+
+pub type GdkDragSurfaceSize = *mut _GdkDragSurfaceSize;
+
+#[repr(C)]
 pub struct GdkEventSequence {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -3766,6 +3774,17 @@ extern "C" {
     pub fn gdk_content_formats_builder_unref(builder: *mut GdkContentFormatsBuilder);
 
     //=========================================================================
+    // GdkDragSurfaceSize
+    //=========================================================================
+    #[cfg(any(feature = "v4_12", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_12")))]
+    pub fn gdk_drag_surface_size_set_size(
+        size: *mut GdkDragSurfaceSize,
+        width: c_int,
+        height: c_int,
+    );
+
+    //=========================================================================
     // GdkEventSequence
     //=========================================================================
     pub fn gdk_event_sequence_get_type() -> GType;
@@ -4750,6 +4769,9 @@ extern "C" {
     pub fn gdk_surface_get_frame_clock(surface: *mut GdkSurface) -> *mut GdkFrameClock;
     pub fn gdk_surface_get_height(surface: *mut GdkSurface) -> c_int;
     pub fn gdk_surface_get_mapped(surface: *mut GdkSurface) -> gboolean;
+    #[cfg(any(feature = "v4_12", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_12")))]
+    pub fn gdk_surface_get_scale(surface: *mut GdkSurface) -> c_double;
     pub fn gdk_surface_get_scale_factor(surface: *mut GdkSurface) -> c_int;
     pub fn gdk_surface_get_width(surface: *mut GdkSurface) -> c_int;
     pub fn gdk_surface_hide(surface: *mut GdkSurface);
@@ -5031,6 +5053,7 @@ extern "C" {
         result: *mut gio::GAsyncResult,
         error: *mut *mut glib::GError,
     ) -> gboolean;
+    pub fn gdk_drag_surface_size_get_type() -> GType;
     pub fn gdk_events_get_angle(
         event1: *mut GdkEvent,
         event2: *mut GdkEvent,

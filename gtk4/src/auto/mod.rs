@@ -1299,6 +1299,7 @@ pub mod traits {
     pub use super::layout_child::LayoutChildExt;
     pub use super::layout_manager::LayoutManagerExt;
     pub use super::list_box_row::ListBoxRowExt;
+    pub use super::list_item::ListItemExt;
     pub use super::media_file::MediaFileExt;
     pub use super::media_stream::MediaStreamExt;
     pub use super::mount_operation::MountOperationExt;
@@ -1395,6 +1396,7 @@ pub mod builders {
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     pub use super::cell_view::CellViewBuilder;
     pub use super::center_box::CenterBoxBuilder;
+    pub use super::center_layout::CenterLayoutBuilder;
     pub use super::check_button::CheckButtonBuilder;
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     pub use super::color_button::ColorButtonBuilder;
