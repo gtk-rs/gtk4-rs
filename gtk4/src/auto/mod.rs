@@ -1406,6 +1406,7 @@ pub mod builders {
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     pub use super::cell_view::CellViewBuilder;
     pub use super::center_box::CenterBoxBuilder;
+    pub use super::center_layout::CenterLayoutBuilder;
     pub use super::check_button::CheckButtonBuilder;
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     pub use super::color_button::ColorButtonBuilder;

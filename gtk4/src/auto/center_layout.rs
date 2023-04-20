@@ -3,8 +3,14 @@
 // DO NOT EDIT
 
 use crate::{BaselinePosition, LayoutManager, Orientation, Widget};
+#[cfg(feature = "v4_12")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+use glib::signal::{connect_raw, SignalHandlerId};
 use glib::{prelude::*, translate::*};
 use std::fmt;
+#[cfg(feature = "v4_12")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+use std::{boxed::Box as Box_, mem::transmute};
 
 glib::wrapper! {
     #[doc(alias = "GtkCenterLayout")]
@@ -20,6 +26,14 @@ impl CenterLayout {
     pub fn new() -> CenterLayout {
         assert_initialized_main_thread!();
         unsafe { LayoutManager::from_glib_full(ffi::gtk_center_layout_new()).unsafe_cast() }
+    }
+
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-pattern struct instance to construct [`CenterLayout`] objects.
+    ///
+    /// This method returns an instance of [`CenterLayoutBuilder`](crate::builders::CenterLayoutBuilder) which can be used to create [`CenterLayout`] objects.
+    pub fn builder() -> CenterLayoutBuilder {
+        CenterLayoutBuilder::new()
     }
 
     #[doc(alias = "gtk_center_layout_get_baseline_position")]
@@ -53,6 +67,18 @@ impl CenterLayout {
     pub fn orientation(&self) -> Orientation {
         unsafe {
             from_glib(ffi::gtk_center_layout_get_orientation(
+                self.to_glib_none().0,
+            ))
+        }
+    }
+
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    #[doc(alias = "gtk_center_layout_get_shrink_center_last")]
+    #[doc(alias = "get_shrink_center_last")]
+    pub fn shrinks_center_last(&self) -> bool {
+        unsafe {
+            from_glib(ffi::gtk_center_layout_get_shrink_center_last(
                 self.to_glib_none().0,
             ))
         }
@@ -105,6 +131,18 @@ impl CenterLayout {
         }
     }
 
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    #[doc(alias = "gtk_center_layout_set_shrink_center_last")]
+    pub fn set_shrink_center_last(&self, shrink_center_last: bool) {
+        unsafe {
+            ffi::gtk_center_layout_set_shrink_center_last(
+                self.to_glib_none().0,
+                shrink_center_last.into_glib(),
+            );
+        }
+    }
+
     #[doc(alias = "gtk_center_layout_set_start_widget")]
     pub fn set_start_widget(&self, widget: Option<&impl IsA<Widget>>) {
         unsafe {
@@ -114,11 +152,75 @@ impl CenterLayout {
             );
         }
     }
+
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    #[doc(alias = "shrink-center-last")]
+    pub fn connect_shrink_center_last_notify<F: Fn(&Self) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_shrink_center_last_trampoline<
+            F: Fn(&CenterLayout) + 'static,
+        >(
+            this: *mut ffi::GtkCenterLayout,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::shrink-center-last\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_shrink_center_last_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
 }
 
 impl Default for CenterLayout {
     fn default() -> Self {
         Self::new()
+    }
+}
+
+// rustdoc-stripper-ignore-next
+/// A [builder-pattern] type to construct [`CenterLayout`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
+#[must_use = "The builder must be built to be used"]
+pub struct CenterLayoutBuilder {
+    builder: glib::object::ObjectBuilder<'static, CenterLayout>,
+}
+
+impl CenterLayoutBuilder {
+    fn new() -> Self {
+        Self {
+            builder: glib::object::Object::builder(),
+        }
+    }
+
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    pub fn shrink_center_last(self, shrink_center_last: bool) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("shrink-center-last", shrink_center_last),
+        }
+    }
+
+    // rustdoc-stripper-ignore-next
+    /// Build the [`CenterLayout`].
+    #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
+    pub fn build(self) -> CenterLayout {
+        self.builder.build()
     }
 }
 

@@ -11631,6 +11631,9 @@ extern "C" {
     pub fn gtk_center_box_get_baseline_position(self_: *mut GtkCenterBox) -> GtkBaselinePosition;
     pub fn gtk_center_box_get_center_widget(self_: *mut GtkCenterBox) -> *mut GtkWidget;
     pub fn gtk_center_box_get_end_widget(self_: *mut GtkCenterBox) -> *mut GtkWidget;
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    pub fn gtk_center_box_get_shrink_center_last(self_: *mut GtkCenterBox) -> gboolean;
     pub fn gtk_center_box_get_start_widget(self_: *mut GtkCenterBox) -> *mut GtkWidget;
     pub fn gtk_center_box_set_baseline_position(
         self_: *mut GtkCenterBox,
@@ -11638,6 +11641,12 @@ extern "C" {
     );
     pub fn gtk_center_box_set_center_widget(self_: *mut GtkCenterBox, child: *mut GtkWidget);
     pub fn gtk_center_box_set_end_widget(self_: *mut GtkCenterBox, child: *mut GtkWidget);
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    pub fn gtk_center_box_set_shrink_center_last(
+        self_: *mut GtkCenterBox,
+        shrink_center_last: gboolean,
+    );
     pub fn gtk_center_box_set_start_widget(self_: *mut GtkCenterBox, child: *mut GtkWidget);
 
     //=========================================================================
@@ -11651,6 +11660,9 @@ extern "C" {
     pub fn gtk_center_layout_get_center_widget(self_: *mut GtkCenterLayout) -> *mut GtkWidget;
     pub fn gtk_center_layout_get_end_widget(self_: *mut GtkCenterLayout) -> *mut GtkWidget;
     pub fn gtk_center_layout_get_orientation(self_: *mut GtkCenterLayout) -> GtkOrientation;
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    pub fn gtk_center_layout_get_shrink_center_last(self_: *mut GtkCenterLayout) -> gboolean;
     pub fn gtk_center_layout_get_start_widget(self_: *mut GtkCenterLayout) -> *mut GtkWidget;
     pub fn gtk_center_layout_set_baseline_position(
         self_: *mut GtkCenterLayout,
@@ -11661,6 +11673,12 @@ extern "C" {
     pub fn gtk_center_layout_set_orientation(
         self_: *mut GtkCenterLayout,
         orientation: GtkOrientation,
+    );
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    pub fn gtk_center_layout_set_shrink_center_last(
+        self_: *mut GtkCenterLayout,
+        shrink_center_last: gboolean,
     );
     pub fn gtk_center_layout_set_start_widget(self_: *mut GtkCenterLayout, widget: *mut GtkWidget);
 
@@ -13596,6 +13614,12 @@ extern "C" {
     pub fn gtk_gl_area_get_type() -> GType;
     pub fn gtk_gl_area_new() -> *mut GtkWidget;
     pub fn gtk_gl_area_attach_buffers(area: *mut GtkGLArea);
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    pub fn gtk_gl_area_get_allowed_apis(area: *mut GtkGLArea) -> gdk::GdkGLAPI;
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    pub fn gtk_gl_area_get_api(area: *mut GtkGLArea) -> gdk::GdkGLAPI;
     pub fn gtk_gl_area_get_auto_render(area: *mut GtkGLArea) -> gboolean;
     pub fn gtk_gl_area_get_context(area: *mut GtkGLArea) -> *mut gdk::GdkGLContext;
     pub fn gtk_gl_area_get_error(area: *mut GtkGLArea) -> *mut glib::GError;
@@ -13609,6 +13633,9 @@ extern "C" {
     pub fn gtk_gl_area_get_use_es(area: *mut GtkGLArea) -> gboolean;
     pub fn gtk_gl_area_make_current(area: *mut GtkGLArea);
     pub fn gtk_gl_area_queue_render(area: *mut GtkGLArea);
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    pub fn gtk_gl_area_set_allowed_apis(area: *mut GtkGLArea, apis: gdk::GdkGLAPI);
     pub fn gtk_gl_area_set_auto_render(area: *mut GtkGLArea, auto_render: gboolean);
     pub fn gtk_gl_area_set_error(area: *mut GtkGLArea, error: *const glib::GError);
     pub fn gtk_gl_area_set_has_depth_buffer(area: *mut GtkGLArea, has_depth_buffer: gboolean);
