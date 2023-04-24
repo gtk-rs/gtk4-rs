@@ -1312,7 +1312,7 @@ pub mod traits {
     pub use super::list_item::ListItemExt;
     pub use super::media_file::MediaFileExt;
     pub use super::media_stream::MediaStreamExt;
-    pub use super::mount_operation::MountOperationExt;
+    pub use super::mount_operation::GtkMountOperationExt;
     pub use super::multi_filter::MultiFilterExt;
     pub use super::native::NativeExt;
     pub use super::native_dialog::NativeDialogExt;

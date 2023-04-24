@@ -224,6 +224,7 @@ status = "generate"
 
 [[object]]
 name = "Gdk.AppLaunchContext"
+trait_name = "GdkAppLaunchContextExt" # Conflicts with GAppLaunchContext
 status = "generate"
 generate_builder = false
 final_type = false
