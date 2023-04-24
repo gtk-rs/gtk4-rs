@@ -156,7 +156,6 @@ generate = [
     "Gtk.MediaFile",
     "Gtk.MessageType",
     "Gtk.MnemonicAction",
-    "Gtk.MountOperation",
     "Gtk.MovementStep",
     "Gtk.Native",
     "Gtk.NaturalWrapMode",
@@ -1598,6 +1597,11 @@ status = "generate"
 name = "Gtk.MnemonicTrigger"
 status = "manual" # to make use of gdk::Key # to make use of gdk::Key
 generate_builder = false
+
+[[object]]
+name = "Gtk.MountOperation"
+status = "generate"
+trait_name = "GtkMountOperationExt" # Conflicts with GMountOperation
 
 [[object]]
 name = "Gtk.MultiFilter"

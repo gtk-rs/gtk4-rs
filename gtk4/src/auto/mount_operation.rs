@@ -142,7 +142,7 @@ impl MountOperationBuilder {
     }
 }
 
-pub trait MountOperationExt: 'static {
+pub trait GtkMountOperationExt: 'static {
     #[doc(alias = "gtk_mount_operation_get_display")]
     #[doc(alias = "get_display")]
     fn display(&self) -> gdk::Display;
@@ -170,7 +170,7 @@ pub trait MountOperationExt: 'static {
     fn connect_parent_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 }
 
-impl<O: IsA<MountOperation>> MountOperationExt for O {
+impl<O: IsA<MountOperation>> GtkMountOperationExt for O {
     fn display(&self) -> gdk::Display {
         unsafe {
             from_glib_none(ffi::gtk_mount_operation_get_display(

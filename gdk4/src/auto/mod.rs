@@ -215,7 +215,7 @@ pub mod functions;
 
 #[doc(hidden)]
 pub mod traits {
-    pub use super::app_launch_context::AppLaunchContextExt;
+    pub use super::app_launch_context::GdkAppLaunchContextExt;
     pub use super::content_provider::ContentProviderExt;
     pub use super::device::DeviceExt;
     pub use super::device_pad::DevicePadExt;

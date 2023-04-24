@@ -19,7 +19,7 @@ impl AppLaunchContext {
     pub const NONE: Option<&'static AppLaunchContext> = None;
 }
 
-pub trait AppLaunchContextExt: 'static {
+pub trait GdkAppLaunchContextExt: 'static {
     #[doc(alias = "gdk_app_launch_context_get_display")]
     #[doc(alias = "get_display")]
     fn display(&self) -> Display;
@@ -37,7 +37,7 @@ pub trait AppLaunchContextExt: 'static {
     fn set_timestamp(&self, timestamp: u32);
 }
 
-impl<O: IsA<AppLaunchContext>> AppLaunchContextExt for O {
+impl<O: IsA<AppLaunchContext>> GdkAppLaunchContextExt for O {
     fn display(&self) -> Display {
         unsafe {
             from_glib_none(ffi::gdk_app_launch_context_get_display(
