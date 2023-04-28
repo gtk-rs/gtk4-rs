@@ -5,13 +5,9 @@ use glib::translate::*;
 
 // rustdoc-stripper-ignore-next
 /// Trait containing manually implemented methods of [`Scale`](crate::Scale).
-pub trait ScaleExtManual: 'static {
+pub trait ScaleExtManual: IsA<Scale> + 'static {
     #[doc(alias = "gtk_scale_set_format_value_func")]
     #[doc(alias = "set_format_value_func")]
-    fn unset_format_value_func(&self);
-}
-
-impl<O: IsA<Scale>> ScaleExtManual for O {
     fn unset_format_value_func(&self) {
         unsafe {
             ffi::gtk_scale_set_format_value_func(
@@ -23,3 +19,5 @@ impl<O: IsA<Scale>> ScaleExtManual for O {
         }
     }
 }
+
+impl<O: IsA<Scale>> ScaleExtManual for O {}

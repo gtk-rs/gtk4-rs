@@ -7,43 +7,8 @@ use glib::{translate::*, value::FromValue, IntoGStr, Value};
 /// Trait containing manually implemented methods of [`CellArea`](crate::CellArea).
 #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 #[allow(deprecated)]
-pub trait CellAreaExtManual {
+pub trait CellAreaExtManual: IsA<CellArea> {
     #[doc(alias = "gtk_cell_area_add_with_properties")]
-    fn add_with_properties(
-        &self,
-        renderer: &impl IsA<CellRenderer>,
-        properties: &[(&str, &dyn ToValue)],
-    );
-
-    #[doc(alias = "gtk_cell_area_cell_get_valist")]
-    #[doc(alias = "gtk_cell_area_cell_get_property")]
-    fn cell_get_value(
-        &self,
-        renderer: &impl IsA<CellRenderer>,
-        property_name: impl IntoGStr,
-    ) -> glib::Value;
-
-    // rustdoc-stripper-ignore-next
-    /// Similar to [`Self::cell_get_value`] but panics if the value is of a different type.
-    #[doc(alias = "gtk_cell_area_cell_get_valist")]
-    #[doc(alias = "gtk_cell_area_cell_get_property")]
-    fn cell_get<V: for<'b> FromValue<'b> + 'static>(
-        &self,
-        renderer: &impl IsA<CellRenderer>,
-        property_name: impl IntoGStr,
-    ) -> V;
-
-    #[doc(alias = "gtk_cell_area_cell_set_valist")]
-    #[doc(alias = "gtk_cell_area_cell_set_property")]
-    fn cell_set(
-        &self,
-        renderer: &impl IsA<CellRenderer>,
-        property_name: impl IntoGStr,
-        value: impl Into<Value>,
-    );
-}
-
-impl<O: IsA<CellArea>> CellAreaExtManual for O {
     fn add_with_properties(
         &self,
         renderer: &impl IsA<CellRenderer>,
@@ -55,6 +20,8 @@ impl<O: IsA<CellArea>> CellAreaExtManual for O {
         });
     }
 
+    #[doc(alias = "gtk_cell_area_cell_get_valist")]
+    #[doc(alias = "gtk_cell_area_cell_get_property")]
     fn cell_get_value(
         &self,
         renderer: &impl IsA<CellRenderer>,
@@ -62,7 +29,7 @@ impl<O: IsA<CellArea>> CellAreaExtManual for O {
     ) -> glib::Value {
         unsafe {
             property_name.run_with_gstr(|property_name| {
-                let cell_class = glib::Class::<CellArea>::from_type(O::static_type()).unwrap();
+                let cell_class = glib::Class::<CellArea>::from_type(Self::static_type()).unwrap();
                 let pspec: Option<glib::ParamSpec> =
                     from_glib_none(ffi::gtk_cell_area_class_find_cell_property(
                         cell_class.as_ref() as *const _ as *mut ffi::GtkCellAreaClass,
@@ -83,6 +50,10 @@ impl<O: IsA<CellArea>> CellAreaExtManual for O {
         }
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Similar to [`Self::cell_get_value`] but panics if the value is of a different type.
+    #[doc(alias = "gtk_cell_area_cell_get_valist")]
+    #[doc(alias = "gtk_cell_area_cell_get_property")]
     fn cell_get<V: for<'b> FromValue<'b> + 'static>(
         &self,
         renderer: &impl IsA<CellRenderer>,
@@ -94,6 +65,8 @@ impl<O: IsA<CellArea>> CellAreaExtManual for O {
             .expect("Failed to get value of renderer")
     }
 
+    #[doc(alias = "gtk_cell_area_cell_set_valist")]
+    #[doc(alias = "gtk_cell_area_cell_set_property")]
     fn cell_set(
         &self,
         renderer: &impl IsA<CellRenderer>,
@@ -102,7 +75,7 @@ impl<O: IsA<CellArea>> CellAreaExtManual for O {
     ) {
         unsafe {
             property_name.run_with_gstr(|property_name| {
-                let cell_class = glib::Class::<CellArea>::from_type(O::static_type()).unwrap();
+                let cell_class = glib::Class::<CellArea>::from_type(Self::static_type()).unwrap();
                 let pspec: Option<glib::ParamSpec> =
                     from_glib_none(ffi::gtk_cell_area_class_find_cell_property(
                         cell_class.as_ref() as *const _ as *mut ffi::GtkCellAreaClass,
@@ -130,3 +103,5 @@ impl<O: IsA<CellArea>> CellAreaExtManual for O {
         }
     }
 }
+
+impl<O: IsA<CellArea>> CellAreaExtManual for O {}

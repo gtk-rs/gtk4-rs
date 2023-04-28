@@ -6,18 +6,9 @@ use std::{cell::RefCell, ptr};
 
 // rustdoc-stripper-ignore-next
 /// Trait containing manually implemented methods of [`DrawingArea`](crate::DrawingArea).
-pub trait DrawingAreaExtManual: 'static {
+pub trait DrawingAreaExtManual: IsA<DrawingArea> + 'static {
     #[doc(alias = "gtk_drawing_area_set_draw_func")]
     #[doc(alias = "set_draw_func")]
-    fn unset_draw_func(&self);
-
-    #[doc(alias = "gtk_drawing_area_set_draw_func")]
-    fn set_draw_func<P: FnMut(&DrawingArea, &cairo::Context, i32, i32) + 'static>(
-        &self,
-        draw_func: P,
-    );
-}
-impl<O: IsA<DrawingArea>> DrawingAreaExtManual for O {
     fn unset_draw_func(&self) {
         unsafe {
             ffi::gtk_drawing_area_set_draw_func(
@@ -29,6 +20,7 @@ impl<O: IsA<DrawingArea>> DrawingAreaExtManual for O {
         }
     }
 
+    #[doc(alias = "gtk_drawing_area_set_draw_func")]
     fn set_draw_func<P: FnMut(&DrawingArea, &cairo::Context, i32, i32) + 'static>(
         &self,
         draw_func: P,
@@ -67,3 +59,4 @@ impl<O: IsA<DrawingArea>> DrawingAreaExtManual for O {
         }
     }
 }
+impl<O: IsA<DrawingArea>> DrawingAreaExtManual for O {}

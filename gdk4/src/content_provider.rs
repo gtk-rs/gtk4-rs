@@ -5,12 +5,8 @@ use glib::translate::*;
 
 // rustdoc-stripper-ignore-next
 /// Trait containing manually implemented methods of [`ContentProvider`](crate::ContentProvider).
-pub trait ContentProviderExtManual {
+pub trait ContentProviderExtManual: IsA<ContentProvider> {
     #[doc(alias = "gdk_content_provider_get_value")]
-    fn value(&self, type_: glib::Type) -> Result<glib::Value, glib::Error>;
-}
-
-impl<O: IsA<ContentProvider>> ContentProviderExtManual for O {
     fn value(&self, type_: glib::Type) -> Result<glib::Value, glib::Error> {
         unsafe {
             let mut error = std::ptr::null_mut();
@@ -28,3 +24,5 @@ impl<O: IsA<ContentProvider>> ContentProviderExtManual for O {
         }
     }
 }
+
+impl<O: IsA<ContentProvider>> ContentProviderExtManual for O {}

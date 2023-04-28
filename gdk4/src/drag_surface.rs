@@ -9,19 +9,10 @@ use std::{boxed::Box as Box_, mem::transmute};
 
 // rustdoc-stripper-ignore-next
 /// Trait containing manually implemented methods of [`DragSurface`](crate::DragSurface).
-pub trait DragSurfaceExtManual {
+pub trait DragSurfaceExtManual: IsA<DragSurface> {
     #[cfg(any(feature = "v4_12", docsrs))]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
     #[doc(alias = "compute-size")]
-    fn connect_compute_size<F: Fn(&DragSurface, &mut DragSurfaceSize) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
-}
-
-impl<O: IsA<DragSurface>> DragSurfaceExtManual for O {
-    #[cfg(any(feature = "v4_12", docsrs))]
-    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
     fn connect_compute_size<F: Fn(&DragSurface, &mut DragSurfaceSize) + 'static>(
         &self,
         f: F,
@@ -52,3 +43,5 @@ impl<O: IsA<DragSurface>> DragSurfaceExtManual for O {
         }
     }
 }
+
+impl<O: IsA<DragSurface>> DragSurfaceExtManual for O {}

@@ -10,31 +10,12 @@ use std::{boxed::Box as Box_, mem::transmute, slice, str};
 
 // rustdoc-stripper-ignore-next
 /// Trait containing manually implemented methods of [`TextBuffer`](crate::TextBuffer).
-pub trait TextBufferExtManual: 'static {
+pub trait TextBufferExtManual: IsA<TextBuffer> + 'static {
     // rustdoc-stripper-ignore-next
     /// # Panics
     ///
     /// If the properties don't exists or are not writeable.
     #[doc(alias = "gtk_text_buffer_create_tag")]
-    fn create_tag(
-        &self,
-        tag_name: Option<&str>,
-        properties: &[(&str, &dyn ToValue)],
-    ) -> Option<TextTag>;
-
-    #[doc(alias = "gtk_text_buffer_insert_with_tags")]
-    fn insert_with_tags(&self, iter: &mut TextIter, text: &str, tags: &[&TextTag]);
-
-    #[doc(alias = "gtk_text_buffer_insert_with_tags_by_name")]
-    fn insert_with_tags_by_name(&self, iter: &mut TextIter, text: &str, tags_names: &[&str]);
-
-    fn connect_insert_text<F: Fn(&Self, &mut TextIter, &str) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
-}
-
-impl<O: IsA<TextBuffer>> TextBufferExtManual for O {
     fn create_tag(
         &self,
         tag_name: Option<&str>,
@@ -49,6 +30,7 @@ impl<O: IsA<TextBuffer>> TextBufferExtManual for O {
         }
     }
 
+    #[doc(alias = "gtk_text_buffer_insert_with_tags")]
     fn insert_with_tags(&self, iter: &mut TextIter, text: &str, tags: &[&TextTag]) {
         let start_offset = iter.offset();
         self.as_ref().insert(iter, text);
@@ -58,6 +40,7 @@ impl<O: IsA<TextBuffer>> TextBufferExtManual for O {
         });
     }
 
+    #[doc(alias = "gtk_text_buffer_insert_with_tags_by_name")]
     fn insert_with_tags_by_name(&self, iter: &mut TextIter, text: &str, tags_names: &[&str]) {
         let start_offset = iter.offset();
         self.as_ref().insert(iter, text);
@@ -113,3 +96,5 @@ impl<O: IsA<TextBuffer>> TextBufferExtManual for O {
         }
     }
 }
+
+impl<O: IsA<TextBuffer>> TextBufferExtManual for O {}

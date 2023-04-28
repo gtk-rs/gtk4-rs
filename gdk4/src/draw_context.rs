@@ -5,13 +5,9 @@ use glib::translate::*;
 
 // rustdoc-stripper-ignore-next
 /// Trait containing manually implemented methods of [`DrawContext`](crate::DrawContext).
-pub trait DrawContextExtManual: 'static {
+pub trait DrawContextExtManual: IsA<DrawContext> + 'static {
     #[doc(alias = "gdk_draw_context_get_frame_region")]
     #[doc(alias = "get_frame_region")]
-    fn frame_region(&self) -> Option<cairo::Region>;
-}
-
-impl<O: IsA<DrawContext>> DrawContextExtManual for O {
     fn frame_region(&self) -> Option<cairo::Region> {
         unsafe {
             from_glib_none(
@@ -21,3 +17,5 @@ impl<O: IsA<DrawContext>> DrawContextExtManual for O {
         }
     }
 }
+
+impl<O: IsA<DrawContext>> DrawContextExtManual for O {}

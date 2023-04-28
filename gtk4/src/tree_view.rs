@@ -7,22 +7,8 @@ use glib::translate::*;
 /// Trait containing manually implemented methods of [`TreeView`](crate::TreeView).
 #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 #[allow(deprecated)]
-pub trait TreeViewExtManual: 'static {
+pub trait TreeViewExtManual: IsA<TreeView> + 'static {
     #[doc(alias = "gtk_tree_view_insert_column_with_attributes")]
-    fn insert_column_with_attributes(
-        &self,
-        position: i32,
-        title: &str,
-        cell: &impl IsA<CellRenderer>,
-        attributes: &[(&str, i32)],
-    ) -> i32;
-
-    #[doc(alias = "gtk_tree_view_set_row_separator_func")]
-    #[doc(alias = "set_row_separator_func")]
-    fn unset_row_separator_func(&self);
-}
-
-impl<O: IsA<TreeView>> TreeViewExtManual for O {
     fn insert_column_with_attributes(
         &self,
         position: i32,
@@ -42,6 +28,8 @@ impl<O: IsA<TreeView>> TreeViewExtManual for O {
         self.as_ref().insert_column(&column, position)
     }
 
+    #[doc(alias = "gtk_tree_view_set_row_separator_func")]
+    #[doc(alias = "set_row_separator_func")]
     fn unset_row_separator_func(&self) {
         unsafe {
             ffi::gtk_tree_view_set_row_separator_func(
@@ -53,3 +41,5 @@ impl<O: IsA<TreeView>> TreeViewExtManual for O {
         }
     }
 }
+
+impl<O: IsA<TreeView>> TreeViewExtManual for O {}
