@@ -30,5 +30,5 @@ fn build_ui(application: &Application) {
 
     window.set_child(Some(&button));
 
-    window.show();
+    window.present();
 }

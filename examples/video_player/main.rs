@@ -12,7 +12,7 @@ fn main() -> glib::ExitCode {
 
     application.connect_activate(|app| {
         let win = VideoPlayerWindow::new(app);
-        win.show();
+        win.present();
     });
 
     application.run()

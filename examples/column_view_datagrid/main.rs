@@ -87,5 +87,5 @@ fn build_ui(application: &gtk::Application) {
     scrolled_window.set_child(Some(&columnview));
 
     window.set_child(Some(&scrolled_window));
-    window.show();
+    window.present();
 }

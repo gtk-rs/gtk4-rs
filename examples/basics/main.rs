@@ -18,5 +18,5 @@ fn build_ui(application: &gtk::Application) {
 
     window.set_child(Some(&button));
 
-    window.show();
+    window.present();
 }

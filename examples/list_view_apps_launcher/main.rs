@@ -73,14 +73,12 @@ fn build_ui(app: &gtk::Application) {
         if let Err(err) = app_info.launch(&[], Some(&context)) {
             let parent_window = list_view.root().and_downcast::<gtk::Window>().unwrap();
 
-            gtk::MessageDialog::builder()
-                .text(format!("Failed to start {}", app_info.name()))
-                .secondary_text(err.to_string())
-                .message_type(gtk::MessageType::Error)
+            gtk::AlertDialog::builder()
+                .message(format!("Failed to start {}", app_info.name()))
+                .detail(err.to_string())
                 .modal(true)
-                .transient_for(&parent_window)
                 .build()
-                .show();
+                .show(Some(&parent_window));
         }
     });
 
@@ -91,5 +89,5 @@ fn build_ui(app: &gtk::Application) {
         .build();
 
     window.set_child(Some(&scrolled_window));
-    window.show();
+    window.present();
 }

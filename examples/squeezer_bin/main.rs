@@ -26,7 +26,7 @@ fn main() -> glib::ExitCode {
 
         window.set_titlebar(Some(&headerbar));
         window.set_child(Some(&squeezer));
-        window.show();
+        window.present();
     });
 
     application.run()

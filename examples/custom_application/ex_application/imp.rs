@@ -25,7 +25,7 @@ impl ApplicationImpl for ExApplication {
         let label = gtk::Label::new(Some("Hello"));
         label.add_css_class("title-2");
         window.set_child(Some(&label));
-        window.show();
+        window.present();
     }
 }
 impl GtkApplicationImpl for ExApplication {}

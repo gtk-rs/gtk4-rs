@@ -125,5 +125,5 @@ fn build_ui(application: &gtk::Application) {
     container.append(&texture_container);
 
     window.set_child(Some(&container));
-    window.show();
+    window.present();
 }

@@ -1,3 +1,8 @@
+// TODO - EntryCompletion is deprecated without replacement in GTK 4.10. This example should be
+// updated to remove the deprecated code when a replacement lands.
+// See: https://gitlab.gnome.org/GNOME/gtk/-/issues/5689
+#![allow(deprecated)]
+
 use gtk::glib;
 use gtk::prelude::*;
 
@@ -73,7 +78,7 @@ fn build_ui(application: &Application) {
     window.set_child(Some(&row));
 
     // show everything
-    window.show();
+    window.present();
 }
 
 struct Data {

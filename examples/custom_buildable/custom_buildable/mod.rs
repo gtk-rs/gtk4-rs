@@ -12,12 +12,12 @@ impl CustomBuildable {
     pub fn add_suffix<T: glib::IsA<gtk::Widget>>(&self, widget: &T) {
         let imp = self.imp();
         imp.suffixes.append(widget);
-        imp.suffixes.show();
+        imp.suffixes.set_visible(true);
     }
 
     pub fn add_prefix<T: glib::IsA<gtk::Widget>>(&self, widget: &T) {
         let imp = self.imp();
         imp.prefixes.append(widget);
-        imp.prefixes.show();
+        imp.prefixes.set_visible(true);
     }
 }

@@ -48,7 +48,7 @@ fn main() -> glib::ExitCode {
         }
 
         window.set_child(Some(&widget));
-        window.show();
+        window.present();
     });
 
     application.run()

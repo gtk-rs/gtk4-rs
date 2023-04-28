@@ -123,5 +123,5 @@ fn build_ui(application: &gtk::Application) {
         model.append(&RowData::new(&format!("Name {i}"), i * 10));
     }
 
-    window.show();
+    window.present();
 }

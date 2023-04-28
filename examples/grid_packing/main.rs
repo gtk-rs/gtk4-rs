@@ -51,5 +51,5 @@ fn build_ui(application: &gtk::Application) {
 
     grid.attach(&quit_button, 0, 1, 2, 1);
 
-    window.show();
+    window.present();
 }

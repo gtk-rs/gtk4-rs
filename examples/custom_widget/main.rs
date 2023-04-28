@@ -17,7 +17,7 @@ fn main() -> glib::ExitCode {
         button.set_margin_start(18);
         button.set_margin_end(18);
         window.set_child(Some(&button));
-        window.show();
+        window.present();
     });
 
     application.run()

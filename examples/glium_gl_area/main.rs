@@ -40,5 +40,5 @@ fn build_ui(application: &gtk::Application) {
     let widget = GliumGLArea::new();
     window.set_child(Some(&widget));
 
-    window.show();
+    window.present();
 }

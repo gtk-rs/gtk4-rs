@@ -26,5 +26,5 @@ fn build_ui(application: &gtk::Application) {
     picture.set_paintable(Some(&paintable));
 
     window.set_child(Some(&picture));
-    window.show();
+    window.present();
 }

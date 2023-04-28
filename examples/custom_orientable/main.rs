@@ -32,7 +32,7 @@ fn main() -> glib::ExitCode {
         bx.set_margin_end(18);
 
         window.set_child(Some(&bx));
-        window.show();
+        window.present();
     });
 
     application.run()
