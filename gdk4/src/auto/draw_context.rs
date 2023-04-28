@@ -19,26 +19,8 @@ impl DrawContext {
     pub const NONE: Option<&'static DrawContext> = None;
 }
 
-pub trait DrawContextExt: 'static {
+pub trait DrawContextExt: IsA<DrawContext> + 'static {
     #[doc(alias = "gdk_draw_context_begin_frame")]
-    fn begin_frame(&self, region: &cairo::Region);
-
-    #[doc(alias = "gdk_draw_context_end_frame")]
-    fn end_frame(&self);
-
-    #[doc(alias = "gdk_draw_context_get_display")]
-    #[doc(alias = "get_display")]
-    fn display(&self) -> Option<Display>;
-
-    #[doc(alias = "gdk_draw_context_get_surface")]
-    #[doc(alias = "get_surface")]
-    fn surface(&self) -> Option<Surface>;
-
-    #[doc(alias = "gdk_draw_context_is_in_frame")]
-    fn is_in_frame(&self) -> bool;
-}
-
-impl<O: IsA<DrawContext>> DrawContextExt for O {
     fn begin_frame(&self, region: &cairo::Region) {
         unsafe {
             ffi::gdk_draw_context_begin_frame(
@@ -48,12 +30,15 @@ impl<O: IsA<DrawContext>> DrawContextExt for O {
         }
     }
 
+    #[doc(alias = "gdk_draw_context_end_frame")]
     fn end_frame(&self) {
         unsafe {
             ffi::gdk_draw_context_end_frame(self.as_ref().to_glib_none().0);
         }
     }
 
+    #[doc(alias = "gdk_draw_context_get_display")]
+    #[doc(alias = "get_display")]
     fn display(&self) -> Option<Display> {
         unsafe {
             from_glib_none(ffi::gdk_draw_context_get_display(
@@ -62,6 +47,8 @@ impl<O: IsA<DrawContext>> DrawContextExt for O {
         }
     }
 
+    #[doc(alias = "gdk_draw_context_get_surface")]
+    #[doc(alias = "get_surface")]
     fn surface(&self) -> Option<Surface> {
         unsafe {
             from_glib_none(ffi::gdk_draw_context_get_surface(
@@ -70,6 +57,7 @@ impl<O: IsA<DrawContext>> DrawContextExt for O {
         }
     }
 
+    #[doc(alias = "gdk_draw_context_is_in_frame")]
     fn is_in_frame(&self) -> bool {
         unsafe {
             from_glib(ffi::gdk_draw_context_is_in_frame(
@@ -78,6 +66,8 @@ impl<O: IsA<DrawContext>> DrawContextExt for O {
         }
     }
 }
+
+impl<O: IsA<DrawContext>> DrawContextExt for O {}
 
 impl fmt::Display for DrawContext {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {

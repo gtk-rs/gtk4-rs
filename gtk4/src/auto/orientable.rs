@@ -23,19 +23,9 @@ impl Orientable {
     pub const NONE: Option<&'static Orientable> = None;
 }
 
-pub trait OrientableExt: 'static {
+pub trait OrientableExt: IsA<Orientable> + 'static {
     #[doc(alias = "gtk_orientable_get_orientation")]
     #[doc(alias = "get_orientation")]
-    fn orientation(&self) -> Orientation;
-
-    #[doc(alias = "gtk_orientable_set_orientation")]
-    fn set_orientation(&self, orientation: Orientation);
-
-    #[doc(alias = "orientation")]
-    fn connect_orientation_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-}
-
-impl<O: IsA<Orientable>> OrientableExt for O {
     fn orientation(&self) -> Orientation {
         unsafe {
             from_glib(ffi::gtk_orientable_get_orientation(
@@ -44,6 +34,7 @@ impl<O: IsA<Orientable>> OrientableExt for O {
         }
     }
 
+    #[doc(alias = "gtk_orientable_set_orientation")]
     fn set_orientation(&self, orientation: Orientation) {
         unsafe {
             ffi::gtk_orientable_set_orientation(
@@ -53,6 +44,7 @@ impl<O: IsA<Orientable>> OrientableExt for O {
         }
     }
 
+    #[doc(alias = "orientation")]
     fn connect_orientation_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_orientation_trampoline<
             P: IsA<Orientable>,
@@ -78,6 +70,8 @@ impl<O: IsA<Orientable>> OrientableExt for O {
         }
     }
 }
+
+impl<O: IsA<Orientable>> OrientableExt for O {}
 
 impl fmt::Display for Orientable {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {

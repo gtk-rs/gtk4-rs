@@ -26,136 +26,10 @@ impl Editable {
     pub const NONE: Option<&'static Editable> = None;
 }
 
-pub trait EditableExt: 'static {
+pub trait EditableExt: IsA<Editable> + 'static {
     #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     #[doc(alias = "gtk_editable_delegate_get_accessible_platform_state")]
-    fn delegate_get_accessible_platform_state(&self, state: AccessiblePlatformState) -> bool;
-
-    #[doc(alias = "gtk_editable_delete_selection")]
-    fn delete_selection(&self);
-
-    #[doc(alias = "gtk_editable_delete_text")]
-    fn delete_text(&self, start_pos: i32, end_pos: i32);
-
-    #[doc(alias = "gtk_editable_finish_delegate")]
-    fn finish_delegate(&self);
-
-    #[doc(alias = "gtk_editable_get_alignment")]
-    #[doc(alias = "get_alignment")]
-    fn alignment(&self) -> f32;
-
-    #[doc(alias = "gtk_editable_get_chars")]
-    #[doc(alias = "get_chars")]
-    fn chars(&self, start_pos: i32, end_pos: i32) -> glib::GString;
-
-    #[doc(alias = "gtk_editable_get_delegate")]
-    #[doc(alias = "get_delegate")]
-    #[must_use]
-    fn delegate(&self) -> Option<Editable>;
-
-    #[doc(alias = "gtk_editable_get_editable")]
-    #[doc(alias = "get_editable")]
-    fn is_editable(&self) -> bool;
-
-    #[doc(alias = "gtk_editable_get_enable_undo")]
-    #[doc(alias = "get_enable_undo")]
-    fn enables_undo(&self) -> bool;
-
-    #[doc(alias = "gtk_editable_get_max_width_chars")]
-    #[doc(alias = "get_max_width_chars")]
-    fn max_width_chars(&self) -> i32;
-
-    #[doc(alias = "gtk_editable_get_position")]
-    #[doc(alias = "get_position")]
-    fn position(&self) -> i32;
-
-    #[doc(alias = "gtk_editable_get_selection_bounds")]
-    #[doc(alias = "get_selection_bounds")]
-    fn selection_bounds(&self) -> Option<(i32, i32)>;
-
-    #[doc(alias = "gtk_editable_get_text")]
-    #[doc(alias = "get_text")]
-    fn text(&self) -> glib::GString;
-
-    #[doc(alias = "gtk_editable_get_width_chars")]
-    #[doc(alias = "get_width_chars")]
-    fn width_chars(&self) -> i32;
-
-    #[doc(alias = "gtk_editable_init_delegate")]
-    fn init_delegate(&self);
-
-    #[doc(alias = "gtk_editable_insert_text")]
-    fn insert_text(&self, text: &str, position: &mut i32);
-
-    #[doc(alias = "gtk_editable_select_region")]
-    fn select_region(&self, start_pos: i32, end_pos: i32);
-
-    #[doc(alias = "gtk_editable_set_alignment")]
-    fn set_alignment(&self, xalign: f32);
-
-    #[doc(alias = "gtk_editable_set_editable")]
-    fn set_editable(&self, is_editable: bool);
-
-    #[doc(alias = "gtk_editable_set_enable_undo")]
-    fn set_enable_undo(&self, enable_undo: bool);
-
-    #[doc(alias = "gtk_editable_set_max_width_chars")]
-    fn set_max_width_chars(&self, n_chars: i32);
-
-    #[doc(alias = "gtk_editable_set_position")]
-    fn set_position(&self, position: i32);
-
-    #[doc(alias = "gtk_editable_set_text")]
-    fn set_text(&self, text: &str);
-
-    #[doc(alias = "gtk_editable_set_width_chars")]
-    fn set_width_chars(&self, n_chars: i32);
-
-    #[doc(alias = "cursor-position")]
-    fn cursor_position(&self) -> i32;
-
-    #[doc(alias = "selection-bound")]
-    fn selection_bound(&self) -> i32;
-
-    fn xalign(&self) -> f32;
-
-    fn set_xalign(&self, xalign: f32);
-
-    #[doc(alias = "changed")]
-    fn connect_changed<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "delete-text")]
-    fn connect_delete_text<F: Fn(&Self, i32, i32) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "cursor-position")]
-    fn connect_cursor_position_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "editable")]
-    fn connect_editable_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "enable-undo")]
-    fn connect_enable_undo_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "max-width-chars")]
-    fn connect_max_width_chars_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "selection-bound")]
-    fn connect_selection_bound_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "text")]
-    fn connect_text_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "width-chars")]
-    fn connect_width_chars_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "xalign")]
-    fn connect_xalign_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-}
-
-impl<O: IsA<Editable>> EditableExt for O {
-    #[cfg(feature = "v4_10")]
-    #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     fn delegate_get_accessible_platform_state(&self, state: AccessiblePlatformState) -> bool {
         unsafe {
             from_glib(ffi::gtk_editable_delegate_get_accessible_platform_state(
@@ -165,28 +39,35 @@ impl<O: IsA<Editable>> EditableExt for O {
         }
     }
 
+    #[doc(alias = "gtk_editable_delete_selection")]
     fn delete_selection(&self) {
         unsafe {
             ffi::gtk_editable_delete_selection(self.as_ref().to_glib_none().0);
         }
     }
 
+    #[doc(alias = "gtk_editable_delete_text")]
     fn delete_text(&self, start_pos: i32, end_pos: i32) {
         unsafe {
             ffi::gtk_editable_delete_text(self.as_ref().to_glib_none().0, start_pos, end_pos);
         }
     }
 
+    #[doc(alias = "gtk_editable_finish_delegate")]
     fn finish_delegate(&self) {
         unsafe {
             ffi::gtk_editable_finish_delegate(self.as_ref().to_glib_none().0);
         }
     }
 
+    #[doc(alias = "gtk_editable_get_alignment")]
+    #[doc(alias = "get_alignment")]
     fn alignment(&self) -> f32 {
         unsafe { ffi::gtk_editable_get_alignment(self.as_ref().to_glib_none().0) }
     }
 
+    #[doc(alias = "gtk_editable_get_chars")]
+    #[doc(alias = "get_chars")]
     fn chars(&self, start_pos: i32, end_pos: i32) -> glib::GString {
         unsafe {
             from_glib_full(ffi::gtk_editable_get_chars(
@@ -197,6 +78,9 @@ impl<O: IsA<Editable>> EditableExt for O {
         }
     }
 
+    #[doc(alias = "gtk_editable_get_delegate")]
+    #[doc(alias = "get_delegate")]
+    #[must_use]
     fn delegate(&self) -> Option<Editable> {
         unsafe {
             from_glib_none(ffi::gtk_editable_get_delegate(
@@ -205,6 +89,8 @@ impl<O: IsA<Editable>> EditableExt for O {
         }
     }
 
+    #[doc(alias = "gtk_editable_get_editable")]
+    #[doc(alias = "get_editable")]
     fn is_editable(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_editable_get_editable(
@@ -213,6 +99,8 @@ impl<O: IsA<Editable>> EditableExt for O {
         }
     }
 
+    #[doc(alias = "gtk_editable_get_enable_undo")]
+    #[doc(alias = "get_enable_undo")]
     fn enables_undo(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_editable_get_enable_undo(
@@ -221,14 +109,20 @@ impl<O: IsA<Editable>> EditableExt for O {
         }
     }
 
+    #[doc(alias = "gtk_editable_get_max_width_chars")]
+    #[doc(alias = "get_max_width_chars")]
     fn max_width_chars(&self) -> i32 {
         unsafe { ffi::gtk_editable_get_max_width_chars(self.as_ref().to_glib_none().0) }
     }
 
+    #[doc(alias = "gtk_editable_get_position")]
+    #[doc(alias = "get_position")]
     fn position(&self) -> i32 {
         unsafe { ffi::gtk_editable_get_position(self.as_ref().to_glib_none().0) }
     }
 
+    #[doc(alias = "gtk_editable_get_selection_bounds")]
+    #[doc(alias = "get_selection_bounds")]
     fn selection_bounds(&self) -> Option<(i32, i32)> {
         unsafe {
             let mut start_pos = mem::MaybeUninit::uninit();
@@ -246,20 +140,26 @@ impl<O: IsA<Editable>> EditableExt for O {
         }
     }
 
+    #[doc(alias = "gtk_editable_get_text")]
+    #[doc(alias = "get_text")]
     fn text(&self) -> glib::GString {
         unsafe { from_glib_none(ffi::gtk_editable_get_text(self.as_ref().to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_editable_get_width_chars")]
+    #[doc(alias = "get_width_chars")]
     fn width_chars(&self) -> i32 {
         unsafe { ffi::gtk_editable_get_width_chars(self.as_ref().to_glib_none().0) }
     }
 
+    #[doc(alias = "gtk_editable_init_delegate")]
     fn init_delegate(&self) {
         unsafe {
             ffi::gtk_editable_init_delegate(self.as_ref().to_glib_none().0);
         }
     }
 
+    #[doc(alias = "gtk_editable_insert_text")]
     fn insert_text(&self, text: &str, position: &mut i32) {
         let length = text.len() as _;
         unsafe {
@@ -272,24 +172,28 @@ impl<O: IsA<Editable>> EditableExt for O {
         }
     }
 
+    #[doc(alias = "gtk_editable_select_region")]
     fn select_region(&self, start_pos: i32, end_pos: i32) {
         unsafe {
             ffi::gtk_editable_select_region(self.as_ref().to_glib_none().0, start_pos, end_pos);
         }
     }
 
+    #[doc(alias = "gtk_editable_set_alignment")]
     fn set_alignment(&self, xalign: f32) {
         unsafe {
             ffi::gtk_editable_set_alignment(self.as_ref().to_glib_none().0, xalign);
         }
     }
 
+    #[doc(alias = "gtk_editable_set_editable")]
     fn set_editable(&self, is_editable: bool) {
         unsafe {
             ffi::gtk_editable_set_editable(self.as_ref().to_glib_none().0, is_editable.into_glib());
         }
     }
 
+    #[doc(alias = "gtk_editable_set_enable_undo")]
     fn set_enable_undo(&self, enable_undo: bool) {
         unsafe {
             ffi::gtk_editable_set_enable_undo(
@@ -299,34 +203,40 @@ impl<O: IsA<Editable>> EditableExt for O {
         }
     }
 
+    #[doc(alias = "gtk_editable_set_max_width_chars")]
     fn set_max_width_chars(&self, n_chars: i32) {
         unsafe {
             ffi::gtk_editable_set_max_width_chars(self.as_ref().to_glib_none().0, n_chars);
         }
     }
 
+    #[doc(alias = "gtk_editable_set_position")]
     fn set_position(&self, position: i32) {
         unsafe {
             ffi::gtk_editable_set_position(self.as_ref().to_glib_none().0, position);
         }
     }
 
+    #[doc(alias = "gtk_editable_set_text")]
     fn set_text(&self, text: &str) {
         unsafe {
             ffi::gtk_editable_set_text(self.as_ref().to_glib_none().0, text.to_glib_none().0);
         }
     }
 
+    #[doc(alias = "gtk_editable_set_width_chars")]
     fn set_width_chars(&self, n_chars: i32) {
         unsafe {
             ffi::gtk_editable_set_width_chars(self.as_ref().to_glib_none().0, n_chars);
         }
     }
 
+    #[doc(alias = "cursor-position")]
     fn cursor_position(&self) -> i32 {
         glib::ObjectExt::property(self.as_ref(), "cursor-position")
     }
 
+    #[doc(alias = "selection-bound")]
     fn selection_bound(&self) -> i32 {
         glib::ObjectExt::property(self.as_ref(), "selection-bound")
     }
@@ -339,6 +249,7 @@ impl<O: IsA<Editable>> EditableExt for O {
         glib::ObjectExt::set_property(self.as_ref(), "xalign", xalign)
     }
 
+    #[doc(alias = "changed")]
     fn connect_changed<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn changed_trampoline<P: IsA<Editable>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkEditable,
@@ -360,6 +271,7 @@ impl<O: IsA<Editable>> EditableExt for O {
         }
     }
 
+    #[doc(alias = "delete-text")]
     fn connect_delete_text<F: Fn(&Self, i32, i32) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn delete_text_trampoline<
             P: IsA<Editable>,
@@ -390,6 +302,7 @@ impl<O: IsA<Editable>> EditableExt for O {
         }
     }
 
+    #[doc(alias = "cursor-position")]
     fn connect_cursor_position_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_cursor_position_trampoline<
             P: IsA<Editable>,
@@ -415,6 +328,7 @@ impl<O: IsA<Editable>> EditableExt for O {
         }
     }
 
+    #[doc(alias = "editable")]
     fn connect_editable_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_editable_trampoline<P: IsA<Editable>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkEditable,
@@ -437,6 +351,7 @@ impl<O: IsA<Editable>> EditableExt for O {
         }
     }
 
+    #[doc(alias = "enable-undo")]
     fn connect_enable_undo_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_enable_undo_trampoline<
             P: IsA<Editable>,
@@ -462,6 +377,7 @@ impl<O: IsA<Editable>> EditableExt for O {
         }
     }
 
+    #[doc(alias = "max-width-chars")]
     fn connect_max_width_chars_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_max_width_chars_trampoline<
             P: IsA<Editable>,
@@ -487,6 +403,7 @@ impl<O: IsA<Editable>> EditableExt for O {
         }
     }
 
+    #[doc(alias = "selection-bound")]
     fn connect_selection_bound_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_selection_bound_trampoline<
             P: IsA<Editable>,
@@ -512,6 +429,7 @@ impl<O: IsA<Editable>> EditableExt for O {
         }
     }
 
+    #[doc(alias = "text")]
     fn connect_text_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_text_trampoline<P: IsA<Editable>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkEditable,
@@ -534,6 +452,7 @@ impl<O: IsA<Editable>> EditableExt for O {
         }
     }
 
+    #[doc(alias = "width-chars")]
     fn connect_width_chars_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_width_chars_trampoline<
             P: IsA<Editable>,
@@ -559,6 +478,7 @@ impl<O: IsA<Editable>> EditableExt for O {
         }
     }
 
+    #[doc(alias = "xalign")]
     fn connect_xalign_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_xalign_trampoline<P: IsA<Editable>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkEditable,
@@ -581,6 +501,8 @@ impl<O: IsA<Editable>> EditableExt for O {
         }
     }
 }
+
+impl<O: IsA<Editable>> EditableExt for O {}
 
 impl fmt::Display for Editable {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {

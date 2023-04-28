@@ -36,21 +36,8 @@ impl fmt::Display for ShortcutAction {
     }
 }
 
-pub trait ShortcutActionExt: 'static {
+pub trait ShortcutActionExt: IsA<ShortcutAction> + 'static {
     #[doc(alias = "gtk_shortcut_action_activate")]
-    fn activate(
-        &self,
-        flags: ShortcutActionFlags,
-        widget: &impl IsA<Widget>,
-        args: Option<&glib::Variant>,
-    ) -> bool;
-
-    #[doc(alias = "gtk_shortcut_action_to_string")]
-    #[doc(alias = "to_string")]
-    fn to_str(&self) -> glib::GString;
-}
-
-impl<O: IsA<ShortcutAction>> ShortcutActionExt for O {
     fn activate(
         &self,
         flags: ShortcutActionFlags,
@@ -67,6 +54,8 @@ impl<O: IsA<ShortcutAction>> ShortcutActionExt for O {
         }
     }
 
+    #[doc(alias = "gtk_shortcut_action_to_string")]
+    #[doc(alias = "to_string")]
     fn to_str(&self) -> glib::GString {
         unsafe {
             from_glib_full(ffi::gtk_shortcut_action_to_string(
@@ -75,3 +64,5 @@ impl<O: IsA<ShortcutAction>> ShortcutActionExt for O {
         }
     }
 }
+
+impl<O: IsA<ShortcutAction>> ShortcutActionExt for O {}

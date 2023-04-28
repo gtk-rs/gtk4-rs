@@ -587,521 +587,9 @@ impl EntryBuilder {
     }
 }
 
-pub trait EntryExt: 'static {
+pub trait EntryExt: IsA<Entry> + 'static {
     #[doc(alias = "gtk_entry_get_activates_default")]
     #[doc(alias = "get_activates_default")]
-    fn activates_default(&self) -> bool;
-
-    #[doc(alias = "gtk_entry_get_alignment")]
-    #[doc(alias = "get_alignment")]
-    fn alignment(&self) -> f32;
-
-    #[doc(alias = "gtk_entry_get_attributes")]
-    #[doc(alias = "get_attributes")]
-    fn attributes(&self) -> Option<pango::AttrList>;
-
-    #[doc(alias = "gtk_entry_get_buffer")]
-    #[doc(alias = "get_buffer")]
-    fn buffer(&self) -> EntryBuffer;
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_entry_get_completion")]
-    #[doc(alias = "get_completion")]
-    fn completion(&self) -> Option<EntryCompletion>;
-
-    #[doc(alias = "gtk_entry_get_current_icon_drag_source")]
-    #[doc(alias = "get_current_icon_drag_source")]
-    fn current_icon_drag_source(&self) -> i32;
-
-    #[doc(alias = "gtk_entry_get_extra_menu")]
-    #[doc(alias = "get_extra_menu")]
-    fn extra_menu(&self) -> Option<gio::MenuModel>;
-
-    #[doc(alias = "gtk_entry_get_has_frame")]
-    #[doc(alias = "get_has_frame")]
-    fn has_frame(&self) -> bool;
-
-    #[doc(alias = "gtk_entry_get_icon_activatable")]
-    #[doc(alias = "get_icon_activatable")]
-    fn icon_is_activatable(&self, icon_pos: EntryIconPosition) -> bool;
-
-    #[doc(alias = "gtk_entry_get_icon_area")]
-    #[doc(alias = "get_icon_area")]
-    fn icon_area(&self, icon_pos: EntryIconPosition) -> gdk::Rectangle;
-
-    #[doc(alias = "gtk_entry_get_icon_at_pos")]
-    #[doc(alias = "get_icon_at_pos")]
-    fn icon_at_pos(&self, x: i32, y: i32) -> i32;
-
-    #[doc(alias = "gtk_entry_get_icon_gicon")]
-    #[doc(alias = "get_icon_gicon")]
-    fn icon_gicon(&self, icon_pos: EntryIconPosition) -> Option<gio::Icon>;
-
-    #[doc(alias = "gtk_entry_get_icon_name")]
-    #[doc(alias = "get_icon_name")]
-    fn icon_name(&self, icon_pos: EntryIconPosition) -> Option<glib::GString>;
-
-    #[doc(alias = "gtk_entry_get_icon_paintable")]
-    #[doc(alias = "get_icon_paintable")]
-    fn icon_paintable(&self, icon_pos: EntryIconPosition) -> Option<gdk::Paintable>;
-
-    #[doc(alias = "gtk_entry_get_icon_sensitive")]
-    #[doc(alias = "get_icon_sensitive")]
-    fn icon_is_sensitive(&self, icon_pos: EntryIconPosition) -> bool;
-
-    #[doc(alias = "gtk_entry_get_icon_storage_type")]
-    #[doc(alias = "get_icon_storage_type")]
-    fn icon_storage_type(&self, icon_pos: EntryIconPosition) -> ImageType;
-
-    #[doc(alias = "gtk_entry_get_icon_tooltip_markup")]
-    #[doc(alias = "get_icon_tooltip_markup")]
-    fn icon_tooltip_markup(&self, icon_pos: EntryIconPosition) -> Option<glib::GString>;
-
-    #[doc(alias = "gtk_entry_get_icon_tooltip_text")]
-    #[doc(alias = "get_icon_tooltip_text")]
-    fn icon_tooltip_text(&self, icon_pos: EntryIconPosition) -> Option<glib::GString>;
-
-    #[doc(alias = "gtk_entry_get_input_hints")]
-    #[doc(alias = "get_input_hints")]
-    fn input_hints(&self) -> InputHints;
-
-    #[doc(alias = "gtk_entry_get_input_purpose")]
-    #[doc(alias = "get_input_purpose")]
-    fn input_purpose(&self) -> InputPurpose;
-
-    #[doc(alias = "gtk_entry_get_max_length")]
-    #[doc(alias = "get_max_length")]
-    fn max_length(&self) -> i32;
-
-    #[doc(alias = "gtk_entry_get_overwrite_mode")]
-    #[doc(alias = "get_overwrite_mode")]
-    fn is_overwrite_mode(&self) -> bool;
-
-    #[doc(alias = "gtk_entry_get_placeholder_text")]
-    #[doc(alias = "get_placeholder_text")]
-    fn placeholder_text(&self) -> Option<glib::GString>;
-
-    #[doc(alias = "gtk_entry_get_progress_fraction")]
-    #[doc(alias = "get_progress_fraction")]
-    fn progress_fraction(&self) -> f64;
-
-    #[doc(alias = "gtk_entry_get_progress_pulse_step")]
-    #[doc(alias = "get_progress_pulse_step")]
-    fn progress_pulse_step(&self) -> f64;
-
-    #[doc(alias = "gtk_entry_get_tabs")]
-    #[doc(alias = "get_tabs")]
-    fn tabs(&self) -> Option<pango::TabArray>;
-
-    #[doc(alias = "gtk_entry_get_text_length")]
-    #[doc(alias = "get_text_length")]
-    fn text_length(&self) -> u16;
-
-    #[doc(alias = "gtk_entry_get_visibility")]
-    #[doc(alias = "get_visibility")]
-    fn is_visible(&self) -> bool;
-
-    #[doc(alias = "gtk_entry_grab_focus_without_selecting")]
-    fn grab_focus_without_selecting(&self) -> bool;
-
-    #[doc(alias = "gtk_entry_progress_pulse")]
-    fn progress_pulse(&self);
-
-    #[doc(alias = "gtk_entry_reset_im_context")]
-    fn reset_im_context(&self);
-
-    #[doc(alias = "gtk_entry_set_activates_default")]
-    fn set_activates_default(&self, setting: bool);
-
-    #[doc(alias = "gtk_entry_set_alignment")]
-    fn set_alignment(&self, xalign: f32);
-
-    #[doc(alias = "gtk_entry_set_attributes")]
-    fn set_attributes(&self, attrs: &pango::AttrList);
-
-    #[doc(alias = "gtk_entry_set_buffer")]
-    fn set_buffer(&self, buffer: &impl IsA<EntryBuffer>);
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_entry_set_completion")]
-    fn set_completion(&self, completion: Option<&EntryCompletion>);
-
-    #[doc(alias = "gtk_entry_set_extra_menu")]
-    fn set_extra_menu(&self, model: Option<&impl IsA<gio::MenuModel>>);
-
-    #[doc(alias = "gtk_entry_set_has_frame")]
-    fn set_has_frame(&self, setting: bool);
-
-    #[doc(alias = "gtk_entry_set_icon_activatable")]
-    fn set_icon_activatable(&self, icon_pos: EntryIconPosition, activatable: bool);
-
-    #[doc(alias = "gtk_entry_set_icon_drag_source")]
-    fn set_icon_drag_source(
-        &self,
-        icon_pos: EntryIconPosition,
-        provider: &impl IsA<gdk::ContentProvider>,
-        actions: gdk::DragAction,
-    );
-
-    #[doc(alias = "gtk_entry_set_icon_from_gicon")]
-    fn set_icon_from_gicon(&self, icon_pos: EntryIconPosition, icon: Option<&impl IsA<gio::Icon>>);
-
-    #[doc(alias = "gtk_entry_set_icon_from_icon_name")]
-    fn set_icon_from_icon_name(&self, icon_pos: EntryIconPosition, icon_name: Option<&str>);
-
-    #[doc(alias = "gtk_entry_set_icon_from_paintable")]
-    fn set_icon_from_paintable(
-        &self,
-        icon_pos: EntryIconPosition,
-        paintable: Option<&impl IsA<gdk::Paintable>>,
-    );
-
-    #[doc(alias = "gtk_entry_set_icon_sensitive")]
-    fn set_icon_sensitive(&self, icon_pos: EntryIconPosition, sensitive: bool);
-
-    #[doc(alias = "gtk_entry_set_icon_tooltip_markup")]
-    fn set_icon_tooltip_markup(&self, icon_pos: EntryIconPosition, tooltip: Option<&str>);
-
-    #[doc(alias = "gtk_entry_set_icon_tooltip_text")]
-    fn set_icon_tooltip_text(&self, icon_pos: EntryIconPosition, tooltip: Option<&str>);
-
-    #[doc(alias = "gtk_entry_set_input_hints")]
-    fn set_input_hints(&self, hints: InputHints);
-
-    #[doc(alias = "gtk_entry_set_input_purpose")]
-    fn set_input_purpose(&self, purpose: InputPurpose);
-
-    #[doc(alias = "gtk_entry_set_invisible_char")]
-    fn set_invisible_char(&self, ch: Option<char>);
-
-    #[doc(alias = "gtk_entry_set_max_length")]
-    fn set_max_length(&self, max: i32);
-
-    #[doc(alias = "gtk_entry_set_overwrite_mode")]
-    fn set_overwrite_mode(&self, overwrite: bool);
-
-    #[doc(alias = "gtk_entry_set_placeholder_text")]
-    fn set_placeholder_text(&self, text: Option<&str>);
-
-    #[doc(alias = "gtk_entry_set_progress_fraction")]
-    fn set_progress_fraction(&self, fraction: f64);
-
-    #[doc(alias = "gtk_entry_set_progress_pulse_step")]
-    fn set_progress_pulse_step(&self, fraction: f64);
-
-    #[doc(alias = "gtk_entry_set_tabs")]
-    fn set_tabs(&self, tabs: Option<&pango::TabArray>);
-
-    #[doc(alias = "gtk_entry_set_visibility")]
-    fn set_visibility(&self, visible: bool);
-
-    #[doc(alias = "gtk_entry_unset_invisible_char")]
-    fn unset_invisible_char(&self);
-
-    #[doc(alias = "enable-emoji-completion")]
-    fn enables_emoji_completion(&self) -> bool;
-
-    #[doc(alias = "enable-emoji-completion")]
-    fn set_enable_emoji_completion(&self, enable_emoji_completion: bool);
-
-    #[doc(alias = "im-module")]
-    fn im_module(&self) -> Option<glib::GString>;
-
-    #[doc(alias = "im-module")]
-    fn set_im_module(&self, im_module: Option<&str>);
-
-    #[doc(alias = "invisible-char-set")]
-    fn is_invisible_char_set(&self) -> bool;
-
-    #[doc(alias = "primary-icon-activatable")]
-    fn is_primary_icon_activatable(&self) -> bool;
-
-    #[doc(alias = "primary-icon-activatable")]
-    fn set_primary_icon_activatable(&self, primary_icon_activatable: bool);
-
-    #[doc(alias = "primary-icon-gicon")]
-    fn primary_icon_gicon(&self) -> Option<gio::Icon>;
-
-    #[doc(alias = "primary-icon-gicon")]
-    fn set_primary_icon_gicon<P: IsA<gio::Icon>>(&self, primary_icon_gicon: Option<&P>);
-
-    #[doc(alias = "primary-icon-name")]
-    fn primary_icon_name(&self) -> Option<glib::GString>;
-
-    #[doc(alias = "primary-icon-name")]
-    fn set_primary_icon_name(&self, primary_icon_name: Option<&str>);
-
-    #[doc(alias = "primary-icon-paintable")]
-    fn primary_icon_paintable(&self) -> Option<gdk::Paintable>;
-
-    #[doc(alias = "primary-icon-paintable")]
-    fn set_primary_icon_paintable<P: IsA<gdk::Paintable>>(
-        &self,
-        primary_icon_paintable: Option<&P>,
-    );
-
-    #[doc(alias = "primary-icon-sensitive")]
-    fn is_primary_icon_sensitive(&self) -> bool;
-
-    #[doc(alias = "primary-icon-sensitive")]
-    fn set_primary_icon_sensitive(&self, primary_icon_sensitive: bool);
-
-    #[doc(alias = "primary-icon-storage-type")]
-    fn primary_icon_storage_type(&self) -> ImageType;
-
-    #[doc(alias = "primary-icon-tooltip-markup")]
-    fn primary_icon_tooltip_markup(&self) -> Option<glib::GString>;
-
-    #[doc(alias = "primary-icon-tooltip-markup")]
-    fn set_primary_icon_tooltip_markup(&self, primary_icon_tooltip_markup: Option<&str>);
-
-    #[doc(alias = "primary-icon-tooltip-text")]
-    fn primary_icon_tooltip_text(&self) -> Option<glib::GString>;
-
-    #[doc(alias = "primary-icon-tooltip-text")]
-    fn set_primary_icon_tooltip_text(&self, primary_icon_tooltip_text: Option<&str>);
-
-    #[doc(alias = "scroll-offset")]
-    fn scroll_offset(&self) -> i32;
-
-    #[doc(alias = "secondary-icon-activatable")]
-    fn is_secondary_icon_activatable(&self) -> bool;
-
-    #[doc(alias = "secondary-icon-activatable")]
-    fn set_secondary_icon_activatable(&self, secondary_icon_activatable: bool);
-
-    #[doc(alias = "secondary-icon-gicon")]
-    fn secondary_icon_gicon(&self) -> Option<gio::Icon>;
-
-    #[doc(alias = "secondary-icon-gicon")]
-    fn set_secondary_icon_gicon<P: IsA<gio::Icon>>(&self, secondary_icon_gicon: Option<&P>);
-
-    #[doc(alias = "secondary-icon-name")]
-    fn secondary_icon_name(&self) -> Option<glib::GString>;
-
-    #[doc(alias = "secondary-icon-name")]
-    fn set_secondary_icon_name(&self, secondary_icon_name: Option<&str>);
-
-    #[doc(alias = "secondary-icon-paintable")]
-    fn secondary_icon_paintable(&self) -> Option<gdk::Paintable>;
-
-    #[doc(alias = "secondary-icon-paintable")]
-    fn set_secondary_icon_paintable<P: IsA<gdk::Paintable>>(
-        &self,
-        secondary_icon_paintable: Option<&P>,
-    );
-
-    #[doc(alias = "secondary-icon-sensitive")]
-    fn is_secondary_icon_sensitive(&self) -> bool;
-
-    #[doc(alias = "secondary-icon-sensitive")]
-    fn set_secondary_icon_sensitive(&self, secondary_icon_sensitive: bool);
-
-    #[doc(alias = "secondary-icon-storage-type")]
-    fn secondary_icon_storage_type(&self) -> ImageType;
-
-    #[doc(alias = "secondary-icon-tooltip-markup")]
-    fn secondary_icon_tooltip_markup(&self) -> Option<glib::GString>;
-
-    #[doc(alias = "secondary-icon-tooltip-markup")]
-    fn set_secondary_icon_tooltip_markup(&self, secondary_icon_tooltip_markup: Option<&str>);
-
-    #[doc(alias = "secondary-icon-tooltip-text")]
-    fn secondary_icon_tooltip_text(&self) -> Option<glib::GString>;
-
-    #[doc(alias = "secondary-icon-tooltip-text")]
-    fn set_secondary_icon_tooltip_text(&self, secondary_icon_tooltip_text: Option<&str>);
-
-    #[doc(alias = "show-emoji-icon")]
-    fn shows_emoji_icon(&self) -> bool;
-
-    #[doc(alias = "show-emoji-icon")]
-    fn set_show_emoji_icon(&self, show_emoji_icon: bool);
-
-    #[doc(alias = "truncate-multiline")]
-    fn must_truncate_multiline(&self) -> bool;
-
-    #[doc(alias = "truncate-multiline")]
-    fn set_truncate_multiline(&self, truncate_multiline: bool);
-
-    #[doc(alias = "activate")]
-    fn connect_activate<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    fn emit_activate(&self);
-
-    #[doc(alias = "icon-press")]
-    fn connect_icon_press<F: Fn(&Self, EntryIconPosition) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
-
-    #[doc(alias = "icon-release")]
-    fn connect_icon_release<F: Fn(&Self, EntryIconPosition) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
-
-    #[doc(alias = "activates-default")]
-    fn connect_activates_default_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "attributes")]
-    fn connect_attributes_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "buffer")]
-    fn connect_buffer_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[doc(alias = "completion")]
-    fn connect_completion_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "enable-emoji-completion")]
-    fn connect_enable_emoji_completion_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
-
-    #[doc(alias = "extra-menu")]
-    fn connect_extra_menu_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "has-frame")]
-    fn connect_has_frame_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "im-module")]
-    fn connect_im_module_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "input-hints")]
-    fn connect_input_hints_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "input-purpose")]
-    fn connect_input_purpose_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "invisible-char")]
-    fn connect_invisible_char_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "invisible-char-set")]
-    fn connect_invisible_char_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "max-length")]
-    fn connect_max_length_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "overwrite-mode")]
-    fn connect_overwrite_mode_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "placeholder-text")]
-    fn connect_placeholder_text_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "primary-icon-activatable")]
-    fn connect_primary_icon_activatable_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
-
-    #[doc(alias = "primary-icon-gicon")]
-    fn connect_primary_icon_gicon_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "primary-icon-name")]
-    fn connect_primary_icon_name_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "primary-icon-paintable")]
-    fn connect_primary_icon_paintable_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
-
-    #[doc(alias = "primary-icon-sensitive")]
-    fn connect_primary_icon_sensitive_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
-
-    #[doc(alias = "primary-icon-storage-type")]
-    fn connect_primary_icon_storage_type_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
-
-    #[doc(alias = "primary-icon-tooltip-markup")]
-    fn connect_primary_icon_tooltip_markup_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
-
-    #[doc(alias = "primary-icon-tooltip-text")]
-    fn connect_primary_icon_tooltip_text_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
-
-    #[doc(alias = "progress-fraction")]
-    fn connect_progress_fraction_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "progress-pulse-step")]
-    fn connect_progress_pulse_step_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "scroll-offset")]
-    fn connect_scroll_offset_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "secondary-icon-activatable")]
-    fn connect_secondary_icon_activatable_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
-
-    #[doc(alias = "secondary-icon-gicon")]
-    fn connect_secondary_icon_gicon_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "secondary-icon-name")]
-    fn connect_secondary_icon_name_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "secondary-icon-paintable")]
-    fn connect_secondary_icon_paintable_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
-
-    #[doc(alias = "secondary-icon-sensitive")]
-    fn connect_secondary_icon_sensitive_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
-
-    #[doc(alias = "secondary-icon-storage-type")]
-    fn connect_secondary_icon_storage_type_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
-
-    #[doc(alias = "secondary-icon-tooltip-markup")]
-    fn connect_secondary_icon_tooltip_markup_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
-
-    #[doc(alias = "secondary-icon-tooltip-text")]
-    fn connect_secondary_icon_tooltip_text_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
-
-    #[doc(alias = "show-emoji-icon")]
-    fn connect_show_emoji_icon_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "tabs")]
-    fn connect_tabs_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "text-length")]
-    fn connect_text_length_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "truncate-multiline")]
-    fn connect_truncate_multiline_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "visibility")]
-    fn connect_visibility_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-}
-
-impl<O: IsA<Entry>> EntryExt for O {
     fn activates_default(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_entry_get_activates_default(
@@ -1110,10 +598,14 @@ impl<O: IsA<Entry>> EntryExt for O {
         }
     }
 
+    #[doc(alias = "gtk_entry_get_alignment")]
+    #[doc(alias = "get_alignment")]
     fn alignment(&self) -> f32 {
         unsafe { ffi::gtk_entry_get_alignment(self.as_ref().to_glib_none().0) }
     }
 
+    #[doc(alias = "gtk_entry_get_attributes")]
+    #[doc(alias = "get_attributes")]
     fn attributes(&self) -> Option<pango::AttrList> {
         unsafe {
             from_glib_none(ffi::gtk_entry_get_attributes(
@@ -1122,11 +614,16 @@ impl<O: IsA<Entry>> EntryExt for O {
         }
     }
 
+    #[doc(alias = "gtk_entry_get_buffer")]
+    #[doc(alias = "get_buffer")]
     fn buffer(&self) -> EntryBuffer {
         unsafe { from_glib_none(ffi::gtk_entry_get_buffer(self.as_ref().to_glib_none().0)) }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_entry_get_completion")]
+    #[doc(alias = "get_completion")]
     fn completion(&self) -> Option<EntryCompletion> {
         unsafe {
             from_glib_none(ffi::gtk_entry_get_completion(
@@ -1135,10 +632,14 @@ impl<O: IsA<Entry>> EntryExt for O {
         }
     }
 
+    #[doc(alias = "gtk_entry_get_current_icon_drag_source")]
+    #[doc(alias = "get_current_icon_drag_source")]
     fn current_icon_drag_source(&self) -> i32 {
         unsafe { ffi::gtk_entry_get_current_icon_drag_source(self.as_ref().to_glib_none().0) }
     }
 
+    #[doc(alias = "gtk_entry_get_extra_menu")]
+    #[doc(alias = "get_extra_menu")]
     fn extra_menu(&self) -> Option<gio::MenuModel> {
         unsafe {
             from_glib_none(ffi::gtk_entry_get_extra_menu(
@@ -1147,10 +648,14 @@ impl<O: IsA<Entry>> EntryExt for O {
         }
     }
 
+    #[doc(alias = "gtk_entry_get_has_frame")]
+    #[doc(alias = "get_has_frame")]
     fn has_frame(&self) -> bool {
         unsafe { from_glib(ffi::gtk_entry_get_has_frame(self.as_ref().to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_entry_get_icon_activatable")]
+    #[doc(alias = "get_icon_activatable")]
     fn icon_is_activatable(&self, icon_pos: EntryIconPosition) -> bool {
         unsafe {
             from_glib(ffi::gtk_entry_get_icon_activatable(
@@ -1160,6 +665,8 @@ impl<O: IsA<Entry>> EntryExt for O {
         }
     }
 
+    #[doc(alias = "gtk_entry_get_icon_area")]
+    #[doc(alias = "get_icon_area")]
     fn icon_area(&self, icon_pos: EntryIconPosition) -> gdk::Rectangle {
         unsafe {
             let mut icon_area = gdk::Rectangle::uninitialized();
@@ -1172,10 +679,14 @@ impl<O: IsA<Entry>> EntryExt for O {
         }
     }
 
+    #[doc(alias = "gtk_entry_get_icon_at_pos")]
+    #[doc(alias = "get_icon_at_pos")]
     fn icon_at_pos(&self, x: i32, y: i32) -> i32 {
         unsafe { ffi::gtk_entry_get_icon_at_pos(self.as_ref().to_glib_none().0, x, y) }
     }
 
+    #[doc(alias = "gtk_entry_get_icon_gicon")]
+    #[doc(alias = "get_icon_gicon")]
     fn icon_gicon(&self, icon_pos: EntryIconPosition) -> Option<gio::Icon> {
         unsafe {
             from_glib_none(ffi::gtk_entry_get_icon_gicon(
@@ -1185,6 +696,8 @@ impl<O: IsA<Entry>> EntryExt for O {
         }
     }
 
+    #[doc(alias = "gtk_entry_get_icon_name")]
+    #[doc(alias = "get_icon_name")]
     fn icon_name(&self, icon_pos: EntryIconPosition) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::gtk_entry_get_icon_name(
@@ -1194,6 +707,8 @@ impl<O: IsA<Entry>> EntryExt for O {
         }
     }
 
+    #[doc(alias = "gtk_entry_get_icon_paintable")]
+    #[doc(alias = "get_icon_paintable")]
     fn icon_paintable(&self, icon_pos: EntryIconPosition) -> Option<gdk::Paintable> {
         unsafe {
             from_glib_none(ffi::gtk_entry_get_icon_paintable(
@@ -1203,6 +718,8 @@ impl<O: IsA<Entry>> EntryExt for O {
         }
     }
 
+    #[doc(alias = "gtk_entry_get_icon_sensitive")]
+    #[doc(alias = "get_icon_sensitive")]
     fn icon_is_sensitive(&self, icon_pos: EntryIconPosition) -> bool {
         unsafe {
             from_glib(ffi::gtk_entry_get_icon_sensitive(
@@ -1212,6 +729,8 @@ impl<O: IsA<Entry>> EntryExt for O {
         }
     }
 
+    #[doc(alias = "gtk_entry_get_icon_storage_type")]
+    #[doc(alias = "get_icon_storage_type")]
     fn icon_storage_type(&self, icon_pos: EntryIconPosition) -> ImageType {
         unsafe {
             from_glib(ffi::gtk_entry_get_icon_storage_type(
@@ -1221,6 +740,8 @@ impl<O: IsA<Entry>> EntryExt for O {
         }
     }
 
+    #[doc(alias = "gtk_entry_get_icon_tooltip_markup")]
+    #[doc(alias = "get_icon_tooltip_markup")]
     fn icon_tooltip_markup(&self, icon_pos: EntryIconPosition) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::gtk_entry_get_icon_tooltip_markup(
@@ -1230,6 +751,8 @@ impl<O: IsA<Entry>> EntryExt for O {
         }
     }
 
+    #[doc(alias = "gtk_entry_get_icon_tooltip_text")]
+    #[doc(alias = "get_icon_tooltip_text")]
     fn icon_tooltip_text(&self, icon_pos: EntryIconPosition) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::gtk_entry_get_icon_tooltip_text(
@@ -1239,6 +762,8 @@ impl<O: IsA<Entry>> EntryExt for O {
         }
     }
 
+    #[doc(alias = "gtk_entry_get_input_hints")]
+    #[doc(alias = "get_input_hints")]
     fn input_hints(&self) -> InputHints {
         unsafe {
             from_glib(ffi::gtk_entry_get_input_hints(
@@ -1247,6 +772,8 @@ impl<O: IsA<Entry>> EntryExt for O {
         }
     }
 
+    #[doc(alias = "gtk_entry_get_input_purpose")]
+    #[doc(alias = "get_input_purpose")]
     fn input_purpose(&self) -> InputPurpose {
         unsafe {
             from_glib(ffi::gtk_entry_get_input_purpose(
@@ -1255,10 +782,14 @@ impl<O: IsA<Entry>> EntryExt for O {
         }
     }
 
+    #[doc(alias = "gtk_entry_get_max_length")]
+    #[doc(alias = "get_max_length")]
     fn max_length(&self) -> i32 {
         unsafe { ffi::gtk_entry_get_max_length(self.as_ref().to_glib_none().0) }
     }
 
+    #[doc(alias = "gtk_entry_get_overwrite_mode")]
+    #[doc(alias = "get_overwrite_mode")]
     fn is_overwrite_mode(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_entry_get_overwrite_mode(
@@ -1267,6 +798,8 @@ impl<O: IsA<Entry>> EntryExt for O {
         }
     }
 
+    #[doc(alias = "gtk_entry_get_placeholder_text")]
+    #[doc(alias = "get_placeholder_text")]
     fn placeholder_text(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::gtk_entry_get_placeholder_text(
@@ -1275,22 +808,32 @@ impl<O: IsA<Entry>> EntryExt for O {
         }
     }
 
+    #[doc(alias = "gtk_entry_get_progress_fraction")]
+    #[doc(alias = "get_progress_fraction")]
     fn progress_fraction(&self) -> f64 {
         unsafe { ffi::gtk_entry_get_progress_fraction(self.as_ref().to_glib_none().0) }
     }
 
+    #[doc(alias = "gtk_entry_get_progress_pulse_step")]
+    #[doc(alias = "get_progress_pulse_step")]
     fn progress_pulse_step(&self) -> f64 {
         unsafe { ffi::gtk_entry_get_progress_pulse_step(self.as_ref().to_glib_none().0) }
     }
 
+    #[doc(alias = "gtk_entry_get_tabs")]
+    #[doc(alias = "get_tabs")]
     fn tabs(&self) -> Option<pango::TabArray> {
         unsafe { from_glib_none(ffi::gtk_entry_get_tabs(self.as_ref().to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_entry_get_text_length")]
+    #[doc(alias = "get_text_length")]
     fn text_length(&self) -> u16 {
         unsafe { ffi::gtk_entry_get_text_length(self.as_ref().to_glib_none().0) }
     }
 
+    #[doc(alias = "gtk_entry_get_visibility")]
+    #[doc(alias = "get_visibility")]
     fn is_visible(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_entry_get_visibility(
@@ -1299,6 +842,7 @@ impl<O: IsA<Entry>> EntryExt for O {
         }
     }
 
+    #[doc(alias = "gtk_entry_grab_focus_without_selecting")]
     fn grab_focus_without_selecting(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_entry_grab_focus_without_selecting(
@@ -1307,18 +851,21 @@ impl<O: IsA<Entry>> EntryExt for O {
         }
     }
 
+    #[doc(alias = "gtk_entry_progress_pulse")]
     fn progress_pulse(&self) {
         unsafe {
             ffi::gtk_entry_progress_pulse(self.as_ref().to_glib_none().0);
         }
     }
 
+    #[doc(alias = "gtk_entry_reset_im_context")]
     fn reset_im_context(&self) {
         unsafe {
             ffi::gtk_entry_reset_im_context(self.as_ref().to_glib_none().0);
         }
     }
 
+    #[doc(alias = "gtk_entry_set_activates_default")]
     fn set_activates_default(&self, setting: bool) {
         unsafe {
             ffi::gtk_entry_set_activates_default(
@@ -1328,18 +875,21 @@ impl<O: IsA<Entry>> EntryExt for O {
         }
     }
 
+    #[doc(alias = "gtk_entry_set_alignment")]
     fn set_alignment(&self, xalign: f32) {
         unsafe {
             ffi::gtk_entry_set_alignment(self.as_ref().to_glib_none().0, xalign);
         }
     }
 
+    #[doc(alias = "gtk_entry_set_attributes")]
     fn set_attributes(&self, attrs: &pango::AttrList) {
         unsafe {
             ffi::gtk_entry_set_attributes(self.as_ref().to_glib_none().0, attrs.to_glib_none().0);
         }
     }
 
+    #[doc(alias = "gtk_entry_set_buffer")]
     fn set_buffer(&self, buffer: &impl IsA<EntryBuffer>) {
         unsafe {
             ffi::gtk_entry_set_buffer(
@@ -1349,7 +899,9 @@ impl<O: IsA<Entry>> EntryExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_entry_set_completion")]
     fn set_completion(&self, completion: Option<&EntryCompletion>) {
         unsafe {
             ffi::gtk_entry_set_completion(
@@ -1359,6 +911,7 @@ impl<O: IsA<Entry>> EntryExt for O {
         }
     }
 
+    #[doc(alias = "gtk_entry_set_extra_menu")]
     fn set_extra_menu(&self, model: Option<&impl IsA<gio::MenuModel>>) {
         unsafe {
             ffi::gtk_entry_set_extra_menu(
@@ -1368,12 +921,14 @@ impl<O: IsA<Entry>> EntryExt for O {
         }
     }
 
+    #[doc(alias = "gtk_entry_set_has_frame")]
     fn set_has_frame(&self, setting: bool) {
         unsafe {
             ffi::gtk_entry_set_has_frame(self.as_ref().to_glib_none().0, setting.into_glib());
         }
     }
 
+    #[doc(alias = "gtk_entry_set_icon_activatable")]
     fn set_icon_activatable(&self, icon_pos: EntryIconPosition, activatable: bool) {
         unsafe {
             ffi::gtk_entry_set_icon_activatable(
@@ -1384,6 +939,7 @@ impl<O: IsA<Entry>> EntryExt for O {
         }
     }
 
+    #[doc(alias = "gtk_entry_set_icon_drag_source")]
     fn set_icon_drag_source(
         &self,
         icon_pos: EntryIconPosition,
@@ -1400,6 +956,7 @@ impl<O: IsA<Entry>> EntryExt for O {
         }
     }
 
+    #[doc(alias = "gtk_entry_set_icon_from_gicon")]
     fn set_icon_from_gicon(&self, icon_pos: EntryIconPosition, icon: Option<&impl IsA<gio::Icon>>) {
         unsafe {
             ffi::gtk_entry_set_icon_from_gicon(
@@ -1410,6 +967,7 @@ impl<O: IsA<Entry>> EntryExt for O {
         }
     }
 
+    #[doc(alias = "gtk_entry_set_icon_from_icon_name")]
     fn set_icon_from_icon_name(&self, icon_pos: EntryIconPosition, icon_name: Option<&str>) {
         unsafe {
             ffi::gtk_entry_set_icon_from_icon_name(
@@ -1420,6 +978,7 @@ impl<O: IsA<Entry>> EntryExt for O {
         }
     }
 
+    #[doc(alias = "gtk_entry_set_icon_from_paintable")]
     fn set_icon_from_paintable(
         &self,
         icon_pos: EntryIconPosition,
@@ -1434,6 +993,7 @@ impl<O: IsA<Entry>> EntryExt for O {
         }
     }
 
+    #[doc(alias = "gtk_entry_set_icon_sensitive")]
     fn set_icon_sensitive(&self, icon_pos: EntryIconPosition, sensitive: bool) {
         unsafe {
             ffi::gtk_entry_set_icon_sensitive(
@@ -1444,6 +1004,7 @@ impl<O: IsA<Entry>> EntryExt for O {
         }
     }
 
+    #[doc(alias = "gtk_entry_set_icon_tooltip_markup")]
     fn set_icon_tooltip_markup(&self, icon_pos: EntryIconPosition, tooltip: Option<&str>) {
         unsafe {
             ffi::gtk_entry_set_icon_tooltip_markup(
@@ -1454,6 +1015,7 @@ impl<O: IsA<Entry>> EntryExt for O {
         }
     }
 
+    #[doc(alias = "gtk_entry_set_icon_tooltip_text")]
     fn set_icon_tooltip_text(&self, icon_pos: EntryIconPosition, tooltip: Option<&str>) {
         unsafe {
             ffi::gtk_entry_set_icon_tooltip_text(
@@ -1464,30 +1026,35 @@ impl<O: IsA<Entry>> EntryExt for O {
         }
     }
 
+    #[doc(alias = "gtk_entry_set_input_hints")]
     fn set_input_hints(&self, hints: InputHints) {
         unsafe {
             ffi::gtk_entry_set_input_hints(self.as_ref().to_glib_none().0, hints.into_glib());
         }
     }
 
+    #[doc(alias = "gtk_entry_set_input_purpose")]
     fn set_input_purpose(&self, purpose: InputPurpose) {
         unsafe {
             ffi::gtk_entry_set_input_purpose(self.as_ref().to_glib_none().0, purpose.into_glib());
         }
     }
 
+    #[doc(alias = "gtk_entry_set_invisible_char")]
     fn set_invisible_char(&self, ch: Option<char>) {
         unsafe {
             ffi::gtk_entry_set_invisible_char(self.as_ref().to_glib_none().0, ch.into_glib());
         }
     }
 
+    #[doc(alias = "gtk_entry_set_max_length")]
     fn set_max_length(&self, max: i32) {
         unsafe {
             ffi::gtk_entry_set_max_length(self.as_ref().to_glib_none().0, max);
         }
     }
 
+    #[doc(alias = "gtk_entry_set_overwrite_mode")]
     fn set_overwrite_mode(&self, overwrite: bool) {
         unsafe {
             ffi::gtk_entry_set_overwrite_mode(
@@ -1497,6 +1064,7 @@ impl<O: IsA<Entry>> EntryExt for O {
         }
     }
 
+    #[doc(alias = "gtk_entry_set_placeholder_text")]
     fn set_placeholder_text(&self, text: Option<&str>) {
         unsafe {
             ffi::gtk_entry_set_placeholder_text(
@@ -1506,18 +1074,21 @@ impl<O: IsA<Entry>> EntryExt for O {
         }
     }
 
+    #[doc(alias = "gtk_entry_set_progress_fraction")]
     fn set_progress_fraction(&self, fraction: f64) {
         unsafe {
             ffi::gtk_entry_set_progress_fraction(self.as_ref().to_glib_none().0, fraction);
         }
     }
 
+    #[doc(alias = "gtk_entry_set_progress_pulse_step")]
     fn set_progress_pulse_step(&self, fraction: f64) {
         unsafe {
             ffi::gtk_entry_set_progress_pulse_step(self.as_ref().to_glib_none().0, fraction);
         }
     }
 
+    #[doc(alias = "gtk_entry_set_tabs")]
     fn set_tabs(&self, tabs: Option<&pango::TabArray>) {
         unsafe {
             ffi::gtk_entry_set_tabs(
@@ -1527,22 +1098,26 @@ impl<O: IsA<Entry>> EntryExt for O {
         }
     }
 
+    #[doc(alias = "gtk_entry_set_visibility")]
     fn set_visibility(&self, visible: bool) {
         unsafe {
             ffi::gtk_entry_set_visibility(self.as_ref().to_glib_none().0, visible.into_glib());
         }
     }
 
+    #[doc(alias = "gtk_entry_unset_invisible_char")]
     fn unset_invisible_char(&self) {
         unsafe {
             ffi::gtk_entry_unset_invisible_char(self.as_ref().to_glib_none().0);
         }
     }
 
+    #[doc(alias = "enable-emoji-completion")]
     fn enables_emoji_completion(&self) -> bool {
         glib::ObjectExt::property(self.as_ref(), "enable-emoji-completion")
     }
 
+    #[doc(alias = "enable-emoji-completion")]
     fn set_enable_emoji_completion(&self, enable_emoji_completion: bool) {
         glib::ObjectExt::set_property(
             self.as_ref(),
@@ -1551,22 +1126,27 @@ impl<O: IsA<Entry>> EntryExt for O {
         )
     }
 
+    #[doc(alias = "im-module")]
     fn im_module(&self) -> Option<glib::GString> {
         glib::ObjectExt::property(self.as_ref(), "im-module")
     }
 
+    #[doc(alias = "im-module")]
     fn set_im_module(&self, im_module: Option<&str>) {
         glib::ObjectExt::set_property(self.as_ref(), "im-module", im_module)
     }
 
+    #[doc(alias = "invisible-char-set")]
     fn is_invisible_char_set(&self) -> bool {
         glib::ObjectExt::property(self.as_ref(), "invisible-char-set")
     }
 
+    #[doc(alias = "primary-icon-activatable")]
     fn is_primary_icon_activatable(&self) -> bool {
         glib::ObjectExt::property(self.as_ref(), "primary-icon-activatable")
     }
 
+    #[doc(alias = "primary-icon-activatable")]
     fn set_primary_icon_activatable(&self, primary_icon_activatable: bool) {
         glib::ObjectExt::set_property(
             self.as_ref(),
@@ -1575,26 +1155,32 @@ impl<O: IsA<Entry>> EntryExt for O {
         )
     }
 
+    #[doc(alias = "primary-icon-gicon")]
     fn primary_icon_gicon(&self) -> Option<gio::Icon> {
         glib::ObjectExt::property(self.as_ref(), "primary-icon-gicon")
     }
 
+    #[doc(alias = "primary-icon-gicon")]
     fn set_primary_icon_gicon<P: IsA<gio::Icon>>(&self, primary_icon_gicon: Option<&P>) {
         glib::ObjectExt::set_property(self.as_ref(), "primary-icon-gicon", primary_icon_gicon)
     }
 
+    #[doc(alias = "primary-icon-name")]
     fn primary_icon_name(&self) -> Option<glib::GString> {
         glib::ObjectExt::property(self.as_ref(), "primary-icon-name")
     }
 
+    #[doc(alias = "primary-icon-name")]
     fn set_primary_icon_name(&self, primary_icon_name: Option<&str>) {
         glib::ObjectExt::set_property(self.as_ref(), "primary-icon-name", primary_icon_name)
     }
 
+    #[doc(alias = "primary-icon-paintable")]
     fn primary_icon_paintable(&self) -> Option<gdk::Paintable> {
         glib::ObjectExt::property(self.as_ref(), "primary-icon-paintable")
     }
 
+    #[doc(alias = "primary-icon-paintable")]
     fn set_primary_icon_paintable<P: IsA<gdk::Paintable>>(
         &self,
         primary_icon_paintable: Option<&P>,
@@ -1606,10 +1192,12 @@ impl<O: IsA<Entry>> EntryExt for O {
         )
     }
 
+    #[doc(alias = "primary-icon-sensitive")]
     fn is_primary_icon_sensitive(&self) -> bool {
         glib::ObjectExt::property(self.as_ref(), "primary-icon-sensitive")
     }
 
+    #[doc(alias = "primary-icon-sensitive")]
     fn set_primary_icon_sensitive(&self, primary_icon_sensitive: bool) {
         glib::ObjectExt::set_property(
             self.as_ref(),
@@ -1618,14 +1206,17 @@ impl<O: IsA<Entry>> EntryExt for O {
         )
     }
 
+    #[doc(alias = "primary-icon-storage-type")]
     fn primary_icon_storage_type(&self) -> ImageType {
         glib::ObjectExt::property(self.as_ref(), "primary-icon-storage-type")
     }
 
+    #[doc(alias = "primary-icon-tooltip-markup")]
     fn primary_icon_tooltip_markup(&self) -> Option<glib::GString> {
         glib::ObjectExt::property(self.as_ref(), "primary-icon-tooltip-markup")
     }
 
+    #[doc(alias = "primary-icon-tooltip-markup")]
     fn set_primary_icon_tooltip_markup(&self, primary_icon_tooltip_markup: Option<&str>) {
         glib::ObjectExt::set_property(
             self.as_ref(),
@@ -1634,10 +1225,12 @@ impl<O: IsA<Entry>> EntryExt for O {
         )
     }
 
+    #[doc(alias = "primary-icon-tooltip-text")]
     fn primary_icon_tooltip_text(&self) -> Option<glib::GString> {
         glib::ObjectExt::property(self.as_ref(), "primary-icon-tooltip-text")
     }
 
+    #[doc(alias = "primary-icon-tooltip-text")]
     fn set_primary_icon_tooltip_text(&self, primary_icon_tooltip_text: Option<&str>) {
         glib::ObjectExt::set_property(
             self.as_ref(),
@@ -1646,14 +1239,17 @@ impl<O: IsA<Entry>> EntryExt for O {
         )
     }
 
+    #[doc(alias = "scroll-offset")]
     fn scroll_offset(&self) -> i32 {
         glib::ObjectExt::property(self.as_ref(), "scroll-offset")
     }
 
+    #[doc(alias = "secondary-icon-activatable")]
     fn is_secondary_icon_activatable(&self) -> bool {
         glib::ObjectExt::property(self.as_ref(), "secondary-icon-activatable")
     }
 
+    #[doc(alias = "secondary-icon-activatable")]
     fn set_secondary_icon_activatable(&self, secondary_icon_activatable: bool) {
         glib::ObjectExt::set_property(
             self.as_ref(),
@@ -1662,26 +1258,32 @@ impl<O: IsA<Entry>> EntryExt for O {
         )
     }
 
+    #[doc(alias = "secondary-icon-gicon")]
     fn secondary_icon_gicon(&self) -> Option<gio::Icon> {
         glib::ObjectExt::property(self.as_ref(), "secondary-icon-gicon")
     }
 
+    #[doc(alias = "secondary-icon-gicon")]
     fn set_secondary_icon_gicon<P: IsA<gio::Icon>>(&self, secondary_icon_gicon: Option<&P>) {
         glib::ObjectExt::set_property(self.as_ref(), "secondary-icon-gicon", secondary_icon_gicon)
     }
 
+    #[doc(alias = "secondary-icon-name")]
     fn secondary_icon_name(&self) -> Option<glib::GString> {
         glib::ObjectExt::property(self.as_ref(), "secondary-icon-name")
     }
 
+    #[doc(alias = "secondary-icon-name")]
     fn set_secondary_icon_name(&self, secondary_icon_name: Option<&str>) {
         glib::ObjectExt::set_property(self.as_ref(), "secondary-icon-name", secondary_icon_name)
     }
 
+    #[doc(alias = "secondary-icon-paintable")]
     fn secondary_icon_paintable(&self) -> Option<gdk::Paintable> {
         glib::ObjectExt::property(self.as_ref(), "secondary-icon-paintable")
     }
 
+    #[doc(alias = "secondary-icon-paintable")]
     fn set_secondary_icon_paintable<P: IsA<gdk::Paintable>>(
         &self,
         secondary_icon_paintable: Option<&P>,
@@ -1693,10 +1295,12 @@ impl<O: IsA<Entry>> EntryExt for O {
         )
     }
 
+    #[doc(alias = "secondary-icon-sensitive")]
     fn is_secondary_icon_sensitive(&self) -> bool {
         glib::ObjectExt::property(self.as_ref(), "secondary-icon-sensitive")
     }
 
+    #[doc(alias = "secondary-icon-sensitive")]
     fn set_secondary_icon_sensitive(&self, secondary_icon_sensitive: bool) {
         glib::ObjectExt::set_property(
             self.as_ref(),
@@ -1705,14 +1309,17 @@ impl<O: IsA<Entry>> EntryExt for O {
         )
     }
 
+    #[doc(alias = "secondary-icon-storage-type")]
     fn secondary_icon_storage_type(&self) -> ImageType {
         glib::ObjectExt::property(self.as_ref(), "secondary-icon-storage-type")
     }
 
+    #[doc(alias = "secondary-icon-tooltip-markup")]
     fn secondary_icon_tooltip_markup(&self) -> Option<glib::GString> {
         glib::ObjectExt::property(self.as_ref(), "secondary-icon-tooltip-markup")
     }
 
+    #[doc(alias = "secondary-icon-tooltip-markup")]
     fn set_secondary_icon_tooltip_markup(&self, secondary_icon_tooltip_markup: Option<&str>) {
         glib::ObjectExt::set_property(
             self.as_ref(),
@@ -1721,10 +1328,12 @@ impl<O: IsA<Entry>> EntryExt for O {
         )
     }
 
+    #[doc(alias = "secondary-icon-tooltip-text")]
     fn secondary_icon_tooltip_text(&self) -> Option<glib::GString> {
         glib::ObjectExt::property(self.as_ref(), "secondary-icon-tooltip-text")
     }
 
+    #[doc(alias = "secondary-icon-tooltip-text")]
     fn set_secondary_icon_tooltip_text(&self, secondary_icon_tooltip_text: Option<&str>) {
         glib::ObjectExt::set_property(
             self.as_ref(),
@@ -1733,22 +1342,27 @@ impl<O: IsA<Entry>> EntryExt for O {
         )
     }
 
+    #[doc(alias = "show-emoji-icon")]
     fn shows_emoji_icon(&self) -> bool {
         glib::ObjectExt::property(self.as_ref(), "show-emoji-icon")
     }
 
+    #[doc(alias = "show-emoji-icon")]
     fn set_show_emoji_icon(&self, show_emoji_icon: bool) {
         glib::ObjectExt::set_property(self.as_ref(), "show-emoji-icon", show_emoji_icon)
     }
 
+    #[doc(alias = "truncate-multiline")]
     fn must_truncate_multiline(&self) -> bool {
         glib::ObjectExt::property(self.as_ref(), "truncate-multiline")
     }
 
+    #[doc(alias = "truncate-multiline")]
     fn set_truncate_multiline(&self, truncate_multiline: bool) {
         glib::ObjectExt::set_property(self.as_ref(), "truncate-multiline", truncate_multiline)
     }
 
+    #[doc(alias = "activate")]
     fn connect_activate<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn activate_trampoline<P: IsA<Entry>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkEntry,
@@ -1774,6 +1388,7 @@ impl<O: IsA<Entry>> EntryExt for O {
         self.emit_by_name::<()>("activate", &[]);
     }
 
+    #[doc(alias = "icon-press")]
     fn connect_icon_press<F: Fn(&Self, EntryIconPosition) + 'static>(
         &self,
         f: F,
@@ -1805,6 +1420,7 @@ impl<O: IsA<Entry>> EntryExt for O {
         }
     }
 
+    #[doc(alias = "icon-release")]
     fn connect_icon_release<F: Fn(&Self, EntryIconPosition) + 'static>(
         &self,
         f: F,
@@ -1836,6 +1452,7 @@ impl<O: IsA<Entry>> EntryExt for O {
         }
     }
 
+    #[doc(alias = "activates-default")]
     fn connect_activates_default_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_activates_default_trampoline<
             P: IsA<Entry>,
@@ -1861,6 +1478,7 @@ impl<O: IsA<Entry>> EntryExt for O {
         }
     }
 
+    #[doc(alias = "attributes")]
     fn connect_attributes_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_attributes_trampoline<P: IsA<Entry>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkEntry,
@@ -1883,6 +1501,7 @@ impl<O: IsA<Entry>> EntryExt for O {
         }
     }
 
+    #[doc(alias = "buffer")]
     fn connect_buffer_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_buffer_trampoline<P: IsA<Entry>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkEntry,
@@ -1905,6 +1524,8 @@ impl<O: IsA<Entry>> EntryExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
+    #[doc(alias = "completion")]
     fn connect_completion_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_completion_trampoline<P: IsA<Entry>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkEntry,
@@ -1927,6 +1548,7 @@ impl<O: IsA<Entry>> EntryExt for O {
         }
     }
 
+    #[doc(alias = "enable-emoji-completion")]
     fn connect_enable_emoji_completion_notify<F: Fn(&Self) + 'static>(
         &self,
         f: F,
@@ -1955,6 +1577,7 @@ impl<O: IsA<Entry>> EntryExt for O {
         }
     }
 
+    #[doc(alias = "extra-menu")]
     fn connect_extra_menu_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_extra_menu_trampoline<P: IsA<Entry>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkEntry,
@@ -1977,6 +1600,7 @@ impl<O: IsA<Entry>> EntryExt for O {
         }
     }
 
+    #[doc(alias = "has-frame")]
     fn connect_has_frame_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_has_frame_trampoline<P: IsA<Entry>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkEntry,
@@ -1999,6 +1623,7 @@ impl<O: IsA<Entry>> EntryExt for O {
         }
     }
 
+    #[doc(alias = "im-module")]
     fn connect_im_module_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_im_module_trampoline<P: IsA<Entry>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkEntry,
@@ -2021,6 +1646,7 @@ impl<O: IsA<Entry>> EntryExt for O {
         }
     }
 
+    #[doc(alias = "input-hints")]
     fn connect_input_hints_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_input_hints_trampoline<P: IsA<Entry>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkEntry,
@@ -2043,6 +1669,7 @@ impl<O: IsA<Entry>> EntryExt for O {
         }
     }
 
+    #[doc(alias = "input-purpose")]
     fn connect_input_purpose_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_input_purpose_trampoline<P: IsA<Entry>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkEntry,
@@ -2065,6 +1692,7 @@ impl<O: IsA<Entry>> EntryExt for O {
         }
     }
 
+    #[doc(alias = "invisible-char")]
     fn connect_invisible_char_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_invisible_char_trampoline<
             P: IsA<Entry>,
@@ -2090,6 +1718,7 @@ impl<O: IsA<Entry>> EntryExt for O {
         }
     }
 
+    #[doc(alias = "invisible-char-set")]
     fn connect_invisible_char_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_invisible_char_set_trampoline<
             P: IsA<Entry>,
@@ -2115,6 +1744,7 @@ impl<O: IsA<Entry>> EntryExt for O {
         }
     }
 
+    #[doc(alias = "max-length")]
     fn connect_max_length_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_max_length_trampoline<P: IsA<Entry>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkEntry,
@@ -2137,6 +1767,7 @@ impl<O: IsA<Entry>> EntryExt for O {
         }
     }
 
+    #[doc(alias = "overwrite-mode")]
     fn connect_overwrite_mode_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_overwrite_mode_trampoline<
             P: IsA<Entry>,
@@ -2162,6 +1793,7 @@ impl<O: IsA<Entry>> EntryExt for O {
         }
     }
 
+    #[doc(alias = "placeholder-text")]
     fn connect_placeholder_text_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_placeholder_text_trampoline<
             P: IsA<Entry>,
@@ -2187,6 +1819,7 @@ impl<O: IsA<Entry>> EntryExt for O {
         }
     }
 
+    #[doc(alias = "primary-icon-activatable")]
     fn connect_primary_icon_activatable_notify<F: Fn(&Self) + 'static>(
         &self,
         f: F,
@@ -2215,6 +1848,7 @@ impl<O: IsA<Entry>> EntryExt for O {
         }
     }
 
+    #[doc(alias = "primary-icon-gicon")]
     fn connect_primary_icon_gicon_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_primary_icon_gicon_trampoline<
             P: IsA<Entry>,
@@ -2240,6 +1874,7 @@ impl<O: IsA<Entry>> EntryExt for O {
         }
     }
 
+    #[doc(alias = "primary-icon-name")]
     fn connect_primary_icon_name_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_primary_icon_name_trampoline<
             P: IsA<Entry>,
@@ -2265,6 +1900,7 @@ impl<O: IsA<Entry>> EntryExt for O {
         }
     }
 
+    #[doc(alias = "primary-icon-paintable")]
     fn connect_primary_icon_paintable_notify<F: Fn(&Self) + 'static>(
         &self,
         f: F,
@@ -2293,6 +1929,7 @@ impl<O: IsA<Entry>> EntryExt for O {
         }
     }
 
+    #[doc(alias = "primary-icon-sensitive")]
     fn connect_primary_icon_sensitive_notify<F: Fn(&Self) + 'static>(
         &self,
         f: F,
@@ -2321,6 +1958,7 @@ impl<O: IsA<Entry>> EntryExt for O {
         }
     }
 
+    #[doc(alias = "primary-icon-storage-type")]
     fn connect_primary_icon_storage_type_notify<F: Fn(&Self) + 'static>(
         &self,
         f: F,
@@ -2349,6 +1987,7 @@ impl<O: IsA<Entry>> EntryExt for O {
         }
     }
 
+    #[doc(alias = "primary-icon-tooltip-markup")]
     fn connect_primary_icon_tooltip_markup_notify<F: Fn(&Self) + 'static>(
         &self,
         f: F,
@@ -2377,6 +2016,7 @@ impl<O: IsA<Entry>> EntryExt for O {
         }
     }
 
+    #[doc(alias = "primary-icon-tooltip-text")]
     fn connect_primary_icon_tooltip_text_notify<F: Fn(&Self) + 'static>(
         &self,
         f: F,
@@ -2405,6 +2045,7 @@ impl<O: IsA<Entry>> EntryExt for O {
         }
     }
 
+    #[doc(alias = "progress-fraction")]
     fn connect_progress_fraction_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_progress_fraction_trampoline<
             P: IsA<Entry>,
@@ -2430,6 +2071,7 @@ impl<O: IsA<Entry>> EntryExt for O {
         }
     }
 
+    #[doc(alias = "progress-pulse-step")]
     fn connect_progress_pulse_step_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_progress_pulse_step_trampoline<
             P: IsA<Entry>,
@@ -2455,6 +2097,7 @@ impl<O: IsA<Entry>> EntryExt for O {
         }
     }
 
+    #[doc(alias = "scroll-offset")]
     fn connect_scroll_offset_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_scroll_offset_trampoline<P: IsA<Entry>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkEntry,
@@ -2477,6 +2120,7 @@ impl<O: IsA<Entry>> EntryExt for O {
         }
     }
 
+    #[doc(alias = "secondary-icon-activatable")]
     fn connect_secondary_icon_activatable_notify<F: Fn(&Self) + 'static>(
         &self,
         f: F,
@@ -2505,6 +2149,7 @@ impl<O: IsA<Entry>> EntryExt for O {
         }
     }
 
+    #[doc(alias = "secondary-icon-gicon")]
     fn connect_secondary_icon_gicon_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_secondary_icon_gicon_trampoline<
             P: IsA<Entry>,
@@ -2530,6 +2175,7 @@ impl<O: IsA<Entry>> EntryExt for O {
         }
     }
 
+    #[doc(alias = "secondary-icon-name")]
     fn connect_secondary_icon_name_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_secondary_icon_name_trampoline<
             P: IsA<Entry>,
@@ -2555,6 +2201,7 @@ impl<O: IsA<Entry>> EntryExt for O {
         }
     }
 
+    #[doc(alias = "secondary-icon-paintable")]
     fn connect_secondary_icon_paintable_notify<F: Fn(&Self) + 'static>(
         &self,
         f: F,
@@ -2583,6 +2230,7 @@ impl<O: IsA<Entry>> EntryExt for O {
         }
     }
 
+    #[doc(alias = "secondary-icon-sensitive")]
     fn connect_secondary_icon_sensitive_notify<F: Fn(&Self) + 'static>(
         &self,
         f: F,
@@ -2611,6 +2259,7 @@ impl<O: IsA<Entry>> EntryExt for O {
         }
     }
 
+    #[doc(alias = "secondary-icon-storage-type")]
     fn connect_secondary_icon_storage_type_notify<F: Fn(&Self) + 'static>(
         &self,
         f: F,
@@ -2639,6 +2288,7 @@ impl<O: IsA<Entry>> EntryExt for O {
         }
     }
 
+    #[doc(alias = "secondary-icon-tooltip-markup")]
     fn connect_secondary_icon_tooltip_markup_notify<F: Fn(&Self) + 'static>(
         &self,
         f: F,
@@ -2667,6 +2317,7 @@ impl<O: IsA<Entry>> EntryExt for O {
         }
     }
 
+    #[doc(alias = "secondary-icon-tooltip-text")]
     fn connect_secondary_icon_tooltip_text_notify<F: Fn(&Self) + 'static>(
         &self,
         f: F,
@@ -2695,6 +2346,7 @@ impl<O: IsA<Entry>> EntryExt for O {
         }
     }
 
+    #[doc(alias = "show-emoji-icon")]
     fn connect_show_emoji_icon_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_show_emoji_icon_trampoline<
             P: IsA<Entry>,
@@ -2720,6 +2372,7 @@ impl<O: IsA<Entry>> EntryExt for O {
         }
     }
 
+    #[doc(alias = "tabs")]
     fn connect_tabs_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_tabs_trampoline<P: IsA<Entry>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkEntry,
@@ -2742,6 +2395,7 @@ impl<O: IsA<Entry>> EntryExt for O {
         }
     }
 
+    #[doc(alias = "text-length")]
     fn connect_text_length_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_text_length_trampoline<P: IsA<Entry>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkEntry,
@@ -2764,6 +2418,7 @@ impl<O: IsA<Entry>> EntryExt for O {
         }
     }
 
+    #[doc(alias = "truncate-multiline")]
     fn connect_truncate_multiline_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_truncate_multiline_trampoline<
             P: IsA<Entry>,
@@ -2789,6 +2444,7 @@ impl<O: IsA<Entry>> EntryExt for O {
         }
     }
 
+    #[doc(alias = "visibility")]
     fn connect_visibility_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_visibility_trampoline<P: IsA<Entry>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkEntry,
@@ -2811,6 +2467,8 @@ impl<O: IsA<Entry>> EntryExt for O {
         }
     }
 }
+
+impl<O: IsA<Entry>> EntryExt for O {}
 
 impl fmt::Display for Entry {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {

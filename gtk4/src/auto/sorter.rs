@@ -23,28 +23,15 @@ impl Sorter {
     pub const NONE: Option<&'static Sorter> = None;
 }
 
-pub trait SorterExt: 'static {
+pub trait SorterExt: IsA<Sorter> + 'static {
     #[doc(alias = "gtk_sorter_changed")]
-    fn changed(&self, change: SorterChange);
-
-    #[doc(alias = "gtk_sorter_compare")]
-    fn compare(&self, item1: &impl IsA<glib::Object>, item2: &impl IsA<glib::Object>) -> Ordering;
-
-    #[doc(alias = "gtk_sorter_get_order")]
-    #[doc(alias = "get_order")]
-    fn order(&self) -> SorterOrder;
-
-    #[doc(alias = "changed")]
-    fn connect_changed<F: Fn(&Self, SorterChange) + 'static>(&self, f: F) -> SignalHandlerId;
-}
-
-impl<O: IsA<Sorter>> SorterExt for O {
     fn changed(&self, change: SorterChange) {
         unsafe {
             ffi::gtk_sorter_changed(self.as_ref().to_glib_none().0, change.into_glib());
         }
     }
 
+    #[doc(alias = "gtk_sorter_compare")]
     fn compare(&self, item1: &impl IsA<glib::Object>, item2: &impl IsA<glib::Object>) -> Ordering {
         unsafe {
             from_glib(ffi::gtk_sorter_compare(
@@ -55,10 +42,13 @@ impl<O: IsA<Sorter>> SorterExt for O {
         }
     }
 
+    #[doc(alias = "gtk_sorter_get_order")]
+    #[doc(alias = "get_order")]
     fn order(&self) -> SorterOrder {
         unsafe { from_glib(ffi::gtk_sorter_get_order(self.as_ref().to_glib_none().0)) }
     }
 
+    #[doc(alias = "changed")]
     fn connect_changed<F: Fn(&Self, SorterChange) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn changed_trampoline<
             P: IsA<Sorter>,
@@ -87,6 +77,8 @@ impl<O: IsA<Sorter>> SorterExt for O {
         }
     }
 }
+
+impl<O: IsA<Sorter>> SorterExt for O {}
 
 impl fmt::Display for Sorter {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {

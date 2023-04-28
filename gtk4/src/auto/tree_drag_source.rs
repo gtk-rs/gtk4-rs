@@ -20,25 +20,10 @@ impl TreeDragSource {
     pub const NONE: Option<&'static TreeDragSource> = None;
 }
 
-pub trait TreeDragSourceExt: 'static {
+pub trait TreeDragSourceExt: IsA<TreeDragSource> + 'static {
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
     #[doc(alias = "gtk_tree_drag_source_drag_data_delete")]
-    fn drag_data_delete(&self, path: &TreePath) -> bool;
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_tree_drag_source_drag_data_get")]
-    fn drag_data_get(&self, path: &TreePath) -> Option<gdk::ContentProvider>;
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_tree_drag_source_row_draggable")]
-    fn row_draggable(&self, path: &TreePath) -> bool;
-}
-
-impl<O: IsA<TreeDragSource>> TreeDragSourceExt for O {
-    #[allow(deprecated)]
     fn drag_data_delete(&self, path: &TreePath) -> bool {
         unsafe {
             from_glib(ffi::gtk_tree_drag_source_drag_data_delete(
@@ -48,7 +33,9 @@ impl<O: IsA<TreeDragSource>> TreeDragSourceExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_tree_drag_source_drag_data_get")]
     fn drag_data_get(&self, path: &TreePath) -> Option<gdk::ContentProvider> {
         unsafe {
             from_glib_full(ffi::gtk_tree_drag_source_drag_data_get(
@@ -58,7 +45,9 @@ impl<O: IsA<TreeDragSource>> TreeDragSourceExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_tree_drag_source_row_draggable")]
     fn row_draggable(&self, path: &TreePath) -> bool {
         unsafe {
             from_glib(ffi::gtk_tree_drag_source_row_draggable(
@@ -68,6 +57,8 @@ impl<O: IsA<TreeDragSource>> TreeDragSourceExt for O {
         }
     }
 }
+
+impl<O: IsA<TreeDragSource>> TreeDragSourceExt for O {}
 
 impl fmt::Display for TreeDragSource {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {

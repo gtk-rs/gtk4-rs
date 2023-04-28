@@ -23,76 +23,9 @@ impl ListItem {
     pub const NONE: Option<&'static ListItem> = None;
 }
 
-pub trait ListItemExt: 'static {
+pub trait ListItemExt: IsA<ListItem> + 'static {
     #[doc(alias = "gtk_list_item_get_activatable")]
     #[doc(alias = "get_activatable")]
-    fn is_activatable(&self) -> bool;
-
-    #[doc(alias = "gtk_list_item_get_child")]
-    #[doc(alias = "get_child")]
-    fn child(&self) -> Option<Widget>;
-
-    #[cfg(feature = "v4_12")]
-    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
-    #[doc(alias = "gtk_list_item_get_focusable")]
-    #[doc(alias = "get_focusable")]
-    fn is_focusable(&self) -> bool;
-
-    #[doc(alias = "gtk_list_item_get_item")]
-    #[doc(alias = "get_item")]
-    fn item(&self) -> Option<glib::Object>;
-
-    #[doc(alias = "gtk_list_item_get_position")]
-    #[doc(alias = "get_position")]
-    fn position(&self) -> u32;
-
-    #[doc(alias = "gtk_list_item_get_selectable")]
-    #[doc(alias = "get_selectable")]
-    fn is_selectable(&self) -> bool;
-
-    #[doc(alias = "gtk_list_item_get_selected")]
-    #[doc(alias = "get_selected")]
-    fn is_selected(&self) -> bool;
-
-    #[doc(alias = "gtk_list_item_set_activatable")]
-    fn set_activatable(&self, activatable: bool);
-
-    #[doc(alias = "gtk_list_item_set_child")]
-    fn set_child(&self, child: Option<&impl IsA<Widget>>);
-
-    #[cfg(feature = "v4_12")]
-    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
-    #[doc(alias = "gtk_list_item_set_focusable")]
-    fn set_focusable(&self, focusable: bool);
-
-    #[doc(alias = "gtk_list_item_set_selectable")]
-    fn set_selectable(&self, selectable: bool);
-
-    #[doc(alias = "activatable")]
-    fn connect_activatable_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "child")]
-    fn connect_child_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[cfg(feature = "v4_12")]
-    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
-    #[doc(alias = "focusable")]
-    fn connect_focusable_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "item")]
-    fn connect_item_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "position")]
-    fn connect_position_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "selectable")]
-    fn connect_selectable_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "selected")]
-    fn connect_selected_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-}
-
-impl<O: IsA<ListItem>> ListItemExt for O {
     fn is_activatable(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_list_item_get_activatable(
@@ -101,12 +34,16 @@ impl<O: IsA<ListItem>> ListItemExt for O {
         }
     }
 
+    #[doc(alias = "gtk_list_item_get_child")]
+    #[doc(alias = "get_child")]
     fn child(&self) -> Option<Widget> {
         unsafe { from_glib_none(ffi::gtk_list_item_get_child(self.as_ref().to_glib_none().0)) }
     }
 
     #[cfg(feature = "v4_12")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    #[doc(alias = "gtk_list_item_get_focusable")]
+    #[doc(alias = "get_focusable")]
     fn is_focusable(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_list_item_get_focusable(
@@ -115,14 +52,20 @@ impl<O: IsA<ListItem>> ListItemExt for O {
         }
     }
 
+    #[doc(alias = "gtk_list_item_get_item")]
+    #[doc(alias = "get_item")]
     fn item(&self) -> Option<glib::Object> {
         unsafe { from_glib_none(ffi::gtk_list_item_get_item(self.as_ref().to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_list_item_get_position")]
+    #[doc(alias = "get_position")]
     fn position(&self) -> u32 {
         unsafe { ffi::gtk_list_item_get_position(self.as_ref().to_glib_none().0) }
     }
 
+    #[doc(alias = "gtk_list_item_get_selectable")]
+    #[doc(alias = "get_selectable")]
     fn is_selectable(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_list_item_get_selectable(
@@ -131,6 +74,8 @@ impl<O: IsA<ListItem>> ListItemExt for O {
         }
     }
 
+    #[doc(alias = "gtk_list_item_get_selected")]
+    #[doc(alias = "get_selected")]
     fn is_selected(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_list_item_get_selected(
@@ -139,6 +84,7 @@ impl<O: IsA<ListItem>> ListItemExt for O {
         }
     }
 
+    #[doc(alias = "gtk_list_item_set_activatable")]
     fn set_activatable(&self, activatable: bool) {
         unsafe {
             ffi::gtk_list_item_set_activatable(
@@ -148,6 +94,7 @@ impl<O: IsA<ListItem>> ListItemExt for O {
         }
     }
 
+    #[doc(alias = "gtk_list_item_set_child")]
     fn set_child(&self, child: Option<&impl IsA<Widget>>) {
         unsafe {
             ffi::gtk_list_item_set_child(
@@ -159,12 +106,14 @@ impl<O: IsA<ListItem>> ListItemExt for O {
 
     #[cfg(feature = "v4_12")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    #[doc(alias = "gtk_list_item_set_focusable")]
     fn set_focusable(&self, focusable: bool) {
         unsafe {
             ffi::gtk_list_item_set_focusable(self.as_ref().to_glib_none().0, focusable.into_glib());
         }
     }
 
+    #[doc(alias = "gtk_list_item_set_selectable")]
     fn set_selectable(&self, selectable: bool) {
         unsafe {
             ffi::gtk_list_item_set_selectable(
@@ -174,6 +123,7 @@ impl<O: IsA<ListItem>> ListItemExt for O {
         }
     }
 
+    #[doc(alias = "activatable")]
     fn connect_activatable_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_activatable_trampoline<
             P: IsA<ListItem>,
@@ -199,6 +149,7 @@ impl<O: IsA<ListItem>> ListItemExt for O {
         }
     }
 
+    #[doc(alias = "child")]
     fn connect_child_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_child_trampoline<P: IsA<ListItem>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkListItem,
@@ -223,6 +174,7 @@ impl<O: IsA<ListItem>> ListItemExt for O {
 
     #[cfg(feature = "v4_12")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    #[doc(alias = "focusable")]
     fn connect_focusable_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_focusable_trampoline<P: IsA<ListItem>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkListItem,
@@ -245,6 +197,7 @@ impl<O: IsA<ListItem>> ListItemExt for O {
         }
     }
 
+    #[doc(alias = "item")]
     fn connect_item_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_item_trampoline<P: IsA<ListItem>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkListItem,
@@ -267,6 +220,7 @@ impl<O: IsA<ListItem>> ListItemExt for O {
         }
     }
 
+    #[doc(alias = "position")]
     fn connect_position_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_position_trampoline<P: IsA<ListItem>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkListItem,
@@ -289,6 +243,7 @@ impl<O: IsA<ListItem>> ListItemExt for O {
         }
     }
 
+    #[doc(alias = "selectable")]
     fn connect_selectable_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_selectable_trampoline<P: IsA<ListItem>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkListItem,
@@ -311,6 +266,7 @@ impl<O: IsA<ListItem>> ListItemExt for O {
         }
     }
 
+    #[doc(alias = "selected")]
     fn connect_selected_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_selected_trampoline<P: IsA<ListItem>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkListItem,
@@ -333,6 +289,8 @@ impl<O: IsA<ListItem>> ListItemExt for O {
         }
     }
 }
+
+impl<O: IsA<ListItem>> ListItemExt for O {}
 
 impl fmt::Display for ListItem {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {

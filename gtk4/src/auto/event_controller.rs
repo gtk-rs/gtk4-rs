@@ -23,70 +23,9 @@ impl EventController {
     pub const NONE: Option<&'static EventController> = None;
 }
 
-pub trait EventControllerExt: 'static {
+pub trait EventControllerExt: IsA<EventController> + 'static {
     #[doc(alias = "gtk_event_controller_get_current_event")]
     #[doc(alias = "get_current_event")]
-    fn current_event(&self) -> Option<gdk::Event>;
-
-    #[doc(alias = "gtk_event_controller_get_current_event_device")]
-    #[doc(alias = "get_current_event_device")]
-    fn current_event_device(&self) -> Option<gdk::Device>;
-
-    #[doc(alias = "gtk_event_controller_get_current_event_state")]
-    #[doc(alias = "get_current_event_state")]
-    fn current_event_state(&self) -> gdk::ModifierType;
-
-    #[doc(alias = "gtk_event_controller_get_current_event_time")]
-    #[doc(alias = "get_current_event_time")]
-    fn current_event_time(&self) -> u32;
-
-    #[doc(alias = "gtk_event_controller_get_name")]
-    #[doc(alias = "get_name")]
-    fn name(&self) -> Option<glib::GString>;
-
-    #[doc(alias = "gtk_event_controller_get_propagation_limit")]
-    #[doc(alias = "get_propagation_limit")]
-    fn propagation_limit(&self) -> PropagationLimit;
-
-    #[doc(alias = "gtk_event_controller_get_propagation_phase")]
-    #[doc(alias = "get_propagation_phase")]
-    fn propagation_phase(&self) -> PropagationPhase;
-
-    #[doc(alias = "gtk_event_controller_get_widget")]
-    #[doc(alias = "get_widget")]
-    fn widget(&self) -> Widget;
-
-    #[doc(alias = "gtk_event_controller_reset")]
-    fn reset(&self);
-
-    #[doc(alias = "gtk_event_controller_set_name")]
-    fn set_name(&self, name: Option<&str>);
-
-    #[doc(alias = "gtk_event_controller_set_propagation_limit")]
-    fn set_propagation_limit(&self, limit: PropagationLimit);
-
-    #[doc(alias = "gtk_event_controller_set_propagation_phase")]
-    fn set_propagation_phase(&self, phase: PropagationPhase);
-
-    #[cfg(feature = "v4_8")]
-    #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
-    #[doc(alias = "gtk_event_controller_set_static_name")]
-    fn set_static_name(&self, name: Option<&str>);
-
-    #[doc(alias = "name")]
-    fn connect_name_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "propagation-limit")]
-    fn connect_propagation_limit_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "propagation-phase")]
-    fn connect_propagation_phase_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "widget")]
-    fn connect_widget_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-}
-
-impl<O: IsA<EventController>> EventControllerExt for O {
     fn current_event(&self) -> Option<gdk::Event> {
         unsafe {
             from_glib_none(ffi::gtk_event_controller_get_current_event(
@@ -95,6 +34,8 @@ impl<O: IsA<EventController>> EventControllerExt for O {
         }
     }
 
+    #[doc(alias = "gtk_event_controller_get_current_event_device")]
+    #[doc(alias = "get_current_event_device")]
     fn current_event_device(&self) -> Option<gdk::Device> {
         unsafe {
             from_glib_none(ffi::gtk_event_controller_get_current_event_device(
@@ -103,6 +44,8 @@ impl<O: IsA<EventController>> EventControllerExt for O {
         }
     }
 
+    #[doc(alias = "gtk_event_controller_get_current_event_state")]
+    #[doc(alias = "get_current_event_state")]
     fn current_event_state(&self) -> gdk::ModifierType {
         unsafe {
             from_glib(ffi::gtk_event_controller_get_current_event_state(
@@ -111,10 +54,14 @@ impl<O: IsA<EventController>> EventControllerExt for O {
         }
     }
 
+    #[doc(alias = "gtk_event_controller_get_current_event_time")]
+    #[doc(alias = "get_current_event_time")]
     fn current_event_time(&self) -> u32 {
         unsafe { ffi::gtk_event_controller_get_current_event_time(self.as_ref().to_glib_none().0) }
     }
 
+    #[doc(alias = "gtk_event_controller_get_name")]
+    #[doc(alias = "get_name")]
     fn name(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::gtk_event_controller_get_name(
@@ -123,6 +70,8 @@ impl<O: IsA<EventController>> EventControllerExt for O {
         }
     }
 
+    #[doc(alias = "gtk_event_controller_get_propagation_limit")]
+    #[doc(alias = "get_propagation_limit")]
     fn propagation_limit(&self) -> PropagationLimit {
         unsafe {
             from_glib(ffi::gtk_event_controller_get_propagation_limit(
@@ -131,6 +80,8 @@ impl<O: IsA<EventController>> EventControllerExt for O {
         }
     }
 
+    #[doc(alias = "gtk_event_controller_get_propagation_phase")]
+    #[doc(alias = "get_propagation_phase")]
     fn propagation_phase(&self) -> PropagationPhase {
         unsafe {
             from_glib(ffi::gtk_event_controller_get_propagation_phase(
@@ -139,6 +90,8 @@ impl<O: IsA<EventController>> EventControllerExt for O {
         }
     }
 
+    #[doc(alias = "gtk_event_controller_get_widget")]
+    #[doc(alias = "get_widget")]
     fn widget(&self) -> Widget {
         unsafe {
             from_glib_none(ffi::gtk_event_controller_get_widget(
@@ -147,12 +100,14 @@ impl<O: IsA<EventController>> EventControllerExt for O {
         }
     }
 
+    #[doc(alias = "gtk_event_controller_reset")]
     fn reset(&self) {
         unsafe {
             ffi::gtk_event_controller_reset(self.as_ref().to_glib_none().0);
         }
     }
 
+    #[doc(alias = "gtk_event_controller_set_name")]
     fn set_name(&self, name: Option<&str>) {
         unsafe {
             ffi::gtk_event_controller_set_name(
@@ -162,6 +117,7 @@ impl<O: IsA<EventController>> EventControllerExt for O {
         }
     }
 
+    #[doc(alias = "gtk_event_controller_set_propagation_limit")]
     fn set_propagation_limit(&self, limit: PropagationLimit) {
         unsafe {
             ffi::gtk_event_controller_set_propagation_limit(
@@ -171,6 +127,7 @@ impl<O: IsA<EventController>> EventControllerExt for O {
         }
     }
 
+    #[doc(alias = "gtk_event_controller_set_propagation_phase")]
     fn set_propagation_phase(&self, phase: PropagationPhase) {
         unsafe {
             ffi::gtk_event_controller_set_propagation_phase(
@@ -182,6 +139,7 @@ impl<O: IsA<EventController>> EventControllerExt for O {
 
     #[cfg(feature = "v4_8")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
+    #[doc(alias = "gtk_event_controller_set_static_name")]
     fn set_static_name(&self, name: Option<&str>) {
         unsafe {
             ffi::gtk_event_controller_set_static_name(
@@ -191,6 +149,7 @@ impl<O: IsA<EventController>> EventControllerExt for O {
         }
     }
 
+    #[doc(alias = "name")]
     fn connect_name_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_name_trampoline<
             P: IsA<EventController>,
@@ -216,6 +175,7 @@ impl<O: IsA<EventController>> EventControllerExt for O {
         }
     }
 
+    #[doc(alias = "propagation-limit")]
     fn connect_propagation_limit_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_propagation_limit_trampoline<
             P: IsA<EventController>,
@@ -241,6 +201,7 @@ impl<O: IsA<EventController>> EventControllerExt for O {
         }
     }
 
+    #[doc(alias = "propagation-phase")]
     fn connect_propagation_phase_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_propagation_phase_trampoline<
             P: IsA<EventController>,
@@ -266,6 +227,7 @@ impl<O: IsA<EventController>> EventControllerExt for O {
         }
     }
 
+    #[doc(alias = "widget")]
     fn connect_widget_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_widget_trampoline<
             P: IsA<EventController>,
@@ -291,6 +253,8 @@ impl<O: IsA<EventController>> EventControllerExt for O {
         }
     }
 }
+
+impl<O: IsA<EventController>> EventControllerExt for O {}
 
 impl fmt::Display for EventController {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {

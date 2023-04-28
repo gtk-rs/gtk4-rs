@@ -289,126 +289,8 @@ impl GLAreaBuilder {
     }
 }
 
-pub trait GLAreaExt: 'static {
+pub trait GLAreaExt: IsA<GLArea> + 'static {
     #[doc(alias = "gtk_gl_area_attach_buffers")]
-    fn attach_buffers(&self);
-
-    #[cfg(feature = "v4_12")]
-    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
-    #[doc(alias = "gtk_gl_area_get_allowed_apis")]
-    #[doc(alias = "get_allowed_apis")]
-    fn allowed_apis(&self) -> gdk::GLAPI;
-
-    #[cfg(feature = "v4_12")]
-    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
-    #[doc(alias = "gtk_gl_area_get_api")]
-    #[doc(alias = "get_api")]
-    fn api(&self) -> gdk::GLAPI;
-
-    #[doc(alias = "gtk_gl_area_get_auto_render")]
-    #[doc(alias = "get_auto_render")]
-    fn is_auto_render(&self) -> bool;
-
-    #[doc(alias = "gtk_gl_area_get_context")]
-    #[doc(alias = "get_context")]
-    fn context(&self) -> Option<gdk::GLContext>;
-
-    #[doc(alias = "gtk_gl_area_get_error")]
-    #[doc(alias = "get_error")]
-    fn error(&self) -> Option<glib::Error>;
-
-    #[doc(alias = "gtk_gl_area_get_has_depth_buffer")]
-    #[doc(alias = "get_has_depth_buffer")]
-    fn has_depth_buffer(&self) -> bool;
-
-    #[doc(alias = "gtk_gl_area_get_has_stencil_buffer")]
-    #[doc(alias = "get_has_stencil_buffer")]
-    fn has_stencil_buffer(&self) -> bool;
-
-    #[doc(alias = "gtk_gl_area_get_required_version")]
-    #[doc(alias = "get_required_version")]
-    fn required_version(&self) -> (i32, i32);
-
-    #[cfg_attr(feature = "v4_12", deprecated = "Since 4.12")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_gl_area_get_use_es")]
-    #[doc(alias = "get_use_es")]
-    fn uses_es(&self) -> bool;
-
-    #[doc(alias = "gtk_gl_area_make_current")]
-    fn make_current(&self);
-
-    #[doc(alias = "gtk_gl_area_queue_render")]
-    fn queue_render(&self);
-
-    #[cfg(feature = "v4_12")]
-    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
-    #[doc(alias = "gtk_gl_area_set_allowed_apis")]
-    fn set_allowed_apis(&self, apis: gdk::GLAPI);
-
-    #[doc(alias = "gtk_gl_area_set_auto_render")]
-    fn set_auto_render(&self, auto_render: bool);
-
-    #[doc(alias = "gtk_gl_area_set_error")]
-    fn set_error(&self, error: Option<&glib::Error>);
-
-    #[doc(alias = "gtk_gl_area_set_has_depth_buffer")]
-    fn set_has_depth_buffer(&self, has_depth_buffer: bool);
-
-    #[doc(alias = "gtk_gl_area_set_has_stencil_buffer")]
-    fn set_has_stencil_buffer(&self, has_stencil_buffer: bool);
-
-    #[doc(alias = "gtk_gl_area_set_required_version")]
-    fn set_required_version(&self, major: i32, minor: i32);
-
-    #[cfg_attr(feature = "v4_12", deprecated = "Since 4.12")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_gl_area_set_use_es")]
-    fn set_use_es(&self, use_es: bool);
-
-    #[doc(alias = "create-context")]
-    fn connect_create_context<F: Fn(&Self) -> Option<gdk::GLContext> + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
-
-    #[doc(alias = "render")]
-    fn connect_render<F: Fn(&Self, &gdk::GLContext) -> glib::signal::Inhibit + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
-
-    #[doc(alias = "resize")]
-    fn connect_resize<F: Fn(&Self, i32, i32) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[cfg(feature = "v4_12")]
-    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
-    #[doc(alias = "allowed-apis")]
-    fn connect_allowed_apis_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[cfg(feature = "v4_12")]
-    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
-    #[doc(alias = "api")]
-    fn connect_api_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "auto-render")]
-    fn connect_auto_render_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "context")]
-    fn connect_context_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "has-depth-buffer")]
-    fn connect_has_depth_buffer_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "has-stencil-buffer")]
-    fn connect_has_stencil_buffer_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[cfg_attr(feature = "v4_12", deprecated = "Since 4.12")]
-    #[doc(alias = "use-es")]
-    fn connect_use_es_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-}
-
-impl<O: IsA<GLArea>> GLAreaExt for O {
     fn attach_buffers(&self) {
         unsafe {
             ffi::gtk_gl_area_attach_buffers(self.as_ref().to_glib_none().0);
@@ -417,6 +299,8 @@ impl<O: IsA<GLArea>> GLAreaExt for O {
 
     #[cfg(feature = "v4_12")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    #[doc(alias = "gtk_gl_area_get_allowed_apis")]
+    #[doc(alias = "get_allowed_apis")]
     fn allowed_apis(&self) -> gdk::GLAPI {
         unsafe {
             from_glib(ffi::gtk_gl_area_get_allowed_apis(
@@ -427,10 +311,14 @@ impl<O: IsA<GLArea>> GLAreaExt for O {
 
     #[cfg(feature = "v4_12")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    #[doc(alias = "gtk_gl_area_get_api")]
+    #[doc(alias = "get_api")]
     fn api(&self) -> gdk::GLAPI {
         unsafe { from_glib(ffi::gtk_gl_area_get_api(self.as_ref().to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_gl_area_get_auto_render")]
+    #[doc(alias = "get_auto_render")]
     fn is_auto_render(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_gl_area_get_auto_render(
@@ -439,14 +327,20 @@ impl<O: IsA<GLArea>> GLAreaExt for O {
         }
     }
 
+    #[doc(alias = "gtk_gl_area_get_context")]
+    #[doc(alias = "get_context")]
     fn context(&self) -> Option<gdk::GLContext> {
         unsafe { from_glib_none(ffi::gtk_gl_area_get_context(self.as_ref().to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_gl_area_get_error")]
+    #[doc(alias = "get_error")]
     fn error(&self) -> Option<glib::Error> {
         unsafe { from_glib_none(ffi::gtk_gl_area_get_error(self.as_ref().to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_gl_area_get_has_depth_buffer")]
+    #[doc(alias = "get_has_depth_buffer")]
     fn has_depth_buffer(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_gl_area_get_has_depth_buffer(
@@ -455,6 +349,8 @@ impl<O: IsA<GLArea>> GLAreaExt for O {
         }
     }
 
+    #[doc(alias = "gtk_gl_area_get_has_stencil_buffer")]
+    #[doc(alias = "get_has_stencil_buffer")]
     fn has_stencil_buffer(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_gl_area_get_has_stencil_buffer(
@@ -463,6 +359,8 @@ impl<O: IsA<GLArea>> GLAreaExt for O {
         }
     }
 
+    #[doc(alias = "gtk_gl_area_get_required_version")]
+    #[doc(alias = "get_required_version")]
     fn required_version(&self) -> (i32, i32) {
         unsafe {
             let mut major = mem::MaybeUninit::uninit();
@@ -476,17 +374,22 @@ impl<O: IsA<GLArea>> GLAreaExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_12", deprecated = "Since 4.12")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_gl_area_get_use_es")]
+    #[doc(alias = "get_use_es")]
     fn uses_es(&self) -> bool {
         unsafe { from_glib(ffi::gtk_gl_area_get_use_es(self.as_ref().to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_gl_area_make_current")]
     fn make_current(&self) {
         unsafe {
             ffi::gtk_gl_area_make_current(self.as_ref().to_glib_none().0);
         }
     }
 
+    #[doc(alias = "gtk_gl_area_queue_render")]
     fn queue_render(&self) {
         unsafe {
             ffi::gtk_gl_area_queue_render(self.as_ref().to_glib_none().0);
@@ -495,12 +398,14 @@ impl<O: IsA<GLArea>> GLAreaExt for O {
 
     #[cfg(feature = "v4_12")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    #[doc(alias = "gtk_gl_area_set_allowed_apis")]
     fn set_allowed_apis(&self, apis: gdk::GLAPI) {
         unsafe {
             ffi::gtk_gl_area_set_allowed_apis(self.as_ref().to_glib_none().0, apis.into_glib());
         }
     }
 
+    #[doc(alias = "gtk_gl_area_set_auto_render")]
     fn set_auto_render(&self, auto_render: bool) {
         unsafe {
             ffi::gtk_gl_area_set_auto_render(
@@ -510,12 +415,14 @@ impl<O: IsA<GLArea>> GLAreaExt for O {
         }
     }
 
+    #[doc(alias = "gtk_gl_area_set_error")]
     fn set_error(&self, error: Option<&glib::Error>) {
         unsafe {
             ffi::gtk_gl_area_set_error(self.as_ref().to_glib_none().0, error.to_glib_none().0);
         }
     }
 
+    #[doc(alias = "gtk_gl_area_set_has_depth_buffer")]
     fn set_has_depth_buffer(&self, has_depth_buffer: bool) {
         unsafe {
             ffi::gtk_gl_area_set_has_depth_buffer(
@@ -525,6 +432,7 @@ impl<O: IsA<GLArea>> GLAreaExt for O {
         }
     }
 
+    #[doc(alias = "gtk_gl_area_set_has_stencil_buffer")]
     fn set_has_stencil_buffer(&self, has_stencil_buffer: bool) {
         unsafe {
             ffi::gtk_gl_area_set_has_stencil_buffer(
@@ -534,19 +442,23 @@ impl<O: IsA<GLArea>> GLAreaExt for O {
         }
     }
 
+    #[doc(alias = "gtk_gl_area_set_required_version")]
     fn set_required_version(&self, major: i32, minor: i32) {
         unsafe {
             ffi::gtk_gl_area_set_required_version(self.as_ref().to_glib_none().0, major, minor);
         }
     }
 
+    #[cfg_attr(feature = "v4_12", deprecated = "Since 4.12")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_gl_area_set_use_es")]
     fn set_use_es(&self, use_es: bool) {
         unsafe {
             ffi::gtk_gl_area_set_use_es(self.as_ref().to_glib_none().0, use_es.into_glib());
         }
     }
 
+    #[doc(alias = "create-context")]
     fn connect_create_context<F: Fn(&Self) -> Option<gdk::GLContext> + 'static>(
         &self,
         f: F,
@@ -574,6 +486,7 @@ impl<O: IsA<GLArea>> GLAreaExt for O {
         }
     }
 
+    #[doc(alias = "render")]
     fn connect_render<F: Fn(&Self, &gdk::GLContext) -> glib::signal::Inhibit + 'static>(
         &self,
         f: F,
@@ -606,6 +519,7 @@ impl<O: IsA<GLArea>> GLAreaExt for O {
         }
     }
 
+    #[doc(alias = "resize")]
     fn connect_resize<F: Fn(&Self, i32, i32) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn resize_trampoline<P: IsA<GLArea>, F: Fn(&P, i32, i32) + 'static>(
             this: *mut ffi::GtkGLArea,
@@ -635,6 +549,7 @@ impl<O: IsA<GLArea>> GLAreaExt for O {
 
     #[cfg(feature = "v4_12")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    #[doc(alias = "allowed-apis")]
     fn connect_allowed_apis_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_allowed_apis_trampoline<P: IsA<GLArea>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkGLArea,
@@ -659,6 +574,7 @@ impl<O: IsA<GLArea>> GLAreaExt for O {
 
     #[cfg(feature = "v4_12")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    #[doc(alias = "api")]
     fn connect_api_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_api_trampoline<P: IsA<GLArea>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkGLArea,
@@ -681,6 +597,7 @@ impl<O: IsA<GLArea>> GLAreaExt for O {
         }
     }
 
+    #[doc(alias = "auto-render")]
     fn connect_auto_render_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_auto_render_trampoline<P: IsA<GLArea>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkGLArea,
@@ -703,6 +620,7 @@ impl<O: IsA<GLArea>> GLAreaExt for O {
         }
     }
 
+    #[doc(alias = "context")]
     fn connect_context_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_context_trampoline<P: IsA<GLArea>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkGLArea,
@@ -725,6 +643,7 @@ impl<O: IsA<GLArea>> GLAreaExt for O {
         }
     }
 
+    #[doc(alias = "has-depth-buffer")]
     fn connect_has_depth_buffer_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_has_depth_buffer_trampoline<
             P: IsA<GLArea>,
@@ -750,6 +669,7 @@ impl<O: IsA<GLArea>> GLAreaExt for O {
         }
     }
 
+    #[doc(alias = "has-stencil-buffer")]
     fn connect_has_stencil_buffer_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_has_stencil_buffer_trampoline<
             P: IsA<GLArea>,
@@ -775,6 +695,8 @@ impl<O: IsA<GLArea>> GLAreaExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_12", deprecated = "Since 4.12")]
+    #[doc(alias = "use-es")]
     fn connect_use_es_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_use_es_trampoline<P: IsA<GLArea>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkGLArea,
@@ -797,6 +719,8 @@ impl<O: IsA<GLArea>> GLAreaExt for O {
         }
     }
 }
+
+impl<O: IsA<GLArea>> GLAreaExt for O {}
 
 impl fmt::Display for GLArea {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {

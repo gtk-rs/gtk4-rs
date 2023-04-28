@@ -24,142 +24,10 @@ impl TreeModel {
     pub const NONE: Option<&'static TreeModel> = None;
 }
 
-pub trait TreeModelExt: 'static {
+pub trait TreeModelExt: IsA<TreeModel> + 'static {
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
     #[doc(alias = "gtk_tree_model_foreach")]
-    fn foreach<P: FnMut(&TreeModel, &TreePath, &TreeIter) -> bool>(&self, func: P);
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_tree_model_get_column_type")]
-    #[doc(alias = "get_column_type")]
-    fn column_type(&self, index_: i32) -> glib::types::Type;
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_tree_model_get_flags")]
-    #[doc(alias = "get_flags")]
-    fn flags(&self) -> TreeModelFlags;
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_tree_model_get_iter")]
-    #[doc(alias = "get_iter")]
-    fn iter(&self, path: &TreePath) -> Option<TreeIter>;
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_tree_model_get_iter_first")]
-    #[doc(alias = "get_iter_first")]
-    fn iter_first(&self) -> Option<TreeIter>;
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_tree_model_get_iter_from_string")]
-    #[doc(alias = "get_iter_from_string")]
-    fn iter_from_string(&self, path_string: &str) -> Option<TreeIter>;
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_tree_model_get_n_columns")]
-    #[doc(alias = "get_n_columns")]
-    fn n_columns(&self) -> i32;
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_tree_model_get_path")]
-    #[doc(alias = "get_path")]
-    fn path(&self, iter: &TreeIter) -> TreePath;
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_tree_model_get_string_from_iter")]
-    #[doc(alias = "get_string_from_iter")]
-    fn string_from_iter(&self, iter: &TreeIter) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_tree_model_iter_children")]
-    fn iter_children(&self, parent: Option<&TreeIter>) -> Option<TreeIter>;
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_tree_model_iter_has_child")]
-    fn iter_has_child(&self, iter: &TreeIter) -> bool;
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_tree_model_iter_n_children")]
-    fn iter_n_children(&self, iter: Option<&TreeIter>) -> i32;
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_tree_model_iter_next")]
-    fn iter_next(&self, iter: &TreeIter) -> bool;
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_tree_model_iter_nth_child")]
-    fn iter_nth_child(&self, parent: Option<&TreeIter>, n: i32) -> Option<TreeIter>;
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_tree_model_iter_parent")]
-    fn iter_parent(&self, child: &TreeIter) -> Option<TreeIter>;
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_tree_model_iter_previous")]
-    fn iter_previous(&self, iter: &TreeIter) -> bool;
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_tree_model_row_changed")]
-    fn row_changed(&self, path: &TreePath, iter: &TreeIter);
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_tree_model_row_deleted")]
-    fn row_deleted(&self, path: &TreePath);
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_tree_model_row_has_child_toggled")]
-    fn row_has_child_toggled(&self, path: &TreePath, iter: &TreeIter);
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_tree_model_row_inserted")]
-    fn row_inserted(&self, path: &TreePath, iter: &TreeIter);
-
-    #[doc(alias = "row-changed")]
-    fn connect_row_changed<F: Fn(&Self, &TreePath, &TreeIter) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
-
-    #[doc(alias = "row-deleted")]
-    fn connect_row_deleted<F: Fn(&Self, &TreePath) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "row-has-child-toggled")]
-    fn connect_row_has_child_toggled<F: Fn(&Self, &TreePath, &TreeIter) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
-
-    #[doc(alias = "row-inserted")]
-    fn connect_row_inserted<F: Fn(&Self, &TreePath, &TreeIter) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
-
-    //#[doc(alias = "rows-reordered")]
-    //fn connect_rows_reordered<Unsupported or ignored types>(&self, f: F) -> SignalHandlerId;
-}
-
-impl<O: IsA<TreeModel>> TreeModelExt for O {
-    #[allow(deprecated)]
     fn foreach<P: FnMut(&TreeModel, &TreePath, &TreeIter) -> bool>(&self, func: P) {
         let func_data: P = func;
         unsafe extern "C" fn func_func<P: FnMut(&TreeModel, &TreePath, &TreeIter) -> bool>(
@@ -185,7 +53,10 @@ impl<O: IsA<TreeModel>> TreeModelExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_tree_model_get_column_type")]
+    #[doc(alias = "get_column_type")]
     fn column_type(&self, index_: i32) -> glib::types::Type {
         unsafe {
             from_glib(ffi::gtk_tree_model_get_column_type(
@@ -195,7 +66,10 @@ impl<O: IsA<TreeModel>> TreeModelExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_tree_model_get_flags")]
+    #[doc(alias = "get_flags")]
     fn flags(&self) -> TreeModelFlags {
         unsafe {
             from_glib(ffi::gtk_tree_model_get_flags(
@@ -204,7 +78,10 @@ impl<O: IsA<TreeModel>> TreeModelExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_tree_model_get_iter")]
+    #[doc(alias = "get_iter")]
     fn iter(&self, path: &TreePath) -> Option<TreeIter> {
         unsafe {
             let mut iter = TreeIter::uninitialized();
@@ -221,7 +98,10 @@ impl<O: IsA<TreeModel>> TreeModelExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_tree_model_get_iter_first")]
+    #[doc(alias = "get_iter_first")]
     fn iter_first(&self) -> Option<TreeIter> {
         unsafe {
             let mut iter = TreeIter::uninitialized();
@@ -237,7 +117,10 @@ impl<O: IsA<TreeModel>> TreeModelExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_tree_model_get_iter_from_string")]
+    #[doc(alias = "get_iter_from_string")]
     fn iter_from_string(&self, path_string: &str) -> Option<TreeIter> {
         unsafe {
             let mut iter = TreeIter::uninitialized();
@@ -254,12 +137,18 @@ impl<O: IsA<TreeModel>> TreeModelExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_tree_model_get_n_columns")]
+    #[doc(alias = "get_n_columns")]
     fn n_columns(&self) -> i32 {
         unsafe { ffi::gtk_tree_model_get_n_columns(self.as_ref().to_glib_none().0) }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_tree_model_get_path")]
+    #[doc(alias = "get_path")]
     fn path(&self, iter: &TreeIter) -> TreePath {
         unsafe {
             from_glib_full(ffi::gtk_tree_model_get_path(
@@ -269,7 +158,10 @@ impl<O: IsA<TreeModel>> TreeModelExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_tree_model_get_string_from_iter")]
+    #[doc(alias = "get_string_from_iter")]
     fn string_from_iter(&self, iter: &TreeIter) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::gtk_tree_model_get_string_from_iter(
@@ -279,7 +171,9 @@ impl<O: IsA<TreeModel>> TreeModelExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_tree_model_iter_children")]
     fn iter_children(&self, parent: Option<&TreeIter>) -> Option<TreeIter> {
         unsafe {
             let mut iter = TreeIter::uninitialized();
@@ -296,7 +190,9 @@ impl<O: IsA<TreeModel>> TreeModelExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_tree_model_iter_has_child")]
     fn iter_has_child(&self, iter: &TreeIter) -> bool {
         unsafe {
             from_glib(ffi::gtk_tree_model_iter_has_child(
@@ -306,7 +202,9 @@ impl<O: IsA<TreeModel>> TreeModelExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_tree_model_iter_n_children")]
     fn iter_n_children(&self, iter: Option<&TreeIter>) -> i32 {
         unsafe {
             ffi::gtk_tree_model_iter_n_children(
@@ -316,7 +214,9 @@ impl<O: IsA<TreeModel>> TreeModelExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_tree_model_iter_next")]
     fn iter_next(&self, iter: &TreeIter) -> bool {
         unsafe {
             from_glib(ffi::gtk_tree_model_iter_next(
@@ -326,7 +226,9 @@ impl<O: IsA<TreeModel>> TreeModelExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_tree_model_iter_nth_child")]
     fn iter_nth_child(&self, parent: Option<&TreeIter>, n: i32) -> Option<TreeIter> {
         unsafe {
             let mut iter = TreeIter::uninitialized();
@@ -344,7 +246,9 @@ impl<O: IsA<TreeModel>> TreeModelExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_tree_model_iter_parent")]
     fn iter_parent(&self, child: &TreeIter) -> Option<TreeIter> {
         unsafe {
             let mut iter = TreeIter::uninitialized();
@@ -361,7 +265,9 @@ impl<O: IsA<TreeModel>> TreeModelExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_tree_model_iter_previous")]
     fn iter_previous(&self, iter: &TreeIter) -> bool {
         unsafe {
             from_glib(ffi::gtk_tree_model_iter_previous(
@@ -371,7 +277,9 @@ impl<O: IsA<TreeModel>> TreeModelExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_tree_model_row_changed")]
     fn row_changed(&self, path: &TreePath, iter: &TreeIter) {
         unsafe {
             ffi::gtk_tree_model_row_changed(
@@ -382,7 +290,9 @@ impl<O: IsA<TreeModel>> TreeModelExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_tree_model_row_deleted")]
     fn row_deleted(&self, path: &TreePath) {
         unsafe {
             ffi::gtk_tree_model_row_deleted(
@@ -392,7 +302,9 @@ impl<O: IsA<TreeModel>> TreeModelExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_tree_model_row_has_child_toggled")]
     fn row_has_child_toggled(&self, path: &TreePath, iter: &TreeIter) {
         unsafe {
             ffi::gtk_tree_model_row_has_child_toggled(
@@ -403,7 +315,9 @@ impl<O: IsA<TreeModel>> TreeModelExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_tree_model_row_inserted")]
     fn row_inserted(&self, path: &TreePath, iter: &TreeIter) {
         unsafe {
             ffi::gtk_tree_model_row_inserted(
@@ -414,6 +328,7 @@ impl<O: IsA<TreeModel>> TreeModelExt for O {
         }
     }
 
+    #[doc(alias = "row-changed")]
     fn connect_row_changed<F: Fn(&Self, &TreePath, &TreeIter) + 'static>(
         &self,
         f: F,
@@ -447,6 +362,7 @@ impl<O: IsA<TreeModel>> TreeModelExt for O {
         }
     }
 
+    #[doc(alias = "row-deleted")]
     fn connect_row_deleted<F: Fn(&Self, &TreePath) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn row_deleted_trampoline<
             P: IsA<TreeModel>,
@@ -475,6 +391,7 @@ impl<O: IsA<TreeModel>> TreeModelExt for O {
         }
     }
 
+    #[doc(alias = "row-has-child-toggled")]
     fn connect_row_has_child_toggled<F: Fn(&Self, &TreePath, &TreeIter) + 'static>(
         &self,
         f: F,
@@ -508,6 +425,7 @@ impl<O: IsA<TreeModel>> TreeModelExt for O {
         }
     }
 
+    #[doc(alias = "row-inserted")]
     fn connect_row_inserted<F: Fn(&Self, &TreePath, &TreeIter) + 'static>(
         &self,
         f: F,
@@ -541,10 +459,13 @@ impl<O: IsA<TreeModel>> TreeModelExt for O {
         }
     }
 
+    //#[doc(alias = "rows-reordered")]
     //fn connect_rows_reordered<Unsupported or ignored types>(&self, f: F) -> SignalHandlerId {
     //    Unimplemented new_order: *.Pointer
     //}
 }
+
+impl<O: IsA<TreeModel>> TreeModelExt for O {}
 
 impl fmt::Display for TreeModel {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {

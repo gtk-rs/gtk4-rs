@@ -19,7 +19,7 @@ impl AccessibleRange {
     pub const NONE: Option<&'static AccessibleRange> = None;
 }
 
-pub trait AccessibleRangeExt: 'static {}
+pub trait AccessibleRangeExt: IsA<AccessibleRange> + 'static {}
 
 impl<O: IsA<AccessibleRange>> AccessibleRangeExt for O {}
 

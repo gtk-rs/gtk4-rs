@@ -18,13 +18,9 @@ impl Buildable {
     pub const NONE: Option<&'static Buildable> = None;
 }
 
-pub trait BuildableExt: 'static {
+pub trait BuildableExt: IsA<Buildable> + 'static {
     #[doc(alias = "gtk_buildable_get_buildable_id")]
     #[doc(alias = "get_buildable_id")]
-    fn buildable_id(&self) -> Option<glib::GString>;
-}
-
-impl<O: IsA<Buildable>> BuildableExt for O {
     fn buildable_id(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::gtk_buildable_get_buildable_id(
@@ -33,6 +29,8 @@ impl<O: IsA<Buildable>> BuildableExt for O {
         }
     }
 }
+
+impl<O: IsA<Buildable>> BuildableExt for O {}
 
 impl fmt::Display for Buildable {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {

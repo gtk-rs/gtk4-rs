@@ -417,702 +417,10 @@ impl TreeViewBuilder {
     }
 }
 
-pub trait TreeViewExt: 'static {
+pub trait TreeViewExt: IsA<TreeView> + 'static {
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
     #[doc(alias = "gtk_tree_view_append_column")]
-    fn append_column(&self, column: &TreeViewColumn) -> i32;
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_tree_view_collapse_all")]
-    fn collapse_all(&self);
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_tree_view_collapse_row")]
-    fn collapse_row(&self, path: &TreePath) -> bool;
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_tree_view_columns_autosize")]
-    fn columns_autosize(&self);
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_tree_view_convert_bin_window_to_tree_coords")]
-    fn convert_bin_window_to_tree_coords(&self, bx: i32, by: i32) -> (i32, i32);
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_tree_view_convert_bin_window_to_widget_coords")]
-    fn convert_bin_window_to_widget_coords(&self, bx: i32, by: i32) -> (i32, i32);
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_tree_view_convert_tree_to_bin_window_coords")]
-    fn convert_tree_to_bin_window_coords(&self, tx: i32, ty: i32) -> (i32, i32);
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_tree_view_convert_tree_to_widget_coords")]
-    fn convert_tree_to_widget_coords(&self, tx: i32, ty: i32) -> (i32, i32);
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_tree_view_convert_widget_to_bin_window_coords")]
-    fn convert_widget_to_bin_window_coords(&self, wx: i32, wy: i32) -> (i32, i32);
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_tree_view_convert_widget_to_tree_coords")]
-    fn convert_widget_to_tree_coords(&self, wx: i32, wy: i32) -> (i32, i32);
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_tree_view_create_row_drag_icon")]
-    fn create_row_drag_icon(&self, path: &TreePath) -> Option<gdk::Paintable>;
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_tree_view_enable_model_drag_dest")]
-    fn enable_model_drag_dest(&self, formats: &gdk::ContentFormats, actions: gdk::DragAction);
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_tree_view_enable_model_drag_source")]
-    fn enable_model_drag_source(
-        &self,
-        start_button_mask: gdk::ModifierType,
-        formats: &gdk::ContentFormats,
-        actions: gdk::DragAction,
-    );
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_tree_view_expand_all")]
-    fn expand_all(&self);
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_tree_view_expand_row")]
-    fn expand_row(&self, path: &TreePath, open_all: bool) -> bool;
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_tree_view_expand_to_path")]
-    fn expand_to_path(&self, path: &TreePath);
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_tree_view_get_activate_on_single_click")]
-    #[doc(alias = "get_activate_on_single_click")]
-    fn activates_on_single_click(&self) -> bool;
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_tree_view_get_background_area")]
-    #[doc(alias = "get_background_area")]
-    fn background_area(
-        &self,
-        path: Option<&TreePath>,
-        column: Option<&TreeViewColumn>,
-    ) -> gdk::Rectangle;
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_tree_view_get_cell_area")]
-    #[doc(alias = "get_cell_area")]
-    fn cell_area(&self, path: Option<&TreePath>, column: Option<&TreeViewColumn>)
-        -> gdk::Rectangle;
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_tree_view_get_column")]
-    #[doc(alias = "get_column")]
-    fn column(&self, n: i32) -> Option<TreeViewColumn>;
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_tree_view_get_columns")]
-    #[doc(alias = "get_columns")]
-    fn columns(&self) -> Vec<TreeViewColumn>;
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_tree_view_get_cursor")]
-    #[doc(alias = "get_cursor")]
-    fn cursor(&self) -> (Option<TreePath>, Option<TreeViewColumn>);
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_tree_view_get_dest_row_at_pos")]
-    #[doc(alias = "get_dest_row_at_pos")]
-    fn dest_row_at_pos(
-        &self,
-        drag_x: i32,
-        drag_y: i32,
-    ) -> Option<(Option<TreePath>, TreeViewDropPosition)>;
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_tree_view_get_drag_dest_row")]
-    #[doc(alias = "get_drag_dest_row")]
-    fn drag_dest_row(&self) -> (Option<TreePath>, TreeViewDropPosition);
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_tree_view_get_enable_search")]
-    #[doc(alias = "get_enable_search")]
-    fn enables_search(&self) -> bool;
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_tree_view_get_enable_tree_lines")]
-    #[doc(alias = "get_enable_tree_lines")]
-    fn enables_tree_lines(&self) -> bool;
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_tree_view_get_expander_column")]
-    #[doc(alias = "get_expander_column")]
-    fn expander_column(&self) -> Option<TreeViewColumn>;
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_tree_view_get_fixed_height_mode")]
-    #[doc(alias = "get_fixed_height_mode")]
-    fn is_fixed_height_mode(&self) -> bool;
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_tree_view_get_grid_lines")]
-    #[doc(alias = "get_grid_lines")]
-    fn grid_lines(&self) -> TreeViewGridLines;
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_tree_view_get_headers_clickable")]
-    #[doc(alias = "get_headers_clickable")]
-    fn is_headers_clickable(&self) -> bool;
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_tree_view_get_headers_visible")]
-    #[doc(alias = "get_headers_visible")]
-    fn is_headers_visible(&self) -> bool;
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_tree_view_get_hover_expand")]
-    #[doc(alias = "get_hover_expand")]
-    fn hover_expands(&self) -> bool;
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_tree_view_get_hover_selection")]
-    #[doc(alias = "get_hover_selection")]
-    fn is_hover_selection(&self) -> bool;
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_tree_view_get_level_indentation")]
-    #[doc(alias = "get_level_indentation")]
-    fn level_indentation(&self) -> i32;
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_tree_view_get_model")]
-    #[doc(alias = "get_model")]
-    fn model(&self) -> Option<TreeModel>;
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_tree_view_get_n_columns")]
-    #[doc(alias = "get_n_columns")]
-    fn n_columns(&self) -> u32;
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_tree_view_get_path_at_pos")]
-    #[doc(alias = "get_path_at_pos")]
-    fn path_at_pos(
-        &self,
-        x: i32,
-        y: i32,
-    ) -> Option<(Option<TreePath>, Option<TreeViewColumn>, i32, i32)>;
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_tree_view_get_reorderable")]
-    #[doc(alias = "get_reorderable")]
-    fn is_reorderable(&self) -> bool;
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_tree_view_get_rubber_banding")]
-    #[doc(alias = "get_rubber_banding")]
-    fn is_rubber_banding(&self) -> bool;
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_tree_view_get_search_column")]
-    #[doc(alias = "get_search_column")]
-    fn search_column(&self) -> i32;
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_tree_view_get_search_entry")]
-    #[doc(alias = "get_search_entry")]
-    fn search_entry(&self) -> Option<Editable>;
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_tree_view_get_selection")]
-    #[doc(alias = "get_selection")]
-    fn selection(&self) -> TreeSelection;
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_tree_view_get_show_expanders")]
-    #[doc(alias = "get_show_expanders")]
-    fn shows_expanders(&self) -> bool;
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_tree_view_get_tooltip_column")]
-    #[doc(alias = "get_tooltip_column")]
-    fn tooltip_column(&self) -> i32;
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_tree_view_get_tooltip_context")]
-    #[doc(alias = "get_tooltip_context")]
-    fn tooltip_context(
-        &self,
-        x: i32,
-        y: i32,
-        keyboard_tip: bool,
-    ) -> Option<(Option<TreeModel>, TreePath, TreeIter)>;
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_tree_view_get_visible_range")]
-    #[doc(alias = "get_visible_range")]
-    fn visible_range(&self) -> Option<(TreePath, TreePath)>;
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_tree_view_get_visible_rect")]
-    #[doc(alias = "get_visible_rect")]
-    fn visible_rect(&self) -> gdk::Rectangle;
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_tree_view_insert_column")]
-    fn insert_column(&self, column: &TreeViewColumn, position: i32) -> i32;
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_tree_view_insert_column_with_data_func")]
-    fn insert_column_with_data_func<
-        P: Fn(&TreeViewColumn, &CellRenderer, &TreeModel, &TreeIter) + 'static,
-    >(
-        &self,
-        position: i32,
-        title: &str,
-        cell: &impl IsA<CellRenderer>,
-        func: P,
-    ) -> i32;
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_tree_view_is_blank_at_pos")]
-    fn is_blank_at_pos(
-        &self,
-        x: i32,
-        y: i32,
-    ) -> Option<(Option<TreePath>, Option<TreeViewColumn>, i32, i32)>;
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_tree_view_is_rubber_banding_active")]
-    fn is_rubber_banding_active(&self) -> bool;
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_tree_view_map_expanded_rows")]
-    fn map_expanded_rows<P: FnMut(&TreeView, &TreePath)>(&self, func: P);
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_tree_view_move_column_after")]
-    fn move_column_after(&self, column: &TreeViewColumn, base_column: Option<&TreeViewColumn>);
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_tree_view_remove_column")]
-    fn remove_column(&self, column: &TreeViewColumn) -> i32;
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_tree_view_row_activated")]
-    fn row_activated(&self, path: &TreePath, column: Option<&TreeViewColumn>);
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_tree_view_row_expanded")]
-    fn row_expanded(&self, path: &TreePath) -> bool;
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_tree_view_scroll_to_cell")]
-    fn scroll_to_cell(
-        &self,
-        path: Option<&TreePath>,
-        column: Option<&TreeViewColumn>,
-        use_align: bool,
-        row_align: f32,
-        col_align: f32,
-    );
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_tree_view_scroll_to_point")]
-    fn scroll_to_point(&self, tree_x: i32, tree_y: i32);
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_tree_view_set_activate_on_single_click")]
-    fn set_activate_on_single_click(&self, single: bool);
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_tree_view_set_column_drag_function")]
-    fn set_column_drag_function(
-        &self,
-        func: Option<
-            Box_<
-                dyn Fn(&TreeView, &TreeViewColumn, &TreeViewColumn, &TreeViewColumn) -> bool
-                    + 'static,
-            >,
-        >,
-    );
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_tree_view_set_cursor")]
-    fn set_cursor(
-        &self,
-        path: &TreePath,
-        focus_column: Option<&TreeViewColumn>,
-        start_editing: bool,
-    );
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_tree_view_set_cursor_on_cell")]
-    fn set_cursor_on_cell(
-        &self,
-        path: &TreePath,
-        focus_column: Option<&TreeViewColumn>,
-        focus_cell: Option<&impl IsA<CellRenderer>>,
-        start_editing: bool,
-    );
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_tree_view_set_drag_dest_row")]
-    fn set_drag_dest_row(&self, path: Option<&TreePath>, pos: TreeViewDropPosition);
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_tree_view_set_enable_search")]
-    fn set_enable_search(&self, enable_search: bool);
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_tree_view_set_enable_tree_lines")]
-    fn set_enable_tree_lines(&self, enabled: bool);
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_tree_view_set_expander_column")]
-    fn set_expander_column(&self, column: Option<&TreeViewColumn>);
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_tree_view_set_fixed_height_mode")]
-    fn set_fixed_height_mode(&self, enable: bool);
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_tree_view_set_grid_lines")]
-    fn set_grid_lines(&self, grid_lines: TreeViewGridLines);
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_tree_view_set_headers_clickable")]
-    fn set_headers_clickable(&self, setting: bool);
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_tree_view_set_headers_visible")]
-    fn set_headers_visible(&self, headers_visible: bool);
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_tree_view_set_hover_expand")]
-    fn set_hover_expand(&self, expand: bool);
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_tree_view_set_hover_selection")]
-    fn set_hover_selection(&self, hover: bool);
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_tree_view_set_level_indentation")]
-    fn set_level_indentation(&self, indentation: i32);
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_tree_view_set_model")]
-    fn set_model(&self, model: Option<&impl IsA<TreeModel>>);
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_tree_view_set_reorderable")]
-    fn set_reorderable(&self, reorderable: bool);
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_tree_view_set_row_separator_func")]
-    fn set_row_separator_func<P: Fn(&TreeModel, &TreeIter) -> bool + 'static>(&self, func: P);
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_tree_view_set_rubber_banding")]
-    fn set_rubber_banding(&self, enable: bool);
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_tree_view_set_search_column")]
-    fn set_search_column(&self, column: i32);
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_tree_view_set_search_entry")]
-    fn set_search_entry(&self, entry: Option<&impl IsA<Editable>>);
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_tree_view_set_search_equal_func")]
-    fn set_search_equal_func<P: Fn(&TreeModel, i32, &str, &TreeIter) -> bool + 'static>(
-        &self,
-        search_equal_func: P,
-    );
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_tree_view_set_show_expanders")]
-    fn set_show_expanders(&self, enabled: bool);
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_tree_view_set_tooltip_cell")]
-    fn set_tooltip_cell(
-        &self,
-        tooltip: &Tooltip,
-        path: Option<&TreePath>,
-        column: Option<&TreeViewColumn>,
-        cell: Option<&impl IsA<CellRenderer>>,
-    );
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_tree_view_set_tooltip_column")]
-    fn set_tooltip_column(&self, column: i32);
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_tree_view_set_tooltip_row")]
-    fn set_tooltip_row(&self, tooltip: &Tooltip, path: &TreePath);
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_tree_view_unset_rows_drag_dest")]
-    fn unset_rows_drag_dest(&self);
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_tree_view_unset_rows_drag_source")]
-    fn unset_rows_drag_source(&self);
-
-    #[doc(alias = "enable-grid-lines")]
-    fn enable_grid_lines(&self) -> TreeViewGridLines;
-
-    #[doc(alias = "enable-grid-lines")]
-    fn set_enable_grid_lines(&self, enable_grid_lines: TreeViewGridLines);
-
-    #[doc(alias = "columns-changed")]
-    fn connect_columns_changed<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "cursor-changed")]
-    fn connect_cursor_changed<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "expand-collapse-cursor-row")]
-    fn connect_expand_collapse_cursor_row<F: Fn(&Self, bool, bool, bool) -> bool + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
-
-    fn emit_expand_collapse_cursor_row(&self, object: bool, p0: bool, p1: bool) -> bool;
-
-    #[doc(alias = "move-cursor")]
-    fn connect_move_cursor<F: Fn(&Self, MovementStep, i32, bool, bool) -> bool + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
-
-    fn emit_move_cursor(
-        &self,
-        step: MovementStep,
-        direction: i32,
-        extend: bool,
-        modify: bool,
-    ) -> bool;
-
-    #[doc(alias = "row-activated")]
-    fn connect_row_activated<F: Fn(&Self, &TreePath, Option<&TreeViewColumn>) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
-
-    fn emit_row_activated(&self, path: &TreePath, column: Option<&TreeViewColumn>);
-
-    #[doc(alias = "row-collapsed")]
-    fn connect_row_collapsed<F: Fn(&Self, &TreeIter, &TreePath) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
-
-    #[doc(alias = "row-expanded")]
-    fn connect_row_expanded<F: Fn(&Self, &TreeIter, &TreePath) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
-
-    #[doc(alias = "select-all")]
-    fn connect_select_all<F: Fn(&Self) -> bool + 'static>(&self, f: F) -> SignalHandlerId;
-
-    fn emit_select_all(&self) -> bool;
-
-    #[doc(alias = "select-cursor-parent")]
-    fn connect_select_cursor_parent<F: Fn(&Self) -> bool + 'static>(&self, f: F)
-        -> SignalHandlerId;
-
-    fn emit_select_cursor_parent(&self) -> bool;
-
-    #[doc(alias = "select-cursor-row")]
-    fn connect_select_cursor_row<F: Fn(&Self, bool) -> bool + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
-
-    fn emit_select_cursor_row(&self, object: bool) -> bool;
-
-    #[doc(alias = "start-interactive-search")]
-    fn connect_start_interactive_search<F: Fn(&Self) -> bool + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
-
-    fn emit_start_interactive_search(&self) -> bool;
-
-    #[doc(alias = "test-collapse-row")]
-    fn connect_test_collapse_row<
-        F: Fn(&Self, &TreeIter, &TreePath) -> glib::signal::Inhibit + 'static,
-    >(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
-
-    #[doc(alias = "test-expand-row")]
-    fn connect_test_expand_row<
-        F: Fn(&Self, &TreeIter, &TreePath) -> glib::signal::Inhibit + 'static,
-    >(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
-
-    #[doc(alias = "toggle-cursor-row")]
-    fn connect_toggle_cursor_row<F: Fn(&Self) -> bool + 'static>(&self, f: F) -> SignalHandlerId;
-
-    fn emit_toggle_cursor_row(&self) -> bool;
-
-    #[doc(alias = "unselect-all")]
-    fn connect_unselect_all<F: Fn(&Self) -> bool + 'static>(&self, f: F) -> SignalHandlerId;
-
-    fn emit_unselect_all(&self) -> bool;
-
-    #[doc(alias = "activate-on-single-click")]
-    fn connect_activate_on_single_click_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
-
-    #[doc(alias = "enable-grid-lines")]
-    fn connect_enable_grid_lines_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "enable-search")]
-    fn connect_enable_search_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "enable-tree-lines")]
-    fn connect_enable_tree_lines_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "expander-column")]
-    fn connect_expander_column_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "fixed-height-mode")]
-    fn connect_fixed_height_mode_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "headers-clickable")]
-    fn connect_headers_clickable_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "headers-visible")]
-    fn connect_headers_visible_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "hover-expand")]
-    fn connect_hover_expand_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "hover-selection")]
-    fn connect_hover_selection_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "level-indentation")]
-    fn connect_level_indentation_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "model")]
-    fn connect_model_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "reorderable")]
-    fn connect_reorderable_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "rubber-banding")]
-    fn connect_rubber_banding_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "search-column")]
-    fn connect_search_column_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "show-expanders")]
-    fn connect_show_expanders_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "tooltip-column")]
-    fn connect_tooltip_column_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-}
-
-impl<O: IsA<TreeView>> TreeViewExt for O {
-    #[allow(deprecated)]
     fn append_column(&self, column: &TreeViewColumn) -> i32 {
         unsafe {
             ffi::gtk_tree_view_append_column(
@@ -1122,14 +430,18 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_tree_view_collapse_all")]
     fn collapse_all(&self) {
         unsafe {
             ffi::gtk_tree_view_collapse_all(self.as_ref().to_glib_none().0);
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_tree_view_collapse_row")]
     fn collapse_row(&self, path: &TreePath) -> bool {
         unsafe {
             from_glib(ffi::gtk_tree_view_collapse_row(
@@ -1139,14 +451,18 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_tree_view_columns_autosize")]
     fn columns_autosize(&self) {
         unsafe {
             ffi::gtk_tree_view_columns_autosize(self.as_ref().to_glib_none().0);
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_tree_view_convert_bin_window_to_tree_coords")]
     fn convert_bin_window_to_tree_coords(&self, bx: i32, by: i32) -> (i32, i32) {
         unsafe {
             let mut tx = mem::MaybeUninit::uninit();
@@ -1162,7 +478,9 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_tree_view_convert_bin_window_to_widget_coords")]
     fn convert_bin_window_to_widget_coords(&self, bx: i32, by: i32) -> (i32, i32) {
         unsafe {
             let mut wx = mem::MaybeUninit::uninit();
@@ -1178,7 +496,9 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_tree_view_convert_tree_to_bin_window_coords")]
     fn convert_tree_to_bin_window_coords(&self, tx: i32, ty: i32) -> (i32, i32) {
         unsafe {
             let mut bx = mem::MaybeUninit::uninit();
@@ -1194,7 +514,9 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_tree_view_convert_tree_to_widget_coords")]
     fn convert_tree_to_widget_coords(&self, tx: i32, ty: i32) -> (i32, i32) {
         unsafe {
             let mut wx = mem::MaybeUninit::uninit();
@@ -1210,7 +532,9 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_tree_view_convert_widget_to_bin_window_coords")]
     fn convert_widget_to_bin_window_coords(&self, wx: i32, wy: i32) -> (i32, i32) {
         unsafe {
             let mut bx = mem::MaybeUninit::uninit();
@@ -1226,7 +550,9 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_tree_view_convert_widget_to_tree_coords")]
     fn convert_widget_to_tree_coords(&self, wx: i32, wy: i32) -> (i32, i32) {
         unsafe {
             let mut tx = mem::MaybeUninit::uninit();
@@ -1242,7 +568,9 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_tree_view_create_row_drag_icon")]
     fn create_row_drag_icon(&self, path: &TreePath) -> Option<gdk::Paintable> {
         unsafe {
             from_glib_full(ffi::gtk_tree_view_create_row_drag_icon(
@@ -1252,7 +580,9 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_tree_view_enable_model_drag_dest")]
     fn enable_model_drag_dest(&self, formats: &gdk::ContentFormats, actions: gdk::DragAction) {
         unsafe {
             ffi::gtk_tree_view_enable_model_drag_dest(
@@ -1263,7 +593,9 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_tree_view_enable_model_drag_source")]
     fn enable_model_drag_source(
         &self,
         start_button_mask: gdk::ModifierType,
@@ -1280,14 +612,18 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_tree_view_expand_all")]
     fn expand_all(&self) {
         unsafe {
             ffi::gtk_tree_view_expand_all(self.as_ref().to_glib_none().0);
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_tree_view_expand_row")]
     fn expand_row(&self, path: &TreePath, open_all: bool) -> bool {
         unsafe {
             from_glib(ffi::gtk_tree_view_expand_row(
@@ -1298,7 +634,9 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_tree_view_expand_to_path")]
     fn expand_to_path(&self, path: &TreePath) {
         unsafe {
             ffi::gtk_tree_view_expand_to_path(
@@ -1308,7 +646,10 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_tree_view_get_activate_on_single_click")]
+    #[doc(alias = "get_activate_on_single_click")]
     fn activates_on_single_click(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_tree_view_get_activate_on_single_click(
@@ -1317,7 +658,10 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_tree_view_get_background_area")]
+    #[doc(alias = "get_background_area")]
     fn background_area(
         &self,
         path: Option<&TreePath>,
@@ -1335,7 +679,10 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_tree_view_get_cell_area")]
+    #[doc(alias = "get_cell_area")]
     fn cell_area(
         &self,
         path: Option<&TreePath>,
@@ -1353,7 +700,10 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_tree_view_get_column")]
+    #[doc(alias = "get_column")]
     fn column(&self, n: i32) -> Option<TreeViewColumn> {
         unsafe {
             from_glib_none(ffi::gtk_tree_view_get_column(
@@ -1363,7 +713,10 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_tree_view_get_columns")]
+    #[doc(alias = "get_columns")]
     fn columns(&self) -> Vec<TreeViewColumn> {
         unsafe {
             FromGlibPtrContainer::from_glib_container(ffi::gtk_tree_view_get_columns(
@@ -1372,7 +725,10 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_tree_view_get_cursor")]
+    #[doc(alias = "get_cursor")]
     fn cursor(&self) -> (Option<TreePath>, Option<TreeViewColumn>) {
         unsafe {
             let mut path = ptr::null_mut();
@@ -1386,7 +742,10 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_tree_view_get_dest_row_at_pos")]
+    #[doc(alias = "get_dest_row_at_pos")]
     fn dest_row_at_pos(
         &self,
         drag_x: i32,
@@ -1410,7 +769,10 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_tree_view_get_drag_dest_row")]
+    #[doc(alias = "get_drag_dest_row")]
     fn drag_dest_row(&self) -> (Option<TreePath>, TreeViewDropPosition) {
         unsafe {
             let mut path = ptr::null_mut();
@@ -1424,7 +786,10 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_tree_view_get_enable_search")]
+    #[doc(alias = "get_enable_search")]
     fn enables_search(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_tree_view_get_enable_search(
@@ -1433,7 +798,10 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_tree_view_get_enable_tree_lines")]
+    #[doc(alias = "get_enable_tree_lines")]
     fn enables_tree_lines(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_tree_view_get_enable_tree_lines(
@@ -1442,7 +810,10 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_tree_view_get_expander_column")]
+    #[doc(alias = "get_expander_column")]
     fn expander_column(&self) -> Option<TreeViewColumn> {
         unsafe {
             from_glib_none(ffi::gtk_tree_view_get_expander_column(
@@ -1451,7 +822,10 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_tree_view_get_fixed_height_mode")]
+    #[doc(alias = "get_fixed_height_mode")]
     fn is_fixed_height_mode(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_tree_view_get_fixed_height_mode(
@@ -1460,7 +834,10 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_tree_view_get_grid_lines")]
+    #[doc(alias = "get_grid_lines")]
     fn grid_lines(&self) -> TreeViewGridLines {
         unsafe {
             from_glib(ffi::gtk_tree_view_get_grid_lines(
@@ -1469,7 +846,10 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_tree_view_get_headers_clickable")]
+    #[doc(alias = "get_headers_clickable")]
     fn is_headers_clickable(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_tree_view_get_headers_clickable(
@@ -1478,7 +858,10 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_tree_view_get_headers_visible")]
+    #[doc(alias = "get_headers_visible")]
     fn is_headers_visible(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_tree_view_get_headers_visible(
@@ -1487,7 +870,10 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_tree_view_get_hover_expand")]
+    #[doc(alias = "get_hover_expand")]
     fn hover_expands(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_tree_view_get_hover_expand(
@@ -1496,7 +882,10 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_tree_view_get_hover_selection")]
+    #[doc(alias = "get_hover_selection")]
     fn is_hover_selection(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_tree_view_get_hover_selection(
@@ -1505,22 +894,34 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_tree_view_get_level_indentation")]
+    #[doc(alias = "get_level_indentation")]
     fn level_indentation(&self) -> i32 {
         unsafe { ffi::gtk_tree_view_get_level_indentation(self.as_ref().to_glib_none().0) }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_tree_view_get_model")]
+    #[doc(alias = "get_model")]
     fn model(&self) -> Option<TreeModel> {
         unsafe { from_glib_none(ffi::gtk_tree_view_get_model(self.as_ref().to_glib_none().0)) }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_tree_view_get_n_columns")]
+    #[doc(alias = "get_n_columns")]
     fn n_columns(&self) -> u32 {
         unsafe { ffi::gtk_tree_view_get_n_columns(self.as_ref().to_glib_none().0) }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_tree_view_get_path_at_pos")]
+    #[doc(alias = "get_path_at_pos")]
     fn path_at_pos(
         &self,
         x: i32,
@@ -1553,7 +954,10 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_tree_view_get_reorderable")]
+    #[doc(alias = "get_reorderable")]
     fn is_reorderable(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_tree_view_get_reorderable(
@@ -1562,7 +966,10 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_tree_view_get_rubber_banding")]
+    #[doc(alias = "get_rubber_banding")]
     fn is_rubber_banding(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_tree_view_get_rubber_banding(
@@ -1571,12 +978,18 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_tree_view_get_search_column")]
+    #[doc(alias = "get_search_column")]
     fn search_column(&self) -> i32 {
         unsafe { ffi::gtk_tree_view_get_search_column(self.as_ref().to_glib_none().0) }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_tree_view_get_search_entry")]
+    #[doc(alias = "get_search_entry")]
     fn search_entry(&self) -> Option<Editable> {
         unsafe {
             from_glib_none(ffi::gtk_tree_view_get_search_entry(
@@ -1585,7 +998,10 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_tree_view_get_selection")]
+    #[doc(alias = "get_selection")]
     fn selection(&self) -> TreeSelection {
         unsafe {
             from_glib_none(ffi::gtk_tree_view_get_selection(
@@ -1594,7 +1010,10 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_tree_view_get_show_expanders")]
+    #[doc(alias = "get_show_expanders")]
     fn shows_expanders(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_tree_view_get_show_expanders(
@@ -1603,12 +1022,18 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_tree_view_get_tooltip_column")]
+    #[doc(alias = "get_tooltip_column")]
     fn tooltip_column(&self) -> i32 {
         unsafe { ffi::gtk_tree_view_get_tooltip_column(self.as_ref().to_glib_none().0) }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_tree_view_get_tooltip_context")]
+    #[doc(alias = "get_tooltip_context")]
     fn tooltip_context(
         &self,
         x: i32,
@@ -1636,7 +1061,10 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_tree_view_get_visible_range")]
+    #[doc(alias = "get_visible_range")]
     fn visible_range(&self) -> Option<(TreePath, TreePath)> {
         unsafe {
             let mut start_path = ptr::null_mut();
@@ -1654,7 +1082,10 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_tree_view_get_visible_rect")]
+    #[doc(alias = "get_visible_rect")]
     fn visible_rect(&self) -> gdk::Rectangle {
         unsafe {
             let mut visible_rect = gdk::Rectangle::uninitialized();
@@ -1666,7 +1097,9 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_tree_view_insert_column")]
     fn insert_column(&self, column: &TreeViewColumn, position: i32) -> i32 {
         unsafe {
             ffi::gtk_tree_view_insert_column(
@@ -1677,7 +1110,9 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_tree_view_insert_column_with_data_func")]
     fn insert_column_with_data_func<
         P: Fn(&TreeViewColumn, &CellRenderer, &TreeModel, &TreeIter) + 'static,
     >(
@@ -1727,7 +1162,9 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_tree_view_is_blank_at_pos")]
     fn is_blank_at_pos(
         &self,
         x: i32,
@@ -1760,7 +1197,9 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_tree_view_is_rubber_banding_active")]
     fn is_rubber_banding_active(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_tree_view_is_rubber_banding_active(
@@ -1769,7 +1208,9 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_tree_view_map_expanded_rows")]
     fn map_expanded_rows<P: FnMut(&TreeView, &TreePath)>(&self, func: P) {
         let func_data: P = func;
         unsafe extern "C" fn func_func<P: FnMut(&TreeView, &TreePath)>(
@@ -1793,7 +1234,9 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_tree_view_move_column_after")]
     fn move_column_after(&self, column: &TreeViewColumn, base_column: Option<&TreeViewColumn>) {
         unsafe {
             ffi::gtk_tree_view_move_column_after(
@@ -1804,7 +1247,9 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_tree_view_remove_column")]
     fn remove_column(&self, column: &TreeViewColumn) -> i32 {
         unsafe {
             ffi::gtk_tree_view_remove_column(
@@ -1814,7 +1259,9 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_tree_view_row_activated")]
     fn row_activated(&self, path: &TreePath, column: Option<&TreeViewColumn>) {
         unsafe {
             ffi::gtk_tree_view_row_activated(
@@ -1825,7 +1272,9 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_tree_view_row_expanded")]
     fn row_expanded(&self, path: &TreePath) -> bool {
         unsafe {
             from_glib(ffi::gtk_tree_view_row_expanded(
@@ -1835,7 +1284,9 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_tree_view_scroll_to_cell")]
     fn scroll_to_cell(
         &self,
         path: Option<&TreePath>,
@@ -1856,14 +1307,18 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_tree_view_scroll_to_point")]
     fn scroll_to_point(&self, tree_x: i32, tree_y: i32) {
         unsafe {
             ffi::gtk_tree_view_scroll_to_point(self.as_ref().to_glib_none().0, tree_x, tree_y);
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_tree_view_set_activate_on_single_click")]
     fn set_activate_on_single_click(&self, single: bool) {
         unsafe {
             ffi::gtk_tree_view_set_activate_on_single_click(
@@ -1873,7 +1328,9 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_tree_view_set_column_drag_function")]
     fn set_column_drag_function(
         &self,
         func: Option<
@@ -1949,7 +1406,9 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_tree_view_set_cursor")]
     fn set_cursor(
         &self,
         path: &TreePath,
@@ -1966,7 +1425,9 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_tree_view_set_cursor_on_cell")]
     fn set_cursor_on_cell(
         &self,
         path: &TreePath,
@@ -1985,7 +1446,9 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_tree_view_set_drag_dest_row")]
     fn set_drag_dest_row(&self, path: Option<&TreePath>, pos: TreeViewDropPosition) {
         unsafe {
             ffi::gtk_tree_view_set_drag_dest_row(
@@ -1996,7 +1459,9 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_tree_view_set_enable_search")]
     fn set_enable_search(&self, enable_search: bool) {
         unsafe {
             ffi::gtk_tree_view_set_enable_search(
@@ -2006,7 +1471,9 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_tree_view_set_enable_tree_lines")]
     fn set_enable_tree_lines(&self, enabled: bool) {
         unsafe {
             ffi::gtk_tree_view_set_enable_tree_lines(
@@ -2016,7 +1483,9 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_tree_view_set_expander_column")]
     fn set_expander_column(&self, column: Option<&TreeViewColumn>) {
         unsafe {
             ffi::gtk_tree_view_set_expander_column(
@@ -2026,7 +1495,9 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_tree_view_set_fixed_height_mode")]
     fn set_fixed_height_mode(&self, enable: bool) {
         unsafe {
             ffi::gtk_tree_view_set_fixed_height_mode(
@@ -2036,7 +1507,9 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_tree_view_set_grid_lines")]
     fn set_grid_lines(&self, grid_lines: TreeViewGridLines) {
         unsafe {
             ffi::gtk_tree_view_set_grid_lines(
@@ -2046,7 +1519,9 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_tree_view_set_headers_clickable")]
     fn set_headers_clickable(&self, setting: bool) {
         unsafe {
             ffi::gtk_tree_view_set_headers_clickable(
@@ -2056,7 +1531,9 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_tree_view_set_headers_visible")]
     fn set_headers_visible(&self, headers_visible: bool) {
         unsafe {
             ffi::gtk_tree_view_set_headers_visible(
@@ -2066,14 +1543,18 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_tree_view_set_hover_expand")]
     fn set_hover_expand(&self, expand: bool) {
         unsafe {
             ffi::gtk_tree_view_set_hover_expand(self.as_ref().to_glib_none().0, expand.into_glib());
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_tree_view_set_hover_selection")]
     fn set_hover_selection(&self, hover: bool) {
         unsafe {
             ffi::gtk_tree_view_set_hover_selection(
@@ -2083,14 +1564,18 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_tree_view_set_level_indentation")]
     fn set_level_indentation(&self, indentation: i32) {
         unsafe {
             ffi::gtk_tree_view_set_level_indentation(self.as_ref().to_glib_none().0, indentation);
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_tree_view_set_model")]
     fn set_model(&self, model: Option<&impl IsA<TreeModel>>) {
         unsafe {
             ffi::gtk_tree_view_set_model(
@@ -2100,7 +1585,9 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_tree_view_set_reorderable")]
     fn set_reorderable(&self, reorderable: bool) {
         unsafe {
             ffi::gtk_tree_view_set_reorderable(
@@ -2110,7 +1597,9 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_tree_view_set_row_separator_func")]
     fn set_row_separator_func<P: Fn(&TreeModel, &TreeIter) -> bool + 'static>(&self, func: P) {
         let func_data: Box_<P> = Box_::new(func);
         unsafe extern "C" fn func_func<P: Fn(&TreeModel, &TreeIter) -> bool + 'static>(
@@ -2141,7 +1630,9 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_tree_view_set_rubber_banding")]
     fn set_rubber_banding(&self, enable: bool) {
         unsafe {
             ffi::gtk_tree_view_set_rubber_banding(
@@ -2151,14 +1642,18 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_tree_view_set_search_column")]
     fn set_search_column(&self, column: i32) {
         unsafe {
             ffi::gtk_tree_view_set_search_column(self.as_ref().to_glib_none().0, column);
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_tree_view_set_search_entry")]
     fn set_search_entry(&self, entry: Option<&impl IsA<Editable>>) {
         unsafe {
             ffi::gtk_tree_view_set_search_entry(
@@ -2168,7 +1663,9 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_tree_view_set_search_equal_func")]
     fn set_search_equal_func<P: Fn(&TreeModel, i32, &str, &TreeIter) -> bool + 'static>(
         &self,
         search_equal_func: P,
@@ -2209,7 +1706,9 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_tree_view_set_show_expanders")]
     fn set_show_expanders(&self, enabled: bool) {
         unsafe {
             ffi::gtk_tree_view_set_show_expanders(
@@ -2219,7 +1718,9 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_tree_view_set_tooltip_cell")]
     fn set_tooltip_cell(
         &self,
         tooltip: &Tooltip,
@@ -2238,14 +1739,18 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_tree_view_set_tooltip_column")]
     fn set_tooltip_column(&self, column: i32) {
         unsafe {
             ffi::gtk_tree_view_set_tooltip_column(self.as_ref().to_glib_none().0, column);
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_tree_view_set_tooltip_row")]
     fn set_tooltip_row(&self, tooltip: &Tooltip, path: &TreePath) {
         unsafe {
             ffi::gtk_tree_view_set_tooltip_row(
@@ -2256,28 +1761,35 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_tree_view_unset_rows_drag_dest")]
     fn unset_rows_drag_dest(&self) {
         unsafe {
             ffi::gtk_tree_view_unset_rows_drag_dest(self.as_ref().to_glib_none().0);
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_tree_view_unset_rows_drag_source")]
     fn unset_rows_drag_source(&self) {
         unsafe {
             ffi::gtk_tree_view_unset_rows_drag_source(self.as_ref().to_glib_none().0);
         }
     }
 
+    #[doc(alias = "enable-grid-lines")]
     fn enable_grid_lines(&self) -> TreeViewGridLines {
         glib::ObjectExt::property(self.as_ref(), "enable-grid-lines")
     }
 
+    #[doc(alias = "enable-grid-lines")]
     fn set_enable_grid_lines(&self, enable_grid_lines: TreeViewGridLines) {
         glib::ObjectExt::set_property(self.as_ref(), "enable-grid-lines", enable_grid_lines)
     }
 
+    #[doc(alias = "columns-changed")]
     fn connect_columns_changed<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn columns_changed_trampoline<P: IsA<TreeView>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkTreeView,
@@ -2299,6 +1811,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         }
     }
 
+    #[doc(alias = "cursor-changed")]
     fn connect_cursor_changed<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn cursor_changed_trampoline<P: IsA<TreeView>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkTreeView,
@@ -2320,6 +1833,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         }
     }
 
+    #[doc(alias = "expand-collapse-cursor-row")]
     fn connect_expand_collapse_cursor_row<F: Fn(&Self, bool, bool, bool) -> bool + 'static>(
         &self,
         f: F,
@@ -2360,6 +1874,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         self.emit_by_name("expand-collapse-cursor-row", &[&object, &p0, &p1])
     }
 
+    #[doc(alias = "move-cursor")]
     fn connect_move_cursor<F: Fn(&Self, MovementStep, i32, bool, bool) -> bool + 'static>(
         &self,
         f: F,
@@ -2408,6 +1923,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         self.emit_by_name("move-cursor", &[&step, &direction, &extend, &modify])
     }
 
+    #[doc(alias = "row-activated")]
     fn connect_row_activated<F: Fn(&Self, &TreePath, Option<&TreeViewColumn>) + 'static>(
         &self,
         f: F,
@@ -2447,6 +1963,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         self.emit_by_name::<()>("row-activated", &[&path, &column]);
     }
 
+    #[doc(alias = "row-collapsed")]
     fn connect_row_collapsed<F: Fn(&Self, &TreeIter, &TreePath) + 'static>(
         &self,
         f: F,
@@ -2480,6 +1997,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         }
     }
 
+    #[doc(alias = "row-expanded")]
     fn connect_row_expanded<F: Fn(&Self, &TreeIter, &TreePath) + 'static>(
         &self,
         f: F,
@@ -2513,6 +2031,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         }
     }
 
+    #[doc(alias = "select-all")]
     fn connect_select_all<F: Fn(&Self) -> bool + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn select_all_trampoline<
             P: IsA<TreeView>,
@@ -2541,6 +2060,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         self.emit_by_name("select-all", &[])
     }
 
+    #[doc(alias = "select-cursor-parent")]
     fn connect_select_cursor_parent<F: Fn(&Self) -> bool + 'static>(
         &self,
         f: F,
@@ -2572,6 +2092,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         self.emit_by_name("select-cursor-parent", &[])
     }
 
+    #[doc(alias = "select-cursor-row")]
     fn connect_select_cursor_row<F: Fn(&Self, bool) -> bool + 'static>(
         &self,
         f: F,
@@ -2608,6 +2129,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         self.emit_by_name("select-cursor-row", &[&object])
     }
 
+    #[doc(alias = "start-interactive-search")]
     fn connect_start_interactive_search<F: Fn(&Self) -> bool + 'static>(
         &self,
         f: F,
@@ -2639,6 +2161,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         self.emit_by_name("start-interactive-search", &[])
     }
 
+    #[doc(alias = "test-collapse-row")]
     fn connect_test_collapse_row<
         F: Fn(&Self, &TreeIter, &TreePath) -> glib::signal::Inhibit + 'static,
     >(
@@ -2675,6 +2198,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         }
     }
 
+    #[doc(alias = "test-expand-row")]
     fn connect_test_expand_row<
         F: Fn(&Self, &TreeIter, &TreePath) -> glib::signal::Inhibit + 'static,
     >(
@@ -2711,6 +2235,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         }
     }
 
+    #[doc(alias = "toggle-cursor-row")]
     fn connect_toggle_cursor_row<F: Fn(&Self) -> bool + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn toggle_cursor_row_trampoline<
             P: IsA<TreeView>,
@@ -2739,6 +2264,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         self.emit_by_name("toggle-cursor-row", &[])
     }
 
+    #[doc(alias = "unselect-all")]
     fn connect_unselect_all<F: Fn(&Self) -> bool + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn unselect_all_trampoline<
             P: IsA<TreeView>,
@@ -2767,6 +2293,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         self.emit_by_name("unselect-all", &[])
     }
 
+    #[doc(alias = "activate-on-single-click")]
     fn connect_activate_on_single_click_notify<F: Fn(&Self) + 'static>(
         &self,
         f: F,
@@ -2795,6 +2322,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         }
     }
 
+    #[doc(alias = "enable-grid-lines")]
     fn connect_enable_grid_lines_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_enable_grid_lines_trampoline<
             P: IsA<TreeView>,
@@ -2820,6 +2348,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         }
     }
 
+    #[doc(alias = "enable-search")]
     fn connect_enable_search_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_enable_search_trampoline<
             P: IsA<TreeView>,
@@ -2845,6 +2374,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         }
     }
 
+    #[doc(alias = "enable-tree-lines")]
     fn connect_enable_tree_lines_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_enable_tree_lines_trampoline<
             P: IsA<TreeView>,
@@ -2870,6 +2400,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         }
     }
 
+    #[doc(alias = "expander-column")]
     fn connect_expander_column_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_expander_column_trampoline<
             P: IsA<TreeView>,
@@ -2895,6 +2426,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         }
     }
 
+    #[doc(alias = "fixed-height-mode")]
     fn connect_fixed_height_mode_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_fixed_height_mode_trampoline<
             P: IsA<TreeView>,
@@ -2920,6 +2452,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         }
     }
 
+    #[doc(alias = "headers-clickable")]
     fn connect_headers_clickable_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_headers_clickable_trampoline<
             P: IsA<TreeView>,
@@ -2945,6 +2478,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         }
     }
 
+    #[doc(alias = "headers-visible")]
     fn connect_headers_visible_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_headers_visible_trampoline<
             P: IsA<TreeView>,
@@ -2970,6 +2504,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         }
     }
 
+    #[doc(alias = "hover-expand")]
     fn connect_hover_expand_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_hover_expand_trampoline<
             P: IsA<TreeView>,
@@ -2995,6 +2530,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         }
     }
 
+    #[doc(alias = "hover-selection")]
     fn connect_hover_selection_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_hover_selection_trampoline<
             P: IsA<TreeView>,
@@ -3020,6 +2556,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         }
     }
 
+    #[doc(alias = "level-indentation")]
     fn connect_level_indentation_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_level_indentation_trampoline<
             P: IsA<TreeView>,
@@ -3045,6 +2582,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         }
     }
 
+    #[doc(alias = "model")]
     fn connect_model_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_model_trampoline<P: IsA<TreeView>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkTreeView,
@@ -3067,6 +2605,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         }
     }
 
+    #[doc(alias = "reorderable")]
     fn connect_reorderable_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_reorderable_trampoline<
             P: IsA<TreeView>,
@@ -3092,6 +2631,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         }
     }
 
+    #[doc(alias = "rubber-banding")]
     fn connect_rubber_banding_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_rubber_banding_trampoline<
             P: IsA<TreeView>,
@@ -3117,6 +2657,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         }
     }
 
+    #[doc(alias = "search-column")]
     fn connect_search_column_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_search_column_trampoline<
             P: IsA<TreeView>,
@@ -3142,6 +2683,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         }
     }
 
+    #[doc(alias = "show-expanders")]
     fn connect_show_expanders_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_show_expanders_trampoline<
             P: IsA<TreeView>,
@@ -3167,6 +2709,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         }
     }
 
+    #[doc(alias = "tooltip-column")]
     fn connect_tooltip_column_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_tooltip_column_trampoline<
             P: IsA<TreeView>,
@@ -3192,6 +2735,8 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         }
     }
 }
+
+impl<O: IsA<TreeView>> TreeViewExt for O {}
 
 impl fmt::Display for TreeView {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {

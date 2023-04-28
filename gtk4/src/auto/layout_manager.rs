@@ -19,35 +19,8 @@ impl LayoutManager {
     pub const NONE: Option<&'static LayoutManager> = None;
 }
 
-pub trait LayoutManagerExt: 'static {
+pub trait LayoutManagerExt: IsA<LayoutManager> + 'static {
     #[doc(alias = "gtk_layout_manager_allocate")]
-    fn allocate(&self, widget: &impl IsA<Widget>, width: i32, height: i32, baseline: i32);
-
-    #[doc(alias = "gtk_layout_manager_get_layout_child")]
-    #[doc(alias = "get_layout_child")]
-    fn layout_child(&self, child: &impl IsA<Widget>) -> LayoutChild;
-
-    #[doc(alias = "gtk_layout_manager_get_request_mode")]
-    #[doc(alias = "get_request_mode")]
-    fn request_mode(&self) -> SizeRequestMode;
-
-    #[doc(alias = "gtk_layout_manager_get_widget")]
-    #[doc(alias = "get_widget")]
-    fn widget(&self) -> Option<Widget>;
-
-    #[doc(alias = "gtk_layout_manager_layout_changed")]
-    fn layout_changed(&self);
-
-    #[doc(alias = "gtk_layout_manager_measure")]
-    fn measure(
-        &self,
-        widget: &impl IsA<Widget>,
-        orientation: Orientation,
-        for_size: i32,
-    ) -> (i32, i32, i32, i32);
-}
-
-impl<O: IsA<LayoutManager>> LayoutManagerExt for O {
     fn allocate(&self, widget: &impl IsA<Widget>, width: i32, height: i32, baseline: i32) {
         unsafe {
             ffi::gtk_layout_manager_allocate(
@@ -60,6 +33,8 @@ impl<O: IsA<LayoutManager>> LayoutManagerExt for O {
         }
     }
 
+    #[doc(alias = "gtk_layout_manager_get_layout_child")]
+    #[doc(alias = "get_layout_child")]
     fn layout_child(&self, child: &impl IsA<Widget>) -> LayoutChild {
         unsafe {
             from_glib_none(ffi::gtk_layout_manager_get_layout_child(
@@ -69,6 +44,8 @@ impl<O: IsA<LayoutManager>> LayoutManagerExt for O {
         }
     }
 
+    #[doc(alias = "gtk_layout_manager_get_request_mode")]
+    #[doc(alias = "get_request_mode")]
     fn request_mode(&self) -> SizeRequestMode {
         unsafe {
             from_glib(ffi::gtk_layout_manager_get_request_mode(
@@ -77,6 +54,8 @@ impl<O: IsA<LayoutManager>> LayoutManagerExt for O {
         }
     }
 
+    #[doc(alias = "gtk_layout_manager_get_widget")]
+    #[doc(alias = "get_widget")]
     fn widget(&self) -> Option<Widget> {
         unsafe {
             from_glib_none(ffi::gtk_layout_manager_get_widget(
@@ -85,12 +64,14 @@ impl<O: IsA<LayoutManager>> LayoutManagerExt for O {
         }
     }
 
+    #[doc(alias = "gtk_layout_manager_layout_changed")]
     fn layout_changed(&self) {
         unsafe {
             ffi::gtk_layout_manager_layout_changed(self.as_ref().to_glib_none().0);
         }
     }
 
+    #[doc(alias = "gtk_layout_manager_measure")]
     fn measure(
         &self,
         widget: &impl IsA<Widget>,
@@ -121,6 +102,8 @@ impl<O: IsA<LayoutManager>> LayoutManagerExt for O {
         }
     }
 }
+
+impl<O: IsA<LayoutManager>> LayoutManagerExt for O {}
 
 impl fmt::Display for LayoutManager {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {

@@ -19,28 +19,20 @@ impl Root {
     pub const NONE: Option<&'static Root> = None;
 }
 
-pub trait RootExt: 'static {
+pub trait RootExt: IsA<Root> + 'static {
     #[doc(alias = "gtk_root_get_display")]
     #[doc(alias = "get_display")]
-    fn display(&self) -> gdk::Display;
-
-    #[doc(alias = "gtk_root_get_focus")]
-    #[doc(alias = "get_focus")]
-    fn focus(&self) -> Option<Widget>;
-
-    #[doc(alias = "gtk_root_set_focus")]
-    fn set_focus(&self, focus: Option<&impl IsA<Widget>>);
-}
-
-impl<O: IsA<Root>> RootExt for O {
     fn display(&self) -> gdk::Display {
         unsafe { from_glib_none(ffi::gtk_root_get_display(self.as_ref().to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_root_get_focus")]
+    #[doc(alias = "get_focus")]
     fn focus(&self) -> Option<Widget> {
         unsafe { from_glib_none(ffi::gtk_root_get_focus(self.as_ref().to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_root_set_focus")]
     fn set_focus(&self, focus: Option<&impl IsA<Widget>>) {
         unsafe {
             ffi::gtk_root_set_focus(
@@ -50,6 +42,8 @@ impl<O: IsA<Root>> RootExt for O {
         }
     }
 }
+
+impl<O: IsA<Root>> RootExt for O {}
 
 impl fmt::Display for Root {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {

@@ -18,7 +18,7 @@ impl BuilderScope {
     pub const NONE: Option<&'static BuilderScope> = None;
 }
 
-pub trait BuilderScopeExt: 'static {}
+pub trait BuilderScopeExt: IsA<BuilderScope> + 'static {}
 
 impl<O: IsA<BuilderScope>> BuilderScopeExt for O {}
 

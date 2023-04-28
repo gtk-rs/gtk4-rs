@@ -30,38 +30,9 @@ impl Renderer {
     }
 }
 
-pub trait GskRendererExt: 'static {
+pub trait GskRendererExt: IsA<Renderer> + 'static {
     #[doc(alias = "gsk_renderer_get_surface")]
     #[doc(alias = "get_surface")]
-    fn surface(&self) -> Option<gdk::Surface>;
-
-    #[doc(alias = "gsk_renderer_is_realized")]
-    fn is_realized(&self) -> bool;
-
-    #[doc(alias = "gsk_renderer_realize")]
-    fn realize(&self, surface: Option<&gdk::Surface>) -> Result<(), glib::Error>;
-
-    #[doc(alias = "gsk_renderer_render")]
-    fn render(&self, root: impl AsRef<RenderNode>, region: Option<&cairo::Region>);
-
-    #[doc(alias = "gsk_renderer_render_texture")]
-    fn render_texture(
-        &self,
-        root: impl AsRef<RenderNode>,
-        viewport: Option<&graphene::Rect>,
-    ) -> gdk::Texture;
-
-    #[doc(alias = "gsk_renderer_unrealize")]
-    fn unrealize(&self);
-
-    #[doc(alias = "realized")]
-    fn connect_realized_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "surface")]
-    fn connect_surface_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-}
-
-impl<O: IsA<Renderer>> GskRendererExt for O {
     fn surface(&self) -> Option<gdk::Surface> {
         unsafe {
             from_glib_none(ffi::gsk_renderer_get_surface(
@@ -70,6 +41,7 @@ impl<O: IsA<Renderer>> GskRendererExt for O {
         }
     }
 
+    #[doc(alias = "gsk_renderer_is_realized")]
     fn is_realized(&self) -> bool {
         unsafe {
             from_glib(ffi::gsk_renderer_is_realized(
@@ -78,6 +50,7 @@ impl<O: IsA<Renderer>> GskRendererExt for O {
         }
     }
 
+    #[doc(alias = "gsk_renderer_realize")]
     fn realize(&self, surface: Option<&gdk::Surface>) -> Result<(), glib::Error> {
         unsafe {
             let mut error = ptr::null_mut();
@@ -95,6 +68,7 @@ impl<O: IsA<Renderer>> GskRendererExt for O {
         }
     }
 
+    #[doc(alias = "gsk_renderer_render")]
     fn render(&self, root: impl AsRef<RenderNode>, region: Option<&cairo::Region>) {
         unsafe {
             ffi::gsk_renderer_render(
@@ -105,6 +79,7 @@ impl<O: IsA<Renderer>> GskRendererExt for O {
         }
     }
 
+    #[doc(alias = "gsk_renderer_render_texture")]
     fn render_texture(
         &self,
         root: impl AsRef<RenderNode>,
@@ -119,12 +94,14 @@ impl<O: IsA<Renderer>> GskRendererExt for O {
         }
     }
 
+    #[doc(alias = "gsk_renderer_unrealize")]
     fn unrealize(&self) {
         unsafe {
             ffi::gsk_renderer_unrealize(self.as_ref().to_glib_none().0);
         }
     }
 
+    #[doc(alias = "realized")]
     fn connect_realized_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_realized_trampoline<P: IsA<Renderer>, F: Fn(&P) + 'static>(
             this: *mut ffi::GskRenderer,
@@ -147,6 +124,7 @@ impl<O: IsA<Renderer>> GskRendererExt for O {
         }
     }
 
+    #[doc(alias = "surface")]
     fn connect_surface_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_surface_trampoline<P: IsA<Renderer>, F: Fn(&P) + 'static>(
             this: *mut ffi::GskRenderer,
@@ -169,6 +147,8 @@ impl<O: IsA<Renderer>> GskRendererExt for O {
         }
     }
 }
+
+impl<O: IsA<Renderer>> GskRendererExt for O {}
 
 impl fmt::Display for Renderer {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {

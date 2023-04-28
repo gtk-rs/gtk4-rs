@@ -19,12 +19,8 @@ impl DragSurface {
     pub const NONE: Option<&'static DragSurface> = None;
 }
 
-pub trait DragSurfaceExt: 'static {
+pub trait DragSurfaceExt: IsA<DragSurface> + 'static {
     #[doc(alias = "gdk_drag_surface_present")]
-    fn present(&self, width: i32, height: i32) -> bool;
-}
-
-impl<O: IsA<DragSurface>> DragSurfaceExt for O {
     fn present(&self, width: i32, height: i32) -> bool {
         unsafe {
             from_glib(ffi::gdk_drag_surface_present(
@@ -35,6 +31,8 @@ impl<O: IsA<DragSurface>> DragSurfaceExt for O {
         }
     }
 }
+
+impl<O: IsA<DragSurface>> DragSurfaceExt for O {}
 
 impl fmt::Display for DragSurface {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {

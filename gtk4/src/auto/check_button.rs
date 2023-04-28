@@ -328,83 +328,9 @@ impl CheckButtonBuilder {
     }
 }
 
-pub trait CheckButtonExt: 'static {
+pub trait CheckButtonExt: IsA<CheckButton> + 'static {
     #[doc(alias = "gtk_check_button_get_active")]
     #[doc(alias = "get_active")]
-    fn is_active(&self) -> bool;
-
-    #[cfg(feature = "v4_8")]
-    #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
-    #[doc(alias = "gtk_check_button_get_child")]
-    #[doc(alias = "get_child")]
-    fn child(&self) -> Option<Widget>;
-
-    #[doc(alias = "gtk_check_button_get_inconsistent")]
-    #[doc(alias = "get_inconsistent")]
-    fn is_inconsistent(&self) -> bool;
-
-    #[doc(alias = "gtk_check_button_get_label")]
-    #[doc(alias = "get_label")]
-    fn label(&self) -> Option<glib::GString>;
-
-    #[doc(alias = "gtk_check_button_get_use_underline")]
-    #[doc(alias = "get_use_underline")]
-    fn uses_underline(&self) -> bool;
-
-    #[doc(alias = "gtk_check_button_set_active")]
-    fn set_active(&self, setting: bool);
-
-    #[cfg(feature = "v4_8")]
-    #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
-    #[doc(alias = "gtk_check_button_set_child")]
-    fn set_child(&self, child: Option<&impl IsA<Widget>>);
-
-    #[doc(alias = "gtk_check_button_set_group")]
-    fn set_group(&self, group: Option<&impl IsA<CheckButton>>);
-
-    #[doc(alias = "gtk_check_button_set_inconsistent")]
-    fn set_inconsistent(&self, inconsistent: bool);
-
-    #[doc(alias = "gtk_check_button_set_label")]
-    fn set_label(&self, label: Option<&str>);
-
-    #[doc(alias = "gtk_check_button_set_use_underline")]
-    fn set_use_underline(&self, setting: bool);
-
-    #[cfg(feature = "v4_2")]
-    #[cfg_attr(docsrs, doc(cfg(feature = "v4_2")))]
-    #[doc(alias = "activate")]
-    fn connect_activate<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[cfg(feature = "v4_2")]
-    #[cfg_attr(docsrs, doc(cfg(feature = "v4_2")))]
-    fn emit_activate(&self);
-
-    #[doc(alias = "toggled")]
-    fn connect_toggled<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "active")]
-    fn connect_active_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[cfg(feature = "v4_8")]
-    #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
-    #[doc(alias = "child")]
-    fn connect_child_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "group")]
-    fn connect_group_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "inconsistent")]
-    fn connect_inconsistent_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "label")]
-    fn connect_label_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "use-underline")]
-    fn connect_use_underline_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-}
-
-impl<O: IsA<CheckButton>> CheckButtonExt for O {
     fn is_active(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_check_button_get_active(
@@ -415,6 +341,8 @@ impl<O: IsA<CheckButton>> CheckButtonExt for O {
 
     #[cfg(feature = "v4_8")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
+    #[doc(alias = "gtk_check_button_get_child")]
+    #[doc(alias = "get_child")]
     fn child(&self) -> Option<Widget> {
         unsafe {
             from_glib_none(ffi::gtk_check_button_get_child(
@@ -423,6 +351,8 @@ impl<O: IsA<CheckButton>> CheckButtonExt for O {
         }
     }
 
+    #[doc(alias = "gtk_check_button_get_inconsistent")]
+    #[doc(alias = "get_inconsistent")]
     fn is_inconsistent(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_check_button_get_inconsistent(
@@ -431,6 +361,8 @@ impl<O: IsA<CheckButton>> CheckButtonExt for O {
         }
     }
 
+    #[doc(alias = "gtk_check_button_get_label")]
+    #[doc(alias = "get_label")]
     fn label(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::gtk_check_button_get_label(
@@ -439,6 +371,8 @@ impl<O: IsA<CheckButton>> CheckButtonExt for O {
         }
     }
 
+    #[doc(alias = "gtk_check_button_get_use_underline")]
+    #[doc(alias = "get_use_underline")]
     fn uses_underline(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_check_button_get_use_underline(
@@ -447,6 +381,7 @@ impl<O: IsA<CheckButton>> CheckButtonExt for O {
         }
     }
 
+    #[doc(alias = "gtk_check_button_set_active")]
     fn set_active(&self, setting: bool) {
         unsafe {
             ffi::gtk_check_button_set_active(self.as_ref().to_glib_none().0, setting.into_glib());
@@ -455,6 +390,7 @@ impl<O: IsA<CheckButton>> CheckButtonExt for O {
 
     #[cfg(feature = "v4_8")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
+    #[doc(alias = "gtk_check_button_set_child")]
     fn set_child(&self, child: Option<&impl IsA<Widget>>) {
         unsafe {
             ffi::gtk_check_button_set_child(
@@ -464,6 +400,7 @@ impl<O: IsA<CheckButton>> CheckButtonExt for O {
         }
     }
 
+    #[doc(alias = "gtk_check_button_set_group")]
     fn set_group(&self, group: Option<&impl IsA<CheckButton>>) {
         unsafe {
             ffi::gtk_check_button_set_group(
@@ -473,6 +410,7 @@ impl<O: IsA<CheckButton>> CheckButtonExt for O {
         }
     }
 
+    #[doc(alias = "gtk_check_button_set_inconsistent")]
     fn set_inconsistent(&self, inconsistent: bool) {
         unsafe {
             ffi::gtk_check_button_set_inconsistent(
@@ -482,12 +420,14 @@ impl<O: IsA<CheckButton>> CheckButtonExt for O {
         }
     }
 
+    #[doc(alias = "gtk_check_button_set_label")]
     fn set_label(&self, label: Option<&str>) {
         unsafe {
             ffi::gtk_check_button_set_label(self.as_ref().to_glib_none().0, label.to_glib_none().0);
         }
     }
 
+    #[doc(alias = "gtk_check_button_set_use_underline")]
     fn set_use_underline(&self, setting: bool) {
         unsafe {
             ffi::gtk_check_button_set_use_underline(
@@ -499,6 +439,7 @@ impl<O: IsA<CheckButton>> CheckButtonExt for O {
 
     #[cfg(feature = "v4_2")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_2")))]
+    #[doc(alias = "activate")]
     fn connect_activate<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn activate_trampoline<P: IsA<CheckButton>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkCheckButton,
@@ -526,6 +467,7 @@ impl<O: IsA<CheckButton>> CheckButtonExt for O {
         self.emit_by_name::<()>("activate", &[]);
     }
 
+    #[doc(alias = "toggled")]
     fn connect_toggled<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn toggled_trampoline<P: IsA<CheckButton>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkCheckButton,
@@ -547,6 +489,7 @@ impl<O: IsA<CheckButton>> CheckButtonExt for O {
         }
     }
 
+    #[doc(alias = "active")]
     fn connect_active_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_active_trampoline<P: IsA<CheckButton>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkCheckButton,
@@ -571,6 +514,7 @@ impl<O: IsA<CheckButton>> CheckButtonExt for O {
 
     #[cfg(feature = "v4_8")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
+    #[doc(alias = "child")]
     fn connect_child_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_child_trampoline<P: IsA<CheckButton>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkCheckButton,
@@ -593,6 +537,7 @@ impl<O: IsA<CheckButton>> CheckButtonExt for O {
         }
     }
 
+    #[doc(alias = "group")]
     fn connect_group_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_group_trampoline<P: IsA<CheckButton>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkCheckButton,
@@ -615,6 +560,7 @@ impl<O: IsA<CheckButton>> CheckButtonExt for O {
         }
     }
 
+    #[doc(alias = "inconsistent")]
     fn connect_inconsistent_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_inconsistent_trampoline<
             P: IsA<CheckButton>,
@@ -640,6 +586,7 @@ impl<O: IsA<CheckButton>> CheckButtonExt for O {
         }
     }
 
+    #[doc(alias = "label")]
     fn connect_label_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_label_trampoline<P: IsA<CheckButton>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkCheckButton,
@@ -662,6 +609,7 @@ impl<O: IsA<CheckButton>> CheckButtonExt for O {
         }
     }
 
+    #[doc(alias = "use-underline")]
     fn connect_use_underline_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_use_underline_trampoline<
             P: IsA<CheckButton>,
@@ -687,6 +635,8 @@ impl<O: IsA<CheckButton>> CheckButtonExt for O {
         }
     }
 }
+
+impl<O: IsA<CheckButton>> CheckButtonExt for O {}
 
 impl fmt::Display for CheckButton {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {

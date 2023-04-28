@@ -335,33 +335,9 @@ impl ToggleButtonBuilder {
     }
 }
 
-pub trait ToggleButtonExt: 'static {
+pub trait ToggleButtonExt: IsA<ToggleButton> + 'static {
     #[doc(alias = "gtk_toggle_button_get_active")]
     #[doc(alias = "get_active")]
-    fn is_active(&self) -> bool;
-
-    #[doc(alias = "gtk_toggle_button_set_active")]
-    fn set_active(&self, is_active: bool);
-
-    #[doc(alias = "gtk_toggle_button_set_group")]
-    fn set_group(&self, group: Option<&impl IsA<ToggleButton>>);
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_toggle_button_toggled")]
-    fn toggled(&self);
-
-    #[doc(alias = "toggled")]
-    fn connect_toggled<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "active")]
-    fn connect_active_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "group")]
-    fn connect_group_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-}
-
-impl<O: IsA<ToggleButton>> ToggleButtonExt for O {
     fn is_active(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_toggle_button_get_active(
@@ -370,6 +346,7 @@ impl<O: IsA<ToggleButton>> ToggleButtonExt for O {
         }
     }
 
+    #[doc(alias = "gtk_toggle_button_set_active")]
     fn set_active(&self, is_active: bool) {
         unsafe {
             ffi::gtk_toggle_button_set_active(
@@ -379,6 +356,7 @@ impl<O: IsA<ToggleButton>> ToggleButtonExt for O {
         }
     }
 
+    #[doc(alias = "gtk_toggle_button_set_group")]
     fn set_group(&self, group: Option<&impl IsA<ToggleButton>>) {
         unsafe {
             ffi::gtk_toggle_button_set_group(
@@ -388,13 +366,16 @@ impl<O: IsA<ToggleButton>> ToggleButtonExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_toggle_button_toggled")]
     fn toggled(&self) {
         unsafe {
             ffi::gtk_toggle_button_toggled(self.as_ref().to_glib_none().0);
         }
     }
 
+    #[doc(alias = "toggled")]
     fn connect_toggled<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn toggled_trampoline<P: IsA<ToggleButton>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkToggleButton,
@@ -416,6 +397,7 @@ impl<O: IsA<ToggleButton>> ToggleButtonExt for O {
         }
     }
 
+    #[doc(alias = "active")]
     fn connect_active_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_active_trampoline<P: IsA<ToggleButton>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkToggleButton,
@@ -438,6 +420,7 @@ impl<O: IsA<ToggleButton>> ToggleButtonExt for O {
         }
     }
 
+    #[doc(alias = "group")]
     fn connect_group_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_group_trampoline<P: IsA<ToggleButton>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkToggleButton,
@@ -460,6 +443,8 @@ impl<O: IsA<ToggleButton>> ToggleButtonExt for O {
         }
     }
 }
+
+impl<O: IsA<ToggleButton>> ToggleButtonExt for O {}
 
 impl fmt::Display for ToggleButton {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {

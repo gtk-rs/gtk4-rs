@@ -430,437 +430,8 @@ impl TextViewBuilder {
     }
 }
 
-pub trait TextViewExt: 'static {
+pub trait TextViewExt: IsA<TextView> + 'static {
     #[doc(alias = "gtk_text_view_add_child_at_anchor")]
-    fn add_child_at_anchor(&self, child: &impl IsA<Widget>, anchor: &impl IsA<TextChildAnchor>);
-
-    #[doc(alias = "gtk_text_view_add_overlay")]
-    fn add_overlay(&self, child: &impl IsA<Widget>, xpos: i32, ypos: i32);
-
-    #[doc(alias = "gtk_text_view_backward_display_line")]
-    fn backward_display_line(&self, iter: &mut TextIter) -> bool;
-
-    #[doc(alias = "gtk_text_view_backward_display_line_start")]
-    fn backward_display_line_start(&self, iter: &mut TextIter) -> bool;
-
-    #[doc(alias = "gtk_text_view_buffer_to_window_coords")]
-    fn buffer_to_window_coords(
-        &self,
-        win: TextWindowType,
-        buffer_x: i32,
-        buffer_y: i32,
-    ) -> (i32, i32);
-
-    #[doc(alias = "gtk_text_view_forward_display_line")]
-    fn forward_display_line(&self, iter: &mut TextIter) -> bool;
-
-    #[doc(alias = "gtk_text_view_forward_display_line_end")]
-    fn forward_display_line_end(&self, iter: &mut TextIter) -> bool;
-
-    #[doc(alias = "gtk_text_view_get_accepts_tab")]
-    #[doc(alias = "get_accepts_tab")]
-    fn accepts_tab(&self) -> bool;
-
-    #[doc(alias = "gtk_text_view_get_bottom_margin")]
-    #[doc(alias = "get_bottom_margin")]
-    fn bottom_margin(&self) -> i32;
-
-    #[doc(alias = "gtk_text_view_get_buffer")]
-    #[doc(alias = "get_buffer")]
-    fn buffer(&self) -> TextBuffer;
-
-    #[doc(alias = "gtk_text_view_get_cursor_locations")]
-    #[doc(alias = "get_cursor_locations")]
-    fn cursor_locations(&self, iter: Option<&TextIter>) -> (gdk::Rectangle, gdk::Rectangle);
-
-    #[doc(alias = "gtk_text_view_get_cursor_visible")]
-    #[doc(alias = "get_cursor_visible")]
-    fn is_cursor_visible(&self) -> bool;
-
-    #[doc(alias = "gtk_text_view_get_editable")]
-    #[doc(alias = "get_editable")]
-    fn is_editable(&self) -> bool;
-
-    #[doc(alias = "gtk_text_view_get_extra_menu")]
-    #[doc(alias = "get_extra_menu")]
-    fn extra_menu(&self) -> gio::MenuModel;
-
-    #[doc(alias = "gtk_text_view_get_gutter")]
-    #[doc(alias = "get_gutter")]
-    fn gutter(&self, win: TextWindowType) -> Option<Widget>;
-
-    #[doc(alias = "gtk_text_view_get_indent")]
-    #[doc(alias = "get_indent")]
-    fn indent(&self) -> i32;
-
-    #[doc(alias = "gtk_text_view_get_input_hints")]
-    #[doc(alias = "get_input_hints")]
-    fn input_hints(&self) -> InputHints;
-
-    #[doc(alias = "gtk_text_view_get_input_purpose")]
-    #[doc(alias = "get_input_purpose")]
-    fn input_purpose(&self) -> InputPurpose;
-
-    #[doc(alias = "gtk_text_view_get_iter_at_location")]
-    #[doc(alias = "get_iter_at_location")]
-    fn iter_at_location(&self, x: i32, y: i32) -> Option<TextIter>;
-
-    #[doc(alias = "gtk_text_view_get_iter_at_position")]
-    #[doc(alias = "get_iter_at_position")]
-    fn iter_at_position(&self, x: i32, y: i32) -> Option<(TextIter, i32)>;
-
-    #[doc(alias = "gtk_text_view_get_iter_location")]
-    #[doc(alias = "get_iter_location")]
-    fn iter_location(&self, iter: &TextIter) -> gdk::Rectangle;
-
-    #[doc(alias = "gtk_text_view_get_justification")]
-    #[doc(alias = "get_justification")]
-    fn justification(&self) -> Justification;
-
-    #[doc(alias = "gtk_text_view_get_left_margin")]
-    #[doc(alias = "get_left_margin")]
-    fn left_margin(&self) -> i32;
-
-    #[doc(alias = "gtk_text_view_get_line_at_y")]
-    #[doc(alias = "get_line_at_y")]
-    fn line_at_y(&self, y: i32) -> (TextIter, i32);
-
-    #[doc(alias = "gtk_text_view_get_line_yrange")]
-    #[doc(alias = "get_line_yrange")]
-    fn line_yrange(&self, iter: &TextIter) -> (i32, i32);
-
-    #[cfg(feature = "v4_4")]
-    #[cfg_attr(docsrs, doc(cfg(feature = "v4_4")))]
-    #[doc(alias = "gtk_text_view_get_ltr_context")]
-    #[doc(alias = "get_ltr_context")]
-    fn ltr_context(&self) -> pango::Context;
-
-    #[doc(alias = "gtk_text_view_get_monospace")]
-    #[doc(alias = "get_monospace")]
-    fn is_monospace(&self) -> bool;
-
-    #[doc(alias = "gtk_text_view_get_overwrite")]
-    #[doc(alias = "get_overwrite")]
-    fn overwrites(&self) -> bool;
-
-    #[doc(alias = "gtk_text_view_get_pixels_above_lines")]
-    #[doc(alias = "get_pixels_above_lines")]
-    fn pixels_above_lines(&self) -> i32;
-
-    #[doc(alias = "gtk_text_view_get_pixels_below_lines")]
-    #[doc(alias = "get_pixels_below_lines")]
-    fn pixels_below_lines(&self) -> i32;
-
-    #[doc(alias = "gtk_text_view_get_pixels_inside_wrap")]
-    #[doc(alias = "get_pixels_inside_wrap")]
-    fn pixels_inside_wrap(&self) -> i32;
-
-    #[doc(alias = "gtk_text_view_get_right_margin")]
-    #[doc(alias = "get_right_margin")]
-    fn right_margin(&self) -> i32;
-
-    #[cfg(feature = "v4_4")]
-    #[cfg_attr(docsrs, doc(cfg(feature = "v4_4")))]
-    #[doc(alias = "gtk_text_view_get_rtl_context")]
-    #[doc(alias = "get_rtl_context")]
-    fn rtl_context(&self) -> pango::Context;
-
-    #[doc(alias = "gtk_text_view_get_tabs")]
-    #[doc(alias = "get_tabs")]
-    fn tabs(&self) -> Option<pango::TabArray>;
-
-    #[doc(alias = "gtk_text_view_get_top_margin")]
-    #[doc(alias = "get_top_margin")]
-    fn top_margin(&self) -> i32;
-
-    #[doc(alias = "gtk_text_view_get_visible_rect")]
-    #[doc(alias = "get_visible_rect")]
-    fn visible_rect(&self) -> gdk::Rectangle;
-
-    #[doc(alias = "gtk_text_view_get_wrap_mode")]
-    #[doc(alias = "get_wrap_mode")]
-    fn wrap_mode(&self) -> WrapMode;
-
-    #[doc(alias = "gtk_text_view_im_context_filter_keypress")]
-    fn im_context_filter_keypress(&self, event: impl AsRef<gdk::Event>) -> bool;
-
-    #[doc(alias = "gtk_text_view_move_mark_onscreen")]
-    fn move_mark_onscreen(&self, mark: &impl IsA<TextMark>) -> bool;
-
-    #[doc(alias = "gtk_text_view_move_overlay")]
-    fn move_overlay(&self, child: &impl IsA<Widget>, xpos: i32, ypos: i32);
-
-    #[doc(alias = "gtk_text_view_move_visually")]
-    fn move_visually(&self, iter: &mut TextIter, count: i32) -> bool;
-
-    #[doc(alias = "gtk_text_view_place_cursor_onscreen")]
-    fn place_cursor_onscreen(&self) -> bool;
-
-    #[doc(alias = "gtk_text_view_remove")]
-    fn remove(&self, child: &impl IsA<Widget>);
-
-    #[doc(alias = "gtk_text_view_reset_cursor_blink")]
-    fn reset_cursor_blink(&self);
-
-    #[doc(alias = "gtk_text_view_reset_im_context")]
-    fn reset_im_context(&self);
-
-    #[doc(alias = "gtk_text_view_scroll_mark_onscreen")]
-    fn scroll_mark_onscreen(&self, mark: &impl IsA<TextMark>);
-
-    #[doc(alias = "gtk_text_view_scroll_to_iter")]
-    fn scroll_to_iter(
-        &self,
-        iter: &mut TextIter,
-        within_margin: f64,
-        use_align: bool,
-        xalign: f64,
-        yalign: f64,
-    ) -> bool;
-
-    #[doc(alias = "gtk_text_view_scroll_to_mark")]
-    fn scroll_to_mark(
-        &self,
-        mark: &impl IsA<TextMark>,
-        within_margin: f64,
-        use_align: bool,
-        xalign: f64,
-        yalign: f64,
-    );
-
-    #[doc(alias = "gtk_text_view_set_accepts_tab")]
-    fn set_accepts_tab(&self, accepts_tab: bool);
-
-    #[doc(alias = "gtk_text_view_set_bottom_margin")]
-    fn set_bottom_margin(&self, bottom_margin: i32);
-
-    #[doc(alias = "gtk_text_view_set_buffer")]
-    fn set_buffer(&self, buffer: Option<&impl IsA<TextBuffer>>);
-
-    #[doc(alias = "gtk_text_view_set_cursor_visible")]
-    fn set_cursor_visible(&self, setting: bool);
-
-    #[doc(alias = "gtk_text_view_set_editable")]
-    fn set_editable(&self, setting: bool);
-
-    #[doc(alias = "gtk_text_view_set_extra_menu")]
-    fn set_extra_menu(&self, model: Option<&impl IsA<gio::MenuModel>>);
-
-    #[doc(alias = "gtk_text_view_set_gutter")]
-    fn set_gutter(&self, win: TextWindowType, widget: Option<&impl IsA<Widget>>);
-
-    #[doc(alias = "gtk_text_view_set_indent")]
-    fn set_indent(&self, indent: i32);
-
-    #[doc(alias = "gtk_text_view_set_input_hints")]
-    fn set_input_hints(&self, hints: InputHints);
-
-    #[doc(alias = "gtk_text_view_set_input_purpose")]
-    fn set_input_purpose(&self, purpose: InputPurpose);
-
-    #[doc(alias = "gtk_text_view_set_justification")]
-    fn set_justification(&self, justification: Justification);
-
-    #[doc(alias = "gtk_text_view_set_left_margin")]
-    fn set_left_margin(&self, left_margin: i32);
-
-    #[doc(alias = "gtk_text_view_set_monospace")]
-    fn set_monospace(&self, monospace: bool);
-
-    #[doc(alias = "gtk_text_view_set_overwrite")]
-    fn set_overwrite(&self, overwrite: bool);
-
-    #[doc(alias = "gtk_text_view_set_pixels_above_lines")]
-    fn set_pixels_above_lines(&self, pixels_above_lines: i32);
-
-    #[doc(alias = "gtk_text_view_set_pixels_below_lines")]
-    fn set_pixels_below_lines(&self, pixels_below_lines: i32);
-
-    #[doc(alias = "gtk_text_view_set_pixels_inside_wrap")]
-    fn set_pixels_inside_wrap(&self, pixels_inside_wrap: i32);
-
-    #[doc(alias = "gtk_text_view_set_right_margin")]
-    fn set_right_margin(&self, right_margin: i32);
-
-    #[doc(alias = "gtk_text_view_set_tabs")]
-    fn set_tabs(&self, tabs: &pango::TabArray);
-
-    #[doc(alias = "gtk_text_view_set_top_margin")]
-    fn set_top_margin(&self, top_margin: i32);
-
-    #[doc(alias = "gtk_text_view_set_wrap_mode")]
-    fn set_wrap_mode(&self, wrap_mode: WrapMode);
-
-    #[doc(alias = "gtk_text_view_starts_display_line")]
-    fn starts_display_line(&self, iter: &TextIter) -> bool;
-
-    #[doc(alias = "gtk_text_view_window_to_buffer_coords")]
-    fn window_to_buffer_coords(
-        &self,
-        win: TextWindowType,
-        window_x: i32,
-        window_y: i32,
-    ) -> (i32, i32);
-
-    #[doc(alias = "im-module")]
-    fn im_module(&self) -> Option<glib::GString>;
-
-    #[doc(alias = "im-module")]
-    fn set_im_module(&self, im_module: Option<&str>);
-
-    #[doc(alias = "backspace")]
-    fn connect_backspace<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    fn emit_backspace(&self);
-
-    #[doc(alias = "copy-clipboard")]
-    fn connect_copy_clipboard<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    fn emit_copy_clipboard(&self);
-
-    #[doc(alias = "cut-clipboard")]
-    fn connect_cut_clipboard<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    fn emit_cut_clipboard(&self);
-
-    #[doc(alias = "delete-from-cursor")]
-    fn connect_delete_from_cursor<F: Fn(&Self, DeleteType, i32) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
-
-    fn emit_delete_from_cursor(&self, type_: DeleteType, count: i32);
-
-    #[doc(alias = "extend-selection")]
-    fn connect_extend_selection<
-        F: Fn(&Self, TextExtendSelection, &TextIter, &TextIter, &TextIter) -> glib::signal::Inhibit
-            + 'static,
-    >(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
-
-    #[doc(alias = "insert-at-cursor")]
-    fn connect_insert_at_cursor<F: Fn(&Self, &str) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    fn emit_insert_at_cursor(&self, string: &str);
-
-    #[doc(alias = "insert-emoji")]
-    fn connect_insert_emoji<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    fn emit_insert_emoji(&self);
-
-    #[doc(alias = "move-cursor")]
-    fn connect_move_cursor<F: Fn(&Self, MovementStep, i32, bool) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
-
-    fn emit_move_cursor(&self, step: MovementStep, count: i32, extend_selection: bool);
-
-    #[doc(alias = "move-viewport")]
-    fn connect_move_viewport<F: Fn(&Self, ScrollStep, i32) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
-
-    fn emit_move_viewport(&self, step: ScrollStep, count: i32);
-
-    #[doc(alias = "paste-clipboard")]
-    fn connect_paste_clipboard<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    fn emit_paste_clipboard(&self);
-
-    #[doc(alias = "preedit-changed")]
-    fn connect_preedit_changed<F: Fn(&Self, &str) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    fn emit_preedit_changed(&self, preedit: &str);
-
-    #[doc(alias = "select-all")]
-    fn connect_select_all<F: Fn(&Self, bool) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    fn emit_select_all(&self, select: bool);
-
-    #[doc(alias = "set-anchor")]
-    fn connect_set_anchor<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    fn emit_set_anchor(&self);
-
-    #[doc(alias = "toggle-cursor-visible")]
-    fn connect_toggle_cursor_visible<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    fn emit_toggle_cursor_visible(&self);
-
-    #[doc(alias = "toggle-overwrite")]
-    fn connect_toggle_overwrite<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    fn emit_toggle_overwrite(&self);
-
-    #[doc(alias = "accepts-tab")]
-    fn connect_accepts_tab_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "bottom-margin")]
-    fn connect_bottom_margin_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "buffer")]
-    fn connect_buffer_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "cursor-visible")]
-    fn connect_cursor_visible_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "editable")]
-    fn connect_editable_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "extra-menu")]
-    fn connect_extra_menu_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "im-module")]
-    fn connect_im_module_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "indent")]
-    fn connect_indent_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "input-hints")]
-    fn connect_input_hints_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "input-purpose")]
-    fn connect_input_purpose_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "justification")]
-    fn connect_justification_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "left-margin")]
-    fn connect_left_margin_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "monospace")]
-    fn connect_monospace_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "overwrite")]
-    fn connect_overwrite_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "pixels-above-lines")]
-    fn connect_pixels_above_lines_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "pixels-below-lines")]
-    fn connect_pixels_below_lines_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "pixels-inside-wrap")]
-    fn connect_pixels_inside_wrap_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "right-margin")]
-    fn connect_right_margin_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "tabs")]
-    fn connect_tabs_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "top-margin")]
-    fn connect_top_margin_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "wrap-mode")]
-    fn connect_wrap_mode_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-}
-
-impl<O: IsA<TextView>> TextViewExt for O {
     fn add_child_at_anchor(&self, child: &impl IsA<Widget>, anchor: &impl IsA<TextChildAnchor>) {
         unsafe {
             ffi::gtk_text_view_add_child_at_anchor(
@@ -871,6 +442,7 @@ impl<O: IsA<TextView>> TextViewExt for O {
         }
     }
 
+    #[doc(alias = "gtk_text_view_add_overlay")]
     fn add_overlay(&self, child: &impl IsA<Widget>, xpos: i32, ypos: i32) {
         unsafe {
             ffi::gtk_text_view_add_overlay(
@@ -882,6 +454,7 @@ impl<O: IsA<TextView>> TextViewExt for O {
         }
     }
 
+    #[doc(alias = "gtk_text_view_backward_display_line")]
     fn backward_display_line(&self, iter: &mut TextIter) -> bool {
         unsafe {
             from_glib(ffi::gtk_text_view_backward_display_line(
@@ -891,6 +464,7 @@ impl<O: IsA<TextView>> TextViewExt for O {
         }
     }
 
+    #[doc(alias = "gtk_text_view_backward_display_line_start")]
     fn backward_display_line_start(&self, iter: &mut TextIter) -> bool {
         unsafe {
             from_glib(ffi::gtk_text_view_backward_display_line_start(
@@ -900,6 +474,7 @@ impl<O: IsA<TextView>> TextViewExt for O {
         }
     }
 
+    #[doc(alias = "gtk_text_view_buffer_to_window_coords")]
     fn buffer_to_window_coords(
         &self,
         win: TextWindowType,
@@ -921,6 +496,7 @@ impl<O: IsA<TextView>> TextViewExt for O {
         }
     }
 
+    #[doc(alias = "gtk_text_view_forward_display_line")]
     fn forward_display_line(&self, iter: &mut TextIter) -> bool {
         unsafe {
             from_glib(ffi::gtk_text_view_forward_display_line(
@@ -930,6 +506,7 @@ impl<O: IsA<TextView>> TextViewExt for O {
         }
     }
 
+    #[doc(alias = "gtk_text_view_forward_display_line_end")]
     fn forward_display_line_end(&self, iter: &mut TextIter) -> bool {
         unsafe {
             from_glib(ffi::gtk_text_view_forward_display_line_end(
@@ -939,6 +516,8 @@ impl<O: IsA<TextView>> TextViewExt for O {
         }
     }
 
+    #[doc(alias = "gtk_text_view_get_accepts_tab")]
+    #[doc(alias = "get_accepts_tab")]
     fn accepts_tab(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_text_view_get_accepts_tab(
@@ -947,10 +526,14 @@ impl<O: IsA<TextView>> TextViewExt for O {
         }
     }
 
+    #[doc(alias = "gtk_text_view_get_bottom_margin")]
+    #[doc(alias = "get_bottom_margin")]
     fn bottom_margin(&self) -> i32 {
         unsafe { ffi::gtk_text_view_get_bottom_margin(self.as_ref().to_glib_none().0) }
     }
 
+    #[doc(alias = "gtk_text_view_get_buffer")]
+    #[doc(alias = "get_buffer")]
     fn buffer(&self) -> TextBuffer {
         unsafe {
             from_glib_none(ffi::gtk_text_view_get_buffer(
@@ -959,6 +542,8 @@ impl<O: IsA<TextView>> TextViewExt for O {
         }
     }
 
+    #[doc(alias = "gtk_text_view_get_cursor_locations")]
+    #[doc(alias = "get_cursor_locations")]
     fn cursor_locations(&self, iter: Option<&TextIter>) -> (gdk::Rectangle, gdk::Rectangle) {
         unsafe {
             let mut strong = gdk::Rectangle::uninitialized();
@@ -973,6 +558,8 @@ impl<O: IsA<TextView>> TextViewExt for O {
         }
     }
 
+    #[doc(alias = "gtk_text_view_get_cursor_visible")]
+    #[doc(alias = "get_cursor_visible")]
     fn is_cursor_visible(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_text_view_get_cursor_visible(
@@ -981,6 +568,8 @@ impl<O: IsA<TextView>> TextViewExt for O {
         }
     }
 
+    #[doc(alias = "gtk_text_view_get_editable")]
+    #[doc(alias = "get_editable")]
     fn is_editable(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_text_view_get_editable(
@@ -989,6 +578,8 @@ impl<O: IsA<TextView>> TextViewExt for O {
         }
     }
 
+    #[doc(alias = "gtk_text_view_get_extra_menu")]
+    #[doc(alias = "get_extra_menu")]
     fn extra_menu(&self) -> gio::MenuModel {
         unsafe {
             from_glib_none(ffi::gtk_text_view_get_extra_menu(
@@ -997,6 +588,8 @@ impl<O: IsA<TextView>> TextViewExt for O {
         }
     }
 
+    #[doc(alias = "gtk_text_view_get_gutter")]
+    #[doc(alias = "get_gutter")]
     fn gutter(&self, win: TextWindowType) -> Option<Widget> {
         unsafe {
             from_glib_none(ffi::gtk_text_view_get_gutter(
@@ -1006,10 +599,14 @@ impl<O: IsA<TextView>> TextViewExt for O {
         }
     }
 
+    #[doc(alias = "gtk_text_view_get_indent")]
+    #[doc(alias = "get_indent")]
     fn indent(&self) -> i32 {
         unsafe { ffi::gtk_text_view_get_indent(self.as_ref().to_glib_none().0) }
     }
 
+    #[doc(alias = "gtk_text_view_get_input_hints")]
+    #[doc(alias = "get_input_hints")]
     fn input_hints(&self) -> InputHints {
         unsafe {
             from_glib(ffi::gtk_text_view_get_input_hints(
@@ -1018,6 +615,8 @@ impl<O: IsA<TextView>> TextViewExt for O {
         }
     }
 
+    #[doc(alias = "gtk_text_view_get_input_purpose")]
+    #[doc(alias = "get_input_purpose")]
     fn input_purpose(&self) -> InputPurpose {
         unsafe {
             from_glib(ffi::gtk_text_view_get_input_purpose(
@@ -1026,6 +625,8 @@ impl<O: IsA<TextView>> TextViewExt for O {
         }
     }
 
+    #[doc(alias = "gtk_text_view_get_iter_at_location")]
+    #[doc(alias = "get_iter_at_location")]
     fn iter_at_location(&self, x: i32, y: i32) -> Option<TextIter> {
         unsafe {
             let mut iter = TextIter::uninitialized();
@@ -1043,6 +644,8 @@ impl<O: IsA<TextView>> TextViewExt for O {
         }
     }
 
+    #[doc(alias = "gtk_text_view_get_iter_at_position")]
+    #[doc(alias = "get_iter_at_position")]
     fn iter_at_position(&self, x: i32, y: i32) -> Option<(TextIter, i32)> {
         unsafe {
             let mut iter = TextIter::uninitialized();
@@ -1062,6 +665,8 @@ impl<O: IsA<TextView>> TextViewExt for O {
         }
     }
 
+    #[doc(alias = "gtk_text_view_get_iter_location")]
+    #[doc(alias = "get_iter_location")]
     fn iter_location(&self, iter: &TextIter) -> gdk::Rectangle {
         unsafe {
             let mut location = gdk::Rectangle::uninitialized();
@@ -1074,6 +679,8 @@ impl<O: IsA<TextView>> TextViewExt for O {
         }
     }
 
+    #[doc(alias = "gtk_text_view_get_justification")]
+    #[doc(alias = "get_justification")]
     fn justification(&self) -> Justification {
         unsafe {
             from_glib(ffi::gtk_text_view_get_justification(
@@ -1082,10 +689,14 @@ impl<O: IsA<TextView>> TextViewExt for O {
         }
     }
 
+    #[doc(alias = "gtk_text_view_get_left_margin")]
+    #[doc(alias = "get_left_margin")]
     fn left_margin(&self) -> i32 {
         unsafe { ffi::gtk_text_view_get_left_margin(self.as_ref().to_glib_none().0) }
     }
 
+    #[doc(alias = "gtk_text_view_get_line_at_y")]
+    #[doc(alias = "get_line_at_y")]
     fn line_at_y(&self, y: i32) -> (TextIter, i32) {
         unsafe {
             let mut target_iter = TextIter::uninitialized();
@@ -1100,6 +711,8 @@ impl<O: IsA<TextView>> TextViewExt for O {
         }
     }
 
+    #[doc(alias = "gtk_text_view_get_line_yrange")]
+    #[doc(alias = "get_line_yrange")]
     fn line_yrange(&self, iter: &TextIter) -> (i32, i32) {
         unsafe {
             let mut y = mem::MaybeUninit::uninit();
@@ -1116,6 +729,8 @@ impl<O: IsA<TextView>> TextViewExt for O {
 
     #[cfg(feature = "v4_4")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_4")))]
+    #[doc(alias = "gtk_text_view_get_ltr_context")]
+    #[doc(alias = "get_ltr_context")]
     fn ltr_context(&self) -> pango::Context {
         unsafe {
             from_glib_none(ffi::gtk_text_view_get_ltr_context(
@@ -1124,6 +739,8 @@ impl<O: IsA<TextView>> TextViewExt for O {
         }
     }
 
+    #[doc(alias = "gtk_text_view_get_monospace")]
+    #[doc(alias = "get_monospace")]
     fn is_monospace(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_text_view_get_monospace(
@@ -1132,6 +749,8 @@ impl<O: IsA<TextView>> TextViewExt for O {
         }
     }
 
+    #[doc(alias = "gtk_text_view_get_overwrite")]
+    #[doc(alias = "get_overwrite")]
     fn overwrites(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_text_view_get_overwrite(
@@ -1140,24 +759,34 @@ impl<O: IsA<TextView>> TextViewExt for O {
         }
     }
 
+    #[doc(alias = "gtk_text_view_get_pixels_above_lines")]
+    #[doc(alias = "get_pixels_above_lines")]
     fn pixels_above_lines(&self) -> i32 {
         unsafe { ffi::gtk_text_view_get_pixels_above_lines(self.as_ref().to_glib_none().0) }
     }
 
+    #[doc(alias = "gtk_text_view_get_pixels_below_lines")]
+    #[doc(alias = "get_pixels_below_lines")]
     fn pixels_below_lines(&self) -> i32 {
         unsafe { ffi::gtk_text_view_get_pixels_below_lines(self.as_ref().to_glib_none().0) }
     }
 
+    #[doc(alias = "gtk_text_view_get_pixels_inside_wrap")]
+    #[doc(alias = "get_pixels_inside_wrap")]
     fn pixels_inside_wrap(&self) -> i32 {
         unsafe { ffi::gtk_text_view_get_pixels_inside_wrap(self.as_ref().to_glib_none().0) }
     }
 
+    #[doc(alias = "gtk_text_view_get_right_margin")]
+    #[doc(alias = "get_right_margin")]
     fn right_margin(&self) -> i32 {
         unsafe { ffi::gtk_text_view_get_right_margin(self.as_ref().to_glib_none().0) }
     }
 
     #[cfg(feature = "v4_4")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_4")))]
+    #[doc(alias = "gtk_text_view_get_rtl_context")]
+    #[doc(alias = "get_rtl_context")]
     fn rtl_context(&self) -> pango::Context {
         unsafe {
             from_glib_none(ffi::gtk_text_view_get_rtl_context(
@@ -1166,14 +795,20 @@ impl<O: IsA<TextView>> TextViewExt for O {
         }
     }
 
+    #[doc(alias = "gtk_text_view_get_tabs")]
+    #[doc(alias = "get_tabs")]
     fn tabs(&self) -> Option<pango::TabArray> {
         unsafe { from_glib_full(ffi::gtk_text_view_get_tabs(self.as_ref().to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_text_view_get_top_margin")]
+    #[doc(alias = "get_top_margin")]
     fn top_margin(&self) -> i32 {
         unsafe { ffi::gtk_text_view_get_top_margin(self.as_ref().to_glib_none().0) }
     }
 
+    #[doc(alias = "gtk_text_view_get_visible_rect")]
+    #[doc(alias = "get_visible_rect")]
     fn visible_rect(&self) -> gdk::Rectangle {
         unsafe {
             let mut visible_rect = gdk::Rectangle::uninitialized();
@@ -1185,6 +820,8 @@ impl<O: IsA<TextView>> TextViewExt for O {
         }
     }
 
+    #[doc(alias = "gtk_text_view_get_wrap_mode")]
+    #[doc(alias = "get_wrap_mode")]
     fn wrap_mode(&self) -> WrapMode {
         unsafe {
             from_glib(ffi::gtk_text_view_get_wrap_mode(
@@ -1193,6 +830,7 @@ impl<O: IsA<TextView>> TextViewExt for O {
         }
     }
 
+    #[doc(alias = "gtk_text_view_im_context_filter_keypress")]
     fn im_context_filter_keypress(&self, event: impl AsRef<gdk::Event>) -> bool {
         unsafe {
             from_glib(ffi::gtk_text_view_im_context_filter_keypress(
@@ -1202,6 +840,7 @@ impl<O: IsA<TextView>> TextViewExt for O {
         }
     }
 
+    #[doc(alias = "gtk_text_view_move_mark_onscreen")]
     fn move_mark_onscreen(&self, mark: &impl IsA<TextMark>) -> bool {
         unsafe {
             from_glib(ffi::gtk_text_view_move_mark_onscreen(
@@ -1211,6 +850,7 @@ impl<O: IsA<TextView>> TextViewExt for O {
         }
     }
 
+    #[doc(alias = "gtk_text_view_move_overlay")]
     fn move_overlay(&self, child: &impl IsA<Widget>, xpos: i32, ypos: i32) {
         unsafe {
             ffi::gtk_text_view_move_overlay(
@@ -1222,6 +862,7 @@ impl<O: IsA<TextView>> TextViewExt for O {
         }
     }
 
+    #[doc(alias = "gtk_text_view_move_visually")]
     fn move_visually(&self, iter: &mut TextIter, count: i32) -> bool {
         unsafe {
             from_glib(ffi::gtk_text_view_move_visually(
@@ -1232,6 +873,7 @@ impl<O: IsA<TextView>> TextViewExt for O {
         }
     }
 
+    #[doc(alias = "gtk_text_view_place_cursor_onscreen")]
     fn place_cursor_onscreen(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_text_view_place_cursor_onscreen(
@@ -1240,6 +882,7 @@ impl<O: IsA<TextView>> TextViewExt for O {
         }
     }
 
+    #[doc(alias = "gtk_text_view_remove")]
     fn remove(&self, child: &impl IsA<Widget>) {
         unsafe {
             ffi::gtk_text_view_remove(
@@ -1249,18 +892,21 @@ impl<O: IsA<TextView>> TextViewExt for O {
         }
     }
 
+    #[doc(alias = "gtk_text_view_reset_cursor_blink")]
     fn reset_cursor_blink(&self) {
         unsafe {
             ffi::gtk_text_view_reset_cursor_blink(self.as_ref().to_glib_none().0);
         }
     }
 
+    #[doc(alias = "gtk_text_view_reset_im_context")]
     fn reset_im_context(&self) {
         unsafe {
             ffi::gtk_text_view_reset_im_context(self.as_ref().to_glib_none().0);
         }
     }
 
+    #[doc(alias = "gtk_text_view_scroll_mark_onscreen")]
     fn scroll_mark_onscreen(&self, mark: &impl IsA<TextMark>) {
         unsafe {
             ffi::gtk_text_view_scroll_mark_onscreen(
@@ -1270,6 +916,7 @@ impl<O: IsA<TextView>> TextViewExt for O {
         }
     }
 
+    #[doc(alias = "gtk_text_view_scroll_to_iter")]
     fn scroll_to_iter(
         &self,
         iter: &mut TextIter,
@@ -1290,6 +937,7 @@ impl<O: IsA<TextView>> TextViewExt for O {
         }
     }
 
+    #[doc(alias = "gtk_text_view_scroll_to_mark")]
     fn scroll_to_mark(
         &self,
         mark: &impl IsA<TextMark>,
@@ -1310,6 +958,7 @@ impl<O: IsA<TextView>> TextViewExt for O {
         }
     }
 
+    #[doc(alias = "gtk_text_view_set_accepts_tab")]
     fn set_accepts_tab(&self, accepts_tab: bool) {
         unsafe {
             ffi::gtk_text_view_set_accepts_tab(
@@ -1319,12 +968,14 @@ impl<O: IsA<TextView>> TextViewExt for O {
         }
     }
 
+    #[doc(alias = "gtk_text_view_set_bottom_margin")]
     fn set_bottom_margin(&self, bottom_margin: i32) {
         unsafe {
             ffi::gtk_text_view_set_bottom_margin(self.as_ref().to_glib_none().0, bottom_margin);
         }
     }
 
+    #[doc(alias = "gtk_text_view_set_buffer")]
     fn set_buffer(&self, buffer: Option<&impl IsA<TextBuffer>>) {
         unsafe {
             ffi::gtk_text_view_set_buffer(
@@ -1334,6 +985,7 @@ impl<O: IsA<TextView>> TextViewExt for O {
         }
     }
 
+    #[doc(alias = "gtk_text_view_set_cursor_visible")]
     fn set_cursor_visible(&self, setting: bool) {
         unsafe {
             ffi::gtk_text_view_set_cursor_visible(
@@ -1343,12 +995,14 @@ impl<O: IsA<TextView>> TextViewExt for O {
         }
     }
 
+    #[doc(alias = "gtk_text_view_set_editable")]
     fn set_editable(&self, setting: bool) {
         unsafe {
             ffi::gtk_text_view_set_editable(self.as_ref().to_glib_none().0, setting.into_glib());
         }
     }
 
+    #[doc(alias = "gtk_text_view_set_extra_menu")]
     fn set_extra_menu(&self, model: Option<&impl IsA<gio::MenuModel>>) {
         unsafe {
             ffi::gtk_text_view_set_extra_menu(
@@ -1358,6 +1012,7 @@ impl<O: IsA<TextView>> TextViewExt for O {
         }
     }
 
+    #[doc(alias = "gtk_text_view_set_gutter")]
     fn set_gutter(&self, win: TextWindowType, widget: Option<&impl IsA<Widget>>) {
         unsafe {
             ffi::gtk_text_view_set_gutter(
@@ -1368,18 +1023,21 @@ impl<O: IsA<TextView>> TextViewExt for O {
         }
     }
 
+    #[doc(alias = "gtk_text_view_set_indent")]
     fn set_indent(&self, indent: i32) {
         unsafe {
             ffi::gtk_text_view_set_indent(self.as_ref().to_glib_none().0, indent);
         }
     }
 
+    #[doc(alias = "gtk_text_view_set_input_hints")]
     fn set_input_hints(&self, hints: InputHints) {
         unsafe {
             ffi::gtk_text_view_set_input_hints(self.as_ref().to_glib_none().0, hints.into_glib());
         }
     }
 
+    #[doc(alias = "gtk_text_view_set_input_purpose")]
     fn set_input_purpose(&self, purpose: InputPurpose) {
         unsafe {
             ffi::gtk_text_view_set_input_purpose(
@@ -1389,6 +1047,7 @@ impl<O: IsA<TextView>> TextViewExt for O {
         }
     }
 
+    #[doc(alias = "gtk_text_view_set_justification")]
     fn set_justification(&self, justification: Justification) {
         unsafe {
             ffi::gtk_text_view_set_justification(
@@ -1398,24 +1057,28 @@ impl<O: IsA<TextView>> TextViewExt for O {
         }
     }
 
+    #[doc(alias = "gtk_text_view_set_left_margin")]
     fn set_left_margin(&self, left_margin: i32) {
         unsafe {
             ffi::gtk_text_view_set_left_margin(self.as_ref().to_glib_none().0, left_margin);
         }
     }
 
+    #[doc(alias = "gtk_text_view_set_monospace")]
     fn set_monospace(&self, monospace: bool) {
         unsafe {
             ffi::gtk_text_view_set_monospace(self.as_ref().to_glib_none().0, monospace.into_glib());
         }
     }
 
+    #[doc(alias = "gtk_text_view_set_overwrite")]
     fn set_overwrite(&self, overwrite: bool) {
         unsafe {
             ffi::gtk_text_view_set_overwrite(self.as_ref().to_glib_none().0, overwrite.into_glib());
         }
     }
 
+    #[doc(alias = "gtk_text_view_set_pixels_above_lines")]
     fn set_pixels_above_lines(&self, pixels_above_lines: i32) {
         unsafe {
             ffi::gtk_text_view_set_pixels_above_lines(
@@ -1425,6 +1088,7 @@ impl<O: IsA<TextView>> TextViewExt for O {
         }
     }
 
+    #[doc(alias = "gtk_text_view_set_pixels_below_lines")]
     fn set_pixels_below_lines(&self, pixels_below_lines: i32) {
         unsafe {
             ffi::gtk_text_view_set_pixels_below_lines(
@@ -1434,6 +1098,7 @@ impl<O: IsA<TextView>> TextViewExt for O {
         }
     }
 
+    #[doc(alias = "gtk_text_view_set_pixels_inside_wrap")]
     fn set_pixels_inside_wrap(&self, pixels_inside_wrap: i32) {
         unsafe {
             ffi::gtk_text_view_set_pixels_inside_wrap(
@@ -1443,12 +1108,14 @@ impl<O: IsA<TextView>> TextViewExt for O {
         }
     }
 
+    #[doc(alias = "gtk_text_view_set_right_margin")]
     fn set_right_margin(&self, right_margin: i32) {
         unsafe {
             ffi::gtk_text_view_set_right_margin(self.as_ref().to_glib_none().0, right_margin);
         }
     }
 
+    #[doc(alias = "gtk_text_view_set_tabs")]
     fn set_tabs(&self, tabs: &pango::TabArray) {
         unsafe {
             ffi::gtk_text_view_set_tabs(
@@ -1458,18 +1125,21 @@ impl<O: IsA<TextView>> TextViewExt for O {
         }
     }
 
+    #[doc(alias = "gtk_text_view_set_top_margin")]
     fn set_top_margin(&self, top_margin: i32) {
         unsafe {
             ffi::gtk_text_view_set_top_margin(self.as_ref().to_glib_none().0, top_margin);
         }
     }
 
+    #[doc(alias = "gtk_text_view_set_wrap_mode")]
     fn set_wrap_mode(&self, wrap_mode: WrapMode) {
         unsafe {
             ffi::gtk_text_view_set_wrap_mode(self.as_ref().to_glib_none().0, wrap_mode.into_glib());
         }
     }
 
+    #[doc(alias = "gtk_text_view_starts_display_line")]
     fn starts_display_line(&self, iter: &TextIter) -> bool {
         unsafe {
             from_glib(ffi::gtk_text_view_starts_display_line(
@@ -1479,6 +1149,7 @@ impl<O: IsA<TextView>> TextViewExt for O {
         }
     }
 
+    #[doc(alias = "gtk_text_view_window_to_buffer_coords")]
     fn window_to_buffer_coords(
         &self,
         win: TextWindowType,
@@ -1500,14 +1171,17 @@ impl<O: IsA<TextView>> TextViewExt for O {
         }
     }
 
+    #[doc(alias = "im-module")]
     fn im_module(&self) -> Option<glib::GString> {
         glib::ObjectExt::property(self.as_ref(), "im-module")
     }
 
+    #[doc(alias = "im-module")]
     fn set_im_module(&self, im_module: Option<&str>) {
         glib::ObjectExt::set_property(self.as_ref(), "im-module", im_module)
     }
 
+    #[doc(alias = "backspace")]
     fn connect_backspace<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn backspace_trampoline<P: IsA<TextView>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkTextView,
@@ -1533,6 +1207,7 @@ impl<O: IsA<TextView>> TextViewExt for O {
         self.emit_by_name::<()>("backspace", &[]);
     }
 
+    #[doc(alias = "copy-clipboard")]
     fn connect_copy_clipboard<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn copy_clipboard_trampoline<P: IsA<TextView>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkTextView,
@@ -1558,6 +1233,7 @@ impl<O: IsA<TextView>> TextViewExt for O {
         self.emit_by_name::<()>("copy-clipboard", &[]);
     }
 
+    #[doc(alias = "cut-clipboard")]
     fn connect_cut_clipboard<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn cut_clipboard_trampoline<P: IsA<TextView>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkTextView,
@@ -1583,6 +1259,7 @@ impl<O: IsA<TextView>> TextViewExt for O {
         self.emit_by_name::<()>("cut-clipboard", &[]);
     }
 
+    #[doc(alias = "delete-from-cursor")]
     fn connect_delete_from_cursor<F: Fn(&Self, DeleteType, i32) + 'static>(
         &self,
         f: F,
@@ -1620,6 +1297,7 @@ impl<O: IsA<TextView>> TextViewExt for O {
         self.emit_by_name::<()>("delete-from-cursor", &[&type_, &count]);
     }
 
+    #[doc(alias = "extend-selection")]
     fn connect_extend_selection<
         F: Fn(&Self, TextExtendSelection, &TextIter, &TextIter, &TextIter) -> glib::signal::Inhibit
             + 'static,
@@ -1668,6 +1346,7 @@ impl<O: IsA<TextView>> TextViewExt for O {
         }
     }
 
+    #[doc(alias = "insert-at-cursor")]
     fn connect_insert_at_cursor<F: Fn(&Self, &str) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn insert_at_cursor_trampoline<
             P: IsA<TextView>,
@@ -1700,6 +1379,7 @@ impl<O: IsA<TextView>> TextViewExt for O {
         self.emit_by_name::<()>("insert-at-cursor", &[&string]);
     }
 
+    #[doc(alias = "insert-emoji")]
     fn connect_insert_emoji<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn insert_emoji_trampoline<P: IsA<TextView>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkTextView,
@@ -1725,6 +1405,7 @@ impl<O: IsA<TextView>> TextViewExt for O {
         self.emit_by_name::<()>("insert-emoji", &[]);
     }
 
+    #[doc(alias = "move-cursor")]
     fn connect_move_cursor<F: Fn(&Self, MovementStep, i32, bool) + 'static>(
         &self,
         f: F,
@@ -1764,6 +1445,7 @@ impl<O: IsA<TextView>> TextViewExt for O {
         self.emit_by_name::<()>("move-cursor", &[&step, &count, &extend_selection]);
     }
 
+    #[doc(alias = "move-viewport")]
     fn connect_move_viewport<F: Fn(&Self, ScrollStep, i32) + 'static>(
         &self,
         f: F,
@@ -1801,6 +1483,7 @@ impl<O: IsA<TextView>> TextViewExt for O {
         self.emit_by_name::<()>("move-viewport", &[&step, &count]);
     }
 
+    #[doc(alias = "paste-clipboard")]
     fn connect_paste_clipboard<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn paste_clipboard_trampoline<P: IsA<TextView>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkTextView,
@@ -1826,6 +1509,7 @@ impl<O: IsA<TextView>> TextViewExt for O {
         self.emit_by_name::<()>("paste-clipboard", &[]);
     }
 
+    #[doc(alias = "preedit-changed")]
     fn connect_preedit_changed<F: Fn(&Self, &str) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn preedit_changed_trampoline<
             P: IsA<TextView>,
@@ -1858,6 +1542,7 @@ impl<O: IsA<TextView>> TextViewExt for O {
         self.emit_by_name::<()>("preedit-changed", &[&preedit]);
     }
 
+    #[doc(alias = "select-all")]
     fn connect_select_all<F: Fn(&Self, bool) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn select_all_trampoline<P: IsA<TextView>, F: Fn(&P, bool) + 'static>(
             this: *mut ffi::GtkTextView,
@@ -1887,6 +1572,7 @@ impl<O: IsA<TextView>> TextViewExt for O {
         self.emit_by_name::<()>("select-all", &[&select]);
     }
 
+    #[doc(alias = "set-anchor")]
     fn connect_set_anchor<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn set_anchor_trampoline<P: IsA<TextView>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkTextView,
@@ -1912,6 +1598,7 @@ impl<O: IsA<TextView>> TextViewExt for O {
         self.emit_by_name::<()>("set-anchor", &[]);
     }
 
+    #[doc(alias = "toggle-cursor-visible")]
     fn connect_toggle_cursor_visible<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn toggle_cursor_visible_trampoline<
             P: IsA<TextView>,
@@ -1940,6 +1627,7 @@ impl<O: IsA<TextView>> TextViewExt for O {
         self.emit_by_name::<()>("toggle-cursor-visible", &[]);
     }
 
+    #[doc(alias = "toggle-overwrite")]
     fn connect_toggle_overwrite<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn toggle_overwrite_trampoline<P: IsA<TextView>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkTextView,
@@ -1965,6 +1653,7 @@ impl<O: IsA<TextView>> TextViewExt for O {
         self.emit_by_name::<()>("toggle-overwrite", &[]);
     }
 
+    #[doc(alias = "accepts-tab")]
     fn connect_accepts_tab_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_accepts_tab_trampoline<
             P: IsA<TextView>,
@@ -1990,6 +1679,7 @@ impl<O: IsA<TextView>> TextViewExt for O {
         }
     }
 
+    #[doc(alias = "bottom-margin")]
     fn connect_bottom_margin_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_bottom_margin_trampoline<
             P: IsA<TextView>,
@@ -2015,6 +1705,7 @@ impl<O: IsA<TextView>> TextViewExt for O {
         }
     }
 
+    #[doc(alias = "buffer")]
     fn connect_buffer_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_buffer_trampoline<P: IsA<TextView>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkTextView,
@@ -2037,6 +1728,7 @@ impl<O: IsA<TextView>> TextViewExt for O {
         }
     }
 
+    #[doc(alias = "cursor-visible")]
     fn connect_cursor_visible_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_cursor_visible_trampoline<
             P: IsA<TextView>,
@@ -2062,6 +1754,7 @@ impl<O: IsA<TextView>> TextViewExt for O {
         }
     }
 
+    #[doc(alias = "editable")]
     fn connect_editable_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_editable_trampoline<P: IsA<TextView>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkTextView,
@@ -2084,6 +1777,7 @@ impl<O: IsA<TextView>> TextViewExt for O {
         }
     }
 
+    #[doc(alias = "extra-menu")]
     fn connect_extra_menu_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_extra_menu_trampoline<P: IsA<TextView>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkTextView,
@@ -2106,6 +1800,7 @@ impl<O: IsA<TextView>> TextViewExt for O {
         }
     }
 
+    #[doc(alias = "im-module")]
     fn connect_im_module_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_im_module_trampoline<P: IsA<TextView>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkTextView,
@@ -2128,6 +1823,7 @@ impl<O: IsA<TextView>> TextViewExt for O {
         }
     }
 
+    #[doc(alias = "indent")]
     fn connect_indent_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_indent_trampoline<P: IsA<TextView>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkTextView,
@@ -2150,6 +1846,7 @@ impl<O: IsA<TextView>> TextViewExt for O {
         }
     }
 
+    #[doc(alias = "input-hints")]
     fn connect_input_hints_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_input_hints_trampoline<
             P: IsA<TextView>,
@@ -2175,6 +1872,7 @@ impl<O: IsA<TextView>> TextViewExt for O {
         }
     }
 
+    #[doc(alias = "input-purpose")]
     fn connect_input_purpose_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_input_purpose_trampoline<
             P: IsA<TextView>,
@@ -2200,6 +1898,7 @@ impl<O: IsA<TextView>> TextViewExt for O {
         }
     }
 
+    #[doc(alias = "justification")]
     fn connect_justification_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_justification_trampoline<
             P: IsA<TextView>,
@@ -2225,6 +1924,7 @@ impl<O: IsA<TextView>> TextViewExt for O {
         }
     }
 
+    #[doc(alias = "left-margin")]
     fn connect_left_margin_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_left_margin_trampoline<
             P: IsA<TextView>,
@@ -2250,6 +1950,7 @@ impl<O: IsA<TextView>> TextViewExt for O {
         }
     }
 
+    #[doc(alias = "monospace")]
     fn connect_monospace_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_monospace_trampoline<P: IsA<TextView>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkTextView,
@@ -2272,6 +1973,7 @@ impl<O: IsA<TextView>> TextViewExt for O {
         }
     }
 
+    #[doc(alias = "overwrite")]
     fn connect_overwrite_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_overwrite_trampoline<P: IsA<TextView>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkTextView,
@@ -2294,6 +1996,7 @@ impl<O: IsA<TextView>> TextViewExt for O {
         }
     }
 
+    #[doc(alias = "pixels-above-lines")]
     fn connect_pixels_above_lines_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_pixels_above_lines_trampoline<
             P: IsA<TextView>,
@@ -2319,6 +2022,7 @@ impl<O: IsA<TextView>> TextViewExt for O {
         }
     }
 
+    #[doc(alias = "pixels-below-lines")]
     fn connect_pixels_below_lines_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_pixels_below_lines_trampoline<
             P: IsA<TextView>,
@@ -2344,6 +2048,7 @@ impl<O: IsA<TextView>> TextViewExt for O {
         }
     }
 
+    #[doc(alias = "pixels-inside-wrap")]
     fn connect_pixels_inside_wrap_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_pixels_inside_wrap_trampoline<
             P: IsA<TextView>,
@@ -2369,6 +2074,7 @@ impl<O: IsA<TextView>> TextViewExt for O {
         }
     }
 
+    #[doc(alias = "right-margin")]
     fn connect_right_margin_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_right_margin_trampoline<
             P: IsA<TextView>,
@@ -2394,6 +2100,7 @@ impl<O: IsA<TextView>> TextViewExt for O {
         }
     }
 
+    #[doc(alias = "tabs")]
     fn connect_tabs_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_tabs_trampoline<P: IsA<TextView>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkTextView,
@@ -2416,6 +2123,7 @@ impl<O: IsA<TextView>> TextViewExt for O {
         }
     }
 
+    #[doc(alias = "top-margin")]
     fn connect_top_margin_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_top_margin_trampoline<P: IsA<TextView>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkTextView,
@@ -2438,6 +2146,7 @@ impl<O: IsA<TextView>> TextViewExt for O {
         }
     }
 
+    #[doc(alias = "wrap-mode")]
     fn connect_wrap_mode_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_wrap_mode_trampoline<P: IsA<TextView>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkTextView,
@@ -2460,6 +2169,8 @@ impl<O: IsA<TextView>> TextViewExt for O {
         }
     }
 }
+
+impl<O: IsA<TextView>> TextViewExt for O {}
 
 impl fmt::Display for TextView {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
