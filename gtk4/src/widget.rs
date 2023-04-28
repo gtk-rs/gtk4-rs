@@ -12,9 +12,30 @@ pub trait WidgetExtManual: 'static {
         &self,
         callback: P,
     ) -> TickCallbackId;
+
+    #[doc(alias = "gtk_widget_get_ancestor")]
+    #[doc(alias = "get_ancestor")]
+    #[must_use]
+    fn ancestor<T: IsA<Widget>>(&self) -> Option<T> {
+        self.ancestor_with_type(T::static_type())
+            .and_then(|w| w.downcast().ok())
+    }
+
+    #[doc(alias = "gtk_widget_get_ancestor")]
+    #[doc(alias = "get_ancestor")]
+    #[must_use]
+    fn ancestor_with_type(&self, widget_type: glib::types::Type) -> Option<Widget>;
 }
 
 impl<O: IsA<Widget>> WidgetExtManual for O {
+    fn ancestor_with_type(&self, widget_type: glib::types::Type) -> Option<Widget> {
+        unsafe {
+            from_glib_none(ffi::gtk_widget_get_ancestor(
+                self.as_ref().to_glib_none().0,
+                widget_type.into_glib(),
+            ))
+        }
+    }
     fn add_tick_callback<P: Fn(&Self, &gdk::FrameClock) -> Continue + 'static>(
         &self,
         callback: P,
