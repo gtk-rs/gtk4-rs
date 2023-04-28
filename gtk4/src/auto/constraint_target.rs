@@ -18,7 +18,7 @@ impl ConstraintTarget {
     pub const NONE: Option<&'static ConstraintTarget> = None;
 }
 
-pub trait ConstraintTargetExt: 'static {}
+pub trait ConstraintTargetExt: IsA<ConstraintTarget> + 'static {}
 
 impl<O: IsA<ConstraintTarget>> ConstraintTargetExt for O {}
 

@@ -20,66 +20,19 @@ impl TreeModelFilter {
     pub const NONE: Option<&'static TreeModelFilter> = None;
 }
 
-pub trait TreeModelFilterExt: 'static {
+pub trait TreeModelFilterExt: IsA<TreeModelFilter> + 'static {
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
     #[doc(alias = "gtk_tree_model_filter_clear_cache")]
-    fn clear_cache(&self);
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_tree_model_filter_convert_child_iter_to_iter")]
-    fn convert_child_iter_to_iter(&self, child_iter: &TreeIter) -> Option<TreeIter>;
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_tree_model_filter_convert_child_path_to_path")]
-    fn convert_child_path_to_path(&self, child_path: &TreePath) -> Option<TreePath>;
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_tree_model_filter_convert_iter_to_child_iter")]
-    fn convert_iter_to_child_iter(&self, filter_iter: &TreeIter) -> TreeIter;
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_tree_model_filter_convert_path_to_child_path")]
-    fn convert_path_to_child_path(&self, filter_path: &TreePath) -> Option<TreePath>;
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_tree_model_filter_get_model")]
-    #[doc(alias = "get_model")]
-    fn model(&self) -> TreeModel;
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_tree_model_filter_refilter")]
-    fn refilter(&self);
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_tree_model_filter_set_visible_column")]
-    fn set_visible_column(&self, column: i32);
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_tree_model_filter_set_visible_func")]
-    fn set_visible_func<P: Fn(&TreeModel, &TreeIter) -> bool + 'static>(&self, func: P);
-
-    #[doc(alias = "child-model")]
-    fn child_model(&self) -> Option<TreeModel>;
-}
-
-impl<O: IsA<TreeModelFilter>> TreeModelFilterExt for O {
-    #[allow(deprecated)]
     fn clear_cache(&self) {
         unsafe {
             ffi::gtk_tree_model_filter_clear_cache(self.as_ref().to_glib_none().0);
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_tree_model_filter_convert_child_iter_to_iter")]
     fn convert_child_iter_to_iter(&self, child_iter: &TreeIter) -> Option<TreeIter> {
         unsafe {
             let mut filter_iter = TreeIter::uninitialized();
@@ -96,7 +49,9 @@ impl<O: IsA<TreeModelFilter>> TreeModelFilterExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_tree_model_filter_convert_child_path_to_path")]
     fn convert_child_path_to_path(&self, child_path: &TreePath) -> Option<TreePath> {
         unsafe {
             from_glib_full(ffi::gtk_tree_model_filter_convert_child_path_to_path(
@@ -106,7 +61,9 @@ impl<O: IsA<TreeModelFilter>> TreeModelFilterExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_tree_model_filter_convert_iter_to_child_iter")]
     fn convert_iter_to_child_iter(&self, filter_iter: &TreeIter) -> TreeIter {
         unsafe {
             let mut child_iter = TreeIter::uninitialized();
@@ -119,7 +76,9 @@ impl<O: IsA<TreeModelFilter>> TreeModelFilterExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_tree_model_filter_convert_path_to_child_path")]
     fn convert_path_to_child_path(&self, filter_path: &TreePath) -> Option<TreePath> {
         unsafe {
             from_glib_full(ffi::gtk_tree_model_filter_convert_path_to_child_path(
@@ -129,7 +88,10 @@ impl<O: IsA<TreeModelFilter>> TreeModelFilterExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_tree_model_filter_get_model")]
+    #[doc(alias = "get_model")]
     fn model(&self) -> TreeModel {
         unsafe {
             from_glib_none(ffi::gtk_tree_model_filter_get_model(
@@ -138,21 +100,27 @@ impl<O: IsA<TreeModelFilter>> TreeModelFilterExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_tree_model_filter_refilter")]
     fn refilter(&self) {
         unsafe {
             ffi::gtk_tree_model_filter_refilter(self.as_ref().to_glib_none().0);
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_tree_model_filter_set_visible_column")]
     fn set_visible_column(&self, column: i32) {
         unsafe {
             ffi::gtk_tree_model_filter_set_visible_column(self.as_ref().to_glib_none().0, column);
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_tree_model_filter_set_visible_func")]
     fn set_visible_func<P: Fn(&TreeModel, &TreeIter) -> bool + 'static>(&self, func: P) {
         let func_data: Box_<P> = Box_::new(func);
         unsafe extern "C" fn func_func<P: Fn(&TreeModel, &TreeIter) -> bool + 'static>(
@@ -183,10 +151,13 @@ impl<O: IsA<TreeModelFilter>> TreeModelFilterExt for O {
         }
     }
 
+    #[doc(alias = "child-model")]
     fn child_model(&self) -> Option<TreeModel> {
         glib::ObjectExt::property(self.as_ref(), "child-model")
     }
 }
+
+impl<O: IsA<TreeModelFilter>> TreeModelFilterExt for O {}
 
 impl fmt::Display for TreeModelFilter {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {

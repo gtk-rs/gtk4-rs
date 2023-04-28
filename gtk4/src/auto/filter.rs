@@ -23,29 +23,16 @@ impl Filter {
     pub const NONE: Option<&'static Filter> = None;
 }
 
-pub trait FilterExt: 'static {
+pub trait FilterExt: IsA<Filter> + 'static {
     #[doc(alias = "gtk_filter_changed")]
-    fn changed(&self, change: FilterChange);
-
-    #[doc(alias = "gtk_filter_get_strictness")]
-    #[doc(alias = "get_strictness")]
-    fn strictness(&self) -> FilterMatch;
-
-    #[doc(alias = "gtk_filter_match")]
-    #[doc(alias = "match")]
-    fn match_(&self, item: &impl IsA<glib::Object>) -> bool;
-
-    #[doc(alias = "changed")]
-    fn connect_changed<F: Fn(&Self, FilterChange) + 'static>(&self, f: F) -> SignalHandlerId;
-}
-
-impl<O: IsA<Filter>> FilterExt for O {
     fn changed(&self, change: FilterChange) {
         unsafe {
             ffi::gtk_filter_changed(self.as_ref().to_glib_none().0, change.into_glib());
         }
     }
 
+    #[doc(alias = "gtk_filter_get_strictness")]
+    #[doc(alias = "get_strictness")]
     fn strictness(&self) -> FilterMatch {
         unsafe {
             from_glib(ffi::gtk_filter_get_strictness(
@@ -54,6 +41,8 @@ impl<O: IsA<Filter>> FilterExt for O {
         }
     }
 
+    #[doc(alias = "gtk_filter_match")]
+    #[doc(alias = "match")]
     fn match_(&self, item: &impl IsA<glib::Object>) -> bool {
         unsafe {
             from_glib(ffi::gtk_filter_match(
@@ -63,6 +52,7 @@ impl<O: IsA<Filter>> FilterExt for O {
         }
     }
 
+    #[doc(alias = "changed")]
     fn connect_changed<F: Fn(&Self, FilterChange) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn changed_trampoline<
             P: IsA<Filter>,
@@ -91,6 +81,8 @@ impl<O: IsA<Filter>> FilterExt for O {
         }
     }
 }
+
+impl<O: IsA<Filter>> FilterExt for O {}
 
 impl fmt::Display for Filter {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {

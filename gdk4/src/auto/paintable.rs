@@ -34,54 +34,8 @@ impl Paintable {
     }
 }
 
-pub trait PaintableExt: 'static {
+pub trait PaintableExt: IsA<Paintable> + 'static {
     #[doc(alias = "gdk_paintable_compute_concrete_size")]
-    fn compute_concrete_size(
-        &self,
-        specified_width: f64,
-        specified_height: f64,
-        default_width: f64,
-        default_height: f64,
-    ) -> (f64, f64);
-
-    #[doc(alias = "gdk_paintable_get_current_image")]
-    #[doc(alias = "get_current_image")]
-    #[must_use]
-    fn current_image(&self) -> Paintable;
-
-    #[doc(alias = "gdk_paintable_get_flags")]
-    #[doc(alias = "get_flags")]
-    fn flags(&self) -> PaintableFlags;
-
-    #[doc(alias = "gdk_paintable_get_intrinsic_aspect_ratio")]
-    #[doc(alias = "get_intrinsic_aspect_ratio")]
-    fn intrinsic_aspect_ratio(&self) -> f64;
-
-    #[doc(alias = "gdk_paintable_get_intrinsic_height")]
-    #[doc(alias = "get_intrinsic_height")]
-    fn intrinsic_height(&self) -> i32;
-
-    #[doc(alias = "gdk_paintable_get_intrinsic_width")]
-    #[doc(alias = "get_intrinsic_width")]
-    fn intrinsic_width(&self) -> i32;
-
-    #[doc(alias = "gdk_paintable_invalidate_contents")]
-    fn invalidate_contents(&self);
-
-    #[doc(alias = "gdk_paintable_invalidate_size")]
-    fn invalidate_size(&self);
-
-    #[doc(alias = "gdk_paintable_snapshot")]
-    fn snapshot(&self, snapshot: &impl IsA<Snapshot>, width: f64, height: f64);
-
-    #[doc(alias = "invalidate-contents")]
-    fn connect_invalidate_contents<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "invalidate-size")]
-    fn connect_invalidate_size<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-}
-
-impl<O: IsA<Paintable>> PaintableExt for O {
     fn compute_concrete_size(
         &self,
         specified_width: f64,
@@ -105,6 +59,9 @@ impl<O: IsA<Paintable>> PaintableExt for O {
         }
     }
 
+    #[doc(alias = "gdk_paintable_get_current_image")]
+    #[doc(alias = "get_current_image")]
+    #[must_use]
     fn current_image(&self) -> Paintable {
         unsafe {
             from_glib_full(ffi::gdk_paintable_get_current_image(
@@ -113,34 +70,45 @@ impl<O: IsA<Paintable>> PaintableExt for O {
         }
     }
 
+    #[doc(alias = "gdk_paintable_get_flags")]
+    #[doc(alias = "get_flags")]
     fn flags(&self) -> PaintableFlags {
         unsafe { from_glib(ffi::gdk_paintable_get_flags(self.as_ref().to_glib_none().0)) }
     }
 
+    #[doc(alias = "gdk_paintable_get_intrinsic_aspect_ratio")]
+    #[doc(alias = "get_intrinsic_aspect_ratio")]
     fn intrinsic_aspect_ratio(&self) -> f64 {
         unsafe { ffi::gdk_paintable_get_intrinsic_aspect_ratio(self.as_ref().to_glib_none().0) }
     }
 
+    #[doc(alias = "gdk_paintable_get_intrinsic_height")]
+    #[doc(alias = "get_intrinsic_height")]
     fn intrinsic_height(&self) -> i32 {
         unsafe { ffi::gdk_paintable_get_intrinsic_height(self.as_ref().to_glib_none().0) }
     }
 
+    #[doc(alias = "gdk_paintable_get_intrinsic_width")]
+    #[doc(alias = "get_intrinsic_width")]
     fn intrinsic_width(&self) -> i32 {
         unsafe { ffi::gdk_paintable_get_intrinsic_width(self.as_ref().to_glib_none().0) }
     }
 
+    #[doc(alias = "gdk_paintable_invalidate_contents")]
     fn invalidate_contents(&self) {
         unsafe {
             ffi::gdk_paintable_invalidate_contents(self.as_ref().to_glib_none().0);
         }
     }
 
+    #[doc(alias = "gdk_paintable_invalidate_size")]
     fn invalidate_size(&self) {
         unsafe {
             ffi::gdk_paintable_invalidate_size(self.as_ref().to_glib_none().0);
         }
     }
 
+    #[doc(alias = "gdk_paintable_snapshot")]
     fn snapshot(&self, snapshot: &impl IsA<Snapshot>, width: f64, height: f64) {
         unsafe {
             ffi::gdk_paintable_snapshot(
@@ -152,6 +120,7 @@ impl<O: IsA<Paintable>> PaintableExt for O {
         }
     }
 
+    #[doc(alias = "invalidate-contents")]
     fn connect_invalidate_contents<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn invalidate_contents_trampoline<
             P: IsA<Paintable>,
@@ -176,6 +145,7 @@ impl<O: IsA<Paintable>> PaintableExt for O {
         }
     }
 
+    #[doc(alias = "invalidate-size")]
     fn connect_invalidate_size<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn invalidate_size_trampoline<P: IsA<Paintable>, F: Fn(&P) + 'static>(
             this: *mut ffi::GdkPaintable,
@@ -197,6 +167,8 @@ impl<O: IsA<Paintable>> PaintableExt for O {
         }
     }
 }
+
+impl<O: IsA<Paintable>> PaintableExt for O {}
 
 impl fmt::Display for Paintable {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {

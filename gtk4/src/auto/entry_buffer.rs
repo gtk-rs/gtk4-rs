@@ -66,24 +66,8 @@ impl EntryBufferBuilder {
     }
 }
 
-pub trait EntryBufferExt: 'static {
+pub trait EntryBufferExt: IsA<EntryBuffer> + 'static {
     #[doc(alias = "gtk_entry_buffer_emit_deleted_text")]
-    fn emit_deleted_text(&self, position: u32, n_chars: u32);
-
-    #[doc(alias = "gtk_entry_buffer_emit_inserted_text")]
-    fn emit_inserted_text(&self, position: u32, chars: &str, n_chars: u32);
-
-    #[doc(alias = "length")]
-    fn connect_length_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "max-length")]
-    fn connect_max_length_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "text")]
-    fn connect_text_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-}
-
-impl<O: IsA<EntryBuffer>> EntryBufferExt for O {
     fn emit_deleted_text(&self, position: u32, n_chars: u32) {
         unsafe {
             ffi::gtk_entry_buffer_emit_deleted_text(
@@ -94,6 +78,7 @@ impl<O: IsA<EntryBuffer>> EntryBufferExt for O {
         }
     }
 
+    #[doc(alias = "gtk_entry_buffer_emit_inserted_text")]
     fn emit_inserted_text(&self, position: u32, chars: &str, n_chars: u32) {
         unsafe {
             ffi::gtk_entry_buffer_emit_inserted_text(
@@ -105,6 +90,7 @@ impl<O: IsA<EntryBuffer>> EntryBufferExt for O {
         }
     }
 
+    #[doc(alias = "length")]
     fn connect_length_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_length_trampoline<P: IsA<EntryBuffer>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkEntryBuffer,
@@ -127,6 +113,7 @@ impl<O: IsA<EntryBuffer>> EntryBufferExt for O {
         }
     }
 
+    #[doc(alias = "max-length")]
     fn connect_max_length_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_max_length_trampoline<
             P: IsA<EntryBuffer>,
@@ -152,6 +139,7 @@ impl<O: IsA<EntryBuffer>> EntryBufferExt for O {
         }
     }
 
+    #[doc(alias = "text")]
     fn connect_text_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_text_trampoline<P: IsA<EntryBuffer>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkEntryBuffer,
@@ -174,6 +162,8 @@ impl<O: IsA<EntryBuffer>> EntryBufferExt for O {
         }
     }
 }
+
+impl<O: IsA<EntryBuffer>> EntryBufferExt for O {}
 
 impl fmt::Display for EntryBuffer {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {

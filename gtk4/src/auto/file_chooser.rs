@@ -24,160 +24,10 @@ impl FileChooser {
     pub const NONE: Option<&'static FileChooser> = None;
 }
 
-pub trait FileChooserExt: 'static {
+pub trait FileChooserExt: IsA<FileChooser> + 'static {
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
     #[doc(alias = "gtk_file_chooser_add_filter")]
-    fn add_filter(&self, filter: &FileFilter);
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_file_chooser_add_shortcut_folder")]
-    fn add_shortcut_folder(&self, folder: &impl IsA<gio::File>) -> Result<(), glib::Error>;
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_file_chooser_get_action")]
-    #[doc(alias = "get_action")]
-    fn action(&self) -> FileChooserAction;
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_file_chooser_get_choice")]
-    #[doc(alias = "get_choice")]
-    fn choice(&self, id: &str) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_file_chooser_get_create_folders")]
-    #[doc(alias = "get_create_folders")]
-    fn creates_folders(&self) -> bool;
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_file_chooser_get_current_folder")]
-    #[doc(alias = "get_current_folder")]
-    fn current_folder(&self) -> Option<gio::File>;
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_file_chooser_get_current_name")]
-    #[doc(alias = "get_current_name")]
-    fn current_name(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_file_chooser_get_file")]
-    #[doc(alias = "get_file")]
-    fn file(&self) -> Option<gio::File>;
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_file_chooser_get_files")]
-    #[doc(alias = "get_files")]
-    fn files(&self) -> gio::ListModel;
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_file_chooser_get_filter")]
-    #[doc(alias = "get_filter")]
-    fn filter(&self) -> Option<FileFilter>;
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_file_chooser_get_filters")]
-    #[doc(alias = "get_filters")]
-    fn filters(&self) -> gio::ListModel;
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_file_chooser_get_select_multiple")]
-    #[doc(alias = "get_select_multiple")]
-    fn selects_multiple(&self) -> bool;
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_file_chooser_get_shortcut_folders")]
-    #[doc(alias = "get_shortcut_folders")]
-    fn shortcut_folders(&self) -> gio::ListModel;
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_file_chooser_remove_choice")]
-    fn remove_choice(&self, id: &str);
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_file_chooser_remove_filter")]
-    fn remove_filter(&self, filter: &FileFilter);
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_file_chooser_remove_shortcut_folder")]
-    fn remove_shortcut_folder(&self, folder: &impl IsA<gio::File>) -> Result<(), glib::Error>;
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_file_chooser_set_action")]
-    fn set_action(&self, action: FileChooserAction);
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_file_chooser_set_choice")]
-    fn set_choice(&self, id: &str, option: &str);
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_file_chooser_set_create_folders")]
-    fn set_create_folders(&self, create_folders: bool);
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_file_chooser_set_current_name")]
-    fn set_current_name(&self, name: &str);
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_file_chooser_set_file")]
-    fn set_file(&self, file: &impl IsA<gio::File>) -> Result<(), glib::Error>;
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_file_chooser_set_filter")]
-    fn set_filter(&self, filter: &FileFilter);
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_file_chooser_set_select_multiple")]
-    fn set_select_multiple(&self, select_multiple: bool);
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[doc(alias = "action")]
-    fn connect_action_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[doc(alias = "create-folders")]
-    fn connect_create_folders_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[doc(alias = "filter")]
-    fn connect_filter_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[doc(alias = "filters")]
-    fn connect_filters_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[doc(alias = "select-multiple")]
-    fn connect_select_multiple_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[doc(alias = "shortcut-folders")]
-    fn connect_shortcut_folders_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-}
-
-impl<O: IsA<FileChooser>> FileChooserExt for O {
-    #[allow(deprecated)]
     fn add_filter(&self, filter: &FileFilter) {
         unsafe {
             ffi::gtk_file_chooser_add_filter(
@@ -187,7 +37,9 @@ impl<O: IsA<FileChooser>> FileChooserExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_file_chooser_add_shortcut_folder")]
     fn add_shortcut_folder(&self, folder: &impl IsA<gio::File>) -> Result<(), glib::Error> {
         unsafe {
             let mut error = ptr::null_mut();
@@ -205,7 +57,10 @@ impl<O: IsA<FileChooser>> FileChooserExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_file_chooser_get_action")]
+    #[doc(alias = "get_action")]
     fn action(&self) -> FileChooserAction {
         unsafe {
             from_glib(ffi::gtk_file_chooser_get_action(
@@ -214,7 +69,10 @@ impl<O: IsA<FileChooser>> FileChooserExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_file_chooser_get_choice")]
+    #[doc(alias = "get_choice")]
     fn choice(&self, id: &str) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::gtk_file_chooser_get_choice(
@@ -224,7 +82,10 @@ impl<O: IsA<FileChooser>> FileChooserExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_file_chooser_get_create_folders")]
+    #[doc(alias = "get_create_folders")]
     fn creates_folders(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_file_chooser_get_create_folders(
@@ -233,7 +94,10 @@ impl<O: IsA<FileChooser>> FileChooserExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_file_chooser_get_current_folder")]
+    #[doc(alias = "get_current_folder")]
     fn current_folder(&self) -> Option<gio::File> {
         unsafe {
             from_glib_full(ffi::gtk_file_chooser_get_current_folder(
@@ -242,7 +106,10 @@ impl<O: IsA<FileChooser>> FileChooserExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_file_chooser_get_current_name")]
+    #[doc(alias = "get_current_name")]
     fn current_name(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::gtk_file_chooser_get_current_name(
@@ -251,7 +118,10 @@ impl<O: IsA<FileChooser>> FileChooserExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_file_chooser_get_file")]
+    #[doc(alias = "get_file")]
     fn file(&self) -> Option<gio::File> {
         unsafe {
             from_glib_full(ffi::gtk_file_chooser_get_file(
@@ -260,7 +130,10 @@ impl<O: IsA<FileChooser>> FileChooserExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_file_chooser_get_files")]
+    #[doc(alias = "get_files")]
     fn files(&self) -> gio::ListModel {
         unsafe {
             from_glib_full(ffi::gtk_file_chooser_get_files(
@@ -269,7 +142,10 @@ impl<O: IsA<FileChooser>> FileChooserExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_file_chooser_get_filter")]
+    #[doc(alias = "get_filter")]
     fn filter(&self) -> Option<FileFilter> {
         unsafe {
             from_glib_none(ffi::gtk_file_chooser_get_filter(
@@ -278,7 +154,10 @@ impl<O: IsA<FileChooser>> FileChooserExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_file_chooser_get_filters")]
+    #[doc(alias = "get_filters")]
     fn filters(&self) -> gio::ListModel {
         unsafe {
             from_glib_full(ffi::gtk_file_chooser_get_filters(
@@ -287,7 +166,10 @@ impl<O: IsA<FileChooser>> FileChooserExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_file_chooser_get_select_multiple")]
+    #[doc(alias = "get_select_multiple")]
     fn selects_multiple(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_file_chooser_get_select_multiple(
@@ -296,7 +178,10 @@ impl<O: IsA<FileChooser>> FileChooserExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_file_chooser_get_shortcut_folders")]
+    #[doc(alias = "get_shortcut_folders")]
     fn shortcut_folders(&self) -> gio::ListModel {
         unsafe {
             from_glib_full(ffi::gtk_file_chooser_get_shortcut_folders(
@@ -305,7 +190,9 @@ impl<O: IsA<FileChooser>> FileChooserExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_file_chooser_remove_choice")]
     fn remove_choice(&self, id: &str) {
         unsafe {
             ffi::gtk_file_chooser_remove_choice(
@@ -315,7 +202,9 @@ impl<O: IsA<FileChooser>> FileChooserExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_file_chooser_remove_filter")]
     fn remove_filter(&self, filter: &FileFilter) {
         unsafe {
             ffi::gtk_file_chooser_remove_filter(
@@ -325,7 +214,9 @@ impl<O: IsA<FileChooser>> FileChooserExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_file_chooser_remove_shortcut_folder")]
     fn remove_shortcut_folder(&self, folder: &impl IsA<gio::File>) -> Result<(), glib::Error> {
         unsafe {
             let mut error = ptr::null_mut();
@@ -343,14 +234,18 @@ impl<O: IsA<FileChooser>> FileChooserExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_file_chooser_set_action")]
     fn set_action(&self, action: FileChooserAction) {
         unsafe {
             ffi::gtk_file_chooser_set_action(self.as_ref().to_glib_none().0, action.into_glib());
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_file_chooser_set_choice")]
     fn set_choice(&self, id: &str, option: &str) {
         unsafe {
             ffi::gtk_file_chooser_set_choice(
@@ -361,7 +256,9 @@ impl<O: IsA<FileChooser>> FileChooserExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_file_chooser_set_create_folders")]
     fn set_create_folders(&self, create_folders: bool) {
         unsafe {
             ffi::gtk_file_chooser_set_create_folders(
@@ -371,7 +268,9 @@ impl<O: IsA<FileChooser>> FileChooserExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_file_chooser_set_current_name")]
     fn set_current_name(&self, name: &str) {
         unsafe {
             ffi::gtk_file_chooser_set_current_name(
@@ -381,7 +280,9 @@ impl<O: IsA<FileChooser>> FileChooserExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_file_chooser_set_file")]
     fn set_file(&self, file: &impl IsA<gio::File>) -> Result<(), glib::Error> {
         unsafe {
             let mut error = ptr::null_mut();
@@ -399,7 +300,9 @@ impl<O: IsA<FileChooser>> FileChooserExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_file_chooser_set_filter")]
     fn set_filter(&self, filter: &FileFilter) {
         unsafe {
             ffi::gtk_file_chooser_set_filter(
@@ -409,7 +312,9 @@ impl<O: IsA<FileChooser>> FileChooserExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_file_chooser_set_select_multiple")]
     fn set_select_multiple(&self, select_multiple: bool) {
         unsafe {
             ffi::gtk_file_chooser_set_select_multiple(
@@ -419,6 +324,8 @@ impl<O: IsA<FileChooser>> FileChooserExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
+    #[doc(alias = "action")]
     fn connect_action_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_action_trampoline<P: IsA<FileChooser>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkFileChooser,
@@ -441,6 +348,8 @@ impl<O: IsA<FileChooser>> FileChooserExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
+    #[doc(alias = "create-folders")]
     fn connect_create_folders_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_create_folders_trampoline<
             P: IsA<FileChooser>,
@@ -466,6 +375,8 @@ impl<O: IsA<FileChooser>> FileChooserExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
+    #[doc(alias = "filter")]
     fn connect_filter_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_filter_trampoline<P: IsA<FileChooser>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkFileChooser,
@@ -488,6 +399,8 @@ impl<O: IsA<FileChooser>> FileChooserExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
+    #[doc(alias = "filters")]
     fn connect_filters_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_filters_trampoline<P: IsA<FileChooser>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkFileChooser,
@@ -510,6 +423,8 @@ impl<O: IsA<FileChooser>> FileChooserExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
+    #[doc(alias = "select-multiple")]
     fn connect_select_multiple_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_select_multiple_trampoline<
             P: IsA<FileChooser>,
@@ -535,6 +450,8 @@ impl<O: IsA<FileChooser>> FileChooserExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
+    #[doc(alias = "shortcut-folders")]
     fn connect_shortcut_folders_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_shortcut_folders_trampoline<
             P: IsA<FileChooser>,
@@ -560,6 +477,8 @@ impl<O: IsA<FileChooser>> FileChooserExt for O {
         }
     }
 }
+
+impl<O: IsA<FileChooser>> FileChooserExt for O {}
 
 impl fmt::Display for FileChooser {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {

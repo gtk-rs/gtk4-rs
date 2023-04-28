@@ -19,17 +19,9 @@ impl LayoutChild {
     pub const NONE: Option<&'static LayoutChild> = None;
 }
 
-pub trait LayoutChildExt: 'static {
+pub trait LayoutChildExt: IsA<LayoutChild> + 'static {
     #[doc(alias = "gtk_layout_child_get_child_widget")]
     #[doc(alias = "get_child_widget")]
-    fn child_widget(&self) -> Widget;
-
-    #[doc(alias = "gtk_layout_child_get_layout_manager")]
-    #[doc(alias = "get_layout_manager")]
-    fn layout_manager(&self) -> LayoutManager;
-}
-
-impl<O: IsA<LayoutChild>> LayoutChildExt for O {
     fn child_widget(&self) -> Widget {
         unsafe {
             from_glib_none(ffi::gtk_layout_child_get_child_widget(
@@ -38,6 +30,8 @@ impl<O: IsA<LayoutChild>> LayoutChildExt for O {
         }
     }
 
+    #[doc(alias = "gtk_layout_child_get_layout_manager")]
+    #[doc(alias = "get_layout_manager")]
     fn layout_manager(&self) -> LayoutManager {
         unsafe {
             from_glib_none(ffi::gtk_layout_child_get_layout_manager(
@@ -46,6 +40,8 @@ impl<O: IsA<LayoutChild>> LayoutChildExt for O {
         }
     }
 }
+
+impl<O: IsA<LayoutChild>> LayoutChildExt for O {}
 
 impl fmt::Display for LayoutChild {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {

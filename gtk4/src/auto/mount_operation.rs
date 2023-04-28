@@ -142,35 +142,9 @@ impl MountOperationBuilder {
     }
 }
 
-pub trait GtkMountOperationExt: 'static {
+pub trait GtkMountOperationExt: IsA<MountOperation> + 'static {
     #[doc(alias = "gtk_mount_operation_get_display")]
     #[doc(alias = "get_display")]
-    fn display(&self) -> gdk::Display;
-
-    #[doc(alias = "gtk_mount_operation_get_parent")]
-    #[doc(alias = "get_parent")]
-    fn parent(&self) -> Option<Window>;
-
-    #[doc(alias = "gtk_mount_operation_is_showing")]
-    fn is_showing(&self) -> bool;
-
-    #[doc(alias = "gtk_mount_operation_set_display")]
-    fn set_display(&self, display: &impl IsA<gdk::Display>);
-
-    #[doc(alias = "gtk_mount_operation_set_parent")]
-    fn set_parent(&self, parent: Option<&impl IsA<Window>>);
-
-    #[doc(alias = "display")]
-    fn connect_display_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "is-showing")]
-    fn connect_is_showing_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "parent")]
-    fn connect_parent_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-}
-
-impl<O: IsA<MountOperation>> GtkMountOperationExt for O {
     fn display(&self) -> gdk::Display {
         unsafe {
             from_glib_none(ffi::gtk_mount_operation_get_display(
@@ -179,6 +153,8 @@ impl<O: IsA<MountOperation>> GtkMountOperationExt for O {
         }
     }
 
+    #[doc(alias = "gtk_mount_operation_get_parent")]
+    #[doc(alias = "get_parent")]
     fn parent(&self) -> Option<Window> {
         unsafe {
             from_glib_none(ffi::gtk_mount_operation_get_parent(
@@ -187,6 +163,7 @@ impl<O: IsA<MountOperation>> GtkMountOperationExt for O {
         }
     }
 
+    #[doc(alias = "gtk_mount_operation_is_showing")]
     fn is_showing(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_mount_operation_is_showing(
@@ -195,6 +172,7 @@ impl<O: IsA<MountOperation>> GtkMountOperationExt for O {
         }
     }
 
+    #[doc(alias = "gtk_mount_operation_set_display")]
     fn set_display(&self, display: &impl IsA<gdk::Display>) {
         unsafe {
             ffi::gtk_mount_operation_set_display(
@@ -204,6 +182,7 @@ impl<O: IsA<MountOperation>> GtkMountOperationExt for O {
         }
     }
 
+    #[doc(alias = "gtk_mount_operation_set_parent")]
     fn set_parent(&self, parent: Option<&impl IsA<Window>>) {
         unsafe {
             ffi::gtk_mount_operation_set_parent(
@@ -213,6 +192,7 @@ impl<O: IsA<MountOperation>> GtkMountOperationExt for O {
         }
     }
 
+    #[doc(alias = "display")]
     fn connect_display_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_display_trampoline<
             P: IsA<MountOperation>,
@@ -238,6 +218,7 @@ impl<O: IsA<MountOperation>> GtkMountOperationExt for O {
         }
     }
 
+    #[doc(alias = "is-showing")]
     fn connect_is_showing_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_is_showing_trampoline<
             P: IsA<MountOperation>,
@@ -263,6 +244,7 @@ impl<O: IsA<MountOperation>> GtkMountOperationExt for O {
         }
     }
 
+    #[doc(alias = "parent")]
     fn connect_parent_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_parent_trampoline<
             P: IsA<MountOperation>,
@@ -288,6 +270,8 @@ impl<O: IsA<MountOperation>> GtkMountOperationExt for O {
         }
     }
 }
+
+impl<O: IsA<MountOperation>> GtkMountOperationExt for O {}
 
 impl fmt::Display for MountOperation {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {

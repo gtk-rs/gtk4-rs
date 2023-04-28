@@ -47,92 +47,40 @@ impl Drag {
     }
 }
 
-pub trait DragExt: 'static {
+pub trait DragExt: IsA<Drag> + 'static {
     #[doc(alias = "gdk_drag_drop_done")]
-    fn drop_done(&self, success: bool);
-
-    #[doc(alias = "gdk_drag_get_actions")]
-    #[doc(alias = "get_actions")]
-    fn actions(&self) -> DragAction;
-
-    #[doc(alias = "gdk_drag_get_content")]
-    #[doc(alias = "get_content")]
-    fn content(&self) -> ContentProvider;
-
-    #[doc(alias = "gdk_drag_get_device")]
-    #[doc(alias = "get_device")]
-    fn device(&self) -> Device;
-
-    #[doc(alias = "gdk_drag_get_display")]
-    #[doc(alias = "get_display")]
-    fn display(&self) -> Display;
-
-    #[doc(alias = "gdk_drag_get_drag_surface")]
-    #[doc(alias = "get_drag_surface")]
-    fn drag_surface(&self) -> Option<Surface>;
-
-    #[doc(alias = "gdk_drag_get_formats")]
-    #[doc(alias = "get_formats")]
-    fn formats(&self) -> ContentFormats;
-
-    #[doc(alias = "gdk_drag_get_selected_action")]
-    #[doc(alias = "get_selected_action")]
-    fn selected_action(&self) -> DragAction;
-
-    #[doc(alias = "gdk_drag_get_surface")]
-    #[doc(alias = "get_surface")]
-    fn surface(&self) -> Surface;
-
-    #[doc(alias = "gdk_drag_set_hotspot")]
-    fn set_hotspot(&self, hot_x: i32, hot_y: i32);
-
-    fn set_actions(&self, actions: DragAction);
-
-    #[doc(alias = "selected-action")]
-    fn set_selected_action(&self, selected_action: DragAction);
-
-    #[doc(alias = "cancel")]
-    fn connect_cancel<F: Fn(&Self, DragCancelReason) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "dnd-finished")]
-    fn connect_dnd_finished<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "drop-performed")]
-    fn connect_drop_performed<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "actions")]
-    fn connect_actions_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "display")]
-    fn connect_display_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "selected-action")]
-    fn connect_selected_action_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-}
-
-impl<O: IsA<Drag>> DragExt for O {
     fn drop_done(&self, success: bool) {
         unsafe {
             ffi::gdk_drag_drop_done(self.as_ref().to_glib_none().0, success.into_glib());
         }
     }
 
+    #[doc(alias = "gdk_drag_get_actions")]
+    #[doc(alias = "get_actions")]
     fn actions(&self) -> DragAction {
         unsafe { from_glib(ffi::gdk_drag_get_actions(self.as_ref().to_glib_none().0)) }
     }
 
+    #[doc(alias = "gdk_drag_get_content")]
+    #[doc(alias = "get_content")]
     fn content(&self) -> ContentProvider {
         unsafe { from_glib_none(ffi::gdk_drag_get_content(self.as_ref().to_glib_none().0)) }
     }
 
+    #[doc(alias = "gdk_drag_get_device")]
+    #[doc(alias = "get_device")]
     fn device(&self) -> Device {
         unsafe { from_glib_none(ffi::gdk_drag_get_device(self.as_ref().to_glib_none().0)) }
     }
 
+    #[doc(alias = "gdk_drag_get_display")]
+    #[doc(alias = "get_display")]
     fn display(&self) -> Display {
         unsafe { from_glib_none(ffi::gdk_drag_get_display(self.as_ref().to_glib_none().0)) }
     }
 
+    #[doc(alias = "gdk_drag_get_drag_surface")]
+    #[doc(alias = "get_drag_surface")]
     fn drag_surface(&self) -> Option<Surface> {
         unsafe {
             from_glib_none(ffi::gdk_drag_get_drag_surface(
@@ -141,10 +89,14 @@ impl<O: IsA<Drag>> DragExt for O {
         }
     }
 
+    #[doc(alias = "gdk_drag_get_formats")]
+    #[doc(alias = "get_formats")]
     fn formats(&self) -> ContentFormats {
         unsafe { from_glib_none(ffi::gdk_drag_get_formats(self.as_ref().to_glib_none().0)) }
     }
 
+    #[doc(alias = "gdk_drag_get_selected_action")]
+    #[doc(alias = "get_selected_action")]
     fn selected_action(&self) -> DragAction {
         unsafe {
             from_glib(ffi::gdk_drag_get_selected_action(
@@ -153,10 +105,13 @@ impl<O: IsA<Drag>> DragExt for O {
         }
     }
 
+    #[doc(alias = "gdk_drag_get_surface")]
+    #[doc(alias = "get_surface")]
     fn surface(&self) -> Surface {
         unsafe { from_glib_none(ffi::gdk_drag_get_surface(self.as_ref().to_glib_none().0)) }
     }
 
+    #[doc(alias = "gdk_drag_set_hotspot")]
     fn set_hotspot(&self, hot_x: i32, hot_y: i32) {
         unsafe {
             ffi::gdk_drag_set_hotspot(self.as_ref().to_glib_none().0, hot_x, hot_y);
@@ -167,10 +122,12 @@ impl<O: IsA<Drag>> DragExt for O {
         glib::ObjectExt::set_property(self.as_ref(), "actions", actions)
     }
 
+    #[doc(alias = "selected-action")]
     fn set_selected_action(&self, selected_action: DragAction) {
         glib::ObjectExt::set_property(self.as_ref(), "selected-action", selected_action)
     }
 
+    #[doc(alias = "cancel")]
     fn connect_cancel<F: Fn(&Self, DragCancelReason) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn cancel_trampoline<
             P: IsA<Drag>,
@@ -199,6 +156,7 @@ impl<O: IsA<Drag>> DragExt for O {
         }
     }
 
+    #[doc(alias = "dnd-finished")]
     fn connect_dnd_finished<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn dnd_finished_trampoline<P: IsA<Drag>, F: Fn(&P) + 'static>(
             this: *mut ffi::GdkDrag,
@@ -220,6 +178,7 @@ impl<O: IsA<Drag>> DragExt for O {
         }
     }
 
+    #[doc(alias = "drop-performed")]
     fn connect_drop_performed<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn drop_performed_trampoline<P: IsA<Drag>, F: Fn(&P) + 'static>(
             this: *mut ffi::GdkDrag,
@@ -241,6 +200,7 @@ impl<O: IsA<Drag>> DragExt for O {
         }
     }
 
+    #[doc(alias = "actions")]
     fn connect_actions_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_actions_trampoline<P: IsA<Drag>, F: Fn(&P) + 'static>(
             this: *mut ffi::GdkDrag,
@@ -263,6 +223,7 @@ impl<O: IsA<Drag>> DragExt for O {
         }
     }
 
+    #[doc(alias = "display")]
     fn connect_display_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_display_trampoline<P: IsA<Drag>, F: Fn(&P) + 'static>(
             this: *mut ffi::GdkDrag,
@@ -285,6 +246,7 @@ impl<O: IsA<Drag>> DragExt for O {
         }
     }
 
+    #[doc(alias = "selected-action")]
     fn connect_selected_action_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_selected_action_trampoline<
             P: IsA<Drag>,
@@ -310,6 +272,8 @@ impl<O: IsA<Drag>> DragExt for O {
         }
     }
 }
+
+impl<O: IsA<Drag>> DragExt for O {}
 
 impl fmt::Display for Drag {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {

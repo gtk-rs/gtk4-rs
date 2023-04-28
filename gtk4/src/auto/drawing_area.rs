@@ -265,52 +265,34 @@ impl DrawingAreaBuilder {
     }
 }
 
-pub trait DrawingAreaExt: 'static {
+pub trait DrawingAreaExt: IsA<DrawingArea> + 'static {
     #[doc(alias = "gtk_drawing_area_get_content_height")]
     #[doc(alias = "get_content_height")]
-    fn content_height(&self) -> i32;
-
-    #[doc(alias = "gtk_drawing_area_get_content_width")]
-    #[doc(alias = "get_content_width")]
-    fn content_width(&self) -> i32;
-
-    #[doc(alias = "gtk_drawing_area_set_content_height")]
-    fn set_content_height(&self, height: i32);
-
-    #[doc(alias = "gtk_drawing_area_set_content_width")]
-    fn set_content_width(&self, width: i32);
-
-    #[doc(alias = "resize")]
-    fn connect_resize<F: Fn(&Self, i32, i32) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "content-height")]
-    fn connect_content_height_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "content-width")]
-    fn connect_content_width_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-}
-
-impl<O: IsA<DrawingArea>> DrawingAreaExt for O {
     fn content_height(&self) -> i32 {
         unsafe { ffi::gtk_drawing_area_get_content_height(self.as_ref().to_glib_none().0) }
     }
 
+    #[doc(alias = "gtk_drawing_area_get_content_width")]
+    #[doc(alias = "get_content_width")]
     fn content_width(&self) -> i32 {
         unsafe { ffi::gtk_drawing_area_get_content_width(self.as_ref().to_glib_none().0) }
     }
 
+    #[doc(alias = "gtk_drawing_area_set_content_height")]
     fn set_content_height(&self, height: i32) {
         unsafe {
             ffi::gtk_drawing_area_set_content_height(self.as_ref().to_glib_none().0, height);
         }
     }
 
+    #[doc(alias = "gtk_drawing_area_set_content_width")]
     fn set_content_width(&self, width: i32) {
         unsafe {
             ffi::gtk_drawing_area_set_content_width(self.as_ref().to_glib_none().0, width);
         }
     }
 
+    #[doc(alias = "resize")]
     fn connect_resize<F: Fn(&Self, i32, i32) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn resize_trampoline<
             P: IsA<DrawingArea>,
@@ -341,6 +323,7 @@ impl<O: IsA<DrawingArea>> DrawingAreaExt for O {
         }
     }
 
+    #[doc(alias = "content-height")]
     fn connect_content_height_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_content_height_trampoline<
             P: IsA<DrawingArea>,
@@ -366,6 +349,7 @@ impl<O: IsA<DrawingArea>> DrawingAreaExt for O {
         }
     }
 
+    #[doc(alias = "content-width")]
     fn connect_content_width_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_content_width_trampoline<
             P: IsA<DrawingArea>,
@@ -391,6 +375,8 @@ impl<O: IsA<DrawingArea>> DrawingAreaExt for O {
         }
     }
 }
+
+impl<O: IsA<DrawingArea>> DrawingAreaExt for O {}
 
 impl fmt::Display for DrawingArea {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {

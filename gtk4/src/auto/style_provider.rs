@@ -22,12 +22,8 @@ impl StyleProvider {
     pub const NONE: Option<&'static StyleProvider> = None;
 }
 
-pub trait StyleProviderExt: 'static {
+pub trait StyleProviderExt: IsA<StyleProvider> + 'static {
     #[doc(alias = "gtk-private-changed")]
-    fn connect_gtk_private_changed<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-}
-
-impl<O: IsA<StyleProvider>> StyleProviderExt for O {
     fn connect_gtk_private_changed<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn gtk_private_changed_trampoline<
             P: IsA<StyleProvider>,
@@ -52,6 +48,8 @@ impl<O: IsA<StyleProvider>> StyleProviderExt for O {
         }
     }
 }
+
+impl<O: IsA<StyleProvider>> StyleProviderExt for O {}
 
 impl fmt::Display for StyleProvider {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {

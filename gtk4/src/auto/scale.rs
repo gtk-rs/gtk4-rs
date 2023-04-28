@@ -360,66 +360,8 @@ impl ScaleBuilder {
     }
 }
 
-pub trait ScaleExt: 'static {
+pub trait ScaleExt: IsA<Scale> + 'static {
     #[doc(alias = "gtk_scale_add_mark")]
-    fn add_mark(&self, value: f64, position: PositionType, markup: Option<&str>);
-
-    #[doc(alias = "gtk_scale_clear_marks")]
-    fn clear_marks(&self);
-
-    #[doc(alias = "gtk_scale_get_digits")]
-    #[doc(alias = "get_digits")]
-    fn digits(&self) -> i32;
-
-    #[doc(alias = "gtk_scale_get_draw_value")]
-    #[doc(alias = "get_draw_value")]
-    fn draws_value(&self) -> bool;
-
-    #[doc(alias = "gtk_scale_get_has_origin")]
-    #[doc(alias = "get_has_origin")]
-    fn has_origin(&self) -> bool;
-
-    #[doc(alias = "gtk_scale_get_layout")]
-    #[doc(alias = "get_layout")]
-    fn layout(&self) -> Option<pango::Layout>;
-
-    #[doc(alias = "gtk_scale_get_layout_offsets")]
-    #[doc(alias = "get_layout_offsets")]
-    fn layout_offsets(&self) -> (i32, i32);
-
-    #[doc(alias = "gtk_scale_get_value_pos")]
-    #[doc(alias = "get_value_pos")]
-    fn value_pos(&self) -> PositionType;
-
-    #[doc(alias = "gtk_scale_set_digits")]
-    fn set_digits(&self, digits: i32);
-
-    #[doc(alias = "gtk_scale_set_draw_value")]
-    fn set_draw_value(&self, draw_value: bool);
-
-    #[doc(alias = "gtk_scale_set_format_value_func")]
-    fn set_format_value_func<P: Fn(&Scale, f64) -> String + 'static>(&self, func: P);
-
-    #[doc(alias = "gtk_scale_set_has_origin")]
-    fn set_has_origin(&self, has_origin: bool);
-
-    #[doc(alias = "gtk_scale_set_value_pos")]
-    fn set_value_pos(&self, pos: PositionType);
-
-    #[doc(alias = "digits")]
-    fn connect_digits_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "draw-value")]
-    fn connect_draw_value_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "has-origin")]
-    fn connect_has_origin_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "value-pos")]
-    fn connect_value_pos_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-}
-
-impl<O: IsA<Scale>> ScaleExt for O {
     fn add_mark(&self, value: f64, position: PositionType, markup: Option<&str>) {
         unsafe {
             ffi::gtk_scale_add_mark(
@@ -431,16 +373,21 @@ impl<O: IsA<Scale>> ScaleExt for O {
         }
     }
 
+    #[doc(alias = "gtk_scale_clear_marks")]
     fn clear_marks(&self) {
         unsafe {
             ffi::gtk_scale_clear_marks(self.as_ref().to_glib_none().0);
         }
     }
 
+    #[doc(alias = "gtk_scale_get_digits")]
+    #[doc(alias = "get_digits")]
     fn digits(&self) -> i32 {
         unsafe { ffi::gtk_scale_get_digits(self.as_ref().to_glib_none().0) }
     }
 
+    #[doc(alias = "gtk_scale_get_draw_value")]
+    #[doc(alias = "get_draw_value")]
     fn draws_value(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_scale_get_draw_value(
@@ -449,6 +396,8 @@ impl<O: IsA<Scale>> ScaleExt for O {
         }
     }
 
+    #[doc(alias = "gtk_scale_get_has_origin")]
+    #[doc(alias = "get_has_origin")]
     fn has_origin(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_scale_get_has_origin(
@@ -457,10 +406,14 @@ impl<O: IsA<Scale>> ScaleExt for O {
         }
     }
 
+    #[doc(alias = "gtk_scale_get_layout")]
+    #[doc(alias = "get_layout")]
     fn layout(&self) -> Option<pango::Layout> {
         unsafe { from_glib_none(ffi::gtk_scale_get_layout(self.as_ref().to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_scale_get_layout_offsets")]
+    #[doc(alias = "get_layout_offsets")]
     fn layout_offsets(&self) -> (i32, i32) {
         unsafe {
             let mut x = mem::MaybeUninit::uninit();
@@ -474,22 +427,27 @@ impl<O: IsA<Scale>> ScaleExt for O {
         }
     }
 
+    #[doc(alias = "gtk_scale_get_value_pos")]
+    #[doc(alias = "get_value_pos")]
     fn value_pos(&self) -> PositionType {
         unsafe { from_glib(ffi::gtk_scale_get_value_pos(self.as_ref().to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_scale_set_digits")]
     fn set_digits(&self, digits: i32) {
         unsafe {
             ffi::gtk_scale_set_digits(self.as_ref().to_glib_none().0, digits);
         }
     }
 
+    #[doc(alias = "gtk_scale_set_draw_value")]
     fn set_draw_value(&self, draw_value: bool) {
         unsafe {
             ffi::gtk_scale_set_draw_value(self.as_ref().to_glib_none().0, draw_value.into_glib());
         }
     }
 
+    #[doc(alias = "gtk_scale_set_format_value_func")]
     fn set_format_value_func<P: Fn(&Scale, f64) -> String + 'static>(&self, func: P) {
         let func_data: Box_<P> = Box_::new(func);
         unsafe extern "C" fn func_func<P: Fn(&Scale, f64) -> String + 'static>(
@@ -519,18 +477,21 @@ impl<O: IsA<Scale>> ScaleExt for O {
         }
     }
 
+    #[doc(alias = "gtk_scale_set_has_origin")]
     fn set_has_origin(&self, has_origin: bool) {
         unsafe {
             ffi::gtk_scale_set_has_origin(self.as_ref().to_glib_none().0, has_origin.into_glib());
         }
     }
 
+    #[doc(alias = "gtk_scale_set_value_pos")]
     fn set_value_pos(&self, pos: PositionType) {
         unsafe {
             ffi::gtk_scale_set_value_pos(self.as_ref().to_glib_none().0, pos.into_glib());
         }
     }
 
+    #[doc(alias = "digits")]
     fn connect_digits_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_digits_trampoline<P: IsA<Scale>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkScale,
@@ -553,6 +514,7 @@ impl<O: IsA<Scale>> ScaleExt for O {
         }
     }
 
+    #[doc(alias = "draw-value")]
     fn connect_draw_value_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_draw_value_trampoline<P: IsA<Scale>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkScale,
@@ -575,6 +537,7 @@ impl<O: IsA<Scale>> ScaleExt for O {
         }
     }
 
+    #[doc(alias = "has-origin")]
     fn connect_has_origin_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_has_origin_trampoline<P: IsA<Scale>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkScale,
@@ -597,6 +560,7 @@ impl<O: IsA<Scale>> ScaleExt for O {
         }
     }
 
+    #[doc(alias = "value-pos")]
     fn connect_value_pos_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_value_pos_trampoline<P: IsA<Scale>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkScale,
@@ -619,6 +583,8 @@ impl<O: IsA<Scale>> ScaleExt for O {
         }
     }
 }
+
+impl<O: IsA<Scale>> ScaleExt for O {}
 
 impl fmt::Display for Scale {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {

@@ -27,333 +27,10 @@ impl CellArea {
     pub const NONE: Option<&'static CellArea> = None;
 }
 
-pub trait CellAreaExt: 'static {
+pub trait CellAreaExt: IsA<CellArea> + 'static {
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
     #[doc(alias = "gtk_cell_area_activate")]
-    fn activate(
-        &self,
-        context: &impl IsA<CellAreaContext>,
-        widget: &impl IsA<Widget>,
-        cell_area: &gdk::Rectangle,
-        flags: CellRendererState,
-        edit_only: bool,
-    ) -> bool;
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_cell_area_activate_cell")]
-    fn activate_cell(
-        &self,
-        widget: &impl IsA<Widget>,
-        renderer: &impl IsA<CellRenderer>,
-        event: impl AsRef<gdk::Event>,
-        cell_area: &gdk::Rectangle,
-        flags: CellRendererState,
-    ) -> bool;
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_cell_area_add")]
-    fn add(&self, renderer: &impl IsA<CellRenderer>);
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_cell_area_add_focus_sibling")]
-    fn add_focus_sibling(
-        &self,
-        renderer: &impl IsA<CellRenderer>,
-        sibling: &impl IsA<CellRenderer>,
-    );
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_cell_area_apply_attributes")]
-    fn apply_attributes(
-        &self,
-        tree_model: &impl IsA<TreeModel>,
-        iter: &TreeIter,
-        is_expander: bool,
-        is_expanded: bool,
-    );
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_cell_area_attribute_connect")]
-    fn attribute_connect(&self, renderer: &impl IsA<CellRenderer>, attribute: &str, column: i32);
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_cell_area_attribute_disconnect")]
-    fn attribute_disconnect(&self, renderer: &impl IsA<CellRenderer>, attribute: &str);
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_cell_area_attribute_get_column")]
-    fn attribute_get_column(&self, renderer: &impl IsA<CellRenderer>, attribute: &str) -> i32;
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_cell_area_copy_context")]
-    fn copy_context(&self, context: &impl IsA<CellAreaContext>) -> CellAreaContext;
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_cell_area_create_context")]
-    fn create_context(&self) -> CellAreaContext;
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_cell_area_event")]
-    fn event(
-        &self,
-        context: &impl IsA<CellAreaContext>,
-        widget: &impl IsA<Widget>,
-        event: impl AsRef<gdk::Event>,
-        cell_area: &gdk::Rectangle,
-        flags: CellRendererState,
-    ) -> i32;
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_cell_area_focus")]
-    fn focus(&self, direction: DirectionType) -> bool;
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_cell_area_foreach")]
-    fn foreach<P: FnMut(&CellRenderer) -> bool>(&self, callback: P);
-
-    #[doc(alias = "gtk_cell_area_foreach_alloc")]
-    fn foreach_alloc<P: FnMut(&CellRenderer, &gdk::Rectangle, &gdk::Rectangle) -> bool>(
-        &self,
-        context: &impl IsA<CellAreaContext>,
-        widget: &impl IsA<Widget>,
-        cell_area: &gdk::Rectangle,
-        background_area: &gdk::Rectangle,
-        callback: P,
-    );
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_cell_area_get_cell_allocation")]
-    #[doc(alias = "get_cell_allocation")]
-    fn cell_allocation(
-        &self,
-        context: &impl IsA<CellAreaContext>,
-        widget: &impl IsA<Widget>,
-        renderer: &impl IsA<CellRenderer>,
-        cell_area: &gdk::Rectangle,
-    ) -> gdk::Rectangle;
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_cell_area_get_cell_at_position")]
-    #[doc(alias = "get_cell_at_position")]
-    fn cell_at_position(
-        &self,
-        context: &impl IsA<CellAreaContext>,
-        widget: &impl IsA<Widget>,
-        cell_area: &gdk::Rectangle,
-        x: i32,
-        y: i32,
-    ) -> (CellRenderer, gdk::Rectangle);
-
-    #[doc(alias = "gtk_cell_area_get_current_path_string")]
-    #[doc(alias = "get_current_path_string")]
-    fn current_path_string(&self) -> glib::GString;
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_cell_area_get_edit_widget")]
-    #[doc(alias = "get_edit_widget")]
-    fn edit_widget(&self) -> Option<CellEditable>;
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_cell_area_get_edited_cell")]
-    #[doc(alias = "get_edited_cell")]
-    fn edited_cell(&self) -> Option<CellRenderer>;
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_cell_area_get_focus_cell")]
-    #[doc(alias = "get_focus_cell")]
-    fn focus_cell(&self) -> Option<CellRenderer>;
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_cell_area_get_focus_from_sibling")]
-    #[doc(alias = "get_focus_from_sibling")]
-    fn focus_from_sibling(&self, renderer: &impl IsA<CellRenderer>) -> Option<CellRenderer>;
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_cell_area_get_focus_siblings")]
-    #[doc(alias = "get_focus_siblings")]
-    fn focus_siblings(&self, renderer: &impl IsA<CellRenderer>) -> Vec<CellRenderer>;
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_cell_area_get_preferred_height")]
-    #[doc(alias = "get_preferred_height")]
-    fn preferred_height(
-        &self,
-        context: &impl IsA<CellAreaContext>,
-        widget: &impl IsA<Widget>,
-    ) -> (i32, i32);
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_cell_area_get_preferred_height_for_width")]
-    #[doc(alias = "get_preferred_height_for_width")]
-    fn preferred_height_for_width(
-        &self,
-        context: &impl IsA<CellAreaContext>,
-        widget: &impl IsA<Widget>,
-        width: i32,
-    ) -> (i32, i32);
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_cell_area_get_preferred_width")]
-    #[doc(alias = "get_preferred_width")]
-    fn preferred_width(
-        &self,
-        context: &impl IsA<CellAreaContext>,
-        widget: &impl IsA<Widget>,
-    ) -> (i32, i32);
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_cell_area_get_preferred_width_for_height")]
-    #[doc(alias = "get_preferred_width_for_height")]
-    fn preferred_width_for_height(
-        &self,
-        context: &impl IsA<CellAreaContext>,
-        widget: &impl IsA<Widget>,
-        height: i32,
-    ) -> (i32, i32);
-
-    #[doc(alias = "gtk_cell_area_get_request_mode")]
-    #[doc(alias = "get_request_mode")]
-    fn request_mode(&self) -> SizeRequestMode;
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_cell_area_has_renderer")]
-    fn has_renderer(&self, renderer: &impl IsA<CellRenderer>) -> bool;
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_cell_area_inner_cell_area")]
-    fn inner_cell_area(
-        &self,
-        widget: &impl IsA<Widget>,
-        cell_area: &gdk::Rectangle,
-    ) -> gdk::Rectangle;
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_cell_area_is_activatable")]
-    fn is_activatable(&self) -> bool;
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_cell_area_is_focus_sibling")]
-    fn is_focus_sibling(
-        &self,
-        renderer: &impl IsA<CellRenderer>,
-        sibling: &impl IsA<CellRenderer>,
-    ) -> bool;
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_cell_area_remove")]
-    fn remove(&self, renderer: &impl IsA<CellRenderer>);
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_cell_area_remove_focus_sibling")]
-    fn remove_focus_sibling(
-        &self,
-        renderer: &impl IsA<CellRenderer>,
-        sibling: &impl IsA<CellRenderer>,
-    );
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_cell_area_request_renderer")]
-    fn request_renderer(
-        &self,
-        renderer: &impl IsA<CellRenderer>,
-        orientation: Orientation,
-        widget: &impl IsA<Widget>,
-        for_size: i32,
-    ) -> (i32, i32);
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_cell_area_set_focus_cell")]
-    fn set_focus_cell(&self, renderer: Option<&impl IsA<CellRenderer>>);
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_cell_area_snapshot")]
-    fn snapshot(
-        &self,
-        context: &impl IsA<CellAreaContext>,
-        widget: &impl IsA<Widget>,
-        snapshot: &impl IsA<Snapshot>,
-        background_area: &gdk::Rectangle,
-        cell_area: &gdk::Rectangle,
-        flags: CellRendererState,
-        paint_focus: bool,
-    );
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_cell_area_stop_editing")]
-    fn stop_editing(&self, canceled: bool);
-
-    #[doc(alias = "add-editable")]
-    fn connect_add_editable<
-        F: Fn(&Self, &CellRenderer, &CellEditable, &gdk::Rectangle, TreePath) + 'static,
-    >(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
-
-    #[doc(alias = "apply-attributes")]
-    fn connect_apply_attributes<F: Fn(&Self, &TreeModel, &TreeIter, bool, bool) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
-
-    #[doc(alias = "focus-changed")]
-    fn connect_focus_changed<F: Fn(&Self, &CellRenderer, TreePath) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
-
-    #[doc(alias = "remove-editable")]
-    fn connect_remove_editable<F: Fn(&Self, &CellRenderer, &CellEditable) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
-
-    #[doc(alias = "edit-widget")]
-    fn connect_edit_widget_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "edited-cell")]
-    fn connect_edited_cell_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "focus-cell")]
-    fn connect_focus_cell_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-}
-
-impl<O: IsA<CellArea>> CellAreaExt for O {
-    #[allow(deprecated)]
     fn activate(
         &self,
         context: &impl IsA<CellAreaContext>,
@@ -374,7 +51,9 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_cell_area_activate_cell")]
     fn activate_cell(
         &self,
         widget: &impl IsA<Widget>,
@@ -395,7 +74,9 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_cell_area_add")]
     fn add(&self, renderer: &impl IsA<CellRenderer>) {
         unsafe {
             ffi::gtk_cell_area_add(
@@ -405,7 +86,9 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_cell_area_add_focus_sibling")]
     fn add_focus_sibling(
         &self,
         renderer: &impl IsA<CellRenderer>,
@@ -420,7 +103,9 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_cell_area_apply_attributes")]
     fn apply_attributes(
         &self,
         tree_model: &impl IsA<TreeModel>,
@@ -439,7 +124,9 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_cell_area_attribute_connect")]
     fn attribute_connect(&self, renderer: &impl IsA<CellRenderer>, attribute: &str, column: i32) {
         unsafe {
             ffi::gtk_cell_area_attribute_connect(
@@ -451,7 +138,9 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_cell_area_attribute_disconnect")]
     fn attribute_disconnect(&self, renderer: &impl IsA<CellRenderer>, attribute: &str) {
         unsafe {
             ffi::gtk_cell_area_attribute_disconnect(
@@ -462,7 +151,9 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_cell_area_attribute_get_column")]
     fn attribute_get_column(&self, renderer: &impl IsA<CellRenderer>, attribute: &str) -> i32 {
         unsafe {
             ffi::gtk_cell_area_attribute_get_column(
@@ -473,7 +164,9 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_cell_area_copy_context")]
     fn copy_context(&self, context: &impl IsA<CellAreaContext>) -> CellAreaContext {
         unsafe {
             from_glib_full(ffi::gtk_cell_area_copy_context(
@@ -483,7 +176,9 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_cell_area_create_context")]
     fn create_context(&self) -> CellAreaContext {
         unsafe {
             from_glib_full(ffi::gtk_cell_area_create_context(
@@ -492,7 +187,9 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_cell_area_event")]
     fn event(
         &self,
         context: &impl IsA<CellAreaContext>,
@@ -513,7 +210,9 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_cell_area_focus")]
     fn focus(&self, direction: DirectionType) -> bool {
         unsafe {
             from_glib(ffi::gtk_cell_area_focus(
@@ -523,7 +222,9 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_cell_area_foreach")]
     fn foreach<P: FnMut(&CellRenderer) -> bool>(&self, callback: P) {
         let callback_data: P = callback;
         unsafe extern "C" fn callback_func<P: FnMut(&CellRenderer) -> bool>(
@@ -545,6 +246,7 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
         }
     }
 
+    #[doc(alias = "gtk_cell_area_foreach_alloc")]
     fn foreach_alloc<P: FnMut(&CellRenderer, &gdk::Rectangle, &gdk::Rectangle) -> bool>(
         &self,
         context: &impl IsA<CellAreaContext>,
@@ -583,7 +285,10 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_cell_area_get_cell_allocation")]
+    #[doc(alias = "get_cell_allocation")]
     fn cell_allocation(
         &self,
         context: &impl IsA<CellAreaContext>,
@@ -605,7 +310,10 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_cell_area_get_cell_at_position")]
+    #[doc(alias = "get_cell_at_position")]
     fn cell_at_position(
         &self,
         context: &impl IsA<CellAreaContext>,
@@ -629,6 +337,8 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
         }
     }
 
+    #[doc(alias = "gtk_cell_area_get_current_path_string")]
+    #[doc(alias = "get_current_path_string")]
     fn current_path_string(&self) -> glib::GString {
         unsafe {
             from_glib_none(ffi::gtk_cell_area_get_current_path_string(
@@ -637,7 +347,10 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_cell_area_get_edit_widget")]
+    #[doc(alias = "get_edit_widget")]
     fn edit_widget(&self) -> Option<CellEditable> {
         unsafe {
             from_glib_none(ffi::gtk_cell_area_get_edit_widget(
@@ -646,7 +359,10 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_cell_area_get_edited_cell")]
+    #[doc(alias = "get_edited_cell")]
     fn edited_cell(&self) -> Option<CellRenderer> {
         unsafe {
             from_glib_none(ffi::gtk_cell_area_get_edited_cell(
@@ -655,7 +371,10 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_cell_area_get_focus_cell")]
+    #[doc(alias = "get_focus_cell")]
     fn focus_cell(&self) -> Option<CellRenderer> {
         unsafe {
             from_glib_none(ffi::gtk_cell_area_get_focus_cell(
@@ -664,7 +383,10 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_cell_area_get_focus_from_sibling")]
+    #[doc(alias = "get_focus_from_sibling")]
     fn focus_from_sibling(&self, renderer: &impl IsA<CellRenderer>) -> Option<CellRenderer> {
         unsafe {
             from_glib_none(ffi::gtk_cell_area_get_focus_from_sibling(
@@ -674,7 +396,10 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_cell_area_get_focus_siblings")]
+    #[doc(alias = "get_focus_siblings")]
     fn focus_siblings(&self, renderer: &impl IsA<CellRenderer>) -> Vec<CellRenderer> {
         unsafe {
             FromGlibPtrContainer::from_glib_none(ffi::gtk_cell_area_get_focus_siblings(
@@ -684,7 +409,10 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_cell_area_get_preferred_height")]
+    #[doc(alias = "get_preferred_height")]
     fn preferred_height(
         &self,
         context: &impl IsA<CellAreaContext>,
@@ -704,7 +432,10 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_cell_area_get_preferred_height_for_width")]
+    #[doc(alias = "get_preferred_height_for_width")]
     fn preferred_height_for_width(
         &self,
         context: &impl IsA<CellAreaContext>,
@@ -726,7 +457,10 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_cell_area_get_preferred_width")]
+    #[doc(alias = "get_preferred_width")]
     fn preferred_width(
         &self,
         context: &impl IsA<CellAreaContext>,
@@ -746,7 +480,10 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_cell_area_get_preferred_width_for_height")]
+    #[doc(alias = "get_preferred_width_for_height")]
     fn preferred_width_for_height(
         &self,
         context: &impl IsA<CellAreaContext>,
@@ -768,6 +505,8 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
         }
     }
 
+    #[doc(alias = "gtk_cell_area_get_request_mode")]
+    #[doc(alias = "get_request_mode")]
     fn request_mode(&self) -> SizeRequestMode {
         unsafe {
             from_glib(ffi::gtk_cell_area_get_request_mode(
@@ -776,7 +515,9 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_cell_area_has_renderer")]
     fn has_renderer(&self, renderer: &impl IsA<CellRenderer>) -> bool {
         unsafe {
             from_glib(ffi::gtk_cell_area_has_renderer(
@@ -786,7 +527,9 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_cell_area_inner_cell_area")]
     fn inner_cell_area(
         &self,
         widget: &impl IsA<Widget>,
@@ -804,7 +547,9 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_cell_area_is_activatable")]
     fn is_activatable(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_cell_area_is_activatable(
@@ -813,7 +558,9 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_cell_area_is_focus_sibling")]
     fn is_focus_sibling(
         &self,
         renderer: &impl IsA<CellRenderer>,
@@ -828,7 +575,9 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_cell_area_remove")]
     fn remove(&self, renderer: &impl IsA<CellRenderer>) {
         unsafe {
             ffi::gtk_cell_area_remove(
@@ -838,7 +587,9 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_cell_area_remove_focus_sibling")]
     fn remove_focus_sibling(
         &self,
         renderer: &impl IsA<CellRenderer>,
@@ -853,7 +604,9 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_cell_area_request_renderer")]
     fn request_renderer(
         &self,
         renderer: &impl IsA<CellRenderer>,
@@ -877,7 +630,9 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_cell_area_set_focus_cell")]
     fn set_focus_cell(&self, renderer: Option<&impl IsA<CellRenderer>>) {
         unsafe {
             ffi::gtk_cell_area_set_focus_cell(
@@ -887,7 +642,9 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_cell_area_snapshot")]
     fn snapshot(
         &self,
         context: &impl IsA<CellAreaContext>,
@@ -912,13 +669,16 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_cell_area_stop_editing")]
     fn stop_editing(&self, canceled: bool) {
         unsafe {
             ffi::gtk_cell_area_stop_editing(self.as_ref().to_glib_none().0, canceled.into_glib());
         }
     }
 
+    #[doc(alias = "add-editable")]
     fn connect_add_editable<
         F: Fn(&Self, &CellRenderer, &CellEditable, &gdk::Rectangle, TreePath) + 'static,
     >(
@@ -959,6 +719,7 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
         }
     }
 
+    #[doc(alias = "apply-attributes")]
     fn connect_apply_attributes<F: Fn(&Self, &TreeModel, &TreeIter, bool, bool) + 'static>(
         &self,
         f: F,
@@ -996,6 +757,7 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
         }
     }
 
+    #[doc(alias = "focus-changed")]
     fn connect_focus_changed<F: Fn(&Self, &CellRenderer, TreePath) + 'static>(
         &self,
         f: F,
@@ -1030,6 +792,7 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
         }
     }
 
+    #[doc(alias = "remove-editable")]
     fn connect_remove_editable<F: Fn(&Self, &CellRenderer, &CellEditable) + 'static>(
         &self,
         f: F,
@@ -1063,6 +826,7 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
         }
     }
 
+    #[doc(alias = "edit-widget")]
     fn connect_edit_widget_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_edit_widget_trampoline<
             P: IsA<CellArea>,
@@ -1088,6 +852,7 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
         }
     }
 
+    #[doc(alias = "edited-cell")]
     fn connect_edited_cell_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_edited_cell_trampoline<
             P: IsA<CellArea>,
@@ -1113,6 +878,7 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
         }
     }
 
+    #[doc(alias = "focus-cell")]
     fn connect_focus_cell_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_focus_cell_trampoline<P: IsA<CellArea>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkCellArea,
@@ -1135,6 +901,8 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
         }
     }
 }
+
+impl<O: IsA<CellArea>> CellAreaExt for O {}
 
 impl fmt::Display for CellArea {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {

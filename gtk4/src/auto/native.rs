@@ -30,35 +30,21 @@ impl Native {
     }
 }
 
-pub trait NativeExt: 'static {
+pub trait NativeExt: IsA<Native> + 'static {
     #[doc(alias = "gtk_native_get_renderer")]
     #[doc(alias = "get_renderer")]
-    fn renderer(&self) -> gsk::Renderer;
-
-    #[doc(alias = "gtk_native_get_surface")]
-    #[doc(alias = "get_surface")]
-    fn surface(&self) -> gdk::Surface;
-
-    #[doc(alias = "gtk_native_get_surface_transform")]
-    #[doc(alias = "get_surface_transform")]
-    fn surface_transform(&self) -> (f64, f64);
-
-    #[doc(alias = "gtk_native_realize")]
-    fn realize(&self);
-
-    #[doc(alias = "gtk_native_unrealize")]
-    fn unrealize(&self);
-}
-
-impl<O: IsA<Native>> NativeExt for O {
     fn renderer(&self) -> gsk::Renderer {
         unsafe { from_glib_none(ffi::gtk_native_get_renderer(self.as_ref().to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_native_get_surface")]
+    #[doc(alias = "get_surface")]
     fn surface(&self) -> gdk::Surface {
         unsafe { from_glib_none(ffi::gtk_native_get_surface(self.as_ref().to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_native_get_surface_transform")]
+    #[doc(alias = "get_surface_transform")]
     fn surface_transform(&self) -> (f64, f64) {
         unsafe {
             let mut x = mem::MaybeUninit::uninit();
@@ -72,18 +58,22 @@ impl<O: IsA<Native>> NativeExt for O {
         }
     }
 
+    #[doc(alias = "gtk_native_realize")]
     fn realize(&self) {
         unsafe {
             ffi::gtk_native_realize(self.as_ref().to_glib_none().0);
         }
     }
 
+    #[doc(alias = "gtk_native_unrealize")]
     fn unrealize(&self) {
         unsafe {
             ffi::gtk_native_unrealize(self.as_ref().to_glib_none().0);
         }
     }
 }
+
+impl<O: IsA<Native>> NativeExt for O {}
 
 impl fmt::Display for Native {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {

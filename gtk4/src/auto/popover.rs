@@ -306,112 +306,9 @@ impl PopoverBuilder {
     }
 }
 
-pub trait PopoverExt: 'static {
+pub trait PopoverExt: IsA<Popover> + 'static {
     #[doc(alias = "gtk_popover_get_autohide")]
     #[doc(alias = "get_autohide")]
-    fn is_autohide(&self) -> bool;
-
-    #[doc(alias = "gtk_popover_get_cascade_popdown")]
-    #[doc(alias = "get_cascade_popdown")]
-    fn is_cascade_popdown(&self) -> bool;
-
-    #[doc(alias = "gtk_popover_get_child")]
-    #[doc(alias = "get_child")]
-    fn child(&self) -> Option<Widget>;
-
-    #[doc(alias = "gtk_popover_get_has_arrow")]
-    #[doc(alias = "get_has_arrow")]
-    fn has_arrow(&self) -> bool;
-
-    #[doc(alias = "gtk_popover_get_mnemonics_visible")]
-    #[doc(alias = "get_mnemonics_visible")]
-    fn is_mnemonics_visible(&self) -> bool;
-
-    #[doc(alias = "gtk_popover_get_offset")]
-    #[doc(alias = "get_offset")]
-    fn offset(&self) -> (i32, i32);
-
-    #[doc(alias = "gtk_popover_get_pointing_to")]
-    #[doc(alias = "get_pointing_to")]
-    fn pointing_to(&self) -> (bool, gdk::Rectangle);
-
-    #[doc(alias = "gtk_popover_get_position")]
-    #[doc(alias = "get_position")]
-    fn position(&self) -> PositionType;
-
-    #[doc(alias = "gtk_popover_popdown")]
-    fn popdown(&self);
-
-    #[doc(alias = "gtk_popover_popup")]
-    fn popup(&self);
-
-    #[doc(alias = "gtk_popover_present")]
-    fn present(&self);
-
-    #[doc(alias = "gtk_popover_set_autohide")]
-    fn set_autohide(&self, autohide: bool);
-
-    #[doc(alias = "gtk_popover_set_cascade_popdown")]
-    fn set_cascade_popdown(&self, cascade_popdown: bool);
-
-    #[doc(alias = "gtk_popover_set_child")]
-    fn set_child(&self, child: Option<&impl IsA<Widget>>);
-
-    #[doc(alias = "gtk_popover_set_default_widget")]
-    fn set_default_widget(&self, widget: Option<&impl IsA<Widget>>);
-
-    #[doc(alias = "gtk_popover_set_has_arrow")]
-    fn set_has_arrow(&self, has_arrow: bool);
-
-    #[doc(alias = "gtk_popover_set_mnemonics_visible")]
-    fn set_mnemonics_visible(&self, mnemonics_visible: bool);
-
-    #[doc(alias = "gtk_popover_set_offset")]
-    fn set_offset(&self, x_offset: i32, y_offset: i32);
-
-    #[doc(alias = "gtk_popover_set_pointing_to")]
-    fn set_pointing_to(&self, rect: Option<&gdk::Rectangle>);
-
-    #[doc(alias = "gtk_popover_set_position")]
-    fn set_position(&self, position: PositionType);
-
-    #[doc(alias = "default-widget")]
-    fn default_widget(&self) -> Option<Widget>;
-
-    #[doc(alias = "activate-default")]
-    fn connect_activate_default<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    fn emit_activate_default(&self);
-
-    #[doc(alias = "closed")]
-    fn connect_closed<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "autohide")]
-    fn connect_autohide_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "cascade-popdown")]
-    fn connect_cascade_popdown_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "child")]
-    fn connect_child_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "default-widget")]
-    fn connect_default_widget_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "has-arrow")]
-    fn connect_has_arrow_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "mnemonics-visible")]
-    fn connect_mnemonics_visible_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "pointing-to")]
-    fn connect_pointing_to_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "position")]
-    fn connect_position_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-}
-
-impl<O: IsA<Popover>> PopoverExt for O {
     fn is_autohide(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_popover_get_autohide(
@@ -420,6 +317,8 @@ impl<O: IsA<Popover>> PopoverExt for O {
         }
     }
 
+    #[doc(alias = "gtk_popover_get_cascade_popdown")]
+    #[doc(alias = "get_cascade_popdown")]
     fn is_cascade_popdown(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_popover_get_cascade_popdown(
@@ -428,10 +327,14 @@ impl<O: IsA<Popover>> PopoverExt for O {
         }
     }
 
+    #[doc(alias = "gtk_popover_get_child")]
+    #[doc(alias = "get_child")]
     fn child(&self) -> Option<Widget> {
         unsafe { from_glib_none(ffi::gtk_popover_get_child(self.as_ref().to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_popover_get_has_arrow")]
+    #[doc(alias = "get_has_arrow")]
     fn has_arrow(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_popover_get_has_arrow(
@@ -440,6 +343,8 @@ impl<O: IsA<Popover>> PopoverExt for O {
         }
     }
 
+    #[doc(alias = "gtk_popover_get_mnemonics_visible")]
+    #[doc(alias = "get_mnemonics_visible")]
     fn is_mnemonics_visible(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_popover_get_mnemonics_visible(
@@ -448,6 +353,8 @@ impl<O: IsA<Popover>> PopoverExt for O {
         }
     }
 
+    #[doc(alias = "gtk_popover_get_offset")]
+    #[doc(alias = "get_offset")]
     fn offset(&self) -> (i32, i32) {
         unsafe {
             let mut x_offset = mem::MaybeUninit::uninit();
@@ -461,6 +368,8 @@ impl<O: IsA<Popover>> PopoverExt for O {
         }
     }
 
+    #[doc(alias = "gtk_popover_get_pointing_to")]
+    #[doc(alias = "get_pointing_to")]
     fn pointing_to(&self) -> (bool, gdk::Rectangle) {
         unsafe {
             let mut rect = gdk::Rectangle::uninitialized();
@@ -472,6 +381,8 @@ impl<O: IsA<Popover>> PopoverExt for O {
         }
     }
 
+    #[doc(alias = "gtk_popover_get_position")]
+    #[doc(alias = "get_position")]
     fn position(&self) -> PositionType {
         unsafe {
             from_glib(ffi::gtk_popover_get_position(
@@ -480,30 +391,35 @@ impl<O: IsA<Popover>> PopoverExt for O {
         }
     }
 
+    #[doc(alias = "gtk_popover_popdown")]
     fn popdown(&self) {
         unsafe {
             ffi::gtk_popover_popdown(self.as_ref().to_glib_none().0);
         }
     }
 
+    #[doc(alias = "gtk_popover_popup")]
     fn popup(&self) {
         unsafe {
             ffi::gtk_popover_popup(self.as_ref().to_glib_none().0);
         }
     }
 
+    #[doc(alias = "gtk_popover_present")]
     fn present(&self) {
         unsafe {
             ffi::gtk_popover_present(self.as_ref().to_glib_none().0);
         }
     }
 
+    #[doc(alias = "gtk_popover_set_autohide")]
     fn set_autohide(&self, autohide: bool) {
         unsafe {
             ffi::gtk_popover_set_autohide(self.as_ref().to_glib_none().0, autohide.into_glib());
         }
     }
 
+    #[doc(alias = "gtk_popover_set_cascade_popdown")]
     fn set_cascade_popdown(&self, cascade_popdown: bool) {
         unsafe {
             ffi::gtk_popover_set_cascade_popdown(
@@ -513,6 +429,7 @@ impl<O: IsA<Popover>> PopoverExt for O {
         }
     }
 
+    #[doc(alias = "gtk_popover_set_child")]
     fn set_child(&self, child: Option<&impl IsA<Widget>>) {
         unsafe {
             ffi::gtk_popover_set_child(
@@ -522,6 +439,7 @@ impl<O: IsA<Popover>> PopoverExt for O {
         }
     }
 
+    #[doc(alias = "gtk_popover_set_default_widget")]
     fn set_default_widget(&self, widget: Option<&impl IsA<Widget>>) {
         unsafe {
             ffi::gtk_popover_set_default_widget(
@@ -531,12 +449,14 @@ impl<O: IsA<Popover>> PopoverExt for O {
         }
     }
 
+    #[doc(alias = "gtk_popover_set_has_arrow")]
     fn set_has_arrow(&self, has_arrow: bool) {
         unsafe {
             ffi::gtk_popover_set_has_arrow(self.as_ref().to_glib_none().0, has_arrow.into_glib());
         }
     }
 
+    #[doc(alias = "gtk_popover_set_mnemonics_visible")]
     fn set_mnemonics_visible(&self, mnemonics_visible: bool) {
         unsafe {
             ffi::gtk_popover_set_mnemonics_visible(
@@ -546,28 +466,33 @@ impl<O: IsA<Popover>> PopoverExt for O {
         }
     }
 
+    #[doc(alias = "gtk_popover_set_offset")]
     fn set_offset(&self, x_offset: i32, y_offset: i32) {
         unsafe {
             ffi::gtk_popover_set_offset(self.as_ref().to_glib_none().0, x_offset, y_offset);
         }
     }
 
+    #[doc(alias = "gtk_popover_set_pointing_to")]
     fn set_pointing_to(&self, rect: Option<&gdk::Rectangle>) {
         unsafe {
             ffi::gtk_popover_set_pointing_to(self.as_ref().to_glib_none().0, rect.to_glib_none().0);
         }
     }
 
+    #[doc(alias = "gtk_popover_set_position")]
     fn set_position(&self, position: PositionType) {
         unsafe {
             ffi::gtk_popover_set_position(self.as_ref().to_glib_none().0, position.into_glib());
         }
     }
 
+    #[doc(alias = "default-widget")]
     fn default_widget(&self) -> Option<Widget> {
         glib::ObjectExt::property(self.as_ref(), "default-widget")
     }
 
+    #[doc(alias = "activate-default")]
     fn connect_activate_default<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn activate_default_trampoline<P: IsA<Popover>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkPopover,
@@ -593,6 +518,7 @@ impl<O: IsA<Popover>> PopoverExt for O {
         self.emit_by_name::<()>("activate-default", &[]);
     }
 
+    #[doc(alias = "closed")]
     fn connect_closed<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn closed_trampoline<P: IsA<Popover>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkPopover,
@@ -614,6 +540,7 @@ impl<O: IsA<Popover>> PopoverExt for O {
         }
     }
 
+    #[doc(alias = "autohide")]
     fn connect_autohide_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_autohide_trampoline<P: IsA<Popover>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkPopover,
@@ -636,6 +563,7 @@ impl<O: IsA<Popover>> PopoverExt for O {
         }
     }
 
+    #[doc(alias = "cascade-popdown")]
     fn connect_cascade_popdown_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_cascade_popdown_trampoline<
             P: IsA<Popover>,
@@ -661,6 +589,7 @@ impl<O: IsA<Popover>> PopoverExt for O {
         }
     }
 
+    #[doc(alias = "child")]
     fn connect_child_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_child_trampoline<P: IsA<Popover>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkPopover,
@@ -683,6 +612,7 @@ impl<O: IsA<Popover>> PopoverExt for O {
         }
     }
 
+    #[doc(alias = "default-widget")]
     fn connect_default_widget_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_default_widget_trampoline<
             P: IsA<Popover>,
@@ -708,6 +638,7 @@ impl<O: IsA<Popover>> PopoverExt for O {
         }
     }
 
+    #[doc(alias = "has-arrow")]
     fn connect_has_arrow_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_has_arrow_trampoline<P: IsA<Popover>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkPopover,
@@ -730,6 +661,7 @@ impl<O: IsA<Popover>> PopoverExt for O {
         }
     }
 
+    #[doc(alias = "mnemonics-visible")]
     fn connect_mnemonics_visible_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_mnemonics_visible_trampoline<
             P: IsA<Popover>,
@@ -755,6 +687,7 @@ impl<O: IsA<Popover>> PopoverExt for O {
         }
     }
 
+    #[doc(alias = "pointing-to")]
     fn connect_pointing_to_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_pointing_to_trampoline<P: IsA<Popover>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkPopover,
@@ -777,6 +710,7 @@ impl<O: IsA<Popover>> PopoverExt for O {
         }
     }
 
+    #[doc(alias = "position")]
     fn connect_position_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_position_trampoline<P: IsA<Popover>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkPopover,
@@ -799,6 +733,8 @@ impl<O: IsA<Popover>> PopoverExt for O {
         }
     }
 }
+
+impl<O: IsA<Popover>> PopoverExt for O {}
 
 impl fmt::Display for Popover {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {

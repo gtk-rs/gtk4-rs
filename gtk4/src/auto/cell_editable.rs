@@ -24,51 +24,26 @@ impl CellEditable {
     pub const NONE: Option<&'static CellEditable> = None;
 }
 
-pub trait CellEditableExt: 'static {
+pub trait CellEditableExt: IsA<CellEditable> + 'static {
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
     #[doc(alias = "gtk_cell_editable_editing_done")]
-    fn editing_done(&self);
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_cell_editable_remove_widget")]
-    fn remove_widget(&self);
-
-    #[doc(alias = "gtk_cell_editable_start_editing")]
-    fn start_editing(&self, event: Option<impl AsRef<gdk::Event>>);
-
-    #[doc(alias = "editing-canceled")]
-    fn is_editing_canceled(&self) -> bool;
-
-    #[doc(alias = "editing-canceled")]
-    fn set_editing_canceled(&self, editing_canceled: bool);
-
-    #[doc(alias = "editing-done")]
-    fn connect_editing_done<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "remove-widget")]
-    fn connect_remove_widget<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "editing-canceled")]
-    fn connect_editing_canceled_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-}
-
-impl<O: IsA<CellEditable>> CellEditableExt for O {
-    #[allow(deprecated)]
     fn editing_done(&self) {
         unsafe {
             ffi::gtk_cell_editable_editing_done(self.as_ref().to_glib_none().0);
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_cell_editable_remove_widget")]
     fn remove_widget(&self) {
         unsafe {
             ffi::gtk_cell_editable_remove_widget(self.as_ref().to_glib_none().0);
         }
     }
 
+    #[doc(alias = "gtk_cell_editable_start_editing")]
     fn start_editing(&self, event: Option<impl AsRef<gdk::Event>>) {
         unsafe {
             ffi::gtk_cell_editable_start_editing(
@@ -78,14 +53,17 @@ impl<O: IsA<CellEditable>> CellEditableExt for O {
         }
     }
 
+    #[doc(alias = "editing-canceled")]
     fn is_editing_canceled(&self) -> bool {
         glib::ObjectExt::property(self.as_ref(), "editing-canceled")
     }
 
+    #[doc(alias = "editing-canceled")]
     fn set_editing_canceled(&self, editing_canceled: bool) {
         glib::ObjectExt::set_property(self.as_ref(), "editing-canceled", editing_canceled)
     }
 
+    #[doc(alias = "editing-done")]
     fn connect_editing_done<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn editing_done_trampoline<P: IsA<CellEditable>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkCellEditable,
@@ -107,6 +85,7 @@ impl<O: IsA<CellEditable>> CellEditableExt for O {
         }
     }
 
+    #[doc(alias = "remove-widget")]
     fn connect_remove_widget<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn remove_widget_trampoline<P: IsA<CellEditable>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkCellEditable,
@@ -128,6 +107,7 @@ impl<O: IsA<CellEditable>> CellEditableExt for O {
         }
     }
 
+    #[doc(alias = "editing-canceled")]
     fn connect_editing_canceled_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_editing_canceled_trampoline<
             P: IsA<CellEditable>,
@@ -153,6 +133,8 @@ impl<O: IsA<CellEditable>> CellEditableExt for O {
         }
     }
 }
+
+impl<O: IsA<CellEditable>> CellEditableExt for O {}
 
 impl fmt::Display for CellEditable {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {

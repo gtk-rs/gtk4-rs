@@ -442,339 +442,10 @@ impl CellRendererTextBuilder {
     }
 }
 
-pub trait CellRendererTextExt: 'static {
+pub trait CellRendererTextExt: IsA<CellRendererText> + 'static {
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
     #[doc(alias = "gtk_cell_renderer_text_set_fixed_height_from_font")]
-    fn set_fixed_height_from_font(&self, number_of_rows: i32);
-
-    #[doc(alias = "align-set")]
-    fn is_align_set(&self) -> bool;
-
-    fn alignment(&self) -> pango::Alignment;
-
-    fn set_alignment(&self, alignment: pango::Alignment);
-
-    fn attributes(&self) -> Option<pango::AttrList>;
-
-    fn set_attributes(&self, attributes: Option<&pango::AttrList>);
-
-    fn set_background(&self, background: Option<&str>);
-
-    #[doc(alias = "background-rgba")]
-    fn background_rgba(&self) -> Option<gdk::RGBA>;
-
-    #[doc(alias = "background-rgba")]
-    fn set_background_rgba(&self, background_rgba: Option<&gdk::RGBA>);
-
-    #[doc(alias = "background-set")]
-    fn is_background_set(&self) -> bool;
-
-    fn is_editable(&self) -> bool;
-
-    fn set_editable(&self, editable: bool);
-
-    #[doc(alias = "editable-set")]
-    fn is_editable_set(&self) -> bool;
-
-    fn ellipsize(&self) -> pango::EllipsizeMode;
-
-    fn set_ellipsize(&self, ellipsize: pango::EllipsizeMode);
-
-    #[doc(alias = "ellipsize-set")]
-    fn is_ellipsize_set(&self) -> bool;
-
-    fn family(&self) -> Option<glib::GString>;
-
-    fn set_family(&self, family: Option<&str>);
-
-    #[doc(alias = "family-set")]
-    fn is_family_set(&self) -> bool;
-
-    fn font(&self) -> Option<glib::GString>;
-
-    fn set_font(&self, font: Option<&str>);
-
-    #[doc(alias = "font-desc")]
-    fn font_desc(&self) -> Option<pango::FontDescription>;
-
-    #[doc(alias = "font-desc")]
-    fn set_font_desc(&self, font_desc: Option<&pango::FontDescription>);
-
-    fn set_foreground(&self, foreground: Option<&str>);
-
-    #[doc(alias = "foreground-rgba")]
-    fn foreground_rgba(&self) -> Option<gdk::RGBA>;
-
-    #[doc(alias = "foreground-rgba")]
-    fn set_foreground_rgba(&self, foreground_rgba: Option<&gdk::RGBA>);
-
-    #[doc(alias = "foreground-set")]
-    fn is_foreground_set(&self) -> bool;
-
-    fn language(&self) -> Option<glib::GString>;
-
-    fn set_language(&self, language: Option<&str>);
-
-    #[doc(alias = "language-set")]
-    fn is_language_set(&self) -> bool;
-
-    fn set_markup(&self, markup: Option<&str>);
-
-    #[doc(alias = "max-width-chars")]
-    fn max_width_chars(&self) -> i32;
-
-    #[doc(alias = "max-width-chars")]
-    fn set_max_width_chars(&self, max_width_chars: i32);
-
-    #[doc(alias = "placeholder-text")]
-    fn placeholder_text(&self) -> Option<glib::GString>;
-
-    #[doc(alias = "placeholder-text")]
-    fn set_placeholder_text(&self, placeholder_text: Option<&str>);
-
-    fn rise(&self) -> i32;
-
-    fn set_rise(&self, rise: i32);
-
-    #[doc(alias = "rise-set")]
-    fn is_rise_set(&self) -> bool;
-
-    fn scale(&self) -> f64;
-
-    fn set_scale(&self, scale: f64);
-
-    #[doc(alias = "scale-set")]
-    fn is_scale_set(&self) -> bool;
-
-    #[doc(alias = "single-paragraph-mode")]
-    fn is_single_paragraph_mode(&self) -> bool;
-
-    #[doc(alias = "single-paragraph-mode")]
-    fn set_single_paragraph_mode(&self, single_paragraph_mode: bool);
-
-    fn size(&self) -> i32;
-
-    fn set_size(&self, size: i32);
-
-    #[doc(alias = "size-points")]
-    fn size_points(&self) -> f64;
-
-    #[doc(alias = "size-points")]
-    fn set_size_points(&self, size_points: f64);
-
-    #[doc(alias = "size-set")]
-    fn is_size_set(&self) -> bool;
-
-    fn stretch(&self) -> pango::Stretch;
-
-    fn set_stretch(&self, stretch: pango::Stretch);
-
-    #[doc(alias = "stretch-set")]
-    fn is_stretch_set(&self) -> bool;
-
-    fn is_strikethrough(&self) -> bool;
-
-    fn set_strikethrough(&self, strikethrough: bool);
-
-    #[doc(alias = "strikethrough-set")]
-    fn is_strikethrough_set(&self) -> bool;
-
-    fn style(&self) -> pango::Style;
-
-    fn set_style(&self, style: pango::Style);
-
-    #[doc(alias = "style-set")]
-    fn is_style_set(&self) -> bool;
-
-    fn text(&self) -> Option<glib::GString>;
-
-    fn set_text(&self, text: Option<&str>);
-
-    fn underline(&self) -> pango::Underline;
-
-    fn set_underline(&self, underline: pango::Underline);
-
-    #[doc(alias = "underline-set")]
-    fn is_underline_set(&self) -> bool;
-
-    fn variant(&self) -> pango::Variant;
-
-    fn set_variant(&self, variant: pango::Variant);
-
-    #[doc(alias = "variant-set")]
-    fn is_variant_set(&self) -> bool;
-
-    fn weight(&self) -> i32;
-
-    fn set_weight(&self, weight: i32);
-
-    #[doc(alias = "weight-set")]
-    fn is_weight_set(&self) -> bool;
-
-    #[doc(alias = "width-chars")]
-    fn width_chars(&self) -> i32;
-
-    #[doc(alias = "width-chars")]
-    fn set_width_chars(&self, width_chars: i32);
-
-    #[doc(alias = "wrap-mode")]
-    fn wrap_mode(&self) -> pango::WrapMode;
-
-    #[doc(alias = "wrap-mode")]
-    fn set_wrap_mode(&self, wrap_mode: pango::WrapMode);
-
-    #[doc(alias = "wrap-width")]
-    fn wrap_width(&self) -> i32;
-
-    #[doc(alias = "wrap-width")]
-    fn set_wrap_width(&self, wrap_width: i32);
-
-    #[doc(alias = "edited")]
-    fn connect_edited<F: Fn(&Self, TreePath, &str) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "align-set")]
-    fn connect_align_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "alignment")]
-    fn connect_alignment_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "attributes")]
-    fn connect_attributes_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "background")]
-    fn connect_background_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "background-rgba")]
-    fn connect_background_rgba_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "background-set")]
-    fn connect_background_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "editable")]
-    fn connect_editable_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "editable-set")]
-    fn connect_editable_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "ellipsize")]
-    fn connect_ellipsize_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "ellipsize-set")]
-    fn connect_ellipsize_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "family")]
-    fn connect_family_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "family-set")]
-    fn connect_family_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "font")]
-    fn connect_font_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "font-desc")]
-    fn connect_font_desc_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "foreground")]
-    fn connect_foreground_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "foreground-rgba")]
-    fn connect_foreground_rgba_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "foreground-set")]
-    fn connect_foreground_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "language")]
-    fn connect_language_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "language-set")]
-    fn connect_language_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "markup")]
-    fn connect_markup_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "max-width-chars")]
-    fn connect_max_width_chars_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "placeholder-text")]
-    fn connect_placeholder_text_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "rise")]
-    fn connect_rise_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "rise-set")]
-    fn connect_rise_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "scale")]
-    fn connect_scale_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "scale-set")]
-    fn connect_scale_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "single-paragraph-mode")]
-    fn connect_single_paragraph_mode_notify<F: Fn(&Self) + 'static>(&self, f: F)
-        -> SignalHandlerId;
-
-    #[doc(alias = "size")]
-    fn connect_size_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "size-points")]
-    fn connect_size_points_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "size-set")]
-    fn connect_size_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "stretch")]
-    fn connect_stretch_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "stretch-set")]
-    fn connect_stretch_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "strikethrough")]
-    fn connect_strikethrough_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "strikethrough-set")]
-    fn connect_strikethrough_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "style")]
-    fn connect_style_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "style-set")]
-    fn connect_style_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "text")]
-    fn connect_text_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "underline")]
-    fn connect_underline_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "underline-set")]
-    fn connect_underline_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "variant")]
-    fn connect_variant_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "variant-set")]
-    fn connect_variant_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "weight")]
-    fn connect_weight_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "weight-set")]
-    fn connect_weight_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "width-chars")]
-    fn connect_width_chars_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "wrap-mode")]
-    fn connect_wrap_mode_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "wrap-width")]
-    fn connect_wrap_width_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-}
-
-impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
-    #[allow(deprecated)]
     fn set_fixed_height_from_font(&self, number_of_rows: i32) {
         unsafe {
             ffi::gtk_cell_renderer_text_set_fixed_height_from_font(
@@ -784,6 +455,7 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
         }
     }
 
+    #[doc(alias = "align-set")]
     fn is_align_set(&self) -> bool {
         glib::ObjectExt::property(self.as_ref(), "align-set")
     }
@@ -808,14 +480,17 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
         glib::ObjectExt::set_property(self.as_ref(), "background", background)
     }
 
+    #[doc(alias = "background-rgba")]
     fn background_rgba(&self) -> Option<gdk::RGBA> {
         glib::ObjectExt::property(self.as_ref(), "background-rgba")
     }
 
+    #[doc(alias = "background-rgba")]
     fn set_background_rgba(&self, background_rgba: Option<&gdk::RGBA>) {
         glib::ObjectExt::set_property(self.as_ref(), "background-rgba", background_rgba)
     }
 
+    #[doc(alias = "background-set")]
     fn is_background_set(&self) -> bool {
         glib::ObjectExt::property(self.as_ref(), "background-set")
     }
@@ -828,6 +503,7 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
         glib::ObjectExt::set_property(self.as_ref(), "editable", editable)
     }
 
+    #[doc(alias = "editable-set")]
     fn is_editable_set(&self) -> bool {
         glib::ObjectExt::property(self.as_ref(), "editable-set")
     }
@@ -840,6 +516,7 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
         glib::ObjectExt::set_property(self.as_ref(), "ellipsize", ellipsize)
     }
 
+    #[doc(alias = "ellipsize-set")]
     fn is_ellipsize_set(&self) -> bool {
         glib::ObjectExt::property(self.as_ref(), "ellipsize-set")
     }
@@ -852,6 +529,7 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
         glib::ObjectExt::set_property(self.as_ref(), "family", family)
     }
 
+    #[doc(alias = "family-set")]
     fn is_family_set(&self) -> bool {
         glib::ObjectExt::property(self.as_ref(), "family-set")
     }
@@ -864,10 +542,12 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
         glib::ObjectExt::set_property(self.as_ref(), "font", font)
     }
 
+    #[doc(alias = "font-desc")]
     fn font_desc(&self) -> Option<pango::FontDescription> {
         glib::ObjectExt::property(self.as_ref(), "font-desc")
     }
 
+    #[doc(alias = "font-desc")]
     fn set_font_desc(&self, font_desc: Option<&pango::FontDescription>) {
         glib::ObjectExt::set_property(self.as_ref(), "font-desc", font_desc)
     }
@@ -876,14 +556,17 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
         glib::ObjectExt::set_property(self.as_ref(), "foreground", foreground)
     }
 
+    #[doc(alias = "foreground-rgba")]
     fn foreground_rgba(&self) -> Option<gdk::RGBA> {
         glib::ObjectExt::property(self.as_ref(), "foreground-rgba")
     }
 
+    #[doc(alias = "foreground-rgba")]
     fn set_foreground_rgba(&self, foreground_rgba: Option<&gdk::RGBA>) {
         glib::ObjectExt::set_property(self.as_ref(), "foreground-rgba", foreground_rgba)
     }
 
+    #[doc(alias = "foreground-set")]
     fn is_foreground_set(&self) -> bool {
         glib::ObjectExt::property(self.as_ref(), "foreground-set")
     }
@@ -896,6 +579,7 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
         glib::ObjectExt::set_property(self.as_ref(), "language", language)
     }
 
+    #[doc(alias = "language-set")]
     fn is_language_set(&self) -> bool {
         glib::ObjectExt::property(self.as_ref(), "language-set")
     }
@@ -904,18 +588,22 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
         glib::ObjectExt::set_property(self.as_ref(), "markup", markup)
     }
 
+    #[doc(alias = "max-width-chars")]
     fn max_width_chars(&self) -> i32 {
         glib::ObjectExt::property(self.as_ref(), "max-width-chars")
     }
 
+    #[doc(alias = "max-width-chars")]
     fn set_max_width_chars(&self, max_width_chars: i32) {
         glib::ObjectExt::set_property(self.as_ref(), "max-width-chars", max_width_chars)
     }
 
+    #[doc(alias = "placeholder-text")]
     fn placeholder_text(&self) -> Option<glib::GString> {
         glib::ObjectExt::property(self.as_ref(), "placeholder-text")
     }
 
+    #[doc(alias = "placeholder-text")]
     fn set_placeholder_text(&self, placeholder_text: Option<&str>) {
         glib::ObjectExt::set_property(self.as_ref(), "placeholder-text", placeholder_text)
     }
@@ -928,6 +616,7 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
         glib::ObjectExt::set_property(self.as_ref(), "rise", rise)
     }
 
+    #[doc(alias = "rise-set")]
     fn is_rise_set(&self) -> bool {
         glib::ObjectExt::property(self.as_ref(), "rise-set")
     }
@@ -940,14 +629,17 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
         glib::ObjectExt::set_property(self.as_ref(), "scale", scale)
     }
 
+    #[doc(alias = "scale-set")]
     fn is_scale_set(&self) -> bool {
         glib::ObjectExt::property(self.as_ref(), "scale-set")
     }
 
+    #[doc(alias = "single-paragraph-mode")]
     fn is_single_paragraph_mode(&self) -> bool {
         glib::ObjectExt::property(self.as_ref(), "single-paragraph-mode")
     }
 
+    #[doc(alias = "single-paragraph-mode")]
     fn set_single_paragraph_mode(&self, single_paragraph_mode: bool) {
         glib::ObjectExt::set_property(
             self.as_ref(),
@@ -964,14 +656,17 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
         glib::ObjectExt::set_property(self.as_ref(), "size", size)
     }
 
+    #[doc(alias = "size-points")]
     fn size_points(&self) -> f64 {
         glib::ObjectExt::property(self.as_ref(), "size-points")
     }
 
+    #[doc(alias = "size-points")]
     fn set_size_points(&self, size_points: f64) {
         glib::ObjectExt::set_property(self.as_ref(), "size-points", size_points)
     }
 
+    #[doc(alias = "size-set")]
     fn is_size_set(&self) -> bool {
         glib::ObjectExt::property(self.as_ref(), "size-set")
     }
@@ -984,6 +679,7 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
         glib::ObjectExt::set_property(self.as_ref(), "stretch", stretch)
     }
 
+    #[doc(alias = "stretch-set")]
     fn is_stretch_set(&self) -> bool {
         glib::ObjectExt::property(self.as_ref(), "stretch-set")
     }
@@ -996,6 +692,7 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
         glib::ObjectExt::set_property(self.as_ref(), "strikethrough", strikethrough)
     }
 
+    #[doc(alias = "strikethrough-set")]
     fn is_strikethrough_set(&self) -> bool {
         glib::ObjectExt::property(self.as_ref(), "strikethrough-set")
     }
@@ -1008,6 +705,7 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
         glib::ObjectExt::set_property(self.as_ref(), "style", style)
     }
 
+    #[doc(alias = "style-set")]
     fn is_style_set(&self) -> bool {
         glib::ObjectExt::property(self.as_ref(), "style-set")
     }
@@ -1028,6 +726,7 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
         glib::ObjectExt::set_property(self.as_ref(), "underline", underline)
     }
 
+    #[doc(alias = "underline-set")]
     fn is_underline_set(&self) -> bool {
         glib::ObjectExt::property(self.as_ref(), "underline-set")
     }
@@ -1040,6 +739,7 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
         glib::ObjectExt::set_property(self.as_ref(), "variant", variant)
     }
 
+    #[doc(alias = "variant-set")]
     fn is_variant_set(&self) -> bool {
         glib::ObjectExt::property(self.as_ref(), "variant-set")
     }
@@ -1052,34 +752,42 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
         glib::ObjectExt::set_property(self.as_ref(), "weight", weight)
     }
 
+    #[doc(alias = "weight-set")]
     fn is_weight_set(&self) -> bool {
         glib::ObjectExt::property(self.as_ref(), "weight-set")
     }
 
+    #[doc(alias = "width-chars")]
     fn width_chars(&self) -> i32 {
         glib::ObjectExt::property(self.as_ref(), "width-chars")
     }
 
+    #[doc(alias = "width-chars")]
     fn set_width_chars(&self, width_chars: i32) {
         glib::ObjectExt::set_property(self.as_ref(), "width-chars", width_chars)
     }
 
+    #[doc(alias = "wrap-mode")]
     fn wrap_mode(&self) -> pango::WrapMode {
         glib::ObjectExt::property(self.as_ref(), "wrap-mode")
     }
 
+    #[doc(alias = "wrap-mode")]
     fn set_wrap_mode(&self, wrap_mode: pango::WrapMode) {
         glib::ObjectExt::set_property(self.as_ref(), "wrap-mode", wrap_mode)
     }
 
+    #[doc(alias = "wrap-width")]
     fn wrap_width(&self) -> i32 {
         glib::ObjectExt::property(self.as_ref(), "wrap-width")
     }
 
+    #[doc(alias = "wrap-width")]
     fn set_wrap_width(&self, wrap_width: i32) {
         glib::ObjectExt::set_property(self.as_ref(), "wrap-width", wrap_width)
     }
 
+    #[doc(alias = "edited")]
     fn connect_edited<F: Fn(&Self, TreePath, &str) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn edited_trampoline<
             P: IsA<CellRendererText>,
@@ -1111,6 +819,7 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
         }
     }
 
+    #[doc(alias = "align-set")]
     fn connect_align_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_align_set_trampoline<
             P: IsA<CellRendererText>,
@@ -1136,6 +845,7 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
         }
     }
 
+    #[doc(alias = "alignment")]
     fn connect_alignment_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_alignment_trampoline<
             P: IsA<CellRendererText>,
@@ -1161,6 +871,7 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
         }
     }
 
+    #[doc(alias = "attributes")]
     fn connect_attributes_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_attributes_trampoline<
             P: IsA<CellRendererText>,
@@ -1186,6 +897,7 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
         }
     }
 
+    #[doc(alias = "background")]
     fn connect_background_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_background_trampoline<
             P: IsA<CellRendererText>,
@@ -1211,6 +923,7 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
         }
     }
 
+    #[doc(alias = "background-rgba")]
     fn connect_background_rgba_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_background_rgba_trampoline<
             P: IsA<CellRendererText>,
@@ -1236,6 +949,7 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
         }
     }
 
+    #[doc(alias = "background-set")]
     fn connect_background_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_background_set_trampoline<
             P: IsA<CellRendererText>,
@@ -1261,6 +975,7 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
         }
     }
 
+    #[doc(alias = "editable")]
     fn connect_editable_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_editable_trampoline<
             P: IsA<CellRendererText>,
@@ -1286,6 +1001,7 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
         }
     }
 
+    #[doc(alias = "editable-set")]
     fn connect_editable_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_editable_set_trampoline<
             P: IsA<CellRendererText>,
@@ -1311,6 +1027,7 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
         }
     }
 
+    #[doc(alias = "ellipsize")]
     fn connect_ellipsize_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_ellipsize_trampoline<
             P: IsA<CellRendererText>,
@@ -1336,6 +1053,7 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
         }
     }
 
+    #[doc(alias = "ellipsize-set")]
     fn connect_ellipsize_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_ellipsize_set_trampoline<
             P: IsA<CellRendererText>,
@@ -1361,6 +1079,7 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
         }
     }
 
+    #[doc(alias = "family")]
     fn connect_family_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_family_trampoline<
             P: IsA<CellRendererText>,
@@ -1386,6 +1105,7 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
         }
     }
 
+    #[doc(alias = "family-set")]
     fn connect_family_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_family_set_trampoline<
             P: IsA<CellRendererText>,
@@ -1411,6 +1131,7 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
         }
     }
 
+    #[doc(alias = "font")]
     fn connect_font_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_font_trampoline<
             P: IsA<CellRendererText>,
@@ -1436,6 +1157,7 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
         }
     }
 
+    #[doc(alias = "font-desc")]
     fn connect_font_desc_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_font_desc_trampoline<
             P: IsA<CellRendererText>,
@@ -1461,6 +1183,7 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
         }
     }
 
+    #[doc(alias = "foreground")]
     fn connect_foreground_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_foreground_trampoline<
             P: IsA<CellRendererText>,
@@ -1486,6 +1209,7 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
         }
     }
 
+    #[doc(alias = "foreground-rgba")]
     fn connect_foreground_rgba_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_foreground_rgba_trampoline<
             P: IsA<CellRendererText>,
@@ -1511,6 +1235,7 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
         }
     }
 
+    #[doc(alias = "foreground-set")]
     fn connect_foreground_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_foreground_set_trampoline<
             P: IsA<CellRendererText>,
@@ -1536,6 +1261,7 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
         }
     }
 
+    #[doc(alias = "language")]
     fn connect_language_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_language_trampoline<
             P: IsA<CellRendererText>,
@@ -1561,6 +1287,7 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
         }
     }
 
+    #[doc(alias = "language-set")]
     fn connect_language_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_language_set_trampoline<
             P: IsA<CellRendererText>,
@@ -1586,6 +1313,7 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
         }
     }
 
+    #[doc(alias = "markup")]
     fn connect_markup_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_markup_trampoline<
             P: IsA<CellRendererText>,
@@ -1611,6 +1339,7 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
         }
     }
 
+    #[doc(alias = "max-width-chars")]
     fn connect_max_width_chars_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_max_width_chars_trampoline<
             P: IsA<CellRendererText>,
@@ -1636,6 +1365,7 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
         }
     }
 
+    #[doc(alias = "placeholder-text")]
     fn connect_placeholder_text_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_placeholder_text_trampoline<
             P: IsA<CellRendererText>,
@@ -1661,6 +1391,7 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
         }
     }
 
+    #[doc(alias = "rise")]
     fn connect_rise_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_rise_trampoline<
             P: IsA<CellRendererText>,
@@ -1686,6 +1417,7 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
         }
     }
 
+    #[doc(alias = "rise-set")]
     fn connect_rise_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_rise_set_trampoline<
             P: IsA<CellRendererText>,
@@ -1711,6 +1443,7 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
         }
     }
 
+    #[doc(alias = "scale")]
     fn connect_scale_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_scale_trampoline<
             P: IsA<CellRendererText>,
@@ -1736,6 +1469,7 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
         }
     }
 
+    #[doc(alias = "scale-set")]
     fn connect_scale_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_scale_set_trampoline<
             P: IsA<CellRendererText>,
@@ -1761,6 +1495,7 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
         }
     }
 
+    #[doc(alias = "single-paragraph-mode")]
     fn connect_single_paragraph_mode_notify<F: Fn(&Self) + 'static>(
         &self,
         f: F,
@@ -1789,6 +1524,7 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
         }
     }
 
+    #[doc(alias = "size")]
     fn connect_size_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_size_trampoline<
             P: IsA<CellRendererText>,
@@ -1814,6 +1550,7 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
         }
     }
 
+    #[doc(alias = "size-points")]
     fn connect_size_points_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_size_points_trampoline<
             P: IsA<CellRendererText>,
@@ -1839,6 +1576,7 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
         }
     }
 
+    #[doc(alias = "size-set")]
     fn connect_size_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_size_set_trampoline<
             P: IsA<CellRendererText>,
@@ -1864,6 +1602,7 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
         }
     }
 
+    #[doc(alias = "stretch")]
     fn connect_stretch_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_stretch_trampoline<
             P: IsA<CellRendererText>,
@@ -1889,6 +1628,7 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
         }
     }
 
+    #[doc(alias = "stretch-set")]
     fn connect_stretch_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_stretch_set_trampoline<
             P: IsA<CellRendererText>,
@@ -1914,6 +1654,7 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
         }
     }
 
+    #[doc(alias = "strikethrough")]
     fn connect_strikethrough_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_strikethrough_trampoline<
             P: IsA<CellRendererText>,
@@ -1939,6 +1680,7 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
         }
     }
 
+    #[doc(alias = "strikethrough-set")]
     fn connect_strikethrough_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_strikethrough_set_trampoline<
             P: IsA<CellRendererText>,
@@ -1964,6 +1706,7 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
         }
     }
 
+    #[doc(alias = "style")]
     fn connect_style_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_style_trampoline<
             P: IsA<CellRendererText>,
@@ -1989,6 +1732,7 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
         }
     }
 
+    #[doc(alias = "style-set")]
     fn connect_style_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_style_set_trampoline<
             P: IsA<CellRendererText>,
@@ -2014,6 +1758,7 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
         }
     }
 
+    #[doc(alias = "text")]
     fn connect_text_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_text_trampoline<
             P: IsA<CellRendererText>,
@@ -2039,6 +1784,7 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
         }
     }
 
+    #[doc(alias = "underline")]
     fn connect_underline_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_underline_trampoline<
             P: IsA<CellRendererText>,
@@ -2064,6 +1810,7 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
         }
     }
 
+    #[doc(alias = "underline-set")]
     fn connect_underline_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_underline_set_trampoline<
             P: IsA<CellRendererText>,
@@ -2089,6 +1836,7 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
         }
     }
 
+    #[doc(alias = "variant")]
     fn connect_variant_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_variant_trampoline<
             P: IsA<CellRendererText>,
@@ -2114,6 +1862,7 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
         }
     }
 
+    #[doc(alias = "variant-set")]
     fn connect_variant_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_variant_set_trampoline<
             P: IsA<CellRendererText>,
@@ -2139,6 +1888,7 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
         }
     }
 
+    #[doc(alias = "weight")]
     fn connect_weight_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_weight_trampoline<
             P: IsA<CellRendererText>,
@@ -2164,6 +1914,7 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
         }
     }
 
+    #[doc(alias = "weight-set")]
     fn connect_weight_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_weight_set_trampoline<
             P: IsA<CellRendererText>,
@@ -2189,6 +1940,7 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
         }
     }
 
+    #[doc(alias = "width-chars")]
     fn connect_width_chars_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_width_chars_trampoline<
             P: IsA<CellRendererText>,
@@ -2214,6 +1966,7 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
         }
     }
 
+    #[doc(alias = "wrap-mode")]
     fn connect_wrap_mode_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_wrap_mode_trampoline<
             P: IsA<CellRendererText>,
@@ -2239,6 +1992,7 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
         }
     }
 
+    #[doc(alias = "wrap-width")]
     fn connect_wrap_width_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_wrap_width_trampoline<
             P: IsA<CellRendererText>,
@@ -2264,6 +2018,8 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
         }
     }
 }
+
+impl<O: IsA<CellRendererText>> CellRendererTextExt for O {}
 
 impl fmt::Display for CellRendererText {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {

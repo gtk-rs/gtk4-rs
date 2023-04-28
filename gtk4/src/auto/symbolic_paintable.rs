@@ -18,18 +18,8 @@ impl SymbolicPaintable {
     pub const NONE: Option<&'static SymbolicPaintable> = None;
 }
 
-pub trait SymbolicPaintableExt: 'static {
+pub trait SymbolicPaintableExt: IsA<SymbolicPaintable> + 'static {
     #[doc(alias = "gtk_symbolic_paintable_snapshot_symbolic")]
-    fn snapshot_symbolic(
-        &self,
-        snapshot: &impl IsA<gdk::Snapshot>,
-        width: f64,
-        height: f64,
-        colors: &[gdk::RGBA],
-    );
-}
-
-impl<O: IsA<SymbolicPaintable>> SymbolicPaintableExt for O {
     fn snapshot_symbolic(
         &self,
         snapshot: &impl IsA<gdk::Snapshot>,
@@ -50,6 +40,8 @@ impl<O: IsA<SymbolicPaintable>> SymbolicPaintableExt for O {
         }
     }
 }
+
+impl<O: IsA<SymbolicPaintable>> SymbolicPaintableExt for O {}
 
 impl fmt::Display for SymbolicPaintable {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {

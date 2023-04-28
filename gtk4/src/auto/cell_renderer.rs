@@ -27,285 +27,10 @@ impl CellRenderer {
     pub const NONE: Option<&'static CellRenderer> = None;
 }
 
-pub trait CellRendererExt: 'static {
+pub trait CellRendererExt: IsA<CellRenderer> + 'static {
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
     #[doc(alias = "gtk_cell_renderer_activate")]
-    fn activate(
-        &self,
-        event: impl AsRef<gdk::Event>,
-        widget: &impl IsA<Widget>,
-        path: &str,
-        background_area: &gdk::Rectangle,
-        cell_area: &gdk::Rectangle,
-        flags: CellRendererState,
-    ) -> bool;
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_cell_renderer_get_aligned_area")]
-    #[doc(alias = "get_aligned_area")]
-    fn aligned_area(
-        &self,
-        widget: &impl IsA<Widget>,
-        flags: CellRendererState,
-        cell_area: &gdk::Rectangle,
-    ) -> gdk::Rectangle;
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_cell_renderer_get_alignment")]
-    #[doc(alias = "get_alignment")]
-    fn alignment(&self) -> (f32, f32);
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_cell_renderer_get_fixed_size")]
-    #[doc(alias = "get_fixed_size")]
-    fn fixed_size(&self) -> (i32, i32);
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_cell_renderer_get_is_expanded")]
-    #[doc(alias = "get_is_expanded")]
-    fn is_expanded(&self) -> bool;
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_cell_renderer_get_is_expander")]
-    #[doc(alias = "get_is_expander")]
-    fn is_expander(&self) -> bool;
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_cell_renderer_get_padding")]
-    #[doc(alias = "get_padding")]
-    fn padding(&self) -> (i32, i32);
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_cell_renderer_get_preferred_height")]
-    #[doc(alias = "get_preferred_height")]
-    fn preferred_height(&self, widget: &impl IsA<Widget>) -> (i32, i32);
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_cell_renderer_get_preferred_height_for_width")]
-    #[doc(alias = "get_preferred_height_for_width")]
-    fn preferred_height_for_width(&self, widget: &impl IsA<Widget>, width: i32) -> (i32, i32);
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_cell_renderer_get_preferred_size")]
-    #[doc(alias = "get_preferred_size")]
-    fn preferred_size(&self, widget: &impl IsA<Widget>) -> (Requisition, Requisition);
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_cell_renderer_get_preferred_width")]
-    #[doc(alias = "get_preferred_width")]
-    fn preferred_width(&self, widget: &impl IsA<Widget>) -> (i32, i32);
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_cell_renderer_get_preferred_width_for_height")]
-    #[doc(alias = "get_preferred_width_for_height")]
-    fn preferred_width_for_height(&self, widget: &impl IsA<Widget>, height: i32) -> (i32, i32);
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_cell_renderer_get_request_mode")]
-    #[doc(alias = "get_request_mode")]
-    fn request_mode(&self) -> SizeRequestMode;
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_cell_renderer_get_sensitive")]
-    #[doc(alias = "get_sensitive")]
-    fn is_sensitive(&self) -> bool;
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_cell_renderer_get_state")]
-    #[doc(alias = "get_state")]
-    fn state(&self, widget: Option<&impl IsA<Widget>>, cell_state: CellRendererState)
-        -> StateFlags;
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_cell_renderer_get_visible")]
-    #[doc(alias = "get_visible")]
-    fn is_visible(&self) -> bool;
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_cell_renderer_is_activatable")]
-    fn is_activatable(&self) -> bool;
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_cell_renderer_set_alignment")]
-    fn set_alignment(&self, xalign: f32, yalign: f32);
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_cell_renderer_set_fixed_size")]
-    fn set_fixed_size(&self, width: i32, height: i32);
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_cell_renderer_set_is_expanded")]
-    fn set_is_expanded(&self, is_expanded: bool);
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_cell_renderer_set_is_expander")]
-    fn set_is_expander(&self, is_expander: bool);
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_cell_renderer_set_padding")]
-    fn set_padding(&self, xpad: i32, ypad: i32);
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_cell_renderer_set_sensitive")]
-    fn set_sensitive(&self, sensitive: bool);
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_cell_renderer_set_visible")]
-    fn set_visible(&self, visible: bool);
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_cell_renderer_snapshot")]
-    fn snapshot(
-        &self,
-        snapshot: &impl IsA<Snapshot>,
-        widget: &impl IsA<Widget>,
-        background_area: &gdk::Rectangle,
-        cell_area: &gdk::Rectangle,
-        flags: CellRendererState,
-    );
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_cell_renderer_start_editing")]
-    fn start_editing(
-        &self,
-        event: Option<impl AsRef<gdk::Event>>,
-        widget: &impl IsA<Widget>,
-        path: &str,
-        background_area: &gdk::Rectangle,
-        cell_area: &gdk::Rectangle,
-        flags: CellRendererState,
-    ) -> Option<CellEditable>;
-
-    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-    #[allow(deprecated)]
-    #[doc(alias = "gtk_cell_renderer_stop_editing")]
-    fn stop_editing(&self, canceled: bool);
-
-    #[doc(alias = "cell-background")]
-    fn set_cell_background(&self, cell_background: Option<&str>);
-
-    #[doc(alias = "cell-background-rgba")]
-    fn cell_background_rgba(&self) -> Option<gdk::RGBA>;
-
-    #[doc(alias = "cell-background-rgba")]
-    fn set_cell_background_rgba(&self, cell_background_rgba: Option<&gdk::RGBA>);
-
-    #[doc(alias = "cell-background-set")]
-    fn is_cell_background_set(&self) -> bool;
-
-    fn is_editing(&self) -> bool;
-
-    fn height(&self) -> i32;
-
-    fn set_height(&self, height: i32);
-
-    fn mode(&self) -> CellRendererMode;
-
-    fn set_mode(&self, mode: CellRendererMode);
-
-    fn width(&self) -> i32;
-
-    fn set_width(&self, width: i32);
-
-    fn xalign(&self) -> f32;
-
-    fn set_xalign(&self, xalign: f32);
-
-    fn xpad(&self) -> u32;
-
-    fn set_xpad(&self, xpad: u32);
-
-    fn yalign(&self) -> f32;
-
-    fn set_yalign(&self, yalign: f32);
-
-    fn ypad(&self) -> u32;
-
-    fn set_ypad(&self, ypad: u32);
-
-    #[doc(alias = "editing-canceled")]
-    fn connect_editing_canceled<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "editing-started")]
-    fn connect_editing_started<F: Fn(&Self, &CellEditable, TreePath) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
-
-    #[doc(alias = "cell-background")]
-    fn connect_cell_background_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "cell-background-rgba")]
-    fn connect_cell_background_rgba_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "cell-background-set")]
-    fn connect_cell_background_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "editing")]
-    fn connect_editing_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "height")]
-    fn connect_height_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "is-expanded")]
-    fn connect_is_expanded_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "is-expander")]
-    fn connect_is_expander_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "mode")]
-    fn connect_mode_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "sensitive")]
-    fn connect_sensitive_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "visible")]
-    fn connect_visible_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "width")]
-    fn connect_width_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "xalign")]
-    fn connect_xalign_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "xpad")]
-    fn connect_xpad_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "yalign")]
-    fn connect_yalign_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "ypad")]
-    fn connect_ypad_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-}
-
-impl<O: IsA<CellRenderer>> CellRendererExt for O {
-    #[allow(deprecated)]
     fn activate(
         &self,
         event: impl AsRef<gdk::Event>,
@@ -328,7 +53,10 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_cell_renderer_get_aligned_area")]
+    #[doc(alias = "get_aligned_area")]
     fn aligned_area(
         &self,
         widget: &impl IsA<Widget>,
@@ -348,7 +76,10 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_cell_renderer_get_alignment")]
+    #[doc(alias = "get_alignment")]
     fn alignment(&self) -> (f32, f32) {
         unsafe {
             let mut xalign = mem::MaybeUninit::uninit();
@@ -362,7 +93,10 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_cell_renderer_get_fixed_size")]
+    #[doc(alias = "get_fixed_size")]
     fn fixed_size(&self) -> (i32, i32) {
         unsafe {
             let mut width = mem::MaybeUninit::uninit();
@@ -376,7 +110,10 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_cell_renderer_get_is_expanded")]
+    #[doc(alias = "get_is_expanded")]
     fn is_expanded(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_cell_renderer_get_is_expanded(
@@ -385,7 +122,10 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_cell_renderer_get_is_expander")]
+    #[doc(alias = "get_is_expander")]
     fn is_expander(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_cell_renderer_get_is_expander(
@@ -394,7 +134,10 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_cell_renderer_get_padding")]
+    #[doc(alias = "get_padding")]
     fn padding(&self) -> (i32, i32) {
         unsafe {
             let mut xpad = mem::MaybeUninit::uninit();
@@ -408,7 +151,10 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_cell_renderer_get_preferred_height")]
+    #[doc(alias = "get_preferred_height")]
     fn preferred_height(&self, widget: &impl IsA<Widget>) -> (i32, i32) {
         unsafe {
             let mut minimum_size = mem::MaybeUninit::uninit();
@@ -423,7 +169,10 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_cell_renderer_get_preferred_height_for_width")]
+    #[doc(alias = "get_preferred_height_for_width")]
     fn preferred_height_for_width(&self, widget: &impl IsA<Widget>, width: i32) -> (i32, i32) {
         unsafe {
             let mut minimum_height = mem::MaybeUninit::uninit();
@@ -439,7 +188,10 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_cell_renderer_get_preferred_size")]
+    #[doc(alias = "get_preferred_size")]
     fn preferred_size(&self, widget: &impl IsA<Widget>) -> (Requisition, Requisition) {
         unsafe {
             let mut minimum_size = Requisition::uninitialized();
@@ -454,7 +206,10 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_cell_renderer_get_preferred_width")]
+    #[doc(alias = "get_preferred_width")]
     fn preferred_width(&self, widget: &impl IsA<Widget>) -> (i32, i32) {
         unsafe {
             let mut minimum_size = mem::MaybeUninit::uninit();
@@ -469,7 +224,10 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_cell_renderer_get_preferred_width_for_height")]
+    #[doc(alias = "get_preferred_width_for_height")]
     fn preferred_width_for_height(&self, widget: &impl IsA<Widget>, height: i32) -> (i32, i32) {
         unsafe {
             let mut minimum_width = mem::MaybeUninit::uninit();
@@ -485,7 +243,10 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_cell_renderer_get_request_mode")]
+    #[doc(alias = "get_request_mode")]
     fn request_mode(&self) -> SizeRequestMode {
         unsafe {
             from_glib(ffi::gtk_cell_renderer_get_request_mode(
@@ -494,7 +255,10 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_cell_renderer_get_sensitive")]
+    #[doc(alias = "get_sensitive")]
     fn is_sensitive(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_cell_renderer_get_sensitive(
@@ -503,7 +267,10 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_cell_renderer_get_state")]
+    #[doc(alias = "get_state")]
     fn state(
         &self,
         widget: Option<&impl IsA<Widget>>,
@@ -518,7 +285,10 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_cell_renderer_get_visible")]
+    #[doc(alias = "get_visible")]
     fn is_visible(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_cell_renderer_get_visible(
@@ -527,7 +297,9 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_cell_renderer_is_activatable")]
     fn is_activatable(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_cell_renderer_is_activatable(
@@ -536,21 +308,27 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_cell_renderer_set_alignment")]
     fn set_alignment(&self, xalign: f32, yalign: f32) {
         unsafe {
             ffi::gtk_cell_renderer_set_alignment(self.as_ref().to_glib_none().0, xalign, yalign);
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_cell_renderer_set_fixed_size")]
     fn set_fixed_size(&self, width: i32, height: i32) {
         unsafe {
             ffi::gtk_cell_renderer_set_fixed_size(self.as_ref().to_glib_none().0, width, height);
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_cell_renderer_set_is_expanded")]
     fn set_is_expanded(&self, is_expanded: bool) {
         unsafe {
             ffi::gtk_cell_renderer_set_is_expanded(
@@ -560,7 +338,9 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_cell_renderer_set_is_expander")]
     fn set_is_expander(&self, is_expander: bool) {
         unsafe {
             ffi::gtk_cell_renderer_set_is_expander(
@@ -570,14 +350,18 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_cell_renderer_set_padding")]
     fn set_padding(&self, xpad: i32, ypad: i32) {
         unsafe {
             ffi::gtk_cell_renderer_set_padding(self.as_ref().to_glib_none().0, xpad, ypad);
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_cell_renderer_set_sensitive")]
     fn set_sensitive(&self, sensitive: bool) {
         unsafe {
             ffi::gtk_cell_renderer_set_sensitive(
@@ -587,14 +371,18 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_cell_renderer_set_visible")]
     fn set_visible(&self, visible: bool) {
         unsafe {
             ffi::gtk_cell_renderer_set_visible(self.as_ref().to_glib_none().0, visible.into_glib());
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_cell_renderer_snapshot")]
     fn snapshot(
         &self,
         snapshot: &impl IsA<Snapshot>,
@@ -615,7 +403,9 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_cell_renderer_start_editing")]
     fn start_editing(
         &self,
         event: Option<impl AsRef<gdk::Event>>,
@@ -638,7 +428,9 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
+    #[doc(alias = "gtk_cell_renderer_stop_editing")]
     fn stop_editing(&self, canceled: bool) {
         unsafe {
             ffi::gtk_cell_renderer_stop_editing(
@@ -648,18 +440,22 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
         }
     }
 
+    #[doc(alias = "cell-background")]
     fn set_cell_background(&self, cell_background: Option<&str>) {
         glib::ObjectExt::set_property(self.as_ref(), "cell-background", cell_background)
     }
 
+    #[doc(alias = "cell-background-rgba")]
     fn cell_background_rgba(&self) -> Option<gdk::RGBA> {
         glib::ObjectExt::property(self.as_ref(), "cell-background-rgba")
     }
 
+    #[doc(alias = "cell-background-rgba")]
     fn set_cell_background_rgba(&self, cell_background_rgba: Option<&gdk::RGBA>) {
         glib::ObjectExt::set_property(self.as_ref(), "cell-background-rgba", cell_background_rgba)
     }
 
+    #[doc(alias = "cell-background-set")]
     fn is_cell_background_set(&self) -> bool {
         glib::ObjectExt::property(self.as_ref(), "cell-background-set")
     }
@@ -724,6 +520,7 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
         glib::ObjectExt::set_property(self.as_ref(), "ypad", ypad)
     }
 
+    #[doc(alias = "editing-canceled")]
     fn connect_editing_canceled<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn editing_canceled_trampoline<
             P: IsA<CellRenderer>,
@@ -748,6 +545,7 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
         }
     }
 
+    #[doc(alias = "editing-started")]
     fn connect_editing_started<F: Fn(&Self, &CellEditable, TreePath) + 'static>(
         &self,
         f: F,
@@ -782,6 +580,7 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
         }
     }
 
+    #[doc(alias = "cell-background")]
     fn connect_cell_background_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_cell_background_trampoline<
             P: IsA<CellRenderer>,
@@ -807,6 +606,7 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
         }
     }
 
+    #[doc(alias = "cell-background-rgba")]
     fn connect_cell_background_rgba_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_cell_background_rgba_trampoline<
             P: IsA<CellRenderer>,
@@ -832,6 +632,7 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
         }
     }
 
+    #[doc(alias = "cell-background-set")]
     fn connect_cell_background_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_cell_background_set_trampoline<
             P: IsA<CellRenderer>,
@@ -857,6 +658,7 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
         }
     }
 
+    #[doc(alias = "editing")]
     fn connect_editing_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_editing_trampoline<
             P: IsA<CellRenderer>,
@@ -882,6 +684,7 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
         }
     }
 
+    #[doc(alias = "height")]
     fn connect_height_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_height_trampoline<P: IsA<CellRenderer>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkCellRenderer,
@@ -904,6 +707,7 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
         }
     }
 
+    #[doc(alias = "is-expanded")]
     fn connect_is_expanded_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_is_expanded_trampoline<
             P: IsA<CellRenderer>,
@@ -929,6 +733,7 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
         }
     }
 
+    #[doc(alias = "is-expander")]
     fn connect_is_expander_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_is_expander_trampoline<
             P: IsA<CellRenderer>,
@@ -954,6 +759,7 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
         }
     }
 
+    #[doc(alias = "mode")]
     fn connect_mode_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_mode_trampoline<P: IsA<CellRenderer>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkCellRenderer,
@@ -976,6 +782,7 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
         }
     }
 
+    #[doc(alias = "sensitive")]
     fn connect_sensitive_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_sensitive_trampoline<
             P: IsA<CellRenderer>,
@@ -1001,6 +808,7 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
         }
     }
 
+    #[doc(alias = "visible")]
     fn connect_visible_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_visible_trampoline<
             P: IsA<CellRenderer>,
@@ -1026,6 +834,7 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
         }
     }
 
+    #[doc(alias = "width")]
     fn connect_width_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_width_trampoline<P: IsA<CellRenderer>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkCellRenderer,
@@ -1048,6 +857,7 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
         }
     }
 
+    #[doc(alias = "xalign")]
     fn connect_xalign_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_xalign_trampoline<P: IsA<CellRenderer>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkCellRenderer,
@@ -1070,6 +880,7 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
         }
     }
 
+    #[doc(alias = "xpad")]
     fn connect_xpad_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_xpad_trampoline<P: IsA<CellRenderer>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkCellRenderer,
@@ -1092,6 +903,7 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
         }
     }
 
+    #[doc(alias = "yalign")]
     fn connect_yalign_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_yalign_trampoline<P: IsA<CellRenderer>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkCellRenderer,
@@ -1114,6 +926,7 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
         }
     }
 
+    #[doc(alias = "ypad")]
     fn connect_ypad_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_ypad_trampoline<P: IsA<CellRenderer>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkCellRenderer,
@@ -1136,6 +949,8 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
         }
     }
 }
+
+impl<O: IsA<CellRenderer>> CellRendererExt for O {}
 
 impl fmt::Display for CellRenderer {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
