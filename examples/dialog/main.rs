@@ -46,24 +46,19 @@ fn build_ui(application: &gtk::Application) {
 }
 
 async fn dialog<W: IsA<gtk::Window>>(window: Rc<W>) {
-    let question_dialog = gtk::MessageDialog::builder()
-        .transient_for(&*window)
+    let question_dialog = gtk::AlertDialog::builder()
         .modal(true)
-        .buttons(gtk::ButtonsType::OkCancel)
-        .text("What is your answer?")
+        .buttons(["Cancel", "Ok"])
+        .message("What is your answer?")
         .build();
 
-    let answer = question_dialog.run_future().await;
-    question_dialog.close();
+    let answer = question_dialog.choose_future(Some(&*window)).await;
 
-    let info_dialog = gtk::MessageDialog::builder()
-        .transient_for(&*window)
+    let info_dialog = gtk::AlertDialog::builder()
         .modal(true)
-        .buttons(gtk::ButtonsType::Close)
-        .text("You answered")
-        .secondary_text(format!("Your answer: {answer:?}"))
+        .message("You answered")
+        .detail(format!("Your answer: {answer:?}"))
         .build();
 
-    info_dialog.run_future().await;
-    info_dialog.close();
+    info_dialog.show(Some(&*window));
 }

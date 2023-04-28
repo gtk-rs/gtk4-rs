@@ -40,5 +40,5 @@ fn build_ui(application: &gtk::Application) {
     let widget = FemtoVGArea::default();
     window.set_child(Some(&widget));
 
-    window.show();
+    window.present();
 }

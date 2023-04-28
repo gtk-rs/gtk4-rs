@@ -13,7 +13,7 @@ fn main() -> glib::ExitCode {
         let window = gtk::ApplicationWindow::new(app);
         let scale_bin = ScaleBin::new();
         window.set_child(Some(&scale_bin));
-        window.show();
+        window.present();
     });
 
     application.run()

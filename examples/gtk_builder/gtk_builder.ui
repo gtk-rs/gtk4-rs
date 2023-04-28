@@ -10,12 +10,4 @@
       </object>
     </child>
   </object>
-  <object class="GtkMessageDialog" id="messagedialog">
-    <property name="transient-for">window</property>
-    <property name="resizable">False</property>
-    <property name="modal">True</property>
-    <property name="buttons">ok</property>
-    <property name="text" translatable="yes">Thank you for trying this example</property>
-    <property name="secondary-text" translatable="yes">You have pressed the button</property>
-  </object>
 </interface>

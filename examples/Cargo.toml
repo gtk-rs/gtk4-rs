@@ -18,7 +18,7 @@ im-rc = { version = "15", optional = true }
 [dependencies.gtk]
 path = "../gtk4"
 package = "gtk4"
-features = ["v4_8"]
+features = ["v4_10"]
 
 # used by gif-paintable example
 [dependencies.image]

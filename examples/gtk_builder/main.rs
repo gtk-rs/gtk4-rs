@@ -1,5 +1,5 @@
 use gtk::prelude::*;
-use gtk::{glib, Application, ApplicationWindow, Builder, Button, MessageDialog, ResponseType};
+use gtk::{glib, Application, ApplicationWindow, Builder, Button};
 
 fn main() -> glib::ExitCode {
     let application = gtk::Application::new(
@@ -17,17 +17,16 @@ fn build_ui(application: &Application) {
     let window: ApplicationWindow = builder.object("window").expect("Couldn't get window");
     window.set_application(Some(application));
     let bigbutton: Button = builder.object("button").expect("Couldn't get button");
-    let dialog: MessageDialog = builder
-        .object("messagedialog")
-        .expect("Couldn't get messagedialog");
 
-    dialog.connect_response(move |d: &MessageDialog, _: ResponseType| {
-        d.hide();
-    });
+    bigbutton.connect_clicked(glib::clone!(@weak window => move |_| {
+        gtk::AlertDialog::builder()
+            .modal(true)
+            .message("Thank you for trying this example")
+            .detail("You have pressed the button")
+            .buttons(["Ok"])
+            .build()
+            .show(Some(&window));
+    }));
 
-    bigbutton.connect_clicked(move |_| {
-        dialog.show();
-    });
-
-    window.show();
+    window.present();
 }

@@ -35,7 +35,7 @@ fn main() -> glib::ExitCode {
         boxed.append(&base_button);
         boxed.append(&derived_button);
         win.set_child(Some(&boxed));
-        win.show();
+        win.present();
     });
 
     application.run()

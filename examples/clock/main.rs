@@ -22,7 +22,7 @@ fn build_ui(application: &Application) {
 
     window.set_child(Some(&label));
 
-    window.show();
+    window.present();
 
     // we are using a closure to capture the label (else we could also use a normal function)
     let tick = move || {

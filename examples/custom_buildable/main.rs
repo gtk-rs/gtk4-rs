@@ -22,5 +22,5 @@ fn build_ui(application: &gtk::Application) {
 
     let window: gtk::ApplicationWindow = builder.object("window").expect("Couldn't get window");
     application.add_window(&window);
-    window.show();
+    window.present();
 }

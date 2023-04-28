@@ -41,7 +41,7 @@ fn build_ui(app: &gtk::Application) {
         .build();
 
     window.set_child(Some(&scrolled_window));
-    window.show();
+    window.present();
 }
 
 fn create_color_button(color: &'static str) -> gtk::Button {

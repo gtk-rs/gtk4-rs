@@ -18,7 +18,7 @@ fn main() -> glib::ExitCode {
 
     application.connect_activate(|app| {
         let win = GifPaintableWindow::new(app);
-        win.show();
+        win.present();
     });
 
     application.run()

@@ -4,10 +4,7 @@ use std::fs::File;
 use std::io::prelude::*;
 use std::io::BufReader;
 
-use gtk::{
-    glib, Application, ApplicationWindow, Builder, Button, FileChooserAction, FileChooserDialog,
-    ResponseType, TextView,
-};
+use gtk::{gio, glib, Application, ApplicationWindow, Builder, Button, FileDialog, TextView};
 
 fn main() -> glib::ExitCode {
     let application = Application::new(
@@ -32,17 +29,13 @@ pub fn build_ui(application: &Application) {
 
     open_button.connect_clicked(glib::clone!(@weak window, @weak text_view => move |_| {
 
-        let file_chooser = FileChooserDialog::new(
-            Some("Open File"),
-            Some(&window),
-            FileChooserAction::Open,
-            &[("Open", ResponseType::Ok), ("Cancel", ResponseType::Cancel)],
-        );
+        let dialog = FileDialog::builder()
+            .title("Open File")
+            .accept_label("Open")
+            .build();
 
-        file_chooser.connect_response(move |d: &FileChooserDialog, response: ResponseType| {
-            if response == ResponseType::Ok {
-                let file = d.file().expect("Couldn't get file");
-
+        dialog.open(Some(&window), gio::Cancellable::NONE, move |file| {
+            if let Ok(file) = file {
                 let filename = file.path().expect("Couldn't get file path");
                 let file = File::open(filename).expect("Couldn't open file");
 
@@ -52,12 +45,8 @@ pub fn build_ui(application: &Application) {
 
                 text_view.buffer().set_text(&contents);
             }
-
-            d.close();
         });
-
-        file_chooser.show();
     }));
 
-    window.show();
+    window.present();
 }

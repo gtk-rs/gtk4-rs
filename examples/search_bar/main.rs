@@ -69,5 +69,5 @@ fn build_ui(application: &gtk::Application) {
         }
     }));
 
-    window.show();
+    window.present();
 }

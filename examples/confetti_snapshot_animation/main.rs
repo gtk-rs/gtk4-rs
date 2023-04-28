@@ -47,5 +47,5 @@ fn build_ui(application: &gtk::Application) {
         confetti.explode(params, duration);
     });
     confetti.add_controller(ev_ctrl);
-    window.show();
+    window.present();
 }

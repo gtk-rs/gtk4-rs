@@ -79,7 +79,7 @@ fn build_ui(app: &gtk::Application) {
         .child(&scrolled_window)
         .build();
 
-    window.show();
+    window.present();
 }
 
 fn data() -> gio::ListStore {

@@ -102,5 +102,5 @@ fn build_ui(application: &gtk::Application) {
 
     window.set_child(Some(&vbox));
 
-    window.show();
+    window.present();
 }

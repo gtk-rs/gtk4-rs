@@ -3,8 +3,8 @@ use gtk::prelude::*;
 
 use gtk::gdk::Display;
 use gtk::{
-    Application, ApplicationWindow, Box as Box_, Button, ComboBoxText, CssProvider, Entry,
-    Orientation, STYLE_PROVIDER_PRIORITY_APPLICATION,
+    Application, ApplicationWindow, Box as Box_, Button, CssProvider, DropDown, Entry, Orientation,
+    STYLE_PROVIDER_PRIORITY_APPLICATION,
 };
 
 fn main() -> glib::ExitCode {
@@ -42,19 +42,16 @@ fn build_ui(application: &Application) {
     entry.add_css_class("entry1");
     entry.set_text("Some text");
 
-    let combo = ComboBoxText::new();
-    combo.append_text("option 1");
-    combo.append_text("option 2");
-    combo.append_text("option 3");
-    combo.set_active(Some(0));
+    let model = gtk::StringList::new(&["option 1", "option 2", "option 3"]);
+    let drop_down = DropDown::new(Some(model), gtk::Expression::NONE);
 
     vbox.append(&button);
     vbox.append(&entry);
-    vbox.append(&combo);
+    vbox.append(&drop_down);
     // Then we add the container inside our window.
     window.set_child(Some(&vbox));
 
     application.connect_activate(move |_| {
-        window.show();
+        window.present();
     });
 }
