@@ -6,15 +6,8 @@ use glib::{translate::*, Continue, WeakRef};
 
 // rustdoc-stripper-ignore-next
 /// Trait containing manually implemented methods of [`Widget`](crate::Widget).
-pub trait WidgetExtManual: 'static {
+pub trait WidgetExtManual: IsA<Widget> + 'static {
     #[doc(alias = "gtk_widget_add_tick_callback")]
-    fn add_tick_callback<P: Fn(&Self, &gdk::FrameClock) -> Continue + 'static>(
-        &self,
-        callback: P,
-    ) -> TickCallbackId;
-}
-
-impl<O: IsA<Widget>> WidgetExtManual for O {
     fn add_tick_callback<P: Fn(&Self, &gdk::FrameClock) -> Continue + 'static>(
         &self,
         callback: P,
@@ -61,6 +54,8 @@ impl<O: IsA<Widget>> WidgetExtManual for O {
         }
     }
 }
+
+impl<O: IsA<Widget>> WidgetExtManual for O {}
 
 #[derive(Debug)]
 pub struct TickCallbackId {

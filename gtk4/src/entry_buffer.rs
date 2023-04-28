@@ -19,38 +19,6 @@ impl EntryBuffer {
     }
 }
 
-// rustdoc-stripper-ignore-next
-/// Trait containing manually implemented methods of [`EntryBuffer`](crate::EntryBuffer).
-pub trait EntryBufferExtManual: 'static {
-    #[doc(alias = "gtk_entry_buffer_delete_text")]
-    fn delete_text(&self, position: u16, n_chars: Option<u16>) -> u16;
-
-    #[doc(alias = "gtk_entry_buffer_get_bytes")]
-    #[doc(alias = "get_bytes")]
-    fn bytes(&self) -> usize;
-
-    #[doc(alias = "gtk_entry_buffer_get_length")]
-    #[doc(alias = "get_length")]
-    fn length(&self) -> u16;
-
-    #[doc(alias = "gtk_entry_buffer_get_max_length")]
-    #[doc(alias = "get_max_length")]
-    fn max_length(&self) -> Option<u16>;
-
-    #[doc(alias = "gtk_entry_buffer_get_text")]
-    #[doc(alias = "get_text")]
-    fn text(&self) -> GString;
-
-    #[doc(alias = "gtk_entry_buffer_insert_text")]
-    fn insert_text(&self, position: u16, chars: impl IntoGStr) -> u16;
-
-    #[doc(alias = "gtk_entry_buffer_set_max_length")]
-    fn set_max_length(&self, max_length: Option<u16>);
-
-    #[doc(alias = "gtk_entry_buffer_set_text")]
-    fn set_text(&self, chars: impl IntoGStr);
-}
-
 macro_rules! to_u16 {
     ($e:expr) => (
         {
@@ -62,7 +30,10 @@ macro_rules! to_u16 {
     )
 }
 
-impl<O: IsA<EntryBuffer>> EntryBufferExtManual for O {
+// rustdoc-stripper-ignore-next
+/// Trait containing manually implemented methods of [`EntryBuffer`](crate::EntryBuffer).
+pub trait EntryBufferExtManual: IsA<EntryBuffer> + 'static {
+    #[doc(alias = "gtk_entry_buffer_delete_text")]
     fn delete_text(&self, position: u16, n_chars: Option<u16>) -> u16 {
         unsafe {
             to_u16!(ffi::gtk_entry_buffer_delete_text(
@@ -73,10 +44,14 @@ impl<O: IsA<EntryBuffer>> EntryBufferExtManual for O {
         }
     }
 
+    #[doc(alias = "gtk_entry_buffer_get_bytes")]
+    #[doc(alias = "get_bytes")]
     fn bytes(&self) -> usize {
         unsafe { ffi::gtk_entry_buffer_get_bytes(self.as_ref().to_glib_none().0) as _ }
     }
 
+    #[doc(alias = "gtk_entry_buffer_get_length")]
+    #[doc(alias = "get_length")]
     fn length(&self) -> u16 {
         unsafe {
             to_u16!(ffi::gtk_entry_buffer_get_length(
@@ -85,6 +60,8 @@ impl<O: IsA<EntryBuffer>> EntryBufferExtManual for O {
         }
     }
 
+    #[doc(alias = "gtk_entry_buffer_get_max_length")]
+    #[doc(alias = "get_max_length")]
     fn max_length(&self) -> Option<u16> {
         unsafe {
             match ffi::gtk_entry_buffer_get_max_length(self.as_ref().to_glib_none().0) {
@@ -94,6 +71,8 @@ impl<O: IsA<EntryBuffer>> EntryBufferExtManual for O {
         }
     }
 
+    #[doc(alias = "gtk_entry_buffer_get_text")]
+    #[doc(alias = "get_text")]
     fn text(&self) -> GString {
         unsafe {
             from_glib_none(ffi::gtk_entry_buffer_get_text(
@@ -102,6 +81,7 @@ impl<O: IsA<EntryBuffer>> EntryBufferExtManual for O {
         }
     }
 
+    #[doc(alias = "gtk_entry_buffer_insert_text")]
     fn insert_text(&self, position: u16, chars: impl IntoGStr) -> u16 {
         unsafe {
             chars.run_with_gstr(|chars| {
@@ -115,6 +95,7 @@ impl<O: IsA<EntryBuffer>> EntryBufferExtManual for O {
         }
     }
 
+    #[doc(alias = "gtk_entry_buffer_set_max_length")]
     fn set_max_length(&self, max_length: Option<u16>) {
         unsafe {
             assert_ne!(max_length, Some(0), "Zero maximum length not supported");
@@ -125,6 +106,7 @@ impl<O: IsA<EntryBuffer>> EntryBufferExtManual for O {
         }
     }
 
+    #[doc(alias = "gtk_entry_buffer_set_text")]
     fn set_text(&self, chars: impl IntoGStr) {
         unsafe {
             chars.run_with_gstr(|chars| {
@@ -133,6 +115,8 @@ impl<O: IsA<EntryBuffer>> EntryBufferExtManual for O {
         }
     }
 }
+
+impl<O: IsA<EntryBuffer>> EntryBufferExtManual for O {}
 
 impl Default for EntryBuffer {
     fn default() -> Self {

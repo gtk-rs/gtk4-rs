@@ -5,12 +5,8 @@ use glib::translate::*;
 
 // rustdoc-stripper-ignore-next
 /// Trait containing manually implemented methods of [`Texture`](crate::Texture).
-pub trait TextureExtManual: 'static {
+pub trait TextureExtManual: IsA<Texture> + 'static {
     #[doc(alias = "gdk_texture_download")]
-    fn download(&self, data: &mut [u8], stride: usize);
-}
-
-impl<O: IsA<Texture>> TextureExtManual for O {
     fn download(&self, data: &mut [u8], stride: usize) {
         unsafe {
             assert!(
@@ -29,3 +25,5 @@ impl<O: IsA<Texture>> TextureExtManual for O {
         }
     }
 }
+
+impl<O: IsA<Texture>> TextureExtManual for O {}

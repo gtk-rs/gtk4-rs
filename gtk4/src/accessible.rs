@@ -25,21 +25,9 @@ use glib::{translate::*, Value};
 ///     gtk::accessible::State::Invalid(gtk::AccessibleInvalidState::Grammar),
 /// ]);
 /// ```
-pub trait AccessibleExtManual {
+pub trait AccessibleExtManual: IsA<Accessible> {
     #[doc(alias = "gtk_accessible_update_property")]
     #[doc(alias = "gtk_accessible_update_property_value")]
-    fn update_property(&self, properties: &[Property]);
-
-    #[doc(alias = "gtk_accessible_update_relation")]
-    #[doc(alias = "gtk_accessible_update_relation_value")]
-    fn update_relation(&self, relations: &[Relation]);
-
-    #[doc(alias = "gtk_accessible_update_state")]
-    #[doc(alias = "gtk_accessible_update_state_value")]
-    fn update_state(&self, states: &[State]);
-}
-
-impl<O: IsA<Accessible>> AccessibleExtManual for O {
     fn update_property(&self, properties: &[Property]) {
         let mut properties_ptr = vec![];
         let mut values = vec![];
@@ -59,6 +47,8 @@ impl<O: IsA<Accessible>> AccessibleExtManual for O {
         }
     }
 
+    #[doc(alias = "gtk_accessible_update_relation")]
+    #[doc(alias = "gtk_accessible_update_relation_value")]
     fn update_relation(&self, relations: &[Relation]) {
         let mut relations_ptr = vec![];
         let mut values = vec![];
@@ -78,6 +68,8 @@ impl<O: IsA<Accessible>> AccessibleExtManual for O {
         }
     }
 
+    #[doc(alias = "gtk_accessible_update_state")]
+    #[doc(alias = "gtk_accessible_update_state_value")]
     fn update_state(&self, states: &[State]) {
         let mut states_ptr = vec![];
         let mut values = vec![];
@@ -97,6 +89,8 @@ impl<O: IsA<Accessible>> AccessibleExtManual for O {
         }
     }
 }
+
+impl<O: IsA<Accessible>> AccessibleExtManual for O {}
 
 // rustdoc-stripper-ignore-next
 /// Type-safe enum container for [`AccessibleProperty`](crate::AccessibleProperty) values.

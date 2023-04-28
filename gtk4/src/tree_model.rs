@@ -7,21 +7,10 @@ use glib::{translate::*, value::FromValue};
 /// Trait containing manually implemented methods of [`TreeModel`](crate::TreeModel).
 #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 #[allow(deprecated)]
-pub trait TreeModelExtManual: 'static {
+pub trait TreeModelExtManual: IsA<TreeModel> + 'static {
     #[doc(alias = "gtk_tree_model_get")]
     #[doc(alias = "gtk_tree_model_get_value")]
     #[doc(alias = "gtk_tree_model_get_valist")]
-    fn get_value(&self, iter: &TreeIter, column: i32) -> glib::Value;
-
-    #[doc(alias = "gtk_tree_model_get")]
-    #[doc(alias = "gtk_tree_model_get_value")]
-    #[doc(alias = "gtk_tree_model_get_valist")]
-    // rustdoc-stripper-ignore-next
-    /// Similar to [`Self::get_value`] but panics if the value is of a different type.
-    fn get<V: for<'b> FromValue<'b> + 'static>(&self, iter: &TreeIter, column: i32) -> V;
-}
-
-impl<O: IsA<TreeModel>> TreeModelExtManual for O {
     fn get_value(&self, iter: &TreeIter, column: i32) -> glib::Value {
         let total_columns = self.as_ref().n_columns();
         assert!(
@@ -40,6 +29,11 @@ impl<O: IsA<TreeModel>> TreeModelExtManual for O {
         }
     }
 
+    #[doc(alias = "gtk_tree_model_get")]
+    #[doc(alias = "gtk_tree_model_get_value")]
+    #[doc(alias = "gtk_tree_model_get_valist")]
+    // rustdoc-stripper-ignore-next
+    /// Similar to [`Self::get_value`] but panics if the value is of a different type.
     fn get<V: for<'b> FromValue<'b> + 'static>(&self, iter: &TreeIter, column: i32) -> V {
         let value = self.get_value(iter, column);
         value
@@ -47,3 +41,5 @@ impl<O: IsA<TreeModel>> TreeModelExtManual for O {
             .expect("Failed to get TreeModel value")
     }
 }
+
+impl<O: IsA<TreeModel>> TreeModelExtManual for O {}

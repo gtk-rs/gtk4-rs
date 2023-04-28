@@ -9,14 +9,7 @@ use std::{boxed::Box as Box_, mem::transmute};
 
 // rustdoc-stripper-ignore-next
 /// Trait containing manually implemented methods of [`Toplevel`](crate::Toplevel).
-pub trait ToplevelExtManual {
-    fn connect_compute_size<F: Fn(&Toplevel, &mut ToplevelSize) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
-}
-
-impl<O: IsA<Toplevel>> ToplevelExtManual for O {
+pub trait ToplevelExtManual: IsA<Toplevel> {
     fn connect_compute_size<F: Fn(&Toplevel, &mut ToplevelSize) + 'static>(
         &self,
         f: F,
@@ -44,3 +37,5 @@ impl<O: IsA<Toplevel>> ToplevelExtManual for O {
         }
     }
 }
+
+impl<O: IsA<Toplevel>> ToplevelExtManual for O {}

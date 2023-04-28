@@ -5,20 +5,8 @@ use glib::translate::*;
 
 // rustdoc-stripper-ignore-next
 /// Trait containing manually implemented methods of [`Surface`](crate::Surface).
-pub trait SurfaceExtManual: 'static {
+pub trait SurfaceExtManual: IsA<Surface> + 'static {
     #[doc(alias = "gdk_surface_create_similar_surface")]
-    fn create_similar_surface(
-        &self,
-        content: cairo::Content,
-        width: i32,
-        height: i32,
-    ) -> cairo::Surface;
-
-    #[doc(alias = "gdk_surface_translate_coordinates")]
-    fn translate_coordinates(&self, to: &Surface, x: f64, y: f64) -> bool;
-}
-
-impl<O: IsA<Surface>> SurfaceExtManual for O {
     fn create_similar_surface(
         &self,
         content: cairo::Content,
@@ -35,6 +23,7 @@ impl<O: IsA<Surface>> SurfaceExtManual for O {
         }
     }
 
+    #[doc(alias = "gdk_surface_translate_coordinates")]
     fn translate_coordinates(&self, to: &Surface, mut x: f64, mut y: f64) -> bool {
         unsafe {
             from_glib(ffi::gdk_surface_translate_coordinates(
@@ -46,3 +35,5 @@ impl<O: IsA<Surface>> SurfaceExtManual for O {
         }
     }
 }
+
+impl<O: IsA<Surface>> SurfaceExtManual for O {}

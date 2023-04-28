@@ -52,30 +52,8 @@ impl Backend {
 
 // rustdoc-stripper-ignore-next
 /// Trait containing manually implemented methods of [`Display`](crate::Display).
-pub trait DisplayExtManual: 'static {
+pub trait DisplayExtManual: IsA<Display> + 'static {
     #[doc(alias = "gdk_display_translate_key")]
-    fn translate_key(
-        &self,
-        keycode: u32,
-        state: ModifierType,
-        group: i32,
-    ) -> Option<(Key, i32, i32, ModifierType)>;
-
-    #[doc(alias = "gdk_display_get_setting")]
-    fn get_setting(&self, name: impl IntoGStr) -> Option<glib::Value>;
-
-    #[doc(alias = "gdk_display_map_keyval")]
-    fn map_keyval(&self, keyval: Key) -> Option<Vec<KeymapKey>>;
-
-    #[doc(alias = "gdk_display_map_keycode")]
-    fn map_keycode(&self, keycode: u32) -> Option<Vec<(KeymapKey, Key)>>;
-
-    // rustdoc-stripper-ignore-next
-    /// Get the currently used display backend
-    fn backend(&self) -> Backend;
-}
-
-impl<O: IsA<Display>> DisplayExtManual for O {
     fn translate_key(
         &self,
         keycode: u32,
@@ -114,6 +92,7 @@ impl<O: IsA<Display>> DisplayExtManual for O {
         }
     }
 
+    #[doc(alias = "gdk_display_get_setting")]
     fn get_setting(&self, name: impl IntoGStr) -> Option<glib::Value> {
         unsafe {
             name.run_with_gstr(|name| {
@@ -132,6 +111,7 @@ impl<O: IsA<Display>> DisplayExtManual for O {
         }
     }
 
+    #[doc(alias = "gdk_display_map_keyval")]
     fn map_keyval(&self, keyval: Key) -> Option<Vec<KeymapKey>> {
         unsafe {
             let mut keys = ptr::null_mut();
@@ -153,6 +133,7 @@ impl<O: IsA<Display>> DisplayExtManual for O {
         }
     }
 
+    #[doc(alias = "gdk_display_map_keycode")]
     fn map_keycode(&self, keycode: u32) -> Option<Vec<(KeymapKey, Key)>> {
         unsafe {
             let mut keys = ptr::null_mut();
@@ -178,6 +159,8 @@ impl<O: IsA<Display>> DisplayExtManual for O {
         }
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Get the currently used display backend
     fn backend(&self) -> Backend {
         match self.as_ref().type_().name() {
             "GdkWaylandDisplay" => Backend::Wayland,
@@ -189,3 +172,5 @@ impl<O: IsA<Display>> DisplayExtManual for O {
         }
     }
 }
+
+impl<O: IsA<Display>> DisplayExtManual for O {}

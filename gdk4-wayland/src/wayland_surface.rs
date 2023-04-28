@@ -11,15 +11,9 @@ use wayland_client::{backend::ObjectId, protocol::wl_surface::WlSurface, Proxy};
 
 // rustdoc-stripper-ignore-next
 /// Trait containing manually implemented methods of [`WaylandSurface`](crate::WaylandSurface).
-pub trait WaylandSurfaceExtManual: 'static {
+pub trait WaylandSurfaceExtManual: IsA<WaylandSurface> + 'static {
     #[doc(alias = "gdk_wayland_surface_get_wl_surface")]
     #[doc(alias = "get_wl_surface")]
-    #[cfg(any(feature = "wayland_crate", docsrs))]
-    #[cfg_attr(docsrs, doc(cfg(feature = "wayland_crate")))]
-    fn wl_surface(&self) -> Option<WlSurface>;
-}
-
-impl<O: IsA<WaylandSurface>> WaylandSurfaceExtManual for O {
     #[cfg(any(feature = "wayland_crate", docsrs))]
     #[cfg_attr(docsrs, doc(cfg(feature = "wayland_crate")))]
     fn wl_surface(&self) -> Option<WlSurface> {
@@ -42,3 +36,5 @@ impl<O: IsA<WaylandSurface>> WaylandSurfaceExtManual for O {
         }
     }
 }
+
+impl<O: IsA<WaylandSurface>> WaylandSurfaceExtManual for O {}

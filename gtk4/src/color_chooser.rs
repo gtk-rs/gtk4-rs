@@ -9,12 +9,8 @@ use libc::c_int;
 /// Trait containing manually implemented methods of [`ColorChooser`](crate::ColorChooser).
 #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 #[allow(deprecated)]
-pub trait ColorChooserExtManual: 'static {
+pub trait ColorChooserExtManual: IsA<ColorChooser> + 'static {
     #[doc(alias = "gtk_color_chooser_add_palette")]
-    fn add_palette(&self, orientation: Orientation, colors_per_line: i32, colors: &[RGBA]);
-}
-
-impl<O: IsA<ColorChooser>> ColorChooserExtManual for O {
     fn add_palette(&self, orientation: Orientation, colors_per_line: i32, colors: &[RGBA]) {
         unsafe {
             ffi::gtk_color_chooser_add_palette(
@@ -31,3 +27,5 @@ impl<O: IsA<ColorChooser>> ColorChooserExtManual for O {
         }
     }
 }
+
+impl<O: IsA<ColorChooser>> ColorChooserExtManual for O {}

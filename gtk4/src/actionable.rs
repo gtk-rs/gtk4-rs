@@ -5,13 +5,9 @@ use glib::{translate::*, Variant};
 
 // rustdoc-stripper-ignore-next
 /// Trait containing manually implemented methods of [`Actionable`](crate::Actionable).
-pub trait ActionableExtManual: 'static {
+pub trait ActionableExtManual: IsA<Actionable> + 'static {
     #[doc(alias = "gtk_actionable_set_action_target")]
     #[doc(alias = "gtk_actionable_set_action_target_value")]
-    fn set_action_target(&self, target: Option<impl Into<Variant>>);
-}
-
-impl<O: IsA<Actionable>> ActionableExtManual for O {
     fn set_action_target(&self, target: Option<impl Into<Variant>>) {
         unsafe {
             ffi::gtk_actionable_set_action_target_value(
@@ -21,3 +17,5 @@ impl<O: IsA<Actionable>> ActionableExtManual for O {
         }
     }
 }
+
+impl<O: IsA<Actionable>> ActionableExtManual for O {}

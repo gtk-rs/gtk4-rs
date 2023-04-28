@@ -3,14 +3,10 @@
 use crate::{prelude::*, MediaStream};
 use glib::translate::*;
 
-pub trait MediaStreamExtManual: 'static {
+pub trait MediaStreamExtManual: IsA<MediaStream> + 'static {
     #[doc(alias = "gtk_media_stream_gerror")]
     #[doc(alias = "gtk_media_stream_error")]
     #[doc(alias = "gerror")]
-    fn set_error(&self, error: glib::Error);
-}
-
-impl<O: IsA<MediaStream>> MediaStreamExtManual for O {
     fn set_error(&self, error: glib::Error) {
         unsafe {
             ffi::gtk_media_stream_gerror(
@@ -20,3 +16,5 @@ impl<O: IsA<MediaStream>> MediaStreamExtManual for O {
         }
     }
 }
+
+impl<O: IsA<MediaStream>> MediaStreamExtManual for O {}

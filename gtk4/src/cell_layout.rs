@@ -7,16 +7,8 @@ use glib::translate::*;
 /// Trait containing manually implemented methods of [`CellLayout`](crate::CellLayout).
 #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 #[allow(deprecated)]
-pub trait CellLayoutExtManual: 'static {
+pub trait CellLayoutExtManual: IsA<CellLayout> + 'static {
     #[doc(alias = "gtk_cell_layout_set_attributes")]
-    fn set_attributes(&self, cell: &impl IsA<CellRenderer>, attributes: &[(&str, i32)]);
-
-    #[doc(alias = "gtk_cell_layout_set_cell_data_func")]
-    #[doc(alias = "set_cell_data_func")]
-    fn unset_cell_data_func(&self, cell: &impl IsA<CellRenderer>);
-}
-
-impl<O: IsA<CellLayout>> CellLayoutExtManual for O {
     fn set_attributes(&self, cell: &impl IsA<CellRenderer>, attributes: &[(&str, i32)]) {
         self.as_ref().clear_attributes(cell);
         attributes.iter().for_each(|(attr, column)| {
@@ -24,6 +16,8 @@ impl<O: IsA<CellLayout>> CellLayoutExtManual for O {
         });
     }
 
+    #[doc(alias = "gtk_cell_layout_set_cell_data_func")]
+    #[doc(alias = "set_cell_data_func")]
     fn unset_cell_data_func(&self, cell: &impl IsA<CellRenderer>) {
         unsafe {
             ffi::gtk_cell_layout_set_cell_data_func(
@@ -36,3 +30,5 @@ impl<O: IsA<CellLayout>> CellLayoutExtManual for O {
         }
     }
 }
+
+impl<O: IsA<CellLayout>> CellLayoutExtManual for O {}
