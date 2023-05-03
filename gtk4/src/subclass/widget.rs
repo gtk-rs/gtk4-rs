@@ -879,7 +879,7 @@ unsafe extern "C" fn widget_unroot<T: WidgetImpl>(ptr: *mut ffi::GtkWidget) {
 }
 
 #[allow(clippy::missing_safety_doc)]
-pub unsafe trait WidgetClassSubclassExt: ClassStruct {
+pub unsafe trait WidgetClassExt: ClassStruct {
     #[doc(alias = "gtk_widget_class_set_template")]
     fn set_template_bytes(&mut self, template: &glib::Bytes) {
         unsafe {
@@ -1232,7 +1232,7 @@ pub unsafe trait WidgetClassSubclassExt: ClassStruct {
     }
 }
 
-unsafe impl<T: ClassStruct> WidgetClassSubclassExt for T where T::Type: WidgetImpl {}
+unsafe impl<T: ClassStruct> WidgetClassExt for T where T::Type: WidgetImpl {}
 
 #[derive(Debug, PartialEq, Eq)]
 #[repr(transparent)]
@@ -1345,13 +1345,13 @@ pub trait CompositeTemplateCallbacks {
 
     // rustdoc-stripper-ignore-next
     /// Binds the template callbacks from this type into the default template scope for `klass`.
-    fn bind_template_callbacks<T: WidgetClassSubclassExt>(klass: &mut T) {
+    fn bind_template_callbacks<T: WidgetClassExt>(klass: &mut T) {
         Self::add_callbacks_to_scope(&klass.rust_template_scope());
     }
     // rustdoc-stripper-ignore-next
     /// Binds the template callbacks from this type into the default template scope for `klass`,
     /// prepending `prefix` to each callback name.
-    fn bind_template_callbacks_prefixed<T: WidgetClassSubclassExt>(klass: &mut T, prefix: &str) {
+    fn bind_template_callbacks_prefixed<T: WidgetClassExt>(klass: &mut T, prefix: &str) {
         Self::add_callbacks_to_scope_prefixed(&klass.rust_template_scope(), prefix);
     }
     // rustdoc-stripper-ignore-next
@@ -1383,7 +1383,7 @@ pub trait CompositeTemplateCallbacksClass {
 
 impl<T, U> CompositeTemplateCallbacksClass for T
 where
-    T: ClassStruct<Type = U> + WidgetClassSubclassExt,
+    T: ClassStruct<Type = U> + WidgetClassExt,
     U: ObjectSubclass<Class = T> + CompositeTemplateCallbacks,
 {
     fn bind_template_callbacks(&mut self) {
@@ -1403,7 +1403,7 @@ pub trait CompositeTemplateInstanceCallbacksClass {
 
 impl<T, U, V> CompositeTemplateInstanceCallbacksClass for T
 where
-    T: ClassStruct<Type = U> + WidgetClassSubclassExt,
+    T: ClassStruct<Type = U> + WidgetClassExt,
     U: ObjectSubclass<Class = T, Type = V>,
     V: CompositeTemplateCallbacks,
 {

@@ -33,20 +33,20 @@ fn gen_set_template(source: &TemplateSource, crate_ident: &proc_macro2::Ident) -
             };
 
             quote! {
-                #crate_ident::subclass::widget::WidgetClassSubclassExt::set_template_static(
+                #crate_ident::subclass::widget::WidgetClassExt::set_template_static(
                         klass,
                         #template,
                 );
             }
         }
         TemplateSource::Resource(resource) => quote! {
-            #crate_ident::subclass::widget::WidgetClassSubclassExt::set_template_from_resource(
+            #crate_ident::subclass::widget::WidgetClassExt::set_template_from_resource(
                 klass,
                 &#resource,
             );
         },
         TemplateSource::Xml(template) => quote! {
-            #crate_ident::subclass::widget::WidgetClassSubclassExt::set_template_static(
+            #crate_ident::subclass::widget::WidgetClassExt::set_template_static(
                 klass,
                 #template.as_bytes(),
             );
@@ -57,7 +57,7 @@ fn gen_set_template(source: &TemplateSource, crate_ident: &proc_macro2::Ident) -
                 compile_blueprint(blueprint.as_bytes()).expect("can't compile blueprint");
 
             quote! {
-                #crate_ident::subclass::widget::WidgetClassSubclassExt::set_template_static(
+                #crate_ident::subclass::widget::WidgetClassExt::set_template_static(
                     klass,
                     #template.as_bytes(),
                 );
