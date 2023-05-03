@@ -270,9 +270,7 @@ generate = [
 ignore = [
     "Gtk.BuilderCScope", # not useful for rust
     "Gtk.CClosureExpression", # not useful for rust
-    "Gtk.CellAreaClass", # manual with subclassing
     "Gtk.CustomLayout", # subclass LayoutManager if you need a custom layout.
-    "Gtk.WidgetClass", # manual with subclassing
 ]
 
 manual = [
@@ -739,6 +737,10 @@ manual_traits = ["CellAreaExtManual"]
     [[object.function]]
     name = "add_with_properties"
     manual = true # can't be generated manually it uses vargs
+
+[[object]]
+name = "Gtk.CellAreaClass"
+status = "manual" # used for Class docs
 
 [[object]]
 name = "Gtk.CellAreaContext"
@@ -2708,6 +2710,10 @@ manual_traits = ["WidgetExtManual"]
     [[object.signal]]
     name = "mnemonic-activate"
     inhibit = true
+
+[[object]]
+name = "Gtk.WidgetClass"
+status = "manual" # used for Class docs
 
 [[object]]
 name = "Gtk.WidgetPaintable"
