@@ -57,6 +57,14 @@ impl MenuButton {
         }
     }
 
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    #[doc(alias = "gtk_menu_button_get_can_shrink")]
+    #[doc(alias = "get_can_shrink")]
+    pub fn can_shrink(&self) -> bool {
+        unsafe { from_glib(ffi::gtk_menu_button_get_can_shrink(self.to_glib_none().0)) }
+    }
+
     #[cfg(feature = "v4_6")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     #[doc(alias = "gtk_menu_button_get_child")]
@@ -151,6 +159,15 @@ impl MenuButton {
                 self.to_glib_none().0,
                 always_show_arrow.into_glib(),
             );
+        }
+    }
+
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    #[doc(alias = "gtk_menu_button_set_can_shrink")]
+    pub fn set_can_shrink(&self, can_shrink: bool) {
+        unsafe {
+            ffi::gtk_menu_button_set_can_shrink(self.to_glib_none().0, can_shrink.into_glib());
         }
     }
 
@@ -339,6 +356,31 @@ impl MenuButton {
                 b"notify::always-show-arrow\0".as_ptr() as *const _,
                 Some(transmute::<_, unsafe extern "C" fn()>(
                     notify_always_show_arrow_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    #[doc(alias = "can-shrink")]
+    pub fn connect_can_shrink_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_can_shrink_trampoline<F: Fn(&MenuButton) + 'static>(
+            this: *mut ffi::GtkMenuButton,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::can-shrink\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_can_shrink_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
@@ -594,6 +636,14 @@ impl MenuButtonBuilder {
             builder: self
                 .builder
                 .property("always-show-arrow", always_show_arrow),
+        }
+    }
+
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    pub fn can_shrink(self, can_shrink: bool) -> Self {
+        Self {
+            builder: self.builder.property("can-shrink", can_shrink),
         }
     }
 

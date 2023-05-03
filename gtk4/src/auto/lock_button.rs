@@ -345,6 +345,14 @@ impl LockButtonBuilder {
         }
     }
 
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    pub fn can_shrink(self, can_shrink: bool) -> Self {
+        Self {
+            builder: self.builder.property("can-shrink", can_shrink),
+        }
+    }
+
     pub fn child(self, child: &impl IsA<Widget>) -> Self {
         Self {
             builder: self.builder.property("child", child.clone().upcast()),
