@@ -90,6 +90,9 @@ jobs:
 
           sed -i 's|input-handling.html|https://docs.gtk.org/gtk4/input-handling.html|g' target/doc/gtk4/struct.EventController.html
 
+          sed -i 's|coordinates.html|https://docs.gtk.org/gtk4/coordinates.html|g' target/doc/gdk4/struct.Event.html
+          sed -i 's|coordinates.html|https://docs.gtk.org/gtk4/coordinates.html|g' target/doc/gtk4/struct.Widget.html
+
           sed -i 's|section-text-widget.html|https://docs.gtk.org/gtk4/section-text-widget.html|g' target/doc/gtk4/struct.TextBuffer.html
           sed -i 's|section-text-widget.html|https://docs.gtk.org/gtk4/section-text-widget.html|g' target/doc/gtk4/struct.TextIter.html
           sed -i 's|section-text-widget.html|https://docs.gtk.org/gtk4/section-text-widget.html|g' target/doc/gtk4/struct.TextMark.html
