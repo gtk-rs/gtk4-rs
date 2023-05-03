@@ -94,6 +94,14 @@ impl ButtonBuilder {
         }
     }
 
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    pub fn can_shrink(self, can_shrink: bool) -> Self {
+        Self {
+            builder: self.builder.property("can-shrink", can_shrink),
+        }
+    }
+
     pub fn child(self, child: &impl IsA<Widget>) -> Self {
         Self {
             builder: self.builder.property("child", child.clone().upcast()),
@@ -331,6 +339,18 @@ impl ButtonBuilder {
 }
 
 pub trait ButtonExt: IsA<Button> + 'static {
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    #[doc(alias = "gtk_button_get_can_shrink")]
+    #[doc(alias = "get_can_shrink")]
+    fn can_shrink(&self) -> bool {
+        unsafe {
+            from_glib(ffi::gtk_button_get_can_shrink(
+                self.as_ref().to_glib_none().0,
+            ))
+        }
+    }
+
     #[doc(alias = "gtk_button_get_child")]
     #[doc(alias = "get_child")]
     fn child(&self) -> Option<Widget> {
@@ -370,6 +390,15 @@ pub trait ButtonExt: IsA<Button> + 'static {
             from_glib(ffi::gtk_button_get_use_underline(
                 self.as_ref().to_glib_none().0,
             ))
+        }
+    }
+
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    #[doc(alias = "gtk_button_set_can_shrink")]
+    fn set_can_shrink(&self, can_shrink: bool) {
+        unsafe {
+            ffi::gtk_button_set_can_shrink(self.as_ref().to_glib_none().0, can_shrink.into_glib());
         }
     }
 
@@ -467,6 +496,31 @@ pub trait ButtonExt: IsA<Button> + 'static {
 
     fn emit_clicked(&self) {
         self.emit_by_name::<()>("clicked", &[]);
+    }
+
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    #[doc(alias = "can-shrink")]
+    fn connect_can_shrink_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_can_shrink_trampoline<P: IsA<Button>, F: Fn(&P) + 'static>(
+            this: *mut ffi::GtkButton,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(Button::from_glib_borrow(this).unsafe_cast_ref())
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::can-shrink\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_can_shrink_trampoline::<Self, F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
     }
 
     #[doc(alias = "child")]

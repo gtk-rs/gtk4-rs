@@ -11088,11 +11088,17 @@ extern "C" {
     pub fn gtk_button_new_from_icon_name(icon_name: *const c_char) -> *mut GtkWidget;
     pub fn gtk_button_new_with_label(label: *const c_char) -> *mut GtkWidget;
     pub fn gtk_button_new_with_mnemonic(label: *const c_char) -> *mut GtkWidget;
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    pub fn gtk_button_get_can_shrink(button: *mut GtkButton) -> gboolean;
     pub fn gtk_button_get_child(button: *mut GtkButton) -> *mut GtkWidget;
     pub fn gtk_button_get_has_frame(button: *mut GtkButton) -> gboolean;
     pub fn gtk_button_get_icon_name(button: *mut GtkButton) -> *const c_char;
     pub fn gtk_button_get_label(button: *mut GtkButton) -> *const c_char;
     pub fn gtk_button_get_use_underline(button: *mut GtkButton) -> gboolean;
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    pub fn gtk_button_set_can_shrink(button: *mut GtkButton, can_shrink: gboolean);
     pub fn gtk_button_set_child(button: *mut GtkButton, child: *mut GtkWidget);
     pub fn gtk_button_set_has_frame(button: *mut GtkButton, has_frame: gboolean);
     pub fn gtk_button_set_icon_name(button: *mut GtkButton, icon_name: *const c_char);
@@ -14954,6 +14960,9 @@ extern "C" {
     #[cfg(feature = "v4_4")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_4")))]
     pub fn gtk_menu_button_get_always_show_arrow(menu_button: *mut GtkMenuButton) -> gboolean;
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    pub fn gtk_menu_button_get_can_shrink(menu_button: *mut GtkMenuButton) -> gboolean;
     #[cfg(feature = "v4_6")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     pub fn gtk_menu_button_get_child(menu_button: *mut GtkMenuButton) -> *mut GtkWidget;
@@ -14978,6 +14987,9 @@ extern "C" {
         menu_button: *mut GtkMenuButton,
         always_show_arrow: gboolean,
     );
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    pub fn gtk_menu_button_set_can_shrink(menu_button: *mut GtkMenuButton, can_shrink: gboolean);
     #[cfg(feature = "v4_6")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     pub fn gtk_menu_button_set_child(menu_button: *mut GtkMenuButton, child: *mut GtkWidget);
