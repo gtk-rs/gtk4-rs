@@ -110,7 +110,7 @@ pub mod prelude {
     pub use super::buildable::{BuildableImpl, BuildableImplExt};
     pub use super::builder_scope::{BuilderCScopeImpl, BuilderScopeImpl, BuilderScopeImplExt};
     pub use super::button::{ButtonImpl, ButtonImplExt};
-    pub use super::cell_area::{CellAreaClassSubclassExt, CellAreaImpl, CellAreaImplExt};
+    pub use super::cell_area::{CellAreaClassExt, CellAreaImpl, CellAreaImplExt};
     pub use super::cell_area_context::{CellAreaContextImpl, CellAreaContextImplExt};
     pub use super::cell_editable::{CellEditableImpl, CellEditableImplExt};
     pub use super::cell_layout::{CellLayoutImpl, CellLayoutImplExt};
@@ -170,7 +170,7 @@ pub mod prelude {
     pub use super::widget::CompositeTemplateClass;
     pub use super::widget::CompositeTemplateInstanceCallbacksClass;
     pub use super::widget::TemplateChild;
-    pub use super::widget::WidgetClassSubclassExt;
+    pub use super::widget::WidgetClassExt;
     pub use super::widget::{
         CompositeTemplateDisposeExt, CompositeTemplateInitializingExt, WidgetImpl, WidgetImplExt,
     };

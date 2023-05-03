@@ -1009,7 +1009,7 @@ unsafe extern "C" fn cell_area_foreach_alloc<T: CellAreaImpl>(
 }
 
 #[allow(clippy::missing_safety_doc)]
-pub unsafe trait CellAreaClassSubclassExt: ClassStruct {
+pub unsafe trait CellAreaClassExt: ClassStruct {
     #[doc(alias = "gtk_cell_area_class_find_cell_property")]
     fn find_cell_property(&self, property_name: &str) -> Option<ParamSpec> {
         unsafe {
@@ -1035,4 +1035,4 @@ pub unsafe trait CellAreaClassSubclassExt: ClassStruct {
     }
 }
 
-unsafe impl<T: ClassStruct> CellAreaClassSubclassExt for T where T::Type: CellAreaImpl {}
+unsafe impl<T: ClassStruct> CellAreaClassExt for T where T::Type: CellAreaImpl {}
