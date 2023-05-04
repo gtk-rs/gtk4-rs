@@ -25,15 +25,9 @@ pub trait NativeDialogImpl: NativeDialogImplExt + ObjectImpl {
 #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 #[allow(deprecated)]
 pub trait NativeDialogImplExt: ObjectSubclass {
-    fn parent_response(&self, response: ResponseType);
-    fn parent_show(&self);
-    fn parent_hide(&self);
-}
-
-impl<T: NativeDialogImpl> NativeDialogImplExt for T {
     fn parent_response(&self, response: ResponseType) {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkNativeDialogClass;
             if let Some(f) = (*parent_class).response {
                 f(
@@ -49,7 +43,7 @@ impl<T: NativeDialogImpl> NativeDialogImplExt for T {
 
     fn parent_show(&self) {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkNativeDialogClass;
             let f = (*parent_class)
                 .show
@@ -64,7 +58,7 @@ impl<T: NativeDialogImpl> NativeDialogImplExt for T {
 
     fn parent_hide(&self) {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkNativeDialogClass;
             let f = (*parent_class)
                 .hide
@@ -77,6 +71,8 @@ impl<T: NativeDialogImpl> NativeDialogImplExt for T {
         }
     }
 }
+
+impl<T: NativeDialogImpl> NativeDialogImplExt for T {}
 
 unsafe impl<T: NativeDialogImpl> IsSubclassable<T> for NativeDialog {
     fn class_init(class: &mut glib::Class<Self>) {

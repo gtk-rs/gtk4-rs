@@ -10,13 +10,7 @@ use std::{ffi::CStr, mem::transmute, slice, str};
 
 // rustdoc-stripper-ignore-next
 /// Trait containing manually implemented methods of [`Editable`](crate::Editable).
-pub trait EditableExtManual: 'static {
-    fn connect_insert_text<F>(&self, f: F) -> SignalHandlerId
-    where
-        F: Fn(&Self, &str, &mut i32) + 'static;
-}
-
-impl<T: IsA<Editable>> EditableExtManual for T {
+pub trait EditableExtManual: IsA<Editable> + 'static {
     fn connect_insert_text<F>(&self, f: F) -> SignalHandlerId
     where
         F: Fn(&Self, &str, &mut i32) + 'static,
@@ -32,6 +26,8 @@ impl<T: IsA<Editable>> EditableExtManual for T {
         }
     }
 }
+
+impl<O: IsA<Editable>> EditableExtManual for O {}
 
 unsafe extern "C" fn insert_text_trampoline<T, F: Fn(&T, &str, &mut i32) + 'static>(
     this: *mut ffi::GtkEditable,

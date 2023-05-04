@@ -14,10 +14,6 @@ pub trait ScrollableImpl: WidgetImpl {
 }
 
 pub trait ScrollableImplExt: ObjectSubclass {
-    fn parent_border(&self) -> Option<Border>;
-}
-
-impl<T: ScrollableImpl> ScrollableImplExt for T {
     fn parent_border(&self) -> Option<Border> {
         unsafe {
             let type_data = Self::type_data();
@@ -37,6 +33,8 @@ impl<T: ScrollableImpl> ScrollableImplExt for T {
         }
     }
 }
+
+impl<T: ScrollableImpl> ScrollableImplExt for T {}
 
 unsafe impl<T: ScrollableImpl> IsImplementable<T> for Scrollable {
     fn interface_init(iface: &mut glib::Interface<Self>) {

@@ -13,10 +13,6 @@ pub trait AccessibleRangeImpl: WidgetImpl {
 }
 
 pub trait AccessibleRangeImplExt: ObjectSubclass {
-    fn parent_set_current_value(&self, accessible_range: &Self::Type, value: f64) -> bool;
-}
-
-impl<T: AccessibleRangeImpl> AccessibleRangeImplExt for T {
     fn parent_set_current_value(&self, accessible_range: &Self::Type, value: f64) -> bool {
         unsafe {
             let type_data = Self::type_data();
@@ -37,6 +33,8 @@ impl<T: AccessibleRangeImpl> AccessibleRangeImplExt for T {
         }
     }
 }
+
+impl<T: AccessibleRangeImpl> AccessibleRangeImplExt for T {}
 
 unsafe impl<T: AccessibleRangeImpl> IsImplementable<T> for AccessibleRange {
     fn interface_init(iface: &mut glib::Interface<Self>) {

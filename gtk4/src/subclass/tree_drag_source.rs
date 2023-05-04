@@ -19,12 +19,6 @@ pub trait TreeDragSourceImpl: ObjectImpl {
 #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 #[allow(deprecated)]
 pub trait TreeDragSourceImplExt: ObjectSubclass {
-    fn parent_row_draggable(&self, _path: &TreePath) -> bool;
-    fn parent_drag_data_get(&self, path: &TreePath) -> gdk::ContentProvider;
-    fn parent_drag_data_delete(&self, path: &TreePath) -> bool;
-}
-
-impl<T: TreeDragSourceImpl> TreeDragSourceImplExt for T {
     fn parent_row_draggable(&self, path: &TreePath) -> bool {
         unsafe {
             let type_data = Self::type_data();
@@ -86,6 +80,8 @@ impl<T: TreeDragSourceImpl> TreeDragSourceImplExt for T {
         }
     }
 }
+
+impl<T: TreeDragSourceImpl> TreeDragSourceImplExt for T {}
 
 unsafe impl<T: TreeDragSourceImpl> IsImplementable<T> for TreeDragSource {
     fn interface_init(iface: &mut glib::Interface<Self>) {

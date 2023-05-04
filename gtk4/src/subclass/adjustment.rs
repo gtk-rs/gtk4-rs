@@ -17,14 +17,9 @@ pub trait AdjustmentImpl: AdjustmentImplExt + ObjectImpl {
 }
 
 pub trait AdjustmentImplExt: ObjectSubclass {
-    fn parent_changed(&self);
-    fn parent_value_changed(&self);
-}
-
-impl<T: AdjustmentImpl> AdjustmentImplExt for T {
     fn parent_changed(&self) {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkAdjustmentClass;
             if let Some(f) = (*parent_class).changed {
                 f(self.obj().unsafe_cast_ref::<Adjustment>().to_glib_none().0)
@@ -34,7 +29,7 @@ impl<T: AdjustmentImpl> AdjustmentImplExt for T {
 
     fn parent_value_changed(&self) {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkAdjustmentClass;
             if let Some(f) = (*parent_class).value_changed {
                 f(self.obj().unsafe_cast_ref::<Adjustment>().to_glib_none().0)
@@ -42,6 +37,8 @@ impl<T: AdjustmentImpl> AdjustmentImplExt for T {
         }
     }
 }
+
+impl<T: AdjustmentImpl> AdjustmentImplExt for T {}
 
 unsafe impl<T: AdjustmentImpl> IsSubclassable<T> for Adjustment {
     fn class_init(class: &mut glib::Class<Self>) {

@@ -17,14 +17,9 @@ pub trait DialogImpl: DialogImplExt + WindowImpl {
 }
 
 pub trait DialogImplExt: ObjectSubclass {
-    fn parent_response(&self, response: ResponseType);
-    fn parent_close(&self);
-}
-
-impl<T: DialogImpl> DialogImplExt for T {
     fn parent_response(&self, response: ResponseType) {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkDialogClass;
             if let Some(f) = (*parent_class).response {
                 f(
@@ -37,7 +32,7 @@ impl<T: DialogImpl> DialogImplExt for T {
 
     fn parent_close(&self) {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkDialogClass;
             if let Some(f) = (*parent_class).close {
                 f(self.obj().unsafe_cast_ref::<Dialog>().to_glib_none().0)
@@ -45,6 +40,8 @@ impl<T: DialogImpl> DialogImplExt for T {
         }
     }
 }
+
+impl<T: DialogImpl> DialogImplExt for T {}
 
 unsafe impl<T: DialogImpl> IsSubclassable<T> for Dialog {
     fn class_init(class: &mut glib::Class<Self>) {

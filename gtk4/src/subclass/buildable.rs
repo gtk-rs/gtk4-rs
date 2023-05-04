@@ -61,16 +61,6 @@ pub trait BuildableImpl: ObjectImpl {
 }
 
 pub trait BuildableImplExt: ObjectSubclass {
-    fn parent_set_id(&self, id: &str);
-    fn parent_id(&self) -> Option<GString>;
-    fn parent_add_child(&self, builder: &Builder, child: &Object, type_: Option<&str>);
-    fn parent_set_buildable_property(&self, builder: &Builder, name: &str, value: &Value);
-    fn parent_parser_finished(&self, builder: &Builder);
-    fn parent_internal_child(&self, builder: &Builder, name: &str) -> Option<Object>;
-    fn parent_construct_child(&self, builder: &Builder, name: &str) -> Object;
-}
-
-impl<T: BuildableImpl> BuildableImplExt for T {
     fn parent_set_id(&self, id: &str) {
         unsafe {
             let type_data = Self::type_data();
@@ -194,6 +184,8 @@ impl<T: BuildableImpl> BuildableImplExt for T {
         }
     }
 }
+
+impl<T: BuildableImpl> BuildableImplExt for T {}
 
 unsafe impl<T: BuildableImpl> IsImplementable<T> for Buildable {
     fn interface_init(iface: &mut glib::Interface<Self>) {

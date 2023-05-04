@@ -17,14 +17,9 @@ pub trait PopoverImpl: PopoverImplExt + WidgetImpl {
 }
 
 pub trait PopoverImplExt: ObjectSubclass {
-    fn parent_activate_default(&self);
-    fn parent_closed(&self);
-}
-
-impl<T: PopoverImpl> PopoverImplExt for T {
     fn parent_activate_default(&self) {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkPopoverClass;
             if let Some(f) = (*parent_class).activate_default {
                 f(self.obj().unsafe_cast_ref::<Popover>().to_glib_none().0)
@@ -34,7 +29,7 @@ impl<T: PopoverImpl> PopoverImplExt for T {
 
     fn parent_closed(&self) {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkPopoverClass;
             if let Some(f) = (*parent_class).closed {
                 f(self.obj().unsafe_cast_ref::<Popover>().to_glib_none().0)
@@ -42,6 +37,8 @@ impl<T: PopoverImpl> PopoverImplExt for T {
         }
     }
 }
+
+impl<T: PopoverImpl> PopoverImplExt for T {}
 
 unsafe impl<T: PopoverImpl> IsSubclassable<T> for Popover {
     fn class_init(class: &mut glib::Class<Self>) {

@@ -40,15 +40,6 @@ pub trait AccessibleImpl: ObjectImpl {
 }
 
 pub trait AccessibleImplExt: ObjectSubclass {
-    fn parent_platform_state(&self, state: AccessiblePlatformState) -> bool;
-    fn parent_bounds(&self) -> Option<(i32, i32, i32, i32)>;
-    fn parent_at_context(&self) -> Option<ATContext>;
-    fn parent_accessible_parent(&self) -> Option<Accessible>;
-    fn parent_first_accessible_child(&self) -> Option<Accessible>;
-    fn parent_next_accessible_sibling(&self) -> Option<Accessible>;
-}
-
-impl<T: AccessibleImpl> AccessibleImplExt for T {
     fn parent_platform_state(&self, state: AccessiblePlatformState) -> bool {
         unsafe {
             let type_data = Self::type_data();
@@ -164,6 +155,8 @@ impl<T: AccessibleImpl> AccessibleImplExt for T {
         }
     }
 }
+
+impl<T: AccessibleImpl> AccessibleImplExt for T {}
 
 unsafe impl<T: AccessibleImpl> IsImplementable<T> for Accessible {
     fn interface_init(iface: &mut glib::Interface<Self>) {

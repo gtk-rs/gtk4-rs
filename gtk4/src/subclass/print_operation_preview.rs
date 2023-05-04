@@ -21,14 +21,6 @@ pub trait PrintOperationPreviewImpl: ObjectImpl {
 }
 
 pub trait PrintOperationPreviewImplExt: ObjectSubclass {
-    fn parent_ready(&self, context: &PrintContext);
-    fn parent_got_page_size(&self, context: &PrintContext, page_setup: &PageSetup);
-    fn parent_render_page(&self, page_nr: i32);
-    fn parent_is_selected(&self, page_nr: i32) -> bool;
-    fn parent_end_preview(&self);
-}
-
-impl<T: PrintOperationPreviewImpl> PrintOperationPreviewImplExt for T {
     fn parent_ready(&self, context: &PrintContext) {
         unsafe {
             let type_data = Self::type_data();
@@ -130,6 +122,8 @@ impl<T: PrintOperationPreviewImpl> PrintOperationPreviewImplExt for T {
         }
     }
 }
+
+impl<T: PrintOperationPreviewImpl> PrintOperationPreviewImplExt for T {}
 
 unsafe impl<T: PrintOperationPreviewImpl> IsImplementable<T> for PrintOperationPreview {
     fn interface_init(iface: &mut glib::Interface<Self>) {

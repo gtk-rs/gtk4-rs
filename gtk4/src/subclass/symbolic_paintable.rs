@@ -21,16 +21,6 @@ pub trait SymbolicPaintableImpl: PaintableImpl {
 pub trait SymbolicPaintableImplExt: ObjectSubclass {
     fn parent_snapshot_symbolic(
         &self,
-        _snapshot: &gdk::Snapshot,
-        _width: f64,
-        _height: f64,
-        _colors: &[gdk::RGBA],
-    );
-}
-
-impl<T: SymbolicPaintableImpl> SymbolicPaintableImplExt for T {
-    fn parent_snapshot_symbolic(
-        &self,
         snapshot: &gdk::Snapshot,
         width: f64,
         height: f64,
@@ -56,6 +46,8 @@ impl<T: SymbolicPaintableImpl> SymbolicPaintableImplExt for T {
         }
     }
 }
+
+impl<T: SymbolicPaintableImpl> SymbolicPaintableImplExt for T {}
 
 unsafe impl<T: SymbolicPaintableImpl> IsImplementable<T> for SymbolicPaintable {
     fn interface_init(iface: &mut glib::Interface<Self>) {

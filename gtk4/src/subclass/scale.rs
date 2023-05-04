@@ -14,13 +14,9 @@ pub trait ScaleImpl: ScaleImplExt + RangeImpl {
 }
 
 pub trait ScaleImplExt: ObjectSubclass {
-    fn parent_layout_offsets(&self) -> (i32, i32);
-}
-
-impl<T: ScaleImpl> ScaleImplExt for T {
     fn parent_layout_offsets(&self) -> (i32, i32) {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkScaleClass;
             let mut x = 0;
             let mut y = 0;
@@ -35,6 +31,8 @@ impl<T: ScaleImpl> ScaleImplExt for T {
         }
     }
 }
+
+impl<T: ScaleImpl> ScaleImplExt for T {}
 
 unsafe impl<T: ScaleImpl> IsSubclassable<T> for Scale {
     fn class_init(class: &mut glib::Class<Self>) {

@@ -26,13 +26,6 @@ pub trait ColorChooserImpl: ObjectImpl {
 #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 #[allow(deprecated)]
 pub trait ColorChooserImplExt: ObjectSubclass {
-    fn parent_add_palette(&self, orientation: Orientation, colors_per_line: i32, colors: &[RGBA]);
-    fn parent_color_activated(&self, rgba: RGBA);
-    fn parent_rgba(&self) -> RGBA;
-    fn parent_set_rgba(&self, rgba: RGBA);
-}
-
-impl<T: ColorChooserImpl> ColorChooserImplExt for T {
     fn parent_add_palette(&self, orientation: Orientation, colors_per_line: i32, colors: &[RGBA]) {
         unsafe {
             let type_data = Self::type_data();
@@ -114,6 +107,8 @@ impl<T: ColorChooserImpl> ColorChooserImplExt for T {
         }
     }
 }
+
+impl<T: ColorChooserImpl> ColorChooserImplExt for T {}
 
 unsafe impl<T: ColorChooserImpl> IsImplementable<T> for ColorChooser {
     fn interface_init(iface: &mut glib::Interface<Self>) {

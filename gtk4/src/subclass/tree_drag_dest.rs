@@ -16,11 +16,6 @@ pub trait TreeDragDestImpl: ObjectImpl {
 #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 #[allow(deprecated)]
 pub trait TreeDragDestImplExt: ObjectSubclass {
-    fn parent_drag_data_received(&self, dest: &TreePath, value: Value) -> bool;
-    fn parent_row_drop_possible(&self, dest: &TreePath, value: Value) -> bool;
-}
-
-impl<T: TreeDragDestImpl> TreeDragDestImplExt for T {
     fn parent_drag_data_received(&self, dest: &TreePath, value: Value) -> bool {
         unsafe {
             let type_data = Self::type_data();
@@ -63,6 +58,8 @@ impl<T: TreeDragDestImpl> TreeDragDestImplExt for T {
         }
     }
 }
+
+impl<T: TreeDragDestImpl> TreeDragDestImplExt for T {}
 
 unsafe impl<T: TreeDragDestImpl> IsImplementable<T> for TreeDragDest {
     fn interface_init(iface: &mut glib::Interface<Self>) {

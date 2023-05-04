@@ -17,11 +17,6 @@ pub trait ShortcutManagerImpl: ObjectImpl {
 }
 
 pub trait ShortcutManagerImplExt: ObjectSubclass {
-    fn parent_add_controller(&self, controller: &ShortcutController);
-    fn parent_remove_controller(&self, controller: &ShortcutController);
-}
-
-impl<T: ShortcutManagerImpl> ShortcutManagerImplExt for T {
     fn parent_add_controller(&self, controller: &ShortcutController) {
         unsafe {
             let type_data = Self::type_data();
@@ -62,6 +57,8 @@ impl<T: ShortcutManagerImpl> ShortcutManagerImplExt for T {
         }
     }
 }
+
+impl<T: ShortcutManagerImpl> ShortcutManagerImplExt for T {}
 
 unsafe impl<T: ShortcutManagerImpl> IsImplementable<T> for ShortcutManager {
     fn interface_init(iface: &mut glib::Interface<Self>) {

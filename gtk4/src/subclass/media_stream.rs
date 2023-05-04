@@ -33,18 +33,9 @@ pub trait MediaStreamImpl: MediaStreamImplExt + ObjectImpl {
 }
 
 pub trait MediaStreamImplExt: ObjectSubclass {
-    fn parent_pause(&self);
-    fn parent_play(&self) -> bool;
-    fn parent_realize(&self, surface: gdk::Surface);
-    fn parent_seek(&self, timestamp: i64);
-    fn parent_unrealize(&self, surface: gdk::Surface);
-    fn parent_update_audio(&self, muted: bool, volume: f64);
-}
-
-impl<T: MediaStreamImpl> MediaStreamImplExt for T {
     fn parent_pause(&self) {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkMediaStreamClass;
             let f = (*parent_class)
                 .pause
@@ -55,7 +46,7 @@ impl<T: MediaStreamImpl> MediaStreamImplExt for T {
 
     fn parent_play(&self) -> bool {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkMediaStreamClass;
             if let Some(f) = (*parent_class).play {
                 return from_glib(f(self
@@ -70,7 +61,7 @@ impl<T: MediaStreamImpl> MediaStreamImplExt for T {
 
     fn parent_realize(&self, surface: gdk::Surface) {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkMediaStreamClass;
             let f = (*parent_class)
                 .realize
@@ -84,7 +75,7 @@ impl<T: MediaStreamImpl> MediaStreamImplExt for T {
 
     fn parent_seek(&self, timestamp: i64) {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkMediaStreamClass;
             let f = (*parent_class)
                 .seek
@@ -98,7 +89,7 @@ impl<T: MediaStreamImpl> MediaStreamImplExt for T {
 
     fn parent_unrealize(&self, surface: gdk::Surface) {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkMediaStreamClass;
             let f = (*parent_class)
                 .unrealize
@@ -112,7 +103,7 @@ impl<T: MediaStreamImpl> MediaStreamImplExt for T {
 
     fn parent_update_audio(&self, muted: bool, volume: f64) {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkMediaStreamClass;
             let f = (*parent_class)
                 .update_audio
@@ -125,6 +116,8 @@ impl<T: MediaStreamImpl> MediaStreamImplExt for T {
         }
     }
 }
+
+impl<T: MediaStreamImpl> MediaStreamImplExt for T {}
 
 unsafe impl<T: MediaStreamImpl> IsSubclassable<T> for MediaStream {
     fn class_init(class: &mut glib::Class<Self>) {

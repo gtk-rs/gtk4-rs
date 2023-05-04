@@ -17,13 +17,9 @@ pub trait CellRendererTextImpl: CellRendererTextImplExt + CellRendererImpl {
 #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 #[allow(deprecated)]
 pub trait CellRendererTextImplExt: ObjectSubclass {
-    fn parent_edited(&self, path: &str, new_text: &str);
-}
-
-impl<T: CellRendererTextImpl> CellRendererTextImplExt for T {
     fn parent_edited(&self, path: &str, new_text: &str) {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkCellRendererTextClass;
             if let Some(f) = (*parent_class).edited {
                 f(
@@ -38,6 +34,8 @@ impl<T: CellRendererTextImpl> CellRendererTextImplExt for T {
         }
     }
 }
+
+impl<T: CellRendererTextImpl> CellRendererTextImplExt for T {}
 
 unsafe impl<T: CellRendererTextImpl> IsSubclassable<T> for CellRendererText {
     fn class_init(class: &mut ::glib::Class<Self>) {

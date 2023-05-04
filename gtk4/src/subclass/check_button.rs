@@ -18,15 +18,9 @@ pub trait CheckButtonImpl: CheckButtonImplExt + WidgetImpl {
 }
 
 pub trait CheckButtonImplExt: ObjectSubclass {
-    fn parent_toggled(&self);
-    #[cfg(any(feature = "v4_2", docsrs))]
-    fn parent_activate(&self);
-}
-
-impl<T: CheckButtonImpl> CheckButtonImplExt for T {
     fn parent_toggled(&self) {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkCheckButtonClass;
             if let Some(f) = (*parent_class).toggled {
                 f(self.obj().unsafe_cast_ref::<CheckButton>().to_glib_none().0)
@@ -37,7 +31,7 @@ impl<T: CheckButtonImpl> CheckButtonImplExt for T {
     #[cfg(any(feature = "v4_2", docsrs))]
     fn parent_activate(&self) {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkCheckButtonClass;
             if let Some(f) = (*parent_class).activate {
                 f(self.obj().unsafe_cast_ref::<CheckButton>().to_glib_none().0)
@@ -45,6 +39,8 @@ impl<T: CheckButtonImpl> CheckButtonImplExt for T {
         }
     }
 }
+
+impl<T: CheckButtonImpl> CheckButtonImplExt for T {}
 
 unsafe impl<T: CheckButtonImpl> IsSubclassable<T> for CheckButton {
     fn class_init(class: &mut glib::Class<Self>) {

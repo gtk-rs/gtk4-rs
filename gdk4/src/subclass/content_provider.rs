@@ -43,42 +43,9 @@ pub trait ContentProviderImpl: ContentProviderImplExt + ObjectImpl {
 }
 
 pub trait ContentProviderImplExt: ObjectSubclass {
-    fn parent_content_changed(&self);
-
-    fn parent_attach_clipboard(&self, clipboard: &Clipboard);
-
-    fn parent_detach_clipboard(&self, clipboard: &Clipboard);
-
-    fn parent_formats(&self) -> ContentFormats;
-
-    fn parent_storable_formats(&self) -> ContentFormats;
-
-    fn parent_write_mime_type_async<
-        Q: IsA<gio::Cancellable>,
-        R: FnOnce(Result<(), glib::Error>) + 'static,
-    >(
-        &self,
-        mime_type: &str,
-        stream: &gio::OutputStream,
-        io_priority: glib::Priority,
-        cancellable: Option<&Q>,
-        callback: R,
-    );
-
-    fn parent_write_mime_type_future(
-        &self,
-        mime_type: &str,
-        stream: &gio::OutputStream,
-        io_priority: glib::Priority,
-    ) -> Pin<Box<dyn Future<Output = Result<(), glib::Error>> + 'static>>;
-
-    fn parent_value(&self, type_: glib::Type) -> Result<Value, glib::Error>;
-}
-
-impl<T: ContentProviderImpl> ContentProviderImplExt for T {
     fn parent_content_changed(&self) {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GdkContentProviderClass;
             if let Some(f) = (*parent_class).content_changed {
                 f(self
@@ -92,7 +59,7 @@ impl<T: ContentProviderImpl> ContentProviderImplExt for T {
 
     fn parent_attach_clipboard(&self, clipboard: &Clipboard) {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GdkContentProviderClass;
             if let Some(f) = (*parent_class).attach_clipboard {
                 f(
@@ -108,7 +75,7 @@ impl<T: ContentProviderImpl> ContentProviderImplExt for T {
 
     fn parent_detach_clipboard(&self, clipboard: &Clipboard) {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GdkContentProviderClass;
             if let Some(f) = (*parent_class).detach_clipboard {
                 f(
@@ -124,7 +91,7 @@ impl<T: ContentProviderImpl> ContentProviderImplExt for T {
 
     fn parent_formats(&self) -> ContentFormats {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GdkContentProviderClass;
             let f = (*parent_class)
                 .ref_formats
@@ -141,7 +108,7 @@ impl<T: ContentProviderImpl> ContentProviderImplExt for T {
 
     fn parent_storable_formats(&self) -> ContentFormats {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GdkContentProviderClass;
             let f = (*parent_class)
                 .ref_storable_formats
@@ -179,7 +146,7 @@ impl<T: ContentProviderImpl> ContentProviderImplExt for T {
                 "Async operations only allowed if the thread is owning the MainContext"
             );
 
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GdkContentProviderClass;
             let f = (*parent_class)
                 .write_mime_type_async
@@ -260,7 +227,7 @@ impl<T: ContentProviderImpl> ContentProviderImplExt for T {
 
     fn parent_value(&self, type_: glib::Type) -> Result<Value, glib::Error> {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GdkContentProviderClass;
             let f = (*parent_class)
                 .get_value
@@ -285,6 +252,8 @@ impl<T: ContentProviderImpl> ContentProviderImplExt for T {
         }
     }
 }
+
+impl<T: ContentProviderImpl> ContentProviderImplExt for T {}
 
 unsafe impl<T: ContentProviderImpl> IsSubclassable<T> for ContentProvider {
     fn class_init(class: &mut glib::Class<Self>) {

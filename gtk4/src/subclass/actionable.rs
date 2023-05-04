@@ -16,13 +16,6 @@ pub trait ActionableImpl: WidgetImpl {
 }
 
 pub trait ActionableImplExt: ObjectSubclass {
-    fn parent_action_name(&self) -> Option<GString>;
-    fn parent_action_target_value(&self) -> Option<Variant>;
-    fn parent_set_action_name(&self, name: Option<&str>);
-    fn parent_set_action_target_value(&self, value: Option<&Variant>);
-}
-
-impl<T: ActionableImpl> ActionableImplExt for T {
     fn parent_action_name(&self) -> Option<GString> {
         unsafe {
             let type_data = Self::type_data();
@@ -89,6 +82,8 @@ impl<T: ActionableImpl> ActionableImplExt for T {
         }
     }
 }
+
+impl<T: ActionableImpl> ActionableImplExt for T {}
 
 unsafe impl<T: ActionableImpl> IsImplementable<T> for Actionable {
     fn interface_init(iface: &mut glib::Interface<Self>) {

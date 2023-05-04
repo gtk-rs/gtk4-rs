@@ -97,59 +97,9 @@ pub trait CellRendererImpl: CellRendererImplExt + ObjectImpl {
 #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 #[allow(deprecated)]
 pub trait CellRendererImplExt: ObjectSubclass {
-    fn parent_activate<P: IsA<Widget>>(
-        &self,
-        event: Option<&gdk::Event>,
-        widget: &P,
-        path: &str,
-        background_area: &gdk::Rectangle,
-        cell_area: &gdk::Rectangle,
-        flags: CellRendererState,
-    ) -> bool;
-    fn parent_editing_canceled(&self);
-    fn parent_editing_started(&self, editable: &CellEditable, path: &str);
-    fn parent_aligned_area<P: IsA<Widget>>(
-        &self,
-        widget: &P,
-        flags: CellRendererState,
-        cell_area: &gdk::Rectangle,
-    ) -> gdk::Rectangle;
-    fn parent_preferred_height_for_width<P: IsA<Widget>>(
-        &self,
-        widget: &P,
-        width: i32,
-    ) -> (i32, i32);
-    fn parent_preferred_height<P: IsA<Widget>>(&self, widget: &P) -> (i32, i32);
-    fn parent_preferred_width_for_height<P: IsA<Widget>>(
-        &self,
-        widget: &P,
-        height: i32,
-    ) -> (i32, i32);
-    fn parent_preferred_width<P: IsA<Widget>>(&self, widget: &P) -> (i32, i32);
-    fn parent_request_mode(&self) -> SizeRequestMode;
-    fn parent_snapshot<P: IsA<Widget>>(
-        &self,
-        snapshot: &Snapshot,
-        widget: &P,
-        background_area: &gdk::Rectangle,
-        cell_area: &gdk::Rectangle,
-        flags: CellRendererState,
-    );
-    fn parent_start_editing<P: IsA<Widget>>(
-        &self,
-        event: Option<&gdk::Event>,
-        widget: &P,
-        path: &str,
-        background_area: &gdk::Rectangle,
-        cell_area: &gdk::Rectangle,
-        flags: CellRendererState,
-    ) -> Option<CellEditable>;
-}
-
-impl<T: CellRendererImpl> CellRendererImplExt for T {
     fn parent_request_mode(&self) -> SizeRequestMode {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkCellRendererClass;
             let f = (*parent_class).get_request_mode.unwrap();
             from_glib(f(self
@@ -162,7 +112,7 @@ impl<T: CellRendererImpl> CellRendererImplExt for T {
 
     fn parent_preferred_width<P: IsA<Widget>>(&self, widget: &P) -> (i32, i32) {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkCellRendererClass;
             let f = (*parent_class).get_preferred_width.unwrap();
 
@@ -187,7 +137,7 @@ impl<T: CellRendererImpl> CellRendererImplExt for T {
         height: i32,
     ) -> (i32, i32) {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkCellRendererClass;
             let f = (*parent_class).get_preferred_width_for_height.unwrap();
 
@@ -208,7 +158,7 @@ impl<T: CellRendererImpl> CellRendererImplExt for T {
     }
     fn parent_preferred_height<P: IsA<Widget>>(&self, widget: &P) -> (i32, i32) {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkCellRendererClass;
             let f = (*parent_class).get_preferred_height.unwrap();
             let mut minimum_size = mem::MaybeUninit::uninit();
@@ -231,7 +181,7 @@ impl<T: CellRendererImpl> CellRendererImplExt for T {
         width: i32,
     ) -> (i32, i32) {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkCellRendererClass;
             let f = (*parent_class).get_preferred_height_for_width.unwrap();
             let mut minimum_size = mem::MaybeUninit::uninit();
@@ -257,7 +207,7 @@ impl<T: CellRendererImpl> CellRendererImplExt for T {
         cell_area: &gdk::Rectangle,
     ) -> gdk::Rectangle {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkCellRendererClass;
             let mut aligned_area = gdk::Rectangle::uninitialized();
             let f = (*parent_class).get_aligned_area.unwrap();
@@ -284,7 +234,7 @@ impl<T: CellRendererImpl> CellRendererImplExt for T {
         flags: CellRendererState,
     ) {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkCellRendererClass;
             if let Some(f) = (*parent_class).snapshot {
                 f(
@@ -312,7 +262,7 @@ impl<T: CellRendererImpl> CellRendererImplExt for T {
         flags: CellRendererState,
     ) -> bool {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkCellRendererClass;
             if let Some(f) = (*parent_class).activate {
                 from_glib(f(
@@ -343,7 +293,7 @@ impl<T: CellRendererImpl> CellRendererImplExt for T {
         flags: CellRendererState,
     ) -> Option<CellEditable> {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkCellRendererClass;
             if let Some(f) = (*parent_class).start_editing {
                 from_glib_none(f(
@@ -366,7 +316,7 @@ impl<T: CellRendererImpl> CellRendererImplExt for T {
 
     fn parent_editing_canceled(&self) {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkCellRendererClass;
             if let Some(f) = (*parent_class).editing_canceled {
                 f(self
@@ -380,7 +330,7 @@ impl<T: CellRendererImpl> CellRendererImplExt for T {
 
     fn parent_editing_started(&self, editable: &CellEditable, path: &str) {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkCellRendererClass;
             if let Some(f) = (*parent_class).editing_started {
                 f(
@@ -395,6 +345,8 @@ impl<T: CellRendererImpl> CellRendererImplExt for T {
         }
     }
 }
+
+impl<T: CellRendererImpl> CellRendererImplExt for T {}
 
 unsafe impl<T: CellRendererImpl> IsSubclassable<T> for CellRenderer {
     fn class_init(class: &mut ::glib::Class<Self>) {
