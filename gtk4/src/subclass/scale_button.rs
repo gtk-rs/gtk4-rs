@@ -13,13 +13,9 @@ pub trait ScaleButtonImpl: ScaleButtonImplExt + WidgetImpl {
 }
 
 pub trait ScaleButtonImplExt: ObjectSubclass {
-    fn parent_value_changed(&self, new_value: f64);
-}
-
-impl<T: ScaleButtonImpl> ScaleButtonImplExt for T {
     fn parent_value_changed(&self, new_value: f64) {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkScaleButtonClass;
             if let Some(f) = (*parent_class).value_changed {
                 f(
@@ -30,6 +26,8 @@ impl<T: ScaleButtonImpl> ScaleButtonImplExt for T {
         }
     }
 }
+
+impl<T: ScaleButtonImpl> ScaleButtonImplExt for T {}
 
 unsafe impl<T: ScaleButtonImpl> IsSubclassable<T> for ScaleButton {
     fn class_init(class: &mut glib::Class<Self>) {

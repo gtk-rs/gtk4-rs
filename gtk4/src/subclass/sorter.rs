@@ -17,14 +17,9 @@ pub trait SorterImpl: SorterImplExt + ObjectImpl {
 }
 
 pub trait SorterImplExt: ObjectSubclass {
-    fn parent_compare(&self, item1: &Object, item2: &Object) -> Ordering;
-    fn parent_order(&self) -> SorterOrder;
-}
-
-impl<T: SorterImpl> SorterImplExt for T {
     fn parent_compare(&self, item1: &Object, item2: &Object) -> Ordering {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkSorterClass;
             let f = (*parent_class)
                 .compare
@@ -39,7 +34,7 @@ impl<T: SorterImpl> SorterImplExt for T {
 
     fn parent_order(&self) -> SorterOrder {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkSorterClass;
             let f = (*parent_class)
                 .get_order
@@ -48,6 +43,8 @@ impl<T: SorterImpl> SorterImplExt for T {
         }
     }
 }
+
+impl<T: SorterImpl> SorterImplExt for T {}
 
 unsafe impl<T: SorterImpl> IsSubclassable<T> for Sorter {
     fn class_init(class: &mut glib::Class<Self>) {

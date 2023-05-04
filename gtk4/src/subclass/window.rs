@@ -29,17 +29,9 @@ pub trait WindowImpl: WindowImplExt + WidgetImpl {
 }
 
 pub trait WindowImplExt: ObjectSubclass {
-    fn parent_activate_focus(&self);
-    fn parent_activate_default(&self);
-    fn parent_keys_changed(&self);
-    fn parent_enable_debugging(&self, toggle: bool) -> bool;
-    fn parent_close_request(&self) -> glib::signal::Inhibit;
-}
-
-impl<T: WindowImpl> WindowImplExt for T {
     fn parent_activate_focus(&self) {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkWindowClass;
             let f = (*parent_class)
                 .activate_focus
@@ -50,7 +42,7 @@ impl<T: WindowImpl> WindowImplExt for T {
 
     fn parent_activate_default(&self) {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkWindowClass;
             let f = (*parent_class)
                 .activate_default
@@ -61,7 +53,7 @@ impl<T: WindowImpl> WindowImplExt for T {
 
     fn parent_keys_changed(&self) {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkWindowClass;
             let f = (*parent_class)
                 .keys_changed
@@ -72,7 +64,7 @@ impl<T: WindowImpl> WindowImplExt for T {
 
     fn parent_enable_debugging(&self, toggle: bool) -> bool {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkWindowClass;
             let f = (*parent_class)
                 .enable_debugging
@@ -86,7 +78,7 @@ impl<T: WindowImpl> WindowImplExt for T {
 
     fn parent_close_request(&self) -> glib::signal::Inhibit {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkWindowClass;
             let f = (*parent_class)
                 .close_request
@@ -99,6 +91,8 @@ impl<T: WindowImpl> WindowImplExt for T {
         }
     }
 }
+
+impl<T: WindowImpl> WindowImplExt for T {}
 
 unsafe impl<T: WindowImpl> IsSubclassable<T> for Window {
     fn class_init(class: &mut ::glib::Class<Self>) {

@@ -27,21 +27,9 @@ pub trait TreeModelFilterImpl: TreeModelFilterImplExt + ObjectImpl {
 #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 #[allow(deprecated)]
 pub trait TreeModelFilterImplExt: ObjectSubclass {
-    fn parent_visible<M: IsA<TreeModel>>(&self, child_model: &M, iter: &TreeIter) -> bool;
-
-    fn parent_modify<M: IsA<TreeModel>>(
-        &self,
-        child_model: &M,
-        iter: &TreeIter,
-        value: Value,
-        index: i32,
-    );
-}
-
-impl<T: TreeModelFilterImpl> TreeModelFilterImplExt for T {
     fn parent_visible<M: IsA<TreeModel>>(&self, child_model: &M, iter: &TreeIter) -> bool {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkTreeModelFilterClass;
             if let Some(f) = (*parent_class).visible {
                 from_glib(f(
@@ -66,7 +54,7 @@ impl<T: TreeModelFilterImpl> TreeModelFilterImplExt for T {
         index: i32,
     ) {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkTreeModelFilterClass;
             if let Some(f) = (*parent_class).modify {
                 f(
@@ -83,6 +71,8 @@ impl<T: TreeModelFilterImpl> TreeModelFilterImplExt for T {
         }
     }
 }
+
+impl<T: TreeModelFilterImpl> TreeModelFilterImplExt for T {}
 
 unsafe impl<T: TreeModelFilterImpl> IsSubclassable<T> for TreeModelFilter {
     fn class_init(class: &mut glib::Class<Self>) {

@@ -13,13 +13,9 @@ pub trait FlowBoxChildImpl: FlowBoxChildImplExt + WidgetImpl {
 }
 
 pub trait FlowBoxChildImplExt: ObjectSubclass {
-    fn parent_activate(&self);
-}
-
-impl<T: FlowBoxChildImpl> FlowBoxChildImplExt for T {
     fn parent_activate(&self) {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkFlowBoxChildClass;
             if let Some(f) = (*parent_class).activate {
                 f(self
@@ -31,6 +27,8 @@ impl<T: FlowBoxChildImpl> FlowBoxChildImplExt for T {
         }
     }
 }
+
+impl<T: FlowBoxChildImpl> FlowBoxChildImplExt for T {}
 
 unsafe impl<T: FlowBoxChildImpl> IsSubclassable<T> for FlowBoxChild {
     fn class_init(class: &mut glib::Class<Self>) {

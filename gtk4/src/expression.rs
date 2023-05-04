@@ -230,36 +230,30 @@ impl From<Expression> for glib::Value {
 ///
 /// let label_expression = button.property_expression("label");
 /// ```
-pub trait GObjectPropertyExpressionExt {
+pub trait GObjectPropertyExpressionExt: IsA<glib::Object> {
     // rustdoc-stripper-ignore-next
     /// Create an expression looking up an object's property.
-    fn property_expression(&self, property_name: &str) -> crate::PropertyExpression;
+    fn property_expression(&self, property_name: &str) -> crate::PropertyExpression {
+        let obj_expr = crate::ConstantExpression::new(self);
+        crate::PropertyExpression::new(Self::static_type(), Some(&obj_expr), property_name)
+    }
 
     // rustdoc-stripper-ignore-next
     /// Create an expression looking up an object's property with a weak reference.
-    fn property_expression_weak(&self, property_name: &str) -> crate::PropertyExpression;
+    fn property_expression_weak(&self, property_name: &str) -> crate::PropertyExpression {
+        let obj_expr = crate::ObjectExpression::new(self);
+        crate::PropertyExpression::new(Self::static_type(), Some(&obj_expr), property_name)
+    }
 
     // rustdoc-stripper-ignore-next
     /// Create an expression looking up a property in the bound `this` object.
-    fn this_expression(property_name: &str) -> crate::PropertyExpression;
-}
-
-impl<T: IsA<glib::Object>> GObjectPropertyExpressionExt for T {
-    fn property_expression(&self, property_name: &str) -> crate::PropertyExpression {
-        let obj_expr = crate::ConstantExpression::new(self);
-        crate::PropertyExpression::new(T::static_type(), Some(&obj_expr), property_name)
-    }
-
-    fn property_expression_weak(&self, property_name: &str) -> crate::PropertyExpression {
-        let obj_expr = crate::ObjectExpression::new(self);
-        crate::PropertyExpression::new(T::static_type(), Some(&obj_expr), property_name)
-    }
-
     fn this_expression(property_name: &str) -> crate::PropertyExpression {
         skip_assert_initialized!();
-        crate::PropertyExpression::new(T::static_type(), Expression::NONE, property_name)
+        crate::PropertyExpression::new(Self::static_type(), Expression::NONE, property_name)
     }
 }
+
+impl<O: IsA<glib::Object>> GObjectPropertyExpressionExt for O {}
 
 macro_rules! define_expression {
     ($rust_type:ident, $ffi_type:path) => {

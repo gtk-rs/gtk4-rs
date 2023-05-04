@@ -36,15 +36,6 @@ pub trait PaintableImpl: ObjectImpl {
 }
 
 pub trait PaintableImplExt: ObjectSubclass {
-    fn parent_current_image(&self) -> Paintable;
-    fn parent_flags(&self) -> PaintableFlags;
-    fn parent_intrinsic_width(&self) -> i32;
-    fn parent_intrinsic_height(&self) -> i32;
-    fn parent_intrinsic_aspect_ratio(&self) -> f64;
-    fn parent_snapshot(&self, snapshot: &Snapshot, width: f64, height: f64);
-}
-
-impl<T: PaintableImpl> PaintableImplExt for T {
     fn parent_current_image(&self) -> Paintable {
         unsafe {
             let type_data = Self::type_data();
@@ -132,6 +123,8 @@ impl<T: PaintableImpl> PaintableImplExt for T {
         }
     }
 }
+
+impl<T: PaintableImpl> PaintableImplExt for T {}
 
 unsafe impl<T: PaintableImpl> IsImplementable<T> for Paintable {
     fn interface_init(iface: &mut glib::Interface<Self>) {

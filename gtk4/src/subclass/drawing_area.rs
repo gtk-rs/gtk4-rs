@@ -13,13 +13,9 @@ pub trait DrawingAreaImpl: DrawingAreaImplExt + WidgetImpl {
 }
 
 pub trait DrawingAreaImplExt: ObjectSubclass {
-    fn parent_resize(&self, width: i32, height: i32);
-}
-
-impl<T: DrawingAreaImpl> DrawingAreaImplExt for T {
     fn parent_resize(&self, width: i32, height: i32) {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkDrawingAreaClass;
             if let Some(f) = (*parent_class).resize {
                 f(
@@ -31,6 +27,8 @@ impl<T: DrawingAreaImpl> DrawingAreaImplExt for T {
         }
     }
 }
+
+impl<T: DrawingAreaImpl> DrawingAreaImplExt for T {}
 
 unsafe impl<T: DrawingAreaImpl> IsSubclassable<T> for DrawingArea {
     fn class_init(class: &mut glib::Class<Self>) {

@@ -17,13 +17,9 @@ pub trait StyleContextImpl: StyleContextImplExt + ObjectImpl {
 #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 #[allow(deprecated)]
 pub trait StyleContextImplExt: ObjectSubclass {
-    fn parent_changed(&self);
-}
-
-impl<T: StyleContextImpl> StyleContextImplExt for T {
     fn parent_changed(&self) {
         unsafe {
-            let data = T::type_data();
+            let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkStyleContextClass;
             if let Some(f) = (*parent_class).changed {
                 f(self
@@ -35,6 +31,8 @@ impl<T: StyleContextImpl> StyleContextImplExt for T {
         }
     }
 }
+
+impl<T: StyleContextImpl> StyleContextImplExt for T {}
 
 unsafe impl<T: StyleContextImpl> IsSubclassable<T> for StyleContext {
     fn class_init(class: &mut glib::Class<Self>) {

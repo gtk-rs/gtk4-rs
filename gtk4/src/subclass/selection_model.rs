@@ -46,18 +46,6 @@ pub trait SelectionModelImpl: ListModelImpl {
 }
 
 pub trait SelectionModelImplExt: ObjectSubclass {
-    fn parent_selection_in_range(&self, position: u32, n_items: u32) -> Bitset;
-    fn parent_is_selected(&self, position: u32) -> bool;
-    fn parent_select_all(&self) -> bool;
-    fn parent_select_item(&self, position: u32, unselect_rest: bool) -> bool;
-    fn parent_select_range(&self, position: u32, n_items: u32, unselect_rest: bool) -> bool;
-    fn parent_set_selection(&self, selected: &Bitset, mask: &Bitset) -> bool;
-    fn parent_unselect_all(&self) -> bool;
-    fn parent_unselect_item(&self, position: u32) -> bool;
-    fn parent_unselect_range(&self, position: u32, n_items: u32) -> bool;
-}
-
-impl<T: SelectionModelImpl> SelectionModelImplExt for T {
     fn parent_selection_in_range(&self, position: u32, n_items: u32) -> Bitset {
         unsafe {
             let type_data = Self::type_data();
@@ -242,6 +230,8 @@ impl<T: SelectionModelImpl> SelectionModelImplExt for T {
         }
     }
 }
+
+impl<T: SelectionModelImpl> SelectionModelImplExt for T {}
 
 unsafe impl<T: SelectionModelImpl> IsImplementable<T> for SelectionModel {
     fn interface_init(iface: &mut glib::Interface<Self>) {

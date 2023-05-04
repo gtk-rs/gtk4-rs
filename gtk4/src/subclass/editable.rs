@@ -95,18 +95,6 @@ pub trait EditableImplExt: ObjectSubclass {
         }
     }
 
-    fn parent_insert_text(&self, text: &str, length: i32, position: &mut i32);
-    fn parent_delete_text(&self, start_position: i32, end_position: i32);
-    fn parent_changed(&self);
-    fn parent_do_insert_text(&self, text: &str, length: i32, position: &mut i32);
-    fn parent_do_delete_text(&self, start_position: i32, end_position: i32);
-    fn parent_delegate(&self) -> Option<Editable>;
-    fn parent_selection_bounds(&self) -> Option<(i32, i32)>;
-    fn parent_set_selection_bounds(&self, start_position: i32, end_position: i32);
-    fn parent_text(&self) -> GString;
-}
-
-impl<T: EditableImpl> EditableImplExt for T {
     fn parent_insert_text(&self, text: &str, length: i32, position: &mut i32) {
         unsafe {
             let type_data = Self::type_data();
@@ -251,6 +239,8 @@ impl<T: EditableImpl> EditableImplExt for T {
         }
     }
 }
+
+impl<T: EditableImpl> EditableImplExt for T {}
 
 unsafe impl<T: EditableImpl + ObjectSubclass> IsImplementable<T> for Editable {
     fn interface_init(iface: &mut glib::Interface<Self>) {
