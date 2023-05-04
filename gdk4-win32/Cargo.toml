@@ -14,6 +14,8 @@ rust-version = "1.64"
 build = "build.rs"
 
 [package.metadata.docs.rs]
+all-features = true
+rustc-args = ["--cfg", "docsrs"]
 rustdoc-args = ["--cfg", "docsrs"]
 
 [package.metadata.system-deps.gtk4_win32]

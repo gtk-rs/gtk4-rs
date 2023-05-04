@@ -23,6 +23,8 @@ v4_10 = ["ffi/v4_10", "v4_8"]
 v4_12 = ["ffi/v4_12", "v4_10"]
 
 [package.metadata.docs.rs]
+all-features = true
+rustc-args = ["--cfg", "docsrs"]
 rustdoc-args = ["--cfg", "docsrs"]
 
 [dependencies]

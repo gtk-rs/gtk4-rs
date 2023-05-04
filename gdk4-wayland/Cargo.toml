@@ -20,6 +20,8 @@ egl = ["khronos-egl"]
 xkb_crate = ["xkb"]
 
 [package.metadata.docs.rs]
+all-features = true
+rustc-args = ["--cfg", "docsrs"]
 rustdoc-args = ["--cfg", "docsrs"]
 
 [dependencies]
