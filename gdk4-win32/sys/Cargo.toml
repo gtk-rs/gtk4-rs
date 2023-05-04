@@ -23,6 +23,9 @@ version = "4.4"
 version = "4.8"
 
 [package.metadata.docs.rs]
+all-features = true
+rustc-args = ["--cfg", "docsrs"]
+rustdoc-args = ["--cfg", "docsrs"]
 features = []
 
 [lib]
