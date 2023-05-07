@@ -58,6 +58,16 @@ pub trait IMContextImpl: IMContextImplExt + ObjectImpl {
     fn set_surrounding(&self, text: &str, cursor_index: i32) {
         self.parent_set_surrounding(text, cursor_index)
     }
+    #[cfg(feature = "v4_2")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_2")))]
+    fn set_surrounding_with_selection(&self, text: &str, cursor_index: i32, anchor_index: i32) {
+        self.parent_set_surrounding_with_selection(text, cursor_index, anchor_index)
+    }
+    #[cfg(feature = "v4_2")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_2")))]
+    fn surrounding_with_selection(&self) -> Option<(glib::GString, i32, i32)> {
+        self.parent_surrounding_with_selection()
+    }
     fn set_use_preedit(&self, use_preedit: bool) {
         self.parent_set_use_preedit(use_preedit)
     }
@@ -279,6 +289,59 @@ pub trait IMContextImplExt: ObjectSubclass {
         }
     }
 
+    #[cfg(feature = "v4_2")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_2")))]
+    fn parent_set_surrounding_with_selection(
+        &self,
+        text: &str,
+        cursor_index: i32,
+        anchor_index: i32,
+    ) {
+        unsafe {
+            let data = Self::type_data();
+            let parent_class = data.as_ref().parent_class() as *mut ffi::GtkIMContextClass;
+            if let Some(f) = (*parent_class).set_surrounding_with_selection {
+                f(
+                    self.obj().unsafe_cast_ref::<IMContext>().to_glib_none().0,
+                    text.to_glib_none().0,
+                    text.len() as i32,
+                    cursor_index,
+                    anchor_index,
+                )
+            }
+        }
+    }
+    #[cfg(feature = "v4_2")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_2")))]
+    fn parent_surrounding_with_selection(&self) -> Option<(glib::GString, i32, i32)> {
+        unsafe {
+            let data = Self::type_data();
+            let parent_class = data.as_ref().parent_class() as *mut ffi::GtkIMContextClass;
+            if let Some(f) = (*parent_class).get_surrounding_with_selection {
+                let mut cursor_index = std::mem::MaybeUninit::uninit();
+                let mut anchor_index = std::mem::MaybeUninit::uninit();
+                let mut text = std::ptr::null_mut();
+                let res = f(
+                    self.obj().unsafe_cast_ref::<IMContext>().to_glib_none().0,
+                    &mut text,
+                    cursor_index.as_mut_ptr(),
+                    anchor_index.as_mut_ptr(),
+                );
+                if from_glib(res) {
+                    Some((
+                        glib::GString::from_glib_none(text),
+                        cursor_index.assume_init(),
+                        anchor_index.assume_init(),
+                    ))
+                } else {
+                    None
+                }
+            } else {
+                None
+            }
+        }
+    }
+
     fn parent_set_use_preedit(&self, use_preedit: bool) {
         unsafe {
             let data = Self::type_data();
@@ -329,6 +392,13 @@ unsafe impl<T: IMContextImpl> IsSubclassable<T> for IMContext {
         klass.set_cursor_location = Some(im_context_set_cursor_location::<T>);
         klass.set_surrounding = Some(im_context_set_surrounding::<T>);
         klass.set_use_preedit = Some(im_context_set_use_preedit::<T>);
+        #[cfg(any(feature = "v4_2", docsrs))]
+        {
+            klass.set_surrounding_with_selection =
+                Some(im_context_set_surrounding_with_selection::<T>);
+            klass.get_surrounding_with_selection =
+                Some(im_context_get_surrounding_with_selection::<T>);
+        };
         #[cfg(any(feature = "v4_10", docsrs))]
         {
             klass.activate_osk = Some(im_context_activate_osk::<T>);
@@ -504,6 +574,44 @@ unsafe extern "C" fn im_context_set_use_preedit<T: IMContextImpl>(
     let imp = instance.imp();
 
     imp.set_use_preedit(from_glib(use_preedit))
+}
+
+#[cfg(any(feature = "v4_2", docsrs))]
+unsafe extern "C" fn im_context_set_surrounding_with_selection<T: IMContextImpl>(
+    ptr: *mut ffi::GtkIMContext,
+    text: *const libc::c_char,
+    len: i32,
+    cursor_index: i32,
+    anchor_index: i32,
+) {
+    let instance = &*(ptr as *mut T::Instance);
+    let imp = instance.imp();
+
+    imp.set_surrounding_with_selection(
+        &glib::GString::from_glib_none_num(text, len as usize),
+        cursor_index,
+        anchor_index,
+    )
+}
+
+#[cfg(any(feature = "v4_2", docsrs))]
+unsafe extern "C" fn im_context_get_surrounding_with_selection<T: IMContextImpl>(
+    ptr: *mut ffi::GtkIMContext,
+    textptr: *mut *mut libc::c_char,
+    cursor_indexptr: *mut libc::c_int,
+    anchor_indexptr: *mut libc::c_int,
+) -> glib::ffi::gboolean {
+    let instance = &*(ptr as *mut T::Instance);
+    let imp = instance.imp();
+    match imp.surrounding_with_selection() {
+        Some((text, cursor_index, anchor_index)) => {
+            *cursor_indexptr = cursor_index;
+            *anchor_indexptr = anchor_index;
+            *textptr = text.into_glib_ptr();
+            true.into_glib()
+        }
+        None => false.into_glib(),
+    }
 }
 
 #[cfg(any(feature = "v4_10", docsrs))]
