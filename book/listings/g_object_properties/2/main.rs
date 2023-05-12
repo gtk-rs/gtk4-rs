@@ -23,12 +23,12 @@ fn build_ui(app: &Application) {
     let switch_2 = Switch::new();
     // ANCHOR_END: switches
 
-    // ANCHOR: bind_state
+    // ANCHOR: bind_active
     switch_1
-        .bind_property("state", &switch_2, "state")
+        .bind_property("active", &switch_2, "active")
         .flags(BindingFlags::BIDIRECTIONAL)
         .build();
-    // ANCHOR_END: bind_state
+    // ANCHOR_END: bind_active
 
     // Set up box
     let gtk_box = Box::builder()

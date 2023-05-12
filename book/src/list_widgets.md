@@ -231,7 +231,7 @@ Note that we can create a `StringList` directly from an iterator over strings.
 This means we don't have to create a custom GObject for our model anymore.
 
 As usual, we connect the label to the list item via an expression.
-Here we can use [`StringObject`](../docs/gtk4/struct.StringObject.html), which exposes its content via the [property "string"](https://docs.gtk.org/gtk4/property.StringObject.string.html).
+Here we can use [`StringObject`](../docs/gtk4/struct.StringObject.html), which exposes its content via the [property "string"](../docs/gtk4/struct.StringObject.html#string).
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/list_widgets/6/main.rs">listings/list_widgets/6/main.rs</a>
 
