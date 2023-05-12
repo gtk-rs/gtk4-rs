@@ -29,7 +29,7 @@ Then you start listing the elements you want to describe.
 In order to define a composite template, we specify the name `MyGtkAppWindow` of the custom widget we want to create and the parent [`gtk::ApplicationWindow`](../docs/gtk4/struct.ApplicationWindow.html) it derives of.
 These `xml` files are independent of the programming language, which is why the classes have the original names.
 Luckily, they all convert like this: `gtk::ApplicationWindow` → `GtkApplicationWindow`.
-Then we can specify properties which are listed [here](https://docs.gtk.org/gtk4/class.ApplicationWindow.html) for `ApplicationWindow`.
+Then we can specify properties which are listed [here](../docs/gtk4/struct.ApplicationWindow.html#properties) for `ApplicationWindow`.
 Since `ApplicationWindow` can contain other widgets we use the `<child>` tag to add a `gtk::Button`.
 We want to be able to refer to the button later on so we also set its `id`.
 

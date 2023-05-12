@@ -3,7 +3,7 @@
 Properties provide a public API for accessing state of GObjects.
 
 Let's see how this is done by experimenting with the [`Switch`](https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/struct.Switch.html) widget.
-One of its properties is the [state](https://docs.gtk.org/gtk4/property.Switch.state.html).
+One of its properties is the [state](../docs/gtk4/struct.Switch.html#state).
 According to the GTK docs, it can be read and be written to.
 That is why `gtk-rs` provides corresponding [`state`](../docs/gtk4/struct.Switch.html#method.state) and [`set_state`](../docs/gtk4/struct.Switch.html#method.set_state) methods.
 

@@ -206,7 +206,7 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
          <property name="orientation">vertical</property>
 ```
 
-Since we connect the menu to the [`gtk::MenuButton`](../docs/gtk4/struct.MenuButton.html) via the [menu-model](https://docs.gtk.org/gtk4/property.MenuButton.menu-model.html) property, the `Menu` is expected to be a [`gtk::PopoverMenu`](../docs/gtk4/struct.PopoverMenu.html).
+Since we connect the menu to the [`gtk::MenuButton`](../docs/gtk4/struct.MenuButton.html) via the [menu-model](../docs/gtk4/struct.MenuButton.html#menu-model) property, the `Menu` is expected to be a [`gtk::PopoverMenu`](../docs/gtk4/struct.PopoverMenu.html).
 The [documentation](../docs/gtk4/struct.PopoverMenu.html) for `PopoverMenu` also explains its `xml` syntax for the interface builder.
 
 Also note how we specified the target:
