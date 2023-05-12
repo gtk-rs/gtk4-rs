@@ -24,7 +24,7 @@ fn build_ui(app: &Application) {
     switch.set_active(true);
     let switch_active = switch.is_active();
 
-    // This prints: "The active property of swtich is true"
+    // This prints: "The active property of switch is true"
     println!("The active property of switch is {}", switch_active);
     // ANCHOR_END: switch
 
