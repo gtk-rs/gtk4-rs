@@ -3,9 +3,9 @@
 Properties provide a public API for accessing state of GObjects.
 
 Let's see how this is done by experimenting with the [`Switch`](https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/struct.Switch.html) widget.
-One of its properties is the [state](../docs/gtk4/struct.Switch.html#state).
+One of its properties is called [active](../docs/gtk4/struct.Switch.html#active).
 According to the GTK docs, it can be read and be written to.
-That is why `gtk-rs` provides corresponding [`state`](../docs/gtk4/struct.Switch.html#method.state) and [`set_state`](../docs/gtk4/struct.Switch.html#method.set_state) methods.
+That is why `gtk-rs` provides corresponding [`is_active`](../docs/gtk4/struct.Switch.html#method.is_active) and [`set_active`](../docs/gtk4/struct.Switch.html#method.set_active) methods.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/g_object_properties/1/main.rs">listings/g_object_properties/1/main.rs</a>
 
@@ -22,13 +22,13 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 {{#rustdoc_include ../listings/g_object_properties/2/main.rs:switches}}
 ```
 
-In our case, we want to bind the "state" property of `switch_1` to the "state" property of `switch_2`.
+In our case, we want to bind the "active" property of `switch_1` to the "active" property of `switch_2`.
 We also want the binding to be bidirectional, so we specify this with the [`BindingFlags`](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/struct.BindingFlags.html).
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/g_object_properties/2/main.rs">listings/g_object_properties/2/main.rs</a>
 
 ```rust ,no_run,noplayground
-{{#rustdoc_include ../listings/g_object_properties/2/main.rs:bind_state}}
+{{#rustdoc_include ../listings/g_object_properties/2/main.rs:bind_active}}
 ```
 
 Now when we click on one of the two switches, the other one is toggled as well.
