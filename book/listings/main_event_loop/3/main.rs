@@ -29,7 +29,7 @@ fn build_ui(app: &Application) {
         .build();
 
     // ANCHOR: callback
-    let (sender, receiver) = MainContext::channel(Priority::DEFAULT);
+    let (sender, receiver) = MainContext::channel(Priority::default());
     // Connect to "clicked" signal of `button`
     button.connect_clicked(move |_| {
         let sender = sender.clone();
