@@ -1,4 +1,4 @@
-use glib::{clone, timeout_future_seconds, Continue, MainContext, PRIORITY_DEFAULT};
+use glib::{clone, timeout_future_seconds, Continue, MainContext, Priority};
 use gtk::prelude::*;
 use gtk::{glib, Application, ApplicationWindow, Button};
 
@@ -26,7 +26,7 @@ fn build_ui(app: &Application) {
         .build();
 
     // ANCHOR: callback
-    let (sender, receiver) = MainContext::channel(PRIORITY_DEFAULT);
+    let (sender, receiver) = MainContext::channel(Priority::default());
     // Connect to "clicked" signal of `button`
     button.connect_clicked(move |_| {
         let main_context = MainContext::default();
