@@ -1,4 +1,4 @@
-use gio::{Settings, SettingsBindFlags};
+use gio::Settings;
 use gtk::prelude::*;
 use gtk::{gio, glib, Align, Application, ApplicationWindow, Switch};
 
@@ -32,7 +32,6 @@ fn build_ui(app: &Application) {
     // ANCHOR: settings_bind
     settings
         .bind("is-switch-enabled", &switch, "active")
-        .flags(SettingsBindFlags::DEFAULT)
         .build();
     // ANCHOR_END: settings_bind
 

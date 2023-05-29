@@ -81,8 +81,6 @@ So let's do exactly that.
 
 We can remove the [`boolean`](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/gio/prelude/trait.SettingsExt.html#tymethod.boolean) call before initializing the `Switch` as well as the [`connect_state_set`](../docs/gtk4/struct.Switch.html#method.connect_state_set) call.
 We then bind the setting to the property by specifying the key, object and name of the property.
-Additionally, we specify [`SettingsBindFlags`](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/gio/struct.SettingsBindFlags.html) to control the direction in which the binding works.
-
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/settings/2/main.rs">listings/settings/2/main.rs</a>
 
 ```rust ,no_run,noplayground
