@@ -23,7 +23,7 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 ```
 
 In our case, we want to bind the "active" property of `switch_1` to the "active" property of `switch_2`.
-We also want the binding to be bidirectional, so we specify this with the [`BindingFlags`](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/struct.BindingFlags.html).
+We also want the binding to be bidirectional, so we specify by calling the [`bidirectional`](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/object/struct.BindingBuilder.html#method.bidirectional) method.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/g_object_properties/2/main.rs">listings/g_object_properties/2/main.rs</a>
 
