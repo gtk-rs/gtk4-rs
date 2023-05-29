@@ -169,7 +169,7 @@ impl Window {
 
         collection_object
             .bind_property("title", &label, "label")
-            .flags(glib::BindingFlags::SYNC_CREATE)
+            .sync_create()
             .build();
 
         ListBoxRow::builder().child(&label).build()
@@ -250,11 +250,12 @@ impl Window {
         // Bind properties
         task_object
             .bind_property("completed", &check_button, "active")
-            .flags(BindingFlags::SYNC_CREATE | BindingFlags::BIDIRECTIONAL)
+            .bidirectional()
+            .sync_create()
             .build();
         task_object
             .bind_property("content", &row, "title")
-            .flags(BindingFlags::SYNC_CREATE)
+            .sync_create()
             .build();
 
         // Return row

@@ -39,7 +39,8 @@ fn build_ui(app: &Application) {
             let decremented_number = number - 1;
             Some(decremented_number.to_value())
         })
-        .flags(BindingFlags::BIDIRECTIONAL | BindingFlags::SYNC_CREATE)
+        .bidirectional()
+        .sync_create()
         .build();
     // ANCHOR_END: bind_numbers
 

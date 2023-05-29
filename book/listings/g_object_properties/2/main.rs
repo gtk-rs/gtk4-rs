@@ -26,7 +26,7 @@ fn build_ui(app: &Application) {
     // ANCHOR: bind_active
     switch_1
         .bind_property("active", &switch_2, "active")
-        .flags(BindingFlags::BIDIRECTIONAL)
+        .bidirectional()
         .build();
     // ANCHOR_END: bind_active
 
