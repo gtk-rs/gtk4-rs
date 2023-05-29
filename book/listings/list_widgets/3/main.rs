@@ -1,6 +1,5 @@
 mod integer_object;
 
-use glib::BindingFlags;
 use gtk::{
     gio, glib, Application, ApplicationWindow, Label, ListView, PolicyType,
     ScrolledWindow, SignalListItemFactory, SingleSelection,

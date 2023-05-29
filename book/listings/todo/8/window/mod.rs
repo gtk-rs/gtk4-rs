@@ -7,7 +7,6 @@ use adw::subclass::prelude::*;
 use adw::{ActionRow, MessageDialog, NavigationDirection, ResponseAppearance};
 use gio::Settings;
 use glib::{clone, Object};
-use gtk::glib::BindingFlags;
 use gtk::{
     gio, glib, pango, Align, CheckButton, CustomFilter, Entry, FilterListModel, Label,
     ListBoxRow, NoSelection, SelectionMode,

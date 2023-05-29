@@ -1,4 +1,3 @@
-use glib::BindingFlags;
 use gtk::prelude::*;
 use gtk::{glib, Align, Application, ApplicationWindow, Box, Orientation, Switch};
 
