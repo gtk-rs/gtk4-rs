@@ -45,7 +45,7 @@ impl ObjectImpl for CustomButton {
         // `SYNC_CREATE` ensures that the label will be immediately set
         let obj = self.obj();
         obj.bind_property("number", obj.as_ref(), "label")
-            .flags(BindingFlags::SYNC_CREATE)
+            .sync_create()
             .build();
     }
 }

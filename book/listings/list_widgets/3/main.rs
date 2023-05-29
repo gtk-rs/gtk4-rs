@@ -61,7 +61,7 @@ fn build_ui(app: &Application) {
         // Bind "label" to "number"
         integer_object
             .bind_property("number", &label, "label")
-            .flags(BindingFlags::SYNC_CREATE)
+            .sync_create()
             .build();
     });
     // ANCHOR_END: factory_bind
