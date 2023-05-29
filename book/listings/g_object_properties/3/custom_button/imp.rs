@@ -1,6 +1,6 @@
 use std::cell::Cell;
 
-use glib::{BindingFlags, ParamSpec, Properties, Value};
+use glib::{ParamSpec, Properties, Value};
 use gtk::glib;
 use gtk::prelude::*;
 use gtk::subclass::prelude::*;

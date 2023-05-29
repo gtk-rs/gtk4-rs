@@ -1,6 +1,6 @@
 mod imp;
 
-use glib::{BindingFlags, Object};
+use glib::Object;
 use gtk::prelude::*;
 use gtk::subclass::prelude::*;
 use gtk::{glib, pango};

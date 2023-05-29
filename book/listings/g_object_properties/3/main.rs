@@ -1,7 +1,6 @@
 mod custom_button;
 
 use custom_button::CustomButton;
-use glib::BindingFlags;
 use gtk::prelude::*;
 use gtk::{glib, Align, Application, ApplicationWindow, Box, Orientation};
 
