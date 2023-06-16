@@ -143,9 +143,7 @@ cmake --install build
 cd /
 
 cd librsvg/win32
-where python
-nmake /f generate-msvc.mak generate-nmake-files PYTHON=<output from last command>
-xcopy /s C:\gnome\include\cairo C:\gnome\include
+nmake /f generate-msvc.mak generate-nmake-files
 nmake /f Makefile.vc CFG=release install PREFIX=C:\gnome
 cd /
 ```
