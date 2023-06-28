@@ -534,6 +534,9 @@ status = "generate"
     name = "r32g32b32a32_float"
     version = "4.6"
     [[object.member]]
+    pattern = "(g8a8_premultiplied|g8a8|g8|g16a16_premultiplied|g16a16|g16|a8|a16)"
+    version = "4.12"
+    [[object.member]]
     name = "n_formats"
     alias = true # not useful
 
