@@ -21,10 +21,7 @@ fn build_ui(app: &Application) {
     // ANCHOR: string_list
     // Create a `StringList` with number from 0 to 100_000
     // `StringList` implements FromIterator<String>
-    let model: StringList = (0..=100_000)
-        .into_iter()
-        .map(|number| number.to_string())
-        .collect();
+    let model: StringList = (0..=100_000).map(|number| number.to_string()).collect();
     // ANCHOR_END: string_list
 
     let factory = SignalListItemFactory::new();
