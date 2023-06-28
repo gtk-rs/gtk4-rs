@@ -29,7 +29,6 @@ generate = [
     "Gtk.ActivateAction",
     "Gtk.Adjustment",
     "Gtk.AlertDialog",
-    "Gtk.Align",
     "Gtk.Allocation",
     "Gtk.AlternativeTrigger",
     "Gtk.AnyFilter",
@@ -592,6 +591,10 @@ status = "generate"
     [[object.member]]
     name = "toggle_button"
     version = "4.10"
+    [[object.member]]
+    name = "application"
+    version = "4.12"
+
 
 [[object]]
 name = "Gtk.AccessibleState"
@@ -611,6 +614,13 @@ manual_traits = ["ActionableExtManual"]
     name = "set_action_target"
     manual = true # the target is defined as str
     doc_trait_name = "ActionableExtManual"
+
+[[object]]
+name = "Gtk.Align"
+status = "generate"
+    [[object.member]]
+    pattern = "(baseline_fill|baseline_center)"
+    version = "4.12"
 
 [[object]]
 name = "Gtk.AppChooserDialog"

@@ -1635,20 +1635,36 @@ pub enum MemoryFormat {
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     #[doc(alias = "GDK_MEMORY_R32G32B32A32_FLOAT")]
     R32g32b32a32Float,
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
     #[doc(alias = "GDK_MEMORY_G8A8_PREMULTIPLIED")]
     G8a8Premultiplied,
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
     #[doc(alias = "GDK_MEMORY_G8A8")]
     G8a8,
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
     #[doc(alias = "GDK_MEMORY_G8")]
     G8,
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
     #[doc(alias = "GDK_MEMORY_G16A16_PREMULTIPLIED")]
     G16a16Premultiplied,
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
     #[doc(alias = "GDK_MEMORY_G16A16")]
     G16a16,
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
     #[doc(alias = "GDK_MEMORY_G16")]
     G16,
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
     #[doc(alias = "GDK_MEMORY_A8")]
     A8,
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
     #[doc(alias = "GDK_MEMORY_A16")]
     A16,
     #[doc(hidden)]
@@ -1688,13 +1704,21 @@ impl fmt::Display for MemoryFormat {
                 Self::R32g32b32a32FloatPremultiplied => "R32g32b32a32FloatPremultiplied",
                 #[cfg(feature = "v4_6")]
                 Self::R32g32b32a32Float => "R32g32b32a32Float",
+                #[cfg(feature = "v4_12")]
                 Self::G8a8Premultiplied => "G8a8Premultiplied",
+                #[cfg(feature = "v4_12")]
                 Self::G8a8 => "G8a8",
+                #[cfg(feature = "v4_12")]
                 Self::G8 => "G8",
+                #[cfg(feature = "v4_12")]
                 Self::G16a16Premultiplied => "G16a16Premultiplied",
+                #[cfg(feature = "v4_12")]
                 Self::G16a16 => "G16a16",
+                #[cfg(feature = "v4_12")]
                 Self::G16 => "G16",
+                #[cfg(feature = "v4_12")]
                 Self::A8 => "A8",
+                #[cfg(feature = "v4_12")]
                 Self::A16 => "A16",
                 _ => "Unknown",
             }
@@ -1739,13 +1763,21 @@ impl IntoGlib for MemoryFormat {
             }
             #[cfg(feature = "v4_6")]
             Self::R32g32b32a32Float => ffi::GDK_MEMORY_R32G32B32A32_FLOAT,
+            #[cfg(feature = "v4_12")]
             Self::G8a8Premultiplied => ffi::GDK_MEMORY_G8A8_PREMULTIPLIED,
+            #[cfg(feature = "v4_12")]
             Self::G8a8 => ffi::GDK_MEMORY_G8A8,
+            #[cfg(feature = "v4_12")]
             Self::G8 => ffi::GDK_MEMORY_G8,
+            #[cfg(feature = "v4_12")]
             Self::G16a16Premultiplied => ffi::GDK_MEMORY_G16A16_PREMULTIPLIED,
+            #[cfg(feature = "v4_12")]
             Self::G16a16 => ffi::GDK_MEMORY_G16A16,
+            #[cfg(feature = "v4_12")]
             Self::G16 => ffi::GDK_MEMORY_G16,
+            #[cfg(feature = "v4_12")]
             Self::A8 => ffi::GDK_MEMORY_A8,
+            #[cfg(feature = "v4_12")]
             Self::A16 => ffi::GDK_MEMORY_A16,
             Self::__Unknown(value) => value,
         }
@@ -1789,13 +1821,21 @@ impl FromGlib<ffi::GdkMemoryFormat> for MemoryFormat {
             }
             #[cfg(feature = "v4_6")]
             ffi::GDK_MEMORY_R32G32B32A32_FLOAT => Self::R32g32b32a32Float,
+            #[cfg(feature = "v4_12")]
             ffi::GDK_MEMORY_G8A8_PREMULTIPLIED => Self::G8a8Premultiplied,
+            #[cfg(feature = "v4_12")]
             ffi::GDK_MEMORY_G8A8 => Self::G8a8,
+            #[cfg(feature = "v4_12")]
             ffi::GDK_MEMORY_G8 => Self::G8,
+            #[cfg(feature = "v4_12")]
             ffi::GDK_MEMORY_G16A16_PREMULTIPLIED => Self::G16a16Premultiplied,
+            #[cfg(feature = "v4_12")]
             ffi::GDK_MEMORY_G16A16 => Self::G16a16,
+            #[cfg(feature = "v4_12")]
             ffi::GDK_MEMORY_G16 => Self::G16,
+            #[cfg(feature = "v4_12")]
             ffi::GDK_MEMORY_A8 => Self::A8,
+            #[cfg(feature = "v4_12")]
             ffi::GDK_MEMORY_A16 => Self::A16,
             value => Self::__Unknown(value),
         }
