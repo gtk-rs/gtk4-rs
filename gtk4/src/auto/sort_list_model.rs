@@ -2,6 +2,9 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+#[cfg(feature = "v4_12")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+use crate::SectionModel;
 use crate::Sorter;
 use glib::{
     prelude::*,
@@ -10,6 +13,18 @@ use glib::{
 };
 use std::{boxed::Box as Box_, fmt, mem::transmute};
 
+#[cfg(feature = "v4_12")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+glib::wrapper! {
+    #[doc(alias = "GtkSortListModel")]
+    pub struct SortListModel(Object<ffi::GtkSortListModel, ffi::GtkSortListModelClass>) @implements gio::ListModel, SectionModel;
+
+    match fn {
+        type_ => || ffi::gtk_sort_list_model_get_type(),
+    }
+}
+
+#[cfg(not(any(feature = "v4_12")))]
 glib::wrapper! {
     #[doc(alias = "GtkSortListModel")]
     pub struct SortListModel(Object<ffi::GtkSortListModel, ffi::GtkSortListModelClass>) @implements gio::ListModel;

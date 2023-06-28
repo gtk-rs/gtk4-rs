@@ -242,6 +242,13 @@ pub use self::color_dialog_button::ColorDialogButton;
 mod column_view;
 pub use self::column_view::ColumnView;
 
+#[cfg(feature = "v4_12")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+mod column_view_cell;
+#[cfg(feature = "v4_12")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+pub use self::column_view_cell::ColumnViewCell;
+
 mod column_view_column;
 pub use self::column_view_column::ColumnViewColumn;
 
@@ -577,6 +584,13 @@ pub use self::list_box::ListBox;
 mod list_box_row;
 pub use self::list_box_row::ListBoxRow;
 
+#[cfg(feature = "v4_12")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+mod list_header;
+#[cfg(feature = "v4_12")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+pub use self::list_header::ListHeader;
+
 mod list_item;
 pub use self::list_item::ListItem;
 
@@ -785,6 +799,13 @@ pub use self::search_bar::SearchBar;
 
 mod search_entry;
 pub use self::search_entry::SearchEntry;
+
+#[cfg(feature = "v4_12")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+mod section_model;
+#[cfg(feature = "v4_12")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+pub use self::section_model::SectionModel;
 
 mod selection_filter_model;
 pub use self::selection_filter_model::SelectionFilterModel;
@@ -1326,6 +1347,9 @@ pub mod traits {
     pub use super::scale::ScaleExt;
     pub use super::scale_button::ScaleButtonExt;
     pub use super::scrollable::ScrollableExt;
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    pub use super::section_model::SectionModelExt;
     pub use super::selection_model::SelectionModelExt;
     pub use super::shortcut_action::ShortcutActionExt;
     pub use super::shortcut_manager::ShortcutManagerExt;
@@ -1420,6 +1444,9 @@ pub mod builders {
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub use super::color_dialog_button::ColorDialogButtonBuilder;
     pub use super::column_view::ColumnViewBuilder;
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    pub use super::column_view_cell::ColumnViewCellBuilder;
     pub use super::column_view_column::ColumnViewColumnBuilder;
     #[cfg(feature = "v4_12")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
