@@ -129,14 +129,14 @@ First we extend `setup_actions`.
 For the action without parameter or state, we can use the pre-defined "window.close" action.
 Therefore we don't have to add anything here.
 
-With the action "sensitive-button", we manipulate the "sensitive" property of `button`.
+With the action "button-frame", we manipulate the "has-frame" property of `button`.
 Here, the convention is that actions with no parameter and boolean state should behave like toggle actions.
 This means that the caller can expect the boolean state to toggle after activating the action. Luckily for us, that is the default behavior for [`gio::PropertyAction`](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/gio/struct.PropertyAction.html) with a boolean property.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/actions/6/window/mod.rs">listings/actions/6/window/mod.rs</a>
 
 ```rust ,no_run,noplayground
-{{#rustdoc_include ../listings/actions/6/window/mod.rs:action_sensitive_button}}
+{{#rustdoc_include ../listings/actions/6/window/mod.rs:action_button_frame}}
 ```
 
 > A `PropertyAction` is useful when you need an action that manipulates the property of a GObject.
@@ -171,8 +171,8 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 +      <attribute name="action">window.close</attribute>
 +    </item>
 +    <item>
-+      <attribute name="label" translatable="yes">_Sensitive button</attribute>
-+      <attribute name="action">win.sensitive-button</attribute>
++      <attribute name="label" translatable="yes">_Toggle button frame</attribute>
++      <attribute name="action">win.button-frame</attribute>
 +    </item>
 +    <section>
 +      <attribute name="label" translatable="yes">Orientation</attribute>
@@ -278,7 +278,7 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 ```
 
 Since actions from `create_action` follow the aforementioned conventions, we can keep further changes to a minimum.
-The action "win.sensitive-button" toggles its state with each activation and the state of the "win.orientation" action follows the given parameter.
+The action "win.button-frame" toggles its state with each activation and the state of the "win.orientation" action follows the given parameter.
 
 We still have to specify what should happen when the actions are activated though.
 For the stateful actions, instead of adding callbacks to their "activate" signals we bind the settings to properties we want to manipulate.
