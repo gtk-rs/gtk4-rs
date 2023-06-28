@@ -55,13 +55,13 @@ impl Window {
         }));
         self.add_action(&action_count);
 
-        // ANCHOR: action_toggle_button_frame
-        // Add property action "toggle-button-frame" to `window`
+        // ANCHOR: action_button_frame
+        // Add property action "button-frame" to `window`
         let button = self.imp().button.get();
-        let action_toggle_button_frame =
-            PropertyAction::new("toggle-button-frame", &button, "has-frame");
-        self.add_action(&action_toggle_button_frame);
-        // ANCHOR_END: action_toggle_button_frame
+        let action_button_frame =
+            PropertyAction::new("button-frame", &button, "has-frame");
+        self.add_action(&action_button_frame);
+        // ANCHOR_END: action_button_frame
 
         // ANCHOR: action_orientation
 

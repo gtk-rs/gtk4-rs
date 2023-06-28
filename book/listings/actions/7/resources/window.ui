@@ -7,7 +7,7 @@
     </item>
     <item>
       <attribute name="label" translatable="yes">_Toggle button frame</attribute>
-      <attribute name="action">win.toggle-button-frame</attribute>
+      <attribute name="action">win.button-frame</attribute>
     </item>
     <section>
       <attribute name="label" translatable="yes">Orientation</attribute>
