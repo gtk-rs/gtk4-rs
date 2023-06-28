@@ -22,6 +22,9 @@ version = "4.4"
 [package.metadata.system-deps.gtk4_wayland.v4_10]
 version = "4.10"
 
+[package.metadata.system-deps.gtk4_wayland.v4_12]
+version = "4.12"
+
 [package.metadata.docs.rs]
 all-features = true
 rustc-args = ["--cfg", "docsrs"]
@@ -34,6 +37,7 @@ name = "gdk4_wayland_sys"
 [features]
 v4_4 = []
 v4_10 = ["v4_4"]
+v4_12 = ["v4_10"]
 
 [dependencies]
 libc = "0.2"

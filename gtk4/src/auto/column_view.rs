@@ -69,6 +69,18 @@ impl ColumnView {
         }
     }
 
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    #[doc(alias = "gtk_column_view_get_header_factory")]
+    #[doc(alias = "get_header_factory")]
+    pub fn header_factory(&self) -> Option<ListItemFactory> {
+        unsafe {
+            from_glib_none(ffi::gtk_column_view_get_header_factory(
+                self.to_glib_none().0,
+            ))
+        }
+    }
+
     #[doc(alias = "gtk_column_view_get_model")]
     #[doc(alias = "get_model")]
     pub fn model(&self) -> Option<SelectionModel> {
@@ -157,6 +169,18 @@ impl ColumnView {
             ffi::gtk_column_view_set_enable_rubberband(
                 self.to_glib_none().0,
                 enable_rubberband.into_glib(),
+            );
+        }
+    }
+
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    #[doc(alias = "gtk_column_view_set_header_factory")]
+    pub fn set_header_factory(&self, factory: Option<&impl IsA<ListItemFactory>>) {
+        unsafe {
+            ffi::gtk_column_view_set_header_factory(
+                self.to_glib_none().0,
+                factory.map(|p| p.as_ref()).to_glib_none().0,
             );
         }
     }
@@ -306,6 +330,31 @@ impl ColumnView {
                 b"notify::enable-rubberband\0".as_ptr() as *const _,
                 Some(transmute::<_, unsafe extern "C" fn()>(
                     notify_enable_rubberband_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    #[doc(alias = "header-factory")]
+    pub fn connect_header_factory_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_header_factory_trampoline<F: Fn(&ColumnView) + 'static>(
+            this: *mut ffi::GtkColumnView,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::header-factory\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_header_factory_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
@@ -541,6 +590,16 @@ impl ColumnViewBuilder {
             builder: self
                 .builder
                 .property("enable-rubberband", enable_rubberband),
+        }
+    }
+
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    pub fn header_factory(self, header_factory: &impl IsA<ListItemFactory>) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("header-factory", header_factory.clone().upcast()),
         }
     }
 

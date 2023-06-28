@@ -27,6 +27,26 @@ impl ColumnViewRow {
         ColumnViewRowBuilder::new()
     }
 
+    #[doc(alias = "gtk_column_view_row_get_accessible_description")]
+    #[doc(alias = "get_accessible_description")]
+    pub fn accessible_description(&self) -> glib::GString {
+        unsafe {
+            from_glib_none(ffi::gtk_column_view_row_get_accessible_description(
+                self.to_glib_none().0,
+            ))
+        }
+    }
+
+    #[doc(alias = "gtk_column_view_row_get_accessible_label")]
+    #[doc(alias = "get_accessible_label")]
+    pub fn accessible_label(&self) -> glib::GString {
+        unsafe {
+            from_glib_none(ffi::gtk_column_view_row_get_accessible_label(
+                self.to_glib_none().0,
+            ))
+        }
+    }
+
     #[doc(alias = "gtk_column_view_row_get_activatable")]
     #[doc(alias = "get_activatable")]
     pub fn is_activatable(&self) -> bool {
@@ -75,6 +95,26 @@ impl ColumnViewRow {
         unsafe { from_glib(ffi::gtk_column_view_row_get_selected(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gtk_column_view_row_set_accessible_description")]
+    pub fn set_accessible_description(&self, description: &str) {
+        unsafe {
+            ffi::gtk_column_view_row_set_accessible_description(
+                self.to_glib_none().0,
+                description.to_glib_none().0,
+            );
+        }
+    }
+
+    #[doc(alias = "gtk_column_view_row_set_accessible_label")]
+    pub fn set_accessible_label(&self, label: &str) {
+        unsafe {
+            ffi::gtk_column_view_row_set_accessible_label(
+                self.to_glib_none().0,
+                label.to_glib_none().0,
+            );
+        }
+    }
+
     #[doc(alias = "gtk_column_view_row_set_activatable")]
     pub fn set_activatable(&self, activatable: bool) {
         unsafe {
@@ -96,6 +136,61 @@ impl ColumnViewRow {
     pub fn set_selectable(&self, selectable: bool) {
         unsafe {
             ffi::gtk_column_view_row_set_selectable(self.to_glib_none().0, selectable.into_glib());
+        }
+    }
+
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    #[doc(alias = "accessible-description")]
+    pub fn connect_accessible_description_notify<F: Fn(&Self) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_accessible_description_trampoline<
+            F: Fn(&ColumnViewRow) + 'static,
+        >(
+            this: *mut ffi::GtkColumnViewRow,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::accessible-description\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_accessible_description_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    #[doc(alias = "accessible-label")]
+    pub fn connect_accessible_label_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_accessible_label_trampoline<F: Fn(&ColumnViewRow) + 'static>(
+            this: *mut ffi::GtkColumnViewRow,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::accessible-label\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_accessible_label_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
         }
     }
 
@@ -263,6 +358,26 @@ impl ColumnViewRowBuilder {
     fn new() -> Self {
         Self {
             builder: glib::object::Object::builder(),
+        }
+    }
+
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    pub fn accessible_description(self, accessible_description: impl Into<glib::GString>) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("accessible-description", accessible_description.into()),
+        }
+    }
+
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    pub fn accessible_label(self, accessible_label: impl Into<glib::GString>) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("accessible-label", accessible_label.into()),
         }
     }
 

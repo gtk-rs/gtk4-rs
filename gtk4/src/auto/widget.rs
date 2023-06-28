@@ -273,24 +273,32 @@ pub trait WidgetExt: IsA<Widget> + sealed::Sealed + 'static {
         }
     }
 
+    #[cfg_attr(feature = "v4_12", deprecated = "Since 4.12")]
+    #[allow(deprecated)]
     #[doc(alias = "gtk_widget_get_allocated_baseline")]
     #[doc(alias = "get_allocated_baseline")]
     fn allocated_baseline(&self) -> i32 {
         unsafe { ffi::gtk_widget_get_allocated_baseline(self.as_ref().to_glib_none().0) }
     }
 
+    #[cfg_attr(feature = "v4_12", deprecated = "Since 4.12")]
+    #[allow(deprecated)]
     #[doc(alias = "gtk_widget_get_allocated_height")]
     #[doc(alias = "get_allocated_height")]
     fn allocated_height(&self) -> i32 {
         unsafe { ffi::gtk_widget_get_allocated_height(self.as_ref().to_glib_none().0) }
     }
 
+    #[cfg_attr(feature = "v4_12", deprecated = "Since 4.12")]
+    #[allow(deprecated)]
     #[doc(alias = "gtk_widget_get_allocated_width")]
     #[doc(alias = "get_allocated_width")]
     fn allocated_width(&self) -> i32 {
         unsafe { ffi::gtk_widget_get_allocated_width(self.as_ref().to_glib_none().0) }
     }
 
+    #[cfg_attr(feature = "v4_12", deprecated = "Since 4.12")]
+    #[allow(deprecated)]
     #[doc(alias = "gtk_widget_get_allocation")]
     #[doc(alias = "get_allocation")]
     fn allocation(&self) -> Allocation {
@@ -314,6 +322,14 @@ pub trait WidgetExt: IsA<Widget> + sealed::Sealed + 'static {
                 widget_type.into_glib(),
             ))
         }
+    }
+
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    #[doc(alias = "gtk_widget_get_baseline")]
+    #[doc(alias = "get_baseline")]
+    fn baseline(&self) -> i32 {
+        unsafe { ffi::gtk_widget_get_baseline(self.as_ref().to_glib_none().0) }
     }
 
     #[doc(alias = "gtk_widget_get_can_focus")]

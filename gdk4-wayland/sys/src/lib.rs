@@ -243,6 +243,12 @@ extern "C" {
     // GdkWaylandToplevel
     //=========================================================================
     pub fn gdk_wayland_toplevel_get_type() -> GType;
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    pub fn gdk_wayland_toplevel_drop_exported_handle(
+        toplevel: *mut GdkWaylandToplevel,
+        handle: *const c_char,
+    );
     pub fn gdk_wayland_toplevel_export_handle(
         toplevel: *mut GdkWaylandToplevel,
         callback: GdkWaylandToplevelExported,

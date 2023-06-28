@@ -64,6 +64,14 @@ impl BoxBuilder {
         }
     }
 
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    pub fn baseline_child(self, baseline_child: i32) -> Self {
+        Self {
+            builder: self.builder.property("baseline-child", baseline_child),
+        }
+    }
+
     pub fn baseline_position(self, baseline_position: BaselinePosition) -> Self {
         Self {
             builder: self
@@ -298,6 +306,14 @@ pub trait BoxExt: IsA<Box> + sealed::Sealed + 'static {
         }
     }
 
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    #[doc(alias = "gtk_box_get_baseline_child")]
+    #[doc(alias = "get_baseline_child")]
+    fn baseline_child(&self) -> i32 {
+        unsafe { ffi::gtk_box_get_baseline_child(self.as_ref().to_glib_none().0) }
+    }
+
     #[doc(alias = "gtk_box_get_baseline_position")]
     #[doc(alias = "get_baseline_position")]
     fn baseline_position(&self) -> BaselinePosition {
@@ -362,6 +378,15 @@ pub trait BoxExt: IsA<Box> + sealed::Sealed + 'static {
         }
     }
 
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    #[doc(alias = "gtk_box_set_baseline_child")]
+    fn set_baseline_child(&self, child: i32) {
+        unsafe {
+            ffi::gtk_box_set_baseline_child(self.as_ref().to_glib_none().0, child);
+        }
+    }
+
     #[doc(alias = "gtk_box_set_baseline_position")]
     fn set_baseline_position(&self, position: BaselinePosition) {
         unsafe {
@@ -383,6 +408,31 @@ pub trait BoxExt: IsA<Box> + sealed::Sealed + 'static {
     fn set_spacing(&self, spacing: i32) {
         unsafe {
             ffi::gtk_box_set_spacing(self.as_ref().to_glib_none().0, spacing);
+        }
+    }
+
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    #[doc(alias = "baseline-child")]
+    fn connect_baseline_child_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_baseline_child_trampoline<P: IsA<Box>, F: Fn(&P) + 'static>(
+            this: *mut ffi::GtkBox,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(Box::from_glib_borrow(this).unsafe_cast_ref())
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::baseline-child\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_baseline_child_trampoline::<Self, F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
         }
     }
 

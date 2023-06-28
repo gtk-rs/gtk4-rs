@@ -29,6 +29,30 @@ mod sealed {
 }
 
 pub trait ListItemExt: IsA<ListItem> + sealed::Sealed + 'static {
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    #[doc(alias = "gtk_list_item_get_accessible_description")]
+    #[doc(alias = "get_accessible_description")]
+    fn accessible_description(&self) -> glib::GString {
+        unsafe {
+            from_glib_none(ffi::gtk_list_item_get_accessible_description(
+                self.as_ref().to_glib_none().0,
+            ))
+        }
+    }
+
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    #[doc(alias = "gtk_list_item_get_accessible_label")]
+    #[doc(alias = "get_accessible_label")]
+    fn accessible_label(&self) -> glib::GString {
+        unsafe {
+            from_glib_none(ffi::gtk_list_item_get_accessible_label(
+                self.as_ref().to_glib_none().0,
+            ))
+        }
+    }
+
     #[doc(alias = "gtk_list_item_get_activatable")]
     #[doc(alias = "get_activatable")]
     fn is_activatable(&self) -> bool {
@@ -89,6 +113,30 @@ pub trait ListItemExt: IsA<ListItem> + sealed::Sealed + 'static {
         }
     }
 
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    #[doc(alias = "gtk_list_item_set_accessible_description")]
+    fn set_accessible_description(&self, description: &str) {
+        unsafe {
+            ffi::gtk_list_item_set_accessible_description(
+                self.as_ref().to_glib_none().0,
+                description.to_glib_none().0,
+            );
+        }
+    }
+
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    #[doc(alias = "gtk_list_item_set_accessible_label")]
+    fn set_accessible_label(&self, label: &str) {
+        unsafe {
+            ffi::gtk_list_item_set_accessible_label(
+                self.as_ref().to_glib_none().0,
+                label.to_glib_none().0,
+            );
+        }
+    }
+
     #[doc(alias = "gtk_list_item_set_activatable")]
     fn set_activatable(&self, activatable: bool) {
         unsafe {
@@ -125,6 +173,65 @@ pub trait ListItemExt: IsA<ListItem> + sealed::Sealed + 'static {
                 self.as_ref().to_glib_none().0,
                 selectable.into_glib(),
             );
+        }
+    }
+
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    #[doc(alias = "accessible-description")]
+    fn connect_accessible_description_notify<F: Fn(&Self) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_accessible_description_trampoline<
+            P: IsA<ListItem>,
+            F: Fn(&P) + 'static,
+        >(
+            this: *mut ffi::GtkListItem,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(ListItem::from_glib_borrow(this).unsafe_cast_ref())
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::accessible-description\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_accessible_description_trampoline::<Self, F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    #[doc(alias = "accessible-label")]
+    fn connect_accessible_label_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_accessible_label_trampoline<
+            P: IsA<ListItem>,
+            F: Fn(&P) + 'static,
+        >(
+            this: *mut ffi::GtkListItem,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(ListItem::from_glib_borrow(this).unsafe_cast_ref())
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::accessible-label\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_accessible_label_trampoline::<Self, F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
         }
     }
 

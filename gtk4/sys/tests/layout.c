@@ -243,6 +243,7 @@ int main() {
     printf("%s;%zu;%zu\n", "GtkScrollType", sizeof(GtkScrollType), alignof(GtkScrollType));
     printf("%s;%zu;%zu\n", "GtkScrollableInterface", sizeof(GtkScrollableInterface), alignof(GtkScrollableInterface));
     printf("%s;%zu;%zu\n", "GtkScrollablePolicy", sizeof(GtkScrollablePolicy), alignof(GtkScrollablePolicy));
+    printf("%s;%zu;%zu\n", "GtkSectionModelInterface", sizeof(GtkSectionModelInterface), alignof(GtkSectionModelInterface));
     printf("%s;%zu;%zu\n", "GtkSelectionFilterModelClass", sizeof(GtkSelectionFilterModelClass), alignof(GtkSelectionFilterModelClass));
     printf("%s;%zu;%zu\n", "GtkSelectionMode", sizeof(GtkSelectionMode), alignof(GtkSelectionMode));
     printf("%s;%zu;%zu\n", "GtkSelectionModelInterface", sizeof(GtkSelectionModelInterface), alignof(GtkSelectionModelInterface));

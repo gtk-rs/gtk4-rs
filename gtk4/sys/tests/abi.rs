@@ -1850,6 +1850,13 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         },
     ),
     (
+        "GtkSectionModelInterface",
+        Layout {
+            size: size_of::<GtkSectionModelInterface>(),
+            alignment: align_of::<GtkSectionModelInterface>(),
+        },
+    ),
+    (
         "GtkSelectionFilterModelClass",
         Layout {
             size: size_of::<GtkSelectionFilterModelClass>(),
@@ -2525,6 +2532,7 @@ const RUST_CONSTANTS: &[(&str, &str)] = &[
     ("(gint) GTK_ACCESSIBLE_RELATION_SET_SIZE", "17"),
     ("(gint) GTK_ACCESSIBLE_ROLE_ALERT", "0"),
     ("(gint) GTK_ACCESSIBLE_ROLE_ALERT_DIALOG", "1"),
+    ("(gint) GTK_ACCESSIBLE_ROLE_APPLICATION", "79"),
     ("(gint) GTK_ACCESSIBLE_ROLE_BANNER", "2"),
     ("(gint) GTK_ACCESSIBLE_ROLE_BUTTON", "3"),
     ("(gint) GTK_ACCESSIBLE_ROLE_CAPTION", "4"),
@@ -2620,6 +2628,8 @@ const RUST_CONSTANTS: &[(&str, &str)] = &[
     ("(gint) GTK_ACCESSIBLE_TRISTATE_TRUE", "1"),
     ("GTK_ACCESSIBLE_VALUE_UNDEFINED", "-1"),
     ("(gint) GTK_ALIGN_BASELINE", "4"),
+    ("(gint) GTK_ALIGN_BASELINE_CENTER", "5"),
+    ("(gint) GTK_ALIGN_BASELINE_FILL", "4"),
     ("(gint) GTK_ALIGN_CENTER", "3"),
     ("(gint) GTK_ALIGN_END", "2"),
     ("(gint) GTK_ALIGN_FILL", "0"),

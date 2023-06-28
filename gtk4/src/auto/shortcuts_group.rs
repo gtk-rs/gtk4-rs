@@ -225,6 +225,14 @@ impl ShortcutsGroupBuilder {
         }
     }
 
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    pub fn baseline_child(self, baseline_child: i32) -> Self {
+        Self {
+            builder: self.builder.property("baseline-child", baseline_child),
+        }
+    }
+
     pub fn baseline_position(self, baseline_position: BaselinePosition) -> Self {
         Self {
             builder: self

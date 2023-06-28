@@ -942,6 +942,8 @@ pub enum AccessibleRole {
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     #[doc(alias = "GTK_ACCESSIBLE_ROLE_TOGGLE_BUTTON")]
     ToggleButton,
+    #[doc(alias = "GTK_ACCESSIBLE_ROLE_APPLICATION")]
+    Application,
     #[doc(hidden)]
     __Unknown(i32),
 }
@@ -1032,6 +1034,7 @@ impl fmt::Display for AccessibleRole {
                 Self::Window => "Window",
                 #[cfg(feature = "v4_10")]
                 Self::ToggleButton => "ToggleButton",
+                Self::Application => "Application",
                 _ => "Unknown",
             }
         )
@@ -1124,6 +1127,7 @@ impl IntoGlib for AccessibleRole {
             Self::Window => ffi::GTK_ACCESSIBLE_ROLE_WINDOW,
             #[cfg(feature = "v4_10")]
             Self::ToggleButton => ffi::GTK_ACCESSIBLE_ROLE_TOGGLE_BUTTON,
+            Self::Application => ffi::GTK_ACCESSIBLE_ROLE_APPLICATION,
             Self::__Unknown(value) => value,
         }
     }
@@ -1215,6 +1219,7 @@ impl FromGlib<ffi::GtkAccessibleRole> for AccessibleRole {
             ffi::GTK_ACCESSIBLE_ROLE_WINDOW => Self::Window,
             #[cfg(feature = "v4_10")]
             ffi::GTK_ACCESSIBLE_ROLE_TOGGLE_BUTTON => Self::ToggleButton,
+            ffi::GTK_ACCESSIBLE_ROLE_APPLICATION => Self::Application,
             value => Self::__Unknown(value),
         }
     }
@@ -1679,8 +1684,10 @@ pub enum Align {
     End,
     #[doc(alias = "GTK_ALIGN_CENTER")]
     Center,
-    #[doc(alias = "GTK_ALIGN_BASELINE")]
-    Baseline,
+    #[doc(alias = "GTK_ALIGN_BASELINE_FILL")]
+    BaselineFill,
+    #[doc(alias = "GTK_ALIGN_BASELINE_CENTER")]
+    BaselineCenter,
     #[doc(hidden)]
     __Unknown(i32),
 }
@@ -1695,7 +1702,8 @@ impl fmt::Display for Align {
                 Self::Start => "Start",
                 Self::End => "End",
                 Self::Center => "Center",
-                Self::Baseline => "Baseline",
+                Self::BaselineFill => "BaselineFill",
+                Self::BaselineCenter => "BaselineCenter",
                 _ => "Unknown",
             }
         )
@@ -1713,7 +1721,8 @@ impl IntoGlib for Align {
             Self::Start => ffi::GTK_ALIGN_START,
             Self::End => ffi::GTK_ALIGN_END,
             Self::Center => ffi::GTK_ALIGN_CENTER,
-            Self::Baseline => ffi::GTK_ALIGN_BASELINE,
+            Self::BaselineFill => ffi::GTK_ALIGN_BASELINE_FILL,
+            Self::BaselineCenter => ffi::GTK_ALIGN_BASELINE_CENTER,
             Self::__Unknown(value) => value,
         }
     }
@@ -1730,7 +1739,8 @@ impl FromGlib<ffi::GtkAlign> for Align {
             ffi::GTK_ALIGN_START => Self::Start,
             ffi::GTK_ALIGN_END => Self::End,
             ffi::GTK_ALIGN_CENTER => Self::Center,
-            ffi::GTK_ALIGN_BASELINE => Self::Baseline,
+            ffi::GTK_ALIGN_BASELINE_FILL => Self::BaselineFill,
+            ffi::GTK_ALIGN_BASELINE_CENTER => Self::BaselineCenter,
             value => Self::__Unknown(value),
         }
     }

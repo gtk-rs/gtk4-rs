@@ -164,6 +164,7 @@ pub const GTK_ACCESSIBLE_ROLE_TREE_ITEM: GtkAccessibleRole = 75;
 pub const GTK_ACCESSIBLE_ROLE_WIDGET: GtkAccessibleRole = 76;
 pub const GTK_ACCESSIBLE_ROLE_WINDOW: GtkAccessibleRole = 77;
 pub const GTK_ACCESSIBLE_ROLE_TOGGLE_BUTTON: GtkAccessibleRole = 78;
+pub const GTK_ACCESSIBLE_ROLE_APPLICATION: GtkAccessibleRole = 79;
 
 pub type GtkAccessibleSort = c_int;
 pub const GTK_ACCESSIBLE_SORT_NONE: GtkAccessibleSort = 0;
@@ -192,7 +193,9 @@ pub const GTK_ALIGN_FILL: GtkAlign = 0;
 pub const GTK_ALIGN_START: GtkAlign = 1;
 pub const GTK_ALIGN_END: GtkAlign = 2;
 pub const GTK_ALIGN_CENTER: GtkAlign = 3;
+pub const GTK_ALIGN_BASELINE_FILL: GtkAlign = 4;
 pub const GTK_ALIGN_BASELINE: GtkAlign = 4;
+pub const GTK_ALIGN_BASELINE_CENTER: GtkAlign = 5;
 
 pub type GtkArrowType = c_int;
 pub const GTK_ARROW_UP: GtkArrowType = 0;
@@ -3377,6 +3380,14 @@ impl ::std::fmt::Debug for GtkListBoxRowClass {
 }
 
 #[repr(C)]
+pub struct _GtkListHeaderClass {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
+
+pub type GtkListHeaderClass = *mut _GtkListHeaderClass;
+
+#[repr(C)]
 pub struct _GtkListItemClass {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -4158,6 +4169,22 @@ impl ::std::fmt::Debug for GtkScrollableInterface {
         f.debug_struct(&format!("GtkScrollableInterface @ {self:p}"))
             .field("base_iface", &self.base_iface)
             .field("get_border", &self.get_border)
+            .finish()
+    }
+}
+
+#[derive(Copy, Clone)]
+#[repr(C)]
+pub struct GtkSectionModelInterface {
+    pub g_iface: gobject::GTypeInterface,
+    pub get_section:
+        Option<unsafe extern "C" fn(*mut GtkSectionModel, c_uint, *mut c_uint, *mut c_uint)>,
+}
+
+impl ::std::fmt::Debug for GtkSectionModelInterface {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("GtkSectionModelInterface @ {self:p}"))
+            .field("get_section", &self.get_section)
             .finish()
     }
 }
@@ -7252,6 +7279,19 @@ impl ::std::fmt::Debug for GtkListBoxRow {
 }
 
 #[repr(C)]
+pub struct GtkListHeader {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
+
+impl ::std::fmt::Debug for GtkListHeader {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("GtkListHeader @ {self:p}"))
+            .finish()
+    }
+}
+
+#[repr(C)]
 pub struct GtkListItem {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -9033,6 +9073,18 @@ pub struct GtkScrollable {
 impl ::std::fmt::Debug for GtkScrollable {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         write!(f, "GtkScrollable @ {self:p}")
+    }
+}
+
+#[repr(C)]
+pub struct GtkSectionModel {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
+
+impl ::std::fmt::Debug for GtkSectionModel {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        write!(f, "GtkSectionModel @ {self:p}")
     }
 }
 
@@ -10905,6 +10957,9 @@ extern "C" {
     pub fn gtk_box_get_type() -> GType;
     pub fn gtk_box_new(orientation: GtkOrientation, spacing: c_int) -> *mut GtkWidget;
     pub fn gtk_box_append(box_: *mut GtkBox, child: *mut GtkWidget);
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    pub fn gtk_box_get_baseline_child(box_: *mut GtkBox) -> c_int;
     pub fn gtk_box_get_baseline_position(box_: *mut GtkBox) -> GtkBaselinePosition;
     pub fn gtk_box_get_homogeneous(box_: *mut GtkBox) -> gboolean;
     pub fn gtk_box_get_spacing(box_: *mut GtkBox) -> c_int;
@@ -10920,6 +10975,9 @@ extern "C" {
         child: *mut GtkWidget,
         sibling: *mut GtkWidget,
     );
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    pub fn gtk_box_set_baseline_child(box_: *mut GtkBox, child: c_int);
     pub fn gtk_box_set_baseline_position(box_: *mut GtkBox, position: GtkBaselinePosition);
     pub fn gtk_box_set_homogeneous(box_: *mut GtkBox, homogeneous: gboolean);
     pub fn gtk_box_set_spacing(box_: *mut GtkBox, spacing: c_int);
@@ -10929,11 +10987,17 @@ extern "C" {
     //=========================================================================
     pub fn gtk_box_layout_get_type() -> GType;
     pub fn gtk_box_layout_new(orientation: GtkOrientation) -> *mut GtkLayoutManager;
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    pub fn gtk_box_layout_get_baseline_child(box_layout: *mut GtkBoxLayout) -> c_int;
     pub fn gtk_box_layout_get_baseline_position(
         box_layout: *mut GtkBoxLayout,
     ) -> GtkBaselinePosition;
     pub fn gtk_box_layout_get_homogeneous(box_layout: *mut GtkBoxLayout) -> gboolean;
     pub fn gtk_box_layout_get_spacing(box_layout: *mut GtkBoxLayout) -> c_uint;
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    pub fn gtk_box_layout_set_baseline_child(box_layout: *mut GtkBoxLayout, child: c_int);
     pub fn gtk_box_layout_set_baseline_position(
         box_layout: *mut GtkBoxLayout,
         position: GtkBaselinePosition,
@@ -11839,6 +11903,10 @@ extern "C" {
     );
     pub fn gtk_column_view_get_columns(self_: *mut GtkColumnView) -> *mut gio::GListModel;
     pub fn gtk_column_view_get_enable_rubberband(self_: *mut GtkColumnView) -> gboolean;
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    pub fn gtk_column_view_get_header_factory(self_: *mut GtkColumnView)
+        -> *mut GtkListItemFactory;
     pub fn gtk_column_view_get_model(self_: *mut GtkColumnView) -> *mut GtkSelectionModel;
     pub fn gtk_column_view_get_reorderable(self_: *mut GtkColumnView) -> gboolean;
     #[cfg(feature = "v4_12")]
@@ -11863,6 +11931,12 @@ extern "C" {
     pub fn gtk_column_view_set_enable_rubberband(
         self_: *mut GtkColumnView,
         enable_rubberband: gboolean,
+    );
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    pub fn gtk_column_view_set_header_factory(
+        self_: *mut GtkColumnView,
+        factory: *mut GtkListItemFactory,
     );
     pub fn gtk_column_view_set_model(self_: *mut GtkColumnView, model: *mut GtkSelectionModel);
     pub fn gtk_column_view_set_reorderable(self_: *mut GtkColumnView, reorderable: gboolean);
@@ -11985,6 +12059,14 @@ extern "C" {
     pub fn gtk_column_view_row_get_type() -> GType;
     #[cfg(feature = "v4_12")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    pub fn gtk_column_view_row_get_accessible_description(
+        self_: *mut GtkColumnViewRow,
+    ) -> *const c_char;
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    pub fn gtk_column_view_row_get_accessible_label(self_: *mut GtkColumnViewRow) -> *const c_char;
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
     pub fn gtk_column_view_row_get_activatable(self_: *mut GtkColumnViewRow) -> gboolean;
     #[cfg(feature = "v4_12")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
@@ -12001,6 +12083,18 @@ extern "C" {
     #[cfg(feature = "v4_12")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
     pub fn gtk_column_view_row_get_selected(self_: *mut GtkColumnViewRow) -> gboolean;
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    pub fn gtk_column_view_row_set_accessible_description(
+        self_: *mut GtkColumnViewRow,
+        description: *const c_char,
+    );
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    pub fn gtk_column_view_row_set_accessible_label(
+        self_: *mut GtkColumnViewRow,
+        label: *const c_char,
+    );
     #[cfg(feature = "v4_12")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
     pub fn gtk_column_view_row_set_activatable(self_: *mut GtkColumnViewRow, activatable: gboolean);
@@ -12272,6 +12366,12 @@ extern "C" {
     //=========================================================================
     pub fn gtk_css_provider_get_type() -> GType;
     pub fn gtk_css_provider_new() -> *mut GtkCssProvider;
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    pub fn gtk_css_provider_load_from_bytes(
+        css_provider: *mut GtkCssProvider,
+        data: *mut glib::GBytes,
+    );
     pub fn gtk_css_provider_load_from_data(
         css_provider: *mut GtkCssProvider,
         data: *const c_char,
@@ -12285,6 +12385,12 @@ extern "C" {
     pub fn gtk_css_provider_load_from_resource(
         css_provider: *mut GtkCssProvider,
         resource_path: *const c_char,
+    );
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    pub fn gtk_css_provider_load_from_string(
+        css_provider: *mut GtkCssProvider,
+        string: *const c_char,
     );
     pub fn gtk_css_provider_load_named(
         provider: *mut GtkCssProvider,
@@ -12475,6 +12581,9 @@ extern "C" {
     pub fn gtk_drop_down_get_enable_search(self_: *mut GtkDropDown) -> gboolean;
     pub fn gtk_drop_down_get_expression(self_: *mut GtkDropDown) -> *mut GtkExpression;
     pub fn gtk_drop_down_get_factory(self_: *mut GtkDropDown) -> *mut GtkListItemFactory;
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    pub fn gtk_drop_down_get_header_factory(self_: *mut GtkDropDown) -> *mut GtkListItemFactory;
     pub fn gtk_drop_down_get_list_factory(self_: *mut GtkDropDown) -> *mut GtkListItemFactory;
     pub fn gtk_drop_down_get_model(self_: *mut GtkDropDown) -> *mut gio::GListModel;
     pub fn gtk_drop_down_get_selected(self_: *mut GtkDropDown) -> c_uint;
@@ -12485,6 +12594,12 @@ extern "C" {
     pub fn gtk_drop_down_set_enable_search(self_: *mut GtkDropDown, enable_search: gboolean);
     pub fn gtk_drop_down_set_expression(self_: *mut GtkDropDown, expression: *mut GtkExpression);
     pub fn gtk_drop_down_set_factory(self_: *mut GtkDropDown, factory: *mut GtkListItemFactory);
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    pub fn gtk_drop_down_set_header_factory(
+        self_: *mut GtkDropDown,
+        factory: *mut GtkListItemFactory,
+    );
     pub fn gtk_drop_down_set_list_factory(
         self_: *mut GtkDropDown,
         factory: *mut GtkListItemFactory,
@@ -14686,9 +14801,40 @@ extern "C" {
     pub fn gtk_list_box_row_set_selectable(row: *mut GtkListBoxRow, selectable: gboolean);
 
     //=========================================================================
+    // GtkListHeader
+    //=========================================================================
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    pub fn gtk_list_header_get_type() -> GType;
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    pub fn gtk_list_header_get_child(self_: *mut GtkListHeader) -> *mut GtkWidget;
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    pub fn gtk_list_header_get_end(self_: *mut GtkListHeader) -> c_uint;
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    pub fn gtk_list_header_get_item(self_: *mut GtkListHeader) -> *mut gobject::GObject;
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    pub fn gtk_list_header_get_n_items(self_: *mut GtkListHeader) -> c_uint;
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    pub fn gtk_list_header_get_start(self_: *mut GtkListHeader) -> c_uint;
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    pub fn gtk_list_header_set_child(self_: *mut GtkListHeader, child: *mut GtkWidget);
+
+    //=========================================================================
     // GtkListItem
     //=========================================================================
     pub fn gtk_list_item_get_type() -> GType;
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    pub fn gtk_list_item_get_accessible_description(self_: *mut GtkListItem) -> *const c_char;
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    pub fn gtk_list_item_get_accessible_label(self_: *mut GtkListItem) -> *const c_char;
     pub fn gtk_list_item_get_activatable(self_: *mut GtkListItem) -> gboolean;
     pub fn gtk_list_item_get_child(self_: *mut GtkListItem) -> *mut GtkWidget;
     #[cfg(feature = "v4_12")]
@@ -14698,6 +14844,15 @@ extern "C" {
     pub fn gtk_list_item_get_position(self_: *mut GtkListItem) -> c_uint;
     pub fn gtk_list_item_get_selectable(self_: *mut GtkListItem) -> gboolean;
     pub fn gtk_list_item_get_selected(self_: *mut GtkListItem) -> gboolean;
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    pub fn gtk_list_item_set_accessible_description(
+        self_: *mut GtkListItem,
+        description: *const c_char,
+    );
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    pub fn gtk_list_item_set_accessible_label(self_: *mut GtkListItem, label: *const c_char);
     pub fn gtk_list_item_set_activatable(self_: *mut GtkListItem, activatable: gboolean);
     pub fn gtk_list_item_set_child(self_: *mut GtkListItem, child: *mut GtkWidget);
     #[cfg(feature = "v4_12")]
@@ -14797,6 +14952,9 @@ extern "C" {
     ) -> *mut GtkWidget;
     pub fn gtk_list_view_get_enable_rubberband(self_: *mut GtkListView) -> gboolean;
     pub fn gtk_list_view_get_factory(self_: *mut GtkListView) -> *mut GtkListItemFactory;
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    pub fn gtk_list_view_get_header_factory(self_: *mut GtkListView) -> *mut GtkListItemFactory;
     pub fn gtk_list_view_get_model(self_: *mut GtkListView) -> *mut GtkSelectionModel;
     pub fn gtk_list_view_get_show_separators(self_: *mut GtkListView) -> gboolean;
     pub fn gtk_list_view_get_single_click_activate(self_: *mut GtkListView) -> gboolean;
@@ -14808,6 +14966,12 @@ extern "C" {
         enable_rubberband: gboolean,
     );
     pub fn gtk_list_view_set_factory(self_: *mut GtkListView, factory: *mut GtkListItemFactory);
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    pub fn gtk_list_view_set_header_factory(
+        self_: *mut GtkListView,
+        factory: *mut GtkListItemFactory,
+    );
     pub fn gtk_list_view_set_model(self_: *mut GtkListView, model: *mut GtkSelectionModel);
     pub fn gtk_list_view_set_show_separators(self_: *mut GtkListView, show_separators: gboolean);
     pub fn gtk_list_view_set_single_click_activate(
@@ -16946,9 +17110,18 @@ extern "C" {
     pub fn gtk_sort_list_model_get_incremental(self_: *mut GtkSortListModel) -> gboolean;
     pub fn gtk_sort_list_model_get_model(self_: *mut GtkSortListModel) -> *mut gio::GListModel;
     pub fn gtk_sort_list_model_get_pending(self_: *mut GtkSortListModel) -> c_uint;
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    pub fn gtk_sort_list_model_get_section_sorter(self_: *mut GtkSortListModel) -> *mut GtkSorter;
     pub fn gtk_sort_list_model_get_sorter(self_: *mut GtkSortListModel) -> *mut GtkSorter;
     pub fn gtk_sort_list_model_set_incremental(self_: *mut GtkSortListModel, incremental: gboolean);
     pub fn gtk_sort_list_model_set_model(self_: *mut GtkSortListModel, model: *mut gio::GListModel);
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    pub fn gtk_sort_list_model_set_section_sorter(
+        self_: *mut GtkSortListModel,
+        sorter: *mut GtkSorter,
+    );
     pub fn gtk_sort_list_model_set_sorter(self_: *mut GtkSortListModel, sorter: *mut GtkSorter);
 
     //=========================================================================
@@ -18830,6 +19003,9 @@ extern "C" {
     pub fn gtk_widget_get_allocated_width(widget: *mut GtkWidget) -> c_int;
     pub fn gtk_widget_get_allocation(widget: *mut GtkWidget, allocation: *mut GtkAllocation);
     pub fn gtk_widget_get_ancestor(widget: *mut GtkWidget, widget_type: GType) -> *mut GtkWidget;
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    pub fn gtk_widget_get_baseline(widget: *mut GtkWidget) -> c_int;
     pub fn gtk_widget_get_can_focus(widget: *mut GtkWidget) -> gboolean;
     pub fn gtk_widget_get_can_target(widget: *mut GtkWidget) -> gboolean;
     pub fn gtk_widget_get_child_visible(widget: *mut GtkWidget) -> gboolean;
@@ -19635,6 +19811,28 @@ extern "C" {
     pub fn gtk_scrollable_set_vscroll_policy(
         scrollable: *mut GtkScrollable,
         policy: GtkScrollablePolicy,
+    );
+
+    //=========================================================================
+    // GtkSectionModel
+    //=========================================================================
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    pub fn gtk_section_model_get_type() -> GType;
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    pub fn gtk_section_model_get_section(
+        self_: *mut GtkSectionModel,
+        position: c_uint,
+        out_start: *mut c_uint,
+        out_end: *mut c_uint,
+    );
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    pub fn gtk_section_model_sections_changed(
+        self_: *mut GtkSectionModel,
+        position: c_uint,
+        n_items: c_uint,
     );
 
     //=========================================================================
