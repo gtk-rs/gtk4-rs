@@ -489,6 +489,11 @@ name = "Gdk.GLTextureBuilder"
 status = "generate"
 concurrency = "send+sync"
 generate_builder = false
+    [[object.function]]
+    name = "set_update_region"
+        [[object.function.parameter]]
+        name = "region"
+        const = true
 
 [[object]]
 name = "Gdk.KeyEvent"
