@@ -82,10 +82,9 @@ impl Window {
         self.add_action(&action_close);
 
         // ANCHOR: settings_create_actions
-        // Create action from key "toggle-button-frame" and add to action group "win"
-        let action_toggle_button_frame =
-            self.settings().create_action("toggle-button-frame");
-        self.add_action(&action_toggle_button_frame);
+        // Create action from key "button-frame" and add to action group "win"
+        let action_button_frame = self.settings().create_action("button-frame");
+        self.add_action(&action_button_frame);
 
         // Create action from key "orientation" and add to action group "win"
         let action_orientation = self.settings().create_action("orientation");
@@ -97,10 +96,10 @@ impl Window {
     fn bind_settings(&self) {
         // Get state
 
-        // Bind setting "toggle-button-frame" to "has-frame" property of `button`
+        // Bind setting "button-frame" to "has-frame" property of `button`
         let button = self.imp().button.get();
         self.settings()
-            .bind("toggle-button-frame", &button, "has-frame")
+            .bind("button-frame", &button, "has-frame")
             .build();
 
         // Bind setting "orientation" to "orientation" property of `button`
