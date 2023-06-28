@@ -40,8 +40,8 @@ gdk = { git = "https://github.com/gtk-rs/gtk4-rs.git", package = "gdk4" }
 
 | Feature | Description |
 | ---     | ----------- |
-| `v4_12` | Enable the new APIs part of the to be released GTK 4.12 |
-| `v4_10` | Enable the new APIs part of the to be released GTK 4.10 |
+| `v4_12` | Enable the new APIs part of GTK 4.12 |
+| `v4_10` | Enable the new APIs part of GTK 4.10 |
 | `v4_8` | Enable the new APIs part of GTK 4.8 |
 | `v4_6` | Enable the new APIs part of GTK 4.6 |
 | `v4_4` | Enable the new APIs part of GTK 4.4 |
