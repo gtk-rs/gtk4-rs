@@ -24,7 +24,12 @@ impl CellEditable {
     pub const NONE: Option<&'static CellEditable> = None;
 }
 
-pub trait CellEditableExt: IsA<CellEditable> + 'static {
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::CellEditable>> Sealed for T {}
+}
+
+pub trait CellEditableExt: IsA<CellEditable> + sealed::Sealed + 'static {
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
     #[doc(alias = "gtk_cell_editable_editing_done")]

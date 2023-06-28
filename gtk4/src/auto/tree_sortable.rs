@@ -24,7 +24,12 @@ impl TreeSortable {
     pub const NONE: Option<&'static TreeSortable> = None;
 }
 
-pub trait TreeSortableExt: IsA<TreeSortable> + 'static {
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::TreeSortable>> Sealed for T {}
+}
+
+pub trait TreeSortableExt: IsA<TreeSortable> + sealed::Sealed + 'static {
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
     #[doc(alias = "gtk_tree_sortable_has_default_sort_func")]

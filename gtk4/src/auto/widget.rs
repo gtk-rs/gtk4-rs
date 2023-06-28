@@ -50,7 +50,12 @@ impl fmt::Display for Widget {
     }
 }
 
-pub trait WidgetExt: IsA<Widget> + 'static {
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::Widget>> Sealed for T {}
+}
+
+pub trait WidgetExt: IsA<Widget> + sealed::Sealed + 'static {
     #[doc(alias = "gtk_widget_action_set_enabled")]
     fn action_set_enabled(&self, action_name: &str, enabled: bool) {
         unsafe {

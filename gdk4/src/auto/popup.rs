@@ -19,7 +19,12 @@ impl Popup {
     pub const NONE: Option<&'static Popup> = None;
 }
 
-pub trait PopupExt: IsA<Popup> + 'static {
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::Popup>> Sealed for T {}
+}
+
+pub trait PopupExt: IsA<Popup> + sealed::Sealed + 'static {
     #[doc(alias = "gdk_popup_get_autohide")]
     #[doc(alias = "get_autohide")]
     fn is_autohide(&self) -> bool {

@@ -23,7 +23,12 @@ impl EventController {
     pub const NONE: Option<&'static EventController> = None;
 }
 
-pub trait EventControllerExt: IsA<EventController> + 'static {
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::EventController>> Sealed for T {}
+}
+
+pub trait EventControllerExt: IsA<EventController> + sealed::Sealed + 'static {
     #[doc(alias = "gtk_event_controller_get_current_event")]
     #[doc(alias = "get_current_event")]
     fn current_event(&self) -> Option<gdk::Event> {

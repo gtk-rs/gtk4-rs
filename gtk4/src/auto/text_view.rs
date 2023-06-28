@@ -430,7 +430,12 @@ impl TextViewBuilder {
     }
 }
 
-pub trait TextViewExt: IsA<TextView> + 'static {
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::TextView>> Sealed for T {}
+}
+
+pub trait TextViewExt: IsA<TextView> + sealed::Sealed + 'static {
     #[doc(alias = "gtk_text_view_add_child_at_anchor")]
     fn add_child_at_anchor(&self, child: &impl IsA<Widget>, anchor: &impl IsA<TextChildAnchor>) {
         unsafe {

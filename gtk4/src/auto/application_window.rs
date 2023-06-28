@@ -421,7 +421,12 @@ impl ApplicationWindowBuilder {
     }
 }
 
-pub trait ApplicationWindowExt: IsA<ApplicationWindow> + 'static {
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::ApplicationWindow>> Sealed for T {}
+}
+
+pub trait ApplicationWindowExt: IsA<ApplicationWindow> + sealed::Sealed + 'static {
     #[doc(alias = "gtk_application_window_get_help_overlay")]
     #[doc(alias = "get_help_overlay")]
     fn help_overlay(&self) -> Option<ShortcutsWindow> {

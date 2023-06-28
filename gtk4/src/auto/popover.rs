@@ -306,7 +306,12 @@ impl PopoverBuilder {
     }
 }
 
-pub trait PopoverExt: IsA<Popover> + 'static {
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::Popover>> Sealed for T {}
+}
+
+pub trait PopoverExt: IsA<Popover> + sealed::Sealed + 'static {
     #[doc(alias = "gtk_popover_get_autohide")]
     #[doc(alias = "get_autohide")]
     fn is_autohide(&self) -> bool {

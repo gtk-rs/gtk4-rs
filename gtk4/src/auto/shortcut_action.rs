@@ -36,7 +36,12 @@ impl fmt::Display for ShortcutAction {
     }
 }
 
-pub trait ShortcutActionExt: IsA<ShortcutAction> + 'static {
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::ShortcutAction>> Sealed for T {}
+}
+
+pub trait ShortcutActionExt: IsA<ShortcutAction> + sealed::Sealed + 'static {
     #[doc(alias = "gtk_shortcut_action_activate")]
     fn activate(
         &self,

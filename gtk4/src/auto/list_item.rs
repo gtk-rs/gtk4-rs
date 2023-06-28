@@ -23,7 +23,12 @@ impl ListItem {
     pub const NONE: Option<&'static ListItem> = None;
 }
 
-pub trait ListItemExt: IsA<ListItem> + 'static {
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::ListItem>> Sealed for T {}
+}
+
+pub trait ListItemExt: IsA<ListItem> + sealed::Sealed + 'static {
     #[doc(alias = "gtk_list_item_get_activatable")]
     #[doc(alias = "get_activatable")]
     fn is_activatable(&self) -> bool {

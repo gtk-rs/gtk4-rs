@@ -22,7 +22,12 @@ impl StyleProvider {
     pub const NONE: Option<&'static StyleProvider> = None;
 }
 
-pub trait StyleProviderExt: IsA<StyleProvider> + 'static {
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::StyleProvider>> Sealed for T {}
+}
+
+pub trait StyleProviderExt: IsA<StyleProvider> + sealed::Sealed + 'static {
     #[doc(alias = "gtk-private-changed")]
     fn connect_gtk_private_changed<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn gtk_private_changed_trampoline<

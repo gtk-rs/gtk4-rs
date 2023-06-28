@@ -18,7 +18,12 @@ impl BuilderScope {
     pub const NONE: Option<&'static BuilderScope> = None;
 }
 
-pub trait BuilderScopeExt: IsA<BuilderScope> + 'static {}
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::BuilderScope>> Sealed for T {}
+}
+
+pub trait BuilderScopeExt: IsA<BuilderScope> + sealed::Sealed + 'static {}
 
 impl<O: IsA<BuilderScope>> BuilderScopeExt for O {}
 

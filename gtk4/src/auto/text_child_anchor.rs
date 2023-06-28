@@ -44,7 +44,12 @@ impl Default for TextChildAnchor {
     }
 }
 
-pub trait TextChildAnchorExt: IsA<TextChildAnchor> + 'static {
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::TextChildAnchor>> Sealed for T {}
+}
+
+pub trait TextChildAnchorExt: IsA<TextChildAnchor> + sealed::Sealed + 'static {
     #[doc(alias = "gtk_text_child_anchor_get_deleted")]
     #[doc(alias = "get_deleted")]
     fn is_deleted(&self) -> bool {

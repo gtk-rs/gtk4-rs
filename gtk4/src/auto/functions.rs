@@ -2,7 +2,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-#[cfg(any(target_os = "linux"))]
+#[cfg(target_os = "linux")]
 #[cfg_attr(docsrs, doc(cfg(target_os = "linux")))]
 use crate::Printer;
 use crate::{

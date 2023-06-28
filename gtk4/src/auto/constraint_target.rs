@@ -18,7 +18,12 @@ impl ConstraintTarget {
     pub const NONE: Option<&'static ConstraintTarget> = None;
 }
 
-pub trait ConstraintTargetExt: IsA<ConstraintTarget> + 'static {}
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::ConstraintTarget>> Sealed for T {}
+}
+
+pub trait ConstraintTargetExt: IsA<ConstraintTarget> + sealed::Sealed + 'static {}
 
 impl<O: IsA<ConstraintTarget>> ConstraintTargetExt for O {}
 

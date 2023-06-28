@@ -19,7 +19,12 @@ impl AppLaunchContext {
     pub const NONE: Option<&'static AppLaunchContext> = None;
 }
 
-pub trait GdkAppLaunchContextExt: IsA<AppLaunchContext> + 'static {
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::AppLaunchContext>> Sealed for T {}
+}
+
+pub trait GdkAppLaunchContextExt: IsA<AppLaunchContext> + sealed::Sealed + 'static {
     #[doc(alias = "gdk_app_launch_context_get_display")]
     #[doc(alias = "get_display")]
     fn display(&self) -> Display {

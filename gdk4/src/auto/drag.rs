@@ -47,7 +47,12 @@ impl Drag {
     }
 }
 
-pub trait DragExt: IsA<Drag> + 'static {
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::Drag>> Sealed for T {}
+}
+
+pub trait DragExt: IsA<Drag> + sealed::Sealed + 'static {
     #[doc(alias = "gdk_drag_drop_done")]
     fn drop_done(&self, success: bool) {
         unsafe {

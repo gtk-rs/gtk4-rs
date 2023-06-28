@@ -18,7 +18,12 @@ impl ShortcutManager {
     pub const NONE: Option<&'static ShortcutManager> = None;
 }
 
-pub trait ShortcutManagerExt: IsA<ShortcutManager> + 'static {}
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::ShortcutManager>> Sealed for T {}
+}
+
+pub trait ShortcutManagerExt: IsA<ShortcutManager> + sealed::Sealed + 'static {}
 
 impl<O: IsA<ShortcutManager>> ShortcutManagerExt for O {}
 

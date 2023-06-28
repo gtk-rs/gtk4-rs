@@ -29,7 +29,12 @@ impl Accessible {
     pub const NONE: Option<&'static Accessible> = None;
 }
 
-pub trait AccessibleExt: IsA<Accessible> + 'static {
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::Accessible>> Sealed for T {}
+}
+
+pub trait AccessibleExt: IsA<Accessible> + sealed::Sealed + 'static {
     #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     #[doc(alias = "gtk_accessible_get_accessible_parent")]

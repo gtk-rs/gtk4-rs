@@ -19,7 +19,12 @@ impl AccessibleRange {
     pub const NONE: Option<&'static AccessibleRange> = None;
 }
 
-pub trait AccessibleRangeExt: IsA<AccessibleRange> + 'static {}
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::AccessibleRange>> Sealed for T {}
+}
+
+pub trait AccessibleRangeExt: IsA<AccessibleRange> + sealed::Sealed + 'static {}
 
 impl<O: IsA<AccessibleRange>> AccessibleRangeExt for O {}
 

@@ -366,7 +366,12 @@ impl ComboBoxBuilder {
     }
 }
 
-pub trait ComboBoxExt: IsA<ComboBox> + 'static {
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::ComboBox>> Sealed for T {}
+}
+
+pub trait ComboBoxExt: IsA<ComboBox> + sealed::Sealed + 'static {
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
     #[doc(alias = "gtk_combo_box_get_active_id")]
