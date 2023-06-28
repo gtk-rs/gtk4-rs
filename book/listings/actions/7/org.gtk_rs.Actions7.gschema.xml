@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <schemalist>
   <schema id="org.gtk_rs.Actions7" path="/org/gtk_rs/Actions7/">
-    <key name="sensitive-button" type="b">
+    <key name="toggle-button-frame" type="b">
       <default>true</default>
-      <summary>Whether the button is sensitive</summary>
+      <summary>Whether the button has a frame</summary>
     </key>
     <key name="orientation" type="s">
       <choices>

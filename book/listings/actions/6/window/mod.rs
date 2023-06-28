@@ -55,13 +55,13 @@ impl Window {
         }));
         self.add_action(&action_count);
 
-        // ANCHOR: action_sensitive_button
-        // Add property action "sensitive-button" to `window`
+        // ANCHOR: action_toggle_button_frame
+        // Add property action "toggle-button-frame" to `window`
         let button = self.imp().button.get();
-        let action_sensitive_button =
-            PropertyAction::new("sensitive-button", &button, "sensitive");
-        self.add_action(&action_sensitive_button);
-        // ANCHOR_END: action_sensitive_button
+        let action_toggle_button_frame =
+            PropertyAction::new("toggle-button-frame", &button, "has-frame");
+        self.add_action(&action_toggle_button_frame);
+        // ANCHOR_END: action_toggle_button_frame
 
         // ANCHOR: action_orientation
 

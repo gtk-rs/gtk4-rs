@@ -82,9 +82,10 @@ impl Window {
         self.add_action(&action_close);
 
         // ANCHOR: settings_create_actions
-        // Create action from key "sensitive-button" and add to action group "win"
-        let action_sensitive_button = self.settings().create_action("sensitive-button");
-        self.add_action(&action_sensitive_button);
+        // Create action from key "toggle-button-frame" and add to action group "win"
+        let action_toggle_button_frame =
+            self.settings().create_action("toggle-button-frame");
+        self.add_action(&action_toggle_button_frame);
 
         // Create action from key "orientation" and add to action group "win"
         let action_orientation = self.settings().create_action("orientation");
@@ -96,10 +97,10 @@ impl Window {
     fn bind_settings(&self) {
         // Get state
 
-        // Bind setting "sensitive-button" to "sensitive" property of `button`
+        // Bind setting "toggle-button-frame" to "has-frame" property of `button`
         let button = self.imp().button.get();
         self.settings()
-            .bind("sensitive-button", &button, "sensitive")
+            .bind("toggle-button-frame", &button, "has-frame")
             .build();
 
         // Bind setting "orientation" to "orientation" property of `button`
