@@ -155,7 +155,15 @@ pub const GDK_MEMORY_R16G16B16A16_FLOAT: GdkMemoryFormat = 14;
 pub const GDK_MEMORY_R32G32B32_FLOAT: GdkMemoryFormat = 15;
 pub const GDK_MEMORY_R32G32B32A32_FLOAT_PREMULTIPLIED: GdkMemoryFormat = 16;
 pub const GDK_MEMORY_R32G32B32A32_FLOAT: GdkMemoryFormat = 17;
-pub const GDK_MEMORY_N_FORMATS: GdkMemoryFormat = 18;
+pub const GDK_MEMORY_G8A8_PREMULTIPLIED: GdkMemoryFormat = 18;
+pub const GDK_MEMORY_G8A8: GdkMemoryFormat = 19;
+pub const GDK_MEMORY_G8: GdkMemoryFormat = 20;
+pub const GDK_MEMORY_G16A16_PREMULTIPLIED: GdkMemoryFormat = 21;
+pub const GDK_MEMORY_G16A16: GdkMemoryFormat = 22;
+pub const GDK_MEMORY_G16: GdkMemoryFormat = 23;
+pub const GDK_MEMORY_A8: GdkMemoryFormat = 24;
+pub const GDK_MEMORY_A16: GdkMemoryFormat = 25;
+pub const GDK_MEMORY_N_FORMATS: GdkMemoryFormat = 26;
 
 pub type GdkNotifyType = c_int;
 pub const GDK_NOTIFY_ANCESTOR: GdkNotifyType = 0;
@@ -2575,7 +2583,7 @@ pub const GDK_SEAT_CAPABILITY_TABLET_STYLUS: GdkSeatCapabilities = 4;
 pub const GDK_SEAT_CAPABILITY_KEYBOARD: GdkSeatCapabilities = 8;
 pub const GDK_SEAT_CAPABILITY_TABLET_PAD: GdkSeatCapabilities = 16;
 pub const GDK_SEAT_CAPABILITY_ALL_POINTING: GdkSeatCapabilities = 7;
-pub const GDK_SEAT_CAPABILITY_ALL: GdkSeatCapabilities = 15;
+pub const GDK_SEAT_CAPABILITY_ALL: GdkSeatCapabilities = 31;
 
 pub type GdkToplevelState = c_uint;
 pub const GDK_TOPLEVEL_STATE_MINIMIZED: GdkToplevelState = 1;
@@ -2758,6 +2766,14 @@ impl ::std::fmt::Debug for GdkFrameTimings {
             .finish()
     }
 }
+
+#[repr(C)]
+pub struct _GdkGLTextureBuilderClass {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
+
+pub type GdkGLTextureBuilderClass = *mut _GdkGLTextureBuilderClass;
 
 #[repr(C)]
 pub struct _GdkGLTextureClass {
@@ -3263,6 +3279,19 @@ pub struct GdkGLTexture {
 impl ::std::fmt::Debug for GdkGLTexture {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("GdkGLTexture @ {self:p}")).finish()
+    }
+}
+
+#[repr(C)]
+pub struct GdkGLTextureBuilder {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
+
+impl ::std::fmt::Debug for GdkGLTextureBuilder {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("GdkGLTextureBuilder @ {self:p}"))
+            .finish()
     }
 }
 
@@ -4608,6 +4637,97 @@ extern "C" {
         data: gpointer,
     ) -> *mut GdkGLTexture;
     pub fn gdk_gl_texture_release(self_: *mut GdkGLTexture);
+
+    //=========================================================================
+    // GdkGLTextureBuilder
+    //=========================================================================
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    pub fn gdk_gl_texture_builder_get_type() -> GType;
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    pub fn gdk_gl_texture_builder_new() -> *mut GdkGLTextureBuilder;
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    pub fn gdk_gl_texture_builder_build(
+        self_: *mut GdkGLTextureBuilder,
+        destroy: glib::GDestroyNotify,
+        data: gpointer,
+    ) -> *mut GdkTexture;
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    pub fn gdk_gl_texture_builder_get_context(self_: *mut GdkGLTextureBuilder)
+        -> *mut GdkGLContext;
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    pub fn gdk_gl_texture_builder_get_format(self_: *mut GdkGLTextureBuilder) -> GdkMemoryFormat;
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    pub fn gdk_gl_texture_builder_get_has_mipmap(self_: *mut GdkGLTextureBuilder) -> gboolean;
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    pub fn gdk_gl_texture_builder_get_height(self_: *mut GdkGLTextureBuilder) -> c_int;
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    pub fn gdk_gl_texture_builder_get_id(self_: *mut GdkGLTextureBuilder) -> c_uint;
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    pub fn gdk_gl_texture_builder_get_sync(self_: *mut GdkGLTextureBuilder) -> gpointer;
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    pub fn gdk_gl_texture_builder_get_update_region(
+        self_: *mut GdkGLTextureBuilder,
+    ) -> *mut cairo::cairo_region_t;
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    pub fn gdk_gl_texture_builder_get_update_texture(
+        self_: *mut GdkGLTextureBuilder,
+    ) -> *mut GdkTexture;
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    pub fn gdk_gl_texture_builder_get_width(self_: *mut GdkGLTextureBuilder) -> c_int;
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    pub fn gdk_gl_texture_builder_set_context(
+        self_: *mut GdkGLTextureBuilder,
+        context: *mut GdkGLContext,
+    );
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    pub fn gdk_gl_texture_builder_set_format(
+        self_: *mut GdkGLTextureBuilder,
+        format: GdkMemoryFormat,
+    );
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    pub fn gdk_gl_texture_builder_set_has_mipmap(
+        self_: *mut GdkGLTextureBuilder,
+        has_mipmap: gboolean,
+    );
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    pub fn gdk_gl_texture_builder_set_height(self_: *mut GdkGLTextureBuilder, height: c_int);
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    pub fn gdk_gl_texture_builder_set_id(self_: *mut GdkGLTextureBuilder, id: c_uint);
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    pub fn gdk_gl_texture_builder_set_sync(self_: *mut GdkGLTextureBuilder, sync: gpointer);
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    pub fn gdk_gl_texture_builder_set_update_region(
+        self_: *mut GdkGLTextureBuilder,
+        region: *mut cairo::cairo_region_t,
+    );
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    pub fn gdk_gl_texture_builder_set_update_texture(
+        self_: *mut GdkGLTextureBuilder,
+        texture: *mut GdkTexture,
+    );
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    pub fn gdk_gl_texture_builder_set_width(self_: *mut GdkGLTextureBuilder, width: c_int);
 
     //=========================================================================
     // GdkGrabBrokenEvent

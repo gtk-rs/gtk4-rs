@@ -266,6 +266,14 @@ impl ::std::fmt::Debug for GskTransform {
     }
 }
 
+#[repr(C)]
+pub struct _GskVulkanRendererClass {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
+
+pub type GskVulkanRendererClass = *mut _GskVulkanRendererClass;
+
 // Classes
 #[repr(C)]
 pub struct GskBlendNode {
@@ -695,6 +703,19 @@ pub struct GskTransformNode {
 impl ::std::fmt::Debug for GskTransformNode {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("GskTransformNode @ {self:p}"))
+            .finish()
+    }
+}
+
+#[repr(C)]
+pub struct GskVulkanRenderer {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
+
+impl ::std::fmt::Debug for GskVulkanRenderer {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("GskVulkanRenderer @ {self:p}"))
             .finish()
     }
 }
@@ -1507,6 +1528,12 @@ extern "C" {
     ) -> *mut GskTransformNode;
     pub fn gsk_transform_node_get_child(node: *const GskTransformNode) -> *mut GskRenderNode;
     pub fn gsk_transform_node_get_transform(node: *const GskTransformNode) -> *mut GskTransform;
+
+    //=========================================================================
+    // GskVulkanRenderer
+    //=========================================================================
+    pub fn gsk_vulkan_renderer_get_type() -> GType;
+    pub fn gsk_vulkan_renderer_new() -> *mut GskRenderer;
 
     //=========================================================================
     // Other functions

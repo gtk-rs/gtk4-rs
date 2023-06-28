@@ -11,6 +11,8 @@ pub fn intern_mime_type(string: &str) -> Option<glib::GString> {
     unsafe { from_glib_none(ffi::gdk_intern_mime_type(string.to_glib_none().0)) }
 }
 
+#[cfg_attr(feature = "v4_12", deprecated = "Since 4.12")]
+#[allow(deprecated)]
 #[doc(alias = "gdk_pixbuf_get_from_surface")]
 pub fn pixbuf_get_from_surface(
     surface: &cairo::Surface,
@@ -31,6 +33,8 @@ pub fn pixbuf_get_from_surface(
     }
 }
 
+#[cfg_attr(feature = "v4_12", deprecated = "Since 4.12")]
+#[allow(deprecated)]
 #[doc(alias = "gdk_pixbuf_get_from_texture")]
 pub fn pixbuf_get_from_texture(texture: &impl IsA<Texture>) -> Option<gdk_pixbuf::Pixbuf> {
     skip_assert_initialized!();

@@ -68,6 +68,8 @@ impl Picture {
         }
     }
 
+    #[cfg_attr(feature = "v4_12", deprecated = "Since 4.12")]
+    #[allow(deprecated)]
     #[doc(alias = "gtk_picture_new_for_pixbuf")]
     #[doc(alias = "new_for_pixbuf")]
     pub fn for_pixbuf(pixbuf: &gdk_pixbuf::Pixbuf) -> Picture {
@@ -210,6 +212,8 @@ impl Picture {
         }
     }
 
+    #[cfg_attr(feature = "v4_12", deprecated = "Since 4.12")]
+    #[allow(deprecated)]
     #[doc(alias = "gtk_picture_set_pixbuf")]
     pub fn set_pixbuf(&self, pixbuf: Option<&gdk_pixbuf::Pixbuf>) {
         unsafe {
