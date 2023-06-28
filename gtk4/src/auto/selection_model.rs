@@ -23,7 +23,12 @@ impl SelectionModel {
     pub const NONE: Option<&'static SelectionModel> = None;
 }
 
-pub trait SelectionModelExt: IsA<SelectionModel> + 'static {
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::SelectionModel>> Sealed for T {}
+}
+
+pub trait SelectionModelExt: IsA<SelectionModel> + sealed::Sealed + 'static {
     #[doc(alias = "gtk_selection_model_get_selection")]
     #[doc(alias = "get_selection")]
     fn selection(&self) -> Bitset {

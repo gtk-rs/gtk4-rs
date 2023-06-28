@@ -28,7 +28,12 @@ impl Toplevel {
     pub const NONE: Option<&'static Toplevel> = None;
 }
 
-pub trait ToplevelExt: IsA<Toplevel> + 'static {
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::Toplevel>> Sealed for T {}
+}
+
+pub trait ToplevelExt: IsA<Toplevel> + sealed::Sealed + 'static {
     #[doc(alias = "gdk_toplevel_begin_move")]
     fn begin_move(&self, device: &impl IsA<Device>, button: i32, x: f64, y: f64, timestamp: u32) {
         unsafe {

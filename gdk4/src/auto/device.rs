@@ -30,7 +30,12 @@ impl fmt::Display for Device {
     }
 }
 
-pub trait DeviceExt: IsA<Device> + 'static {
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::Device>> Sealed for T {}
+}
+
+pub trait DeviceExt: IsA<Device> + sealed::Sealed + 'static {
     #[doc(alias = "gdk_device_get_caps_lock_state")]
     #[doc(alias = "get_caps_lock_state")]
     fn is_caps_locked(&self) -> bool {

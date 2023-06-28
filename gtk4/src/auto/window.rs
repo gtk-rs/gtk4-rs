@@ -454,7 +454,12 @@ impl WindowBuilder {
     }
 }
 
-pub trait GtkWindowExt: IsA<Window> + 'static {
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::Window>> Sealed for T {}
+}
+
+pub trait GtkWindowExt: IsA<Window> + sealed::Sealed + 'static {
     #[doc(alias = "gtk_window_close")]
     fn close(&self) {
         unsafe {

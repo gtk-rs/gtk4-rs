@@ -360,7 +360,12 @@ impl ScaleBuilder {
     }
 }
 
-pub trait ScaleExt: IsA<Scale> + 'static {
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::Scale>> Sealed for T {}
+}
+
+pub trait ScaleExt: IsA<Scale> + sealed::Sealed + 'static {
     #[doc(alias = "gtk_scale_add_mark")]
     fn add_mark(&self, value: f64, position: PositionType, markup: Option<&str>) {
         unsafe {

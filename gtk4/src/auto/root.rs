@@ -19,7 +19,12 @@ impl Root {
     pub const NONE: Option<&'static Root> = None;
 }
 
-pub trait RootExt: IsA<Root> + 'static {
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::Root>> Sealed for T {}
+}
+
+pub trait RootExt: IsA<Root> + sealed::Sealed + 'static {
     #[doc(alias = "gtk_root_get_display")]
     #[doc(alias = "get_display")]
     fn display(&self) -> gdk::Display {

@@ -279,7 +279,12 @@ impl FrameBuilder {
     }
 }
 
-pub trait FrameExt: IsA<Frame> + 'static {
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::Frame>> Sealed for T {}
+}
+
+pub trait FrameExt: IsA<Frame> + sealed::Sealed + 'static {
     #[doc(alias = "gtk_frame_get_child")]
     #[doc(alias = "get_child")]
     fn child(&self) -> Option<Widget> {

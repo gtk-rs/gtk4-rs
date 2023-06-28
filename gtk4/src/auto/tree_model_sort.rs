@@ -31,7 +31,12 @@ impl TreeModelSort {
     }
 }
 
-pub trait TreeModelSortExt: IsA<TreeModelSort> + 'static {
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::TreeModelSort>> Sealed for T {}
+}
+
+pub trait TreeModelSortExt: IsA<TreeModelSort> + sealed::Sealed + 'static {
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
     #[doc(alias = "gtk_tree_model_sort_clear_cache")]

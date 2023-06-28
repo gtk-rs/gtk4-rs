@@ -23,7 +23,12 @@ impl Seat {
     pub const NONE: Option<&'static Seat> = None;
 }
 
-pub trait SeatExt: IsA<Seat> + 'static {
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::Seat>> Sealed for T {}
+}
+
+pub trait SeatExt: IsA<Seat> + sealed::Sealed + 'static {
     #[doc(alias = "gdk_seat_get_capabilities")]
     #[doc(alias = "get_capabilities")]
     fn capabilities(&self) -> SeatCapabilities {

@@ -27,7 +27,12 @@ impl CellArea {
     pub const NONE: Option<&'static CellArea> = None;
 }
 
-pub trait CellAreaExt: IsA<CellArea> + 'static {
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::CellArea>> Sealed for T {}
+}
+
+pub trait CellAreaExt: IsA<CellArea> + sealed::Sealed + 'static {
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
     #[doc(alias = "gtk_cell_area_activate")]

@@ -38,7 +38,12 @@ impl Range {
     pub const NONE: Option<&'static Range> = None;
 }
 
-pub trait RangeExt: IsA<Range> + 'static {
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::Range>> Sealed for T {}
+}
+
+pub trait RangeExt: IsA<Range> + sealed::Sealed + 'static {
     #[doc(alias = "gtk_range_get_adjustment")]
     #[doc(alias = "get_adjustment")]
     fn adjustment(&self) -> Adjustment {

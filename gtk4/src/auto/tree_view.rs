@@ -417,7 +417,12 @@ impl TreeViewBuilder {
     }
 }
 
-pub trait TreeViewExt: IsA<TreeView> + 'static {
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::TreeView>> Sealed for T {}
+}
+
+pub trait TreeViewExt: IsA<TreeView> + sealed::Sealed + 'static {
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
     #[doc(alias = "gtk_tree_view_append_column")]

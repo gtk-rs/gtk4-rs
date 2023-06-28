@@ -66,7 +66,12 @@ impl EntryBufferBuilder {
     }
 }
 
-pub trait EntryBufferExt: IsA<EntryBuffer> + 'static {
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::EntryBuffer>> Sealed for T {}
+}
+
+pub trait EntryBufferExt: IsA<EntryBuffer> + sealed::Sealed + 'static {
     #[doc(alias = "gtk_entry_buffer_emit_deleted_text")]
     fn emit_deleted_text(&self, position: u32, n_chars: u32) {
         unsafe {

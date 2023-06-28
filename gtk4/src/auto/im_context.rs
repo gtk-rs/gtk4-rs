@@ -24,7 +24,12 @@ impl IMContext {
     pub const NONE: Option<&'static IMContext> = None;
 }
 
-pub trait IMContextExt: IsA<IMContext> + 'static {
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::IMContext>> Sealed for T {}
+}
+
+pub trait IMContextExt: IsA<IMContext> + sealed::Sealed + 'static {
     #[doc(alias = "gtk_im_context_delete_surrounding")]
     fn delete_surrounding(&self, offset: i32, n_chars: i32) -> bool {
         unsafe {

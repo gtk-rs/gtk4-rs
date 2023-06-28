@@ -118,7 +118,12 @@ impl AdjustmentBuilder {
     }
 }
 
-pub trait AdjustmentExt: IsA<Adjustment> + 'static {
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::Adjustment>> Sealed for T {}
+}
+
+pub trait AdjustmentExt: IsA<Adjustment> + sealed::Sealed + 'static {
     #[doc(alias = "gtk_adjustment_clamp_page")]
     fn clamp_page(&self, lower: f64, upper: f64) {
         unsafe {

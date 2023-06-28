@@ -142,7 +142,12 @@ impl MountOperationBuilder {
     }
 }
 
-pub trait GtkMountOperationExt: IsA<MountOperation> + 'static {
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::MountOperation>> Sealed for T {}
+}
+
+pub trait GtkMountOperationExt: IsA<MountOperation> + sealed::Sealed + 'static {
     #[doc(alias = "gtk_mount_operation_get_display")]
     #[doc(alias = "get_display")]
     fn display(&self) -> gdk::Display {

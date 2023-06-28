@@ -34,7 +34,12 @@ impl Paintable {
     }
 }
 
-pub trait PaintableExt: IsA<Paintable> + 'static {
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::Paintable>> Sealed for T {}
+}
+
+pub trait PaintableExt: IsA<Paintable> + sealed::Sealed + 'static {
     #[doc(alias = "gdk_paintable_compute_concrete_size")]
     fn compute_concrete_size(
         &self,

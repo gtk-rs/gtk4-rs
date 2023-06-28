@@ -109,7 +109,12 @@ impl ApplicationBuilder {
     }
 }
 
-pub trait GtkApplicationExt: IsA<Application> + 'static {
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::Application>> Sealed for T {}
+}
+
+pub trait GtkApplicationExt: IsA<Application> + sealed::Sealed + 'static {
     #[doc(alias = "gtk_application_add_window")]
     fn add_window(&self, window: &impl IsA<Window>) {
         unsafe {

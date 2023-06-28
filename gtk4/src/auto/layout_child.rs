@@ -19,7 +19,12 @@ impl LayoutChild {
     pub const NONE: Option<&'static LayoutChild> = None;
 }
 
-pub trait LayoutChildExt: IsA<LayoutChild> + 'static {
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::LayoutChild>> Sealed for T {}
+}
+
+pub trait LayoutChildExt: IsA<LayoutChild> + sealed::Sealed + 'static {
     #[doc(alias = "gtk_layout_child_get_child_widget")]
     #[doc(alias = "get_child_widget")]
     fn child_widget(&self) -> Widget {

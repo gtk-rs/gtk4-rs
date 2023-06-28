@@ -113,7 +113,12 @@ impl GestureDragBuilder {
     }
 }
 
-pub trait GestureDragExt: IsA<GestureDrag> + 'static {
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::GestureDrag>> Sealed for T {}
+}
+
+pub trait GestureDragExt: IsA<GestureDrag> + sealed::Sealed + 'static {
     #[doc(alias = "gtk_gesture_drag_get_offset")]
     #[doc(alias = "get_offset")]
     fn offset(&self) -> Option<(f64, f64)> {

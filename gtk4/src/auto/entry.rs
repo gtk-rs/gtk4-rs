@@ -587,7 +587,12 @@ impl EntryBuilder {
     }
 }
 
-pub trait EntryExt: IsA<Entry> + 'static {
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::Entry>> Sealed for T {}
+}
+
+pub trait EntryExt: IsA<Entry> + sealed::Sealed + 'static {
     #[doc(alias = "gtk_entry_get_activates_default")]
     #[doc(alias = "get_activates_default")]
     fn activates_default(&self) -> bool {
