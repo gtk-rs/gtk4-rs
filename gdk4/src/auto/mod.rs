@@ -77,6 +77,13 @@ pub use self::gl_context::GLContext;
 mod gl_texture;
 pub use self::gl_texture::GLTexture;
 
+#[cfg(feature = "v4_12")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+mod gl_texture_builder;
+#[cfg(feature = "v4_12")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+pub use self::gl_texture_builder::GLTextureBuilder;
+
 mod grab_broken_event;
 pub use self::grab_broken_event::GrabBrokenEvent;
 

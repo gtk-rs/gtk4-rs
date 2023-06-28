@@ -3,6 +3,9 @@
 // DO NOT EDIT
 
 use crate::Filter;
+#[cfg(feature = "v4_12")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+use crate::SectionModel;
 use glib::{
     prelude::*,
     signal::{connect_raw, SignalHandlerId},
@@ -10,6 +13,18 @@ use glib::{
 };
 use std::{boxed::Box as Box_, fmt, mem::transmute};
 
+#[cfg(feature = "v4_12")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+glib::wrapper! {
+    #[doc(alias = "GtkFilterListModel")]
+    pub struct FilterListModel(Object<ffi::GtkFilterListModel, ffi::GtkFilterListModelClass>) @implements gio::ListModel, SectionModel;
+
+    match fn {
+        type_ => || ffi::gtk_filter_list_model_get_type(),
+    }
+}
+
+#[cfg(not(any(feature = "v4_12")))]
 glib::wrapper! {
     #[doc(alias = "GtkFilterListModel")]
     pub struct FilterListModel(Object<ffi::GtkFilterListModel, ffi::GtkFilterListModelClass>) @implements gio::ListModel;

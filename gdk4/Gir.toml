@@ -485,6 +485,12 @@ concurrency = "send+sync"
     manual = true
 
 [[object]]
+name = "Gdk.GLTextureBuilder"
+status = "generate"
+concurrency = "send+sync"
+generate_builder = false
+
+[[object]]
 name = "Gdk.KeyEvent"
 status = "generate"
     [[object.function]]

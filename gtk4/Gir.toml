@@ -70,6 +70,7 @@ generate = [
     "Gtk.ColorChooserWidget",
     "Gtk.ColorDialogButton",
     "Gtk.ColumnView",
+    "Gtk.ColumnViewCell",
     "Gtk.ColumnViewColumn",
     "Gtk.ColumnViewRow",
     "Gtk.ColumnViewSorter",
@@ -207,6 +208,7 @@ generate = [
     "Gtk.ScrolledWindow",
     "Gtk.ScrollStep",
     "Gtk.ScrollType",
+    "Gtk.SectionModel",
     "Gtk.SelectionMode",
     "Gtk.SelectionModel",
     "Gtk.SensitivityType",
@@ -1480,6 +1482,11 @@ status = "generate"
     [[object.function]]
     name = "set_sort_func"
     manual = true # make the sort closure return a Ordering instead of an int
+
+[[object]]
+name = "Gtk.ListHeader"
+status = "generate"
+generate_builder = false
 
 [[object]]
 name = "Gtk.ListItem"
