@@ -203,6 +203,7 @@ pub use border::Border;
 pub use builder_cscope::BuilderCScope;
 pub use builder_rust_scope::BuilderRustScope;
 pub use css_location::CssLocation;
+pub use enums::Align;
 pub use expression_watch::ExpressionWatch;
 pub use functions::*;
 pub use glib::signal::Inhibit;

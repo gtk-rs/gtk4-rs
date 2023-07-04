@@ -1090,7 +1090,6 @@ pub use self::enums::AccessibleRole;
 pub use self::enums::AccessibleSort;
 pub use self::enums::AccessibleState;
 pub use self::enums::AccessibleTristate;
-pub use self::enums::Align;
 pub use self::enums::ArrowType;
 pub use self::enums::AssistantPageType;
 pub use self::enums::BaselinePosition;

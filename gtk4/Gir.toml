@@ -357,6 +357,7 @@ manual = [
     "Gsk.ScalingFilter",
     "Gsk.Shadow",
     "Gsk.Transform",
+    "Gtk.Align", # as we need to handle baseline_fill = baseline for gtk >= 4.11
     "Gtk.BitsetIter",
     "Gtk.Border",
     "Gtk.CssLocation",
@@ -614,13 +615,6 @@ manual_traits = ["ActionableExtManual"]
     name = "set_action_target"
     manual = true # the target is defined as str
     doc_trait_name = "ActionableExtManual"
-
-[[object]]
-name = "Gtk.Align"
-status = "generate"
-    [[object.member]]
-    pattern = "(baseline_fill|baseline_center)"
-    version = "4.12"
 
 [[object]]
 name = "Gtk.AppChooserDialog"
