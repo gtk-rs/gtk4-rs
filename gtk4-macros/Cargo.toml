@@ -21,7 +21,7 @@ blueprint = []
 
 [dependencies]
 anyhow = "1.0"
-quick-xml = {version = "0.27", optional = true}
+quick-xml = {version = "0.28", optional = true}
 proc-macro-crate = "1.0"
 proc-macro-error = "1.0"
 proc-macro2 = "1.0"
