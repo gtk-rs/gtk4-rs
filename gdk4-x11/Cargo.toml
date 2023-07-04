@@ -29,7 +29,7 @@ gio = {git = "https://github.com/gtk-rs/gtk-rs-core", version = "0.18", features
 glib = {git = "https://github.com/gtk-rs/gtk-rs-core", version = "0.18", features = ["v2_66"]}
 libc = "0.2"
 x11 = {version = "2.20", optional = true }
-khronos-egl = {version = "4.1", optional = true}
+khronos-egl = {version = "5.0", optional = true}
 
 [dev-dependencies]
 gir-format-check = "^0.1"
