@@ -9,9 +9,14 @@ use glib::translate::*;
 #[cfg_attr(docsrs, doc(cfg(feature = "wayland_crate")))]
 use wayland_client::{backend::ObjectId, protocol::wl_surface::WlSurface, Proxy};
 
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::WaylandSurface>> Sealed for T {}
+}
+
 // rustdoc-stripper-ignore-next
 /// Trait containing manually implemented methods of [`WaylandSurface`](crate::WaylandSurface).
-pub trait WaylandSurfaceExtManual: IsA<WaylandSurface> + 'static {
+pub trait WaylandSurfaceExtManual: sealed::Sealed + IsA<WaylandSurface> + 'static {
     #[doc(alias = "gdk_wayland_surface_get_wl_surface")]
     #[doc(alias = "get_wl_surface")]
     #[cfg(any(feature = "wayland_crate", docsrs))]

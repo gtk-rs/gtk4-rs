@@ -12,7 +12,12 @@ pub trait FlowBoxChildImpl: FlowBoxChildImplExt + WidgetImpl {
     }
 }
 
-pub trait FlowBoxChildImplExt: ObjectSubclass {
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::FlowBoxChildImplExt> Sealed for T {}
+}
+
+pub trait FlowBoxChildImplExt: sealed::Sealed + ObjectSubclass {
     fn parent_activate(&self) {
         unsafe {
             let data = Self::type_data();

@@ -23,9 +23,14 @@ pub trait ColorChooserImpl: ObjectImpl {
     fn set_rgba(&self, rgba: RGBA);
 }
 
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::ColorChooserImplExt> Sealed for T {}
+}
+
 #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 #[allow(deprecated)]
-pub trait ColorChooserImplExt: ObjectSubclass {
+pub trait ColorChooserImplExt: sealed::Sealed + ObjectSubclass {
     fn parent_add_palette(&self, orientation: Orientation, colors_per_line: i32, colors: &[RGBA]) {
         unsafe {
             let type_data = Self::type_data();

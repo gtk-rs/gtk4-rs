@@ -13,9 +13,14 @@ pub trait TreeDragDestImpl: ObjectImpl {
     fn row_drop_possible(&self, dest: &TreePath, value: Value) -> bool;
 }
 
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::TreeDragDestImplExt> Sealed for T {}
+}
+
 #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 #[allow(deprecated)]
-pub trait TreeDragDestImplExt: ObjectSubclass {
+pub trait TreeDragDestImplExt: sealed::Sealed + ObjectSubclass {
     fn parent_drag_data_received(&self, dest: &TreePath, value: Value) -> bool {
         unsafe {
             let type_data = Self::type_data();

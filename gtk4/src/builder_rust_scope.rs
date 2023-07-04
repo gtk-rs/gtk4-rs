@@ -87,8 +87,6 @@ mod imp {
     }
 
     impl ObjectImpl for BuilderRustScope {}
-    impl BuilderCScopeImpl for BuilderRustScope {}
-
     impl BuilderScopeImpl for BuilderRustScope {
         fn type_from_function(&self, _builder: &Builder, _function_name: &str) -> glib::Type {
             // Override the implementation provided by BuilderCScope and default to the interface
@@ -183,6 +181,8 @@ mod imp {
                 })
         }
     }
+
+    impl BuilderCScopeImpl for BuilderRustScope {}
 }
 
 #[cfg(test)]

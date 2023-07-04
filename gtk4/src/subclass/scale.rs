@@ -13,7 +13,12 @@ pub trait ScaleImpl: ScaleImplExt + RangeImpl {
     }
 }
 
-pub trait ScaleImplExt: ObjectSubclass {
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::ScaleImplExt> Sealed for T {}
+}
+
+pub trait ScaleImplExt: sealed::Sealed + ObjectSubclass {
     fn parent_layout_offsets(&self) -> (i32, i32) {
         unsafe {
             let data = Self::type_data();

@@ -16,7 +16,12 @@ pub trait SorterImpl: SorterImplExt + ObjectImpl {
     }
 }
 
-pub trait SorterImplExt: ObjectSubclass {
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::SorterImplExt> Sealed for T {}
+}
+
+pub trait SorterImplExt: sealed::Sealed + ObjectSubclass {
     fn parent_compare(&self, item1: &Object, item2: &Object) -> Ordering {
         unsafe {
             let data = Self::type_data();

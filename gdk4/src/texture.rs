@@ -3,9 +3,14 @@
 use crate::{prelude::*, Texture};
 use glib::translate::*;
 
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::Texture>> Sealed for T {}
+}
+
 // rustdoc-stripper-ignore-next
 /// Trait containing manually implemented methods of [`Texture`](crate::Texture).
-pub trait TextureExtManual: IsA<Texture> + 'static {
+pub trait TextureExtManual: sealed::Sealed + IsA<Texture> + 'static {
     #[doc(alias = "gdk_texture_download")]
     fn download(&self, data: &mut [u8], stride: usize) {
         unsafe {

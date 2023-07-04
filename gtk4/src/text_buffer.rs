@@ -8,9 +8,14 @@ use glib::{
 use libc::{c_char, c_int};
 use std::{boxed::Box as Box_, mem::transmute, slice, str};
 
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::TextBuffer>> Sealed for T {}
+}
+
 // rustdoc-stripper-ignore-next
 /// Trait containing manually implemented methods of [`TextBuffer`](crate::TextBuffer).
-pub trait TextBufferExtManual: IsA<TextBuffer> + 'static {
+pub trait TextBufferExtManual: sealed::Sealed + IsA<TextBuffer> + 'static {
     // rustdoc-stripper-ignore-next
     /// # Panics
     ///

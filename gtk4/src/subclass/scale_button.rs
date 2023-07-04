@@ -12,7 +12,12 @@ pub trait ScaleButtonImpl: ScaleButtonImplExt + WidgetImpl {
     }
 }
 
-pub trait ScaleButtonImplExt: ObjectSubclass {
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::ScaleButtonImplExt> Sealed for T {}
+}
+
+pub trait ScaleButtonImplExt: sealed::Sealed + ObjectSubclass {
     fn parent_value_changed(&self, new_value: f64) {
         unsafe {
             let data = Self::type_data();

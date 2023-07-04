@@ -3,11 +3,16 @@
 use crate::{prelude::*, CellRenderer, TreeView, TreeViewColumn, TreeViewColumnSizing};
 use glib::translate::*;
 
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::TreeView>> Sealed for T {}
+}
+
 // rustdoc-stripper-ignore-next
 /// Trait containing manually implemented methods of [`TreeView`](crate::TreeView).
 #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 #[allow(deprecated)]
-pub trait TreeViewExtManual: IsA<TreeView> + 'static {
+pub trait TreeViewExtManual: sealed::Sealed + IsA<TreeView> + 'static {
     #[doc(alias = "gtk_tree_view_insert_column_with_attributes")]
     fn insert_column_with_attributes(
         &self,

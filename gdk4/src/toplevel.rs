@@ -7,9 +7,14 @@ use glib::{
 };
 use std::{boxed::Box as Box_, mem::transmute};
 
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::Toplevel>> Sealed for T {}
+}
+
 // rustdoc-stripper-ignore-next
 /// Trait containing manually implemented methods of [`Toplevel`](crate::Toplevel).
-pub trait ToplevelExtManual: IsA<Toplevel> {
+pub trait ToplevelExtManual: sealed::Sealed + IsA<Toplevel> {
     fn connect_compute_size<F: Fn(&Toplevel, &mut ToplevelSize) + 'static>(
         &self,
         f: F,

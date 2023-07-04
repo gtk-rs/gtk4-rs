@@ -16,7 +16,12 @@ pub trait ButtonImpl: ButtonImplExt + WidgetImpl {
     }
 }
 
-pub trait ButtonImplExt: ObjectSubclass {
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::ButtonImplExt> Sealed for T {}
+}
+
+pub trait ButtonImplExt: sealed::Sealed + ObjectSubclass {
     fn parent_activate(&self) {
         unsafe {
             let data = Self::type_data();

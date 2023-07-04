@@ -32,21 +32,12 @@ pub trait BuilderScopeImpl: ObjectImpl {
     ) -> Result<glib::Closure, glib::Error>;
 }
 
-pub trait BuilderScopeImplExt: ObjectSubclass {
-    fn parent_type_from_name(&self, builder: &Builder, type_name: &str) -> glib::Type;
-
-    fn parent_type_from_function(&self, builder: &Builder, function_name: &str) -> glib::Type;
-
-    fn parent_create_closure(
-        &self,
-        builder: &Builder,
-        function_name: &str,
-        flags: BuilderClosureFlags,
-        object: Option<&glib::Object>,
-    ) -> Result<glib::Closure, glib::Error>;
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::BuilderScopeImplExt> Sealed for T {}
 }
 
-impl<B: BuilderScopeImpl> BuilderScopeImplExt for B {
+pub trait BuilderScopeImplExt: sealed::Sealed + ObjectSubclass {
     fn parent_type_from_name(&self, builder: &Builder, type_name: &str) -> glib::Type {
         unsafe {
             let type_data = Self::type_data();
@@ -125,6 +116,8 @@ impl<B: BuilderScopeImpl> BuilderScopeImplExt for B {
         }
     }
 }
+
+impl<T: BuilderScopeImpl> BuilderScopeImplExt for T {}
 
 unsafe impl<T: BuilderScopeImpl> IsImplementable<T> for BuilderScope {
     fn interface_init(iface: &mut glib::Interface<Self>) {

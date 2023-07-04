@@ -47,7 +47,12 @@ pub trait LayoutManagerImpl: LayoutManagerImplExt + ObjectImpl {
     }
 }
 
-pub trait LayoutManagerImplExt: ObjectSubclass {
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::LayoutManagerImplExt> Sealed for T {}
+}
+
+pub trait LayoutManagerImplExt: sealed::Sealed + ObjectSubclass {
     fn parent_allocate(&self, widget: &Widget, width: i32, height: i32, baseline: i32) {
         unsafe {
             let data = Self::type_data();

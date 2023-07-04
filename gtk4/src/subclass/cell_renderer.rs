@@ -94,9 +94,14 @@ pub trait CellRendererImpl: CellRendererImplExt + ObjectImpl {
     }
 }
 
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::CellRendererImplExt> Sealed for T {}
+}
+
 #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 #[allow(deprecated)]
-pub trait CellRendererImplExt: ObjectSubclass {
+pub trait CellRendererImplExt: sealed::Sealed + ObjectSubclass {
     fn parent_request_mode(&self) -> SizeRequestMode {
         unsafe {
             let data = Self::type_data();

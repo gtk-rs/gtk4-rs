@@ -14,9 +14,14 @@ pub trait CellRendererTextImpl: CellRendererTextImplExt + CellRendererImpl {
     }
 }
 
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::CellRendererTextImplExt> Sealed for T {}
+}
+
 #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 #[allow(deprecated)]
-pub trait CellRendererTextImplExt: ObjectSubclass {
+pub trait CellRendererTextImplExt: sealed::Sealed + ObjectSubclass {
     fn parent_edited(&self, path: &str, new_text: &str) {
         unsafe {
             let data = Self::type_data();

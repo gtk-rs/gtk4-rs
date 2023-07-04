@@ -56,7 +56,12 @@ pub trait TextBufferImpl: TextBufferImplExt + ObjectImpl {
     }
 }
 
-pub trait TextBufferImplExt: ObjectSubclass {
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::TextBufferImplExt> Sealed for T {}
+}
+
+pub trait TextBufferImplExt: sealed::Sealed + ObjectSubclass {
     fn parent_apply_tag(&self, tag: &TextTag, start: &TextIter, end: &TextIter) {
         unsafe {
             let data = Self::type_data();

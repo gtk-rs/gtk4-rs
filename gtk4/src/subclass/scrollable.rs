@@ -13,7 +13,12 @@ pub trait ScrollableImpl: WidgetImpl {
     }
 }
 
-pub trait ScrollableImplExt: ObjectSubclass {
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::ScrollableImplExt> Sealed for T {}
+}
+
+pub trait ScrollableImplExt: sealed::Sealed + ObjectSubclass {
     fn parent_border(&self) -> Option<Border> {
         unsafe {
             let type_data = Self::type_data();

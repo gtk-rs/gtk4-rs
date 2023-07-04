@@ -16,7 +16,12 @@ pub trait FilterImpl: FilterImplExt + ObjectImpl {
     }
 }
 
-pub trait FilterImplExt: ObjectSubclass {
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::FilterImplExt> Sealed for T {}
+}
+
+pub trait FilterImplExt: sealed::Sealed + ObjectSubclass {
     fn parent_strictness(&self) -> FilterMatch {
         unsafe {
             let data = Self::type_data();

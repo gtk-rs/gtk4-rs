@@ -12,7 +12,12 @@ pub trait AccessibleRangeImpl: WidgetImpl {
     }
 }
 
-pub trait AccessibleRangeImplExt: ObjectSubclass {
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::AccessibleRangeImplExt> Sealed for T {}
+}
+
+pub trait AccessibleRangeImplExt: sealed::Sealed + ObjectSubclass {
     fn parent_set_current_value(&self, accessible_range: &Self::Type, value: f64) -> bool {
         unsafe {
             let type_data = Self::type_data();

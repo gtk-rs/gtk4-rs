@@ -3,9 +3,14 @@
 use crate::{prelude::*, ShortcutTrigger};
 use glib::translate::*;
 
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::ShortcutTrigger>> Sealed for T {}
+}
+
 // rustdoc-stripper-ignore-next
 /// Trait containing manually implemented methods of [`ShortcutTrigger`](crate::ShortcutTrigger).
-pub trait ShortcutTriggerExtManual: IsA<ShortcutTrigger> {
+pub trait ShortcutTriggerExtManual: sealed::Sealed + IsA<ShortcutTrigger> {
     #[doc(alias = "gtk_shortcut_trigger_compare")]
     fn compare(&self, trigger2: &impl IsA<ShortcutTrigger>) -> std::cmp::Ordering {
         unsafe {

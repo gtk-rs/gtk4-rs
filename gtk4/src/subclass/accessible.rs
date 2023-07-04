@@ -39,7 +39,12 @@ pub trait AccessibleImpl: ObjectImpl {
     }
 }
 
-pub trait AccessibleImplExt: ObjectSubclass {
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::AccessibleImplExt> Sealed for T {}
+}
+
+pub trait AccessibleImplExt: sealed::Sealed + ObjectSubclass {
     fn parent_platform_state(&self, state: AccessiblePlatformState) -> bool {
         unsafe {
             let type_data = Self::type_data();

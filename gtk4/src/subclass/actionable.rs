@@ -15,7 +15,12 @@ pub trait ActionableImpl: WidgetImpl {
     fn set_action_target_value(&self, value: Option<&Variant>);
 }
 
-pub trait ActionableImplExt: ObjectSubclass {
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::ActionableImplExt> Sealed for T {}
+}
+
+pub trait ActionableImplExt: sealed::Sealed + ObjectSubclass {
     fn parent_action_name(&self) -> Option<GString> {
         unsafe {
             let type_data = Self::type_data();

@@ -3,11 +3,15 @@
 use crate::{prelude::*, CellLayout, CellRenderer};
 use glib::translate::*;
 
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::CellLayout>> Sealed for T {}
+}
 // rustdoc-stripper-ignore-next
 /// Trait containing manually implemented methods of [`CellLayout`](crate::CellLayout).
 #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 #[allow(deprecated)]
-pub trait CellLayoutExtManual: IsA<CellLayout> + 'static {
+pub trait CellLayoutExtManual: sealed::Sealed + IsA<CellLayout> + 'static {
     #[doc(alias = "gtk_cell_layout_set_attributes")]
     fn set_attributes(&self, cell: &impl IsA<CellRenderer>, attributes: &[(&str, i32)]) {
         self.as_ref().clear_attributes(cell);

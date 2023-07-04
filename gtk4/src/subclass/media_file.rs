@@ -15,7 +15,12 @@ pub trait MediaFileImpl: MediaFileImplExt + MediaStreamImpl {
     }
 }
 
-pub trait MediaFileImplExt: ObjectSubclass {
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::MediaFileImplExt> Sealed for T {}
+}
+
+pub trait MediaFileImplExt: sealed::Sealed + ObjectSubclass {
     fn parent_close(&self) {
         unsafe {
             let data = Self::type_data();
