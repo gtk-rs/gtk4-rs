@@ -28,7 +28,7 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 
 [`glib::wrapper!`](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/macro.wrapper.html) implements the same traits that our `ParentType` implements.
 Theoretically that would mean that the `ParentType` is also the only thing we have to specify here.
-Unfortunately, nobody found yet a good way to do that.
+Unfortunately, nobody has yet found a good way to do that.
 Which is why, as of today, subclassing of GObjects in Rust requires to mention all ancestors and interfaces apart from `GObject` and `GInitiallyUnowned`.
 For `gtk::Button`, we can look up the ancestors and interfaces in the corresponding [doc page](https://docs.gtk.org/gtk4/class.Button.html#hierarchy) of GTK4.
 
