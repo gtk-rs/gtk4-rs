@@ -72,9 +72,14 @@ pub trait TreeViewImpl: TreeViewImplExt + WidgetImpl {
     }
 }
 
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::TreeViewImplExt> Sealed for T {}
+}
+
 #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 #[allow(deprecated)]
-pub trait TreeViewImplExt: ObjectSubclass {
+pub trait TreeViewImplExt: sealed::Sealed + ObjectSubclass {
     fn parent_columns_changed(&self) {
         unsafe {
             let data = Self::type_data();

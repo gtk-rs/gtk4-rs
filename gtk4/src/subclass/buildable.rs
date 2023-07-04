@@ -60,7 +60,12 @@ pub trait BuildableImpl: ObjectImpl {
     */
 }
 
-pub trait BuildableImplExt: ObjectSubclass {
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::BuildableImplExt> Sealed for T {}
+}
+
+pub trait BuildableImplExt: sealed::Sealed + ObjectSubclass {
     fn parent_set_id(&self, id: &str) {
         unsafe {
             let type_data = Self::type_data();

@@ -28,7 +28,12 @@ pub trait WindowImpl: WindowImplExt + WidgetImpl {
     }
 }
 
-pub trait WindowImplExt: ObjectSubclass {
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::WindowImplExt> Sealed for T {}
+}
+
+pub trait WindowImplExt: sealed::Sealed + ObjectSubclass {
     fn parent_activate_focus(&self) {
         unsafe {
             let data = Self::type_data();

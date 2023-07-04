@@ -59,11 +59,16 @@ impl fmt::Display for SortColumn {
     }
 }
 
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::TreeSortable>> Sealed for T {}
+}
+
 // rustdoc-stripper-ignore-next
 /// Trait containing manually implemented methods of [`TreeSortable`](crate::TreeSortable).
 #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 #[allow(deprecated)]
-pub trait TreeSortableExtManual: IsA<TreeSortable> + 'static {
+pub trait TreeSortableExtManual: sealed::Sealed + IsA<TreeSortable> + 'static {
     #[doc(alias = "gtk_tree_sortable_set_default_sort_func")]
     fn set_default_sort_func<F>(&self, sort_func: F)
     where

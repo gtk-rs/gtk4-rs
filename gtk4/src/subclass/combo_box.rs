@@ -21,9 +21,14 @@ pub trait ComboBoxImpl: ComboBoxImplExt + WidgetImpl {
     }
 }
 
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::ComboBoxImplExt> Sealed for T {}
+}
+
 #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 #[allow(deprecated)]
-pub trait ComboBoxImplExt: ObjectSubclass {
+pub trait ComboBoxImplExt: sealed::Sealed + ObjectSubclass {
     #[cfg(any(feature = "v4_6", docsrs))]
     fn parent_activate(&self) {
         unsafe {

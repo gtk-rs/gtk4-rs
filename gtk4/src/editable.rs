@@ -7,10 +7,14 @@ use glib::{
 };
 use libc::{c_char, c_int, c_uchar};
 use std::{ffi::CStr, mem::transmute, slice, str};
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::Editable>> Sealed for T {}
+}
 
 // rustdoc-stripper-ignore-next
 /// Trait containing manually implemented methods of [`Editable`](crate::Editable).
-pub trait EditableExtManual: IsA<Editable> + 'static {
+pub trait EditableExtManual: sealed::Sealed + IsA<Editable> + 'static {
     fn connect_insert_text<F>(&self, f: F) -> SignalHandlerId
     where
         F: Fn(&Self, &str, &mut i32) + 'static,

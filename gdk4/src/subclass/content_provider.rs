@@ -42,7 +42,12 @@ pub trait ContentProviderImpl: ContentProviderImplExt + ObjectImpl {
     }
 }
 
-pub trait ContentProviderImplExt: ObjectSubclass {
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::ContentProviderImplExt> Sealed for T {}
+}
+
+pub trait ContentProviderImplExt: sealed::Sealed + ObjectSubclass {
     fn parent_content_changed(&self) {
         unsafe {
             let data = Self::type_data();

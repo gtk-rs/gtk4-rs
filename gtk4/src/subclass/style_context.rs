@@ -14,9 +14,14 @@ pub trait StyleContextImpl: StyleContextImplExt + ObjectImpl {
     }
 }
 
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::StyleContextImplExt> Sealed for T {}
+}
+
 #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 #[allow(deprecated)]
-pub trait StyleContextImplExt: ObjectSubclass {
+pub trait StyleContextImplExt: sealed::Sealed + ObjectSubclass {
     fn parent_changed(&self) {
         unsafe {
             let data = Self::type_data();

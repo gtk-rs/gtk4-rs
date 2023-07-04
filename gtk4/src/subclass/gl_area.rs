@@ -22,8 +22,13 @@ pub trait GLAreaImpl: GLAreaImplExt + WidgetImpl {
     }
 }
 
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::GLAreaImplExt> Sealed for T {}
+}
+
 #[allow(clippy::upper_case_acronyms)]
-pub trait GLAreaImplExt: ObjectSubclass {
+pub trait GLAreaImplExt: sealed::Sealed + ObjectSubclass {
     fn parent_create_context(&self) -> Option<GLContext> {
         unsafe {
             let data = Self::type_data();

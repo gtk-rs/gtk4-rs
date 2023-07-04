@@ -20,7 +20,12 @@ pub trait PrintOperationPreviewImpl: ObjectImpl {
     fn end_preview(&self);
 }
 
-pub trait PrintOperationPreviewImplExt: ObjectSubclass {
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::PrintOperationPreviewImplExt> Sealed for T {}
+}
+
+pub trait PrintOperationPreviewImplExt: sealed::Sealed + ObjectSubclass {
     fn parent_ready(&self, context: &PrintContext) {
         unsafe {
             let type_data = Self::type_data();

@@ -3,9 +3,14 @@
 use crate::{prelude::*, DrawContext};
 use glib::translate::*;
 
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::DrawContext>> Sealed for T {}
+}
+
 // rustdoc-stripper-ignore-next
 /// Trait containing manually implemented methods of [`DrawContext`](crate::DrawContext).
-pub trait DrawContextExtManual: IsA<DrawContext> + 'static {
+pub trait DrawContextExtManual: sealed::Sealed + IsA<DrawContext> + 'static {
     #[doc(alias = "gdk_draw_context_get_frame_region")]
     #[doc(alias = "get_frame_region")]
     fn frame_region(&self) -> Option<cairo::Region> {

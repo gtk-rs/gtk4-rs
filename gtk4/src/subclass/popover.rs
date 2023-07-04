@@ -16,7 +16,12 @@ pub trait PopoverImpl: PopoverImplExt + WidgetImpl {
     }
 }
 
-pub trait PopoverImplExt: ObjectSubclass {
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::PopoverImplExt> Sealed for T {}
+}
+
+pub trait PopoverImplExt: sealed::Sealed + ObjectSubclass {
     fn parent_activate_default(&self) {
         unsafe {
             let data = Self::type_data();

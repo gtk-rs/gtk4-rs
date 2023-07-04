@@ -16,9 +16,14 @@ pub trait TreeDragSourceImpl: ObjectImpl {
     fn drag_data_delete(&self, path: &TreePath) -> bool;
 }
 
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::TreeDragSourceImplExt> Sealed for T {}
+}
+
 #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 #[allow(deprecated)]
-pub trait TreeDragSourceImplExt: ObjectSubclass {
+pub trait TreeDragSourceImplExt: sealed::Sealed + ObjectSubclass {
     fn parent_row_draggable(&self, path: &TreePath) -> bool {
         unsafe {
             let type_data = Self::type_data();

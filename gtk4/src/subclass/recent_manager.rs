@@ -12,7 +12,11 @@ pub trait RecentManagerImpl: RecentManagerImplExt + ObjectImpl {
     }
 }
 
-pub trait RecentManagerImplExt: ObjectSubclass {
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::RecentManagerImplExt> Sealed for T {}
+}
+pub trait RecentManagerImplExt: sealed::Sealed + ObjectSubclass {
     fn parent_changed(&self) {
         unsafe {
             let data = Self::type_data();

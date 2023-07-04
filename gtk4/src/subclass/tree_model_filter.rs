@@ -24,9 +24,14 @@ pub trait TreeModelFilterImpl: TreeModelFilterImplExt + ObjectImpl {
     }
 }
 
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::TreeModelFilterImplExt> Sealed for T {}
+}
+
 #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 #[allow(deprecated)]
-pub trait TreeModelFilterImplExt: ObjectSubclass {
+pub trait TreeModelFilterImplExt: sealed::Sealed + ObjectSubclass {
     fn parent_visible<M: IsA<TreeModel>>(&self, child_model: &M, iter: &TreeIter) -> bool {
         unsafe {
             let data = Self::type_data();

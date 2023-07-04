@@ -45,7 +45,12 @@ pub trait SelectionModelImpl: ListModelImpl {
     }
 }
 
-pub trait SelectionModelImplExt: ObjectSubclass {
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::SelectionModelImplExt> Sealed for T {}
+}
+
+pub trait SelectionModelImplExt: sealed::Sealed + ObjectSubclass {
     fn parent_selection_in_range(&self, position: u32, n_items: u32) -> Bitset {
         unsafe {
             let type_data = Self::type_data();

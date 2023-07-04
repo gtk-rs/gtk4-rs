@@ -36,7 +36,12 @@ pub trait EntryBufferImpl: EntryBufferImplExt + ObjectImpl {
     }
 }
 
-pub trait EntryBufferImplExt: ObjectSubclass {
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::EntryBufferImplExt> Sealed for T {}
+}
+
+pub trait EntryBufferImplExt: sealed::Sealed + ObjectSubclass {
     fn parent_delete_text(&self, position: u32, n_chars: Option<u32>) -> u32 {
         unsafe {
             let data = Self::type_data();

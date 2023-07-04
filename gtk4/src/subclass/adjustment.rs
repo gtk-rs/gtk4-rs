@@ -16,7 +16,12 @@ pub trait AdjustmentImpl: AdjustmentImplExt + ObjectImpl {
     }
 }
 
-pub trait AdjustmentImplExt: ObjectSubclass {
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::AdjustmentImplExt> Sealed for T {}
+}
+
+pub trait AdjustmentImplExt: sealed::Sealed + ObjectSubclass {
     fn parent_changed(&self) {
         unsafe {
             let data = Self::type_data();

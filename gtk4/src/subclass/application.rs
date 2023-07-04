@@ -7,7 +7,7 @@ use glib::translate::*;
 
 use crate::{prelude::*, subclass::prelude::*, Application, Window};
 
-pub trait GtkApplicationImpl: ObjectImpl + GtkApplicationImplExt + ApplicationImpl {
+pub trait GtkApplicationImpl: GtkApplicationImplExt + ApplicationImpl {
     fn window_added(&self, window: &Window) {
         self.parent_window_added(window)
     }
@@ -17,7 +17,12 @@ pub trait GtkApplicationImpl: ObjectImpl + GtkApplicationImplExt + ApplicationIm
     }
 }
 
-pub trait GtkApplicationImplExt: ObjectSubclass {
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::GtkApplicationImplExt> Sealed for T {}
+}
+
+pub trait GtkApplicationImplExt: sealed::Sealed + ObjectSubclass {
     fn parent_window_added(&self, window: &Window) {
         unsafe {
             let data = Self::type_data();

@@ -12,7 +12,12 @@ pub trait EntryImpl: EntryImplExt + WidgetImpl {
     }
 }
 
-pub trait EntryImplExt: ObjectSubclass {
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::EntryImplExt> Sealed for T {}
+}
+
+pub trait EntryImplExt: sealed::Sealed + ObjectSubclass {
     fn parent_activate(&self) {
         unsafe {
             let data = Self::type_data();

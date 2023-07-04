@@ -18,7 +18,12 @@ pub trait SymbolicPaintableImpl: PaintableImpl {
     }
 }
 
-pub trait SymbolicPaintableImplExt: ObjectSubclass {
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::SymbolicPaintableImplExt> Sealed for T {}
+}
+
+pub trait SymbolicPaintableImplExt: sealed::Sealed + ObjectSubclass {
     fn parent_snapshot_symbolic(
         &self,
         snapshot: &gdk::Snapshot,

@@ -5,6 +5,10 @@ use crate::{
     AccessibleRelation, AccessibleSort, AccessibleState, AccessibleTristate, Orientation,
 };
 use glib::{translate::*, Value};
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::Accessible>> Sealed for T {}
+}
 
 // rustdoc-stripper-ignore-next
 /// Trait containing manually implemented methods of [`Accessible`](crate::Accessible).
@@ -25,7 +29,7 @@ use glib::{translate::*, Value};
 ///     gtk::accessible::State::Invalid(gtk::AccessibleInvalidState::Grammar),
 /// ]);
 /// ```
-pub trait AccessibleExtManual: IsA<Accessible> {
+pub trait AccessibleExtManual: sealed::Sealed + IsA<Accessible> {
     #[doc(alias = "gtk_accessible_update_property")]
     #[doc(alias = "gtk_accessible_update_property_value")]
     fn update_property(&self, properties: &[Property]) {

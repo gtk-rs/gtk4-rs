@@ -206,7 +206,12 @@ pub trait WidgetImpl: WidgetImplExt + ObjectImpl {
     }
 }
 
-pub trait WidgetImplExt: ObjectSubclass {
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::WidgetImplExt> Sealed for T {}
+}
+
+pub trait WidgetImplExt: sealed::Sealed + ObjectSubclass {
     fn parent_compute_expand(&self, hexpand: &mut bool, vexpand: &mut bool) {
         unsafe {
             let data = Self::type_data();

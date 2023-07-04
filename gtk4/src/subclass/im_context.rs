@@ -67,8 +67,13 @@ pub trait IMContextImpl: IMContextImplExt + ObjectImpl {
     }
 }
 
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IMContextImplExt> Sealed for T {}
+}
+
 #[allow(clippy::upper_case_acronyms)]
-pub trait IMContextImplExt: ObjectSubclass {
+pub trait IMContextImplExt: sealed::Sealed + ObjectSubclass {
     fn parent_commit(&self, string: &str) {
         unsafe {
             let data = Self::type_data();

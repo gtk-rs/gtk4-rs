@@ -12,7 +12,11 @@ pub trait DrawingAreaImpl: DrawingAreaImplExt + WidgetImpl {
     }
 }
 
-pub trait DrawingAreaImplExt: ObjectSubclass {
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::DrawingAreaImplExt> Sealed for T {}
+}
+pub trait DrawingAreaImplExt: sealed::Sealed + ObjectSubclass {
     fn parent_resize(&self, width: i32, height: i32) {
         unsafe {
             let data = Self::type_data();

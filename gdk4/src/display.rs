@@ -50,9 +50,14 @@ impl Backend {
     }
 }
 
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::Display>> Sealed for T {}
+}
+
 // rustdoc-stripper-ignore-next
 /// Trait containing manually implemented methods of [`Display`](crate::Display).
-pub trait DisplayExtManual: IsA<Display> + 'static {
+pub trait DisplayExtManual: sealed::Sealed + IsA<Display> + 'static {
     #[doc(alias = "gdk_display_translate_key")]
     fn translate_key(
         &self,

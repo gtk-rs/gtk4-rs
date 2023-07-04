@@ -29,7 +29,12 @@ pub trait RangeImpl: RangeImplExt + WidgetImpl {
     }
 }
 
-pub trait RangeImplExt: ObjectSubclass {
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::RangeImplExt> Sealed for T {}
+}
+
+pub trait RangeImplExt: sealed::Sealed + ObjectSubclass {
     fn parent_adjust_bounds(&self, new_value: f64) {
         unsafe {
             let data = Self::type_data();

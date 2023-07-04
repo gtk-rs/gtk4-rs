@@ -3,9 +3,14 @@
 use crate::{prelude::*, Scale};
 use glib::translate::*;
 
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::Scale>> Sealed for T {}
+}
+
 // rustdoc-stripper-ignore-next
 /// Trait containing manually implemented methods of [`Scale`](crate::Scale).
-pub trait ScaleExtManual: IsA<Scale> + 'static {
+pub trait ScaleExtManual: sealed::Sealed + IsA<Scale> + 'static {
     #[doc(alias = "gtk_scale_set_format_value_func")]
     #[doc(alias = "set_format_value_func")]
     fn unset_format_value_func(&self) {

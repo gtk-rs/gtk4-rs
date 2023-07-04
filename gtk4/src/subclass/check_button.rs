@@ -17,7 +17,12 @@ pub trait CheckButtonImpl: CheckButtonImplExt + WidgetImpl {
     }
 }
 
-pub trait CheckButtonImplExt: ObjectSubclass {
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::CheckButtonImplExt> Sealed for T {}
+}
+
+pub trait CheckButtonImplExt: sealed::Sealed + ObjectSubclass {
     fn parent_toggled(&self) {
         unsafe {
             let data = Self::type_data();

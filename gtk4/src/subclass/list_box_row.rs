@@ -12,7 +12,12 @@ pub trait ListBoxRowImpl: ListBoxRowImplExt + WidgetImpl {
     }
 }
 
-pub trait ListBoxRowImplExt: ObjectSubclass {
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::ListBoxRowImplExt> Sealed for T {}
+}
+
+pub trait ListBoxRowImplExt: sealed::Sealed + ObjectSubclass {
     fn parent_activate(&self) {
         unsafe {
             let data = Self::type_data();

@@ -49,7 +49,12 @@ pub trait EditableImpl: WidgetImpl {
     }
 }
 
-pub trait EditableImplExt: ObjectSubclass {
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::EditableImplExt> Sealed for T {}
+}
+
+pub trait EditableImplExt: sealed::Sealed + ObjectSubclass {
     #[doc(alias = "gtk_editable_delegate_get_property")]
     fn delegate_get_property(
         &self,

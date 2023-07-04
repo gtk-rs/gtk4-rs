@@ -94,26 +94,14 @@ pub trait CellLayoutImpl: ObjectImpl {
     }
 }
 
-#[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-#[allow(deprecated)]
-pub trait CellLayoutImplExt: ObjectSubclass {
-    fn parent_add_attribute<R: IsA<CellRenderer>>(&self, cell: &R, attribute: &str, column: i32);
-    fn parent_clear_attributes<R: IsA<CellRenderer>>(&self, cell: &R);
-    fn parent_cells(&self) -> Vec<CellRenderer>;
-    fn parent_set_cell_data_func<R: IsA<CellRenderer>>(
-        &self,
-
-        cell: &R,
-        callback: Option<CellLayoutDataCallback>,
-    );
-    fn parent_reorder<R: IsA<CellRenderer>>(&self, cell: &R, position: i32);
-    fn parent_clear(&self);
-    fn parent_pack_start<R: IsA<CellRenderer>>(&self, cell: &R, expand: bool);
-    fn parent_pack_end<R: IsA<CellRenderer>>(&self, cell: &R, expand: bool);
-    fn parent_area(&self) -> Option<CellArea>;
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::CellLayoutImplExt> Sealed for T {}
 }
 
-impl<O: CellLayoutImpl> CellLayoutImplExt for O {
+#[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
+#[allow(deprecated)]
+pub trait CellLayoutImplExt: sealed::Sealed + ObjectSubclass {
     fn parent_add_attribute<R: IsA<CellRenderer>>(&self, cell: &R, attribute: &str, column: i32) {
         unsafe {
             let type_data = Self::type_data();
@@ -276,6 +264,8 @@ impl<O: CellLayoutImpl> CellLayoutImplExt for O {
         }
     }
 }
+
+impl<T: CellLayoutImpl> CellLayoutImplExt for T {}
 
 unsafe impl<T: CellLayoutImpl> IsImplementable<T> for CellLayout {
     fn interface_init(iface: &mut glib::Interface<Self>) {

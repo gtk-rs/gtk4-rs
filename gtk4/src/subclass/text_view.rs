@@ -65,7 +65,12 @@ pub trait TextViewImpl: TextViewImplExt + WidgetImpl {
     }
 }
 
-pub trait TextViewImplExt: ObjectSubclass {
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::TextViewImplExt> Sealed for T {}
+}
+
+pub trait TextViewImplExt: sealed::Sealed + ObjectSubclass {
     fn parent_backspace(&self) {
         unsafe {
             let data = Self::type_data();

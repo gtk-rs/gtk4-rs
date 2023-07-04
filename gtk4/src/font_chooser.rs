@@ -3,11 +3,16 @@
 use crate::{prelude::*, FontChooser};
 use glib::translate::*;
 
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::FontChooser>> Sealed for T {}
+}
+
 // rustdoc-stripper-ignore-next
 /// Trait containing manually implemented methods of [`FontChooser`](crate::FontChooser).
 #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 #[allow(deprecated)]
-pub trait FontChooserExtManual: IsA<FontChooser> + 'static {
+pub trait FontChooserExtManual: sealed::Sealed + IsA<FontChooser> + 'static {
     #[doc(alias = "gtk_font_chooser_set_filter_func")]
     #[doc(alias = "set_filter_func")]
     fn unset_filter_func(&self) {

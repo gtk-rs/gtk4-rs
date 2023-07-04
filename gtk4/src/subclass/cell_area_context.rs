@@ -27,9 +27,14 @@ pub trait CellAreaContextImpl: CellAreaContextImplExt + ObjectImpl {
     }
 }
 
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::CellAreaContextImplExt> Sealed for T {}
+}
+
 #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 #[allow(deprecated)]
-pub trait CellAreaContextImplExt: ObjectSubclass {
+pub trait CellAreaContextImplExt: sealed::Sealed + ObjectSubclass {
     fn parent_reset(&self) {
         unsafe {
             let data = Self::type_data();

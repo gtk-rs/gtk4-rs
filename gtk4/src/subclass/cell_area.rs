@@ -219,9 +219,14 @@ pub trait CellAreaImpl: CellAreaImplExt + ObjectImpl {
     }
 }
 
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::CellAreaImplExt> Sealed for T {}
+}
+
 #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 #[allow(deprecated)]
-pub trait CellAreaImplExt: ObjectSubclass {
+pub trait CellAreaImplExt: sealed::Sealed + ObjectSubclass {
     fn parent_activate<P: IsA<CellAreaContext>, W: IsA<Widget>>(
         &self,
         context: &P,

@@ -12,7 +12,12 @@ pub trait ToggleButtonImpl: ToggleButtonImplExt + ButtonImpl {
     }
 }
 
-pub trait ToggleButtonImplExt: ObjectSubclass {
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::ToggleButtonImplExt> Sealed for T {}
+}
+
+pub trait ToggleButtonImplExt: sealed::Sealed + ObjectSubclass {
     fn parent_toggled(&self) {
         unsafe {
             let data = Self::type_data();

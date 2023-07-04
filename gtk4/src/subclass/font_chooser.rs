@@ -77,19 +77,14 @@ pub trait FontChooserImpl: ObjectImpl {
     }
 }
 
-#[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
-#[allow(deprecated)]
-pub trait FontChooserImplExt: ObjectSubclass {
-    fn parent_font_family(&self) -> Option<FontFamily>;
-    fn parent_font_face(&self) -> Option<FontFace>;
-    fn parent_font_size(&self) -> i32;
-    fn parent_set_filter_func(&self, callback: Option<FilterCallback>);
-    fn parent_set_font_map<P: IsA<FontMap>>(&self, font_map: Option<&P>);
-    fn parent_font_map(&self) -> Option<FontMap>;
-    fn parent_font_activated(&self, font_name: &str);
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::FontChooserImplExt> Sealed for T {}
 }
 
-impl<O: FontChooserImpl> FontChooserImplExt for O {
+#[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
+#[allow(deprecated)]
+pub trait FontChooserImplExt: sealed::Sealed + ObjectSubclass {
     fn parent_font_family(&self) -> Option<FontFamily> {
         unsafe {
             let type_data = Self::type_data();
@@ -214,6 +209,8 @@ impl<O: FontChooserImpl> FontChooserImplExt for O {
         }
     }
 }
+
+impl<T: FontChooserImpl> FontChooserImplExt for T {}
 
 unsafe impl<T: FontChooserImpl> IsImplementable<T> for FontChooser {
     fn interface_init(iface: &mut glib::Interface<Self>) {

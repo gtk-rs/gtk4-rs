@@ -22,9 +22,14 @@ pub trait NativeDialogImpl: NativeDialogImplExt + ObjectImpl {
     }
 }
 
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::NativeDialogImplExt> Sealed for T {}
+}
+
 #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 #[allow(deprecated)]
-pub trait NativeDialogImplExt: ObjectSubclass {
+pub trait NativeDialogImplExt: sealed::Sealed + ObjectSubclass {
     fn parent_response(&self, response: ResponseType) {
         unsafe {
             let data = Self::type_data();

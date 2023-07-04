@@ -4,9 +4,14 @@ use crate::{prelude::*, Widget};
 
 use glib::{translate::*, Continue, WeakRef};
 
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::Widget>> Sealed for T {}
+}
+
 // rustdoc-stripper-ignore-next
 /// Trait containing manually implemented methods of [`Widget`](crate::Widget).
-pub trait WidgetExtManual: IsA<Widget> + 'static {
+pub trait WidgetExtManual: sealed::Sealed + IsA<Widget> + 'static {
     #[doc(alias = "gtk_widget_add_tick_callback")]
     fn add_tick_callback<P: Fn(&Self, &gdk::FrameClock) -> Continue + 'static>(
         &self,
