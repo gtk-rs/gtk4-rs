@@ -2,6 +2,9 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+#[cfg(feature = "v4_12")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+use crate::StringFilterMatchMode;
 use crate::{
     Accessible, AccessibleRole, Align, Buildable, ConstraintTarget, Expression, LayoutManager,
     ListItemFactory, Overflow, Widget,
@@ -98,6 +101,18 @@ impl DropDown {
         unsafe { from_glib_none(ffi::gtk_drop_down_get_model(self.to_glib_none().0)) }
     }
 
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    #[doc(alias = "gtk_drop_down_get_search_match_mode")]
+    #[doc(alias = "get_search_match_mode")]
+    pub fn search_match_mode(&self) -> StringFilterMatchMode {
+        unsafe {
+            from_glib(ffi::gtk_drop_down_get_search_match_mode(
+                self.to_glib_none().0,
+            ))
+        }
+    }
+
     #[doc(alias = "gtk_drop_down_get_selected")]
     #[doc(alias = "get_selected")]
     pub fn selected(&self) -> u32 {
@@ -173,6 +188,18 @@ impl DropDown {
             ffi::gtk_drop_down_set_model(
                 self.to_glib_none().0,
                 model.map(|p| p.as_ref()).to_glib_none().0,
+            );
+        }
+    }
+
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    #[doc(alias = "gtk_drop_down_set_search_match_mode")]
+    pub fn set_search_match_mode(&self, search_match_mode: StringFilterMatchMode) {
+        unsafe {
+            ffi::gtk_drop_down_set_search_match_mode(
+                self.to_glib_none().0,
+                search_match_mode.into_glib(),
             );
         }
     }
@@ -363,6 +390,34 @@ impl DropDown {
         }
     }
 
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    #[doc(alias = "search-match-mode")]
+    pub fn connect_search_match_mode_notify<F: Fn(&Self) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_search_match_mode_trampoline<F: Fn(&DropDown) + 'static>(
+            this: *mut ffi::GtkDropDown,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::search-match-mode\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_search_match_mode_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
     #[doc(alias = "selected")]
     pub fn connect_selected_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_selected_trampoline<F: Fn(&DropDown) + 'static>(
@@ -498,6 +553,16 @@ impl DropDownBuilder {
     pub fn model(self, model: &impl IsA<gio::ListModel>) -> Self {
         Self {
             builder: self.builder.property("model", model.clone().upcast()),
+        }
+    }
+
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    pub fn search_match_mode(self, search_match_mode: StringFilterMatchMode) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("search-match-mode", search_match_mode),
         }
     }
 

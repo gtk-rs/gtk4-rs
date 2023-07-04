@@ -12586,6 +12586,10 @@ extern "C" {
     pub fn gtk_drop_down_get_header_factory(self_: *mut GtkDropDown) -> *mut GtkListItemFactory;
     pub fn gtk_drop_down_get_list_factory(self_: *mut GtkDropDown) -> *mut GtkListItemFactory;
     pub fn gtk_drop_down_get_model(self_: *mut GtkDropDown) -> *mut gio::GListModel;
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    pub fn gtk_drop_down_get_search_match_mode(self_: *mut GtkDropDown)
+        -> GtkStringFilterMatchMode;
     pub fn gtk_drop_down_get_selected(self_: *mut GtkDropDown) -> c_uint;
     pub fn gtk_drop_down_get_selected_item(self_: *mut GtkDropDown) -> *mut gobject::GObject;
     #[cfg(feature = "v4_6")]
@@ -12605,6 +12609,12 @@ extern "C" {
         factory: *mut GtkListItemFactory,
     );
     pub fn gtk_drop_down_set_model(self_: *mut GtkDropDown, model: *mut gio::GListModel);
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    pub fn gtk_drop_down_set_search_match_mode(
+        self_: *mut GtkDropDown,
+        search_match_mode: GtkStringFilterMatchMode,
+    );
     pub fn gtk_drop_down_set_selected(self_: *mut GtkDropDown, position: c_uint);
     #[cfg(feature = "v4_6")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
