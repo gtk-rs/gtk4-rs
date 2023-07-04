@@ -6,3 +6,6 @@
 pub use crate::auto::builders::*;
 pub use crate::rgba::RGBABuilder;
 pub use crate::ContentFormatsBuilder;
+#[cfg(feature = "v4_12")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+pub use crate::GLTextureBuilder;

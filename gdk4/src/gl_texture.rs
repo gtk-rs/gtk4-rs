@@ -1,5 +1,8 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
+#[cfg(feature = "v4_12")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+use crate::builders::GLTextureBuilder;
 use crate::{GLContext, GLTexture};
 use glib::translate::*;
 
@@ -37,5 +40,15 @@ impl GLTexture {
             Some(destroy_closure::<F>),
             Box::into_raw(released_func) as glib::ffi::gpointer,
         ))
+    }
+
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-pattern struct instance to construct [`GLTexture`] objects.
+    ///
+    /// This method returns an instance of [`GLTextureBuilder`](crate::builders::GLTextureBuilder) which can be used to create [`GLTexture`] objects.
+    pub fn builder() -> GLTextureBuilder {
+        GLTextureBuilder::new()
     }
 }
