@@ -197,7 +197,7 @@ pub trait AccessibleExt: IsA<Accessible> + sealed::Sealed + 'static {
 
     #[doc(alias = "accessible-role")]
     fn set_accessible_role(&self, accessible_role: AccessibleRole) {
-        glib::ObjectExt::set_property(self.as_ref(), "accessible-role", accessible_role)
+        ObjectExt::set_property(self.as_ref(), "accessible-role", accessible_role)
     }
 
     #[doc(alias = "accessible-role")]

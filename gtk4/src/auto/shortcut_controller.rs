@@ -97,12 +97,12 @@ impl ShortcutController {
 
     #[doc(alias = "mnemonic-modifiers")]
     pub fn mnemonic_modifiers(&self) -> gdk::ModifierType {
-        glib::ObjectExt::property(self, "mnemonic-modifiers")
+        ObjectExt::property(self, "mnemonic-modifiers")
     }
 
     #[doc(alias = "mnemonic-modifiers")]
     pub fn set_mnemonic_modifiers(&self, mnemonic_modifiers: gdk::ModifierType) {
-        glib::ObjectExt::set_property(self, "mnemonic-modifiers", mnemonic_modifiers)
+        ObjectExt::set_property(self, "mnemonic-modifiers", mnemonic_modifiers)
     }
 
     #[doc(alias = "mnemonic-modifiers")]

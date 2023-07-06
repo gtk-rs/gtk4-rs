@@ -39,12 +39,12 @@ impl ColorChooserWidget {
 
     #[doc(alias = "show-editor")]
     pub fn shows_editor(&self) -> bool {
-        glib::ObjectExt::property(self, "show-editor")
+        ObjectExt::property(self, "show-editor")
     }
 
     #[doc(alias = "show-editor")]
     pub fn set_show_editor(&self, show_editor: bool) {
-        glib::ObjectExt::set_property(self, "show-editor", show_editor)
+        ObjectExt::set_property(self, "show-editor", show_editor)
     }
 
     #[doc(alias = "show-editor")]

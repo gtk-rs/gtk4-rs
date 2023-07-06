@@ -16,11 +16,11 @@ glib::wrapper! {
 
 impl Win32HCursor {
     pub fn is_destroyable(&self) -> bool {
-        glib::ObjectExt::property(self, "destroyable")
+        ObjectExt::property(self, "destroyable")
     }
 
     pub fn display(&self) -> Option<gdk::Display> {
-        glib::ObjectExt::property(self, "display")
+        ObjectExt::property(self, "display")
     }
 }
 

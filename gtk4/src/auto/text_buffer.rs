@@ -863,7 +863,7 @@ pub trait TextBufferExt: IsA<TextBuffer> + sealed::Sealed + 'static {
 
     #[doc(alias = "cursor-position")]
     fn cursor_position(&self) -> i32 {
-        glib::ObjectExt::property(self.as_ref(), "cursor-position")
+        ObjectExt::property(self.as_ref(), "cursor-position")
     }
 
     #[doc(alias = "apply-tag")]

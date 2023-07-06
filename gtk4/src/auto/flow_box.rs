@@ -367,12 +367,12 @@ impl FlowBox {
 
     #[doc(alias = "accept-unpaired-release")]
     pub fn accepts_unpaired_release(&self) -> bool {
-        glib::ObjectExt::property(self, "accept-unpaired-release")
+        ObjectExt::property(self, "accept-unpaired-release")
     }
 
     #[doc(alias = "accept-unpaired-release")]
     pub fn set_accept_unpaired_release(&self, accept_unpaired_release: bool) {
-        glib::ObjectExt::set_property(self, "accept-unpaired-release", accept_unpaired_release)
+        ObjectExt::set_property(self, "accept-unpaired-release", accept_unpaired_release)
     }
 
     #[doc(alias = "activate-cursor-child")]

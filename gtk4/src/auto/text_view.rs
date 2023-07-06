@@ -1178,12 +1178,12 @@ pub trait TextViewExt: IsA<TextView> + sealed::Sealed + 'static {
 
     #[doc(alias = "im-module")]
     fn im_module(&self) -> Option<glib::GString> {
-        glib::ObjectExt::property(self.as_ref(), "im-module")
+        ObjectExt::property(self.as_ref(), "im-module")
     }
 
     #[doc(alias = "im-module")]
     fn set_im_module(&self, im_module: Option<&str>) {
-        glib::ObjectExt::set_property(self.as_ref(), "im-module", im_module)
+        ObjectExt::set_property(self.as_ref(), "im-module", im_module)
     }
 
     #[doc(alias = "backspace")]

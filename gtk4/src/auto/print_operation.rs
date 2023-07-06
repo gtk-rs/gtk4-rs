@@ -449,51 +449,51 @@ pub trait PrintOperationExt: IsA<PrintOperation> + sealed::Sealed + 'static {
 
     #[doc(alias = "allow-async")]
     fn allows_async(&self) -> bool {
-        glib::ObjectExt::property(self.as_ref(), "allow-async")
+        ObjectExt::property(self.as_ref(), "allow-async")
     }
 
     #[doc(alias = "current-page")]
     fn current_page(&self) -> i32 {
-        glib::ObjectExt::property(self.as_ref(), "current-page")
+        ObjectExt::property(self.as_ref(), "current-page")
     }
 
     #[doc(alias = "custom-tab-label")]
     fn custom_tab_label(&self) -> Option<glib::GString> {
-        glib::ObjectExt::property(self.as_ref(), "custom-tab-label")
+        ObjectExt::property(self.as_ref(), "custom-tab-label")
     }
 
     #[doc(alias = "export-filename")]
     fn export_filename(&self) -> Option<glib::GString> {
-        glib::ObjectExt::property(self.as_ref(), "export-filename")
+        ObjectExt::property(self.as_ref(), "export-filename")
     }
 
     #[doc(alias = "job-name")]
     fn job_name(&self) -> Option<glib::GString> {
-        glib::ObjectExt::property(self.as_ref(), "job-name")
+        ObjectExt::property(self.as_ref(), "job-name")
     }
 
     #[doc(alias = "n-pages")]
     fn n_pages(&self) -> i32 {
-        glib::ObjectExt::property(self.as_ref(), "n-pages")
+        ObjectExt::property(self.as_ref(), "n-pages")
     }
 
     #[doc(alias = "show-progress")]
     fn shows_progress(&self) -> bool {
-        glib::ObjectExt::property(self.as_ref(), "show-progress")
+        ObjectExt::property(self.as_ref(), "show-progress")
     }
 
     #[doc(alias = "track-print-status")]
     fn tracks_print_status(&self) -> bool {
-        glib::ObjectExt::property(self.as_ref(), "track-print-status")
+        ObjectExt::property(self.as_ref(), "track-print-status")
     }
 
     fn unit(&self) -> Unit {
-        glib::ObjectExt::property(self.as_ref(), "unit")
+        ObjectExt::property(self.as_ref(), "unit")
     }
 
     #[doc(alias = "use-full-page")]
     fn uses_full_page(&self) -> bool {
-        glib::ObjectExt::property(self.as_ref(), "use-full-page")
+        ObjectExt::property(self.as_ref(), "use-full-page")
     }
 
     #[doc(alias = "begin-print")]

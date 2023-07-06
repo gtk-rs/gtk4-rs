@@ -308,7 +308,7 @@ impl Assistant {
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "use-header-bar")]
     pub fn use_header_bar(&self) -> i32 {
-        glib::ObjectExt::property(self, "use-header-bar")
+        ObjectExt::property(self, "use-header-bar")
     }
 
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]

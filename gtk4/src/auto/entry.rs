@@ -1119,12 +1119,12 @@ pub trait EntryExt: IsA<Entry> + sealed::Sealed + 'static {
 
     #[doc(alias = "enable-emoji-completion")]
     fn enables_emoji_completion(&self) -> bool {
-        glib::ObjectExt::property(self.as_ref(), "enable-emoji-completion")
+        ObjectExt::property(self.as_ref(), "enable-emoji-completion")
     }
 
     #[doc(alias = "enable-emoji-completion")]
     fn set_enable_emoji_completion(&self, enable_emoji_completion: bool) {
-        glib::ObjectExt::set_property(
+        ObjectExt::set_property(
             self.as_ref(),
             "enable-emoji-completion",
             enable_emoji_completion,
@@ -1133,27 +1133,27 @@ pub trait EntryExt: IsA<Entry> + sealed::Sealed + 'static {
 
     #[doc(alias = "im-module")]
     fn im_module(&self) -> Option<glib::GString> {
-        glib::ObjectExt::property(self.as_ref(), "im-module")
+        ObjectExt::property(self.as_ref(), "im-module")
     }
 
     #[doc(alias = "im-module")]
     fn set_im_module(&self, im_module: Option<&str>) {
-        glib::ObjectExt::set_property(self.as_ref(), "im-module", im_module)
+        ObjectExt::set_property(self.as_ref(), "im-module", im_module)
     }
 
     #[doc(alias = "invisible-char-set")]
     fn is_invisible_char_set(&self) -> bool {
-        glib::ObjectExt::property(self.as_ref(), "invisible-char-set")
+        ObjectExt::property(self.as_ref(), "invisible-char-set")
     }
 
     #[doc(alias = "primary-icon-activatable")]
     fn is_primary_icon_activatable(&self) -> bool {
-        glib::ObjectExt::property(self.as_ref(), "primary-icon-activatable")
+        ObjectExt::property(self.as_ref(), "primary-icon-activatable")
     }
 
     #[doc(alias = "primary-icon-activatable")]
     fn set_primary_icon_activatable(&self, primary_icon_activatable: bool) {
-        glib::ObjectExt::set_property(
+        ObjectExt::set_property(
             self.as_ref(),
             "primary-icon-activatable",
             primary_icon_activatable,
@@ -1162,27 +1162,27 @@ pub trait EntryExt: IsA<Entry> + sealed::Sealed + 'static {
 
     #[doc(alias = "primary-icon-gicon")]
     fn primary_icon_gicon(&self) -> Option<gio::Icon> {
-        glib::ObjectExt::property(self.as_ref(), "primary-icon-gicon")
+        ObjectExt::property(self.as_ref(), "primary-icon-gicon")
     }
 
     #[doc(alias = "primary-icon-gicon")]
     fn set_primary_icon_gicon<P: IsA<gio::Icon>>(&self, primary_icon_gicon: Option<&P>) {
-        glib::ObjectExt::set_property(self.as_ref(), "primary-icon-gicon", primary_icon_gicon)
+        ObjectExt::set_property(self.as_ref(), "primary-icon-gicon", primary_icon_gicon)
     }
 
     #[doc(alias = "primary-icon-name")]
     fn primary_icon_name(&self) -> Option<glib::GString> {
-        glib::ObjectExt::property(self.as_ref(), "primary-icon-name")
+        ObjectExt::property(self.as_ref(), "primary-icon-name")
     }
 
     #[doc(alias = "primary-icon-name")]
     fn set_primary_icon_name(&self, primary_icon_name: Option<&str>) {
-        glib::ObjectExt::set_property(self.as_ref(), "primary-icon-name", primary_icon_name)
+        ObjectExt::set_property(self.as_ref(), "primary-icon-name", primary_icon_name)
     }
 
     #[doc(alias = "primary-icon-paintable")]
     fn primary_icon_paintable(&self) -> Option<gdk::Paintable> {
-        glib::ObjectExt::property(self.as_ref(), "primary-icon-paintable")
+        ObjectExt::property(self.as_ref(), "primary-icon-paintable")
     }
 
     #[doc(alias = "primary-icon-paintable")]
@@ -1190,7 +1190,7 @@ pub trait EntryExt: IsA<Entry> + sealed::Sealed + 'static {
         &self,
         primary_icon_paintable: Option<&P>,
     ) {
-        glib::ObjectExt::set_property(
+        ObjectExt::set_property(
             self.as_ref(),
             "primary-icon-paintable",
             primary_icon_paintable,
@@ -1199,12 +1199,12 @@ pub trait EntryExt: IsA<Entry> + sealed::Sealed + 'static {
 
     #[doc(alias = "primary-icon-sensitive")]
     fn is_primary_icon_sensitive(&self) -> bool {
-        glib::ObjectExt::property(self.as_ref(), "primary-icon-sensitive")
+        ObjectExt::property(self.as_ref(), "primary-icon-sensitive")
     }
 
     #[doc(alias = "primary-icon-sensitive")]
     fn set_primary_icon_sensitive(&self, primary_icon_sensitive: bool) {
-        glib::ObjectExt::set_property(
+        ObjectExt::set_property(
             self.as_ref(),
             "primary-icon-sensitive",
             primary_icon_sensitive,
@@ -1213,17 +1213,17 @@ pub trait EntryExt: IsA<Entry> + sealed::Sealed + 'static {
 
     #[doc(alias = "primary-icon-storage-type")]
     fn primary_icon_storage_type(&self) -> ImageType {
-        glib::ObjectExt::property(self.as_ref(), "primary-icon-storage-type")
+        ObjectExt::property(self.as_ref(), "primary-icon-storage-type")
     }
 
     #[doc(alias = "primary-icon-tooltip-markup")]
     fn primary_icon_tooltip_markup(&self) -> Option<glib::GString> {
-        glib::ObjectExt::property(self.as_ref(), "primary-icon-tooltip-markup")
+        ObjectExt::property(self.as_ref(), "primary-icon-tooltip-markup")
     }
 
     #[doc(alias = "primary-icon-tooltip-markup")]
     fn set_primary_icon_tooltip_markup(&self, primary_icon_tooltip_markup: Option<&str>) {
-        glib::ObjectExt::set_property(
+        ObjectExt::set_property(
             self.as_ref(),
             "primary-icon-tooltip-markup",
             primary_icon_tooltip_markup,
@@ -1232,12 +1232,12 @@ pub trait EntryExt: IsA<Entry> + sealed::Sealed + 'static {
 
     #[doc(alias = "primary-icon-tooltip-text")]
     fn primary_icon_tooltip_text(&self) -> Option<glib::GString> {
-        glib::ObjectExt::property(self.as_ref(), "primary-icon-tooltip-text")
+        ObjectExt::property(self.as_ref(), "primary-icon-tooltip-text")
     }
 
     #[doc(alias = "primary-icon-tooltip-text")]
     fn set_primary_icon_tooltip_text(&self, primary_icon_tooltip_text: Option<&str>) {
-        glib::ObjectExt::set_property(
+        ObjectExt::set_property(
             self.as_ref(),
             "primary-icon-tooltip-text",
             primary_icon_tooltip_text,
@@ -1246,17 +1246,17 @@ pub trait EntryExt: IsA<Entry> + sealed::Sealed + 'static {
 
     #[doc(alias = "scroll-offset")]
     fn scroll_offset(&self) -> i32 {
-        glib::ObjectExt::property(self.as_ref(), "scroll-offset")
+        ObjectExt::property(self.as_ref(), "scroll-offset")
     }
 
     #[doc(alias = "secondary-icon-activatable")]
     fn is_secondary_icon_activatable(&self) -> bool {
-        glib::ObjectExt::property(self.as_ref(), "secondary-icon-activatable")
+        ObjectExt::property(self.as_ref(), "secondary-icon-activatable")
     }
 
     #[doc(alias = "secondary-icon-activatable")]
     fn set_secondary_icon_activatable(&self, secondary_icon_activatable: bool) {
-        glib::ObjectExt::set_property(
+        ObjectExt::set_property(
             self.as_ref(),
             "secondary-icon-activatable",
             secondary_icon_activatable,
@@ -1265,27 +1265,27 @@ pub trait EntryExt: IsA<Entry> + sealed::Sealed + 'static {
 
     #[doc(alias = "secondary-icon-gicon")]
     fn secondary_icon_gicon(&self) -> Option<gio::Icon> {
-        glib::ObjectExt::property(self.as_ref(), "secondary-icon-gicon")
+        ObjectExt::property(self.as_ref(), "secondary-icon-gicon")
     }
 
     #[doc(alias = "secondary-icon-gicon")]
     fn set_secondary_icon_gicon<P: IsA<gio::Icon>>(&self, secondary_icon_gicon: Option<&P>) {
-        glib::ObjectExt::set_property(self.as_ref(), "secondary-icon-gicon", secondary_icon_gicon)
+        ObjectExt::set_property(self.as_ref(), "secondary-icon-gicon", secondary_icon_gicon)
     }
 
     #[doc(alias = "secondary-icon-name")]
     fn secondary_icon_name(&self) -> Option<glib::GString> {
-        glib::ObjectExt::property(self.as_ref(), "secondary-icon-name")
+        ObjectExt::property(self.as_ref(), "secondary-icon-name")
     }
 
     #[doc(alias = "secondary-icon-name")]
     fn set_secondary_icon_name(&self, secondary_icon_name: Option<&str>) {
-        glib::ObjectExt::set_property(self.as_ref(), "secondary-icon-name", secondary_icon_name)
+        ObjectExt::set_property(self.as_ref(), "secondary-icon-name", secondary_icon_name)
     }
 
     #[doc(alias = "secondary-icon-paintable")]
     fn secondary_icon_paintable(&self) -> Option<gdk::Paintable> {
-        glib::ObjectExt::property(self.as_ref(), "secondary-icon-paintable")
+        ObjectExt::property(self.as_ref(), "secondary-icon-paintable")
     }
 
     #[doc(alias = "secondary-icon-paintable")]
@@ -1293,7 +1293,7 @@ pub trait EntryExt: IsA<Entry> + sealed::Sealed + 'static {
         &self,
         secondary_icon_paintable: Option<&P>,
     ) {
-        glib::ObjectExt::set_property(
+        ObjectExt::set_property(
             self.as_ref(),
             "secondary-icon-paintable",
             secondary_icon_paintable,
@@ -1302,12 +1302,12 @@ pub trait EntryExt: IsA<Entry> + sealed::Sealed + 'static {
 
     #[doc(alias = "secondary-icon-sensitive")]
     fn is_secondary_icon_sensitive(&self) -> bool {
-        glib::ObjectExt::property(self.as_ref(), "secondary-icon-sensitive")
+        ObjectExt::property(self.as_ref(), "secondary-icon-sensitive")
     }
 
     #[doc(alias = "secondary-icon-sensitive")]
     fn set_secondary_icon_sensitive(&self, secondary_icon_sensitive: bool) {
-        glib::ObjectExt::set_property(
+        ObjectExt::set_property(
             self.as_ref(),
             "secondary-icon-sensitive",
             secondary_icon_sensitive,
@@ -1316,17 +1316,17 @@ pub trait EntryExt: IsA<Entry> + sealed::Sealed + 'static {
 
     #[doc(alias = "secondary-icon-storage-type")]
     fn secondary_icon_storage_type(&self) -> ImageType {
-        glib::ObjectExt::property(self.as_ref(), "secondary-icon-storage-type")
+        ObjectExt::property(self.as_ref(), "secondary-icon-storage-type")
     }
 
     #[doc(alias = "secondary-icon-tooltip-markup")]
     fn secondary_icon_tooltip_markup(&self) -> Option<glib::GString> {
-        glib::ObjectExt::property(self.as_ref(), "secondary-icon-tooltip-markup")
+        ObjectExt::property(self.as_ref(), "secondary-icon-tooltip-markup")
     }
 
     #[doc(alias = "secondary-icon-tooltip-markup")]
     fn set_secondary_icon_tooltip_markup(&self, secondary_icon_tooltip_markup: Option<&str>) {
-        glib::ObjectExt::set_property(
+        ObjectExt::set_property(
             self.as_ref(),
             "secondary-icon-tooltip-markup",
             secondary_icon_tooltip_markup,
@@ -1335,12 +1335,12 @@ pub trait EntryExt: IsA<Entry> + sealed::Sealed + 'static {
 
     #[doc(alias = "secondary-icon-tooltip-text")]
     fn secondary_icon_tooltip_text(&self) -> Option<glib::GString> {
-        glib::ObjectExt::property(self.as_ref(), "secondary-icon-tooltip-text")
+        ObjectExt::property(self.as_ref(), "secondary-icon-tooltip-text")
     }
 
     #[doc(alias = "secondary-icon-tooltip-text")]
     fn set_secondary_icon_tooltip_text(&self, secondary_icon_tooltip_text: Option<&str>) {
-        glib::ObjectExt::set_property(
+        ObjectExt::set_property(
             self.as_ref(),
             "secondary-icon-tooltip-text",
             secondary_icon_tooltip_text,
@@ -1349,22 +1349,22 @@ pub trait EntryExt: IsA<Entry> + sealed::Sealed + 'static {
 
     #[doc(alias = "show-emoji-icon")]
     fn shows_emoji_icon(&self) -> bool {
-        glib::ObjectExt::property(self.as_ref(), "show-emoji-icon")
+        ObjectExt::property(self.as_ref(), "show-emoji-icon")
     }
 
     #[doc(alias = "show-emoji-icon")]
     fn set_show_emoji_icon(&self, show_emoji_icon: bool) {
-        glib::ObjectExt::set_property(self.as_ref(), "show-emoji-icon", show_emoji_icon)
+        ObjectExt::set_property(self.as_ref(), "show-emoji-icon", show_emoji_icon)
     }
 
     #[doc(alias = "truncate-multiline")]
     fn must_truncate_multiline(&self) -> bool {
-        glib::ObjectExt::property(self.as_ref(), "truncate-multiline")
+        ObjectExt::property(self.as_ref(), "truncate-multiline")
     }
 
     #[doc(alias = "truncate-multiline")]
     fn set_truncate_multiline(&self, truncate_multiline: bool) {
-        glib::ObjectExt::set_property(self.as_ref(), "truncate-multiline", truncate_multiline)
+        ObjectExt::set_property(self.as_ref(), "truncate-multiline", truncate_multiline)
     }
 
     #[doc(alias = "activate")]

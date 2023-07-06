@@ -190,11 +190,11 @@ pub trait DeviceExt: IsA<Device> + sealed::Sealed + 'static {
 
     #[doc(alias = "n-axes")]
     fn n_axes(&self) -> u32 {
-        glib::ObjectExt::property(self.as_ref(), "n-axes")
+        ObjectExt::property(self.as_ref(), "n-axes")
     }
 
     fn set_seat<P: IsA<Seat>>(&self, seat: Option<&P>) {
-        glib::ObjectExt::set_property(self.as_ref(), "seat", seat)
+        ObjectExt::set_property(self.as_ref(), "seat", seat)
     }
 
     #[doc(alias = "changed")]

@@ -54,15 +54,15 @@ impl ATContext {
 
     #[doc(alias = "accessible-role")]
     pub fn set_accessible_role(&self, accessible_role: AccessibleRole) {
-        glib::ObjectExt::set_property(self, "accessible-role", accessible_role)
+        ObjectExt::set_property(self, "accessible-role", accessible_role)
     }
 
     pub fn display(&self) -> Option<gdk::Display> {
-        glib::ObjectExt::property(self, "display")
+        ObjectExt::property(self, "display")
     }
 
     pub fn set_display<P: IsA<gdk::Display>>(&self, display: Option<&P>) {
-        glib::ObjectExt::set_property(self, "display", display)
+        ObjectExt::set_property(self, "display", display)
     }
 
     #[doc(alias = "state-change")]

@@ -265,17 +265,17 @@ pub trait GtkApplicationExt: IsA<Application> + sealed::Sealed + 'static {
 
     #[doc(alias = "register-session")]
     fn is_register_session(&self) -> bool {
-        glib::ObjectExt::property(self.as_ref(), "register-session")
+        ObjectExt::property(self.as_ref(), "register-session")
     }
 
     #[doc(alias = "register-session")]
     fn set_register_session(&self, register_session: bool) {
-        glib::ObjectExt::set_property(self.as_ref(), "register-session", register_session)
+        ObjectExt::set_property(self.as_ref(), "register-session", register_session)
     }
 
     #[doc(alias = "screensaver-active")]
     fn is_screensaver_active(&self) -> bool {
-        glib::ObjectExt::property(self.as_ref(), "screensaver-active")
+        ObjectExt::property(self.as_ref(), "screensaver-active")
     }
 
     #[doc(alias = "query-end")]

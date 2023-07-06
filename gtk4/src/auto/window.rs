@@ -915,44 +915,44 @@ pub trait GtkWindowExt: IsA<Window> + sealed::Sealed + 'static {
 
     #[doc(alias = "default-height")]
     fn default_height(&self) -> i32 {
-        glib::ObjectExt::property(self.as_ref(), "default-height")
+        ObjectExt::property(self.as_ref(), "default-height")
     }
 
     #[doc(alias = "default-height")]
     fn set_default_height(&self, default_height: i32) {
-        glib::ObjectExt::set_property(self.as_ref(), "default-height", default_height)
+        ObjectExt::set_property(self.as_ref(), "default-height", default_height)
     }
 
     #[doc(alias = "default-width")]
     fn default_width(&self) -> i32 {
-        glib::ObjectExt::property(self.as_ref(), "default-width")
+        ObjectExt::property(self.as_ref(), "default-width")
     }
 
     #[doc(alias = "default-width")]
     fn set_default_width(&self, default_width: i32) {
-        glib::ObjectExt::set_property(self.as_ref(), "default-width", default_width)
+        ObjectExt::set_property(self.as_ref(), "default-width", default_width)
     }
 
     #[doc(alias = "focus-widget")]
     fn focus_widget(&self) -> Option<Widget> {
-        glib::ObjectExt::property(self.as_ref(), "focus-widget")
+        ObjectExt::property(self.as_ref(), "focus-widget")
     }
 
     #[doc(alias = "focus-widget")]
     fn set_focus_widget<P: IsA<Widget>>(&self, focus_widget: Option<&P>) {
-        glib::ObjectExt::set_property(self.as_ref(), "focus-widget", focus_widget)
+        ObjectExt::set_property(self.as_ref(), "focus-widget", focus_widget)
     }
 
     fn is_fullscreened(&self) -> bool {
-        glib::ObjectExt::property(self.as_ref(), "fullscreened")
+        ObjectExt::property(self.as_ref(), "fullscreened")
     }
 
     fn set_fullscreened(&self, fullscreened: bool) {
-        glib::ObjectExt::set_property(self.as_ref(), "fullscreened", fullscreened)
+        ObjectExt::set_property(self.as_ref(), "fullscreened", fullscreened)
     }
 
     fn set_maximized(&self, maximized: bool) {
-        glib::ObjectExt::set_property(self.as_ref(), "maximized", maximized)
+        ObjectExt::set_property(self.as_ref(), "maximized", maximized)
     }
 
     #[doc(alias = "activate-default")]

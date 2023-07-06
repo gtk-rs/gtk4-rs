@@ -58,13 +58,13 @@ impl VolumeButton {
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "use-symbolic")]
     pub fn uses_symbolic(&self) -> bool {
-        glib::ObjectExt::property(self, "use-symbolic")
+        ObjectExt::property(self, "use-symbolic")
     }
 
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "use-symbolic")]
     pub fn set_use_symbolic(&self, use_symbolic: bool) {
-        glib::ObjectExt::set_property(self, "use-symbolic", use_symbolic)
+        ObjectExt::set_property(self, "use-symbolic", use_symbolic)
     }
 
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]

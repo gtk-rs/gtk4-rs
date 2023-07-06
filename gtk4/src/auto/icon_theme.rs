@@ -181,7 +181,7 @@ impl IconTheme {
     }
 
     pub fn set_display<P: IsA<gdk::Display>>(&self, display: Option<&P>) {
-        glib::ObjectExt::set_property(self, "display", display)
+        ObjectExt::set_property(self, "display", display)
     }
 
     #[doc(alias = "gtk_icon_theme_get_for_display")]

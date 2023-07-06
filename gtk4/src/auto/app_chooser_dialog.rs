@@ -100,7 +100,7 @@ impl AppChooserDialog {
     }
 
     pub fn gfile(&self) -> Option<gio::File> {
-        glib::ObjectExt::property(self, "gfile")
+        ObjectExt::property(self, "gfile")
     }
 
     #[doc(alias = "heading")]

@@ -229,22 +229,22 @@ pub trait IMContextExt: IsA<IMContext> + sealed::Sealed + 'static {
 
     #[doc(alias = "input-hints")]
     fn input_hints(&self) -> InputHints {
-        glib::ObjectExt::property(self.as_ref(), "input-hints")
+        ObjectExt::property(self.as_ref(), "input-hints")
     }
 
     #[doc(alias = "input-hints")]
     fn set_input_hints(&self, input_hints: InputHints) {
-        glib::ObjectExt::set_property(self.as_ref(), "input-hints", input_hints)
+        ObjectExt::set_property(self.as_ref(), "input-hints", input_hints)
     }
 
     #[doc(alias = "input-purpose")]
     fn input_purpose(&self) -> InputPurpose {
-        glib::ObjectExt::property(self.as_ref(), "input-purpose")
+        ObjectExt::property(self.as_ref(), "input-purpose")
     }
 
     #[doc(alias = "input-purpose")]
     fn set_input_purpose(&self, input_purpose: InputPurpose) {
-        glib::ObjectExt::set_property(self.as_ref(), "input-purpose", input_purpose)
+        ObjectExt::set_property(self.as_ref(), "input-purpose", input_purpose)
     }
 
     #[doc(alias = "commit")]

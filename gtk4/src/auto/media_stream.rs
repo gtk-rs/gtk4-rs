@@ -299,7 +299,7 @@ pub trait MediaStreamExt: IsA<MediaStream> + sealed::Sealed + 'static {
     }
 
     fn set_prepared(&self, prepared: bool) {
-        glib::ObjectExt::set_property(self.as_ref(), "prepared", prepared)
+        ObjectExt::set_property(self.as_ref(), "prepared", prepared)
     }
 
     #[doc(alias = "duration")]

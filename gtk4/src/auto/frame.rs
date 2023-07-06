@@ -349,12 +349,12 @@ pub trait FrameExt: IsA<Frame> + sealed::Sealed + 'static {
 
     #[doc(alias = "label-xalign")]
     fn label_xalign(&self) -> f32 {
-        glib::ObjectExt::property(self.as_ref(), "label-xalign")
+        ObjectExt::property(self.as_ref(), "label-xalign")
     }
 
     #[doc(alias = "label-xalign")]
     fn set_label_xalign(&self, label_xalign: f32) {
-        glib::ObjectExt::set_property(self.as_ref(), "label-xalign", label_xalign)
+        ObjectExt::set_property(self.as_ref(), "label-xalign", label_xalign)
     }
 
     #[doc(alias = "child")]

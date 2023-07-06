@@ -208,49 +208,49 @@ pub trait ToplevelExt: IsA<Toplevel> + sealed::Sealed + 'static {
     }
 
     fn is_decorated(&self) -> bool {
-        glib::ObjectExt::property(self.as_ref(), "decorated")
+        ObjectExt::property(self.as_ref(), "decorated")
     }
 
     fn is_deletable(&self) -> bool {
-        glib::ObjectExt::property(self.as_ref(), "deletable")
+        ObjectExt::property(self.as_ref(), "deletable")
     }
 
     #[doc(alias = "fullscreen-mode")]
     fn fullscreen_mode(&self) -> FullscreenMode {
-        glib::ObjectExt::property(self.as_ref(), "fullscreen-mode")
+        ObjectExt::property(self.as_ref(), "fullscreen-mode")
     }
 
     #[doc(alias = "fullscreen-mode")]
     fn set_fullscreen_mode(&self, fullscreen_mode: FullscreenMode) {
-        glib::ObjectExt::set_property(self.as_ref(), "fullscreen-mode", fullscreen_mode)
+        ObjectExt::set_property(self.as_ref(), "fullscreen-mode", fullscreen_mode)
     }
 
     //#[doc(alias = "icon-list")]
     //fn icon_list(&self) -> /*Unimplemented*/Basic: Pointer {
-    //    glib::ObjectExt::property(self.as_ref(), "icon-list")
+    //    ObjectExt::property(self.as_ref(), "icon-list")
     //}
 
     fn is_modal(&self) -> bool {
-        glib::ObjectExt::property(self.as_ref(), "modal")
+        ObjectExt::property(self.as_ref(), "modal")
     }
 
     #[doc(alias = "shortcuts-inhibited")]
     fn is_shortcuts_inhibited(&self) -> bool {
-        glib::ObjectExt::property(self.as_ref(), "shortcuts-inhibited")
+        ObjectExt::property(self.as_ref(), "shortcuts-inhibited")
     }
 
     #[doc(alias = "startup-id")]
     fn startup_id(&self) -> Option<glib::GString> {
-        glib::ObjectExt::property(self.as_ref(), "startup-id")
+        ObjectExt::property(self.as_ref(), "startup-id")
     }
 
     fn title(&self) -> Option<glib::GString> {
-        glib::ObjectExt::property(self.as_ref(), "title")
+        ObjectExt::property(self.as_ref(), "title")
     }
 
     #[doc(alias = "transient-for")]
     fn transient_for(&self) -> Option<Surface> {
-        glib::ObjectExt::property(self.as_ref(), "transient-for")
+        ObjectExt::property(self.as_ref(), "transient-for")
     }
 
     #[doc(alias = "decorated")]

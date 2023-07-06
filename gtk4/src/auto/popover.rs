@@ -494,7 +494,7 @@ pub trait PopoverExt: IsA<Popover> + sealed::Sealed + 'static {
 
     #[doc(alias = "default-widget")]
     fn default_widget(&self) -> Option<Widget> {
-        glib::ObjectExt::property(self.as_ref(), "default-widget")
+        ObjectExt::property(self.as_ref(), "default-widget")
     }
 
     #[doc(alias = "activate-default")]

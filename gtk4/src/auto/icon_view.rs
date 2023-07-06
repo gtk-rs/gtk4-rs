@@ -807,7 +807,7 @@ impl IconView {
 
     #[doc(alias = "cell-area")]
     pub fn cell_area(&self) -> Option<CellArea> {
-        glib::ObjectExt::property(self, "cell-area")
+        ObjectExt::property(self, "cell-area")
     }
 
     #[doc(alias = "activate-cursor-item")]

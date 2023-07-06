@@ -447,82 +447,82 @@ pub trait CellRendererExt: IsA<CellRenderer> + sealed::Sealed + 'static {
 
     #[doc(alias = "cell-background")]
     fn set_cell_background(&self, cell_background: Option<&str>) {
-        glib::ObjectExt::set_property(self.as_ref(), "cell-background", cell_background)
+        ObjectExt::set_property(self.as_ref(), "cell-background", cell_background)
     }
 
     #[doc(alias = "cell-background-rgba")]
     fn cell_background_rgba(&self) -> Option<gdk::RGBA> {
-        glib::ObjectExt::property(self.as_ref(), "cell-background-rgba")
+        ObjectExt::property(self.as_ref(), "cell-background-rgba")
     }
 
     #[doc(alias = "cell-background-rgba")]
     fn set_cell_background_rgba(&self, cell_background_rgba: Option<&gdk::RGBA>) {
-        glib::ObjectExt::set_property(self.as_ref(), "cell-background-rgba", cell_background_rgba)
+        ObjectExt::set_property(self.as_ref(), "cell-background-rgba", cell_background_rgba)
     }
 
     #[doc(alias = "cell-background-set")]
     fn is_cell_background_set(&self) -> bool {
-        glib::ObjectExt::property(self.as_ref(), "cell-background-set")
+        ObjectExt::property(self.as_ref(), "cell-background-set")
     }
 
     fn is_editing(&self) -> bool {
-        glib::ObjectExt::property(self.as_ref(), "editing")
+        ObjectExt::property(self.as_ref(), "editing")
     }
 
     fn height(&self) -> i32 {
-        glib::ObjectExt::property(self.as_ref(), "height")
+        ObjectExt::property(self.as_ref(), "height")
     }
 
     fn set_height(&self, height: i32) {
-        glib::ObjectExt::set_property(self.as_ref(), "height", height)
+        ObjectExt::set_property(self.as_ref(), "height", height)
     }
 
     fn mode(&self) -> CellRendererMode {
-        glib::ObjectExt::property(self.as_ref(), "mode")
+        ObjectExt::property(self.as_ref(), "mode")
     }
 
     fn set_mode(&self, mode: CellRendererMode) {
-        glib::ObjectExt::set_property(self.as_ref(), "mode", mode)
+        ObjectExt::set_property(self.as_ref(), "mode", mode)
     }
 
     fn width(&self) -> i32 {
-        glib::ObjectExt::property(self.as_ref(), "width")
+        ObjectExt::property(self.as_ref(), "width")
     }
 
     fn set_width(&self, width: i32) {
-        glib::ObjectExt::set_property(self.as_ref(), "width", width)
+        ObjectExt::set_property(self.as_ref(), "width", width)
     }
 
     fn xalign(&self) -> f32 {
-        glib::ObjectExt::property(self.as_ref(), "xalign")
+        ObjectExt::property(self.as_ref(), "xalign")
     }
 
     fn set_xalign(&self, xalign: f32) {
-        glib::ObjectExt::set_property(self.as_ref(), "xalign", xalign)
+        ObjectExt::set_property(self.as_ref(), "xalign", xalign)
     }
 
     fn xpad(&self) -> u32 {
-        glib::ObjectExt::property(self.as_ref(), "xpad")
+        ObjectExt::property(self.as_ref(), "xpad")
     }
 
     fn set_xpad(&self, xpad: u32) {
-        glib::ObjectExt::set_property(self.as_ref(), "xpad", xpad)
+        ObjectExt::set_property(self.as_ref(), "xpad", xpad)
     }
 
     fn yalign(&self) -> f32 {
-        glib::ObjectExt::property(self.as_ref(), "yalign")
+        ObjectExt::property(self.as_ref(), "yalign")
     }
 
     fn set_yalign(&self, yalign: f32) {
-        glib::ObjectExt::set_property(self.as_ref(), "yalign", yalign)
+        ObjectExt::set_property(self.as_ref(), "yalign", yalign)
     }
 
     fn ypad(&self) -> u32 {
-        glib::ObjectExt::property(self.as_ref(), "ypad")
+        ObjectExt::property(self.as_ref(), "ypad")
     }
 
     fn set_ypad(&self, ypad: u32) {
-        glib::ObjectExt::set_property(self.as_ref(), "ypad", ypad)
+        ObjectExt::set_property(self.as_ref(), "ypad", ypad)
     }
 
     #[doc(alias = "editing-canceled")]

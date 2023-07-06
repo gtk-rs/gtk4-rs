@@ -55,50 +55,50 @@ impl MessageDialog {
 
     #[doc(alias = "message-type")]
     pub fn message_type(&self) -> MessageType {
-        glib::ObjectExt::property(self, "message-type")
+        ObjectExt::property(self, "message-type")
     }
 
     #[doc(alias = "message-type")]
     pub fn set_message_type(&self, message_type: MessageType) {
-        glib::ObjectExt::set_property(self, "message-type", message_type)
+        ObjectExt::set_property(self, "message-type", message_type)
     }
 
     #[doc(alias = "secondary-text")]
     pub fn secondary_text(&self) -> Option<glib::GString> {
-        glib::ObjectExt::property(self, "secondary-text")
+        ObjectExt::property(self, "secondary-text")
     }
 
     #[doc(alias = "secondary-text")]
     pub fn set_secondary_text(&self, secondary_text: Option<&str>) {
-        glib::ObjectExt::set_property(self, "secondary-text", secondary_text)
+        ObjectExt::set_property(self, "secondary-text", secondary_text)
     }
 
     #[doc(alias = "secondary-use-markup")]
     pub fn is_secondary_use_markup(&self) -> bool {
-        glib::ObjectExt::property(self, "secondary-use-markup")
+        ObjectExt::property(self, "secondary-use-markup")
     }
 
     #[doc(alias = "secondary-use-markup")]
     pub fn set_secondary_use_markup(&self, secondary_use_markup: bool) {
-        glib::ObjectExt::set_property(self, "secondary-use-markup", secondary_use_markup)
+        ObjectExt::set_property(self, "secondary-use-markup", secondary_use_markup)
     }
 
     pub fn text(&self) -> Option<glib::GString> {
-        glib::ObjectExt::property(self, "text")
+        ObjectExt::property(self, "text")
     }
 
     pub fn set_text(&self, text: Option<&str>) {
-        glib::ObjectExt::set_property(self, "text", text)
+        ObjectExt::set_property(self, "text", text)
     }
 
     #[doc(alias = "use-markup")]
     pub fn uses_markup(&self) -> bool {
-        glib::ObjectExt::property(self, "use-markup")
+        ObjectExt::property(self, "use-markup")
     }
 
     #[doc(alias = "use-markup")]
     pub fn set_use_markup(&self, use_markup: bool) {
-        glib::ObjectExt::set_property(self, "use-markup", use_markup)
+        ObjectExt::set_property(self, "use-markup", use_markup)
     }
 
     #[doc(alias = "message-area")]

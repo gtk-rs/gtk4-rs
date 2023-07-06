@@ -38,63 +38,63 @@ impl CellRendererPixbuf {
     }
 
     pub fn gicon(&self) -> Option<gio::Icon> {
-        glib::ObjectExt::property(self, "gicon")
+        ObjectExt::property(self, "gicon")
     }
 
     pub fn set_gicon<P: IsA<gio::Icon>>(&self, gicon: Option<&P>) {
-        glib::ObjectExt::set_property(self, "gicon", gicon)
+        ObjectExt::set_property(self, "gicon", gicon)
     }
 
     #[doc(alias = "icon-name")]
     pub fn icon_name(&self) -> Option<glib::GString> {
-        glib::ObjectExt::property(self, "icon-name")
+        ObjectExt::property(self, "icon-name")
     }
 
     #[doc(alias = "icon-name")]
     pub fn set_icon_name(&self, icon_name: Option<&str>) {
-        glib::ObjectExt::set_property(self, "icon-name", icon_name)
+        ObjectExt::set_property(self, "icon-name", icon_name)
     }
 
     #[doc(alias = "icon-size")]
     pub fn icon_size(&self) -> IconSize {
-        glib::ObjectExt::property(self, "icon-size")
+        ObjectExt::property(self, "icon-size")
     }
 
     #[doc(alias = "icon-size")]
     pub fn set_icon_size(&self, icon_size: IconSize) {
-        glib::ObjectExt::set_property(self, "icon-size", icon_size)
+        ObjectExt::set_property(self, "icon-size", icon_size)
     }
 
     pub fn set_pixbuf(&self, pixbuf: Option<&gdk_pixbuf::Pixbuf>) {
-        glib::ObjectExt::set_property(self, "pixbuf", pixbuf)
+        ObjectExt::set_property(self, "pixbuf", pixbuf)
     }
 
     #[doc(alias = "pixbuf-expander-closed")]
     pub fn pixbuf_expander_closed(&self) -> Option<gdk_pixbuf::Pixbuf> {
-        glib::ObjectExt::property(self, "pixbuf-expander-closed")
+        ObjectExt::property(self, "pixbuf-expander-closed")
     }
 
     #[doc(alias = "pixbuf-expander-closed")]
     pub fn set_pixbuf_expander_closed(&self, pixbuf_expander_closed: Option<&gdk_pixbuf::Pixbuf>) {
-        glib::ObjectExt::set_property(self, "pixbuf-expander-closed", pixbuf_expander_closed)
+        ObjectExt::set_property(self, "pixbuf-expander-closed", pixbuf_expander_closed)
     }
 
     #[doc(alias = "pixbuf-expander-open")]
     pub fn pixbuf_expander_open(&self) -> Option<gdk_pixbuf::Pixbuf> {
-        glib::ObjectExt::property(self, "pixbuf-expander-open")
+        ObjectExt::property(self, "pixbuf-expander-open")
     }
 
     #[doc(alias = "pixbuf-expander-open")]
     pub fn set_pixbuf_expander_open(&self, pixbuf_expander_open: Option<&gdk_pixbuf::Pixbuf>) {
-        glib::ObjectExt::set_property(self, "pixbuf-expander-open", pixbuf_expander_open)
+        ObjectExt::set_property(self, "pixbuf-expander-open", pixbuf_expander_open)
     }
 
     pub fn texture(&self) -> Option<gdk::Texture> {
-        glib::ObjectExt::property(self, "texture")
+        ObjectExt::property(self, "texture")
     }
 
     pub fn set_texture<P: IsA<gdk::Texture>>(&self, texture: Option<&P>) {
-        glib::ObjectExt::set_property(self, "texture", texture)
+        ObjectExt::set_property(self, "texture", texture)
     }
 
     #[doc(alias = "gicon")]
