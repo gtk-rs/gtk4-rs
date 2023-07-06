@@ -79,12 +79,12 @@ impl LinkButton {
     }
 
     #[doc(alias = "activate-link")]
-    pub fn connect_activate_link<F: Fn(&Self) -> glib::signal::Inhibit + 'static>(
+    pub fn connect_activate_link<F: Fn(&Self) -> glib::ControlFlow + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn activate_link_trampoline<
-            F: Fn(&LinkButton) -> glib::signal::Inhibit + 'static,
+            F: Fn(&LinkButton) -> glib::ControlFlow + 'static,
         >(
             this: *mut ffi::GtkLinkButton,
             f: glib::ffi::gpointer,

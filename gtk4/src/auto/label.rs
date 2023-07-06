@@ -428,12 +428,12 @@ impl Label {
     }
 
     #[doc(alias = "activate-link")]
-    pub fn connect_activate_link<F: Fn(&Self, &str) -> glib::signal::Inhibit + 'static>(
+    pub fn connect_activate_link<F: Fn(&Self, &str) -> glib::ControlFlow + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn activate_link_trampoline<
-            F: Fn(&Label, &str) -> glib::signal::Inhibit + 'static,
+            F: Fn(&Label, &str) -> glib::ControlFlow + 'static,
         >(
             this: *mut ffi::GtkLabel,
             uri: *mut libc::c_char,

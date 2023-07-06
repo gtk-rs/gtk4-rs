@@ -2168,14 +2168,14 @@ pub trait TreeViewExt: IsA<TreeView> + sealed::Sealed + 'static {
 
     #[doc(alias = "test-collapse-row")]
     fn connect_test_collapse_row<
-        F: Fn(&Self, &TreeIter, &TreePath) -> glib::signal::Inhibit + 'static,
+        F: Fn(&Self, &TreeIter, &TreePath) -> glib::ControlFlow + 'static,
     >(
         &self,
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn test_collapse_row_trampoline<
             P: IsA<TreeView>,
-            F: Fn(&P, &TreeIter, &TreePath) -> glib::signal::Inhibit + 'static,
+            F: Fn(&P, &TreeIter, &TreePath) -> glib::ControlFlow + 'static,
         >(
             this: *mut ffi::GtkTreeView,
             iter: *mut ffi::GtkTreeIter,
@@ -2205,14 +2205,14 @@ pub trait TreeViewExt: IsA<TreeView> + sealed::Sealed + 'static {
 
     #[doc(alias = "test-expand-row")]
     fn connect_test_expand_row<
-        F: Fn(&Self, &TreeIter, &TreePath) -> glib::signal::Inhibit + 'static,
+        F: Fn(&Self, &TreeIter, &TreePath) -> glib::ControlFlow + 'static,
     >(
         &self,
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn test_expand_row_trampoline<
             P: IsA<TreeView>,
-            F: Fn(&P, &TreeIter, &TreePath) -> glib::signal::Inhibit + 'static,
+            F: Fn(&P, &TreeIter, &TreePath) -> glib::ControlFlow + 'static,
         >(
             this: *mut ffi::GtkTreeView,
             iter: *mut ffi::GtkTreeIter,

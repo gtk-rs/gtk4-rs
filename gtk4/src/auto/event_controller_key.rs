@@ -95,12 +95,12 @@ impl EventControllerKey {
     }
 
     #[doc(alias = "modifiers")]
-    pub fn connect_modifiers<F: Fn(&Self, gdk::ModifierType) -> glib::signal::Inhibit + 'static>(
+    pub fn connect_modifiers<F: Fn(&Self, gdk::ModifierType) -> glib::ControlFlow + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn modifiers_trampoline<
-            F: Fn(&EventControllerKey, gdk::ModifierType) -> glib::signal::Inhibit + 'static,
+            F: Fn(&EventControllerKey, gdk::ModifierType) -> glib::ControlFlow + 'static,
         >(
             this: *mut ffi::GtkEventControllerKey,
             keyval: gdk::ffi::GdkModifierType,

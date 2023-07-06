@@ -1008,13 +1008,13 @@ pub trait GtkWindowExt: IsA<Window> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "close-request")]
-    fn connect_close_request<F: Fn(&Self) -> glib::signal::Inhibit + 'static>(
+    fn connect_close_request<F: Fn(&Self) -> glib::ControlFlow + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn close_request_trampoline<
             P: IsA<Window>,
-            F: Fn(&P) -> glib::signal::Inhibit + 'static,
+            F: Fn(&P) -> glib::ControlFlow + 'static,
         >(
             this: *mut ffi::GtkWindow,
             f: glib::ffi::gpointer,
