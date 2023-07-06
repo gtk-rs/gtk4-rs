@@ -12,6 +12,26 @@ mod sealed {
 // rustdoc-stripper-ignore-next
 /// Trait containing manually implemented methods of [`Widget`](crate::Widget).
 pub trait WidgetExtManual: sealed::Sealed + IsA<Widget> + 'static {
+    #[doc(alias = "gtk_widget_get_ancestor")]
+    #[doc(alias = "get_ancestor")]
+    #[must_use]
+    fn ancestor<T: IsA<Widget>>(&self) -> Option<T> {
+        self.ancestor_with_type(T::static_type())
+            .and_then(|w| w.downcast().ok())
+    }
+
+    #[doc(alias = "gtk_widget_get_ancestor")]
+    #[doc(alias = "get_ancestor")]
+    #[must_use]
+    fn ancestor_with_type(&self, widget_type: glib::Type) -> Option<Widget> {
+        unsafe {
+            from_glib_none(ffi::gtk_widget_get_ancestor(
+                self.as_ref().to_glib_none().0,
+                widget_type.into_glib(),
+            ))
+        }
+    }
+
     #[doc(alias = "gtk_widget_add_tick_callback")]
     fn add_tick_callback<P: Fn(&Self, &gdk::FrameClock) -> ControlFlow + 'static>(
         &self,

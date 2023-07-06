@@ -44,10 +44,80 @@ impl Builder {
         }
     }
 
+    #[doc(alias = "gtk_builder_extend_with_template")]
+    pub fn extend_with_template<T: IsA<Object>>(
+        &self,
+        object: &impl IsA<glib::Object>,
+        buffer: &str,
+    ) -> Result<(), glib::Error> {
+        self.extend_with_template_and_type(object, T::static_type(), buffer)
+    }
+
+    #[doc(alias = "gtk_builder_extend_with_template")]
+    pub fn extend_with_template_and_type(
+        &self,
+        object: &impl IsA<glib::Object>,
+        template_type: glib::Type,
+        buffer: &str,
+    ) -> Result<(), glib::Error> {
+        let length = buffer.len() as _;
+        unsafe {
+            let mut error = std::ptr::null_mut();
+            let is_ok = ffi::gtk_builder_extend_with_template(
+                self.to_glib_none().0,
+                object.as_ref().to_glib_none().0,
+                template_type.into_glib(),
+                buffer.to_glib_none().0,
+                length,
+                &mut error,
+            );
+            debug_assert_eq!(is_ok == glib::ffi::GFALSE, !error.is_null());
+            if error.is_null() {
+                Ok(())
+            } else {
+                Err(from_glib_full(error))
+            }
+        }
+    }
+
+    #[doc(alias = "gtk_builder_value_from_string_type")]
+    pub fn value_from_string_type<T: for<'a> glib::value::FromValue<'a> + StaticType>(
+        &self,
+        string: &str,
+    ) -> Result<T, glib::Error> {
+        self.value_from_string_type_with_type(T::static_type(), string)
+            .map(|v| v.get::<T>().unwrap())
+    }
+
+    #[doc(alias = "gtk_builder_value_from_string_type")]
+    pub fn value_from_string_type_with_type(
+        &self,
+        type_: glib::Type,
+        string: &str,
+    ) -> Result<glib::Value, glib::Error> {
+        unsafe {
+            let mut value = glib::Value::uninitialized();
+            let mut error = std::ptr::null_mut();
+            let is_ok = ffi::gtk_builder_value_from_string_type(
+                self.to_glib_none().0,
+                type_.into_glib(),
+                string.to_glib_none().0,
+                value.to_glib_none_mut().0,
+                &mut error,
+            );
+            debug_assert_eq!(is_ok == glib::ffi::GFALSE, !error.is_null());
+            if error.is_null() {
+                Ok(value)
+            } else {
+                Err(from_glib_full(error))
+            }
+        }
+    }
+
     #[doc(alias = "gtk_builder_add_from_file")]
     pub fn add_from_file(&self, file_path: impl AsRef<Path>) -> Result<(), glib::Error> {
         unsafe {
-            let mut error = ::std::ptr::null_mut();
+            let mut error = std::ptr::null_mut();
             ffi::gtk_builder_add_from_file(
                 self.to_glib_none().0,
                 file_path.as_ref().to_glib_none().0,

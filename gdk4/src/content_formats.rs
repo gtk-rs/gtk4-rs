@@ -1,9 +1,40 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
 use crate::{ContentFormats, ContentFormatsBuilder};
-use glib::{translate::*, Slice};
+use glib::{translate::*, Slice, StaticType};
 
 impl ContentFormats {
+    #[doc(alias = "gdk_content_formats_new_for_gtype")]
+    #[doc(alias = "new_for_gtype")]
+    pub fn for_type<T: StaticType>() -> Self {
+        assert_initialized_main_thread!();
+        Self::for_type_with_type(T::static_type())
+    }
+
+    #[doc(alias = "gdk_content_formats_new_for_gtype")]
+    #[doc(alias = "new_for_gtype")]
+    pub fn for_type_with_type(type_: glib::Type) -> Self {
+        assert_initialized_main_thread!();
+        unsafe { from_glib_full(ffi::gdk_content_formats_new_for_gtype(type_.into_glib())) }
+    }
+
+    #[doc(alias = "gdk_content_formats_contain_gtype")]
+    #[doc(alias = "contain_gtype")]
+    pub fn contains_type<T: StaticType>(&self) -> bool {
+        self.contains_type_with_type(T::static_type())
+    }
+
+    #[doc(alias = "gdk_content_formats_contain_gtype")]
+    #[doc(alias = "contain_gtype")]
+    pub fn contains_type_with_type(&self, type_: glib::types::Type) -> bool {
+        unsafe {
+            from_glib(ffi::gdk_content_formats_contain_gtype(
+                self.to_glib_none().0,
+                type_.into_glib(),
+            ))
+        }
+    }
+
     #[doc(alias = "gdk_content_formats_get_gtypes")]
     #[doc(alias = "get_gtypes")]
     pub fn types(&self) -> Slice<glib::Type> {

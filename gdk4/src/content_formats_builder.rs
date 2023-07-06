@@ -19,7 +19,13 @@ impl ContentFormatsBuilder {
 
     #[doc(alias = "gdk_content_formats_builder_add_gtype")]
     #[must_use]
-    pub fn add_type(self, type_: glib::types::Type) -> Self {
+    pub fn add_type<T: glib::StaticType>(self) -> Self {
+        self.add_with_type(T::static_type())
+    }
+
+    #[doc(alias = "gdk_content_formats_builder_add_gtype")]
+    #[must_use]
+    pub fn add_with_type(self, type_: glib::types::Type) -> Self {
         unsafe {
             ffi::gdk_content_formats_builder_add_gtype(self.to_glib_none().0, type_.into_glib());
         }

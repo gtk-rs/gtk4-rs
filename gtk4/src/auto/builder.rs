@@ -194,33 +194,6 @@ impl Builder {
         }
     }
 
-    #[doc(alias = "gtk_builder_extend_with_template")]
-    pub fn extend_with_template(
-        &self,
-        object: &impl IsA<glib::Object>,
-        template_type: glib::types::Type,
-        buffer: &str,
-    ) -> Result<(), glib::Error> {
-        let length = buffer.len() as _;
-        unsafe {
-            let mut error = ptr::null_mut();
-            let is_ok = ffi::gtk_builder_extend_with_template(
-                self.to_glib_none().0,
-                object.as_ref().to_glib_none().0,
-                template_type.into_glib(),
-                buffer.to_glib_none().0,
-                length,
-                &mut error,
-            );
-            debug_assert_eq!(is_ok == glib::ffi::GFALSE, !error.is_null());
-            if error.is_null() {
-                Ok(())
-            } else {
-                Err(from_glib_full(error))
-            }
-        }
-    }
-
     #[doc(alias = "gtk_builder_get_objects")]
     #[doc(alias = "get_objects")]
     pub fn objects(&self) -> Vec<glib::Object> {
@@ -297,31 +270,6 @@ impl Builder {
             let is_ok = ffi::gtk_builder_value_from_string(
                 self.to_glib_none().0,
                 pspec.as_ref().to_glib_none().0,
-                string.to_glib_none().0,
-                value.to_glib_none_mut().0,
-                &mut error,
-            );
-            debug_assert_eq!(is_ok == glib::ffi::GFALSE, !error.is_null());
-            if error.is_null() {
-                Ok(value)
-            } else {
-                Err(from_glib_full(error))
-            }
-        }
-    }
-
-    #[doc(alias = "gtk_builder_value_from_string_type")]
-    pub fn value_from_string_type(
-        &self,
-        type_: glib::types::Type,
-        string: &str,
-    ) -> Result<glib::Value, glib::Error> {
-        unsafe {
-            let mut value = glib::Value::uninitialized();
-            let mut error = ptr::null_mut();
-            let is_ok = ffi::gtk_builder_value_from_string_type(
-                self.to_glib_none().0,
-                type_.into_glib(),
                 string.to_glib_none().0,
                 value.to_glib_none_mut().0,
                 &mut error,

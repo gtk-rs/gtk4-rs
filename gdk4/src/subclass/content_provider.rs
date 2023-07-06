@@ -37,8 +37,8 @@ pub trait ContentProviderImpl: ContentProviderImplExt + ObjectImpl {
         self.parent_write_mime_type_future(mime_type, stream, io_priority)
     }
 
-    fn value(&self, type_: glib::Type) -> Result<Value, glib::Error> {
-        self.parent_value(type_)
+    fn value_with_type(&self, type_: glib::Type) -> Result<Value, glib::Error> {
+        self.parent_value_with_type(type_)
     }
 }
 
@@ -230,7 +230,7 @@ pub trait ContentProviderImplExt: sealed::Sealed + ObjectSubclass {
         ))
     }
 
-    fn parent_value(&self, type_: glib::Type) -> Result<Value, glib::Error> {
+    fn parent_value_with_type(&self, type_: glib::Type) -> Result<Value, glib::Error> {
         unsafe {
             let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GdkContentProviderClass;
@@ -395,7 +395,7 @@ unsafe extern "C" fn content_provider_get_value<T: ContentProviderImpl>(
     let imp = instance.imp();
     let value: Value = from_glib_none(value_ptr);
 
-    let ret = imp.value(value.type_());
+    let ret = imp.value_with_type(value.type_());
     match ret {
         Ok(v) => {
             glib::gobject_ffi::g_value_copy(v.to_glib_none().0, value_ptr);

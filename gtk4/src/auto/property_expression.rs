@@ -23,24 +23,6 @@ impl glib::StaticType for PropertyExpression {
 }
 
 impl PropertyExpression {
-    #[doc(alias = "gtk_property_expression_new")]
-    pub fn new(
-        this_type: glib::types::Type,
-        expression: Option<impl AsRef<Expression>>,
-        property_name: &str,
-    ) -> PropertyExpression {
-        assert_initialized_main_thread!();
-        unsafe {
-            from_glib_full(ffi::gtk_property_expression_new(
-                this_type.into_glib(),
-                expression
-                    .map(|p| p.as_ref().clone().upcast())
-                    .into_glib_ptr(),
-                property_name.to_glib_none().0,
-            ))
-        }
-    }
-
     #[doc(alias = "gtk_property_expression_new_for_pspec")]
     #[doc(alias = "new_for_pspec")]
     pub fn for_pspec(

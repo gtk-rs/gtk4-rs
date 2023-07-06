@@ -10,16 +10,38 @@ use glib::{
 use std::{boxed::Box as Box_, mem::transmute};
 
 impl DropTarget {
+    #[doc(alias = "gtk_drop_target_new")]
+    pub fn new<T: StaticType>(actions: gdk::DragAction) -> Self {
+        assert_initialized_main_thread!();
+        Self::with_type(T::static_type(), actions)
+    }
+
+    #[doc(alias = "gtk_drop_target_new")]
+    pub fn with_type(type_: glib::Type, actions: gdk::DragAction) -> Self {
+        assert_initialized_main_thread!();
+        unsafe {
+            from_glib_full(ffi::gtk_drop_target_new(
+                type_.into_glib(),
+                actions.into_glib(),
+            ))
+        }
+    }
+
+    #[doc(alias = "gtk_drop_target_new")]
     #[doc(alias = "gtk_drop_target_set_gtypes")]
-    pub fn set_types(&self, types: &[Type]) {
+    #[doc(alias = "set_types")]
+    pub fn with_types(types: &[Type], actions: gdk::DragAction) -> Self {
+        assert_initialized_main_thread!();
+        let target = Self::with_type(glib::Type::INVALID, actions);
         let types: Vec<glib::ffi::GType> = types.iter().map(|t| t.into_glib()).collect();
         unsafe {
             ffi::gtk_drop_target_set_gtypes(
-                self.to_glib_none().0,
+                target.to_glib_none().0,
                 mut_override(types.as_ptr()),
                 types.len(),
             )
         }
+        target
     }
 
     #[doc(alias = "gtk_drop_target_get_value")]
