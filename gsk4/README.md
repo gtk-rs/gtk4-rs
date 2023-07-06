@@ -43,6 +43,7 @@ gsk = { git = "https://github.com/gtk-rs/gtk4-rs.git", package = "gsk4" }
 
 | Feature | Description |
 | ---     | ----------- |
+| `vulkan` | Enable `vulkan` Renderer. Only if GTK is compiled with Vulkan support |
 | `broadway` | Enable `broadway` Renderer. Only if GTK is compiled with Broadway support |
 | `v4_10` | Enable the new APIs part of GTK 4.10 |
 | `v4_6` | Enable the new APIs part of GTK 4.6 |

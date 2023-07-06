@@ -42,6 +42,8 @@ v4_2 = []
 v4_4 = ["v4_2"]
 v4_6 = ["v4_4"]
 v4_10 = ["v4_6"]
+vulkan = []
+broadway = []
 
 [dependencies]
 libc = "0.2"

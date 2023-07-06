@@ -312,12 +312,16 @@ impl ::std::fmt::Debug for GskBorderNode {
     }
 }
 
+#[cfg(feature = "broadway")]
+#[cfg_attr(docsrs, doc(cfg(feature = "broadway")))]
 #[repr(C)]
 pub struct GskBroadwayRenderer {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
+#[cfg(feature = "broadway")]
+#[cfg_attr(docsrs, doc(cfg(feature = "broadway")))]
 impl ::std::fmt::Debug for GskBroadwayRenderer {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("GskBroadwayRenderer @ {self:p}"))
@@ -707,12 +711,16 @@ impl ::std::fmt::Debug for GskTransformNode {
     }
 }
 
+#[cfg(feature = "vulkan")]
+#[cfg_attr(docsrs, doc(cfg(feature = "vulkan")))]
 #[repr(C)]
 pub struct GskVulkanRenderer {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
+#[cfg(feature = "vulkan")]
+#[cfg_attr(docsrs, doc(cfg(feature = "vulkan")))]
 impl ::std::fmt::Debug for GskVulkanRenderer {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("GskVulkanRenderer @ {self:p}"))
@@ -1008,7 +1016,11 @@ extern "C" {
     //=========================================================================
     // GskBroadwayRenderer
     //=========================================================================
+    #[cfg(feature = "broadway")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "broadway")))]
     pub fn gsk_broadway_renderer_get_type() -> GType;
+    #[cfg(feature = "broadway")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "broadway")))]
     pub fn gsk_broadway_renderer_new() -> *mut GskRenderer;
 
     //=========================================================================
@@ -1532,7 +1544,11 @@ extern "C" {
     //=========================================================================
     // GskVulkanRenderer
     //=========================================================================
+    #[cfg(feature = "vulkan")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "vulkan")))]
     pub fn gsk_vulkan_renderer_get_type() -> GType;
+    #[cfg(feature = "vulkan")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "vulkan")))]
     pub fn gsk_vulkan_renderer_new() -> *mut GskRenderer;
 
     //=========================================================================
