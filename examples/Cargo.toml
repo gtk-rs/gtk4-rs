@@ -6,7 +6,6 @@ edition = "2021"
 
 [dependencies]
 chrono = "0.4"
-once_cell = "1.0"
 
 femtovg = { version = "0.7", optional = true, default-features = false }
 glium = { version = "0.32", optional = true, default-features = false }

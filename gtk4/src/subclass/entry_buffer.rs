@@ -4,8 +4,7 @@
 //! Traits intended for subclassing [`EntryBuffer`](crate::EntryBuffer).
 
 use crate::{prelude::*, subclass::prelude::*, EntryBuffer};
-use glib::{translate::*, GString};
-use once_cell::sync::Lazy;
+use glib::{once_cell::sync::Lazy, translate::*, GString};
 
 use super::PtrHolder;
 

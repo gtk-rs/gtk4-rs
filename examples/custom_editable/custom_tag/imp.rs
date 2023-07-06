@@ -1,10 +1,10 @@
 use glib::clone;
+use glib::once_cell::sync::Lazy;
 use glib::subclass::Signal;
 use glib::{ParamSpec, Properties};
 use gtk::glib;
 use gtk::prelude::*;
 use gtk::subclass::prelude::*;
-use once_cell::sync::Lazy;
 use std::cell::{Cell, RefCell};
 
 #[derive(Debug, Properties)]

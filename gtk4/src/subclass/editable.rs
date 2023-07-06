@@ -4,9 +4,8 @@
 //! Traits intended for implementing the [`Editable`](crate::Editable) interface.
 
 use crate::{prelude::*, subclass::prelude::*, Editable};
-use glib::{translate::*, GString, Quark};
+use glib::{once_cell::sync::Lazy, translate::*, GString, Quark};
 use libc::{c_char, c_int};
-use once_cell::sync::Lazy;
 
 pub trait EditableImpl: WidgetImpl {
     fn insert_text(&self, text: &str, length: i32, position: &mut i32) {

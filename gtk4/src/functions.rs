@@ -1,8 +1,7 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
 use crate::{prelude::*, AboutDialog, StyleProvider, Window};
-use glib::{translate::*, IntoGStr, Quark, Slice, ToValue};
-use once_cell::sync::Lazy;
+use glib::{once_cell::sync::Lazy, translate::*, IntoGStr, Quark, Slice, ToValue};
 use std::{boxed::Box as Box_, mem, pin::Pin, ptr};
 
 #[doc(alias = "gtk_accelerator_valid")]

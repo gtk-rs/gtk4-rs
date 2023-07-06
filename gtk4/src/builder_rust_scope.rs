@@ -301,8 +301,8 @@ mod tests {
 
     #[crate::test]
     fn test_rust_builder_scope_object_during_dispose() {
+        use glib::once_cell::sync::Lazy;
         use glib::subclass::Signal;
-        use once_cell::sync::Lazy;
         use std::{cell::Cell, rc::Rc};
 
         #[derive(Debug, Default)]
