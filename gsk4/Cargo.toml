@@ -28,7 +28,6 @@ rustc-args = ["--cfg", "docsrs"]
 rustdoc-args = ["--cfg", "docsrs"]
 
 [dependencies]
-bitflags = "1.0"
 cairo-rs = {git = "https://github.com/gtk-rs/gtk-rs-core", version = "0.18"}
 ffi = {package = "gsk4-sys", path = "./sys", version = "0.7"}
 gdk = {package = "gdk4", path = "../gdk4", version = "0.7"}
