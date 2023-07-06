@@ -13,9 +13,9 @@ version = "0.7.0"
 rust-version = "1.64"
 
 [features]
-v4_4 = ["ffi/v4_4"]
-v4_10 = ["ffi/v4_10", "v4_4"]
-v4_12 = ["ffi/v4_12", "v4_10"]
+v4_4 = ["ffi/v4_4", "gdk/v4_4"]
+v4_10 = ["ffi/v4_10", "v4_4", "gdk/v4_10"]
+v4_12 = ["ffi/v4_12", "v4_10", "gdk/v4_12"]
 wayland_crate = ["wayland-client", "wayland-backend"]
 egl = ["khronos-egl"]
 xkb_crate = ["xkb"]
