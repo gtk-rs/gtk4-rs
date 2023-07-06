@@ -45,23 +45,23 @@ impl FileChooserWidget {
 
     #[doc(alias = "search-mode")]
     pub fn is_search_mode(&self) -> bool {
-        glib::ObjectExt::property(self, "search-mode")
+        ObjectExt::property(self, "search-mode")
     }
 
     #[doc(alias = "search-mode")]
     pub fn set_search_mode(&self, search_mode: bool) {
-        glib::ObjectExt::set_property(self, "search-mode", search_mode)
+        ObjectExt::set_property(self, "search-mode", search_mode)
     }
 
     #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     #[doc(alias = "show-time")]
     pub fn shows_time(&self) -> bool {
-        glib::ObjectExt::property(self, "show-time")
+        ObjectExt::property(self, "show-time")
     }
 
     pub fn subtitle(&self) -> Option<glib::GString> {
-        glib::ObjectExt::property(self, "subtitle")
+        ObjectExt::property(self, "subtitle")
     }
 
     #[doc(alias = "desktop-folder")]

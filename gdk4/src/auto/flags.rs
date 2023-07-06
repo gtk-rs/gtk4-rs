@@ -2,11 +2,11 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use bitflags::bitflags;
-use glib::{translate::*, value::FromValue, value::ToValue, StaticType, Type};
+use glib::{bitflags::bitflags, prelude::*, translate::*};
 use std::fmt;
 
 bitflags! {
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash)]
     #[doc(alias = "GdkAnchorHints")]
     pub struct AnchorHints: u32 {
         #[doc(alias = "GDK_ANCHOR_FLIP_X")]
@@ -57,7 +57,7 @@ impl FromGlib<ffi::GdkAnchorHints> for AnchorHints {
 
 impl StaticType for AnchorHints {
     #[inline]
-    fn static_type() -> Type {
+    fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gdk_anchor_hints_get_type()) }
     }
 }
@@ -76,7 +76,7 @@ impl glib::value::ValueType for AnchorHints {
     type Type = Self;
 }
 
-unsafe impl<'a> FromValue<'a> for AnchorHints {
+unsafe impl<'a> glib::value::FromValue<'a> for AnchorHints {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
     #[inline]
@@ -111,6 +111,7 @@ impl From<AnchorHints> for glib::Value {
 }
 
 bitflags! {
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash)]
     #[doc(alias = "GdkAxisFlags")]
     pub struct AxisFlags: u32 {
         #[doc(alias = "GDK_AXIS_FLAG_X")]
@@ -165,7 +166,7 @@ impl FromGlib<ffi::GdkAxisFlags> for AxisFlags {
 
 impl StaticType for AxisFlags {
     #[inline]
-    fn static_type() -> Type {
+    fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gdk_axis_flags_get_type()) }
     }
 }
@@ -184,7 +185,7 @@ impl glib::value::ValueType for AxisFlags {
     type Type = Self;
 }
 
-unsafe impl<'a> FromValue<'a> for AxisFlags {
+unsafe impl<'a> glib::value::FromValue<'a> for AxisFlags {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
     #[inline]
@@ -219,6 +220,7 @@ impl From<AxisFlags> for glib::Value {
 }
 
 bitflags! {
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash)]
     #[doc(alias = "GdkDragAction")]
     pub struct DragAction: u32 {
         #[doc(alias = "GDK_ACTION_COPY")]
@@ -267,7 +269,7 @@ impl FromGlib<ffi::GdkDragAction> for DragAction {
 
 impl StaticType for DragAction {
     #[inline]
-    fn static_type() -> Type {
+    fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gdk_drag_action_get_type()) }
     }
 }
@@ -286,7 +288,7 @@ impl glib::value::ValueType for DragAction {
     type Type = Self;
 }
 
-unsafe impl<'a> FromValue<'a> for DragAction {
+unsafe impl<'a> glib::value::FromValue<'a> for DragAction {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
     #[inline]
@@ -321,6 +323,7 @@ impl From<DragAction> for glib::Value {
 }
 
 bitflags! {
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash)]
     #[doc(alias = "GdkFrameClockPhase")]
     pub struct FrameClockPhase: u32 {
         #[doc(alias = "GDK_FRAME_CLOCK_PHASE_NONE")]
@@ -369,7 +372,7 @@ impl FromGlib<ffi::GdkFrameClockPhase> for FrameClockPhase {
 
 impl StaticType for FrameClockPhase {
     #[inline]
-    fn static_type() -> Type {
+    fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gdk_frame_clock_phase_get_type()) }
     }
 }
@@ -388,7 +391,7 @@ impl glib::value::ValueType for FrameClockPhase {
     type Type = Self;
 }
 
-unsafe impl<'a> FromValue<'a> for FrameClockPhase {
+unsafe impl<'a> glib::value::FromValue<'a> for FrameClockPhase {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
     #[inline]
@@ -425,6 +428,7 @@ impl From<FrameClockPhase> for glib::Value {
 #[cfg(feature = "v4_6")]
 bitflags! {
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash)]
     #[doc(alias = "GdkGLAPI")]
     pub struct GLAPI: u32 {
         #[doc(alias = "GDK_GL_API_GL")]
@@ -469,7 +473,7 @@ impl FromGlib<ffi::GdkGLAPI> for GLAPI {
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
 impl StaticType for GLAPI {
     #[inline]
-    fn static_type() -> Type {
+    fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gdk_gl_api_get_type()) }
     }
 }
@@ -494,7 +498,7 @@ impl glib::value::ValueType for GLAPI {
 
 #[cfg(feature = "v4_6")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
-unsafe impl<'a> FromValue<'a> for GLAPI {
+unsafe impl<'a> glib::value::FromValue<'a> for GLAPI {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
     #[inline]
@@ -533,6 +537,7 @@ impl From<GLAPI> for glib::Value {
 }
 
 bitflags! {
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash)]
     #[doc(alias = "GdkModifierType")]
     pub struct ModifierType: u32 {
         #[doc(alias = "GDK_SHIFT_MASK")]
@@ -589,7 +594,7 @@ impl FromGlib<ffi::GdkModifierType> for ModifierType {
 
 impl StaticType for ModifierType {
     #[inline]
-    fn static_type() -> Type {
+    fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gdk_modifier_type_get_type()) }
     }
 }
@@ -608,7 +613,7 @@ impl glib::value::ValueType for ModifierType {
     type Type = Self;
 }
 
-unsafe impl<'a> FromValue<'a> for ModifierType {
+unsafe impl<'a> glib::value::FromValue<'a> for ModifierType {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
     #[inline]
@@ -643,6 +648,7 @@ impl From<ModifierType> for glib::Value {
 }
 
 bitflags! {
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash)]
     #[doc(alias = "GdkPaintableFlags")]
     pub struct PaintableFlags: u32 {
         #[doc(alias = "GDK_PAINTABLE_STATIC_SIZE")]
@@ -679,7 +685,7 @@ impl FromGlib<ffi::GdkPaintableFlags> for PaintableFlags {
 
 impl StaticType for PaintableFlags {
     #[inline]
-    fn static_type() -> Type {
+    fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gdk_paintable_flags_get_type()) }
     }
 }
@@ -698,7 +704,7 @@ impl glib::value::ValueType for PaintableFlags {
     type Type = Self;
 }
 
-unsafe impl<'a> FromValue<'a> for PaintableFlags {
+unsafe impl<'a> glib::value::FromValue<'a> for PaintableFlags {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
     #[inline]
@@ -733,6 +739,7 @@ impl From<PaintableFlags> for glib::Value {
 }
 
 bitflags! {
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash)]
     #[doc(alias = "GdkSeatCapabilities")]
     pub struct SeatCapabilities: u32 {
         #[doc(alias = "GDK_SEAT_CAPABILITY_NONE")]
@@ -781,7 +788,7 @@ impl FromGlib<ffi::GdkSeatCapabilities> for SeatCapabilities {
 
 impl StaticType for SeatCapabilities {
     #[inline]
-    fn static_type() -> Type {
+    fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gdk_seat_capabilities_get_type()) }
     }
 }
@@ -800,7 +807,7 @@ impl glib::value::ValueType for SeatCapabilities {
     type Type = Self;
 }
 
-unsafe impl<'a> FromValue<'a> for SeatCapabilities {
+unsafe impl<'a> glib::value::FromValue<'a> for SeatCapabilities {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
     #[inline]
@@ -835,6 +842,7 @@ impl From<SeatCapabilities> for glib::Value {
 }
 
 bitflags! {
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash)]
     #[doc(alias = "GdkToplevelState")]
     pub struct ToplevelState: u32 {
         #[doc(alias = "GDK_TOPLEVEL_STATE_MINIMIZED")]
@@ -899,7 +907,7 @@ impl FromGlib<ffi::GdkToplevelState> for ToplevelState {
 
 impl StaticType for ToplevelState {
     #[inline]
-    fn static_type() -> Type {
+    fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gdk_toplevel_state_get_type()) }
     }
 }
@@ -918,7 +926,7 @@ impl glib::value::ValueType for ToplevelState {
     type Type = Self;
 }
 
-unsafe impl<'a> FromValue<'a> for ToplevelState {
+unsafe impl<'a> glib::value::FromValue<'a> for ToplevelState {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
     #[inline]

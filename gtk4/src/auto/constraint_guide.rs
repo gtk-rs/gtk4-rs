@@ -87,62 +87,62 @@ impl ConstraintGuide {
 
     #[doc(alias = "max-height")]
     pub fn max_height(&self) -> i32 {
-        glib::ObjectExt::property(self, "max-height")
+        ObjectExt::property(self, "max-height")
     }
 
     #[doc(alias = "max-height")]
     pub fn set_max_height(&self, max_height: i32) {
-        glib::ObjectExt::set_property(self, "max-height", max_height)
+        ObjectExt::set_property(self, "max-height", max_height)
     }
 
     #[doc(alias = "max-width")]
     pub fn max_width(&self) -> i32 {
-        glib::ObjectExt::property(self, "max-width")
+        ObjectExt::property(self, "max-width")
     }
 
     #[doc(alias = "max-width")]
     pub fn set_max_width(&self, max_width: i32) {
-        glib::ObjectExt::set_property(self, "max-width", max_width)
+        ObjectExt::set_property(self, "max-width", max_width)
     }
 
     #[doc(alias = "min-height")]
     pub fn min_height(&self) -> i32 {
-        glib::ObjectExt::property(self, "min-height")
+        ObjectExt::property(self, "min-height")
     }
 
     #[doc(alias = "min-height")]
     pub fn set_min_height(&self, min_height: i32) {
-        glib::ObjectExt::set_property(self, "min-height", min_height)
+        ObjectExt::set_property(self, "min-height", min_height)
     }
 
     #[doc(alias = "min-width")]
     pub fn min_width(&self) -> i32 {
-        glib::ObjectExt::property(self, "min-width")
+        ObjectExt::property(self, "min-width")
     }
 
     #[doc(alias = "min-width")]
     pub fn set_min_width(&self, min_width: i32) {
-        glib::ObjectExt::set_property(self, "min-width", min_width)
+        ObjectExt::set_property(self, "min-width", min_width)
     }
 
     #[doc(alias = "nat-height")]
     pub fn nat_height(&self) -> i32 {
-        glib::ObjectExt::property(self, "nat-height")
+        ObjectExt::property(self, "nat-height")
     }
 
     #[doc(alias = "nat-height")]
     pub fn set_nat_height(&self, nat_height: i32) {
-        glib::ObjectExt::set_property(self, "nat-height", nat_height)
+        ObjectExt::set_property(self, "nat-height", nat_height)
     }
 
     #[doc(alias = "nat-width")]
     pub fn nat_width(&self) -> i32 {
-        glib::ObjectExt::property(self, "nat-width")
+        ObjectExt::property(self, "nat-width")
     }
 
     #[doc(alias = "nat-width")]
     pub fn set_nat_width(&self, nat_width: i32) {
-        glib::ObjectExt::set_property(self, "nat-width", nat_width)
+        ObjectExt::set_property(self, "nat-width", nat_width)
     }
 
     #[doc(alias = "max-height")]

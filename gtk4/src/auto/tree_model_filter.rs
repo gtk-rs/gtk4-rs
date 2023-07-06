@@ -158,7 +158,7 @@ pub trait TreeModelFilterExt: IsA<TreeModelFilter> + sealed::Sealed + 'static {
 
     #[doc(alias = "child-model")]
     fn child_model(&self) -> Option<TreeModel> {
-        glib::ObjectExt::property(self.as_ref(), "child-model")
+        ObjectExt::property(self.as_ref(), "child-model")
     }
 }
 

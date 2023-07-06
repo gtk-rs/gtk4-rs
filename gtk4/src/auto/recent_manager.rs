@@ -159,11 +159,11 @@ pub trait RecentManagerExt: IsA<RecentManager> + sealed::Sealed + 'static {
     }
 
     fn filename(&self) -> Option<glib::GString> {
-        glib::ObjectExt::property(self.as_ref(), "filename")
+        ObjectExt::property(self.as_ref(), "filename")
     }
 
     fn size(&self) -> i32 {
-        glib::ObjectExt::property(self.as_ref(), "size")
+        ObjectExt::property(self.as_ref(), "size")
     }
 
     #[doc(alias = "changed")]

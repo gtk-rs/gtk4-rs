@@ -277,7 +277,7 @@ impl PrintJob {
 
     #[doc(alias = "page-setup")]
     pub fn page_setup(&self) -> Option<PageSetup> {
-        glib::ObjectExt::property(self, "page-setup")
+        ObjectExt::property(self, "page-setup")
     }
 
     #[doc(alias = "status-changed")]

@@ -25,7 +25,7 @@ impl X11DeviceXI2 {
 
     #[doc(alias = "device-id")]
     pub fn device_id(&self) -> i32 {
-        glib::ObjectExt::property(self, "device-id")
+        ObjectExt::property(self, "device-id")
     }
 }
 

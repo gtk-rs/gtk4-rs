@@ -176,12 +176,12 @@ impl CellView {
 
     #[doc(alias = "cell-area")]
     pub fn cell_area(&self) -> Option<CellArea> {
-        glib::ObjectExt::property(self, "cell-area")
+        ObjectExt::property(self, "cell-area")
     }
 
     #[doc(alias = "cell-area-context")]
     pub fn cell_area_context(&self) -> Option<CellAreaContext> {
-        glib::ObjectExt::property(self, "cell-area-context")
+        ObjectExt::property(self, "cell-area-context")
     }
 
     #[doc(alias = "draw-sensitive")]

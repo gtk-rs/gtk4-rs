@@ -76,22 +76,22 @@ impl SearchEntry {
 
     #[doc(alias = "activates-default")]
     pub fn activates_default(&self) -> bool {
-        glib::ObjectExt::property(self, "activates-default")
+        ObjectExt::property(self, "activates-default")
     }
 
     #[doc(alias = "activates-default")]
     pub fn set_activates_default(&self, activates_default: bool) {
-        glib::ObjectExt::set_property(self, "activates-default", activates_default)
+        ObjectExt::set_property(self, "activates-default", activates_default)
     }
 
     #[doc(alias = "placeholder-text")]
     pub fn placeholder_text(&self) -> Option<glib::GString> {
-        glib::ObjectExt::property(self, "placeholder-text")
+        ObjectExt::property(self, "placeholder-text")
     }
 
     #[doc(alias = "placeholder-text")]
     pub fn set_placeholder_text(&self, placeholder_text: Option<&str>) {
-        glib::ObjectExt::set_property(self, "placeholder-text", placeholder_text)
+        ObjectExt::set_property(self, "placeholder-text", placeholder_text)
     }
 
     #[doc(alias = "activate")]

@@ -70,11 +70,11 @@ impl PadController {
 
     #[doc(alias = "action-group")]
     pub fn action_group(&self) -> Option<gio::ActionGroup> {
-        glib::ObjectExt::property(self, "action-group")
+        ObjectExt::property(self, "action-group")
     }
 
     pub fn pad(&self) -> Option<gdk::Device> {
-        glib::ObjectExt::property(self, "pad")
+        ObjectExt::property(self, "pad")
     }
 }
 

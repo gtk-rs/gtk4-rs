@@ -33,32 +33,32 @@ impl ShortcutsGroup {
 
     #[doc(alias = "accel-size-group")]
     pub fn set_accel_size_group(&self, accel_size_group: Option<&SizeGroup>) {
-        glib::ObjectExt::set_property(self, "accel-size-group", accel_size_group)
+        ObjectExt::set_property(self, "accel-size-group", accel_size_group)
     }
 
     pub fn height(&self) -> u32 {
-        glib::ObjectExt::property(self, "height")
+        ObjectExt::property(self, "height")
     }
 
     pub fn title(&self) -> Option<glib::GString> {
-        glib::ObjectExt::property(self, "title")
+        ObjectExt::property(self, "title")
     }
 
     pub fn set_title(&self, title: Option<&str>) {
-        glib::ObjectExt::set_property(self, "title", title)
+        ObjectExt::set_property(self, "title", title)
     }
 
     #[doc(alias = "title-size-group")]
     pub fn set_title_size_group(&self, title_size_group: Option<&SizeGroup>) {
-        glib::ObjectExt::set_property(self, "title-size-group", title_size_group)
+        ObjectExt::set_property(self, "title-size-group", title_size_group)
     }
 
     pub fn view(&self) -> Option<glib::GString> {
-        glib::ObjectExt::property(self, "view")
+        ObjectExt::property(self, "view")
     }
 
     pub fn set_view(&self, view: Option<&str>) {
-        glib::ObjectExt::set_property(self, "view", view)
+        ObjectExt::set_property(self, "view", view)
     }
 
     #[doc(alias = "accel-size-group")]

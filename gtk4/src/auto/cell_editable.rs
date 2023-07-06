@@ -60,12 +60,12 @@ pub trait CellEditableExt: IsA<CellEditable> + sealed::Sealed + 'static {
 
     #[doc(alias = "editing-canceled")]
     fn is_editing_canceled(&self) -> bool {
-        glib::ObjectExt::property(self.as_ref(), "editing-canceled")
+        ObjectExt::property(self.as_ref(), "editing-canceled")
     }
 
     #[doc(alias = "editing-canceled")]
     fn set_editing_canceled(&self, editing_canceled: bool) {
-        glib::ObjectExt::set_property(self.as_ref(), "editing-canceled", editing_canceled)
+        ObjectExt::set_property(self.as_ref(), "editing-canceled", editing_canceled)
     }
 
     #[doc(alias = "editing-done")]

@@ -98,12 +98,12 @@ impl PopoverMenu {
 
     #[doc(alias = "visible-submenu")]
     pub fn visible_submenu(&self) -> Option<glib::GString> {
-        glib::ObjectExt::property(self, "visible-submenu")
+        ObjectExt::property(self, "visible-submenu")
     }
 
     #[doc(alias = "visible-submenu")]
     pub fn set_visible_submenu(&self, visible_submenu: Option<&str>) {
-        glib::ObjectExt::set_property(self, "visible-submenu", visible_submenu)
+        ObjectExt::set_property(self, "visible-submenu", visible_submenu)
     }
 
     #[doc(alias = "menu-model")]

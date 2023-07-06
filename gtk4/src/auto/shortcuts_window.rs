@@ -33,22 +33,22 @@ impl ShortcutsWindow {
 
     #[doc(alias = "section-name")]
     pub fn section_name(&self) -> Option<glib::GString> {
-        glib::ObjectExt::property(self, "section-name")
+        ObjectExt::property(self, "section-name")
     }
 
     #[doc(alias = "section-name")]
     pub fn set_section_name(&self, section_name: Option<&str>) {
-        glib::ObjectExt::set_property(self, "section-name", section_name)
+        ObjectExt::set_property(self, "section-name", section_name)
     }
 
     #[doc(alias = "view-name")]
     pub fn view_name(&self) -> Option<glib::GString> {
-        glib::ObjectExt::property(self, "view-name")
+        ObjectExt::property(self, "view-name")
     }
 
     #[doc(alias = "view-name")]
     pub fn set_view_name(&self, view_name: Option<&str>) {
-        glib::ObjectExt::set_property(self, "view-name", view_name)
+        ObjectExt::set_property(self, "view-name", view_name)
     }
 
     #[doc(alias = "close")]

@@ -392,7 +392,7 @@ pub trait ScaleButtonExt: IsA<ScaleButton> + sealed::Sealed + 'static {
     }
 
     fn icons(&self) -> Vec<glib::GString> {
-        glib::ObjectExt::property(self.as_ref(), "icons")
+        ObjectExt::property(self.as_ref(), "icons")
     }
 
     #[doc(alias = "popdown")]

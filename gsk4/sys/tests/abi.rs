@@ -2,7 +2,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-#![cfg(target_os = "linux")]
+#![cfg(unix)]
 
 use gsk4_sys::*;
 use std::env;

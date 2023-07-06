@@ -164,17 +164,17 @@ impl Paned {
 
     #[doc(alias = "max-position")]
     pub fn max_position(&self) -> i32 {
-        glib::ObjectExt::property(self, "max-position")
+        ObjectExt::property(self, "max-position")
     }
 
     #[doc(alias = "min-position")]
     pub fn min_position(&self) -> i32 {
-        glib::ObjectExt::property(self, "min-position")
+        ObjectExt::property(self, "min-position")
     }
 
     #[doc(alias = "position-set")]
     pub fn is_position_set(&self) -> bool {
-        glib::ObjectExt::property(self, "position-set")
+        ObjectExt::property(self, "position-set")
     }
 
     #[doc(alias = "accept-position")]

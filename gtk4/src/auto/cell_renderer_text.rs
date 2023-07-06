@@ -462,191 +462,191 @@ pub trait CellRendererTextExt: IsA<CellRendererText> + sealed::Sealed + 'static 
 
     #[doc(alias = "align-set")]
     fn is_align_set(&self) -> bool {
-        glib::ObjectExt::property(self.as_ref(), "align-set")
+        ObjectExt::property(self.as_ref(), "align-set")
     }
 
     fn alignment(&self) -> pango::Alignment {
-        glib::ObjectExt::property(self.as_ref(), "alignment")
+        ObjectExt::property(self.as_ref(), "alignment")
     }
 
     fn set_alignment(&self, alignment: pango::Alignment) {
-        glib::ObjectExt::set_property(self.as_ref(), "alignment", alignment)
+        ObjectExt::set_property(self.as_ref(), "alignment", alignment)
     }
 
     fn attributes(&self) -> Option<pango::AttrList> {
-        glib::ObjectExt::property(self.as_ref(), "attributes")
+        ObjectExt::property(self.as_ref(), "attributes")
     }
 
     fn set_attributes(&self, attributes: Option<&pango::AttrList>) {
-        glib::ObjectExt::set_property(self.as_ref(), "attributes", attributes)
+        ObjectExt::set_property(self.as_ref(), "attributes", attributes)
     }
 
     fn set_background(&self, background: Option<&str>) {
-        glib::ObjectExt::set_property(self.as_ref(), "background", background)
+        ObjectExt::set_property(self.as_ref(), "background", background)
     }
 
     #[doc(alias = "background-rgba")]
     fn background_rgba(&self) -> Option<gdk::RGBA> {
-        glib::ObjectExt::property(self.as_ref(), "background-rgba")
+        ObjectExt::property(self.as_ref(), "background-rgba")
     }
 
     #[doc(alias = "background-rgba")]
     fn set_background_rgba(&self, background_rgba: Option<&gdk::RGBA>) {
-        glib::ObjectExt::set_property(self.as_ref(), "background-rgba", background_rgba)
+        ObjectExt::set_property(self.as_ref(), "background-rgba", background_rgba)
     }
 
     #[doc(alias = "background-set")]
     fn is_background_set(&self) -> bool {
-        glib::ObjectExt::property(self.as_ref(), "background-set")
+        ObjectExt::property(self.as_ref(), "background-set")
     }
 
     fn is_editable(&self) -> bool {
-        glib::ObjectExt::property(self.as_ref(), "editable")
+        ObjectExt::property(self.as_ref(), "editable")
     }
 
     fn set_editable(&self, editable: bool) {
-        glib::ObjectExt::set_property(self.as_ref(), "editable", editable)
+        ObjectExt::set_property(self.as_ref(), "editable", editable)
     }
 
     #[doc(alias = "editable-set")]
     fn is_editable_set(&self) -> bool {
-        glib::ObjectExt::property(self.as_ref(), "editable-set")
+        ObjectExt::property(self.as_ref(), "editable-set")
     }
 
     fn ellipsize(&self) -> pango::EllipsizeMode {
-        glib::ObjectExt::property(self.as_ref(), "ellipsize")
+        ObjectExt::property(self.as_ref(), "ellipsize")
     }
 
     fn set_ellipsize(&self, ellipsize: pango::EllipsizeMode) {
-        glib::ObjectExt::set_property(self.as_ref(), "ellipsize", ellipsize)
+        ObjectExt::set_property(self.as_ref(), "ellipsize", ellipsize)
     }
 
     #[doc(alias = "ellipsize-set")]
     fn is_ellipsize_set(&self) -> bool {
-        glib::ObjectExt::property(self.as_ref(), "ellipsize-set")
+        ObjectExt::property(self.as_ref(), "ellipsize-set")
     }
 
     fn family(&self) -> Option<glib::GString> {
-        glib::ObjectExt::property(self.as_ref(), "family")
+        ObjectExt::property(self.as_ref(), "family")
     }
 
     fn set_family(&self, family: Option<&str>) {
-        glib::ObjectExt::set_property(self.as_ref(), "family", family)
+        ObjectExt::set_property(self.as_ref(), "family", family)
     }
 
     #[doc(alias = "family-set")]
     fn is_family_set(&self) -> bool {
-        glib::ObjectExt::property(self.as_ref(), "family-set")
+        ObjectExt::property(self.as_ref(), "family-set")
     }
 
     fn font(&self) -> Option<glib::GString> {
-        glib::ObjectExt::property(self.as_ref(), "font")
+        ObjectExt::property(self.as_ref(), "font")
     }
 
     fn set_font(&self, font: Option<&str>) {
-        glib::ObjectExt::set_property(self.as_ref(), "font", font)
+        ObjectExt::set_property(self.as_ref(), "font", font)
     }
 
     #[doc(alias = "font-desc")]
     fn font_desc(&self) -> Option<pango::FontDescription> {
-        glib::ObjectExt::property(self.as_ref(), "font-desc")
+        ObjectExt::property(self.as_ref(), "font-desc")
     }
 
     #[doc(alias = "font-desc")]
     fn set_font_desc(&self, font_desc: Option<&pango::FontDescription>) {
-        glib::ObjectExt::set_property(self.as_ref(), "font-desc", font_desc)
+        ObjectExt::set_property(self.as_ref(), "font-desc", font_desc)
     }
 
     fn set_foreground(&self, foreground: Option<&str>) {
-        glib::ObjectExt::set_property(self.as_ref(), "foreground", foreground)
+        ObjectExt::set_property(self.as_ref(), "foreground", foreground)
     }
 
     #[doc(alias = "foreground-rgba")]
     fn foreground_rgba(&self) -> Option<gdk::RGBA> {
-        glib::ObjectExt::property(self.as_ref(), "foreground-rgba")
+        ObjectExt::property(self.as_ref(), "foreground-rgba")
     }
 
     #[doc(alias = "foreground-rgba")]
     fn set_foreground_rgba(&self, foreground_rgba: Option<&gdk::RGBA>) {
-        glib::ObjectExt::set_property(self.as_ref(), "foreground-rgba", foreground_rgba)
+        ObjectExt::set_property(self.as_ref(), "foreground-rgba", foreground_rgba)
     }
 
     #[doc(alias = "foreground-set")]
     fn is_foreground_set(&self) -> bool {
-        glib::ObjectExt::property(self.as_ref(), "foreground-set")
+        ObjectExt::property(self.as_ref(), "foreground-set")
     }
 
     fn language(&self) -> Option<glib::GString> {
-        glib::ObjectExt::property(self.as_ref(), "language")
+        ObjectExt::property(self.as_ref(), "language")
     }
 
     fn set_language(&self, language: Option<&str>) {
-        glib::ObjectExt::set_property(self.as_ref(), "language", language)
+        ObjectExt::set_property(self.as_ref(), "language", language)
     }
 
     #[doc(alias = "language-set")]
     fn is_language_set(&self) -> bool {
-        glib::ObjectExt::property(self.as_ref(), "language-set")
+        ObjectExt::property(self.as_ref(), "language-set")
     }
 
     fn set_markup(&self, markup: Option<&str>) {
-        glib::ObjectExt::set_property(self.as_ref(), "markup", markup)
+        ObjectExt::set_property(self.as_ref(), "markup", markup)
     }
 
     #[doc(alias = "max-width-chars")]
     fn max_width_chars(&self) -> i32 {
-        glib::ObjectExt::property(self.as_ref(), "max-width-chars")
+        ObjectExt::property(self.as_ref(), "max-width-chars")
     }
 
     #[doc(alias = "max-width-chars")]
     fn set_max_width_chars(&self, max_width_chars: i32) {
-        glib::ObjectExt::set_property(self.as_ref(), "max-width-chars", max_width_chars)
+        ObjectExt::set_property(self.as_ref(), "max-width-chars", max_width_chars)
     }
 
     #[doc(alias = "placeholder-text")]
     fn placeholder_text(&self) -> Option<glib::GString> {
-        glib::ObjectExt::property(self.as_ref(), "placeholder-text")
+        ObjectExt::property(self.as_ref(), "placeholder-text")
     }
 
     #[doc(alias = "placeholder-text")]
     fn set_placeholder_text(&self, placeholder_text: Option<&str>) {
-        glib::ObjectExt::set_property(self.as_ref(), "placeholder-text", placeholder_text)
+        ObjectExt::set_property(self.as_ref(), "placeholder-text", placeholder_text)
     }
 
     fn rise(&self) -> i32 {
-        glib::ObjectExt::property(self.as_ref(), "rise")
+        ObjectExt::property(self.as_ref(), "rise")
     }
 
     fn set_rise(&self, rise: i32) {
-        glib::ObjectExt::set_property(self.as_ref(), "rise", rise)
+        ObjectExt::set_property(self.as_ref(), "rise", rise)
     }
 
     #[doc(alias = "rise-set")]
     fn is_rise_set(&self) -> bool {
-        glib::ObjectExt::property(self.as_ref(), "rise-set")
+        ObjectExt::property(self.as_ref(), "rise-set")
     }
 
     fn scale(&self) -> f64 {
-        glib::ObjectExt::property(self.as_ref(), "scale")
+        ObjectExt::property(self.as_ref(), "scale")
     }
 
     fn set_scale(&self, scale: f64) {
-        glib::ObjectExt::set_property(self.as_ref(), "scale", scale)
+        ObjectExt::set_property(self.as_ref(), "scale", scale)
     }
 
     #[doc(alias = "scale-set")]
     fn is_scale_set(&self) -> bool {
-        glib::ObjectExt::property(self.as_ref(), "scale-set")
+        ObjectExt::property(self.as_ref(), "scale-set")
     }
 
     #[doc(alias = "single-paragraph-mode")]
     fn is_single_paragraph_mode(&self) -> bool {
-        glib::ObjectExt::property(self.as_ref(), "single-paragraph-mode")
+        ObjectExt::property(self.as_ref(), "single-paragraph-mode")
     }
 
     #[doc(alias = "single-paragraph-mode")]
     fn set_single_paragraph_mode(&self, single_paragraph_mode: bool) {
-        glib::ObjectExt::set_property(
+        ObjectExt::set_property(
             self.as_ref(),
             "single-paragraph-mode",
             single_paragraph_mode,
@@ -654,142 +654,142 @@ pub trait CellRendererTextExt: IsA<CellRendererText> + sealed::Sealed + 'static 
     }
 
     fn size(&self) -> i32 {
-        glib::ObjectExt::property(self.as_ref(), "size")
+        ObjectExt::property(self.as_ref(), "size")
     }
 
     fn set_size(&self, size: i32) {
-        glib::ObjectExt::set_property(self.as_ref(), "size", size)
+        ObjectExt::set_property(self.as_ref(), "size", size)
     }
 
     #[doc(alias = "size-points")]
     fn size_points(&self) -> f64 {
-        glib::ObjectExt::property(self.as_ref(), "size-points")
+        ObjectExt::property(self.as_ref(), "size-points")
     }
 
     #[doc(alias = "size-points")]
     fn set_size_points(&self, size_points: f64) {
-        glib::ObjectExt::set_property(self.as_ref(), "size-points", size_points)
+        ObjectExt::set_property(self.as_ref(), "size-points", size_points)
     }
 
     #[doc(alias = "size-set")]
     fn is_size_set(&self) -> bool {
-        glib::ObjectExt::property(self.as_ref(), "size-set")
+        ObjectExt::property(self.as_ref(), "size-set")
     }
 
     fn stretch(&self) -> pango::Stretch {
-        glib::ObjectExt::property(self.as_ref(), "stretch")
+        ObjectExt::property(self.as_ref(), "stretch")
     }
 
     fn set_stretch(&self, stretch: pango::Stretch) {
-        glib::ObjectExt::set_property(self.as_ref(), "stretch", stretch)
+        ObjectExt::set_property(self.as_ref(), "stretch", stretch)
     }
 
     #[doc(alias = "stretch-set")]
     fn is_stretch_set(&self) -> bool {
-        glib::ObjectExt::property(self.as_ref(), "stretch-set")
+        ObjectExt::property(self.as_ref(), "stretch-set")
     }
 
     fn is_strikethrough(&self) -> bool {
-        glib::ObjectExt::property(self.as_ref(), "strikethrough")
+        ObjectExt::property(self.as_ref(), "strikethrough")
     }
 
     fn set_strikethrough(&self, strikethrough: bool) {
-        glib::ObjectExt::set_property(self.as_ref(), "strikethrough", strikethrough)
+        ObjectExt::set_property(self.as_ref(), "strikethrough", strikethrough)
     }
 
     #[doc(alias = "strikethrough-set")]
     fn is_strikethrough_set(&self) -> bool {
-        glib::ObjectExt::property(self.as_ref(), "strikethrough-set")
+        ObjectExt::property(self.as_ref(), "strikethrough-set")
     }
 
     fn style(&self) -> pango::Style {
-        glib::ObjectExt::property(self.as_ref(), "style")
+        ObjectExt::property(self.as_ref(), "style")
     }
 
     fn set_style(&self, style: pango::Style) {
-        glib::ObjectExt::set_property(self.as_ref(), "style", style)
+        ObjectExt::set_property(self.as_ref(), "style", style)
     }
 
     #[doc(alias = "style-set")]
     fn is_style_set(&self) -> bool {
-        glib::ObjectExt::property(self.as_ref(), "style-set")
+        ObjectExt::property(self.as_ref(), "style-set")
     }
 
     fn text(&self) -> Option<glib::GString> {
-        glib::ObjectExt::property(self.as_ref(), "text")
+        ObjectExt::property(self.as_ref(), "text")
     }
 
     fn set_text(&self, text: Option<&str>) {
-        glib::ObjectExt::set_property(self.as_ref(), "text", text)
+        ObjectExt::set_property(self.as_ref(), "text", text)
     }
 
     fn underline(&self) -> pango::Underline {
-        glib::ObjectExt::property(self.as_ref(), "underline")
+        ObjectExt::property(self.as_ref(), "underline")
     }
 
     fn set_underline(&self, underline: pango::Underline) {
-        glib::ObjectExt::set_property(self.as_ref(), "underline", underline)
+        ObjectExt::set_property(self.as_ref(), "underline", underline)
     }
 
     #[doc(alias = "underline-set")]
     fn is_underline_set(&self) -> bool {
-        glib::ObjectExt::property(self.as_ref(), "underline-set")
+        ObjectExt::property(self.as_ref(), "underline-set")
     }
 
     fn variant(&self) -> pango::Variant {
-        glib::ObjectExt::property(self.as_ref(), "variant")
+        ObjectExt::property(self.as_ref(), "variant")
     }
 
     fn set_variant(&self, variant: pango::Variant) {
-        glib::ObjectExt::set_property(self.as_ref(), "variant", variant)
+        ObjectExt::set_property(self.as_ref(), "variant", variant)
     }
 
     #[doc(alias = "variant-set")]
     fn is_variant_set(&self) -> bool {
-        glib::ObjectExt::property(self.as_ref(), "variant-set")
+        ObjectExt::property(self.as_ref(), "variant-set")
     }
 
     fn weight(&self) -> i32 {
-        glib::ObjectExt::property(self.as_ref(), "weight")
+        ObjectExt::property(self.as_ref(), "weight")
     }
 
     fn set_weight(&self, weight: i32) {
-        glib::ObjectExt::set_property(self.as_ref(), "weight", weight)
+        ObjectExt::set_property(self.as_ref(), "weight", weight)
     }
 
     #[doc(alias = "weight-set")]
     fn is_weight_set(&self) -> bool {
-        glib::ObjectExt::property(self.as_ref(), "weight-set")
+        ObjectExt::property(self.as_ref(), "weight-set")
     }
 
     #[doc(alias = "width-chars")]
     fn width_chars(&self) -> i32 {
-        glib::ObjectExt::property(self.as_ref(), "width-chars")
+        ObjectExt::property(self.as_ref(), "width-chars")
     }
 
     #[doc(alias = "width-chars")]
     fn set_width_chars(&self, width_chars: i32) {
-        glib::ObjectExt::set_property(self.as_ref(), "width-chars", width_chars)
+        ObjectExt::set_property(self.as_ref(), "width-chars", width_chars)
     }
 
     #[doc(alias = "wrap-mode")]
     fn wrap_mode(&self) -> pango::WrapMode {
-        glib::ObjectExt::property(self.as_ref(), "wrap-mode")
+        ObjectExt::property(self.as_ref(), "wrap-mode")
     }
 
     #[doc(alias = "wrap-mode")]
     fn set_wrap_mode(&self, wrap_mode: pango::WrapMode) {
-        glib::ObjectExt::set_property(self.as_ref(), "wrap-mode", wrap_mode)
+        ObjectExt::set_property(self.as_ref(), "wrap-mode", wrap_mode)
     }
 
     #[doc(alias = "wrap-width")]
     fn wrap_width(&self) -> i32 {
-        glib::ObjectExt::property(self.as_ref(), "wrap-width")
+        ObjectExt::property(self.as_ref(), "wrap-width")
     }
 
     #[doc(alias = "wrap-width")]
     fn set_wrap_width(&self, wrap_width: i32) {
-        glib::ObjectExt::set_property(self.as_ref(), "wrap-width", wrap_width)
+        ObjectExt::set_property(self.as_ref(), "wrap-width", wrap_width)
     }
 
     #[doc(alias = "edited")]

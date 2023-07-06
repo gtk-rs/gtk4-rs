@@ -176,25 +176,25 @@ pub trait CellAreaContextExt: IsA<CellAreaContext> + sealed::Sealed + 'static {
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "minimum-height")]
     fn minimum_height(&self) -> i32 {
-        glib::ObjectExt::property(self.as_ref(), "minimum-height")
+        ObjectExt::property(self.as_ref(), "minimum-height")
     }
 
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "minimum-width")]
     fn minimum_width(&self) -> i32 {
-        glib::ObjectExt::property(self.as_ref(), "minimum-width")
+        ObjectExt::property(self.as_ref(), "minimum-width")
     }
 
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "natural-height")]
     fn natural_height(&self) -> i32 {
-        glib::ObjectExt::property(self.as_ref(), "natural-height")
+        ObjectExt::property(self.as_ref(), "natural-height")
     }
 
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "natural-width")]
     fn natural_width(&self) -> i32 {
-        glib::ObjectExt::property(self.as_ref(), "natural-width")
+        ObjectExt::property(self.as_ref(), "natural-width")
     }
 
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]

@@ -118,7 +118,7 @@ pub trait NativeDialogExt: IsA<NativeDialog> + sealed::Sealed + 'static {
     }
 
     fn set_visible(&self, visible: bool) {
-        glib::ObjectExt::set_property(self.as_ref(), "visible", visible)
+        ObjectExt::set_property(self.as_ref(), "visible", visible)
     }
 
     #[doc(alias = "response")]

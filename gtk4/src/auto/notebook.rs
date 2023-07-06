@@ -310,16 +310,16 @@ impl Notebook {
 
     #[doc(alias = "enable-popup")]
     pub fn enables_popup(&self) -> bool {
-        glib::ObjectExt::property(self, "enable-popup")
+        ObjectExt::property(self, "enable-popup")
     }
 
     #[doc(alias = "enable-popup")]
     pub fn set_enable_popup(&self, enable_popup: bool) {
-        glib::ObjectExt::set_property(self, "enable-popup", enable_popup)
+        ObjectExt::set_property(self, "enable-popup", enable_popup)
     }
 
     pub fn set_page(&self, page: i32) {
-        glib::ObjectExt::set_property(self, "page", page)
+        ObjectExt::set_property(self, "page", page)
     }
 
     #[doc(alias = "change-current-page")]

@@ -1472,22 +1472,22 @@ pub trait WidgetExt: IsA<Widget> + sealed::Sealed + 'static {
 
     #[doc(alias = "height-request")]
     fn height_request(&self) -> i32 {
-        glib::ObjectExt::property(self.as_ref(), "height-request")
+        ObjectExt::property(self.as_ref(), "height-request")
     }
 
     #[doc(alias = "height-request")]
     fn set_height_request(&self, height_request: i32) {
-        glib::ObjectExt::set_property(self.as_ref(), "height-request", height_request)
+        ObjectExt::set_property(self.as_ref(), "height-request", height_request)
     }
 
     #[doc(alias = "width-request")]
     fn width_request(&self) -> i32 {
-        glib::ObjectExt::property(self.as_ref(), "width-request")
+        ObjectExt::property(self.as_ref(), "width-request")
     }
 
     #[doc(alias = "width-request")]
     fn set_width_request(&self, width_request: i32) {
-        glib::ObjectExt::set_property(self.as_ref(), "width-request", width_request)
+        ObjectExt::set_property(self.as_ref(), "width-request", width_request)
     }
 
     #[doc(alias = "destroy")]

@@ -308,22 +308,22 @@ impl Text {
 
     #[doc(alias = "im-module")]
     pub fn im_module(&self) -> Option<glib::GString> {
-        glib::ObjectExt::property(self, "im-module")
+        ObjectExt::property(self, "im-module")
     }
 
     #[doc(alias = "im-module")]
     pub fn set_im_module(&self, im_module: Option<&str>) {
-        glib::ObjectExt::set_property(self, "im-module", im_module)
+        ObjectExt::set_property(self, "im-module", im_module)
     }
 
     #[doc(alias = "invisible-char-set")]
     pub fn is_invisible_char_set(&self) -> bool {
-        glib::ObjectExt::property(self, "invisible-char-set")
+        ObjectExt::property(self, "invisible-char-set")
     }
 
     #[doc(alias = "scroll-offset")]
     pub fn scroll_offset(&self) -> i32 {
-        glib::ObjectExt::property(self, "scroll-offset")
+        ObjectExt::property(self, "scroll-offset")
     }
 
     #[doc(alias = "activates-default")]

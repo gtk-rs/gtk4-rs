@@ -320,32 +320,32 @@ impl ScrolledWindow {
 
     #[doc(alias = "hscrollbar-policy")]
     pub fn hscrollbar_policy(&self) -> PolicyType {
-        glib::ObjectExt::property(self, "hscrollbar-policy")
+        ObjectExt::property(self, "hscrollbar-policy")
     }
 
     #[doc(alias = "hscrollbar-policy")]
     pub fn set_hscrollbar_policy(&self, hscrollbar_policy: PolicyType) {
-        glib::ObjectExt::set_property(self, "hscrollbar-policy", hscrollbar_policy)
+        ObjectExt::set_property(self, "hscrollbar-policy", hscrollbar_policy)
     }
 
     #[doc(alias = "vscrollbar-policy")]
     pub fn vscrollbar_policy(&self) -> PolicyType {
-        glib::ObjectExt::property(self, "vscrollbar-policy")
+        ObjectExt::property(self, "vscrollbar-policy")
     }
 
     #[doc(alias = "vscrollbar-policy")]
     pub fn set_vscrollbar_policy(&self, vscrollbar_policy: PolicyType) {
-        glib::ObjectExt::set_property(self, "vscrollbar-policy", vscrollbar_policy)
+        ObjectExt::set_property(self, "vscrollbar-policy", vscrollbar_policy)
     }
 
     #[doc(alias = "window-placement")]
     pub fn window_placement(&self) -> CornerType {
-        glib::ObjectExt::property(self, "window-placement")
+        ObjectExt::property(self, "window-placement")
     }
 
     #[doc(alias = "window-placement")]
     pub fn set_window_placement(&self, window_placement: CornerType) {
-        glib::ObjectExt::set_property(self, "window-placement", window_placement)
+        ObjectExt::set_property(self, "window-placement", window_placement)
     }
 
     #[doc(alias = "edge-overshot")]

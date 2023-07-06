@@ -2,9 +2,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use glib::{
-    error::ErrorDomain, translate::*, value::FromValue, value::ToValue, Quark, StaticType, Type,
-};
+use glib::{prelude::*, translate::*};
 use std::fmt;
 
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
@@ -113,7 +111,7 @@ impl FromGlib<ffi::GdkAxisUse> for AxisUse {
 
 impl StaticType for AxisUse {
     #[inline]
-    fn static_type() -> Type {
+    fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gdk_axis_use_get_type()) }
     }
 }
@@ -132,7 +130,7 @@ impl glib::value::ValueType for AxisUse {
     type Type = Self;
 }
 
-unsafe impl<'a> FromValue<'a> for AxisUse {
+unsafe impl<'a> glib::value::FromValue<'a> for AxisUse {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
     #[inline]
@@ -257,7 +255,7 @@ impl FromGlib<ffi::GdkCrossingMode> for CrossingMode {
 
 impl StaticType for CrossingMode {
     #[inline]
-    fn static_type() -> Type {
+    fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gdk_crossing_mode_get_type()) }
     }
 }
@@ -276,7 +274,7 @@ impl glib::value::ValueType for CrossingMode {
     type Type = Self;
 }
 
-unsafe impl<'a> FromValue<'a> for CrossingMode {
+unsafe impl<'a> glib::value::FromValue<'a> for CrossingMode {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
     #[inline]
@@ -371,7 +369,7 @@ impl FromGlib<ffi::GdkDevicePadFeature> for DevicePadFeature {
 
 impl StaticType for DevicePadFeature {
     #[inline]
-    fn static_type() -> Type {
+    fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gdk_device_pad_feature_get_type()) }
     }
 }
@@ -390,7 +388,7 @@ impl glib::value::ValueType for DevicePadFeature {
     type Type = Self;
 }
 
-unsafe impl<'a> FromValue<'a> for DevicePadFeature {
+unsafe impl<'a> glib::value::FromValue<'a> for DevicePadFeature {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
     #[inline]
@@ -510,7 +508,7 @@ impl FromGlib<ffi::GdkDeviceToolType> for DeviceToolType {
 
 impl StaticType for DeviceToolType {
     #[inline]
-    fn static_type() -> Type {
+    fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gdk_device_tool_type_get_type()) }
     }
 }
@@ -529,7 +527,7 @@ impl glib::value::ValueType for DeviceToolType {
     type Type = Self;
 }
 
-unsafe impl<'a> FromValue<'a> for DeviceToolType {
+unsafe impl<'a> glib::value::FromValue<'a> for DeviceToolType {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
     #[inline]
@@ -624,7 +622,7 @@ impl FromGlib<ffi::GdkDragCancelReason> for DragCancelReason {
 
 impl StaticType for DragCancelReason {
     #[inline]
-    fn static_type() -> Type {
+    fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gdk_drag_cancel_reason_get_type()) }
     }
 }
@@ -643,7 +641,7 @@ impl glib::value::ValueType for DragCancelReason {
     type Type = Self;
 }
 
-unsafe impl<'a> FromValue<'a> for DragCancelReason {
+unsafe impl<'a> glib::value::FromValue<'a> for DragCancelReason {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
     #[inline]
@@ -871,7 +869,7 @@ impl FromGlib<ffi::GdkEventType> for EventType {
 
 impl StaticType for EventType {
     #[inline]
-    fn static_type() -> Type {
+    fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gdk_event_type_get_type()) }
     }
 }
@@ -890,7 +888,7 @@ impl glib::value::ValueType for EventType {
     type Type = Self;
 }
 
-unsafe impl<'a> FromValue<'a> for EventType {
+unsafe impl<'a> glib::value::FromValue<'a> for EventType {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
     #[inline]
@@ -980,7 +978,7 @@ impl FromGlib<ffi::GdkFullscreenMode> for FullscreenMode {
 
 impl StaticType for FullscreenMode {
     #[inline]
-    fn static_type() -> Type {
+    fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gdk_fullscreen_mode_get_type()) }
     }
 }
@@ -999,7 +997,7 @@ impl glib::value::ValueType for FullscreenMode {
     type Type = Self;
 }
 
-unsafe impl<'a> FromValue<'a> for FullscreenMode {
+unsafe impl<'a> glib::value::FromValue<'a> for FullscreenMode {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
     #[inline]
@@ -1102,9 +1100,9 @@ impl FromGlib<ffi::GdkGLError> for GLError {
     }
 }
 
-impl ErrorDomain for GLError {
+impl glib::error::ErrorDomain for GLError {
     #[inline]
-    fn domain() -> Quark {
+    fn domain() -> glib::Quark {
         skip_assert_initialized!();
 
         unsafe { from_glib(ffi::gdk_gl_error_quark()) }
@@ -1127,7 +1125,7 @@ impl ErrorDomain for GLError {
 
 impl StaticType for GLError {
     #[inline]
-    fn static_type() -> Type {
+    fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gdk_gl_error_get_type()) }
     }
 }
@@ -1146,7 +1144,7 @@ impl glib::value::ValueType for GLError {
     type Type = Self;
 }
 
-unsafe impl<'a> FromValue<'a> for GLError {
+unsafe impl<'a> glib::value::FromValue<'a> for GLError {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
     #[inline]
@@ -1276,7 +1274,7 @@ impl FromGlib<ffi::GdkGravity> for Gravity {
 
 impl StaticType for Gravity {
     #[inline]
-    fn static_type() -> Type {
+    fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gdk_gravity_get_type()) }
     }
 }
@@ -1295,7 +1293,7 @@ impl glib::value::ValueType for Gravity {
     type Type = Self;
 }
 
-unsafe impl<'a> FromValue<'a> for Gravity {
+unsafe impl<'a> glib::value::FromValue<'a> for Gravity {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
     #[inline]
@@ -1410,7 +1408,7 @@ impl FromGlib<ffi::GdkInputSource> for InputSource {
 
 impl StaticType for InputSource {
     #[inline]
-    fn static_type() -> Type {
+    fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gdk_input_source_get_type()) }
     }
 }
@@ -1429,7 +1427,7 @@ impl glib::value::ValueType for InputSource {
     type Type = Self;
 }
 
-unsafe impl<'a> FromValue<'a> for InputSource {
+unsafe impl<'a> glib::value::FromValue<'a> for InputSource {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
     #[inline]
@@ -1524,7 +1522,7 @@ impl FromGlib<ffi::GdkKeyMatch> for KeyMatch {
 
 impl StaticType for KeyMatch {
     #[inline]
-    fn static_type() -> Type {
+    fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gdk_key_match_get_type()) }
     }
 }
@@ -1543,7 +1541,7 @@ impl glib::value::ValueType for KeyMatch {
     type Type = Self;
 }
 
-unsafe impl<'a> FromValue<'a> for KeyMatch {
+unsafe impl<'a> glib::value::FromValue<'a> for KeyMatch {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
     #[inline]
@@ -1844,7 +1842,7 @@ impl FromGlib<ffi::GdkMemoryFormat> for MemoryFormat {
 
 impl StaticType for MemoryFormat {
     #[inline]
-    fn static_type() -> Type {
+    fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gdk_memory_format_get_type()) }
     }
 }
@@ -1863,7 +1861,7 @@ impl glib::value::ValueType for MemoryFormat {
     type Type = Self;
 }
 
-unsafe impl<'a> FromValue<'a> for MemoryFormat {
+unsafe impl<'a> glib::value::FromValue<'a> for MemoryFormat {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
     #[inline]
@@ -1973,7 +1971,7 @@ impl FromGlib<ffi::GdkNotifyType> for NotifyType {
 
 impl StaticType for NotifyType {
     #[inline]
-    fn static_type() -> Type {
+    fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gdk_notify_type_get_type()) }
     }
 }
@@ -1992,7 +1990,7 @@ impl glib::value::ValueType for NotifyType {
     type Type = Self;
 }
 
-unsafe impl<'a> FromValue<'a> for NotifyType {
+unsafe impl<'a> glib::value::FromValue<'a> for NotifyType {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
     #[inline]
@@ -2097,7 +2095,7 @@ impl FromGlib<ffi::GdkScrollDirection> for ScrollDirection {
 
 impl StaticType for ScrollDirection {
     #[inline]
-    fn static_type() -> Type {
+    fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gdk_scroll_direction_get_type()) }
     }
 }
@@ -2116,7 +2114,7 @@ impl glib::value::ValueType for ScrollDirection {
     type Type = Self;
 }
 
-unsafe impl<'a> FromValue<'a> for ScrollDirection {
+unsafe impl<'a> glib::value::FromValue<'a> for ScrollDirection {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
     #[inline]
@@ -2216,7 +2214,7 @@ impl FromGlib<ffi::GdkScrollUnit> for ScrollUnit {
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
 impl StaticType for ScrollUnit {
     #[inline]
-    fn static_type() -> Type {
+    fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gdk_scroll_unit_get_type()) }
     }
 }
@@ -2241,7 +2239,7 @@ impl glib::value::ValueType for ScrollUnit {
 
 #[cfg(feature = "v4_8")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
-unsafe impl<'a> FromValue<'a> for ScrollUnit {
+unsafe impl<'a> glib::value::FromValue<'a> for ScrollUnit {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
     #[inline]
@@ -2355,7 +2353,7 @@ impl FromGlib<ffi::GdkSubpixelLayout> for SubpixelLayout {
 
 impl StaticType for SubpixelLayout {
     #[inline]
-    fn static_type() -> Type {
+    fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gdk_subpixel_layout_get_type()) }
     }
 }
@@ -2374,7 +2372,7 @@ impl glib::value::ValueType for SubpixelLayout {
     type Type = Self;
 }
 
-unsafe impl<'a> FromValue<'a> for SubpixelLayout {
+unsafe impl<'a> glib::value::FromValue<'a> for SubpixelLayout {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
     #[inline]
@@ -2494,7 +2492,7 @@ impl FromGlib<ffi::GdkSurfaceEdge> for SurfaceEdge {
 
 impl StaticType for SurfaceEdge {
     #[inline]
-    fn static_type() -> Type {
+    fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gdk_surface_edge_get_type()) }
     }
 }
@@ -2513,7 +2511,7 @@ impl glib::value::ValueType for SurfaceEdge {
     type Type = Self;
 }
 
-unsafe impl<'a> FromValue<'a> for SurfaceEdge {
+unsafe impl<'a> glib::value::FromValue<'a> for SurfaceEdge {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
     #[inline]
@@ -2621,9 +2619,9 @@ impl FromGlib<ffi::GdkTextureError> for TextureError {
 
 #[cfg(feature = "v4_6")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
-impl ErrorDomain for TextureError {
+impl glib::error::ErrorDomain for TextureError {
     #[inline]
-    fn domain() -> Quark {
+    fn domain() -> glib::Quark {
         skip_assert_initialized!();
 
         unsafe { from_glib(ffi::gdk_texture_error_quark()) }
@@ -2648,7 +2646,7 @@ impl ErrorDomain for TextureError {
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
 impl StaticType for TextureError {
     #[inline]
-    fn static_type() -> Type {
+    fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gdk_texture_error_get_type()) }
     }
 }
@@ -2673,7 +2671,7 @@ impl glib::value::ValueType for TextureError {
 
 #[cfg(feature = "v4_6")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
-unsafe impl<'a> FromValue<'a> for TextureError {
+unsafe impl<'a> glib::value::FromValue<'a> for TextureError {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
     #[inline]
@@ -2782,7 +2780,7 @@ impl FromGlib<ffi::GdkTitlebarGesture> for TitlebarGesture {
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_4")))]
 impl StaticType for TitlebarGesture {
     #[inline]
-    fn static_type() -> Type {
+    fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gdk_titlebar_gesture_get_type()) }
     }
 }
@@ -2807,7 +2805,7 @@ impl glib::value::ValueType for TitlebarGesture {
 
 #[cfg(feature = "v4_4")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_4")))]
-unsafe impl<'a> FromValue<'a> for TitlebarGesture {
+unsafe impl<'a> glib::value::FromValue<'a> for TitlebarGesture {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
     #[inline]
@@ -2911,7 +2909,7 @@ impl FromGlib<ffi::GdkTouchpadGesturePhase> for TouchpadGesturePhase {
 
 impl StaticType for TouchpadGesturePhase {
     #[inline]
-    fn static_type() -> Type {
+    fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gdk_touchpad_gesture_phase_get_type()) }
     }
 }
@@ -2930,7 +2928,7 @@ impl glib::value::ValueType for TouchpadGesturePhase {
     type Type = Self;
 }
 
-unsafe impl<'a> FromValue<'a> for TouchpadGesturePhase {
+unsafe impl<'a> glib::value::FromValue<'a> for TouchpadGesturePhase {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
     #[inline]
@@ -3018,9 +3016,9 @@ impl FromGlib<ffi::GdkVulkanError> for VulkanError {
     }
 }
 
-impl ErrorDomain for VulkanError {
+impl glib::error::ErrorDomain for VulkanError {
     #[inline]
-    fn domain() -> Quark {
+    fn domain() -> glib::Quark {
         skip_assert_initialized!();
 
         unsafe { from_glib(ffi::gdk_vulkan_error_quark()) }
@@ -3043,7 +3041,7 @@ impl ErrorDomain for VulkanError {
 
 impl StaticType for VulkanError {
     #[inline]
-    fn static_type() -> Type {
+    fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gdk_vulkan_error_get_type()) }
     }
 }
@@ -3062,7 +3060,7 @@ impl glib::value::ValueType for VulkanError {
     type Type = Self;
 }
 
-unsafe impl<'a> FromValue<'a> for VulkanError {
+unsafe impl<'a> glib::value::FromValue<'a> for VulkanError {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
     #[inline]

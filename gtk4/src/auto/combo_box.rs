@@ -626,17 +626,17 @@ pub trait ComboBoxExt: IsA<ComboBox> + sealed::Sealed + 'static {
 
     #[doc(alias = "has-frame")]
     fn has_frame(&self) -> bool {
-        glib::ObjectExt::property(self.as_ref(), "has-frame")
+        ObjectExt::property(self.as_ref(), "has-frame")
     }
 
     #[doc(alias = "has-frame")]
     fn set_has_frame(&self, has_frame: bool) {
-        glib::ObjectExt::set_property(self.as_ref(), "has-frame", has_frame)
+        ObjectExt::set_property(self.as_ref(), "has-frame", has_frame)
     }
 
     #[doc(alias = "popup-shown")]
     fn is_popup_shown(&self) -> bool {
-        glib::ObjectExt::property(self.as_ref(), "popup-shown")
+        ObjectExt::property(self.as_ref(), "popup-shown")
     }
 
     #[cfg(feature = "v4_6")]

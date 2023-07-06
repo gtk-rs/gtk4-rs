@@ -238,20 +238,20 @@ pub trait EditableExt: IsA<Editable> + sealed::Sealed + 'static {
 
     #[doc(alias = "cursor-position")]
     fn cursor_position(&self) -> i32 {
-        glib::ObjectExt::property(self.as_ref(), "cursor-position")
+        ObjectExt::property(self.as_ref(), "cursor-position")
     }
 
     #[doc(alias = "selection-bound")]
     fn selection_bound(&self) -> i32 {
-        glib::ObjectExt::property(self.as_ref(), "selection-bound")
+        ObjectExt::property(self.as_ref(), "selection-bound")
     }
 
     fn xalign(&self) -> f32 {
-        glib::ObjectExt::property(self.as_ref(), "xalign")
+        ObjectExt::property(self.as_ref(), "xalign")
     }
 
     fn set_xalign(&self, xalign: f32) {
-        glib::ObjectExt::set_property(self.as_ref(), "xalign", xalign)
+        ObjectExt::set_property(self.as_ref(), "xalign", xalign)
     }
 
     #[doc(alias = "changed")]

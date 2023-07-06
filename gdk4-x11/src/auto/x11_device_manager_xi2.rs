@@ -24,19 +24,19 @@ impl X11DeviceManagerXI2 {
     }
 
     pub fn display(&self) -> Option<gdk::Display> {
-        glib::ObjectExt::property(self, "display")
+        ObjectExt::property(self, "display")
     }
 
     pub fn major(&self) -> i32 {
-        glib::ObjectExt::property(self, "major")
+        ObjectExt::property(self, "major")
     }
 
     pub fn minor(&self) -> i32 {
-        glib::ObjectExt::property(self, "minor")
+        ObjectExt::property(self, "minor")
     }
 
     pub fn opcode(&self) -> i32 {
-        glib::ObjectExt::property(self, "opcode")
+        ObjectExt::property(self, "opcode")
     }
 }
 

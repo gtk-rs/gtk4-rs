@@ -221,7 +221,7 @@ pub trait GestureExt: IsA<Gesture> + sealed::Sealed + 'static {
 
     #[doc(alias = "n-points")]
     fn n_points(&self) -> u32 {
-        glib::ObjectExt::property(self.as_ref(), "n-points")
+        ObjectExt::property(self.as_ref(), "n-points")
     }
 
     #[doc(alias = "begin")]

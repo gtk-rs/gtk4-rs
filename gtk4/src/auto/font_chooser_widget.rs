@@ -42,7 +42,7 @@ impl FontChooserWidget {
 
     #[doc(alias = "tweak-action")]
     pub fn tweak_action(&self) -> Option<gio::Action> {
-        glib::ObjectExt::property(self, "tweak-action")
+        ObjectExt::property(self, "tweak-action")
     }
 
     #[doc(alias = "tweak-action")]

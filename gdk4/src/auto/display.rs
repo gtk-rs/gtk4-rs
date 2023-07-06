@@ -269,7 +269,7 @@ pub trait DisplayExt: IsA<Display> + sealed::Sealed + 'static {
 
     #[doc(alias = "input-shapes")]
     fn is_input_shapes(&self) -> bool {
-        glib::ObjectExt::property(self.as_ref(), "input-shapes")
+        ObjectExt::property(self.as_ref(), "input-shapes")
     }
 
     #[doc(alias = "closed")]

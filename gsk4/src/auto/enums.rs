@@ -2,9 +2,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use glib::{
-    error::ErrorDomain, translate::*, value::FromValue, value::ToValue, Quark, StaticType, Type,
-};
+use glib::{prelude::*, translate::*};
 use std::fmt;
 
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
@@ -131,7 +129,7 @@ impl FromGlib<ffi::GskBlendMode> for BlendMode {
 
 impl StaticType for BlendMode {
     #[inline]
-    fn static_type() -> Type {
+    fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gsk_blend_mode_get_type()) }
     }
 }
@@ -150,7 +148,7 @@ impl glib::value::ValueType for BlendMode {
     type Type = Self;
 }
 
-unsafe impl<'a> FromValue<'a> for BlendMode {
+unsafe impl<'a> glib::value::FromValue<'a> for BlendMode {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
     #[inline]
@@ -250,7 +248,7 @@ impl FromGlib<ffi::GskCorner> for Corner {
 
 impl StaticType for Corner {
     #[inline]
-    fn static_type() -> Type {
+    fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gsk_corner_get_type()) }
     }
 }
@@ -269,7 +267,7 @@ impl glib::value::ValueType for Corner {
     type Type = Self;
 }
 
-unsafe impl<'a> FromValue<'a> for Corner {
+unsafe impl<'a> glib::value::FromValue<'a> for Corner {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
     #[inline]
@@ -389,7 +387,7 @@ impl FromGlib<ffi::GskGLUniformType> for GLUniformType {
 
 impl StaticType for GLUniformType {
     #[inline]
-    fn static_type() -> Type {
+    fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gsk_gl_uniform_type_get_type()) }
     }
 }
@@ -408,7 +406,7 @@ impl glib::value::ValueType for GLUniformType {
     type Type = Self;
 }
 
-unsafe impl<'a> FromValue<'a> for GLUniformType {
+unsafe impl<'a> glib::value::FromValue<'a> for GLUniformType {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
     #[inline]
@@ -518,7 +516,7 @@ impl FromGlib<ffi::GskMaskMode> for MaskMode {
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 impl StaticType for MaskMode {
     #[inline]
-    fn static_type() -> Type {
+    fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gsk_mask_mode_get_type()) }
     }
 }
@@ -543,7 +541,7 @@ impl glib::value::ValueType for MaskMode {
 
 #[cfg(feature = "v4_10")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
-unsafe impl<'a> FromValue<'a> for MaskMode {
+unsafe impl<'a> glib::value::FromValue<'a> for MaskMode {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
     #[inline]
@@ -765,7 +763,7 @@ impl FromGlib<ffi::GskRenderNodeType> for RenderNodeType {
 
 impl StaticType for RenderNodeType {
     #[inline]
-    fn static_type() -> Type {
+    fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gsk_render_node_type_get_type()) }
     }
 }
@@ -784,7 +782,7 @@ impl glib::value::ValueType for RenderNodeType {
     type Type = Self;
 }
 
-unsafe impl<'a> FromValue<'a> for RenderNodeType {
+unsafe impl<'a> glib::value::FromValue<'a> for RenderNodeType {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
     #[inline]
@@ -879,7 +877,7 @@ impl FromGlib<ffi::GskScalingFilter> for ScalingFilter {
 
 impl StaticType for ScalingFilter {
     #[inline]
-    fn static_type() -> Type {
+    fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gsk_scaling_filter_get_type()) }
     }
 }
@@ -898,7 +896,7 @@ impl glib::value::ValueType for ScalingFilter {
     type Type = Self;
 }
 
-unsafe impl<'a> FromValue<'a> for ScalingFilter {
+unsafe impl<'a> glib::value::FromValue<'a> for ScalingFilter {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
     #[inline]
@@ -991,9 +989,9 @@ impl FromGlib<ffi::GskSerializationError> for SerializationError {
     }
 }
 
-impl ErrorDomain for SerializationError {
+impl glib::error::ErrorDomain for SerializationError {
     #[inline]
-    fn domain() -> Quark {
+    fn domain() -> glib::Quark {
         skip_assert_initialized!();
 
         unsafe { from_glib(ffi::gsk_serialization_error_quark()) }
@@ -1016,7 +1014,7 @@ impl ErrorDomain for SerializationError {
 
 impl StaticType for SerializationError {
     #[inline]
-    fn static_type() -> Type {
+    fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gsk_serialization_error_get_type()) }
     }
 }
@@ -1035,7 +1033,7 @@ impl glib::value::ValueType for SerializationError {
     type Type = Self;
 }
 
-unsafe impl<'a> FromValue<'a> for SerializationError {
+unsafe impl<'a> glib::value::FromValue<'a> for SerializationError {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
     #[inline]
@@ -1150,7 +1148,7 @@ impl FromGlib<ffi::GskTransformCategory> for TransformCategory {
 
 impl StaticType for TransformCategory {
     #[inline]
-    fn static_type() -> Type {
+    fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gsk_transform_category_get_type()) }
     }
 }
@@ -1169,7 +1167,7 @@ impl glib::value::ValueType for TransformCategory {
     type Type = Self;
 }
 
-unsafe impl<'a> FromValue<'a> for TransformCategory {
+unsafe impl<'a> glib::value::FromValue<'a> for TransformCategory {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
     #[inline]

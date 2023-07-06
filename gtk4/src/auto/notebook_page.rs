@@ -27,75 +27,75 @@ impl NotebookPage {
     }
 
     pub fn is_detachable(&self) -> bool {
-        glib::ObjectExt::property(self, "detachable")
+        ObjectExt::property(self, "detachable")
     }
 
     pub fn set_detachable(&self, detachable: bool) {
-        glib::ObjectExt::set_property(self, "detachable", detachable)
+        ObjectExt::set_property(self, "detachable", detachable)
     }
 
     pub fn menu(&self) -> Option<Widget> {
-        glib::ObjectExt::property(self, "menu")
+        ObjectExt::property(self, "menu")
     }
 
     #[doc(alias = "menu-label")]
     pub fn menu_label(&self) -> Option<glib::GString> {
-        glib::ObjectExt::property(self, "menu-label")
+        ObjectExt::property(self, "menu-label")
     }
 
     #[doc(alias = "menu-label")]
     pub fn set_menu_label(&self, menu_label: Option<&str>) {
-        glib::ObjectExt::set_property(self, "menu-label", menu_label)
+        ObjectExt::set_property(self, "menu-label", menu_label)
     }
 
     pub fn position(&self) -> i32 {
-        glib::ObjectExt::property(self, "position")
+        ObjectExt::property(self, "position")
     }
 
     pub fn set_position(&self, position: i32) {
-        glib::ObjectExt::set_property(self, "position", position)
+        ObjectExt::set_property(self, "position", position)
     }
 
     pub fn is_reorderable(&self) -> bool {
-        glib::ObjectExt::property(self, "reorderable")
+        ObjectExt::property(self, "reorderable")
     }
 
     pub fn set_reorderable(&self, reorderable: bool) {
-        glib::ObjectExt::set_property(self, "reorderable", reorderable)
+        ObjectExt::set_property(self, "reorderable", reorderable)
     }
 
     pub fn tab(&self) -> Option<Widget> {
-        glib::ObjectExt::property(self, "tab")
+        ObjectExt::property(self, "tab")
     }
 
     #[doc(alias = "tab-expand")]
     pub fn is_tab_expand(&self) -> bool {
-        glib::ObjectExt::property(self, "tab-expand")
+        ObjectExt::property(self, "tab-expand")
     }
 
     #[doc(alias = "tab-expand")]
     pub fn set_tab_expand(&self, tab_expand: bool) {
-        glib::ObjectExt::set_property(self, "tab-expand", tab_expand)
+        ObjectExt::set_property(self, "tab-expand", tab_expand)
     }
 
     #[doc(alias = "tab-fill")]
     pub fn is_tab_fill(&self) -> bool {
-        glib::ObjectExt::property(self, "tab-fill")
+        ObjectExt::property(self, "tab-fill")
     }
 
     #[doc(alias = "tab-fill")]
     pub fn set_tab_fill(&self, tab_fill: bool) {
-        glib::ObjectExt::set_property(self, "tab-fill", tab_fill)
+        ObjectExt::set_property(self, "tab-fill", tab_fill)
     }
 
     #[doc(alias = "tab-label")]
     pub fn tab_label(&self) -> Option<glib::GString> {
-        glib::ObjectExt::property(self, "tab-label")
+        ObjectExt::property(self, "tab-label")
     }
 
     #[doc(alias = "tab-label")]
     pub fn set_tab_label(&self, tab_label: Option<&str>) {
-        glib::ObjectExt::set_property(self, "tab-label", tab_label)
+        ObjectExt::set_property(self, "tab-label", tab_label)
     }
 
     #[doc(alias = "detachable")]

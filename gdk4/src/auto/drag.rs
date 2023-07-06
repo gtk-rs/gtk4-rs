@@ -124,12 +124,12 @@ pub trait DragExt: IsA<Drag> + sealed::Sealed + 'static {
     }
 
     fn set_actions(&self, actions: DragAction) {
-        glib::ObjectExt::set_property(self.as_ref(), "actions", actions)
+        ObjectExt::set_property(self.as_ref(), "actions", actions)
     }
 
     #[doc(alias = "selected-action")]
     fn set_selected_action(&self, selected_action: DragAction) {
-        glib::ObjectExt::set_property(self.as_ref(), "selected-action", selected_action)
+        ObjectExt::set_property(self.as_ref(), "selected-action", selected_action)
     }
 
     #[doc(alias = "cancel")]

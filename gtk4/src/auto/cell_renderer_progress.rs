@@ -38,55 +38,55 @@ impl CellRendererProgress {
     }
 
     pub fn is_inverted(&self) -> bool {
-        glib::ObjectExt::property(self, "inverted")
+        ObjectExt::property(self, "inverted")
     }
 
     pub fn set_inverted(&self, inverted: bool) {
-        glib::ObjectExt::set_property(self, "inverted", inverted)
+        ObjectExt::set_property(self, "inverted", inverted)
     }
 
     pub fn pulse(&self) -> i32 {
-        glib::ObjectExt::property(self, "pulse")
+        ObjectExt::property(self, "pulse")
     }
 
     pub fn set_pulse(&self, pulse: i32) {
-        glib::ObjectExt::set_property(self, "pulse", pulse)
+        ObjectExt::set_property(self, "pulse", pulse)
     }
 
     pub fn text(&self) -> Option<glib::GString> {
-        glib::ObjectExt::property(self, "text")
+        ObjectExt::property(self, "text")
     }
 
     pub fn set_text(&self, text: Option<&str>) {
-        glib::ObjectExt::set_property(self, "text", text)
+        ObjectExt::set_property(self, "text", text)
     }
 
     #[doc(alias = "text-xalign")]
     pub fn text_xalign(&self) -> f32 {
-        glib::ObjectExt::property(self, "text-xalign")
+        ObjectExt::property(self, "text-xalign")
     }
 
     #[doc(alias = "text-xalign")]
     pub fn set_text_xalign(&self, text_xalign: f32) {
-        glib::ObjectExt::set_property(self, "text-xalign", text_xalign)
+        ObjectExt::set_property(self, "text-xalign", text_xalign)
     }
 
     #[doc(alias = "text-yalign")]
     pub fn text_yalign(&self) -> f32 {
-        glib::ObjectExt::property(self, "text-yalign")
+        ObjectExt::property(self, "text-yalign")
     }
 
     #[doc(alias = "text-yalign")]
     pub fn set_text_yalign(&self, text_yalign: f32) {
-        glib::ObjectExt::set_property(self, "text-yalign", text_yalign)
+        ObjectExt::set_property(self, "text-yalign", text_yalign)
     }
 
     pub fn value(&self) -> i32 {
-        glib::ObjectExt::property(self, "value")
+        ObjectExt::property(self, "value")
     }
 
     pub fn set_value(&self, value: i32) {
-        glib::ObjectExt::set_property(self, "value", value)
+        ObjectExt::set_property(self, "value", value)
     }
 
     #[doc(alias = "inverted")]

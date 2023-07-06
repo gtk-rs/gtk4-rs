@@ -68,61 +68,61 @@ impl LockButton {
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "text-lock")]
     pub fn text_lock(&self) -> Option<glib::GString> {
-        glib::ObjectExt::property(self, "text-lock")
+        ObjectExt::property(self, "text-lock")
     }
 
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "text-lock")]
     pub fn set_text_lock(&self, text_lock: Option<&str>) {
-        glib::ObjectExt::set_property(self, "text-lock", text_lock)
+        ObjectExt::set_property(self, "text-lock", text_lock)
     }
 
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "text-unlock")]
     pub fn text_unlock(&self) -> Option<glib::GString> {
-        glib::ObjectExt::property(self, "text-unlock")
+        ObjectExt::property(self, "text-unlock")
     }
 
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "text-unlock")]
     pub fn set_text_unlock(&self, text_unlock: Option<&str>) {
-        glib::ObjectExt::set_property(self, "text-unlock", text_unlock)
+        ObjectExt::set_property(self, "text-unlock", text_unlock)
     }
 
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "tooltip-lock")]
     pub fn tooltip_lock(&self) -> Option<glib::GString> {
-        glib::ObjectExt::property(self, "tooltip-lock")
+        ObjectExt::property(self, "tooltip-lock")
     }
 
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "tooltip-lock")]
     pub fn set_tooltip_lock(&self, tooltip_lock: Option<&str>) {
-        glib::ObjectExt::set_property(self, "tooltip-lock", tooltip_lock)
+        ObjectExt::set_property(self, "tooltip-lock", tooltip_lock)
     }
 
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "tooltip-not-authorized")]
     pub fn tooltip_not_authorized(&self) -> Option<glib::GString> {
-        glib::ObjectExt::property(self, "tooltip-not-authorized")
+        ObjectExt::property(self, "tooltip-not-authorized")
     }
 
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "tooltip-not-authorized")]
     pub fn set_tooltip_not_authorized(&self, tooltip_not_authorized: Option<&str>) {
-        glib::ObjectExt::set_property(self, "tooltip-not-authorized", tooltip_not_authorized)
+        ObjectExt::set_property(self, "tooltip-not-authorized", tooltip_not_authorized)
     }
 
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "tooltip-unlock")]
     pub fn tooltip_unlock(&self) -> Option<glib::GString> {
-        glib::ObjectExt::property(self, "tooltip-unlock")
+        ObjectExt::property(self, "tooltip-unlock")
     }
 
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[doc(alias = "tooltip-unlock")]
     pub fn set_tooltip_unlock(&self, tooltip_unlock: Option<&str>) {
-        glib::ObjectExt::set_property(self, "tooltip-unlock", tooltip_unlock)
+        ObjectExt::set_property(self, "tooltip-unlock", tooltip_unlock)
     }
 
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]

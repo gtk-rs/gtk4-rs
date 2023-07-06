@@ -39,40 +39,40 @@ impl CellRendererAccel {
 
     #[doc(alias = "accel-key")]
     pub fn accel_key(&self) -> u32 {
-        glib::ObjectExt::property(self, "accel-key")
+        ObjectExt::property(self, "accel-key")
     }
 
     #[doc(alias = "accel-key")]
     pub fn set_accel_key(&self, accel_key: u32) {
-        glib::ObjectExt::set_property(self, "accel-key", accel_key)
+        ObjectExt::set_property(self, "accel-key", accel_key)
     }
 
     #[doc(alias = "accel-mode")]
     pub fn accel_mode(&self) -> CellRendererAccelMode {
-        glib::ObjectExt::property(self, "accel-mode")
+        ObjectExt::property(self, "accel-mode")
     }
 
     #[doc(alias = "accel-mode")]
     pub fn set_accel_mode(&self, accel_mode: CellRendererAccelMode) {
-        glib::ObjectExt::set_property(self, "accel-mode", accel_mode)
+        ObjectExt::set_property(self, "accel-mode", accel_mode)
     }
 
     #[doc(alias = "accel-mods")]
     pub fn accel_mods(&self) -> gdk::ModifierType {
-        glib::ObjectExt::property(self, "accel-mods")
+        ObjectExt::property(self, "accel-mods")
     }
 
     #[doc(alias = "accel-mods")]
     pub fn set_accel_mods(&self, accel_mods: gdk::ModifierType) {
-        glib::ObjectExt::set_property(self, "accel-mods", accel_mods)
+        ObjectExt::set_property(self, "accel-mods", accel_mods)
     }
 
     pub fn keycode(&self) -> u32 {
-        glib::ObjectExt::property(self, "keycode")
+        ObjectExt::property(self, "keycode")
     }
 
     pub fn set_keycode(&self, keycode: u32) {
-        glib::ObjectExt::set_property(self, "keycode", keycode)
+        ObjectExt::set_property(self, "keycode", keycode)
     }
 
     #[doc(alias = "accel-cleared")]
