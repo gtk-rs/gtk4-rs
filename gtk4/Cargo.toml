@@ -39,7 +39,6 @@ rustc-args = ["--cfg", "docsrs"]
 rustdoc-args = ["--cfg", "docsrs"]
 
 [dependencies]
-bitflags = "1.0"
 cairo-rs = {git = "https://github.com/gtk-rs/gtk-rs-core", version = "0.18"}
 ffi = {package = "gtk4-sys", path = "./sys", version = "0.7"}
 field-offset = "0.3"
