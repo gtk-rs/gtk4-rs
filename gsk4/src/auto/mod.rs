@@ -113,6 +113,13 @@ pub use self::texture_scale_node::TextureScaleNode;
 mod transform_node;
 pub use self::transform_node::TransformNode;
 
+#[cfg(feature = "vulkan")]
+#[cfg_attr(docsrs, doc(cfg(feature = "vulkan")))]
+mod vulkan_renderer;
+#[cfg(feature = "vulkan")]
+#[cfg_attr(docsrs, doc(cfg(feature = "vulkan")))]
+pub use self::vulkan_renderer::VulkanRenderer;
+
 mod shader_args_builder;
 pub use self::shader_args_builder::ShaderArgsBuilder;
 
