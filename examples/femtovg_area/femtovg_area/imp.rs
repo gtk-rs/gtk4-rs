@@ -41,7 +41,7 @@ impl ObjectImpl for FemtoVGArea {
         area.set_has_stencil_buffer(true);
         area.add_tick_callback(|area, _| {
             area.queue_render();
-            glib::Continue(true)
+            glib::ControlFlow::Continue
         });
         let click = gtk::GestureClick::new();
         let a = area.clone();

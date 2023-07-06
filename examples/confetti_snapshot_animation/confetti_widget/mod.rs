@@ -1,8 +1,8 @@
 mod imp;
 
 use crate::{AnimatedExplosion, ExplosionParameters};
-use glib::clone;
 use glib::subclass::prelude::*;
+use glib::{clone, ControlFlow};
 use gtk::glib;
 use gtk::prelude::*;
 
@@ -30,10 +30,10 @@ impl ConfettiWidget {
 
         frame_clock.connect_update(clone!(@weak self as this, @weak exp => move |clock| {
             match exp.update(clock) {
-                Continue(true) => {
+                ControlFlow::Continue => {
                     this.queue_draw();
                 },
-                Continue(false) => {
+                ControlFlow::Break => {
                     this.imp().explosions.borrow_mut().remove(&exp);
                     clock.end_updating();
                 }
