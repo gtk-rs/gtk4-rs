@@ -78,8 +78,8 @@ where
         .unwrap_or_else(|e| std::panic::resume_unwind(e))
 }
 
-static TEST_THREAD_WORKER: once_cell::sync::Lazy<glib::ThreadPool> =
-    once_cell::sync::Lazy::new(|| {
+static TEST_THREAD_WORKER: glib::once_cell::sync::Lazy<glib::ThreadPool> =
+    glib::once_cell::sync::Lazy::new(|| {
         let pool = glib::ThreadPool::exclusive(1).unwrap();
         pool.push(move || {
             crate::init().expect("Tests failed to initialize gtk");

@@ -5,8 +5,7 @@
 
 use crate::{prelude::*, subclass::prelude::*, Buildable, Builder};
 use glib::translate::*;
-use glib::{GString, Object, Quark, Value};
-use once_cell::sync::Lazy;
+use glib::{once_cell::sync::Lazy, GString, Object, Quark, Value};
 
 use super::PtrHolder;
 

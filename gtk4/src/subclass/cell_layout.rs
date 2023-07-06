@@ -6,8 +6,7 @@
 use crate::{
     prelude::*, subclass::prelude::*, CellArea, CellLayout, CellRenderer, TreeIter, TreeModel,
 };
-use glib::{translate::*, Quark};
-use once_cell::sync::Lazy;
+use glib::{once_cell::sync::Lazy, translate::*, Quark};
 
 #[derive(Debug)]
 pub struct CellLayoutDataCallback {

@@ -4,8 +4,7 @@
 //! Traits intended for implementing the [`FontChooser`](crate::FontChooser) interface.
 
 use crate::{prelude::*, subclass::prelude::*, FontChooser};
-use glib::{translate::*, GString, Quark};
-use once_cell::sync::Lazy;
+use glib::{once_cell::sync::Lazy, translate::*, GString, Quark};
 use pango::{FontFace, FontFamily, FontMap};
 
 use super::PtrHolder;

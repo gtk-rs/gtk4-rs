@@ -2,7 +2,7 @@ use glib::prelude::*;
 use glib::subclass::prelude::*;
 use gtk::glib::{self, Properties};
 
-use once_cell::unsync::OnceCell;
+use glib::once_cell::unsync::OnceCell;
 
 use super::Metadata;
 
