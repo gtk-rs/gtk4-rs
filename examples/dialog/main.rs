@@ -1,5 +1,4 @@
-use gtk::glib::signal::Inhibit;
-use gtk::glib::{self, clone};
+use gtk::glib::{self, clone, ControlFlow};
 use gtk::prelude::*;
 
 use std::rc::Rc;
@@ -41,7 +40,7 @@ fn build_ui(application: &gtk::Application) {
         if let Some(application) = window.application() {
             application.remove_window(window);
         }
-        Inhibit(false)
+        ControlFlow::Break
     });
 }
 

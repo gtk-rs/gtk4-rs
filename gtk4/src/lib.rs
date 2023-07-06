@@ -206,7 +206,6 @@ pub use css_location::CssLocation;
 pub use enums::Align;
 pub use expression_watch::ExpressionWatch;
 pub use functions::*;
-pub use glib::signal::Inhibit;
 pub use keyval_trigger::KeyvalTrigger;
 pub use mnemonic_trigger::MnemonicTrigger;
 pub use pad_action_entry::PadActionEntry;

@@ -7,13 +7,13 @@ use std::{boxed::Box as Box_, mem::transmute};
 
 impl EventControllerKey {
     pub fn connect_key_pressed<
-        F: Fn(&EventControllerKey, Key, u32, gdk::ModifierType) -> glib::signal::Inhibit + 'static,
+        F: Fn(&EventControllerKey, Key, u32, gdk::ModifierType) -> glib::ControlFlow + 'static,
     >(
         &self,
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn key_pressed_trampoline<
-            F: Fn(&EventControllerKey, Key, u32, gdk::ModifierType) -> glib::signal::Inhibit + 'static,
+            F: Fn(&EventControllerKey, Key, u32, gdk::ModifierType) -> glib::ControlFlow + 'static,
         >(
             this: *mut ffi::GtkEventControllerKey,
             keyval: libc::c_uint,

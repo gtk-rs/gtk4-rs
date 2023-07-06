@@ -32,7 +32,7 @@ pub trait TextViewImpl: TextViewImplExt + WidgetImpl {
         location: &TextIter,
         start: &mut TextIter,
         end: &mut TextIter,
-    ) -> glib::signal::Inhibit {
+    ) -> glib::ControlFlow {
         self.parent_extend_selection(granularity, location, start, end)
     }
 
@@ -121,20 +121,20 @@ pub trait TextViewImplExt: sealed::Sealed + ObjectSubclass {
         location: &TextIter,
         start: &mut TextIter,
         end: &mut TextIter,
-    ) -> glib::signal::Inhibit {
+    ) -> glib::ControlFlow {
         unsafe {
             let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkTextViewClass;
             if let Some(f) = (*parent_class).extend_selection {
-                glib::signal::Inhibit(from_glib(f(
+                glib::ControlFlow::from_glib(f(
                     self.obj().unsafe_cast_ref::<TextView>().to_glib_none().0,
                     granularity.into_glib(),
                     location.to_glib_none().0,
                     start.to_glib_none_mut().0,
                     end.to_glib_none_mut().0,
-                )))
+                ))
             } else {
-                glib::signal::Inhibit(false)
+                glib::ControlFlow::Break
             }
         }
     }
