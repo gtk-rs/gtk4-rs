@@ -68,6 +68,9 @@ pub mod root;
 pub mod scale;
 pub mod scale_button;
 pub mod scrollable;
+#[cfg(any(feature = "v4_12", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+pub mod section_model;
 pub mod selection_model;
 pub mod shortcut_manager;
 pub mod sorter;
@@ -150,6 +153,9 @@ pub mod prelude {
     pub use super::scale::{ScaleImpl, ScaleImplExt};
     pub use super::scale_button::{ScaleButtonImpl, ScaleButtonImplExt};
     pub use super::scrollable::{ScrollableImpl, ScrollableImplExt};
+    #[cfg(any(feature = "v4_12", docsrs))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    pub use super::section_model::{SectionModelImpl, SectionModelImplExt};
     pub use super::selection_model::{SelectionModelImpl, SelectionModelImplExt};
     pub use super::shortcut_manager::{ShortcutManagerImpl, ShortcutManagerImplExt};
     pub use super::sorter::{SorterImpl, SorterImplExt};
