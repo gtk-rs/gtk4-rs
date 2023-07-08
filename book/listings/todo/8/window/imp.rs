@@ -88,10 +88,9 @@ impl WindowImpl for Window {
         let backup_data: Vec<CollectionData> = self
             .obj()
             .collections()
-            .snapshot()
-            .iter()
-            .filter_map(Cast::downcast_ref::<CollectionObject>)
-            .map(CollectionObject::to_collection_data)
+            .iter::<CollectionObject>()
+            .filter_map(|collection_object| collection_object.ok())
+            .map(|collection_object| collection_object.to_collection_data())
             .collect();
 
         // Save state to file

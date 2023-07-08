@@ -25,12 +25,10 @@ impl CollectionObject {
         let title = self.imp().title.borrow().clone();
         let tasks_data = self
             .tasks()
-            .snapshot()
-            .iter()
-            .filter_map(Cast::downcast_ref::<TaskObject>)
-            .map(TaskObject::task_data)
+            .iter::<TaskObject>()
+            .filter_map(Result::ok)
+            .map(|task_object| task_object.task_data())
             .collect();
-
         CollectionData { title, tasks_data }
     }
 
