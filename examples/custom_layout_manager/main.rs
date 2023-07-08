@@ -27,10 +27,9 @@ const COLORS: [&str; 16] = [
 const TOTAL_COLORS: i32 = COLORS.len() as i32;
 
 fn main() -> glib::ExitCode {
-    let application = gtk::Application::new(
-        Some("com.github.gtk-rs.examples.custom_layout"),
-        Default::default(),
-    );
+    let application = gtk::Application::builder()
+        .application_id("com.github.gtk-rs.examples.custom_layout")
+        .build();
 
     application.connect_activate(|app| {
         let window = gtk::ApplicationWindow::builder()

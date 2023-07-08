@@ -8,10 +8,9 @@ use gtk::{
 };
 
 fn main() -> glib::ExitCode {
-    let application = gtk::Application::new(
-        Some("com.github.gtk-rs.examples.virtual_methods"),
-        Default::default(),
-    );
+    let application = gtk::Application::builder()
+        .application_id("com.github.gtk-rs.examples.virtual_methods")
+        .build();
 
     application.connect_activate(|app| {
         let win = gtk::ApplicationWindow::new(app);

@@ -11,10 +11,9 @@ use self::metadata::Metadata;
 use self::note::Note;
 
 fn main() -> glib::ExitCode {
-    let application = gtk::Application::new(
-        Some("com.github.gtk-rs.examples.expressions"),
-        Default::default(),
-    );
+    let application = gtk::Application::builder()
+        .application_id("com.github.gtk-rs.examples.expressions")
+        .build();
 
     application.connect_activate(build_ui);
     application.run()
