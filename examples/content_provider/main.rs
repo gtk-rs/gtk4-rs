@@ -5,7 +5,9 @@ use gtk::glib;
 use gtk::prelude::*;
 
 fn main() -> glib::ExitCode {
-    let app = gtk::Application::new(Some("org.gtk.content-provider"), Default::default());
+    let app = gtk::Application::builder()
+        .application_id("org.gtk.content-provider")
+        .build();
     app.connect_activate(on_activate);
     app.run()
 }

@@ -5,10 +5,9 @@ use gtk::prelude::*;
 use gtk::{gdk, glib};
 
 fn main() -> glib::ExitCode {
-    let application = gtk::Application::new(
-        Some("com.github.gtk-rs.examples.flowbox"),
-        Default::default(),
-    );
+    let application = gtk::Application::builder()
+        .application_id("com.github.gtk-rs.examples.flowbox")
+        .build();
 
     application.connect_activate(build_ui);
     application.run()

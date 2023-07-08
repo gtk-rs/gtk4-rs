@@ -5,10 +5,9 @@ use gtk::glib;
 use gtk::prelude::*;
 
 fn main() -> glib::ExitCode {
-    let application = gtk::Application::new(
-        Some("com.github.gtk-rs.examples.buildable"),
-        Default::default(),
-    );
+    let application = gtk::Application::builder()
+        .application_id("com.github.gtk-rs.examples.buildable")
+        .build();
 
     application.connect_activate(build_ui);
     application.run()

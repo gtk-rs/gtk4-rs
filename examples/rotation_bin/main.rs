@@ -7,10 +7,9 @@ use gtk::glib::clone;
 use gtk::prelude::*;
 
 fn main() -> glib::ExitCode {
-    let application = gtk::Application::new(
-        Some("com.github.gtk-rs.examples.rotation_bin"),
-        Default::default(),
-    );
+    let application = gtk::Application::builder()
+        .application_id("com.github.gtk-rs.examples.rotation_bin")
+        .build();
 
     application.connect_activate(build_ui);
     application.run()

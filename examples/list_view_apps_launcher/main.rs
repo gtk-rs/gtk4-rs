@@ -4,10 +4,9 @@ use gtk::prelude::*;
 use gtk::{gio, glib};
 
 fn main() -> glib::ExitCode {
-    let application = gtk::Application::new(
-        Some("com.github.gtk-rs.examples.apps_launcher"),
-        Default::default(),
-    );
+    let application = gtk::Application::builder()
+        .application_id("com.github.gtk-rs.examples.apps_launcher")
+        .build();
 
     application.connect_activate(build_ui);
     application.run()

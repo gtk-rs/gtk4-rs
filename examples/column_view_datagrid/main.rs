@@ -14,10 +14,9 @@ struct Row {
 use std::cell::Ref;
 
 fn main() -> glib::ExitCode {
-    let app = gtk::Application::new(
-        Some("com.github.gtk-rs.examples.columnview-example"),
-        Default::default(),
-    );
+    let app = gtk::Application::builder()
+        .application_id("com.github.gtk-rs.examples.columnview-example")
+        .build();
     app.connect_activate(build_ui);
     app.run()
 }

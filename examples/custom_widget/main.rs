@@ -5,10 +5,9 @@ use gtk::glib;
 use gtk::prelude::*;
 
 fn main() -> glib::ExitCode {
-    let application = gtk::Application::new(
-        Some("com.github.gtk-rs.examples.widget_subclass"),
-        Default::default(),
-    );
+    let application = gtk::Application::builder()
+        .application_id("com.github.gtk-rs.examples.widget_subclass")
+        .build();
     application.connect_activate(|app| {
         let window = gtk::ApplicationWindow::new(app);
         let button = ExButton::new();

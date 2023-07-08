@@ -11,10 +11,9 @@ use gtk::glib;
 use gtk::prelude::*;
 
 fn main() -> glib::ExitCode {
-    let application = gtk::Application::new(
-        Some("com.github.gtk-rs.examples.gif_paintable"),
-        Default::default(),
-    );
+    let application = gtk::Application::builder()
+        .application_id("com.github.gtk-rs.examples.gif_paintable")
+        .build();
 
     application.connect_activate(|app| {
         let win = GifPaintableWindow::new(app);

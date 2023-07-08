@@ -10,10 +10,9 @@ use gtk::prelude::*;
 use gtk::{glib, graphene};
 
 fn main() -> glib::ExitCode {
-    let application = gtk::Application::new(
-        Some("com.github.gtk-rs.examples.confetti_snapshot_animation"),
-        Default::default(),
-    );
+    let application = gtk::Application::builder()
+        .application_id("com.github.gtk-rs.examples.confetti_snapshot_animation")
+        .build();
     application.connect_activate(build_ui);
     application.run()
 }
