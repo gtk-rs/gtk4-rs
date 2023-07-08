@@ -4,7 +4,6 @@ use std::fs::File;
 use gio::Settings;
 use glib::signal::Inhibit;
 use glib::subclass::InitializingObject;
-use gtk::glib::Cast;
 use gtk::prelude::*;
 use gtk::subclass::prelude::*;
 use gtk::{gio, glib, CompositeTemplate, Entry, ListView};
@@ -74,10 +73,9 @@ impl WindowImpl for Window {
         let backup_data: Vec<TaskData> = self
             .obj()
             .tasks()
-            .snapshot()
-            .iter()
-            .filter_map(Cast::downcast_ref::<TaskObject>)
-            .map(TaskObject::task_data)
+            .iter::<TaskObject>()
+            .filter_map(Result::ok)
+            .map(|task_object| task_object.task_data())
             .collect();
 
         // Save state to file
