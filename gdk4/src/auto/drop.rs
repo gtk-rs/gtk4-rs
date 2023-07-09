@@ -8,7 +8,7 @@ use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
-use std::{boxed::Box as Box_, fmt, mem::transmute, pin::Pin, ptr};
+use std::{boxed::Box as Box_, fmt, mem::transmute, ptr};
 
 glib::wrapper! {
     #[doc(alias = "GdkDrop")]
@@ -115,17 +115,17 @@ impl Drop {
         }
     }
 
-    pub fn read_value_future(
+    pub async fn read_value_future(
         &self,
         type_: glib::types::Type,
         io_priority: glib::Priority,
-    ) -> Pin<Box_<dyn std::future::Future<Output = Result<glib::Value, glib::Error>> + 'static>>
-    {
-        Box_::pin(gio::GioFuture::new(self, move |obj, cancellable, send| {
+    ) -> Result<glib::Value, glib::Error> {
+        gio::GioFuture::new(self, move |obj, cancellable, send| {
             obj.read_value_async(type_, io_priority, Some(cancellable), move |res| {
                 send.resolve(res);
             });
-        }))
+        })
+        .await
     }
 
     #[doc(alias = "gdk_drop_status")]

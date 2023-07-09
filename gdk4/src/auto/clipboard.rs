@@ -8,7 +8,7 @@ use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
-use std::{boxed::Box as Box_, fmt, mem::transmute, pin::Pin, ptr};
+use std::{boxed::Box as Box_, fmt, mem::transmute, ptr};
 
 glib::wrapper! {
     #[doc(alias = "GdkClipboard")]
@@ -92,18 +92,13 @@ impl Clipboard {
         }
     }
 
-    pub fn read_text_future(
-        &self,
-    ) -> Pin<
-        Box_<
-            dyn std::future::Future<Output = Result<Option<glib::GString>, glib::Error>> + 'static,
-        >,
-    > {
-        Box_::pin(gio::GioFuture::new(self, move |obj, cancellable, send| {
+    pub async fn read_text_future(&self) -> Result<Option<glib::GString>, glib::Error> {
+        gio::GioFuture::new(self, move |obj, cancellable, send| {
             obj.read_text_async(Some(cancellable), move |res| {
                 send.resolve(res);
             });
-        }))
+        })
+        .await
     }
 
     #[doc(alias = "gdk_clipboard_read_texture_async")]
@@ -155,15 +150,13 @@ impl Clipboard {
         }
     }
 
-    pub fn read_texture_future(
-        &self,
-    ) -> Pin<Box_<dyn std::future::Future<Output = Result<Option<Texture>, glib::Error>> + 'static>>
-    {
-        Box_::pin(gio::GioFuture::new(self, move |obj, cancellable, send| {
+    pub async fn read_texture_future(&self) -> Result<Option<Texture>, glib::Error> {
+        gio::GioFuture::new(self, move |obj, cancellable, send| {
             obj.read_texture_async(Some(cancellable), move |res| {
                 send.resolve(res);
             });
-        }))
+        })
+        .await
     }
 
     #[doc(alias = "gdk_clipboard_read_value_async")]
@@ -219,17 +212,17 @@ impl Clipboard {
         }
     }
 
-    pub fn read_value_future(
+    pub async fn read_value_future(
         &self,
         type_: glib::types::Type,
         io_priority: glib::Priority,
-    ) -> Pin<Box_<dyn std::future::Future<Output = Result<glib::Value, glib::Error>> + 'static>>
-    {
-        Box_::pin(gio::GioFuture::new(self, move |obj, cancellable, send| {
+    ) -> Result<glib::Value, glib::Error> {
+        gio::GioFuture::new(self, move |obj, cancellable, send| {
             obj.read_value_async(type_, io_priority, Some(cancellable), move |res| {
                 send.resolve(res);
             });
-        }))
+        })
+        .await
     }
 
     #[doc(alias = "gdk_clipboard_set_content")]
@@ -315,15 +308,13 @@ impl Clipboard {
         }
     }
 
-    pub fn store_future(
-        &self,
-        io_priority: glib::Priority,
-    ) -> Pin<Box_<dyn std::future::Future<Output = Result<(), glib::Error>> + 'static>> {
-        Box_::pin(gio::GioFuture::new(self, move |obj, cancellable, send| {
+    pub async fn store_future(&self, io_priority: glib::Priority) -> Result<(), glib::Error> {
+        gio::GioFuture::new(self, move |obj, cancellable, send| {
             obj.store_async(io_priority, Some(cancellable), move |res| {
                 send.resolve(res);
             });
-        }))
+        })
+        .await
     }
 
     #[doc(alias = "changed")]

@@ -8,7 +8,7 @@ use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
-use std::{boxed::Box as Box_, fmt, mem::transmute, pin::Pin, ptr};
+use std::{boxed::Box as Box_, fmt, mem::transmute, ptr};
 
 glib::wrapper! {
     #[doc(alias = "GtkColorDialog")]
@@ -87,14 +87,14 @@ impl ColorDialog {
         }
     }
 
-    pub fn choose_rgba_future(
+    pub async fn choose_rgba_future(
         &self,
         parent: Option<&(impl IsA<Window> + Clone + 'static)>,
         initial_color: Option<&gdk::RGBA>,
-    ) -> Pin<Box_<dyn std::future::Future<Output = Result<gdk::RGBA, glib::Error>> + 'static>> {
+    ) -> Result<gdk::RGBA, glib::Error> {
         let parent = parent.map(ToOwned::to_owned);
         let initial_color = initial_color.map(ToOwned::to_owned);
-        Box_::pin(gio::GioFuture::new(self, move |obj, cancellable, send| {
+        gio::GioFuture::new(self, move |obj, cancellable, send| {
             obj.choose_rgba(
                 parent.as_ref().map(::std::borrow::Borrow::borrow),
                 initial_color.as_ref().map(::std::borrow::Borrow::borrow),
@@ -103,7 +103,8 @@ impl ColorDialog {
                     send.resolve(res);
                 },
             );
-        }))
+        })
+        .await
     }
 
     #[doc(alias = "gtk_color_dialog_get_modal")]

@@ -8,7 +8,7 @@ use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
-use std::{boxed::Box as Box_, fmt, mem::transmute, pin::Pin, ptr};
+use std::{boxed::Box as Box_, fmt, mem::transmute, ptr};
 
 glib::wrapper! {
     #[doc(alias = "GtkUriLauncher")]
@@ -88,12 +88,12 @@ impl UriLauncher {
         }
     }
 
-    pub fn launch_future(
+    pub async fn launch_future(
         &self,
         parent: Option<&(impl IsA<Window> + Clone + 'static)>,
-    ) -> Pin<Box_<dyn std::future::Future<Output = Result<(), glib::Error>> + 'static>> {
+    ) -> Result<(), glib::Error> {
         let parent = parent.map(ToOwned::to_owned);
-        Box_::pin(gio::GioFuture::new(self, move |obj, cancellable, send| {
+        gio::GioFuture::new(self, move |obj, cancellable, send| {
             obj.launch(
                 parent.as_ref().map(::std::borrow::Borrow::borrow),
                 Some(cancellable),
@@ -101,7 +101,8 @@ impl UriLauncher {
                     send.resolve(res);
                 },
             );
-        }))
+        })
+        .await
     }
 
     #[doc(alias = "gtk_uri_launcher_set_uri")]

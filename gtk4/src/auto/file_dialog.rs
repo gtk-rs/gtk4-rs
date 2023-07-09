@@ -8,7 +8,7 @@ use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
-use std::{boxed::Box as Box_, fmt, mem::transmute, pin::Pin, ptr};
+use std::{boxed::Box as Box_, fmt, mem::transmute, ptr};
 
 glib::wrapper! {
     #[doc(alias = "GtkFileDialog")]
@@ -140,12 +140,12 @@ impl FileDialog {
         }
     }
 
-    pub fn open_future(
+    pub async fn open_future(
         &self,
         parent: Option<&(impl IsA<Window> + Clone + 'static)>,
-    ) -> Pin<Box_<dyn std::future::Future<Output = Result<gio::File, glib::Error>> + 'static>> {
+    ) -> Result<gio::File, glib::Error> {
         let parent = parent.map(ToOwned::to_owned);
-        Box_::pin(gio::GioFuture::new(self, move |obj, cancellable, send| {
+        gio::GioFuture::new(self, move |obj, cancellable, send| {
             obj.open(
                 parent.as_ref().map(::std::borrow::Borrow::borrow),
                 Some(cancellable),
@@ -153,7 +153,8 @@ impl FileDialog {
                     send.resolve(res);
                 },
             );
-        }))
+        })
+        .await
     }
 
     #[doc(alias = "gtk_file_dialog_open_multiple")]
@@ -210,13 +211,12 @@ impl FileDialog {
         }
     }
 
-    pub fn open_multiple_future(
+    pub async fn open_multiple_future(
         &self,
         parent: Option<&(impl IsA<Window> + Clone + 'static)>,
-    ) -> Pin<Box_<dyn std::future::Future<Output = Result<gio::ListModel, glib::Error>> + 'static>>
-    {
+    ) -> Result<gio::ListModel, glib::Error> {
         let parent = parent.map(ToOwned::to_owned);
-        Box_::pin(gio::GioFuture::new(self, move |obj, cancellable, send| {
+        gio::GioFuture::new(self, move |obj, cancellable, send| {
             obj.open_multiple(
                 parent.as_ref().map(::std::borrow::Borrow::borrow),
                 Some(cancellable),
@@ -224,7 +224,8 @@ impl FileDialog {
                     send.resolve(res);
                 },
             );
-        }))
+        })
+        .await
     }
 
     #[doc(alias = "gtk_file_dialog_save")]
@@ -277,12 +278,12 @@ impl FileDialog {
         }
     }
 
-    pub fn save_future(
+    pub async fn save_future(
         &self,
         parent: Option<&(impl IsA<Window> + Clone + 'static)>,
-    ) -> Pin<Box_<dyn std::future::Future<Output = Result<gio::File, glib::Error>> + 'static>> {
+    ) -> Result<gio::File, glib::Error> {
         let parent = parent.map(ToOwned::to_owned);
-        Box_::pin(gio::GioFuture::new(self, move |obj, cancellable, send| {
+        gio::GioFuture::new(self, move |obj, cancellable, send| {
             obj.save(
                 parent.as_ref().map(::std::borrow::Borrow::borrow),
                 Some(cancellable),
@@ -290,7 +291,8 @@ impl FileDialog {
                     send.resolve(res);
                 },
             );
-        }))
+        })
+        .await
     }
 
     #[doc(alias = "gtk_file_dialog_select_folder")]
@@ -347,12 +349,12 @@ impl FileDialog {
         }
     }
 
-    pub fn select_folder_future(
+    pub async fn select_folder_future(
         &self,
         parent: Option<&(impl IsA<Window> + Clone + 'static)>,
-    ) -> Pin<Box_<dyn std::future::Future<Output = Result<gio::File, glib::Error>> + 'static>> {
+    ) -> Result<gio::File, glib::Error> {
         let parent = parent.map(ToOwned::to_owned);
-        Box_::pin(gio::GioFuture::new(self, move |obj, cancellable, send| {
+        gio::GioFuture::new(self, move |obj, cancellable, send| {
             obj.select_folder(
                 parent.as_ref().map(::std::borrow::Borrow::borrow),
                 Some(cancellable),
@@ -360,7 +362,8 @@ impl FileDialog {
                     send.resolve(res);
                 },
             );
-        }))
+        })
+        .await
     }
 
     #[doc(alias = "gtk_file_dialog_select_multiple_folders")]
@@ -419,16 +422,12 @@ impl FileDialog {
         }
     }
 
-    pub fn select_multiple_folders_future(
+    pub async fn select_multiple_folders_future(
         &self,
         parent: Option<&(impl IsA<Window> + Clone + 'static)>,
-    ) -> Pin<
-        Box_<
-            dyn std::future::Future<Output = Result<Option<gio::ListModel>, glib::Error>> + 'static,
-        >,
-    > {
+    ) -> Result<Option<gio::ListModel>, glib::Error> {
         let parent = parent.map(ToOwned::to_owned);
-        Box_::pin(gio::GioFuture::new(self, move |obj, cancellable, send| {
+        gio::GioFuture::new(self, move |obj, cancellable, send| {
             obj.select_multiple_folders(
                 parent.as_ref().map(::std::borrow::Borrow::borrow),
                 Some(cancellable),
@@ -436,7 +435,8 @@ impl FileDialog {
                     send.resolve(res);
                 },
             );
-        }))
+        })
+        .await
     }
 
     #[doc(alias = "gtk_file_dialog_set_accept_label")]

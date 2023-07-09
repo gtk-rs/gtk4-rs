@@ -8,7 +8,7 @@ use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
-use std::{boxed::Box as Box_, fmt, mem::transmute, pin::Pin, ptr};
+use std::{boxed::Box as Box_, fmt, mem::transmute, ptr};
 
 glib::wrapper! {
     #[doc(alias = "GtkFontDialog")]
@@ -87,15 +87,14 @@ impl FontDialog {
         }
     }
 
-    pub fn choose_face_future(
+    pub async fn choose_face_future(
         &self,
         parent: Option<&(impl IsA<Window> + Clone + 'static)>,
         initial_value: Option<&(impl IsA<pango::FontFace> + Clone + 'static)>,
-    ) -> Pin<Box_<dyn std::future::Future<Output = Result<pango::FontFace, glib::Error>> + 'static>>
-    {
+    ) -> Result<pango::FontFace, glib::Error> {
         let parent = parent.map(ToOwned::to_owned);
         let initial_value = initial_value.map(ToOwned::to_owned);
-        Box_::pin(gio::GioFuture::new(self, move |obj, cancellable, send| {
+        gio::GioFuture::new(self, move |obj, cancellable, send| {
             obj.choose_face(
                 parent.as_ref().map(::std::borrow::Borrow::borrow),
                 initial_value.as_ref().map(::std::borrow::Borrow::borrow),
@@ -104,7 +103,8 @@ impl FontDialog {
                     send.resolve(res);
                 },
             );
-        }))
+        })
+        .await
     }
 
     #[doc(alias = "gtk_font_dialog_choose_family")]
@@ -163,15 +163,14 @@ impl FontDialog {
         }
     }
 
-    pub fn choose_family_future(
+    pub async fn choose_family_future(
         &self,
         parent: Option<&(impl IsA<Window> + Clone + 'static)>,
         initial_value: Option<&(impl IsA<pango::FontFamily> + Clone + 'static)>,
-    ) -> Pin<Box_<dyn std::future::Future<Output = Result<pango::FontFamily, glib::Error>> + 'static>>
-    {
+    ) -> Result<pango::FontFamily, glib::Error> {
         let parent = parent.map(ToOwned::to_owned);
         let initial_value = initial_value.map(ToOwned::to_owned);
-        Box_::pin(gio::GioFuture::new(self, move |obj, cancellable, send| {
+        gio::GioFuture::new(self, move |obj, cancellable, send| {
             obj.choose_family(
                 parent.as_ref().map(::std::borrow::Borrow::borrow),
                 initial_value.as_ref().map(::std::borrow::Borrow::borrow),
@@ -180,7 +179,8 @@ impl FontDialog {
                     send.resolve(res);
                 },
             );
-        }))
+        })
+        .await
     }
 
     #[doc(alias = "gtk_font_dialog_choose_font")]
@@ -236,18 +236,14 @@ impl FontDialog {
         }
     }
 
-    pub fn choose_font_future(
+    pub async fn choose_font_future(
         &self,
         parent: Option<&(impl IsA<Window> + Clone + 'static)>,
         initial_value: Option<&pango::FontDescription>,
-    ) -> Pin<
-        Box_<
-            dyn std::future::Future<Output = Result<pango::FontDescription, glib::Error>> + 'static,
-        >,
-    > {
+    ) -> Result<pango::FontDescription, glib::Error> {
         let parent = parent.map(ToOwned::to_owned);
         let initial_value = initial_value.map(ToOwned::to_owned);
-        Box_::pin(gio::GioFuture::new(self, move |obj, cancellable, send| {
+        gio::GioFuture::new(self, move |obj, cancellable, send| {
             obj.choose_font(
                 parent.as_ref().map(::std::borrow::Borrow::borrow),
                 initial_value.as_ref().map(::std::borrow::Borrow::borrow),
@@ -256,7 +252,8 @@ impl FontDialog {
                     send.resolve(res);
                 },
             );
-        }))
+        })
+        .await
     }
 
     #[doc(alias = "gtk_font_dialog_get_filter")]
