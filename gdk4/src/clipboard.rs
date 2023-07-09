@@ -3,7 +3,7 @@
 use crate::{prelude::*, Clipboard};
 use glib::translate::*;
 use glib::GString;
-use std::{future, pin::Pin, ptr};
+use std::ptr;
 
 impl Clipboard {
     #[doc(alias = "gdk_clipboard_read_async")]
@@ -65,25 +65,22 @@ impl Clipboard {
     }
 
     #[allow(clippy::type_complexity)]
-    pub fn read_future(
+    pub async fn read_future(
         &self,
         mime_types: &[&str],
         io_priority: glib::Priority,
-    ) -> Pin<
-        Box<
-            dyn future::Future<Output = Result<(gio::InputStream, GString), glib::Error>> + 'static,
-        >,
-    > {
+    ) -> Result<(gio::InputStream, GString), glib::Error> {
         let mime_types = mime_types
             .iter()
             .copied()
             .map(String::from)
             .collect::<Vec<_>>();
-        Box::pin(gio::GioFuture::new(self, move |obj, cancellable, send| {
+        gio::GioFuture::new(self, move |obj, cancellable, send| {
             let mime_types = mime_types.iter().map(|s| s.as_str()).collect::<Vec<_>>();
             obj.read_async(&mime_types, io_priority, Some(cancellable), move |res| {
                 send.resolve(res);
             });
-        }))
+        })
+        .await
     }
 }

@@ -2,7 +2,7 @@
 
 use crate::{prelude::*, AboutDialog, StyleProvider, Window};
 use glib::{once_cell::sync::Lazy, translate::*, IntoGStr, Quark, Slice, ToValue};
-use std::{boxed::Box as Box_, mem, pin::Pin, ptr};
+use std::{boxed::Box as Box_, mem, ptr};
 
 #[doc(alias = "gtk_accelerator_valid")]
 pub fn accelerator_valid(keyval: gdk::Key, modifiers: gdk::ModifierType) -> bool {
@@ -197,15 +197,15 @@ pub fn show_uri_full<P: FnOnce(Result<(), glib::Error>) + 'static>(
 
 #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 #[allow(deprecated)]
-pub fn show_uri_full_future(
+pub async fn show_uri_full_future(
     parent: Option<&(impl IsA<Window> + Clone + 'static)>,
     uri: &str,
     timestamp: u32,
-) -> Pin<Box_<dyn std::future::Future<Output = Result<(), glib::Error>> + 'static>> {
+) -> Result<(), glib::Error> {
     skip_assert_initialized!();
     let parent = parent.map(ToOwned::to_owned);
     let uri = String::from(uri);
-    Box_::pin(gio::GioFuture::new(&(), move |_obj, cancellable, send| {
+    gio::GioFuture::new(&(), move |_obj, cancellable, send| {
         show_uri_full(
             parent.as_ref().map(::std::borrow::Borrow::borrow),
             &uri,
@@ -215,7 +215,8 @@ pub fn show_uri_full_future(
                 send.resolve(res);
             },
         );
-    }))
+    })
+    .await
 }
 
 static SHOW_ABOUT_DIALOG_QUARK: Lazy<Quark> = Lazy::new(|| Quark::from_str("gtk-rs-about-dialog"));

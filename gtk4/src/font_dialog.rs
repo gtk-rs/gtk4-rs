@@ -2,7 +2,7 @@
 
 use crate::{prelude::*, FontDialog, Window};
 use glib::translate::*;
-use std::{boxed::Box as Box_, pin::Pin, ptr};
+use std::{boxed::Box as Box_, ptr};
 
 impl FontDialog {
     #[doc(alias = "gtk_font_dialog_choose_font_and_features")]
@@ -93,27 +93,21 @@ impl FontDialog {
     }
 
     #[allow(clippy::type_complexity)]
-    pub fn choose_font_and_features_future(
+    pub async fn choose_font_and_features_future(
         &self,
         parent: Option<&(impl IsA<Window> + Clone + 'static)>,
         initial_value: Option<&pango::FontDescription>,
-    ) -> Pin<
-        Box_<
-            dyn std::future::Future<
-                    Output = Result<
-                        (
-                            Option<pango::FontDescription>,
-                            glib::GString,
-                            pango::Language,
-                        ),
-                        glib::Error,
-                    >,
-                > + 'static,
-        >,
+    ) -> Result<
+        (
+            Option<pango::FontDescription>,
+            glib::GString,
+            pango::Language,
+        ),
+        glib::Error,
     > {
         let parent = parent.map(ToOwned::to_owned);
         let initial_value = initial_value.map(ToOwned::to_owned);
-        Box_::pin(gio::GioFuture::new(self, move |obj, cancellable, send| {
+        gio::GioFuture::new(self, move |obj, cancellable, send| {
             obj.choose_font_and_features(
                 parent.as_ref().map(::std::borrow::Borrow::borrow),
                 initial_value.as_ref().map(::std::borrow::Borrow::borrow),
@@ -122,6 +116,7 @@ impl FontDialog {
                     send.resolve(res);
                 },
             );
-        }))
+        })
+        .await
     }
 }

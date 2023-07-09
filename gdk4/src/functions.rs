@@ -2,7 +2,7 @@
 
 use crate::{prelude::*, ContentDeserializer, ContentSerializer};
 use glib::translate::*;
-use std::{future, pin::Pin, ptr};
+use std::ptr;
 
 #[repr(packed)]
 pub struct GRange(pub i32, pub i32);
@@ -83,17 +83,17 @@ pub fn content_deserialize_async<R: FnOnce(Result<glib::Value, glib::Error>) + '
     }
 }
 
-pub fn content_deserialize_future(
+pub async fn content_deserialize_future(
     stream: &(impl IsA<gio::InputStream> + Clone + 'static),
     mime_type: &str,
     type_: glib::types::Type,
     io_priority: glib::Priority,
-) -> Pin<Box<dyn future::Future<Output = Result<glib::Value, glib::Error>> + 'static>> {
+) -> Result<glib::Value, glib::Error> {
     assert_initialized_main_thread!();
 
     let stream = stream.clone();
     let mime_type = String::from(mime_type);
-    Box::pin(gio::GioFuture::new(&(), move |_obj, cancellable, send| {
+    gio::GioFuture::new(&(), move |_obj, cancellable, send| {
         content_deserialize_async(
             &stream,
             &mime_type,
@@ -104,7 +104,8 @@ pub fn content_deserialize_future(
                 send.resolve(res);
             },
         );
-    }))
+    })
+    .await
 }
 
 #[doc(alias = "gdk_content_register_deserializer")]
@@ -279,18 +280,18 @@ pub fn content_serialize_async<R: FnOnce(Result<(), glib::Error>) + 'static>(
     }
 }
 
-pub fn content_serialize_future(
+pub async fn content_serialize_future(
     stream: &(impl IsA<gio::OutputStream> + Clone + 'static),
     mime_type: &str,
     value: &glib::Value,
     io_priority: glib::Priority,
-) -> Pin<Box<dyn future::Future<Output = Result<(), glib::Error>> + 'static>> {
+) -> Result<(), glib::Error> {
     assert_initialized_main_thread!();
 
     let stream = stream.clone();
     let mime_type = String::from(mime_type);
     let value = value.clone();
-    Box::pin(gio::GioFuture::new(&(), move |_obj, cancellable, send| {
+    gio::GioFuture::new(&(), move |_obj, cancellable, send| {
         content_serialize_async(
             &stream,
             &mime_type,
@@ -301,7 +302,8 @@ pub fn content_serialize_future(
                 send.resolve(res);
             },
         );
-    }))
+    })
+    .await
 }
 
 #[doc(alias = "gdk_pango_layout_line_get_clip_region")]
