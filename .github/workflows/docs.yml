@@ -68,6 +68,7 @@ jobs:
             --extern-html-root-url=xkb=https://docs.rs/xkb/latest/
             --extern-html-root-url=windows=https://microsoft.github.io/windows-docs-rs/doc/
             --cfg docsrs
+            -Zunstable-options --generate-link-to-definition
       - uses: actions-rs/cargo@v1
         with:
           command: doc

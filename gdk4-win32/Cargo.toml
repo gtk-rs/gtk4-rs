@@ -16,7 +16,7 @@ build = "build.rs"
 [package.metadata.docs.rs]
 all-features = true
 rustc-args = ["--cfg", "docsrs"]
-rustdoc-args = ["--cfg", "docsrs"]
+rustdoc-args = ["--cfg", "docsrs", "--generate-link-to-definition"]
 
 [package.metadata.system-deps.gtk4_win32]
 name = "gtk4-win32"
