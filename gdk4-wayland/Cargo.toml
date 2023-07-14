@@ -23,7 +23,7 @@ xkb_crate = ["xkb"]
 [package.metadata.docs.rs]
 all-features = true
 rustc-args = ["--cfg", "docsrs"]
-rustdoc-args = ["--cfg", "docsrs"]
+rustdoc-args = ["--cfg", "docsrs", "--generate-link-to-definition"]
 
 [dependencies]
 ffi = {path = "./sys", package = "gdk4-wayland-sys", version = "0.7"}
