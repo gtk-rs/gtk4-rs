@@ -100,78 +100,10 @@ impl GLTextureBuilder {
         unsafe { ffi::gdk_gl_texture_builder_get_width(self.to_glib_none().0) }
     }
 
-    #[doc(alias = "gdk_gl_texture_builder_set_context")]
-    pub fn set_context(&self, context: Option<&impl IsA<GLContext>>) {
-        unsafe {
-            ffi::gdk_gl_texture_builder_set_context(
-                self.to_glib_none().0,
-                context.map(|p| p.as_ref()).to_glib_none().0,
-            );
-        }
-    }
-
-    #[doc(alias = "gdk_gl_texture_builder_set_format")]
-    pub fn set_format(&self, format: MemoryFormat) {
-        unsafe {
-            ffi::gdk_gl_texture_builder_set_format(self.to_glib_none().0, format.into_glib());
-        }
-    }
-
-    #[doc(alias = "gdk_gl_texture_builder_set_has_mipmap")]
-    pub fn set_has_mipmap(&self, has_mipmap: bool) {
-        unsafe {
-            ffi::gdk_gl_texture_builder_set_has_mipmap(
-                self.to_glib_none().0,
-                has_mipmap.into_glib(),
-            );
-        }
-    }
-
-    #[doc(alias = "gdk_gl_texture_builder_set_height")]
-    pub fn set_height(&self, height: i32) {
-        unsafe {
-            ffi::gdk_gl_texture_builder_set_height(self.to_glib_none().0, height);
-        }
-    }
-
-    #[doc(alias = "gdk_gl_texture_builder_set_id")]
-    pub fn set_id(&self, id: u32) {
-        unsafe {
-            ffi::gdk_gl_texture_builder_set_id(self.to_glib_none().0, id);
-        }
-    }
-
     //#[doc(alias = "gdk_gl_texture_builder_set_sync")]
     //pub fn set_sync(&self, sync: /*Unimplemented*/Option<Basic: Pointer>) {
     //    unsafe { TODO: call ffi:gdk_gl_texture_builder_set_sync() }
     //}
-
-    #[doc(alias = "gdk_gl_texture_builder_set_update_region")]
-    pub fn set_update_region(&self, region: Option<&cairo::Region>) {
-        unsafe {
-            ffi::gdk_gl_texture_builder_set_update_region(
-                self.to_glib_none().0,
-                mut_override(region.to_glib_none().0),
-            );
-        }
-    }
-
-    #[doc(alias = "gdk_gl_texture_builder_set_update_texture")]
-    pub fn set_update_texture(&self, texture: Option<&impl IsA<Texture>>) {
-        unsafe {
-            ffi::gdk_gl_texture_builder_set_update_texture(
-                self.to_glib_none().0,
-                texture.map(|p| p.as_ref()).to_glib_none().0,
-            );
-        }
-    }
-
-    #[doc(alias = "gdk_gl_texture_builder_set_width")]
-    pub fn set_width(&self, width: i32) {
-        unsafe {
-            ffi::gdk_gl_texture_builder_set_width(self.to_glib_none().0, width);
-        }
-    }
 
     #[cfg(feature = "v4_12")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
