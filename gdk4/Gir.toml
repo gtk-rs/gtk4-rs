@@ -495,6 +495,9 @@ generate_builder = false
         name = "region"
         const = true
     [[object.function]]
+    pattern = "set_(context|format|has_mipmap|height|id|update_region|update_texture|width)"
+    manual = true
+    [[object.function]]
     name = "build"
     manual = true
 
