@@ -494,6 +494,9 @@ generate_builder = false
         [[object.function.parameter]]
         name = "region"
         const = true
+    [[object.function]]
+    name = "build"
+    manual = true
 
 [[object]]
 name = "Gdk.KeyEvent"

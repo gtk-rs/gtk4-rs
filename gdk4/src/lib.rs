@@ -81,6 +81,9 @@ mod drop;
 mod focus_event;
 mod functions;
 mod gl_texture;
+#[cfg(any(feature = "v4_12", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+mod gl_texture_builder;
 mod grab_broken_event;
 mod key_event;
 mod keymap_key;

@@ -26,11 +26,6 @@ impl GLTextureBuilder {
         unsafe { from_glib_full(ffi::gdk_gl_texture_builder_new()) }
     }
 
-    //#[doc(alias = "gdk_gl_texture_builder_build")]
-    //pub fn build(&self, data: /*Unimplemented*/Option<Basic: Pointer>) -> Texture {
-    //    unsafe { TODO: call ffi:gdk_gl_texture_builder_build() }
-    //}
-
     #[doc(alias = "gdk_gl_texture_builder_get_context")]
     #[doc(alias = "get_context")]
     pub fn context(&self) -> Option<GLContext> {
