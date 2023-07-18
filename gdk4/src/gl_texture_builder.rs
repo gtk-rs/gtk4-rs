@@ -3,6 +3,22 @@
 use crate::{GLContext, GLTextureBuilder, MemoryFormat, Texture};
 use glib::{prelude::*, translate::*};
 
+// TODO add a feature for a "common" GL binding instead
+#[derive(Clone, Copy, PartialEq, Eq, Hash, Debug)]
+pub struct GLSync(*mut libc::c_void);
+
+impl GLSync {
+    #[inline]
+    pub unsafe fn from_ptr(ptr: *mut libc::c_void) -> Self {
+        Self(ptr)
+    }
+
+    #[inline]
+    pub fn as_ptr(&self) -> *mut libc::c_void {
+        self.0
+    }
+}
+
 impl GLTextureBuilder {
     #[doc(alias = "gdk_gl_texture_builder_build")]
     #[must_use = "The builder must be built to be used"]
@@ -108,6 +124,27 @@ impl GLTextureBuilder {
     pub fn set_width(self, width: i32) -> Self {
         unsafe {
             ffi::gdk_gl_texture_builder_set_width(self.to_glib_none().0, width);
+        }
+
+        self
+    }
+
+    #[doc(alias = "gdk_gl_texture_builder_get_sync")]
+    #[doc(alias = "get_sync")]
+    pub fn sync(&self) -> Option<GLSync> {
+        let ptr = unsafe { ffi::gdk_gl_texture_builder_get_sync(self.to_glib_none().0) };
+        if ptr.is_null() {
+            None
+        } else {
+            unsafe { Some(GLSync::from_ptr(ptr)) }
+        }
+    }
+
+    #[doc(alias = "gdk_gl_texture_builder_set_sync")]
+    pub fn set_sync(self, sync: Option<GLSync>) -> Self {
+        let ptr = sync.map(|s| s.as_ptr()).unwrap_or(std::ptr::null_mut());
+        unsafe {
+            ffi::gdk_gl_texture_builder_set_sync(self.to_glib_none().0, ptr);
         }
 
         self

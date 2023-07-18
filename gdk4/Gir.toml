@@ -498,6 +498,9 @@ generate_builder = false
     pattern = "set_(context|format|has_mipmap|height|id|update_region|update_texture|width)"
     manual = true
     [[object.function]]
+    pattern = "(set|get)_sync"
+    manual = true
+    [[object.function]]
     name = "build"
     manual = true
     [[object.property]]

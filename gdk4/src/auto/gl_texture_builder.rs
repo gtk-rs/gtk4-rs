@@ -64,12 +64,6 @@ impl GLTextureBuilder {
         unsafe { ffi::gdk_gl_texture_builder_get_id(self.to_glib_none().0) }
     }
 
-    //#[doc(alias = "gdk_gl_texture_builder_get_sync")]
-    //#[doc(alias = "get_sync")]
-    //pub fn sync(&self) -> /*Unimplemented*/Option<Basic: Pointer> {
-    //    unsafe { TODO: call ffi:gdk_gl_texture_builder_get_sync() }
-    //}
-
     #[doc(alias = "gdk_gl_texture_builder_get_update_region")]
     #[doc(alias = "get_update_region")]
     pub fn update_region(&self) -> Option<cairo::Region> {
@@ -95,11 +89,6 @@ impl GLTextureBuilder {
     pub fn width(&self) -> i32 {
         unsafe { ffi::gdk_gl_texture_builder_get_width(self.to_glib_none().0) }
     }
-
-    //#[doc(alias = "gdk_gl_texture_builder_set_sync")]
-    //pub fn set_sync(&self, sync: /*Unimplemented*/Option<Basic: Pointer>) {
-    //    unsafe { TODO: call ffi:gdk_gl_texture_builder_set_sync() }
-    //}
 }
 
 #[cfg(feature = "v4_12")]
