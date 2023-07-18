@@ -500,6 +500,9 @@ generate_builder = false
     [[object.function]]
     name = "build"
     manual = true
+    [[object.property]]
+    pattern = "(context|format|has-mipmap|height|id|sync|update-region|update-texture|width)"
+    generate = [] # ignore get/set/notify
 
 [[object]]
 name = "Gdk.KeyEvent"
