@@ -21,6 +21,7 @@ v4_6 = ["ffi/v4_6", "v4_4"]
 v4_8 = ["ffi/v4_8", "v4_6"]
 v4_10 = ["ffi/v4_10", "v4_8"]
 v4_12 = ["ffi/v4_12", "v4_10"]
+gl = ["dep:gl"]
 
 [package.metadata.docs.rs]
 all-features = true
@@ -35,6 +36,7 @@ gio = {git = "https://github.com/gtk-rs/gtk-rs-core", version = "0.18", features
 glib = {git = "https://github.com/gtk-rs/gtk-rs-core", version = "0.18", features = ["v2_66"]}
 libc = "0.2"
 pango = {git = "https://github.com/gtk-rs/gtk-rs-core", version = "0.18", features = ["v1_46"]}
+gl = {version = "0.14", optional = true}
 
 [dev-dependencies]
 gir-format-check = "^0.1"

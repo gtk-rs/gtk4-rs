@@ -46,6 +46,7 @@ gdk = { git = "https://github.com/gtk-rs/gtk4-rs.git", package = "gdk4" }
 | `v4_6` | Enable the new APIs part of GTK 4.6 |
 | `v4_4` | Enable the new APIs part of GTK 4.4 |
 | `v4_2` | Enable the new APIs part of GTK 4.2 |
+| `gl` | Integration with the [gl](https://crates.io/crates/gl) crate |
 
 ### See Also
 

@@ -7,6 +7,9 @@ pub use cairo;
 pub use ffi;
 pub use gdk_pixbuf;
 pub use gio;
+#[cfg(any(feature = "gl", docsrs))]
+#[cfg_attr(docsrs, doc(cfg(feature = "gl")))]
+pub use gl;
 pub use glib;
 pub use pango;
 
