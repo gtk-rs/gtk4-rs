@@ -7,7 +7,7 @@ use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
-use std::{boxed::Box as Box_, fmt, mem::transmute};
+use std::{boxed::Box as Box_, mem::transmute};
 
 glib::wrapper! {
     #[doc(alias = "GtkEntryBuffer")]
@@ -169,9 +169,3 @@ pub trait EntryBufferExt: IsA<EntryBuffer> + sealed::Sealed + 'static {
 }
 
 impl<O: IsA<EntryBuffer>> EntryBufferExt for O {}
-
-impl fmt::Display for EntryBuffer {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("EntryBuffer")
-    }
-}

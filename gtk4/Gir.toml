@@ -1097,6 +1097,7 @@ manual_traits = ["EntryExtManual"]
 [[object]]
 name = "Gtk.EntryBuffer"
 status = "generate"
+generate_display_trait = false
 manual_traits = ["EntryBufferExtManual"]
     [[object.function]]
     name = "new"
@@ -2125,6 +2126,7 @@ status = "generate"
 [[object]]
 name = "Gtk.TextBuffer"
 status = "generate"
+generate_display_trait = false
 manual_traits = ["TextBufferExtManual"]
     [[object.function]]
     name = "paste_clipboard"

@@ -3,6 +3,7 @@
 use crate::{prelude::*, EntryBuffer};
 use glib::{translate::*, GString, IntoGStr, IntoOptionalGStr};
 use libc::{c_int, c_uint};
+use std::fmt;
 
 impl EntryBuffer {
     #[doc(alias = "gtk_entry_buffer_new")]
@@ -125,5 +126,11 @@ impl<O: IsA<EntryBuffer>> EntryBufferExtManual for O {}
 impl Default for EntryBuffer {
     fn default() -> Self {
         glib::Object::new()
+    }
+}
+
+impl fmt::Display for EntryBuffer {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        f.write_str(&self.text())
     }
 }

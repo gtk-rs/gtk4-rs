@@ -6,7 +6,7 @@ use glib::{
     translate::*,
 };
 use libc::{c_char, c_int};
-use std::{boxed::Box as Box_, mem::transmute, slice, str};
+use std::{boxed::Box as Box_, fmt, mem::transmute, slice, str};
 
 mod sealed {
     pub trait Sealed {}
@@ -103,3 +103,9 @@ pub trait TextBufferExtManual: sealed::Sealed + IsA<TextBuffer> + 'static {
 }
 
 impl<O: IsA<TextBuffer>> TextBufferExtManual for O {}
+
+impl fmt::Display for TextBuffer {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        f.write_str(&self.text(&self.start_iter(), &self.end_iter(), true))
+    }
+}
