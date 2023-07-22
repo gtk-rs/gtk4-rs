@@ -39,7 +39,7 @@ jobs:
           - stable
           - beta
           - nightly
-          - "1.65.0"
+          - "1.70"
         conf:
           - { name: "gtk4", features: "v4_12,xml_validation,blueprint", test_sys: false }
           - { name: "gsk4", features: "v4_10,broadway", test_sys: true }
