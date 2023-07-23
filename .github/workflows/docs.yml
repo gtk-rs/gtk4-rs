@@ -36,6 +36,7 @@ jobs:
       image: ghcr.io/gtk-rs/gtk4-rs/gtk4:latest
     env:
       RELEASES: |
+        0.7=0.7
         0.6=0.6
         0.5=0.5
         0.4=0.4
