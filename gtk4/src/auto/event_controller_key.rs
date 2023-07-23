@@ -103,11 +103,11 @@ impl EventControllerKey {
             F: Fn(&EventControllerKey, gdk::ModifierType) -> glib::ControlFlow + 'static,
         >(
             this: *mut ffi::GtkEventControllerKey,
-            keyval: gdk::ffi::GdkModifierType,
+            state: gdk::ffi::GdkModifierType,
             f: glib::ffi::gpointer,
         ) -> glib::ffi::gboolean {
             let f: &F = &*(f as *const F);
-            f(&from_glib_borrow(this), from_glib(keyval)).into_glib()
+            f(&from_glib_borrow(this), from_glib(state)).into_glib()
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
