@@ -9,7 +9,7 @@ license = "MIT"
 name = "gdk4"
 readme = "README.md"
 repository = "https://github.com/gtk-rs/gtk4-rs"
-version = "0.7.0"
+version = "0.8.0"
 rust-version = "1.70"
 [lib]
 name = "gdk4"
@@ -29,13 +29,13 @@ rustc-args = ["--cfg", "docsrs"]
 rustdoc-args = ["--cfg", "docsrs", "--generate-link-to-definition"]
 
 [dependencies]
-cairo-rs = {git = "https://github.com/gtk-rs/gtk-rs-core", version = "0.18"}
-ffi = {package = "gdk4-sys", path = "./sys", version = "0.7"}
-gdk-pixbuf = {git = "https://github.com/gtk-rs/gtk-rs-core", version = "0.18"}
-gio = {git = "https://github.com/gtk-rs/gtk-rs-core", version = "0.18", features = ["v2_66"]}
-glib = {git = "https://github.com/gtk-rs/gtk-rs-core", version = "0.18", features = ["v2_66"]}
+cairo-rs = {git = "https://github.com/gtk-rs/gtk-rs-core", version = "0.19"}
+ffi = {package = "gdk4-sys", path = "./sys", version = "0.8"}
+gdk-pixbuf = {git = "https://github.com/gtk-rs/gtk-rs-core", version = "0.19"}
+gio = {git = "https://github.com/gtk-rs/gtk-rs-core", version = "0.19", features = ["v2_66"]}
+glib = {git = "https://github.com/gtk-rs/gtk-rs-core", version = "0.19", features = ["v2_66"]}
 libc = "0.2"
-pango = {git = "https://github.com/gtk-rs/gtk-rs-core", version = "0.18", features = ["v1_46"]}
+pango = {git = "https://github.com/gtk-rs/gtk-rs-core", version = "0.19", features = ["v1_46"]}
 gl = {version = "0.14", optional = true}
 
 [dev-dependencies]

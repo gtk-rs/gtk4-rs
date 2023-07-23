@@ -9,7 +9,7 @@ license = "MIT"
 name = "gdk4-wayland"
 readme = "README.md"
 repository = "https://github.com/gtk-rs/gtk4-rs"
-version = "0.7.0"
+version = "0.8.0"
 rust-version = "1.70"
 
 [features]
@@ -26,10 +26,10 @@ rustc-args = ["--cfg", "docsrs"]
 rustdoc-args = ["--cfg", "docsrs", "--generate-link-to-definition"]
 
 [dependencies]
-ffi = {path = "./sys", package = "gdk4-wayland-sys", version = "0.7"}
-gdk = {path = "../gdk4", package = "gdk4", version = "0.7"}
-gio = {git = "https://github.com/gtk-rs/gtk-rs-core", version = "0.18", features = ["v2_66"]}
-glib = {git = "https://github.com/gtk-rs/gtk-rs-core", version = "0.18", features = ["v2_66"]}
+ffi = {path = "./sys", package = "gdk4-wayland-sys", version = "0.8"}
+gdk = {path = "../gdk4", package = "gdk4", version = "0.8"}
+gio = {git = "https://github.com/gtk-rs/gtk-rs-core", version = "0.19", features = ["v2_66"]}
+glib = {git = "https://github.com/gtk-rs/gtk-rs-core", version = "0.19", features = ["v2_66"]}
 libc = "0.2"
 wayland-client = {version = "0.30.0", optional = true}
 wayland-backend = {version = "0.1.0", optional = true, features = ["client_system"]}
