@@ -3,7 +3,7 @@ use std::time::Duration;
 
 use glib::{clone, MainContext, Priority};
 use gtk::prelude::*;
-use gtk::{glib, Application, ApplicationWindow, Button};
+use gtk::{gio, glib, Application, ApplicationWindow, Button};
 
 const APP_ID: &str = "org.gtk_rs.MainEventLoop3";
 
@@ -34,7 +34,7 @@ fn build_ui(app: &Application) {
     button.connect_clicked(move |_| {
         let sender = sender.clone();
         // The long running operation runs now in a separate thread
-        thread::spawn(move || {
+        gio::spawn_blocking(move || {
             // Deactivate the button until the operation is done
             sender.send(false).expect("Could not send through channel");
             let ten_seconds = Duration::from_secs(10);

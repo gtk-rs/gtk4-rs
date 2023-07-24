@@ -29,7 +29,7 @@ but it is not unusual wanting to run a slightly longer operation in one go.
 
 ## How to Avoid Blocking the Main Loop
 
-In order to avoid blocking the main loop we can spawn a new thread and let the operation run there.
+In order to avoid blocking the main loop we can spawn a new thread with [`gio::spawn_blocking`](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/gio/fn.spawn_blocking.html) and let the operation run there.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/main_event_loop/2/main.rs">listings/main_event_loop/2/main.rs</a>
 
@@ -100,7 +100,7 @@ But why did we not do the same thing with our multi-threaded example?
 # use std::{thread, time::Duration};
 # 
 # use glib::{clone, MainContext, PRIORITY_DEFAULT};
-# use gtk::glib;
+# use gtk::{glib, gio};
 # use gtk::prelude::*;
 # use gtk::{Application, ApplicationWindow, Button};
 # 
@@ -142,7 +142,7 @@ But why did we not do the same thing with our multi-threaded example?
     button.connect_clicked(move |button| {
         button.clone();
         // The long running operation runs now in a separate thread
-        thread::spawn(move || {
+        gio::spawn_blocking(move || {
             // Deactivate the button until the operation is done
             button.set_sensitive(false);
             let five_seconds = Duration::from_secs(5);
