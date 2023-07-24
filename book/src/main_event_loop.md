@@ -71,8 +71,8 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 
 
 > Per default, [`glib::clone!`](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/macro.clone.html) returns `()` when upgrading of a weak reference fails.
-> [`glib::Receiver::attach`](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/struct.Receiver.html#method.attach) expects a closure with a return value of type [`glib::Continue`](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/source/struct.Continue.html).
-> This is why we specify `@default-return` as `Continue(False)` to clarify that the closure not be called anymore as soon as the upgrade of a weak reference fails.
+> [`glib::Receiver::attach`](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/struct.Receiver.html#method.attach) expects a closure with a return value of type [`glib::ControlFlow`](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/enum.ControlFlow.html).
+> This is why we specify `@default-return` as `glib::ControlFlow::Break` to clarify that the closure not be called anymore as soon as the upgrade of a weak reference fails.
 
 
 Spawning threads is not the only way to run operations asynchronously.
