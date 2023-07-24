@@ -2,7 +2,7 @@ use std::cell::RefCell;
 
 use adw::prelude::*;
 use adw::subclass::prelude::*;
-use glib::{ParamSpec, Properties, Value};
+use glib::Properties;
 use gtk::{gio, glib};
 use once_cell::sync::OnceCell;
 

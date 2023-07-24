@@ -1,6 +1,6 @@
 use std::cell::RefCell;
 
-use glib::{ParamSpec, Properties, Value};
+use glib::Properties;
 use gtk::glib;
 use gtk::prelude::*;
 use gtk::subclass::prelude::*;

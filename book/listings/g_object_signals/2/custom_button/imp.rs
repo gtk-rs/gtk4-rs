@@ -1,7 +1,7 @@
 use std::cell::Cell;
 
 use glib::subclass::Signal;
-use glib::{ParamSpec, Properties, Value};
+use glib::Properties;
 use gtk::glib;
 use gtk::prelude::*;
 use gtk::subclass::prelude::*;
