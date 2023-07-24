@@ -1,6 +1,6 @@
 mod imp;
 
-use adw::prelude::ListModelExtManual;
+use adw::prelude::*;
 use adw::subclass::prelude::*;
 use glib::Object;
 use gtk::{gio, glib};
