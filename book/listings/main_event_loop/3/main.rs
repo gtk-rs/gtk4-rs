@@ -48,10 +48,10 @@ fn build_ui(app: &Application) {
     receiver.attach(
         None,
         clone!(@weak button => @default-return glib::ControlFlow::Break,
-                    move |enable_button| {
-                        button.set_sensitive(enable_button);
-                        glib::ControlFlow::Continue
-                    }
+            move |enable_button| {
+                button.set_sensitive(enable_button);
+                glib::ControlFlow::Continue
+            }
         ),
     );
     // ANCHOR_END: callback
