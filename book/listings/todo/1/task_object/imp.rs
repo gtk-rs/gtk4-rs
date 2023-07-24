@@ -25,17 +25,6 @@ impl ObjectSubclass for TaskObject {
 }
 
 // Trait shared by all GObjects
-impl ObjectImpl for TaskObject {
-    fn properties() -> &'static [ParamSpec] {
-        Self::derived_properties()
-    }
-
-    fn set_property(&self, id: usize, value: &Value, pspec: &ParamSpec) {
-        self.derived_set_property(id, value, pspec)
-    }
-
-    fn property(&self, id: usize, pspec: &ParamSpec) -> Value {
-        self.derived_property(id, pspec)
-    }
-}
+#[glib::derived_properties]
+impl ObjectImpl for TaskObject {}
 // ANCHOR_END: struct_and_subclass

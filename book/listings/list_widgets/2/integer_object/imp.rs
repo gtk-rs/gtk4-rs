@@ -24,17 +24,6 @@ impl ObjectSubclass for IntegerObject {
 
 // ANCHOR: object_impl
 // Trait shared by all GObjects
-impl ObjectImpl for IntegerObject {
-    fn properties() -> &'static [ParamSpec] {
-        Self::derived_properties()
-    }
-
-    fn set_property(&self, id: usize, value: &Value, pspec: &ParamSpec) {
-        self.derived_set_property(id, value, pspec)
-    }
-
-    fn property(&self, id: usize, pspec: &ParamSpec) -> Value {
-        self.derived_property(id, pspec)
-    }
-}
+#[glib::derived_properties]
+impl ObjectImpl for IntegerObject {}
 // ANCHOR_END: object_impl
