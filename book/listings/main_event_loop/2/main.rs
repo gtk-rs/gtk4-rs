@@ -2,7 +2,7 @@ use std::thread;
 use std::time::Duration;
 
 use gtk::prelude::*;
-use gtk::{self, glib, Application, ApplicationWindow, Button};
+use gtk::{self, gio, glib, Application, ApplicationWindow, Button};
 
 const APP_ID: &str = "org.gtk_rs.MainEventLoop2";
 
@@ -31,7 +31,7 @@ fn build_ui(app: &Application) {
     // Connect to "clicked" signal of `button`
     button.connect_clicked(move |_| {
         // The long running operation runs now in a separate thread
-        thread::spawn(move || {
+        gio::spawn_blocking(move || {
             let five_seconds = Duration::from_secs(5);
             thread::sleep(five_seconds);
         });
