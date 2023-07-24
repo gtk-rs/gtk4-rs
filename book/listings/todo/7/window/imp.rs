@@ -4,7 +4,6 @@ use std::fs::File;
 use adw::subclass::prelude::*;
 
 use gio::Settings;
-use glib::signal::Inhibit;
 use glib::subclass::InitializingObject;
 
 use adw::prelude::*;
@@ -67,7 +66,7 @@ impl WidgetImpl for Window {}
 
 // Trait shared by all windows
 impl WindowImpl for Window {
-    fn close_request(&self) -> Inhibit {
+    fn close_request(&self) -> glib::ControlFlow {
         // Store task data in vector
         let backup_data: Vec<TaskData> = self
             .obj()

@@ -1,7 +1,7 @@
 use std::thread;
 use std::time::Duration;
 
-use glib::{clone, Continue, MainContext, Priority};
+use glib::{clone, MainContext, Priority};
 use gtk::prelude::*;
 use gtk::{glib, Application, ApplicationWindow, Button};
 
@@ -47,10 +47,10 @@ fn build_ui(app: &Application) {
     // The main loop executes the closure as soon as it receives the message
     receiver.attach(
         None,
-        clone!(@weak button => @default-return Continue(false),
+        clone!(@weak button => @default-return glib::ControlFlow::Break,
                     move |enable_button| {
                         button.set_sensitive(enable_button);
-                        Continue(true)
+                        glib::ControlFlow::Continue
                     }
         ),
     );

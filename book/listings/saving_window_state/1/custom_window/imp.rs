@@ -1,5 +1,4 @@
 use gio::Settings;
-use glib::signal::Inhibit;
 use gtk::subclass::prelude::*;
 use gtk::{gio, glib, ApplicationWindow};
 use once_cell::sync::OnceCell;
@@ -28,14 +27,13 @@ impl ObjectImpl for Window {
 impl WidgetImpl for Window {}
 impl WindowImpl for Window {
     // Save window state right before the window will be closed
-    fn close_request(&self) -> Inhibit {
+    fn close_request(&self) -> glib::ControlFlow {
         // Save window size
         self.obj()
             .save_window_size()
             .expect("Failed to save window state");
 
-        // Don't inhibit the default handler
-        Inhibit(false)
+        glib::ControlFlow::Continue
     }
 }
 impl ApplicationWindowImpl for Window {}

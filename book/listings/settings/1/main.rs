@@ -1,5 +1,4 @@
 use gio::Settings;
-use gtk::glib::signal::Inhibit;
 use gtk::prelude::*;
 use gtk::{gio, glib, Align, Application, ApplicationWindow, Switch};
 
@@ -47,7 +46,7 @@ fn build_ui(app: &Application) {
             .set_boolean("is-switch-enabled", is_enabled)
             .expect("Could not set setting.");
         // Don't inhibit the default handler
-        Inhibit(false)
+        glib::ControlFlow::Continue
     });
     // ANCHOR_END: connect_state_set
 
