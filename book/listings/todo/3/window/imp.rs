@@ -2,7 +2,6 @@ use std::cell::RefCell;
 use std::fs::File;
 
 use gio::Settings;
-use glib::signal::Inhibit;
 use glib::subclass::InitializingObject;
 use gtk::prelude::*;
 use gtk::subclass::prelude::*;
@@ -63,7 +62,7 @@ impl WidgetImpl for Window {}
 
 // Trait shared by all windows
 impl WindowImpl for Window {
-    fn close_request(&self) -> Inhibit {
+    fn close_request(&self) -> glib::ControlFlow {
         // Store task data in vector
         let backup_data: Vec<TaskData> = self
             .obj()
