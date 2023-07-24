@@ -26,16 +26,5 @@ impl ObjectSubclass for CollectionObject {
 // ANCHOR_END: collection_object
 
 // Trait shared by all GObjects
-impl ObjectImpl for CollectionObject {
-    fn properties() -> &'static [ParamSpec] {
-        Self::derived_properties()
-    }
-
-    fn set_property(&self, id: usize, value: &Value, pspec: &ParamSpec) {
-        self.derived_set_property(id, value, pspec)
-    }
-
-    fn property(&self, id: usize, pspec: &ParamSpec) -> Value {
-        self.derived_property(id, pspec)
-    }
-}
+#[glib::derived_properties]
+impl ObjectImpl for CollectionObject {}

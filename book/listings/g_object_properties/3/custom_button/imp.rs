@@ -25,19 +25,8 @@ impl ObjectSubclass for CustomButton {
 
 // ANCHOR: object_impl
 // Trait shared by all GObjects
+#[glib::derived_properties]
 impl ObjectImpl for CustomButton {
-    fn properties() -> &'static [ParamSpec] {
-        Self::derived_properties()
-    }
-
-    fn set_property(&self, id: usize, value: &Value, pspec: &ParamSpec) {
-        self.derived_set_property(id, value, pspec)
-    }
-
-    fn property(&self, id: usize, pspec: &ParamSpec) -> Value {
-        self.derived_property(id, pspec)
-    }
-
     fn constructed(&self) {
         self.parent_constructed();
 
