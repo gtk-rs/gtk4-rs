@@ -16,7 +16,7 @@ dirs = "5.0"
 walkdir = "2.3"
 
 [build-dependencies]
-glib-build-tools = "0.17"
+glib-build-tools = "0.18"
 
 # actions
 [[bin]]
