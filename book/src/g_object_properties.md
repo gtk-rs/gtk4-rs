@@ -55,7 +55,7 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 {{#rustdoc_include ../listings/g_object_properties/3/custom_button/imp.rs:custom_button}}
 ```
 
-The implementation of `properties`, `set_property` and `property` is boilerplate that is the same for every GObject that generates its properties with the `Property` macro.
+The [`glib::derived_properties`](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/attr.derived_properties.html) macro generates boilerplate that is the same for every GObject that generates its properties with the `Property` macro.
 In `constructed` we use our new property "number" by binding the "label" property to it.
 `bind_property` converts the integer value of "number" to the string of "label" on its own.
 Now we don't have to adapt the label in the "clicked" callback anymore.
