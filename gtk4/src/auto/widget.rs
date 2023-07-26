@@ -312,18 +312,6 @@ pub trait WidgetExt: IsA<Widget> + sealed::Sealed + 'static {
         }
     }
 
-    #[doc(alias = "gtk_widget_get_ancestor")]
-    #[doc(alias = "get_ancestor")]
-    #[must_use]
-    fn ancestor(&self, widget_type: glib::types::Type) -> Option<Widget> {
-        unsafe {
-            from_glib_none(ffi::gtk_widget_get_ancestor(
-                self.as_ref().to_glib_none().0,
-                widget_type.into_glib(),
-            ))
-        }
-    }
-
     #[cfg(feature = "v4_12")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
     #[doc(alias = "gtk_widget_get_baseline")]

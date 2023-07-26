@@ -194,7 +194,6 @@ generate = [
     "Gtk.ProgressBar",
     "Gtk.PropagationLimit",
     "Gtk.PropagationPhase",
-    "Gtk.PropertyExpression",
     "Gtk.RecentInfo",
     "Gtk.RecentManagerError",
     "Gtk.Revealer",
@@ -679,6 +678,9 @@ generate_builder = false
     [[object.function]]
     name = "get_current_object"
     manual = true # don't ref_sink the object
+    [[object.function]]
+    pattern = "(value_from_string_type|extend_with_template)"
+    manual = true # To add a with_type variant
 
 [[object]]
 name = "Gtk.BuilderListItemFactory"
@@ -1025,6 +1027,9 @@ manual_traits = ["DrawingAreaExtManual"]
 [[object]]
 name = "Gtk.DropTarget"
 status = "generate"
+    [[object.function]]
+    name = "new"
+    manual = true # To add a with_type variant
     [[object.signal]]
     name = "drop"
     # manual: FromGlibPtrBorrow<*mut GValue>` is not implemented for `Value`
@@ -1885,6 +1890,13 @@ status = "generate"
 cfg_condition = "target_os = \"linux\""
 
 [[object]]
+name = "Gtk.PropertyExpression"
+status = "generate"
+    [[object.function]]
+    name = "new"
+    manual = true # To add a with_type variant
+
+[[object]]
 name = "Gtk.Range"
 status = "generate"
 generate_builder = false
@@ -2672,6 +2684,9 @@ manual_traits = ["WidgetExtManual"]
     [[object.function]]
     pattern = "(init|dispose)_template"
     ignore = true # We manually bind this one as part of CompositeTemplatExt
+    [[object.function]]
+    name = "get_ancestor"
+    manual = true # To add a with_type variant
     [[object.function]]
     name = "get_template_child"
     ignore = true # Not useful for Rust bindings

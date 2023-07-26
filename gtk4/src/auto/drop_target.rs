@@ -21,17 +21,6 @@ glib::wrapper! {
 }
 
 impl DropTarget {
-    #[doc(alias = "gtk_drop_target_new")]
-    pub fn new(type_: glib::types::Type, actions: gdk::DragAction) -> DropTarget {
-        assert_initialized_main_thread!();
-        unsafe {
-            from_glib_full(ffi::gtk_drop_target_new(
-                type_.into_glib(),
-                actions.into_glib(),
-            ))
-        }
-    }
-
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`DropTarget`] objects.
     ///
@@ -323,12 +312,6 @@ impl DropTarget {
                 Box_::into_raw(f),
             )
         }
-    }
-}
-
-impl Default for DropTarget {
-    fn default() -> Self {
-        glib::object::Object::new::<Self>()
     }
 }
 

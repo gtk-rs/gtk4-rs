@@ -108,7 +108,7 @@ impl Expression {
         &self,
         property_name: &str,
     ) -> crate::PropertyExpression {
-        crate::PropertyExpression::new(T::static_type(), Some(self), property_name)
+        crate::PropertyExpression::new::<T>(Some(self), property_name)
     }
 
     // rustdoc-stripper-ignore-next
@@ -235,21 +235,21 @@ pub trait GObjectPropertyExpressionExt: IsA<glib::Object> {
     /// Create an expression looking up an object's property.
     fn property_expression(&self, property_name: &str) -> crate::PropertyExpression {
         let obj_expr = crate::ConstantExpression::new(self);
-        crate::PropertyExpression::new(Self::static_type(), Some(&obj_expr), property_name)
+        crate::PropertyExpression::new::<Self>(Some(&obj_expr), property_name)
     }
 
     // rustdoc-stripper-ignore-next
     /// Create an expression looking up an object's property with a weak reference.
     fn property_expression_weak(&self, property_name: &str) -> crate::PropertyExpression {
         let obj_expr = crate::ObjectExpression::new(self);
-        crate::PropertyExpression::new(Self::static_type(), Some(&obj_expr), property_name)
+        crate::PropertyExpression::new::<Self>(Some(&obj_expr), property_name)
     }
 
     // rustdoc-stripper-ignore-next
     /// Create an expression looking up a property in the bound `this` object.
     fn this_expression(property_name: &str) -> crate::PropertyExpression {
         skip_assert_initialized!();
-        crate::PropertyExpression::new(Self::static_type(), Expression::NONE, property_name)
+        crate::PropertyExpression::new::<Self>(Expression::NONE, property_name)
     }
 }
 

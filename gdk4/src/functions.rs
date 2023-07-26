@@ -29,7 +29,30 @@ pub fn pango_layout_get_clip_region(
 }
 
 #[doc(alias = "gdk_content_deserialize_async")]
-pub fn content_deserialize_async<R: FnOnce(Result<glib::Value, glib::Error>) + 'static>(
+pub fn content_deserialize_async<T: for<'a> glib::value::FromValue<'a> + glib::StaticType>(
+    stream: &impl IsA<gio::InputStream>,
+    mime_type: &str,
+    io_priority: glib::Priority,
+    cancellable: Option<&impl IsA<gio::Cancellable>>,
+    callback: impl FnOnce(Result<T, glib::Error>) + 'static,
+) {
+    assert_initialized_main_thread!();
+    let callback2 =
+        |t: Result<glib::Value, glib::Error>| callback(t.map(|e| e.get::<T>().unwrap()));
+    content_deserialize_async_with_type(
+        stream,
+        mime_type,
+        T::static_type(),
+        io_priority,
+        cancellable,
+        callback2,
+    );
+}
+
+#[doc(alias = "gdk_content_deserialize_async")]
+pub fn content_deserialize_async_with_type<
+    R: FnOnce(Result<glib::Value, glib::Error>) + 'static,
+>(
     stream: &impl IsA<gio::InputStream>,
     mime_type: &str,
     type_: glib::types::Type,
@@ -83,7 +106,20 @@ pub fn content_deserialize_async<R: FnOnce(Result<glib::Value, glib::Error>) + '
     }
 }
 
-pub fn content_deserialize_future(
+pub async fn content_deserialize_future<
+    T: for<'a> glib::value::FromValue<'a> + glib::StaticType,
+>(
+    stream: &(impl IsA<gio::InputStream> + Clone + 'static),
+    mime_type: &str,
+    io_priority: glib::Priority,
+) -> Result<T, glib::Error> {
+    assert_initialized_main_thread!();
+    content_deserialize_with_type_future(stream, mime_type, T::static_type(), io_priority)
+        .await
+        .map(|t| t.get::<T>().unwrap())
+}
+
+pub fn content_deserialize_with_type_future(
     stream: &(impl IsA<gio::InputStream> + Clone + 'static),
     mime_type: &str,
     type_: glib::types::Type,
@@ -94,7 +130,7 @@ pub fn content_deserialize_future(
     let stream = stream.clone();
     let mime_type = String::from(mime_type);
     Box::pin(gio::GioFuture::new(&(), move |_obj, cancellable, send| {
-        content_deserialize_async(
+        content_deserialize_async_with_type(
             &stream,
             &mime_type,
             type_,

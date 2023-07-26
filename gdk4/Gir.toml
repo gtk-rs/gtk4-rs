@@ -250,6 +250,9 @@ generate_builder = false
     name = "read_async"
     manual = true # mime_types are cloned instead of converting them to a Vec<String>
     [[object.function]]
+    name = "read_value_async"
+    manual = true # To add a with_type variant
+    [[object.function]]
     name = "set_content"
         [object.function.return]
         bool_return_is_error = "Can't set new clipboard content"
@@ -282,9 +285,11 @@ status = "generate"
     [[object.function]]
     name = "new_for_gtype"
     rename = "for_type"
+    manual = true # To add a with_type variant
     [[object.function]]
     name = "contain_gtype"
     rename = "contains_type"
+    manual = true # To add a with_type variant
     [[object.function]]
     name = "match_gtype"
     rename = "match_type"
@@ -448,6 +453,9 @@ status = "generate"
     [[object.function]]
     name = "read_async"
     manual = true # mime_types are cloned instead of converting them to a Vec<String>
+    [[object.function]]
+    name = "read_value_async"
+    manual = true # To add a with_type variant
 
 [[object]]
 name = "Gdk.EventType"

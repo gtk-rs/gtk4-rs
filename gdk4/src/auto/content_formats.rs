@@ -29,24 +29,6 @@ impl ContentFormats {
         }
     }
 
-    #[doc(alias = "gdk_content_formats_new_for_gtype")]
-    #[doc(alias = "new_for_gtype")]
-    pub fn for_type(type_: glib::types::Type) -> ContentFormats {
-        assert_initialized_main_thread!();
-        unsafe { from_glib_full(ffi::gdk_content_formats_new_for_gtype(type_.into_glib())) }
-    }
-
-    #[doc(alias = "gdk_content_formats_contain_gtype")]
-    #[doc(alias = "contain_gtype")]
-    pub fn contains_type(&self, type_: glib::types::Type) -> bool {
-        unsafe {
-            from_glib(ffi::gdk_content_formats_contain_gtype(
-                self.to_glib_none().0,
-                type_.into_glib(),
-            ))
-        }
-    }
-
     #[doc(alias = "gdk_content_formats_contain_mime_type")]
     pub fn contain_mime_type(&self, mime_type: &str) -> bool {
         unsafe {
