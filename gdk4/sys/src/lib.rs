@@ -163,7 +163,6 @@ pub const GDK_MEMORY_G16A16: GdkMemoryFormat = 22;
 pub const GDK_MEMORY_G16: GdkMemoryFormat = 23;
 pub const GDK_MEMORY_A8: GdkMemoryFormat = 24;
 pub const GDK_MEMORY_A16: GdkMemoryFormat = 25;
-pub const GDK_MEMORY_N_FORMATS: GdkMemoryFormat = 26;
 
 pub type GdkNotifyType = c_int;
 pub const GDK_NOTIFY_ANCESTOR: GdkNotifyType = 0;

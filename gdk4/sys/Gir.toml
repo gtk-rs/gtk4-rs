@@ -22,3 +22,10 @@ status = "generate"
     [[object.function]]
     name = "drag_surface_size_get_type"
     version = "4.12"
+
+[[object]]
+name = "Gdk.MemoryFormat"
+status = "generate"
+    [[object.member]]
+    name = "n_formats"
+    alias = true # not useful
