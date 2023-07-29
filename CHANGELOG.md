@@ -36,7 +36,7 @@ Fabio Valentini:
 
 Bilal Elmoussaoui:
 
--   gtk: Add missing guard to AccesibleRoleToggleButton
+-   gtk: Add missing guard to AccessibleRoleToggleButton
 
 ## [0.6.3]
 

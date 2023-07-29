@@ -1,0 +1,11 @@
+[files]
+extend-exclude = ["auto", "gdk4", "*.svg"]
+
+[default.extend-words]
+# Ignore false-positives
+gir = "gir"
+mak = "mak"
+anid = "anid"
+lamda = "lamda"
+inout = "inout"
+relm = "relm"
