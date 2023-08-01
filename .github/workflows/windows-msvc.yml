@@ -28,7 +28,7 @@ jobs:
       PKG_CONFIG_PATH: 'C:\gnome\lib\pkgconfig'
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
     - uses: actions/cache@v1
       id: cache
       with:
