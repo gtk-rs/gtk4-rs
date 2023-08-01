@@ -931,7 +931,6 @@ pub const GTK_DEBUG_BUILDER: GtkDebugFlags = 128;
 pub const GTK_DEBUG_SIZE_REQUEST: GtkDebugFlags = 256;
 pub const GTK_DEBUG_NO_CSS_CACHE: GtkDebugFlags = 512;
 pub const GTK_DEBUG_INTERACTIVE: GtkDebugFlags = 1024;
-pub const GTK_DEBUG_TOUCHSCREEN: GtkDebugFlags = 2048;
 pub const GTK_DEBUG_ACTIONS: GtkDebugFlags = 4096;
 pub const GTK_DEBUG_LAYOUT: GtkDebugFlags = 8192;
 pub const GTK_DEBUG_SNAPSHOT: GtkDebugFlags = 16384;
