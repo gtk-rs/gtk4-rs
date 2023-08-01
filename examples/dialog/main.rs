@@ -1,4 +1,4 @@
-use gtk::glib::{self, clone, ControlFlow};
+use gtk::glib::{self, clone};
 use gtk::prelude::*;
 
 use std::rc::Rc;
@@ -40,7 +40,7 @@ fn build_ui(application: &gtk::Application) {
         if let Some(application) = window.application() {
             application.remove_window(window);
         }
-        ControlFlow::Break
+        glib::Propagation::Proceed
     });
 }
 
