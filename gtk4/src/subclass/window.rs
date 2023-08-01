@@ -23,7 +23,7 @@ pub trait WindowImpl: WindowImplExt + WidgetImpl {
         self.parent_enable_debugging(toggle)
     }
 
-    fn close_request(&self) -> glib::ControlFlow {
+    fn close_request(&self) -> glib::Propagation {
         self.parent_close_request()
     }
 }
@@ -81,14 +81,14 @@ pub trait WindowImplExt: sealed::Sealed + ObjectSubclass {
         }
     }
 
-    fn parent_close_request(&self) -> glib::ControlFlow {
+    fn parent_close_request(&self) -> glib::Propagation {
         unsafe {
             let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkWindowClass;
             let f = (*parent_class)
                 .close_request
                 .expect("No parent class impl for \"close_request\"");
-            glib::ControlFlow::from_glib(f(self.obj().unsafe_cast_ref::<Window>().to_glib_none().0))
+            glib::Propagation::from_glib(f(self.obj().unsafe_cast_ref::<Window>().to_glib_none().0))
         }
     }
 }
