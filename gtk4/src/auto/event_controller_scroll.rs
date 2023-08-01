@@ -93,12 +93,12 @@ impl EventControllerScroll {
     }
 
     #[doc(alias = "scroll")]
-    pub fn connect_scroll<F: Fn(&Self, f64, f64) -> glib::ControlFlow + 'static>(
+    pub fn connect_scroll<F: Fn(&Self, f64, f64) -> glib::Propagation + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn scroll_trampoline<
-            F: Fn(&EventControllerScroll, f64, f64) -> glib::ControlFlow + 'static,
+            F: Fn(&EventControllerScroll, f64, f64) -> glib::Propagation + 'static,
         >(
             this: *mut ffi::GtkEventControllerScroll,
             dx: libc::c_double,

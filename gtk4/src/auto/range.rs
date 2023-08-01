@@ -255,13 +255,13 @@ pub trait RangeExt: IsA<Range> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "change-value")]
-    fn connect_change_value<F: Fn(&Self, ScrollType, f64) -> glib::ControlFlow + 'static>(
+    fn connect_change_value<F: Fn(&Self, ScrollType, f64) -> glib::Propagation + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn change_value_trampoline<
             P: IsA<Range>,
-            F: Fn(&P, ScrollType, f64) -> glib::ControlFlow + 'static,
+            F: Fn(&P, ScrollType, f64) -> glib::Propagation + 'static,
         >(
             this: *mut ffi::GtkRange,
             scroll: ffi::GtkScrollType,

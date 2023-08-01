@@ -304,12 +304,12 @@ impl SpinButton {
     }
 
     #[doc(alias = "output")]
-    pub fn connect_output<F: Fn(&Self) -> glib::ControlFlow + 'static>(
+    pub fn connect_output<F: Fn(&Self) -> glib::Propagation + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn output_trampoline<
-            F: Fn(&SpinButton) -> glib::ControlFlow + 'static,
+            F: Fn(&SpinButton) -> glib::Propagation + 'static,
         >(
             this: *mut ffi::GtkSpinButton,
             f: glib::ffi::gpointer,

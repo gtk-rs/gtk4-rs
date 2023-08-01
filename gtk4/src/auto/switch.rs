@@ -90,12 +90,12 @@ impl Switch {
     }
 
     #[doc(alias = "state-set")]
-    pub fn connect_state_set<F: Fn(&Self, bool) -> glib::ControlFlow + 'static>(
+    pub fn connect_state_set<F: Fn(&Self, bool) -> glib::Propagation + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn state_set_trampoline<
-            F: Fn(&Switch, bool) -> glib::ControlFlow + 'static,
+            F: Fn(&Switch, bool) -> glib::Propagation + 'static,
         >(
             this: *mut ffi::GtkSwitch,
             state: glib::ffi::gboolean,

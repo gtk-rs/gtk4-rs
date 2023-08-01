@@ -492,13 +492,13 @@ pub trait GLAreaExt: IsA<GLArea> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "render")]
-    fn connect_render<F: Fn(&Self, &gdk::GLContext) -> glib::ControlFlow + 'static>(
+    fn connect_render<F: Fn(&Self, &gdk::GLContext) -> glib::Propagation + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn render_trampoline<
             P: IsA<GLArea>,
-            F: Fn(&P, &gdk::GLContext) -> glib::ControlFlow + 'static,
+            F: Fn(&P, &gdk::GLContext) -> glib::Propagation + 'static,
         >(
             this: *mut ffi::GtkGLArea,
             context: *mut gdk::ffi::GdkGLContext,
