@@ -2767,7 +2767,6 @@ const RUST_CONSTANTS: &[(&str, &str)] = &[
     ("(guint) GTK_DEBUG_SIZE_REQUEST", "256"),
     ("(guint) GTK_DEBUG_SNAPSHOT", "16384"),
     ("(guint) GTK_DEBUG_TEXT", "1"),
-    ("(guint) GTK_DEBUG_TOUCHSCREEN", "2048"),
     ("(guint) GTK_DEBUG_TREE", "2"),
     ("(gint) GTK_DELETE_CHARS", "0"),
     ("(gint) GTK_DELETE_DISPLAY_LINES", "3"),

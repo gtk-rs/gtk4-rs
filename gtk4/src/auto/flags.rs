@@ -316,8 +316,6 @@ bitflags! {
         const NO_CSS_CACHE = ffi::GTK_DEBUG_NO_CSS_CACHE as _;
         #[doc(alias = "GTK_DEBUG_INTERACTIVE")]
         const INTERACTIVE = ffi::GTK_DEBUG_INTERACTIVE as _;
-        #[doc(alias = "GTK_DEBUG_TOUCHSCREEN")]
-        const TOUCHSCREEN = ffi::GTK_DEBUG_TOUCHSCREEN as _;
         #[doc(alias = "GTK_DEBUG_ACTIONS")]
         const ACTIONS = ffi::GTK_DEBUG_ACTIONS as _;
         #[doc(alias = "GTK_DEBUG_LAYOUT")]
