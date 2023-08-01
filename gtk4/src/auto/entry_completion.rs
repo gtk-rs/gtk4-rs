@@ -315,13 +315,13 @@ impl EntryCompletion {
 
     #[doc(alias = "cursor-on-match")]
     pub fn connect_cursor_on_match<
-        F: Fn(&Self, &TreeModel, &TreeIter) -> glib::ControlFlow + 'static,
+        F: Fn(&Self, &TreeModel, &TreeIter) -> glib::Propagation + 'static,
     >(
         &self,
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn cursor_on_match_trampoline<
-            F: Fn(&EntryCompletion, &TreeModel, &TreeIter) -> glib::ControlFlow + 'static,
+            F: Fn(&EntryCompletion, &TreeModel, &TreeIter) -> glib::Propagation + 'static,
         >(
             this: *mut ffi::GtkEntryCompletion,
             model: *mut ffi::GtkTreeModel,
@@ -350,12 +350,12 @@ impl EntryCompletion {
     }
 
     #[doc(alias = "insert-prefix")]
-    pub fn connect_insert_prefix<F: Fn(&Self, &str) -> glib::ControlFlow + 'static>(
+    pub fn connect_insert_prefix<F: Fn(&Self, &str) -> glib::Propagation + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn insert_prefix_trampoline<
-            F: Fn(&EntryCompletion, &str) -> glib::ControlFlow + 'static,
+            F: Fn(&EntryCompletion, &str) -> glib::Propagation + 'static,
         >(
             this: *mut ffi::GtkEntryCompletion,
             prefix: *mut libc::c_char,
@@ -383,13 +383,13 @@ impl EntryCompletion {
 
     #[doc(alias = "match-selected")]
     pub fn connect_match_selected<
-        F: Fn(&Self, &TreeModel, &TreeIter) -> glib::ControlFlow + 'static,
+        F: Fn(&Self, &TreeModel, &TreeIter) -> glib::Propagation + 'static,
     >(
         &self,
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn match_selected_trampoline<
-            F: Fn(&EntryCompletion, &TreeModel, &TreeIter) -> glib::ControlFlow + 'static,
+            F: Fn(&EntryCompletion, &TreeModel, &TreeIter) -> glib::Propagation + 'static,
         >(
             this: *mut ffi::GtkEntryCompletion,
             model: *mut ffi::GtkTreeModel,

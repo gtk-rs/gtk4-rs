@@ -1567,13 +1567,13 @@ pub trait WidgetExt: IsA<Widget> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "keynav-failed")]
-    fn connect_keynav_failed<F: Fn(&Self, DirectionType) -> glib::ControlFlow + 'static>(
+    fn connect_keynav_failed<F: Fn(&Self, DirectionType) -> glib::Propagation + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn keynav_failed_trampoline<
             P: IsA<Widget>,
-            F: Fn(&P, DirectionType) -> glib::ControlFlow + 'static,
+            F: Fn(&P, DirectionType) -> glib::Propagation + 'static,
         >(
             this: *mut ffi::GtkWidget,
             direction: ffi::GtkDirectionType,
@@ -1622,13 +1622,13 @@ pub trait WidgetExt: IsA<Widget> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "mnemonic-activate")]
-    fn connect_mnemonic_activate<F: Fn(&Self, bool) -> glib::ControlFlow + 'static>(
+    fn connect_mnemonic_activate<F: Fn(&Self, bool) -> glib::Propagation + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn mnemonic_activate_trampoline<
             P: IsA<Widget>,
-            F: Fn(&P, bool) -> glib::ControlFlow + 'static,
+            F: Fn(&P, bool) -> glib::Propagation + 'static,
         >(
             this: *mut ffi::GtkWidget,
             group_cycling: glib::ffi::gboolean,
