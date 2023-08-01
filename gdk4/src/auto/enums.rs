@@ -1665,8 +1665,12 @@ pub enum MemoryFormat {
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
     #[doc(alias = "GDK_MEMORY_A16")]
     A16,
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
     #[doc(alias = "GDK_MEMORY_A16_FLOAT")]
     A16Float,
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
     #[doc(alias = "GDK_MEMORY_A32_FLOAT")]
     A32Float,
     #[doc(hidden)]
@@ -1722,7 +1726,9 @@ impl fmt::Display for MemoryFormat {
                 Self::A8 => "A8",
                 #[cfg(feature = "v4_12")]
                 Self::A16 => "A16",
+                #[cfg(feature = "v4_12")]
                 Self::A16Float => "A16Float",
+                #[cfg(feature = "v4_12")]
                 Self::A32Float => "A32Float",
                 _ => "Unknown",
             }
@@ -1783,7 +1789,9 @@ impl IntoGlib for MemoryFormat {
             Self::A8 => ffi::GDK_MEMORY_A8,
             #[cfg(feature = "v4_12")]
             Self::A16 => ffi::GDK_MEMORY_A16,
+            #[cfg(feature = "v4_12")]
             Self::A16Float => ffi::GDK_MEMORY_A16_FLOAT,
+            #[cfg(feature = "v4_12")]
             Self::A32Float => ffi::GDK_MEMORY_A32_FLOAT,
             Self::__Unknown(value) => value,
         }
@@ -1843,7 +1851,9 @@ impl FromGlib<ffi::GdkMemoryFormat> for MemoryFormat {
             ffi::GDK_MEMORY_A8 => Self::A8,
             #[cfg(feature = "v4_12")]
             ffi::GDK_MEMORY_A16 => Self::A16,
+            #[cfg(feature = "v4_12")]
             ffi::GDK_MEMORY_A16_FLOAT => Self::A16Float,
+            #[cfg(feature = "v4_12")]
             ffi::GDK_MEMORY_A32_FLOAT => Self::A32Float,
             value => Self::__Unknown(value),
         }
