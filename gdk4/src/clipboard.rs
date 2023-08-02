@@ -86,4 +86,15 @@ impl Clipboard {
             });
         }))
     }
+
+    #[doc(alias = "gdk_clipboard_set")]
+    #[doc(alias = "gdk_clipboard_set_value")]
+    #[doc(alias = "gdk_clipboard_set_valist")]
+    #[doc(alias = "set_value")]
+    #[doc(alias = "set_valist")]
+    pub fn set(&self, value: &impl ToValue) {
+        unsafe {
+            ffi::gdk_clipboard_set_value(self.to_glib_none().0, value.to_value().to_glib_none().0);
+        }
+    }
 }
