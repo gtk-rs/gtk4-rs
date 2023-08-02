@@ -1853,7 +1853,7 @@ generate_builder = false
 cfg_condition = "target_os = \"linux\""
     [[object.function]]
     name = "send"
-    manual = true # mis-generated callback_func
+    manual = true # misgenerated callback_func
 
 [[object]]
 name = "Gtk.PrintOperation"
@@ -2586,7 +2586,7 @@ manual_traits = ["TreeViewExtManual"]
     name = "set_row_separator_func"
         [[object.function.parameter]]
         name = "func"
-        nullable = false # use a separate unset_row_separtor_func
+        nullable = false # use a separate unset_row_separator_func
     [[object.signal]]
     pattern = ".+"
         [[object.signal.parameter]]
@@ -2671,7 +2671,7 @@ manual_traits = ["WidgetExtManual"]
         const = true
     [[object.function]]
     pattern = "(init|dispose)_template"
-    ignore = true # We manually bind this one as part of CompositeTemplatExt
+    ignore = true # We manually bind this one as part of CompositeTemplateExt
     [[object.function]]
     name = "get_template_child"
     ignore = true # Not useful for Rust bindings

@@ -36,14 +36,3 @@ jobs:
           publish_dir: ./book/public
           keep_files: false
           destination_dir: stable/latest/book
-
-  codespell:
-    runs-on: ubuntu-22.04
-    steps:
-      - uses: actions/checkout@v3
-      - uses: codespell-project/actions-codespell@master
-        with:
-          check_filenames: true
-          path: book
-          ignore_words_list: "crate"
-          skip: "*.svg"
