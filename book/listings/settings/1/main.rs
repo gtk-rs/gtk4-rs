@@ -45,8 +45,8 @@ fn build_ui(app: &Application) {
         settings
             .set_boolean("is-switch-enabled", is_enabled)
             .expect("Could not set setting.");
-        // Don't inhibit the default handler
-        glib::ControlFlow::Continue
+        // Allow to invoke other event handlers
+        glib::Propagation::Proceed
     });
     // ANCHOR_END: connect_state_set
 
