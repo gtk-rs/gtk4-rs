@@ -103,3 +103,11 @@ pub trait TextBufferExtManual: sealed::Sealed + IsA<TextBuffer> + 'static {
 }
 
 impl<O: IsA<TextBuffer>> TextBufferExtManual for O {}
+
+impl std::fmt::Write for TextBuffer {
+    fn write_str(&mut self, s: &str) -> std::fmt::Result {
+        let mut iter = self.end_iter();
+        self.insert(&mut iter, s);
+        Ok(())
+    }
+}
