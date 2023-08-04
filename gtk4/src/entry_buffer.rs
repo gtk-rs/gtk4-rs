@@ -127,3 +127,11 @@ impl Default for EntryBuffer {
         glib::Object::new()
     }
 }
+
+impl std::fmt::Write for EntryBuffer {
+    fn write_str(&mut self, s: &str) -> std::fmt::Result {
+        let pos = self.length();
+        self.insert_text(pos, s);
+        Ok(())
+    }
+}
