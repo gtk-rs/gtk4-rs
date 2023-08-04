@@ -67,7 +67,7 @@ impl WidgetImpl for Window {}
 // ANCHOR: window_impl
 // Trait shared by all windows
 impl WindowImpl for Window {
-    fn close_request(&self) -> glib::ControlFlow {
+    fn close_request(&self) -> glib::Propagation {
         // Store task data in vector
         let backup_data: Vec<TaskData> = self
             .obj()
