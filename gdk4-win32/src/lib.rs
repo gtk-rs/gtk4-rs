@@ -7,7 +7,7 @@ pub use ffi;
 pub use gdk;
 pub use gio;
 pub use glib;
-#[cfg(any(feature = "win32", docsrs))]
+#[cfg(feature = "win32")]
 #[cfg_attr(docsrs, doc(cfg(feature = "win32")))]
 pub use windows;
 

@@ -61,7 +61,8 @@ pub trait IMContextImpl: IMContextImplExt + ObjectImpl {
     fn set_use_preedit(&self, use_preedit: bool) {
         self.parent_set_use_preedit(use_preedit)
     }
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     fn activate_osk(&self) {
         self.parent_activate_osk()
     }
@@ -297,7 +298,8 @@ pub trait IMContextImplExt: sealed::Sealed + ObjectSubclass {
         }
     }
 
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     fn parent_activate_osk(&self) {
         unsafe {
             let data = Self::type_data();
@@ -334,7 +336,8 @@ unsafe impl<T: IMContextImpl> IsSubclassable<T> for IMContext {
         klass.set_cursor_location = Some(im_context_set_cursor_location::<T>);
         klass.set_surrounding = Some(im_context_set_surrounding::<T>);
         klass.set_use_preedit = Some(im_context_set_use_preedit::<T>);
-        #[cfg(any(feature = "v4_10", docsrs))]
+        #[cfg(feature = "v4_10")]
+        #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
         {
             klass.activate_osk = Some(im_context_activate_osk::<T>);
         };
@@ -511,7 +514,8 @@ unsafe extern "C" fn im_context_set_use_preedit<T: IMContextImpl>(
     imp.set_use_preedit(from_glib(use_preedit))
 }
 
-#[cfg(any(feature = "v4_10", docsrs))]
+#[cfg(feature = "v4_10")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 unsafe extern "C" fn im_context_activate_osk<T: IMContextImpl>(ptr: *mut ffi::GtkIMContext) {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();
