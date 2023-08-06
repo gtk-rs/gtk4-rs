@@ -689,6 +689,13 @@ pub trait GtkWindowExt: IsA<Window> + sealed::Sealed + 'static {
         unsafe { from_glib(ffi::gtk_window_is_maximized(self.as_ref().to_glib_none().0)) }
     }
 
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    #[doc(alias = "gtk_window_is_suspended")]
+    fn is_suspended(&self) -> bool {
+        unsafe { from_glib(ffi::gtk_window_is_suspended(self.as_ref().to_glib_none().0)) }
+    }
+
     #[doc(alias = "gtk_window_maximize")]
     fn maximize(&self) {
         unsafe {
@@ -1598,6 +1605,31 @@ pub trait GtkWindowExt: IsA<Window> + sealed::Sealed + 'static {
                 b"notify::startup-id\0".as_ptr() as *const _,
                 Some(transmute::<_, unsafe extern "C" fn()>(
                     notify_startup_id_trampoline::<Self, F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    #[doc(alias = "suspended")]
+    fn connect_suspended_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_suspended_trampoline<P: IsA<Window>, F: Fn(&P) + 'static>(
+            this: *mut ffi::GtkWindow,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(Window::from_glib_borrow(this).unsafe_cast_ref())
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::suspended\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_suspended_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
             )

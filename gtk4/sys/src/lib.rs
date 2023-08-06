@@ -13294,6 +13294,9 @@ extern "C" {
     #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_file_launcher_new(file: *mut gio::GFile) -> *mut GtkFileLauncher;
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    pub fn gtk_file_launcher_get_always_ask(self_: *mut GtkFileLauncher) -> gboolean;
     #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_file_launcher_get_file(self_: *mut GtkFileLauncher) -> *mut gio::GFile;
@@ -13329,6 +13332,9 @@ extern "C" {
         result: *mut gio::GAsyncResult,
         error: *mut *mut glib::GError,
     ) -> gboolean;
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    pub fn gtk_file_launcher_set_always_ask(self_: *mut GtkFileLauncher, always_ask: gboolean);
     #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_file_launcher_set_file(self_: *mut GtkFileLauncher, file: *mut gio::GFile);
@@ -19278,6 +19284,9 @@ extern "C" {
     pub fn gtk_window_is_active(window: *mut GtkWindow) -> gboolean;
     pub fn gtk_window_is_fullscreen(window: *mut GtkWindow) -> gboolean;
     pub fn gtk_window_is_maximized(window: *mut GtkWindow) -> gboolean;
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    pub fn gtk_window_is_suspended(window: *mut GtkWindow) -> gboolean;
     pub fn gtk_window_maximize(window: *mut GtkWindow);
     pub fn gtk_window_minimize(window: *mut GtkWindow);
     pub fn gtk_window_present(window: *mut GtkWindow);

@@ -2971,6 +2971,7 @@ const RUST_CONSTANTS: &[(&str, &str)] = &[
     ("(guint) GDK_TOPLEVEL_STATE_RIGHT_RESIZABLE", "2048"),
     ("(guint) GDK_TOPLEVEL_STATE_RIGHT_TILED", "1024"),
     ("(guint) GDK_TOPLEVEL_STATE_STICKY", "4"),
+    ("(guint) GDK_TOPLEVEL_STATE_SUSPENDED", "65536"),
     ("(guint) GDK_TOPLEVEL_STATE_TILED", "128"),
     ("(guint) GDK_TOPLEVEL_STATE_TOP_RESIZABLE", "512"),
     ("(guint) GDK_TOPLEVEL_STATE_TOP_TILED", "256"),
