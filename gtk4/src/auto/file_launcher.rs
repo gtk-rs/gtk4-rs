@@ -30,6 +30,14 @@ impl FileLauncher {
         }
     }
 
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    #[doc(alias = "gtk_file_launcher_get_always_ask")]
+    #[doc(alias = "get_always_ask")]
+    pub fn must_always_ask(&self) -> bool {
+        unsafe { from_glib(ffi::gtk_file_launcher_get_always_ask(self.to_glib_none().0)) }
+    }
+
     #[doc(alias = "gtk_file_launcher_get_file")]
     #[doc(alias = "get_file")]
     pub fn file(&self) -> Option<gio::File> {
@@ -170,6 +178,15 @@ impl FileLauncher {
         }))
     }
 
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    #[doc(alias = "gtk_file_launcher_set_always_ask")]
+    pub fn set_always_ask(&self, always_ask: bool) {
+        unsafe {
+            ffi::gtk_file_launcher_set_always_ask(self.to_glib_none().0, always_ask.into_glib());
+        }
+    }
+
     #[doc(alias = "gtk_file_launcher_set_file")]
     pub fn set_file(&self, file: Option<&impl IsA<gio::File>>) {
         unsafe {
@@ -177,6 +194,31 @@ impl FileLauncher {
                 self.to_glib_none().0,
                 file.map(|p| p.as_ref()).to_glib_none().0,
             );
+        }
+    }
+
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    #[doc(alias = "always-ask")]
+    pub fn connect_always_ask_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_always_ask_trampoline<F: Fn(&FileLauncher) + 'static>(
+            this: *mut ffi::GtkFileLauncher,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::always-ask\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_always_ask_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
         }
     }
 
