@@ -14,10 +14,9 @@ version = "0.7.1"
 rust-version = "1.70"
 
 [package.metadata.docs.rs]
-all-features = true
+all-features = "true"
 rustc-args = ["--cfg", "docsrs"]
 rustdoc-args = ["--cfg", "docsrs", "--generate-link-to-definition"]
-features = []
 
 [package.metadata.system-deps.gtk4]
 name = "gtk4"

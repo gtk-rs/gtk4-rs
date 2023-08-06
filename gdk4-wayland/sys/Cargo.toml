@@ -26,10 +26,9 @@ version = "4.10"
 version = "4.11"
 
 [package.metadata.docs.rs]
-all-features = true
+all-features = "true"
 rustc-args = ["--cfg", "docsrs"]
 rustdoc-args = ["--cfg", "docsrs", "--generate-link-to-definition"]
-features = []
 
 [lib]
 name = "gdk4_wayland_sys"

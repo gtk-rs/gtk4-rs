@@ -23,10 +23,9 @@ version = "4.4"
 version = "4.10"
 
 [package.metadata.docs.rs]
-all-features = true
+all-features = "true"
 rustc-args = ["--cfg", "docsrs"]
 rustdoc-args = ["--cfg", "docsrs", "--generate-link-to-definition"]
-features = []
 
 [lib]
 name = "gdk4_x11_sys"
