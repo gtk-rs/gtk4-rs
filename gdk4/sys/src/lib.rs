@@ -2604,6 +2604,7 @@ pub const GDK_TOPLEVEL_STATE_BOTTOM_TILED: GdkToplevelState = 4096;
 pub const GDK_TOPLEVEL_STATE_BOTTOM_RESIZABLE: GdkToplevelState = 8192;
 pub const GDK_TOPLEVEL_STATE_LEFT_TILED: GdkToplevelState = 16384;
 pub const GDK_TOPLEVEL_STATE_LEFT_RESIZABLE: GdkToplevelState = 32768;
+pub const GDK_TOPLEVEL_STATE_SUSPENDED: GdkToplevelState = 65536;
 
 // Callbacks
 pub type GdkContentDeserializeFunc = Option<unsafe extern "C" fn(*mut GdkContentDeserializer)>;

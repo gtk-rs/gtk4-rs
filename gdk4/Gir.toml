@@ -58,7 +58,6 @@ generate = [
     "Gdk.TextureError",
     "Gdk.TitlebarGesture",
     "Gdk.ToplevelLayout",
-    "Gdk.ToplevelState",
     "Gdk.TouchEvent",
     "Gdk.TouchpadEvent",
     "Gdk.TouchpadGesturePhase",
@@ -658,3 +657,10 @@ manual_traits = ["ToplevelExtManual"]
     name = "compute-size"
     manual = true
     doc_trait_name = "ToplevelExtManual"
+
+[[object]]
+name = "Gdk.ToplevelState"
+status = "generate"
+    [[object.member]]
+    name = "suspended"
+    version = "4.12"

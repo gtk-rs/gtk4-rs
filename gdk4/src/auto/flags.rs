@@ -877,6 +877,10 @@ bitflags! {
         const LEFT_TILED = ffi::GDK_TOPLEVEL_STATE_LEFT_TILED as _;
         #[doc(alias = "GDK_TOPLEVEL_STATE_LEFT_RESIZABLE")]
         const LEFT_RESIZABLE = ffi::GDK_TOPLEVEL_STATE_LEFT_RESIZABLE as _;
+        #[cfg(feature = "v4_12")]
+        #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+        #[doc(alias = "GDK_TOPLEVEL_STATE_SUSPENDED")]
+        const SUSPENDED = ffi::GDK_TOPLEVEL_STATE_SUSPENDED as _;
     }
 }
 
