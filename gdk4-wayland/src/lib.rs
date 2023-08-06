@@ -7,15 +7,15 @@ pub use ffi;
 pub use gdk;
 pub use gio;
 pub use glib;
-#[cfg(any(feature = "wayland_crate", docsrs))]
+#[cfg(feature = "wayland_crate")]
 #[cfg_attr(docsrs, doc(cfg(feature = "wayland_crate")))]
 pub use wayland_client;
 
-#[cfg(any(all(feature = "v4_4", feature = "egl"), docsrs))]
+#[cfg(all(feature = "v4_4", feature = "egl"))]
 #[cfg_attr(docsrs, doc(cfg(all(feature = "v4_4", feature = "egl"))))]
 pub use khronos_egl;
 
-#[cfg(any(all(feature = "v4_4", feature = "xkb_crate"), docsrs))]
+#[cfg(all(feature = "v4_4", feature = "xkb_crate"))]
 #[cfg_attr(docsrs, doc(cfg(all(feature = "v4_4", feature = "xkb_crate"))))]
 pub use xkb;
 

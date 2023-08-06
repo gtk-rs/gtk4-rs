@@ -8,7 +8,7 @@ pub use crate::auto::traits::*;
 pub use crate::cairo_interaction::{GdkCairoContextExt, GdkCairoSurfaceExt};
 pub use crate::content_provider::ContentProviderExtManual;
 pub use crate::display::DisplayExtManual;
-#[cfg(any(feature = "v4_12", docsrs))]
+#[cfg(feature = "v4_12")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
 pub use crate::drag_surface::DragSurfaceExtManual;
 pub use crate::draw_context::DrawContextExtManual;

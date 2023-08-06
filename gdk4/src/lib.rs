@@ -7,7 +7,7 @@ pub use cairo;
 pub use ffi;
 pub use gdk_pixbuf;
 pub use gio;
-#[cfg(any(feature = "gl", docsrs))]
+#[cfg(feature = "gl")]
 #[cfg_attr(docsrs, doc(cfg(feature = "gl")))]
 pub use gl;
 pub use glib;
@@ -73,10 +73,10 @@ mod crossing_event;
 mod delete_event;
 mod display;
 mod dnd_event;
-#[cfg(any(feature = "v4_12", docsrs))]
+#[cfg(feature = "v4_12")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
 mod drag_surface;
-#[cfg(any(feature = "v4_12", docsrs))]
+#[cfg(feature = "v4_12")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
 mod drag_surface_size;
 mod draw_context;
@@ -84,7 +84,7 @@ mod drop;
 mod focus_event;
 mod functions;
 mod gl_texture;
-#[cfg(any(feature = "v4_12", docsrs))]
+#[cfg(feature = "v4_12")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
 mod gl_texture_builder;
 mod grab_broken_event;
@@ -112,7 +112,7 @@ pub use auto::*;
 pub use functions::*;
 
 pub use display::Backend;
-#[cfg(any(feature = "v4_12", docsrs))]
+#[cfg(feature = "v4_12")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
 pub use drag_surface_size::DragSurfaceSize;
 pub use keymap_key::KeymapKey;

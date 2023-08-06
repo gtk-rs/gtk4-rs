@@ -47,7 +47,7 @@ impl ExpressionWatch {
     }
 }
 
-#[cfg(any(feature = "v4_2", docsrs))]
+#[cfg(feature = "v4_2")]
 impl glib::StaticType for ExpressionWatch {
     #[doc(alias = "gtk_expression_watch_get_type")]
     #[inline]

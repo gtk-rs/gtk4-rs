@@ -1,21 +1,21 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-#[cfg(not(any(feature = "v4_8", docsrs)))]
+#[cfg(not(feature = "v4_8"))]
 use crate::{prelude::*, ListItem};
 
 use crate::SignalListItemFactory;
 
-#[cfg(not(any(feature = "v4_8", docsrs)))]
+#[cfg(not(feature = "v4_8"))]
 use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
-#[cfg(not(any(feature = "v4_8", docsrs)))]
+#[cfg(not(feature = "v4_8"))]
 use std::{boxed::Box as Box_, mem::transmute};
 
 impl SignalListItemFactory {
     #[doc(alias = "bind")]
-    #[cfg(not(any(feature = "v4_8", docsrs)))]
+    #[cfg(not(feature = "v4_8"))]
     pub fn connect_bind<F: Fn(&Self, &ListItem) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn bind_trampoline<F: Fn(&SignalListItemFactory, &ListItem) + 'static>(
             this: *mut ffi::GtkSignalListItemFactory,
@@ -39,7 +39,7 @@ impl SignalListItemFactory {
     }
 
     #[doc(alias = "setup")]
-    #[cfg(not(any(feature = "v4_8", docsrs)))]
+    #[cfg(not(feature = "v4_8"))]
     pub fn connect_setup<F: Fn(&Self, &ListItem) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn setup_trampoline<
             F: Fn(&SignalListItemFactory, &ListItem) + 'static,
@@ -65,7 +65,7 @@ impl SignalListItemFactory {
     }
 
     #[doc(alias = "teardown")]
-    #[cfg(not(any(feature = "v4_8", docsrs)))]
+    #[cfg(not(feature = "v4_8"))]
     pub fn connect_teardown<F: Fn(&Self, &ListItem) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn teardown_trampoline<
             F: Fn(&SignalListItemFactory, &ListItem) + 'static,
@@ -91,7 +91,7 @@ impl SignalListItemFactory {
     }
 
     #[doc(alias = "unbind")]
-    #[cfg(not(any(feature = "v4_8", docsrs)))]
+    #[cfg(not(feature = "v4_8"))]
     pub fn connect_unbind<F: Fn(&Self, &ListItem) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn unbind_trampoline<
             F: Fn(&SignalListItemFactory, &ListItem) + 'static,

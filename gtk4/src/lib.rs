@@ -142,7 +142,7 @@ mod file_chooser;
 mod file_chooser_dialog;
 mod flow_box;
 mod font_chooser;
-#[cfg(any(feature = "v4_10", docsrs))]
+#[cfg(feature = "v4_10")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 mod font_dialog;
 mod functions;
@@ -166,7 +166,7 @@ mod overlay;
 mod pad_action_entry;
 mod page_range;
 mod param_spec_expression;
-#[cfg(any(target_os = "linux", docsrs))]
+#[cfg(target_os = "linux")]
 #[cfg_attr(docsrs, doc(cfg(target_os = "linux")))]
 mod print_job;
 mod print_operation;
