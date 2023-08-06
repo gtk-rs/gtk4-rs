@@ -11,7 +11,8 @@ pub trait CheckButtonImpl: CheckButtonImplExt + WidgetImpl {
         self.parent_toggled()
     }
 
-    #[cfg(any(feature = "v4_2", docsrs))]
+    #[cfg(feature = "v4_2")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_2")))]
     fn activate(&self) {
         self.parent_activate()
     }
@@ -33,7 +34,8 @@ pub trait CheckButtonImplExt: sealed::Sealed + ObjectSubclass {
         }
     }
 
-    #[cfg(any(feature = "v4_2", docsrs))]
+    #[cfg(feature = "v4_2")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_2")))]
     fn parent_activate(&self) {
         unsafe {
             let data = Self::type_data();
@@ -54,7 +56,8 @@ unsafe impl<T: CheckButtonImpl> IsSubclassable<T> for CheckButton {
         let klass = class.as_mut();
         klass.toggled = Some(check_button_toggled::<T>);
 
-        #[cfg(any(feature = "v4_2", docsrs))]
+        #[cfg(feature = "v4_2")]
+        #[cfg_attr(docsrs, doc(cfg(feature = "v4_2")))]
         {
             klass.activate = Some(check_button_activate::<T>);
         };
@@ -68,7 +71,8 @@ unsafe extern "C" fn check_button_toggled<T: CheckButtonImpl>(ptr: *mut ffi::Gtk
     imp.toggled()
 }
 
-#[cfg(any(feature = "v4_2", docsrs))]
+#[cfg(feature = "v4_2")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_2")))]
 unsafe extern "C" fn check_button_activate<T: CheckButtonImpl>(ptr: *mut ffi::GtkCheckButton) {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.imp();

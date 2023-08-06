@@ -3,12 +3,12 @@
 use crate::{Win32Display, Win32MessageFilterReturn, MSG};
 use glib::translate::*;
 
-#[cfg(any(all(feature = "v4_4", feature = "egl"), docsrs))]
+#[cfg(all(feature = "v4_4", feature = "egl"))]
 #[cfg_attr(docsrs, doc(cfg(all(feature = "v4_4", feature = "egl"))))]
 use khronos_egl as egl;
 
 impl Win32Display {
-    #[cfg(any(all(feature = "v4_4", feature = "egl"), docsrs))]
+    #[cfg(all(feature = "v4_4", feature = "egl"))]
     #[cfg_attr(docsrs, doc(cfg(all(feature = "v4_4", feature = "egl"))))]
     #[doc(alias = "gdk_win32_display_get_egl_display")]
     #[doc(alias = "get_egl_display")]

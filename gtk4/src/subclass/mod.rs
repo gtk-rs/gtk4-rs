@@ -14,10 +14,10 @@ impl<T, F: Fn(*mut T) + 'static> Drop for PtrHolder<T, F> {
     }
 }
 
-#[cfg(any(feature = "v4_10", docsrs))]
+#[cfg(feature = "v4_10")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 pub mod accessible;
-#[cfg(any(feature = "v4_10", docsrs))]
+#[cfg(feature = "v4_10")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 pub mod accessible_range;
 pub mod actionable;
@@ -68,14 +68,14 @@ pub mod root;
 pub mod scale;
 pub mod scale_button;
 pub mod scrollable;
-#[cfg(any(feature = "v4_12", docsrs))]
+#[cfg(feature = "v4_12")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
 pub mod section_model;
 pub mod selection_model;
 pub mod shortcut_manager;
 pub mod sorter;
 pub mod style_context;
-#[cfg(any(feature = "v4_6", docsrs))]
+#[cfg(feature = "v4_6")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
 pub mod symbolic_paintable;
 pub mod text_buffer;
@@ -99,10 +99,10 @@ pub mod prelude {
     #[doc(hidden)]
     pub use glib::subclass::prelude::*;
 
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub use super::accessible::{AccessibleImpl, AccessibleImplExt};
-    #[cfg(any(feature = "v4_10", docsrs))]
+    #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub use super::accessible_range::{AccessibleRangeImpl, AccessibleRangeImplExt};
     pub use super::actionable::{ActionableImpl, ActionableImplExt};
@@ -153,14 +153,15 @@ pub mod prelude {
     pub use super::scale::{ScaleImpl, ScaleImplExt};
     pub use super::scale_button::{ScaleButtonImpl, ScaleButtonImplExt};
     pub use super::scrollable::{ScrollableImpl, ScrollableImplExt};
-    #[cfg(any(feature = "v4_12", docsrs))]
+    #[cfg(feature = "v4_12")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
     pub use super::section_model::{SectionModelImpl, SectionModelImplExt};
     pub use super::selection_model::{SelectionModelImpl, SelectionModelImplExt};
     pub use super::shortcut_manager::{ShortcutManagerImpl, ShortcutManagerImplExt};
     pub use super::sorter::{SorterImpl, SorterImplExt};
     pub use super::style_context::{StyleContextImpl, StyleContextImplExt};
-    #[cfg(any(feature = "v4_6", docsrs))]
+    #[cfg(feature = "v4_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
     pub use super::symbolic_paintable::{SymbolicPaintableImpl, SymbolicPaintableImplExt};
     pub use super::text_buffer::{TextBufferImpl, TextBufferImplExt};

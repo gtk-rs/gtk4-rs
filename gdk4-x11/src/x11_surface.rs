@@ -4,7 +4,7 @@ use crate::X11Surface;
 #[cfg(not(feature = "xlib"))]
 use crate::XWindow;
 use glib::translate::*;
-#[cfg(any(feature = "xlib", docsrs))]
+#[cfg(feature = "xlib")]
 #[cfg_attr(docsrs, doc(cfg(feature = "xlib")))]
 use x11::xlib::Window as XWindow;
 

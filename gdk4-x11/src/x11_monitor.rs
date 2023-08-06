@@ -4,7 +4,7 @@ use crate::X11Monitor;
 #[cfg(not(feature = "xlib"))]
 use crate::XID;
 use glib::translate::*;
-#[cfg(any(feature = "xlib", docsrs))]
+#[cfg(feature = "xlib")]
 #[cfg_attr(docsrs, doc(cfg(feature = "xlib")))]
 use x11::xlib::XID;
 
