@@ -29,13 +29,6 @@ fn build_ui(application: &Application) {
         .margin_start(12)
         .margin_end(12)
         .build();
-    let button_decrease = Button::builder()
-        .label("Decrease")
-        .margin_top(12)
-        .margin_bottom(12)
-        .margin_start(12)
-        .margin_end(12)
-        .build();
 
     // A mutable integer
     let mut number = 0;
@@ -43,14 +36,12 @@ fn build_ui(application: &Application) {
     // Connect callbacks
     // When a button is clicked, `number` should be changed
     button_increase.connect_clicked(|_| number += 1);
-    button_decrease.connect_clicked(|_| number -= 1);
 
     // Add buttons to `gtk_box`
     let gtk_box = gtk::Box::builder()
         .orientation(Orientation::Vertical)
         .build();
     gtk_box.append(&button_increase);
-    gtk_box.append(&button_decrease);
 
     // Create a window
     let window = ApplicationWindow::builder()
