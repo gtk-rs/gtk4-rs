@@ -37,22 +37,17 @@ fn build_ui(application: &Application) {
     // When a button is clicked, `number` should be changed
     button_increase.connect_clicked(|_| number += 1);
 
-    // Add buttons to `gtk_box`
-    let gtk_box = gtk::Box::builder()
-        .orientation(Orientation::Vertical)
-        .build();
-    gtk_box.append(&button_increase);
-
     // Create a window
     let window = ApplicationWindow::builder()
         .application(application)
         .title("My GTK App")
-        .child(&gtk_box)
+        .child(&button_increase)
         .build();
 
     // Present the window
     window.present();
 }
+
 ```
 
 Here we would like to create a simple app with two buttons.
