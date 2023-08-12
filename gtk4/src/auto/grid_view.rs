@@ -2,14 +2,14 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-#[cfg(feature = "v4_12")]
-#[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
-use crate::ListTabBehavior;
 use crate::{
     Accessible, AccessibleRole, Adjustment, Align, Buildable, ConstraintTarget, LayoutManager,
     ListBase, ListItemFactory, Orientable, Orientation, Overflow, Scrollable, ScrollablePolicy,
     SelectionModel, Widget,
 };
+#[cfg(feature = "v4_12")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+use crate::{ListScrollFlags, ListTabBehavior, ScrollInfo};
 use glib::{
     prelude::*,
     signal::{connect_raw, SignalHandlerId},
@@ -102,12 +102,19 @@ impl GridView {
         unsafe { from_glib(ffi::gtk_grid_view_get_tab_behavior(self.to_glib_none().0)) }
     }
 
-    //#[cfg(feature = "v4_12")]
-    //#[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
-    //#[doc(alias = "gtk_grid_view_scroll_to")]
-    //pub fn scroll_to(&self, pos: u32, flags: /*Ignored*/ListScrollFlags, scroll: /*Ignored*/Option<ScrollInfo>) {
-    //    unsafe { TODO: call ffi:gtk_grid_view_scroll_to() }
-    //}
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    #[doc(alias = "gtk_grid_view_scroll_to")]
+    pub fn scroll_to(&self, pos: u32, flags: ListScrollFlags, scroll: Option<ScrollInfo>) {
+        unsafe {
+            ffi::gtk_grid_view_scroll_to(
+                self.to_glib_none().0,
+                pos,
+                flags.into_glib(),
+                scroll.into_glib_ptr(),
+            );
+        }
+    }
 
     #[doc(alias = "gtk_grid_view_set_enable_rubberband")]
     pub fn set_enable_rubberband(&self, enable_rubberband: bool) {

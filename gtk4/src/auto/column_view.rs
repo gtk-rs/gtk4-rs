@@ -9,7 +9,7 @@ use crate::{
 };
 #[cfg(feature = "v4_12")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
-use crate::{ListItemFactory, ListTabBehavior};
+use crate::{ListItemFactory, ListScrollFlags, ListTabBehavior, ScrollInfo};
 use glib::{
     prelude::*,
     signal::{connect_raw, SignalHandlerId},
@@ -163,12 +163,26 @@ impl ColumnView {
         }
     }
 
-    //#[cfg(feature = "v4_12")]
-    //#[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
-    //#[doc(alias = "gtk_column_view_scroll_to")]
-    //pub fn scroll_to(&self, pos: u32, column: Option<&ColumnViewColumn>, flags: /*Ignored*/ListScrollFlags, scroll: /*Ignored*/Option<ScrollInfo>) {
-    //    unsafe { TODO: call ffi:gtk_column_view_scroll_to() }
-    //}
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    #[doc(alias = "gtk_column_view_scroll_to")]
+    pub fn scroll_to(
+        &self,
+        pos: u32,
+        column: Option<&ColumnViewColumn>,
+        flags: ListScrollFlags,
+        scroll: Option<ScrollInfo>,
+    ) {
+        unsafe {
+            ffi::gtk_column_view_scroll_to(
+                self.to_glib_none().0,
+                pos,
+                column.to_glib_none().0,
+                flags.into_glib(),
+                scroll.into_glib_ptr(),
+            );
+        }
+    }
 
     #[doc(alias = "gtk_column_view_set_enable_rubberband")]
     pub fn set_enable_rubberband(&self, enable_rubberband: bool) {
