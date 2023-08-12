@@ -68,57 +68,64 @@ impl Stroke {
     }
 
     #[doc(alias = "gsk_stroke_set_dash")]
-    pub fn set_dash(&mut self, dash: &[f32]) {
+    pub fn set_dash(&self, dash: &[f32]) {
         let n_dash = dash.len() as _;
         unsafe {
-            ffi::gsk_stroke_set_dash(self.to_glib_none_mut().0, dash.to_glib_none().0, n_dash);
+            ffi::gsk_stroke_set_dash(
+                mut_override(self.to_glib_none().0),
+                dash.to_glib_none().0,
+                n_dash,
+            );
         }
     }
 
     #[doc(alias = "gsk_stroke_set_dash_offset")]
-    pub fn set_dash_offset(&mut self, offset: f32) {
+    pub fn set_dash_offset(&self, offset: f32) {
         unsafe {
-            ffi::gsk_stroke_set_dash_offset(self.to_glib_none_mut().0, offset);
+            ffi::gsk_stroke_set_dash_offset(mut_override(self.to_glib_none().0), offset);
         }
     }
 
     #[doc(alias = "gsk_stroke_set_line_cap")]
-    pub fn set_line_cap(&mut self, line_cap: LineCap) {
+    pub fn set_line_cap(&self, line_cap: LineCap) {
         unsafe {
-            ffi::gsk_stroke_set_line_cap(self.to_glib_none_mut().0, line_cap.into_glib());
+            ffi::gsk_stroke_set_line_cap(mut_override(self.to_glib_none().0), line_cap.into_glib());
         }
     }
 
     #[doc(alias = "gsk_stroke_set_line_join")]
-    pub fn set_line_join(&mut self, line_join: LineJoin) {
+    pub fn set_line_join(&self, line_join: LineJoin) {
         unsafe {
-            ffi::gsk_stroke_set_line_join(self.to_glib_none_mut().0, line_join.into_glib());
+            ffi::gsk_stroke_set_line_join(
+                mut_override(self.to_glib_none().0),
+                line_join.into_glib(),
+            );
         }
     }
 
     #[doc(alias = "gsk_stroke_set_line_width")]
-    pub fn set_line_width(&mut self, line_width: f32) {
+    pub fn set_line_width(&self, line_width: f32) {
         unsafe {
-            ffi::gsk_stroke_set_line_width(self.to_glib_none_mut().0, line_width);
+            ffi::gsk_stroke_set_line_width(mut_override(self.to_glib_none().0), line_width);
         }
     }
 
     #[doc(alias = "gsk_stroke_set_miter_limit")]
-    pub fn set_miter_limit(&mut self, limit: f32) {
+    pub fn set_miter_limit(&self, limit: f32) {
         unsafe {
-            ffi::gsk_stroke_set_miter_limit(self.to_glib_none_mut().0, limit);
+            ffi::gsk_stroke_set_miter_limit(mut_override(self.to_glib_none().0), limit);
         }
     }
 
     #[doc(alias = "gsk_stroke_to_cairo")]
-    pub fn to_cairo(&self, cr: &mut cairo::Context) {
+    pub fn to_cairo(&self, cr: &cairo::Context) {
         unsafe {
-            ffi::gsk_stroke_to_cairo(self.to_glib_none().0, cr.to_glib_none_mut().0);
+            ffi::gsk_stroke_to_cairo(self.to_glib_none().0, mut_override(cr.to_glib_none().0));
         }
     }
 
     #[doc(alias = "gsk_stroke_equal")]
-    fn equal(&self, stroke2: Option<&Stroke>) -> bool {
+    fn equal(&self, stroke2: &Stroke) -> bool {
         assert_initialized_main_thread!();
         unsafe {
             from_glib(ffi::gsk_stroke_equal(
