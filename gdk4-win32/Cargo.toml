@@ -9,7 +9,7 @@ license = "MIT"
 name = "gdk4-win32"
 readme = "README.md"
 repository = "https://github.com/gtk-rs/gtk4-rs"
-version = "0.7.1"
+version = "0.7.2"
 rust-version = "1.70"
 build = "build.rs"
 
