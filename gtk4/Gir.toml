@@ -350,14 +350,17 @@ manual = [
     "Gsk.BlendMode",
     "Gsk.CairoNode", # docs only
     "Gsk.ColorStop",
+    "Gsk.FillRule",
     "Gsk.GLShaderNode", # docs only
     "Gsk.MaskMode",
     "Gsk.MaskNode",
+    "Gsk.Path",
     "Gsk.Renderer",
     "Gsk.RenderNode",
     "Gsk.RoundedRect",
     "Gsk.ScalingFilter",
     "Gsk.Shadow",
+    "Gsk.Stroke",
     "Gsk.Transform",
     "Gtk.Align", # as we need to handle baseline_fill = baseline for gtk >= 4.11
     "Gtk.BitsetIter",

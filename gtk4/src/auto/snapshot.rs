@@ -333,12 +333,18 @@ pub trait SnapshotExt: IsA<Snapshot> + sealed::Sealed + 'static {
         }
     }
 
-    //#[cfg(feature = "v4_14")]
-    //#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
-    //#[doc(alias = "gtk_snapshot_push_fill")]
-    //fn push_fill(&self, path: /*Ignored*/&gsk::Path, fill_rule: /*Ignored*/gsk::FillRule) {
-    //    unsafe { TODO: call ffi:gtk_snapshot_push_fill() }
-    //}
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    #[doc(alias = "gtk_snapshot_push_fill")]
+    fn push_fill(&self, path: &gsk::Path, fill_rule: gsk::FillRule) {
+        unsafe {
+            ffi::gtk_snapshot_push_fill(
+                self.as_ref().to_glib_none().0,
+                path.to_glib_none().0,
+                fill_rule.into_glib(),
+            );
+        }
+    }
 
     #[doc(alias = "gtk_snapshot_push_gl_shader")]
     fn push_gl_shader(
@@ -406,12 +412,18 @@ pub trait SnapshotExt: IsA<Snapshot> + sealed::Sealed + 'static {
         }
     }
 
-    //#[cfg(feature = "v4_14")]
-    //#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
-    //#[doc(alias = "gtk_snapshot_push_stroke")]
-    //fn push_stroke(&self, path: /*Ignored*/&gsk::Path, stroke: /*Ignored*/&gsk::Stroke) {
-    //    unsafe { TODO: call ffi:gtk_snapshot_push_stroke() }
-    //}
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    #[doc(alias = "gtk_snapshot_push_stroke")]
+    fn push_stroke(&self, path: &gsk::Path, stroke: &gsk::Stroke) {
+        unsafe {
+            ffi::gtk_snapshot_push_stroke(
+                self.as_ref().to_glib_none().0,
+                path.to_glib_none().0,
+                stroke.to_glib_none().0,
+            );
+        }
+    }
 
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]
