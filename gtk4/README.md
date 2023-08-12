@@ -53,7 +53,7 @@ fn main() -> glib::ExitCode {
             .build();
 
         // Show the window.
-        window.show();
+        window.present();
     });
 
     app.run()
@@ -89,7 +89,7 @@ fn main() -> glib::ExitCode {
         });
         window.set_child(Some(&button));
 
-        window.show();
+        window.present();
     });
 
     application.run()
