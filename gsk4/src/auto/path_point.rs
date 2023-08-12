@@ -6,8 +6,7 @@ use glib::translate::*;
 use std::cmp;
 
 glib::wrapper! {
-    #[derive(Debug, Hash)]
-    pub struct PathPoint(Boxed<ffi::GskPathPoint>);
+    pub struct PathPoint(BoxedInline<ffi::GskPathPoint>);
 
     match fn {
         copy => |ptr| ffi::gsk_path_point_copy(mut_override(ptr)),
