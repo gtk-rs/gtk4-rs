@@ -219,6 +219,13 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         },
     ),
     (
+        "GskFillRule",
+        Layout {
+            size: size_of::<GskFillRule>(),
+            alignment: align_of::<GskFillRule>(),
+        },
+    ),
+    (
         "GskGLShaderClass",
         Layout {
             size: size_of::<GskGLShaderClass>(),
@@ -233,6 +240,20 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         },
     ),
     (
+        "GskLineCap",
+        Layout {
+            size: size_of::<GskLineCap>(),
+            alignment: align_of::<GskLineCap>(),
+        },
+    ),
+    (
+        "GskLineJoin",
+        Layout {
+            size: size_of::<GskLineJoin>(),
+            alignment: align_of::<GskLineJoin>(),
+        },
+    ),
+    (
         "GskMaskMode",
         Layout {
             size: size_of::<GskMaskMode>(),
@@ -244,6 +265,34 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         Layout {
             size: size_of::<GskParseLocation>(),
             alignment: align_of::<GskParseLocation>(),
+        },
+    ),
+    (
+        "GskPathDirection",
+        Layout {
+            size: size_of::<GskPathDirection>(),
+            alignment: align_of::<GskPathDirection>(),
+        },
+    ),
+    (
+        "GskPathForeachFlags",
+        Layout {
+            size: size_of::<GskPathForeachFlags>(),
+            alignment: align_of::<GskPathForeachFlags>(),
+        },
+    ),
+    (
+        "GskPathOperation",
+        Layout {
+            size: size_of::<GskPathOperation>(),
+            alignment: align_of::<GskPathOperation>(),
+        },
+    ),
+    (
+        "GskPathPoint",
+        Layout {
+            size: size_of::<GskPathPoint>(),
+            alignment: align_of::<GskPathPoint>(),
         },
     ),
     (
@@ -322,6 +371,9 @@ const RUST_CONSTANTS: &[(&str, &str)] = &[
     ("(gint) GSK_CORNER_TOP_RIGHT", "1"),
     ("(gint) GSK_CROSS_FADE_NODE", "21"),
     ("(gint) GSK_DEBUG_NODE", "24"),
+    ("(gint) GSK_FILL_NODE", "28"),
+    ("(gint) GSK_FILL_RULE_EVEN_ODD", "1"),
+    ("(gint) GSK_FILL_RULE_WINDING", "0"),
     ("(gint) GSK_GL_SHADER_NODE", "25"),
     ("(gint) GSK_GL_UNIFORM_TYPE_BOOL", "4"),
     ("(gint) GSK_GL_UNIFORM_TYPE_FLOAT", "1"),
@@ -333,6 +385,12 @@ const RUST_CONSTANTS: &[(&str, &str)] = &[
     ("(gint) GSK_GL_UNIFORM_TYPE_VEC4", "7"),
     ("(gint) GSK_INSET_SHADOW_NODE", "11"),
     ("(gint) GSK_LINEAR_GRADIENT_NODE", "4"),
+    ("(gint) GSK_LINE_CAP_BUTT", "0"),
+    ("(gint) GSK_LINE_CAP_ROUND", "1"),
+    ("(gint) GSK_LINE_CAP_SQUARE", "2"),
+    ("(gint) GSK_LINE_JOIN_BEVEL", "2"),
+    ("(gint) GSK_LINE_JOIN_MITER", "0"),
+    ("(gint) GSK_LINE_JOIN_ROUND", "1"),
     ("(gint) GSK_MASK_MODE_ALPHA", "0"),
     ("(gint) GSK_MASK_MODE_INVERTED_ALPHA", "1"),
     ("(gint) GSK_MASK_MODE_INVERTED_LUMINANCE", "3"),
@@ -341,6 +399,16 @@ const RUST_CONSTANTS: &[(&str, &str)] = &[
     ("(gint) GSK_NOT_A_RENDER_NODE", "0"),
     ("(gint) GSK_OPACITY_NODE", "14"),
     ("(gint) GSK_OUTSET_SHADOW_NODE", "12"),
+    ("(gint) GSK_PATH_CLOSE", "1"),
+    ("(gint) GSK_PATH_CUBIC", "4"),
+    ("(gint) GSK_PATH_END", "1"),
+    ("(guint) GSK_PATH_FOREACH_ALLOW_CUBIC", "2"),
+    ("(guint) GSK_PATH_FOREACH_ALLOW_ONLY_LINES", "0"),
+    ("(guint) GSK_PATH_FOREACH_ALLOW_QUAD", "1"),
+    ("(gint) GSK_PATH_LINE", "2"),
+    ("(gint) GSK_PATH_MOVE", "0"),
+    ("(gint) GSK_PATH_QUAD", "3"),
+    ("(gint) GSK_PATH_START", "0"),
     ("(gint) GSK_RADIAL_GRADIENT_NODE", "6"),
     ("(gint) GSK_REPEATING_LINEAR_GRADIENT_NODE", "5"),
     ("(gint) GSK_REPEATING_RADIAL_GRADIENT_NODE", "7"),
@@ -353,6 +421,7 @@ const RUST_CONSTANTS: &[(&str, &str)] = &[
     ("(gint) GSK_SERIALIZATION_UNSUPPORTED_FORMAT", "0"),
     ("(gint) GSK_SERIALIZATION_UNSUPPORTED_VERSION", "1"),
     ("(gint) GSK_SHADOW_NODE", "19"),
+    ("(gint) GSK_STROKE_NODE", "29"),
     ("(gint) GSK_TEXTURE_NODE", "10"),
     ("(gint) GSK_TEXTURE_SCALE_NODE", "26"),
     ("(gint) GSK_TEXT_NODE", "22"),

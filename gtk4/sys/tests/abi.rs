@@ -1318,6 +1318,13 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         },
     ),
     (
+        "GtkListScrollFlags",
+        Layout {
+            size: size_of::<GtkListScrollFlags>(),
+            alignment: align_of::<GtkListScrollFlags>(),
+        },
+    ),
+    (
         "GtkListStore",
         Layout {
             size: size_of::<GtkListStore>(),
@@ -2908,6 +2915,9 @@ const RUST_CONSTANTS: &[(&str, &str)] = &[
     ("(gint) GTK_LICENSE_UNKNOWN", "0"),
     ("(gint) GTK_LIMIT_NONE", "0"),
     ("(gint) GTK_LIMIT_SAME_NATIVE", "1"),
+    ("(guint) GTK_LIST_SCROLL_FOCUS", "1"),
+    ("(guint) GTK_LIST_SCROLL_NONE", "0"),
+    ("(guint) GTK_LIST_SCROLL_SELECT", "2"),
     ("(gint) GTK_LIST_TAB_ALL", "0"),
     ("(gint) GTK_LIST_TAB_CELL", "2"),
     ("(gint) GTK_LIST_TAB_ITEM", "1"),
