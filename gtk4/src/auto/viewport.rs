@@ -2,6 +2,9 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+#[cfg(feature = "v4_12")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+use crate::ScrollInfo;
 use crate::{
     Accessible, AccessibleRole, Adjustment, Align, Buildable, ConstraintTarget, LayoutManager,
     Overflow, Scrollable, ScrollablePolicy, Widget,
@@ -58,12 +61,18 @@ impl Viewport {
         unsafe { from_glib(ffi::gtk_viewport_get_scroll_to_focus(self.to_glib_none().0)) }
     }
 
-    //#[cfg(feature = "v4_12")]
-    //#[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
-    //#[doc(alias = "gtk_viewport_scroll_to")]
-    //pub fn scroll_to(&self, descendant: &impl IsA<Widget>, scroll: /*Ignored*/Option<ScrollInfo>) {
-    //    unsafe { TODO: call ffi:gtk_viewport_scroll_to() }
-    //}
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    #[doc(alias = "gtk_viewport_scroll_to")]
+    pub fn scroll_to(&self, descendant: &impl IsA<Widget>, scroll: Option<ScrollInfo>) {
+        unsafe {
+            ffi::gtk_viewport_scroll_to(
+                self.to_glib_none().0,
+                descendant.as_ref().to_glib_none().0,
+                scroll.into_glib_ptr(),
+            );
+        }
+    }
 
     #[doc(alias = "gtk_viewport_set_child")]
     pub fn set_child(&self, child: Option<&impl IsA<Widget>>) {

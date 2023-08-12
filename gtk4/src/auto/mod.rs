@@ -1066,6 +1066,13 @@ pub use self::recent_info::RecentInfo;
 mod requisition;
 pub use self::requisition::Requisition;
 
+#[cfg(feature = "v4_12")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+mod scroll_info;
+#[cfg(feature = "v4_12")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+pub use self::scroll_info::ScrollInfo;
+
 mod text_iter;
 pub use self::text_iter::TextIter;
 
@@ -1208,6 +1215,9 @@ pub use self::flags::EventControllerScrollFlags;
 pub use self::flags::FontChooserLevel;
 pub use self::flags::IconLookupFlags;
 pub use self::flags::InputHints;
+#[cfg(feature = "v4_12")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+pub use self::flags::ListScrollFlags;
 pub use self::flags::PickFlags;
 pub use self::flags::PopoverMenuFlags;
 #[cfg(target_os = "linux")]

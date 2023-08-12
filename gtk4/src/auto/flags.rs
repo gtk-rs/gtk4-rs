@@ -912,6 +912,119 @@ impl From<InputHints> for glib::Value {
     }
 }
 
+#[cfg(feature = "v4_12")]
+bitflags! {
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash)]
+    #[doc(alias = "GtkListScrollFlags")]
+    pub struct ListScrollFlags: u32 {
+        #[doc(alias = "GTK_LIST_SCROLL_NONE")]
+        const NONE = ffi::GTK_LIST_SCROLL_NONE as _;
+        #[doc(alias = "GTK_LIST_SCROLL_FOCUS")]
+        const FOCUS = ffi::GTK_LIST_SCROLL_FOCUS as _;
+        #[doc(alias = "GTK_LIST_SCROLL_SELECT")]
+        const SELECT = ffi::GTK_LIST_SCROLL_SELECT as _;
+    }
+}
+
+#[cfg(feature = "v4_12")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+impl fmt::Display for ListScrollFlags {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        <Self as fmt::Debug>::fmt(self, f)
+    }
+}
+
+#[cfg(feature = "v4_12")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+#[doc(hidden)]
+impl IntoGlib for ListScrollFlags {
+    type GlibType = ffi::GtkListScrollFlags;
+
+    #[inline]
+    fn into_glib(self) -> ffi::GtkListScrollFlags {
+        self.bits()
+    }
+}
+
+#[cfg(feature = "v4_12")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+#[doc(hidden)]
+impl FromGlib<ffi::GtkListScrollFlags> for ListScrollFlags {
+    #[inline]
+    unsafe fn from_glib(value: ffi::GtkListScrollFlags) -> Self {
+        skip_assert_initialized!();
+        Self::from_bits_truncate(value)
+    }
+}
+
+#[cfg(feature = "v4_12")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+impl StaticType for ListScrollFlags {
+    #[inline]
+    fn static_type() -> glib::Type {
+        unsafe { from_glib(ffi::gtk_list_scroll_flags_get_type()) }
+    }
+}
+
+#[cfg(feature = "v4_12")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+impl glib::HasParamSpec for ListScrollFlags {
+    type ParamSpec = glib::ParamSpecFlags;
+    type SetValue = Self;
+    type BuilderFn = fn(&str) -> glib::ParamSpecFlagsBuilder<Self>;
+
+    fn param_spec_builder() -> Self::BuilderFn {
+        |name| Self::ParamSpec::builder(name)
+    }
+}
+
+#[cfg(feature = "v4_12")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+impl glib::value::ValueType for ListScrollFlags {
+    type Type = Self;
+}
+
+#[cfg(feature = "v4_12")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+unsafe impl<'a> glib::value::FromValue<'a> for ListScrollFlags {
+    type Checker = glib::value::GenericValueTypeChecker<Self>;
+
+    #[inline]
+    unsafe fn from_value(value: &'a glib::Value) -> Self {
+        skip_assert_initialized!();
+        from_glib(glib::gobject_ffi::g_value_get_flags(value.to_glib_none().0))
+    }
+}
+
+#[cfg(feature = "v4_12")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+impl ToValue for ListScrollFlags {
+    #[inline]
+    fn to_value(&self) -> glib::Value {
+        let mut value = glib::Value::for_value_type::<Self>();
+        unsafe {
+            glib::gobject_ffi::g_value_set_flags(value.to_glib_none_mut().0, self.into_glib());
+        }
+        value
+    }
+
+    #[inline]
+    fn value_type(&self) -> glib::Type {
+        Self::static_type()
+    }
+}
+
+#[cfg(feature = "v4_12")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+impl From<ListScrollFlags> for glib::Value {
+    #[inline]
+    fn from(v: ListScrollFlags) -> Self {
+        skip_assert_initialized!();
+        ToValue::to_value(&v)
+    }
+}
+
 bitflags! {
     #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash)]
     #[doc(alias = "GtkPickFlags")]
