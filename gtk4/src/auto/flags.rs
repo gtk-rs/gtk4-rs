@@ -1609,6 +1609,7 @@ impl From<TextSearchFlags> for glib::Value {
 }
 
 bitflags! {
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash)]
     #[doc(alias = "GtkTreeModelFlags")]
     pub struct TreeModelFlags: u32 {
@@ -1619,12 +1620,14 @@ bitflags! {
     }
 }
 
+#[allow(deprecated)]
 impl fmt::Display for TreeModelFlags {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         <Self as fmt::Debug>::fmt(self, f)
     }
 }
 
+#[allow(deprecated)]
 #[doc(hidden)]
 impl IntoGlib for TreeModelFlags {
     type GlibType = ffi::GtkTreeModelFlags;
@@ -1635,6 +1638,7 @@ impl IntoGlib for TreeModelFlags {
     }
 }
 
+#[allow(deprecated)]
 #[doc(hidden)]
 impl FromGlib<ffi::GtkTreeModelFlags> for TreeModelFlags {
     #[inline]
@@ -1644,6 +1648,7 @@ impl FromGlib<ffi::GtkTreeModelFlags> for TreeModelFlags {
     }
 }
 
+#[allow(deprecated)]
 impl StaticType for TreeModelFlags {
     #[inline]
     fn static_type() -> glib::Type {
@@ -1651,6 +1656,7 @@ impl StaticType for TreeModelFlags {
     }
 }
 
+#[allow(deprecated)]
 impl glib::HasParamSpec for TreeModelFlags {
     type ParamSpec = glib::ParamSpecFlags;
     type SetValue = Self;
@@ -1661,10 +1667,12 @@ impl glib::HasParamSpec for TreeModelFlags {
     }
 }
 
+#[allow(deprecated)]
 impl glib::value::ValueType for TreeModelFlags {
     type Type = Self;
 }
 
+#[allow(deprecated)]
 unsafe impl<'a> glib::value::FromValue<'a> for TreeModelFlags {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
@@ -1675,6 +1683,7 @@ unsafe impl<'a> glib::value::FromValue<'a> for TreeModelFlags {
     }
 }
 
+#[allow(deprecated)]
 impl ToValue for TreeModelFlags {
     #[inline]
     fn to_value(&self) -> glib::Value {
@@ -1691,6 +1700,7 @@ impl ToValue for TreeModelFlags {
     }
 }
 
+#[allow(deprecated)]
 impl From<TreeModelFlags> for glib::Value {
     #[inline]
     fn from(v: TreeModelFlags) -> Self {

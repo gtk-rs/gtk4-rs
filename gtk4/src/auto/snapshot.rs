@@ -333,6 +333,13 @@ pub trait SnapshotExt: IsA<Snapshot> + sealed::Sealed + 'static {
         }
     }
 
+    //#[cfg(feature = "v4_14")]
+    //#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    //#[doc(alias = "gtk_snapshot_push_fill")]
+    //fn push_fill(&self, path: /*Ignored*/&gsk::Path, fill_rule: /*Ignored*/gsk::FillRule) {
+    //    unsafe { TODO: call ffi:gtk_snapshot_push_fill() }
+    //}
+
     #[doc(alias = "gtk_snapshot_push_gl_shader")]
     fn push_gl_shader(
         &self,
@@ -398,6 +405,13 @@ pub trait SnapshotExt: IsA<Snapshot> + sealed::Sealed + 'static {
             );
         }
     }
+
+    //#[cfg(feature = "v4_14")]
+    //#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    //#[doc(alias = "gtk_snapshot_push_stroke")]
+    //fn push_stroke(&self, path: /*Ignored*/&gsk::Path, stroke: /*Ignored*/&gsk::Stroke) {
+    //    unsafe { TODO: call ffi:gtk_snapshot_push_stroke() }
+    //}
 
     #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
     #[allow(deprecated)]

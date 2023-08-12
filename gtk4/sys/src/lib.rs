@@ -980,6 +980,11 @@ pub const GTK_INPUT_HINT_EMOJI: GtkInputHints = 512;
 pub const GTK_INPUT_HINT_NO_EMOJI: GtkInputHints = 1024;
 pub const GTK_INPUT_HINT_PRIVATE: GtkInputHints = 2048;
 
+pub type GtkListScrollFlags = c_uint;
+pub const GTK_LIST_SCROLL_NONE: GtkListScrollFlags = 0;
+pub const GTK_LIST_SCROLL_FOCUS: GtkListScrollFlags = 1;
+pub const GTK_LIST_SCROLL_SELECT: GtkListScrollFlags = 2;
+
 pub type GtkPickFlags = c_uint;
 pub const GTK_PICK_DEFAULT: GtkPickFlags = 0;
 pub const GTK_PICK_INSENSITIVE: GtkPickFlags = 1;
@@ -4152,6 +4157,19 @@ impl ::std::fmt::Debug for GtkScaleClass {
         f.debug_struct(&format!("GtkScaleClass @ {self:p}"))
             .field("parent_class", &self.parent_class)
             .field("get_layout_offsets", &self.get_layout_offsets)
+            .finish()
+    }
+}
+
+#[repr(C)]
+pub struct GtkScrollInfo {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
+
+impl ::std::fmt::Debug for GtkScrollInfo {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("GtkScrollInfo @ {self:p}"))
             .finish()
     }
 }
@@ -9771,6 +9789,13 @@ extern "C" {
     pub fn gtk_input_hints_get_type() -> GType;
 
     //=========================================================================
+    // GtkListScrollFlags
+    //=========================================================================
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    pub fn gtk_list_scroll_flags_get_type() -> GType;
+
+    //=========================================================================
     // GtkPickFlags
     //=========================================================================
     pub fn gtk_pick_flags_get_type() -> GType;
@@ -10102,6 +10127,34 @@ extern "C" {
     pub fn gtk_requisition_new() -> *mut GtkRequisition;
     pub fn gtk_requisition_copy(requisition: *const GtkRequisition) -> *mut GtkRequisition;
     pub fn gtk_requisition_free(requisition: *mut GtkRequisition);
+
+    //=========================================================================
+    // GtkScrollInfo
+    //=========================================================================
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    pub fn gtk_scroll_info_get_type() -> GType;
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    pub fn gtk_scroll_info_new() -> *mut GtkScrollInfo;
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    pub fn gtk_scroll_info_get_enable_horizontal(self_: *mut GtkScrollInfo) -> gboolean;
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    pub fn gtk_scroll_info_get_enable_vertical(self_: *mut GtkScrollInfo) -> gboolean;
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    pub fn gtk_scroll_info_ref(self_: *mut GtkScrollInfo) -> *mut GtkScrollInfo;
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    pub fn gtk_scroll_info_set_enable_horizontal(self_: *mut GtkScrollInfo, horizontal: gboolean);
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    pub fn gtk_scroll_info_set_enable_vertical(self_: *mut GtkScrollInfo, vertical: gboolean);
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    pub fn gtk_scroll_info_unref(self_: *mut GtkScrollInfo);
 
     //=========================================================================
     // GtkTextIter
@@ -11926,6 +11979,15 @@ extern "C" {
     pub fn gtk_column_view_remove_column(
         self_: *mut GtkColumnView,
         column: *mut GtkColumnViewColumn,
+    );
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    pub fn gtk_column_view_scroll_to(
+        self_: *mut GtkColumnView,
+        pos: c_uint,
+        column: *mut GtkColumnViewColumn,
+        flags: GtkListScrollFlags,
+        scroll: *mut GtkScrollInfo,
     );
     pub fn gtk_column_view_set_enable_rubberband(
         self_: *mut GtkColumnView,
@@ -14066,6 +14128,14 @@ extern "C" {
     #[cfg(feature = "v4_12")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
     pub fn gtk_grid_view_get_tab_behavior(self_: *mut GtkGridView) -> GtkListTabBehavior;
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    pub fn gtk_grid_view_scroll_to(
+        self_: *mut GtkGridView,
+        pos: c_uint,
+        flags: GtkListScrollFlags,
+        scroll: *mut GtkScrollInfo,
+    );
     pub fn gtk_grid_view_set_enable_rubberband(
         self_: *mut GtkGridView,
         enable_rubberband: gboolean,
@@ -14976,6 +15046,14 @@ extern "C" {
     #[cfg(feature = "v4_12")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
     pub fn gtk_list_view_get_tab_behavior(self_: *mut GtkListView) -> GtkListTabBehavior;
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    pub fn gtk_list_view_scroll_to(
+        self_: *mut GtkListView,
+        pos: c_uint,
+        flags: GtkListScrollFlags,
+        scroll: *mut GtkScrollInfo,
+    );
     pub fn gtk_list_view_set_enable_rubberband(
         self_: *mut GtkListView,
         enable_rubberband: gboolean,
@@ -17016,6 +17094,13 @@ extern "C" {
     );
     pub fn gtk_snapshot_push_cross_fade(snapshot: *mut GtkSnapshot, progress: c_double);
     pub fn gtk_snapshot_push_debug(snapshot: *mut GtkSnapshot, message: *const c_char, ...);
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gtk_snapshot_push_fill(
+        snapshot: *mut GtkSnapshot,
+        path: *mut gsk::GskPath,
+        fill_rule: gsk::GskFillRule,
+    );
     pub fn gtk_snapshot_push_gl_shader(
         snapshot: *mut GtkSnapshot,
         shader: *mut gsk::GskGLShader,
@@ -17039,6 +17124,13 @@ extern "C" {
         snapshot: *mut GtkSnapshot,
         shadow: *const gsk::GskShadow,
         n_shadows: size_t,
+    );
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gtk_snapshot_push_stroke(
+        snapshot: *mut GtkSnapshot,
+        path: *mut gsk::GskPath,
+        stroke: *const gsk::GskStroke,
     );
     pub fn gtk_snapshot_render_background(
         snapshot: *mut GtkSnapshot,
@@ -18926,6 +19018,13 @@ extern "C" {
     ) -> *mut GtkWidget;
     pub fn gtk_viewport_get_child(viewport: *mut GtkViewport) -> *mut GtkWidget;
     pub fn gtk_viewport_get_scroll_to_focus(viewport: *mut GtkViewport) -> gboolean;
+    #[cfg(feature = "v4_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    pub fn gtk_viewport_scroll_to(
+        viewport: *mut GtkViewport,
+        descendant: *mut GtkWidget,
+        scroll: *mut GtkScrollInfo,
+    );
     pub fn gtk_viewport_set_child(viewport: *mut GtkViewport, child: *mut GtkWidget);
     pub fn gtk_viewport_set_scroll_to_focus(viewport: *mut GtkViewport, scroll_to_focus: gboolean);
 
