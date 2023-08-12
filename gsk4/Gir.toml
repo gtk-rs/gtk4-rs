@@ -24,14 +24,24 @@ generate = [
     "Gsk.Corner",
     "Gsk.CrossFadeNode",
     "Gsk.DebugNode",
+    "Gsk.FillNode",
+    "Gsk.FillRule",
     "Gsk.GLRenderer",
     "Gsk.GLUniformType",
     "Gsk.InsetShadowNode",
     "Gsk.LinearGradientNode",
+    "Gsk.LineCap",
+    "Gsk.LineJoin",
     "Gsk.MaskMode",
     "Gsk.MaskNode",
     "Gsk.OpacityNode",
     "Gsk.OutsetShadowNode",
+    "Gsk.Path",
+    "Gsk.PathBuilder",
+    "Gsk.PathDirection",
+    "Gsk.PathForeachFlags",
+    "Gsk.PathOperation",
+    "Gsk.PathPoint",
     "Gsk.RadialGradientNode",
     "Gsk.RenderNodeType",
     "Gsk.RepeatingLinearGradientNode",
@@ -40,6 +50,8 @@ generate = [
     "Gsk.RoundedClipNode",
     "Gsk.ScalingFilter",
     "Gsk.SerializationError",
+    "Gsk.Stroke",
+    "Gsk.StrokeNode",
     "Gsk.TextureNode",
     "Gsk.TextureScaleNode",
     "Gsk.TransformCategory",
@@ -48,6 +60,7 @@ generate = [
 
 manual = [
     "cairo.Context",
+    "cairo.Path",
     "cairo.Region",
     "cairo.Surface",
     "Gdk.RGBA",
@@ -73,6 +86,7 @@ manual = [
     "Gtk.Snapshot", # docs specific
     "Pango.Font",
     "Pango.GlyphString",
+    "Pango.Layout",
 ]
 
 [[object]]
