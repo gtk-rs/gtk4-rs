@@ -41,7 +41,7 @@ version = "4.10"
 version = "4.11"
 
 [package.metadata.system-deps.gtk4.v4_14]
-version = "4.14"
+version = "4.13"
 
 [lib]
 name = "gtk4_sys"
