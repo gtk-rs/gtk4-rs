@@ -45,6 +45,9 @@ mod conic_gradient_node;
 mod container_node;
 mod cross_fade_node;
 mod debug_node;
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+mod fill_node;
 mod gl_shader;
 mod gl_shader_node;
 mod inset_shadow_node;
@@ -64,6 +67,9 @@ mod repeating_linear_gradient_node;
 mod repeating_radial_gradient_node;
 mod rounded_clip_node;
 mod shadow_node;
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+mod stroke_node;
 mod text_node;
 mod texture_node;
 #[cfg(feature = "v4_10")]
