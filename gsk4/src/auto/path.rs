@@ -2,7 +2,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use crate::{FillRule, PathDirection, PathForeachFlags, PathOperation, PathPoint, Stroke};
+use crate::{FillRule, PathDirection, PathPoint, Stroke};
 use glib::translate::*;
 use std::fmt;
 
@@ -18,38 +18,6 @@ glib::wrapper! {
 }
 
 impl Path {
-    #[doc(alias = "gsk_path_foreach")]
-    pub fn foreach<P: FnMut(&PathOperation, &graphene::Point, usize) -> bool>(
-        &self,
-        flags: PathForeachFlags,
-        func: P,
-    ) -> bool {
-        let func_data: P = func;
-        unsafe extern "C" fn func_func<
-            P: FnMut(&PathOperation, &graphene::Point, usize) -> bool,
-        >(
-            op: ffi::GskPathOperation,
-            pts: *const graphene::ffi::graphene_point_t,
-            n_pts: libc::size_t,
-            user_data: glib::ffi::gpointer,
-        ) -> glib::ffi::gboolean {
-            let op = from_glib_borrow(op);
-            let pts = from_glib_borrow(pts);
-            let callback: *mut P = user_data as *const _ as usize as *mut P;
-            (*callback)(&op, &pts, n_pts).into_glib()
-        }
-        let func = Some(func_func::<P> as _);
-        let super_callback0: &P = &func_data;
-        unsafe {
-            from_glib(ffi::gsk_path_foreach(
-                self.to_glib_none().0,
-                flags.into_glib(),
-                func,
-                super_callback0 as *const _ as usize as *mut _,
-            ))
-        }
-    }
-
     #[doc(alias = "gsk_path_get_bounds")]
     #[doc(alias = "get_bounds")]
     pub fn bounds(&self) -> Option<graphene::Rect> {
@@ -159,19 +127,6 @@ impl Path {
         unsafe { from_glib(ffi::gsk_path_is_empty(self.to_glib_none().0)) }
     }
 
-    #[doc(alias = "gsk_path_point_get_curvature")]
-    pub fn point_get_curvature(&self, point: &PathPoint) -> (f32, Option<graphene::Point>) {
-        unsafe {
-            let mut center = graphene::Point::uninitialized();
-            let ret = ffi::gsk_path_point_get_curvature(
-                self.to_glib_none().0,
-                point.to_glib_none().0,
-                center.to_glib_none_mut().0,
-            );
-            (ret, center)
-        }
-    }
-
     #[doc(alias = "gsk_path_point_get_position")]
     pub fn point_get_position(&self, point: &PathPoint) -> graphene::Point {
         unsafe {
@@ -199,17 +154,10 @@ impl Path {
         }
     }
 
-    #[doc(alias = "gsk_path_print")]
-    pub fn print(&self, string: &mut glib::String) {
-        unsafe {
-            ffi::gsk_path_print(self.to_glib_none().0, string.to_glib_none_mut().0);
-        }
-    }
-
     #[doc(alias = "gsk_path_to_cairo")]
-    pub fn to_cairo(&self, cr: &mut cairo::Context) {
+    pub fn to_cairo(&self, cr: &cairo::Context) {
         unsafe {
-            ffi::gsk_path_to_cairo(self.to_glib_none().0, cr.to_glib_none_mut().0);
+            ffi::gsk_path_to_cairo(self.to_glib_none().0, mut_override(cr.to_glib_none().0));
         }
     }
 
@@ -220,9 +168,12 @@ impl Path {
     }
 
     #[doc(alias = "gsk_path_parse")]
-    pub fn parse(string: &str) -> Option<Path> {
+    pub fn parse(string: &str) -> Result<Path, glib::BoolError> {
         assert_initialized_main_thread!();
-        unsafe { from_glib_full(ffi::gsk_path_parse(string.to_glib_none().0)) }
+        unsafe {
+            Option::<_>::from_glib_full(ffi::gsk_path_parse(string.to_glib_none().0))
+                .ok_or_else(|| glib::bool_error!("Can't parse Path"))
+        }
     }
 }
 

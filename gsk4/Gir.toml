@@ -36,12 +36,9 @@ generate = [
     "Gsk.MaskNode",
     "Gsk.OpacityNode",
     "Gsk.OutsetShadowNode",
-    "Gsk.Path",
-    "Gsk.PathBuilder",
     "Gsk.PathDirection",
     "Gsk.PathForeachFlags",
     "Gsk.PathOperation",
-    "Gsk.PathPoint",
     "Gsk.RadialGradientNode",
     "Gsk.RepeatingLinearGradientNode",
     "Gsk.RepeatingRadialGradientNode",
@@ -155,6 +152,44 @@ status = "generate"
     [[object.function]]
     name = "get_child"
     manual = true # assert that idx < n_children
+
+[[object]]
+name = "Gsk.Path"
+status = "generate"
+    [[object.function]]
+    name = "to_cairo"
+        [[object.function.parameter]]
+        name = "cr"
+        const = true
+    [[object.function]]
+    name = "parse"
+        [object.function.return]
+        nullable_return_is_error = "Can't parse Path"
+    [[object.function]]
+    name = "print"
+    ignore = true # to_str exists
+    [[object.function]]
+    name = "foreach"
+    manual = true # tries to call from_glib_borrow on an enum
+    [[object.function]]
+    name = "point_get_curvature"
+    manual = true # handle nullable point return value
+
+[[object]]
+name = "Gsk.PathBuilder"
+status = "generate"
+    [[object.function]]
+    name = "free_to_path"
+    ignore = true # not useful for bindings
+    [[object.function]]
+    name = "add_cairo_path"
+    manual = true # use as_ptr for cairo::Path
+
+[[object]]
+name = "Gsk.PathPoint"
+status = "generate"
+boxed_inline = true
+
 
 [[object]]
 name = "Gsk.Renderer"
