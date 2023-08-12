@@ -10,7 +10,7 @@ license = "MIT"
 name = "gdk4-win32-sys"
 repository = "https://github.com/gtk-rs/gtk4-rs"
 version = "0.7.1"
-rust-version = "1.57"
+rust-version = "1.70"
 
 [package.metadata.system-deps.gtk4_win32]
 name = "gtk4-win32"
