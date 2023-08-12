@@ -639,6 +639,10 @@ pub enum RenderNodeType {
     TextureScaleNode,
     #[doc(alias = "GSK_MASK_NODE")]
     MaskNode,
+    #[doc(alias = "GSK_FILL_NODE")]
+    FillNode,
+    #[doc(alias = "GSK_STROKE_NODE")]
+    StrokeNode,
     #[doc(hidden)]
     __Unknown(i32),
 }
@@ -677,6 +681,8 @@ impl fmt::Display for RenderNodeType {
                 Self::GlShaderNode => "GlShaderNode",
                 Self::TextureScaleNode => "TextureScaleNode",
                 Self::MaskNode => "MaskNode",
+                Self::FillNode => "FillNode",
+                Self::StrokeNode => "StrokeNode",
                 _ => "Unknown",
             }
         )
@@ -717,6 +723,8 @@ impl IntoGlib for RenderNodeType {
             Self::GlShaderNode => ffi::GSK_GL_SHADER_NODE,
             Self::TextureScaleNode => ffi::GSK_TEXTURE_SCALE_NODE,
             Self::MaskNode => ffi::GSK_MASK_NODE,
+            Self::FillNode => ffi::GSK_FILL_NODE,
+            Self::StrokeNode => ffi::GSK_STROKE_NODE,
             Self::__Unknown(value) => value,
         }
     }
@@ -756,6 +764,8 @@ impl FromGlib<ffi::GskRenderNodeType> for RenderNodeType {
             ffi::GSK_GL_SHADER_NODE => Self::GlShaderNode,
             ffi::GSK_TEXTURE_SCALE_NODE => Self::TextureScaleNode,
             ffi::GSK_MASK_NODE => Self::MaskNode,
+            ffi::GSK_FILL_NODE => Self::FillNode,
+            ffi::GSK_STROKE_NODE => Self::StrokeNode,
             value => Self::__Unknown(value),
         }
     }

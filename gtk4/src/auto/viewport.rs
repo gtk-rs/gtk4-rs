@@ -58,6 +58,13 @@ impl Viewport {
         unsafe { from_glib(ffi::gtk_viewport_get_scroll_to_focus(self.to_glib_none().0)) }
     }
 
+    //#[cfg(feature = "v4_12")]
+    //#[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    //#[doc(alias = "gtk_viewport_scroll_to")]
+    //pub fn scroll_to(&self, descendant: &impl IsA<Widget>, scroll: /*Ignored*/Option<ScrollInfo>) {
+    //    unsafe { TODO: call ffi:gtk_viewport_scroll_to() }
+    //}
+
     #[doc(alias = "gtk_viewport_set_child")]
     pub fn set_child(&self, child: Option<&impl IsA<Widget>>) {
         unsafe {

@@ -1217,6 +1217,7 @@ pub use self::flags::ShortcutActionFlags;
 pub use self::flags::StateFlags;
 pub use self::flags::StyleContextPrintFlags;
 pub use self::flags::TextSearchFlags;
+#[allow(deprecated)]
 pub use self::flags::TreeModelFlags;
 
 mod alias;

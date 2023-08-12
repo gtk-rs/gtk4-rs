@@ -102,6 +102,13 @@ impl GridView {
         unsafe { from_glib(ffi::gtk_grid_view_get_tab_behavior(self.to_glib_none().0)) }
     }
 
+    //#[cfg(feature = "v4_12")]
+    //#[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
+    //#[doc(alias = "gtk_grid_view_scroll_to")]
+    //pub fn scroll_to(&self, pos: u32, flags: /*Ignored*/ListScrollFlags, scroll: /*Ignored*/Option<ScrollInfo>) {
+    //    unsafe { TODO: call ffi:gtk_grid_view_scroll_to() }
+    //}
+
     #[doc(alias = "gtk_grid_view_set_enable_rubberband")]
     pub fn set_enable_rubberband(&self, enable_rubberband: bool) {
         unsafe {

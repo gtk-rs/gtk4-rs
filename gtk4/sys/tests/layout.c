@@ -167,6 +167,7 @@ int main() {
     printf("%s;%zu;%zu\n", "GtkLicense", sizeof(GtkLicense), alignof(GtkLicense));
     printf("%s;%zu;%zu\n", "GtkListBoxRow", sizeof(GtkListBoxRow), alignof(GtkListBoxRow));
     printf("%s;%zu;%zu\n", "GtkListBoxRowClass", sizeof(GtkListBoxRowClass), alignof(GtkListBoxRowClass));
+    printf("%s;%zu;%zu\n", "GtkListScrollFlags", sizeof(GtkListScrollFlags), alignof(GtkListScrollFlags));
     printf("%s;%zu;%zu\n", "GtkListStore", sizeof(GtkListStore), alignof(GtkListStore));
     printf("%s;%zu;%zu\n", "GtkListStoreClass", sizeof(GtkListStoreClass), alignof(GtkListStoreClass));
     printf("%s;%zu;%zu\n", "GtkListTabBehavior", sizeof(GtkListTabBehavior), alignof(GtkListTabBehavior));
