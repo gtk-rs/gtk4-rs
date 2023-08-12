@@ -23,13 +23,6 @@ impl PathBuilder {
         unsafe { from_glib_full(ffi::gsk_path_builder_new()) }
     }
 
-    #[doc(alias = "gsk_path_builder_add_cairo_path")]
-    pub fn add_cairo_path(&self, path: &cairo::Path) {
-        unsafe {
-            ffi::gsk_path_builder_add_cairo_path(self.to_glib_none().0, path.to_glib_none().0);
-        }
-    }
-
     #[doc(alias = "gsk_path_builder_add_circle")]
     pub fn add_circle(&self, center: &graphene::Point, radius: f32) {
         unsafe {
@@ -93,11 +86,6 @@ impl PathBuilder {
         unsafe {
             ffi::gsk_path_builder_cubic_to(self.to_glib_none().0, x1, y1, x2, y2, x3, y3);
         }
-    }
-
-    #[doc(alias = "gsk_path_builder_free_to_path")]
-    pub fn free_to_path(&self) -> Path {
-        unsafe { from_glib_full(ffi::gsk_path_builder_free_to_path(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gsk_path_builder_get_current_point")]

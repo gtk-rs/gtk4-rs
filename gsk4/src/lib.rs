@@ -61,6 +61,12 @@ mod ngl_renderer;
 mod opacity_node;
 mod outset_shadow_node;
 mod parse_location;
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+mod path;
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+mod path_builder;
 mod radial_gradient_node;
 mod repeat_node;
 mod repeating_linear_gradient_node;
