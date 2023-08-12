@@ -14,7 +14,7 @@ version = "0.8.0"
 rust-version = "1.70"
 
 [package.metadata.docs.rs]
-all-features = "true"
+all-features = true
 rustc-args = ["--cfg", "docsrs"]
 rustdoc-args = ["--cfg", "docsrs", "--generate-link-to-definition"]
 
