@@ -46,7 +46,6 @@ generate = [
     "Gsk.RoundedClipNode",
     "Gsk.ScalingFilter",
     "Gsk.SerializationError",
-    "Gsk.Stroke",
     "Gsk.StrokeNode",
     "Gsk.TextureNode",
     "Gsk.TextureScaleNode",
@@ -233,6 +232,25 @@ status = "generate"
     [[object.function]]
     name = "get_shadow"
     manual = true # assert that i < n_shadows
+
+[[object]]
+name = "Gsk.Stroke"
+status = "generate"
+    [[object.function]]
+    name = "to_cairo"
+        [[object.function.parameter]]
+        name = "cr"
+        const = true
+    [[object.function]]
+    pattern = "set_(dash|dash_offset|line_cap|line_join|line_width|miter_limit)"
+        [[object.function.parameter]]
+        name = "self"
+        const = true
+    [[object.function]]
+    name = "equal"
+        [[object.function.parameter]]
+        name = "stroke2"
+        nullable = false
 
 [[object]]
 name = "Gsk.TextNode"
