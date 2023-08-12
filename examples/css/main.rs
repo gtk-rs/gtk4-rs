@@ -12,7 +12,7 @@ fn main() -> glib::ExitCode {
     application.connect_startup(|app| {
         // The CSS "magic" happens here.
         let provider = CssProvider::new();
-        provider.load_from_data(include_str!("style.css"));
+        provider.load_from_string(include_str!("style.css"));
         // We give the CssProvided to the default screen so the CSS rules we added
         // can be applied to our window.
         gtk::style_context_add_provider_for_display(

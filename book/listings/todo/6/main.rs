@@ -32,5 +32,5 @@ fn setup_shortcuts(app: &adw::Application) {
 fn build_ui(app: &adw::Application) {
     // Create a new custom window and show it
     let window = Window::new(app);
-    window.show();
+    window.present();
 }
