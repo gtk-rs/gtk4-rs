@@ -52,7 +52,7 @@ fn load_css() {
 // ANCHOR_END: load_css
 
 fn build_ui(app: &Application) {
-    // Create a new custom window and show it
+    // Create a new custom window and present it
     let window = Window::new(app);
     window.present();
 }
