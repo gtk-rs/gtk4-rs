@@ -36,7 +36,7 @@ fn build_ui(app: &Application) {
     gtk_box.append(&button_1);
     gtk_box.append(&button_2);
 
-    // Create a new window and show it
+    // Create a new window and present it
     let window = ApplicationWindow::builder()
         .application(app)
         .title("My GTK App")
