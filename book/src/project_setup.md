@@ -16,10 +16,10 @@ pkg-config --modversion gtk4
 ```
 
 Use this information to add the [gtk4 crate](https://crates.io/crates/gtk4) to your dependencies in `Cargo.toml`.
-At the time of this writing the newest version is `4.12`.
+At the time of this writing the newest version is `4.8`.
 
 ```
-cargo add gtk4 --rename gtk --features v4_12
+cargo add gtk4 --rename gtk --features v4_8
 ```
 
 By specifying this feature you opt-in to API that was added with minor releases of GTK 4.
