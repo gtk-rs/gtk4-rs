@@ -80,6 +80,84 @@ impl RGBA {
     }
 
     // rustdoc-stripper-ignore-next
+    /// Creates an owned [`RGBA`] like `self` but with the given red value.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use gdk4::RGBA;
+    ///
+    /// let rgba = RGBA::new(1.0, 1.0, 1.0, 1.0);
+    /// assert_eq!(rgba.with_red(0.5), RGBA::new(0.5, 1.0, 1.0, 1.0));
+    /// ```
+    #[inline]
+    pub const fn with_red(self, red: f32) -> Self {
+        Self {
+            inner: ffi::GdkRGBA { red, ..self.inner },
+        }
+    }
+
+    // rustdoc-stripper-ignore-next
+    /// Creates an owned [`RGBA`] like `self` but with the given green value.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use gdk4::RGBA;
+    ///
+    /// let rgba = RGBA::new(1.0, 1.0, 1.0, 1.0);
+    /// assert_eq!(rgba.with_green(0.5), RGBA::new(1.0, 0.5, 1.0, 1.0));
+    /// ```
+    #[inline]
+    pub const fn with_green(self, green: f32) -> Self {
+        Self {
+            inner: ffi::GdkRGBA {
+                green,
+                ..self.inner
+            },
+        }
+    }
+
+    // rustdoc-stripper-ignore-next
+    /// Creates an owned [`RGBA`] like `self` but with the given blue value.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use gdk4::RGBA;
+    ///
+    /// let rgba = RGBA::new(1.0, 1.0, 1.0, 1.0);
+    /// assert_eq!(rgba.with_blue(0.5), RGBA::new(1.0, 1.0, 0.5, 1.0));
+    /// ```
+    #[inline]
+    pub const fn with_blue(self, blue: f32) -> Self {
+        Self {
+            inner: ffi::GdkRGBA { blue, ..self.inner },
+        }
+    }
+
+    // rustdoc-stripper-ignore-next
+    /// Creates an owned [`RGBA`] like `self` but with the given alpha value.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use gdk4::RGBA;
+    ///
+    /// let rgba = RGBA::new(1.0, 1.0, 1.0, 1.0);
+    /// assert_eq!(rgba.with_alpha(0.5), RGBA::new(1.0, 1.0, 1.0, 0.5));
+    /// ```
+    #[inline]
+    pub const fn with_alpha(self, alpha: f32) -> Self {
+        Self {
+            inner: ffi::GdkRGBA {
+                alpha,
+                ..self.inner
+            },
+        }
+    }
+
+    // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct [`RGBA`] objects.
     ///
     /// This method returns an instance of [`RGBABuilder`](crate::builders::RGBABuilder) which can be used to create [`RGBA`] objects.
