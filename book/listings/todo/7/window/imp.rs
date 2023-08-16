@@ -8,7 +8,7 @@ use glib::subclass::InitializingObject;
 
 use adw::prelude::*;
 use gtk::{gio, glib, CompositeTemplate, Entry, ListBox};
-use once_cell::sync::OnceCell;
+use std::cell::OnceCell;
 
 use crate::task_object::{TaskData, TaskObject};
 use crate::utils::data_path;
