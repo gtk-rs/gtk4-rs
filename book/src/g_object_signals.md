@@ -30,7 +30,9 @@ The advantage of `connect_closure` is that it also works with custom signals.
 
 Let's see how we can create our own signals.
 Again we do that by extending our `CustomButton`.
-First we override the necessary methods in `ObjectImpl`.
+First we override the `signals` method in `ObjectImpl`.
+In order to do that, we need to lazily initialize a static item `SIGNALS`.
+Until [`std::sync::LazyLock`](https://doc.rust-lang.org/std/sync/struct.LazyLock.html) is stabilized, we use [`once_cell::sync::Lazy`](https://docs.rs/once_cell/latest/once_cell/sync/struct.Lazy.html) instead.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/g_object_signals/2/custom_button/imp.rs">listings/g_object_signals/2/custom_button/imp.rs</a>
 

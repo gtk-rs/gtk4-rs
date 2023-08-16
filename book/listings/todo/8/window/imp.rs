@@ -10,7 +10,7 @@ use gtk::glib::SignalHandlerId;
 use gtk::{
     gio, glib, Button, CompositeTemplate, Entry, FilterListModel, ListBox, Stack,
 };
-use once_cell::sync::OnceCell;
+use std::cell::OnceCell;
 
 use crate::collection_object::{CollectionData, CollectionObject};
 use crate::utils::data_path;

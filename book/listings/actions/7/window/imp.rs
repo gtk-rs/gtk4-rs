@@ -2,7 +2,7 @@ use gio::Settings;
 use glib::subclass::InitializingObject;
 use gtk::subclass::prelude::*;
 use gtk::{gio, glib, Button, CompositeTemplate, Label};
-use once_cell::sync::OnceCell;
+use std::cell::OnceCell;
 
 // ANCHOR: imp_struct
 // Object holding the state

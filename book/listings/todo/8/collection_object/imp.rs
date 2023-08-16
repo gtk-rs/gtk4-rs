@@ -4,7 +4,7 @@ use adw::prelude::*;
 use adw::subclass::prelude::*;
 use glib::Properties;
 use gtk::{gio, glib};
-use once_cell::sync::OnceCell;
+use std::cell::OnceCell;
 
 // ANCHOR: collection_object
 // Object holding the state

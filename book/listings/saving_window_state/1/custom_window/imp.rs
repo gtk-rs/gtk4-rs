@@ -1,7 +1,7 @@
 use gio::Settings;
 use gtk::subclass::prelude::*;
 use gtk::{gio, glib, ApplicationWindow};
-use once_cell::sync::OnceCell;
+use std::cell::OnceCell;
 
 // ANCHOR: imp
 #[derive(Default)]

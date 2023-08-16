@@ -27,14 +27,8 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 > When creating new GObjects, this is nicer than calling the setter methods manually.
 
 The implementation struct holds the `settings`.
-You can see that we embed `Settings` in [`once_cell::sync::OnceCell`](https://docs.rs/once_cell/latest/once_cell/sync/struct.OnceCell.html).
-This is a nice alternative to `RefCell<Option<T>>` when you know that you will only write to it once. 
-`once_cell` is already part of Rust nightly.
-Until it hits stable, we will add it as external dependency.
-
-```
-cargo add once_cell
-```
+You can see that we embed `Settings` in [`std::cell::OnceCell`](https://doc.rust-lang.org/std/cell/struct.OnceCell.html).
+This is a nice alternative to `RefCell<Option<T>>` when you know that you will initialize the value only once. 
 
 We also override the `constructed` and `close_request` methods, where we load or save the window state. 
 

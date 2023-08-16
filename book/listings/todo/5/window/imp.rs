@@ -6,7 +6,7 @@ use glib::subclass::InitializingObject;
 use gtk::prelude::*;
 use gtk::subclass::prelude::*;
 use gtk::{gio, glib, CompositeTemplate, Entry, ListView};
-use once_cell::sync::OnceCell;
+use std::cell::OnceCell;
 
 use crate::task_object::{TaskData, TaskObject};
 use crate::utils::data_path;
