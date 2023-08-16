@@ -4,7 +4,6 @@
 
 use crate::EntryBuffer;
 use glib::{prelude::*, translate::*};
-use std::fmt;
 
 glib::wrapper! {
     #[doc(alias = "GtkPasswordEntryBuffer")]
@@ -70,11 +69,5 @@ impl PasswordEntryBufferBuilder {
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> PasswordEntryBuffer {
         self.builder.build()
-    }
-}
-
-impl fmt::Display for PasswordEntryBuffer {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("PasswordEntryBuffer")
     }
 }

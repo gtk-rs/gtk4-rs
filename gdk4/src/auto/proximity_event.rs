@@ -3,7 +3,6 @@
 // DO NOT EDIT
 
 use glib::translate::*;
-use std::fmt;
 
 glib::wrapper! {
     #[doc(alias = "GdkProximityEvent")]
@@ -22,9 +21,3 @@ impl glib::StaticType for ProximityEvent {
 }
 
 impl ProximityEvent {}
-
-impl fmt::Display for ProximityEvent {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("ProximityEvent")
-    }
-}

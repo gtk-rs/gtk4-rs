@@ -4,7 +4,6 @@
 
 use crate::{Device, DevicePadFeature};
 use glib::{prelude::*, translate::*};
-use std::fmt;
 
 glib::wrapper! {
     #[doc(alias = "GdkDevicePad")]
@@ -59,9 +58,3 @@ pub trait DevicePadExt: IsA<DevicePad> + sealed::Sealed + 'static {
 }
 
 impl<O: IsA<DevicePad>> DevicePadExt for O {}
-
-impl fmt::Display for DevicePad {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("DevicePad")
-    }
-}

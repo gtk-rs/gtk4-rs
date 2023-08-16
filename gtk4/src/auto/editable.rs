@@ -11,7 +11,7 @@ use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
-use std::{boxed::Box as Box_, fmt, mem, mem::transmute};
+use std::{boxed::Box as Box_, mem, mem::transmute};
 
 glib::wrapper! {
     #[doc(alias = "GtkEditable")]
@@ -508,9 +508,3 @@ pub trait EditableExt: IsA<Editable> + sealed::Sealed + 'static {
 }
 
 impl<O: IsA<Editable>> EditableExt for O {}
-
-impl fmt::Display for Editable {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("Editable")
-    }
-}

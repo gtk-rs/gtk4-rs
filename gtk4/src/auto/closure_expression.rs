@@ -3,7 +3,6 @@
 // DO NOT EDIT
 
 use glib::translate::*;
-use std::fmt;
 
 glib::wrapper! {
     #[doc(alias = "GtkClosureExpression")]
@@ -22,9 +21,3 @@ impl glib::StaticType for ClosureExpression {
 }
 
 impl ClosureExpression {}
-
-impl fmt::Display for ClosureExpression {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("ClosureExpression")
-    }
-}

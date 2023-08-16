@@ -9,7 +9,7 @@ use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
-use std::{boxed::Box as Box_, fmt, mem::transmute};
+use std::{boxed::Box as Box_, mem::transmute};
 
 glib::wrapper! {
     #[doc(alias = "GtkFontChooser")]
@@ -494,9 +494,3 @@ pub trait FontChooserExt: IsA<FontChooser> + sealed::Sealed + 'static {
 }
 
 impl<O: IsA<FontChooser>> FontChooserExt for O {}
-
-impl fmt::Display for FontChooser {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("FontChooser")
-    }
-}

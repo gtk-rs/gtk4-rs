@@ -4,7 +4,7 @@
 
 use crate::ExpressionWatch;
 use glib::{prelude::*, translate::*};
-use std::{boxed::Box as Box_, fmt};
+use std::boxed::Box as Box_;
 
 glib::wrapper! {
     #[doc(alias = "GtkExpression")]
@@ -87,11 +87,5 @@ impl Expression {
                 destroy_call4,
             ))
         }
-    }
-}
-
-impl fmt::Display for Expression {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("Expression")
     }
 }

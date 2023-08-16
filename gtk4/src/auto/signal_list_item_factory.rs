@@ -7,7 +7,6 @@ use crate::ListItemFactory;
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
 use glib::signal::{connect_raw, SignalHandlerId};
 use glib::{prelude::*, translate::*};
-use std::fmt;
 #[cfg(feature = "v4_8")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
 use std::{boxed::Box as Box_, mem::transmute};
@@ -142,11 +141,5 @@ impl SignalListItemFactory {
 impl Default for SignalListItemFactory {
     fn default() -> Self {
         Self::new()
-    }
-}
-
-impl fmt::Display for SignalListItemFactory {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("SignalListItemFactory")
     }
 }

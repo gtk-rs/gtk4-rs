@@ -4,7 +4,7 @@
 
 use crate::ColorStop;
 use glib::translate::*;
-use std::{fmt, mem};
+use std::mem;
 
 glib::wrapper! {
     #[doc(alias = "GskLinearGradientNode")]
@@ -79,11 +79,5 @@ impl LinearGradientNode {
                 self.to_glib_none().0,
             ))
         }
-    }
-}
-
-impl fmt::Display for LinearGradientNode {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("LinearGradientNode")
     }
 }

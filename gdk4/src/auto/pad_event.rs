@@ -3,7 +3,7 @@
 // DO NOT EDIT
 
 use glib::translate::*;
-use std::{fmt, mem};
+use std::mem;
 
 glib::wrapper! {
     #[doc(alias = "GdkPadEvent")]
@@ -56,11 +56,5 @@ impl PadEvent {
             );
             (group.assume_init(), mode.assume_init())
         }
-    }
-}
-
-impl fmt::Display for PadEvent {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("PadEvent")
     }
 }

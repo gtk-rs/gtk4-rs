@@ -8,7 +8,7 @@ use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
-use std::{boxed::Box as Box_, fmt, mem::transmute, ptr};
+use std::{boxed::Box as Box_, mem::transmute, ptr};
 
 glib::wrapper! {
     #[doc(alias = "GtkBuilder")]
@@ -411,11 +411,5 @@ impl Builder {
 impl Default for Builder {
     fn default() -> Self {
         Self::new()
-    }
-}
-
-impl fmt::Display for Builder {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("Builder")
     }
 }

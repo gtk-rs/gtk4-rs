@@ -8,7 +8,7 @@ use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
-use std::{boxed::Box as Box_, fmt, mem::transmute};
+use std::{boxed::Box as Box_, mem::transmute};
 
 glib::wrapper! {
     #[doc(alias = "GtkListHeader")]
@@ -183,11 +183,5 @@ impl ListHeader {
                 Box_::into_raw(f),
             )
         }
-    }
-}
-
-impl fmt::Display for ListHeader {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("ListHeader")
     }
 }

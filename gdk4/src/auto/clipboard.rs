@@ -8,7 +8,7 @@ use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
-use std::{boxed::Box as Box_, fmt, mem::transmute, pin::Pin, ptr};
+use std::{boxed::Box as Box_, mem::transmute, pin::Pin, ptr};
 
 glib::wrapper! {
     #[doc(alias = "GdkClipboard")]
@@ -415,11 +415,5 @@ impl Clipboard {
                 Box_::into_raw(f),
             )
         }
-    }
-}
-
-impl fmt::Display for Clipboard {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("Clipboard")
     }
 }

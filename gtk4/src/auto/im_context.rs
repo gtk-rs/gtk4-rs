@@ -9,7 +9,7 @@ use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
-use std::{boxed::Box as Box_, fmt, mem, mem::transmute, ptr};
+use std::{boxed::Box as Box_, mem, mem::transmute, ptr};
 
 glib::wrapper! {
     #[doc(alias = "GtkIMContext")]
@@ -456,9 +456,3 @@ pub trait IMContextExt: IsA<IMContext> + sealed::Sealed + 'static {
 }
 
 impl<O: IsA<IMContext>> IMContextExt for O {}
-
-impl fmt::Display for IMContext {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("IMContext")
-    }
-}

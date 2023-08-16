@@ -13,7 +13,7 @@ use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
-use std::{boxed::Box as Box_, fmt, mem, mem::transmute, ptr};
+use std::{boxed::Box as Box_, mem, mem::transmute, ptr};
 
 glib::wrapper! {
     #[doc(alias = "GtkIconView")]
@@ -1758,11 +1758,5 @@ impl IconViewBuilder {
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> IconView {
         self.builder.build()
-    }
-}
-
-impl fmt::Display for IconView {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("IconView")
     }
 }

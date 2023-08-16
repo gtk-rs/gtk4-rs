@@ -4,7 +4,6 @@
 
 use crate::{FillRule, Path, RenderNode};
 use glib::translate::*;
-use std::fmt;
 
 glib::wrapper! {
     #[doc(alias = "GskFillNode")]
@@ -51,11 +50,5 @@ impl FillNode {
     #[doc(alias = "get_path")]
     pub fn path(&self) -> Path {
         unsafe { from_glib_none(ffi::gsk_fill_node_get_path(self.to_glib_none().0)) }
-    }
-}
-
-impl fmt::Display for FillNode {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("FillNode")
     }
 }

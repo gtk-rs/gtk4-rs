@@ -7,7 +7,7 @@
 use crate::MemoryFormat;
 use crate::Paintable;
 use glib::{prelude::*, translate::*};
-use std::{fmt, ptr};
+use std::ptr;
 
 glib::wrapper! {
     #[doc(alias = "GdkTexture")]
@@ -177,9 +177,3 @@ pub trait TextureExt: IsA<Texture> + sealed::Sealed + 'static {
 }
 
 impl<O: IsA<Texture>> TextureExt for O {}
-
-impl fmt::Display for Texture {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("Texture")
-    }
-}

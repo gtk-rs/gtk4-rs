@@ -13,7 +13,7 @@ use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
-use std::{boxed::Box as Box_, fmt, mem::transmute};
+use std::{boxed::Box as Box_, mem::transmute};
 
 glib::wrapper! {
     #[doc(alias = "GdkToplevel")]
@@ -494,9 +494,3 @@ pub trait ToplevelExt: IsA<Toplevel> + sealed::Sealed + 'static {
 }
 
 impl<O: IsA<Toplevel>> ToplevelExt for O {}
-
-impl fmt::Display for Toplevel {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("Toplevel")
-    }
-}

@@ -8,7 +8,7 @@ use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
-use std::{boxed::Box as Box_, fmt, mem::transmute};
+use std::{boxed::Box as Box_, mem::transmute};
 
 glib::wrapper! {
     #[doc(alias = "GtkScrollable")]
@@ -232,9 +232,3 @@ pub trait ScrollableExt: IsA<Scrollable> + sealed::Sealed + 'static {
 }
 
 impl<O: IsA<Scrollable>> ScrollableExt for O {}
-
-impl fmt::Display for Scrollable {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("Scrollable")
-    }
-}

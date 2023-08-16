@@ -4,7 +4,6 @@
 
 use crate::Accessible;
 use glib::prelude::*;
-use std::fmt;
 
 glib::wrapper! {
     #[doc(alias = "GtkAccessibleRange")]
@@ -27,9 +26,3 @@ mod sealed {
 pub trait AccessibleRangeExt: IsA<AccessibleRange> + sealed::Sealed + 'static {}
 
 impl<O: IsA<AccessibleRange>> AccessibleRangeExt for O {}
-
-impl fmt::Display for AccessibleRange {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("AccessibleRange")
-    }
-}

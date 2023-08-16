@@ -3,7 +3,6 @@
 // DO NOT EDIT
 
 use glib::{prelude::*, translate::*};
-use std::fmt;
 
 glib::wrapper! {
     #[doc(alias = "GdkX11DeviceXI2")]
@@ -104,11 +103,5 @@ impl X11DeviceXI2Builder {
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> X11DeviceXI2 {
         self.builder.build()
-    }
-}
-
-impl fmt::Display for X11DeviceXI2 {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("X11DeviceXI2")
     }
 }

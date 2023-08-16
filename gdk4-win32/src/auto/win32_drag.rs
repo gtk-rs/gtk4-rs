@@ -2,8 +2,6 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use std::fmt;
-
 glib::wrapper! {
     #[doc(alias = "GdkWin32Drag")]
     pub struct Win32Drag(Object<ffi::GdkWin32Drag, ffi::GdkWin32DragClass>) @extends gdk::Drag;
@@ -14,9 +12,3 @@ glib::wrapper! {
 }
 
 impl Win32Drag {}
-
-impl fmt::Display for Win32Drag {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("Win32Drag")
-    }
-}

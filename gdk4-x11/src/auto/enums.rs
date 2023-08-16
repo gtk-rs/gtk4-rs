@@ -3,7 +3,6 @@
 // DO NOT EDIT
 
 use glib::translate::*;
-use std::fmt;
 
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
@@ -17,21 +16,6 @@ pub enum X11DeviceType {
     Floating,
     #[doc(hidden)]
     __Unknown(i32),
-}
-
-impl fmt::Display for X11DeviceType {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "X11DeviceType::{}",
-            match *self {
-                Self::Logical => "Logical",
-                Self::Physical => "Physical",
-                Self::Floating => "Floating",
-                _ => "Unknown",
-            }
-        )
-    }
 }
 
 #[doc(hidden)]

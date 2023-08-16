@@ -12,7 +12,7 @@ use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
-use std::{boxed::Box as Box_, fmt, mem, mem::transmute};
+use std::{boxed::Box as Box_, mem, mem::transmute};
 
 glib::wrapper! {
     #[doc(alias = "GtkCellArea")]
@@ -908,9 +908,3 @@ pub trait CellAreaExt: IsA<CellArea> + sealed::Sealed + 'static {
 }
 
 impl<O: IsA<CellArea>> CellAreaExt for O {}
-
-impl fmt::Display for CellArea {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("CellArea")
-    }
-}

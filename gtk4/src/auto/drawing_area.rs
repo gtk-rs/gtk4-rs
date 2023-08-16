@@ -10,7 +10,7 @@ use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
-use std::{boxed::Box as Box_, fmt, mem::transmute};
+use std::{boxed::Box as Box_, mem::transmute};
 
 glib::wrapper! {
     #[doc(alias = "GtkDrawingArea")]
@@ -382,9 +382,3 @@ pub trait DrawingAreaExt: IsA<DrawingArea> + sealed::Sealed + 'static {
 }
 
 impl<O: IsA<DrawingArea>> DrawingAreaExt for O {}
-
-impl fmt::Display for DrawingArea {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("DrawingArea")
-    }
-}

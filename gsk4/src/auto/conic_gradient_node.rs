@@ -4,7 +4,7 @@
 
 use crate::ColorStop;
 use glib::translate::*;
-use std::{fmt, mem};
+use std::mem;
 
 glib::wrapper! {
     #[doc(alias = "GskConicGradientNode")]
@@ -87,11 +87,5 @@ impl ConicGradientNode {
     #[doc(alias = "get_rotation")]
     pub fn rotation(&self) -> f32 {
         unsafe { ffi::gsk_conic_gradient_node_get_rotation(self.to_glib_none().0) }
-    }
-}
-
-impl fmt::Display for ConicGradientNode {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("ConicGradientNode")
     }
 }

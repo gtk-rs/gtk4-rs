@@ -7,7 +7,7 @@ use crate::{
     PrintQuality, Unit,
 };
 use glib::translate::*;
-use std::{fmt, mem, ptr};
+use std::{mem, ptr};
 
 glib::wrapper! {
     #[doc(alias = "GtkPrintSettings")]
@@ -711,11 +711,5 @@ impl PrintSettings {
 impl Default for PrintSettings {
     fn default() -> Self {
         Self::new()
-    }
-}
-
-impl fmt::Display for PrintSettings {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("PrintSettings")
     }
 }

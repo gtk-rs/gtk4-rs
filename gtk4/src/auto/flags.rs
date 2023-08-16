@@ -3,7 +3,6 @@
 // DO NOT EDIT
 
 use glib::{bitflags::bitflags, prelude::*, translate::*};
-use std::fmt;
 
 bitflags! {
     #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash)]
@@ -17,12 +16,6 @@ bitflags! {
         const SUSPEND = ffi::GTK_APPLICATION_INHIBIT_SUSPEND as _;
         #[doc(alias = "GTK_APPLICATION_INHIBIT_IDLE")]
         const IDLE = ffi::GTK_APPLICATION_INHIBIT_IDLE as _;
-    }
-}
-
-impl fmt::Display for ApplicationInhibitFlags {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        <Self as fmt::Debug>::fmt(self, f)
     }
 }
 
@@ -106,12 +99,6 @@ bitflags! {
     pub struct BuilderClosureFlags: u32 {
         #[doc(alias = "GTK_BUILDER_CLOSURE_SWAPPED")]
         const SWAPPED = ffi::GTK_BUILDER_CLOSURE_SWAPPED as _;
-    }
-}
-
-impl fmt::Display for BuilderClosureFlags {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        <Self as fmt::Debug>::fmt(self, f)
     }
 }
 
@@ -207,12 +194,6 @@ bitflags! {
         const EXPANDABLE = ffi::GTK_CELL_RENDERER_EXPANDABLE as _;
         #[doc(alias = "GTK_CELL_RENDERER_EXPANDED")]
         const EXPANDED = ffi::GTK_CELL_RENDERER_EXPANDED as _;
-    }
-}
-
-impl fmt::Display for CellRendererState {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        <Self as fmt::Debug>::fmt(self, f)
     }
 }
 
@@ -337,12 +318,6 @@ bitflags! {
     }
 }
 
-impl fmt::Display for DebugFlags {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        <Self as fmt::Debug>::fmt(self, f)
-    }
-}
-
 #[doc(hidden)]
 impl IntoGlib for DebugFlags {
     type GlibType = ffi::GtkDebugFlags;
@@ -427,12 +402,6 @@ bitflags! {
         const DESTROY_WITH_PARENT = ffi::GTK_DIALOG_DESTROY_WITH_PARENT as _;
         #[doc(alias = "GTK_DIALOG_USE_HEADER_BAR")]
         const USE_HEADER_BAR = ffi::GTK_DIALOG_USE_HEADER_BAR as _;
-    }
-}
-
-impl fmt::Display for DialogFlags {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        <Self as fmt::Debug>::fmt(self, f)
     }
 }
 
@@ -529,12 +498,6 @@ bitflags! {
     }
 }
 
-impl fmt::Display for EventControllerScrollFlags {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        <Self as fmt::Debug>::fmt(self, f)
-    }
-}
-
 #[doc(hidden)]
 impl IntoGlib for EventControllerScrollFlags {
     type GlibType = ffi::GtkEventControllerScrollFlags;
@@ -626,12 +589,6 @@ bitflags! {
     }
 }
 
-impl fmt::Display for FontChooserLevel {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        <Self as fmt::Debug>::fmt(self, f)
-    }
-}
-
 #[doc(hidden)]
 impl IntoGlib for FontChooserLevel {
     type GlibType = ffi::GtkFontChooserLevel;
@@ -716,12 +673,6 @@ bitflags! {
         const FORCE_SYMBOLIC = ffi::GTK_ICON_LOOKUP_FORCE_SYMBOLIC as _;
         #[doc(alias = "GTK_ICON_LOOKUP_PRELOAD")]
         const PRELOAD = ffi::GTK_ICON_LOOKUP_PRELOAD as _;
-    }
-}
-
-impl fmt::Display for IconLookupFlags {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        <Self as fmt::Debug>::fmt(self, f)
     }
 }
 
@@ -832,12 +783,6 @@ bitflags! {
     }
 }
 
-impl fmt::Display for InputHints {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        <Self as fmt::Debug>::fmt(self, f)
-    }
-}
-
 #[doc(hidden)]
 impl IntoGlib for InputHints {
     type GlibType = ffi::GtkInputHints;
@@ -924,14 +869,6 @@ bitflags! {
         const FOCUS = ffi::GTK_LIST_SCROLL_FOCUS as _;
         #[doc(alias = "GTK_LIST_SCROLL_SELECT")]
         const SELECT = ffi::GTK_LIST_SCROLL_SELECT as _;
-    }
-}
-
-#[cfg(feature = "v4_12")]
-#[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
-impl fmt::Display for ListScrollFlags {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        <Self as fmt::Debug>::fmt(self, f)
     }
 }
 
@@ -1038,12 +975,6 @@ bitflags! {
     }
 }
 
-impl fmt::Display for PickFlags {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        <Self as fmt::Debug>::fmt(self, f)
-    }
-}
-
 #[doc(hidden)]
 impl IntoGlib for PickFlags {
     type GlibType = ffi::GtkPickFlags;
@@ -1124,12 +1055,6 @@ bitflags! {
     pub struct PopoverMenuFlags: u32 {
         #[doc(alias = "GTK_POPOVER_MENU_NESTED")]
         const NESTED = ffi::GTK_POPOVER_MENU_NESTED as _;
-    }
-}
-
-impl fmt::Display for PopoverMenuFlags {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        <Self as fmt::Debug>::fmt(self, f)
     }
 }
 
@@ -1237,13 +1162,6 @@ bitflags! {
 }
 
 #[cfg(target_os = "linux")]
-impl fmt::Display for PrintCapabilities {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        <Self as fmt::Debug>::fmt(self, f)
-    }
-}
-
-#[cfg(target_os = "linux")]
 #[doc(hidden)]
 impl IntoGlib for PrintCapabilities {
     type GlibType = ffi::GtkPrintCapabilities;
@@ -1331,12 +1249,6 @@ bitflags! {
     pub struct ShortcutActionFlags: u32 {
         #[doc(alias = "GTK_SHORTCUT_ACTION_EXCLUSIVE")]
         const EXCLUSIVE = ffi::GTK_SHORTCUT_ACTION_EXCLUSIVE as _;
-    }
-}
-
-impl fmt::Display for ShortcutActionFlags {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        <Self as fmt::Debug>::fmt(self, f)
     }
 }
 
@@ -1453,12 +1365,6 @@ bitflags! {
     }
 }
 
-impl fmt::Display for StateFlags {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        <Self as fmt::Debug>::fmt(self, f)
-    }
-}
-
 #[doc(hidden)]
 impl IntoGlib for StateFlags {
     type GlibType = ffi::GtkStateFlags;
@@ -1545,12 +1451,6 @@ bitflags! {
         const SHOW_STYLE = ffi::GTK_STYLE_CONTEXT_PRINT_SHOW_STYLE as _;
         #[doc(alias = "GTK_STYLE_CONTEXT_PRINT_SHOW_CHANGE")]
         const SHOW_CHANGE = ffi::GTK_STYLE_CONTEXT_PRINT_SHOW_CHANGE as _;
-    }
-}
-
-impl fmt::Display for StyleContextPrintFlags {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        <Self as fmt::Debug>::fmt(self, f)
     }
 }
 
@@ -1641,12 +1541,6 @@ bitflags! {
     }
 }
 
-impl fmt::Display for TextSearchFlags {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        <Self as fmt::Debug>::fmt(self, f)
-    }
-}
-
 #[doc(hidden)]
 impl IntoGlib for TextSearchFlags {
     type GlibType = ffi::GtkTextSearchFlags;
@@ -1730,13 +1624,6 @@ bitflags! {
         const ITERS_PERSIST = ffi::GTK_TREE_MODEL_ITERS_PERSIST as _;
         #[doc(alias = "GTK_TREE_MODEL_LIST_ONLY")]
         const LIST_ONLY = ffi::GTK_TREE_MODEL_LIST_ONLY as _;
-    }
-}
-
-#[allow(deprecated)]
-impl fmt::Display for TreeModelFlags {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        <Self as fmt::Debug>::fmt(self, f)
     }
 }
 

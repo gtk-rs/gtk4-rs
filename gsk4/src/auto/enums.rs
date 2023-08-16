@@ -3,7 +3,6 @@
 // DO NOT EDIT
 
 use glib::{prelude::*, translate::*};
-use std::fmt;
 
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
@@ -43,34 +42,6 @@ pub enum BlendMode {
     Luminosity,
     #[doc(hidden)]
     __Unknown(i32),
-}
-
-impl fmt::Display for BlendMode {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "BlendMode::{}",
-            match *self {
-                Self::Default => "Default",
-                Self::Multiply => "Multiply",
-                Self::Screen => "Screen",
-                Self::Overlay => "Overlay",
-                Self::Darken => "Darken",
-                Self::Lighten => "Lighten",
-                Self::ColorDodge => "ColorDodge",
-                Self::ColorBurn => "ColorBurn",
-                Self::HardLight => "HardLight",
-                Self::SoftLight => "SoftLight",
-                Self::Difference => "Difference",
-                Self::Exclusion => "Exclusion",
-                Self::Color => "Color",
-                Self::Hue => "Hue",
-                Self::Saturation => "Saturation",
-                Self::Luminosity => "Luminosity",
-                _ => "Unknown",
-            }
-        )
-    }
 }
 
 #[doc(hidden)]
@@ -198,22 +169,6 @@ pub enum Corner {
     __Unknown(i32),
 }
 
-impl fmt::Display for Corner {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "Corner::{}",
-            match *self {
-                Self::TopLeft => "TopLeft",
-                Self::TopRight => "TopRight",
-                Self::BottomRight => "BottomRight",
-                Self::BottomLeft => "BottomLeft",
-                _ => "Unknown",
-            }
-        )
-    }
-}
-
 #[doc(hidden)]
 impl IntoGlib for Corner {
     type GlibType = ffi::GskCorner;
@@ -313,22 +268,6 @@ pub enum FillRule {
     EvenOdd,
     #[doc(hidden)]
     __Unknown(i32),
-}
-
-#[cfg(feature = "v4_14")]
-#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
-impl fmt::Display for FillRule {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "FillRule::{}",
-            match *self {
-                Self::Winding => "Winding",
-                Self::EvenOdd => "EvenOdd",
-                _ => "Unknown",
-            }
-        )
-    }
 }
 
 #[cfg(feature = "v4_14")]
@@ -454,26 +393,6 @@ pub enum GLUniformType {
     __Unknown(i32),
 }
 
-impl fmt::Display for GLUniformType {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "GLUniformType::{}",
-            match *self {
-                Self::None => "None",
-                Self::Float => "Float",
-                Self::Int => "Int",
-                Self::Uint => "Uint",
-                Self::Bool => "Bool",
-                Self::Vec2 => "Vec2",
-                Self::Vec3 => "Vec3",
-                Self::Vec4 => "Vec4",
-                _ => "Unknown",
-            }
-        )
-    }
-}
-
 #[doc(hidden)]
 impl IntoGlib for GLUniformType {
     type GlibType = ffi::GskGLUniformType;
@@ -583,23 +502,6 @@ pub enum LineCap {
     Square,
     #[doc(hidden)]
     __Unknown(i32),
-}
-
-#[cfg(feature = "v4_14")]
-#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
-impl fmt::Display for LineCap {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "LineCap::{}",
-            match *self {
-                Self::Butt => "Butt",
-                Self::Round => "Round",
-                Self::Square => "Square",
-                _ => "Unknown",
-            }
-        )
-    }
 }
 
 #[cfg(feature = "v4_14")]
@@ -717,23 +619,6 @@ pub enum LineJoin {
     Bevel,
     #[doc(hidden)]
     __Unknown(i32),
-}
-
-#[cfg(feature = "v4_14")]
-#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
-impl fmt::Display for LineJoin {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "LineJoin::{}",
-            match *self {
-                Self::Miter => "Miter",
-                Self::Round => "Round",
-                Self::Bevel => "Bevel",
-                _ => "Unknown",
-            }
-        )
-    }
 }
 
 #[cfg(feature = "v4_14")]
@@ -857,24 +742,6 @@ pub enum MaskMode {
 
 #[cfg(feature = "v4_10")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
-impl fmt::Display for MaskMode {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "MaskMode::{}",
-            match *self {
-                Self::Alpha => "Alpha",
-                Self::InvertedAlpha => "InvertedAlpha",
-                Self::Luminance => "Luminance",
-                Self::InvertedLuminance => "InvertedLuminance",
-                _ => "Unknown",
-            }
-        )
-    }
-}
-
-#[cfg(feature = "v4_10")]
-#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 #[doc(hidden)]
 impl IntoGlib for MaskMode {
     type GlibType = ffi::GskMaskMode;
@@ -988,22 +855,6 @@ pub enum PathDirection {
     End,
     #[doc(hidden)]
     __Unknown(i32),
-}
-
-#[cfg(feature = "v4_14")]
-#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
-impl fmt::Display for PathDirection {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "PathDirection::{}",
-            match *self {
-                Self::Start => "Start",
-                Self::End => "End",
-                _ => "Unknown",
-            }
-        )
-    }
 }
 
 #[cfg(feature = "v4_14")]
@@ -1123,25 +974,6 @@ pub enum PathOperation {
     Cubic,
     #[doc(hidden)]
     __Unknown(i32),
-}
-
-#[cfg(feature = "v4_14")]
-#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
-impl fmt::Display for PathOperation {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "PathOperation::{}",
-            match *self {
-                Self::Move => "Move",
-                Self::Close => "Close",
-                Self::Line => "Line",
-                Self::Quad => "Quad",
-                Self::Cubic => "Cubic",
-                _ => "Unknown",
-            }
-        )
-    }
 }
 
 #[cfg(feature = "v4_14")]
@@ -1321,50 +1153,6 @@ pub enum RenderNodeType {
     __Unknown(i32),
 }
 
-impl fmt::Display for RenderNodeType {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "RenderNodeType::{}",
-            match *self {
-                Self::NotARenderNode => "NotARenderNode",
-                Self::ContainerNode => "ContainerNode",
-                Self::CairoNode => "CairoNode",
-                Self::ColorNode => "ColorNode",
-                Self::LinearGradientNode => "LinearGradientNode",
-                Self::RepeatingLinearGradientNode => "RepeatingLinearGradientNode",
-                Self::RadialGradientNode => "RadialGradientNode",
-                Self::RepeatingRadialGradientNode => "RepeatingRadialGradientNode",
-                Self::ConicGradientNode => "ConicGradientNode",
-                Self::BorderNode => "BorderNode",
-                Self::TextureNode => "TextureNode",
-                Self::InsetShadowNode => "InsetShadowNode",
-                Self::OutsetShadowNode => "OutsetShadowNode",
-                Self::TransformNode => "TransformNode",
-                Self::OpacityNode => "OpacityNode",
-                Self::ColorMatrixNode => "ColorMatrixNode",
-                Self::RepeatNode => "RepeatNode",
-                Self::ClipNode => "ClipNode",
-                Self::RoundedClipNode => "RoundedClipNode",
-                Self::ShadowNode => "ShadowNode",
-                Self::BlendNode => "BlendNode",
-                Self::CrossFadeNode => "CrossFadeNode",
-                Self::TextNode => "TextNode",
-                Self::BlurNode => "BlurNode",
-                Self::DebugNode => "DebugNode",
-                Self::GlShaderNode => "GlShaderNode",
-                Self::TextureScaleNode => "TextureScaleNode",
-                Self::MaskNode => "MaskNode",
-                #[cfg(feature = "v4_14")]
-                Self::FillNode => "FillNode",
-                #[cfg(feature = "v4_14")]
-                Self::StrokeNode => "StrokeNode",
-                _ => "Unknown",
-            }
-        )
-    }
-}
-
 #[doc(hidden)]
 impl IntoGlib for RenderNodeType {
     type GlibType = ffi::GskRenderNodeType;
@@ -1520,21 +1308,6 @@ pub enum ScalingFilter {
     __Unknown(i32),
 }
 
-impl fmt::Display for ScalingFilter {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "ScalingFilter::{}",
-            match *self {
-                Self::Linear => "Linear",
-                Self::Nearest => "Nearest",
-                Self::Trilinear => "Trilinear",
-                _ => "Unknown",
-            }
-        )
-    }
-}
-
 #[doc(hidden)]
 impl IntoGlib for ScalingFilter {
     type GlibType = ffi::GskScalingFilter;
@@ -1632,21 +1405,6 @@ pub enum SerializationError {
     InvalidData,
     #[doc(hidden)]
     __Unknown(i32),
-}
-
-impl fmt::Display for SerializationError {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "SerializationError::{}",
-            match *self {
-                Self::UnsupportedFormat => "UnsupportedFormat",
-                Self::UnsupportedVersion => "UnsupportedVersion",
-                Self::InvalidData => "InvalidData",
-                _ => "Unknown",
-            }
-        )
-    }
 }
 
 #[doc(hidden)]
@@ -1777,25 +1535,6 @@ pub enum TransformCategory {
     Identity,
     #[doc(hidden)]
     __Unknown(i32),
-}
-
-impl fmt::Display for TransformCategory {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "TransformCategory::{}",
-            match *self {
-                Self::Unknown => "Unknown",
-                Self::Any => "Any",
-                Self::_3d => "_3d",
-                Self::_2d => "_2d",
-                Self::_2dAffine => "_2dAffine",
-                Self::_2dTranslate => "_2dTranslate",
-                Self::Identity => "Identity",
-                _ => "Unknown",
-            }
-        )
-    }
 }
 
 #[doc(hidden)]

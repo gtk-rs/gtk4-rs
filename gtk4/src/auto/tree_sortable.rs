@@ -9,7 +9,7 @@ use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
-use std::{boxed::Box as Box_, fmt, mem::transmute};
+use std::{boxed::Box as Box_, mem::transmute};
 
 glib::wrapper! {
     #[doc(alias = "GtkTreeSortable")]
@@ -77,9 +77,3 @@ pub trait TreeSortableExt: IsA<TreeSortable> + sealed::Sealed + 'static {
 }
 
 impl<O: IsA<TreeSortable>> TreeSortableExt for O {}
-
-impl fmt::Display for TreeSortable {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("TreeSortable")
-    }
-}

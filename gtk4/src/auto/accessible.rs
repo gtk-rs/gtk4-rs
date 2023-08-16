@@ -14,7 +14,7 @@ use glib::{
 #[cfg(feature = "v4_10")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 use std::mem;
-use std::{boxed::Box as Box_, fmt, mem::transmute};
+use std::{boxed::Box as Box_, mem::transmute};
 
 glib::wrapper! {
     #[doc(alias = "GtkAccessible")]
@@ -228,9 +228,3 @@ pub trait AccessibleExt: IsA<Accessible> + sealed::Sealed + 'static {
 }
 
 impl<O: IsA<Accessible>> AccessibleExt for O {}
-
-impl fmt::Display for Accessible {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("Accessible")
-    }
-}

@@ -4,7 +4,6 @@
 
 use crate::{BuilderScope, ListItemFactory};
 use glib::{prelude::*, translate::*};
-use std::fmt;
 
 glib::wrapper! {
     #[doc(alias = "GtkBuilderListItemFactory")]
@@ -76,11 +75,5 @@ impl BuilderListItemFactory {
                 self.to_glib_none().0,
             ))
         }
-    }
-}
-
-impl fmt::Display for BuilderListItemFactory {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("BuilderListItemFactory")
     }
 }

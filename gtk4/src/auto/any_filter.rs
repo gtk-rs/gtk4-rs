@@ -4,7 +4,6 @@
 
 use crate::{Buildable, Filter, MultiFilter};
 use glib::translate::*;
-use std::fmt;
 
 glib::wrapper! {
     #[doc(alias = "GtkAnyFilter")]
@@ -26,11 +25,5 @@ impl AnyFilter {
 impl Default for AnyFilter {
     fn default() -> Self {
         Self::new()
-    }
-}
-
-impl fmt::Display for AnyFilter {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("AnyFilter")
     }
 }

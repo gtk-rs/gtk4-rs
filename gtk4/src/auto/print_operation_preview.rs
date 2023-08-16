@@ -8,7 +8,7 @@ use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
-use std::{boxed::Box as Box_, fmt, mem::transmute};
+use std::{boxed::Box as Box_, mem::transmute};
 
 glib::wrapper! {
     #[doc(alias = "GtkPrintOperationPreview")]
@@ -118,9 +118,3 @@ pub trait PrintOperationPreviewExt: IsA<PrintOperationPreview> + sealed::Sealed 
 }
 
 impl<O: IsA<PrintOperationPreview>> PrintOperationPreviewExt for O {}
-
-impl fmt::Display for PrintOperationPreview {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("PrintOperationPreview")
-    }
-}

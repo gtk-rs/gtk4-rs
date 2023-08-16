@@ -4,7 +4,7 @@
 
 use crate::{LayoutChild, Orientation, SizeRequestMode, Widget};
 use glib::{prelude::*, translate::*};
-use std::{fmt, mem};
+use std::mem;
 
 glib::wrapper! {
     #[doc(alias = "GtkLayoutManager")]
@@ -109,9 +109,3 @@ pub trait LayoutManagerExt: IsA<LayoutManager> + sealed::Sealed + 'static {
 }
 
 impl<O: IsA<LayoutManager>> LayoutManagerExt for O {}
-
-impl fmt::Display for LayoutManager {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("LayoutManager")
-    }
-}

@@ -3,7 +3,7 @@
 // DO NOT EDIT
 
 use glib::{prelude::*, translate::*};
-use std::{fmt, mem};
+use std::mem;
 
 glib::wrapper! {
     #[doc(alias = "GskTextNode")]
@@ -82,11 +82,5 @@ impl TextNode {
     #[doc(alias = "gsk_text_node_has_color_glyphs")]
     pub fn has_color_glyphs(&self) -> bool {
         unsafe { from_glib(ffi::gsk_text_node_has_color_glyphs(self.to_glib_none().0)) }
-    }
-}
-
-impl fmt::Display for TextNode {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("TextNode")
     }
 }

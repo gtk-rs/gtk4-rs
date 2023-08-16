@@ -8,7 +8,7 @@ use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
-use std::{boxed::Box as Box_, fmt, mem::transmute};
+use std::{boxed::Box as Box_, mem::transmute};
 
 glib::wrapper! {
     #[doc(alias = "GtkTextTagTable")]
@@ -164,11 +164,5 @@ impl TextTagTable {
 impl Default for TextTagTable {
     fn default() -> Self {
         Self::new()
-    }
-}
-
-impl fmt::Display for TextTagTable {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("TextTagTable")
     }
 }

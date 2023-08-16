@@ -2,8 +2,6 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use std::fmt;
-
 glib::wrapper! {
     #[doc(alias = "GdkWin32DisplayManager")]
     pub struct Win32DisplayManager(Object<ffi::GdkWin32DisplayManager, ffi::GdkWin32DisplayManagerClass>) @extends gdk::DisplayManager;
@@ -14,9 +12,3 @@ glib::wrapper! {
 }
 
 impl Win32DisplayManager {}
-
-impl fmt::Display for Win32DisplayManager {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("Win32DisplayManager")
-    }
-}

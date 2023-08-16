@@ -3,7 +3,6 @@
 // DO NOT EDIT
 
 use crate::LayoutChild;
-use std::fmt;
 
 glib::wrapper! {
     #[doc(alias = "GtkConstraintLayoutChild")]
@@ -15,9 +14,3 @@ glib::wrapper! {
 }
 
 impl ConstraintLayoutChild {}
-
-impl fmt::Display for ConstraintLayoutChild {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("ConstraintLayoutChild")
-    }
-}

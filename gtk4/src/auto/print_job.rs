@@ -10,7 +10,7 @@ use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
-use std::{boxed::Box as Box_, fmt, mem, mem::transmute, ptr};
+use std::{boxed::Box as Box_, mem, mem::transmute, ptr};
 
 glib::wrapper! {
     #[doc(alias = "GtkPrintJob")]
@@ -326,11 +326,5 @@ impl PrintJob {
                 Box_::into_raw(f),
             )
         }
-    }
-}
-
-impl fmt::Display for PrintJob {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("PrintJob")
     }
 }

@@ -5,9 +5,6 @@
 #[cfg(feature = "v4_14")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
 use glib::{bitflags::bitflags, prelude::*, translate::*};
-#[cfg(feature = "v4_14")]
-#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
-use std::fmt;
 
 #[cfg(feature = "v4_14")]
 bitflags! {
@@ -21,14 +18,6 @@ bitflags! {
         const QUAD = ffi::GSK_PATH_FOREACH_ALLOW_QUAD as _;
         #[doc(alias = "GSK_PATH_FOREACH_ALLOW_CUBIC")]
         const CUBIC = ffi::GSK_PATH_FOREACH_ALLOW_CUBIC as _;
-    }
-}
-
-#[cfg(feature = "v4_14")]
-#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
-impl fmt::Display for PathForeachFlags {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        <Self as fmt::Debug>::fmt(self, f)
     }
 }
 

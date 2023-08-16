@@ -5,7 +5,7 @@
 
 use crate::X11Screen;
 use glib::translate::*;
-use std::{fmt, mem, ptr};
+use std::{mem, ptr};
 
 glib::wrapper! {
     #[doc(alias = "GdkX11Display")]
@@ -224,11 +224,5 @@ impl X11Display {
     pub fn open(display_name: Option<&str>) -> Option<gdk::Display> {
         assert_initialized_main_thread!();
         unsafe { from_glib_full(ffi::gdk_x11_display_open(display_name.to_glib_none().0)) }
-    }
-}
-
-impl fmt::Display for X11Display {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("X11Display")
     }
 }

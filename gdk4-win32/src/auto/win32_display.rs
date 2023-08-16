@@ -4,7 +4,7 @@
 
 use crate::Win32HCursor;
 use glib::{prelude::*, translate::*};
-use std::{fmt, mem};
+use std::mem;
 
 glib::wrapper! {
     #[doc(alias = "GdkWin32Display")]
@@ -67,11 +67,5 @@ impl Win32Display {
                 None
             }
         }
-    }
-}
-
-impl fmt::Display for Win32Display {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("Win32Display")
     }
 }

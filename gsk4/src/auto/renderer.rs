@@ -8,7 +8,7 @@ use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
-use std::{boxed::Box as Box_, fmt, mem::transmute, ptr};
+use std::{boxed::Box as Box_, mem::transmute, ptr};
 
 glib::wrapper! {
     #[doc(alias = "GskRenderer")]
@@ -154,9 +154,3 @@ pub trait GskRendererExt: IsA<Renderer> + sealed::Sealed + 'static {
 }
 
 impl<O: IsA<Renderer>> GskRendererExt for O {}
-
-impl fmt::Display for Renderer {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("Renderer")
-    }
-}

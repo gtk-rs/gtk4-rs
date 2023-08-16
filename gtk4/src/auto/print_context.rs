@@ -4,7 +4,7 @@
 
 use crate::PageSetup;
 use glib::translate::*;
-use std::{fmt, mem};
+use std::mem;
 
 glib::wrapper! {
     #[doc(alias = "GtkPrintContext")]
@@ -122,11 +122,5 @@ impl PrintContext {
                 dpi_y,
             );
         }
-    }
-}
-
-impl fmt::Display for PrintContext {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("PrintContext")
     }
 }

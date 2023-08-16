@@ -8,7 +8,7 @@ use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
-use std::{boxed::Box as Box_, fmt, mem::transmute};
+use std::{boxed::Box as Box_, mem::transmute};
 
 glib::wrapper! {
     #[doc(alias = "GtkApplication")]
@@ -461,9 +461,3 @@ pub trait GtkApplicationExt: IsA<Application> + sealed::Sealed + 'static {
 }
 
 impl<O: IsA<Application>> GtkApplicationExt for O {}
-
-impl fmt::Display for Application {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("Application")
-    }
-}

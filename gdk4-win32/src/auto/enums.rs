@@ -3,7 +3,6 @@
 // DO NOT EDIT
 
 use glib::translate::*;
-use std::fmt;
 
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
@@ -15,20 +14,6 @@ pub enum Win32MessageFilterReturn {
     Remove,
     #[doc(hidden)]
     __Unknown(i32),
-}
-
-impl fmt::Display for Win32MessageFilterReturn {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "Win32MessageFilterReturn::{}",
-            match *self {
-                Self::Continue => "Continue",
-                Self::Remove => "Remove",
-                _ => "Unknown",
-            }
-        )
-    }
 }
 
 #[doc(hidden)]

@@ -3,7 +3,6 @@
 // DO NOT EDIT
 
 use glib::{prelude::*, translate::*};
-use std::fmt;
 
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
@@ -19,22 +18,6 @@ pub enum AccessibleAutocomplete {
     Both,
     #[doc(hidden)]
     __Unknown(i32),
-}
-
-impl fmt::Display for AccessibleAutocomplete {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "AccessibleAutocomplete::{}",
-            match *self {
-                Self::None => "None",
-                Self::Inline => "Inline",
-                Self::List => "List",
-                Self::Both => "Both",
-                _ => "Unknown",
-            }
-        )
-    }
 }
 
 #[doc(hidden)]
@@ -140,22 +123,6 @@ pub enum AccessibleInvalidState {
     __Unknown(i32),
 }
 
-impl fmt::Display for AccessibleInvalidState {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "AccessibleInvalidState::{}",
-            match *self {
-                Self::False => "False",
-                Self::True => "True",
-                Self::Grammar => "Grammar",
-                Self::Spelling => "Spelling",
-                _ => "Unknown",
-            }
-        )
-    }
-}
-
 #[doc(hidden)]
 impl IntoGlib for AccessibleInvalidState {
     type GlibType = ffi::GtkAccessibleInvalidState;
@@ -257,23 +224,6 @@ pub enum AccessiblePlatformState {
     Active,
     #[doc(hidden)]
     __Unknown(i32),
-}
-
-#[cfg(feature = "v4_10")]
-#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
-impl fmt::Display for AccessiblePlatformState {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "AccessiblePlatformState::{}",
-            match *self {
-                Self::Focusable => "Focusable",
-                Self::Focused => "Focused",
-                Self::Active => "Active",
-                _ => "Unknown",
-            }
-        )
-    }
 }
 
 #[cfg(feature = "v4_10")]
@@ -430,37 +380,6 @@ impl AccessibleProperty {
         unsafe {
             ffi::gtk_accessible_property_init_value(self.into_glib(), value.to_glib_none_mut().0);
         }
-    }
-}
-
-impl fmt::Display for AccessibleProperty {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "AccessibleProperty::{}",
-            match *self {
-                Self::Autocomplete => "Autocomplete",
-                Self::Description => "Description",
-                Self::HasPopup => "HasPopup",
-                Self::KeyShortcuts => "KeyShortcuts",
-                Self::Label => "Label",
-                Self::Level => "Level",
-                Self::Modal => "Modal",
-                Self::MultiLine => "MultiLine",
-                Self::MultiSelectable => "MultiSelectable",
-                Self::Orientation => "Orientation",
-                Self::Placeholder => "Placeholder",
-                Self::ReadOnly => "ReadOnly",
-                Self::Required => "Required",
-                Self::RoleDescription => "RoleDescription",
-                Self::Sort => "Sort",
-                Self::ValueMax => "ValueMax",
-                Self::ValueMin => "ValueMin",
-                Self::ValueNow => "ValueNow",
-                Self::ValueText => "ValueText",
-                _ => "Unknown",
-            }
-        )
     }
 }
 
@@ -630,36 +549,6 @@ impl AccessibleRelation {
         unsafe {
             ffi::gtk_accessible_relation_init_value(self.into_glib(), value.to_glib_none_mut().0);
         }
-    }
-}
-
-impl fmt::Display for AccessibleRelation {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "AccessibleRelation::{}",
-            match *self {
-                Self::ActiveDescendant => "ActiveDescendant",
-                Self::ColCount => "ColCount",
-                Self::ColIndex => "ColIndex",
-                Self::ColIndexText => "ColIndexText",
-                Self::ColSpan => "ColSpan",
-                Self::Controls => "Controls",
-                Self::DescribedBy => "DescribedBy",
-                Self::Details => "Details",
-                Self::ErrorMessage => "ErrorMessage",
-                Self::FlowTo => "FlowTo",
-                Self::LabelledBy => "LabelledBy",
-                Self::Owns => "Owns",
-                Self::PosInSet => "PosInSet",
-                Self::RowCount => "RowCount",
-                Self::RowIndex => "RowIndex",
-                Self::RowIndexText => "RowIndexText",
-                Self::RowSpan => "RowSpan",
-                Self::SetSize => "SetSize",
-                _ => "Unknown",
-            }
-        )
     }
 }
 
@@ -948,100 +837,6 @@ pub enum AccessibleRole {
     __Unknown(i32),
 }
 
-impl fmt::Display for AccessibleRole {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "AccessibleRole::{}",
-            match *self {
-                Self::Alert => "Alert",
-                Self::AlertDialog => "AlertDialog",
-                Self::Banner => "Banner",
-                Self::Button => "Button",
-                Self::Caption => "Caption",
-                Self::Cell => "Cell",
-                Self::Checkbox => "Checkbox",
-                Self::ColumnHeader => "ColumnHeader",
-                Self::ComboBox => "ComboBox",
-                Self::Command => "Command",
-                Self::Composite => "Composite",
-                Self::Dialog => "Dialog",
-                Self::Document => "Document",
-                Self::Feed => "Feed",
-                Self::Form => "Form",
-                Self::Generic => "Generic",
-                Self::Grid => "Grid",
-                Self::GridCell => "GridCell",
-                Self::Group => "Group",
-                Self::Heading => "Heading",
-                Self::Img => "Img",
-                Self::Input => "Input",
-                Self::Label => "Label",
-                Self::Landmark => "Landmark",
-                Self::Legend => "Legend",
-                Self::Link => "Link",
-                Self::List => "List",
-                Self::ListBox => "ListBox",
-                Self::ListItem => "ListItem",
-                Self::Log => "Log",
-                Self::Main => "Main",
-                Self::Marquee => "Marquee",
-                Self::Math => "Math",
-                Self::Meter => "Meter",
-                Self::Menu => "Menu",
-                Self::MenuBar => "MenuBar",
-                Self::MenuItem => "MenuItem",
-                Self::MenuItemCheckbox => "MenuItemCheckbox",
-                Self::MenuItemRadio => "MenuItemRadio",
-                Self::Navigation => "Navigation",
-                Self::None => "None",
-                Self::Note => "Note",
-                Self::Option => "Option",
-                Self::Presentation => "Presentation",
-                Self::ProgressBar => "ProgressBar",
-                Self::Radio => "Radio",
-                Self::RadioGroup => "RadioGroup",
-                Self::Range => "Range",
-                Self::Region => "Region",
-                Self::Row => "Row",
-                Self::RowGroup => "RowGroup",
-                Self::RowHeader => "RowHeader",
-                Self::Scrollbar => "Scrollbar",
-                Self::Search => "Search",
-                Self::SearchBox => "SearchBox",
-                Self::Section => "Section",
-                Self::SectionHead => "SectionHead",
-                Self::Select => "Select",
-                Self::Separator => "Separator",
-                Self::Slider => "Slider",
-                Self::SpinButton => "SpinButton",
-                Self::Status => "Status",
-                Self::Structure => "Structure",
-                Self::Switch => "Switch",
-                Self::Tab => "Tab",
-                Self::Table => "Table",
-                Self::TabList => "TabList",
-                Self::TabPanel => "TabPanel",
-                Self::TextBox => "TextBox",
-                Self::Time => "Time",
-                Self::Timer => "Timer",
-                Self::Toolbar => "Toolbar",
-                Self::Tooltip => "Tooltip",
-                Self::Tree => "Tree",
-                Self::TreeGrid => "TreeGrid",
-                Self::TreeItem => "TreeItem",
-                Self::Widget => "Widget",
-                Self::Window => "Window",
-                #[cfg(feature = "v4_10")]
-                Self::ToggleButton => "ToggleButton",
-                #[cfg(feature = "v4_12")]
-                Self::Application => "Application",
-                _ => "Unknown",
-            }
-        )
-    }
-}
-
 #[doc(hidden)]
 impl IntoGlib for AccessibleRole {
     type GlibType = ffi::GtkAccessibleRole;
@@ -1299,22 +1094,6 @@ pub enum AccessibleSort {
     __Unknown(i32),
 }
 
-impl fmt::Display for AccessibleSort {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "AccessibleSort::{}",
-            match *self {
-                Self::None => "None",
-                Self::Ascending => "Ascending",
-                Self::Descending => "Descending",
-                Self::Other => "Other",
-                _ => "Unknown",
-            }
-        )
-    }
-}
-
 #[doc(hidden)]
 impl IntoGlib for AccessibleSort {
     type GlibType = ffi::GtkAccessibleSort;
@@ -1440,28 +1219,6 @@ impl AccessibleState {
     }
 }
 
-impl fmt::Display for AccessibleState {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "AccessibleState::{}",
-            match *self {
-                Self::Busy => "Busy",
-                Self::Checked => "Checked",
-                Self::Disabled => "Disabled",
-                Self::Expanded => "Expanded",
-                Self::Hidden => "Hidden",
-                Self::Invalid => "Invalid",
-                Self::Pressed => "Pressed",
-                Self::Selected => "Selected",
-                #[cfg(feature = "v4_12")]
-                Self::Visited => "Visited",
-                _ => "Unknown",
-            }
-        )
-    }
-}
-
 #[doc(hidden)]
 impl IntoGlib for AccessibleState {
     type GlibType = ffi::GtkAccessibleState;
@@ -1575,21 +1332,6 @@ pub enum AccessibleTristate {
     __Unknown(i32),
 }
 
-impl fmt::Display for AccessibleTristate {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "AccessibleTristate::{}",
-            match *self {
-                Self::False => "False",
-                Self::True => "True",
-                Self::Mixed => "Mixed",
-                _ => "Unknown",
-            }
-        )
-    }
-}
-
 #[doc(hidden)]
 impl IntoGlib for AccessibleTristate {
     type GlibType = ffi::GtkAccessibleTristate;
@@ -1691,23 +1433,6 @@ pub enum ArrowType {
     None,
     #[doc(hidden)]
     __Unknown(i32),
-}
-
-impl fmt::Display for ArrowType {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "ArrowType::{}",
-            match *self {
-                Self::Up => "Up",
-                Self::Down => "Down",
-                Self::Left => "Left",
-                Self::Right => "Right",
-                Self::None => "None",
-                _ => "Unknown",
-            }
-        )
-    }
 }
 
 #[doc(hidden)]
@@ -1819,24 +1544,6 @@ pub enum AssistantPageType {
     __Unknown(i32),
 }
 
-impl fmt::Display for AssistantPageType {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "AssistantPageType::{}",
-            match *self {
-                Self::Content => "Content",
-                Self::Intro => "Intro",
-                Self::Confirm => "Confirm",
-                Self::Summary => "Summary",
-                Self::Progress => "Progress",
-                Self::Custom => "Custom",
-                _ => "Unknown",
-            }
-        )
-    }
-}
-
 #[doc(hidden)]
 impl IntoGlib for AssistantPageType {
     type GlibType = ffi::GtkAssistantPageType;
@@ -1940,21 +1647,6 @@ pub enum BaselinePosition {
     Bottom,
     #[doc(hidden)]
     __Unknown(i32),
-}
-
-impl fmt::Display for BaselinePosition {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "BaselinePosition::{}",
-            match *self {
-                Self::Top => "Top",
-                Self::Center => "Center",
-                Self::Bottom => "Bottom",
-                _ => "Unknown",
-            }
-        )
-    }
 }
 
 #[doc(hidden)]
@@ -2068,28 +1760,6 @@ pub enum BorderStyle {
     Ridge,
     #[doc(hidden)]
     __Unknown(i32),
-}
-
-impl fmt::Display for BorderStyle {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "BorderStyle::{}",
-            match *self {
-                Self::None => "None",
-                Self::Hidden => "Hidden",
-                Self::Solid => "Solid",
-                Self::Inset => "Inset",
-                Self::Outset => "Outset",
-                Self::Dotted => "Dotted",
-                Self::Dashed => "Dashed",
-                Self::Double => "Double",
-                Self::Groove => "Groove",
-                Self::Ridge => "Ridge",
-                _ => "Unknown",
-            }
-        )
-    }
 }
 
 #[doc(hidden)]
@@ -2227,33 +1897,6 @@ pub enum BuilderError {
     InvalidFunction,
     #[doc(hidden)]
     __Unknown(i32),
-}
-
-impl fmt::Display for BuilderError {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "BuilderError::{}",
-            match *self {
-                Self::InvalidTypeFunction => "InvalidTypeFunction",
-                Self::UnhandledTag => "UnhandledTag",
-                Self::MissingAttribute => "MissingAttribute",
-                Self::InvalidAttribute => "InvalidAttribute",
-                Self::InvalidTag => "InvalidTag",
-                Self::MissingPropertyValue => "MissingPropertyValue",
-                Self::InvalidValue => "InvalidValue",
-                Self::VersionMismatch => "VersionMismatch",
-                Self::DuplicateId => "DuplicateId",
-                Self::ObjectTypeRefused => "ObjectTypeRefused",
-                Self::TemplateMismatch => "TemplateMismatch",
-                Self::InvalidProperty => "InvalidProperty",
-                Self::InvalidSignal => "InvalidSignal",
-                Self::InvalidId => "InvalidId",
-                Self::InvalidFunction => "InvalidFunction",
-                _ => "Unknown",
-            }
-        )
-    }
 }
 
 #[doc(hidden)]
@@ -2406,24 +2049,6 @@ pub enum ButtonsType {
     __Unknown(i32),
 }
 
-impl fmt::Display for ButtonsType {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "ButtonsType::{}",
-            match *self {
-                Self::None => "None",
-                Self::Ok => "Ok",
-                Self::Close => "Close",
-                Self::Cancel => "Cancel",
-                Self::YesNo => "YesNo",
-                Self::OkCancel => "OkCancel",
-                _ => "Unknown",
-            }
-        )
-    }
-}
-
 #[doc(hidden)]
 impl IntoGlib for ButtonsType {
     type GlibType = ffi::GtkButtonsType;
@@ -2527,20 +2152,6 @@ pub enum CellRendererAccelMode {
     __Unknown(i32),
 }
 
-impl fmt::Display for CellRendererAccelMode {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "CellRendererAccelMode::{}",
-            match *self {
-                Self::Gtk => "Gtk",
-                Self::Other => "Other",
-                _ => "Unknown",
-            }
-        )
-    }
-}
-
 #[doc(hidden)]
 impl IntoGlib for CellRendererAccelMode {
     type GlibType = ffi::GtkCellRendererAccelMode;
@@ -2636,21 +2247,6 @@ pub enum CellRendererMode {
     Editable,
     #[doc(hidden)]
     __Unknown(i32),
-}
-
-impl fmt::Display for CellRendererMode {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "CellRendererMode::{}",
-            match *self {
-                Self::Inert => "Inert",
-                Self::Activatable => "Activatable",
-                Self::Editable => "Editable",
-                _ => "Unknown",
-            }
-        )
-    }
 }
 
 #[doc(hidden)]
@@ -2752,23 +2348,6 @@ pub enum Collation {
     Filename,
     #[doc(hidden)]
     __Unknown(i32),
-}
-
-#[cfg(feature = "v4_10")]
-#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
-impl fmt::Display for Collation {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "Collation::{}",
-            match *self {
-                Self::None => "None",
-                Self::Unicode => "Unicode",
-                Self::Filename => "Filename",
-                _ => "Unknown",
-            }
-        )
-    }
 }
 
 #[cfg(feature = "v4_10")]
@@ -2904,30 +2483,6 @@ pub enum ConstraintAttribute {
     __Unknown(i32),
 }
 
-impl fmt::Display for ConstraintAttribute {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "ConstraintAttribute::{}",
-            match *self {
-                Self::None => "None",
-                Self::Left => "Left",
-                Self::Right => "Right",
-                Self::Top => "Top",
-                Self::Bottom => "Bottom",
-                Self::Start => "Start",
-                Self::End => "End",
-                Self::Width => "Width",
-                Self::Height => "Height",
-                Self::CenterX => "CenterX",
-                Self::CenterY => "CenterY",
-                Self::Baseline => "Baseline",
-                _ => "Unknown",
-            }
-        )
-    }
-}
-
 #[doc(hidden)]
 impl IntoGlib for ConstraintAttribute {
     type GlibType = ffi::GtkConstraintAttribute;
@@ -3045,21 +2600,6 @@ pub enum ConstraintRelation {
     __Unknown(i32),
 }
 
-impl fmt::Display for ConstraintRelation {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "ConstraintRelation::{}",
-            match *self {
-                Self::Le => "Le",
-                Self::Eq => "Eq",
-                Self::Ge => "Ge",
-                _ => "Unknown",
-            }
-        )
-    }
-}
-
 #[doc(hidden)]
 impl IntoGlib for ConstraintRelation {
     type GlibType = ffi::GtkConstraintRelation;
@@ -3159,22 +2699,6 @@ pub enum ConstraintStrength {
     Weak,
     #[doc(hidden)]
     __Unknown(i32),
-}
-
-impl fmt::Display for ConstraintStrength {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "ConstraintStrength::{}",
-            match *self {
-                Self::Required => "Required",
-                Self::Strong => "Strong",
-                Self::Medium => "Medium",
-                Self::Weak => "Weak",
-                _ => "Unknown",
-            }
-        )
-    }
 }
 
 #[doc(hidden)]
@@ -3282,24 +2806,6 @@ pub enum ConstraintVflParserError {
     Relation,
     #[doc(hidden)]
     __Unknown(i32),
-}
-
-impl fmt::Display for ConstraintVflParserError {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "ConstraintVflParserError::{}",
-            match *self {
-                Self::Symbol => "Symbol",
-                Self::Attribute => "Attribute",
-                Self::View => "View",
-                Self::Metric => "Metric",
-                Self::Priority => "Priority",
-                Self::Relation => "Relation",
-                _ => "Unknown",
-            }
-        )
-    }
 }
 
 #[doc(hidden)]
@@ -3436,24 +2942,6 @@ pub enum ContentFit {
 
 #[cfg(feature = "v4_8")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
-impl fmt::Display for ContentFit {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "ContentFit::{}",
-            match *self {
-                Self::Fill => "Fill",
-                Self::Contain => "Contain",
-                Self::Cover => "Cover",
-                Self::ScaleDown => "ScaleDown",
-                _ => "Unknown",
-            }
-        )
-    }
-}
-
-#[cfg(feature = "v4_8")]
-#[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
 #[doc(hidden)]
 impl IntoGlib for ContentFit {
     type GlibType = ffi::GtkContentFit;
@@ -3571,22 +3059,6 @@ pub enum CornerType {
     __Unknown(i32),
 }
 
-impl fmt::Display for CornerType {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "CornerType::{}",
-            match *self {
-                Self::TopLeft => "TopLeft",
-                Self::BottomLeft => "BottomLeft",
-                Self::TopRight => "TopRight",
-                Self::BottomRight => "BottomRight",
-                _ => "Unknown",
-            }
-        )
-    }
-}
-
 #[doc(hidden)]
 impl IntoGlib for CornerType {
     type GlibType = ffi::GtkCornerType;
@@ -3692,23 +3164,6 @@ pub enum CssParserError {
     __Unknown(i32),
 }
 
-impl fmt::Display for CssParserError {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "CssParserError::{}",
-            match *self {
-                Self::Failed => "Failed",
-                Self::Syntax => "Syntax",
-                Self::Import => "Import",
-                Self::Name => "Name",
-                Self::UnknownValue => "UnknownValue",
-                _ => "Unknown",
-            }
-        )
-    }
-}
-
 #[doc(hidden)]
 impl IntoGlib for CssParserError {
     type GlibType = ffi::GtkCssParserError;
@@ -3781,21 +3236,6 @@ pub enum CssParserWarning {
     __Unknown(i32),
 }
 
-impl fmt::Display for CssParserWarning {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "CssParserWarning::{}",
-            match *self {
-                Self::Deprecated => "Deprecated",
-                Self::Syntax => "Syntax",
-                Self::Unimplemented => "Unimplemented",
-                _ => "Unknown",
-            }
-        )
-    }
-}
-
 #[doc(hidden)]
 impl IntoGlib for CssParserWarning {
     type GlibType = ffi::GtkCssParserWarning;
@@ -3848,26 +3288,6 @@ pub enum DeleteType {
     Whitespace,
     #[doc(hidden)]
     __Unknown(i32),
-}
-
-impl fmt::Display for DeleteType {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "DeleteType::{}",
-            match *self {
-                Self::Chars => "Chars",
-                Self::WordEnds => "WordEnds",
-                Self::Words => "Words",
-                Self::DisplayLines => "DisplayLines",
-                Self::DisplayLineEnds => "DisplayLineEnds",
-                Self::ParagraphEnds => "ParagraphEnds",
-                Self::Paragraphs => "Paragraphs",
-                Self::Whitespace => "Whitespace",
-                _ => "Unknown",
-            }
-        )
-    }
 }
 
 #[doc(hidden)]
@@ -3979,23 +3399,6 @@ pub enum DialogError {
     Dismissed,
     #[doc(hidden)]
     __Unknown(i32),
-}
-
-#[cfg(feature = "v4_10")]
-#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
-impl fmt::Display for DialogError {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "DialogError::{}",
-            match *self {
-                Self::Failed => "Failed",
-                Self::Cancelled => "Cancelled",
-                Self::Dismissed => "Dismissed",
-                _ => "Unknown",
-            }
-        )
-    }
 }
 
 #[cfg(feature = "v4_10")]
@@ -4145,24 +3548,6 @@ pub enum DirectionType {
     __Unknown(i32),
 }
 
-impl fmt::Display for DirectionType {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "DirectionType::{}",
-            match *self {
-                Self::TabForward => "TabForward",
-                Self::TabBackward => "TabBackward",
-                Self::Up => "Up",
-                Self::Down => "Down",
-                Self::Left => "Left",
-                Self::Right => "Right",
-                _ => "Unknown",
-            }
-        )
-    }
-}
-
 #[doc(hidden)]
 impl IntoGlib for DirectionType {
     type GlibType = ffi::GtkDirectionType;
@@ -4280,27 +3665,6 @@ pub enum EditableProperties {
     __Unknown(i32),
 }
 
-impl fmt::Display for EditableProperties {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "EditableProperties::{}",
-            match *self {
-                Self::PropText => "PropText",
-                Self::PropCursorPosition => "PropCursorPosition",
-                Self::PropSelectionBound => "PropSelectionBound",
-                Self::PropEditable => "PropEditable",
-                Self::PropWidthChars => "PropWidthChars",
-                Self::PropMaxWidthChars => "PropMaxWidthChars",
-                Self::PropXalign => "PropXalign",
-                Self::PropEnableUndo => "PropEnableUndo",
-                Self::NumProperties => "NumProperties",
-                _ => "Unknown",
-            }
-        )
-    }
-}
-
 #[doc(hidden)]
 impl IntoGlib for EditableProperties {
     type GlibType = ffi::GtkEditableProperties;
@@ -4410,20 +3774,6 @@ pub enum EntryIconPosition {
     __Unknown(i32),
 }
 
-impl fmt::Display for EntryIconPosition {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "EntryIconPosition::{}",
-            match *self {
-                Self::Primary => "Primary",
-                Self::Secondary => "Secondary",
-                _ => "Unknown",
-            }
-        )
-    }
-}
-
 #[doc(hidden)]
 impl IntoGlib for EntryIconPosition {
     type GlibType = ffi::GtkEntryIconPosition;
@@ -4519,21 +3869,6 @@ pub enum EventSequenceState {
     Denied,
     #[doc(hidden)]
     __Unknown(i32),
-}
-
-impl fmt::Display for EventSequenceState {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "EventSequenceState::{}",
-            match *self {
-                Self::None => "None",
-                Self::Claimed => "Claimed",
-                Self::Denied => "Denied",
-                _ => "Unknown",
-            }
-        )
-    }
 }
 
 #[doc(hidden)]
@@ -4635,21 +3970,6 @@ pub enum FileChooserAction {
     __Unknown(i32),
 }
 
-impl fmt::Display for FileChooserAction {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "FileChooserAction::{}",
-            match *self {
-                Self::Open => "Open",
-                Self::Save => "Save",
-                Self::SelectFolder => "SelectFolder",
-                _ => "Unknown",
-            }
-        )
-    }
-}
-
 #[doc(hidden)]
 impl IntoGlib for FileChooserAction {
     type GlibType = ffi::GtkFileChooserAction;
@@ -4749,22 +4069,6 @@ pub enum FileChooserError {
     IncompleteHostname,
     #[doc(hidden)]
     __Unknown(i32),
-}
-
-impl fmt::Display for FileChooserError {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "FileChooserError::{}",
-            match *self {
-                Self::Nonexistent => "Nonexistent",
-                Self::BadFilename => "BadFilename",
-                Self::AlreadyExists => "AlreadyExists",
-                Self::IncompleteHostname => "IncompleteHostname",
-                _ => "Unknown",
-            }
-        )
-    }
 }
 
 #[doc(hidden)]
@@ -4891,21 +4195,6 @@ pub enum FilterChange {
     __Unknown(i32),
 }
 
-impl fmt::Display for FilterChange {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "FilterChange::{}",
-            match *self {
-                Self::Different => "Different",
-                Self::LessStrict => "LessStrict",
-                Self::MoreStrict => "MoreStrict",
-                _ => "Unknown",
-            }
-        )
-    }
-}
-
 #[doc(hidden)]
 impl IntoGlib for FilterChange {
     type GlibType = ffi::GtkFilterChange;
@@ -5003,21 +4292,6 @@ pub enum FilterMatch {
     All,
     #[doc(hidden)]
     __Unknown(i32),
-}
-
-impl fmt::Display for FilterMatch {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "FilterMatch::{}",
-            match *self {
-                Self::Some => "Some",
-                Self::None => "None",
-                Self::All => "All",
-                _ => "Unknown",
-            }
-        )
-    }
 }
 
 #[doc(hidden)]
@@ -5121,24 +4395,6 @@ pub enum FontLevel {
     Features,
     #[doc(hidden)]
     __Unknown(i32),
-}
-
-#[cfg(feature = "v4_10")]
-#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
-impl fmt::Display for FontLevel {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "FontLevel::{}",
-            match *self {
-                Self::Family => "Family",
-                Self::Face => "Face",
-                Self::Font => "Font",
-                Self::Features => "Features",
-                _ => "Unknown",
-            }
-        )
-    }
 }
 
 #[cfg(feature = "v4_10")]
@@ -5258,21 +4514,6 @@ pub enum IconSize {
     __Unknown(i32),
 }
 
-impl fmt::Display for IconSize {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "IconSize::{}",
-            match *self {
-                Self::Inherit => "Inherit",
-                Self::Normal => "Normal",
-                Self::Large => "Large",
-                _ => "Unknown",
-            }
-        )
-    }
-}
-
 #[doc(hidden)]
 impl IntoGlib for IconSize {
     type GlibType = ffi::GtkIconSize;
@@ -5368,20 +4609,6 @@ pub enum IconThemeError {
     Failed,
     #[doc(hidden)]
     __Unknown(i32),
-}
-
-impl fmt::Display for IconThemeError {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "IconThemeError::{}",
-            match *self {
-                Self::NotFound => "NotFound",
-                Self::Failed => "Failed",
-                _ => "Unknown",
-            }
-        )
-    }
 }
 
 #[doc(hidden)]
@@ -5511,24 +4738,6 @@ pub enum IconViewDropPosition {
     __Unknown(i32),
 }
 
-impl fmt::Display for IconViewDropPosition {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "IconViewDropPosition::{}",
-            match *self {
-                Self::NoDrop => "NoDrop",
-                Self::DropInto => "DropInto",
-                Self::DropLeft => "DropLeft",
-                Self::DropRight => "DropRight",
-                Self::DropAbove => "DropAbove",
-                Self::DropBelow => "DropBelow",
-                _ => "Unknown",
-            }
-        )
-    }
-}
-
 #[doc(hidden)]
 impl IntoGlib for IconViewDropPosition {
     type GlibType = ffi::GtkIconViewDropPosition;
@@ -5634,22 +4843,6 @@ pub enum ImageType {
     Paintable,
     #[doc(hidden)]
     __Unknown(i32),
-}
-
-impl fmt::Display for ImageType {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "ImageType::{}",
-            match *self {
-                Self::Empty => "Empty",
-                Self::IconName => "IconName",
-                Self::Gicon => "Gicon",
-                Self::Paintable => "Paintable",
-                _ => "Unknown",
-            }
-        )
-    }
 }
 
 #[doc(hidden)]
@@ -5767,29 +4960,6 @@ pub enum InputPurpose {
     Terminal,
     #[doc(hidden)]
     __Unknown(i32),
-}
-
-impl fmt::Display for InputPurpose {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "InputPurpose::{}",
-            match *self {
-                Self::FreeForm => "FreeForm",
-                Self::Alpha => "Alpha",
-                Self::Digits => "Digits",
-                Self::Number => "Number",
-                Self::Phone => "Phone",
-                Self::Url => "Url",
-                Self::Email => "Email",
-                Self::Name => "Name",
-                Self::Password => "Password",
-                Self::Pin => "Pin",
-                Self::Terminal => "Terminal",
-                _ => "Unknown",
-            }
-        )
-    }
 }
 
 #[doc(hidden)]
@@ -5913,24 +5083,6 @@ pub enum InscriptionOverflow {
 
 #[cfg(feature = "v4_8")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
-impl fmt::Display for InscriptionOverflow {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "InscriptionOverflow::{}",
-            match *self {
-                Self::Clip => "Clip",
-                Self::EllipsizeStart => "EllipsizeStart",
-                Self::EllipsizeMiddle => "EllipsizeMiddle",
-                Self::EllipsizeEnd => "EllipsizeEnd",
-                _ => "Unknown",
-            }
-        )
-    }
-}
-
-#[cfg(feature = "v4_8")]
-#[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
 #[doc(hidden)]
 impl IntoGlib for InscriptionOverflow {
     type GlibType = ffi::GtkInscriptionOverflow;
@@ -6048,22 +5200,6 @@ pub enum Justification {
     __Unknown(i32),
 }
 
-impl fmt::Display for Justification {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "Justification::{}",
-            match *self {
-                Self::Left => "Left",
-                Self::Right => "Right",
-                Self::Center => "Center",
-                Self::Fill => "Fill",
-                _ => "Unknown",
-            }
-        )
-    }
-}
-
 #[doc(hidden)]
 impl IntoGlib for Justification {
     type GlibType = ffi::GtkJustification;
@@ -6161,20 +5297,6 @@ pub enum LevelBarMode {
     Discrete,
     #[doc(hidden)]
     __Unknown(i32),
-}
-
-impl fmt::Display for LevelBarMode {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "LevelBarMode::{}",
-            match *self {
-                Self::Continuous => "Continuous",
-                Self::Discrete => "Discrete",
-                _ => "Unknown",
-            }
-        )
-    }
 }
 
 #[doc(hidden)]
@@ -6302,36 +5424,6 @@ pub enum License {
     Mpl20,
     #[doc(hidden)]
     __Unknown(i32),
-}
-
-impl fmt::Display for License {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "License::{}",
-            match *self {
-                Self::Unknown => "Unknown",
-                Self::Custom => "Custom",
-                Self::Gpl20 => "Gpl20",
-                Self::Gpl30 => "Gpl30",
-                Self::Lgpl21 => "Lgpl21",
-                Self::Lgpl30 => "Lgpl30",
-                Self::Bsd => "Bsd",
-                Self::MitX11 => "MitX11",
-                Self::Artistic => "Artistic",
-                Self::Gpl20Only => "Gpl20Only",
-                Self::Gpl30Only => "Gpl30Only",
-                Self::Lgpl21Only => "Lgpl21Only",
-                Self::Lgpl30Only => "Lgpl30Only",
-                Self::Agpl30 => "Agpl30",
-                Self::Agpl30Only => "Agpl30Only",
-                Self::Bsd3 => "Bsd3",
-                Self::Apache20 => "Apache20",
-                Self::Mpl20 => "Mpl20",
-                _ => "Unknown",
-            }
-        )
-    }
 }
 
 #[doc(hidden)]
@@ -6465,23 +5557,6 @@ pub enum ListTabBehavior {
 
 #[cfg(feature = "v4_12")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
-impl fmt::Display for ListTabBehavior {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "ListTabBehavior::{}",
-            match *self {
-                Self::All => "All",
-                Self::Item => "Item",
-                Self::Cell => "Cell",
-                _ => "Unknown",
-            }
-        )
-    }
-}
-
-#[cfg(feature = "v4_12")]
-#[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
 #[doc(hidden)]
 impl IntoGlib for ListTabBehavior {
     type GlibType = ffi::GtkListTabBehavior;
@@ -6597,23 +5672,6 @@ pub enum MessageType {
     Other,
     #[doc(hidden)]
     __Unknown(i32),
-}
-
-impl fmt::Display for MessageType {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "MessageType::{}",
-            match *self {
-                Self::Info => "Info",
-                Self::Warning => "Warning",
-                Self::Question => "Question",
-                Self::Error => "Error",
-                Self::Other => "Other",
-                _ => "Unknown",
-            }
-        )
-    }
 }
 
 #[doc(hidden)]
@@ -6733,28 +5791,6 @@ pub enum MovementStep {
     __Unknown(i32),
 }
 
-impl fmt::Display for MovementStep {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "MovementStep::{}",
-            match *self {
-                Self::LogicalPositions => "LogicalPositions",
-                Self::VisualPositions => "VisualPositions",
-                Self::Words => "Words",
-                Self::DisplayLines => "DisplayLines",
-                Self::DisplayLineEnds => "DisplayLineEnds",
-                Self::Paragraphs => "Paragraphs",
-                Self::ParagraphEnds => "ParagraphEnds",
-                Self::Pages => "Pages",
-                Self::BufferEnds => "BufferEnds",
-                Self::HorizontalPages => "HorizontalPages",
-                _ => "Unknown",
-            }
-        )
-    }
-}
-
 #[doc(hidden)]
 impl IntoGlib for MovementStep {
     type GlibType = ffi::GtkMovementStep;
@@ -6872,23 +5908,6 @@ pub enum NaturalWrapMode {
 
 #[cfg(feature = "v4_6")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
-impl fmt::Display for NaturalWrapMode {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "NaturalWrapMode::{}",
-            match *self {
-                Self::Inherit => "Inherit",
-                Self::None => "None",
-                Self::Word => "Word",
-                _ => "Unknown",
-            }
-        )
-    }
-}
-
-#[cfg(feature = "v4_6")]
-#[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
 #[doc(hidden)]
 impl IntoGlib for NaturalWrapMode {
     type GlibType = ffi::GtkNaturalWrapMode;
@@ -7000,20 +6019,6 @@ pub enum NotebookTab {
     __Unknown(i32),
 }
 
-impl fmt::Display for NotebookTab {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "NotebookTab::{}",
-            match *self {
-                Self::First => "First",
-                Self::Last => "Last",
-                _ => "Unknown",
-            }
-        )
-    }
-}
-
 #[doc(hidden)]
 impl IntoGlib for NotebookTab {
     type GlibType = ffi::GtkNotebookTab;
@@ -7119,26 +6124,6 @@ pub enum NumberUpLayout {
     Btrl,
     #[doc(hidden)]
     __Unknown(i32),
-}
-
-impl fmt::Display for NumberUpLayout {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "NumberUpLayout::{}",
-            match *self {
-                Self::Lrtb => "Lrtb",
-                Self::Lrbt => "Lrbt",
-                Self::Rltb => "Rltb",
-                Self::Rlbt => "Rlbt",
-                Self::Tblr => "Tblr",
-                Self::Tbrl => "Tbrl",
-                Self::Btlr => "Btlr",
-                Self::Btrl => "Btrl",
-                _ => "Unknown",
-            }
-        )
-    }
 }
 
 #[doc(hidden)]
@@ -7250,21 +6235,6 @@ pub enum Ordering {
     __Unknown(i32),
 }
 
-impl fmt::Display for Ordering {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "Ordering::{}",
-            match *self {
-                Self::Smaller => "Smaller",
-                Self::Equal => "Equal",
-                Self::Larger => "Larger",
-                _ => "Unknown",
-            }
-        )
-    }
-}
-
 #[doc(hidden)]
 impl IntoGlib for Ordering {
     type GlibType = ffi::GtkOrdering;
@@ -7362,20 +6332,6 @@ pub enum Orientation {
     __Unknown(i32),
 }
 
-impl fmt::Display for Orientation {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "Orientation::{}",
-            match *self {
-                Self::Horizontal => "Horizontal",
-                Self::Vertical => "Vertical",
-                _ => "Unknown",
-            }
-        )
-    }
-}
-
 #[doc(hidden)]
 impl IntoGlib for Orientation {
     type GlibType = ffi::GtkOrientation;
@@ -7469,20 +6425,6 @@ pub enum Overflow {
     Hidden,
     #[doc(hidden)]
     __Unknown(i32),
-}
-
-impl fmt::Display for Overflow {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "Overflow::{}",
-            match *self {
-                Self::Visible => "Visible",
-                Self::Hidden => "Hidden",
-                _ => "Unknown",
-            }
-        )
-    }
 }
 
 #[doc(hidden)]
@@ -7580,20 +6522,6 @@ pub enum PackType {
     __Unknown(i32),
 }
 
-impl fmt::Display for PackType {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "PackType::{}",
-            match *self {
-                Self::Start => "Start",
-                Self::End => "End",
-                _ => "Unknown",
-            }
-        )
-    }
-}
-
 #[doc(hidden)]
 impl IntoGlib for PackType {
     type GlibType = ffi::GtkPackType;
@@ -7689,21 +6617,6 @@ pub enum PadActionType {
     Strip,
     #[doc(hidden)]
     __Unknown(i32),
-}
-
-impl fmt::Display for PadActionType {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "PadActionType::{}",
-            match *self {
-                Self::Button => "Button",
-                Self::Ring => "Ring",
-                Self::Strip => "Strip",
-                _ => "Unknown",
-            }
-        )
-    }
 }
 
 #[doc(hidden)]
@@ -7807,22 +6720,6 @@ pub enum PageOrientation {
     __Unknown(i32),
 }
 
-impl fmt::Display for PageOrientation {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "PageOrientation::{}",
-            match *self {
-                Self::Portrait => "Portrait",
-                Self::Landscape => "Landscape",
-                Self::ReversePortrait => "ReversePortrait",
-                Self::ReverseLandscape => "ReverseLandscape",
-                _ => "Unknown",
-            }
-        )
-    }
-}
-
 #[doc(hidden)]
 impl IntoGlib for PageOrientation {
     type GlibType = ffi::GtkPageOrientation;
@@ -7924,21 +6821,6 @@ pub enum PageSet {
     __Unknown(i32),
 }
 
-impl fmt::Display for PageSet {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "PageSet::{}",
-            match *self {
-                Self::All => "All",
-                Self::Even => "Even",
-                Self::Odd => "Odd",
-                _ => "Unknown",
-            }
-        )
-    }
-}
-
 #[doc(hidden)]
 impl IntoGlib for PageSet {
     type GlibType = ffi::GtkPageSet;
@@ -8038,22 +6920,6 @@ pub enum PanDirection {
     Down,
     #[doc(hidden)]
     __Unknown(i32),
-}
-
-impl fmt::Display for PanDirection {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "PanDirection::{}",
-            match *self {
-                Self::Left => "Left",
-                Self::Right => "Right",
-                Self::Up => "Up",
-                Self::Down => "Down",
-                _ => "Unknown",
-            }
-        )
-    }
 }
 
 #[doc(hidden)]
@@ -8159,22 +7025,6 @@ pub enum PolicyType {
     __Unknown(i32),
 }
 
-impl fmt::Display for PolicyType {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "PolicyType::{}",
-            match *self {
-                Self::Always => "Always",
-                Self::Automatic => "Automatic",
-                Self::Never => "Never",
-                Self::External => "External",
-                _ => "Unknown",
-            }
-        )
-    }
-}
-
 #[doc(hidden)]
 impl IntoGlib for PolicyType {
     type GlibType = ffi::GtkPolicyType;
@@ -8278,22 +7128,6 @@ pub enum PositionType {
     __Unknown(i32),
 }
 
-impl fmt::Display for PositionType {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "PositionType::{}",
-            match *self {
-                Self::Left => "Left",
-                Self::Right => "Right",
-                Self::Top => "Top",
-                Self::Bottom => "Bottom",
-                _ => "Unknown",
-            }
-        )
-    }
-}
-
 #[doc(hidden)]
 impl IntoGlib for PositionType {
     type GlibType = ffi::GtkPositionType;
@@ -8395,21 +7229,6 @@ pub enum PrintDuplex {
     __Unknown(i32),
 }
 
-impl fmt::Display for PrintDuplex {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "PrintDuplex::{}",
-            match *self {
-                Self::Simplex => "Simplex",
-                Self::Horizontal => "Horizontal",
-                Self::Vertical => "Vertical",
-                _ => "Unknown",
-            }
-        )
-    }
-}
-
 #[doc(hidden)]
 impl IntoGlib for PrintDuplex {
     type GlibType = ffi::GtkPrintDuplex;
@@ -8509,22 +7328,6 @@ pub enum PrintError {
     InvalidFile,
     #[doc(hidden)]
     __Unknown(i32),
-}
-
-impl fmt::Display for PrintError {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "PrintError::{}",
-            match *self {
-                Self::General => "General",
-                Self::InternalError => "InternalError",
-                Self::Nomem => "Nomem",
-                Self::InvalidFile => "InvalidFile",
-                _ => "Unknown",
-            }
-        )
-    }
 }
 
 #[doc(hidden)]
@@ -8653,22 +7456,6 @@ pub enum PrintOperationAction {
     __Unknown(i32),
 }
 
-impl fmt::Display for PrintOperationAction {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "PrintOperationAction::{}",
-            match *self {
-                Self::PrintDialog => "PrintDialog",
-                Self::Print => "Print",
-                Self::Preview => "Preview",
-                Self::Export => "Export",
-                _ => "Unknown",
-            }
-        )
-    }
-}
-
 #[doc(hidden)]
 impl IntoGlib for PrintOperationAction {
     type GlibType = ffi::GtkPrintOperationAction;
@@ -8770,22 +7557,6 @@ pub enum PrintOperationResult {
     InProgress,
     #[doc(hidden)]
     __Unknown(i32),
-}
-
-impl fmt::Display for PrintOperationResult {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "PrintOperationResult::{}",
-            match *self {
-                Self::Error => "Error",
-                Self::Apply => "Apply",
-                Self::Cancel => "Cancel",
-                Self::InProgress => "InProgress",
-                _ => "Unknown",
-            }
-        )
-    }
 }
 
 #[doc(hidden)]
@@ -8891,22 +7662,6 @@ pub enum PrintPages {
     __Unknown(i32),
 }
 
-impl fmt::Display for PrintPages {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "PrintPages::{}",
-            match *self {
-                Self::All => "All",
-                Self::Current => "Current",
-                Self::Ranges => "Ranges",
-                Self::Selection => "Selection",
-                _ => "Unknown",
-            }
-        )
-    }
-}
-
 #[doc(hidden)]
 impl IntoGlib for PrintPages {
     type GlibType = ffi::GtkPrintPages;
@@ -9008,22 +7763,6 @@ pub enum PrintQuality {
     Draft,
     #[doc(hidden)]
     __Unknown(i32),
-}
-
-impl fmt::Display for PrintQuality {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "PrintQuality::{}",
-            match *self {
-                Self::Low => "Low",
-                Self::Normal => "Normal",
-                Self::High => "High",
-                Self::Draft => "Draft",
-                _ => "Unknown",
-            }
-        )
-    }
 }
 
 #[doc(hidden)]
@@ -9139,27 +7878,6 @@ pub enum PrintStatus {
     __Unknown(i32),
 }
 
-impl fmt::Display for PrintStatus {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "PrintStatus::{}",
-            match *self {
-                Self::Initial => "Initial",
-                Self::Preparing => "Preparing",
-                Self::GeneratingData => "GeneratingData",
-                Self::SendingData => "SendingData",
-                Self::Pending => "Pending",
-                Self::PendingIssue => "PendingIssue",
-                Self::Printing => "Printing",
-                Self::Finished => "Finished",
-                Self::FinishedAborted => "FinishedAborted",
-                _ => "Unknown",
-            }
-        )
-    }
-}
-
 #[doc(hidden)]
 impl IntoGlib for PrintStatus {
     type GlibType = ffi::GtkPrintStatus;
@@ -9269,20 +7987,6 @@ pub enum PropagationLimit {
     __Unknown(i32),
 }
 
-impl fmt::Display for PropagationLimit {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "PropagationLimit::{}",
-            match *self {
-                Self::None => "None",
-                Self::SameNative => "SameNative",
-                _ => "Unknown",
-            }
-        )
-    }
-}
-
 #[doc(hidden)]
 impl IntoGlib for PropagationLimit {
     type GlibType = ffi::GtkPropagationLimit;
@@ -9380,22 +8084,6 @@ pub enum PropagationPhase {
     Target,
     #[doc(hidden)]
     __Unknown(i32),
-}
-
-impl fmt::Display for PropagationPhase {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "PropagationPhase::{}",
-            match *self {
-                Self::None => "None",
-                Self::Capture => "Capture",
-                Self::Bubble => "Bubble",
-                Self::Target => "Target",
-                _ => "Unknown",
-            }
-        )
-    }
 }
 
 #[doc(hidden)]
@@ -9505,25 +8193,6 @@ pub enum RecentManagerError {
     Unknown,
     #[doc(hidden)]
     __Unknown(i32),
-}
-
-impl fmt::Display for RecentManagerError {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "RecentManagerError::{}",
-            match *self {
-                Self::NotFound => "NotFound",
-                Self::InvalidUri => "InvalidUri",
-                Self::InvalidEncoding => "InvalidEncoding",
-                Self::NotRegistered => "NotRegistered",
-                Self::Read => "Read",
-                Self::Write => "Write",
-                Self::Unknown => "Unknown",
-                _ => "Unknown",
-            }
-        )
-    }
 }
 
 #[doc(hidden)]
@@ -9670,28 +8339,6 @@ pub enum RevealerTransitionType {
     __Unknown(i32),
 }
 
-impl fmt::Display for RevealerTransitionType {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "RevealerTransitionType::{}",
-            match *self {
-                Self::None => "None",
-                Self::Crossfade => "Crossfade",
-                Self::SlideRight => "SlideRight",
-                Self::SlideLeft => "SlideLeft",
-                Self::SlideUp => "SlideUp",
-                Self::SlideDown => "SlideDown",
-                Self::SwingRight => "SwingRight",
-                Self::SwingLeft => "SwingLeft",
-                Self::SwingUp => "SwingUp",
-                Self::SwingDown => "SwingDown",
-                _ => "Unknown",
-            }
-        )
-    }
-}
-
 #[doc(hidden)]
 impl IntoGlib for RevealerTransitionType {
     type GlibType = ffi::GtkRevealerTransitionType;
@@ -9809,24 +8456,6 @@ pub enum ScrollStep {
     HorizontalEnds,
     #[doc(hidden)]
     __Unknown(i32),
-}
-
-impl fmt::Display for ScrollStep {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "ScrollStep::{}",
-            match *self {
-                Self::Steps => "Steps",
-                Self::Pages => "Pages",
-                Self::Ends => "Ends",
-                Self::HorizontalSteps => "HorizontalSteps",
-                Self::HorizontalPages => "HorizontalPages",
-                Self::HorizontalEnds => "HorizontalEnds",
-                _ => "Unknown",
-            }
-        )
-    }
 }
 
 #[doc(hidden)]
@@ -9960,34 +8589,6 @@ pub enum ScrollType {
     __Unknown(i32),
 }
 
-impl fmt::Display for ScrollType {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "ScrollType::{}",
-            match *self {
-                Self::None => "None",
-                Self::Jump => "Jump",
-                Self::StepBackward => "StepBackward",
-                Self::StepForward => "StepForward",
-                Self::PageBackward => "PageBackward",
-                Self::PageForward => "PageForward",
-                Self::StepUp => "StepUp",
-                Self::StepDown => "StepDown",
-                Self::PageUp => "PageUp",
-                Self::PageDown => "PageDown",
-                Self::StepLeft => "StepLeft",
-                Self::StepRight => "StepRight",
-                Self::PageLeft => "PageLeft",
-                Self::PageRight => "PageRight",
-                Self::Start => "Start",
-                Self::End => "End",
-                _ => "Unknown",
-            }
-        )
-    }
-}
-
 #[doc(hidden)]
 impl IntoGlib for ScrollType {
     type GlibType = ffi::GtkScrollType;
@@ -10109,20 +8710,6 @@ pub enum ScrollablePolicy {
     __Unknown(i32),
 }
 
-impl fmt::Display for ScrollablePolicy {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "ScrollablePolicy::{}",
-            match *self {
-                Self::Minimum => "Minimum",
-                Self::Natural => "Natural",
-                _ => "Unknown",
-            }
-        )
-    }
-}
-
 #[doc(hidden)]
 impl IntoGlib for ScrollablePolicy {
     type GlibType = ffi::GtkScrollablePolicy;
@@ -10220,22 +8807,6 @@ pub enum SelectionMode {
     Multiple,
     #[doc(hidden)]
     __Unknown(i32),
-}
-
-impl fmt::Display for SelectionMode {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "SelectionMode::{}",
-            match *self {
-                Self::None => "None",
-                Self::Single => "Single",
-                Self::Browse => "Browse",
-                Self::Multiple => "Multiple",
-                _ => "Unknown",
-            }
-        )
-    }
 }
 
 #[doc(hidden)]
@@ -10339,21 +8910,6 @@ pub enum SensitivityType {
     __Unknown(i32),
 }
 
-impl fmt::Display for SensitivityType {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "SensitivityType::{}",
-            match *self {
-                Self::Auto => "Auto",
-                Self::On => "On",
-                Self::Off => "Off",
-                _ => "Unknown",
-            }
-        )
-    }
-}
-
 #[doc(hidden)]
 impl IntoGlib for SensitivityType {
     type GlibType = ffi::GtkSensitivityType;
@@ -10451,21 +9007,6 @@ pub enum ShortcutScope {
     Global,
     #[doc(hidden)]
     __Unknown(i32),
-}
-
-impl fmt::Display for ShortcutScope {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "ShortcutScope::{}",
-            match *self {
-                Self::Local => "Local",
-                Self::Managed => "Managed",
-                Self::Global => "Global",
-                _ => "Unknown",
-            }
-        )
-    }
 }
 
 #[doc(hidden)]
@@ -10579,28 +9120,6 @@ pub enum ShortcutType {
     GestureSwipeRight,
     #[doc(hidden)]
     __Unknown(i32),
-}
-
-impl fmt::Display for ShortcutType {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "ShortcutType::{}",
-            match *self {
-                Self::Accelerator => "Accelerator",
-                Self::GesturePinch => "GesturePinch",
-                Self::GestureStretch => "GestureStretch",
-                Self::GestureRotateClockwise => "GestureRotateClockwise",
-                Self::GestureRotateCounterclockwise => "GestureRotateCounterclockwise",
-                Self::GestureTwoFingerSwipeLeft => "GestureTwoFingerSwipeLeft",
-                Self::GestureTwoFingerSwipeRight => "GestureTwoFingerSwipeRight",
-                Self::Gesture => "Gesture",
-                Self::GestureSwipeLeft => "GestureSwipeLeft",
-                Self::GestureSwipeRight => "GestureSwipeRight",
-                _ => "Unknown",
-            }
-        )
-    }
 }
 
 #[doc(hidden)]
@@ -10722,22 +9241,6 @@ pub enum SizeGroupMode {
     __Unknown(i32),
 }
 
-impl fmt::Display for SizeGroupMode {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "SizeGroupMode::{}",
-            match *self {
-                Self::None => "None",
-                Self::Horizontal => "Horizontal",
-                Self::Vertical => "Vertical",
-                Self::Both => "Both",
-                _ => "Unknown",
-            }
-        )
-    }
-}
-
 #[doc(hidden)]
 impl IntoGlib for SizeGroupMode {
     type GlibType = ffi::GtkSizeGroupMode;
@@ -10839,21 +9342,6 @@ pub enum SizeRequestMode {
     __Unknown(i32),
 }
 
-impl fmt::Display for SizeRequestMode {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "SizeRequestMode::{}",
-            match *self {
-                Self::HeightForWidth => "HeightForWidth",
-                Self::WidthForHeight => "WidthForHeight",
-                Self::ConstantSize => "ConstantSize",
-                _ => "Unknown",
-            }
-        )
-    }
-}
-
 #[doc(hidden)]
 impl IntoGlib for SizeRequestMode {
     type GlibType = ffi::GtkSizeRequestMode;
@@ -10949,20 +9437,6 @@ pub enum SortType {
     Descending,
     #[doc(hidden)]
     __Unknown(i32),
-}
-
-impl fmt::Display for SortType {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "SortType::{}",
-            match *self {
-                Self::Ascending => "Ascending",
-                Self::Descending => "Descending",
-                _ => "Unknown",
-            }
-        )
-    }
 }
 
 #[doc(hidden)]
@@ -11062,22 +9536,6 @@ pub enum SorterChange {
     MoreStrict,
     #[doc(hidden)]
     __Unknown(i32),
-}
-
-impl fmt::Display for SorterChange {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "SorterChange::{}",
-            match *self {
-                Self::Different => "Different",
-                Self::Inverted => "Inverted",
-                Self::LessStrict => "LessStrict",
-                Self::MoreStrict => "MoreStrict",
-                _ => "Unknown",
-            }
-        )
-    }
 }
 
 #[doc(hidden)]
@@ -11181,21 +9639,6 @@ pub enum SorterOrder {
     __Unknown(i32),
 }
 
-impl fmt::Display for SorterOrder {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "SorterOrder::{}",
-            match *self {
-                Self::Partial => "Partial",
-                Self::None => "None",
-                Self::Total => "Total",
-                _ => "Unknown",
-            }
-        )
-    }
-}
-
 #[doc(hidden)]
 impl IntoGlib for SorterOrder {
     type GlibType = ffi::GtkSorterOrder;
@@ -11291,20 +9734,6 @@ pub enum SpinButtonUpdatePolicy {
     IfValid,
     #[doc(hidden)]
     __Unknown(i32),
-}
-
-impl fmt::Display for SpinButtonUpdatePolicy {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "SpinButtonUpdatePolicy::{}",
-            match *self {
-                Self::Always => "Always",
-                Self::IfValid => "IfValid",
-                _ => "Unknown",
-            }
-        )
-    }
 }
 
 #[doc(hidden)]
@@ -11410,25 +9839,6 @@ pub enum SpinType {
     UserDefined,
     #[doc(hidden)]
     __Unknown(i32),
-}
-
-impl fmt::Display for SpinType {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "SpinType::{}",
-            match *self {
-                Self::StepForward => "StepForward",
-                Self::StepBackward => "StepBackward",
-                Self::PageForward => "PageForward",
-                Self::PageBackward => "PageBackward",
-                Self::Home => "Home",
-                Self::End => "End",
-                Self::UserDefined => "UserDefined",
-                _ => "Unknown",
-            }
-        )
-    }
 }
 
 #[doc(hidden)]
@@ -11578,41 +9988,6 @@ pub enum StackTransitionType {
     __Unknown(i32),
 }
 
-impl fmt::Display for StackTransitionType {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "StackTransitionType::{}",
-            match *self {
-                Self::None => "None",
-                Self::Crossfade => "Crossfade",
-                Self::SlideRight => "SlideRight",
-                Self::SlideLeft => "SlideLeft",
-                Self::SlideUp => "SlideUp",
-                Self::SlideDown => "SlideDown",
-                Self::SlideLeftRight => "SlideLeftRight",
-                Self::SlideUpDown => "SlideUpDown",
-                Self::OverUp => "OverUp",
-                Self::OverDown => "OverDown",
-                Self::OverLeft => "OverLeft",
-                Self::OverRight => "OverRight",
-                Self::UnderUp => "UnderUp",
-                Self::UnderDown => "UnderDown",
-                Self::UnderLeft => "UnderLeft",
-                Self::UnderRight => "UnderRight",
-                Self::OverUpDown => "OverUpDown",
-                Self::OverDownUp => "OverDownUp",
-                Self::OverLeftRight => "OverLeftRight",
-                Self::OverRightLeft => "OverRightLeft",
-                Self::RotateLeft => "RotateLeft",
-                Self::RotateRight => "RotateRight",
-                Self::RotateLeftRight => "RotateLeftRight",
-                _ => "Unknown",
-            }
-        )
-    }
-}
-
 #[doc(hidden)]
 impl IntoGlib for StackTransitionType {
     type GlibType = ffi::GtkStackTransitionType;
@@ -11750,21 +10125,6 @@ pub enum StringFilterMatchMode {
     __Unknown(i32),
 }
 
-impl fmt::Display for StringFilterMatchMode {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "StringFilterMatchMode::{}",
-            match *self {
-                Self::Exact => "Exact",
-                Self::Substring => "Substring",
-                Self::Prefix => "Prefix",
-                _ => "Unknown",
-            }
-        )
-    }
-}
-
 #[doc(hidden)]
 impl IntoGlib for StringFilterMatchMode {
     type GlibType = ffi::GtkStringFilterMatchMode;
@@ -11866,24 +10226,6 @@ pub enum SymbolicColor {
     Success,
     #[doc(hidden)]
     __Unknown(i32),
-}
-
-#[cfg(feature = "v4_6")]
-#[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
-impl fmt::Display for SymbolicColor {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "SymbolicColor::{}",
-            match *self {
-                Self::Foreground => "Foreground",
-                Self::Error => "Error",
-                Self::Warning => "Warning",
-                Self::Success => "Success",
-                _ => "Unknown",
-            }
-        )
-    }
 }
 
 #[cfg(feature = "v4_6")]
@@ -12007,23 +10349,6 @@ pub enum SystemSetting {
     __Unknown(i32),
 }
 
-impl fmt::Display for SystemSetting {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "SystemSetting::{}",
-            match *self {
-                Self::Dpi => "Dpi",
-                Self::FontName => "FontName",
-                Self::FontConfig => "FontConfig",
-                Self::Display => "Display",
-                Self::IconTheme => "IconTheme",
-                _ => "Unknown",
-            }
-        )
-    }
-}
-
 #[doc(hidden)]
 impl IntoGlib for SystemSetting {
     type GlibType = ffi::GtkSystemSetting;
@@ -12127,21 +10452,6 @@ pub enum TextDirection {
     __Unknown(i32),
 }
 
-impl fmt::Display for TextDirection {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "TextDirection::{}",
-            match *self {
-                Self::None => "None",
-                Self::Ltr => "Ltr",
-                Self::Rtl => "Rtl",
-                _ => "Unknown",
-            }
-        )
-    }
-}
-
 #[doc(hidden)]
 impl IntoGlib for TextDirection {
     type GlibType = ffi::GtkTextDirection;
@@ -12239,20 +10549,6 @@ pub enum TextExtendSelection {
     __Unknown(i32),
 }
 
-impl fmt::Display for TextExtendSelection {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "TextExtendSelection::{}",
-            match *self {
-                Self::Word => "Word",
-                Self::Line => "Line",
-                _ => "Unknown",
-            }
-        )
-    }
-}
-
 #[doc(hidden)]
 impl IntoGlib for TextExtendSelection {
     type GlibType = ffi::GtkTextExtendSelection;
@@ -12346,20 +10642,6 @@ pub enum TextViewLayer {
     AboveText,
     #[doc(hidden)]
     __Unknown(i32),
-}
-
-impl fmt::Display for TextViewLayer {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "TextViewLayer::{}",
-            match *self {
-                Self::BelowText => "BelowText",
-                Self::AboveText => "AboveText",
-                _ => "Unknown",
-            }
-        )
-    }
 }
 
 #[doc(hidden)]
@@ -12463,24 +10745,6 @@ pub enum TextWindowType {
     Bottom,
     #[doc(hidden)]
     __Unknown(i32),
-}
-
-impl fmt::Display for TextWindowType {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "TextWindowType::{}",
-            match *self {
-                Self::Widget => "Widget",
-                Self::Text => "Text",
-                Self::Left => "Left",
-                Self::Right => "Right",
-                Self::Top => "Top",
-                Self::Bottom => "Bottom",
-                _ => "Unknown",
-            }
-        )
-    }
 }
 
 #[doc(hidden)]
@@ -12588,21 +10852,6 @@ pub enum TreeViewColumnSizing {
     __Unknown(i32),
 }
 
-impl fmt::Display for TreeViewColumnSizing {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "TreeViewColumnSizing::{}",
-            match *self {
-                Self::GrowOnly => "GrowOnly",
-                Self::Autosize => "Autosize",
-                Self::Fixed => "Fixed",
-                _ => "Unknown",
-            }
-        )
-    }
-}
-
 #[doc(hidden)]
 impl IntoGlib for TreeViewColumnSizing {
     type GlibType = ffi::GtkTreeViewColumnSizing;
@@ -12702,22 +10951,6 @@ pub enum TreeViewDropPosition {
     IntoOrAfter,
     #[doc(hidden)]
     __Unknown(i32),
-}
-
-impl fmt::Display for TreeViewDropPosition {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "TreeViewDropPosition::{}",
-            match *self {
-                Self::Before => "Before",
-                Self::After => "After",
-                Self::IntoOrBefore => "IntoOrBefore",
-                Self::IntoOrAfter => "IntoOrAfter",
-                _ => "Unknown",
-            }
-        )
-    }
 }
 
 #[doc(hidden)]
@@ -12823,22 +11056,6 @@ pub enum TreeViewGridLines {
     __Unknown(i32),
 }
 
-impl fmt::Display for TreeViewGridLines {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "TreeViewGridLines::{}",
-            match *self {
-                Self::None => "None",
-                Self::Horizontal => "Horizontal",
-                Self::Vertical => "Vertical",
-                Self::Both => "Both",
-                _ => "Unknown",
-            }
-        )
-    }
-}
-
 #[doc(hidden)]
 impl IntoGlib for TreeViewGridLines {
     type GlibType = ffi::GtkTreeViewGridLines;
@@ -12942,22 +11159,6 @@ pub enum Unit {
     __Unknown(i32),
 }
 
-impl fmt::Display for Unit {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "Unit::{}",
-            match *self {
-                Self::None => "None",
-                Self::Points => "Points",
-                Self::Inch => "Inch",
-                Self::Mm => "Mm",
-                _ => "Unknown",
-            }
-        )
-    }
-}
-
 #[doc(hidden)]
 impl IntoGlib for Unit {
     type GlibType = ffi::GtkUnit;
@@ -13059,22 +11260,6 @@ pub enum WrapMode {
     WordChar,
     #[doc(hidden)]
     __Unknown(i32),
-}
-
-impl fmt::Display for WrapMode {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "WrapMode::{}",
-            match *self {
-                Self::None => "None",
-                Self::Char => "Char",
-                Self::Word => "Word",
-                Self::WordChar => "WordChar",
-                _ => "Unknown",
-            }
-        )
-    }
 }
 
 #[doc(hidden)]

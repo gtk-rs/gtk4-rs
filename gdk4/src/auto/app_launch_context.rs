@@ -4,7 +4,6 @@
 
 use crate::Display;
 use glib::{prelude::*, translate::*};
-use std::fmt;
 
 glib::wrapper! {
     #[doc(alias = "GdkAppLaunchContext")]
@@ -71,9 +70,3 @@ pub trait GdkAppLaunchContextExt: IsA<AppLaunchContext> + sealed::Sealed + 'stat
 }
 
 impl<O: IsA<AppLaunchContext>> GdkAppLaunchContextExt for O {}
-
-impl fmt::Display for AppLaunchContext {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("AppLaunchContext")
-    }
-}

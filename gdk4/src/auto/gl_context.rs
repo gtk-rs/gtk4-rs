@@ -14,7 +14,7 @@ use glib::{prelude::*, translate::*};
 #[cfg(feature = "v4_6")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
 use std::{boxed::Box as Box_, mem::transmute};
-use std::{fmt, mem, ptr};
+use std::{mem, ptr};
 
 glib::wrapper! {
     #[doc(alias = "GdkGLContext")]
@@ -303,9 +303,3 @@ pub trait GLContextExt: IsA<GLContext> + sealed::Sealed + 'static {
 }
 
 impl<O: IsA<GLContext>> GLContextExt for O {}
-
-impl fmt::Display for GLContext {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("GLContext")
-    }
-}

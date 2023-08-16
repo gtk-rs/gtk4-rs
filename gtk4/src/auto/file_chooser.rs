@@ -9,7 +9,7 @@ use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
-use std::{boxed::Box as Box_, fmt, mem::transmute, ptr};
+use std::{boxed::Box as Box_, mem::transmute, ptr};
 
 glib::wrapper! {
     #[doc(alias = "GtkFileChooser")]
@@ -484,9 +484,3 @@ pub trait FileChooserExt: IsA<FileChooser> + sealed::Sealed + 'static {
 }
 
 impl<O: IsA<FileChooser>> FileChooserExt for O {}
-
-impl fmt::Display for FileChooser {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("FileChooser")
-    }
-}

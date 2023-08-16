@@ -4,7 +4,6 @@
 
 use crate::Expression;
 use glib::translate::*;
-use std::fmt;
 
 glib::wrapper! {
     #[doc(alias = "GtkPropertyExpression")]
@@ -76,11 +75,5 @@ impl PropertyExpression {
                 self.to_glib_none().0,
             ))
         }
-    }
-}
-
-impl fmt::Display for PropertyExpression {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("PropertyExpression")
     }
 }

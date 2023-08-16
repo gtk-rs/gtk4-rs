@@ -4,7 +4,6 @@
 
 use crate::{GLContext, MemoryFormat, Texture};
 use glib::translate::*;
-use std::fmt;
 
 glib::wrapper! {
     #[doc(alias = "GdkGLTextureBuilder")]
@@ -101,9 +100,3 @@ impl Default for GLTextureBuilder {
 
 unsafe impl Send for GLTextureBuilder {}
 unsafe impl Sync for GLTextureBuilder {}
-
-impl fmt::Display for GLTextureBuilder {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("GLTextureBuilder")
-    }
-}

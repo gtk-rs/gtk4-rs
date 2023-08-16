@@ -9,7 +9,7 @@ use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
-use std::{boxed::Box as Box_, fmt, mem::transmute};
+use std::{boxed::Box as Box_, mem::transmute};
 
 glib::wrapper! {
     #[doc(alias = "GtkCellEditable")]
@@ -140,9 +140,3 @@ pub trait CellEditableExt: IsA<CellEditable> + sealed::Sealed + 'static {
 }
 
 impl<O: IsA<CellEditable>> CellEditableExt for O {}
-
-impl fmt::Display for CellEditable {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("CellEditable")
-    }
-}

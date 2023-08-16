@@ -9,7 +9,7 @@ use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
-use std::{boxed::Box as Box_, fmt, mem::transmute};
+use std::{boxed::Box as Box_, mem::transmute};
 
 glib::wrapper! {
     #[doc(alias = "GtkCellRendererText")]
@@ -2025,9 +2025,3 @@ pub trait CellRendererTextExt: IsA<CellRendererText> + sealed::Sealed + 'static 
 }
 
 impl<O: IsA<CellRendererText>> CellRendererTextExt for O {}
-
-impl fmt::Display for CellRendererText {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("CellRendererText")
-    }
-}

@@ -7,7 +7,7 @@ use crate::{
     TimeCoord,
 };
 use glib::translate::*;
-use std::{fmt, mem, ptr};
+use std::{mem, ptr};
 
 glib::wrapper! {
     #[doc(alias = "GdkEvent")]
@@ -190,11 +190,5 @@ impl Event {
                 self.as_ref().to_glib_none().0,
             ))
         }
-    }
-}
-
-impl fmt::Display for Event {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("Event")
     }
 }

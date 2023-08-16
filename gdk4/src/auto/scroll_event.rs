@@ -7,7 +7,7 @@ use crate::ScrollDirection;
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
 use crate::ScrollUnit;
 use glib::translate::*;
-use std::{fmt, mem};
+use std::mem;
 
 glib::wrapper! {
     #[doc(alias = "GdkScrollEvent")]
@@ -58,11 +58,5 @@ impl ScrollEvent {
     #[doc(alias = "gdk_scroll_event_is_stop")]
     pub fn is_stop(&self) -> bool {
         unsafe { from_glib(ffi::gdk_scroll_event_is_stop(self.to_glib_none().0)) }
-    }
-}
-
-impl fmt::Display for ScrollEvent {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("ScrollEvent")
     }
 }

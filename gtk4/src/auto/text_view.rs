@@ -13,7 +13,7 @@ use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
-use std::{boxed::Box as Box_, fmt, mem, mem::transmute};
+use std::{boxed::Box as Box_, mem, mem::transmute};
 
 glib::wrapper! {
     #[doc(alias = "GtkTextView")]
@@ -2170,9 +2170,3 @@ pub trait TextViewExt: IsA<TextView> + sealed::Sealed + 'static {
 }
 
 impl<O: IsA<TextView>> TextViewExt for O {}
-
-impl fmt::Display for TextView {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("TextView")
-    }
-}

@@ -8,7 +8,7 @@ use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
-use std::{boxed::Box as Box_, fmt, mem::transmute, pin::Pin, ptr};
+use std::{boxed::Box as Box_, mem::transmute, pin::Pin, ptr};
 
 glib::wrapper! {
     #[doc(alias = "GtkUriLauncher")]
@@ -174,11 +174,5 @@ impl UriLauncherBuilder {
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> UriLauncher {
         self.builder.build()
-    }
-}
-
-impl fmt::Display for UriLauncher {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("UriLauncher")
     }
 }

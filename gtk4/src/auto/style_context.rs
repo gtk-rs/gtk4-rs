@@ -9,7 +9,7 @@ use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
-use std::{boxed::Box as Box_, fmt, mem::transmute};
+use std::{boxed::Box as Box_, mem::transmute};
 
 glib::wrapper! {
     #[doc(alias = "GtkStyleContext")]
@@ -288,9 +288,3 @@ pub trait StyleContextExt: IsA<StyleContext> + sealed::Sealed + 'static {
 }
 
 impl<O: IsA<StyleContext>> StyleContextExt for O {}
-
-impl fmt::Display for StyleContext {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("StyleContext")
-    }
-}

@@ -6,7 +6,7 @@ use crate::{
     Accessible, AccessibleRole, Align, Buildable, ConstraintTarget, LayoutManager, Overflow, Widget,
 };
 use glib::{prelude::*, translate::*};
-use std::{fmt, mem};
+use std::mem;
 
 glib::wrapper! {
     #[doc(alias = "GtkFixed")]
@@ -330,9 +330,3 @@ pub trait FixedExt: IsA<Fixed> + sealed::Sealed + 'static {
 }
 
 impl<O: IsA<Fixed>> FixedExt for O {}
-
-impl fmt::Display for Fixed {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("Fixed")
-    }
-}

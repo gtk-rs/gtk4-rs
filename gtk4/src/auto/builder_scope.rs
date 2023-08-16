@@ -3,7 +3,6 @@
 // DO NOT EDIT
 
 use glib::prelude::*;
-use std::fmt;
 
 glib::wrapper! {
     #[doc(alias = "GtkBuilderScope")]
@@ -26,9 +25,3 @@ mod sealed {
 pub trait BuilderScopeExt: IsA<BuilderScope> + sealed::Sealed + 'static {}
 
 impl<O: IsA<BuilderScope>> BuilderScopeExt for O {}
-
-impl fmt::Display for BuilderScope {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("BuilderScope")
-    }
-}

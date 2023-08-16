@@ -4,7 +4,6 @@
 
 use crate::{CrossingMode, NotifyType};
 use glib::translate::*;
-use std::fmt;
 
 glib::wrapper! {
     #[doc(alias = "GdkCrossingEvent")]
@@ -39,11 +38,5 @@ impl CrossingEvent {
     #[doc(alias = "get_mode")]
     pub fn mode(&self) -> CrossingMode {
         unsafe { from_glib(ffi::gdk_crossing_event_get_mode(self.to_glib_none().0)) }
-    }
-}
-
-impl fmt::Display for CrossingEvent {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("CrossingEvent")
     }
 }

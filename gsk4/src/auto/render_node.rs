@@ -4,7 +4,7 @@
 
 use crate::RenderNodeType;
 use glib::translate::*;
-use std::{fmt, ptr};
+use std::ptr;
 
 glib::wrapper! {
     #[doc(alias = "GskRenderNode")]
@@ -83,11 +83,5 @@ impl RenderNode {
                 Err(from_glib_full(error))
             }
         }
-    }
-}
-
-impl fmt::Display for RenderNode {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("RenderNode")
     }
 }

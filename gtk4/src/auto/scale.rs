@@ -14,7 +14,7 @@ use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
-use std::{boxed::Box as Box_, fmt, mem, mem::transmute};
+use std::{boxed::Box as Box_, mem, mem::transmute};
 
 #[cfg(feature = "v4_10")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
@@ -590,9 +590,3 @@ pub trait ScaleExt: IsA<Scale> + sealed::Sealed + 'static {
 }
 
 impl<O: IsA<Scale>> ScaleExt for O {}
-
-impl fmt::Display for Scale {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("Scale")
-    }
-}

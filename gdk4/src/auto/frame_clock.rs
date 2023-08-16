@@ -8,7 +8,7 @@ use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
-use std::{boxed::Box as Box_, fmt, mem, mem::transmute};
+use std::{boxed::Box as Box_, mem, mem::transmute};
 
 glib::wrapper! {
     #[doc(alias = "GdkFrameClock")]
@@ -257,11 +257,5 @@ impl FrameClock {
                 Box_::into_raw(f),
             )
         }
-    }
-}
-
-impl fmt::Display for FrameClock {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("FrameClock")
     }
 }

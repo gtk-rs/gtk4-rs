@@ -3,7 +3,6 @@
 // DO NOT EDIT
 
 use glib::{prelude::*, translate::*};
-use std::fmt;
 
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
@@ -35,30 +34,6 @@ pub enum AxisUse {
     Slider,
     #[doc(hidden)]
     __Unknown(i32),
-}
-
-impl fmt::Display for AxisUse {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "AxisUse::{}",
-            match *self {
-                Self::Ignore => "Ignore",
-                Self::X => "X",
-                Self::Y => "Y",
-                Self::DeltaX => "DeltaX",
-                Self::DeltaY => "DeltaY",
-                Self::Pressure => "Pressure",
-                Self::Xtilt => "Xtilt",
-                Self::Ytilt => "Ytilt",
-                Self::Wheel => "Wheel",
-                Self::Distance => "Distance",
-                Self::Rotation => "Rotation",
-                Self::Slider => "Slider",
-                _ => "Unknown",
-            }
-        )
-    }
 }
 
 #[doc(hidden)]
@@ -190,27 +165,6 @@ pub enum CrossingMode {
     __Unknown(i32),
 }
 
-impl fmt::Display for CrossingMode {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "CrossingMode::{}",
-            match *self {
-                Self::Normal => "Normal",
-                Self::Grab => "Grab",
-                Self::Ungrab => "Ungrab",
-                Self::GtkGrab => "GtkGrab",
-                Self::GtkUngrab => "GtkUngrab",
-                Self::StateChanged => "StateChanged",
-                Self::TouchBegin => "TouchBegin",
-                Self::TouchEnd => "TouchEnd",
-                Self::DeviceSwitch => "DeviceSwitch",
-                _ => "Unknown",
-            }
-        )
-    }
-}
-
 #[doc(hidden)]
 impl IntoGlib for CrossingMode {
     type GlibType = ffi::GdkCrossingMode;
@@ -322,21 +276,6 @@ pub enum DevicePadFeature {
     __Unknown(i32),
 }
 
-impl fmt::Display for DevicePadFeature {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "DevicePadFeature::{}",
-            match *self {
-                Self::Button => "Button",
-                Self::Ring => "Ring",
-                Self::Strip => "Strip",
-                _ => "Unknown",
-            }
-        )
-    }
-}
-
 #[doc(hidden)]
 impl IntoGlib for DevicePadFeature {
     type GlibType = ffi::GdkDevicePadFeature;
@@ -446,26 +385,6 @@ pub enum DeviceToolType {
     __Unknown(i32),
 }
 
-impl fmt::Display for DeviceToolType {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "DeviceToolType::{}",
-            match *self {
-                Self::Unknown => "Unknown",
-                Self::Pen => "Pen",
-                Self::Eraser => "Eraser",
-                Self::Brush => "Brush",
-                Self::Pencil => "Pencil",
-                Self::Airbrush => "Airbrush",
-                Self::Mouse => "Mouse",
-                Self::Lens => "Lens",
-                _ => "Unknown",
-            }
-        )
-    }
-}
-
 #[doc(hidden)]
 impl IntoGlib for DeviceToolType {
     type GlibType = ffi::GdkDeviceToolType;
@@ -573,21 +492,6 @@ pub enum DragCancelReason {
     Error,
     #[doc(hidden)]
     __Unknown(i32),
-}
-
-impl fmt::Display for DragCancelReason {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "DragCancelReason::{}",
-            match *self {
-                Self::NoTarget => "NoTarget",
-                Self::UserCancelled => "UserCancelled",
-                Self::Error => "Error",
-                _ => "Unknown",
-            }
-        )
-    }
 }
 
 #[doc(hidden)]
@@ -743,48 +647,6 @@ pub enum EventType {
     __Unknown(i32),
 }
 
-impl fmt::Display for EventType {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "EventType::{}",
-            match *self {
-                Self::Delete => "Delete",
-                Self::MotionNotify => "MotionNotify",
-                Self::ButtonPress => "ButtonPress",
-                Self::ButtonRelease => "ButtonRelease",
-                Self::KeyPress => "KeyPress",
-                Self::KeyRelease => "KeyRelease",
-                Self::EnterNotify => "EnterNotify",
-                Self::LeaveNotify => "LeaveNotify",
-                Self::FocusChange => "FocusChange",
-                Self::ProximityIn => "ProximityIn",
-                Self::ProximityOut => "ProximityOut",
-                Self::DragEnter => "DragEnter",
-                Self::DragLeave => "DragLeave",
-                Self::DragMotion => "DragMotion",
-                Self::DropStart => "DropStart",
-                Self::Scroll => "Scroll",
-                Self::GrabBroken => "GrabBroken",
-                Self::TouchBegin => "TouchBegin",
-                Self::TouchUpdate => "TouchUpdate",
-                Self::TouchEnd => "TouchEnd",
-                Self::TouchCancel => "TouchCancel",
-                Self::TouchpadSwipe => "TouchpadSwipe",
-                Self::TouchpadPinch => "TouchpadPinch",
-                Self::PadButtonPress => "PadButtonPress",
-                Self::PadButtonRelease => "PadButtonRelease",
-                Self::PadRing => "PadRing",
-                Self::PadStrip => "PadStrip",
-                Self::PadGroupMode => "PadGroupMode",
-                #[cfg(feature = "v4_8")]
-                Self::TouchpadHold => "TouchpadHold",
-                _ => "Unknown",
-            }
-        )
-    }
-}
-
 #[doc(hidden)]
 impl IntoGlib for EventType {
     type GlibType = ffi::GdkEventType;
@@ -934,20 +796,6 @@ pub enum FullscreenMode {
     __Unknown(i32),
 }
 
-impl fmt::Display for FullscreenMode {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "FullscreenMode::{}",
-            match *self {
-                Self::CurrentMonitor => "CurrentMonitor",
-                Self::AllMonitors => "AllMonitors",
-                _ => "Unknown",
-            }
-        )
-    }
-}
-
 #[doc(hidden)]
 impl IntoGlib for FullscreenMode {
     type GlibType = ffi::GdkFullscreenMode;
@@ -1047,23 +895,6 @@ pub enum GLError {
     LinkFailed,
     #[doc(hidden)]
     __Unknown(i32),
-}
-
-impl fmt::Display for GLError {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "GLError::{}",
-            match *self {
-                Self::NotAvailable => "NotAvailable",
-                Self::UnsupportedFormat => "UnsupportedFormat",
-                Self::UnsupportedProfile => "UnsupportedProfile",
-                Self::CompilationFailed => "CompilationFailed",
-                Self::LinkFailed => "LinkFailed",
-                _ => "Unknown",
-            }
-        )
-    }
 }
 
 #[doc(hidden)]
@@ -1206,28 +1037,6 @@ pub enum Gravity {
     __Unknown(i32),
 }
 
-impl fmt::Display for Gravity {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "Gravity::{}",
-            match *self {
-                Self::NorthWest => "NorthWest",
-                Self::North => "North",
-                Self::NorthEast => "NorthEast",
-                Self::West => "West",
-                Self::Center => "Center",
-                Self::East => "East",
-                Self::SouthWest => "SouthWest",
-                Self::South => "South",
-                Self::SouthEast => "SouthEast",
-                Self::Static => "Static",
-                _ => "Unknown",
-            }
-        )
-    }
-}
-
 #[doc(hidden)]
 impl IntoGlib for Gravity {
     type GlibType = ffi::GdkGravity;
@@ -1349,25 +1158,6 @@ pub enum InputSource {
     __Unknown(i32),
 }
 
-impl fmt::Display for InputSource {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "InputSource::{}",
-            match *self {
-                Self::Mouse => "Mouse",
-                Self::Pen => "Pen",
-                Self::Keyboard => "Keyboard",
-                Self::Touchscreen => "Touchscreen",
-                Self::Touchpad => "Touchpad",
-                Self::Trackpoint => "Trackpoint",
-                Self::TabletPad => "TabletPad",
-                _ => "Unknown",
-            }
-        )
-    }
-}
-
 #[doc(hidden)]
 impl IntoGlib for InputSource {
     type GlibType = ffi::GdkInputSource;
@@ -1473,21 +1263,6 @@ pub enum KeyMatch {
     Exact,
     #[doc(hidden)]
     __Unknown(i32),
-}
-
-impl fmt::Display for KeyMatch {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "KeyMatch::{}",
-            match *self {
-                Self::None => "None",
-                Self::Partial => "Partial",
-                Self::Exact => "Exact",
-                _ => "Unknown",
-            }
-        )
-    }
 }
 
 #[doc(hidden)]
@@ -1675,65 +1450,6 @@ pub enum MemoryFormat {
     A32Float,
     #[doc(hidden)]
     __Unknown(i32),
-}
-
-impl fmt::Display for MemoryFormat {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "MemoryFormat::{}",
-            match *self {
-                Self::B8g8r8a8Premultiplied => "B8g8r8a8Premultiplied",
-                Self::A8r8g8b8Premultiplied => "A8r8g8b8Premultiplied",
-                Self::R8g8b8a8Premultiplied => "R8g8b8a8Premultiplied",
-                Self::B8g8r8a8 => "B8g8r8a8",
-                Self::A8r8g8b8 => "A8r8g8b8",
-                Self::R8g8b8a8 => "R8g8b8a8",
-                Self::A8b8g8r8 => "A8b8g8r8",
-                Self::R8g8b8 => "R8g8b8",
-                Self::B8g8r8 => "B8g8r8",
-                #[cfg(feature = "v4_6")]
-                Self::R16g16b16 => "R16g16b16",
-                #[cfg(feature = "v4_6")]
-                Self::R16g16b16a16Premultiplied => "R16g16b16a16Premultiplied",
-                #[cfg(feature = "v4_6")]
-                Self::R16g16b16a16 => "R16g16b16a16",
-                #[cfg(feature = "v4_6")]
-                Self::R16g16b16Float => "R16g16b16Float",
-                #[cfg(feature = "v4_6")]
-                Self::R16g16b16a16FloatPremultiplied => "R16g16b16a16FloatPremultiplied",
-                #[cfg(feature = "v4_6")]
-                Self::R16g16b16a16Float => "R16g16b16a16Float",
-                #[cfg(feature = "v4_6")]
-                Self::R32g32b32Float => "R32g32b32Float",
-                #[cfg(feature = "v4_6")]
-                Self::R32g32b32a32FloatPremultiplied => "R32g32b32a32FloatPremultiplied",
-                #[cfg(feature = "v4_6")]
-                Self::R32g32b32a32Float => "R32g32b32a32Float",
-                #[cfg(feature = "v4_12")]
-                Self::G8a8Premultiplied => "G8a8Premultiplied",
-                #[cfg(feature = "v4_12")]
-                Self::G8a8 => "G8a8",
-                #[cfg(feature = "v4_12")]
-                Self::G8 => "G8",
-                #[cfg(feature = "v4_12")]
-                Self::G16a16Premultiplied => "G16a16Premultiplied",
-                #[cfg(feature = "v4_12")]
-                Self::G16a16 => "G16a16",
-                #[cfg(feature = "v4_12")]
-                Self::G16 => "G16",
-                #[cfg(feature = "v4_12")]
-                Self::A8 => "A8",
-                #[cfg(feature = "v4_12")]
-                Self::A16 => "A16",
-                #[cfg(feature = "v4_12")]
-                Self::A16Float => "A16Float",
-                #[cfg(feature = "v4_12")]
-                Self::A32Float => "A32Float",
-                _ => "Unknown",
-            }
-        )
-    }
 }
 
 #[doc(hidden)]
@@ -1935,24 +1651,6 @@ pub enum NotifyType {
     __Unknown(i32),
 }
 
-impl fmt::Display for NotifyType {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "NotifyType::{}",
-            match *self {
-                Self::Ancestor => "Ancestor",
-                Self::Virtual => "Virtual",
-                Self::Inferior => "Inferior",
-                Self::Nonlinear => "Nonlinear",
-                Self::NonlinearVirtual => "NonlinearVirtual",
-                Self::Unknown => "Unknown",
-                _ => "Unknown",
-            }
-        )
-    }
-}
-
 #[doc(hidden)]
 impl IntoGlib for NotifyType {
     type GlibType = ffi::GdkNotifyType;
@@ -2062,23 +1760,6 @@ pub enum ScrollDirection {
     __Unknown(i32),
 }
 
-impl fmt::Display for ScrollDirection {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "ScrollDirection::{}",
-            match *self {
-                Self::Up => "Up",
-                Self::Down => "Down",
-                Self::Left => "Left",
-                Self::Right => "Right",
-                Self::Smooth => "Smooth",
-                _ => "Unknown",
-            }
-        )
-    }
-}
-
 #[doc(hidden)]
 impl IntoGlib for ScrollDirection {
     type GlibType = ffi::GdkScrollDirection;
@@ -2180,22 +1861,6 @@ pub enum ScrollUnit {
     Surface,
     #[doc(hidden)]
     __Unknown(i32),
-}
-
-#[cfg(feature = "v4_8")]
-#[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
-impl fmt::Display for ScrollUnit {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "ScrollUnit::{}",
-            match *self {
-                Self::Wheel => "Wheel",
-                Self::Surface => "Surface",
-                _ => "Unknown",
-            }
-        )
-    }
 }
 
 #[cfg(feature = "v4_8")]
@@ -2317,24 +1982,6 @@ pub enum SubpixelLayout {
     __Unknown(i32),
 }
 
-impl fmt::Display for SubpixelLayout {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "SubpixelLayout::{}",
-            match *self {
-                Self::Unknown => "Unknown",
-                Self::None => "None",
-                Self::HorizontalRgb => "HorizontalRgb",
-                Self::HorizontalBgr => "HorizontalBgr",
-                Self::VerticalRgb => "VerticalRgb",
-                Self::VerticalBgr => "VerticalBgr",
-                _ => "Unknown",
-            }
-        )
-    }
-}
-
 #[doc(hidden)]
 impl IntoGlib for SubpixelLayout {
     type GlibType = ffi::GdkSubpixelLayout;
@@ -2450,26 +2097,6 @@ pub enum SurfaceEdge {
     __Unknown(i32),
 }
 
-impl fmt::Display for SurfaceEdge {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "SurfaceEdge::{}",
-            match *self {
-                Self::NorthWest => "NorthWest",
-                Self::North => "North",
-                Self::NorthEast => "NorthEast",
-                Self::West => "West",
-                Self::East => "East",
-                Self::SouthWest => "SouthWest",
-                Self::South => "South",
-                Self::SouthEast => "SouthEast",
-                _ => "Unknown",
-            }
-        )
-    }
-}
-
 #[doc(hidden)]
 impl IntoGlib for SurfaceEdge {
     type GlibType = ffi::GdkSurfaceEdge;
@@ -2581,24 +2208,6 @@ pub enum TextureError {
     UnsupportedFormat,
     #[doc(hidden)]
     __Unknown(i32),
-}
-
-#[cfg(feature = "v4_6")]
-#[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
-impl fmt::Display for TextureError {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "TextureError::{}",
-            match *self {
-                Self::TooLarge => "TooLarge",
-                Self::CorruptImage => "CorruptImage",
-                Self::UnsupportedContent => "UnsupportedContent",
-                Self::UnsupportedFormat => "UnsupportedFormat",
-                _ => "Unknown",
-            }
-        )
-    }
 }
 
 #[cfg(feature = "v4_6")]
@@ -2747,23 +2356,6 @@ pub enum TitlebarGesture {
 
 #[cfg(feature = "v4_4")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_4")))]
-impl fmt::Display for TitlebarGesture {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "TitlebarGesture::{}",
-            match *self {
-                Self::DoubleClick => "DoubleClick",
-                Self::RightClick => "RightClick",
-                Self::MiddleClick => "MiddleClick",
-                _ => "Unknown",
-            }
-        )
-    }
-}
-
-#[cfg(feature = "v4_4")]
-#[cfg_attr(docsrs, doc(cfg(feature = "v4_4")))]
 #[doc(hidden)]
 impl IntoGlib for TitlebarGesture {
     type GlibType = ffi::GdkTitlebarGesture;
@@ -2879,22 +2471,6 @@ pub enum TouchpadGesturePhase {
     __Unknown(i32),
 }
 
-impl fmt::Display for TouchpadGesturePhase {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "TouchpadGesturePhase::{}",
-            match *self {
-                Self::Begin => "Begin",
-                Self::Update => "Update",
-                Self::End => "End",
-                Self::Cancel => "Cancel",
-                _ => "Unknown",
-            }
-        )
-    }
-}
-
 #[doc(hidden)]
 impl IntoGlib for TouchpadGesturePhase {
     type GlibType = ffi::GdkTouchpadGesturePhase;
@@ -2992,20 +2568,6 @@ pub enum VulkanError {
     NotAvailable,
     #[doc(hidden)]
     __Unknown(i32),
-}
-
-impl fmt::Display for VulkanError {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "VulkanError::{}",
-            match *self {
-                Self::Unsupported => "Unsupported",
-                Self::NotAvailable => "NotAvailable",
-                _ => "Unknown",
-            }
-        )
-    }
 }
 
 #[doc(hidden)]

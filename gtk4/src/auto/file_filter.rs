@@ -8,7 +8,7 @@ use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
-use std::{boxed::Box as Box_, fmt, mem::transmute};
+use std::{boxed::Box as Box_, mem::transmute};
 
 glib::wrapper! {
     #[doc(alias = "GtkFileFilter")]
@@ -122,11 +122,5 @@ impl FileFilter {
 impl Default for FileFilter {
     fn default() -> Self {
         Self::new()
-    }
-}
-
-impl fmt::Display for FileFilter {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("FileFilter")
     }
 }

@@ -12,7 +12,7 @@ use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
-use std::{boxed::Box as Box_, fmt, mem, mem::transmute, ptr};
+use std::{boxed::Box as Box_, mem, mem::transmute, ptr};
 
 glib::wrapper! {
     #[doc(alias = "GdkSurface")]
@@ -558,9 +558,3 @@ pub trait SurfaceExt: IsA<Surface> + sealed::Sealed + 'static {
 }
 
 impl<O: IsA<Surface>> SurfaceExt for O {}
-
-impl fmt::Display for Surface {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("Surface")
-    }
-}

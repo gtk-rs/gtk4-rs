@@ -8,7 +8,7 @@ use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
-use std::{boxed::Box as Box_, fmt, mem::transmute};
+use std::{boxed::Box as Box_, mem::transmute};
 
 glib::wrapper! {
     #[doc(alias = "GtkGestureSingle")]
@@ -178,9 +178,3 @@ pub trait GestureSingleExt: IsA<GestureSingle> + sealed::Sealed + 'static {
 }
 
 impl<O: IsA<GestureSingle>> GestureSingleExt for O {}
-
-impl fmt::Display for GestureSingle {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("GestureSingle")
-    }
-}

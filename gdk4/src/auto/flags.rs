@@ -3,7 +3,6 @@
 // DO NOT EDIT
 
 use glib::{bitflags::bitflags, prelude::*, translate::*};
-use std::fmt;
 
 bitflags! {
     #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash)]
@@ -27,12 +26,6 @@ bitflags! {
         const SLIDE = ffi::GDK_ANCHOR_SLIDE as _;
         #[doc(alias = "GDK_ANCHOR_RESIZE")]
         const RESIZE = ffi::GDK_ANCHOR_RESIZE as _;
-    }
-}
-
-impl fmt::Display for AnchorHints {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        <Self as fmt::Debug>::fmt(self, f)
     }
 }
 
@@ -139,12 +132,6 @@ bitflags! {
     }
 }
 
-impl fmt::Display for AxisFlags {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        <Self as fmt::Debug>::fmt(self, f)
-    }
-}
-
 #[doc(hidden)]
 impl IntoGlib for AxisFlags {
     type GlibType = ffi::GdkAxisFlags;
@@ -239,12 +226,6 @@ impl DragAction {
     pub fn is_unique(self) -> bool {
         assert_initialized_main_thread!();
         unsafe { from_glib(ffi::gdk_drag_action_is_unique(self.into_glib())) }
-    }
-}
-
-impl fmt::Display for DragAction {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        <Self as fmt::Debug>::fmt(self, f)
     }
 }
 
@@ -345,12 +326,6 @@ bitflags! {
     }
 }
 
-impl fmt::Display for FrameClockPhase {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        <Self as fmt::Debug>::fmt(self, f)
-    }
-}
-
 #[doc(hidden)]
 impl IntoGlib for FrameClockPhase {
     type GlibType = ffi::GdkFrameClockPhase;
@@ -435,14 +410,6 @@ bitflags! {
         const GL = ffi::GDK_GL_API_GL as _;
         #[doc(alias = "GDK_GL_API_GLES")]
         const GLES = ffi::GDK_GL_API_GLES as _;
-    }
-}
-
-#[cfg(feature = "v4_6")]
-#[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
-impl fmt::Display for GLAPI {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        <Self as fmt::Debug>::fmt(self, f)
     }
 }
 
@@ -567,12 +534,6 @@ bitflags! {
     }
 }
 
-impl fmt::Display for ModifierType {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        <Self as fmt::Debug>::fmt(self, f)
-    }
-}
-
 #[doc(hidden)]
 impl IntoGlib for ModifierType {
     type GlibType = ffi::GdkModifierType;
@@ -655,12 +616,6 @@ bitflags! {
         const SIZE = ffi::GDK_PAINTABLE_STATIC_SIZE as _;
         #[doc(alias = "GDK_PAINTABLE_STATIC_CONTENTS")]
         const CONTENTS = ffi::GDK_PAINTABLE_STATIC_CONTENTS as _;
-    }
-}
-
-impl fmt::Display for PaintableFlags {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        <Self as fmt::Debug>::fmt(self, f)
     }
 }
 
@@ -758,12 +713,6 @@ bitflags! {
         const ALL_POINTING = ffi::GDK_SEAT_CAPABILITY_ALL_POINTING as _;
         #[doc(alias = "GDK_SEAT_CAPABILITY_ALL")]
         const ALL = ffi::GDK_SEAT_CAPABILITY_ALL as _;
-    }
-}
-
-impl fmt::Display for SeatCapabilities {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        <Self as fmt::Debug>::fmt(self, f)
     }
 }
 
@@ -881,12 +830,6 @@ bitflags! {
         #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
         #[doc(alias = "GDK_TOPLEVEL_STATE_SUSPENDED")]
         const SUSPENDED = ffi::GDK_TOPLEVEL_STATE_SUSPENDED as _;
-    }
-}
-
-impl fmt::Display for ToplevelState {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        <Self as fmt::Debug>::fmt(self, f)
     }
 }
 

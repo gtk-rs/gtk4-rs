@@ -4,7 +4,7 @@
 
 use crate::{PageOrientation, PaperSize, Unit};
 use glib::translate::*;
-use std::{fmt, ptr};
+use std::ptr;
 
 glib::wrapper! {
     #[doc(alias = "GtkPageSetup")]
@@ -271,11 +271,5 @@ impl PageSetup {
 impl Default for PageSetup {
     fn default() -> Self {
         Self::new()
-    }
-}
-
-impl fmt::Display for PageSetup {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("PageSetup")
     }
 }
