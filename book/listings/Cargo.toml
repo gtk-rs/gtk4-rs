@@ -102,6 +102,10 @@ path = "g_object_memory_management/3/main.rs"
 name = "g_object_memory_management_4"
 path = "g_object_memory_management/4/main.rs"
 
+[[bin]]
+name = "g_object_memory_management_5"
+path = "g_object_memory_management/5/main.rs"
+
 # g_object_properties
 [[bin]]
 name = "g_object_properties_1"

@@ -136,8 +136,7 @@ But why did we not do the same thing with our multi-threaded example?
 #         .margin_end(12)
 #         .build();
 # 
-    // DOES NOT COMPILE
-    
+    // DOES NOT COMPILE!
     // Connect to "clicked" signal of `button`
     button.connect_clicked(move |button| {
         button.clone();

@@ -17,7 +17,6 @@ fn main() -> glib::ExitCode {
     // Run the application
     app.run()
 }
-
 fn build_ui(app: &Application) {
     // Create two buttons
     let button_increase = Button::builder()
@@ -35,21 +34,17 @@ fn build_ui(app: &Application) {
         .margin_end(12)
         .build();
 
+    // Reference-counted object with inner mutability
     let number = Rc::new(Cell::new(0));
-
-    // ANCHOR: callback
     // Connect callbacks
-    // When a button is clicked, `number` and label of the other button will be changed
-    button_increase.connect_clicked(clone!(@weak number, @strong button_decrease =>
-        move |_| {
-            number.set(number.get() + 1);
-            button_decrease.set_label(&number.get().to_string());
+    // When a button is clicked, `number` will be changed
+    // ANCHOR: callback
+    button_increase.connect_clicked(clone!(@strong number => move |_| {
+        number.set(number.get() + 1);
     }));
-    button_decrease.connect_clicked(clone!(@strong button_increase =>
-        move |_| {
-            number.set(number.get() - 1);
-            button_increase.set_label(&number.get().to_string());
-    }));
+    button_decrease.connect_clicked(move |_| {
+        number.set(number.get() - 1);
+    });
     // ANCHOR_END: callback
 
     // Add buttons to `gtk_box`
