@@ -86,7 +86,6 @@ By adding the `move` keyword in front of the closure, `number` will be moved int
 #
 #const APP_ID: &str = "org.gtk_rs.GObjectMemoryManagement0";
 #
-// DOES NOT COMPILE!
 #fn main() -> glib::ExitCode {
 #    // Create a new application
 #    let app = Application::builder().application_id(APP_ID).build();
@@ -108,6 +107,7 @@ By adding the `move` keyword in front of the closure, `number` will be moved int
 #        .margin_end(12)
 #        .build();
 #
+    // DOES NOT COMPILE!
     // A mutable integer
     let mut number = 0;
 
