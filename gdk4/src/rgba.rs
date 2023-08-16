@@ -67,15 +67,15 @@ impl RGBABuilder {
 
 impl RGBA {
     #[inline]
-    pub fn new(red: f32, green: f32, blue: f32, alpha: f32) -> Self {
+    pub const fn new(red: f32, green: f32, blue: f32, alpha: f32) -> Self {
         skip_assert_initialized!();
-        unsafe {
-            Self::unsafe_from(ffi::GdkRGBA {
+        Self {
+            inner: ffi::GdkRGBA {
                 red,
                 green,
                 blue,
                 alpha,
-            })
+            },
         }
     }
 
