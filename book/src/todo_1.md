@@ -156,6 +156,14 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 {{#rustdoc_include ../listings/todo/1/window/mod.rs:tasks}}
 ```
 
+We also create a method `new_task` which takes the content of the entry, clears the entry and uses the content to create a new task.
+
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/1/window/mod.rs">listings/todo/1/window/mod.rs</a>
+
+```rust ,no_run,noplayground
+{{#rustdoc_include ../listings/todo/1/window/mod.rs:new_task}}
+```
+
 In `Window::setup_callbacks` we connect to the "activate" signal of the entry.
 This signal is triggered when we press the enter key in the entry.
 Then a new `TaskObject` with the content will be created and appended to the model.
