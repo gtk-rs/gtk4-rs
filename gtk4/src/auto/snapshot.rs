@@ -80,6 +80,20 @@ pub trait SnapshotExt: IsA<Snapshot> + sealed::Sealed + 'static {
         }
     }
 
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    #[doc(alias = "gtk_snapshot_append_fill")]
+    fn append_fill(&self, path: &gsk::Path, fill_rule: gsk::FillRule, color: &gdk::RGBA) {
+        unsafe {
+            ffi::gtk_snapshot_append_fill(
+                self.as_ref().to_glib_none().0,
+                path.to_glib_none().0,
+                fill_rule.into_glib(),
+                color.to_glib_none().0,
+            );
+        }
+    }
+
     #[doc(alias = "gtk_snapshot_append_inset_shadow")]
     fn append_inset_shadow(
         &self,
@@ -258,6 +272,20 @@ pub trait SnapshotExt: IsA<Snapshot> + sealed::Sealed + 'static {
                 texture.as_ref().to_glib_none().0,
                 filter.into_glib(),
                 bounds.to_glib_none().0,
+            );
+        }
+    }
+
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    #[doc(alias = "gtk_snapshot_append_stroke")]
+    fn append_stroke(&self, path: &gsk::Path, stroke: &gsk::Stroke, color: &gdk::RGBA) {
+        unsafe {
+            ffi::gtk_snapshot_append_stroke(
+                self.as_ref().to_glib_none().0,
+                path.to_glib_none().0,
+                stroke.to_glib_none().0,
+                color.to_glib_none().0,
             );
         }
     }

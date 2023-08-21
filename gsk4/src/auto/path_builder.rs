@@ -2,7 +2,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use crate::{Path, PathPoint};
+use crate::{Path, PathPoint, RoundedRect};
 use glib::translate::*;
 
 glib::wrapper! {
@@ -59,6 +59,13 @@ impl PathBuilder {
     pub fn add_reverse_path(&self, path: &Path) {
         unsafe {
             ffi::gsk_path_builder_add_reverse_path(self.to_glib_none().0, path.to_glib_none().0);
+        }
+    }
+
+    #[doc(alias = "gsk_path_builder_add_rounded_rect")]
+    pub fn add_rounded_rect(&self, rect: &RoundedRect) {
+        unsafe {
+            ffi::gsk_path_builder_add_rounded_rect(self.to_glib_none().0, rect.to_glib_none().0);
         }
     }
 
