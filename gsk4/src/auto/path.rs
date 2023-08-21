@@ -2,7 +2,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use crate::{FillRule, PathDirection, PathPoint, Stroke};
+use crate::{FillRule, PathPoint, Stroke};
 use glib::translate::*;
 use std::fmt;
 
@@ -125,33 +125,6 @@ impl Path {
     #[doc(alias = "gsk_path_is_empty")]
     pub fn is_empty(&self) -> bool {
         unsafe { from_glib(ffi::gsk_path_is_empty(self.to_glib_none().0)) }
-    }
-
-    #[doc(alias = "gsk_path_point_get_position")]
-    pub fn point_get_position(&self, point: &PathPoint) -> graphene::Point {
-        unsafe {
-            let mut position = graphene::Point::uninitialized();
-            ffi::gsk_path_point_get_position(
-                self.to_glib_none().0,
-                point.to_glib_none().0,
-                position.to_glib_none_mut().0,
-            );
-            position
-        }
-    }
-
-    #[doc(alias = "gsk_path_point_get_tangent")]
-    pub fn point_get_tangent(&self, point: &PathPoint, direction: PathDirection) -> graphene::Vec2 {
-        unsafe {
-            let mut tangent = graphene::Vec2::uninitialized();
-            ffi::gsk_path_point_get_tangent(
-                self.to_glib_none().0,
-                point.to_glib_none().0,
-                direction.into_glib(),
-                tangent.to_glib_none_mut().0,
-            );
-            tangent
-        }
     }
 
     #[doc(alias = "gsk_path_to_cairo")]

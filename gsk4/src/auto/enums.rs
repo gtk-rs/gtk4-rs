@@ -982,10 +982,14 @@ impl From<MaskMode> for glib::Value {
 #[non_exhaustive]
 #[doc(alias = "GskPathDirection")]
 pub enum PathDirection {
-    #[doc(alias = "GSK_PATH_START")]
-    Start,
-    #[doc(alias = "GSK_PATH_END")]
-    End,
+    #[doc(alias = "GSK_PATH_FROM_START")]
+    FromStart,
+    #[doc(alias = "GSK_PATH_TO_START")]
+    ToStart,
+    #[doc(alias = "GSK_PATH_TO_END")]
+    ToEnd,
+    #[doc(alias = "GSK_PATH_FROM_END")]
+    FromEnd,
     #[doc(hidden)]
     __Unknown(i32),
 }
@@ -998,8 +1002,10 @@ impl fmt::Display for PathDirection {
             f,
             "PathDirection::{}",
             match *self {
-                Self::Start => "Start",
-                Self::End => "End",
+                Self::FromStart => "FromStart",
+                Self::ToStart => "ToStart",
+                Self::ToEnd => "ToEnd",
+                Self::FromEnd => "FromEnd",
                 _ => "Unknown",
             }
         )
@@ -1015,8 +1021,10 @@ impl IntoGlib for PathDirection {
     #[inline]
     fn into_glib(self) -> ffi::GskPathDirection {
         match self {
-            Self::Start => ffi::GSK_PATH_START,
-            Self::End => ffi::GSK_PATH_END,
+            Self::FromStart => ffi::GSK_PATH_FROM_START,
+            Self::ToStart => ffi::GSK_PATH_TO_START,
+            Self::ToEnd => ffi::GSK_PATH_TO_END,
+            Self::FromEnd => ffi::GSK_PATH_FROM_END,
             Self::__Unknown(value) => value,
         }
     }
@@ -1031,8 +1039,10 @@ impl FromGlib<ffi::GskPathDirection> for PathDirection {
         skip_assert_initialized!();
 
         match value {
-            ffi::GSK_PATH_START => Self::Start,
-            ffi::GSK_PATH_END => Self::End,
+            ffi::GSK_PATH_FROM_START => Self::FromStart,
+            ffi::GSK_PATH_TO_START => Self::ToStart,
+            ffi::GSK_PATH_TO_END => Self::ToEnd,
+            ffi::GSK_PATH_FROM_END => Self::FromEnd,
             value => Self::__Unknown(value),
         }
     }

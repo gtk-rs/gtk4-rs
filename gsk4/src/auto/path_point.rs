@@ -2,6 +2,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+use crate::{Path, PathDirection};
 use glib::translate::*;
 use std::cmp;
 
@@ -28,6 +29,61 @@ impl PathPoint {
                 self.to_glib_none().0,
                 point2.to_glib_none().0,
             ))
+        }
+    }
+
+    #[doc(alias = "gsk_path_point_get_curvature")]
+    #[doc(alias = "get_curvature")]
+    pub fn curvature(&self, path: &Path) -> (f32, Option<graphene::Point>) {
+        unsafe {
+            let mut center = graphene::Point::uninitialized();
+            let ret = ffi::gsk_path_point_get_curvature(
+                self.to_glib_none().0,
+                path.to_glib_none().0,
+                center.to_glib_none_mut().0,
+            );
+            (ret, center)
+        }
+    }
+
+    #[doc(alias = "gsk_path_point_get_position")]
+    #[doc(alias = "get_position")]
+    pub fn position(&self, path: &Path) -> graphene::Point {
+        unsafe {
+            let mut position = graphene::Point::uninitialized();
+            ffi::gsk_path_point_get_position(
+                self.to_glib_none().0,
+                path.to_glib_none().0,
+                position.to_glib_none_mut().0,
+            );
+            position
+        }
+    }
+
+    #[doc(alias = "gsk_path_point_get_rotation")]
+    #[doc(alias = "get_rotation")]
+    pub fn rotation(&self, path: &Path, direction: PathDirection) -> f32 {
+        unsafe {
+            ffi::gsk_path_point_get_rotation(
+                self.to_glib_none().0,
+                path.to_glib_none().0,
+                direction.into_glib(),
+            )
+        }
+    }
+
+    #[doc(alias = "gsk_path_point_get_tangent")]
+    #[doc(alias = "get_tangent")]
+    pub fn tangent(&self, path: &Path, direction: PathDirection) -> graphene::Vec2 {
+        unsafe {
+            let mut tangent = graphene::Vec2::uninitialized();
+            ffi::gsk_path_point_get_tangent(
+                self.to_glib_none().0,
+                path.to_glib_none().0,
+                direction.into_glib(),
+                tangent.to_glib_none_mut().0,
+            );
+            tangent
         }
     }
 }
