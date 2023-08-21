@@ -70,6 +70,14 @@ impl PopoverMenu {
         }
     }
 
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    #[doc(alias = "gtk_popover_menu_get_flags")]
+    #[doc(alias = "get_flags")]
+    pub fn flags(&self) -> PopoverMenuFlags {
+        unsafe { from_glib(ffi::gtk_popover_menu_get_flags(self.to_glib_none().0)) }
+    }
+
     #[doc(alias = "gtk_popover_menu_get_menu_model")]
     #[doc(alias = "get_menu_model")]
     pub fn menu_model(&self) -> Option<gio::MenuModel> {
@@ -83,6 +91,15 @@ impl PopoverMenu {
                 self.to_glib_none().0,
                 child.as_ref().to_glib_none().0,
             ))
+        }
+    }
+
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    #[doc(alias = "gtk_popover_menu_set_flags")]
+    pub fn set_flags(&self, flags: PopoverMenuFlags) {
+        unsafe {
+            ffi::gtk_popover_menu_set_flags(self.to_glib_none().0, flags.into_glib());
         }
     }
 
@@ -104,6 +121,31 @@ impl PopoverMenu {
     #[doc(alias = "visible-submenu")]
     pub fn set_visible_submenu(&self, visible_submenu: Option<&str>) {
         ObjectExt::set_property(self, "visible-submenu", visible_submenu)
+    }
+
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    #[doc(alias = "flags")]
+    pub fn connect_flags_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_flags_trampoline<F: Fn(&PopoverMenu) + 'static>(
+            this: *mut ffi::GtkPopoverMenu,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::flags\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_flags_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
     }
 
     #[doc(alias = "menu-model")]
@@ -166,6 +208,14 @@ impl PopoverMenuBuilder {
     fn new() -> Self {
         Self {
             builder: glib::object::Object::builder(),
+        }
+    }
+
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn flags(self, flags: PopoverMenuFlags) -> Self {
+        Self {
+            builder: self.builder.property("flags", flags),
         }
     }
 

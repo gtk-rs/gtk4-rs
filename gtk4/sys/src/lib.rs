@@ -15869,11 +15869,17 @@ extern "C" {
         child: *mut GtkWidget,
         id: *const c_char,
     ) -> gboolean;
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gtk_popover_menu_get_flags(popover: *mut GtkPopoverMenu) -> GtkPopoverMenuFlags;
     pub fn gtk_popover_menu_get_menu_model(popover: *mut GtkPopoverMenu) -> *mut gio::GMenuModel;
     pub fn gtk_popover_menu_remove_child(
         popover: *mut GtkPopoverMenu,
         child: *mut GtkWidget,
     ) -> gboolean;
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gtk_popover_menu_set_flags(popover: *mut GtkPopoverMenu, flags: GtkPopoverMenuFlags);
     pub fn gtk_popover_menu_set_menu_model(
         popover: *mut GtkPopoverMenu,
         model: *mut gio::GMenuModel,
@@ -16998,6 +17004,14 @@ extern "C" {
         stops: *const gsk::GskColorStop,
         n_stops: size_t,
     );
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gtk_snapshot_append_fill(
+        snapshot: *mut GtkSnapshot,
+        path: *mut gsk::GskPath,
+        fill_rule: gsk::GskFillRule,
+        color: *const gdk::GdkRGBA,
+    );
     pub fn gtk_snapshot_append_inset_shadow(
         snapshot: *mut GtkSnapshot,
         outline: *const gsk::GskRoundedRect,
@@ -17067,6 +17081,14 @@ extern "C" {
         texture: *mut gdk::GdkTexture,
         filter: gsk::GskScalingFilter,
         bounds: *const graphene::graphene_rect_t,
+    );
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gtk_snapshot_append_stroke(
+        snapshot: *mut GtkSnapshot,
+        path: *mut gsk::GskPath,
+        stroke: *const gsk::GskStroke,
+        color: *const gdk::GdkRGBA,
     );
     pub fn gtk_snapshot_append_texture(
         snapshot: *mut GtkSnapshot,
