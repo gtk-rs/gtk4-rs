@@ -76,8 +76,10 @@ pub const GSK_MASK_MODE_LUMINANCE: GskMaskMode = 2;
 pub const GSK_MASK_MODE_INVERTED_LUMINANCE: GskMaskMode = 3;
 
 pub type GskPathDirection = c_int;
-pub const GSK_PATH_START: GskPathDirection = 0;
-pub const GSK_PATH_END: GskPathDirection = 1;
+pub const GSK_PATH_FROM_START: GskPathDirection = 0;
+pub const GSK_PATH_TO_START: GskPathDirection = 1;
+pub const GSK_PATH_TO_END: GskPathDirection = 2;
+pub const GSK_PATH_FROM_END: GskPathDirection = 3;
 
 pub type GskPathOperation = c_int;
 pub const GSK_PATH_MOVE: GskPathOperation = 0;
@@ -1006,28 +1008,6 @@ extern "C" {
     pub fn gsk_path_is_empty(self_: *mut GskPath) -> gboolean;
     #[cfg(feature = "v4_14")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
-    pub fn gsk_path_point_get_curvature(
-        path: *mut GskPath,
-        point: *const GskPathPoint,
-        center: *mut graphene::graphene_point_t,
-    ) -> c_float;
-    #[cfg(feature = "v4_14")]
-    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
-    pub fn gsk_path_point_get_position(
-        path: *mut GskPath,
-        point: *const GskPathPoint,
-        position: *mut graphene::graphene_point_t,
-    );
-    #[cfg(feature = "v4_14")]
-    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
-    pub fn gsk_path_point_get_tangent(
-        path: *mut GskPath,
-        point: *const GskPathPoint,
-        direction: GskPathDirection,
-        tangent: *mut graphene::graphene_vec2_t,
-    );
-    #[cfg(feature = "v4_14")]
-    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
     pub fn gsk_path_print(self_: *mut GskPath, string: *mut glib::GString);
     #[cfg(feature = "v4_14")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
@@ -1082,6 +1062,12 @@ extern "C" {
     #[cfg(feature = "v4_14")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
     pub fn gsk_path_builder_add_reverse_path(self_: *mut GskPathBuilder, path: *mut GskPath);
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gsk_path_builder_add_rounded_rect(
+        self_: *mut GskPathBuilder,
+        rect: *const GskRoundedRect,
+    );
     #[cfg(feature = "v4_14")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
     pub fn gsk_path_builder_add_segment(
@@ -1187,6 +1173,35 @@ extern "C" {
     #[cfg(feature = "v4_14")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
     pub fn gsk_path_point_free(point: *mut GskPathPoint);
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gsk_path_point_get_curvature(
+        point: *const GskPathPoint,
+        path: *mut GskPath,
+        center: *mut graphene::graphene_point_t,
+    ) -> c_float;
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gsk_path_point_get_position(
+        point: *const GskPathPoint,
+        path: *mut GskPath,
+        position: *mut graphene::graphene_point_t,
+    );
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gsk_path_point_get_rotation(
+        point: *const GskPathPoint,
+        path: *mut GskPath,
+        direction: GskPathDirection,
+    ) -> c_float;
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gsk_path_point_get_tangent(
+        point: *const GskPathPoint,
+        path: *mut GskPath,
+        direction: GskPathDirection,
+        tangent: *mut graphene::graphene_vec2_t,
+    );
 
     //=========================================================================
     // GskRoundedRect

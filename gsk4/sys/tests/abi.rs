@@ -10,7 +10,7 @@ use std::error::Error;
 use std::ffi::OsString;
 use std::mem::{align_of, size_of};
 use std::path::Path;
-use std::process::Command;
+use std::process::{Command, Stdio};
 use std::str;
 use tempfile::Builder;
 
@@ -70,9 +70,11 @@ fn pkg_config_cflags(packages: &[&str]) -> Result<Vec<String>, Box<dyn Error>> {
     let mut cmd = Command::new(pkg_config);
     cmd.arg("--cflags");
     cmd.args(packages);
+    cmd.stderr(Stdio::inherit());
     let out = cmd.output()?;
     if !out.status.success() {
-        return Err(format!("command {cmd:?} returned {}", out.status).into());
+        let (status, stdout) = (out.status, String::from_utf8_lossy(&out.stdout));
+        return Err(format!("command {cmd:?} failed, {status:?}\nstdout: {stdout}").into());
     }
     let stdout = str::from_utf8(&out.stdout)?;
     Ok(shell_words::split(stdout.trim())?)
@@ -187,13 +189,15 @@ fn get_c_output(name: &str) -> Result<String, Box<dyn Error>> {
     let cc = Compiler::new().expect("configured compiler");
     cc.compile(&c_file, &exe)?;
 
-    let mut abi_cmd = Command::new(exe);
-    let output = abi_cmd.output()?;
-    if !output.status.success() {
-        return Err(format!("command {abi_cmd:?} failed, {output:?}").into());
+    let mut cmd = Command::new(exe);
+    cmd.stderr(Stdio::inherit());
+    let out = cmd.output()?;
+    if !out.status.success() {
+        let (status, stdout) = (out.status, String::from_utf8_lossy(&out.stdout));
+        return Err(format!("command {cmd:?} failed, {status:?}\nstdout: {stdout}").into());
     }
 
-    Ok(String::from_utf8(output.stdout)?)
+    Ok(String::from_utf8(out.stdout)?)
 }
 
 const RUST_LAYOUTS: &[(&str, Layout)] = &[
@@ -401,14 +405,16 @@ const RUST_CONSTANTS: &[(&str, &str)] = &[
     ("(gint) GSK_OUTSET_SHADOW_NODE", "12"),
     ("(gint) GSK_PATH_CLOSE", "1"),
     ("(gint) GSK_PATH_CUBIC", "4"),
-    ("(gint) GSK_PATH_END", "1"),
     ("(guint) GSK_PATH_FOREACH_ALLOW_CUBIC", "2"),
     ("(guint) GSK_PATH_FOREACH_ALLOW_ONLY_LINES", "0"),
     ("(guint) GSK_PATH_FOREACH_ALLOW_QUAD", "1"),
+    ("(gint) GSK_PATH_FROM_END", "3"),
+    ("(gint) GSK_PATH_FROM_START", "0"),
     ("(gint) GSK_PATH_LINE", "2"),
     ("(gint) GSK_PATH_MOVE", "0"),
     ("(gint) GSK_PATH_QUAD", "3"),
-    ("(gint) GSK_PATH_START", "0"),
+    ("(gint) GSK_PATH_TO_END", "2"),
+    ("(gint) GSK_PATH_TO_START", "1"),
     ("(gint) GSK_RADIAL_GRADIENT_NODE", "6"),
     ("(gint) GSK_REPEATING_LINEAR_GRADIENT_NODE", "5"),
     ("(gint) GSK_REPEATING_RADIAL_GRADIENT_NODE", "7"),
