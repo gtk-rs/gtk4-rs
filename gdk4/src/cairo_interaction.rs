@@ -45,7 +45,8 @@ pub trait GdkCairoContextExt {
     );
 
     #[doc(alias = "gdk_cairo_set_source_rgba")]
-    fn set_source_rgba(&self, rgba: &RGBA);
+    #[doc(alias = "set_source_rgba")]
+    fn set_source_color(&self, rgba: &RGBA);
 
     #[doc(alias = "gdk_cairo_set_source_pixbuf")]
     fn set_source_pixbuf(&self, pixbuf: &Pixbuf, x: f64, y: f64);
@@ -83,7 +84,7 @@ impl GdkCairoContextExt for Context {
         );
     }
 
-    fn set_source_rgba(&self, rgba: &RGBA) {
+    fn set_source_color(&self, rgba: &RGBA) {
         unsafe {
             ffi::gdk_cairo_set_source_rgba(self.to_glib_none().0, rgba.to_glib_none().0);
         }
