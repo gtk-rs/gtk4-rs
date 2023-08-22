@@ -52,7 +52,7 @@ fn create_color_button(color: &'static str) -> gtk::Button {
 
     let rgba = gdk::RGBA::from_str(color).unwrap();
     drawing_area.set_draw_func(move |_, cr, _width, _height| {
-        GdkCairoContextExt::set_source_rgba(cr, &rgba);
+        cr.set_source_color(&rgba);
         cr.paint().expect("Invalid cairo surface state");
     });
     button.set_child(Some(&drawing_area));
