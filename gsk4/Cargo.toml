@@ -29,7 +29,7 @@ rustc-args = ["--cfg", "docsrs"]
 rustdoc-args = ["--cfg", "docsrs", "--generate-link-to-definition"]
 
 [dependencies]
-cairo-rs = {git = "https://github.com/gtk-rs/gtk-rs-core", version = "0.19"}
+cairo-rs = {git = "https://github.com/gtk-rs/gtk-rs-core", version = "0.19", features = ["use_glib"]}
 ffi = {package = "gsk4-sys", path = "./sys", version = "0.8"}
 gdk = {package = "gdk4", path = "../gdk4", version = "0.8"}
 glib = {git = "https://github.com/gtk-rs/gtk-rs-core", version = "0.19", features = ["v2_66"]}
