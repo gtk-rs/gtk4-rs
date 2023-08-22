@@ -41,7 +41,7 @@ rustc-args = ["--cfg", "docsrs"]
 rustdoc-args = ["--cfg", "docsrs", "--generate-link-to-definition"]
 
 [dependencies]
-cairo-rs = {git = "https://github.com/gtk-rs/gtk-rs-core", version = "0.19"}
+cairo-rs = {git = "https://github.com/gtk-rs/gtk-rs-core", version = "0.19", features = ["use_glib"]}
 ffi = {package = "gtk4-sys", path = "./sys", version = "0.8"}
 field-offset = "0.3"
 futures-channel = "0.3"
