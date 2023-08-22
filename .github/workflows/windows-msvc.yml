@@ -33,9 +33,9 @@ jobs:
       id: cache
       with:
         path: c:/gnome
-        key: ${{ runner.os }}-gtk4-14
+        key: ${{ runner.os }}-gtk4-14.1
         restore-keys: |
-          ${{ runner.os }}-gtk4-14
+          ${{ runner.os }}-gtk4-14.1
         
     - name: Set up the PATH environment
       run: |
