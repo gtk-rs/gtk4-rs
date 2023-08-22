@@ -1,6 +1,6 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::{Path, PathForeachFlags, PathOperation, PathPoint};
+use crate::{Path, PathForeachFlags, PathOperation};
 use glib::translate::*;
 
 impl Path {
@@ -33,23 +33,6 @@ impl Path {
                 func,
                 super_callback0 as *const _ as usize as *mut _,
             ))
-        }
-    }
-
-    #[doc(alias = "gsk_path_point_get_curvature")]
-    pub fn point_get_curvature(&self, point: &PathPoint) -> (f32, Option<graphene::Point>) {
-        unsafe {
-            let mut center = graphene::Point::uninitialized();
-            let ret = ffi::gsk_path_point_get_curvature(
-                self.to_glib_none().0,
-                point.to_glib_none().0,
-                center.to_glib_none_mut().0,
-            );
-            if ret == 0.0 {
-                (ret, None)
-            } else {
-                (ret, Some(center))
-            }
         }
     }
 }
