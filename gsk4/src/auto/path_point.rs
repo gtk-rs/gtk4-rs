@@ -32,20 +32,6 @@ impl PathPoint {
         }
     }
 
-    #[doc(alias = "gsk_path_point_get_curvature")]
-    #[doc(alias = "get_curvature")]
-    pub fn curvature(&self, path: &Path) -> (f32, Option<graphene::Point>) {
-        unsafe {
-            let mut center = graphene::Point::uninitialized();
-            let ret = ffi::gsk_path_point_get_curvature(
-                self.to_glib_none().0,
-                path.to_glib_none().0,
-                center.to_glib_none_mut().0,
-            );
-            (ret, center)
-        }
-    }
-
     #[doc(alias = "gsk_path_point_get_position")]
     #[doc(alias = "get_position")]
     pub fn position(&self, path: &Path) -> graphene::Point {
