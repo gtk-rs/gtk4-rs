@@ -170,9 +170,6 @@ status = "generate"
     [[object.function]]
     name = "foreach"
     manual = true # tries to call from_glib_borrow on an enum
-    [[object.function]]
-    name = "point_get_curvature"
-    manual = true # handle nullable point return value
 
 [[object]]
 name = "Gsk.PathBuilder"
@@ -188,7 +185,9 @@ status = "generate"
 name = "Gsk.PathPoint"
 status = "generate"
 boxed_inline = true
-
+    [[object.function]]
+    name = "get_curvature"
+    manual = true # handle nullable point return value
 
 [[object]]
 name = "Gsk.Renderer"
