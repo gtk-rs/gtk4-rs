@@ -51,7 +51,6 @@ impl FromGlib<ffi::GskPathForeachFlags> for PathForeachFlags {
 impl StaticType for PathForeachFlags {
     #[inline]
     #[doc(alias = "gsk_path_foreach_flags_get_type")]
-
     fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gsk_path_foreach_flags_get_type()) }
     }

@@ -41,7 +41,6 @@ impl FromGlib<ffi::GtkApplicationInhibitFlags> for ApplicationInhibitFlags {
 impl StaticType for ApplicationInhibitFlags {
     #[inline]
     #[doc(alias = "gtk_application_inhibit_flags_get_type")]
-
     fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gtk_application_inhibit_flags_get_type()) }
     }
@@ -126,7 +125,6 @@ impl FromGlib<ffi::GtkBuilderClosureFlags> for BuilderClosureFlags {
 impl StaticType for BuilderClosureFlags {
     #[inline]
     #[doc(alias = "gtk_builder_closure_flags_get_type")]
-
     fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gtk_builder_closure_flags_get_type()) }
     }
@@ -223,7 +221,6 @@ impl FromGlib<ffi::GtkCellRendererState> for CellRendererState {
 impl StaticType for CellRendererState {
     #[inline]
     #[doc(alias = "gtk_cell_renderer_state_get_type")]
-
     fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gtk_cell_renderer_state_get_type()) }
     }
@@ -346,7 +343,6 @@ impl FromGlib<ffi::GtkDebugFlags> for DebugFlags {
 impl StaticType for DebugFlags {
     #[inline]
     #[doc(alias = "gtk_debug_flags_get_type")]
-
     fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gtk_debug_flags_get_type()) }
     }
@@ -435,7 +431,6 @@ impl FromGlib<ffi::GtkDialogFlags> for DialogFlags {
 impl StaticType for DialogFlags {
     #[inline]
     #[doc(alias = "gtk_dialog_flags_get_type")]
-
     fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gtk_dialog_flags_get_type()) }
     }
@@ -530,7 +525,6 @@ impl FromGlib<ffi::GtkEventControllerScrollFlags> for EventControllerScrollFlags
 impl StaticType for EventControllerScrollFlags {
     #[inline]
     #[doc(alias = "gtk_event_controller_scroll_flags_get_type")]
-
     fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gtk_event_controller_scroll_flags_get_type()) }
     }
@@ -623,7 +617,6 @@ impl FromGlib<ffi::GtkFontChooserLevel> for FontChooserLevel {
 impl StaticType for FontChooserLevel {
     #[inline]
     #[doc(alias = "gtk_font_chooser_level_get_type")]
-
     fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gtk_font_chooser_level_get_type()) }
     }
@@ -712,7 +705,6 @@ impl FromGlib<ffi::GtkIconLookupFlags> for IconLookupFlags {
 impl StaticType for IconLookupFlags {
     #[inline]
     #[doc(alias = "gtk_icon_lookup_flags_get_type")]
-
     fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gtk_icon_lookup_flags_get_type()) }
     }
@@ -821,7 +813,6 @@ impl FromGlib<ffi::GtkInputHints> for InputHints {
 impl StaticType for InputHints {
     #[inline]
     #[doc(alias = "gtk_input_hints_get_type")]
-
     fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gtk_input_hints_get_type()) }
     }
@@ -918,7 +909,6 @@ impl FromGlib<ffi::GtkListScrollFlags> for ListScrollFlags {
 impl StaticType for ListScrollFlags {
     #[inline]
     #[doc(alias = "gtk_list_scroll_flags_get_type")]
-
     fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gtk_list_scroll_flags_get_type()) }
     }
@@ -1017,7 +1007,6 @@ impl FromGlib<ffi::GtkPickFlags> for PickFlags {
 impl StaticType for PickFlags {
     #[inline]
     #[doc(alias = "gtk_pick_flags_get_type")]
-
     fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gtk_pick_flags_get_type()) }
     }
@@ -1102,7 +1091,6 @@ impl FromGlib<ffi::GtkPopoverMenuFlags> for PopoverMenuFlags {
 impl StaticType for PopoverMenuFlags {
     #[inline]
     #[doc(alias = "gtk_popover_menu_flags_get_type")]
-
     fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gtk_popover_menu_flags_get_type()) }
     }
@@ -1210,7 +1198,6 @@ impl FromGlib<ffi::GtkPrintCapabilities> for PrintCapabilities {
 impl StaticType for PrintCapabilities {
     #[inline]
     #[doc(alias = "gtk_print_capabilities_get_type")]
-
     fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gtk_print_capabilities_get_type()) }
     }
@@ -1300,7 +1287,6 @@ impl FromGlib<ffi::GtkShortcutActionFlags> for ShortcutActionFlags {
 impl StaticType for ShortcutActionFlags {
     #[inline]
     #[doc(alias = "gtk_shortcut_action_flags_get_type")]
-
     fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gtk_shortcut_action_flags_get_type()) }
     }
@@ -1415,7 +1401,6 @@ impl FromGlib<ffi::GtkStateFlags> for StateFlags {
 impl StaticType for StateFlags {
     #[inline]
     #[doc(alias = "gtk_state_flags_get_type")]
-
     fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gtk_state_flags_get_type()) }
     }
@@ -1506,7 +1491,6 @@ impl FromGlib<ffi::GtkStyleContextPrintFlags> for StyleContextPrintFlags {
 impl StaticType for StyleContextPrintFlags {
     #[inline]
     #[doc(alias = "gtk_style_context_print_flags_get_type")]
-
     fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gtk_style_context_print_flags_get_type()) }
     }
@@ -1595,7 +1579,6 @@ impl FromGlib<ffi::GtkTextSearchFlags> for TextSearchFlags {
 impl StaticType for TextSearchFlags {
     #[inline]
     #[doc(alias = "gtk_text_search_flags_get_type")]
-
     fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gtk_text_search_flags_get_type()) }
     }
@@ -1686,7 +1669,6 @@ impl FromGlib<ffi::GtkTreeModelFlags> for TreeModelFlags {
 impl StaticType for TreeModelFlags {
     #[inline]
     #[doc(alias = "gtk_tree_model_flags_get_type")]
-
     fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gtk_tree_model_flags_get_type()) }
     }
