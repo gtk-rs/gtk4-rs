@@ -101,7 +101,6 @@ impl FromGlib<ffi::GskBlendMode> for BlendMode {
 impl StaticType for BlendMode {
     #[inline]
     #[doc(alias = "gsk_blend_mode_get_type")]
-
     fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gsk_blend_mode_get_type()) }
     }
@@ -206,7 +205,6 @@ impl FromGlib<ffi::GskCorner> for Corner {
 impl StaticType for Corner {
     #[inline]
     #[doc(alias = "gsk_corner_get_type")]
-
     fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gsk_corner_get_type()) }
     }
@@ -311,7 +309,6 @@ impl FromGlib<ffi::GskFillRule> for FillRule {
 impl StaticType for FillRule {
     #[inline]
     #[doc(alias = "gsk_fill_rule_get_type")]
-
     fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gsk_fill_rule_get_type()) }
     }
@@ -442,7 +439,6 @@ impl FromGlib<ffi::GskGLUniformType> for GLUniformType {
 impl StaticType for GLUniformType {
     #[inline]
     #[doc(alias = "gsk_gl_uniform_type_get_type")]
-
     fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gsk_gl_uniform_type_get_type()) }
     }
@@ -551,7 +547,6 @@ impl FromGlib<ffi::GskLineCap> for LineCap {
 impl StaticType for LineCap {
     #[inline]
     #[doc(alias = "gsk_line_cap_get_type")]
-
     fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gsk_line_cap_get_type()) }
     }
@@ -670,7 +665,6 @@ impl FromGlib<ffi::GskLineJoin> for LineJoin {
 impl StaticType for LineJoin {
     #[inline]
     #[doc(alias = "gsk_line_join_get_type")]
-
     fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gsk_line_join_get_type()) }
     }
@@ -793,7 +787,6 @@ impl FromGlib<ffi::GskMaskMode> for MaskMode {
 impl StaticType for MaskMode {
     #[inline]
     #[doc(alias = "gsk_mask_mode_get_type")]
-
     fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gsk_mask_mode_get_type()) }
     }
@@ -916,7 +909,6 @@ impl FromGlib<ffi::GskPathDirection> for PathDirection {
 impl StaticType for PathDirection {
     #[inline]
     #[doc(alias = "gsk_path_direction_get_type")]
-
     fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gsk_path_direction_get_type()) }
     }
@@ -1047,7 +1039,6 @@ impl FromGlib<ffi::GskPathOperation> for PathOperation {
 impl StaticType for PathOperation {
     #[inline]
     #[doc(alias = "gsk_path_operation_get_type")]
-
     fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gsk_path_operation_get_type()) }
     }
@@ -1272,7 +1263,6 @@ impl FromGlib<ffi::GskRenderNodeType> for RenderNodeType {
 impl StaticType for RenderNodeType {
     #[inline]
     #[doc(alias = "gsk_render_node_type_get_type")]
-
     fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gsk_render_node_type_get_type()) }
     }
@@ -1373,7 +1363,6 @@ impl FromGlib<ffi::GskScalingFilter> for ScalingFilter {
 impl StaticType for ScalingFilter {
     #[inline]
     #[doc(alias = "gsk_scaling_filter_get_type")]
-
     fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gsk_scaling_filter_get_type()) }
     }
@@ -1497,7 +1486,6 @@ impl glib::error::ErrorDomain for SerializationError {
 impl StaticType for SerializationError {
     #[inline]
     #[doc(alias = "gsk_serialization_error_get_type")]
-
     fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gsk_serialization_error_get_type()) }
     }
@@ -1614,7 +1602,6 @@ impl FromGlib<ffi::GskTransformCategory> for TransformCategory {
 impl StaticType for TransformCategory {
     #[inline]
     #[doc(alias = "gsk_transform_category_get_type")]
-
     fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gsk_transform_category_get_type()) }
     }
