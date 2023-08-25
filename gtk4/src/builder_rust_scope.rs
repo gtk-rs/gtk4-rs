@@ -190,7 +190,7 @@ mod tests {
     use super::BuilderRustScope;
     use crate::{self as gtk4, prelude::*, subclass::prelude::*, Builder};
 
-    const SIGNAL_XML: &str = r##"
+    const SIGNAL_XML: &str = r#"
     <?xml version="1.0" encoding="UTF-8"?>
     <interface>
       <object class="GtkButton" id="button">
@@ -198,7 +198,7 @@ mod tests {
         <signal name="clicked" handler="button_clicked"/>
       </object>
     </interface>
-    "##;
+    "#;
 
     #[crate::test]
     fn test_rust_builder_scope_signal_handler() {
@@ -225,7 +225,7 @@ mod tests {
         assert_eq!(button.label().unwrap().as_str(), "Clicked");
     }
 
-    const CLOSURE_XML: &str = r##"
+    const CLOSURE_XML: &str = r#"
     <?xml version="1.0" encoding="UTF-8"?>
     <interface>
       <object class="GtkEntry" id="entry_a"/>
@@ -237,7 +237,7 @@ mod tests {
         </binding>
       </object>
     </interface>
-    "##;
+    "#;
 
     #[crate::test]
     fn test_rust_builder_scope_closure() {
@@ -290,14 +290,14 @@ mod tests {
         entry_a.set_text("Hello World");
     }
 
-    const DISPOSE_XML: &str = r##"
+    const DISPOSE_XML: &str = r#"
     <?xml version="1.0" encoding="UTF-8"?>
     <interface>
       <object class="MyObject" id="obj">
         <signal name="destroyed" handler="my_object_destroyed" object="obj" swapped="true" />
       </object>
     </interface>
-    "##;
+    "#;
 
     #[crate::test]
     fn test_rust_builder_scope_object_during_dispose() {

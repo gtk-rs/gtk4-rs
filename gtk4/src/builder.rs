@@ -24,7 +24,7 @@ impl Builder {
             if ptr.is_null() {
                 None
             } else {
-                glib::gobject_ffi::g_object_ref(ptr as *mut glib::gobject_ffi::GObject);
+                glib::gobject_ffi::g_object_ref(ptr);
                 Some(from_glib_full(ptr))
             }
         }
