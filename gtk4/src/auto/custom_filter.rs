@@ -3,7 +3,6 @@
 // DO NOT EDIT
 
 use crate::Filter;
-use std::fmt;
 
 glib::wrapper! {
     #[doc(alias = "GtkCustomFilter")]
@@ -15,9 +14,3 @@ glib::wrapper! {
 }
 
 impl CustomFilter {}
-
-impl fmt::Display for CustomFilter {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("CustomFilter")
-    }
-}

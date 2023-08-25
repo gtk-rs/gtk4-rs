@@ -3,7 +3,6 @@
 // DO NOT EDIT
 
 use glib::translate::*;
-use std::cmp;
 
 glib::wrapper! {
     #[derive(Debug, Hash)]
@@ -176,14 +175,14 @@ impl Eq for TreePath {}
 
 impl PartialOrd for TreePath {
     #[inline]
-    fn partial_cmp(&self, other: &Self) -> Option<cmp::Ordering> {
+    fn partial_cmp(&self, other: &Self) -> Option<std::cmp::Ordering> {
         self.compare(other).partial_cmp(&0)
     }
 }
 
 impl Ord for TreePath {
     #[inline]
-    fn cmp(&self, other: &Self) -> cmp::Ordering {
+    fn cmp(&self, other: &Self) -> std::cmp::Ordering {
         self.compare(other).cmp(&0)
     }
 }

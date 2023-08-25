@@ -3,7 +3,6 @@
 // DO NOT EDIT
 
 use glib::{prelude::*, translate::*};
-use std::fmt;
 
 glib::wrapper! {
     #[doc(alias = "GdkWin32HCursor")]
@@ -21,11 +20,5 @@ impl Win32HCursor {
 
     pub fn display(&self) -> Option<gdk::Display> {
         ObjectExt::property(self, "display")
-    }
-}
-
-impl fmt::Display for Win32HCursor {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("Win32HCursor")
     }
 }

@@ -4,7 +4,6 @@
 
 use crate::{Buildable, Sorter};
 use glib::{prelude::*, translate::*};
-use std::fmt;
 
 glib::wrapper! {
     #[doc(alias = "GtkMultiSorter")]
@@ -40,11 +39,5 @@ impl MultiSorter {
 impl Default for MultiSorter {
     fn default() -> Self {
         Self::new()
-    }
-}
-
-impl fmt::Display for MultiSorter {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("MultiSorter")
     }
 }

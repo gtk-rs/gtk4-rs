@@ -5,7 +5,6 @@
 
 use crate::{Accessible, Buildable, ConstraintTarget, Widget};
 use glib::{prelude::*, translate::*};
-use std::fmt;
 
 glib::wrapper! {
     #[doc(alias = "GtkAppChooser")]
@@ -61,9 +60,3 @@ pub trait AppChooserExt: IsA<AppChooser> + sealed::Sealed + 'static {
 }
 
 impl<O: IsA<AppChooser>> AppChooserExt for O {}
-
-impl fmt::Display for AppChooser {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("AppChooser")
-    }
-}

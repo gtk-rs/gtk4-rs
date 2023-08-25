@@ -4,7 +4,6 @@
 
 use crate::ShortcutAction;
 use glib::translate::*;
-use std::fmt;
 
 glib::wrapper! {
     #[doc(alias = "GtkMnemonicAction")]
@@ -20,11 +19,5 @@ impl MnemonicAction {
     pub fn get() -> MnemonicAction {
         assert_initialized_main_thread!();
         unsafe { from_glib_none(ffi::gtk_mnemonic_action_get()) }
-    }
-}
-
-impl fmt::Display for MnemonicAction {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("MnemonicAction")
     }
 }

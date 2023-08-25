@@ -6,7 +6,6 @@ use crate::Renderer;
 #[cfg(feature = "v4_2")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_2")))]
 use glib::{prelude::*, translate::*};
-use std::fmt;
 
 glib::wrapper! {
     #[doc(alias = "GskGLRenderer")]
@@ -32,11 +31,5 @@ impl GLRenderer {
 impl Default for GLRenderer {
     fn default() -> Self {
         Self::new()
-    }
-}
-
-impl fmt::Display for GLRenderer {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("GLRenderer")
     }
 }

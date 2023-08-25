@@ -4,7 +4,6 @@
 
 use crate::{ListItem, Widget};
 use glib::{prelude::*, translate::*};
-use std::fmt;
 
 glib::wrapper! {
     #[doc(alias = "GtkColumnViewCell")]
@@ -153,11 +152,5 @@ impl ColumnViewCellBuilder {
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> ColumnViewCell {
         self.builder.build()
-    }
-}
-
-impl fmt::Display for ColumnViewCell {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("ColumnViewCell")
     }
 }

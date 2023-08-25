@@ -8,7 +8,7 @@ use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
-use std::{boxed::Box as Box_, fmt, mem::transmute, ptr};
+use std::boxed::Box as Box_;
 
 glib::wrapper! {
     #[doc(alias = "GskRenderer")]
@@ -58,7 +58,7 @@ pub trait GskRendererExt: IsA<Renderer> + sealed::Sealed + 'static {
     #[doc(alias = "gsk_renderer_realize")]
     fn realize(&self, surface: Option<&gdk::Surface>) -> Result<(), glib::Error> {
         unsafe {
-            let mut error = ptr::null_mut();
+            let mut error = std::ptr::null_mut();
             let is_ok = ffi::gsk_renderer_realize(
                 self.as_ref().to_glib_none().0,
                 surface.to_glib_none().0,
@@ -121,7 +121,7 @@ pub trait GskRendererExt: IsA<Renderer> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::realized\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_realized_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -144,7 +144,7 @@ pub trait GskRendererExt: IsA<Renderer> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::surface\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_surface_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -154,9 +154,3 @@ pub trait GskRendererExt: IsA<Renderer> + sealed::Sealed + 'static {
 }
 
 impl<O: IsA<Renderer>> GskRendererExt for O {}
-
-impl fmt::Display for Renderer {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("Renderer")
-    }
-}

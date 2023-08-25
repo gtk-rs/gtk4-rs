@@ -8,7 +8,7 @@ use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
-use std::{boxed::Box as Box_, fmt, mem::transmute, pin::Pin, ptr};
+use std::{boxed::Box as Box_, pin::Pin};
 
 glib::wrapper! {
     #[doc(alias = "GtkFileDialog")]
@@ -116,7 +116,7 @@ impl FileDialog {
             res: *mut gio::ffi::GAsyncResult,
             user_data: glib::ffi::gpointer,
         ) {
-            let mut error = ptr::null_mut();
+            let mut error = std::ptr::null_mut();
             let ret = ffi::gtk_file_dialog_open_finish(_source_object as *mut _, res, &mut error);
             let result = if error.is_null() {
                 Ok(from_glib_full(ret))
@@ -182,7 +182,7 @@ impl FileDialog {
             res: *mut gio::ffi::GAsyncResult,
             user_data: glib::ffi::gpointer,
         ) {
-            let mut error = ptr::null_mut();
+            let mut error = std::ptr::null_mut();
             let ret = ffi::gtk_file_dialog_open_multiple_finish(
                 _source_object as *mut _,
                 res,
@@ -253,7 +253,7 @@ impl FileDialog {
             res: *mut gio::ffi::GAsyncResult,
             user_data: glib::ffi::gpointer,
         ) {
-            let mut error = ptr::null_mut();
+            let mut error = std::ptr::null_mut();
             let ret = ffi::gtk_file_dialog_save_finish(_source_object as *mut _, res, &mut error);
             let result = if error.is_null() {
                 Ok(from_glib_full(ret))
@@ -319,7 +319,7 @@ impl FileDialog {
             res: *mut gio::ffi::GAsyncResult,
             user_data: glib::ffi::gpointer,
         ) {
-            let mut error = ptr::null_mut();
+            let mut error = std::ptr::null_mut();
             let ret = ffi::gtk_file_dialog_select_folder_finish(
                 _source_object as *mut _,
                 res,
@@ -391,7 +391,7 @@ impl FileDialog {
             res: *mut gio::ffi::GAsyncResult,
             user_data: glib::ffi::gpointer,
         ) {
-            let mut error = ptr::null_mut();
+            let mut error = std::ptr::null_mut();
             let ret = ffi::gtk_file_dialog_select_multiple_folders_finish(
                 _source_object as *mut _,
                 res,
@@ -524,7 +524,7 @@ impl FileDialog {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::accept-label\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_accept_label_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -549,7 +549,7 @@ impl FileDialog {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::default-filter\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_default_filter_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -574,7 +574,7 @@ impl FileDialog {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::filters\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_filters_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -599,7 +599,7 @@ impl FileDialog {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::initial-file\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_initial_file_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -624,7 +624,7 @@ impl FileDialog {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::initial-folder\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_initial_folder_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -649,7 +649,7 @@ impl FileDialog {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::initial-name\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_initial_name_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -674,7 +674,7 @@ impl FileDialog {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::modal\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_modal_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -699,7 +699,7 @@ impl FileDialog {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::title\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_title_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -807,11 +807,5 @@ impl FileDialogBuilder {
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> FileDialog {
         self.builder.build()
-    }
-}
-
-impl fmt::Display for FileDialog {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("FileDialog")
     }
 }

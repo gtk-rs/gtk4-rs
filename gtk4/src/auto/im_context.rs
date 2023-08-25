@@ -9,7 +9,7 @@ use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
-use std::{boxed::Box as Box_, fmt, mem, mem::transmute, ptr};
+use std::boxed::Box as Box_;
 
 glib::wrapper! {
     #[doc(alias = "GtkIMContext")]
@@ -94,9 +94,9 @@ pub trait IMContextExt: IsA<IMContext> + sealed::Sealed + 'static {
     #[doc(alias = "get_preedit_string")]
     fn preedit_string(&self) -> (glib::GString, pango::AttrList, i32) {
         unsafe {
-            let mut str = ptr::null_mut();
-            let mut attrs = ptr::null_mut();
-            let mut cursor_pos = mem::MaybeUninit::uninit();
+            let mut str = std::ptr::null_mut();
+            let mut attrs = std::ptr::null_mut();
+            let mut cursor_pos = std::mem::MaybeUninit::uninit();
             ffi::gtk_im_context_get_preedit_string(
                 self.as_ref().to_glib_none().0,
                 &mut str,
@@ -117,8 +117,8 @@ pub trait IMContextExt: IsA<IMContext> + sealed::Sealed + 'static {
     #[doc(alias = "get_surrounding")]
     fn surrounding(&self) -> Option<(glib::GString, i32)> {
         unsafe {
-            let mut text = ptr::null_mut();
-            let mut cursor_index = mem::MaybeUninit::uninit();
+            let mut text = std::ptr::null_mut();
+            let mut cursor_index = std::mem::MaybeUninit::uninit();
             let ret = from_glib(ffi::gtk_im_context_get_surrounding(
                 self.as_ref().to_glib_none().0,
                 &mut text,
@@ -138,9 +138,9 @@ pub trait IMContextExt: IsA<IMContext> + sealed::Sealed + 'static {
     #[doc(alias = "get_surrounding_with_selection")]
     fn surrounding_with_selection(&self) -> Option<(glib::GString, i32, i32)> {
         unsafe {
-            let mut text = ptr::null_mut();
-            let mut cursor_index = mem::MaybeUninit::uninit();
-            let mut anchor_index = mem::MaybeUninit::uninit();
+            let mut text = std::ptr::null_mut();
+            let mut cursor_index = std::mem::MaybeUninit::uninit();
+            let mut anchor_index = std::mem::MaybeUninit::uninit();
             let ret = from_glib(ffi::gtk_im_context_get_surrounding_with_selection(
                 self.as_ref().to_glib_none().0,
                 &mut text,
@@ -265,7 +265,7 @@ pub trait IMContextExt: IsA<IMContext> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"commit\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     commit_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -300,7 +300,7 @@ pub trait IMContextExt: IsA<IMContext> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"delete-surrounding\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     delete_surrounding_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -322,7 +322,7 @@ pub trait IMContextExt: IsA<IMContext> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"preedit-changed\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     preedit_changed_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -344,7 +344,7 @@ pub trait IMContextExt: IsA<IMContext> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"preedit-end\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     preedit_end_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -366,7 +366,7 @@ pub trait IMContextExt: IsA<IMContext> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"preedit-start\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     preedit_start_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -394,7 +394,7 @@ pub trait IMContextExt: IsA<IMContext> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"retrieve-surrounding\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     retrieve_surrounding_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -420,7 +420,7 @@ pub trait IMContextExt: IsA<IMContext> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::input-hints\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_input_hints_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -446,7 +446,7 @@ pub trait IMContextExt: IsA<IMContext> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::input-purpose\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_input_purpose_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -456,9 +456,3 @@ pub trait IMContextExt: IsA<IMContext> + sealed::Sealed + 'static {
 }
 
 impl<O: IsA<IMContext>> IMContextExt for O {}
-
-impl fmt::Display for IMContext {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("IMContext")
-    }
-}

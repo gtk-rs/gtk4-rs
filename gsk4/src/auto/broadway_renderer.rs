@@ -4,7 +4,6 @@
 
 use crate::Renderer;
 use glib::{prelude::*, translate::*};
-use std::fmt;
 
 glib::wrapper! {
     #[doc(alias = "GskBroadwayRenderer")]
@@ -26,11 +25,5 @@ impl BroadwayRenderer {
 impl Default for BroadwayRenderer {
     fn default() -> Self {
         Self::new()
-    }
-}
-
-impl fmt::Display for BroadwayRenderer {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("BroadwayRenderer")
     }
 }

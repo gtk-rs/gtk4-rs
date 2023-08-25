@@ -4,7 +4,6 @@
 
 use crate::ColorStop;
 use glib::translate::*;
-use std::fmt;
 
 glib::wrapper! {
     #[doc(alias = "GskRepeatingRadialGradientNode")]
@@ -47,11 +46,5 @@ impl RepeatingRadialGradientNode {
                 n_color_stops,
             ))
         }
-    }
-}
-
-impl fmt::Display for RepeatingRadialGradientNode {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("RepeatingRadialGradientNode")
     }
 }

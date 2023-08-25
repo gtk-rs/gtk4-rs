@@ -4,7 +4,6 @@
 #![allow(deprecated)]
 
 use glib::{prelude::*, translate::*};
-use std::fmt;
 
 glib::wrapper! {
     #[doc(alias = "GdkWin32Surface")]
@@ -33,11 +32,5 @@ impl Win32Surface {
                 surface.as_ref().to_glib_none().0,
             ))
         }
-    }
-}
-
-impl fmt::Display for Win32Surface {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("Win32Surface")
     }
 }

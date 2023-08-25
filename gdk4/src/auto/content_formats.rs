@@ -3,7 +3,6 @@
 // DO NOT EDIT
 
 use glib::translate::*;
-use std::{fmt, mem};
 
 glib::wrapper! {
     #[derive(Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
@@ -61,7 +60,7 @@ impl ContentFormats {
     #[doc(alias = "get_mime_types")]
     pub fn mime_types(&self) -> Vec<glib::GString> {
         unsafe {
-            let mut n_mime_types = mem::MaybeUninit::uninit();
+            let mut n_mime_types = std::mem::MaybeUninit::uninit();
             let ret = FromGlibContainer::from_glib_none_num(
                 ffi::gdk_content_formats_get_mime_types(
                     self.to_glib_none().0,
@@ -176,9 +175,9 @@ impl ContentFormats {
     }
 }
 
-impl fmt::Display for ContentFormats {
+impl std::fmt::Display for ContentFormats {
     #[inline]
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
         f.write_str(&self.to_str())
     }
 }

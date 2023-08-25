@@ -3,7 +3,6 @@
 // DO NOT EDIT
 
 use glib::translate::*;
-use std::fmt;
 
 glib::wrapper! {
     #[doc(alias = "GdkContentSerializer")]
@@ -62,11 +61,5 @@ impl ContentSerializer {
         unsafe {
             ffi::gdk_content_serializer_return_success(self.to_glib_none().0);
         }
-    }
-}
-
-impl fmt::Display for ContentSerializer {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("ContentSerializer")
     }
 }

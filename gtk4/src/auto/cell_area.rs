@@ -12,7 +12,7 @@ use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
-use std::{boxed::Box as Box_, fmt, mem, mem::transmute};
+use std::boxed::Box as Box_;
 
 glib::wrapper! {
     #[doc(alias = "GtkCellArea")]
@@ -424,8 +424,8 @@ pub trait CellAreaExt: IsA<CellArea> + sealed::Sealed + 'static {
         widget: &impl IsA<Widget>,
     ) -> (i32, i32) {
         unsafe {
-            let mut minimum_height = mem::MaybeUninit::uninit();
-            let mut natural_height = mem::MaybeUninit::uninit();
+            let mut minimum_height = std::mem::MaybeUninit::uninit();
+            let mut natural_height = std::mem::MaybeUninit::uninit();
             ffi::gtk_cell_area_get_preferred_height(
                 self.as_ref().to_glib_none().0,
                 context.as_ref().to_glib_none().0,
@@ -448,8 +448,8 @@ pub trait CellAreaExt: IsA<CellArea> + sealed::Sealed + 'static {
         width: i32,
     ) -> (i32, i32) {
         unsafe {
-            let mut minimum_height = mem::MaybeUninit::uninit();
-            let mut natural_height = mem::MaybeUninit::uninit();
+            let mut minimum_height = std::mem::MaybeUninit::uninit();
+            let mut natural_height = std::mem::MaybeUninit::uninit();
             ffi::gtk_cell_area_get_preferred_height_for_width(
                 self.as_ref().to_glib_none().0,
                 context.as_ref().to_glib_none().0,
@@ -472,8 +472,8 @@ pub trait CellAreaExt: IsA<CellArea> + sealed::Sealed + 'static {
         widget: &impl IsA<Widget>,
     ) -> (i32, i32) {
         unsafe {
-            let mut minimum_width = mem::MaybeUninit::uninit();
-            let mut natural_width = mem::MaybeUninit::uninit();
+            let mut minimum_width = std::mem::MaybeUninit::uninit();
+            let mut natural_width = std::mem::MaybeUninit::uninit();
             ffi::gtk_cell_area_get_preferred_width(
                 self.as_ref().to_glib_none().0,
                 context.as_ref().to_glib_none().0,
@@ -496,8 +496,8 @@ pub trait CellAreaExt: IsA<CellArea> + sealed::Sealed + 'static {
         height: i32,
     ) -> (i32, i32) {
         unsafe {
-            let mut minimum_width = mem::MaybeUninit::uninit();
-            let mut natural_width = mem::MaybeUninit::uninit();
+            let mut minimum_width = std::mem::MaybeUninit::uninit();
+            let mut natural_width = std::mem::MaybeUninit::uninit();
             ffi::gtk_cell_area_get_preferred_width_for_height(
                 self.as_ref().to_glib_none().0,
                 context.as_ref().to_glib_none().0,
@@ -620,8 +620,8 @@ pub trait CellAreaExt: IsA<CellArea> + sealed::Sealed + 'static {
         for_size: i32,
     ) -> (i32, i32) {
         unsafe {
-            let mut minimum_size = mem::MaybeUninit::uninit();
-            let mut natural_size = mem::MaybeUninit::uninit();
+            let mut minimum_size = std::mem::MaybeUninit::uninit();
+            let mut natural_size = std::mem::MaybeUninit::uninit();
             ffi::gtk_cell_area_request_renderer(
                 self.as_ref().to_glib_none().0,
                 renderer.as_ref().to_glib_none().0,
@@ -716,7 +716,7 @@ pub trait CellAreaExt: IsA<CellArea> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"add-editable\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     add_editable_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -754,7 +754,7 @@ pub trait CellAreaExt: IsA<CellArea> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"apply-attributes\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     apply_attributes_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -789,7 +789,7 @@ pub trait CellAreaExt: IsA<CellArea> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"focus-changed\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     focus_changed_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -823,7 +823,7 @@ pub trait CellAreaExt: IsA<CellArea> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"remove-editable\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     remove_editable_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -849,7 +849,7 @@ pub trait CellAreaExt: IsA<CellArea> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::edit-widget\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_edit_widget_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -875,7 +875,7 @@ pub trait CellAreaExt: IsA<CellArea> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::edited-cell\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_edited_cell_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -898,7 +898,7 @@ pub trait CellAreaExt: IsA<CellArea> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::focus-cell\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_focus_cell_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -908,9 +908,3 @@ pub trait CellAreaExt: IsA<CellArea> + sealed::Sealed + 'static {
 }
 
 impl<O: IsA<CellArea>> CellAreaExt for O {}
-
-impl fmt::Display for CellArea {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("CellArea")
-    }
-}

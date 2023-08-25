@@ -3,7 +3,6 @@
 // DO NOT EDIT
 
 use glib::translate::*;
-use std::fmt;
 
 glib::wrapper! {
     #[doc(alias = "GdkX11Monitor")]
@@ -23,11 +22,5 @@ impl X11Monitor {
             ffi::gdk_x11_monitor_get_workarea(self.to_glib_none().0, workarea.to_glib_none_mut().0);
             workarea
         }
-    }
-}
-
-impl fmt::Display for X11Monitor {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("X11Monitor")
     }
 }

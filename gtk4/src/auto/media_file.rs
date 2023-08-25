@@ -8,7 +8,7 @@ use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
-use std::{boxed::Box as Box_, fmt, mem::transmute};
+use std::boxed::Box as Box_;
 
 glib::wrapper! {
     #[doc(alias = "GtkMediaFile")]
@@ -163,7 +163,7 @@ pub trait MediaFileExt: IsA<MediaFile> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::file\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_file_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -189,7 +189,7 @@ pub trait MediaFileExt: IsA<MediaFile> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::input-stream\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_input_stream_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -199,9 +199,3 @@ pub trait MediaFileExt: IsA<MediaFile> + sealed::Sealed + 'static {
 }
 
 impl<O: IsA<MediaFile>> MediaFileExt for O {}
-
-impl fmt::Display for MediaFile {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("MediaFile")
-    }
-}

@@ -4,7 +4,6 @@
 
 use crate::TextBuffer;
 use glib::{prelude::*, translate::*};
-use std::fmt;
 
 glib::wrapper! {
     #[doc(alias = "GtkTextMark")]
@@ -141,9 +140,3 @@ pub trait TextMarkExt: IsA<TextMark> + sealed::Sealed + 'static {
 }
 
 impl<O: IsA<TextMark>> TextMarkExt for O {}
-
-impl fmt::Display for TextMark {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("TextMark")
-    }
-}

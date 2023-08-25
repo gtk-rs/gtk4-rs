@@ -4,7 +4,6 @@
 
 use crate::RenderNode;
 use glib::translate::*;
-use std::fmt;
 
 glib::wrapper! {
     #[doc(alias = "GskColorMatrixNode")]
@@ -63,11 +62,5 @@ impl ColorMatrixNode {
                 self.to_glib_none().0,
             ))
         }
-    }
-}
-
-impl fmt::Display for ColorMatrixNode {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("ColorMatrixNode")
     }
 }

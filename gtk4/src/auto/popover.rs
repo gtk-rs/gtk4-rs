@@ -11,7 +11,7 @@ use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
-use std::{boxed::Box as Box_, fmt, mem, mem::transmute};
+use std::boxed::Box as Box_;
 
 glib::wrapper! {
     #[doc(alias = "GtkPopover")]
@@ -362,8 +362,8 @@ pub trait PopoverExt: IsA<Popover> + sealed::Sealed + 'static {
     #[doc(alias = "get_offset")]
     fn offset(&self) -> (i32, i32) {
         unsafe {
-            let mut x_offset = mem::MaybeUninit::uninit();
-            let mut y_offset = mem::MaybeUninit::uninit();
+            let mut x_offset = std::mem::MaybeUninit::uninit();
+            let mut y_offset = std::mem::MaybeUninit::uninit();
             ffi::gtk_popover_get_offset(
                 self.as_ref().to_glib_none().0,
                 x_offset.as_mut_ptr(),
@@ -511,7 +511,7 @@ pub trait PopoverExt: IsA<Popover> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"activate-default\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     activate_default_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -537,7 +537,7 @@ pub trait PopoverExt: IsA<Popover> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"closed\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     closed_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -560,7 +560,7 @@ pub trait PopoverExt: IsA<Popover> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::autohide\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_autohide_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -586,7 +586,7 @@ pub trait PopoverExt: IsA<Popover> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::cascade-popdown\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_cascade_popdown_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -609,7 +609,7 @@ pub trait PopoverExt: IsA<Popover> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::child\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_child_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -635,7 +635,7 @@ pub trait PopoverExt: IsA<Popover> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::default-widget\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_default_widget_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -658,7 +658,7 @@ pub trait PopoverExt: IsA<Popover> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::has-arrow\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_has_arrow_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -684,7 +684,7 @@ pub trait PopoverExt: IsA<Popover> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::mnemonics-visible\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_mnemonics_visible_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -707,7 +707,7 @@ pub trait PopoverExt: IsA<Popover> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::pointing-to\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_pointing_to_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -730,7 +730,7 @@ pub trait PopoverExt: IsA<Popover> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::position\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_position_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -740,9 +740,3 @@ pub trait PopoverExt: IsA<Popover> + sealed::Sealed + 'static {
 }
 
 impl<O: IsA<Popover>> PopoverExt for O {}
-
-impl fmt::Display for Popover {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("Popover")
-    }
-}

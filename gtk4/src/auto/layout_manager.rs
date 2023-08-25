@@ -4,7 +4,6 @@
 
 use crate::{LayoutChild, Orientation, SizeRequestMode, Widget};
 use glib::{prelude::*, translate::*};
-use std::{fmt, mem};
 
 glib::wrapper! {
     #[doc(alias = "GtkLayoutManager")]
@@ -84,10 +83,10 @@ pub trait LayoutManagerExt: IsA<LayoutManager> + sealed::Sealed + 'static {
         for_size: i32,
     ) -> (i32, i32, i32, i32) {
         unsafe {
-            let mut minimum = mem::MaybeUninit::uninit();
-            let mut natural = mem::MaybeUninit::uninit();
-            let mut minimum_baseline = mem::MaybeUninit::uninit();
-            let mut natural_baseline = mem::MaybeUninit::uninit();
+            let mut minimum = std::mem::MaybeUninit::uninit();
+            let mut natural = std::mem::MaybeUninit::uninit();
+            let mut minimum_baseline = std::mem::MaybeUninit::uninit();
+            let mut natural_baseline = std::mem::MaybeUninit::uninit();
             ffi::gtk_layout_manager_measure(
                 self.as_ref().to_glib_none().0,
                 widget.as_ref().to_glib_none().0,
@@ -109,9 +108,3 @@ pub trait LayoutManagerExt: IsA<LayoutManager> + sealed::Sealed + 'static {
 }
 
 impl<O: IsA<LayoutManager>> LayoutManagerExt for O {}
-
-impl fmt::Display for LayoutManager {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("LayoutManager")
-    }
-}

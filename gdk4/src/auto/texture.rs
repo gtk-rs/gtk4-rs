@@ -7,7 +7,6 @@
 use crate::MemoryFormat;
 use crate::Paintable;
 use glib::{prelude::*, translate::*};
-use std::{fmt, ptr};
 
 glib::wrapper! {
     #[doc(alias = "GdkTexture")]
@@ -35,7 +34,7 @@ impl Texture {
     pub fn from_bytes(bytes: &glib::Bytes) -> Result<Texture, glib::Error> {
         assert_initialized_main_thread!();
         unsafe {
-            let mut error = ptr::null_mut();
+            let mut error = std::ptr::null_mut();
             let ret = ffi::gdk_texture_new_from_bytes(bytes.to_glib_none().0, &mut error);
             if error.is_null() {
                 Ok(from_glib_full(ret))
@@ -50,7 +49,7 @@ impl Texture {
     pub fn from_file(file: &impl IsA<gio::File>) -> Result<Texture, glib::Error> {
         assert_initialized_main_thread!();
         unsafe {
-            let mut error = ptr::null_mut();
+            let mut error = std::ptr::null_mut();
             let ret = ffi::gdk_texture_new_from_file(file.as_ref().to_glib_none().0, &mut error);
             if error.is_null() {
                 Ok(from_glib_full(ret))
@@ -67,7 +66,7 @@ impl Texture {
     pub fn from_filename(path: impl AsRef<std::path::Path>) -> Result<Texture, glib::Error> {
         assert_initialized_main_thread!();
         unsafe {
-            let mut error = ptr::null_mut();
+            let mut error = std::ptr::null_mut();
             let ret =
                 ffi::gdk_texture_new_from_filename(path.as_ref().to_glib_none().0, &mut error);
             if error.is_null() {
@@ -177,9 +176,3 @@ pub trait TextureExt: IsA<Texture> + sealed::Sealed + 'static {
 }
 
 impl<O: IsA<Texture>> TextureExt for O {}
-
-impl fmt::Display for Texture {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("Texture")
-    }
-}

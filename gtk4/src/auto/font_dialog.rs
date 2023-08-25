@@ -8,7 +8,7 @@ use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
-use std::{boxed::Box as Box_, fmt, mem::transmute, pin::Pin, ptr};
+use std::{boxed::Box as Box_, pin::Pin};
 
 glib::wrapper! {
     #[doc(alias = "GtkFontDialog")]
@@ -61,7 +61,7 @@ impl FontDialog {
             res: *mut gio::ffi::GAsyncResult,
             user_data: glib::ffi::gpointer,
         ) {
-            let mut error = ptr::null_mut();
+            let mut error = std::ptr::null_mut();
             let ret =
                 ffi::gtk_font_dialog_choose_face_finish(_source_object as *mut _, res, &mut error);
             let result = if error.is_null() {
@@ -134,7 +134,7 @@ impl FontDialog {
             res: *mut gio::ffi::GAsyncResult,
             user_data: glib::ffi::gpointer,
         ) {
-            let mut error = ptr::null_mut();
+            let mut error = std::ptr::null_mut();
             let ret = ffi::gtk_font_dialog_choose_family_finish(
                 _source_object as *mut _,
                 res,
@@ -210,7 +210,7 @@ impl FontDialog {
             res: *mut gio::ffi::GAsyncResult,
             user_data: glib::ffi::gpointer,
         ) {
-            let mut error = ptr::null_mut();
+            let mut error = std::ptr::null_mut();
             let ret =
                 ffi::gtk_font_dialog_choose_font_finish(_source_object as *mut _, res, &mut error);
             let result = if error.is_null() {
@@ -350,7 +350,7 @@ impl FontDialog {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::filter\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_filter_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -375,7 +375,7 @@ impl FontDialog {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::font-map\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_font_map_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -400,7 +400,7 @@ impl FontDialog {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::language\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_language_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -425,7 +425,7 @@ impl FontDialog {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::modal\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_modal_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -450,7 +450,7 @@ impl FontDialog {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::title\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_title_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -528,11 +528,5 @@ impl FontDialogBuilder {
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> FontDialog {
         self.builder.build()
-    }
-}
-
-impl fmt::Display for FontDialog {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("FontDialog")
     }
 }

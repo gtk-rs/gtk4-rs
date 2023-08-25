@@ -8,7 +8,7 @@ use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
-use std::{boxed::Box as Box_, fmt, mem, mem::transmute};
+use std::boxed::Box as Box_;
 
 glib::wrapper! {
     #[doc(alias = "GdkPaintable")]
@@ -49,8 +49,8 @@ pub trait PaintableExt: IsA<Paintable> + sealed::Sealed + 'static {
         default_height: f64,
     ) -> (f64, f64) {
         unsafe {
-            let mut concrete_width = mem::MaybeUninit::uninit();
-            let mut concrete_height = mem::MaybeUninit::uninit();
+            let mut concrete_width = std::mem::MaybeUninit::uninit();
+            let mut concrete_height = std::mem::MaybeUninit::uninit();
             ffi::gdk_paintable_compute_concrete_size(
                 self.as_ref().to_glib_none().0,
                 specified_width,
@@ -142,7 +142,7 @@ pub trait PaintableExt: IsA<Paintable> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"invalidate-contents\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     invalidate_contents_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -164,7 +164,7 @@ pub trait PaintableExt: IsA<Paintable> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"invalidate-size\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     invalidate_size_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -174,9 +174,3 @@ pub trait PaintableExt: IsA<Paintable> + sealed::Sealed + 'static {
 }
 
 impl<O: IsA<Paintable>> PaintableExt for O {}
-
-impl fmt::Display for Paintable {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("Paintable")
-    }
-}

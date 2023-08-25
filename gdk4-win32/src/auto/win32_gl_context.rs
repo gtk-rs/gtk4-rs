@@ -2,8 +2,6 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use std::fmt;
-
 glib::wrapper! {
     #[doc(alias = "GdkWin32GLContext")]
     pub struct Win32GLContext(Object<ffi::GdkWin32GLContext, ffi::GdkWin32GLContextClass>) @extends gdk::GLContext, gdk::DrawContext;
@@ -14,9 +12,3 @@ glib::wrapper! {
 }
 
 impl Win32GLContext {}
-
-impl fmt::Display for Win32GLContext {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("Win32GLContext")
-    }
-}

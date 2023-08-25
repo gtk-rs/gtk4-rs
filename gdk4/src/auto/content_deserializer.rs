@@ -3,7 +3,6 @@
 // DO NOT EDIT
 
 use glib::translate::*;
-use std::fmt;
 
 glib::wrapper! {
     #[doc(alias = "GdkContentDeserializer")]
@@ -70,11 +69,5 @@ impl ContentDeserializer {
         unsafe {
             ffi::gdk_content_deserializer_return_success(self.to_glib_none().0);
         }
-    }
-}
-
-impl fmt::Display for ContentDeserializer {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("ContentDeserializer")
     }
 }

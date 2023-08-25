@@ -6,7 +6,6 @@ use crate::{
     Accessible, AccessibleRole, Align, Buildable, ConstraintTarget, LayoutManager, Overflow, Widget,
 };
 use glib::{prelude::*, translate::*};
-use std::{fmt, mem};
 
 glib::wrapper! {
     #[doc(alias = "GtkFixed")]
@@ -259,8 +258,8 @@ pub trait FixedExt: IsA<Fixed> + sealed::Sealed + 'static {
     #[doc(alias = "get_child_position")]
     fn child_position(&self, widget: &impl IsA<Widget>) -> (f64, f64) {
         unsafe {
-            let mut x = mem::MaybeUninit::uninit();
-            let mut y = mem::MaybeUninit::uninit();
+            let mut x = std::mem::MaybeUninit::uninit();
+            let mut y = std::mem::MaybeUninit::uninit();
             ffi::gtk_fixed_get_child_position(
                 self.as_ref().to_glib_none().0,
                 widget.as_ref().to_glib_none().0,
@@ -330,9 +329,3 @@ pub trait FixedExt: IsA<Fixed> + sealed::Sealed + 'static {
 }
 
 impl<O: IsA<Fixed>> FixedExt for O {}
-
-impl fmt::Display for Fixed {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("Fixed")
-    }
-}

@@ -4,7 +4,6 @@
 
 use crate::ColorStop;
 use glib::translate::*;
-use std::{fmt, mem};
 
 glib::wrapper! {
     #[doc(alias = "GskRadialGradientNode")]
@@ -63,7 +62,7 @@ impl RadialGradientNode {
     #[doc(alias = "get_color_stops")]
     pub fn color_stops(&self) -> Vec<ColorStop> {
         unsafe {
-            let mut n_stops = mem::MaybeUninit::uninit();
+            let mut n_stops = std::mem::MaybeUninit::uninit();
             let ret = FromGlibContainer::from_glib_none_num(
                 ffi::gsk_radial_gradient_node_get_color_stops(
                     self.to_glib_none().0,
@@ -103,11 +102,5 @@ impl RadialGradientNode {
     #[doc(alias = "get_vradius")]
     pub fn vradius(&self) -> f32 {
         unsafe { ffi::gsk_radial_gradient_node_get_vradius(self.to_glib_none().0) }
-    }
-}
-
-impl fmt::Display for RadialGradientNode {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("RadialGradientNode")
     }
 }

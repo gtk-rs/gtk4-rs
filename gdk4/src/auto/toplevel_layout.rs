@@ -4,7 +4,6 @@
 
 use crate::Monitor;
 use glib::{prelude::*, translate::*};
-use std::mem;
 
 glib::wrapper! {
     #[derive(Debug, PartialOrd, Ord, Hash)]
@@ -44,7 +43,7 @@ impl ToplevelLayout {
     #[doc(alias = "get_fullscreen")]
     pub fn fullscreen(&self) -> Option<bool> {
         unsafe {
-            let mut fullscreen = mem::MaybeUninit::uninit();
+            let mut fullscreen = std::mem::MaybeUninit::uninit();
             let ret = from_glib(ffi::gdk_toplevel_layout_get_fullscreen(
                 self.to_glib_none().0,
                 fullscreen.as_mut_ptr(),
@@ -71,7 +70,7 @@ impl ToplevelLayout {
     #[doc(alias = "get_maximized")]
     pub fn maximized(&self) -> Option<bool> {
         unsafe {
-            let mut maximized = mem::MaybeUninit::uninit();
+            let mut maximized = std::mem::MaybeUninit::uninit();
             let ret = from_glib(ffi::gdk_toplevel_layout_get_maximized(
                 self.to_glib_none().0,
                 maximized.as_mut_ptr(),

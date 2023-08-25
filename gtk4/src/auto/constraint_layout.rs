@@ -4,7 +4,6 @@
 
 use crate::{Buildable, Constraint, ConstraintGuide, LayoutManager};
 use glib::{prelude::*, translate::*};
-use std::fmt;
 
 glib::wrapper! {
     #[doc(alias = "GtkConstraintLayout")]
@@ -85,11 +84,5 @@ impl ConstraintLayout {
 impl Default for ConstraintLayout {
     fn default() -> Self {
         Self::new()
-    }
-}
-
-impl fmt::Display for ConstraintLayout {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("ConstraintLayout")
     }
 }

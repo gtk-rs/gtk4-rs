@@ -4,7 +4,6 @@
 
 use crate::RenderNode;
 use glib::translate::*;
-use std::fmt;
 
 glib::wrapper! {
     #[doc(alias = "GskOpacityNode")]
@@ -44,11 +43,5 @@ impl OpacityNode {
     #[doc(alias = "get_opacity")]
     pub fn opacity(&self) -> f32 {
         unsafe { ffi::gsk_opacity_node_get_opacity(self.to_glib_none().0) }
-    }
-}
-
-impl fmt::Display for OpacityNode {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("OpacityNode")
     }
 }

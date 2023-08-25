@@ -8,7 +8,7 @@ use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
-use std::{boxed::Box as Box_, fmt, mem::transmute, ptr};
+use std::boxed::Box as Box_;
 
 glib::wrapper! {
     #[doc(alias = "GtkRecentManager")]
@@ -93,7 +93,7 @@ pub trait RecentManagerExt: IsA<RecentManager> + sealed::Sealed + 'static {
     #[doc(alias = "gtk_recent_manager_lookup_item")]
     fn lookup_item(&self, uri: &str) -> Result<Option<RecentInfo>, glib::Error> {
         unsafe {
-            let mut error = ptr::null_mut();
+            let mut error = std::ptr::null_mut();
             let ret = ffi::gtk_recent_manager_lookup_item(
                 self.as_ref().to_glib_none().0,
                 uri.to_glib_none().0,
@@ -110,7 +110,7 @@ pub trait RecentManagerExt: IsA<RecentManager> + sealed::Sealed + 'static {
     #[doc(alias = "gtk_recent_manager_move_item")]
     fn move_item(&self, uri: &str, new_uri: Option<&str>) -> Result<(), glib::Error> {
         unsafe {
-            let mut error = ptr::null_mut();
+            let mut error = std::ptr::null_mut();
             let is_ok = ffi::gtk_recent_manager_move_item(
                 self.as_ref().to_glib_none().0,
                 uri.to_glib_none().0,
@@ -129,7 +129,7 @@ pub trait RecentManagerExt: IsA<RecentManager> + sealed::Sealed + 'static {
     #[doc(alias = "gtk_recent_manager_purge_items")]
     fn purge_items(&self) -> Result<i32, glib::Error> {
         unsafe {
-            let mut error = ptr::null_mut();
+            let mut error = std::ptr::null_mut();
             let ret =
                 ffi::gtk_recent_manager_purge_items(self.as_ref().to_glib_none().0, &mut error);
             if error.is_null() {
@@ -143,7 +143,7 @@ pub trait RecentManagerExt: IsA<RecentManager> + sealed::Sealed + 'static {
     #[doc(alias = "gtk_recent_manager_remove_item")]
     fn remove_item(&self, uri: &str) -> Result<(), glib::Error> {
         unsafe {
-            let mut error = ptr::null_mut();
+            let mut error = std::ptr::null_mut();
             let is_ok = ffi::gtk_recent_manager_remove_item(
                 self.as_ref().to_glib_none().0,
                 uri.to_glib_none().0,
@@ -180,7 +180,7 @@ pub trait RecentManagerExt: IsA<RecentManager> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"changed\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     changed_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -203,7 +203,7 @@ pub trait RecentManagerExt: IsA<RecentManager> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::size\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_size_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -213,9 +213,3 @@ pub trait RecentManagerExt: IsA<RecentManager> + sealed::Sealed + 'static {
 }
 
 impl<O: IsA<RecentManager>> RecentManagerExt for O {}
-
-impl fmt::Display for RecentManager {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("RecentManager")
-    }
-}

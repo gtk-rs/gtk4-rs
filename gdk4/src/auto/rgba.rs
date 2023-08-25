@@ -3,7 +3,6 @@
 // DO NOT EDIT
 
 use glib::translate::*;
-use std::{fmt, hash};
 
 glib::wrapper! {
     pub struct RGBA(BoxedInline<ffi::GdkRGBA>);
@@ -61,19 +60,19 @@ impl PartialEq for RGBA {
 
 impl Eq for RGBA {}
 
-impl fmt::Display for RGBA {
+impl std::fmt::Display for RGBA {
     #[inline]
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
         f.write_str(&self.to_str())
     }
 }
 
-impl hash::Hash for RGBA {
+impl std::hash::Hash for RGBA {
     #[inline]
     fn hash<H>(&self, state: &mut H)
     where
-        H: hash::Hasher,
+        H: std::hash::Hasher,
     {
-        hash::Hash::hash(&self.hash(), state)
+        std::hash::Hash::hash(&self.hash(), state)
     }
 }

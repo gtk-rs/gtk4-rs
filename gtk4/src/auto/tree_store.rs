@@ -5,7 +5,6 @@
 
 use crate::{Buildable, TreeDragDest, TreeDragSource, TreeIter, TreeModel, TreeSortable};
 use glib::translate::*;
-use std::fmt;
 
 glib::wrapper! {
     #[doc(alias = "GtkTreeStore")]
@@ -190,11 +189,5 @@ impl TreeStore {
                 mut_override(b.to_glib_none().0),
             );
         }
-    }
-}
-
-impl fmt::Display for TreeStore {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("TreeStore")
     }
 }

@@ -3,7 +3,6 @@
 // DO NOT EDIT
 
 use glib::translate::*;
-use std::fmt;
 
 glib::wrapper! {
     #[doc(alias = "GdkWaylandDevice")]
@@ -19,11 +18,5 @@ impl WaylandDevice {
     #[doc(alias = "get_node_path")]
     pub fn node_path(&self) -> Option<glib::GString> {
         unsafe { from_glib_none(ffi::gdk_wayland_device_get_node_path(self.to_glib_none().0)) }
-    }
-}
-
-impl fmt::Display for WaylandDevice {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("WaylandDevice")
     }
 }

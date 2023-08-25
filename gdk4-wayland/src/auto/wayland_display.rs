@@ -4,7 +4,6 @@
 #![allow(deprecated)]
 
 use glib::translate::*;
-use std::fmt;
 
 glib::wrapper! {
     #[doc(alias = "GdkWaylandDisplay")]
@@ -59,11 +58,5 @@ impl WaylandDisplay {
                 startup_id.to_glib_none().0,
             );
         }
-    }
-}
-
-impl fmt::Display for WaylandDisplay {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("WaylandDisplay")
     }
 }

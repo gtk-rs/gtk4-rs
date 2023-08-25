@@ -9,7 +9,7 @@ use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
-use std::{boxed::Box as Box_, fmt, mem, mem::transmute};
+use std::boxed::Box as Box_;
 
 glib::wrapper! {
     #[doc(alias = "GtkCellAreaContext")]
@@ -45,8 +45,8 @@ pub trait CellAreaContextExt: IsA<CellAreaContext> + sealed::Sealed + 'static {
     #[doc(alias = "get_allocation")]
     fn allocation(&self) -> (i32, i32) {
         unsafe {
-            let mut width = mem::MaybeUninit::uninit();
-            let mut height = mem::MaybeUninit::uninit();
+            let mut width = std::mem::MaybeUninit::uninit();
+            let mut height = std::mem::MaybeUninit::uninit();
             ffi::gtk_cell_area_context_get_allocation(
                 self.as_ref().to_glib_none().0,
                 width.as_mut_ptr(),
@@ -74,8 +74,8 @@ pub trait CellAreaContextExt: IsA<CellAreaContext> + sealed::Sealed + 'static {
     #[doc(alias = "get_preferred_height")]
     fn preferred_height(&self) -> (i32, i32) {
         unsafe {
-            let mut minimum_height = mem::MaybeUninit::uninit();
-            let mut natural_height = mem::MaybeUninit::uninit();
+            let mut minimum_height = std::mem::MaybeUninit::uninit();
+            let mut natural_height = std::mem::MaybeUninit::uninit();
             ffi::gtk_cell_area_context_get_preferred_height(
                 self.as_ref().to_glib_none().0,
                 minimum_height.as_mut_ptr(),
@@ -91,8 +91,8 @@ pub trait CellAreaContextExt: IsA<CellAreaContext> + sealed::Sealed + 'static {
     #[doc(alias = "get_preferred_height_for_width")]
     fn preferred_height_for_width(&self, width: i32) -> (i32, i32) {
         unsafe {
-            let mut minimum_height = mem::MaybeUninit::uninit();
-            let mut natural_height = mem::MaybeUninit::uninit();
+            let mut minimum_height = std::mem::MaybeUninit::uninit();
+            let mut natural_height = std::mem::MaybeUninit::uninit();
             ffi::gtk_cell_area_context_get_preferred_height_for_width(
                 self.as_ref().to_glib_none().0,
                 width,
@@ -109,8 +109,8 @@ pub trait CellAreaContextExt: IsA<CellAreaContext> + sealed::Sealed + 'static {
     #[doc(alias = "get_preferred_width")]
     fn preferred_width(&self) -> (i32, i32) {
         unsafe {
-            let mut minimum_width = mem::MaybeUninit::uninit();
-            let mut natural_width = mem::MaybeUninit::uninit();
+            let mut minimum_width = std::mem::MaybeUninit::uninit();
+            let mut natural_width = std::mem::MaybeUninit::uninit();
             ffi::gtk_cell_area_context_get_preferred_width(
                 self.as_ref().to_glib_none().0,
                 minimum_width.as_mut_ptr(),
@@ -126,8 +126,8 @@ pub trait CellAreaContextExt: IsA<CellAreaContext> + sealed::Sealed + 'static {
     #[doc(alias = "get_preferred_width_for_height")]
     fn preferred_width_for_height(&self, height: i32) -> (i32, i32) {
         unsafe {
-            let mut minimum_width = mem::MaybeUninit::uninit();
-            let mut natural_width = mem::MaybeUninit::uninit();
+            let mut minimum_width = std::mem::MaybeUninit::uninit();
+            let mut natural_width = std::mem::MaybeUninit::uninit();
             ffi::gtk_cell_area_context_get_preferred_width_for_height(
                 self.as_ref().to_glib_none().0,
                 height,
@@ -216,7 +216,7 @@ pub trait CellAreaContextExt: IsA<CellAreaContext> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::minimum-height\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_minimum_height_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -243,7 +243,7 @@ pub trait CellAreaContextExt: IsA<CellAreaContext> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::minimum-width\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_minimum_width_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -270,7 +270,7 @@ pub trait CellAreaContextExt: IsA<CellAreaContext> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::natural-height\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_natural_height_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -297,7 +297,7 @@ pub trait CellAreaContextExt: IsA<CellAreaContext> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::natural-width\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_natural_width_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -307,9 +307,3 @@ pub trait CellAreaContextExt: IsA<CellAreaContext> + sealed::Sealed + 'static {
 }
 
 impl<O: IsA<CellAreaContext>> CellAreaContextExt for O {}
-
-impl fmt::Display for CellAreaContext {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("CellAreaContext")
-    }
-}

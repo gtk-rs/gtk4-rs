@@ -11,7 +11,7 @@ use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
-use std::{boxed::Box as Box_, fmt, mem::transmute};
+use std::boxed::Box as Box_;
 
 glib::wrapper! {
     #[doc(alias = "GtkVideo")]
@@ -175,7 +175,7 @@ impl Video {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::autoplay\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_autoplay_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -198,7 +198,7 @@ impl Video {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::file\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_file_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -221,7 +221,7 @@ impl Video {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::loop\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_loop_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -244,7 +244,7 @@ impl Video {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::media-stream\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_media_stream_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -490,11 +490,5 @@ impl VideoBuilder {
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> Video {
         self.builder.build()
-    }
-}
-
-impl fmt::Display for Video {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("Video")
     }
 }

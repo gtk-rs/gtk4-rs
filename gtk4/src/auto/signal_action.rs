@@ -4,7 +4,6 @@
 
 use crate::ShortcutAction;
 use glib::translate::*;
-use std::fmt;
 
 glib::wrapper! {
     #[doc(alias = "GtkSignalAction")]
@@ -30,11 +29,5 @@ impl SignalAction {
                 self.to_glib_none().0,
             ))
         }
-    }
-}
-
-impl fmt::Display for SignalAction {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("SignalAction")
     }
 }

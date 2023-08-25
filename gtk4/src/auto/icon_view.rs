@@ -13,7 +13,7 @@ use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
-use std::{boxed::Box as Box_, fmt, mem, mem::transmute, ptr};
+use std::boxed::Box as Box_;
 
 glib::wrapper! {
     #[doc(alias = "GtkIconView")]
@@ -172,8 +172,8 @@ impl IconView {
     #[doc(alias = "get_cursor")]
     pub fn cursor(&self) -> Option<(TreePath, CellRenderer)> {
         unsafe {
-            let mut path = ptr::null_mut();
-            let mut cell = ptr::null_mut();
+            let mut path = std::ptr::null_mut();
+            let mut cell = std::ptr::null_mut();
             let ret = from_glib(ffi::gtk_icon_view_get_cursor(
                 self.to_glib_none().0,
                 &mut path,
@@ -197,8 +197,8 @@ impl IconView {
         drag_y: i32,
     ) -> Option<(TreePath, IconViewDropPosition)> {
         unsafe {
-            let mut path = ptr::null_mut();
-            let mut pos = mem::MaybeUninit::uninit();
+            let mut path = std::ptr::null_mut();
+            let mut pos = std::mem::MaybeUninit::uninit();
             let ret = from_glib(ffi::gtk_icon_view_get_dest_item_at_pos(
                 self.to_glib_none().0,
                 drag_x,
@@ -220,8 +220,8 @@ impl IconView {
     #[doc(alias = "get_drag_dest_item")]
     pub fn drag_dest_item(&self) -> (Option<TreePath>, IconViewDropPosition) {
         unsafe {
-            let mut path = ptr::null_mut();
-            let mut pos = mem::MaybeUninit::uninit();
+            let mut path = std::ptr::null_mut();
+            let mut pos = std::mem::MaybeUninit::uninit();
             ffi::gtk_icon_view_get_drag_dest_item(
                 self.to_glib_none().0,
                 &mut path,
@@ -237,8 +237,8 @@ impl IconView {
     #[doc(alias = "get_item_at_pos")]
     pub fn item_at_pos(&self, x: i32, y: i32) -> Option<(TreePath, CellRenderer)> {
         unsafe {
-            let mut path = ptr::null_mut();
-            let mut cell = ptr::null_mut();
+            let mut path = std::ptr::null_mut();
+            let mut cell = std::ptr::null_mut();
             let ret = from_glib(ffi::gtk_icon_view_get_item_at_pos(
                 self.to_glib_none().0,
                 x,
@@ -425,8 +425,8 @@ impl IconView {
         keyboard_tip: bool,
     ) -> Option<(TreeModel, TreePath, TreeIter)> {
         unsafe {
-            let mut model = ptr::null_mut();
-            let mut path = ptr::null_mut();
+            let mut model = std::ptr::null_mut();
+            let mut path = std::ptr::null_mut();
             let mut iter = TreeIter::uninitialized();
             let ret = from_glib(ffi::gtk_icon_view_get_tooltip_context(
                 self.to_glib_none().0,
@@ -451,8 +451,8 @@ impl IconView {
     #[doc(alias = "get_visible_range")]
     pub fn visible_range(&self) -> Option<(TreePath, TreePath)> {
         unsafe {
-            let mut start_path = ptr::null_mut();
-            let mut end_path = ptr::null_mut();
+            let mut start_path = std::ptr::null_mut();
+            let mut end_path = std::ptr::null_mut();
             let ret = from_glib(ffi::gtk_icon_view_get_visible_range(
                 self.to_glib_none().0,
                 &mut start_path,
@@ -827,7 +827,7 @@ impl IconView {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"activate-cursor-item\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     activate_cursor_item_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -857,7 +857,7 @@ impl IconView {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"item-activated\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     item_activated_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -895,7 +895,7 @@ impl IconView {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"move-cursor\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     move_cursor_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -927,7 +927,7 @@ impl IconView {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"select-all\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     select_all_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -953,7 +953,7 @@ impl IconView {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"select-cursor-item\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     select_cursor_item_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -979,7 +979,7 @@ impl IconView {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"selection-changed\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     selection_changed_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -1001,7 +1001,7 @@ impl IconView {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"toggle-cursor-item\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     toggle_cursor_item_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -1027,7 +1027,7 @@ impl IconView {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"unselect-all\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     unselect_all_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -1059,7 +1059,7 @@ impl IconView {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::activate-on-single-click\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_activate_on_single_click_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -1082,7 +1082,7 @@ impl IconView {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::column-spacing\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_column_spacing_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -1105,7 +1105,7 @@ impl IconView {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::columns\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_columns_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -1128,7 +1128,7 @@ impl IconView {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::item-orientation\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_item_orientation_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -1151,7 +1151,7 @@ impl IconView {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::item-padding\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_item_padding_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -1174,7 +1174,7 @@ impl IconView {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::item-width\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_item_width_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -1197,7 +1197,7 @@ impl IconView {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::margin\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_margin_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -1220,7 +1220,7 @@ impl IconView {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::markup-column\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_markup_column_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -1243,7 +1243,7 @@ impl IconView {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::model\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_model_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -1266,7 +1266,7 @@ impl IconView {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::pixbuf-column\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_pixbuf_column_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -1289,7 +1289,7 @@ impl IconView {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::reorderable\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_reorderable_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -1312,7 +1312,7 @@ impl IconView {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::row-spacing\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_row_spacing_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -1335,7 +1335,7 @@ impl IconView {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::selection-mode\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_selection_mode_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -1358,7 +1358,7 @@ impl IconView {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::spacing\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_spacing_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -1381,7 +1381,7 @@ impl IconView {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::text-column\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_text_column_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -1404,7 +1404,7 @@ impl IconView {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::tooltip-column\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_tooltip_column_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -1758,11 +1758,5 @@ impl IconViewBuilder {
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> IconView {
         self.builder.build()
-    }
-}
-
-impl fmt::Display for IconView {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("IconView")
     }
 }

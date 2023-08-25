@@ -4,9 +4,6 @@
 
 use crate::{AnchorHints, Gravity, Rectangle};
 use glib::translate::*;
-#[cfg(feature = "v4_2")]
-#[cfg_attr(docsrs, doc(cfg(feature = "v4_2")))]
-use std::mem;
 
 glib::wrapper! {
     #[derive(Debug, PartialOrd, Ord, Hash)]
@@ -80,10 +77,10 @@ impl PopupLayout {
     #[doc(alias = "get_shadow_width")]
     pub fn shadow_width(&self) -> (i32, i32, i32, i32) {
         unsafe {
-            let mut left = mem::MaybeUninit::uninit();
-            let mut right = mem::MaybeUninit::uninit();
-            let mut top = mem::MaybeUninit::uninit();
-            let mut bottom = mem::MaybeUninit::uninit();
+            let mut left = std::mem::MaybeUninit::uninit();
+            let mut right = std::mem::MaybeUninit::uninit();
+            let mut top = std::mem::MaybeUninit::uninit();
+            let mut bottom = std::mem::MaybeUninit::uninit();
             ffi::gdk_popup_layout_get_shadow_width(
                 self.to_glib_none().0,
                 left.as_mut_ptr(),

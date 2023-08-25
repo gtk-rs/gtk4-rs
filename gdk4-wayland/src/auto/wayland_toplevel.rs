@@ -5,7 +5,7 @@
 
 use crate::WaylandSurface;
 use glib::translate::*;
-use std::{boxed::Box as Box_, fmt};
+use std::boxed::Box as Box_;
 
 glib::wrapper! {
     #[doc(alias = "GdkWaylandToplevel")]
@@ -87,11 +87,5 @@ impl WaylandToplevel {
         unsafe {
             ffi::gdk_wayland_toplevel_unexport_handle(self.to_glib_none().0);
         }
-    }
-}
-
-impl fmt::Display for WaylandToplevel {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("WaylandToplevel")
     }
 }

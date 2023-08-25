@@ -8,7 +8,7 @@ use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
-use std::{boxed::Box as Box_, fmt, mem::transmute};
+use std::boxed::Box as Box_;
 
 glib::wrapper! {
     #[doc(alias = "GtkPrintOperationPreview")]
@@ -79,7 +79,7 @@ pub trait PrintOperationPreviewExt: IsA<PrintOperationPreview> + sealed::Sealed 
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"got-page-size\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     got_page_size_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -108,7 +108,7 @@ pub trait PrintOperationPreviewExt: IsA<PrintOperationPreview> + sealed::Sealed 
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"ready\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     ready_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -118,9 +118,3 @@ pub trait PrintOperationPreviewExt: IsA<PrintOperationPreview> + sealed::Sealed 
 }
 
 impl<O: IsA<PrintOperationPreview>> PrintOperationPreviewExt for O {}
-
-impl fmt::Display for PrintOperationPreview {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("PrintOperationPreview")
-    }
-}

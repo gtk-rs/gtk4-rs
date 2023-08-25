@@ -4,7 +4,6 @@
 
 use crate::RenderNode;
 use glib::translate::*;
-use std::fmt;
 
 glib::wrapper! {
     #[doc(alias = "GskDebugNode")]
@@ -44,11 +43,5 @@ impl DebugNode {
     #[doc(alias = "get_message")]
     pub fn message(&self) -> glib::GString {
         unsafe { from_glib_none(ffi::gsk_debug_node_get_message(self.to_glib_none().0)) }
-    }
-}
-
-impl fmt::Display for DebugNode {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("DebugNode")
     }
 }

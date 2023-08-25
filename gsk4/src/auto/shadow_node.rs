@@ -4,7 +4,6 @@
 
 use crate::{RenderNode, Shadow};
 use glib::translate::*;
-use std::fmt;
 
 glib::wrapper! {
     #[doc(alias = "GskShadowNode")]
@@ -46,11 +45,5 @@ impl ShadowNode {
     #[doc(alias = "get_n_shadows")]
     pub fn n_shadows(&self) -> usize {
         unsafe { ffi::gsk_shadow_node_get_n_shadows(self.to_glib_none().0) }
-    }
-}
-
-impl fmt::Display for ShadowNode {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("ShadowNode")
     }
 }

@@ -4,7 +4,6 @@
 
 use crate::{Path, PathDirection};
 use glib::translate::*;
-use std::cmp;
 
 glib::wrapper! {
     pub struct PathPoint(BoxedInline<ffi::GskPathPoint>);
@@ -76,14 +75,14 @@ impl PathPoint {
 
 impl PartialOrd for PathPoint {
     #[inline]
-    fn partial_cmp(&self, other: &Self) -> Option<cmp::Ordering> {
+    fn partial_cmp(&self, other: &Self) -> Option<std::cmp::Ordering> {
         self.compare(other).partial_cmp(&0)
     }
 }
 
 impl Ord for PathPoint {
     #[inline]
-    fn cmp(&self, other: &Self) -> cmp::Ordering {
+    fn cmp(&self, other: &Self) -> std::cmp::Ordering {
         self.compare(other).cmp(&0)
     }
 }

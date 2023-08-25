@@ -13,8 +13,7 @@ use glib::signal::{connect_raw, SignalHandlerId};
 use glib::{prelude::*, translate::*};
 #[cfg(feature = "v4_6")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
-use std::{boxed::Box as Box_, mem::transmute};
-use std::{fmt, mem, ptr};
+use std::boxed::Box as Box_;
 
 glib::wrapper! {
     #[doc(alias = "GdkGLContext")]
@@ -104,8 +103,8 @@ pub trait GLContextExt: IsA<GLContext> + sealed::Sealed + 'static {
     #[doc(alias = "get_required_version")]
     fn required_version(&self) -> (i32, i32) {
         unsafe {
-            let mut major = mem::MaybeUninit::uninit();
-            let mut minor = mem::MaybeUninit::uninit();
+            let mut major = std::mem::MaybeUninit::uninit();
+            let mut minor = std::mem::MaybeUninit::uninit();
             ffi::gdk_gl_context_get_required_version(
                 self.as_ref().to_glib_none().0,
                 major.as_mut_ptr(),
@@ -152,8 +151,8 @@ pub trait GLContextExt: IsA<GLContext> + sealed::Sealed + 'static {
     #[doc(alias = "get_version")]
     fn version(&self) -> (i32, i32) {
         unsafe {
-            let mut major = mem::MaybeUninit::uninit();
-            let mut minor = mem::MaybeUninit::uninit();
+            let mut major = std::mem::MaybeUninit::uninit();
+            let mut minor = std::mem::MaybeUninit::uninit();
             ffi::gdk_gl_context_get_version(
                 self.as_ref().to_glib_none().0,
                 major.as_mut_ptr(),
@@ -194,7 +193,7 @@ pub trait GLContextExt: IsA<GLContext> + sealed::Sealed + 'static {
     #[doc(alias = "gdk_gl_context_realize")]
     fn realize(&self) -> Result<(), glib::Error> {
         unsafe {
-            let mut error = ptr::null_mut();
+            let mut error = std::ptr::null_mut();
             let is_ok = ffi::gdk_gl_context_realize(self.as_ref().to_glib_none().0, &mut error);
             debug_assert_eq!(is_ok == glib::ffi::GFALSE, !error.is_null());
             if error.is_null() {
@@ -268,7 +267,7 @@ pub trait GLContextExt: IsA<GLContext> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::allowed-apis\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_allowed_apis_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -293,7 +292,7 @@ pub trait GLContextExt: IsA<GLContext> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::api\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_api_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -303,9 +302,3 @@ pub trait GLContextExt: IsA<GLContext> + sealed::Sealed + 'static {
 }
 
 impl<O: IsA<GLContext>> GLContextExt for O {}
-
-impl fmt::Display for GLContext {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("GLContext")
-    }
-}

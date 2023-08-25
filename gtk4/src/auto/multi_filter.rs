@@ -4,7 +4,6 @@
 
 use crate::{Buildable, Filter};
 use glib::{prelude::*, translate::*};
-use std::fmt;
 
 glib::wrapper! {
     #[doc(alias = "GtkMultiFilter")]
@@ -44,9 +43,3 @@ pub trait MultiFilterExt: IsA<MultiFilter> + sealed::Sealed + 'static {
 }
 
 impl<O: IsA<MultiFilter>> MultiFilterExt for O {}
-
-impl fmt::Display for MultiFilter {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("MultiFilter")
-    }
-}

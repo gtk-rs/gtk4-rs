@@ -4,7 +4,6 @@
 
 use crate::RoundedRect;
 use glib::translate::*;
-use std::fmt;
 
 glib::wrapper! {
     #[doc(alias = "GskBorderNode")]
@@ -27,11 +26,5 @@ impl BorderNode {
     #[doc(alias = "get_outline")]
     pub fn outline(&self) -> RoundedRect {
         unsafe { from_glib_none(ffi::gsk_border_node_get_outline(self.to_glib_none().0)) }
-    }
-}
-
-impl fmt::Display for BorderNode {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("BorderNode")
     }
 }

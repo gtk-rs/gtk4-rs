@@ -5,7 +5,7 @@
 
 use crate::{CellArea, CellRenderer, TreeIter, TreeModel};
 use glib::{prelude::*, translate::*};
-use std::{boxed::Box as Box_, fmt};
+use std::boxed::Box as Box_;
 
 glib::wrapper! {
     #[doc(alias = "GtkCellLayout")]
@@ -172,9 +172,3 @@ pub trait CellLayoutExt: IsA<CellLayout> + sealed::Sealed + 'static {
 }
 
 impl<O: IsA<CellLayout>> CellLayoutExt for O {}
-
-impl fmt::Display for CellLayout {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("CellLayout")
-    }
-}

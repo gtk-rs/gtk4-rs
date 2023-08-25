@@ -3,7 +3,6 @@
 // DO NOT EDIT
 
 use glib::prelude::*;
-use std::fmt;
 
 glib::wrapper! {
     #[doc(alias = "GtkConstraintTarget")]
@@ -26,9 +25,3 @@ mod sealed {
 pub trait ConstraintTargetExt: IsA<ConstraintTarget> + sealed::Sealed + 'static {}
 
 impl<O: IsA<ConstraintTarget>> ConstraintTargetExt for O {}
-
-impl fmt::Display for ConstraintTarget {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("ConstraintTarget")
-    }
-}
