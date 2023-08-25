@@ -2,8 +2,6 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use std::fmt;
-
 glib::wrapper! {
     #[doc(alias = "GdkWaylandSeat")]
     pub struct WaylandSeat(Object<ffi::GdkWaylandSeat, ffi::GdkWaylandSeatClass>) @extends gdk::Seat;
@@ -14,9 +12,3 @@ glib::wrapper! {
 }
 
 impl WaylandSeat {}
-
-impl fmt::Display for WaylandSeat {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("WaylandSeat")
-    }
-}

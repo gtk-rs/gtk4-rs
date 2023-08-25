@@ -3,7 +3,6 @@
 // DO NOT EDIT
 
 use crate::WaylandSurface;
-use std::fmt;
 
 glib::wrapper! {
     #[doc(alias = "GdkWaylandPopup")]
@@ -15,9 +14,3 @@ glib::wrapper! {
 }
 
 impl WaylandPopup {}
-
-impl fmt::Display for WaylandPopup {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("WaylandPopup")
-    }
-}

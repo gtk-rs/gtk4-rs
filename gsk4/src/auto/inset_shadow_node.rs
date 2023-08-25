@@ -4,7 +4,6 @@
 
 use crate::RoundedRect;
 use glib::translate::*;
-use std::fmt;
 
 glib::wrapper! {
     #[doc(alias = "GskInsetShadowNode")]
@@ -83,11 +82,5 @@ impl InsetShadowNode {
     #[doc(alias = "get_spread")]
     pub fn spread(&self) -> f32 {
         unsafe { ffi::gsk_inset_shadow_node_get_spread(self.to_glib_none().0) }
-    }
-}
-
-impl fmt::Display for InsetShadowNode {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("InsetShadowNode")
     }
 }

@@ -11,7 +11,7 @@ use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
-use std::{boxed::Box as Box_, fmt, mem::transmute};
+use std::boxed::Box as Box_;
 
 glib::wrapper! {
     #[doc(alias = "GtkFlowBox")]
@@ -389,7 +389,7 @@ impl FlowBox {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"activate-cursor-child\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     activate_cursor_child_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -421,7 +421,7 @@ impl FlowBox {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"child-activated\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     child_activated_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -459,7 +459,7 @@ impl FlowBox {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"move-cursor\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     move_cursor_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -491,7 +491,7 @@ impl FlowBox {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"select-all\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     select_all_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -520,7 +520,7 @@ impl FlowBox {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"selected-children-changed\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     selected_children_changed_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -542,7 +542,7 @@ impl FlowBox {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"toggle-cursor-child\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     toggle_cursor_child_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -568,7 +568,7 @@ impl FlowBox {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"unselect-all\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     unselect_all_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -600,7 +600,7 @@ impl FlowBox {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::accept-unpaired-release\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_accept_unpaired_release_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -628,7 +628,7 @@ impl FlowBox {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::activate-on-single-click\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_activate_on_single_click_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -651,7 +651,7 @@ impl FlowBox {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::column-spacing\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_column_spacing_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -674,7 +674,7 @@ impl FlowBox {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::homogeneous\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_homogeneous_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -700,7 +700,7 @@ impl FlowBox {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::max-children-per-line\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_max_children_per_line_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -726,7 +726,7 @@ impl FlowBox {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::min-children-per-line\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_min_children_per_line_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -749,7 +749,7 @@ impl FlowBox {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::row-spacing\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_row_spacing_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -772,7 +772,7 @@ impl FlowBox {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::selection-mode\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_selection_mode_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -1054,11 +1054,5 @@ impl FlowBoxBuilder {
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> FlowBox {
         self.builder.build()
-    }
-}
-
-impl fmt::Display for FlowBox {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("FlowBox")
     }
 }

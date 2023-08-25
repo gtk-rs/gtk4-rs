@@ -4,7 +4,6 @@
 
 use crate::{BlendMode, RenderNode};
 use glib::translate::*;
-use std::fmt;
 
 glib::wrapper! {
     #[doc(alias = "GskBlendNode")]
@@ -55,11 +54,5 @@ impl BlendNode {
     #[doc(alias = "get_top_child")]
     pub fn top_child(&self) -> RenderNode {
         unsafe { from_glib_none(ffi::gsk_blend_node_get_top_child(self.to_glib_none().0)) }
-    }
-}
-
-impl fmt::Display for BlendNode {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("BlendNode")
     }
 }

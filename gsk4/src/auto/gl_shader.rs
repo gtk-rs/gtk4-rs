@@ -4,7 +4,6 @@
 
 use crate::{GLUniformType, Renderer};
 use glib::{prelude::*, translate::*};
-use std::{fmt, ptr};
 
 glib::wrapper! {
     #[doc(alias = "GskGLShader")]
@@ -49,7 +48,7 @@ impl GLShader {
     #[doc(alias = "gsk_gl_shader_compile")]
     pub fn compile(&self, renderer: &impl IsA<Renderer>) -> Result<(), glib::Error> {
         unsafe {
-            let mut error = ptr::null_mut();
+            let mut error = std::ptr::null_mut();
             let is_ok = ffi::gsk_gl_shader_compile(
                 self.to_glib_none().0,
                 renderer.as_ref().to_glib_none().0,
@@ -197,11 +196,5 @@ impl GLShaderBuilder {
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> GLShader {
         self.builder.build()
-    }
-}
-
-impl fmt::Display for GLShader {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("GLShader")
     }
 }

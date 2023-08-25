@@ -4,7 +4,6 @@
 
 use crate::{Accessible, Buildable, ConstraintTarget, Widget};
 use glib::{prelude::*, translate::*};
-use std::{fmt, mem};
 
 glib::wrapper! {
     #[doc(alias = "GtkNative")]
@@ -52,8 +51,8 @@ pub trait NativeExt: IsA<Native> + sealed::Sealed + 'static {
     #[doc(alias = "get_surface_transform")]
     fn surface_transform(&self) -> (f64, f64) {
         unsafe {
-            let mut x = mem::MaybeUninit::uninit();
-            let mut y = mem::MaybeUninit::uninit();
+            let mut x = std::mem::MaybeUninit::uninit();
+            let mut y = std::mem::MaybeUninit::uninit();
             ffi::gtk_native_get_surface_transform(
                 self.as_ref().to_glib_none().0,
                 x.as_mut_ptr(),
@@ -79,9 +78,3 @@ pub trait NativeExt: IsA<Native> + sealed::Sealed + 'static {
 }
 
 impl<O: IsA<Native>> NativeExt for O {}
-
-impl fmt::Display for Native {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("Native")
-    }
-}

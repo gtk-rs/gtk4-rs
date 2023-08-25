@@ -3,7 +3,6 @@
 // DO NOT EDIT
 
 use glib::{prelude::*, translate::*};
-use std::{fmt, mem};
 
 glib::wrapper! {
     #[doc(alias = "GskTextNode")]
@@ -56,7 +55,7 @@ impl TextNode {
     #[doc(alias = "get_glyphs")]
     pub fn glyphs(&self) -> Vec<pango::GlyphInfo> {
         unsafe {
-            let mut n_glyphs = mem::MaybeUninit::uninit();
+            let mut n_glyphs = std::mem::MaybeUninit::uninit();
             let ret = FromGlibContainer::from_glib_none_num(
                 ffi::gsk_text_node_get_glyphs(self.to_glib_none().0, n_glyphs.as_mut_ptr()),
                 n_glyphs.assume_init() as _,
@@ -82,11 +81,5 @@ impl TextNode {
     #[doc(alias = "gsk_text_node_has_color_glyphs")]
     pub fn has_color_glyphs(&self) -> bool {
         unsafe { from_glib(ffi::gsk_text_node_has_color_glyphs(self.to_glib_none().0)) }
-    }
-}
-
-impl fmt::Display for TextNode {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("TextNode")
     }
 }

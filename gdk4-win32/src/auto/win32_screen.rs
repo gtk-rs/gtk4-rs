@@ -2,8 +2,6 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use std::fmt;
-
 glib::wrapper! {
     #[doc(alias = "GdkWin32Screen")]
     pub struct Win32Screen(Object<ffi::GdkWin32Screen, ffi::GdkWin32ScreenClass>);
@@ -14,9 +12,3 @@ glib::wrapper! {
 }
 
 impl Win32Screen {}
-
-impl fmt::Display for Win32Screen {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("Win32Screen")
-    }
-}

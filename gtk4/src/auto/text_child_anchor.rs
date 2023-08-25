@@ -4,7 +4,6 @@
 
 use crate::Widget;
 use glib::{prelude::*, translate::*};
-use std::{fmt, mem};
 
 glib::wrapper! {
     #[doc(alias = "GtkTextChildAnchor")]
@@ -64,7 +63,7 @@ pub trait TextChildAnchorExt: IsA<TextChildAnchor> + sealed::Sealed + 'static {
     #[doc(alias = "get_widgets")]
     fn widgets(&self) -> Vec<Widget> {
         unsafe {
-            let mut out_len = mem::MaybeUninit::uninit();
+            let mut out_len = std::mem::MaybeUninit::uninit();
             let ret = FromGlibContainer::from_glib_container_num(
                 ffi::gtk_text_child_anchor_get_widgets(
                     self.as_ref().to_glib_none().0,
@@ -78,9 +77,3 @@ pub trait TextChildAnchorExt: IsA<TextChildAnchor> + sealed::Sealed + 'static {
 }
 
 impl<O: IsA<TextChildAnchor>> TextChildAnchorExt for O {}
-
-impl fmt::Display for TextChildAnchor {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("TextChildAnchor")
-    }
-}

@@ -4,7 +4,6 @@
 
 use crate::DrawContext;
 use glib::translate::*;
-use std::fmt;
 
 glib::wrapper! {
     #[doc(alias = "GdkCairoContext")]
@@ -19,11 +18,5 @@ impl CairoContext {
     #[doc(alias = "gdk_cairo_context_cairo_create")]
     pub fn cairo_create(&self) -> Option<cairo::Context> {
         unsafe { from_glib_full(ffi::gdk_cairo_context_cairo_create(self.to_glib_none().0)) }
-    }
-}
-
-impl fmt::Display for CairoContext {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("CairoContext")
     }
 }

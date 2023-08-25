@@ -8,7 +8,7 @@ use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
-use std::{boxed::Box as Box_, fmt, mem::transmute};
+use std::boxed::Box as Box_;
 
 glib::wrapper! {
     #[doc(alias = "GtkApplication")]
@@ -292,7 +292,7 @@ pub trait GtkApplicationExt: IsA<Application> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"query-end\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     query_end_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -321,7 +321,7 @@ pub trait GtkApplicationExt: IsA<Application> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"window-added\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     window_added_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -350,7 +350,7 @@ pub trait GtkApplicationExt: IsA<Application> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"window-removed\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     window_removed_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -376,7 +376,7 @@ pub trait GtkApplicationExt: IsA<Application> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::active-window\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_active_window_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -399,7 +399,7 @@ pub trait GtkApplicationExt: IsA<Application> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::menubar\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_menubar_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -425,7 +425,7 @@ pub trait GtkApplicationExt: IsA<Application> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::register-session\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_register_session_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -451,7 +451,7 @@ pub trait GtkApplicationExt: IsA<Application> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::screensaver-active\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_screensaver_active_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -461,9 +461,3 @@ pub trait GtkApplicationExt: IsA<Application> + sealed::Sealed + 'static {
 }
 
 impl<O: IsA<Application>> GtkApplicationExt for O {}
-
-impl fmt::Display for Application {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("Application")
-    }
-}

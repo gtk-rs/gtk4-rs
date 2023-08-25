@@ -8,7 +8,7 @@ use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
-use std::{boxed::Box as Box_, fmt, mem::transmute, ptr};
+use std::boxed::Box as Box_;
 
 glib::wrapper! {
     #[doc(alias = "GtkBuilder")]
@@ -53,7 +53,7 @@ impl Builder {
     #[doc(alias = "gtk_builder_add_from_resource")]
     pub fn add_from_resource(&self, resource_path: &str) -> Result<(), glib::Error> {
         unsafe {
-            let mut error = ptr::null_mut();
+            let mut error = std::ptr::null_mut();
             let is_ok = ffi::gtk_builder_add_from_resource(
                 self.to_glib_none().0,
                 resource_path.to_glib_none().0,
@@ -72,7 +72,7 @@ impl Builder {
     pub fn add_from_string(&self, buffer: &str) -> Result<(), glib::Error> {
         let length = buffer.len() as _;
         unsafe {
-            let mut error = ptr::null_mut();
+            let mut error = std::ptr::null_mut();
             let is_ok = ffi::gtk_builder_add_from_string(
                 self.to_glib_none().0,
                 buffer.to_glib_none().0,
@@ -95,7 +95,7 @@ impl Builder {
         object_ids: &[&str],
     ) -> Result<(), glib::Error> {
         unsafe {
-            let mut error = ptr::null_mut();
+            let mut error = std::ptr::null_mut();
             let is_ok = ffi::gtk_builder_add_objects_from_file(
                 self.to_glib_none().0,
                 filename.as_ref().to_glib_none().0,
@@ -118,7 +118,7 @@ impl Builder {
         object_ids: &[&str],
     ) -> Result<(), glib::Error> {
         unsafe {
-            let mut error = ptr::null_mut();
+            let mut error = std::ptr::null_mut();
             let is_ok = ffi::gtk_builder_add_objects_from_resource(
                 self.to_glib_none().0,
                 resource_path.to_glib_none().0,
@@ -142,7 +142,7 @@ impl Builder {
     ) -> Result<(), glib::Error> {
         let length = buffer.len() as _;
         unsafe {
-            let mut error = ptr::null_mut();
+            let mut error = std::ptr::null_mut();
             let is_ok = ffi::gtk_builder_add_objects_from_string(
                 self.to_glib_none().0,
                 buffer.to_glib_none().0,
@@ -167,7 +167,7 @@ impl Builder {
         object: Option<&impl IsA<glib::Object>>,
     ) -> Result<Option<glib::Closure>, glib::Error> {
         unsafe {
-            let mut error = ptr::null_mut();
+            let mut error = std::ptr::null_mut();
             let ret = ffi::gtk_builder_create_closure(
                 self.to_glib_none().0,
                 function_name.to_glib_none().0,
@@ -203,7 +203,7 @@ impl Builder {
     ) -> Result<(), glib::Error> {
         let length = buffer.len() as _;
         unsafe {
-            let mut error = ptr::null_mut();
+            let mut error = std::ptr::null_mut();
             let is_ok = ffi::gtk_builder_extend_with_template(
                 self.to_glib_none().0,
                 object.as_ref().to_glib_none().0,
@@ -293,7 +293,7 @@ impl Builder {
     ) -> Result<glib::Value, glib::Error> {
         unsafe {
             let mut value = glib::Value::uninitialized();
-            let mut error = ptr::null_mut();
+            let mut error = std::ptr::null_mut();
             let is_ok = ffi::gtk_builder_value_from_string(
                 self.to_glib_none().0,
                 pspec.as_ref().to_glib_none().0,
@@ -318,7 +318,7 @@ impl Builder {
     ) -> Result<glib::Value, glib::Error> {
         unsafe {
             let mut value = glib::Value::uninitialized();
-            let mut error = ptr::null_mut();
+            let mut error = std::ptr::null_mut();
             let is_ok = ffi::gtk_builder_value_from_string_type(
                 self.to_glib_none().0,
                 type_.into_glib(),
@@ -350,7 +350,7 @@ impl Builder {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::current-object\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_current_object_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -373,7 +373,7 @@ impl Builder {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::scope\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_scope_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -399,7 +399,7 @@ impl Builder {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::translation-domain\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_translation_domain_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -411,11 +411,5 @@ impl Builder {
 impl Default for Builder {
     fn default() -> Self {
         Self::new()
-    }
-}
-
-impl fmt::Display for Builder {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("Builder")
     }
 }

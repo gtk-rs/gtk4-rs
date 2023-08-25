@@ -11,7 +11,7 @@ use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
-use std::{boxed::Box as Box_, fmt, mem::transmute};
+use std::boxed::Box as Box_;
 
 glib::wrapper! {
     #[doc(alias = "GtkAboutDialog")]
@@ -338,7 +338,7 @@ impl AboutDialog {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"activate-link\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     activate_link_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -361,7 +361,7 @@ impl AboutDialog {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::artists\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_artists_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -384,7 +384,7 @@ impl AboutDialog {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::authors\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_authors_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -407,7 +407,7 @@ impl AboutDialog {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::comments\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_comments_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -430,7 +430,7 @@ impl AboutDialog {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::copyright\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_copyright_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -453,7 +453,7 @@ impl AboutDialog {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::documenters\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_documenters_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -476,7 +476,7 @@ impl AboutDialog {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::license\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_license_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -499,7 +499,7 @@ impl AboutDialog {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::license-type\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_license_type_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -522,7 +522,7 @@ impl AboutDialog {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::logo\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_logo_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -545,7 +545,7 @@ impl AboutDialog {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::logo-icon-name\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_logo_icon_name_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -568,7 +568,7 @@ impl AboutDialog {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::program-name\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_program_name_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -594,7 +594,7 @@ impl AboutDialog {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::system-information\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_system_information_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -620,7 +620,7 @@ impl AboutDialog {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::translator-credits\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_translator_credits_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -643,7 +643,7 @@ impl AboutDialog {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::version\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_version_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -666,7 +666,7 @@ impl AboutDialog {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::website\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_website_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -689,7 +689,7 @@ impl AboutDialog {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::website-label\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_website_label_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -712,7 +712,7 @@ impl AboutDialog {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::wrap-license\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_wrap_license_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -1190,11 +1190,5 @@ impl AboutDialogBuilder {
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> AboutDialog {
         self.builder.build()
-    }
-}
-
-impl fmt::Display for AboutDialog {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("AboutDialog")
     }
 }

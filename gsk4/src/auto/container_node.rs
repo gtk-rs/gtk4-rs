@@ -4,7 +4,6 @@
 
 use crate::RenderNode;
 use glib::translate::*;
-use std::fmt;
 
 glib::wrapper! {
     #[doc(alias = "GskContainerNode")]
@@ -39,11 +38,5 @@ impl ContainerNode {
     #[doc(alias = "get_n_children")]
     pub fn n_children(&self) -> u32 {
         unsafe { ffi::gsk_container_node_get_n_children(self.to_glib_none().0) }
-    }
-}
-
-impl fmt::Display for ContainerNode {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("ContainerNode")
     }
 }

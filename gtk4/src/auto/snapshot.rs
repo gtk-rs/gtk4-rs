@@ -5,7 +5,6 @@
 
 use crate::StyleContext;
 use glib::{prelude::*, translate::*};
-use std::fmt;
 
 glib::wrapper! {
     #[doc(alias = "GtkSnapshot")]
@@ -667,9 +666,3 @@ pub trait SnapshotExt: IsA<Snapshot> + sealed::Sealed + 'static {
 }
 
 impl<O: IsA<Snapshot>> SnapshotExt for O {}
-
-impl fmt::Display for Snapshot {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("Snapshot")
-    }
-}

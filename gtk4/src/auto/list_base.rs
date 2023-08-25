@@ -3,7 +3,6 @@
 // DO NOT EDIT
 
 use crate::{Accessible, Buildable, ConstraintTarget, Orientable, Scrollable, Widget};
-use std::fmt;
 
 glib::wrapper! {
     #[doc(alias = "GtkListBase")]
@@ -16,10 +15,4 @@ glib::wrapper! {
 
 impl ListBase {
     pub const NONE: Option<&'static ListBase> = None;
-}
-
-impl fmt::Display for ListBase {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("ListBase")
-    }
 }

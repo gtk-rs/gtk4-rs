@@ -4,7 +4,6 @@
 
 use crate::{Accessible, Buildable, ConstraintTarget, Native, Widget};
 use glib::{prelude::*, translate::*};
-use std::fmt;
 
 glib::wrapper! {
     #[doc(alias = "GtkRoot")]
@@ -49,9 +48,3 @@ pub trait RootExt: IsA<Root> + sealed::Sealed + 'static {
 }
 
 impl<O: IsA<Root>> RootExt for O {}
-
-impl fmt::Display for Root {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("Root")
-    }
-}

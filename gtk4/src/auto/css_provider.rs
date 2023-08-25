@@ -9,7 +9,7 @@ use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
-use std::{boxed::Box as Box_, fmt, mem::transmute};
+use std::boxed::Box as Box_;
 
 glib::wrapper! {
     #[doc(alias = "GtkCssProvider")]
@@ -131,7 +131,7 @@ impl CssProvider {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"parsing-error\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     parsing_error_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -146,9 +146,9 @@ impl Default for CssProvider {
     }
 }
 
-impl fmt::Display for CssProvider {
+impl std::fmt::Display for CssProvider {
     #[inline]
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
         f.write_str(&self.to_str())
     }
 }

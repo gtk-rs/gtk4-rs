@@ -4,7 +4,6 @@
 
 use crate::{IMContext, InputHints, InputPurpose};
 use glib::{prelude::*, translate::*};
-use std::fmt;
 
 glib::wrapper! {
     #[doc(alias = "GtkIMMulticontext")]
@@ -103,9 +102,3 @@ pub trait IMMulticontextExt: IsA<IMMulticontext> + sealed::Sealed + 'static {
 }
 
 impl<O: IsA<IMMulticontext>> IMMulticontextExt for O {}
-
-impl fmt::Display for IMMulticontext {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("IMMulticontext")
-    }
-}

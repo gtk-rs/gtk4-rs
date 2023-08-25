@@ -4,7 +4,6 @@
 
 use crate::Renderer;
 use glib::{prelude::*, translate::*};
-use std::fmt;
 
 glib::wrapper! {
     #[doc(alias = "GskVulkanRenderer")]
@@ -26,11 +25,5 @@ impl VulkanRenderer {
 impl Default for VulkanRenderer {
     fn default() -> Self {
         Self::new()
-    }
-}
-
-impl fmt::Display for VulkanRenderer {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("VulkanRenderer")
     }
 }

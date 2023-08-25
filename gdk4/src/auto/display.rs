@@ -12,10 +12,7 @@ use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
-#[cfg(feature = "v4_4")]
-#[cfg_attr(docsrs, doc(cfg(feature = "v4_4")))]
-use std::ptr;
-use std::{boxed::Box as Box_, fmt, mem::transmute};
+use std::boxed::Box as Box_;
 
 glib::wrapper! {
     #[doc(alias = "GdkDisplay")]
@@ -44,9 +41,9 @@ impl Display {
     }
 }
 
-impl fmt::Display for Display {
+impl std::fmt::Display for Display {
     #[inline]
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
         f.write_str(&DisplayExt::name(self))
     }
 }
@@ -76,7 +73,7 @@ pub trait DisplayExt: IsA<Display> + sealed::Sealed + 'static {
     #[doc(alias = "gdk_display_create_gl_context")]
     fn create_gl_context(&self) -> Result<GLContext, glib::Error> {
         unsafe {
-            let mut error = ptr::null_mut();
+            let mut error = std::ptr::null_mut();
             let ret =
                 ffi::gdk_display_create_gl_context(self.as_ref().to_glib_none().0, &mut error);
             if error.is_null() {
@@ -228,7 +225,7 @@ pub trait DisplayExt: IsA<Display> + sealed::Sealed + 'static {
     #[doc(alias = "gdk_display_prepare_gl")]
     fn prepare_gl(&self) -> Result<(), glib::Error> {
         unsafe {
-            let mut error = ptr::null_mut();
+            let mut error = std::ptr::null_mut();
             let is_ok = ffi::gdk_display_prepare_gl(self.as_ref().to_glib_none().0, &mut error);
             debug_assert_eq!(is_ok == glib::ffi::GFALSE, !error.is_null());
             if error.is_null() {
@@ -290,7 +287,7 @@ pub trait DisplayExt: IsA<Display> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"closed\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     closed_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -312,7 +309,7 @@ pub trait DisplayExt: IsA<Display> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"opened\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     opened_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -338,7 +335,7 @@ pub trait DisplayExt: IsA<Display> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"seat-added\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     seat_added_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -367,7 +364,7 @@ pub trait DisplayExt: IsA<Display> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"seat-removed\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     seat_removed_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -396,7 +393,7 @@ pub trait DisplayExt: IsA<Display> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"setting-changed\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     setting_changed_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -419,7 +416,7 @@ pub trait DisplayExt: IsA<Display> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::composited\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_composited_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -445,7 +442,7 @@ pub trait DisplayExt: IsA<Display> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::input-shapes\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_input_shapes_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -468,7 +465,7 @@ pub trait DisplayExt: IsA<Display> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::rgba\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_rgba_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),

@@ -3,7 +3,6 @@
 // DO NOT EDIT
 
 use glib::{bitflags::bitflags, prelude::*, translate::*};
-use std::fmt;
 
 bitflags! {
     #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash)]
@@ -30,12 +29,6 @@ bitflags! {
     }
 }
 
-impl fmt::Display for AnchorHints {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        <Self as fmt::Debug>::fmt(self, f)
-    }
-}
-
 #[doc(hidden)]
 impl IntoGlib for AnchorHints {
     type GlibType = ffi::GdkAnchorHints;
@@ -57,6 +50,8 @@ impl FromGlib<ffi::GdkAnchorHints> for AnchorHints {
 
 impl StaticType for AnchorHints {
     #[inline]
+    #[doc(alias = "gdk_anchor_hints_get_type")]
+
     fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gdk_anchor_hints_get_type()) }
     }
@@ -68,7 +63,7 @@ impl glib::HasParamSpec for AnchorHints {
     type BuilderFn = fn(&str) -> glib::ParamSpecFlagsBuilder<Self>;
 
     fn param_spec_builder() -> Self::BuilderFn {
-        |name| Self::ParamSpec::builder(name)
+        Self::ParamSpec::builder
     }
 }
 
@@ -139,12 +134,6 @@ bitflags! {
     }
 }
 
-impl fmt::Display for AxisFlags {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        <Self as fmt::Debug>::fmt(self, f)
-    }
-}
-
 #[doc(hidden)]
 impl IntoGlib for AxisFlags {
     type GlibType = ffi::GdkAxisFlags;
@@ -166,6 +155,8 @@ impl FromGlib<ffi::GdkAxisFlags> for AxisFlags {
 
 impl StaticType for AxisFlags {
     #[inline]
+    #[doc(alias = "gdk_axis_flags_get_type")]
+
     fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gdk_axis_flags_get_type()) }
     }
@@ -177,7 +168,7 @@ impl glib::HasParamSpec for AxisFlags {
     type BuilderFn = fn(&str) -> glib::ParamSpecFlagsBuilder<Self>;
 
     fn param_spec_builder() -> Self::BuilderFn {
-        |name| Self::ParamSpec::builder(name)
+        Self::ParamSpec::builder
     }
 }
 
@@ -242,12 +233,6 @@ impl DragAction {
     }
 }
 
-impl fmt::Display for DragAction {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        <Self as fmt::Debug>::fmt(self, f)
-    }
-}
-
 #[doc(hidden)]
 impl IntoGlib for DragAction {
     type GlibType = ffi::GdkDragAction;
@@ -269,6 +254,8 @@ impl FromGlib<ffi::GdkDragAction> for DragAction {
 
 impl StaticType for DragAction {
     #[inline]
+    #[doc(alias = "gdk_drag_action_get_type")]
+
     fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gdk_drag_action_get_type()) }
     }
@@ -280,7 +267,7 @@ impl glib::HasParamSpec for DragAction {
     type BuilderFn = fn(&str) -> glib::ParamSpecFlagsBuilder<Self>;
 
     fn param_spec_builder() -> Self::BuilderFn {
-        |name| Self::ParamSpec::builder(name)
+        Self::ParamSpec::builder
     }
 }
 
@@ -345,12 +332,6 @@ bitflags! {
     }
 }
 
-impl fmt::Display for FrameClockPhase {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        <Self as fmt::Debug>::fmt(self, f)
-    }
-}
-
 #[doc(hidden)]
 impl IntoGlib for FrameClockPhase {
     type GlibType = ffi::GdkFrameClockPhase;
@@ -372,6 +353,8 @@ impl FromGlib<ffi::GdkFrameClockPhase> for FrameClockPhase {
 
 impl StaticType for FrameClockPhase {
     #[inline]
+    #[doc(alias = "gdk_frame_clock_phase_get_type")]
+
     fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gdk_frame_clock_phase_get_type()) }
     }
@@ -383,7 +366,7 @@ impl glib::HasParamSpec for FrameClockPhase {
     type BuilderFn = fn(&str) -> glib::ParamSpecFlagsBuilder<Self>;
 
     fn param_spec_builder() -> Self::BuilderFn {
-        |name| Self::ParamSpec::builder(name)
+        Self::ParamSpec::builder
     }
 }
 
@@ -440,14 +423,6 @@ bitflags! {
 
 #[cfg(feature = "v4_6")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
-impl fmt::Display for GLAPI {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        <Self as fmt::Debug>::fmt(self, f)
-    }
-}
-
-#[cfg(feature = "v4_6")]
-#[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
 #[doc(hidden)]
 impl IntoGlib for GLAPI {
     type GlibType = ffi::GdkGLAPI;
@@ -473,6 +448,8 @@ impl FromGlib<ffi::GdkGLAPI> for GLAPI {
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
 impl StaticType for GLAPI {
     #[inline]
+    #[doc(alias = "gdk_gl_api_get_type")]
+
     fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gdk_gl_api_get_type()) }
     }
@@ -486,7 +463,7 @@ impl glib::HasParamSpec for GLAPI {
     type BuilderFn = fn(&str) -> glib::ParamSpecFlagsBuilder<Self>;
 
     fn param_spec_builder() -> Self::BuilderFn {
-        |name| Self::ParamSpec::builder(name)
+        Self::ParamSpec::builder
     }
 }
 
@@ -567,12 +544,6 @@ bitflags! {
     }
 }
 
-impl fmt::Display for ModifierType {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        <Self as fmt::Debug>::fmt(self, f)
-    }
-}
-
 #[doc(hidden)]
 impl IntoGlib for ModifierType {
     type GlibType = ffi::GdkModifierType;
@@ -594,6 +565,8 @@ impl FromGlib<ffi::GdkModifierType> for ModifierType {
 
 impl StaticType for ModifierType {
     #[inline]
+    #[doc(alias = "gdk_modifier_type_get_type")]
+
     fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gdk_modifier_type_get_type()) }
     }
@@ -605,7 +578,7 @@ impl glib::HasParamSpec for ModifierType {
     type BuilderFn = fn(&str) -> glib::ParamSpecFlagsBuilder<Self>;
 
     fn param_spec_builder() -> Self::BuilderFn {
-        |name| Self::ParamSpec::builder(name)
+        Self::ParamSpec::builder
     }
 }
 
@@ -658,12 +631,6 @@ bitflags! {
     }
 }
 
-impl fmt::Display for PaintableFlags {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        <Self as fmt::Debug>::fmt(self, f)
-    }
-}
-
 #[doc(hidden)]
 impl IntoGlib for PaintableFlags {
     type GlibType = ffi::GdkPaintableFlags;
@@ -685,6 +652,8 @@ impl FromGlib<ffi::GdkPaintableFlags> for PaintableFlags {
 
 impl StaticType for PaintableFlags {
     #[inline]
+    #[doc(alias = "gdk_paintable_flags_get_type")]
+
     fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gdk_paintable_flags_get_type()) }
     }
@@ -696,7 +665,7 @@ impl glib::HasParamSpec for PaintableFlags {
     type BuilderFn = fn(&str) -> glib::ParamSpecFlagsBuilder<Self>;
 
     fn param_spec_builder() -> Self::BuilderFn {
-        |name| Self::ParamSpec::builder(name)
+        Self::ParamSpec::builder
     }
 }
 
@@ -761,12 +730,6 @@ bitflags! {
     }
 }
 
-impl fmt::Display for SeatCapabilities {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        <Self as fmt::Debug>::fmt(self, f)
-    }
-}
-
 #[doc(hidden)]
 impl IntoGlib for SeatCapabilities {
     type GlibType = ffi::GdkSeatCapabilities;
@@ -788,6 +751,8 @@ impl FromGlib<ffi::GdkSeatCapabilities> for SeatCapabilities {
 
 impl StaticType for SeatCapabilities {
     #[inline]
+    #[doc(alias = "gdk_seat_capabilities_get_type")]
+
     fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gdk_seat_capabilities_get_type()) }
     }
@@ -799,7 +764,7 @@ impl glib::HasParamSpec for SeatCapabilities {
     type BuilderFn = fn(&str) -> glib::ParamSpecFlagsBuilder<Self>;
 
     fn param_spec_builder() -> Self::BuilderFn {
-        |name| Self::ParamSpec::builder(name)
+        Self::ParamSpec::builder
     }
 }
 
@@ -884,12 +849,6 @@ bitflags! {
     }
 }
 
-impl fmt::Display for ToplevelState {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        <Self as fmt::Debug>::fmt(self, f)
-    }
-}
-
 #[doc(hidden)]
 impl IntoGlib for ToplevelState {
     type GlibType = ffi::GdkToplevelState;
@@ -911,6 +870,8 @@ impl FromGlib<ffi::GdkToplevelState> for ToplevelState {
 
 impl StaticType for ToplevelState {
     #[inline]
+    #[doc(alias = "gdk_toplevel_state_get_type")]
+
     fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gdk_toplevel_state_get_type()) }
     }
@@ -922,7 +883,7 @@ impl glib::HasParamSpec for ToplevelState {
     type BuilderFn = fn(&str) -> glib::ParamSpecFlagsBuilder<Self>;
 
     fn param_spec_builder() -> Self::BuilderFn {
-        |name| Self::ParamSpec::builder(name)
+        Self::ParamSpec::builder
     }
 }
 

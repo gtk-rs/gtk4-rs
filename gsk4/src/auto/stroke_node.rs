@@ -4,7 +4,6 @@
 
 use crate::{Path, RenderNode, Stroke};
 use glib::translate::*;
-use std::fmt;
 
 glib::wrapper! {
     #[doc(alias = "GskStrokeNode")]
@@ -51,11 +50,5 @@ impl StrokeNode {
     #[doc(alias = "get_stroke")]
     pub fn stroke(&self) -> Stroke {
         unsafe { from_glib_none(ffi::gsk_stroke_node_get_stroke(self.to_glib_none().0)) }
-    }
-}
-
-impl fmt::Display for StrokeNode {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("StrokeNode")
     }
 }

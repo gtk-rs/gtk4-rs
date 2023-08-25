@@ -4,7 +4,6 @@
 
 use crate::LayoutManager;
 use glib::{prelude::*, translate::*};
-use std::fmt;
 
 glib::wrapper! {
     #[doc(alias = "GtkBinLayout")]
@@ -26,11 +25,5 @@ impl BinLayout {
 impl Default for BinLayout {
     fn default() -> Self {
         Self::new()
-    }
-}
-
-impl fmt::Display for BinLayout {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("BinLayout")
     }
 }

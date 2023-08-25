@@ -4,7 +4,6 @@
 
 use crate::{Gravity, PopupLayout, Surface};
 use glib::{prelude::*, translate::*};
-use std::fmt;
 
 glib::wrapper! {
     #[doc(alias = "GdkPopup")]
@@ -83,9 +82,3 @@ pub trait PopupExt: IsA<Popup> + sealed::Sealed + 'static {
 }
 
 impl<O: IsA<Popup>> PopupExt for O {}
-
-impl fmt::Display for Popup {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("Popup")
-    }
-}

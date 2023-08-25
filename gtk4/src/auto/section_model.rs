@@ -7,7 +7,7 @@ use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
-use std::{boxed::Box as Box_, fmt, mem, mem::transmute};
+use std::boxed::Box as Box_;
 
 glib::wrapper! {
     #[doc(alias = "GtkSectionModel")]
@@ -32,8 +32,8 @@ pub trait SectionModelExt: IsA<SectionModel> + sealed::Sealed + 'static {
     #[doc(alias = "get_section")]
     fn section(&self, position: u32) -> (u32, u32) {
         unsafe {
-            let mut out_start = mem::MaybeUninit::uninit();
-            let mut out_end = mem::MaybeUninit::uninit();
+            let mut out_start = std::mem::MaybeUninit::uninit();
+            let mut out_end = std::mem::MaybeUninit::uninit();
             ffi::gtk_section_model_get_section(
                 self.as_ref().to_glib_none().0,
                 position,
@@ -80,7 +80,7 @@ pub trait SectionModelExt: IsA<SectionModel> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"sections-changed\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     sections_changed_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -90,9 +90,3 @@ pub trait SectionModelExt: IsA<SectionModel> + sealed::Sealed + 'static {
 }
 
 impl<O: IsA<SectionModel>> SectionModelExt for O {}
-
-impl fmt::Display for SectionModel {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("SectionModel")
-    }
-}

@@ -11,7 +11,7 @@ use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
-use std::{boxed::Box as Box_, fmt, mem::transmute};
+use std::boxed::Box as Box_;
 
 glib::wrapper! {
     #[doc(alias = "GtkListBox")]
@@ -402,7 +402,7 @@ impl ListBox {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"activate-cursor-row\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     activate_cursor_row_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -443,7 +443,7 @@ impl ListBox {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"move-cursor\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     move_cursor_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -473,7 +473,7 @@ impl ListBox {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"row-activated\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     row_activated_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -506,7 +506,7 @@ impl ListBox {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"row-selected\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     row_selected_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -528,7 +528,7 @@ impl ListBox {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"select-all\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     select_all_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -554,7 +554,7 @@ impl ListBox {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"selected-rows-changed\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     selected_rows_changed_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -576,7 +576,7 @@ impl ListBox {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"toggle-cursor-row\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     toggle_cursor_row_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -602,7 +602,7 @@ impl ListBox {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"unselect-all\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     unselect_all_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -634,7 +634,7 @@ impl ListBox {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::accept-unpaired-release\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_accept_unpaired_release_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -662,7 +662,7 @@ impl ListBox {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::activate-on-single-click\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_activate_on_single_click_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -685,7 +685,7 @@ impl ListBox {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::selection-mode\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_selection_mode_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -708,7 +708,7 @@ impl ListBox {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::show-separators\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_show_separators_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -956,11 +956,5 @@ impl ListBoxBuilder {
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> ListBox {
         self.builder.build()
-    }
-}
-
-impl fmt::Display for ListBox {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("ListBox")
     }
 }

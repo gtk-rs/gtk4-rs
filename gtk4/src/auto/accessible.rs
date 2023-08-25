@@ -11,10 +11,7 @@ use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
-#[cfg(feature = "v4_10")]
-#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
-use std::mem;
-use std::{boxed::Box as Box_, fmt, mem::transmute};
+use std::boxed::Box as Box_;
 
 glib::wrapper! {
     #[doc(alias = "GtkAccessible")]
@@ -76,10 +73,10 @@ pub trait AccessibleExt: IsA<Accessible> + sealed::Sealed + 'static {
     #[doc(alias = "get_bounds")]
     fn bounds(&self) -> Option<(i32, i32, i32, i32)> {
         unsafe {
-            let mut x = mem::MaybeUninit::uninit();
-            let mut y = mem::MaybeUninit::uninit();
-            let mut width = mem::MaybeUninit::uninit();
-            let mut height = mem::MaybeUninit::uninit();
+            let mut x = std::mem::MaybeUninit::uninit();
+            let mut y = std::mem::MaybeUninit::uninit();
+            let mut width = std::mem::MaybeUninit::uninit();
+            let mut height = std::mem::MaybeUninit::uninit();
             let ret = from_glib(ffi::gtk_accessible_get_bounds(
                 self.as_ref().to_glib_none().0,
                 x.as_mut_ptr(),
@@ -218,7 +215,7 @@ pub trait AccessibleExt: IsA<Accessible> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::accessible-role\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_accessible_role_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -228,9 +225,3 @@ pub trait AccessibleExt: IsA<Accessible> + sealed::Sealed + 'static {
 }
 
 impl<O: IsA<Accessible>> AccessibleExt for O {}
-
-impl fmt::Display for Accessible {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("Accessible")
-    }
-}

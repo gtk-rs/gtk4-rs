@@ -4,7 +4,7 @@
 
 use crate::{ShortcutAction, Widget};
 use glib::translate::*;
-use std::{boxed::Box as Box_, fmt};
+use std::boxed::Box as Box_;
 
 glib::wrapper! {
     #[doc(alias = "GtkCallbackAction")]
@@ -51,11 +51,5 @@ impl CallbackAction {
                 destroy_call2,
             ))
         }
-    }
-}
-
-impl fmt::Display for CallbackAction {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("CallbackAction")
     }
 }

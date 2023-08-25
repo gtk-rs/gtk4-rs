@@ -10,7 +10,7 @@ use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
-use std::{boxed::Box as Box_, fmt, mem, mem::transmute, ptr};
+use std::boxed::Box as Box_;
 
 glib::wrapper! {
     #[doc(alias = "GtkPrintJob")]
@@ -68,7 +68,7 @@ impl PrintJob {
     #[doc(alias = "get_page_ranges")]
     pub fn page_ranges(&self) -> Vec<PageRange> {
         unsafe {
-            let mut n_ranges = mem::MaybeUninit::uninit();
+            let mut n_ranges = std::mem::MaybeUninit::uninit();
             let ret = FromGlibContainer::from_glib_none_num(
                 ffi::gtk_print_job_get_page_ranges(self.to_glib_none().0, n_ranges.as_mut_ptr()),
                 n_ranges.assume_init() as _,
@@ -129,7 +129,7 @@ impl PrintJob {
     #[doc(alias = "get_surface")]
     pub fn surface(&self) -> Result<cairo::Surface, glib::Error> {
         unsafe {
-            let mut error = ptr::null_mut();
+            let mut error = std::ptr::null_mut();
             let ret = ffi::gtk_print_job_get_surface(self.to_glib_none().0, &mut error);
             if error.is_null() {
                 Ok(from_glib_none(ret))
@@ -233,7 +233,7 @@ impl PrintJob {
     #[doc(alias = "gtk_print_job_set_source_fd")]
     pub fn set_source_fd(&self, fd: i32) -> Result<(), glib::Error> {
         unsafe {
-            let mut error = ptr::null_mut();
+            let mut error = std::ptr::null_mut();
             let is_ok = ffi::gtk_print_job_set_source_fd(self.to_glib_none().0, fd, &mut error);
             debug_assert_eq!(is_ok == glib::ffi::GFALSE, !error.is_null());
             if error.is_null() {
@@ -250,7 +250,7 @@ impl PrintJob {
         filename: impl AsRef<std::path::Path>,
     ) -> Result<(), glib::Error> {
         unsafe {
-            let mut error = ptr::null_mut();
+            let mut error = std::ptr::null_mut();
             let is_ok = ffi::gtk_print_job_set_source_file(
                 self.to_glib_none().0,
                 filename.as_ref().to_glib_none().0,
@@ -294,7 +294,7 @@ impl PrintJob {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"status-changed\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     status_changed_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -320,17 +320,11 @@ impl PrintJob {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::track-print-status\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_track_print_status_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
         }
-    }
-}
-
-impl fmt::Display for PrintJob {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("PrintJob")
     }
 }

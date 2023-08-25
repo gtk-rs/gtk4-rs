@@ -4,7 +4,6 @@
 
 use crate::{LineCap, LineJoin};
 use glib::translate::*;
-use std::mem;
 
 glib::wrapper! {
     #[derive(Debug, PartialOrd, Ord, Hash)]
@@ -28,7 +27,7 @@ impl Stroke {
     #[doc(alias = "get_dash")]
     pub fn dash(&self) -> Vec<f32> {
         unsafe {
-            let mut n_dash = mem::MaybeUninit::uninit();
+            let mut n_dash = std::mem::MaybeUninit::uninit();
             let ret = FromGlibContainer::from_glib_none_num(
                 ffi::gsk_stroke_get_dash(self.to_glib_none().0, n_dash.as_mut_ptr()),
                 n_dash.assume_init() as _,

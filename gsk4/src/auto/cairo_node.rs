@@ -3,7 +3,6 @@
 // DO NOT EDIT
 
 use glib::translate::*;
-use std::fmt;
 
 glib::wrapper! {
     #[doc(alias = "GskCairoNode")]
@@ -38,11 +37,5 @@ impl CairoNode {
     #[doc(alias = "get_surface")]
     pub fn surface(&self) -> cairo::Surface {
         unsafe { from_glib_none(ffi::gsk_cairo_node_get_surface(self.to_glib_none().0)) }
-    }
-}
-
-impl fmt::Display for CairoNode {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("CairoNode")
     }
 }

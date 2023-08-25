@@ -3,7 +3,6 @@
 // DO NOT EDIT
 
 use glib::{prelude::*, translate::*};
-use std::fmt;
 
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
@@ -43,34 +42,6 @@ pub enum BlendMode {
     Luminosity,
     #[doc(hidden)]
     __Unknown(i32),
-}
-
-impl fmt::Display for BlendMode {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "BlendMode::{}",
-            match *self {
-                Self::Default => "Default",
-                Self::Multiply => "Multiply",
-                Self::Screen => "Screen",
-                Self::Overlay => "Overlay",
-                Self::Darken => "Darken",
-                Self::Lighten => "Lighten",
-                Self::ColorDodge => "ColorDodge",
-                Self::ColorBurn => "ColorBurn",
-                Self::HardLight => "HardLight",
-                Self::SoftLight => "SoftLight",
-                Self::Difference => "Difference",
-                Self::Exclusion => "Exclusion",
-                Self::Color => "Color",
-                Self::Hue => "Hue",
-                Self::Saturation => "Saturation",
-                Self::Luminosity => "Luminosity",
-                _ => "Unknown",
-            }
-        )
-    }
 }
 
 #[doc(hidden)]
@@ -129,6 +100,8 @@ impl FromGlib<ffi::GskBlendMode> for BlendMode {
 
 impl StaticType for BlendMode {
     #[inline]
+    #[doc(alias = "gsk_blend_mode_get_type")]
+
     fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gsk_blend_mode_get_type()) }
     }
@@ -140,7 +113,7 @@ impl glib::HasParamSpec for BlendMode {
     type BuilderFn = fn(&str, Self) -> glib::ParamSpecEnumBuilder<Self>;
 
     fn param_spec_builder() -> Self::BuilderFn {
-        |name, default_value| Self::ParamSpec::builder_with_default(name, default_value)
+        Self::ParamSpec::builder_with_default
     }
 }
 
@@ -198,22 +171,6 @@ pub enum Corner {
     __Unknown(i32),
 }
 
-impl fmt::Display for Corner {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "Corner::{}",
-            match *self {
-                Self::TopLeft => "TopLeft",
-                Self::TopRight => "TopRight",
-                Self::BottomRight => "BottomRight",
-                Self::BottomLeft => "BottomLeft",
-                _ => "Unknown",
-            }
-        )
-    }
-}
-
 #[doc(hidden)]
 impl IntoGlib for Corner {
     type GlibType = ffi::GskCorner;
@@ -248,6 +205,8 @@ impl FromGlib<ffi::GskCorner> for Corner {
 
 impl StaticType for Corner {
     #[inline]
+    #[doc(alias = "gsk_corner_get_type")]
+
     fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gsk_corner_get_type()) }
     }
@@ -259,7 +218,7 @@ impl glib::HasParamSpec for Corner {
     type BuilderFn = fn(&str, Self) -> glib::ParamSpecEnumBuilder<Self>;
 
     fn param_spec_builder() -> Self::BuilderFn {
-        |name, default_value| Self::ParamSpec::builder_with_default(name, default_value)
+        Self::ParamSpec::builder_with_default
     }
 }
 
@@ -317,22 +276,6 @@ pub enum FillRule {
 
 #[cfg(feature = "v4_14")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
-impl fmt::Display for FillRule {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "FillRule::{}",
-            match *self {
-                Self::Winding => "Winding",
-                Self::EvenOdd => "EvenOdd",
-                _ => "Unknown",
-            }
-        )
-    }
-}
-
-#[cfg(feature = "v4_14")]
-#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
 #[doc(hidden)]
 impl IntoGlib for FillRule {
     type GlibType = ffi::GskFillRule;
@@ -367,6 +310,8 @@ impl FromGlib<ffi::GskFillRule> for FillRule {
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
 impl StaticType for FillRule {
     #[inline]
+    #[doc(alias = "gsk_fill_rule_get_type")]
+
     fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gsk_fill_rule_get_type()) }
     }
@@ -380,7 +325,7 @@ impl glib::HasParamSpec for FillRule {
     type BuilderFn = fn(&str, Self) -> glib::ParamSpecEnumBuilder<Self>;
 
     fn param_spec_builder() -> Self::BuilderFn {
-        |name, default_value| Self::ParamSpec::builder_with_default(name, default_value)
+        Self::ParamSpec::builder_with_default
     }
 }
 
@@ -454,26 +399,6 @@ pub enum GLUniformType {
     __Unknown(i32),
 }
 
-impl fmt::Display for GLUniformType {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "GLUniformType::{}",
-            match *self {
-                Self::None => "None",
-                Self::Float => "Float",
-                Self::Int => "Int",
-                Self::Uint => "Uint",
-                Self::Bool => "Bool",
-                Self::Vec2 => "Vec2",
-                Self::Vec3 => "Vec3",
-                Self::Vec4 => "Vec4",
-                _ => "Unknown",
-            }
-        )
-    }
-}
-
 #[doc(hidden)]
 impl IntoGlib for GLUniformType {
     type GlibType = ffi::GskGLUniformType;
@@ -516,6 +441,8 @@ impl FromGlib<ffi::GskGLUniformType> for GLUniformType {
 
 impl StaticType for GLUniformType {
     #[inline]
+    #[doc(alias = "gsk_gl_uniform_type_get_type")]
+
     fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gsk_gl_uniform_type_get_type()) }
     }
@@ -527,7 +454,7 @@ impl glib::HasParamSpec for GLUniformType {
     type BuilderFn = fn(&str, Self) -> glib::ParamSpecEnumBuilder<Self>;
 
     fn param_spec_builder() -> Self::BuilderFn {
-        |name, default_value| Self::ParamSpec::builder_with_default(name, default_value)
+        Self::ParamSpec::builder_with_default
     }
 }
 
@@ -587,23 +514,6 @@ pub enum LineCap {
 
 #[cfg(feature = "v4_14")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
-impl fmt::Display for LineCap {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "LineCap::{}",
-            match *self {
-                Self::Butt => "Butt",
-                Self::Round => "Round",
-                Self::Square => "Square",
-                _ => "Unknown",
-            }
-        )
-    }
-}
-
-#[cfg(feature = "v4_14")]
-#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
 #[doc(hidden)]
 impl IntoGlib for LineCap {
     type GlibType = ffi::GskLineCap;
@@ -640,6 +550,8 @@ impl FromGlib<ffi::GskLineCap> for LineCap {
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
 impl StaticType for LineCap {
     #[inline]
+    #[doc(alias = "gsk_line_cap_get_type")]
+
     fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gsk_line_cap_get_type()) }
     }
@@ -653,7 +565,7 @@ impl glib::HasParamSpec for LineCap {
     type BuilderFn = fn(&str, Self) -> glib::ParamSpecEnumBuilder<Self>;
 
     fn param_spec_builder() -> Self::BuilderFn {
-        |name, default_value| Self::ParamSpec::builder_with_default(name, default_value)
+        Self::ParamSpec::builder_with_default
     }
 }
 
@@ -721,23 +633,6 @@ pub enum LineJoin {
 
 #[cfg(feature = "v4_14")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
-impl fmt::Display for LineJoin {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "LineJoin::{}",
-            match *self {
-                Self::Miter => "Miter",
-                Self::Round => "Round",
-                Self::Bevel => "Bevel",
-                _ => "Unknown",
-            }
-        )
-    }
-}
-
-#[cfg(feature = "v4_14")]
-#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
 #[doc(hidden)]
 impl IntoGlib for LineJoin {
     type GlibType = ffi::GskLineJoin;
@@ -774,6 +669,8 @@ impl FromGlib<ffi::GskLineJoin> for LineJoin {
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
 impl StaticType for LineJoin {
     #[inline]
+    #[doc(alias = "gsk_line_join_get_type")]
+
     fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gsk_line_join_get_type()) }
     }
@@ -787,7 +684,7 @@ impl glib::HasParamSpec for LineJoin {
     type BuilderFn = fn(&str, Self) -> glib::ParamSpecEnumBuilder<Self>;
 
     fn param_spec_builder() -> Self::BuilderFn {
-        |name, default_value| Self::ParamSpec::builder_with_default(name, default_value)
+        Self::ParamSpec::builder_with_default
     }
 }
 
@@ -857,24 +754,6 @@ pub enum MaskMode {
 
 #[cfg(feature = "v4_10")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
-impl fmt::Display for MaskMode {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "MaskMode::{}",
-            match *self {
-                Self::Alpha => "Alpha",
-                Self::InvertedAlpha => "InvertedAlpha",
-                Self::Luminance => "Luminance",
-                Self::InvertedLuminance => "InvertedLuminance",
-                _ => "Unknown",
-            }
-        )
-    }
-}
-
-#[cfg(feature = "v4_10")]
-#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 #[doc(hidden)]
 impl IntoGlib for MaskMode {
     type GlibType = ffi::GskMaskMode;
@@ -913,6 +792,8 @@ impl FromGlib<ffi::GskMaskMode> for MaskMode {
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 impl StaticType for MaskMode {
     #[inline]
+    #[doc(alias = "gsk_mask_mode_get_type")]
+
     fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gsk_mask_mode_get_type()) }
     }
@@ -926,7 +807,7 @@ impl glib::HasParamSpec for MaskMode {
     type BuilderFn = fn(&str, Self) -> glib::ParamSpecEnumBuilder<Self>;
 
     fn param_spec_builder() -> Self::BuilderFn {
-        |name, default_value| Self::ParamSpec::builder_with_default(name, default_value)
+        Self::ParamSpec::builder_with_default
     }
 }
 
@@ -996,24 +877,6 @@ pub enum PathDirection {
 
 #[cfg(feature = "v4_14")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
-impl fmt::Display for PathDirection {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "PathDirection::{}",
-            match *self {
-                Self::FromStart => "FromStart",
-                Self::ToStart => "ToStart",
-                Self::ToEnd => "ToEnd",
-                Self::FromEnd => "FromEnd",
-                _ => "Unknown",
-            }
-        )
-    }
-}
-
-#[cfg(feature = "v4_14")]
-#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
 #[doc(hidden)]
 impl IntoGlib for PathDirection {
     type GlibType = ffi::GskPathDirection;
@@ -1052,6 +915,8 @@ impl FromGlib<ffi::GskPathDirection> for PathDirection {
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
 impl StaticType for PathDirection {
     #[inline]
+    #[doc(alias = "gsk_path_direction_get_type")]
+
     fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gsk_path_direction_get_type()) }
     }
@@ -1065,7 +930,7 @@ impl glib::HasParamSpec for PathDirection {
     type BuilderFn = fn(&str, Self) -> glib::ParamSpecEnumBuilder<Self>;
 
     fn param_spec_builder() -> Self::BuilderFn {
-        |name, default_value| Self::ParamSpec::builder_with_default(name, default_value)
+        Self::ParamSpec::builder_with_default
     }
 }
 
@@ -1137,25 +1002,6 @@ pub enum PathOperation {
 
 #[cfg(feature = "v4_14")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
-impl fmt::Display for PathOperation {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "PathOperation::{}",
-            match *self {
-                Self::Move => "Move",
-                Self::Close => "Close",
-                Self::Line => "Line",
-                Self::Quad => "Quad",
-                Self::Cubic => "Cubic",
-                _ => "Unknown",
-            }
-        )
-    }
-}
-
-#[cfg(feature = "v4_14")]
-#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
 #[doc(hidden)]
 impl IntoGlib for PathOperation {
     type GlibType = ffi::GskPathOperation;
@@ -1196,6 +1042,8 @@ impl FromGlib<ffi::GskPathOperation> for PathOperation {
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
 impl StaticType for PathOperation {
     #[inline]
+    #[doc(alias = "gsk_path_operation_get_type")]
+
     fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gsk_path_operation_get_type()) }
     }
@@ -1209,7 +1057,7 @@ impl glib::HasParamSpec for PathOperation {
     type BuilderFn = fn(&str, Self) -> glib::ParamSpecEnumBuilder<Self>;
 
     fn param_spec_builder() -> Self::BuilderFn {
-        |name, default_value| Self::ParamSpec::builder_with_default(name, default_value)
+        Self::ParamSpec::builder_with_default
     }
 }
 
@@ -1331,50 +1179,6 @@ pub enum RenderNodeType {
     __Unknown(i32),
 }
 
-impl fmt::Display for RenderNodeType {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "RenderNodeType::{}",
-            match *self {
-                Self::NotARenderNode => "NotARenderNode",
-                Self::ContainerNode => "ContainerNode",
-                Self::CairoNode => "CairoNode",
-                Self::ColorNode => "ColorNode",
-                Self::LinearGradientNode => "LinearGradientNode",
-                Self::RepeatingLinearGradientNode => "RepeatingLinearGradientNode",
-                Self::RadialGradientNode => "RadialGradientNode",
-                Self::RepeatingRadialGradientNode => "RepeatingRadialGradientNode",
-                Self::ConicGradientNode => "ConicGradientNode",
-                Self::BorderNode => "BorderNode",
-                Self::TextureNode => "TextureNode",
-                Self::InsetShadowNode => "InsetShadowNode",
-                Self::OutsetShadowNode => "OutsetShadowNode",
-                Self::TransformNode => "TransformNode",
-                Self::OpacityNode => "OpacityNode",
-                Self::ColorMatrixNode => "ColorMatrixNode",
-                Self::RepeatNode => "RepeatNode",
-                Self::ClipNode => "ClipNode",
-                Self::RoundedClipNode => "RoundedClipNode",
-                Self::ShadowNode => "ShadowNode",
-                Self::BlendNode => "BlendNode",
-                Self::CrossFadeNode => "CrossFadeNode",
-                Self::TextNode => "TextNode",
-                Self::BlurNode => "BlurNode",
-                Self::DebugNode => "DebugNode",
-                Self::GlShaderNode => "GlShaderNode",
-                Self::TextureScaleNode => "TextureScaleNode",
-                Self::MaskNode => "MaskNode",
-                #[cfg(feature = "v4_14")]
-                Self::FillNode => "FillNode",
-                #[cfg(feature = "v4_14")]
-                Self::StrokeNode => "StrokeNode",
-                _ => "Unknown",
-            }
-        )
-    }
-}
-
 #[doc(hidden)]
 impl IntoGlib for RenderNodeType {
     type GlibType = ffi::GskRenderNodeType;
@@ -1463,6 +1267,8 @@ impl FromGlib<ffi::GskRenderNodeType> for RenderNodeType {
 
 impl StaticType for RenderNodeType {
     #[inline]
+    #[doc(alias = "gsk_render_node_type_get_type")]
+
     fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gsk_render_node_type_get_type()) }
     }
@@ -1474,7 +1280,7 @@ impl glib::HasParamSpec for RenderNodeType {
     type BuilderFn = fn(&str, Self) -> glib::ParamSpecEnumBuilder<Self>;
 
     fn param_spec_builder() -> Self::BuilderFn {
-        |name, default_value| Self::ParamSpec::builder_with_default(name, default_value)
+        Self::ParamSpec::builder_with_default
     }
 }
 
@@ -1530,21 +1336,6 @@ pub enum ScalingFilter {
     __Unknown(i32),
 }
 
-impl fmt::Display for ScalingFilter {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "ScalingFilter::{}",
-            match *self {
-                Self::Linear => "Linear",
-                Self::Nearest => "Nearest",
-                Self::Trilinear => "Trilinear",
-                _ => "Unknown",
-            }
-        )
-    }
-}
-
 #[doc(hidden)]
 impl IntoGlib for ScalingFilter {
     type GlibType = ffi::GskScalingFilter;
@@ -1577,6 +1368,8 @@ impl FromGlib<ffi::GskScalingFilter> for ScalingFilter {
 
 impl StaticType for ScalingFilter {
     #[inline]
+    #[doc(alias = "gsk_scaling_filter_get_type")]
+
     fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gsk_scaling_filter_get_type()) }
     }
@@ -1588,7 +1381,7 @@ impl glib::HasParamSpec for ScalingFilter {
     type BuilderFn = fn(&str, Self) -> glib::ParamSpecEnumBuilder<Self>;
 
     fn param_spec_builder() -> Self::BuilderFn {
-        |name, default_value| Self::ParamSpec::builder_with_default(name, default_value)
+        Self::ParamSpec::builder_with_default
     }
 }
 
@@ -1642,21 +1435,6 @@ pub enum SerializationError {
     InvalidData,
     #[doc(hidden)]
     __Unknown(i32),
-}
-
-impl fmt::Display for SerializationError {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "SerializationError::{}",
-            match *self {
-                Self::UnsupportedFormat => "UnsupportedFormat",
-                Self::UnsupportedVersion => "UnsupportedVersion",
-                Self::InvalidData => "InvalidData",
-                _ => "Unknown",
-            }
-        )
-    }
 }
 
 #[doc(hidden)]
@@ -1714,6 +1492,8 @@ impl glib::error::ErrorDomain for SerializationError {
 
 impl StaticType for SerializationError {
     #[inline]
+    #[doc(alias = "gsk_serialization_error_get_type")]
+
     fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gsk_serialization_error_get_type()) }
     }
@@ -1725,7 +1505,7 @@ impl glib::HasParamSpec for SerializationError {
     type BuilderFn = fn(&str, Self) -> glib::ParamSpecEnumBuilder<Self>;
 
     fn param_spec_builder() -> Self::BuilderFn {
-        |name, default_value| Self::ParamSpec::builder_with_default(name, default_value)
+        Self::ParamSpec::builder_with_default
     }
 }
 
@@ -1789,25 +1569,6 @@ pub enum TransformCategory {
     __Unknown(i32),
 }
 
-impl fmt::Display for TransformCategory {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "TransformCategory::{}",
-            match *self {
-                Self::Unknown => "Unknown",
-                Self::Any => "Any",
-                Self::_3d => "_3d",
-                Self::_2d => "_2d",
-                Self::_2dAffine => "_2dAffine",
-                Self::_2dTranslate => "_2dTranslate",
-                Self::Identity => "Identity",
-                _ => "Unknown",
-            }
-        )
-    }
-}
-
 #[doc(hidden)]
 impl IntoGlib for TransformCategory {
     type GlibType = ffi::GskTransformCategory;
@@ -1848,6 +1609,8 @@ impl FromGlib<ffi::GskTransformCategory> for TransformCategory {
 
 impl StaticType for TransformCategory {
     #[inline]
+    #[doc(alias = "gsk_transform_category_get_type")]
+
     fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gsk_transform_category_get_type()) }
     }
@@ -1859,7 +1622,7 @@ impl glib::HasParamSpec for TransformCategory {
     type BuilderFn = fn(&str, Self) -> glib::ParamSpecEnumBuilder<Self>;
 
     fn param_spec_builder() -> Self::BuilderFn {
-        |name, default_value| Self::ParamSpec::builder_with_default(name, default_value)
+        Self::ParamSpec::builder_with_default
     }
 }
 

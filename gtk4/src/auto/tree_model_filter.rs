@@ -5,7 +5,7 @@
 
 use crate::{TreeDragSource, TreeIter, TreeModel, TreePath};
 use glib::{prelude::*, translate::*};
-use std::{boxed::Box as Box_, fmt};
+use std::boxed::Box as Box_;
 
 glib::wrapper! {
     #[doc(alias = "GtkTreeModelFilter")]
@@ -163,9 +163,3 @@ pub trait TreeModelFilterExt: IsA<TreeModelFilter> + sealed::Sealed + 'static {
 }
 
 impl<O: IsA<TreeModelFilter>> TreeModelFilterExt for O {}
-
-impl fmt::Display for TreeModelFilter {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("TreeModelFilter")
-    }
-}

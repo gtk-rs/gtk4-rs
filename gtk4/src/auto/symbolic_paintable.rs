@@ -3,7 +3,6 @@
 // DO NOT EDIT
 
 use glib::{prelude::*, translate::*};
-use std::fmt;
 
 glib::wrapper! {
     #[doc(alias = "GtkSymbolicPaintable")]
@@ -47,9 +46,3 @@ pub trait SymbolicPaintableExt: IsA<SymbolicPaintable> + sealed::Sealed + 'stati
 }
 
 impl<O: IsA<SymbolicPaintable>> SymbolicPaintableExt for O {}
-
-impl fmt::Display for SymbolicPaintable {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("SymbolicPaintable")
-    }
-}

@@ -4,7 +4,6 @@
 
 use crate::{AxisFlags, DeviceToolType};
 use glib::translate::*;
-use std::fmt;
 
 glib::wrapper! {
     #[doc(alias = "GdkDeviceTool")]
@@ -38,11 +37,5 @@ impl DeviceTool {
     #[doc(alias = "get_tool_type")]
     pub fn tool_type(&self) -> DeviceToolType {
         unsafe { from_glib(ffi::gdk_device_tool_get_tool_type(self.to_glib_none().0)) }
-    }
-}
-
-impl fmt::Display for DeviceTool {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("DeviceTool")
     }
 }

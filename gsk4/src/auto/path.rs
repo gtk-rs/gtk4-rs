@@ -4,7 +4,6 @@
 
 use crate::{FillRule, PathPoint, Stroke};
 use glib::translate::*;
-use std::fmt;
 
 glib::wrapper! {
     #[derive(Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
@@ -150,9 +149,9 @@ impl Path {
     }
 }
 
-impl fmt::Display for Path {
+impl std::fmt::Display for Path {
     #[inline]
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
         f.write_str(&self.to_str())
     }
 }

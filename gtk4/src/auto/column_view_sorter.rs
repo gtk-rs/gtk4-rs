@@ -8,7 +8,7 @@ use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
-use std::{boxed::Box as Box_, fmt, mem, mem::transmute};
+use std::boxed::Box as Box_;
 
 glib::wrapper! {
     #[doc(alias = "GtkColumnViewSorter")]
@@ -30,7 +30,7 @@ impl ColumnViewSorter {
     #[doc(alias = "get_nth_sort_column")]
     pub fn nth_sort_column(&self, position: u32) -> (Option<ColumnViewColumn>, SortType) {
         unsafe {
-            let mut sort_order = mem::MaybeUninit::uninit();
+            let mut sort_order = std::mem::MaybeUninit::uninit();
             let ret = from_glib_none(ffi::gtk_column_view_sorter_get_nth_sort_column(
                 self.to_glib_none().0,
                 position,
@@ -82,7 +82,7 @@ impl ColumnViewSorter {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::primary-sort-column\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_primary_sort_column_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -112,17 +112,11 @@ impl ColumnViewSorter {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::primary-sort-order\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_primary_sort_order_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
         }
-    }
-}
-
-impl fmt::Display for ColumnViewSorter {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("ColumnViewSorter")
     }
 }

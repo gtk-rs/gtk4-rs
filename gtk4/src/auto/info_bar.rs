@@ -12,7 +12,7 @@ use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
-use std::{boxed::Box as Box_, fmt, mem::transmute};
+use std::boxed::Box as Box_;
 
 glib::wrapper! {
     #[doc(alias = "GtkInfoBar")]
@@ -196,7 +196,7 @@ impl InfoBar {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"close\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     close_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -223,7 +223,7 @@ impl InfoBar {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"response\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     response_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -246,7 +246,7 @@ impl InfoBar {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::message-type\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_message_type_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -269,7 +269,7 @@ impl InfoBar {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::revealed\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_revealed_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -295,7 +295,7 @@ impl InfoBar {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::show-close-button\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_show_close_button_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -535,11 +535,5 @@ impl InfoBarBuilder {
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> InfoBar {
         self.builder.build()
-    }
-}
-
-impl fmt::Display for InfoBar {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("InfoBar")
     }
 }

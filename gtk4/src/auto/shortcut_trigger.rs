@@ -3,7 +3,6 @@
 // DO NOT EDIT
 
 use glib::{prelude::*, translate::*};
-use std::fmt;
 
 glib::wrapper! {
     #[doc(alias = "GtkShortcutTrigger")]
@@ -28,9 +27,9 @@ impl ShortcutTrigger {
     }
 }
 
-impl fmt::Display for ShortcutTrigger {
+impl std::fmt::Display for ShortcutTrigger {
     #[inline]
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
         f.write_str(&ShortcutTriggerExt::to_str(self))
     }
 }

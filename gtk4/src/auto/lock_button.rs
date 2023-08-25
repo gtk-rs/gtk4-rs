@@ -12,7 +12,7 @@ use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
-use std::{boxed::Box as Box_, fmt, mem::transmute};
+use std::boxed::Box as Box_;
 
 glib::wrapper! {
     #[doc(alias = "GtkLockButton")]
@@ -141,7 +141,7 @@ impl LockButton {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::permission\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_permission_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -165,7 +165,7 @@ impl LockButton {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::text-lock\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_text_lock_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -189,7 +189,7 @@ impl LockButton {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::text-unlock\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_text_unlock_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -213,7 +213,7 @@ impl LockButton {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::tooltip-lock\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_tooltip_lock_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -242,7 +242,7 @@ impl LockButton {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::tooltip-not-authorized\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_tooltip_not_authorized_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -266,7 +266,7 @@ impl LockButton {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::tooltip-unlock\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_tooltip_unlock_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -586,11 +586,5 @@ impl LockButtonBuilder {
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> LockButton {
         self.builder.build()
-    }
-}
-
-impl fmt::Display for LockButton {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("LockButton")
     }
 }

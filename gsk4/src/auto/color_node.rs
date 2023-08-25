@@ -3,7 +3,6 @@
 // DO NOT EDIT
 
 use glib::translate::*;
-use std::fmt;
 
 glib::wrapper! {
     #[doc(alias = "GskColorNode")]
@@ -37,11 +36,5 @@ impl ColorNode {
     #[doc(alias = "get_color")]
     pub fn color(&self) -> gdk::RGBA {
         unsafe { from_glib_none(ffi::gsk_color_node_get_color(self.to_glib_none().0)) }
-    }
-}
-
-impl fmt::Display for ColorNode {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("ColorNode")
     }
 }

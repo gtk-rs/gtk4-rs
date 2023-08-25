@@ -11,7 +11,7 @@ use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
-use std::{boxed::Box as Box_, fmt, mem::transmute};
+use std::boxed::Box as Box_;
 
 glib::wrapper! {
     #[doc(alias = "GtkCenterBox")]
@@ -144,7 +144,7 @@ impl CenterBox {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::baseline-position\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_baseline_position_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -169,7 +169,7 @@ impl CenterBox {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::center-widget\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_center_widget_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -194,7 +194,7 @@ impl CenterBox {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::end-widget\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_end_widget_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -222,7 +222,7 @@ impl CenterBox {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::shrink-center-last\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_shrink_center_last_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -247,7 +247,7 @@ impl CenterBox {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::start-widget\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_start_widget_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -521,11 +521,5 @@ impl CenterBoxBuilder {
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> CenterBox {
         self.builder.build()
-    }
-}
-
-impl fmt::Display for CenterBox {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("CenterBox")
     }
 }

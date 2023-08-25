@@ -4,7 +4,6 @@
 
 use crate::LayoutManager;
 use glib::{prelude::*, translate::*};
-use std::fmt;
 
 glib::wrapper! {
     #[doc(alias = "GtkFixedLayout")]
@@ -26,11 +25,5 @@ impl FixedLayout {
 impl Default for FixedLayout {
     fn default() -> Self {
         Self::new()
-    }
-}
-
-impl fmt::Display for FixedLayout {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("FixedLayout")
     }
 }

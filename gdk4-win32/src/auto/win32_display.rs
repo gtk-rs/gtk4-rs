@@ -4,7 +4,6 @@
 
 use crate::Win32HCursor;
 use glib::{prelude::*, translate::*};
-use std::{fmt, mem};
 
 glib::wrapper! {
     #[doc(alias = "GdkWin32Display")]
@@ -54,8 +53,8 @@ impl Win32Display {
     pub fn wgl_version(display: &impl IsA<gdk::Display>) -> Option<(i32, i32)> {
         assert_initialized_main_thread!();
         unsafe {
-            let mut major = mem::MaybeUninit::uninit();
-            let mut minor = mem::MaybeUninit::uninit();
+            let mut major = std::mem::MaybeUninit::uninit();
+            let mut minor = std::mem::MaybeUninit::uninit();
             let ret = from_glib(ffi::gdk_win32_display_get_wgl_version(
                 display.as_ref().to_glib_none().0,
                 major.as_mut_ptr(),
@@ -67,11 +66,5 @@ impl Win32Display {
                 None
             }
         }
-    }
-}
-
-impl fmt::Display for Win32Display {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("Win32Display")
     }
 }

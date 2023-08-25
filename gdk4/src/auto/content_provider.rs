@@ -8,7 +8,7 @@ use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
-use std::{boxed::Box as Box_, fmt, mem::transmute, pin::Pin, ptr};
+use std::{boxed::Box as Box_, pin::Pin};
 
 glib::wrapper! {
     #[doc(alias = "GdkContentProvider")]
@@ -119,7 +119,7 @@ pub trait ContentProviderExt: IsA<ContentProvider> + sealed::Sealed + 'static {
             res: *mut gio::ffi::GAsyncResult,
             user_data: glib::ffi::gpointer,
         ) {
-            let mut error = ptr::null_mut();
+            let mut error = std::ptr::null_mut();
             let _ = ffi::gdk_content_provider_write_mime_type_finish(
                 _source_object as *mut _,
                 res,
@@ -187,7 +187,7 @@ pub trait ContentProviderExt: IsA<ContentProvider> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"content-changed\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     content_changed_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -213,7 +213,7 @@ pub trait ContentProviderExt: IsA<ContentProvider> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::formats\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_formats_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -239,7 +239,7 @@ pub trait ContentProviderExt: IsA<ContentProvider> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::storable-formats\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_storable_formats_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -249,9 +249,3 @@ pub trait ContentProviderExt: IsA<ContentProvider> + sealed::Sealed + 'static {
 }
 
 impl<O: IsA<ContentProvider>> ContentProviderExt for O {}
-
-impl fmt::Display for ContentProvider {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("ContentProvider")
-    }
-}

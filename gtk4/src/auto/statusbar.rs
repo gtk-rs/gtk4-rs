@@ -11,7 +11,7 @@ use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
-use std::{boxed::Box as Box_, fmt, mem::transmute};
+use std::boxed::Box as Box_;
 
 glib::wrapper! {
     #[doc(alias = "GtkStatusbar")]
@@ -107,7 +107,7 @@ impl Statusbar {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"text-popped\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     text_popped_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -136,7 +136,7 @@ impl Statusbar {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"text-pushed\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     text_pushed_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -356,11 +356,5 @@ impl StatusbarBuilder {
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> Statusbar {
         self.builder.build()
-    }
-}
-
-impl fmt::Display for Statusbar {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("Statusbar")
     }
 }

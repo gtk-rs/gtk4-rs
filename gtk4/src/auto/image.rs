@@ -12,7 +12,7 @@ use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
-use std::{boxed::Box as Box_, fmt, mem::transmute};
+use std::boxed::Box as Box_;
 
 glib::wrapper! {
     #[doc(alias = "GtkImage")]
@@ -271,7 +271,7 @@ impl Image {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::file\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_file_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -294,7 +294,7 @@ impl Image {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::gicon\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_gicon_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -317,7 +317,7 @@ impl Image {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::icon-name\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_icon_name_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -340,7 +340,7 @@ impl Image {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::icon-size\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_icon_size_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -363,7 +363,7 @@ impl Image {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::paintable\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_paintable_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -386,7 +386,7 @@ impl Image {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::pixel-size\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_pixel_size_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -409,7 +409,7 @@ impl Image {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::resource\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_resource_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -432,7 +432,7 @@ impl Image {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::storage-type\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_storage_type_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -455,7 +455,7 @@ impl Image {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::use-fallback\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_use_fallback_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -725,11 +725,5 @@ impl ImageBuilder {
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> Image {
         self.builder.build()
-    }
-}
-
-impl fmt::Display for Image {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("Image")
     }
 }

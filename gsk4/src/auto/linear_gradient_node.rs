@@ -4,7 +4,6 @@
 
 use crate::ColorStop;
 use glib::translate::*;
-use std::{fmt, mem};
 
 glib::wrapper! {
     #[doc(alias = "GskLinearGradientNode")]
@@ -47,7 +46,7 @@ impl LinearGradientNode {
     #[doc(alias = "get_color_stops")]
     pub fn color_stops(&self) -> Vec<ColorStop> {
         unsafe {
-            let mut n_stops = mem::MaybeUninit::uninit();
+            let mut n_stops = std::mem::MaybeUninit::uninit();
             let ret = FromGlibContainer::from_glib_none_num(
                 ffi::gsk_linear_gradient_node_get_color_stops(
                     self.to_glib_none().0,
@@ -79,11 +78,5 @@ impl LinearGradientNode {
                 self.to_glib_none().0,
             ))
         }
-    }
-}
-
-impl fmt::Display for LinearGradientNode {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("LinearGradientNode")
     }
 }

@@ -5,9 +5,6 @@
 #[cfg(feature = "v4_14")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
 use glib::{bitflags::bitflags, prelude::*, translate::*};
-#[cfg(feature = "v4_14")]
-#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
-use std::fmt;
 
 #[cfg(feature = "v4_14")]
 bitflags! {
@@ -21,14 +18,6 @@ bitflags! {
         const QUAD = ffi::GSK_PATH_FOREACH_ALLOW_QUAD as _;
         #[doc(alias = "GSK_PATH_FOREACH_ALLOW_CUBIC")]
         const CUBIC = ffi::GSK_PATH_FOREACH_ALLOW_CUBIC as _;
-    }
-}
-
-#[cfg(feature = "v4_14")]
-#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
-impl fmt::Display for PathForeachFlags {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        <Self as fmt::Debug>::fmt(self, f)
     }
 }
 
@@ -59,6 +48,8 @@ impl FromGlib<ffi::GskPathForeachFlags> for PathForeachFlags {
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
 impl StaticType for PathForeachFlags {
     #[inline]
+    #[doc(alias = "gsk_path_foreach_flags_get_type")]
+
     fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gsk_path_foreach_flags_get_type()) }
     }
@@ -72,7 +63,7 @@ impl glib::HasParamSpec for PathForeachFlags {
     type BuilderFn = fn(&str) -> glib::ParamSpecFlagsBuilder<Self>;
 
     fn param_spec_builder() -> Self::BuilderFn {
-        |name| Self::ParamSpec::builder(name)
+        Self::ParamSpec::builder
     }
 }
 

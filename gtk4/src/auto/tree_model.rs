@@ -9,7 +9,7 @@ use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
-use std::{boxed::Box as Box_, fmt, mem::transmute};
+use std::boxed::Box as Box_;
 
 glib::wrapper! {
     #[doc(alias = "GtkTreeModel")]
@@ -359,7 +359,7 @@ pub trait TreeModelExt: IsA<TreeModel> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"row-changed\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     row_changed_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -388,7 +388,7 @@ pub trait TreeModelExt: IsA<TreeModel> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"row-deleted\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     row_deleted_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -422,7 +422,7 @@ pub trait TreeModelExt: IsA<TreeModel> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"row-has-child-toggled\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     row_has_child_toggled_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -456,7 +456,7 @@ pub trait TreeModelExt: IsA<TreeModel> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"row-inserted\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     row_inserted_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -471,9 +471,3 @@ pub trait TreeModelExt: IsA<TreeModel> + sealed::Sealed + 'static {
 }
 
 impl<O: IsA<TreeModel>> TreeModelExt for O {}
-
-impl fmt::Display for TreeModel {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("TreeModel")
-    }
-}

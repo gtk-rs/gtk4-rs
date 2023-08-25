@@ -2,8 +2,6 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use std::fmt;
-
 glib::wrapper! {
     #[doc(alias = "GdkWaylandSurface")]
     pub struct WaylandSurface(Object<ffi::GdkWaylandSurface>) @extends gdk::Surface;
@@ -15,10 +13,4 @@ glib::wrapper! {
 
 impl WaylandSurface {
     pub const NONE: Option<&'static WaylandSurface> = None;
-}
-
-impl fmt::Display for WaylandSurface {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("WaylandSurface")
-    }
 }

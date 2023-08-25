@@ -4,7 +4,6 @@
 
 use crate::{LayoutManager, Widget};
 use glib::{prelude::*, translate::*};
-use std::fmt;
 
 glib::wrapper! {
     #[doc(alias = "GtkLayoutChild")]
@@ -47,9 +46,3 @@ pub trait LayoutChildExt: IsA<LayoutChild> + sealed::Sealed + 'static {
 }
 
 impl<O: IsA<LayoutChild>> LayoutChildExt for O {}
-
-impl fmt::Display for LayoutChild {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("LayoutChild")
-    }
-}

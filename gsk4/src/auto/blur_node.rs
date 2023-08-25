@@ -4,7 +4,6 @@
 
 use crate::RenderNode;
 use glib::translate::*;
-use std::fmt;
 
 glib::wrapper! {
     #[doc(alias = "GskBlurNode")]
@@ -44,11 +43,5 @@ impl BlurNode {
     #[doc(alias = "get_radius")]
     pub fn radius(&self) -> f32 {
         unsafe { ffi::gsk_blur_node_get_radius(self.to_glib_none().0) }
-    }
-}
-
-impl fmt::Display for BlurNode {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("BlurNode")
     }
 }

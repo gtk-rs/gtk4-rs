@@ -14,7 +14,7 @@ use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
-use std::{boxed::Box as Box_, fmt, mem, mem::transmute};
+use std::boxed::Box as Box_;
 
 #[cfg(feature = "v4_10")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
@@ -421,8 +421,8 @@ pub trait ScaleExt: IsA<Scale> + sealed::Sealed + 'static {
     #[doc(alias = "get_layout_offsets")]
     fn layout_offsets(&self) -> (i32, i32) {
         unsafe {
-            let mut x = mem::MaybeUninit::uninit();
-            let mut y = mem::MaybeUninit::uninit();
+            let mut x = std::mem::MaybeUninit::uninit();
+            let mut y = std::mem::MaybeUninit::uninit();
             ffi::gtk_scale_get_layout_offsets(
                 self.as_ref().to_glib_none().0,
                 x.as_mut_ptr(),
@@ -511,7 +511,7 @@ pub trait ScaleExt: IsA<Scale> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::digits\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_digits_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -534,7 +534,7 @@ pub trait ScaleExt: IsA<Scale> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::draw-value\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_draw_value_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -557,7 +557,7 @@ pub trait ScaleExt: IsA<Scale> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::has-origin\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_has_origin_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -580,7 +580,7 @@ pub trait ScaleExt: IsA<Scale> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::value-pos\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_value_pos_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -590,9 +590,3 @@ pub trait ScaleExt: IsA<Scale> + sealed::Sealed + 'static {
 }
 
 impl<O: IsA<Scale>> ScaleExt for O {}
-
-impl fmt::Display for Scale {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("Scale")
-    }
-}

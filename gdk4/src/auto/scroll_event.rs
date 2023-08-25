@@ -7,7 +7,6 @@ use crate::ScrollDirection;
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
 use crate::ScrollUnit;
 use glib::translate::*;
-use std::{fmt, mem};
 
 glib::wrapper! {
     #[doc(alias = "GdkScrollEvent")]
@@ -30,8 +29,8 @@ impl ScrollEvent {
     #[doc(alias = "get_deltas")]
     pub fn deltas(&self) -> (f64, f64) {
         unsafe {
-            let mut delta_x = mem::MaybeUninit::uninit();
-            let mut delta_y = mem::MaybeUninit::uninit();
+            let mut delta_x = std::mem::MaybeUninit::uninit();
+            let mut delta_y = std::mem::MaybeUninit::uninit();
             ffi::gdk_scroll_event_get_deltas(
                 self.to_glib_none().0,
                 delta_x.as_mut_ptr(),
@@ -58,11 +57,5 @@ impl ScrollEvent {
     #[doc(alias = "gdk_scroll_event_is_stop")]
     pub fn is_stop(&self) -> bool {
         unsafe { from_glib(ffi::gdk_scroll_event_is_stop(self.to_glib_none().0)) }
-    }
-}
-
-impl fmt::Display for ScrollEvent {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("ScrollEvent")
     }
 }

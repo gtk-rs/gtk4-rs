@@ -8,7 +8,7 @@ use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
-use std::{boxed::Box as Box_, fmt, mem, mem::transmute, ptr};
+use std::boxed::Box as Box_;
 
 glib::wrapper! {
     #[doc(alias = "GtkGestureStylus")]
@@ -38,7 +38,7 @@ impl GestureStylus {
     #[doc(alias = "get_axis")]
     pub fn axis(&self, axis: gdk::AxisUse) -> Option<f64> {
         unsafe {
-            let mut value = mem::MaybeUninit::uninit();
+            let mut value = std::mem::MaybeUninit::uninit();
             let ret = from_glib(ffi::gtk_gesture_stylus_get_axis(
                 self.to_glib_none().0,
                 axis.into_glib(),
@@ -56,8 +56,8 @@ impl GestureStylus {
     #[doc(alias = "get_backlog")]
     pub fn backlog(&self) -> Option<Vec<gdk::TimeCoord>> {
         unsafe {
-            let mut backlog = ptr::null_mut();
-            let mut n_elems = mem::MaybeUninit::uninit();
+            let mut backlog = std::ptr::null_mut();
+            let mut n_elems = std::mem::MaybeUninit::uninit();
             let ret = from_glib(ffi::gtk_gesture_stylus_get_backlog(
                 self.to_glib_none().0,
                 &mut backlog,
@@ -121,7 +121,7 @@ impl GestureStylus {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"down\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     down_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -145,7 +145,7 @@ impl GestureStylus {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"motion\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     motion_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -169,7 +169,7 @@ impl GestureStylus {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"proximity\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     proximity_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -193,7 +193,7 @@ impl GestureStylus {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"up\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     up_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -218,7 +218,7 @@ impl GestureStylus {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::stylus-only\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_stylus_only_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -308,11 +308,5 @@ impl GestureStylusBuilder {
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> GestureStylus {
         self.builder.build()
-    }
-}
-
-impl fmt::Display for GestureStylus {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("GestureStylus")
     }
 }
