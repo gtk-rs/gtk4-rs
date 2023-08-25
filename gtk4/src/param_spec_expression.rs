@@ -133,11 +133,7 @@ impl ParamSpecExpression {
     }
 
     pub fn upcast(self) -> ParamSpec {
-        unsafe {
-            from_glib_full(
-                IntoGlibPtr::<*mut _>::into_glib_ptr(self) as *mut gobject_ffi::GParamSpec
-            )
-        }
+        unsafe { from_glib_full(IntoGlibPtr::<*mut _>::into_glib_ptr(self)) }
     }
 
     pub fn upcast_ref(&self) -> &ParamSpec {
@@ -217,7 +213,7 @@ unsafe impl<'a> glib::value::FromValue<'a> for ParamSpecExpression {
     unsafe fn from_value(value: &'a Value) -> Self {
         let ptr = gobject_ffi::g_value_dup_param(value.to_glib_none().0);
         debug_assert!(!ptr.is_null());
-        from_glib_full(ptr as *mut gobject_ffi::GParamSpec)
+        from_glib_full(ptr)
     }
 }
 

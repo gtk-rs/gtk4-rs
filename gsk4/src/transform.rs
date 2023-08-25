@@ -42,7 +42,7 @@ impl Transform {
         unsafe {
             let res: Option<Self> =
                 from_glib_full(ffi::gsk_transform_rotate(self.into_glib_ptr(), angle));
-            res.unwrap_or_else(Self::new)
+            res.unwrap_or_default()
         }
     }
 
@@ -55,7 +55,7 @@ impl Transform {
                 angle,
                 axis.to_glib_none().0,
             ));
-            res.unwrap_or_else(Self::new)
+            res.unwrap_or_default()
         }
     }
 
@@ -68,7 +68,7 @@ impl Transform {
                 factor_x,
                 factor_y,
             ));
-            res.unwrap_or_else(Self::new)
+            res.unwrap_or_default()
         }
     }
 
@@ -82,7 +82,7 @@ impl Transform {
                 factor_y,
                 factor_z,
             ));
-            res.unwrap_or_else(Self::new)
+            res.unwrap_or_default()
         }
     }
 
@@ -97,7 +97,7 @@ impl Transform {
                 skew_x,
                 skew_y,
             ));
-            res.unwrap_or_else(Self::new)
+            res.unwrap_or_default()
         }
     }
 
@@ -109,7 +109,7 @@ impl Transform {
                 self.into_glib_ptr(),
                 other.to_glib_none().0,
             ));
-            res.unwrap_or_else(Self::new)
+            res.unwrap_or_default()
         }
     }
 
@@ -121,7 +121,7 @@ impl Transform {
                 self.into_glib_ptr(),
                 point.to_glib_none().0,
             ));
-            res.unwrap_or_else(Self::new)
+            res.unwrap_or_default()
         }
     }
 
@@ -133,7 +133,7 @@ impl Transform {
                 self.into_glib_ptr(),
                 point.to_glib_none().0,
             ));
-            res.unwrap_or_else(Self::new)
+            res.unwrap_or_default()
         }
     }
 }
