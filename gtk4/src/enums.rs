@@ -146,6 +146,7 @@ impl FromGlib<ffi::GtkAlign> for Align {
 
 impl StaticType for Align {
     #[inline]
+    #[doc(alias = "gtk_align_get_type")]
     fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gtk_align_get_type()) }
     }
