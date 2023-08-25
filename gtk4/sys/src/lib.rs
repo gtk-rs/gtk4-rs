@@ -16891,11 +16891,23 @@ extern "C" {
     // GtkShortcutsGroup
     //=========================================================================
     pub fn gtk_shortcuts_group_get_type() -> GType;
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gtk_shortcuts_group_add_shortcut(
+        self_: *mut GtkShortcutsGroup,
+        shortcut: *mut GtkShortcutsShortcut,
+    );
 
     //=========================================================================
     // GtkShortcutsSection
     //=========================================================================
     pub fn gtk_shortcuts_section_get_type() -> GType;
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gtk_shortcuts_section_add_group(
+        self_: *mut GtkShortcutsSection,
+        group: *mut GtkShortcutsGroup,
+    );
 
     //=========================================================================
     // GtkShortcutsShortcut
@@ -16906,6 +16918,12 @@ extern "C" {
     // GtkShortcutsWindow
     //=========================================================================
     pub fn gtk_shortcuts_window_get_type() -> GType;
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gtk_shortcuts_window_add_section(
+        self_: *mut GtkShortcutsWindow,
+        section: *mut GtkShortcutsSection,
+    );
 
     //=========================================================================
     // GtkSignalAction
