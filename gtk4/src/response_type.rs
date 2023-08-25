@@ -110,6 +110,7 @@ impl fmt::Display for ResponseType {
 
 impl StaticType for ResponseType {
     #[inline]
+    #[doc(alias = "gtk_response_type_get_type")]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::gtk_response_type_get_type()) }
     }
