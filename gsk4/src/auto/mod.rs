@@ -207,11 +207,9 @@ mod flags;
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
 pub use self::flags::PathForeachFlags;
 
-#[doc(hidden)]
-pub mod traits {
+pub(crate) mod traits {
     pub use super::renderer::GskRendererExt;
 }
-#[doc(hidden)]
-pub mod builders {
+pub(crate) mod builders {
     pub use super::gl_shader::GLShaderBuilder;
 }

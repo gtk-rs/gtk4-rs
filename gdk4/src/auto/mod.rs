@@ -218,10 +218,9 @@ pub use self::flags::ToplevelState;
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
 pub use self::flags::GLAPI;
 
-pub mod functions;
+pub(crate) mod functions;
 
-#[doc(hidden)]
-pub mod traits {
+pub(crate) mod traits {
     pub use super::app_launch_context::GdkAppLaunchContextExt;
     pub use super::content_provider::ContentProviderExt;
     pub use super::device::DeviceExt;
@@ -239,7 +238,6 @@ pub mod traits {
     pub use super::texture::TextureExt;
     pub use super::toplevel::ToplevelExt;
 }
-#[doc(hidden)]
-pub mod builders {
+pub(crate) mod builders {
     pub use super::cursor::CursorBuilder;
 }
