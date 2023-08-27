@@ -1233,7 +1233,7 @@ pub use self::flags::TreeModelFlags;
 mod alias;
 pub use self::alias::Allocation;
 
-pub mod functions;
+pub(crate) mod functions;
 
 mod constants;
 pub use self::constants::IM_MODULE_EXTENSION_POINT_NAME;
@@ -1281,8 +1281,7 @@ pub use self::constants::PRINT_SETTINGS_USE_COLOR;
 pub use self::constants::PRINT_SETTINGS_WIN32_DRIVER_EXTRA;
 pub use self::constants::PRINT_SETTINGS_WIN32_DRIVER_VERSION;
 
-#[doc(hidden)]
-pub mod traits {
+pub(crate) mod traits {
     pub use super::accessible::AccessibleExt;
     #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
@@ -1396,8 +1395,7 @@ pub mod traits {
     pub use super::window::GtkWindowExt;
     pub use super::window_group::WindowGroupExt;
 }
-#[doc(hidden)]
-pub mod builders {
+pub(crate) mod builders {
     pub use super::about_dialog::AboutDialogBuilder;
     pub use super::action_bar::ActionBarBuilder;
     pub use super::adjustment::AdjustmentBuilder;

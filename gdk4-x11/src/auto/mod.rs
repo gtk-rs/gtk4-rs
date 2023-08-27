@@ -32,10 +32,9 @@ pub use self::x11_surface::X11Surface;
 mod enums;
 pub use self::enums::X11DeviceType;
 
-pub mod functions;
+pub(crate) mod functions;
 
-#[doc(hidden)]
-pub mod builders {
+pub(crate) mod builders {
     pub use super::x11_device_manager_xi2::X11DeviceManagerXI2Builder;
     pub use super::x11_device_xi2::X11DeviceXI2Builder;
 }
