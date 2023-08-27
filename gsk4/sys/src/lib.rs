@@ -184,12 +184,16 @@ pub type GskPathForeachFunc = Option<
 >;
 
 // Records
+#[cfg(feature = "broadway")]
+#[cfg_attr(docsrs, doc(cfg(feature = "broadway")))]
 #[repr(C)]
 pub struct _GskBroadwayRendererClass {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
+#[cfg(feature = "broadway")]
+#[cfg_attr(docsrs, doc(cfg(feature = "broadway")))]
 pub type GskBroadwayRendererClass = *mut _GskBroadwayRendererClass;
 
 #[repr(C)]
@@ -393,12 +397,16 @@ impl ::std::fmt::Debug for GskTransform {
     }
 }
 
+#[cfg(feature = "vulkan")]
+#[cfg_attr(docsrs, doc(cfg(feature = "vulkan")))]
 #[repr(C)]
 pub struct _GskVulkanRendererClass {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
+#[cfg(feature = "vulkan")]
+#[cfg_attr(docsrs, doc(cfg(feature = "vulkan")))]
 pub type GskVulkanRendererClass = *mut _GskVulkanRendererClass;
 
 // Classes

@@ -25,7 +25,12 @@ cfg_condition = "feature = \"broadway\""
     [[object.function]]
     pattern = "(new|get_type)"
     cfg_condition = "feature = \"broadway\""
-    
+
+[[object]]
+name = "Gsk.BroadwayRendererClass"
+status = "generate"
+cfg_condition = "feature = \"broadway\""
+
 [[object]]
 name = "Gsk.PathMeasure"
 status = "generate"
@@ -38,3 +43,8 @@ cfg_condition = "feature = \"vulkan\""
     [[object.function]]
     pattern = "(new|get_type)"
     cfg_condition = "feature = \"vulkan\""
+
+[[object]]
+name = "Gsk.VulkanRendererClass"
+status = "generate"
+cfg_condition = "feature = \"vulkan\""
