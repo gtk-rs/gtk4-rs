@@ -87,7 +87,7 @@ pub const GSK_PATH_CLOSE: GskPathOperation = 1;
 pub const GSK_PATH_LINE: GskPathOperation = 2;
 pub const GSK_PATH_QUAD: GskPathOperation = 3;
 pub const GSK_PATH_CUBIC: GskPathOperation = 4;
-pub const GSK_PATH_ARC: GskPathOperation = 5;
+pub const GSK_PATH_CONIC: GskPathOperation = 5;
 
 pub type GskRenderNodeType = c_int;
 pub const GSK_NOT_A_RENDER_NODE: GskRenderNodeType = 0;
@@ -145,7 +145,7 @@ pub type GskPathForeachFlags = c_uint;
 pub const GSK_PATH_FOREACH_ALLOW_ONLY_LINES: GskPathForeachFlags = 0;
 pub const GSK_PATH_FOREACH_ALLOW_QUAD: GskPathForeachFlags = 1;
 pub const GSK_PATH_FOREACH_ALLOW_CUBIC: GskPathForeachFlags = 2;
-pub const GSK_PATH_FOREACH_ALLOW_ARC: GskPathForeachFlags = 4;
+pub const GSK_PATH_FOREACH_ALLOW_CONIC: GskPathForeachFlags = 4;
 
 // Unions
 #[derive(Copy, Clone)]
@@ -178,6 +178,7 @@ pub type GskPathForeachFunc = Option<
         GskPathOperation,
         *const graphene::graphene_point_t,
         size_t,
+        c_float,
         gpointer,
     ) -> gboolean,
 >;
@@ -280,6 +281,19 @@ pub struct GskPathBuilder {
 impl ::std::fmt::Debug for GskPathBuilder {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("GskPathBuilder @ {self:p}"))
+            .finish()
+    }
+}
+
+#[repr(C)]
+pub struct GskPathMeasure {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
+
+impl ::std::fmt::Debug for GskPathMeasure {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("GskPathMeasure @ {self:p}"))
             .finish()
     }
 }
@@ -1092,6 +1106,16 @@ extern "C" {
     pub fn gsk_path_builder_close(self_: *mut GskPathBuilder);
     #[cfg(feature = "v4_14")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gsk_path_builder_conic_to(
+        self_: *mut GskPathBuilder,
+        x1: c_float,
+        y1: c_float,
+        x2: c_float,
+        y2: c_float,
+        weight: c_float,
+    );
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
     pub fn gsk_path_builder_cubic_to(
         self_: *mut GskPathBuilder,
         x1: c_float,
@@ -1148,6 +1172,16 @@ extern "C" {
     );
     #[cfg(feature = "v4_14")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gsk_path_builder_rel_conic_to(
+        self_: *mut GskPathBuilder,
+        x1: c_float,
+        y1: c_float,
+        x2: c_float,
+        y2: c_float,
+        weight: c_float,
+    );
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
     pub fn gsk_path_builder_rel_cubic_to(
         self_: *mut GskPathBuilder,
         x1: c_float,
@@ -1156,6 +1190,16 @@ extern "C" {
         y2: c_float,
         x3: c_float,
         y3: c_float,
+    );
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gsk_path_builder_rel_html_arc_to(
+        self_: *mut GskPathBuilder,
+        x1: c_float,
+        y1: c_float,
+        x2: c_float,
+        y2: c_float,
+        radius: c_float,
     );
     #[cfg(feature = "v4_14")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
@@ -1171,6 +1215,18 @@ extern "C" {
         y1: c_float,
         x2: c_float,
         y2: c_float,
+    );
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gsk_path_builder_rel_svg_arc_to(
+        self_: *mut GskPathBuilder,
+        rx: c_float,
+        ry: c_float,
+        x_axis_rotation: c_float,
+        large_arc: gboolean,
+        positive_sweep: gboolean,
+        x: c_float,
+        y: c_float,
     );
     #[cfg(feature = "v4_14")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
@@ -1190,6 +1246,42 @@ extern "C" {
     #[cfg(feature = "v4_14")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
     pub fn gsk_path_builder_unref(self_: *mut GskPathBuilder);
+
+    //=========================================================================
+    // GskPathMeasure
+    //=========================================================================
+    pub fn gsk_path_measure_get_type() -> GType;
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gsk_path_measure_new(path: *mut GskPath) -> *mut GskPathMeasure;
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gsk_path_measure_new_with_tolerance(
+        path: *mut GskPath,
+        tolerance: c_float,
+    ) -> *mut GskPathMeasure;
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gsk_path_measure_get_length(self_: *mut GskPathMeasure) -> c_float;
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gsk_path_measure_get_path(self_: *mut GskPathMeasure) -> *mut GskPath;
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gsk_path_measure_get_point(
+        self_: *mut GskPathMeasure,
+        distance: c_float,
+        result: *mut GskPathPoint,
+    ) -> gboolean;
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gsk_path_measure_get_tolerance(self_: *mut GskPathMeasure) -> c_float;
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gsk_path_measure_ref(self_: *mut GskPathMeasure) -> *mut GskPathMeasure;
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gsk_path_measure_unref(self_: *mut GskPathMeasure);
 
     //=========================================================================
     // GskPathPoint
@@ -1222,6 +1314,12 @@ extern "C" {
         path: *mut GskPath,
         direction: GskPathDirection,
         center: *mut graphene::graphene_point_t,
+    ) -> c_float;
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gsk_path_point_get_distance(
+        point: *const GskPathPoint,
+        measure: *mut GskPathMeasure,
     ) -> c_float;
     #[cfg(feature = "v4_14")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]

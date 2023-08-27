@@ -18,8 +18,8 @@ bitflags! {
         const QUAD = ffi::GSK_PATH_FOREACH_ALLOW_QUAD as _;
         #[doc(alias = "GSK_PATH_FOREACH_ALLOW_CUBIC")]
         const CUBIC = ffi::GSK_PATH_FOREACH_ALLOW_CUBIC as _;
-        #[doc(alias = "GSK_PATH_FOREACH_ALLOW_ARC")]
-        const ARC = ffi::GSK_PATH_FOREACH_ALLOW_ARC as _;
+        #[doc(alias = "GSK_PATH_FOREACH_ALLOW_CONIC")]
+        const CONIC = ffi::GSK_PATH_FOREACH_ALLOW_CONIC as _;
     }
 }
 

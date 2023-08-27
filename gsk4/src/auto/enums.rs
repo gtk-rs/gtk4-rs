@@ -988,8 +988,8 @@ pub enum PathOperation {
     Quad,
     #[doc(alias = "GSK_PATH_CUBIC")]
     Cubic,
-    #[doc(alias = "GSK_PATH_ARC")]
-    Arc,
+    #[doc(alias = "GSK_PATH_CONIC")]
+    Conic,
     #[doc(hidden)]
     __Unknown(i32),
 }
@@ -1008,7 +1008,7 @@ impl IntoGlib for PathOperation {
             Self::Line => ffi::GSK_PATH_LINE,
             Self::Quad => ffi::GSK_PATH_QUAD,
             Self::Cubic => ffi::GSK_PATH_CUBIC,
-            Self::Arc => ffi::GSK_PATH_ARC,
+            Self::Conic => ffi::GSK_PATH_CONIC,
             Self::__Unknown(value) => value,
         }
     }
@@ -1028,7 +1028,7 @@ impl FromGlib<ffi::GskPathOperation> for PathOperation {
             ffi::GSK_PATH_LINE => Self::Line,
             ffi::GSK_PATH_QUAD => Self::Quad,
             ffi::GSK_PATH_CUBIC => Self::Cubic,
-            ffi::GSK_PATH_ARC => Self::Arc,
+            ffi::GSK_PATH_CONIC => Self::Conic,
             value => Self::__Unknown(value),
         }
     }

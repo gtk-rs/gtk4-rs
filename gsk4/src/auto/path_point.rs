@@ -31,6 +31,12 @@ impl PathPoint {
         }
     }
 
+    //#[doc(alias = "gsk_path_point_get_distance")]
+    //#[doc(alias = "get_distance")]
+    //pub fn distance(&self, measure: /*Ignored*/&PathMeasure) -> f32 {
+    //    unsafe { TODO: call ffi:gsk_path_point_get_distance() }
+    //}
+
     #[doc(alias = "gsk_path_point_get_position")]
     #[doc(alias = "get_position")]
     pub fn position(&self, path: &Path) -> graphene::Point {
