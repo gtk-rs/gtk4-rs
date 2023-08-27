@@ -5,24 +5,25 @@ use glib::translate::*;
 
 impl Path {
     #[doc(alias = "gsk_path_foreach")]
-    pub fn foreach<P: FnMut(&PathOperation, &graphene::Point, usize) -> bool>(
+    pub fn foreach<P: FnMut(&PathOperation, &graphene::Point, usize, f32) -> bool>(
         &self,
         flags: PathForeachFlags,
         func: P,
     ) -> bool {
         let func_data: P = func;
         unsafe extern "C" fn func_func<
-            P: FnMut(&PathOperation, &graphene::Point, usize) -> bool,
+            P: FnMut(&PathOperation, &graphene::Point, usize, f32) -> bool,
         >(
             op: ffi::GskPathOperation,
             pts: *const graphene::ffi::graphene_point_t,
             n_pts: libc::size_t,
+            weight: libc::c_float,
             user_data: glib::ffi::gpointer,
         ) -> glib::ffi::gboolean {
             let op = from_glib(op);
             let pts = from_glib_borrow(pts);
             let callback: *mut P = user_data as *const _ as usize as *mut P;
-            (*callback)(&op, &pts, n_pts).into_glib()
+            (*callback)(&op, &pts, n_pts, weight).into_glib()
         }
         let func = Some(func_func::<P> as _);
         let super_callback0: &P = &func_data;
