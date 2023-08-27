@@ -101,7 +101,6 @@ mod expression;
 pub mod builders;
 pub mod prelude;
 
-pub use auto::functions::*;
 pub use auto::*;
 pub use rt::*;
 
