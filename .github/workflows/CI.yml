@@ -41,12 +41,24 @@ jobs:
           - nightly
           - "1.70"
         conf:
-          - { name: "gtk4", features: "v4_14,xml_validation,blueprint", test_sys: false }
+          - {
+              name: "gtk4",
+              features: "v4_14,xml_validation,blueprint",
+              test_sys: false,
+            }
           - { name: "gsk4", features: "v4_14,broadway", test_sys: true }
           - { name: "gdk4", features: "v4_12,gl", test_sys: true }
-          - { name: "gdk4-wayland", features: "v4_12,wayland_crate,egl,xkb_crate", test_sys: true }
+          - {
+              name: "gdk4-wayland",
+              features: "v4_12,wayland_crate,egl,xkb_crate",
+              test_sys: true,
+            }
           - { name: "gdk4-x11", features: "v4_4,xlib,egl", test_sys: false }
-          - { name: "gtk4-macros", features: "xml_validation,blueprint", test_sys: false }
+          - {
+              name: "gtk4-macros",
+              features: "xml_validation,blueprint",
+              test_sys: false,
+            }
     steps:
       - uses: actions/checkout@v3
       - uses: actions-rs/toolchain@v1
