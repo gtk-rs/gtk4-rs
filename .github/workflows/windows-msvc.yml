@@ -59,7 +59,7 @@ jobs:
           git clone https://gitlab.gnome.org/GNOME/gtk.git --depth 1
 
       - name: Setup Python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v4
         with:
           python-version: "3.x"
 
