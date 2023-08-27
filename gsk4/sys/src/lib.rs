@@ -1250,6 +1250,8 @@ extern "C" {
     //=========================================================================
     // GskPathMeasure
     //=========================================================================
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
     pub fn gsk_path_measure_get_type() -> GType;
     #[cfg(feature = "v4_14")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]

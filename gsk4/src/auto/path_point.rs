@@ -2,7 +2,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use crate::{Path, PathDirection};
+use crate::{Path, PathDirection, PathMeasure};
 use glib::translate::*;
 
 glib::wrapper! {
@@ -31,11 +31,11 @@ impl PathPoint {
         }
     }
 
-    //#[doc(alias = "gsk_path_point_get_distance")]
-    //#[doc(alias = "get_distance")]
-    //pub fn distance(&self, measure: /*Ignored*/&PathMeasure) -> f32 {
-    //    unsafe { TODO: call ffi:gsk_path_point_get_distance() }
-    //}
+    #[doc(alias = "gsk_path_point_get_distance")]
+    #[doc(alias = "get_distance")]
+    pub fn distance(&self, measure: &PathMeasure) -> f32 {
+        unsafe { ffi::gsk_path_point_get_distance(self.to_glib_none().0, measure.to_glib_none().0) }
+    }
 
     #[doc(alias = "gsk_path_point_get_position")]
     #[doc(alias = "get_position")]
