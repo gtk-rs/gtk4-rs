@@ -30,7 +30,6 @@ mod x11_monitor;
 mod x11_screen;
 mod x11_surface;
 
-pub use auto::functions::*;
 pub use auto::*;
 pub use functions::*;
 

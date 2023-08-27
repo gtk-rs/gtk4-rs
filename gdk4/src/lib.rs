@@ -106,7 +106,6 @@ mod toplevel_size;
 mod touch_event;
 mod touchpad_event;
 
-pub use self::auto::functions::*;
 pub use auto::*;
 
 pub use functions::*;
