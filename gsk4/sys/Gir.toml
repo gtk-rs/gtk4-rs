@@ -26,6 +26,10 @@ cfg_condition = "feature = \"broadway\""
     pattern = "(new|get_type)"
     cfg_condition = "feature = \"broadway\""
     
+[[object]]
+name = "Gsk.PathMeasure"
+status = "generate"
+version = "4.14"
 
 [[object]]
 name = "Gsk.VulkanRenderer"
