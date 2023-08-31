@@ -208,59 +208,17 @@ impl RGBA {
         }
     }
 
-    pub const BLACK: RGBA = Self {
-        inner: ffi::GdkRGBA {
-            red: 0f32,
-            green: 0f32,
-            blue: 0f32,
-            alpha: 1f32,
-        },
-    };
+    pub const BLACK: RGBA = Self::new(0f32, 0f32, 0f32, 1f32);
 
-    pub const BLUE: RGBA = Self {
-        inner: ffi::GdkRGBA {
-            red: 0f32,
-            green: 0f32,
-            blue: 1f32,
-            alpha: 1f32,
-        },
-    };
+    pub const BLUE: RGBA = Self::new(0f32, 0f32, 1f32, 1f32);
 
-    pub const GREEN: RGBA = Self {
-        inner: ffi::GdkRGBA {
-            red: 0f32,
-            green: 1f32,
-            blue: 0f32,
-            alpha: 1f32,
-        },
-    };
+    pub const GREEN: RGBA = Self::new(0f32, 1f32, 0f32, 1f32);
 
-    pub const RED: RGBA = Self {
-        inner: ffi::GdkRGBA {
-            red: 1f32,
-            green: 0f32,
-            blue: 0f32,
-            alpha: 1f32,
-        },
-    };
+    pub const RED: RGBA = Self::new(1f32, 0f32, 0f32, 1f32);
 
-    pub const WHITE: RGBA = Self {
-        inner: ffi::GdkRGBA {
-            red: 1f32,
-            green: 1f32,
-            blue: 1f32,
-            alpha: 1f32,
-        },
-    };
+    pub const WHITE: RGBA = Self::new(1f32, 1f32, 1f32, 1f32);
 
-    pub const TRANSPARENT: RGBA = Self {
-        inner: ffi::GdkRGBA {
-            red: 0f32,
-            green: 0f32,
-            blue: 0f32,
-            alpha: 0f32,
-        },
-    };
+    pub const TRANSPARENT: RGBA = Self::new(0f32, 0f32, 0f32, 0f32);
 }
 
 impl fmt::Debug for RGBA {
