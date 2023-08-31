@@ -79,6 +79,9 @@ mod rounded_clip_node;
 mod shadow_node;
 #[cfg(feature = "v4_14")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+mod stroke;
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
 mod stroke_node;
 mod text_node;
 mod texture_node;
