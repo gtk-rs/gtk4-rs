@@ -4,17 +4,18 @@ use crate::RGBA;
 use glib::{translate::*, IntoGStr};
 use std::{fmt, str::FromStr};
 
-#[derive(Debug, Default)]
+#[derive(Debug)]
 // rustdoc-stripper-ignore-next
 /// A [builder-pattern] type to construct [`RGBA`] objects.
 ///
 /// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 #[must_use = "The builder must be built to be used"]
-pub struct RGBABuilder {
-    red: Option<f32>,
-    green: Option<f32>,
-    blue: Option<f32>,
-    alpha: Option<f32>,
+pub struct RGBABuilder(RGBA);
+
+impl Default for RGBABuilder {
+    fn default() -> Self {
+        Self(RGBA::WHITE)
+    }
 }
 
 impl RGBABuilder {
@@ -25,22 +26,22 @@ impl RGBABuilder {
     }
 
     pub fn blue(mut self, blue: f32) -> Self {
-        self.blue = Some(blue);
+        self.0.set_blue(blue);
         self
     }
 
     pub fn green(mut self, green: f32) -> Self {
-        self.green = Some(green);
+        self.0.set_green(green);
         self
     }
 
     pub fn red(mut self, red: f32) -> Self {
-        self.red = Some(red);
+        self.0.set_red(red);
         self
     }
 
     pub fn alpha(mut self, alpha: f32) -> Self {
-        self.alpha = Some(alpha);
+        self.0.set_alpha(alpha);
         self
     }
 
@@ -48,20 +49,7 @@ impl RGBABuilder {
     /// Build the [`RGBA`].
     #[must_use = "The RGBA returned by this builder should probably be used"]
     pub fn build(self) -> RGBA {
-        let mut rgba = RGBA::WHITE;
-        if let Some(blue) = self.blue {
-            rgba.set_blue(blue);
-        }
-        if let Some(red) = self.red {
-            rgba.set_red(red);
-        }
-        if let Some(green) = self.green {
-            rgba.set_green(green);
-        }
-        if let Some(alpha) = self.alpha {
-            rgba.set_alpha(alpha);
-        }
-        rgba
+        self.0
     }
 }
 
