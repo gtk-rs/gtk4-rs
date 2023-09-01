@@ -9,7 +9,7 @@ use gtk::subclass::prelude::*;
 // Object holding the state
 #[derive(Properties, Default)]
 #[properties(wrapper_type = super::CustomButton)]
-pub struct CustomButton {
+pub(crate) struct CustomButton {
     #[property(get, set)]
     number: Cell<i32>,
 }

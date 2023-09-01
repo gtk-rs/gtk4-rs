@@ -9,19 +9,19 @@ use serde::{Deserialize, Serialize};
 use crate::task_object::{TaskData, TaskObject};
 
 glib::wrapper! {
-    pub struct CollectionObject(ObjectSubclass<imp::CollectionObject>);
+    pub(crate)struct CollectionObject(ObjectSubclass<imp::CollectionObject>);
 }
 
 // ANCHOR: impl
 impl CollectionObject {
-    pub fn new(title: &str, tasks: gio::ListStore) -> Self {
+    pub(crate) fn new(title: &str, tasks: gio::ListStore) -> Self {
         Object::builder()
             .property("title", title)
             .property("tasks", tasks)
             .build()
     }
 
-    pub fn to_collection_data(&self) -> CollectionData {
+    pub(crate) fn to_collection_data(&self) -> CollectionData {
         let title = self.imp().title.borrow().clone();
         let tasks_data = self
             .tasks()
@@ -32,7 +32,7 @@ impl CollectionObject {
         CollectionData { title, tasks_data }
     }
 
-    pub fn from_collection_data(collection_data: CollectionData) -> Self {
+    pub(crate) fn from_collection_data(collection_data: CollectionData) -> Self {
         let title = collection_data.title;
         let tasks_to_extend: Vec<TaskObject> = collection_data
             .tasks_data
@@ -50,8 +50,8 @@ impl CollectionObject {
 
 // ANCHOR: collection_data
 #[derive(Default, Clone, Serialize, Deserialize)]
-pub struct CollectionData {
-    pub title: String,
-    pub tasks_data: Vec<TaskData>,
+pub(crate) struct CollectionData {
+    pub(crate) title: String,
+    pub(crate) tasks_data: Vec<TaskData>,
 }
 // ANCHOR_END: collection_data

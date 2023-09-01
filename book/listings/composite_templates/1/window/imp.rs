@@ -7,9 +7,9 @@ use gtk::{glib, Button, CompositeTemplate};
 // Object holding the state
 #[derive(CompositeTemplate, Default)]
 #[template(resource = "/org/gtk_rs/example/window.ui")]
-pub struct Window {
+pub(crate) struct Window {
     #[template_child]
-    pub button: TemplateChild<Button>,
+    pub(crate) button: TemplateChild<Button>,
 }
 // ANCHOR_END: object
 

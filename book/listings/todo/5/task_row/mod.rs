@@ -9,7 +9,7 @@ use pango::{AttrInt, AttrList};
 use crate::task_object::TaskObject;
 
 glib::wrapper! {
-    pub struct TaskRow(ObjectSubclass<imp::TaskRow>)
+    pub(crate)struct TaskRow(ObjectSubclass<imp::TaskRow>)
     @extends gtk::Box, gtk::Widget,
     @implements gtk::Accessible, gtk::Buildable, gtk::ConstraintTarget, gtk::Orientable;
 }
@@ -21,11 +21,11 @@ impl Default for TaskRow {
 }
 
 impl TaskRow {
-    pub fn new() -> Self {
+    pub(crate) fn new() -> Self {
         Object::builder().build()
     }
 
-    pub fn bind(&self, task_object: &TaskObject) {
+    pub(crate) fn bind(&self, task_object: &TaskObject) {
         // Get state
         let completed_button = self.imp().completed_button.get();
         let content_label = self.imp().content_label.get();
@@ -66,7 +66,7 @@ impl TaskRow {
         bindings.push(content_label_binding);
     }
 
-    pub fn unbind(&self) {
+    pub(crate) fn unbind(&self) {
         // Unbind all stored bindings
         for binding in self.imp().bindings.borrow_mut().drain(..) {
             binding.unbind();

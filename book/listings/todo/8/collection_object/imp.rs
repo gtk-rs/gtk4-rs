@@ -10,11 +10,11 @@ use std::cell::OnceCell;
 // Object holding the state
 #[derive(Properties, Default)]
 #[properties(wrapper_type = super::CollectionObject)]
-pub struct CollectionObject {
+pub(crate) struct CollectionObject {
     #[property(get, set)]
-    pub title: RefCell<String>,
+    pub(crate) title: RefCell<String>,
     #[property(get, set)]
-    pub tasks: OnceCell<gio::ListStore>,
+    pub(crate) tasks: OnceCell<gio::ListStore>,
 }
 
 // The central trait for subclassing a GObject

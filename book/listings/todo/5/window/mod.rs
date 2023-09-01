@@ -16,7 +16,7 @@ use crate::utils::data_path;
 use crate::APP_ID;
 
 glib::wrapper! {
-    pub struct Window(ObjectSubclass<imp::Window>)
+    pub(crate)struct Window(ObjectSubclass<imp::Window>)
         @extends gtk::ApplicationWindow, gtk::Window, gtk::Widget,
         @implements gio::ActionGroup, gio::ActionMap, gtk::Accessible, gtk::Buildable,
                     gtk::ConstraintTarget, gtk::Native, gtk::Root, gtk::ShortcutManager;
@@ -24,7 +24,7 @@ glib::wrapper! {
 
 impl Window {
     // ANCHOR: new
-    pub fn new(app: &adw::Application) -> Self {
+    pub(crate) fn new(app: &adw::Application) -> Self {
         // Create new window
         Object::builder().property("application", app).build()
     }

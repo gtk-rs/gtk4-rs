@@ -5,7 +5,7 @@ use gtk::{glib, CompositeTemplate};
 // Object holding the state
 #[derive(CompositeTemplate, Default)]
 #[template(file = "window.ui")]
-pub struct Window;
+pub(crate) struct Window;
 
 // The central trait for subclassing a GObject
 #[glib::object_subclass]

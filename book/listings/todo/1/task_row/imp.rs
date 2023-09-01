@@ -8,13 +8,13 @@ use gtk::{glib, CheckButton, CompositeTemplate, Label};
 // Object holding the state
 #[derive(Default, CompositeTemplate)]
 #[template(resource = "/org/gtk_rs/Todo1/task_row.ui")]
-pub struct TaskRow {
+pub(crate) struct TaskRow {
     #[template_child]
-    pub completed_button: TemplateChild<CheckButton>,
+    pub(crate) completed_button: TemplateChild<CheckButton>,
     #[template_child]
-    pub content_label: TemplateChild<Label>,
+    pub(crate) content_label: TemplateChild<Label>,
     // Vector holding the bindings to properties of `TaskObject`
-    pub bindings: RefCell<Vec<Binding>>,
+    pub(crate) bindings: RefCell<Vec<Binding>>,
 }
 
 // The central trait for subclassing a GObject

@@ -11,8 +11,8 @@ use crate::custom_button::CustomButton;
 // Object holding the state
 #[derive(CompositeTemplate, Default)]
 #[template(resource = "/org/gtk_rs/example/window.ui")]
-pub struct Window {
-    pub number: Cell<i32>,
+pub(crate) struct Window {
+    pub(crate) number: Cell<i32>,
 }
 // ANCHOR_END: object
 

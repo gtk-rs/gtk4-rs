@@ -8,14 +8,14 @@ use std::cell::OnceCell;
 // Object holding the state
 #[derive(CompositeTemplate, Default)]
 #[template(resource = "/org/gtk_rs/example/window.ui")]
-pub struct Window {
+pub(crate) struct Window {
     #[template_child]
-    pub gtk_box: TemplateChild<gtk::Box>,
+    pub(crate) gtk_box: TemplateChild<gtk::Box>,
     #[template_child]
-    pub button: TemplateChild<Button>,
+    pub(crate) button: TemplateChild<Button>,
     #[template_child]
-    pub label: TemplateChild<Label>,
-    pub settings: OnceCell<Settings>,
+    pub(crate) label: TemplateChild<Label>,
+    pub(crate) settings: OnceCell<Settings>,
 }
 // ANCHOR_END: imp_struct
 

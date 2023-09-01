@@ -1,4 +1,4 @@
-pub mod custom_button;
+pub(crate) mod custom_button;
 mod window;
 
 use gtk::prelude::*;

@@ -5,8 +5,8 @@ use std::cell::OnceCell;
 
 // ANCHOR: imp
 #[derive(Default)]
-pub struct Window {
-    pub settings: OnceCell<Settings>,
+pub(crate) struct Window {
+    pub(crate) settings: OnceCell<Settings>,
 }
 
 #[glib::object_subclass]

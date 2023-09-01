@@ -9,9 +9,9 @@ use crate::custom_button::CustomButton;
 // Object holding the state
 #[derive(CompositeTemplate, Default)]
 #[template(resource = "/org/gtk_rs/example/window.ui")]
-pub struct Window {
+pub(crate) struct Window {
     #[template_child]
-    pub button: TemplateChild<CustomButton>,
+    pub(crate) button: TemplateChild<CustomButton>,
 }
 // ANCHOR_END: object
 

@@ -3,7 +3,7 @@ use gtk::subclass::prelude::*;
 
 // Object holding the state
 #[derive(Default)]
-pub struct CustomButton;
+pub(crate) struct CustomButton;
 
 // The central trait for subclassing a GObject
 #[glib::object_subclass]

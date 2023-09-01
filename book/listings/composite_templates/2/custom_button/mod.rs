@@ -5,7 +5,7 @@ use gtk::glib;
 mod imp;
 
 glib::wrapper! {
-    pub struct CustomButton(ObjectSubclass<imp::CustomButton>)
+    pub(crate)struct CustomButton(ObjectSubclass<imp::CustomButton>)
         @extends gtk::Button, gtk::Widget,
         @implements gtk::Accessible, gtk::Actionable,
                     gtk::Buildable, gtk::ConstraintTarget;
@@ -13,7 +13,7 @@ glib::wrapper! {
 // ANCHOR_END: mod
 
 impl CustomButton {
-    pub fn new() -> Self {
+    pub(crate) fn new() -> Self {
         Object::builder().build()
     }
 }

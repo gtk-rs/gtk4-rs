@@ -10,10 +10,10 @@ use super::TaskData;
 // Object holding the state
 #[derive(Properties, Default)]
 #[properties(wrapper_type = super::TaskObject)]
-pub struct TaskObject {
+pub(crate) struct TaskObject {
     #[property(name = "completed", get, set, type = bool, member = completed)]
     #[property(name = "content", get, set, type = String, member = content)]
-    pub data: RefCell<TaskData>,
+    pub(crate) data: RefCell<TaskData>,
 }
 
 // The central trait for subclassing a GObject

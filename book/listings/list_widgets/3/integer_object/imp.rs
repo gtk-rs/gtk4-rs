@@ -8,7 +8,7 @@ use gtk::subclass::prelude::*;
 // Object holding the state
 #[derive(Properties, Default)]
 #[properties(wrapper_type = super::IntegerObject)]
-pub struct IntegerObject {
+pub(crate) struct IntegerObject {
     #[property(get, set)]
     number: Cell<i32>,
 }

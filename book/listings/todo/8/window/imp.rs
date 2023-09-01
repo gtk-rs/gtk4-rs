@@ -19,25 +19,25 @@ use crate::utils::data_path;
 // Object holding the state
 #[derive(CompositeTemplate, Default)]
 #[template(resource = "/org/gtk_rs/Todo8/window.ui")]
-pub struct Window {
-    pub settings: OnceCell<Settings>,
+pub(crate) struct Window {
+    pub(crate) settings: OnceCell<Settings>,
     #[template_child]
-    pub entry: TemplateChild<Entry>,
+    pub(crate) entry: TemplateChild<Entry>,
     #[template_child]
-    pub tasks_list: TemplateChild<ListBox>,
+    pub(crate) tasks_list: TemplateChild<ListBox>,
     // 👇 all members below are new
     #[template_child]
-    pub collections_list: TemplateChild<ListBox>,
+    pub(crate) collections_list: TemplateChild<ListBox>,
     #[template_child]
-    pub leaflet: TemplateChild<Leaflet>,
+    pub(crate) leaflet: TemplateChild<Leaflet>,
     #[template_child]
-    pub stack: TemplateChild<Stack>,
+    pub(crate) stack: TemplateChild<Stack>,
     #[template_child]
-    pub back_button: TemplateChild<Button>,
-    pub collections: OnceCell<gio::ListStore>,
-    pub current_collection: RefCell<Option<CollectionObject>>,
-    pub current_filter_model: RefCell<Option<FilterListModel>>,
-    pub tasks_changed_handler_id: RefCell<Option<SignalHandlerId>>,
+    pub(crate) back_button: TemplateChild<Button>,
+    pub(crate) collections: OnceCell<gio::ListStore>,
+    pub(crate) current_collection: RefCell<Option<CollectionObject>>,
+    pub(crate) current_filter_model: RefCell<Option<FilterListModel>>,
+    pub(crate) tasks_changed_handler_id: RefCell<Option<SignalHandlerId>>,
 }
 // ANCHOR_END: struct
 

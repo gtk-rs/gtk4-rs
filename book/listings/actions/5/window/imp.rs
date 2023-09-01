@@ -5,9 +5,9 @@ use gtk::{glib, CompositeTemplate, Label};
 // Object holding the state
 #[derive(CompositeTemplate, Default)]
 #[template(resource = "/org/gtk_rs/example/window.ui")]
-pub struct Window {
+pub(crate) struct Window {
     #[template_child]
-    pub label: TemplateChild<Label>,
+    pub(crate) label: TemplateChild<Label>,
 }
 
 // The central trait for subclassing a GObject

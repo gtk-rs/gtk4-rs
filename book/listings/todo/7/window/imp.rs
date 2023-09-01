@@ -16,13 +16,13 @@ use crate::utils::data_path;
 // Object holding the state
 #[derive(CompositeTemplate, Default)]
 #[template(resource = "/org/gtk_rs/Todo7/window.ui")]
-pub struct Window {
+pub(crate) struct Window {
     #[template_child]
-    pub entry: TemplateChild<Entry>,
+    pub(crate) entry: TemplateChild<Entry>,
     #[template_child]
-    pub tasks_list: TemplateChild<ListBox>,
-    pub tasks: RefCell<Option<gio::ListStore>>,
-    pub settings: OnceCell<Settings>,
+    pub(crate) tasks_list: TemplateChild<ListBox>,
+    pub(crate) tasks: RefCell<Option<gio::ListStore>>,
+    pub(crate) settings: OnceCell<Settings>,
 }
 
 // ANCHOR: object_subclass
