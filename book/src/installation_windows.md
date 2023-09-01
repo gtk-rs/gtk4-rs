@@ -36,7 +36,7 @@ gvsbuild build gtk4
    1. Go to settings -> Search and open `Advanced system settings` -> Click on `Environment variables`
    2. Select `Path` -> Click on `Edit` -> Add `C:\gtk-build\gtk\x64\release\bin`
 
-3. Add `New User Variable` in enviroment variable to include `PKG_CONFIG_PATH`:
+3. Add `New User Variable` in environment variable to include `PKG_CONFIG_PATH`:
    1. Go to settings -> Search and open `Advanced system settings` -> Click on `Environment variables`
    3. Select `New` -> Input `Variable name` : `PKG_CONFIG_PATH` & `Variable value` : `C:\gtk-build\gtk\x64\release\lib\pkgconfig`
 
