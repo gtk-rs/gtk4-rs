@@ -29,7 +29,6 @@ When choosing the GTK version to build, select `gtk4` instead of `gtk3`:
 ```
 gvsbuild build gtk4
 ```
-<!--  -->
 ### Update `Path` environment variable
 
 2. Add `New User Variable` in environment variable to include `PKG_CONFIG_PATH`:
