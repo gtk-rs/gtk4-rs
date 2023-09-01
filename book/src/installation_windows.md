@@ -32,14 +32,10 @@ gvsbuild build gtk4
 <!--  -->
 ### Update `Path` environment variable
 
-2. Add `New User Variable` in environment variable to include `PKG_CONFIG_PATH`:
+2. Add `New User Variable` and update `Path` in environment variable to include `PKG_CONFIG_PATH` and the GTK 4 libraries:
    1. Go to settings -> Search and open `Advanced system settings` -> Click on `Environment variables`
-   3. Select `New` -> Input `Variable name` : `PKG_CONFIG_PATH` & `Variable value` : `C:\gtk-build\gtk\x64\release\lib\pkgconfig`
-
-3. Update your `Path` environment variable to include the GTK 4 libraries:
-   1. Go to settings -> Search and open `Advanced system settings` -> Click on `Environment variables`
-   2. Select `Path` -> Click on `Edit` -> Add `C:\gtk-build\gtk\x64\release\bin`
-
+   2. Select `New` -> Input `Variable name` : `PKG_CONFIG_PATH` & `Variable value` : `C:\gtk-build\gtk\x64\release\lib\pkgconfig`
+   3. Select `Path` -> Click on `Edit` -> Add `C:\gtk-build\gtk\x64\release\bin`
 
 You can now continue with the [project setup](./project_setup.html).
 
