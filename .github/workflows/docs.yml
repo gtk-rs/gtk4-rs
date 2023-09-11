@@ -43,7 +43,7 @@ jobs:
         0.3=0.3
       RUSTFLAGS: --cfg docsrs
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           submodules: "recursive"
           set-safe-directory: true
