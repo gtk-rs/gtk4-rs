@@ -150,16 +150,18 @@ pub const GSK_PATH_FOREACH_ALLOW_CONIC: GskPathForeachFlags = 4;
 // Unions
 #[derive(Copy, Clone)]
 #[repr(C)]
-pub union GskPathPoint_data {
-    pub f: [c_float; 8],
-    pub p: [gpointer; 8],
+pub union GskPathPoint_u1 {
+    pub s1: GskPathPoint__s1,
+    pub padding: [gpointer; 8],
+    pub alignment: graphene::graphene_vec4_t,
 }
 
-impl ::std::fmt::Debug for GskPathPoint_data {
+impl ::std::fmt::Debug for GskPathPoint_u1 {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("GskPathPoint_data @ {self:p}"))
-            .field("f", unsafe { &self.f })
-            .field("p", unsafe { &self.p })
+        f.debug_struct(&format!("GskPathPoint_u1 @ {self:p}"))
+            .field("s1", unsafe { &self.s1 })
+            .field("padding", unsafe { &self.padding })
+            .field("alignment", unsafe { &self.alignment })
             .finish()
     }
 }
@@ -305,13 +307,31 @@ impl ::std::fmt::Debug for GskPathMeasure {
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct GskPathPoint {
-    pub data: GskPathPoint_data,
+    pub u1: GskPathPoint_u1,
 }
 
 impl ::std::fmt::Debug for GskPathPoint {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("GskPathPoint @ {self:p}"))
-            .field("data", &self.data)
+            .field("u1", &self.u1)
+            .finish()
+    }
+}
+
+#[derive(Copy, Clone)]
+#[repr(C)]
+pub struct GskPathPoint__s1 {
+    pub contour: size_t,
+    pub idx: size_t,
+    pub t: c_float,
+}
+
+impl ::std::fmt::Debug for GskPathPoint__s1 {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("GskPathPoint__s1 @ {self:p}"))
+            .field("contour", &self.contour)
+            .field("idx", &self.idx)
+            .field("t", &self.t)
             .finish()
     }
 }
@@ -1003,6 +1023,7 @@ extern "C" {
         point: *const graphene::graphene_point_t,
         threshold: c_float,
         result: *mut GskPathPoint,
+        distance: *mut c_float,
     ) -> gboolean;
     #[cfg(feature = "v4_14")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
