@@ -36,17 +36,23 @@ impl Path {
 
     #[doc(alias = "gsk_path_get_closest_point")]
     #[doc(alias = "get_closest_point")]
-    pub fn closest_point(&self, point: &graphene::Point, threshold: f32) -> Option<PathPoint> {
+    pub fn closest_point(
+        &self,
+        point: &graphene::Point,
+        threshold: f32,
+    ) -> Option<(PathPoint, f32)> {
         unsafe {
             let mut result = PathPoint::uninitialized();
+            let mut distance = std::mem::MaybeUninit::uninit();
             let ret = from_glib(ffi::gsk_path_get_closest_point(
                 self.to_glib_none().0,
                 point.to_glib_none().0,
                 threshold,
                 result.to_glib_none_mut().0,
+                distance.as_mut_ptr(),
             ));
             if ret {
-                Some(result)
+                Some((result, distance.assume_init()))
             } else {
                 None
             }
