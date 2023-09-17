@@ -40,12 +40,12 @@ jobs:
         uses: actions-rs/cargo@v1
         with:
           command: build
-          args: --features v4_10,xml_validation --manifest-path ./gtk4/Cargo.toml
+          args: --features v4_12,xml_validation --manifest-path ./gtk4/Cargo.toml
       - name: Clippy
         uses: actions-rs/cargo@v1
         with:
           command: clippy
-          args: --features v4_8,xml_validation --manifest-path ./gtk4/Cargo.toml
+          args: --features v4_12,xml_validation --manifest-path ./gtk4/Cargo.toml
     # FIXME: renable once https://github.com/gtk-rs/gtk4-rs/issues/1235 is fixed
     #- name: Tests
     #  uses: actions-rs/cargo@v1
