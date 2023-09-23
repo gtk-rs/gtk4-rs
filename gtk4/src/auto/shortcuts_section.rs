@@ -2,6 +2,9 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+use crate::ShortcutsGroup;
 use crate::{
     Accessible, AccessibleRole, Align, BaselinePosition, Box, Buildable, ConstraintTarget,
     LayoutManager, Orientable, Orientation, Overflow, Widget,
@@ -29,6 +32,15 @@ impl ShortcutsSection {
     /// This method returns an instance of [`ShortcutsSectionBuilder`](crate::builders::ShortcutsSectionBuilder) which can be used to create [`ShortcutsSection`] objects.
     pub fn builder() -> ShortcutsSectionBuilder {
         ShortcutsSectionBuilder::new()
+    }
+
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    #[doc(alias = "gtk_shortcuts_section_add_group")]
+    pub fn add_group(&self, group: &ShortcutsGroup) {
+        unsafe {
+            ffi::gtk_shortcuts_section_add_group(self.to_glib_none().0, group.to_glib_none().0);
+        }
     }
 
     #[doc(alias = "max-height")]

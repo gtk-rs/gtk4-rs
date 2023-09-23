@@ -10,7 +10,7 @@ use std::error::Error;
 use std::ffi::OsString;
 use std::mem::{align_of, size_of};
 use std::path::Path;
-use std::process::{Command, Stdio};
+use std::process::Command;
 use std::str;
 use tempfile::Builder;
 
@@ -70,11 +70,9 @@ fn pkg_config_cflags(packages: &[&str]) -> Result<Vec<String>, Box<dyn Error>> {
     let mut cmd = Command::new(pkg_config);
     cmd.arg("--cflags");
     cmd.args(packages);
-    cmd.stderr(Stdio::inherit());
     let out = cmd.output()?;
     if !out.status.success() {
-        let (status, stdout) = (out.status, String::from_utf8_lossy(&out.stdout));
-        return Err(format!("command {cmd:?} failed, {status:?}\nstdout: {stdout}").into());
+        return Err(format!("command {cmd:?} returned {}", out.status).into());
     }
     let stdout = str::from_utf8(&out.stdout)?;
     Ok(shell_words::split(stdout.trim())?)
@@ -189,15 +187,13 @@ fn get_c_output(name: &str) -> Result<String, Box<dyn Error>> {
     let cc = Compiler::new().expect("configured compiler");
     cc.compile(&c_file, &exe)?;
 
-    let mut cmd = Command::new(exe);
-    cmd.stderr(Stdio::inherit());
-    let out = cmd.output()?;
-    if !out.status.success() {
-        let (status, stdout) = (out.status, String::from_utf8_lossy(&out.stdout));
-        return Err(format!("command {cmd:?} failed, {status:?}\nstdout: {stdout}").into());
+    let mut abi_cmd = Command::new(exe);
+    let output = abi_cmd.output()?;
+    if !output.status.success() {
+        return Err(format!("command {abi_cmd:?} failed, {output:?}").into());
     }
 
-    Ok(String::from_utf8(out.stdout)?)
+    Ok(String::from_utf8(output.stdout)?)
 }
 
 const RUST_LAYOUTS: &[(&str, Layout)] = &[
@@ -404,7 +400,9 @@ const RUST_CONSTANTS: &[(&str, &str)] = &[
     ("(gint) GSK_OPACITY_NODE", "14"),
     ("(gint) GSK_OUTSET_SHADOW_NODE", "12"),
     ("(gint) GSK_PATH_CLOSE", "1"),
+    ("(gint) GSK_PATH_CONIC", "5"),
     ("(gint) GSK_PATH_CUBIC", "4"),
+    ("(guint) GSK_PATH_FOREACH_ALLOW_CONIC", "4"),
     ("(guint) GSK_PATH_FOREACH_ALLOW_CUBIC", "2"),
     ("(guint) GSK_PATH_FOREACH_ALLOW_ONLY_LINES", "0"),
     ("(guint) GSK_PATH_FOREACH_ALLOW_QUAD", "1"),
