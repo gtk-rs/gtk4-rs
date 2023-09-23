@@ -2,6 +2,9 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+use crate::ShortcutsSection;
 use crate::{
     Accessible, AccessibleRole, Align, Application, Buildable, ConstraintTarget, LayoutManager,
     Native, Overflow, Root, ShortcutManager, Widget, Window,
@@ -29,6 +32,15 @@ impl ShortcutsWindow {
     /// This method returns an instance of [`ShortcutsWindowBuilder`](crate::builders::ShortcutsWindowBuilder) which can be used to create [`ShortcutsWindow`] objects.
     pub fn builder() -> ShortcutsWindowBuilder {
         ShortcutsWindowBuilder::new()
+    }
+
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    #[doc(alias = "gtk_shortcuts_window_add_section")]
+    pub fn add_section(&self, section: &ShortcutsSection) {
+        unsafe {
+            ffi::gtk_shortcuts_window_add_section(self.to_glib_none().0, section.to_glib_none().0);
+        }
     }
 
     #[doc(alias = "section-name")]

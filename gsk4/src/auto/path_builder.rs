@@ -81,10 +81,24 @@ impl PathBuilder {
         }
     }
 
+    #[doc(alias = "gsk_path_builder_arc_to")]
+    pub fn arc_to(&self, x1: f32, y1: f32, x2: f32, y2: f32) {
+        unsafe {
+            ffi::gsk_path_builder_arc_to(self.to_glib_none().0, x1, y1, x2, y2);
+        }
+    }
+
     #[doc(alias = "gsk_path_builder_close")]
     pub fn close(&self) {
         unsafe {
             ffi::gsk_path_builder_close(self.to_glib_none().0);
+        }
+    }
+
+    #[doc(alias = "gsk_path_builder_conic_to")]
+    pub fn conic_to(&self, x1: f32, y1: f32, x2: f32, y2: f32, weight: f32) {
+        unsafe {
+            ffi::gsk_path_builder_conic_to(self.to_glib_none().0, x1, y1, x2, y2, weight);
         }
     }
 
@@ -102,6 +116,13 @@ impl PathBuilder {
             from_glib_none(ffi::gsk_path_builder_get_current_point(
                 self.to_glib_none().0,
             ))
+        }
+    }
+
+    #[doc(alias = "gsk_path_builder_html_arc_to")]
+    pub fn html_arc_to(&self, x1: f32, y1: f32, x2: f32, y2: f32, radius: f32) {
+        unsafe {
+            ffi::gsk_path_builder_html_arc_to(self.to_glib_none().0, x1, y1, x2, y2, radius);
         }
     }
 
@@ -126,10 +147,31 @@ impl PathBuilder {
         }
     }
 
+    #[doc(alias = "gsk_path_builder_rel_arc_to")]
+    pub fn rel_arc_to(&self, x1: f32, y1: f32, x2: f32, y2: f32) {
+        unsafe {
+            ffi::gsk_path_builder_rel_arc_to(self.to_glib_none().0, x1, y1, x2, y2);
+        }
+    }
+
+    #[doc(alias = "gsk_path_builder_rel_conic_to")]
+    pub fn rel_conic_to(&self, x1: f32, y1: f32, x2: f32, y2: f32, weight: f32) {
+        unsafe {
+            ffi::gsk_path_builder_rel_conic_to(self.to_glib_none().0, x1, y1, x2, y2, weight);
+        }
+    }
+
     #[doc(alias = "gsk_path_builder_rel_cubic_to")]
     pub fn rel_cubic_to(&self, x1: f32, y1: f32, x2: f32, y2: f32, x3: f32, y3: f32) {
         unsafe {
             ffi::gsk_path_builder_rel_cubic_to(self.to_glib_none().0, x1, y1, x2, y2, x3, y3);
+        }
+    }
+
+    #[doc(alias = "gsk_path_builder_rel_html_arc_to")]
+    pub fn rel_html_arc_to(&self, x1: f32, y1: f32, x2: f32, y2: f32, radius: f32) {
+        unsafe {
+            ffi::gsk_path_builder_rel_html_arc_to(self.to_glib_none().0, x1, y1, x2, y2, radius);
         }
     }
 
@@ -151,6 +193,56 @@ impl PathBuilder {
     pub fn rel_quad_to(&self, x1: f32, y1: f32, x2: f32, y2: f32) {
         unsafe {
             ffi::gsk_path_builder_rel_quad_to(self.to_glib_none().0, x1, y1, x2, y2);
+        }
+    }
+
+    #[doc(alias = "gsk_path_builder_rel_svg_arc_to")]
+    pub fn rel_svg_arc_to(
+        &self,
+        rx: f32,
+        ry: f32,
+        x_axis_rotation: f32,
+        large_arc: bool,
+        positive_sweep: bool,
+        x: f32,
+        y: f32,
+    ) {
+        unsafe {
+            ffi::gsk_path_builder_rel_svg_arc_to(
+                self.to_glib_none().0,
+                rx,
+                ry,
+                x_axis_rotation,
+                large_arc.into_glib(),
+                positive_sweep.into_glib(),
+                x,
+                y,
+            );
+        }
+    }
+
+    #[doc(alias = "gsk_path_builder_svg_arc_to")]
+    pub fn svg_arc_to(
+        &self,
+        rx: f32,
+        ry: f32,
+        x_axis_rotation: f32,
+        large_arc: bool,
+        positive_sweep: bool,
+        x: f32,
+        y: f32,
+    ) {
+        unsafe {
+            ffi::gsk_path_builder_svg_arc_to(
+                self.to_glib_none().0,
+                rx,
+                ry,
+                x_axis_rotation,
+                large_arc.into_glib(),
+                positive_sweep.into_glib(),
+                x,
+                y,
+            );
         }
     }
 

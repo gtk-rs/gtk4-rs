@@ -2,6 +2,9 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+use crate::ShortcutsShortcut;
 use crate::{
     Accessible, AccessibleRole, Align, BaselinePosition, Box, Buildable, ConstraintTarget,
     LayoutManager, Orientable, Orientation, Overflow, SizeGroup, Widget,
@@ -29,6 +32,15 @@ impl ShortcutsGroup {
     /// This method returns an instance of [`ShortcutsGroupBuilder`](crate::builders::ShortcutsGroupBuilder) which can be used to create [`ShortcutsGroup`] objects.
     pub fn builder() -> ShortcutsGroupBuilder {
         ShortcutsGroupBuilder::new()
+    }
+
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    #[doc(alias = "gtk_shortcuts_group_add_shortcut")]
+    pub fn add_shortcut(&self, shortcut: &ShortcutsShortcut) {
+        unsafe {
+            ffi::gtk_shortcuts_group_add_shortcut(self.to_glib_none().0, shortcut.to_glib_none().0);
+        }
     }
 
     #[doc(alias = "accel-size-group")]
