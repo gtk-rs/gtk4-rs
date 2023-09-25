@@ -1230,6 +1230,19 @@ where
     }
 }
 
+impl<T> glib::HasParamSpec for TemplateChild<T>
+where
+    T: ObjectType + IsA<glib::Object> + FromGlibPtrNone<*mut <T as ObjectType>::GlibType>,
+{
+    type ParamSpec = glib::ParamSpecObject;
+    type SetValue = T;
+    type BuilderFn = fn(&str) -> glib::ParamSpecObjectBuilder<T>;
+
+    fn param_spec_builder() -> Self::BuilderFn {
+        Self::ParamSpec::builder
+    }
+}
+
 impl<T> std::ops::Deref for TemplateChild<T>
 where
     T: ObjectType + FromGlibPtrNone<*mut <T as ObjectType>::GlibType>,
