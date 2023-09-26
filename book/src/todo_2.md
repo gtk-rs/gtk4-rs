@@ -116,7 +116,7 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 ```
 
 After activating the action "win.filter", the corresponding setting will be changed.
-So we need a method which translates this setting into a filter that the [`gtk::FilterListModel`](../docs/gtk4/struct.FilterListModel.html) understands.
+So we need a method which translates this setting into a filter that the [`gtk::FilterListModel`](https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/struct.FilterListModel.html) understands.
 The possible states are "All", "Open" and "Done". 
 We return `Some(filter)` for "Open" and "Done".
 If the state is "All" nothing has to be filtered out, so we return `None`.
@@ -150,7 +150,7 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 Now that we created all these nice shortcuts we will want our users to find them.
 We do that by creating a shortcut window.
 Again we use an `ui` file to describe it, but here we don't want to use it as template for our custom widget.
-Instead we instantiate a widget of the existing class [`gtk::ShortcutsWindow`](../docs/gtk4/struct.ShortcutsWindow.html) with it. 
+Instead we instantiate a widget of the existing class [`gtk::ShortcutsWindow`](https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/struct.ShortcutsWindow.html) with it. 
 
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/2/resources/shortcuts.ui">listings/todo/2/resources/shortcuts.ui</a>
@@ -159,9 +159,9 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 {{#rustdoc_include ../listings/todo/2/resources/shortcuts.ui}}
 ```
 
-The entries can be organized with [`gtk::ShortcutsSection`](../docs/gtk4/struct.ShortcutsSection.html) and [`gtk::ShortcutsGroup`](../docs/gtk4/struct.ShortcutsGroup.html).
+The entries can be organized with [`gtk::ShortcutsSection`](https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/struct.ShortcutsSection.html) and [`gtk::ShortcutsGroup`](https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/struct.ShortcutsGroup.html).
 If we specify the action name, we also don't have to repeat the keyboard accelerator.
-[`gtk::ShortcutsShortcut`](../docs/gtk4/struct.ShortcutsShortcut.html) looks it up on its own.
+[`gtk::ShortcutsShortcut`](https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/struct.ShortcutsShortcut.html) looks it up on its own.
 
 
 > Note the way we set `action-name` for `ShortcutsShortcut`.

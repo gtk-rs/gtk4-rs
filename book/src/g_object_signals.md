@@ -5,7 +5,7 @@ For example, if we press on a button, the "clicked" signal will be emitted.
 The signal then takes care that all the registered callbacks will be executed.
 
 `gtk-rs` provides convenience methods for registering callbacks.
-In our "Hello World" example we [connected](../docs/gtk4/prelude/trait.ButtonExt.html#tymethod.connect_clicked) the "clicked" signal to a closure which sets the label of the button to "Hello World" as soon as it gets called.
+In our "Hello World" example we [connected](https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/prelude/trait.ButtonExt.html#tymethod.connect_clicked) the "clicked" signal to a closure which sets the label of the button to "Hello World" as soon as it gets called.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/hello_world/3/main.rs">listings/hello_world/3/main.rs</a>
 

@@ -27,6 +27,12 @@ jobs:
 
       - run: mdbook build -d public
         working-directory: book
+      
+      - name: Link Checker
+        uses: lycheeverse/lychee-action@v1.8.0
+        with:
+          args: book/public
+          fail: true
 
       - name: Deploy to stable
         uses: peaceiris/actions-gh-pages@v3
