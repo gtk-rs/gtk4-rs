@@ -31,7 +31,7 @@ jobs:
       - name: Link Checker
         uses: lycheeverse/lychee-action@v1.8.0
         with:
-          args: book/book
+          args: book/public
           fail: true
 
       - name: Deploy to stable
