@@ -23,8 +23,8 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 ```
 
 One of the most popular reasons to use actions are keyboard accelerators, so we added one here.
-With [`set_accels_for_action`](../docs/gtk4/prelude/trait.GtkApplicationExt.html#tymethod.set_accels_for_action) one can assign one or more accelerators to a certain action.
-Check the documentation of [`accelerator_parse`](../docs/gtk4/functions/fn.accelerator_parse.html) in order to learn more about its syntax.
+With [`set_accels_for_action`](https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/prelude/trait.GtkApplicationExt.html#tymethod.set_accels_for_action) one can assign one or more accelerators to a certain action.
+Check the documentation of [`accelerator_parse`](https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/functions/fn.accelerator_parse.html) in order to learn more about its syntax.
 
 Before we move on to other aspects of actions, let's appreciate a few things that are curious here.
 The "win" part of "win.close" is the group of the action.
@@ -47,7 +47,7 @@ However, that also means that we actually define one action per window instance.
 If we want to have a single globally accessible action instead, we call `add_action` on our application instead.
 
 > Adding "win.close" was useful as a simple example.
-> However, in the future we will use the pre-defined ["window.close"](../docs/gtk4/struct.Window.html#actions) action which does exactly the same thing.
+> However, in the future we will use the pre-defined ["window.close"](https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/struct.Window.html#actions) action which does exactly the same thing.
 
 ## Parameter and State
 
@@ -76,10 +76,10 @@ This is how our app works:
 
 ## Actionable
 
-Connecting actions to the "clicked" signal of buttons is a typical use case, which is why all buttons implement the [`Actionable`](../docs/gtk4/struct.Actionable.html) interface.
+Connecting actions to the "clicked" signal of buttons is a typical use case, which is why all buttons implement the [`Actionable`](https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/struct.Actionable.html) interface.
 This way, the action can be specified by setting the "action-name" property.
 If the action accepts a parameter, it can be set via the "action-target" property.
-With [`ButtonBuilder`](../docs/gtk4/builders/struct.ButtonBuilder.html), we can set everything up by calling its methods.
+With [`ButtonBuilder`](https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/builders/struct.ButtonBuilder.html), we can set everything up by calling its methods.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/actions/4/main.rs">listings/actions/4/main.rs</a>
 
@@ -206,8 +206,8 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
          <property name="orientation">vertical</property>
 ```
 
-Since we connect the menu to the [`gtk::MenuButton`](../docs/gtk4/struct.MenuButton.html) via the [menu-model](../docs/gtk4/struct.MenuButton.html#menu-model) property, the `Menu` is expected to be a [`gtk::PopoverMenu`](../docs/gtk4/struct.PopoverMenu.html).
-The [documentation](../docs/gtk4/struct.PopoverMenu.html) for `PopoverMenu` also explains its `xml` syntax for the interface builder.
+Since we connect the menu to the [`gtk::MenuButton`](https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/struct.MenuButton.html) via the [menu-model](https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/struct.MenuButton.html#menu-model) property, the `Menu` is expected to be a [`gtk::PopoverMenu`](https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/struct.PopoverMenu.html).
+The [documentation](https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/struct.PopoverMenu.html) for `PopoverMenu` also explains its `xml` syntax for the interface builder.
 
 Also note how we specified the target:
 
@@ -234,7 +234,7 @@ This is how the app looks in action:
 </div>
 
 >We changed the icon of the `MenuButton` by setting its property "icon-name" to "open-menu-symbolic".
->You can find more icons with the [Icon Library](https://apps.gnome.org/app/org.gnome.design.IconLibrary/).
+>You can find more icons with the [Icon Library](https://flathub.org/apps/org.gnome.design.IconLibrary).
 >They can be embedded with [`gio::Resource`](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/gio/struct.Resource.html) and then be referenced within the composite templates (or other places).
 
 ## Settings

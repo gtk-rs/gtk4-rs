@@ -12,7 +12,7 @@ on:
 
 jobs:
   build-deploy:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     name: build
     steps:
       - uses: actions/checkout@v4
@@ -27,6 +27,12 @@ jobs:
 
       - run: mdbook build -d public
         working-directory: book
+      
+      - name: Link Checker
+        uses: lycheeverse/lychee-action@v1.8.0
+        with:
+          args: book/book
+          fail: true
 
       - name: Deploy to stable
         uses: peaceiris/actions-gh-pages@v3

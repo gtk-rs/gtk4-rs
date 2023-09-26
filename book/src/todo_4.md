@@ -10,10 +10,10 @@ We will start by adding an empty sidebar without any functionality.
 <div style="text-align:center"><img src="img/todo_7_sidebar.png" alt="To-Do app with an empty sidebar"/></div>
 
 There are a couple of steps we have to go through to get to this state.
-First, we have to replace [`gtk::ApplicationWindow`](../docs/gtk4/struct.ApplicationWindow.html) with [`adw::ApplicationWindow`](https://world.pages.gitlab.gnome.org/Rust/libadwaita-rs/stable/latest/docs/libadwaita/struct.ApplicationWindow.html).
+First, we have to replace [`gtk::ApplicationWindow`](https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/struct.ApplicationWindow.html) with [`adw::ApplicationWindow`](https://world.pages.gitlab.gnome.org/Rust/libadwaita-rs/stable/latest/docs/libadwaita/struct.ApplicationWindow.html).
 The only difference between those two is that `adw::ApplicationWindow` has no titlebar area.
 That comes in handy when we build up our interface with [`adw::Leaflet`](https://world.pages.gitlab.gnome.org/Rust/libadwaita-rs/stable/latest/docs/libadwaita/struct.Leaflet.html).
-In the screenshot above, the `Leaflet` behaves like a [`gtk::Box`](../docs/gtk4/struct.Box.html) and contains the collection view on the left, a separator in the middle and the task view on the right.
+In the screenshot above, the `Leaflet` behaves like a [`gtk::Box`](https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/struct.Box.html) and contains the collection view on the left, a separator in the middle and the task view on the right.
 When using `adw::ApplicationWindow` the collection view and task view have their own [`adw::HeaderBar`](https://world.pages.gitlab.gnome.org/Rust/libadwaita-rs/stable/latest/docs/libadwaita/struct.HeaderBar.html) and the separator spans over the whole window.
 
 
@@ -58,7 +58,7 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 ```
 
 The `Leaflet` does not always behave like a `gtk::Box`.
-As soon as the requested size is too small to fit all children at the same time, the leaflet folds, and starts behaving like a [`gtk::Stack`](../docs/gtk4/struct.Stack.html).
+As soon as the requested size is too small to fit all children at the same time, the leaflet folds, and starts behaving like a [`gtk::Stack`](https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/struct.Stack.html).
 This means that it only displays one of its children at a time.
 The property "can-navigate-back" controls whether gestures and shortcuts for navigating backward are enabled.
 The `AdwLeafletPage` with the `gtk::Separator` will never be displayed in the folded state since its property "navigatable" is set to `False`.)
@@ -194,7 +194,7 @@ In our case, this placeholder page will be presented to the user if they open th
 
 <div style="text-align:center"><img src="img/todo_8_placeholder_page.png" alt="The placeholder page"/></div>
 
-We now wrap our UI in a [`gtk::Stack`](../docs/gtk4/struct.Stack.html).
+We now wrap our UI in a [`gtk::Stack`](https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/struct.Stack.html).
 One stack page describes the placeholder page, the other describes the main page.
 We will later wire up the logic to display the correct stack page in the Rust code.
 
@@ -363,7 +363,7 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 {{#rustdoc_include ../listings/todo/8/window/mod.rs:setup_collections}}
 ```
 
-`create_collection_row` takes a `CollectionObject` and builds a [`gtk::ListBoxRow`](../docs/gtk4/struct.ListBoxRow.html) from its information.
+`create_collection_row` takes a `CollectionObject` and builds a [`gtk::ListBoxRow`](https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/struct.ListBoxRow.html) from its information.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/8/window/imp.rs">listings/todo/8/window/mod.rs</a>
 

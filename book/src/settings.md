@@ -2,7 +2,7 @@
 
 We have now learned multiple ways to handle states.
 However, every time we close the application all of it is gone.
-Let's learn how to use [`gio::Settings`](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/gio/struct.Settings.html) by storing the state of a [`Switch`](../docs/gtk4/struct.Switch.html) in it.
+Let's learn how to use [`gio::Settings`](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/gio/struct.Settings.html) by storing the state of a [`Switch`](https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/struct.Switch.html) in it.
 
 At the very beginning we have to create a `GSchema` xml file in order to describe the kind of data our application plans to store in the settings.
 
@@ -79,7 +79,7 @@ But we can make this even better.
 The `Switch` has a property "active" and `Settings` allows us to bind properties to a specific setting.
 So let's do exactly that.
 
-We can remove the [`boolean`](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/gio/prelude/trait.SettingsExt.html#tymethod.boolean) call before initializing the `Switch` as well as the [`connect_state_set`](../docs/gtk4/struct.Switch.html#method.connect_state_set) call.
+We can remove the [`boolean`](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/gio/prelude/trait.SettingsExt.html#tymethod.boolean) call before initializing the `Switch` as well as the [`connect_state_set`](https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/struct.Switch.html#method.connect_state_set) call.
 We then bind the setting to the property by specifying the key, object and name of the property.
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/settings/2/main.rs">listings/settings/2/main.rs</a>
 

@@ -3,9 +3,9 @@
 Properties provide a public API for accessing state of GObjects.
 
 Let's see how this is done by experimenting with the [`Switch`](https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/struct.Switch.html) widget.
-One of its properties is called [active](../docs/gtk4/struct.Switch.html#active).
+One of its properties is called [active](https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/struct.Switch.html#active).
 According to the GTK docs, it can be read and be written to.
-That is why `gtk-rs` provides corresponding [`is_active`](../docs/gtk4/struct.Switch.html#method.is_active) and [`set_active`](../docs/gtk4/struct.Switch.html#method.set_active) methods.
+That is why `gtk-rs` provides corresponding [`is_active`](https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/struct.Switch.html#method.is_active) and [`set_active`](https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/struct.Switch.html#method.set_active) methods.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/g_object_properties/1/main.rs">listings/g_object_properties/1/main.rs</a>
 

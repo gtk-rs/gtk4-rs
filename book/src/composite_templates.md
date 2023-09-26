@@ -26,10 +26,10 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 
 The most outer tag always has to be the `<interface>`.
 Then you start listing the elements you want to describe.
-In order to define a composite template, we specify the name `MyGtkAppWindow` of the custom widget we want to create and the parent [`gtk::ApplicationWindow`](../docs/gtk4/struct.ApplicationWindow.html) it derives of.
+In order to define a composite template, we specify the name `MyGtkAppWindow` of the custom widget we want to create and the parent [`gtk::ApplicationWindow`](https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/struct.ApplicationWindow.html) it derives of.
 These `xml` files are independent of the programming language, which is why the classes have the original names.
 Luckily, they all convert like this: `gtk::ApplicationWindow` → `GtkApplicationWindow`.
-Then we can specify properties which are listed [here](../docs/gtk4/struct.ApplicationWindow.html#properties) for `ApplicationWindow`.
+Then we can specify properties which are listed [here](https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/struct.ApplicationWindow.html#properties) for `ApplicationWindow`.
 Since `ApplicationWindow` can contain other widgets we use the `<child>` tag to add a `gtk::Button`.
 We want to be able to refer to the button later on so we also set its `id`.
 
@@ -81,12 +81,12 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 {{#rustdoc_include ../listings/composite_templates/1/window/mod.rs}}
 ```
 
-In the implementation struct, we then add the derive macro [`gtk::CompositeTemplate`](../docs/gtk4_macros/derive.CompositeTemplate.html).
+In the implementation struct, we then add the derive macro [`gtk::CompositeTemplate`](https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4_macros/derive.CompositeTemplate.html).
 We also specify that the template information comes from a resource of prefix `/org/gtk-rs/example` containing a file `window.ui`.
 
 One very convenient feature of templates is the template child.
 You use it by adding a struct member with the same name as one `id` attribute in the template.
-[`TemplateChild`](../docs/gtk4/subclass/widget/struct.TemplateChild.html) then stores a reference to the widget for later use.
+[`TemplateChild`](https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/subclass/widget/struct.TemplateChild.html) then stores a reference to the widget for later use.
 This will be useful later, when we want to add a callback to our button.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/composite_templates/1/window/imp.rs">listings/composite_templates/1/window/imp.rs</a>
@@ -154,9 +154,9 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 {{#rustdoc_include ../listings/composite_templates/3/resources/window.ui}}
 ```
 
-Then we define the `handle_button_clicked` with the [`template_callbacks`](../docs/gtk4_macros/attr.template_callbacks.html) macro applied to it.
+Then we define the `handle_button_clicked` with the [`template_callbacks`](https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4_macros/attr.template_callbacks.html) macro applied to it.
 We can determine the function signature by having a look at the `connect_*` method of the signal we want to handle.
-In our case that would be [`connect_clicked`](../docs/gtk4/prelude/trait.ButtonExt.html#tymethod.connect_clicked).
+In our case that would be [`connect_clicked`](https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/prelude/trait.ButtonExt.html#tymethod.connect_clicked).
 It takes a function of type `Fn(&Self)`.
 `Self` refers to our button.
 This means that `handle_button_clicked` has a single parameter of type `&CustomButton`.
@@ -166,7 +166,7 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 {{#rustdoc_include ../listings/composite_templates/3/window/imp.rs:template_callbacks}}
 ```
 
-Then we have to bind the template callbacks with [`bind_template_callbacks`](../docs/gtk4/subclass/widget/trait.CompositeTemplateCallbacksClass.html#tymethod.bind_template_callbacks).
+Then we have to bind the template callbacks with [`bind_template_callbacks`](https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/subclass/widget/trait.CompositeTemplateCallbacksClass.html#tymethod.bind_template_callbacks).
 We also need to remove the `button.connect_clicked` callback implemented in `window/imp.rs`.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/composite_templates/3/window/imp.rs">listings/composite_templates/3/window/imp.rs</a>
@@ -240,7 +240,7 @@ Thanks to composite templates we can
 - specify handler functions for signals. 
 
 The API involved here is extensive so especially at the beginning you will want to check out the documentation.
-The basic syntax of the `ui` files is explained within [`Builder`](../docs/gtk4/struct.Builder.html#gtkbuilder-ui-definitions), syntax specific to widgets within [`Widget`](../docs/gtk4/struct.Widget.html#gtkwidget-as-gtkbuildable).
+The basic syntax of the `ui` files is explained within [`Builder`](https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/struct.Builder.html#gtkbuilder-ui-definitions), syntax specific to widgets within [`Widget`](https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/struct.Widget.html#gtkwidget-as-gtkbuildable).
 If a certain widget accepts additional element, then they are typically explained in the docs of the widget.
 
 In the following chapter, we will see how composite templates help us to create slightly bigger apps such as a To-Do app.
