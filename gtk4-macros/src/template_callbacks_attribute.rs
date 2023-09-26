@@ -2,7 +2,6 @@
 
 use crate::util::*;
 use proc_macro2::TokenStream;
-use proc_macro_error::{emit_call_site_error, emit_error};
 use quote::{quote, ToTokens, TokenStreamExt};
 use syn::{parse::Parse, Token};
 
@@ -119,11 +118,11 @@ pub fn impl_template_callbacks(mut input: syn::ItemImpl, args: Args) -> TokenStr
 
     let mut callbacks = vec![];
     for item in items.iter_mut() {
-        if let syn::ImplItem::Method(method) = item {
+        if let syn::ImplItem::Fn(method) = item {
             let mut i = 0;
             let mut attr = None;
             while i < method.attrs.len() {
-                if method.attrs[i].path.is_ident("template_callback") {
+                if method.attrs[i].path().is_ident("template_callback") {
                     let callback = method.attrs.remove(i);
                     if attr.is_some() {
                         emit_error!(callback, "Duplicate `template_callback` attribute");
@@ -141,7 +140,7 @@ pub fn impl_template_callbacks(mut input: syn::ItemImpl, args: Args) -> TokenStr
             };
 
             let ident = &method.sig.ident;
-            let callback_args = syn::parse2::<CallbackArgs>(attr.tokens).unwrap_or_else(|e| {
+            let callback_args = attr.parse_args::<CallbackArgs>().unwrap_or_else(|e| {
                 emit_error!(e);
                 Default::default()
             });
@@ -198,12 +197,12 @@ pub fn impl_template_callbacks(mut input: syn::ItemImpl, args: Args) -> TokenStr
                         let mut i = 0;
                         let mut cur_is_rest = false;
                         while i < typed.attrs.len() {
-                            if typed.attrs[i].path.is_ident("rest") {
+                            if typed.attrs[i].path().is_ident("rest") {
                                 let rest = typed.attrs.remove(i);
                                 if cur_is_rest {
                                     emit_error!(rest, "Duplicate `rest` attribute");
-                                } else if !rest.tokens.is_empty() {
-                                    emit_error!(rest, "Tokens after `rest` attribute");
+                                } else if let Err(e) = rest.meta.require_path_only() {
+                                    return Some(e.into_compile_error());
                                 }
                                 cur_is_rest = true;
                             } else {
@@ -255,11 +254,15 @@ pub fn impl_template_callbacks(mut input: syn::ItemImpl, args: Args) -> TokenStr
                             ::std::option::Option::None
                         },
                         (Some(async_), syn::ReturnType::Type(_, _)) => {
-                            emit_error!(
+                            let error = syn::Error::new_spanned(
                                 async_,
-                                "`async` only allowed on template callbacks without a return value"
-                            );
-                            quote! { ::std::option::Option::None }
+                                "`async` only allowed on template callbacks without a return value",
+                            )
+                            .into_compile_error();
+                            quote! {
+                                #error
+                                ::std::option::Option::None
+                            }
                         }
                     }
                 })

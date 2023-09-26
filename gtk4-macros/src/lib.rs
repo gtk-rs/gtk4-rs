@@ -12,7 +12,6 @@ mod template_callbacks_attribute;
 mod util;
 
 use proc_macro::TokenStream;
-use proc_macro_error::proc_macro_error;
 use syn::{parse_macro_input, DeriveInput};
 
 /// That macro includes and compiles blueprint file by path relative to project rood
@@ -20,10 +19,8 @@ use syn::{parse_macro_input, DeriveInput};
 /// It expected to run inside composite_template_derive, not by users
 #[cfg(feature = "blueprint")]
 #[proc_macro]
-#[proc_macro_error]
 #[doc(hidden)]
 pub fn include_blueprint(input: TokenStream) -> TokenStream {
-    use proc_macro_error::abort_call_site;
     use quote::quote;
 
     let tokens: Vec<_> = input.into_iter().collect();
@@ -192,7 +189,6 @@ pub fn include_blueprint(input: TokenStream) -> TokenStream {
 /// ```
 ///
 #[proc_macro_derive(CompositeTemplate, attributes(template, template_child))]
-#[proc_macro_error]
 pub fn composite_template_derive(input: TokenStream) -> TokenStream {
     let input = parse_macro_input!(input as DeriveInput);
     let gen = composite_template_derive::impl_composite_template(&input);
@@ -368,9 +364,7 @@ pub fn composite_template_derive(input: TokenStream) -> TokenStream {
 /// }
 /// ```
 #[proc_macro_attribute]
-#[proc_macro_error]
 pub fn template_callbacks(attr: TokenStream, item: TokenStream) -> TokenStream {
-    use proc_macro_error::abort_call_site;
     let args = parse_macro_input!(attr as template_callbacks_attribute::Args);
     match syn::parse::<syn::ItemImpl>(item) {
         Ok(input) => template_callbacks_attribute::impl_template_callbacks(input, args).into(),
@@ -404,9 +398,7 @@ pub fn template_callbacks(attr: TokenStream, item: TokenStream) -> TokenStream {
 /// }
 /// ```
 #[proc_macro_attribute]
-#[proc_macro_error]
 pub fn test(_attr: TokenStream, item: TokenStream) -> TokenStream {
-    use proc_macro_error::abort_call_site;
     use quote::quote;
 
     match syn::parse::<syn::ItemFn>(item) {
