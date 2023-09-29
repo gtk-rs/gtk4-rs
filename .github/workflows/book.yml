@@ -11,9 +11,10 @@ on:
       - "book/**"
 
 jobs:
-  build-deploy:
+  check:
     runs-on: ubuntu-22.04
     name: build
+    if: ${{ github.event_name == 'pull_request' }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions-rs/toolchain@v1
@@ -27,16 +28,33 @@ jobs:
 
       - run: mdbook build -d public
         working-directory: book
-      
+
       - name: Link Checker
         uses: lycheeverse/lychee-action@v1.8.0
         with:
           args: book/public
           fail: true
 
+  build-deploy:
+    runs-on: ubuntu-22.04
+    name: build
+    if: ${{ (github.event_name == 'push' && github.ref == 'refs/heads/master') || github.event_name == 'release' }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions-rs/toolchain@v1
+        with:
+          profile: minimal
+          toolchain: stable
+          override: true
+
+      - name: Setup mdBook
+        uses: peaceiris/actions-mdbook@v1
+
+      - run: mdbook build -d public
+        working-directory: book
+
       - name: Deploy to stable
         uses: peaceiris/actions-gh-pages@v3
-        if: ${{ (github.event_name == 'push' && github.ref == 'refs/heads/master') || github.event_name == 'release' }}
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./book/public
