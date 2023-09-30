@@ -53,7 +53,7 @@ fn build_ui(application: &Application) {
 }
 ```
 
-The Rust compiler refuses to compile this application while spitting our multiple error messages.
+The Rust compiler refuses to compile this application while spitting out multiple error messages.
 Let's have a look at them one by one.
 
 ```console
