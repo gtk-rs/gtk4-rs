@@ -1,4 +1,4 @@
-use glib::{clone, timeout_future_seconds, MainContext};
+use glib::{clone, MainContext};
 use gtk::prelude::*;
 use gtk::{glib, Application, ApplicationWindow, Button};
 
@@ -33,7 +33,7 @@ fn build_ui(app: &Application) {
         main_context.spawn_local(clone!(@weak button => async move {
             // Deactivate the button until the operation is done
             button.set_sensitive(false);
-            timeout_future_seconds(5).await;
+            glib::timeout_future_seconds(5).await;
             // Activate the button again
             button.set_sensitive(true);
         }));

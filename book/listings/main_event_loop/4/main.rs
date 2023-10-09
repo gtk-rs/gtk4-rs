@@ -1,4 +1,4 @@
-use glib::{clone, timeout_future_seconds, MainContext, Priority};
+use glib::{clone, MainContext, Priority};
 use gtk::prelude::*;
 use gtk::{glib, Application, ApplicationWindow, Button};
 
@@ -34,7 +34,7 @@ fn build_ui(app: &Application) {
         main_context.spawn_local(clone!(@strong sender => async move {
             // Deactivate the button until the operation is done
             sender.send(false).expect("Could not send through channel");
-            timeout_future_seconds(5).await;
+            glib::timeout_future_seconds(5).await;
             // Activate the button again
             sender.send(true).expect("Could not send through channel");
         }));
