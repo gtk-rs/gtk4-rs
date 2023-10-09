@@ -86,6 +86,12 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 {{#rustdoc_include ../listings/main_event_loop/4/main.rs:callback}}
 ```
 
+> There are two async ecosystems in Rust: [`tokio`](https://docs.rs/tokio) and [`futures`](https://docs.rs/futures).
+> Crates based on [`glib`](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/), [`smol`](https://docs.rs/smol/latest/smol/) or [`async-std`](https://docs.rs/async-std/1.12.0/async_std/) work with `futures`.
+> In order to use `tokio` based crates you can either:
+> - maintain a static variable of type `once_cell::sync::Lazy<tokio::runtime::Runtime>` and spawn tasks with it, or
+> - use the [`async-compat`](https://docs.rs/async-compat/latest/async_compat/) crate.
+
 Since we are single-threaded again, we could even get rid of the channels while achieving the same result.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/main_event_loop/5/main.rs">listings/main_event_loop/5/main.rs</a>
