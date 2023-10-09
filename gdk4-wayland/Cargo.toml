@@ -33,7 +33,7 @@ glib = {git = "https://github.com/gtk-rs/gtk-rs-core", version = "0.19", feature
 libc = "0.2"
 wayland-client = {version = "0.30.0", optional = true}
 wayland-backend = {version = "0.1.0", optional = true, features = ["client_system"]}
-khronos-egl = {version = "5.0", optional = true}
+khronos-egl = {version = "6.0", optional = true}
 xkb = {version = "0.3", optional = true}
 
 [dev-dependencies]
