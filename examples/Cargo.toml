@@ -17,7 +17,7 @@ im-rc = { version = "15", optional = true }
 [dependencies.gtk]
 path = "../gtk4"
 package = "gtk4"
-features = ["v4_14"]
+features = ["v4_10"]
 
 # used by gif-paintable example
 [dependencies.image]
@@ -30,6 +30,8 @@ optional = true
 default = []
 femtovg-support = ["epoxy", "femtovg", "glow", "libloading"]
 glium-support = ["glium", "epoxy", "libloading"]
+v4_12 = ["gtk/v4_12"]
+v4_14 = ["gtk/v4_14"]
 
 [[bin]]
 name = "basics"
@@ -66,6 +68,7 @@ path = "content_provider/main.rs"
 [[bin]]
 name = "css"
 path = "css/main.rs"
+required-features = ["v4_12"]
 
 [[bin]]
 name = "custom_application"
@@ -78,6 +81,7 @@ path = "custom_buildable/main.rs"
 [[bin]]
 name = "custom_editable"
 path = "custom_editable/main.rs"
+required-features = ["v4_12"]
 
 [[bin]]
 name = "custom_layout_manager"
@@ -170,6 +174,7 @@ path = "squeezer_bin/main.rs"
 [[bin]]
 name = "fill_and_stroke"
 path = "fill_and_stroke/main.rs"
+required-features = ["v4_14"]
 
 [[bin]]
 name = "text_viewer"
