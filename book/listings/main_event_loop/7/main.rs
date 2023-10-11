@@ -43,7 +43,7 @@ fn build_ui(app: &Application) {
                 .send()
                 .await;
 
-            if let Ok(Ok(response)) = request.map(|r| r.response()) {
+            if let Ok(response) = request.and_then(|r| r.response()) {
                 println!("User name: {}", response.name());
             } else {
                 println!("Could not access user information.")
