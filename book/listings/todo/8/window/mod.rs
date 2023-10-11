@@ -387,11 +387,13 @@ impl Window {
 
         // ANCHOR: setup_actions
         // Create action to create new collection and add to action group "win"
-        let action_new_list = gio::SimpleAction::new("new-collection", None);
-        action_new_list.connect_activate(clone!(@weak self as window => move |_, _| {
-            window.new_collection();
-        }));
-        self.add_action(&action_new_list);
+        let action_new_collection = gio::SimpleAction::new("new-collection", None);
+        action_new_collection.connect_activate(
+            clone!(@weak self as window => move |_, _| {
+                window.new_collection();
+            }),
+        );
+        self.add_action(&action_new_collection);
         // ANCHOR_END: setup_actions
     }
 
