@@ -15,6 +15,7 @@ xshell = "0.2"
 dirs = "5.0"
 walkdir = "2.3"
 async-channel = "1.9.0"
+ashpd = { version = "0.6.2", features = ["gtk4"] }
 
 [build-dependencies]
 glib-build-tools = "0.18"
@@ -205,6 +206,19 @@ path = "main_event_loop/4/main.rs"
 [[bin]]
 name = "main_event_loop_5"
 path = "main_event_loop/5/main.rs"
+
+[[bin]]
+name = "main_event_loop_6"
+path = "main_event_loop/6/main.rs"
+
+[[bin]]
+name = "main_event_loop_7"
+path = "main_event_loop/7/main.rs"
+
+[[bin]]
+name = "main_event_loop_8"
+path = "main_event_loop/8/main.rs"
+
 
 # saving_window_state
 [[bin]]

@@ -176,6 +176,15 @@ help: within `gtk4::Button`, the trait `Sync` is not implemented for `NonNull<GO
 
 After reference cycles we found the second disadvantage of GTK GObjects: They are not thread safe.
 
-So when should you spawn an `async` block, and when should you spawn a thread?
+## Async
+
+
+
+```
+cargo add ashpd --features gtk4
+```
+
+
+So when should you spawn an `async` block and when should you spawn a thread?
 - If you have `async` functions for your IO-bound operations at your disposal, feel free to spawn them on the main loop.
 - If your operation is computation-bound or there is no `async` function available, you have to spawn threads.
