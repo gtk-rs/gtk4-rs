@@ -94,7 +94,7 @@ fn build_ui(application: &gtk::Application) {
             dialog.close();
         }));
 
-        dialog.show()
+        dialog.present()
     }));
 
     hbox.append(&add_button);
