@@ -80,7 +80,7 @@ impl GLAreaImpl for FemtoVGArea {
             self.obj().scale_factor() as f32,
         );
     }
-    fn render(&self, _context: &gtk::gdk::GLContext) -> bool {
+    fn render(&self, _context: &gtk::gdk::GLContext) -> glib::Propagation {
         use femtovg::{Color, Paint, Path};
 
         self.ensure_canvas();
@@ -126,7 +126,7 @@ impl GLAreaImpl for FemtoVGArea {
         canvas.stroke_path(&mut path, &paint);
         canvas.flush();
 
-        true
+        glib::Propagation::Stop
     }
 }
 impl FemtoVGArea {

@@ -17,7 +17,7 @@ pub struct CellCallback {
 }
 
 impl CellCallback {
-    pub fn call<R: IsA<CellRenderer>>(&self, cell_renderer: &R) -> bool {
+    pub fn call<R: IsA<CellRenderer>>(&self, cell_renderer: &R) -> glib::ControlFlow {
         unsafe {
             if let Some(callback) = self.callback {
                 from_glib(callback(
@@ -25,8 +25,7 @@ impl CellCallback {
                     self.user_data,
                 ))
             } else {
-                // true to stop iterating over cells
-                true
+                glib::ControlFlow::Break
             }
         }
     }
@@ -44,7 +43,7 @@ impl CellCallbackAllocate {
         cell_renderer: &R,
         cell_area: &gdk::Rectangle,
         cell_background: &gdk::Rectangle,
-    ) -> bool {
+    ) -> glib::ControlFlow {
         unsafe {
             if let Some(callback) = self.callback {
                 from_glib(callback(
@@ -54,8 +53,7 @@ impl CellCallbackAllocate {
                     self.user_data,
                 ))
             } else {
-                // true to stop iterating over cells
-                true
+                glib::ControlFlow::Break
             }
         }
     }
@@ -227,6 +225,7 @@ mod sealed {
 #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 #[allow(deprecated)]
 pub trait CellAreaImplExt: sealed::Sealed + ObjectSubclass {
+    // Returns true if the area was successfully activated
     fn parent_activate<P: IsA<CellAreaContext>, W: IsA<Widget>>(
         &self,
         context: &P,
@@ -317,6 +316,7 @@ pub trait CellAreaImplExt: sealed::Sealed + ObjectSubclass {
         }
     }
 
+    // returns true only if the event is handled
     fn parent_event<W: IsA<Widget>, P: IsA<CellAreaContext>>(
         &self,
         context: &P,
@@ -338,7 +338,6 @@ pub trait CellAreaImplExt: sealed::Sealed + ObjectSubclass {
                     flags.into_glib(),
                 ))
             } else {
-                // returns true only if the event is handled
                 false
             }
         }
@@ -396,6 +395,7 @@ pub trait CellAreaImplExt: sealed::Sealed + ObjectSubclass {
         }
     }
 
+    // Whether the cell is activatable
     fn parent_is_activatable(&self) -> bool {
         unsafe {
             let data = Self::type_data();
@@ -408,6 +408,7 @@ pub trait CellAreaImplExt: sealed::Sealed + ObjectSubclass {
         }
     }
 
+    // TRUE if focus remains inside area as a result of this call.
     fn parent_focus(&self, direction_type: DirectionType) -> bool {
         unsafe {
             let data = Self::type_data();

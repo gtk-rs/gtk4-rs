@@ -18,6 +18,7 @@ mod sealed {
 }
 
 pub trait AccessibleRangeImplExt: sealed::Sealed + ObjectSubclass {
+    // Returns true if the operation was performed, false otherwise
     fn parent_set_current_value(&self, accessible_range: &Self::Type, value: f64) -> bool {
         unsafe {
             let type_data = Self::type_data();

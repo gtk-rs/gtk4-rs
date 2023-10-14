@@ -45,6 +45,7 @@ impl DropTarget {
         }
     }
 
+    // Returns true if the drop was accepted
     pub fn connect_drop<F: Fn(&DropTarget, &glib::Value, f64, f64) -> bool + 'static>(
         &self,
         f: F,

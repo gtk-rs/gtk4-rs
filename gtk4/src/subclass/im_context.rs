@@ -88,6 +88,7 @@ pub trait IMContextImplExt: sealed::Sealed + ObjectSubclass {
         }
     }
 
+    // Returns true if the signal was handled
     fn parent_delete_surrounding(&self, offset: i32, n_chars: i32) -> bool {
         unsafe {
             let data = Self::type_data();
@@ -99,12 +100,12 @@ pub trait IMContextImplExt: sealed::Sealed + ObjectSubclass {
                     n_chars,
                 ))
             } else {
-                // Returns true if the signal was handled
                 false
             }
         }
     }
 
+    // Returns true if the event was consumed
     fn parent_filter_keypress(&self, event: &gdk::Event) -> bool {
         unsafe {
             let data = Self::type_data();
@@ -115,7 +116,6 @@ pub trait IMContextImplExt: sealed::Sealed + ObjectSubclass {
                     event.to_glib_none().0,
                 ))
             } else {
-                // Returns true if the event was consumed
                 false
             }
         }
@@ -225,6 +225,7 @@ pub trait IMContextImplExt: sealed::Sealed + ObjectSubclass {
         }
     }
 
+    // Returns true if the signal was handled
     fn parent_retrieve_surrounding(&self) -> bool {
         unsafe {
             let data = Self::type_data();
@@ -236,7 +237,6 @@ pub trait IMContextImplExt: sealed::Sealed + ObjectSubclass {
                     .to_glib_none()
                     .0))
             } else {
-                // Returns true if the signal was handled
                 false
             }
         }

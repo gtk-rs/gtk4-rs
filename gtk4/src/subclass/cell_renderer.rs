@@ -257,6 +257,7 @@ pub trait CellRendererImplExt: sealed::Sealed + ObjectSubclass {
         }
     }
 
+    // Returns true if the event was consumed/handled
     fn parent_activate<P: IsA<Widget>>(
         &self,
         event: Option<&gdk::Event>,

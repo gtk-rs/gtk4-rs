@@ -5,14 +5,14 @@ use glib::translate::*;
 
 impl Path {
     #[doc(alias = "gsk_path_foreach")]
-    pub fn foreach<P: FnMut(&PathOperation, &graphene::Point, usize, f32) -> bool>(
+    pub fn foreach<P: FnMut(&PathOperation, &graphene::Point, usize, f32) -> glib::ControlFlow>(
         &self,
         flags: PathForeachFlags,
         func: P,
-    ) -> bool {
+    ) -> glib::ControlFlow {
         let func_data: P = func;
         unsafe extern "C" fn func_func<
-            P: FnMut(&PathOperation, &graphene::Point, usize, f32) -> bool,
+            P: FnMut(&PathOperation, &graphene::Point, usize, f32) -> glib::ControlFlow,
         >(
             op: ffi::GskPathOperation,
             pts: *const graphene::ffi::graphene_point_t,
