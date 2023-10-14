@@ -24,6 +24,7 @@ mod sealed {
 #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 #[allow(deprecated)]
 pub trait TreeDragSourceImplExt: sealed::Sealed + ObjectSubclass {
+    // Returns true if the row can be dragged
     fn parent_row_draggable(&self, path: &TreePath) -> bool {
         unsafe {
             let type_data = Self::type_data();
@@ -65,6 +66,7 @@ pub trait TreeDragSourceImplExt: sealed::Sealed + ObjectSubclass {
         }
     }
 
+    // True if the row was successfully deleted
     fn parent_drag_data_delete(&self, path: &TreePath) -> bool {
         unsafe {
             let type_data = Self::type_data();

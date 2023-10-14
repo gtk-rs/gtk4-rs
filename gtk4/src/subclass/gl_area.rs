@@ -13,7 +13,7 @@ pub trait GLAreaImpl: GLAreaImplExt + WidgetImpl {
         self.parent_create_context()
     }
 
-    fn render(&self, context: &GLContext) -> bool {
+    fn render(&self, context: &GLContext) -> glib::Propagation {
         self.parent_render(context)
     }
 
@@ -44,7 +44,7 @@ pub trait GLAreaImplExt: sealed::Sealed + ObjectSubclass {
         }
     }
 
-    fn parent_render(&self, context: &GLContext) -> bool {
+    fn parent_render(&self, context: &GLContext) -> glib::Propagation {
         unsafe {
             let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkGLAreaClass;

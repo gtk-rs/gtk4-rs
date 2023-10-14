@@ -164,6 +164,7 @@ pub trait PrintOperationImplExt: sealed::Sealed + ObjectSubclass {
         }
     }
 
+    // Returns true if pagination is complete
     fn parent_paginate(&self, context: &PrintContext) -> bool {
         unsafe {
             let data = Self::type_data();
@@ -183,6 +184,7 @@ pub trait PrintOperationImplExt: sealed::Sealed + ObjectSubclass {
         }
     }
 
+    // true if the listener wants to take over control of the preview.
     fn parent_preview(
         &self,
         preview: &PrintOperationPreview,

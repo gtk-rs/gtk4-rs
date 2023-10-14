@@ -49,6 +49,7 @@ pub trait MediaStreamImplExt: sealed::Sealed + ObjectSubclass {
         }
     }
 
+    // Returns true if successfully started playing
     fn parent_play(&self) -> bool {
         unsafe {
             let data = Self::type_data();

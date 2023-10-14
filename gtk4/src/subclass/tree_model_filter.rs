@@ -32,6 +32,7 @@ mod sealed {
 #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 #[allow(deprecated)]
 pub trait TreeModelFilterImplExt: sealed::Sealed + ObjectSubclass {
+    // Whether the row indicated by iter is visible
     fn parent_visible<M: IsA<TreeModel>>(&self, child_model: &M, iter: &TreeIter) -> bool {
         unsafe {
             let data = Self::type_data();

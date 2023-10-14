@@ -11,7 +11,7 @@ pub trait RangeImpl: RangeImplExt + WidgetImpl {
         self.parent_adjust_bounds(new_value)
     }
 
-    fn change_value(&self, scroll_type: ScrollType, new_value: f64) -> bool {
+    fn change_value(&self, scroll_type: ScrollType, new_value: f64) -> glib::Propagation {
         self.parent_change_value(scroll_type, new_value)
     }
 
@@ -48,7 +48,7 @@ pub trait RangeImplExt: sealed::Sealed + ObjectSubclass {
         }
     }
 
-    fn parent_change_value(&self, scroll_type: ScrollType, new_value: f64) -> bool {
+    fn parent_change_value(&self, scroll_type: ScrollType, new_value: f64) -> glib::Propagation {
         unsafe {
             let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkRangeClass;

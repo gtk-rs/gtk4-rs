@@ -230,6 +230,7 @@ pub trait WidgetImplExt: sealed::Sealed + ObjectSubclass {
         }
     }
 
+    // true if the widget contains (x, y)
     fn parent_contains(&self, x: f64, y: f64) -> bool {
         unsafe {
             let data = Self::type_data();
@@ -259,6 +260,7 @@ pub trait WidgetImplExt: sealed::Sealed + ObjectSubclass {
         }
     }
 
+    // Returns true if focus ended up inside widget
     fn parent_focus(&self, direction_type: DirectionType) -> bool {
         unsafe {
             let data = Self::type_data();
@@ -285,6 +287,7 @@ pub trait WidgetImplExt: sealed::Sealed + ObjectSubclass {
         }
     }
 
+    // Returns true if focus ended up inside widget
     fn parent_grab_focus(&self) -> bool {
         unsafe {
             let data = Self::type_data();
@@ -309,6 +312,8 @@ pub trait WidgetImplExt: sealed::Sealed + ObjectSubclass {
         }
     }
 
+    // TRUE if stopping keyboard navigation is fine,
+    // FALSE if the emitting widget should try to handle the keyboard navigation attempt in its parent container(s).
     fn parent_keynav_failed(&self, direction_type: DirectionType) -> bool {
         unsafe {
             let data = Self::type_data();
@@ -360,6 +365,7 @@ pub trait WidgetImplExt: sealed::Sealed + ObjectSubclass {
         }
     }
 
+    // True if the signal has been handled
     fn parent_mnemonic_activate(&self, group_cycling: bool) -> bool {
         unsafe {
             let data = Self::type_data();

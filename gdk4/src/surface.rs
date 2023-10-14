@@ -28,6 +28,7 @@ pub trait SurfaceExtManual: sealed::Sealed + IsA<Surface> + 'static {
         }
     }
 
+    // Returns true if the coordinates were successfully translated
     #[doc(alias = "gdk_surface_translate_coordinates")]
     fn translate_coordinates(&self, to: &Surface, mut x: f64, mut y: f64) -> bool {
         unsafe {

@@ -67,6 +67,7 @@ pub trait WindowImplExt: sealed::Sealed + ObjectSubclass {
         }
     }
 
+    // Returns true if debugging (inspector) should be enabled, false otherwise
     fn parent_enable_debugging(&self, toggle: bool) -> bool {
         unsafe {
             let data = Self::type_data();

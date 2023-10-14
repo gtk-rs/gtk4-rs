@@ -17,6 +17,7 @@ pub struct FilterCallback {
 }
 
 impl FilterCallback {
+    // true if the font should be displayed
     pub fn call(&self, font_family: &FontFamily, font_face: &FontFace) -> bool {
         unsafe {
             if let Some(filter_func) = self.filter_func {

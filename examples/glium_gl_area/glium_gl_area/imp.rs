@@ -171,9 +171,9 @@ impl WidgetImpl for GliumGLArea {
 }
 
 impl GLAreaImpl for GliumGLArea {
-    fn render(&self, _context: &gtk::gdk::GLContext) -> bool {
+    fn render(&self, _context: &gtk::gdk::GLContext) -> glib::Propagation {
         self.renderer.borrow().as_ref().unwrap().draw();
 
-        true
+        glib::Propagation::Stop
     }
 }
