@@ -103,7 +103,7 @@ impl ObjectImpl for ListBoxRow {
                 .build();
             content_area.append(&spin_button);
 
-            dialog.show()
+            dialog.present()
         }));
         hbox.append(&edit_button);
 
