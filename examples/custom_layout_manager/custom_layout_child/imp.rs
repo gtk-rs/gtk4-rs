@@ -1,10 +1,9 @@
-use glib::{ParamSpec, Properties, Value};
 use gtk::prelude::*;
 use gtk::subclass::prelude::*;
 use gtk::{gdk, glib, graphene};
 use std::cell::RefCell;
 
-#[derive(Debug, Properties)]
+#[derive(Debug, glib::Properties)]
 #[properties(wrapper_type = super::CustomLayoutChild)]
 pub struct CustomLayoutChild {
     #[property(get, set, construct_only)]
@@ -26,19 +25,8 @@ impl ObjectSubclass for CustomLayoutChild {
     type ParentType = gtk::Widget;
 }
 
+#[glib::derived_properties]
 impl ObjectImpl for CustomLayoutChild {
-    fn properties() -> &'static [ParamSpec] {
-        Self::derived_properties()
-    }
-
-    fn property(&self, id: usize, pspec: &ParamSpec) -> Value {
-        self.derived_property(id, pspec)
-    }
-
-    fn set_property(&self, id: usize, value: &Value, pspec: &ParamSpec) {
-        self.derived_set_property(id, value, pspec)
-    }
-
     fn constructed(&self) {
         self.parent_constructed();
         let widget = self.obj();

@@ -1,8 +1,6 @@
-use gtk::glib::{self, Properties};
-use gtk::glib::{ParamSpec, Value};
-use gtk::gsk;
 use gtk::prelude::*;
 use gtk::subclass::prelude::*;
+use gtk::{glib, gsk};
 
 use std::cell::{Cell, RefCell};
 
@@ -17,7 +15,7 @@ fn child_size(child: &impl IsA<gtk::Widget>) -> ((i32, i32), (i32, i32)) {
     )
 }
 
-#[derive(Debug, Default, Properties)]
+#[derive(Debug, Default, glib::Properties)]
 #[properties(wrapper_type = super::SqueezerBin)]
 pub struct SqueezerBin {
     #[property(get, explicit_notify)]
@@ -33,19 +31,8 @@ impl ObjectSubclass for SqueezerBin {
     type Type = super::SqueezerBin;
 }
 
+#[glib::derived_properties]
 impl ObjectImpl for SqueezerBin {
-    fn properties() -> &'static [glib::ParamSpec] {
-        Self::derived_properties()
-    }
-
-    fn property(&self, id: usize, pspec: &ParamSpec) -> Value {
-        self.derived_property(id, pspec)
-    }
-
-    fn set_property(&self, id: usize, value: &Value, pspec: &ParamSpec) {
-        self.derived_set_property(id, value, pspec)
-    }
-
     fn constructed(&self) {
         self.parent_constructed();
         let obj = self.obj();

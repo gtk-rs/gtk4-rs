@@ -29,16 +29,5 @@ impl ObjectSubclass for RowData {
 //
 // This maps between the GObject properties and our internal storage of the
 // corresponding values of the properties.
-impl ObjectImpl for RowData {
-    fn properties() -> &'static [ParamSpec] {
-        Self::derived_properties()
-    }
-
-    fn set_property(&self, id: usize, value: &Value, pspec: &ParamSpec) {
-        self.derived_set_property(id, value, pspec)
-    }
-
-    fn property(&self, id: usize, pspec: &ParamSpec) -> Value {
-        self.derived_property(id, pspec)
-    }
-}
+#[glib::derived_properties]
+impl ObjectImpl for RowData {}
