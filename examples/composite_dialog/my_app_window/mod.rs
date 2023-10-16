@@ -32,17 +32,15 @@ impl MyAppWindow {
     /// In the callback handler, response type is i32 instead of gtk::ResponseType.
     #[template_callback]
     fn counter_choice(&self, response: i32) {
+        self.imp().popup.set_visible(false);
         match gtk::ResponseType::from(response) {
             gtk::ResponseType::Ok => {
                 self.set_counter(0);
-                self.imp().popup.set_visible(false);
             }
             gtk::ResponseType::Other(35) => {
                 self.set_counter(6);
-                self.imp().popup.set_visible(false);
             }
             gtk::ResponseType::DeleteEvent => {
-                self.imp().popup.set_visible(false);
             }
             _ => unimplemented!(),
         }
