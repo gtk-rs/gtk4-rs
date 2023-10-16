@@ -59,4 +59,26 @@
       </object>
     </child>   
   </template>
+  <object class="GtkDialog" id="popup">
+    <property name="transient-for">MyAppWindow</property>
+    <property name="title">Counter reach 3</property>
+    <property name="modal">True</property>
+    <signal name="response" handler="counter_choice" swapped="true"/>
+    <child type="action">
+      <object class="GtkButton" id="button_six">
+        <property name="visible">True</property>
+        <property name="label">Set counter to 6</property>
+      </object>
+    </child>
+    <child type="action">
+      <object class="GtkButton" id="button_reset">
+        <property name="visible">True</property>
+        <property name="label">Reset counter</property>
+      </object>
+    </child>
+    <action-widgets>
+      <action-widget response="35">button_six</action-widget>
+      <action-widget response="ok">button_reset</action-widget>
+    </action-widgets>
+  </object>
 </interface>

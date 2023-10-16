@@ -15,9 +15,10 @@ pub struct MyAppWindow {
     pub plus: TemplateChild<gtk::Button>,
     #[template_child]
     pub minus: TemplateChild<gtk::Button>,
+    #[template_child]
+    pub popup: TemplateChild<gtk::Dialog>,
 }
 
-// The central trait for subclassing a GObject
 #[glib::object_subclass]
 impl ObjectSubclass for MyAppWindow {
     const NAME: &'static str = "MyAppWindow";

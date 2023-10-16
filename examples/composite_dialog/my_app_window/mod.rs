@@ -1,3 +1,5 @@
+// Since Gtk4 v4.10 gtk4::Dialog is deprecated and gtk4-rs's examples minimum version is v4.10
+#[allow(deprecated)]
 mod imp;
 
 use gtk::{glib, prelude::*, subclass::prelude::ObjectSubclassIsExt};
@@ -17,46 +19,32 @@ impl MyAppWindow {
     ///
     /// When counter property reach 3, a dialog pops up and present the user
     /// with 2 choices: Set the counter to 6 or reset the counter to 0.
-    #[allow(deprecated)]
     #[template_callback]
     fn popup_dialog(&self, _p: &glib::ParamSpec) {
         // Check counter property and create a Dialog.
         if self.counter() == 3 {
-            let dial = gtk::Dialog::with_buttons(
-                Some("Counter value is 3"),
-                Some(self),
-                gtk::DialogFlags::MODAL,
-                &[
-                    ("Set counter to 6", ResponseType::Other(35)),
-                    ("Reset counter", ResponseType::Ok),
-                ],
-            );
-            dial.set_transient_for(Some(self));
+            self.imp().popup.present();
+        }
+    }
 
-            let app = self.clone();
-
-            // Closure handling response signal from gtk::Dialog.
-            // The signature of the function differ from the documentation for response signal.
-            // gtk-rs use an i32 instead of a [`gtk::ResponseType`] as a response signal.
-            dial.connect_closure(
-                "response",
-                false,
-                glib::closure_local!(move |d: &gtk::Dialog, response: i32| {
-                    match ResponseType::from(response) {
-                        ResponseType::Other(35) => {
-                            app.set_counter(6);
-                            d.close();
-                        }
-                        ResponseType::Ok => {
-                            app.set_counter(0);
-                            d.close();
-                        }
-                        _ => (),
-                    }
-                }),
-            );
-
-            dial.present();
+    /// Handler for popup dialog's response.
+    ///
+    /// In the callback handler, response type is i32 instead of gtk::ResponseType.
+    #[template_callback]
+    fn counter_choice(&self, response: i32) {
+        match gtk::ResponseType::from(response) {
+            gtk::ResponseType::Ok => {
+                self.set_counter(0);
+                self.imp().popup.set_visible(false);
+            }
+            gtk::ResponseType::Other(35) => {
+                self.set_counter(6);
+                self.imp().popup.set_visible(false);
+            }
+            gtk::ResponseType::DeleteEvent => {
+                self.imp().popup.set_visible(false);
+            }
+            _ => unimplemented!(),
         }
     }
 
