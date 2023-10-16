@@ -15,7 +15,7 @@ fn build_ui(application: &gtk::Application) {
     let win = gtk::ApplicationWindow::new(application);
     win.set_title(Some("Squares"));
 
-    let widget = SquaresWidget::new();
+    let widget = SquaresWidget::default();
     win.set_child(Some(&widget));
     win.present();
 }

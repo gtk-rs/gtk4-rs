@@ -7,14 +7,8 @@ glib::wrapper! {
         @extends gdk::ContentProvider;
 }
 
-impl ContentProvider {
-    pub fn new() -> Self {
-        glib::Object::new()
-    }
-}
-
 impl Default for ContentProvider {
     fn default() -> Self {
-        Self::new()
+        glib::Object::new()
     }
 }

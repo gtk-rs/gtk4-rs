@@ -10,7 +10,7 @@ fn main() -> glib::ExitCode {
     application.connect_activate(|app| {
         let window = gtk::ApplicationWindow::new(app);
         let bx = gtk::Box::new(gtk::Orientation::Vertical, 6);
-        let orientable = CustomOrientable::new();
+        let orientable = CustomOrientable::default();
         let button = gtk::Button::with_label("Switch orientation");
 
         button.connect_clicked(glib::clone!(@weak orientable => move |_| {

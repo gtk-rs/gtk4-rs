@@ -83,8 +83,7 @@ fn data() -> gio::ListStore {
     let mut vector: Vec<Note> = Vec::new();
 
     for i in 0..=100 {
-        let metadata = Metadata::new();
-        metadata.set_property("title", format!("Note ({i})"));
+        let metadata = Metadata::new(&format!("Note ({i})"));
 
         let note = Note::new(&metadata);
         vector.push(note);

@@ -7,9 +7,8 @@ glib::wrapper! {
         @extends gtk::Widget;
 }
 
-impl ScaleBin {
-    #[allow(clippy::new_without_default)]
-    pub fn new() -> Self {
+impl Default for ScaleBin {
+    fn default() -> Self {
         glib::Object::new()
     }
 }

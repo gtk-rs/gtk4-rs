@@ -11,11 +11,13 @@ glib::wrapper! {
     pub struct GifPaintable(ObjectSubclass<imp::GifPaintable>) @implements gdk::Paintable;
 }
 
-impl GifPaintable {
-    pub fn new() -> Self {
+impl Default for GifPaintable {
+    fn default() -> Self {
         glib::Object::new()
     }
+}
 
+impl GifPaintable {
     /// Loads the bytes of a GIF into the paintable.
     ///
     /// The loading consists of decoding the gif with a GIFDecoder, then storing
@@ -93,11 +95,5 @@ impl GifPaintable {
             new_idx = 0;
         }
         imp.current_idx.set(new_idx);
-    }
-}
-
-impl Default for GifPaintable {
-    fn default() -> Self {
-        Self::new()
     }
 }

@@ -10,12 +10,6 @@ glib::wrapper! {
 
 impl Default for CustomOrientable {
     fn default() -> Self {
-        Self::new()
-    }
-}
-
-impl CustomOrientable {
-    pub fn new() -> Self {
         glib::Object::new()
     }
 }

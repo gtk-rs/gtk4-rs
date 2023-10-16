@@ -9,15 +9,11 @@ glib::wrapper! {
 
 impl Default for ApplicationRow {
     fn default() -> Self {
-        Self::new()
+        glib::Object::new()
     }
 }
 
 impl ApplicationRow {
-    pub fn new() -> Self {
-        glib::Object::new()
-    }
-
     pub fn set_app_info(&self, app_info: &gio::AppInfo) {
         let imp = self.imp();
         imp.name.set_text(&app_info.name());

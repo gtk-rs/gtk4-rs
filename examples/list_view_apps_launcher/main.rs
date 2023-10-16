@@ -33,7 +33,7 @@ fn build_ui(app: &gtk::Application) {
         // generic for potentially future new APIs, it was switched to taking a GObject
         // in 4.8
         let item = item.downcast_ref::<gtk::ListItem>().unwrap();
-        let row = ApplicationRow::new();
+        let row = ApplicationRow::default();
         item.set_child(Some(&row));
     });
 

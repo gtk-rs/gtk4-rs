@@ -46,7 +46,7 @@ fn build_ui(application: &gtk::Application) {
     let col2factory = gtk::SignalListItemFactory::new();
     col1factory.connect_setup(move |_factory, item| {
         let item = item.downcast_ref::<gtk::ListItem>().unwrap();
-        let row = GridCell::new();
+        let row = GridCell::default();
         item.set_child(Some(&row));
     });
 
@@ -62,7 +62,7 @@ fn build_ui(application: &gtk::Application) {
     });
     col2factory.connect_setup(move |_factory, item| {
         let item = item.downcast_ref::<gtk::ListItem>().unwrap();
-        let row = GridCell::new();
+        let row = GridCell::default();
         item.set_child(Some(&row));
     });
 

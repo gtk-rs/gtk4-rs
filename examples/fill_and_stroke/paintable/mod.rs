@@ -8,12 +8,6 @@ glib::wrapper! {
 
 impl Default for CustomPaintable {
     fn default() -> Self {
-        Self::new()
-    }
-}
-
-impl CustomPaintable {
-    pub fn new() -> Self {
         glib::Object::new()
     }
 }
