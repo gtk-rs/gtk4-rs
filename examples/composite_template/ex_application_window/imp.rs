@@ -1,11 +1,9 @@
-use gtk::prelude::*;
-use gtk::subclass::prelude::*;
-use gtk::{glib, CompositeTemplate};
+use gtk::{glib, prelude::*, subclass::prelude::*};
 
 use crate::ex_menu_button::ExMenuButton;
 
 /// The private struct, which can hold widgets and other data.
-#[derive(Debug, Default, CompositeTemplate)]
+#[derive(Debug, Default, gtk::CompositeTemplate)]
 #[template(file = "ex_application_window.ui")]
 pub struct ExApplicationWindow {
     // The #[template_child] attribute tells the CompositeTemplate macro

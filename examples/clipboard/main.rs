@@ -1,6 +1,8 @@
-use glib::clone;
-use gtk::prelude::*;
-use gtk::{gdk, gio, glib};
+use gtk::{
+    gdk, gio,
+    glib::{self, clone},
+    prelude::*,
+};
 
 fn main() -> glib::ExitCode {
     let application = gtk::Application::builder()

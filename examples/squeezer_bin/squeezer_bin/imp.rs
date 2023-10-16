@@ -1,8 +1,6 @@
-use gtk::prelude::*;
-use gtk::subclass::prelude::*;
-use gtk::{glib, gsk};
-
 use std::cell::{Cell, RefCell};
+
+use gtk::{glib, gsk, prelude::*, subclass::prelude::*};
 
 fn child_size(child: &impl IsA<gtk::Widget>) -> ((i32, i32), (i32, i32)) {
     let (horizontal_minimal, horizontal_natural, _, _) =

@@ -1,12 +1,12 @@
-use glib::prelude::*;
-use glib::subclass::prelude::*;
-use gtk::glib::{self, Properties};
-
-use glib::once_cell::unsync::OnceCell;
+use gtk::{
+    glib::{self, once_cell::unsync::OnceCell},
+    prelude::*,
+    subclass::prelude::*,
+};
 
 use super::Metadata;
 
-#[derive(Debug, Properties, Default)]
+#[derive(Debug, glib::Properties, Default)]
 #[properties(wrapper_type = super::Note)]
 pub struct Note {
     #[property(get, set, construct_only)]

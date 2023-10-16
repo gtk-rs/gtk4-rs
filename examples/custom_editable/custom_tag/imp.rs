@@ -1,10 +1,7 @@
-use glib::clone;
-use glib::once_cell::sync::Lazy;
-use glib::subclass::Signal;
-use gtk::glib;
-use gtk::prelude::*;
-use gtk::subclass::prelude::*;
 use std::cell::{Cell, RefCell};
+
+use glib::{clone, once_cell::sync::Lazy, subclass::Signal};
+use gtk::{glib, prelude::*, subclass::prelude::*};
 
 #[derive(Debug, glib::Properties)]
 #[properties(wrapper_type = super::CustomTag)]

@@ -1,13 +1,12 @@
-use gtk::prelude::*;
+use std::{
+    fs::File,
+    io::{prelude::*, BufReader},
+};
 
-use std::fs::File;
-use std::io::prelude::*;
-use std::io::BufReader;
-
-use gtk::{gio, glib, Application, ApplicationWindow, Builder, Button, FileDialog, TextView};
+use gtk::{gio, glib, prelude::*};
 
 fn main() -> glib::ExitCode {
-    let application = Application::new(
+    let application = gtk::Application::new(
         Some("com.github.gtk-rs.examples.text_viewer"),
         Default::default(),
     );
@@ -15,21 +14,24 @@ fn main() -> glib::ExitCode {
     application.run()
 }
 
-pub fn build_ui(application: &Application) {
+pub fn build_ui(application: &gtk::Application) {
     let ui_src = include_str!("text_viewer.ui");
-    let builder = Builder::new();
-    builder
-        .add_from_string(ui_src)
-        .expect("Couldn't add from string");
+    let builder = gtk::Builder::from_string(ui_src);
 
-    let window: ApplicationWindow = builder.object("window").expect("Couldn't get window");
+    let window = builder
+        .object::<gtk::ApplicationWindow>("window")
+        .expect("Couldn't get window");
     window.set_application(Some(application));
-    let open_button: Button = builder.object("open_button").expect("Couldn't get builder");
-    let text_view: TextView = builder.object("text_view").expect("Couldn't get text_view");
+    let open_button = builder
+        .object::<gtk::Button>("open_button")
+        .expect("Couldn't get builder");
+    let text_view = builder
+        .object::<gtk::TextView>("text_view")
+        .expect("Couldn't get text_view");
 
     open_button.connect_clicked(glib::clone!(@weak window, @weak text_view => move |_| {
 
-        let dialog = FileDialog::builder()
+        let dialog = gtk::FileDialog::builder()
             .title("Open File")
             .accept_label("Open")
             .build();

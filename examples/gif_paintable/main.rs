@@ -7,8 +7,7 @@ mod gif_paintable;
 mod gif_paintable_window;
 
 use gif_paintable_window::GifPaintableWindow;
-use gtk::glib;
-use gtk::prelude::*;
+use gtk::{glib, prelude::*};
 
 fn main() -> glib::ExitCode {
     let application = gtk::Application::builder()

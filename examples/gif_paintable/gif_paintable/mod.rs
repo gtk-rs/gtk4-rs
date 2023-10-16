@@ -4,9 +4,7 @@ mod imp;
 use std::io::Cursor;
 
 use frame::Frame;
-use gtk::prelude::*;
-use gtk::subclass::prelude::*;
-use gtk::{gdk, glib};
+use gtk::{gdk, glib, prelude::*, subclass::prelude::*};
 use image::{codecs::gif::GifDecoder, AnimationDecoder};
 
 glib::wrapper! {

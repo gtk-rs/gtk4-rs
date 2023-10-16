@@ -1,7 +1,6 @@
 mod imp;
 
-use gtk::subclass::prelude::*;
-use gtk::{gio, glib};
+use gtk::{gio, glib, subclass::prelude::*};
 
 glib::wrapper! {
     pub struct VideoPlayerWindow(ObjectSubclass<imp::VideoPlayerWindow>)

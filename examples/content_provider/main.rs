@@ -1,8 +1,7 @@
 mod content_provider;
 
 use content_provider::ContentProvider;
-use gtk::glib;
-use gtk::prelude::*;
+use gtk::{glib, prelude::*};
 
 fn main() -> glib::ExitCode {
     let app = gtk::Application::builder()

@@ -1,6 +1,7 @@
+use gtk::{gio, glib, prelude::*, subclass::prelude::*};
+
 /// Implementation of `BaseButton`.
 use super::{BaseButtonExt, PinnedFuture};
-use gtk::{gio, glib, prelude::*, subclass::prelude::*};
 
 #[derive(Debug, Default)]
 pub struct BaseButton;
@@ -38,7 +39,8 @@ impl ObjectSubclass for BaseButton {
     type Type = super::BaseButton;
     type Class = super::Class;
 
-    /// Initialize the class struct with the default implementations of the virtual methods.
+    /// Initialize the class struct with the default implementations of the
+    /// virtual methods.
     fn class_init(klass: &mut Self::Class) {
         klass.sync_method = |obj, extra_text| {
             obj.imp().sync_method_default(extra_text);
@@ -51,8 +53,8 @@ impl ObjectImpl for BaseButton {
     fn constructed(&self) {
         self.parent_constructed();
 
-        // For demo purposes, call the `non_virtual_method()` during construction to set the button
-        // label
+        // For demo purposes, call the `non_virtual_method()` during construction to set
+        // the button label
         self.obj().non_virtual_method();
     }
 }

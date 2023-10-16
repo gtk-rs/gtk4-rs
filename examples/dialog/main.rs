@@ -1,7 +1,9 @@
-use gtk::glib::{self, clone};
-use gtk::prelude::*;
-
 use std::rc::Rc;
+
+use gtk::{
+    glib::{self, clone},
+    prelude::*,
+};
 
 fn main() -> glib::ExitCode {
     let application = gtk::Application::builder()

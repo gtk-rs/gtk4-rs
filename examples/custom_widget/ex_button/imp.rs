@@ -1,21 +1,23 @@
-use gtk::glib;
-use gtk::prelude::*;
-use gtk::subclass::prelude::*;
 use std::cell::RefCell;
+
+use gtk::{glib, prelude::*, subclass::prelude::*};
 
 #[derive(Debug, Default)]
 pub struct ExButton {
     /// Reference to the child widget.
     ///
-    /// In our case it's a text label for the button. Since this example only uses a
-    /// `gtk::Label`, the type could've been `Option<gtk::Label>`. However, a real button might
-    /// switch between a label widget and an icon widget, and in general your widget can contain
-    /// arbitrary children. Thus we used `Option<gtk::Widget>` to show how to handle any widget
-    /// and to make the example easier to tweak and play with.
+    /// In our case it's a text label for the button. Since this example only
+    /// uses a `gtk::Label`, the type could've been `Option<gtk::Label>`.
+    /// However, a real button might switch between a label widget and an
+    /// icon widget, and in general your widget can contain
+    /// arbitrary children. Thus we used `Option<gtk::Widget>` to show how to
+    /// handle any widget and to make the example easier to tweak and play
+    /// with.
     ///
-    /// Widgets automatically store strong references to their children, added in `set_parent()`
-    /// and removed in `unparent()`. Therefore, this field could be a `WeakRef<gtk::Widget>`.
-    /// Using a strong reference is just a little clearer.
+    /// Widgets automatically store strong references to their children, added
+    /// in `set_parent()` and removed in `unparent()`. Therefore, this field
+    /// could be a `WeakRef<gtk::Widget>`. Using a strong reference is just
+    /// a little clearer.
     child: RefCell<Option<gtk::Widget>>,
 }
 

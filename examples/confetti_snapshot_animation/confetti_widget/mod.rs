@@ -1,10 +1,12 @@
 mod imp;
 
+use gtk::{
+    glib::{self, clone, ControlFlow},
+    prelude::*,
+    subclass::prelude::*,
+};
+
 use crate::{AnimatedExplosion, ExplosionParameters};
-use glib::subclass::prelude::*;
-use glib::{clone, ControlFlow};
-use gtk::glib;
-use gtk::prelude::*;
 
 glib::wrapper! {
     pub struct ConfettiWidget(ObjectSubclass<imp::ConfettiWidget>) @implements gtk::Widget;

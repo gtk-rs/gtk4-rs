@@ -1,8 +1,6 @@
-use gtk::prelude::*;
-use gtk::subclass::prelude::*;
-use gtk::{glib, CompositeTemplate};
+use gtk::{glib, prelude::*, subclass::prelude::*};
 
-#[derive(Debug, Default, CompositeTemplate)]
+#[derive(Debug, Default, gtk::CompositeTemplate)]
 #[template(file = "custom_buildable.ui")]
 pub struct CustomBuildable {
     #[template_child]

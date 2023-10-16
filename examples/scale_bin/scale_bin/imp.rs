@@ -1,8 +1,6 @@
-use gtk::glib;
-use gtk::gsk;
-use gtk::prelude::*;
-use gtk::subclass::prelude::*;
 use std::cell::Cell;
+
+use gtk::{glib, gsk, prelude::*, subclass::prelude::*};
 
 #[derive(Debug)]
 pub struct ScaleBin {

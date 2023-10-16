@@ -1,12 +1,9 @@
 /// Public API of `BaseButton`.
 mod imp;
 
-use gtk::{
-    glib::{self, subclass::prelude::*},
-    prelude::*,
-    subclass::prelude::*,
-};
 use std::{future::Future, pin::Pin};
+
+use gtk::{glib, prelude::*, subclass::prelude::*};
 
 /// Type alias for pinned boxed futures that output `T`.
 pub type PinnedFuture<T> = Pin<Box<dyn Future<Output = T>>>;
@@ -30,7 +27,8 @@ impl Default for BaseButton {
     }
 }
 
-/// Public trait that implements our functions for everything that derives from `BaseButton`.
+/// Public trait that implements our functions for everything that derives from
+/// `BaseButton`.
 ///
 /// These are public methods that can be called on any instance.
 pub trait BaseButtonExt: IsA<BaseButton> {
@@ -43,7 +41,8 @@ pub trait BaseButtonExt: IsA<BaseButton> {
 
     /// Caller for a virtual method on `BaseButton`.
     ///
-    /// This retrieves this instance's class and calls the function pointer in it.
+    /// This retrieves this instance's class and calls the function pointer in
+    /// it.
     fn sync_method(&self, extra_text: Option<&str>) {
         let obj = self.upcast_ref::<BaseButton>();
         (obj.class().as_ref().sync_method)(obj, extra_text);
@@ -51,7 +50,8 @@ pub trait BaseButtonExt: IsA<BaseButton> {
 
     /// Caller for an async virtual method on `BaseButton`.
     ///
-    /// This retrieves this instance's class and calls the function pointer in it.
+    /// This retrieves this instance's class and calls the function pointer in
+    /// it.
     ///
     /// Once async functions in traits are supported this should become one.
     fn async_method(&self) -> PinnedFuture<Result<(), glib::Error>> {
@@ -62,32 +62,38 @@ pub trait BaseButtonExt: IsA<BaseButton> {
 
 impl<O: IsA<BaseButton>> BaseButtonExt for O {}
 
-/// The `BaseButtonImpl` trait that each derived implementation struct has to implement.
+/// The `BaseButtonImpl` trait that each derived implementation struct has to
+/// implement.
 ///
 /// See `derived_button/imp.rs` for how to override virtual methods.
 pub trait BaseButtonImpl: ButtonImpl {
     /// Default implementation of a virtual method.
     ///
-    /// This always calls into the implementation of the parent class so that if the subclass does
-    /// not explicitly implement it, the behaviour of its parent class will be preserved.
+    /// This always calls into the implementation of the parent class so that if
+    /// the subclass does not explicitly implement it, the behaviour of its
+    /// parent class will be preserved.
     fn sync_method(&self, extra_text: Option<&str>) {
         self.parent_sync_method(extra_text)
     }
 
     /// Default implementation of an async virtual method.
     ///
-    /// This always calls into the implementation of the parent class so that if the subclass does
-    /// not explicitly implement it, the behaviour of its parent class will be preserved.
+    /// This always calls into the implementation of the parent class so that if
+    /// the subclass does not explicitly implement it, the behaviour of its
+    /// parent class will be preserved.
     fn async_method(&self) -> PinnedFuture<Result<(), glib::Error>> {
         self.parent_async_method()
     }
 }
 
-/// Public trait with "protected" methods for everything implementing `BaseButton`.
+/// Public trait with "protected" methods for everything implementing
+/// `BaseButton`.
 ///
-/// These are supposed to be called only from inside implementations of `BaseButton` subclasses.
+/// These are supposed to be called only from inside implementations of
+/// `BaseButton` subclasses.
 pub trait BaseButtonImplExt: BaseButtonImpl {
-    /// Retrieves the parent class' implementation of the virtual method and calls it.
+    /// Retrieves the parent class' implementation of the virtual method and
+    /// calls it.
     fn parent_sync_method(&self, extra_text: Option<&str>) {
         unsafe {
             let data = Self::type_data();
@@ -96,7 +102,8 @@ pub trait BaseButtonImplExt: BaseButtonImpl {
         }
     }
 
-    /// Retrieves the parent class' implementation of the async virtual method and calls it.
+    /// Retrieves the parent class' implementation of the async virtual method
+    /// and calls it.
     fn parent_async_method(&self) -> PinnedFuture<Result<(), glib::Error>> {
         unsafe {
             let data = Self::type_data();
@@ -110,18 +117,18 @@ impl<T: BaseButtonImpl> BaseButtonImplExt for T {}
 
 /// This allows to implement subclasses of `BaseButton`.
 unsafe impl<T: BaseButtonImpl> IsSubclassable<T> for BaseButton {
-    /// Called whenever the class of a `BaseButton` subclass is initialized, i.e. usually right
-    /// before the first instance of it is created.
+    /// Called whenever the class of a `BaseButton` subclass is initialized,
+    /// i.e. usually right before the first instance of it is created.
     fn class_init(class: &mut glib::Class<Self>) {
         Self::parent_class_init::<T>(class.upcast_ref_mut());
 
-        // Override the virtual method function pointers to call directly into the `BaseButtonImpl`
-        // of the subclass.
+        // Override the virtual method function pointers to call directly into the
+        // `BaseButtonImpl` of the subclass.
         //
-        // Note that this is only called for actual subclasses and not `BaseButton` itself:
-        // `BaseButton` does not implement `BaseButtonImpl` and handles this inside
-        // `ObjectSubclass::class_init()` for providing the default implementation of the virtual
-        // methods.
+        // Note that this is only called for actual subclasses and not `BaseButton`
+        // itself: `BaseButton` does not implement `BaseButtonImpl` and handles
+        // this inside `ObjectSubclass::class_init()` for providing the default
+        // implementation of the virtual methods.
         let klass = class.as_mut();
         klass.sync_method = |obj, extra_text| unsafe {
             let imp = obj.unsafe_cast_ref::<T::Type>().imp();
@@ -147,8 +154,8 @@ pub struct Class {
     pub async_method: fn(&BaseButton) -> PinnedFuture<Result<(), glib::Error>>,
 }
 
-/// Make it possible to use this struct as class struct in an `ObjectSubclass` trait
-/// implementation.
+/// Make it possible to use this struct as class struct in an `ObjectSubclass`
+/// trait implementation.
 ///
 /// This is `unsafe` to enforce that the struct is `#[repr(C)]`.
 unsafe impl ClassStruct for Class {

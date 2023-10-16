@@ -1,10 +1,12 @@
 mod imp;
 
+use gtk::{
+    glib::{self, clone},
+    prelude::*,
+    subclass::prelude::*,
+};
+
 use crate::custom_layout::CustomLayout;
-use glib::clone;
-use gtk::glib;
-use gtk::prelude::*;
-use gtk::subclass::prelude::*;
 
 glib::wrapper! {
     pub struct SimpleWidget(ObjectSubclass<imp::SimpleWidget>)

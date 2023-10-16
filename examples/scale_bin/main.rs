@@ -1,7 +1,6 @@
 mod scale_bin;
 
-use gtk::glib;
-use gtk::prelude::*;
+use gtk::{glib, prelude::*};
 use scale_bin::ScaleBin;
 
 fn main() -> glib::ExitCode {

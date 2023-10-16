@@ -1,7 +1,6 @@
 use std::time::Duration;
 
-use gtk::prelude::*;
-use gtk::{gdk, glib};
+use gtk::{gdk, glib, prelude::*};
 
 pub struct Frame {
     pub texture: gdk::Texture,

@@ -1,8 +1,6 @@
 mod imp;
 
-use gtk::prelude::*;
-use gtk::subclass::prelude::*;
-use gtk::{gio, glib};
+use gtk::{gio, glib, prelude::*, subclass::prelude::*};
 
 glib::wrapper! {
     pub struct ApplicationRow(ObjectSubclass<imp::ApplicationRow>)

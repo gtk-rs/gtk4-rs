@@ -1,9 +1,6 @@
 mod imp;
 
-use gtk::{
-    gdk, glib,
-    prelude::{GLAreaExt, WidgetExt},
-};
+use gtk::{gdk, glib, prelude::*};
 
 glib::wrapper! {
     pub struct GliumGLArea(ObjectSubclass<imp::GliumGLArea>)
@@ -24,8 +21,9 @@ impl GliumGLArea {
 
 unsafe impl glium::backend::Backend for GliumGLArea {
     fn swap_buffers(&self) -> Result<(), glium::SwapBuffersError> {
-        // We're supposed to draw (and hence swap buffers) only inside the `render()` vfunc or
-        // signal, which means that GLArea will handle buffer swaps for us.
+        // We're supposed to draw (and hence swap buffers) only inside the `render()`
+        // vfunc or signal, which means that GLArea will handle buffer swaps for
+        // us.
         Ok(())
     }
 

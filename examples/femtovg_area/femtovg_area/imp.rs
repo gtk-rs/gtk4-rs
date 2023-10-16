@@ -1,10 +1,11 @@
-use gtk::{glib, prelude::*, subclass::prelude::*};
 use std::{
     cell::{Cell, RefCell},
     f32::consts::PI,
     num::NonZeroU32,
     time::Instant,
 };
+
+use gtk::{glib, prelude::*, subclass::prelude::*};
 
 const STROKE_WIDTH: u32 = 2;
 const MARGIN: u32 = 8 + STROKE_WIDTH / 2;
@@ -142,9 +143,10 @@ impl FemtoVGArea {
 
         static LOAD_FN: fn(&str) -> *const std::ffi::c_void =
             |s| epoxy::get_proc_addr(s) as *const _;
-        // SAFETY: Need to get the framebuffer id that gtk expects us to draw into, so femtovg
-        // knows which framebuffer to bind. This is safe as long as we call attach_buffers
-        // beforehand. Also unbind it here just in case, since this can be called outside render.
+        // SAFETY: Need to get the framebuffer id that gtk expects us to draw into, so
+        // femtovg knows which framebuffer to bind. This is safe as long as we
+        // call attach_buffers beforehand. Also unbind it here just in case,
+        // since this can be called outside render.
         let (mut renderer, fbo) = unsafe {
             let renderer =
                 renderer::OpenGl::new_from_function(LOAD_FN).expect("Cannot create renderer");

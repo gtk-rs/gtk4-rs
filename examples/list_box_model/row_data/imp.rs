@@ -1,13 +1,10 @@
-use glib::subclass::prelude::*;
-use gtk::{
-    glib::{self, ParamSpec, Properties, Value},
-    prelude::*,
-};
 use std::cell::{Cell, RefCell};
+
+use gtk::{glib, prelude::*, subclass::prelude::*};
 
 // The actual data structure that stores our values. This is not accessible
 // directly from the outside.
-#[derive(Default, Properties)]
+#[derive(Default, glib::Properties)]
 #[properties(wrapper_type = super::RowData)]
 pub struct RowData {
     #[property(get, set)]

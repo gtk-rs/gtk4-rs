@@ -1,8 +1,6 @@
 mod squares_widget;
 
-use gtk::glib;
-use gtk::prelude::*;
-
+use gtk::{glib, prelude::*};
 use squares_widget::SquaresWidget;
 
 fn main() -> glib::ExitCode {

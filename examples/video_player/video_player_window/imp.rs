@@ -1,7 +1,6 @@
-use gtk::subclass::prelude::*;
-use gtk::{gio, glib, CompositeTemplate};
+use gtk::{gio, glib, subclass::prelude::*};
 
-#[derive(Debug, Default, CompositeTemplate)]
+#[derive(Debug, Default, gtk::CompositeTemplate)]
 #[template(file = "video_player_window.ui")]
 pub struct VideoPlayerWindow {
     #[template_child(id = "video")]

@@ -1,8 +1,7 @@
 mod ex_button;
 
 use ex_button::ExButton;
-use gtk::glib;
-use gtk::prelude::*;
+use gtk::{glib, prelude::*};
 
 fn main() -> glib::ExitCode {
     let application = gtk::Application::builder()

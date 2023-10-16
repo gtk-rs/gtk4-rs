@@ -1,6 +1,5 @@
 mod imp;
-use gtk::glib;
-use gtk::subclass::prelude::*;
+use gtk::{glib, subclass::prelude::*};
 
 glib::wrapper! {
     pub struct GridCell(ObjectSubclass<imp::GridCell>)
