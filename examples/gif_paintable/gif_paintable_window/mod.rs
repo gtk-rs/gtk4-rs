@@ -15,6 +15,27 @@ impl GifPaintableWindow {
         glib::Object::builder().property("application", app).build()
     }
 
+    pub async fn open_file(&self) -> Result<(), Box<dyn std::error::Error>> {
+        let gif_filter = gtk::FileFilter::new();
+        gif_filter.add_mime_type("image/gif");
+        gif_filter.set_name(Some("GIF Image"));
+
+        let filters = gio::ListStore::new::<gtk::FileFilter>();
+        filters.append(&gif_filter);
+
+        let dialog = gtk::FileDialog::builder()
+            .title("Open File")
+            .accept_label("Open")
+            .modal(true)
+            .filters(&filters)
+            .build();
+
+        let file = dialog.open_future(Some(self)).await?;
+        self.set_file(file)?;
+
+        Ok(())
+    }
+
     fn set_file(&self, file: gio::File) -> Result<(), Box<dyn std::error::Error>> {
         let paintable = GifPaintable::default();
         let (bytes, _) = file.load_contents(gio::Cancellable::NONE)?;

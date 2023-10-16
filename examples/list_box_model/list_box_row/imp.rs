@@ -1,3 +1,6 @@
+// gtk::Dialog was deprecated and applications are supposed
+// to use plain gtk::Window and structure it however they wish.
+#![allow(deprecated)]
 use std::cell::RefCell;
 
 use gtk::{

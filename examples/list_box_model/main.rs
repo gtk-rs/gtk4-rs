@@ -1,3 +1,6 @@
+// gtk::Dialog was deprecated and applications are supposed
+// to use plain gtk::Window and structure it however they wish.
+#![allow(deprecated)]
 mod list_box_row;
 mod model;
 pub mod row_data;
