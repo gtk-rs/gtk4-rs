@@ -2,7 +2,6 @@ use std::cell::Cell;
 
 use gtk::{glib, prelude::*, subclass::prelude::*};
 
-// Object holding the state
 #[derive(Default, gtk::CompositeTemplate, glib::Properties)]
 #[template(file = "window.ui")]
 #[properties(wrapper_type = super::MyAppWindow)]
@@ -37,7 +36,6 @@ impl ObjectSubclass for MyAppWindow {
 
 #[glib::derived_properties]
 impl ObjectImpl for MyAppWindow {}
-
 impl WidgetImpl for MyAppWindow {}
 impl WindowImpl for MyAppWindow {}
 impl ApplicationWindowImpl for MyAppWindow {}

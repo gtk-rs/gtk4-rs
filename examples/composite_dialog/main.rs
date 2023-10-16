@@ -1,7 +1,6 @@
 mod my_app_window;
 
-use gtk::glib;
-use gtk::prelude::*;
+use gtk::{glib, prelude::*};
 use my_app_window::MyAppWindow;
 
 fn main() -> glib::ExitCode {

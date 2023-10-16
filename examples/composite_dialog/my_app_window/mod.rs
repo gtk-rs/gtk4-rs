@@ -2,7 +2,7 @@
 #[allow(deprecated)]
 mod imp;
 
-use gtk::{glib, prelude::*, subclass::prelude::ObjectSubclassIsExt};
+use gtk::{glib, prelude::*, subclass::prelude::*};
 
 glib::wrapper! {
     pub struct MyAppWindow(ObjectSubclass<imp::MyAppWindow>)
