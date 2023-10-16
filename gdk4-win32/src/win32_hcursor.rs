@@ -1,8 +1,10 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::{prelude::*, Win32HCursor, HCURSOR};
-use glib::{translate::*, types::Pointee};
 use std::ptr::NonNull;
+
+use glib::{translate::*, types::Pointee};
+
+use crate::{prelude::*, Win32HCursor, HCURSOR};
 
 impl Win32HCursor {
     #[doc(alias = "gdk_win32_hcursor_new")]

@@ -1,8 +1,10 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::{prelude::*, DrawingArea};
-use glib::translate::*;
 use std::{cell::RefCell, ptr};
+
+use glib::translate::*;
+
+use crate::{prelude::*, DrawingArea};
 
 mod sealed {
     pub trait Sealed {}
@@ -10,7 +12,8 @@ mod sealed {
 }
 
 // rustdoc-stripper-ignore-next
-/// Trait containing manually implemented methods of [`DrawingArea`](crate::DrawingArea).
+/// Trait containing manually implemented methods of
+/// [`DrawingArea`](crate::DrawingArea).
 pub trait DrawingAreaExtManual: sealed::Sealed + IsA<DrawingArea> + 'static {
     #[doc(alias = "gtk_drawing_area_set_draw_func")]
     #[doc(alias = "set_draw_func")]

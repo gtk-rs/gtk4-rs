@@ -1,8 +1,8 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::{prelude::*, Widget};
-
 use glib::{translate::*, ControlFlow, WeakRef};
+
+use crate::{prelude::*, Widget};
 
 mod sealed {
     pub trait Sealed {}

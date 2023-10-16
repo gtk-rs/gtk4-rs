@@ -1,10 +1,12 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
 // rustdoc-stripper-ignore-next
-//! Traits intended for implementing the [`Paintable`](crate::Paintable) interface.
+//! Traits intended for implementing the [`Paintable`](crate::Paintable)
+//! interface.
+
+use glib::translate::*;
 
 use crate::{prelude::*, subclass::prelude::*, Paintable, PaintableFlags, Snapshot};
-use glib::translate::*;
 
 pub trait PaintableImpl: PaintableImplExt + ObjectImpl {
     #[doc(alias = "get_current_image")]

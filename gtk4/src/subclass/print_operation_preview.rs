@@ -1,10 +1,12 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
 // rustdoc-stripper-ignore-next
-//! Traits intended for implementing the [`PrintOperationPreview`](crate::PrintOperationPreview) interface.
+//! Traits intended for implementing the
+//! [`PrintOperationPreview`](crate::PrintOperationPreview) interface.
+
+use glib::translate::*;
 
 use crate::{prelude::*, subclass::prelude::*, PageSetup, PrintContext, PrintOperationPreview};
-use glib::translate::*;
 
 pub trait PrintOperationPreviewImpl: ObjectImpl {
     fn ready(&self, context: &PrintContext) {

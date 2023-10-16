@@ -3,8 +3,9 @@
 // rustdoc-stripper-ignore-next
 //! Traits intended for subclassing [`Range`](crate::Range).
 
-use crate::{prelude::*, subclass::prelude::*, Border, Range, ScrollType};
 use glib::translate::*;
+
+use crate::{prelude::*, subclass::prelude::*, Border, Range, ScrollType};
 
 pub trait RangeImpl: RangeImplExt + WidgetImpl {
     fn adjust_bounds(&self, new_value: f64) {

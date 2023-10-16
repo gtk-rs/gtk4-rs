@@ -3,8 +3,9 @@
 // rustdoc-stripper-ignore-next
 //! Traits intended for subclassing [`Entry`](crate::Entry).
 
-use crate::{prelude::*, subclass::prelude::*, Entry};
 use glib::translate::*;
+
+use crate::{prelude::*, subclass::prelude::*, Entry};
 
 pub trait EntryImpl: EntryImplExt + WidgetImpl {
     fn activate(&self) {

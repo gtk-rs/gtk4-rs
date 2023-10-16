@@ -1,8 +1,10 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::{ListBox, ListBoxRow, Ordering};
-use glib::translate::*;
 use std::{boxed::Box as Box_, ptr};
+
+use glib::translate::*;
+
+use crate::{ListBox, ListBoxRow, Ordering};
 
 impl ListBox {
     #[doc(alias = "gtk_list_box_bind_model")]

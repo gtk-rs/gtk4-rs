@@ -1,8 +1,10 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::Bitset;
-use glib::translate::*;
 use std::marker::PhantomData;
+
+use glib::translate::*;
+
+use crate::Bitset;
 
 #[derive(Copy, Clone)]
 #[doc(alias = "GtkBitsetIter")]

@@ -1,9 +1,11 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::{prelude::*, EventControllerKey};
+use std::{boxed::Box as Box_, mem::transmute};
+
 use gdk::Key;
 use glib::{signal::connect_raw, translate::*, SignalHandlerId};
-use std::{boxed::Box as Box_, mem::transmute};
+
+use crate::{prelude::*, EventControllerKey};
 
 impl EventControllerKey {
     pub fn connect_key_pressed<

@@ -3,8 +3,9 @@
 // rustdoc-stripper-ignore-next
 //! Traits intended for subclassing [`ToggleButton`](crate::ToggleButton).
 
-use crate::{prelude::*, subclass::prelude::*, ToggleButton};
 use glib::translate::*;
+
+use crate::{prelude::*, subclass::prelude::*, ToggleButton};
 
 pub trait ToggleButtonImpl: ToggleButtonImplExt + ButtonImpl {
     fn toggled(&self) {

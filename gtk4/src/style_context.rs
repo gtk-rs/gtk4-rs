@@ -1,7 +1,8 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-pub use crate::{prelude::*, StyleContext, StyleProvider};
 use glib::translate::*;
+
+pub use crate::{prelude::*, StyleContext, StyleProvider};
 
 impl StyleContext {
     #[deprecated(note = "Use gtk::style_context_add_provider_for_display instead.")]

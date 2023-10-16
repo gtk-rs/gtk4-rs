@@ -1,15 +1,15 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
+#[cfg(feature = "xml_validation")]
+use std::collections::HashMap;
+use std::string::ToString;
+
 use proc_macro2::TokenStream;
 use proc_macro_error::{emit_call_site_error, emit_error};
 #[cfg(feature = "xml_validation")]
 use quick_xml::name::QName;
 use quote::quote;
 use syn::Data;
-
-#[cfg(feature = "xml_validation")]
-use std::collections::HashMap;
-use std::string::ToString;
 
 #[cfg(feature = "blueprint")]
 use crate::blueprint::*;

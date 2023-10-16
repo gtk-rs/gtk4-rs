@@ -1,12 +1,10 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
+use std::{future, pin::Pin, ptr};
+
+use glib::{object::IsA, translate::*, GString};
+
 use crate::Drop;
-use glib::object::IsA;
-use glib::translate::*;
-use glib::GString;
-use std::future;
-use std::pin::Pin;
-use std::ptr;
 
 impl Drop {
     #[doc(alias = "gdk_drop_read_async")]

@@ -1,11 +1,13 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::{prelude::*, DragSurface, DragSurfaceSize};
+use std::{boxed::Box as Box_, mem::transmute};
+
 use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
-use std::{boxed::Box as Box_, mem::transmute};
+
+use crate::{prelude::*, DragSurface, DragSurfaceSize};
 
 mod sealed {
     pub trait Sealed {}
@@ -13,7 +15,8 @@ mod sealed {
 }
 
 // rustdoc-stripper-ignore-next
-/// Trait containing manually implemented methods of [`DragSurface`](crate::DragSurface).
+/// Trait containing manually implemented methods of
+/// [`DragSurface`](crate::DragSurface).
 pub trait DragSurfaceExtManual: sealed::Sealed + IsA<DragSurface> {
     #[cfg(feature = "v4_12")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]

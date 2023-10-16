@@ -1,8 +1,9 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::{prelude::*, Notebook, Widget};
 use glib::translate::*;
 use libc::c_int;
+
+use crate::{prelude::*, Notebook, Widget};
 
 impl Notebook {
     #[doc(alias = "gtk_notebook_append_page")]

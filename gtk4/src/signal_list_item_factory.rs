@@ -1,17 +1,17 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
 #[cfg(not(feature = "v4_8"))]
-use crate::{prelude::*, ListItem};
-
-use crate::SignalListItemFactory;
+use std::{boxed::Box as Box_, mem::transmute};
 
 #[cfg(not(feature = "v4_8"))]
 use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
+
+use crate::SignalListItemFactory;
 #[cfg(not(feature = "v4_8"))]
-use std::{boxed::Box as Box_, mem::transmute};
+use crate::{prelude::*, ListItem};
 
 impl SignalListItemFactory {
     #[doc(alias = "bind")]

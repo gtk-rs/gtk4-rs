@@ -41,7 +41,8 @@ fn check_features() {
         println!("cargo:backends={targets}");
         for target in targets.split_whitespace() {
             // For whatever reasons,calling pkg-config --variable=targets gtk4
-            // returns broadway\ wayland\ x11. So we drop those from the configured gtk_backend
+            // returns broadway\ wayland\ x11. So we drop those from the configured
+            // gtk_backend
             println!(
                 "cargo:rustc-cfg=gdk_backend=\"{}\"",
                 target.trim_end_matches('\\')

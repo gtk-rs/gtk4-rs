@@ -3,8 +3,9 @@
 // rustdoc-stripper-ignore-next
 //! Traits intended for subclassing [`TreeModelFilter`](crate::TreeModelFilter).
 
-use crate::{prelude::*, subclass::prelude::*, TreeIter, TreeModel, TreeModelFilter};
 use glib::{translate::*, Value};
+
+use crate::{prelude::*, subclass::prelude::*, TreeIter, TreeModel, TreeModelFilter};
 
 #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 #[allow(deprecated)]

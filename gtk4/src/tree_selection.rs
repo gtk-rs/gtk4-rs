@@ -1,7 +1,8 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::TreeSelection;
 use glib::translate::*;
+
+use crate::TreeSelection;
 
 impl TreeSelection {
     #[doc(alias = "gtk_tree_selection_set_select_function")]

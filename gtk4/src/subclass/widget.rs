@@ -3,14 +3,15 @@
 // rustdoc-stripper-ignore-next
 //! Traits intended for subclassing [`Widget`](crate::Widget).
 
+use std::{boxed::Box as Box_, collections::HashMap, fmt, future::Future};
+
+use glib::{subclass::SignalId, translate::*, GString, Variant};
+
 use crate::{
     prelude::*, subclass::prelude::*, AccessibleRole, BuilderRustScope, BuilderScope,
     DirectionType, LayoutManager, Orientation, Shortcut, SizeRequestMode, Snapshot, StateFlags,
     SystemSetting, TextDirection, Tooltip, Widget,
 };
-use glib::{subclass::SignalId, translate::*, GString, Variant};
-
-use std::{boxed::Box as Box_, collections::HashMap, fmt, future::Future};
 
 #[derive(Debug, Default)]
 struct Internal {
@@ -313,7 +314,8 @@ pub trait WidgetImplExt: sealed::Sealed + ObjectSubclass {
     }
 
     // TRUE if stopping keyboard navigation is fine,
-    // FALSE if the emitting widget should try to handle the keyboard navigation attempt in its parent container(s).
+    // FALSE if the emitting widget should try to handle the keyboard navigation
+    // attempt in its parent container(s).
     fn parent_keynav_failed(&self, direction_type: DirectionType) -> bool {
         unsafe {
             let data = Self::type_data();
@@ -1300,20 +1302,22 @@ where
 
 // rustdoc-stripper-ignore-next
 /// A trait for setting up template children inside
-/// [`class_init`](glib::subclass::types::ObjectSubclass::class_init). This trait is implemented
-/// automatically by the [`CompositeTemplate`](crate::CompositeTemplate) macro.
+/// [`class_init`](glib::subclass::types::ObjectSubclass::class_init). This
+/// trait is implemented automatically by the
+/// [`CompositeTemplate`](crate::CompositeTemplate) macro.
 pub trait CompositeTemplate: WidgetImpl {
     fn bind_template(klass: &mut Self::Class);
     fn check_template_children(widget: &<Self as ObjectSubclass>::Type);
 }
 
 // rustdoc-stripper-ignore-next
-/// An extension trait for [`ClassStruct`](glib::subclass::types::ClassStruct) types to allow
-/// binding a composite template directly on `self`. This is a convenience wrapper around
-/// the [`CompositeTemplate`] trait.
+/// An extension trait for [`ClassStruct`](glib::subclass::types::ClassStruct)
+/// types to allow binding a composite template directly on `self`. This is a
+/// convenience wrapper around the [`CompositeTemplate`] trait.
 pub trait CompositeTemplateClass {
     // rustdoc-stripper-ignore-next
-    /// Binds the template callbacks from this type into the default template scope for `self`.
+    /// Binds the template callbacks from this type into the default template
+    /// scope for `self`.
     fn bind_template(&mut self);
 }
 
@@ -1331,19 +1335,21 @@ pub type TemplateCallback = (&'static str, fn(&[glib::Value]) -> Option<glib::Va
 
 // rustdoc-stripper-ignore-next
 /// A trait for setting up template callbacks inside
-/// [`class_init`](glib::subclass::types::ObjectSubclass::class_init). This trait is implemented
-/// automatically by the [`template_callbacks`](crate::template_callbacks) macro.
+/// [`class_init`](glib::subclass::types::ObjectSubclass::class_init). This
+/// trait is implemented automatically by the
+/// [`template_callbacks`](crate::template_callbacks) macro.
 pub trait CompositeTemplateCallbacks {
     const CALLBACKS: &'static [TemplateCallback];
 
     // rustdoc-stripper-ignore-next
-    /// Binds the template callbacks from this type into the default template scope for `klass`.
+    /// Binds the template callbacks from this type into the default template
+    /// scope for `klass`.
     fn bind_template_callbacks<T: WidgetClassExt>(klass: &mut T) {
         Self::add_callbacks_to_scope(&klass.rust_template_scope());
     }
     // rustdoc-stripper-ignore-next
-    /// Binds the template callbacks from this type into the default template scope for `klass`,
-    /// prepending `prefix` to each callback name.
+    /// Binds the template callbacks from this type into the default template
+    /// scope for `klass`, prepending `prefix` to each callback name.
     fn bind_template_callbacks_prefixed<T: WidgetClassExt>(klass: &mut T, prefix: &str) {
         Self::add_callbacks_to_scope_prefixed(&klass.rust_template_scope(), prefix);
     }
@@ -1355,8 +1361,8 @@ pub trait CompositeTemplateCallbacks {
         }
     }
     // rustdoc-stripper-ignore-next
-    /// Binds the template callbacks from this type into `scope`, prepending `prefix` to each
-    /// callback name.
+    /// Binds the template callbacks from this type into `scope`, prepending
+    /// `prefix` to each callback name.
     fn add_callbacks_to_scope_prefixed(scope: &BuilderRustScope, prefix: &str) {
         for (name, func) in Self::CALLBACKS {
             scope.add_callback(format!("{prefix}{name}"), func);
@@ -1365,12 +1371,13 @@ pub trait CompositeTemplateCallbacks {
 }
 
 // rustdoc-stripper-ignore-next
-/// An extension trait for [`ClassStruct`](glib::subclass::types::ClassStruct) types to allow
-/// binding private template callbacks directly on `self`. This is a convenience wrapper around
-/// the [`CompositeTemplateCallbacks`] trait.
+/// An extension trait for [`ClassStruct`](glib::subclass::types::ClassStruct)
+/// types to allow binding private template callbacks directly on `self`. This
+/// is a convenience wrapper around the [`CompositeTemplateCallbacks`] trait.
 pub trait CompositeTemplateCallbacksClass {
     // rustdoc-stripper-ignore-next
-    /// Binds the template callbacks from the subclass type into the default template scope for `self`.
+    /// Binds the template callbacks from the subclass type into the default
+    /// template scope for `self`.
     fn bind_template_callbacks(&mut self);
 }
 
@@ -1385,12 +1392,14 @@ where
 }
 
 // rustdoc-stripper-ignore-next
-/// An extension trait for [`ClassStruct`](glib::subclass::types::ClassStruct) types to allow
-/// binding the instance template callbacks directly on `self`. This is a convenience wrapper around
-/// the [`CompositeTemplateCallbacks`] trait.
+/// An extension trait for [`ClassStruct`](glib::subclass::types::ClassStruct)
+/// types to allow binding the instance template callbacks directly on `self`.
+/// This is a convenience wrapper around the [`CompositeTemplateCallbacks`]
+/// trait.
 pub trait CompositeTemplateInstanceCallbacksClass {
     // rustdoc-stripper-ignore-next
-    /// Binds the template callbacks from the instance type into the default template scope for `self`.
+    /// Binds the template callbacks from the instance type into the default
+    /// template scope for `self`.
     fn bind_template_instance_callbacks(&mut self);
 }
 

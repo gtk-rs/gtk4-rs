@@ -1,10 +1,12 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
 // rustdoc-stripper-ignore-next
-//! Traits intended for implementing the [`Scrollable`](crate::Scrollable) interface.
+//! Traits intended for implementing the [`Scrollable`](crate::Scrollable)
+//! interface.
+
+use glib::translate::*;
 
 use crate::{prelude::*, subclass::prelude::*, Border, Scrollable};
-use glib::translate::*;
 
 pub trait ScrollableImpl: WidgetImpl {
     #[doc(alias = "get_border")]

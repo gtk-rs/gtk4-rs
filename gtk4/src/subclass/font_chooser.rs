@@ -1,13 +1,14 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
 // rustdoc-stripper-ignore-next
-//! Traits intended for implementing the [`FontChooser`](crate::FontChooser) interface.
+//! Traits intended for implementing the [`FontChooser`](crate::FontChooser)
+//! interface.
 
-use crate::{prelude::*, subclass::prelude::*, FontChooser};
 use glib::{once_cell::sync::Lazy, translate::*, GString, Quark};
 use pango::{FontFace, FontFamily, FontMap};
 
 use super::PtrHolder;
+use crate::{prelude::*, subclass::prelude::*, FontChooser};
 
 #[derive(Debug)]
 pub struct FilterCallback {

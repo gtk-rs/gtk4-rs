@@ -3,8 +3,9 @@
 // rustdoc-stripper-ignore-next
 //! Traits intended for subclassing [`Frame`](crate::Frame).
 
-use crate::{prelude::*, subclass::prelude::*, Allocation, Frame};
 use glib::translate::*;
+
+use crate::{prelude::*, subclass::prelude::*, Allocation, Frame};
 
 #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 #[allow(deprecated)]

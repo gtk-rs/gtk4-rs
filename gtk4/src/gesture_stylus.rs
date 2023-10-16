@@ -1,8 +1,9 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::GestureStylus;
 use gdk::AxisUse;
 use glib::translate::*;
+
+use crate::GestureStylus;
 
 impl GestureStylus {
     #[doc(alias = "gtk_gesture_stylus_get_axes")]

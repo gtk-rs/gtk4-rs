@@ -1,7 +1,8 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::{GLContext, GLTextureBuilder, MemoryFormat, Texture};
 use glib::{prelude::*, translate::*};
+
+use crate::{GLContext, GLTextureBuilder, MemoryFormat, Texture};
 
 #[cfg(not(feature = "gl"))]
 pub type GLsync = *const libc::c_void;

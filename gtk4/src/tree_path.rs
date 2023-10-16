@@ -1,7 +1,8 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::TreePath;
 use glib::{translate::*, Slice};
+
+use crate::TreePath;
 
 impl TreePath {
     #[doc(alias = "gtk_tree_path_get_indices_with_depth")]

@@ -1,7 +1,8 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::{prelude::*, Texture};
 use glib::translate::*;
+
+use crate::{prelude::*, Texture};
 
 mod sealed {
     pub trait Sealed {}
@@ -9,7 +10,8 @@ mod sealed {
 }
 
 // rustdoc-stripper-ignore-next
-/// Trait containing manually implemented methods of [`Texture`](crate::Texture).
+/// Trait containing manually implemented methods of
+/// [`Texture`](crate::Texture).
 pub trait TextureExtManual: sealed::Sealed + IsA<Texture> + 'static {
     #[doc(alias = "gdk_texture_download")]
     fn download(&self, data: &mut [u8], stride: usize) {

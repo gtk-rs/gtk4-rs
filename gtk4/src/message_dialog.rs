@@ -1,8 +1,9 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
+use std::ptr;
+
 use glib::{translate::*, IntoGStr, IntoOptionalGStr};
 use libc::c_char;
-use std::ptr;
 
 use crate::{prelude::*, ButtonsType, DialogFlags, MessageDialog, MessageType, Widget, Window};
 

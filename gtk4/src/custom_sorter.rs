@@ -1,8 +1,10 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::{CustomSorter, Ordering};
-use glib::translate::*;
 use std::ptr;
+
+use glib::translate::*;
+
+use crate::{CustomSorter, Ordering};
 
 impl CustomSorter {
     #[doc(alias = "gtk_custom_sorter_new")]

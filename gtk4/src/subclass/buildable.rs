@@ -1,13 +1,13 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
 // rustdoc-stripper-ignore-next
-//! Traits intended for implementing the [`Buildable`](crate::Buildable) interface.
+//! Traits intended for implementing the [`Buildable`](crate::Buildable)
+//! interface.
 
-use crate::{prelude::*, subclass::prelude::*, Buildable, Builder};
-use glib::translate::*;
-use glib::{once_cell::sync::Lazy, GString, Object, Quark, Value};
+use glib::{once_cell::sync::Lazy, translate::*, GString, Object, Quark, Value};
 
 use super::PtrHolder;
+use crate::{prelude::*, subclass::prelude::*, Buildable, Builder};
 
 pub trait BuildableImpl: ObjectImpl {
     fn set_id(&self, id: &str) {
@@ -31,32 +31,31 @@ pub trait BuildableImpl: ObjectImpl {
     fn construct_child(&self, builder: &Builder, name: &str) -> Object {
         self.parent_construct_child(builder, name)
     }
-    /*
-    Only useful for custom tags, not something the application developer has to often implement
-    and needs more thinking in terms of how to handle both BuildableParser & the various ptr you're supposed to pass around
-    fn custom_tag_start(
-        &self,
-        builder: &Builder,
-        child: Option<&Object>,
-        tagname: &str,
-        parser: BuildableParser,
-        data: ptr,
-    );
-    fn custom_tag_end(
-        &self,
-        builder: &Builder,
-        child: Option<&Object>,
-        tagname: &str,
-        data: ptr,
-    );
-    fn custom_finished(
-        &self,
-        builder: &Builder,
-        child: Option<&Object>,
-        tagname: &str,
-        data: ptr,
-    );
-    */
+    // Only useful for custom tags, not something the application developer has to
+    // often implement and needs more thinking in terms of how to handle both
+    // BuildableParser & the various ptr you're supposed to pass around
+    // fn custom_tag_start(
+    // &self,
+    // builder: &Builder,
+    // child: Option<&Object>,
+    // tagname: &str,
+    // parser: BuildableParser,
+    // data: ptr,
+    // );
+    // fn custom_tag_end(
+    // &self,
+    // builder: &Builder,
+    // child: Option<&Object>,
+    // tagname: &str,
+    // data: ptr,
+    // );
+    // fn custom_finished(
+    // &self,
+    // builder: &Builder,
+    // child: Option<&Object>,
+    // tagname: &str,
+    // data: ptr,
+    // );
 }
 
 mod sealed {
@@ -123,7 +122,8 @@ pub trait BuildableImplExt: sealed::Sealed + ObjectSubclass {
             let parent_iface =
                 type_data.as_ref().parent_interface::<Buildable>() as *const ffi::GtkBuildableIface;
 
-            // gtk::Builder falls back to using ObjectExt::set_property if the method is not implemented
+            // gtk::Builder falls back to using ObjectExt::set_property if the method is not
+            // implemented
             if let Some(func) = (*parent_iface).set_buildable_property {
                 func(
                     self.obj().unsafe_cast_ref::<Buildable>().to_glib_none().0,
@@ -202,11 +202,10 @@ unsafe impl<T: BuildableImpl> IsImplementable<T> for Buildable {
         iface.construct_child = Some(buildable_construct_child::<T>);
         iface.parser_finished = Some(buildable_parser_finished::<T>);
         iface.get_internal_child = Some(buildable_get_internal_child::<T>);
-        /* for the future
-        iface.custom_tag_start = Some(buildable_custom_tag_start::<T>);
-        iface.custom_tag_end = Some(buildable_custom_tag_end::<T>);
-        iface.custom_finished = Some(buildable_custom_finished::<T>);
-        */
+        // for the future
+        // iface.custom_tag_start = Some(buildable_custom_tag_start::<T>);
+        // iface.custom_tag_end = Some(buildable_custom_tag_end::<T>);
+        // iface.custom_finished = Some(buildable_custom_finished::<T>);
     }
 }
 
@@ -300,7 +299,8 @@ unsafe extern "C" fn buildable_get_internal_child<T: BuildableImpl>(
 
     let ret = imp.internal_child(&from_glib_borrow(builderptr), &name);
 
-    // transfer none: ensure the internal child stays alive for as long as the object building it
+    // transfer none: ensure the internal child stays alive for as long as the
+    // object building it
     let ret = ret.into_glib_ptr();
     imp.obj().set_qdata(
         *BUILDABLE_GET_INTERNAL_CHILD_QUARK,

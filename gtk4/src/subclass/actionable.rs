@@ -1,10 +1,12 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
 // rustdoc-stripper-ignore-next
-//! Traits intended for implementing the [`Actionable`](crate::Actionable) interface.
+//! Traits intended for implementing the [`Actionable`](crate::Actionable)
+//! interface.
+
+use glib::{translate::*, GString, Variant};
 
 use crate::{prelude::*, subclass::prelude::*, Actionable};
-use glib::{translate::*, GString, Variant};
 
 pub trait ActionableImpl: WidgetImpl {
     #[doc(alias = "get_action_name")]

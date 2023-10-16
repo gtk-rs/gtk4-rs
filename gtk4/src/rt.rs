@@ -1,10 +1,11 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use glib::translate::*;
 use std::{
     cell::Cell,
     sync::atomic::{AtomicBool, Ordering},
 };
+
+use glib::translate::*;
 
 #[cfg(target_os = "macos")]
 extern "C" {
@@ -71,7 +72,8 @@ pub fn is_initialized_main_thread() -> bool {
     }
 }
 
-/// Informs this crate that GTK has been initialized and the current thread is the main one.
+/// Informs this crate that GTK has been initialized and the current thread is
+/// the main one.
 ///
 /// # Panics
 ///
@@ -96,7 +98,8 @@ pub unsafe fn set_initialized() {
     } else if !{ from_glib(ffi::gtk_is_initialized()) } {
         panic!("GTK was not actually initialized");
     }
-    //  OS X has its own notion of the main thread and init must be called on that thread.
+    //  OS X has its own notion of the main thread and init must be called on that
+    // thread.
     #[cfg(target_os = "macos")]
     {
         assert_ne!(

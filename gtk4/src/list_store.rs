@@ -1,9 +1,11 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::{prelude::*, ListStore, TreeIter, TreeModel};
+use std::ptr;
+
 use glib::{translate::*, ToValue, Type, Value};
 use libc::c_int;
-use std::ptr;
+
+use crate::{prelude::*, ListStore, TreeIter, TreeModel};
 
 impl ListStore {
     #[doc(alias = "gtk_list_store_newv")]

@@ -1,7 +1,8 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::{prelude::*, Surface};
 use glib::translate::*;
+
+use crate::{prelude::*, Surface};
 
 mod sealed {
     pub trait Sealed {}
@@ -9,7 +10,8 @@ mod sealed {
 }
 
 // rustdoc-stripper-ignore-next
-/// Trait containing manually implemented methods of [`Surface`](crate::Surface).
+/// Trait containing manually implemented methods of
+/// [`Surface`](crate::Surface).
 pub trait SurfaceExtManual: sealed::Sealed + IsA<Surface> + 'static {
     #[doc(alias = "gdk_surface_create_similar_surface")]
     fn create_similar_surface(

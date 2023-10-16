@@ -1,7 +1,8 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::{prelude::*, Constraint, ConstraintLayout, Widget};
 use glib::{translate::*, IntoStrV};
+
+use crate::{prelude::*, Constraint, ConstraintLayout, Widget};
 
 impl ConstraintLayout {
     #[doc(alias = "gtk_constraint_layout_add_constraints_from_descriptionv")]

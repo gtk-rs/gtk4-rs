@@ -1,13 +1,13 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::WaylandSeat;
+#[cfg(feature = "wayland_crate")]
+#[cfg_attr(docsrs, doc(cfg(feature = "wayland_crate")))]
+use wayland_client::{backend::ObjectId, protocol::wl_seat::WlSeat, Proxy};
 #[cfg(feature = "wayland_crate")]
 #[cfg_attr(docsrs, doc(cfg(feature = "wayland_crate")))]
 use {crate::prelude::*, glib::translate::*};
 
-#[cfg(feature = "wayland_crate")]
-#[cfg_attr(docsrs, doc(cfg(feature = "wayland_crate")))]
-use wayland_client::{backend::ObjectId, protocol::wl_seat::WlSeat, Proxy};
+use crate::WaylandSeat;
 
 impl WaylandSeat {
     #[doc(alias = "gdk_wayland_seat_get_wl_seat")]

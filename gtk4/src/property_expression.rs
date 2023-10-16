@@ -1,7 +1,8 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::PropertyExpression;
 use glib::translate::*;
+
+use crate::PropertyExpression;
 
 define_expression!(PropertyExpression, ffi::GtkPropertyExpression);
 
@@ -18,9 +19,10 @@ impl std::fmt::Debug for PropertyExpression {
 
 #[cfg(test)]
 mod tests {
+    use glib::StaticType;
+
     use super::*;
     use crate as gtk4;
-    use glib::StaticType;
 
     #[test]
     fn test_property_expression() {

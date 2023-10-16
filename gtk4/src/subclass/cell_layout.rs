@@ -1,12 +1,14 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
 // rustdoc-stripper-ignore-next
-//! Traits intended for implementing the [`CellLayout`](crate::CellLayout) interface.
+//! Traits intended for implementing the [`CellLayout`](crate::CellLayout)
+//! interface.
+
+use glib::{once_cell::sync::Lazy, translate::*, Quark};
 
 use crate::{
     prelude::*, subclass::prelude::*, CellArea, CellLayout, CellRenderer, TreeIter, TreeModel,
 };
-use glib::{once_cell::sync::Lazy, translate::*, Quark};
 
 #[derive(Debug)]
 pub struct CellLayoutDataCallback {

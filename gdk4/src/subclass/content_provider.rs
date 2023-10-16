@@ -3,9 +3,11 @@
 // rustdoc-stripper-ignore-next
 //! Traits intended for subclassing [`ContentProvider`](crate::ContentProvider).
 
-use crate::{prelude::*, subclass::prelude::*, Clipboard, ContentFormats, ContentProvider};
-use glib::{translate::*, Value};
 use std::{future::Future, pin::Pin};
+
+use glib::{translate::*, Value};
+
+use crate::{prelude::*, subclass::prelude::*, Clipboard, ContentFormats, ContentProvider};
 
 pub trait ContentProviderImpl: ContentProviderImplExt + ObjectImpl {
     fn content_changed(&self) {

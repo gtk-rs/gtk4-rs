@@ -1,7 +1,8 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use glib::translate::*;
 use std::boxed::Box as Box_;
+
+use glib::translate::*;
 
 use crate::{prelude::*, TreeIter, TreeModel, TreeModelFilter, TreePath};
 
@@ -27,7 +28,8 @@ mod sealed {
 }
 
 // rustdoc-stripper-ignore-next
-/// Trait containing manually implemented methods of [`TreeModelFilter`](crate::TreeModelFilter).
+/// Trait containing manually implemented methods of
+/// [`TreeModelFilter`](crate::TreeModelFilter).
 #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 #[allow(deprecated)]
 pub trait TreeModelFilterExtManual: sealed::Sealed + IsA<TreeModelFilter> + 'static {

@@ -3,8 +3,9 @@
 // rustdoc-stripper-ignore-next
 //! Traits intended for subclassing [`MediaFile`](crate::MediaFile).
 
-use crate::{prelude::*, subclass::prelude::*, MediaFile};
 use glib::translate::*;
+
+use crate::{prelude::*, subclass::prelude::*, MediaFile};
 
 pub trait MediaFileImpl: MediaFileImplExt + MediaStreamImpl {
     fn close(&self) {

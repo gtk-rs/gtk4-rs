@@ -1,6 +1,5 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::{prelude::*, NativeDialog, ResponseType};
 use std::{
     cell::{Cell, RefCell},
     future::Future,
@@ -8,13 +7,16 @@ use std::{
     rc::Rc,
 };
 
+use crate::{prelude::*, NativeDialog, ResponseType};
+
 mod sealed {
     pub trait Sealed {}
     impl<T: super::IsA<super::NativeDialog>> Sealed for T {}
 }
 
 // rustdoc-stripper-ignore-next
-/// Trait containing manually implemented methods of [`NativeDialog`](crate::NativeDialog).
+/// Trait containing manually implemented methods of
+/// [`NativeDialog`](crate::NativeDialog).
 #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 #[allow(deprecated)]
 pub trait NativeDialogExtManual: sealed::Sealed + IsA<NativeDialog> {
@@ -28,8 +30,8 @@ pub trait NativeDialogExtManual: sealed::Sealed + IsA<NativeDialog> {
     ///
     /// # async fn run() {
     /// let dialog = gtk::FileChooserNative::builder()
-    ///    .title("Select a File")
-    ///    .build();
+    ///     .title("Select a File")
+    ///     .build();
     ///
     /// dialog.run_future().await;
     /// println!("Selected file: {:?}", dialog.file());
@@ -60,7 +62,8 @@ pub trait NativeDialogExtManual: sealed::Sealed + IsA<NativeDialog> {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Shows the dialog and calls the callback when a response has been received.
+    /// Shows the dialog and calls the callback when a response has been
+    /// received.
     ///
     /// **Important**: this function isn't blocking.
     ///
@@ -69,8 +72,8 @@ pub trait NativeDialogExtManual: sealed::Sealed + IsA<NativeDialog> {
     /// use gtk::prelude::*;
     ///
     /// let dialog = gtk::FileChooserNative::builder()
-    ///    .title("Select a File")
-    ///    .build();
+    ///     .title("Select a File")
+    ///     .build();
     ///
     /// dialog.run_async(move |obj, answer| {
     ///     obj.destroy();

@@ -1,11 +1,13 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::{prelude::*, Toplevel, ToplevelSize};
+use std::{boxed::Box as Box_, mem::transmute};
+
 use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
-use std::{boxed::Box as Box_, mem::transmute};
+
+use crate::{prelude::*, Toplevel, ToplevelSize};
 
 mod sealed {
     pub trait Sealed {}
@@ -13,7 +15,8 @@ mod sealed {
 }
 
 // rustdoc-stripper-ignore-next
-/// Trait containing manually implemented methods of [`Toplevel`](crate::Toplevel).
+/// Trait containing manually implemented methods of
+/// [`Toplevel`](crate::Toplevel).
 pub trait ToplevelExtManual: sealed::Sealed + IsA<Toplevel> {
     fn connect_compute_size<F: Fn(&Toplevel, &mut ToplevelSize) + 'static>(
         &self,

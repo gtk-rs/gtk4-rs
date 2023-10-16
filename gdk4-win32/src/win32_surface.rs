@@ -1,8 +1,8 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::{prelude::*, Win32Surface, HWND};
-
 use glib::translate::*;
+
+use crate::{prelude::*, Win32Surface, HWND};
 
 impl Win32Surface {
     #[doc(alias = "gdk_win32_surface_lookup_for_display")]

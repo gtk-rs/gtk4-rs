@@ -1,7 +1,8 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::{prelude::*, ShortcutTrigger};
 use glib::translate::*;
+
+use crate::{prelude::*, ShortcutTrigger};
 
 mod sealed {
     pub trait Sealed {}
@@ -9,7 +10,8 @@ mod sealed {
 }
 
 // rustdoc-stripper-ignore-next
-/// Trait containing manually implemented methods of [`ShortcutTrigger`](crate::ShortcutTrigger).
+/// Trait containing manually implemented methods of
+/// [`ShortcutTrigger`](crate::ShortcutTrigger).
 pub trait ShortcutTriggerExtManual: sealed::Sealed + IsA<ShortcutTrigger> {
     #[doc(alias = "gtk_shortcut_trigger_compare")]
     fn compare(&self, trigger2: &impl IsA<ShortcutTrigger>) -> std::cmp::Ordering {

@@ -1,7 +1,8 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::{prelude::*, CellArea, CellRenderer};
 use glib::{translate::*, value::FromValue, IntoGStr, Value};
+
+use crate::{prelude::*, CellArea, CellRenderer};
 
 mod sealed {
     pub trait Sealed {}
@@ -9,7 +10,8 @@ mod sealed {
 }
 
 // rustdoc-stripper-ignore-next
-/// Trait containing manually implemented methods of [`CellArea`](crate::CellArea).
+/// Trait containing manually implemented methods of
+/// [`CellArea`](crate::CellArea).
 #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 #[allow(deprecated)]
 pub trait CellAreaExtManual: sealed::Sealed + IsA<CellArea> {
@@ -56,7 +58,8 @@ pub trait CellAreaExtManual: sealed::Sealed + IsA<CellArea> {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Similar to [`Self::cell_get_value`] but panics if the value is of a different type.
+    /// Similar to [`Self::cell_get_value`] but panics if the value is of a
+    /// different type.
     #[doc(alias = "gtk_cell_area_cell_get_valist")]
     #[doc(alias = "gtk_cell_area_cell_get_property")]
     fn cell_get<V: for<'b> FromValue<'b> + 'static>(

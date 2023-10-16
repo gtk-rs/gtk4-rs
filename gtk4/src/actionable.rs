@@ -1,7 +1,8 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::{prelude::*, Actionable};
 use glib::{translate::*, Variant};
+
+use crate::{prelude::*, Actionable};
 
 mod sealed {
     pub trait Sealed {}
@@ -9,7 +10,8 @@ mod sealed {
 }
 
 // rustdoc-stripper-ignore-next
-/// Trait containing manually implemented methods of [`Actionable`](crate::Actionable).
+/// Trait containing manually implemented methods of
+/// [`Actionable`](crate::Actionable).
 pub trait ActionableExtManual: sealed::Sealed + IsA<Actionable> + 'static {
     #[doc(alias = "gtk_actionable_set_action_target")]
     #[doc(alias = "gtk_actionable_set_action_target_value")]

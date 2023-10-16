@@ -1,10 +1,12 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
 // rustdoc-stripper-ignore-next
-//! Traits intended for implementing the [`TreeDragSource`](crate::TreeDragSource) interface.
+//! Traits intended for implementing the
+//! [`TreeDragSource`](crate::TreeDragSource) interface.
+
+use glib::translate::*;
 
 use crate::{prelude::*, subclass::prelude::*, TreeDragSource, TreePath};
-use glib::translate::*;
 
 #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 #[allow(deprecated)]

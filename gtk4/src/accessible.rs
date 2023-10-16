@@ -1,17 +1,19 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
+use glib::{translate::*, Value};
+
 use crate::{
     prelude::*, Accessible, AccessibleAutocomplete, AccessibleInvalidState, AccessibleProperty,
     AccessibleRelation, AccessibleSort, AccessibleState, AccessibleTristate, Orientation,
 };
-use glib::{translate::*, Value};
 mod sealed {
     pub trait Sealed {}
     impl<T: super::IsA<super::Accessible>> Sealed for T {}
 }
 
 // rustdoc-stripper-ignore-next
-/// Trait containing manually implemented methods of [`Accessible`](crate::Accessible).
+/// Trait containing manually implemented methods of
+/// [`Accessible`](crate::Accessible).
 ///
 /// ```no_run
 /// # use gtk4 as gtk;
@@ -22,12 +24,10 @@ mod sealed {
 ///     gtk::accessible::Property::Description("Test"),
 ///     gtk::accessible::Property::Orientation(gtk::Orientation::Horizontal),
 /// ]);
-/// entry.update_relation(&[
-///     gtk::accessible::Relation::LabelledBy(&[label.upcast_ref()]),
-/// ]);
-/// entry.update_state(&[
-///     gtk::accessible::State::Invalid(gtk::AccessibleInvalidState::Grammar),
-/// ]);
+/// entry.update_relation(&[gtk::accessible::Relation::LabelledBy(&[label.upcast_ref()])]);
+/// entry.update_state(&[gtk::accessible::State::Invalid(
+///     gtk::AccessibleInvalidState::Grammar,
+/// )]);
 /// ```
 pub trait AccessibleExtManual: sealed::Sealed + IsA<Accessible> {
     #[doc(alias = "gtk_accessible_update_property")]
@@ -97,7 +97,8 @@ pub trait AccessibleExtManual: sealed::Sealed + IsA<Accessible> {
 impl<O: IsA<Accessible>> AccessibleExtManual for O {}
 
 // rustdoc-stripper-ignore-next
-/// Type-safe enum container for [`AccessibleProperty`](crate::AccessibleProperty) values.
+/// Type-safe enum container for
+/// [`AccessibleProperty`](crate::AccessibleProperty) values.
 #[derive(Debug)]
 #[non_exhaustive]
 pub enum Property<'p> {
@@ -151,7 +152,8 @@ impl<'p> Property<'p> {
 }
 
 // rustdoc-stripper-ignore-next
-/// Type-safe enum container for [`AccessibleRelation`](crate::AccessibleRelation) values.
+/// Type-safe enum container for
+/// [`AccessibleRelation`](crate::AccessibleRelation) values.
 #[derive(Debug)]
 #[non_exhaustive]
 pub enum Relation<'r> {
@@ -219,7 +221,8 @@ impl<'r> Relation<'r> {
 }
 
 // rustdoc-stripper-ignore-next
-/// Type-safe enum container for [`AccessibleState`](crate::AccessibleState) values.
+/// Type-safe enum container for [`AccessibleState`](crate::AccessibleState)
+/// values.
 #[derive(Debug)]
 #[non_exhaustive]
 pub enum State {

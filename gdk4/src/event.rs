@@ -1,8 +1,10 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::{Event, EventType};
-use glib::{translate::*, StaticType};
 use std::{fmt, mem};
+
+use glib::{translate::*, StaticType};
+
+use crate::{Event, EventType};
 
 impl Event {
     #[inline]

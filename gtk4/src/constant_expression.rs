@@ -1,8 +1,8 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
+use glib::{translate::*, value::FromValue, ToValue};
+
 use crate::ConstantExpression;
-use glib::translate::*;
-use glib::{value::FromValue, ToValue};
 
 define_expression!(ConstantExpression, ffi::GtkConstantExpression);
 
@@ -19,7 +19,8 @@ impl ConstantExpression {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Similar to [`Self::value`] but panics if the value is of a different type.
+    /// Similar to [`Self::value`] but panics if the value is of a different
+    /// type.
     #[doc(alias = "gtk_constant_expression_get_value")]
     #[doc(alias = "get_value")]
     pub fn value_as<V: for<'b> FromValue<'b> + 'static>(&self) -> V {

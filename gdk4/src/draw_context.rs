@@ -1,7 +1,8 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::{prelude::*, DrawContext};
 use glib::translate::*;
+
+use crate::{prelude::*, DrawContext};
 
 mod sealed {
     pub trait Sealed {}
@@ -9,7 +10,8 @@ mod sealed {
 }
 
 // rustdoc-stripper-ignore-next
-/// Trait containing manually implemented methods of [`DrawContext`](crate::DrawContext).
+/// Trait containing manually implemented methods of
+/// [`DrawContext`](crate::DrawContext).
 pub trait DrawContextExtManual: sealed::Sealed + IsA<DrawContext> + 'static {
     #[doc(alias = "gdk_draw_context_get_frame_region")]
     #[doc(alias = "get_frame_region")]

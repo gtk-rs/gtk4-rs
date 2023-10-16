@@ -3,10 +3,10 @@
 // rustdoc-stripper-ignore-next
 //! Traits intended for subclassing [`EntryBuffer`](crate::EntryBuffer).
 
-use crate::{prelude::*, subclass::prelude::*, EntryBuffer};
 use glib::{once_cell::sync::Lazy, translate::*, GString};
 
 use super::PtrHolder;
+use crate::{prelude::*, subclass::prelude::*, EntryBuffer};
 
 pub trait EntryBufferImpl: EntryBufferImplExt + ObjectImpl {
     fn delete_text(&self, position: u32, n_chars: Option<u32>) -> u32 {
