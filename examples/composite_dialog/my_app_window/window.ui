@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<interface>
+  <template class="MyAppWindow" parent="GtkApplicationWindow">
+    <property name="default-height">300</property>
+    <property name="default-width">400</property>
+    <property name="hexpand">True</property>
+    <property name="show-menubar">True</property>
+    <property name="title">Composite Template Dialog</property>
+    <property name="vexpand">True</property>
+    <signal name="notify::counter" handler="popup_dialog" swapped="true"/>
+    <child>
+      <object class="GtkBox">
+        <property name="halign">center</property>
+        <property name="margin-top">10</property>
+        <property name="spacing">5</property>      
+        <property name="orientation">vertical</property>
+        <child>
+          <object class="GtkLabel">
+            <property name="label">Click until you reach 3</property>
+            <style>
+              <class name="large-title"/>
+            </style>
+          </object>
+        </child>
+        <child>
+          <object class="GtkBox">
+            <property name="halign">center</property>
+            <property name="valign">center</property>
+            <property name="spacing">10</property>      
+            <child>
+              <object class="GtkButton" id="plus">
+                <signal name="clicked" handler="add_to_counter" swapped="true"/>
+                <property name="label">+</property>
+                <property name="focus-on-click">True</property>
+              </object>                                      
+            </child>
+            <child>
+              <object class="GtkButton" id="minus">
+                <signal name="clicked" handler="sub_to_counter" swapped="true"/>
+                <property name="label">-</property>
+                <property name="focus-on-click">True</property>
+              </object>                                      
+            </child>
+          </object>
+        </child>
+        <child>
+              <object class="GtkLabel" id="count_label">
+                <property name="label"
+                  bind-source="MyAppWindow"
+                  bind-property="counter"
+                  bind-flags="sync-create"/>
+                <property name="justify">center</property>
+                <property name="margin-end">5</property>
+                <property name="margin-start">5</property>
+                <property name="margin-top">20</property>
+                <property name="margin-bottom">5</property>
+              </object>
+        </child>
+      </object>
+    </child>   
+  </template>
+</interface>

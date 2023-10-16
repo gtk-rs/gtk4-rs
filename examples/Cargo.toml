@@ -58,6 +58,10 @@ name = "composite_template"
 path = "composite_template/main.rs"
 
 [[bin]]
+name = "composite_dialog"
+path = "composite_dialog/main.rs"
+
+[[bin]]
 name = "confetti_snapshot_animation"
 path = "confetti_snapshot_animation/main.rs"
 
@@ -187,4 +191,3 @@ path = "video_player/main.rs"
 [[bin]]
 name = "virtual_methods"
 path = "virtual_methods/main.rs"
-
