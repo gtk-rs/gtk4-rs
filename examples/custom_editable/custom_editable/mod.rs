@@ -5,7 +5,9 @@ use gtk::{glib, prelude::*};
 use crate::custom_tag::CustomTag;
 
 glib::wrapper! {
-    pub struct CustomEditable(ObjectSubclass<imp::CustomEditable>) @extends gtk::Widget, @implements gtk::Editable;
+    pub struct CustomEditable(ObjectSubclass<imp::CustomEditable>)
+        @extends gtk::Widget,
+        @implements gtk::Editable;
 }
 
 impl Default for CustomEditable {

@@ -3,7 +3,8 @@ mod imp;
 use gtk::{glib, prelude::*, subclass::prelude::*};
 
 glib::wrapper! {
-    pub struct SqueezerBin(ObjectSubclass<imp::SqueezerBin>) @extends gtk::Widget;
+    pub struct SqueezerBin(ObjectSubclass<imp::SqueezerBin>)
+        @extends gtk::Widget;
 }
 
 impl SqueezerBin {
