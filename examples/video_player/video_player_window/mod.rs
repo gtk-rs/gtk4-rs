@@ -1,6 +1,6 @@
 mod imp;
 
-use gtk::{gio, glib, subclass::prelude::*};
+use gtk::{gio, glib, prelude::*, subclass::prelude::*};
 
 glib::wrapper! {
     pub struct VideoPlayerWindow(ObjectSubclass<imp::VideoPlayerWindow>)
@@ -9,7 +9,7 @@ glib::wrapper! {
 }
 
 impl VideoPlayerWindow {
-    pub fn new<P: glib::IsA<gtk::Application>>(app: &P) -> Self {
+    pub fn new<P: IsA<gtk::Application>>(app: &P) -> Self {
         glib::Object::builder().property("application", app).build()
     }
 

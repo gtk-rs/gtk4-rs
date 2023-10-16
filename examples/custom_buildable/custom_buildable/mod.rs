@@ -9,13 +9,13 @@ glib::wrapper! {
 }
 
 impl CustomBuildable {
-    pub fn add_suffix<T: glib::IsA<gtk::Widget>>(&self, widget: &T) {
+    pub fn add_suffix<T: IsA<gtk::Widget>>(&self, widget: &T) {
         let imp = self.imp();
         imp.suffixes.append(widget);
         imp.suffixes.set_visible(true);
     }
 
-    pub fn add_prefix<T: glib::IsA<gtk::Widget>>(&self, widget: &T) {
+    pub fn add_prefix<T: IsA<gtk::Widget>>(&self, widget: &T) {
         let imp = self.imp();
         imp.prefixes.append(widget);
         imp.prefixes.set_visible(true);
