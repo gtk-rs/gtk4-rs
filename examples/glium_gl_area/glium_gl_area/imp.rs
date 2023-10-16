@@ -1,12 +1,10 @@
+use std::{cell::RefCell, rc::Rc};
+
 use glium::{
     implement_vertex, index::PrimitiveType, program, uniform, Frame, IndexBuffer, Surface,
     VertexBuffer,
 };
-use gtk::glib;
-use gtk::prelude::*;
-use gtk::subclass::prelude::*;
-use std::cell::RefCell;
-use std::rc::Rc;
+use gtk::{glib, prelude::*, subclass::prelude::*};
 
 #[derive(Copy, Clone)]
 struct Vertex {
@@ -151,12 +149,13 @@ impl WidgetImpl for GliumGLArea {
             return;
         }
 
-        // SAFETY: we know the GdkGLContext exists as we checked for errors above, and we haven't
-        // done any operations on it which could lead to glium's state mismatch. (In theory, GTK
-        // doesn't do any state-breaking operations on the context either.)
+        // SAFETY: we know the GdkGLContext exists as we checked for errors above, and
+        // we haven't done any operations on it which could lead to glium's
+        // state mismatch. (In theory, GTK doesn't do any state-breaking
+        // operations on the context either.)
         //
-        // We will also ensure glium's context does not outlive the GdkGLContext by destroying it in
-        // `unrealize()`.
+        // We will also ensure glium's context does not outlive the GdkGLContext by
+        // destroying it in `unrealize()`.
         let context =
             unsafe { glium::backend::Context::new(widget.clone(), true, Default::default()) }
                 .unwrap();

@@ -1,8 +1,6 @@
-use gtk::prelude::*;
-use gtk::subclass::prelude::*;
-use gtk::{gdk, glib, graphene};
-
 use std::str::FromStr;
+
+use gtk::{gdk, glib, graphene, prelude::*, subclass::prelude::*};
 
 #[derive(Default)]
 pub struct SquaresWidget {}

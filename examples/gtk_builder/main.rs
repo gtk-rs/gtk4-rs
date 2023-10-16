@@ -1,5 +1,4 @@
-use gtk::prelude::*;
-use gtk::{glib, Application, ApplicationWindow, Builder, Button};
+use gtk::{glib, prelude::*};
 
 fn main() -> glib::ExitCode {
     let application = gtk::Application::builder()
@@ -9,13 +8,17 @@ fn main() -> glib::ExitCode {
     application.run()
 }
 
-fn build_ui(application: &Application) {
+fn build_ui(application: &gtk::Application) {
     let ui_src = include_str!("gtk_builder.ui");
-    let builder = Builder::from_string(ui_src);
+    let builder = gtk::Builder::from_string(ui_src);
 
-    let window: ApplicationWindow = builder.object("window").expect("Couldn't get window");
+    let window = builder
+        .object::<gtk::ApplicationWindow>("window")
+        .expect("Couldn't get window");
     window.set_application(Some(application));
-    let bigbutton: Button = builder.object("button").expect("Couldn't get button");
+    let bigbutton = builder
+        .object::<gtk::Button>("button")
+        .expect("Couldn't get button");
 
     bigbutton.connect_clicked(glib::clone!(@weak window => move |_| {
         gtk::AlertDialog::builder()

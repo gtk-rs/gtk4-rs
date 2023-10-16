@@ -1,8 +1,8 @@
 mod imp;
 
+use gtk::{glib, prelude::*};
+
 use crate::custom_tag::CustomTag;
-use gtk::glib;
-use gtk::prelude::*;
 
 glib::wrapper! {
     pub struct CustomEditable(ObjectSubclass<imp::CustomEditable>) @extends gtk::Widget, @implements gtk::Editable;

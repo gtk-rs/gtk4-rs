@@ -1,10 +1,7 @@
 mod rotation_bin;
 
+use gtk::{glib, glib::clone, prelude::*};
 use rotation_bin::{Rotation, RotationBin};
-
-use gtk::glib;
-use gtk::glib::clone;
-use gtk::prelude::*;
 
 fn main() -> glib::ExitCode {
     let application = gtk::Application::builder()

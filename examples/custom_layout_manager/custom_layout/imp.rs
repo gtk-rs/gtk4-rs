@@ -1,9 +1,11 @@
+use std::{
+    cell::{Cell, RefCell},
+    f64::consts::PI,
+};
+
+use gtk::{glib, prelude::*, subclass::prelude::*};
+
 use crate::TOTAL_COLORS;
-use gtk::glib;
-use gtk::prelude::*;
-use gtk::subclass::prelude::*;
-use std::cell::{Cell, RefCell};
-use std::f64::consts::PI;
 
 const N_GRID_COLUMNS: u32 = 4;
 

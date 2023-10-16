@@ -6,9 +6,8 @@ use gtk::glib;
 mod imp {
     use super::*;
     use gtk::subclass::prelude::*;
-    use gtk::CompositeTemplate;
 
-    #[derive(Debug, Default, CompositeTemplate)]
+    #[derive(Debug, Default, gtk::CompositeTemplate)]
     #[template(string = r#"
     <interface>
       <template class="MyWidget" parent="GtkWidget">

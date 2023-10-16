@@ -1,9 +1,8 @@
 mod imp;
 
+use gtk::{gdk, glib, graphene, prelude::*, subclass::prelude::*};
+
 use crate::{Explosion, ExplosionParameters};
-use glib::subclass::prelude::*;
-use gtk::prelude::*;
-use gtk::{gdk, glib, graphene};
 
 glib::wrapper! {
     pub struct AnimatedExplosion(ObjectSubclass<imp::AnimatedExplosion>);

@@ -1,10 +1,8 @@
 //! Defines the implementation of our model
 
-use gio::subclass::prelude::*;
-use gtk::{gio, glib, prelude::*};
-
 use std::cell::RefCell;
 
+use gtk::{gio, glib, prelude::*, subclass::prelude::*};
 // Use `im-rc::Vector` here as it has much better insert/delete performance than a plain `Vec`.
 use im_rc::Vector;
 

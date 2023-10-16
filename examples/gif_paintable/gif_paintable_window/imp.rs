@@ -1,7 +1,6 @@
-use gtk::subclass::prelude::*;
-use gtk::{glib, prelude::*, CompositeTemplate};
+use gtk::{glib, prelude::*, subclass::prelude::*};
 
-#[derive(Debug, CompositeTemplate)]
+#[derive(Debug, gtk::CompositeTemplate)]
 #[template(file = "gif_paintable_window.ui")]
 pub struct GifPaintableWindow {
     #[template_child]

@@ -3,8 +3,7 @@ mod custom_layout_child;
 mod simple_widget;
 use std::str::FromStr;
 
-use gtk::prelude::*;
-use gtk::{gdk, glib};
+use gtk::{gdk, glib, prelude::*};
 
 const COLORS: [&str; 16] = [
     "red",

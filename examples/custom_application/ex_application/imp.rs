@@ -1,9 +1,8 @@
-use gtk::glib;
-use gtk::prelude::*;
-use gtk::subclass::prelude::*;
+use gtk::{glib, prelude::*, subclass::prelude::*};
 
 #[derive(Debug, Default)]
-// By implementing Default we don't have to provide a `new` fn in our ObjectSubclass impl.
+// By implementing Default we don't have to provide a `new` fn in our
+// ObjectSubclass impl.
 pub struct ExApplication {}
 
 #[glib::object_subclass]

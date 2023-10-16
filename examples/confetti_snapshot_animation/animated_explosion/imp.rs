@@ -1,7 +1,8 @@
-use crate::Explosion;
-use gtk::glib;
-use gtk::subclass::prelude::*;
 use std::cell::{Cell, RefCell};
+
+use gtk::{glib, subclass::prelude::*};
+
+use crate::Explosion;
 
 #[derive(Default)]
 pub struct AnimatedExplosion {

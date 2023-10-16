@@ -1,11 +1,12 @@
 mod base_button;
 mod derived_button;
 
-use crate::base_button::BaseButtonExt;
 use gtk::{
     glib::{self, clone},
     prelude::*,
 };
+
+use crate::base_button::BaseButtonExt;
 
 fn main() -> glib::ExitCode {
     let application = gtk::Application::builder()

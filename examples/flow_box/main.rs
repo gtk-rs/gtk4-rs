@@ -1,8 +1,7 @@
 mod data_set;
 use std::str::FromStr;
 
-use gtk::prelude::*;
-use gtk::{gdk, glib};
+use gtk::{gdk, glib, prelude::*};
 
 fn main() -> glib::ExitCode {
     let application = gtk::Application::builder()

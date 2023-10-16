@@ -1,6 +1,4 @@
-use gtk::prelude::*;
-use gtk::subclass::prelude::*;
-use gtk::{gdk, glib, graphene, gsk};
+use gtk::{gdk, glib, graphene, gsk, prelude::*, subclass::prelude::*};
 
 pub struct CustomPaintable {
     pub(super) height: i32,
@@ -15,7 +13,7 @@ pub struct CustomPaintable {
 
 impl Default for CustomPaintable {
     fn default() -> Self {
-        /* Paths and colors extracted from gtk-logo.svg */
+        // Paths and colors extracted from gtk-logo.svg
         let paths = vec![
             gsk::Path::parse("m3.12,66.17 -2.06,-51.46 32.93,24.7 v55.58 l-30.87,-28.82 z")
                 .unwrap(),

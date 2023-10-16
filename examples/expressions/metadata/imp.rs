@@ -1,10 +1,8 @@
-use glib::prelude::*;
-use glib::subclass::prelude::*;
-use gtk::glib::{self, Properties};
-
 use std::cell::RefCell;
 
-#[derive(Debug, Properties)]
+use gtk::{glib, prelude::*, subclass::prelude::*};
+
+#[derive(Debug, glib::Properties)]
 #[properties(wrapper_type = super::Metadata)]
 pub struct Metadata {
     #[property(get, set)]

@@ -1,8 +1,6 @@
-use gdk::subclass::prelude::*;
-use gtk::prelude::*;
-use gtk::{gdk, gio, glib};
-use std::future::Future;
-use std::pin::Pin;
+use std::{future::Future, pin::Pin};
+
+use gtk::{gdk, gio, glib, prelude::*, subclass::prelude::*};
 
 #[derive(Default)]
 pub struct ContentProvider {}

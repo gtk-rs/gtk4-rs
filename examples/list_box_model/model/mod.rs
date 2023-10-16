@@ -2,10 +2,9 @@
 
 mod imp;
 
-use gtk::subclass::prelude::*;
+use gtk::{gio, glib, prelude::*, subclass::prelude::*};
 
 use crate::row_data::RowData;
-use gtk::{gio, glib, prelude::*};
 
 // Public part of the Model type.
 glib::wrapper! {

@@ -1,7 +1,6 @@
 mod squeezer_bin;
 
-use gtk::glib;
-use gtk::prelude::*;
+use gtk::{glib, prelude::*};
 use squeezer_bin::SqueezerBin;
 
 fn main() -> glib::ExitCode {

@@ -204,7 +204,7 @@ fn template_child_without_attribute() {
 mod imp4 {
     use super::*;
 
-    #[derive(Debug, Default, CompositeTemplate)]
+    #[derive(Debug, Default, gtk::CompositeTemplate)]
     #[template(string = "
     template MyWidget4 : Widget {
         Label label {
@@ -261,7 +261,7 @@ fn blueprint_template() {
 mod imp5 {
     use super::*;
 
-    #[derive(Debug, Default, CompositeTemplate)]
+    #[derive(Debug, Default, gtk::CompositeTemplate)]
     #[template(file = "tests/my_widget.blp")]
     pub struct MyWidget5 {
         #[template_child]

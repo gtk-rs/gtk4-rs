@@ -1,7 +1,6 @@
 use std::ptr;
 
-use gtk::glib;
-use gtk::prelude::*;
+use gtk::{glib, prelude::*};
 
 mod femtovg_area;
 use femtovg_area::FemtoVGArea;

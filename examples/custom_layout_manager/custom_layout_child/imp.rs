@@ -1,7 +1,6 @@
-use gtk::prelude::*;
-use gtk::subclass::prelude::*;
-use gtk::{gdk, glib, graphene};
 use std::cell::RefCell;
+
+use gtk::{gdk, glib, graphene, prelude::*, subclass::prelude::*};
 
 #[derive(Debug, glib::Properties)]
 #[properties(wrapper_type = super::CustomLayoutChild)]
@@ -39,7 +38,8 @@ impl ObjectImpl for CustomLayoutChild {
 
 impl WidgetImpl for CustomLayoutChild {
     fn measure(&self, _orientation: gtk::Orientation, _for_size: i32) -> (i32, i32, i32, i32) {
-        // Return (minimum size, natural size, baseline position for the minimum size, baseline position for natural size)
+        // Return (minimum size, natural size, baseline position for the minimum size,
+        // baseline position for natural size)
         (32, 32, -1, -1)
     }
 

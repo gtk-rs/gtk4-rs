@@ -3,10 +3,12 @@ pub mod custom_tag;
 
 use custom_editable::CustomEditable;
 use custom_tag::CustomTag;
-use glib::clone;
-use gtk::prelude::*;
-use gtk::subclass::prelude::*;
-use gtk::{gdk, glib};
+use gtk::{
+    gdk,
+    glib::{self, clone},
+    prelude::*,
+    subclass::prelude::*,
+};
 
 fn main() -> glib::ExitCode {
     let application = gtk::Application::builder()

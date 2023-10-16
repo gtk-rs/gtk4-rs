@@ -1,7 +1,6 @@
 use std::ptr;
 
-use gtk::glib;
-use gtk::prelude::*;
+use gtk::{glib, prelude::*};
 
 mod glium_gl_area;
 use glium_gl_area::GliumGLArea;

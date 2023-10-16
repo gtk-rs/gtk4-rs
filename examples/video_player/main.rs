@@ -1,7 +1,6 @@
 mod video_player_window;
 
-use gtk::glib;
-use gtk::prelude::*;
+use gtk::{glib, prelude::*};
 use video_player_window::VideoPlayerWindow;
 
 fn main() -> glib::ExitCode {

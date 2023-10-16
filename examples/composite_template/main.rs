@@ -2,8 +2,7 @@ mod ex_application_window;
 pub mod ex_menu_button;
 
 use ex_application_window::ExApplicationWindow;
-use gtk::glib;
-use gtk::prelude::*;
+use gtk::{glib, prelude::*};
 
 fn main() -> glib::ExitCode {
     let application = gtk::Application::builder()

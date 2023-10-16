@@ -6,8 +6,7 @@ pub use animated_explosion::*;
 pub use confetti_widget::*;
 pub use explosion::*;
 use graphene::Vec2;
-use gtk::prelude::*;
-use gtk::{glib, graphene};
+use gtk::{glib, graphene, prelude::*};
 
 fn main() -> glib::ExitCode {
     let application = gtk::Application::builder()
@@ -26,7 +25,8 @@ fn build_ui(application: &gtk::Application) {
     let confetti = ConfettiWidget::new();
     window.set_child(Some(&confetti));
 
-    // To listen to click events, we need to add a `GestureClick` controller to our `ConfettiWidget`
+    // To listen to click events, we need to add a `GestureClick` controller to our
+    // `ConfettiWidget`
     let ev_ctrl = gtk::GestureClick::new();
     ev_ctrl.connect_pressed(move |event, _, x, y| {
         let confetti = event.widget().downcast::<ConfettiWidget>().unwrap();

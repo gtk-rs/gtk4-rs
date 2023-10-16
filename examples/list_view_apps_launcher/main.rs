@@ -1,7 +1,7 @@
 mod application_row;
+use gtk::{gio, glib, prelude::*};
+
 use crate::application_row::ApplicationRow;
-use gtk::prelude::*;
-use gtk::{gio, glib};
 
 fn main() -> glib::ExitCode {
     let application = gtk::Application::builder()
@@ -30,17 +30,20 @@ fn build_ui(app: &gtk::Application) {
     factory.connect_setup(move |_factory, item| {
         // In gtk4 < 4.8, you don't need the following line
         // as gtk used to pass GtkListItem directly. In order to make that API
-        // generic for potentially future new APIs, it was switched to taking a GObject in 4.8
+        // generic for potentially future new APIs, it was switched to taking a GObject
+        // in 4.8
         let item = item.downcast_ref::<gtk::ListItem>().unwrap();
         let row = ApplicationRow::new();
         item.set_child(Some(&row));
     });
 
-    // the bind stage is used for "binding" the data to the created widgets on the "setup" stage
+    // the bind stage is used for "binding" the data to the created widgets on the
+    // "setup" stage
     factory.connect_bind(move |_factory, item| {
         // In gtk4 < 4.8, you don't need the following line
         // as gtk used to pass GtkListItem directly. In order to make that API
-        // generic for potentially future new APIs, it was switched to taking a GObject in 4.8
+        // generic for potentially future new APIs, it was switched to taking a GObject
+        // in 4.8
         let item = item.downcast_ref::<gtk::ListItem>().unwrap();
         let app_info = item.item().and_downcast::<gio::AppInfo>().unwrap();
 

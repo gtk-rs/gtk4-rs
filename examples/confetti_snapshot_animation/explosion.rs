@@ -1,9 +1,10 @@
 // Contains the needed data to run a simple particle simulation
 
+use std::f32::consts::PI;
+
 use glib::random_double;
 use graphene::Vec2;
 use gtk::{gdk, glib, graphene};
-use std::f32::consts::PI;
 
 pub struct ExplosionParameters {
     pub quantity: usize,

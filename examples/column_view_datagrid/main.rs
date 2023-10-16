@@ -1,10 +1,12 @@
 mod grid_cell;
 
-use crate::grid_cell::Entry;
-use crate::grid_cell::GridCell;
-use gtk::glib::BoxedAnyObject;
-use gtk::prelude::*;
-use gtk::{gio, glib};
+use gtk::{
+    gio,
+    glib::{self, BoxedAnyObject},
+    prelude::*,
+};
+
+use crate::grid_cell::{Entry, GridCell};
 
 struct Row {
     col1: String,

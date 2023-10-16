@@ -1,5 +1,6 @@
-use crate::base_button::*;
 use gtk::{gio, glib, prelude::*, subclass::prelude::*};
+
+use crate::base_button::*;
 
 #[derive(Debug, Default)]
 pub struct DerivedButton {}

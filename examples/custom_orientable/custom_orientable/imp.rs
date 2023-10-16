@@ -1,10 +1,8 @@
 use std::cell::RefCell;
 
-use gtk::glib::{self, Properties};
-use gtk::prelude::*;
-use gtk::subclass::prelude::*;
+use gtk::{glib, prelude::*, subclass::prelude::*};
 
-#[derive(Debug, Properties)]
+#[derive(Debug, glib::Properties)]
 #[properties(wrapper_type = super::CustomOrientable)]
 pub struct CustomOrientable {
     first_label: RefCell<Option<gtk::Widget>>,
