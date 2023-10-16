@@ -1,7 +1,8 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::Label;
 use glib::translate::*;
+
+use crate::Label;
 
 impl Label {
     #[doc(alias = "gtk_label_get_mnemonic_keyval")]

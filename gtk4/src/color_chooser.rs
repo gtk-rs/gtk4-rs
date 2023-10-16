@@ -1,9 +1,10 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::{prelude::*, ColorChooser, Orientation};
 use gdk::RGBA;
 use glib::translate::*;
 use libc::c_int;
+
+use crate::{prelude::*, ColorChooser, Orientation};
 
 mod sealed {
     pub trait Sealed {}
@@ -11,7 +12,8 @@ mod sealed {
 }
 
 // rustdoc-stripper-ignore-next
-/// Trait containing manually implemented methods of [`ColorChooser`](crate::ColorChooser).
+/// Trait containing manually implemented methods of
+/// [`ColorChooser`](crate::ColorChooser).
 #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 #[allow(deprecated)]
 pub trait ColorChooserExtManual: sealed::Sealed + IsA<ColorChooser> + 'static {

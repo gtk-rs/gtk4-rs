@@ -1,11 +1,12 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use glib::translate::*;
+use std::fmt;
+
 use glib::{
+    translate::*,
     value::{FromValue, ToValue, ValueType},
     StaticType, Type, Value,
 };
-use std::fmt;
 
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
 #[doc(alias = "GtkResponseType")]

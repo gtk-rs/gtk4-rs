@@ -59,8 +59,8 @@ unsafe impl<T: GtkApplicationImpl> IsSubclassable<T> for Application {
         {
             use std::sync;
 
-            // Needed because the function pointer is not `Send+Sync` otherwise but has to be to be
-            // stored in a `static mut`.
+            // Needed because the function pointer is not `Send+Sync` otherwise but has to
+            // be to be stored in a `static mut`.
             struct WrapFn(unsafe extern "C" fn(*mut gio::ffi::GApplication));
             unsafe impl Send for WrapFn {}
             unsafe impl Sync for WrapFn {}
@@ -69,7 +69,8 @@ unsafe impl<T: GtkApplicationImpl> IsSubclassable<T> for Application {
             static mut OLD_STARTUP: Option<WrapFn> = None;
 
             // One the very first call replace the original `GtkApplication` startup with a
-            // function that first calls the original one and then marks gtk-rs as initialized.
+            // function that first calls the original one and then marks gtk-rs as
+            // initialized.
             ONCE.call_once(|| unsafe {
                 let base_klass =
                     glib::gobject_ffi::g_type_class_ref(ffi::gtk_application_get_type());

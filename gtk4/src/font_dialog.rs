@@ -1,8 +1,10 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::{prelude::*, FontDialog, Window};
-use glib::translate::*;
 use std::{boxed::Box as Box_, pin::Pin, ptr};
+
+use glib::translate::*;
+
+use crate::{prelude::*, FontDialog, Window};
 
 impl FontDialog {
     #[doc(alias = "gtk_font_dialog_choose_font_and_features")]

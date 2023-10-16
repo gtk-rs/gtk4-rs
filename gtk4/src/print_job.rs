@@ -1,8 +1,10 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::PrintJob;
-use glib::translate::*;
 use std::boxed::Box as Box_;
+
+use glib::translate::*;
+
+use crate::PrintJob;
 
 impl PrintJob {
     #[doc(alias = "gtk_print_job_send")]

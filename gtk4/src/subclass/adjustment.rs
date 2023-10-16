@@ -3,8 +3,9 @@
 // rustdoc-stripper-ignore-next
 //! Traits intended for subclassing [`Adjustment`](crate::Adjustment).
 
-use crate::{prelude::*, subclass::prelude::*, Adjustment};
 use glib::translate::*;
+
+use crate::{prelude::*, subclass::prelude::*, Adjustment};
 
 pub trait AdjustmentImpl: AdjustmentImplExt + ObjectImpl {
     fn changed(&self) {

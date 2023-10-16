@@ -1,7 +1,8 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::{prelude::*, TreeIter, TreeModel};
 use glib::{translate::*, value::FromValue};
+
+use crate::{prelude::*, TreeIter, TreeModel};
 
 mod sealed {
     pub trait Sealed {}
@@ -9,7 +10,8 @@ mod sealed {
 }
 
 // rustdoc-stripper-ignore-next
-/// Trait containing manually implemented methods of [`TreeModel`](crate::TreeModel).
+/// Trait containing manually implemented methods of
+/// [`TreeModel`](crate::TreeModel).
 #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 #[allow(deprecated)]
 pub trait TreeModelExtManual: sealed::Sealed + IsA<TreeModel> + 'static {
@@ -38,7 +40,8 @@ pub trait TreeModelExtManual: sealed::Sealed + IsA<TreeModel> + 'static {
     #[doc(alias = "gtk_tree_model_get_value")]
     #[doc(alias = "gtk_tree_model_get_valist")]
     // rustdoc-stripper-ignore-next
-    /// Similar to [`Self::get_value`] but panics if the value is of a different type.
+    /// Similar to [`Self::get_value`] but panics if the value is of a different
+    /// type.
     fn get<V: for<'b> FromValue<'b> + 'static>(&self, iter: &TreeIter, column: i32) -> V {
         let value = self.get_value(iter, column);
         value

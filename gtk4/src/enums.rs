@@ -1,8 +1,10 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::{prelude::*, CssParserWarning, Ordering};
-use glib::{error::ErrorDomain, translate::*, Quark};
 use std::cmp;
+
+use glib::{error::ErrorDomain, translate::*, Quark};
+
+use crate::{prelude::*, CssParserWarning, Ordering};
 
 impl From<cmp::Ordering> for Ordering {
     #[inline]

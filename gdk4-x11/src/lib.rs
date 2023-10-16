@@ -7,13 +7,12 @@ pub use ffi;
 pub use gdk;
 pub use gio;
 pub use glib;
-#[cfg(feature = "xlib")]
-#[cfg_attr(docsrs, doc(cfg(feature = "xlib")))]
-pub use x11;
-
 #[cfg(all(feature = "v4_4", feature = "egl"))]
 #[cfg_attr(docsrs, doc(cfg(all(feature = "v4_4", feature = "egl"))))]
 pub use khronos_egl;
+#[cfg(feature = "xlib")]
+#[cfg_attr(docsrs, doc(cfg(feature = "xlib")))]
+pub use x11;
 #[macro_use]
 mod rt;
 

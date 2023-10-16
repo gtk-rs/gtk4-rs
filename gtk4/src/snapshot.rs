@@ -2,8 +2,9 @@
 
 use std::borrow::Borrow;
 
-use crate::{prelude::*, Snapshot};
 use glib::{translate::*, IntoGStr};
+
+use crate::{prelude::*, Snapshot};
 
 mod sealed {
     pub trait Sealed {}

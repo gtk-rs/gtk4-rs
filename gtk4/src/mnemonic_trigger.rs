@@ -1,9 +1,11 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::ShortcutTrigger;
+use std::fmt;
+
 use gdk::Key;
 use glib::translate::*;
-use std::fmt;
+
+use crate::ShortcutTrigger;
 
 glib::wrapper! {
     pub struct MnemonicTrigger(Object<ffi::GtkMnemonicTrigger, ffi::GtkMnemonicTriggerClass>) @extends ShortcutTrigger;

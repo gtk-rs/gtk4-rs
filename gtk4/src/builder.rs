@@ -1,8 +1,10 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::{prelude::*, Builder};
-use glib::{translate::*, IntoGStr, Object};
 use std::path::Path;
+
+use glib::{translate::*, IntoGStr, Object};
+
+use crate::{prelude::*, Builder};
 
 impl Builder {
     #[doc(alias = "gtk_builder_new_from_file")]

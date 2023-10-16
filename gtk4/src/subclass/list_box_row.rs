@@ -3,8 +3,9 @@
 // rustdoc-stripper-ignore-next
 //! Traits intended for subclassing [`ListBoxRow`](crate::ListBoxRow).
 
-use crate::{prelude::*, subclass::prelude::*, ListBoxRow};
 use glib::translate::*;
+
+use crate::{prelude::*, subclass::prelude::*, ListBoxRow};
 
 pub trait ListBoxRowImpl: ListBoxRowImplExt + WidgetImpl {
     fn activate(&self) {

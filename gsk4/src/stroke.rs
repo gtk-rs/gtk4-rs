@@ -6,7 +6,9 @@ impl Stroke {
     // rustdoc-stripper-ignore-next
     /// Creates a new builder-pattern struct instance to construct a [`Stroke`].
     ///
-    /// This method returns an instance of [`StrokeBuilder`](crate::builders::StrokeBuilder) which can be used to create a [`Stroke`].
+    /// This method returns an instance of
+    /// [`StrokeBuilder`](crate::builders::StrokeBuilder) which can be used to
+    /// create a [`Stroke`].
     pub fn builder(line_width: f32) -> StrokeBuilder {
         assert_initialized_main_thread!();
         StrokeBuilder(Stroke::new(line_width))

@@ -3,10 +3,6 @@
 // rustdoc-stripper-ignore-next
 //! Traits intended for blanket imports.
 
-pub use crate::auto::traits::*;
-
-pub use crate::render_node::IsRenderNode;
-
 #[doc(hidden)]
 pub use gdk::prelude::*;
 #[doc(hidden)]
@@ -15,3 +11,5 @@ pub use glib::prelude::*;
 pub use graphene::prelude::*;
 #[doc(hidden)]
 pub use pango::prelude::*;
+
+pub use crate::{auto::traits::*, render_node::IsRenderNode};

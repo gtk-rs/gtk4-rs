@@ -1,7 +1,8 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::StringObject;
 use glib::{GStr, GString};
+
+use crate::StringObject;
 
 impl From<StringObject> for String {
     #[inline]

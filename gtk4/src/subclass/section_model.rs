@@ -1,10 +1,12 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
 // rustdoc-stripper-ignore-next
-//! Traits intended for implementing the [`SectionModel`](crate::SectionModel) interface.
+//! Traits intended for implementing the [`SectionModel`](crate::SectionModel)
+//! interface.
+
+use glib::translate::*;
 
 use crate::{prelude::*, subclass::prelude::*, SectionModel};
-use glib::translate::*;
 
 pub trait SectionModelImpl: ListModelImpl {
     #[doc(alias = "get_section")]

@@ -1,7 +1,8 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::{Path, PathForeachFlags, PathOperation};
 use glib::translate::*;
+
+use crate::{Path, PathForeachFlags, PathOperation};
 
 impl Path {
     #[doc(alias = "gsk_path_foreach")]

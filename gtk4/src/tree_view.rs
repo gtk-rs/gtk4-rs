@@ -1,7 +1,8 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::{prelude::*, CellRenderer, TreeView, TreeViewColumn, TreeViewColumnSizing};
 use glib::translate::*;
+
+use crate::{prelude::*, CellRenderer, TreeView, TreeViewColumn, TreeViewColumnSizing};
 
 mod sealed {
     pub trait Sealed {}
@@ -9,7 +10,8 @@ mod sealed {
 }
 
 // rustdoc-stripper-ignore-next
-/// Trait containing manually implemented methods of [`TreeView`](crate::TreeView).
+/// Trait containing manually implemented methods of
+/// [`TreeView`](crate::TreeView).
 #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 #[allow(deprecated)]
 pub trait TreeViewExtManual: sealed::Sealed + IsA<TreeView> + 'static {

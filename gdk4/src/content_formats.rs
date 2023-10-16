@@ -1,7 +1,8 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::{ContentFormats, ContentFormatsBuilder};
 use glib::{translate::*, Slice};
+
+use crate::{ContentFormats, ContentFormatsBuilder};
 
 impl ContentFormats {
     #[doc(alias = "gdk_content_formats_get_gtypes")]
@@ -17,9 +18,12 @@ impl ContentFormats {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-pattern struct instance to construct [`ContentFormats`] objects.
+    /// Creates a new builder-pattern struct instance to construct
+    /// [`ContentFormats`] objects.
     ///
-    /// This method returns an instance of [`ContentFormatsBuilder`](crate::builders::ContentFormatsBuilder) which can be used to create [`ContentFormats`] objects.
+    /// This method returns an instance of
+    /// [`ContentFormatsBuilder`](crate::builders::ContentFormatsBuilder) which
+    /// can be used to create [`ContentFormats`] objects.
     pub fn builder() -> ContentFormatsBuilder {
         ContentFormatsBuilder::default()
     }

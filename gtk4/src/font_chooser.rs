@@ -1,7 +1,8 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::{prelude::*, FontChooser};
 use glib::translate::*;
+
+use crate::{prelude::*, FontChooser};
 
 mod sealed {
     pub trait Sealed {}
@@ -9,7 +10,8 @@ mod sealed {
 }
 
 // rustdoc-stripper-ignore-next
-/// Trait containing manually implemented methods of [`FontChooser`](crate::FontChooser).
+/// Trait containing manually implemented methods of
+/// [`FontChooser`](crate::FontChooser).
 #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 #[allow(deprecated)]
 pub trait FontChooserExtManual: sealed::Sealed + IsA<FontChooser> + 'static {

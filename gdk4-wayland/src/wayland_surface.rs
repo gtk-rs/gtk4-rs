@@ -1,13 +1,13 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::{prelude::*, WaylandSurface};
 #[cfg(feature = "wayland_crate")]
 #[cfg_attr(docsrs, doc(cfg(feature = "wayland_crate")))]
 use glib::translate::*;
-
 #[cfg(feature = "wayland_crate")]
 #[cfg_attr(docsrs, doc(cfg(feature = "wayland_crate")))]
 use wayland_client::{backend::ObjectId, protocol::wl_surface::WlSurface, Proxy};
+
+use crate::{prelude::*, WaylandSurface};
 
 mod sealed {
     pub trait Sealed {}
@@ -15,7 +15,8 @@ mod sealed {
 }
 
 // rustdoc-stripper-ignore-next
-/// Trait containing manually implemented methods of [`WaylandSurface`](crate::WaylandSurface).
+/// Trait containing manually implemented methods of
+/// [`WaylandSurface`](crate::WaylandSurface).
 pub trait WaylandSurfaceExtManual: sealed::Sealed + IsA<WaylandSurface> + 'static {
     #[doc(alias = "gdk_wayland_surface_get_wl_surface")]
     #[doc(alias = "get_wl_surface")]

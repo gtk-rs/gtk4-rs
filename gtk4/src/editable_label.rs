@@ -1,12 +1,13 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::{prelude::*, EditableLabel};
+use std::{boxed::Box as Box_, mem::transmute};
 
 use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
-use std::{boxed::Box as Box_, mem::transmute};
+
+use crate::{prelude::*, EditableLabel};
 
 impl EditableLabel {
     #[doc(alias = "editing")]

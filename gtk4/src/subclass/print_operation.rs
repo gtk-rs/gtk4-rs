@@ -3,11 +3,12 @@
 // rustdoc-stripper-ignore-next
 //! Traits intended for subclassing [`PrintOperation`](crate::PrintOperation).
 
+use glib::translate::*;
+
 use crate::{
     prelude::*, subclass::prelude::*, PageSetup, PrintContext, PrintOperation,
     PrintOperationPreview, PrintOperationResult, PrintSettings, Widget, Window,
 };
-use glib::translate::*;
 
 pub trait PrintOperationImpl: PrintOperationImplExt + PrintOperationPreviewImpl {
     fn begin_print(&self, context: &PrintContext) {

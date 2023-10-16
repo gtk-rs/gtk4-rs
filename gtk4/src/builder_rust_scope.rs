@@ -1,7 +1,8 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::{subclass::prelude::*, BuilderCScope, BuilderScope};
 use std::rc::Rc;
+
+use crate::{subclass::prelude::*, BuilderCScope, BuilderScope};
 
 glib::wrapper! {
     // rustdoc-stripper-ignore-next
@@ -50,8 +51,9 @@ impl BuilderRustScope {
         glib::Object::new()
     }
     // rustdoc-stripper-ignore-next
-    /// Adds a Rust callback to the scope with the given `name`. The callback can then be accessed
-    /// from a [`Builder`](crate::Builder) by referring to it in the builder XML, or by using
+    /// Adds a Rust callback to the scope with the given `name`. The callback
+    /// can then be accessed from a [`Builder`](crate::Builder) by referring
+    /// to it in the builder XML, or by using
     /// [`Builder::create_closure`](crate::Builder::create_closure).
     pub fn add_callback<N: Into<String>, F: Fn(&[glib::Value]) -> Option<glib::Value> + 'static>(
         &self,
@@ -66,10 +68,12 @@ impl BuilderRustScope {
 }
 
 mod imp {
+    use std::{cell::RefCell, collections::HashMap};
+
+    use glib::{translate::*, Closure, RustClosure};
+
     use super::*;
     use crate::{prelude::*, Builder, BuilderClosureFlags, BuilderError};
-    use glib::{translate::*, Closure, RustClosure};
-    use std::{cell::RefCell, collections::HashMap};
 
     type Callback = dyn Fn(&[glib::Value]) -> Option<glib::Value>;
 
@@ -89,8 +93,8 @@ mod imp {
     impl ObjectImpl for BuilderRustScope {}
     impl BuilderScopeImpl for BuilderRustScope {
         fn type_from_function(&self, _builder: &Builder, _function_name: &str) -> glib::Type {
-            // Override the implementation provided by BuilderCScope and default to the interface
-            // default implementation
+            // Override the implementation provided by BuilderCScope and default to the
+            // interface default implementation
             glib::Type::INVALID
         }
 
@@ -301,9 +305,9 @@ mod tests {
 
     #[crate::test]
     fn test_rust_builder_scope_object_during_dispose() {
-        use glib::once_cell::sync::Lazy;
-        use glib::subclass::Signal;
         use std::{cell::Cell, rc::Rc};
+
+        use glib::{once_cell::sync::Lazy, subclass::Signal};
 
         #[derive(Debug, Default)]
         pub struct MyObjectPrivate {

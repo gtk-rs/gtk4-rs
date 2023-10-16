@@ -1,12 +1,14 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::{prelude::*, SpinButton};
+use std::{boxed::Box as Box_, mem::transmute};
+
 use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
 use libc::{c_double, c_int};
-use std::{boxed::Box as Box_, mem::transmute};
+
+use crate::{prelude::*, SpinButton};
 
 impl SpinButton {
     pub fn connect_input<F>(&self, f: F) -> SignalHandlerId

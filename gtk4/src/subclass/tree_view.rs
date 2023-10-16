@@ -3,10 +3,11 @@
 // rustdoc-stripper-ignore-next
 //! Traits intended for subclassing [`TreeView`](crate::TreeView).
 
+use glib::translate::*;
+
 use crate::{
     prelude::*, subclass::prelude::*, MovementStep, TreeIter, TreePath, TreeView, TreeViewColumn,
 };
-use glib::translate::*;
 
 #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 #[allow(deprecated)]

@@ -1,11 +1,14 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
 // rustdoc-stripper-ignore-next
-//! Traits intended for implementing the [`Accessible`](crate::Accessible) interface.
+//! Traits intended for implementing the [`Accessible`](crate::Accessible)
+//! interface.
+
+use std::mem::MaybeUninit;
+
+use glib::translate::*;
 
 use crate::{prelude::*, subclass::prelude::*, ATContext, Accessible, AccessiblePlatformState};
-use glib::translate::*;
-use std::mem::MaybeUninit;
 
 pub trait AccessibleImpl: ObjectImpl {
     #[doc(alias = "get_platform_state")]

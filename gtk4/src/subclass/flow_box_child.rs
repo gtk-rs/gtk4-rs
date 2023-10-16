@@ -3,8 +3,9 @@
 // rustdoc-stripper-ignore-next
 //! Traits intended for subclassing [`FlowBoxChild`](crate::FlowBoxChild).
 
-use crate::{prelude::*, subclass::prelude::*, FlowBoxChild};
 use glib::translate::*;
+
+use crate::{prelude::*, subclass::prelude::*, FlowBoxChild};
 
 pub trait FlowBoxChildImpl: FlowBoxChildImplExt + WidgetImpl {
     fn activate(&self) {

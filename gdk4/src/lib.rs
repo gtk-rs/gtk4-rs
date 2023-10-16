@@ -107,13 +107,11 @@ mod touch_event;
 mod touchpad_event;
 
 pub use auto::*;
-
-pub use functions::*;
-
 pub use display::Backend;
 #[cfg(feature = "v4_12")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
 pub use drag_surface_size::DragSurfaceSize;
+pub use functions::*;
 pub use keymap_key::KeymapKey;
 pub use keys::Key;
 pub use time_coord::TimeCoord;

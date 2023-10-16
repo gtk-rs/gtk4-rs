@@ -1,8 +1,8 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
+use glib::{translate::*, StaticType};
+
 use crate::{ParseLocation, RenderNode, RenderNodeType};
-use glib::translate::*;
-use glib::StaticType;
 
 impl RenderNode {
     #[inline]
@@ -95,7 +95,8 @@ impl std::fmt::Debug for RenderNode {
 }
 
 // rustdoc-stripper-ignore-next
-/// A common trait implemented by the various [`RenderNode`](crate::RenderNode) types.
+/// A common trait implemented by the various [`RenderNode`](crate::RenderNode)
+/// types.
 ///
 /// # Safety
 ///

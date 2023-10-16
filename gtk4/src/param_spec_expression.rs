@@ -2,12 +2,12 @@
 
 use std::marker::PhantomData;
 
-use crate::{Expression, ParamSpecExpression};
-
 use glib::{
     gobject_ffi, prelude::*, shared::Shared, translate::*, IntoGStr, IntoOptionalGStr, ParamSpec,
     StaticType, Value,
 };
+
+use crate::{Expression, ParamSpecExpression};
 
 impl glib::HasParamSpec for Expression {
     type ParamSpec = ParamSpecExpression;
@@ -124,9 +124,12 @@ impl ParamSpecExpression {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-pattern struct instance to construct [`ParamSpecExpression`] objects.
+    /// Creates a new builder-pattern struct instance to construct
+    /// [`ParamSpecExpression`] objects.
     ///
-    /// This method returns an instance of [`ParamSpecExpressionBuilder`](crate::builders::ParamSpecExpressionBuilder) which can be used to create [`ParamSpecExpression`] objects.
+    /// This method returns an instance of
+    /// [`ParamSpecExpressionBuilder`](crate::builders::ParamSpecExpressionBuilder)
+    /// which can be used to create [`ParamSpecExpression`] objects.
     pub fn builder(name: &str) -> ParamSpecExpressionBuilder {
         assert_initialized_main_thread!();
         ParamSpecExpressionBuilder::new(name)

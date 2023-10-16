@@ -3,12 +3,14 @@
 // rustdoc-stripper-ignore-next
 //! Traits intended for subclassing [`CellArea`](crate::CellArea).
 
+use std::mem;
+
+use glib::{translate::*, ParamSpec, Value};
+
 use crate::{
     prelude::*, subclass::prelude::*, CellArea, CellAreaContext, CellRenderer, CellRendererState,
     DirectionType, SizeRequestMode, Snapshot, TreeIter, TreeModel, Widget,
 };
-use glib::{translate::*, ParamSpec, Value};
-use std::mem;
 
 #[derive(Debug)]
 pub struct CellCallback {

@@ -1,10 +1,11 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::util::*;
 use proc_macro2::TokenStream;
 use proc_macro_error::{emit_call_site_error, emit_error};
 use quote::{quote, ToTokens, TokenStreamExt};
 use syn::{parse::Parse, Token};
+
+use crate::util::*;
 
 pub const WRONG_PLACE_MSG: &str =
     "This macro should be used on the `impl` block for a CompositeTemplate widget";

@@ -1,12 +1,14 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::{prelude::*, TextBuffer, TextIter, TextTag};
+use std::{boxed::Box as Box_, mem::transmute, slice, str};
+
 use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
 use libc::{c_char, c_int};
-use std::{boxed::Box as Box_, mem::transmute, slice, str};
+
+use crate::{prelude::*, TextBuffer, TextIter, TextTag};
 
 mod sealed {
     pub trait Sealed {}
@@ -14,7 +16,8 @@ mod sealed {
 }
 
 // rustdoc-stripper-ignore-next
-/// Trait containing manually implemented methods of [`TextBuffer`](crate::TextBuffer).
+/// Trait containing manually implemented methods of
+/// [`TextBuffer`](crate::TextBuffer).
 pub trait TextBufferExtManual: sealed::Sealed + IsA<TextBuffer> + 'static {
     // rustdoc-stripper-ignore-next
     /// # Panics

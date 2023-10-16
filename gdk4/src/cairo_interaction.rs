@@ -1,9 +1,10 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::{Rectangle, Surface, RGBA};
 use cairo::{Context, Region};
 use gdk_pixbuf::Pixbuf;
 use glib::translate::*;
+
+use crate::{Rectangle, Surface, RGBA};
 
 // rustdoc-stripper-ignore-next
 /// Trait containing integration methods with [`cairo::Surface`].

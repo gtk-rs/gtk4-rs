@@ -1,8 +1,10 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::RGBA;
-use glib::{translate::*, IntoGStr};
 use std::{fmt, str::FromStr};
+
+use glib::{translate::*, IntoGStr};
+
+use crate::RGBA;
 
 #[derive(Debug)]
 // rustdoc-stripper-ignore-next
@@ -146,9 +148,12 @@ impl RGBA {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-pattern struct instance to construct [`RGBA`] objects.
+    /// Creates a new builder-pattern struct instance to construct [`RGBA`]
+    /// objects.
     ///
-    /// This method returns an instance of [`RGBABuilder`](crate::builders::RGBABuilder) which can be used to create [`RGBA`] objects.
+    /// This method returns an instance of
+    /// [`RGBABuilder`](crate::builders::RGBABuilder) which can be used to
+    /// create [`RGBA`] objects.
     pub fn builder() -> RGBABuilder {
         RGBABuilder::default()
     }

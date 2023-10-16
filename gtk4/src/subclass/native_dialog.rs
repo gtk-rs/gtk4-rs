@@ -3,8 +3,9 @@
 // rustdoc-stripper-ignore-next
 //! Traits intended for subclassing [`NativeDialog`](crate::NativeDialog).
 
-use crate::{prelude::*, subclass::prelude::*, NativeDialog, ResponseType};
 use glib::translate::*;
+
+use crate::{prelude::*, subclass::prelude::*, NativeDialog, ResponseType};
 
 #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 #[allow(deprecated)]

@@ -1,7 +1,8 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::{EventType, ScrollEvent};
 use std::fmt;
+
+use crate::{EventType, ScrollEvent};
 
 define_event! {
     ScrollEvent,

@@ -1,9 +1,11 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::{prelude::*, FileChooserAction, FileChooserDialog, ResponseType, Widget, Window};
+use std::ptr;
+
 use glib::{translate::*, IntoOptionalGStr};
 use libc::c_char;
-use std::ptr;
+
+use crate::{prelude::*, FileChooserAction, FileChooserDialog, ResponseType, Widget, Window};
 
 impl FileChooserDialog {
     #[doc(alias = "gtk_file_chooser_dialog_new")]

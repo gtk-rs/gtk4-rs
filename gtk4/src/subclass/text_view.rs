@@ -3,11 +3,12 @@
 // rustdoc-stripper-ignore-next
 //! Traits intended for subclassing [`TextView`](crate::TextView).
 
+use glib::translate::*;
+
 use crate::{
     prelude::*, subclass::prelude::*, DeleteType, MovementStep, Snapshot, TextExtendSelection,
     TextIter, TextView, TextViewLayer,
 };
-use glib::translate::*;
 
 pub trait TextViewImpl: TextViewImplExt + WidgetImpl {
     fn backspace(&self) {

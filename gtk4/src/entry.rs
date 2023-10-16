@@ -1,8 +1,10 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::{prelude::*, Entry};
-use glib::translate::*;
 use std::convert::TryFrom;
+
+use glib::translate::*;
+
+use crate::{prelude::*, Entry};
 
 mod sealed {
     pub trait Sealed {}

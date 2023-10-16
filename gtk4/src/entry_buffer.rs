@@ -1,8 +1,9 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::{prelude::*, EntryBuffer};
 use glib::{translate::*, GString, IntoGStr, IntoOptionalGStr};
 use libc::{c_int, c_uint};
+
+use crate::{prelude::*, EntryBuffer};
 
 impl EntryBuffer {
     #[doc(alias = "gtk_entry_buffer_new")]
@@ -35,7 +36,8 @@ mod sealed {
 }
 
 // rustdoc-stripper-ignore-next
-/// Trait containing manually implemented methods of [`EntryBuffer`](crate::EntryBuffer).
+/// Trait containing manually implemented methods of
+/// [`EntryBuffer`](crate::EntryBuffer).
 pub trait EntryBufferExtManual: sealed::Sealed + IsA<EntryBuffer> + 'static {
     #[doc(alias = "gtk_entry_buffer_delete_text")]
     fn delete_text(&self, position: u16, n_chars: Option<u16>) -> u16 {

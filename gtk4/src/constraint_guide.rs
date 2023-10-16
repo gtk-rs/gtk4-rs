@@ -1,8 +1,10 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::ConstraintGuide;
-use glib::translate::*;
 use std::mem::MaybeUninit;
+
+use glib::translate::*;
+
+use crate::ConstraintGuide;
 
 impl ConstraintGuide {
     #[doc(alias = "gtk_constraint_guide_get_max_size")]

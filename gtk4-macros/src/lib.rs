@@ -15,7 +15,8 @@ use proc_macro::TokenStream;
 use proc_macro_error::proc_macro_error;
 use syn::{parse_macro_input, DeriveInput};
 
-/// That macro includes and compiles blueprint file by path relative to project rood
+/// That macro includes and compiles blueprint file by path relative to project
+/// rood
 ///
 /// It expected to run inside composite_template_derive, not by users
 #[cfg(feature = "blueprint")]
@@ -69,7 +70,8 @@ pub fn include_blueprint(input: TokenStream) -> TokenStream {
 /// The `template_child` attribute is used to mark all internal widgets
 /// we need to have programmatic access to. It can take two parameters:
 /// - `id` which defaults to the item name if not defined
-/// - `internal_child` whether the child should be accessible as an “internal-child”, defaults to `false`
+/// - `internal_child` whether the child should be accessible as an
+///   “internal-child”, defaults to `false`
 ///
 /// # Example
 ///
@@ -135,7 +137,8 @@ pub fn include_blueprint(input: TokenStream) -> TokenStream {
 ///
 /// The [`CompositeTemplate`] macro can also be used with [Blueprint](https://jwestman.pages.gitlab.gnome.org/blueprint-compiler/)
 /// if the feature `blueprint` is enabled.
-/// you can use `string` or `file` relative to the project directory but not `resource`
+/// you can use `string` or `file` relative to the project directory but not
+/// `resource`
 ///
 /// ```ignore
 /// # fn main() {}
@@ -190,7 +193,6 @@ pub fn include_blueprint(input: TokenStream) -> TokenStream {
 ///     pub struct MyWidget(ObjectSubclass<imp::MyWidget>) @extends gtk::Widget;
 /// }
 /// ```
-///
 #[proc_macro_derive(CompositeTemplate, attributes(template, template_child))]
 #[proc_macro_error]
 pub fn composite_template_derive(input: TokenStream) -> TokenStream {
@@ -201,65 +203,77 @@ pub fn composite_template_derive(input: TokenStream) -> TokenStream {
 
 /// Attribute macro for creating template callbacks from Rust methods.
 ///
-/// Widgets with [`CompositeTemplate`] can then make use of these callbacks from within their
-/// template XML definition. The attribute must be applied to an `impl` statement of a struct.
-/// Functions marked as callbacks within the `impl` will be stored in a static array. Then, in the
-/// [`ObjectSubclass`] implementation you will need to call [`bind_template_callbacks`] and/or
+/// Widgets with [`CompositeTemplate`] can then make use of these callbacks from
+/// within their template XML definition. The attribute must be applied to an
+/// `impl` statement of a struct. Functions marked as callbacks within the
+/// `impl` will be stored in a static array. Then, in the [`ObjectSubclass`]
+/// implementation you will need to call [`bind_template_callbacks`] and/or
 /// [`bind_template_instance_callbacks`] in the [`class_init`] function.
 ///
-/// Template callbacks can be specified on both a widget's public wrapper `impl` or on its private
-/// subclass `impl`, or from external types. If callbacks are specified on the public wrapper, then
-/// `bind_template_instance_callbacks` must be called in `class_init`. If callbacks are specified
-/// on the private subclass, then `bind_template_callbacks` must be called in `class_init`. To use
-/// the callbacks from an external type, call [`T::bind_template_callbacks`] in `class_init`, where
-/// `T` is the other type. See the example below for usage of all three.
+/// Template callbacks can be specified on both a widget's public wrapper `impl`
+/// or on its private subclass `impl`, or from external types. If callbacks are
+/// specified on the public wrapper, then `bind_template_instance_callbacks`
+/// must be called in `class_init`. If callbacks are specified on the private
+/// subclass, then `bind_template_callbacks` must be called in `class_init`. To
+/// use the callbacks from an external type, call [`T::bind_template_callbacks`]
+/// in `class_init`, where `T` is the other type. See the example below for
+/// usage of all three.
 ///
-/// These callbacks can be bound using the `<signal>` or `<closure>` tags in the template file.
-/// Note that the arguments and return type will only be checked at run time when the method is
-/// invoked.
+/// These callbacks can be bound using the `<signal>` or `<closure>` tags in the
+/// template file. Note that the arguments and return type will only be checked
+/// at run time when the method is invoked.
 ///
-/// Template callbacks can optionally take `self` or `&self` as a first parameter. In this case,
-/// the attribute `swapped="true"` will usually have to be set on the `<signal>` or `<closure>` tag
-/// in order to invoke the function correctly. Note that by-value `self` will only work with
-/// template callbacks on the wrapper type.
+/// Template callbacks can optionally take `self` or `&self` as a first
+/// parameter. In this case, the attribute `swapped="true"` will usually have to
+/// be set on the `<signal>` or `<closure>` tag in order to invoke the function
+/// correctly. Note that by-value `self` will only work with template callbacks
+/// on the wrapper type.
 ///
-/// Template callbacks that have no return value can also be `async`, in which case the callback
-/// will be spawned as new future on the default main context using
-/// [`glib::MainContext::spawn_local`]. Invoking the callback multiple times will spawn an
-/// additional future each time it is invoked. This means that multiple futures for an async
-/// callback can be active at any given time, so care must be taken to avoid any kind of data
-/// races. Async callbacks may prefer communicating back to the caller or widget over channels
-/// instead of mutating internal widget state, or may want to make use of a locking flag to ensure
-/// only one future can be active at once. Widgets may also want to show a visual indicator such as
-/// a [`Spinner`] while the future is active to communicate to the user that a background task is
-/// running.
+/// Template callbacks that have no return value can also be `async`, in which
+/// case the callback will be spawned as new future on the default main context
+/// using [`glib::MainContext::spawn_local`]. Invoking the callback multiple
+/// times will spawn an additional future each time it is invoked. This means
+/// that multiple futures for an async callback can be active at any given time,
+/// so care must be taken to avoid any kind of data races. Async callbacks may
+/// prefer communicating back to the caller or widget over channels instead of
+/// mutating internal widget state, or may want to make use of a locking flag to
+/// ensure only one future can be active at once. Widgets may also want to show
+/// a visual indicator such as a [`Spinner`] while the future is active to
+/// communicate to the user that a background task is running.
 ///
 /// The following options are supported on the attribute:
-/// - `functions` makes all callbacks use the `function` attribute by default. (see below)
+/// - `functions` makes all callbacks use the `function` attribute by default.
+///   (see below)
 ///
-/// The `template_callback` attribute is used to mark methods that will be exposed to the template
-/// scope. It can take the following options:
+/// The `template_callback` attribute is used to mark methods that will be
+/// exposed to the template scope. It can take the following options:
 /// - `name` renames the callback. Defaults to the function name if not defined.
-/// - `function` ignores the first value when calling the callback and disallows `self`.  Useful
+/// - `function` ignores the first value when calling the callback and disallows
+///   `self`.  Useful
 /// for callbacks called from `<closure>` tags.
-/// - `function = false` reverts the effects of `functions` used on the `impl`, so the callback
-/// gets the first value and can take `self` again. Mainly useful for callbacks that are invoked
-/// with `swapped="true"`.
+/// - `function = false` reverts the effects of `functions` used on the `impl`,
+///   so the callback
+/// gets the first value and can take `self` again. Mainly useful for callbacks
+/// that are invoked with `swapped="true"`.
 ///
-/// The `rest` attribute can be placed on the last argument of a template callback. This attribute
-/// must be used on an argument of type <code>&\[[glib::Value]\]</code> and will pass in the
-/// remaining arguments. The first and last values will be omitted from the slice if this callback
-/// is a `function`.
+/// The `rest` attribute can be placed on the last argument of a template
+/// callback. This attribute must be used on an argument of type
+/// <code>&\[[glib::Value]\]</code> and will pass in the remaining arguments.
+/// The first and last values will be omitted from the slice if this callback is
+/// a `function`.
 ///
-/// Arguments and return types in template callbacks have some special restrictions, similar to the
-/// restrictions on [`glib::closure`]. Each argument's type must implement
-/// <code>[From]&lt;Type> for [glib::Value]</code>. The last argument can also be
-/// <code>&\[[glib::Value]\]</code> annotated with `#[rest]` as described above. The return type of
-/// a callback, if present, must implement [`glib::FromValue`]. Type-checking of inputs and outputs
-/// is done at run-time; if the argument types or return type do not match the type of the signal
-/// or closure then the callback will panic. To implement your own type checking or to use dynamic
-/// typing, an argument's type can be left as a <code>&[glib::Value]</code>. This can also be used
-/// if you need custom unboxing, such as if the target type does not implement `FromValue`.
+/// Arguments and return types in template callbacks have some special
+/// restrictions, similar to the restrictions on [`glib::closure`]. Each
+/// argument's type must implement <code>[From]&lt;Type> for
+/// [glib::Value]</code>. The last argument can also be <code>&\[[glib::Value]\
+/// ]</code> annotated with `#[rest]` as described above. The return type of
+/// a callback, if present, must implement [`glib::FromValue`]. Type-checking of
+/// inputs and outputs is done at run-time; if the argument types or return type
+/// do not match the type of the signal or closure then the callback will panic.
+/// To implement your own type checking or to use dynamic typing, an argument's
+/// type can be left as a <code>&[glib::Value]</code>. This can also be used
+/// if you need custom unboxing, such as if the target type does not implement
+/// `FromValue`.
 ///
 /// [`glib::closure`]: ../glib/macro.closure.html
 /// [`glib::wrapper`]: ../glib/macro.wrapper.html
@@ -343,7 +357,11 @@ pub fn composite_template_derive(input: TokenStream) -> TokenStream {
 ///     #[template_callback]
 ///     pub fn print_both_labels(&self) {
 ///         let imp = self.imp();
-///         println!("{} {}", imp.label.label(), imp.button.label().unwrap().as_str());
+///         println!(
+///             "{} {}",
+///             imp.label.label(),
+///             imp.button.label().unwrap().as_str()
+///         );
 ///     }
 /// }
 ///
@@ -380,15 +398,17 @@ pub fn template_callbacks(attr: TokenStream, item: TokenStream) -> TokenStream {
 
 /// Attribute macro for declaring GTK tests.
 ///
-/// Wraps the standard Rust [`test`] attribute with setup logic for GTK. All tests that call
-/// into GTK must use this attribute. This attribute can also be used on asynchronous functions;
-/// the asynchronous test will be run on the main thread context.
+/// Wraps the standard Rust [`test`] attribute with setup logic for GTK. All
+/// tests that call into GTK must use this attribute. This attribute can also be
+/// used on asynchronous functions; the asynchronous test will be run on the
+/// main thread context.
 ///
 /// # Technical Details
 ///
-/// GTK is a single-threaded library, so Rust's normal multi-threaded test behavior cannot be used.
-/// The `#[gtk::test]` attribute creates a main thread for GTK and runs all tests on that thread.
-/// This has the side effect of making all tests run serially, not in parallel.
+/// GTK is a single-threaded library, so Rust's normal multi-threaded test
+/// behavior cannot be used. The `#[gtk::test]` attribute creates a main thread
+/// for GTK and runs all tests on that thread. This has the side effect of
+/// making all tests run serially, not in parallel.
 ///
 /// [`test`]: <https://doc.rust-lang.org/std/prelude/v1/macro.test.html>
 ///

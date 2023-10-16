@@ -1,8 +1,8 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::prelude::*;
-use crate::StringList;
 use std::iter::FromIterator;
+
+use crate::{prelude::*, StringList};
 
 impl FromIterator<&'static str> for StringList {
     fn from_iter<I: IntoIterator<Item = &'static str>>(iter: I) -> Self {

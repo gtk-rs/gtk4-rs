@@ -1,7 +1,8 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::{CrossingEvent, EventType};
 use std::fmt;
+
+use crate::{CrossingEvent, EventType};
 
 define_event! {
     CrossingEvent,

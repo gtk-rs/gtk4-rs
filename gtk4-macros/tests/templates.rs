@@ -1,13 +1,11 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use gtk::prelude::*;
-use gtk::subclass::prelude::*;
-use gtk::{glib, CompositeTemplate};
+use gtk::{glib, prelude::*, subclass::prelude::*};
 
 mod imp {
     use super::*;
 
-    #[derive(Debug, Default, CompositeTemplate)]
+    #[derive(Debug, Default, gtk::CompositeTemplate)]
     #[template(string = r#"
     <interface>
       <template class="MyWidget" parent="GtkWidget">
@@ -66,11 +64,13 @@ fn template_string() {
 }
 
 mod imp2 {
-    use super::*;
-    use futures_channel::mpsc;
     use std::cell::RefCell;
 
-    #[derive(Debug, CompositeTemplate)]
+    use futures_channel::mpsc;
+
+    use super::*;
+
+    #[derive(Debug, gtk::CompositeTemplate)]
     #[template(string = r#"
     <interface>
        <template class="MyWidget2" parent="GtkWidget">

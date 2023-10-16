@@ -14,6 +14,8 @@ pub mod prelude {
     #[doc(hidden)]
     pub use glib::subclass::prelude::*;
 
-    pub use super::content_provider::{ContentProviderImpl, ContentProviderImplExt};
-    pub use super::paintable::{PaintableImpl, PaintableImplExt};
+    pub use super::{
+        content_provider::{ContentProviderImpl, ContentProviderImplExt},
+        paintable::{PaintableImpl, PaintableImplExt},
+    };
 }

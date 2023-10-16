@@ -1,7 +1,8 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::PrintOperation;
 use glib::translate::*;
+
+use crate::PrintOperation;
 
 impl PrintOperation {
     #[doc(alias = "gtk_print_operation_get_error")]

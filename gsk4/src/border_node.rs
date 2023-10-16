@@ -1,7 +1,8 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::{BorderNode, RenderNodeType, RoundedRect};
 use glib::translate::*;
+
+use crate::{BorderNode, RenderNodeType, RoundedRect};
 
 define_render_node!(BorderNode, ffi::GskBorderNode, RenderNodeType::BorderNode);
 

@@ -1,16 +1,11 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-#[cfg(feature = "wayland_crate")]
-#[cfg_attr(docsrs, doc(cfg(feature = "wayland_crate")))]
-use crate::prelude::*;
-use crate::WaylandDevice;
 #[cfg(any(feature = "wayland_crate", feature = "xkb_crate"))]
 #[cfg_attr(
     docsrs,
     doc(cfg(any(feature = "wayland_crate", feature = "xkb_crate")))
 )]
 use glib::translate::*;
-
 #[cfg(feature = "wayland_crate")]
 #[cfg_attr(docsrs, doc(cfg(feature = "wayland_crate")))]
 use wayland_client::{
@@ -18,10 +13,14 @@ use wayland_client::{
     protocol::{wl_keyboard::WlKeyboard, wl_pointer::WlPointer, wl_seat::WlSeat},
     Proxy,
 };
-
 #[cfg(all(feature = "v4_4", feature = "xkb_crate"))]
 #[cfg_attr(docsrs, doc(cfg(all(feature = "v4_4", feature = "xkb_crate"))))]
 use xkb::Keymap;
+
+#[cfg(feature = "wayland_crate")]
+#[cfg_attr(docsrs, doc(cfg(feature = "wayland_crate")))]
+use crate::prelude::*;
+use crate::WaylandDevice;
 
 impl WaylandDevice {
     #[doc(alias = "gdk_wayland_device_get_wl_keyboard")]

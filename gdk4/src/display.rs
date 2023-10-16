@@ -1,8 +1,10 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::{prelude::*, Display, Key, KeymapKey, ModifierType};
-use glib::{translate::*, IntoGStr};
 use std::{mem, ptr};
+
+use glib::{translate::*, IntoGStr};
+
+use crate::{prelude::*, Display, Key, KeymapKey, ModifierType};
 
 #[derive(Debug, PartialEq, Eq, Ord, PartialOrd)]
 pub enum Backend {
@@ -56,7 +58,8 @@ mod sealed {
 }
 
 // rustdoc-stripper-ignore-next
-/// Trait containing manually implemented methods of [`Display`](crate::Display).
+/// Trait containing manually implemented methods of
+/// [`Display`](crate::Display).
 pub trait DisplayExtManual: sealed::Sealed + IsA<Display> + 'static {
     #[doc(alias = "gdk_display_translate_key")]
     fn translate_key(

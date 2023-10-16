@@ -1,14 +1,16 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::{prelude::*, CellLayout, CellRenderer};
 use glib::translate::*;
+
+use crate::{prelude::*, CellLayout, CellRenderer};
 
 mod sealed {
     pub trait Sealed {}
     impl<T: super::IsA<super::CellLayout>> Sealed for T {}
 }
 // rustdoc-stripper-ignore-next
-/// Trait containing manually implemented methods of [`CellLayout`](crate::CellLayout).
+/// Trait containing manually implemented methods of
+/// [`CellLayout`](crate::CellLayout).
 #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 #[allow(deprecated)]
 pub trait CellLayoutExtManual: sealed::Sealed + IsA<CellLayout> + 'static {

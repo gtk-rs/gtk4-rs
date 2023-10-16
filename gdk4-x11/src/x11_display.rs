@@ -1,25 +1,26 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::{prelude::*, X11Display};
+#[cfg(feature = "xlib")]
+#[cfg_attr(docsrs, doc(cfg(feature = "xlib")))]
+use std::{boxed::Box as Box_, mem::transmute};
+
 #[cfg(feature = "xlib")]
 #[cfg_attr(docsrs, doc(cfg(feature = "xlib")))]
 use glib::signal::{connect_raw, SignalHandlerId};
+use glib::{translate::*, IntoGStr};
 #[cfg(all(feature = "v4_4", feature = "egl"))]
 #[cfg_attr(docsrs, doc(cfg(all(feature = "v4_4", feature = "egl"))))]
 use khronos_egl as egl;
 #[cfg(feature = "xlib")]
 #[cfg_attr(docsrs, doc(cfg(feature = "xlib")))]
-use std::{boxed::Box as Box_, mem::transmute};
-#[cfg(feature = "xlib")]
-#[cfg_attr(docsrs, doc(cfg(feature = "xlib")))]
 use x11::xlib;
-
-#[cfg(not(feature = "xlib"))]
-use crate::{XCursor, XWindow};
-use glib::{translate::*, IntoGStr};
 #[cfg(feature = "xlib")]
 #[cfg_attr(docsrs, doc(cfg(feature = "xlib")))]
 use x11::xlib::{Cursor as XCursor, Window as XWindow};
+
+use crate::{prelude::*, X11Display};
+#[cfg(not(feature = "xlib"))]
+use crate::{XCursor, XWindow};
 
 impl X11Display {
     #[cfg(all(feature = "v4_4", feature = "egl"))]

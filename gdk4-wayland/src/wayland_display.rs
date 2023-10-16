@@ -1,14 +1,11 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::WaylandDisplay;
 #[cfg(feature = "wayland_crate")]
 #[cfg_attr(docsrs, doc(cfg(feature = "wayland_crate")))]
 use glib::{once_cell::sync::Lazy, prelude::*, translate::*, Quark};
-
 #[cfg(all(feature = "v4_4", feature = "egl"))]
 #[cfg_attr(docsrs, doc(cfg(all(feature = "v4_4", feature = "egl"))))]
 use khronos_egl as egl;
-
 #[cfg(feature = "wayland_crate")]
 #[cfg_attr(docsrs, doc(cfg(feature = "wayland_crate")))]
 use wayland_client::{
@@ -16,6 +13,8 @@ use wayland_client::{
     protocol::{wl_compositor::WlCompositor, wl_display::WlDisplay},
     Proxy,
 };
+
+use crate::WaylandDisplay;
 
 #[cfg(feature = "wayland_crate")]
 static WAYLAND_DISPLAY_CONNECTION_QUARK: Lazy<Quark> =

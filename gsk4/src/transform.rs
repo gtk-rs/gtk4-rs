@@ -1,7 +1,8 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::Transform;
 use glib::{translate::*, IntoGStr};
+
+use crate::Transform;
 
 impl Transform {
     #[doc(alias = "gsk_transform_parse")]

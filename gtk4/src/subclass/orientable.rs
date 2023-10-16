@@ -1,7 +1,8 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
 // rustdoc-stripper-ignore-next
-//! Traits intended for implementing the [`Orientable`](crate::Orientable) interface.
+//! Traits intended for implementing the [`Orientable`](crate::Orientable)
+//! interface.
 
 use crate::{subclass::prelude::*, Orientable};
 

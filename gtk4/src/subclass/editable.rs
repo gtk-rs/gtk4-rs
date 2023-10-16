@@ -1,11 +1,13 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
 // rustdoc-stripper-ignore-next
-//! Traits intended for implementing the [`Editable`](crate::Editable) interface.
+//! Traits intended for implementing the [`Editable`](crate::Editable)
+//! interface.
 
-use crate::{prelude::*, subclass::prelude::*, Editable};
 use glib::{once_cell::sync::Lazy, translate::*, GString, Quark};
 use libc::{c_char, c_int};
+
+use crate::{prelude::*, subclass::prelude::*, Editable};
 
 pub trait EditableImpl: WidgetImpl {
     fn insert_text(&self, text: &str, length: i32, position: &mut i32) {

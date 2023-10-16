@@ -1,7 +1,8 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::{EventType, PadEvent};
 use std::fmt;
+
+use crate::{EventType, PadEvent};
 
 define_event! {
     PadEvent,

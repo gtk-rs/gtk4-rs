@@ -1,7 +1,5 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::{prelude::*, Dialog, DialogFlags, ResponseType, Widget, Window};
-use glib::{translate::*, IntoOptionalGStr};
 use std::{
     cell::{Cell, RefCell},
     future::Future,
@@ -9,6 +7,10 @@ use std::{
     ptr,
     rc::Rc,
 };
+
+use glib::{translate::*, IntoOptionalGStr};
+
+use crate::{prelude::*, Dialog, DialogFlags, ResponseType, Widget, Window};
 
 impl Dialog {
     #[doc(alias = "gtk_dialog_new_with_buttons")]
@@ -76,9 +78,9 @@ pub trait DialogExtManual: sealed::Sealed + IsA<Dialog> + 'static {
     ///
     /// # async fn run() {
     /// let dialog = gtk4::MessageDialog::builder()
-    ///    .buttons(gtk4::ButtonsType::OkCancel)
-    ///    .text("What is your answer?")
-    ///    .build();
+    ///     .buttons(gtk4::ButtonsType::OkCancel)
+    ///     .text("What is your answer?")
+    ///     .build();
     ///
     /// let answer = dialog.run_future().await;
     /// dialog.close();
@@ -109,7 +111,8 @@ pub trait DialogExtManual: sealed::Sealed + IsA<Dialog> + 'static {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Shows the dialog and calls the callback when a response has been received.
+    /// Shows the dialog and calls the callback when a response has been
+    /// received.
     ///
     /// **Important**: this function isn't blocking.
     ///
@@ -117,9 +120,9 @@ pub trait DialogExtManual: sealed::Sealed + IsA<Dialog> + 'static {
     /// use gtk4::prelude::*;
     ///
     /// let dialog = gtk4::MessageDialog::builder()
-    ///    .buttons(gtk4::ButtonsType::OkCancel)
-    ///    .text("What is your answer?")
-    ///    .build();
+    ///     .buttons(gtk4::ButtonsType::OkCancel)
+    ///     .text("What is your answer?")
+    ///     .build();
     ///
     /// dialog.run_async(|obj, answer| {
     ///     obj.close();

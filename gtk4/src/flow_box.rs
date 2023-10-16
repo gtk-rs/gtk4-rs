@@ -1,8 +1,10 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::{FlowBox, FlowBoxChild, Ordering};
-use glib::translate::*;
 use std::{boxed::Box as Box_, ptr};
+
+use glib::translate::*;
+
+use crate::{FlowBox, FlowBoxChild, Ordering};
 
 impl FlowBox {
     #[doc(alias = "gtk_flow_box_bind_model")]

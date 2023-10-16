@@ -3,9 +3,11 @@
 // rustdoc-stripper-ignore-next
 //! Traits intended for subclassing [`CellAreaContext`](crate::CellAreaContext).
 
-use crate::{prelude::*, subclass::prelude::*, CellAreaContext};
-use glib::translate::*;
 use std::mem::MaybeUninit;
+
+use glib::translate::*;
+
+use crate::{prelude::*, subclass::prelude::*, CellAreaContext};
 
 #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 #[allow(deprecated)]

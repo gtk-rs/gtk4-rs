@@ -4,9 +4,9 @@
 #![allow(deprecated)]
 #![doc = include_str!("../README.md")]
 
-pub use ffi;
 // Re-export gtk dependencies
 pub use cairo;
+pub use ffi;
 pub use gdk;
 pub use gdk_pixbuf;
 pub use gio;
@@ -63,8 +63,7 @@ where
 {
     skip_assert_initialized!();
 
-    use std::panic;
-    use std::sync::mpsc;
+    use std::{panic, sync::mpsc};
 
     let (tx, rx) = mpsc::sync_channel(1);
     TEST_THREAD_WORKER

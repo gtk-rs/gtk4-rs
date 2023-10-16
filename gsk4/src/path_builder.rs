@@ -1,7 +1,8 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::PathBuilder;
 use glib::translate::*;
+
+use crate::PathBuilder;
 
 impl PathBuilder {
     #[doc(alias = "gsk_path_builder_add_cairo_path")]

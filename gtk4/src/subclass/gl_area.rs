@@ -3,9 +3,10 @@
 // rustdoc-stripper-ignore-next
 //! Traits intended for subclassing [`GLArea`](crate::GLArea).
 
-use crate::{prelude::*, subclass::prelude::*, GLArea};
 use gdk::GLContext;
 use glib::translate::*;
+
+use crate::{prelude::*, subclass::prelude::*, GLArea};
 
 #[allow(clippy::upper_case_acronyms)]
 pub trait GLAreaImpl: GLAreaImplExt + WidgetImpl {

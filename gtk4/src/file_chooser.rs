@@ -1,7 +1,8 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::{prelude::*, FileChooser};
 use glib::{translate::*, IntoGStr};
+
+use crate::{prelude::*, FileChooser};
 
 mod sealed {
     pub trait Sealed {}
@@ -9,7 +10,8 @@ mod sealed {
 }
 
 // rustdoc-stripper-ignore-next
-/// Trait containing manually implemented methods of [`FileChooser`](crate::FileChooser).
+/// Trait containing manually implemented methods of
+/// [`FileChooser`](crate::FileChooser).
 #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 #[allow(deprecated)]
 pub trait FileChooserExtManual: sealed::Sealed + IsA<FileChooser> + 'static {

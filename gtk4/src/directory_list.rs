@@ -1,7 +1,8 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::{prelude::*, DirectoryList};
 use glib::translate::*;
+
+use crate::{prelude::*, DirectoryList};
 
 impl DirectoryList {
     #[doc(alias = "gtk_directory_list_get_io_priority")]
@@ -22,9 +23,12 @@ impl DirectoryList {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-pattern struct instance to construct [`DirectoryList`] objects.
+    /// Creates a new builder-pattern struct instance to construct
+    /// [`DirectoryList`] objects.
     ///
-    /// This method returns an instance of [`DirectoryListBuilder`](crate::builders::DirectoryListBuilder) which can be used to create [`DirectoryList`] objects.
+    /// This method returns an instance of
+    /// [`DirectoryListBuilder`](crate::builders::DirectoryListBuilder) which
+    /// can be used to create [`DirectoryList`] objects.
     pub fn builder() -> DirectoryListBuilder {
         DirectoryListBuilder::new()
     }

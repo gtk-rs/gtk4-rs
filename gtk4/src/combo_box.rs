@@ -1,7 +1,8 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::{prelude::*, ComboBox};
 use glib::translate::*;
+
+use crate::{prelude::*, ComboBox};
 
 mod sealed {
     pub trait Sealed {}
@@ -9,7 +10,8 @@ mod sealed {
 }
 
 // rustdoc-stripper-ignore-next
-/// Trait containing manually implemented methods of [`ComboBox`](crate::ComboBox).
+/// Trait containing manually implemented methods of
+/// [`ComboBox`](crate::ComboBox).
 #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 #[allow(deprecated)]
 pub trait ComboBoxExtManual: sealed::Sealed + IsA<ComboBox> + 'static {

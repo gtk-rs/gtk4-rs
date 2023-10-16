@@ -3,10 +3,11 @@
 // rustdoc-stripper-ignore-next
 //! Traits intended for subclassing [`TextBuffer`](crate::TextBuffer).
 
+use glib::translate::*;
+
 use crate::{
     prelude::*, subclass::prelude::*, TextBuffer, TextChildAnchor, TextIter, TextMark, TextTag,
 };
-use glib::translate::*;
 
 pub trait TextBufferImpl: TextBufferImplExt + ObjectImpl {
     fn apply_tag(&self, tag: &TextTag, start: &TextIter, end: &TextIter) {

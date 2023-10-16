@@ -3,8 +3,9 @@
 // rustdoc-stripper-ignore-next
 //! Traits intended for subclassing [`Dialog`](crate::Dialog).
 
-use crate::{prelude::*, subclass::prelude::*, Dialog, ResponseType};
 use glib::translate::*;
+
+use crate::{prelude::*, subclass::prelude::*, Dialog, ResponseType};
 
 pub trait DialogImpl: DialogImplExt + WindowImpl {
     fn response(&self, response: ResponseType) {

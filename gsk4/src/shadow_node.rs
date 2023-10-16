@@ -1,7 +1,8 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::{RenderNodeType, Shadow, ShadowNode};
 use glib::translate::*;
+
+use crate::{RenderNodeType, Shadow, ShadowNode};
 
 define_render_node!(ShadowNode, ffi::GskShadowNode, RenderNodeType::ShadowNode);
 

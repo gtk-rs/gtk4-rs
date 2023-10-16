@@ -3,14 +3,15 @@
 // rustdoc-stripper-ignore-next
 //! Traits intended for subclassing [`CellRenderer`](crate::CellRenderer).
 
-use libc::{c_char, c_int};
 use std::mem;
+
+use glib::{translate::*, GString};
+use libc::{c_char, c_int};
 
 use crate::{
     prelude::*, subclass::prelude::*, CellEditable, CellRenderer, CellRendererState,
     SizeRequestMode, Snapshot, Widget,
 };
-use glib::{translate::*, GString};
 
 #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
 #[allow(deprecated)]

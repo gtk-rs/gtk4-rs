@@ -1,8 +1,8 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
+use glib::{translate::*, value::FromValue};
+
 use crate::ContentSerializer;
-use glib::translate::*;
-use glib::value::FromValue;
 
 impl ContentSerializer {
     #[doc(alias = "gdk_content_serializer_get_priority")]
@@ -16,7 +16,8 @@ impl ContentSerializer {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Similar to [`Self::value`] but panics if the value is of a different type.
+    /// Similar to [`Self::value`] but panics if the value is of a different
+    /// type.
     #[doc(alias = "gdk_content_serializer_get_value")]
     #[doc(alias = "get_value")]
     pub fn value_as<V: for<'b> FromValue<'b> + 'static>(&self) -> V {

@@ -1,11 +1,13 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::{prelude::*, ShortcutsSection};
+use std::mem::transmute;
+
 use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
-use std::mem::transmute;
+
+use crate::{prelude::*, ShortcutsSection};
 
 impl ShortcutsSection {
     // todo: figure out what the bool return value here corresponds to

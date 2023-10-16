@@ -1,7 +1,8 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::{prelude::*, ContentProvider};
 use glib::translate::*;
+
+use crate::{prelude::*, ContentProvider};
 
 mod sealed {
     pub trait Sealed {}
@@ -9,7 +10,8 @@ mod sealed {
 }
 
 // rustdoc-stripper-ignore-next
-/// Trait containing manually implemented methods of [`ContentProvider`](crate::ContentProvider).
+/// Trait containing manually implemented methods of
+/// [`ContentProvider`](crate::ContentProvider).
 pub trait ContentProviderExtManual: sealed::Sealed + IsA<ContentProvider> {
     #[doc(alias = "gdk_content_provider_get_value")]
     fn value(&self, type_: glib::Type) -> Result<glib::Value, glib::Error> {
