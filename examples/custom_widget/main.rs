@@ -9,7 +9,7 @@ fn main() -> glib::ExitCode {
         .build();
     application.connect_activate(|app| {
         let window = gtk::ApplicationWindow::new(app);
-        let button = ExButton::new();
+        let button = ExButton::default();
         button.set_margin_top(18);
         button.set_margin_bottom(18);
         button.set_margin_start(18);

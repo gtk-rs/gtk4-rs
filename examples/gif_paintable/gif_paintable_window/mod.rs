@@ -16,7 +16,7 @@ impl GifPaintableWindow {
     }
 
     fn set_file(&self, file: gio::File) -> Result<(), Box<dyn std::error::Error>> {
-        let paintable = GifPaintable::new();
+        let paintable = GifPaintable::default();
         let (bytes, _) = file.load_contents(gio::Cancellable::NONE)?;
         paintable.load_from_bytes(&bytes)?;
         self.imp().picture.set_paintable(Some(&paintable));

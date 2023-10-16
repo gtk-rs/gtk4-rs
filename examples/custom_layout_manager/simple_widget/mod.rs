@@ -15,15 +15,11 @@ glib::wrapper! {
 
 impl Default for SimpleWidget {
     fn default() -> Self {
-        Self::new()
+        glib::Object::new()
     }
 }
 
 impl SimpleWidget {
-    pub fn new() -> Self {
-        glib::Object::new()
-    }
-
     pub fn add_child<W: IsA<gtk::Widget>>(&self, widget: &W) {
         widget.set_parent(self);
     }

@@ -35,7 +35,7 @@ fn build_ui(application: &gtk::Application) {
     let window = gtk::ApplicationWindow::new(application);
     window.set_title(Some("Glium in GLArea"));
 
-    let widget = GliumGLArea::new();
+    let widget = GliumGLArea::default();
     window.set_child(Some(&widget));
 
     window.present();

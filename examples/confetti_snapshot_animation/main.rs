@@ -22,7 +22,7 @@ fn build_ui(application: &gtk::Application) {
     window.set_title(Some("Confetti"));
     window.set_default_size(640, 360);
 
-    let confetti = ConfettiWidget::new();
+    let confetti = ConfettiWidget::default();
     window.set_child(Some(&confetti));
 
     // To listen to click events, we need to add a `GestureClick` controller to our

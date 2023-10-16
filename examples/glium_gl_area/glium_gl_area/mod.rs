@@ -9,12 +9,6 @@ glib::wrapper! {
 
 impl Default for GliumGLArea {
     fn default() -> Self {
-        Self::new()
-    }
-}
-
-impl GliumGLArea {
-    pub fn new() -> Self {
         glib::Object::new()
     }
 }

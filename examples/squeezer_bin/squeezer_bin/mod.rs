@@ -7,12 +7,13 @@ glib::wrapper! {
         @extends gtk::Widget;
 }
 
-impl SqueezerBin {
-    #[allow(clippy::new_without_default)]
-    pub fn new() -> Self {
+impl Default for SqueezerBin {
+    fn default() -> Self {
         glib::Object::new()
     }
+}
 
+impl SqueezerBin {
     pub fn set_child(&self, widget: Option<&impl IsA<gtk::Widget>>) {
         let imp = self.imp();
         let widget = widget.map(|w| w.as_ref());

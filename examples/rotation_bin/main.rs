@@ -31,7 +31,7 @@ fn build_ui(application: &gtk::Application) {
         .halign(gtk::Align::Center)
         .valign(gtk::Align::Center)
         .build();
-    let rotation_bin = RotationBin::new();
+    let rotation_bin = RotationBin::default();
     let img = gtk::Image::builder()
         .pixel_size(128)
         .icon_name("audio-x-generic")

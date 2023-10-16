@@ -38,7 +38,7 @@ fn build_ui(application: &gtk::Application) {
     container.set_valign(gtk::Align::Center);
     container.set_halign(gtk::Align::Center);
 
-    let editable = CustomEditable::new();
+    let editable = CustomEditable::default();
     editable.set_halign(gtk::Align::Fill);
 
     container.append(&editable);

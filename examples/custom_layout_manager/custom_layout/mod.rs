@@ -9,17 +9,7 @@ glib::wrapper! {
         @extends gtk::LayoutManager;
 }
 
-impl Default for CustomLayout {
-    fn default() -> Self {
-        Self::new()
-    }
-}
-
 impl CustomLayout {
-    pub fn new() -> Self {
-        glib::Object::new()
-    }
-
     pub fn set_position(&self, position: f64) {
         self.imp().position.set(position);
     }

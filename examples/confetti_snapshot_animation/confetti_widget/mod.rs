@@ -14,14 +14,11 @@ glib::wrapper! {
 
 impl Default for ConfettiWidget {
     fn default() -> Self {
-        Self::new()
+        glib::Object::new()
     }
 }
 
 impl ConfettiWidget {
-    pub fn new() -> Self {
-        glib::Object::new()
-    }
     pub fn explode(&self, params: ExplosionParameters, duration: f64) -> AnimatedExplosion {
         let exp = AnimatedExplosion::new(params);
 

@@ -16,7 +16,7 @@ fn build_ui(application: &gtk::Application) {
     window.set_title(Some("Custom Paintable"));
     window.set_default_size(500, 500);
 
-    let paintable = CustomPaintable::new();
+    let paintable = CustomPaintable::default();
 
     let picture = gtk::Picture::new();
     picture.set_halign(gtk::Align::Center);

@@ -38,7 +38,7 @@ fn main() -> glib::ExitCode {
             .title("Custom Layout Manager")
             .build();
 
-        let widget = simple_widget::SimpleWidget::new();
+        let widget = simple_widget::SimpleWidget::default();
         for color in &COLORS {
             let rgba = gdk::RGBA::from_str(color).unwrap();
             let child = custom_layout_child::CustomLayoutChild::new(rgba);

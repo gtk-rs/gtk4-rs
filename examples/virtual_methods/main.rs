@@ -16,8 +16,8 @@ fn main() -> glib::ExitCode {
     application.connect_activate(|app| {
         let win = gtk::ApplicationWindow::new(app);
         let boxed = gtk::Box::new(gtk::Orientation::Horizontal, 6);
-        let base_button = base_button::BaseButton::new();
-        let derived_button = derived_button::DerivedButton::new();
+        let base_button = base_button::BaseButton::default();
+        let derived_button = derived_button::DerivedButton::default();
 
         base_button.connect_clicked(|b| {
             let ctx = glib::MainContext::default();

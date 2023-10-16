@@ -13,7 +13,7 @@ fn main() -> glib::ExitCode {
         let headerbar = gtk::HeaderBar::new();
         let mode_switch = gtk::Switch::new();
         let switch_label = gtk::Label::new(Some("keep aspect ratio"));
-        let squeezer = SqueezerBin::new();
+        let squeezer = SqueezerBin::default();
         squeezer.set_child(Some(&gtk::Label::new(Some("Hello World!"))));
 
         headerbar.pack_start(&mode_switch);

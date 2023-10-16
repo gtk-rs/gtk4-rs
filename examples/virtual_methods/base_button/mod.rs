@@ -14,16 +14,9 @@ glib::wrapper! {
         @extends gtk::Widget, gtk::Button;
 }
 
-impl BaseButton {
-    /// Creates a new instance of `BaseButton`.
-    pub fn new() -> Self {
-        glib::Object::new()
-    }
-}
-
 impl Default for BaseButton {
     fn default() -> Self {
-        Self::new()
+        glib::Object::new()
     }
 }
 

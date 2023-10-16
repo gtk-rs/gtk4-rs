@@ -16,7 +16,7 @@ fn main() -> glib::ExitCode {
         let picture = gtk::Picture::builder()
             .content_fit(gtk::ContentFit::ScaleDown)
             .build();
-        let paintable = paintable::CustomPaintable::new();
+        let paintable = paintable::CustomPaintable::default();
         picture.set_paintable(Some(&paintable));
         win.set_child(Some(&picture));
 
