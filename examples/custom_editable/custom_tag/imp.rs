@@ -1,13 +1,12 @@
 use glib::clone;
 use glib::once_cell::sync::Lazy;
 use glib::subclass::Signal;
-use glib::{ParamSpec, Properties};
 use gtk::glib;
 use gtk::prelude::*;
 use gtk::subclass::prelude::*;
 use std::cell::{Cell, RefCell};
 
-#[derive(Debug, Properties)]
+#[derive(Debug, glib::Properties)]
 #[properties(wrapper_type = super::CustomTag)]
 pub struct CustomTag {
     pub container: gtk::Box,
@@ -40,19 +39,8 @@ impl ObjectSubclass for CustomTag {
     }
 }
 
+#[glib::derived_properties]
 impl ObjectImpl for CustomTag {
-    fn properties() -> &'static [ParamSpec] {
-        Self::derived_properties()
-    }
-
-    fn property(&self, id: usize, pspec: &ParamSpec) -> glib::Value {
-        self.derived_property(id, pspec)
-    }
-
-    fn set_property(&self, id: usize, value: &glib::Value, pspec: &ParamSpec) {
-        self.derived_set_property(id, value, pspec)
-    }
-
     fn signals() -> &'static [Signal] {
         static SIGNALS: Lazy<Vec<Signal>> = Lazy::new(|| {
             vec![
