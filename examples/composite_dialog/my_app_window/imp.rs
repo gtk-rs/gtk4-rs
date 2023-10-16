@@ -35,14 +35,7 @@ impl ObjectSubclass for MyAppWindow {
 }
 
 #[glib::derived_properties]
-impl ObjectImpl for MyAppWindow {
-    fn constructed(&self) {
-        self.parent_constructed();
-
-        // Bind property to a label
-        // self.obj().bind_counter_to_count();
-    }
-}
+impl ObjectImpl for MyAppWindow {}
 
 impl WidgetImpl for MyAppWindow {}
 impl WindowImpl for MyAppWindow {}
