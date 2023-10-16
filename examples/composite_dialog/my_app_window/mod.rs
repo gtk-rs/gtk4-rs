@@ -15,12 +15,12 @@ impl MyAppWindow {
         glib::Object::builder().property("application", app).build()
     }
 
-    /// Callback handler for notify::label signal.
+    /// Callback handler for `notify::counter` signal.
     ///
     /// When counter property reach 3, a dialog pops up and present the user
     /// with 2 choices: Set the counter to 6 or reset the counter to 0.
     #[template_callback]
-    fn popup_dialog(&self, _p: &glib::ParamSpec) {
+    fn on_counter_notify(&self, _p: &glib::ParamSpec) {
         // Check counter property and create a Dialog.
         if self.counter() == 3 {
             self.imp().dialog.present();

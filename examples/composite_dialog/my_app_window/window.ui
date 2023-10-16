@@ -7,7 +7,7 @@
     <property name="show-menubar">True</property>
     <property name="title">Composite Template Dialog</property>
     <property name="vexpand">True</property>
-    <signal name="notify::counter" handler="popup_dialog" swapped="true"/>
+    <signal name="notify::counter" handler="on_counter_notify" swapped="true"/>
     <child>
       <object class="GtkBox">
         <property name="halign">center</property>
