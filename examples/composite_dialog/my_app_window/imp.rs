@@ -1,11 +1,6 @@
 use std::cell::Cell;
 
-use gtk::{
-    glib::{self, Properties},
-    prelude::*,
-    subclass::prelude::*,
-    CompositeTemplate,
-};
+use gtk::{glib, prelude::*, subclass::prelude::*};
 
 // Object holding the state
 #[derive(Default, gtk::CompositeTemplate, glib::Properties)]

@@ -1,10 +1,6 @@
 mod imp;
 
-use gtk::{
-    glib::{self, ParamSpec},
-    prelude::*,
-    ResponseType,
-};
+use gtk::{glib, prelude::*, subclass::prelude::ObjectSubclassIsExt};
 
 glib::wrapper! {
     pub struct MyAppWindow(ObjectSubclass<imp::MyAppWindow>)
@@ -23,7 +19,7 @@ impl MyAppWindow {
     /// with 2 choices: Set the counter to 6 or reset the counter to 0.
     #[allow(deprecated)]
     #[template_callback]
-    fn popup_dialog(&self, _p: &ParamSpec) {
+    fn popup_dialog(&self, _p: &glib::ParamSpec) {
         // Check counter property and create a Dialog.
         if self.counter() == 3 {
             let dial = gtk::Dialog::with_buttons(
