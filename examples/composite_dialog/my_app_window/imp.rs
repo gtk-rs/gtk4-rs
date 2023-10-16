@@ -8,7 +8,7 @@ use gtk::{
 };
 
 // Object holding the state
-#[derive(Default, CompositeTemplate, Properties)]
+#[derive(Default, gtk::CompositeTemplate, glib::Properties)]
 #[template(file = "window.ui")]
 #[properties(wrapper_type = super::MyAppWindow)]
 pub struct MyAppWindow {
@@ -39,7 +39,6 @@ impl ObjectSubclass for MyAppWindow {
     }
 }
 
-// Trait shared by all GObjects
 #[glib::derived_properties]
 impl ObjectImpl for MyAppWindow {
     fn constructed(&self) {
