@@ -27,9 +27,17 @@ impl MyAppWindow {
         }
     }
 
-    /// Handler for popup dialog's response.
+    /// Handler for dialog's response.
     ///
     /// In the callback handler, response type is i32 instead of gtk::ResponseType.
+    /// As the bindings replaces the original i32 to an enum that makes more sense in
+    /// Rust. Although, the template callback can't be changed.
+    ///
+    /// In the callback handler if we try to use a gtk::ResponseType as response's type, a runtime error is thrown
+    /// when a button's dialog is clicked (a.k.a dialog emits the signal response) with the following message:
+    ///
+    /// *Wrong type for argument 1 in template callback \`counter_choice\`:
+    /// ValueTypeMismatchError { actual: gint, requested: GtkResponseType }*
     #[template_callback]
     fn counter_choice(&self, response: i32) {
         self.imp().dialog.set_visible(false);
