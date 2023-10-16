@@ -23,7 +23,7 @@ impl MyAppWindow {
     fn popup_dialog(&self, _p: &glib::ParamSpec) {
         // Check counter property and create a Dialog.
         if self.counter() == 3 {
-            self.imp().popup.present();
+            self.imp().dialog.present();
         }
     }
 
@@ -32,16 +32,12 @@ impl MyAppWindow {
     /// In the callback handler, response type is i32 instead of gtk::ResponseType.
     #[template_callback]
     fn counter_choice(&self, response: i32) {
-        self.imp().popup.set_visible(false);
+        self.imp().dialog.set_visible(false);
+
         match gtk::ResponseType::from(response) {
-            gtk::ResponseType::Ok => {
-                self.set_counter(0);
-            }
-            gtk::ResponseType::Other(35) => {
-                self.set_counter(6);
-            }
-            gtk::ResponseType::DeleteEvent => {
-            }
+            gtk::ResponseType::Ok => self.set_counter(0),
+            gtk::ResponseType::Other(35) => self.set_counter(6),
+            gtk::ResponseType::DeleteEvent => (),
             _ => unimplemented!(),
         }
     }

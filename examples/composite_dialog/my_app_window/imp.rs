@@ -15,7 +15,7 @@ pub struct MyAppWindow {
     #[template_child]
     pub minus: TemplateChild<gtk::Button>,
     #[template_child]
-    pub popup: TemplateChild<gtk::Dialog>,
+    pub dialog: TemplateChild<gtk::Dialog>,
 }
 
 #[glib::object_subclass]

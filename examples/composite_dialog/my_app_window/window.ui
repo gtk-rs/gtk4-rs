@@ -59,7 +59,7 @@
       </object>
     </child>   
   </template>
-  <object class="GtkDialog" id="popup">
+  <object class="GtkDialog" id="dialog">
     <property name="transient-for">MyAppWindow</property>
     <property name="title">Counter reach 3</property>
     <property name="modal">True</property>
