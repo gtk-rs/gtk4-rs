@@ -11,7 +11,7 @@ glib::wrapper! {
 }
 
 impl GifPaintableWindow {
-    pub fn new<P: glib::IsA<gtk::Application>>(app: &P) -> Self {
+    pub fn new<P: IsA<gtk::Application>>(app: &P) -> Self {
         glib::Object::builder().property("application", app).build()
     }
 
