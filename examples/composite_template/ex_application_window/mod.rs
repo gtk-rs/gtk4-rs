@@ -4,7 +4,8 @@ use gtk::{gio, glib, subclass::prelude::*};
 
 glib::wrapper! {
     pub struct ExApplicationWindow(ObjectSubclass<imp::ExApplicationWindow>)
-        @extends gtk::Widget, gtk::Window, gtk::ApplicationWindow, @implements gio::ActionMap, gio::ActionGroup;
+        @extends gtk::Widget, gtk::Window, gtk::ApplicationWindow,
+        @implements gio::ActionMap, gio::ActionGroup;
 }
 
 impl ExApplicationWindow {

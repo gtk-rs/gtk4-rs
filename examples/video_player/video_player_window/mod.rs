@@ -4,7 +4,8 @@ use gtk::{gio, glib, subclass::prelude::*};
 
 glib::wrapper! {
     pub struct VideoPlayerWindow(ObjectSubclass<imp::VideoPlayerWindow>)
-        @extends gtk::Widget, gtk::Window, gtk::ApplicationWindow, @implements gio::ActionMap, gio::ActionGroup;
+        @extends gtk::Widget, gtk::Window, gtk::ApplicationWindow,
+        @implements gio::ActionMap, gio::ActionGroup;
 }
 
 impl VideoPlayerWindow {

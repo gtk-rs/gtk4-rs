@@ -3,7 +3,9 @@ mod imp;
 use gtk::{glib, prelude::*, subclass::prelude::*};
 
 glib::wrapper! {
-    pub struct CustomBuildable(ObjectSubclass<imp::CustomBuildable>) @extends gtk::Widget, @implements gtk::Buildable;
+    pub struct CustomBuildable(ObjectSubclass<imp::CustomBuildable>)
+        @extends gtk::Widget,
+        @implements gtk::Buildable;
 }
 
 impl CustomBuildable {
