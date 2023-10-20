@@ -5,12 +5,10 @@ use gtk::{Application, ApplicationWindow, Button};
 use once_cell::sync::Lazy;
 use tokio::runtime::Runtime;
 
-const APP_ID: &str = "org.gtk_rs.MainEventLoop5";
-
 // ANCHOR: tokio_runtime
+const APP_ID: &str = "org.gtk_rs.MainEventLoop8";
 static RUNTIME: Lazy<Runtime> =
     Lazy::new(|| Runtime::new().expect("Setting up tokio runtime needs to succeed."));
-// ANCHOR_END: tokio_runtime
 
 fn main() -> glib::ExitCode {
     // Create a new application
@@ -22,6 +20,7 @@ fn main() -> glib::ExitCode {
     // Run the application
     app.run()
 }
+// ANCHOR_END: tokio_runtime
 
 fn build_ui(app: &Application) {
     // Create a button

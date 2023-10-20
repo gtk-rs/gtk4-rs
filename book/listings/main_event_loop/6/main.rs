@@ -5,7 +5,7 @@ use gtk::{Application, ApplicationWindow, Button};
 use std::thread;
 use std::time::Duration;
 
-const APP_ID: &str = "org.gtk_rs.MainEventLoop5";
+const APP_ID: &str = "org.gtk_rs.MainEventLoop6";
 
 fn main() -> glib::ExitCode {
     // Create a new application
