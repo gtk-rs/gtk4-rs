@@ -178,6 +178,8 @@ After reference cycles we found the second disadvantage of GTK GObjects: They ar
 
 ## Async
 
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/main_event_loop/6/main.rs">listings/main_event_loop/6/main.rs</a>
+
 ```rust
 {{#rustdoc_include ../listings/main_event_loop/6/main.rs:callback}}
 ```
@@ -185,6 +187,8 @@ After reference cycles we found the second disadvantage of GTK GObjects: They ar
 ```
 cargo add ashpd@0.6 --features gtk4
 ```
+
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/main_event_loop/7/main.rs">listings/main_event_loop/7/main.rs</a>
 
 ```rust
 {{#rustdoc_include ../listings/main_event_loop/7/main.rs:callback}}
@@ -195,9 +199,13 @@ cargo add tokio@1 --features rt-multi-thread
 cargo add reqwest@0.11 --features rustls-tls --no-default-features
 ```
 
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/main_event_loop/8/main.rs">listings/main_event_loop/8/main.rs</a>
+
 ```rust
 {{#rustdoc_include ../listings/main_event_loop/8/main.rs:tokio_runtime}}
 ```
+
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/main_event_loop/8/main.rs">listings/main_event_loop/8/main.rs</a>
 
 ```rust
 {{#rustdoc_include ../listings/main_event_loop/8/main.rs:callback}}
