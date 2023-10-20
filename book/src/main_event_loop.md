@@ -178,10 +178,29 @@ After reference cycles we found the second disadvantage of GTK GObjects: They ar
 
 ## Async
 
-
+```rust
+{{#rustdoc_include ../listings/main_event_loop/6/main.rs:callback}}
+```
 
 ```
-cargo add ashpd --features gtk4
+cargo add ashpd@0.6 --features gtk4
+```
+
+```rust
+{{#rustdoc_include ../listings/main_event_loop/7/main.rs:callback}}
+```
+
+```
+cargo add tokio@1 --features rt-multi-thread
+cargo add reqwest@0.11 --features rustls-tls --no-default-features
+```
+
+```rust
+{{#rustdoc_include ../listings/main_event_loop/8/main.rs:tokio_runtime}}
+```
+
+```rust
+{{#rustdoc_include ../listings/main_event_loop/8/main.rs:callback}}
 ```
 
 

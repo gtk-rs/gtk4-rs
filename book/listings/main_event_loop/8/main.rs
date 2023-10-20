@@ -1,7 +1,16 @@
+use glib::{clone, MainContext, Priority};
+use gtk::glib;
 use gtk::prelude::*;
-use gtk::{glib, Application, ApplicationWindow, Button};
+use gtk::{Application, ApplicationWindow, Button};
+use once_cell::sync::Lazy;
+use tokio::runtime::Runtime;
 
 const APP_ID: &str = "org.gtk_rs.MainEventLoop5";
+
+// ANCHOR: tokio_runtime
+static RUNTIME: Lazy<Runtime> =
+    Lazy::new(|| Runtime::new().expect("Setting up tokio runtime needs to succeed."));
+// ANCHOR_END: tokio_runtime
 
 fn main() -> glib::ExitCode {
     // Create a new application
@@ -25,9 +34,26 @@ fn build_ui(app: &Application) {
         .build();
 
     // ANCHOR: callback
+    let (sender, receiver) = MainContext::channel(Priority::default());
     // Connect to "clicked" signal of `button`
-    button
-        .connect_clicked(move |_| todo!("Execute web request with reqwest and tokio"));
+    button.connect_clicked(move |_| {
+        RUNTIME.spawn(clone!(@strong sender => async move {
+            let response = reqwest::get("https://www.gtk-rs.org").await;
+            sender
+                .send(response)
+                .expect("Could not send through channel");
+        }));
+    });
+
+    // The main loop executes the closure as soon as it receives the message
+    receiver.attach(None, move |response| {
+        if let Ok(response) = response {
+            println!("Status {}", response.status());
+        } else {
+            println!("Couldn't make a `GET` request.");
+        }
+        glib::ControlFlow::Continue
+    });
     // ANCHOR_END: callback
 
     // Create a window

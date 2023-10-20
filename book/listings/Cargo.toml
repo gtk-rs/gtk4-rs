@@ -16,6 +16,8 @@ dirs = "5.0"
 walkdir = "2.3"
 async-channel = "1.9.0"
 ashpd = { version = "0.6.2", features = ["gtk4"] }
+tokio = { version = "1.33.0", features = ["rt-multi-thread"] }
+reqwest = { version = "0.11", default-features = false, features = ["rustls-tls"] }
 
 [build-dependencies]
 glib-build-tools = "0.18"
