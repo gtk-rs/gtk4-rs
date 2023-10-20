@@ -1,0 +1,30 @@
+name: book
+
+on:
+  pull_request:
+    paths:
+      - "book/**"
+
+jobs:
+  check:
+    runs-on: ubuntu-22.04
+    name: build
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions-rs/toolchain@v1
+        with:
+          profile: minimal
+          toolchain: stable
+          override: true
+
+      - name: Setup mdBook
+        uses: peaceiris/actions-mdbook@v1
+
+      - run: mdbook build -d public
+        working-directory: book
+
+      - name: Link Checker
+        uses: lycheeverse/lychee-action@v1.8.0
+        with:
+          args: book/public
+          fail: true
