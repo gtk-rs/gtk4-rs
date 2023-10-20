@@ -33,12 +33,12 @@ fn build_ui(app: &Application) {
         let main_context = MainContext::default();
         // The main loop executes the asynchronous block
         main_context.spawn_local(clone!(@weak button => async move {
-            // Get native of button for window indentifier
+            // Get native of button for window identifier
             let native = button.native().expect("Need to be able to get native.");
             // Get window identifier so that the dialog will be modal to the main window
             let identifier = WindowIdentifier::from_native(&native).await;
             let request = UserInformation::request()
-                .reason("App would like to access user information")
+                .reason("App would like to access user information.")
                 .identifier(identifier)
                 .send()
                 .await;
