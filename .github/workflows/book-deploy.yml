@@ -1,0 +1,34 @@
+name: book
+
+on:
+  push:
+    branches:
+      - "master"
+    paths:
+      - "book/**"
+
+jobs:
+  deploy:
+    runs-on: ubuntu-22.04
+    name: build
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions-rs/toolchain@v1
+        with:
+          profile: minimal
+          toolchain: stable
+          override: true
+
+      - name: Setup mdBook
+        uses: peaceiris/actions-mdbook@v1
+
+      - run: mdbook build -d public
+        working-directory: book
+
+      - name: Deploy to stable
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./book/public
+          keep_files: false
+          destination_dir: stable/latest/book
