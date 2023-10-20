@@ -31,6 +31,6 @@ And indeed, `ButtonExt` includes the method [`connect_clicked`](https://gtk-rs.o
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/hello_world/3/main.rs">listings/hello_world/3/main.rs</a>
 
-```rust ,no_run,noplayground
+```rust
 {{#rustdoc_include ../listings/hello_world/3/main.rs:button}}
 ```

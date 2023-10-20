@@ -83,7 +83,7 @@ Then we add a reference to `settings` to `imp::Window`.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/2/window/imp.rs">listings/todo/2/window/imp.rs</a>
 
-```rust ,no_run,noplayground
+```rust
 {{#rustdoc_include ../listings/todo/2/window/imp.rs:struct_default}}
 ```
 
@@ -91,7 +91,7 @@ Again, we create functions to make it easier to access settings.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/2/window/mod.rs">listings/todo/2/window/mod.rs</a>
 
-```rust ,no_run,noplayground
+```rust
 {{#rustdoc_include ../listings/todo/2/window/mod.rs:settings}}
 ```
 
@@ -101,7 +101,7 @@ We will make use of them in the following snippets.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/2/task_object/mod.rs">listings/todo/2/task_object/mod.rs</a>
 
-```rust ,no_run,noplayground
+```rust
 {{#rustdoc_include ../listings/todo/2/task_object/mod.rs:impl}}
 ```
 
@@ -111,7 +111,7 @@ We also add an action which allows us to remove done tasks.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/2/window/mod.rs">listings/todo/2/window/mod.rs</a>
 
-```rust ,no_run,noplayground
+```rust
 {{#rustdoc_include ../listings/todo/2/window/mod.rs:setup_actions}}
 ```
 
@@ -123,7 +123,7 @@ If the state is "All" nothing has to be filtered out, so we return `None`.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/2/window/mod.rs">listings/todo/2/window/mod.rs</a>
 
-```rust ,no_run,noplayground
+```rust
 {{#rustdoc_include ../listings/todo/2/window/mod.rs:filter}}
 ```
 
@@ -133,7 +133,7 @@ Whenever the state of the key "filter" changes, we call the method `filter` agai
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/2/window/mod.rs">listings/todo/2/window/mod.rs</a>
 
-```rust ,no_run,noplayground
+```rust
 {{#rustdoc_include ../listings/todo/2/window/mod.rs:setup_tasks}}
 ```
 
@@ -143,7 +143,7 @@ Since this has to be done at the application level, `setup_shortcuts` takes a `g
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/2/main.rs">listings/todo/2/main.rs</a>
 
-```rust ,no_run,noplayground
+```rust
 {{#rustdoc_include ../listings/todo/2/main.rs:main}}
 ```
 
@@ -217,7 +217,7 @@ Doing so allows us to derive `Serialize` and `Deserialize` for `TodoData`.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/2/task_object/mod.rs">listings/todo/2/task_object/mod.rs</a>
 
-```rust ,no_run,noplayground
+```rust
 {{#rustdoc_include ../listings/todo/2/task_object/mod.rs:task_data}}
 ```
 
@@ -227,7 +227,7 @@ Then we return the file path.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/2/utils.rs">listings/todo/2/utils.rs</a>
 
-```rust ,no_run,noplayground
+```rust
 {{#rustdoc_include ../listings/todo/2/utils.rs:data_path}}
 ```
 
@@ -237,7 +237,7 @@ Then we serialize the `Vec` and store the data as a json file.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/2/window/imp.rs">listings/todo/2/window/imp.rs</a>
 
-```rust ,no_run,noplayground
+```rust
 {{#rustdoc_include ../listings/todo/2/window/imp.rs:window_impl}}
 ```
 
@@ -279,7 +279,7 @@ It might be the first time that we started the app and therefore there is no for
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/2/window/mod.rs">listings/todo/2/window/mod.rs</a>
 
-```rust ,no_run,noplayground
+```rust
 {{#rustdoc_include ../listings/todo/2/window/mod.rs:restore_data}}
 ```
 
@@ -287,7 +287,7 @@ Finally, we make sure that everything is set up in `constructed`.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/2/window/imp.rs">listings/todo/2/window/imp.rs</a>
 
-```rust ,no_run,noplayground
+```rust
 {{#rustdoc_include ../listings/todo/2/window/imp.rs:object_impl}}
 
 ```

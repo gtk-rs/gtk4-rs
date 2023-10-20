@@ -7,7 +7,7 @@ First, we need to create an implementation struct that holds the state and overr
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/g_object_subclassing/1/custom_button/imp.rs">listings/g_object_subclassing/1/custom_button/imp.rs</a>
 
-```rust ,no_run,noplayground
+```rust
 {{#rustdoc_include ../listings/g_object_subclassing/1/custom_button/imp.rs}}
 ```
 The description of the subclassing is in `ObjectSubclass`.
@@ -22,7 +22,7 @@ Next, we describe the public interface of our custom GObject.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/g_object_subclassing/1/custom_button/mod.rs">listings/g_object_subclassing/1/custom_button/mod.rs</a>
 
-```rust ,no_run,noplayground
+```rust
 {{#rustdoc_include ../listings/g_object_subclassing/1/custom_button/mod.rs:mod}}
 ```
 
@@ -36,7 +36,7 @@ After these steps, nothing is stopping us from replacing `gtk::Button` with our 
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/g_object_subclassing/1/main.rs">listings/g_object_subclassing/1/main.rs</a>
 
-```rust ,no_run,noplayground
+```rust
 {{#rustdoc_include ../listings/g_object_subclassing/1/main.rs}}
 ```
 
@@ -55,7 +55,7 @@ So let's make it a bit more interesting!
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/g_object_subclassing/2/custom_button/imp.rs">listings/g_object_subclassing/2/custom_button/imp.rs</a>
 
-```rust ,no_run,noplayground
+```rust
 {{#rustdoc_include ../listings/g_object_subclassing/2/custom_button/imp.rs}}
 ```
 We override `constructed` in `ObjectImpl` so that the label of the button initializes with `number`.
@@ -63,7 +63,7 @@ We also override `clicked` in `ButtonImpl` so that every click increases `number
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/g_object_subclassing/2/main.rs">listings/g_object_subclassing/2/main.rs</a>
 
-```rust ,no_run,noplayground
+```rust
 {{#rustdoc_include ../listings/g_object_subclassing/2/main.rs:activate}}
 ```
 

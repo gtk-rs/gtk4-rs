@@ -4,7 +4,7 @@ Until now, whenever we constructed pre-defined widgets we relied on the [builder
 As a reminder, that is how we used it to build our trusty "Hello World!" app.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/hello_world/3/main.rs">listings/hello_world/3/main.rs</a>
-```rust ,no_run,noplayground
+```rust
 {{#rustdoc_include ../listings/hello_world/3/main.rs:all}}
 ```
 
@@ -57,7 +57,7 @@ Then, we create a `build.rs` at the root of our package with the following conte
 This will compile the resources whenever we trigger a build with cargo and then statically link our executable to them.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/build.rs">listings/build.rs</a>
-```rust ,no_run,noplayground
+```rust
 fn main() {
     glib_build_tools::compile_resources(
         &["composite_templates/1/resources"],
@@ -71,13 +71,13 @@ Finally, we register and include the resources by calling the macro [`gio::resou
 In your own apps take care to register the resources before creating the `gtk::Application`.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/composite_templates/1/main.rs">listings/composite_templates/1/main.rs</a>
-```rust ,no_run,noplayground
+```rust
 {{#rustdoc_include ../listings/composite_templates/1/main.rs}}
 ```
 
 Within our code we create a custom widget inheriting from `gtk::ApplicationWindow` to make use of our template.
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/composite_templates/1/window/mod.rs">listings/composite_templates/1/window/mod.rs</a>
-```rust ,no_run,noplayground
+```rust
 {{#rustdoc_include ../listings/composite_templates/1/window/mod.rs}}
 ```
 
@@ -90,7 +90,7 @@ You use it by adding a struct member with the same name as one `id` attribute in
 This will be useful later, when we want to add a callback to our button.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/composite_templates/1/window/imp.rs">listings/composite_templates/1/window/imp.rs</a>
-```rust ,no_run,noplayground
+```rust
 {{#rustdoc_include ../listings/composite_templates/1/window/imp.rs:object}}
 ```
 
@@ -98,7 +98,7 @@ Within the `ObjectSubclass` trait, we make sure that `NAME` corresponds to `clas
 We also bind and initialize the template in `class_init` and `instance_init`.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/composite_templates/1/window/imp.rs">listings/composite_templates/1/window/imp.rs</a>
-```rust ,no_run,noplayground
+```rust
 {{#rustdoc_include ../listings/composite_templates/1/window/imp.rs:subclass}}
 ```
 
@@ -106,7 +106,7 @@ Finally, we connect the callback to the "clicked" signal of `button` within `con
 The button is easily available thanks to the stored reference in `self`.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/composite_templates/1/window/imp.rs">listings/composite_templates/1/window/imp.rs</a>
-```rust ,no_run,noplayground
+```rust
 {{#rustdoc_include ../listings/composite_templates/1/window/imp.rs:object_impl}}
 ```
 
@@ -118,21 +118,21 @@ As usual, we define the implementation struct within `imp.rs`.
 Note the `NAME` we define here, we will need it later to refer to it in the template.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/composite_templates/2/custom_button/imp.rs">listings/composite_templates/2/custom_button/imp.rs</a>
-```rust ,no_run,noplayground
+```rust
 {{#rustdoc_include ../listings/composite_templates/2/custom_button/imp.rs:imp}}
 ```
 
 We also define the public struct in `mod.rs`.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/composite_templates/2/custom_button/mod.rs">listings/composite_templates/2/custom_button/mod.rs</a>
-```rust ,no_run,noplayground
+```rust
 {{#rustdoc_include ../listings/composite_templates/2/custom_button/mod.rs:mod}}
 ```
 
 Since we want to refer to a `CustomButton` now we also have to change the type of the template child to it.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/composite_templates/2/window/imp.rs">listings/composite_templates/2/window/imp.rs</a>
-```rust ,no_run,noplayground
+```rust
 {{#rustdoc_include ../listings/composite_templates/2/window/imp.rs:object}}
 ```
 
@@ -162,7 +162,7 @@ It takes a function of type `Fn(&Self)`.
 This means that `handle_button_clicked` has a single parameter of type `&CustomButton`.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/composite_templates/3/window/imp.rs">listings/composite_templates/3/window/imp.rs</a>
-```rust ,no_run,noplayground
+```rust
 {{#rustdoc_include ../listings/composite_templates/3/window/imp.rs:template_callbacks}}
 ```
 
@@ -170,7 +170,7 @@ Then we have to bind the template callbacks with [`bind_template_callbacks`](htt
 We also need to remove the `button.connect_clicked` callback implemented in `window/imp.rs`.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/composite_templates/3/window/imp.rs">listings/composite_templates/3/window/imp.rs</a>
-```rust ,no_run,noplayground
+```rust
 {{#rustdoc_include ../listings/composite_templates/3/window/imp.rs:subclass}}
 ```
 
@@ -178,7 +178,7 @@ We can also access the state of our widget.
 Let's say we want to manipulate a `number` stored in `imp::Window`.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/composite_templates/4/window/imp.rs">listings/composite_templates/4/window/imp.rs</a>
-```rust ,no_run,noplayground
+```rust
 {{#rustdoc_include ../listings/composite_templates/4/window/imp.rs:object}}
 ```
 
@@ -193,7 +193,7 @@ Now we can add `&self` as first parameter to `handle_button_clicked`.
 This lets us access the state of the window and therefore manipulate `number`.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/composite_templates/4/window/imp.rs">listings/composite_templates/4/window/imp.rs</a>
-```rust ,no_run,noplayground
+```rust
 {{#rustdoc_include ../listings/composite_templates/4/window/imp.rs:template_callbacks}}
 ```
 
@@ -203,7 +203,7 @@ Now that we use template callbacks we don't access the template child anymore.
 Let's remove it. 
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/composite_templates/5/window/imp.rs">listings/composite_templates/5/window/imp.rs</a>
-```rust ,no_run,noplayground
+```rust
 {{#rustdoc_include ../listings/composite_templates/5/window/imp.rs:object}}
 ```
 
@@ -220,7 +220,7 @@ It also ensures that the widget type is registered.
 Luckily we can also do that by ourselves.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/composite_templates/6/window/imp.rs">listings/composite_templates/6/window/imp.rs</a>
-```rust ,no_run,noplayground
+```rust
 {{#rustdoc_include ../listings/composite_templates/6/window/imp.rs:subclass}}
 ```
 

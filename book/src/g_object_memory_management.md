@@ -156,7 +156,7 @@ We need a data type with interior mutability like [`std::cell::Cell`](https://do
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/g_object_memory_management/2/main.rs">listings/g_object_memory_management/1/main.rs</a>
 
-```rust ,no_run,noplayground
+```rust
 {{#rustdoc_include ../listings/g_object_memory_management/1/main.rs:build_ui}}
 ```
 
@@ -172,7 +172,7 @@ we can again use the [`Cell`](https://doc.rust-lang.org/std/cell/struct.Cell.htm
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/g_object_memory_management/2/main.rs">listings/g_object_memory_management/2/main.rs</a>
 
-```rust ,no_run,noplayground
+```rust
 {{#rustdoc_include ../listings/g_object_memory_management/2/main.rs:callback}}
 ```
 
@@ -181,7 +181,7 @@ We can improve that by using the [`glib::clone!`](https://gtk-rs.org/gtk-rs-core
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/g_object_memory_management/3/main.rs">listings/g_object_memory_management/3/main.rs</a>
 
-```rust ,no_run,noplayground
+```rust
 {{#rustdoc_include ../listings/g_object_memory_management/3/main.rs:callback}}
 ```
 
@@ -190,7 +190,7 @@ Therefore, we can pass the buttons the same way to the closure as we did with `n
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/g_object_memory_management/4/main.rs">listings/g_object_memory_management/4/main.rs</a>
 
-```rust ,no_run,noplayground
+```rust
 {{#rustdoc_include ../listings/g_object_memory_management/4/main.rs:callback}}
 ```
 
@@ -207,7 +207,7 @@ Since we want our apps to free unneeded memory, we should use weak references fo
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/g_object_memory_management/5/main.rs">listings/g_object_memory_management/5/main.rs</a>
 
-```rust ,no_run,noplayground
+```rust
 {{#rustdoc_include ../listings/g_object_memory_management/5/main.rs:callback}}
 ```
 
@@ -224,7 +224,7 @@ Who then keeps the buttons alive?
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/g_object_memory_management/5/main.rs">listings/g_object_memory_management/5/main.rs</a>
 
-```rust ,no_run,noplayground
+```rust
 {{#rustdoc_include ../listings/g_object_memory_management/5/main.rs:box_append}}
 ```
 
@@ -232,7 +232,7 @@ When we append the buttons to the `gtk_box`, `gtk_box` keeps a strong reference 
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/g_object_memory_management/5/main.rs">listings/g_object_memory_management/5/main.rs</a>
 
-```rust ,no_run,noplayground
+```rust
 {{#rustdoc_include ../listings/g_object_memory_management/5/main.rs:window_child}}
 ```
 

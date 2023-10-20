@@ -18,7 +18,7 @@ Let's look at one example.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/main_event_loop/1/main.rs">listings/main_event_loop/1/main.rs</a>
 
-```rust ,no_run,noplayground
+```rust
 {{#rustdoc_include ../listings/main_event_loop/1/main.rs}}
 ```
 
@@ -33,7 +33,7 @@ In order to avoid blocking the main loop we can spawn a new thread with [`gio::s
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/main_event_loop/2/main.rs">listings/main_event_loop/2/main.rs</a>
 
-```rust ,no_run,noplayground
+```rust
 {{#rustdoc_include ../listings/main_event_loop/2/main.rs:callback}}
 ```
 
@@ -58,7 +58,7 @@ We want to send a `bool` to inform, whether we want the button to react to click
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/main_event_loop/3/main.rs">listings/main_event_loop/3/main.rs</a>
 
-```rust ,no_run,noplayground
+```rust
 {{#rustdoc_include ../listings/main_event_loop/3/main.rs:callback}}
 ```
 
@@ -82,7 +82,7 @@ The converted code looks and behaves very similar to the multi-threaded code.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/main_event_loop/4/main.rs">listings/main_event_loop/4/main.rs</a>
 
-```rust ,no_run,noplayground
+```rust
 {{#rustdoc_include ../listings/main_event_loop/4/main.rs:callback}}
 ```
 
@@ -90,7 +90,7 @@ Since we are single-threaded again, we could even get rid of the channels while 
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/main_event_loop/5/main.rs">listings/main_event_loop/5/main.rs</a>
 
-```rust ,no_run,noplayground
+```rust
 {{#rustdoc_include ../listings/main_event_loop/5/main.rs:callback}}
 ```
 

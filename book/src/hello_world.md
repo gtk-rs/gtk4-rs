@@ -8,7 +8,7 @@ Note that we also import the prelude to bring the necessary traits into scope.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/hello_world/1/main.rs">listings/hello_world/1/main.rs</a>
 
-```rust ,no_run,noplayground
+```rust
 {{#rustdoc_include ../listings/hello_world/1/main.rs}}
 ```
 
@@ -24,7 +24,7 @@ So let's create a [`gtk::ApplicationWindow`](https://gtk-rs.org/gtk4-rs/stable/l
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/hello_world/2/main.rs">listings/hello_world/2/main.rs</a>
 
-```rust ,no_run,noplayground
+```rust
 {{#rustdoc_include ../listings/hello_world/2/main.rs}}
 ```
 That is better!
@@ -36,7 +36,7 @@ Also, the name of the chapter suggests that the phrase "Hello World!" will be in
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/hello_world/3/main.rs">listings/hello_world/3/main.rs</a>
 
-```rust ,no_run,noplayground
+```rust
 {{#rustdoc_include ../listings/hello_world/3/main.rs:build_ui}}
 ```
 

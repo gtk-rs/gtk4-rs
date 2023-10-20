@@ -11,3 +11,4 @@ default-theme = "Rust"
 git-repository-url = "https://github.com/gtk-rs/gtk4-rs/tree/master/book"
 git-repository-icon = "fa-github"
 additional-css = ["theme/style.css"]
+playground.runnable = false

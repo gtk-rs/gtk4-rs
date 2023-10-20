@@ -9,7 +9,7 @@ Each label will display an integer starting from 0 and ranging up to 100.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/list_widgets/1/main.rs">listings/list_widgets/1/main.rs</a>
 
-```rust ,no_run,noplayground
+```rust
 {{#rustdoc_include ../listings/list_widgets/1/main.rs:list_box}}
 ```
 
@@ -19,7 +19,7 @@ Now we can scroll through our elements.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/list_widgets/1/main.rs">listings/list_widgets/1/main.rs</a>
 
-```rust ,no_run,noplayground
+```rust
 {{#rustdoc_include ../listings/list_widgets/1/main.rs:scrolled_window}}
 ```
 
@@ -54,7 +54,7 @@ So let's create a custom GObject `IntegerObject` that which is initialized with 
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/list_widgets/2/integer_object/mod.rs">listings/list_widgets/2/integer_object/mod.rs</a>
 
-```rust ,no_run,noplayground
+```rust
 {{#rustdoc_include ../listings/list_widgets/2/integer_object/mod.rs:integer_object}}
 #
 ```
@@ -63,7 +63,7 @@ This number represents the internal state of `IntegerObject`.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/list_widgets/2/integer_object/imp.rs">listings/list_widgets/2/integer_object/imp.rs</a>
 
-```rust ,no_run,noplayground
+```rust
 {{#rustdoc_include ../listings/list_widgets/2/integer_object/imp.rs:integer_object}}
 #
 ```
@@ -74,7 +74,7 @@ Neither `Label` nor any other widget is mentioned here.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/list_widgets/2/main.rs">listings/list_widgets/2/main.rs</a>
 
-```rust ,no_run,noplayground
+```rust
 {{#rustdoc_include ../listings/list_widgets/2/main.rs:model}}
 ```
 
@@ -85,7 +85,7 @@ We connect to it to create a `Label` for every requested widget.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/list_widgets/2/main.rs">listings/list_widgets/2/main.rs</a>
 
-```rust ,no_run,noplayground
+```rust
 {{#rustdoc_include ../listings/list_widgets/2/main.rs:factory_setup}}
 ```
 
@@ -93,7 +93,7 @@ In the "bind" step we bind the data in our model to the individual list items.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/list_widgets/2/main.rs">listings/list_widgets/2/main.rs</a>
 
-```rust ,no_run,noplayground
+```rust
 {{#rustdoc_include ../listings/list_widgets/2/main.rs:factory_bind}}
 ```
 
@@ -103,7 +103,7 @@ Then we pass the model and the factory to the [`ListView`](https://gtk-rs.org/gt
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/list_widgets/2/main.rs">listings/list_widgets/2/main.rs</a>
 
-```rust ,no_run,noplayground
+```rust
 {{#rustdoc_include ../listings/list_widgets/2/main.rs:selection_list}}
 ```
 
@@ -111,7 +111,7 @@ Every `ListView` has to be a direct child of a `ScrolledWindow`, so we are addin
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/list_widgets/2/main.rs">listings/list_widgets/2/main.rs</a>
 
-```rust ,no_run,noplayground
+```rust
 {{#rustdoc_include ../listings/list_widgets/2/main.rs:scrolled_window}}
 ```
 
@@ -125,7 +125,7 @@ For that we first add the method `increase_number` to our `IntegerObject`.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/list_widgets/3/integer_object/mod.rs">listings/list_widgets/3/integer_object/mod.rs</a>
 
-```rust ,no_run,noplayground
+```rust
 {{#rustdoc_include ../listings/list_widgets/3/integer_object/mod.rs:integer_object}}
 ```
 
@@ -133,7 +133,7 @@ In order to interact with our `ListView`, we connect to its "activate" signal.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/list_widgets/3/main.rs">listings/list_widgets/3/main.rs</a>
 
-```rust ,no_run,noplayground
+```rust
 {{#rustdoc_include ../listings/list_widgets/3/main.rs:list_view_activate}}
 ```
 
@@ -144,7 +144,7 @@ One naive approach would be to bind the properties in the "bind" step of the `Si
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/list_widgets/3/main.rs">listings/list_widgets/3/main.rs</a>
 
-```rust ,no_run,noplayground
+```rust
 {{#rustdoc_include ../listings/list_widgets/3/main.rs:factory_bind}}
 ```
 
@@ -163,7 +163,7 @@ Let's see how the "setup" step now works.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/list_widgets/4/main.rs">listings/list_widgets/4/main.rs</a>
 
-```rust ,no_run,noplayground
+```rust
 {{#rustdoc_include ../listings/list_widgets/4/main.rs:factory_setup}}
 ```
 
@@ -184,7 +184,7 @@ We do that by passing it to a [`gtk::FilterListModel`](https://gtk-rs.org/gtk4-r
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/list_widgets/5/main.rs">listings/list_widgets/5/main.rs</a>
 
-```rust ,no_run,noplayground
+```rust
 {{#rustdoc_include ../listings/list_widgets/5/main.rs:filter}}
 ```
 
@@ -193,7 +193,7 @@ Now we pass the filtered model to [`gtk::SortListModel`](https://gtk-rs.org/gtk4
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/list_widgets/5/main.rs">listings/list_widgets/5/main.rs</a>
 
-```rust ,no_run,noplayground
+```rust
 {{#rustdoc_include ../listings/list_widgets/5/main.rs:sorter}}
 ```
 
@@ -201,7 +201,7 @@ To ensure that our filter and sorter get updated when we modify the numbers, we 
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/list_widgets/5/main.rs">listings/list_widgets/5/main.rs</a>
 
-```rust ,no_run,noplayground
+```rust
 {{#rustdoc_include ../listings/list_widgets/5/main.rs:activate}}
 ```
 
@@ -223,7 +223,7 @@ First, we add a bunch of strings to our model.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/list_widgets/6/main.rs">listings/list_widgets/6/main.rs</a>
 
-```rust ,no_run,noplayground
+```rust
 {{#rustdoc_include ../listings/list_widgets/6/main.rs:string_list}}
 ```
 
@@ -235,7 +235,7 @@ Here we can use [`StringObject`](https://gtk-rs.org/gtk4-rs/stable/latest/docs/g
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/list_widgets/6/main.rs">listings/list_widgets/6/main.rs</a>
 
-```rust ,no_run,noplayground
+```rust
 {{#rustdoc_include ../listings/list_widgets/6/main.rs:factory_setup}}
 ```
 
