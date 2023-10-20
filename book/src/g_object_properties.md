@@ -9,7 +9,7 @@ That is why `gtk-rs` provides corresponding [`is_active`](https://gtk-rs.org/gtk
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/g_object_properties/1/main.rs">listings/g_object_properties/1/main.rs</a>
 
-```rust ,no_run,noplayground
+```rust
 {{#rustdoc_include ../listings/g_object_properties/1/main.rs:switch}}
 ```
 
@@ -18,7 +18,7 @@ Let's see how that would look like for two `Switch` instances.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/g_object_properties/2/main.rs">listings/g_object_properties/2/main.rs</a>
 
-```rust ,no_run,noplayground
+```rust
 {{#rustdoc_include ../listings/g_object_properties/2/main.rs:switches}}
 ```
 
@@ -27,7 +27,7 @@ We also want the binding to be bidirectional, so we specify by calling the [`bid
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/g_object_properties/2/main.rs">listings/g_object_properties/2/main.rs</a>
 
-```rust ,no_run,noplayground
+```rust
 {{#rustdoc_include ../listings/g_object_properties/2/main.rs:bind_active}}
 ```
 
@@ -51,7 +51,7 @@ It also generates [wrapper methods](https://gtk-rs.org/gtk-rs-core/stable/latest
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/g_object_properties/3/custom_button/imp.rs">listings/g_object_properties/3/custom_button/imp.rs</a>
 
-```rust ,no_run,noplayground
+```rust
 {{#rustdoc_include ../listings/g_object_properties/3/custom_button/imp.rs:custom_button}}
 ```
 
@@ -62,7 +62,7 @@ Now we don't have to adapt the label in the "clicked" callback anymore.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/g_object_properties/3/custom_button/imp.rs">listings/g_object_properties/3/custom_button/imp.rs</a>
 
-```rust ,no_run,noplayground
+```rust
 {{#rustdoc_include ../listings/g_object_properties/3/custom_button/imp.rs:object_impl}}
 ```
 
@@ -70,7 +70,7 @@ We also have to adapt the `clicked` method.
 Before we modified `number` directly, now we can use the generated wrapper methods `number` and `set_number`.
 This way the "notify" signal will be emitted, which is necessary for the bindings to work as expected.
 
-```rust ,no_run,noplayground
+```rust
 {{#rustdoc_include ../listings/g_object_properties/3/custom_button/imp.rs:button_impl}}
 ```
 
@@ -78,7 +78,7 @@ Let's see what we can do with this by creating two custom buttons.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/g_object_properties/3/main.rs">listings/g_object_properties/3/main.rs</a>
 
-```rust ,no_run,noplayground
+```rust
 {{#rustdoc_include ../listings/g_object_properties/3/main.rs:buttons}}
 ```
 
@@ -87,7 +87,7 @@ By leveraging [`transform_to`](https://gtk-rs.org/gtk-rs-core/stable/latest/docs
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/g_object_properties/3/main.rs">listings/g_object_properties/3/main.rs</a>
 
-```rust ,no_run,noplayground
+```rust
 {{#rustdoc_include ../listings/g_object_properties/3/main.rs:bind_numbers}}
 ```
 Now if we click on one button, the "number" and "label" properties of the other button change as well.
@@ -104,7 +104,7 @@ For example like this:
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/g_object_properties/3/main.rs">listings/g_object_properties/3/main.rs</a>
 
-```rust ,no_run,noplayground
+```rust
 {{#rustdoc_include ../listings/g_object_properties/3/main.rs:connect_notify}}
 ```
 

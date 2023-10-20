@@ -9,7 +9,7 @@ In our "Hello World" example we [connected](https://gtk-rs.org/gtk4-rs/stable/la
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/hello_world/3/main.rs">listings/hello_world/3/main.rs</a>
 
-```rust ,no_run,noplayground
+```rust
 {{#rustdoc_include ../listings/hello_world/3/main.rs:callback}}
 ```
 
@@ -17,7 +17,7 @@ If we wanted to, we could have connected to it with the generic [`connect_closur
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/g_object_signals/1/main.rs">listings/g_object_signals/1/main.rs</a>
 
-```rust ,no_run,noplayground
+```rust
 {{#rustdoc_include ../listings/g_object_signals/1/main.rs:callback}}
 ```
 
@@ -42,7 +42,7 @@ cargo add once_cell
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/g_object_signals/2/custom_button/imp.rs">listings/g_object_signals/2/custom_button/imp.rs</a>
 
-```rust ,no_run,noplayground
+```rust
 {{#rustdoc_include ../listings/g_object_signals/2/custom_button/imp.rs:object_impl}}
 ```
 
@@ -57,7 +57,7 @@ After we did that, we set `number` back to 0.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/g_object_signals/2/custom_button/imp.rs">listings/g_object_signals/2/custom_button/imp.rs</a>
 
-```rust ,no_run,noplayground
+```rust
 {{#rustdoc_include ../listings/g_object_signals/2/custom_button/imp.rs:button_impl}}
 ```
 
@@ -67,7 +67,7 @@ Whenever we now receive the "max-number-reached" signal, the accompanying number
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/g_object_signals/2/main.rs">listings/g_object_signals/2/main.rs</a>
 
-```rust ,no_run,noplayground
+```rust
 {{#rustdoc_include ../listings/g_object_signals/2/main.rs:signal_handling}}
 ```
 

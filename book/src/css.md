@@ -22,7 +22,7 @@ As usual, the widgets are created during the "activate" step.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/css/1/main.rs">listings/css/1/main.rs</a>
 
-```rust ,no_run,noplayground
+```rust
 {{#rustdoc_include ../listings/css/1/main.rs:main}}
 ```
 
@@ -71,7 +71,7 @@ Which is why we add the style class `button-1` to the first one.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/css/3/main.rs">listings/css/3/main.rs</a>
 
-```rust ,no_run,noplayground
+```rust
 {{#rustdoc_include ../listings/css/3/main.rs:buttons}}
 ```
 
@@ -100,7 +100,7 @@ We set the name of the first one with [`set_widget_name`](https://gtk-rs.org/gtk
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/css/4/main.rs">listings/css/4/main.rs</a>
 
-```rust ,no_run,noplayground
+```rust
 {{#rustdoc_include ../listings/css/4/main.rs:buttons}}
 ```
 
@@ -127,7 +127,7 @@ Most widgets will document these rules in their documentation under [CSS nodes](
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/css/5/main.rs">listings/css/5/main.rs</a>
 
-```rust ,no_run,noplayground
+```rust
 {{#rustdoc_include ../listings/css/5/main.rs:buttons}}
 ```
 
@@ -232,7 +232,7 @@ In our case, the widget `TaskRow` then corresponds to the node `task-row`.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/3/task_row/imp.rs">listings/todo/3/task_row/imp.rs</a>
 
-```rust ,no_run,noplayground
+```rust
 {{#rustdoc_include ../listings/todo/3/task_row/imp.rs:object_subclass}}
 ```
 
@@ -274,14 +274,14 @@ Additionally, we call `load_css()` in `connect_startup`.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/3/main.rs">listings/todo/3/main.rs</a>
 
-```rust ,no_run,noplayground
+```rust
 {{#rustdoc_include ../listings/todo/3/main.rs:connect_startup}}
 ```
 
 `load_css()` is very similar to the one shown at the beginning of the chapter.
 However, this time we load styles using `load_from_resource()`.
 
-```rust ,no_run,noplayground
+```rust
 {{#rustdoc_include ../listings/todo/3/main.rs:load_css}}
 ```
 

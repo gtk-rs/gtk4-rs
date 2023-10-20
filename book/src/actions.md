@@ -37,7 +37,7 @@ If that had not been the case, we would have to add the action group manually vi
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/actions/2/main.rs">listings/actions/2/main.rs</a>
 
-```rust ,no_run,noplayground
+```rust
 {{#rustdoc_include ../listings/actions/2/main.rs:action_group}}
 ```
 
@@ -57,7 +57,7 @@ Let's see how this works.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/actions/3/main.rs">listings/actions/3/main.rs</a>
 
-```rust ,no_run,noplayground
+```rust
 {{#rustdoc_include ../listings/actions/3/main.rs:build_ui}}
 ```
 
@@ -83,7 +83,7 @@ With [`ButtonBuilder`](https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/builde
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/actions/4/main.rs">listings/actions/4/main.rs</a>
 
-```rust ,no_run,noplayground
+```rust
 {{#rustdoc_include ../listings/actions/4/main.rs:button_builder}}
 ```
 
@@ -101,7 +101,7 @@ We will connect the actions and add them to the window in the `Window::setup_act
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/actions/5/window/mod.rs">listings/actions/5/window/mod.rs</a>
 
-```rust ,no_run,noplayground
+```rust
 {{#rustdoc_include ../listings/actions/5/window/mod.rs:impl_window}}
 ```
 
@@ -109,7 +109,7 @@ Finally, `setup_actions` will be called within `constructed`.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/actions/5/window/imp.rs">listings/actions/5/window/imp.rs</a>
 
-```rust ,no_run,noplayground
+```rust
 {{#rustdoc_include ../listings/actions/5/window/imp.rs:object_impl}}
 ```
 
@@ -135,7 +135,7 @@ This means that the caller can expect the boolean state to toggle after activati
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/actions/6/window/mod.rs">listings/actions/6/window/mod.rs</a>
 
-```rust ,no_run,noplayground
+```rust
 {{#rustdoc_include ../listings/actions/6/window/mod.rs:action_button_frame}}
 ```
 
@@ -153,7 +153,7 @@ We don't need the action state to implement orientation switching, however it is
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/actions/6/window/mod.rs">listings/actions/6/window/mod.rs</a>
 
-```rust ,no_run,noplayground
+```rust
 {{#rustdoc_include ../listings/actions/6/window/mod.rs:action_orientation}}
 ```
 
@@ -255,7 +255,7 @@ Since [`gio::Settings`](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/gio/st
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/actions/7/window/imp.rs">listings/actions/7/window/imp.rs</a>
 
-```rust ,no_run,noplayground
+```rust
 {{#rustdoc_include ../listings/actions/7/window/imp.rs:imp_struct}}
 ```
 
@@ -263,7 +263,7 @@ Now we create functions to make it easier to access settings.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/actions/7/window/mod.rs">listings/actions/7/window/mod.rs</a>
 
-```rust ,no_run,noplayground
+```rust
 {{#rustdoc_include ../listings/actions/7/window/mod.rs:settings}}
 ```
 
@@ -273,7 +273,7 @@ We create actions with the[ `create_action`](https://gtk-rs.org/gtk-rs-core/stab
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/actions/7/window/mod.rs">listings/actions/7/window/mod.rs</a>
 
-```rust ,no_run,noplayground
+```rust
 {{#rustdoc_include ../listings/actions/7/window/mod.rs:settings_create_actions}}
 ```
 
@@ -285,7 +285,7 @@ For the stateful actions, instead of adding callbacks to their "activate" signal
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/actions/7/window/mod.rs">listings/actions/7/window/mod.rs</a>
 
-```rust ,no_run,noplayground
+```rust
 {{#rustdoc_include ../listings/actions/7/window/mod.rs:bind_settings}}
 ```
 
@@ -293,7 +293,7 @@ Finally, we make sure that `bind_settings` is called within `constructed`.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/actions/7/window/imp.rs">listings/actions/7/window/imp.rs</a>
 
-```rust ,no_run,noplayground
+```rust
 {{#rustdoc_include ../listings/actions/7/window/imp.rs:object_impl}}
 ```
 
