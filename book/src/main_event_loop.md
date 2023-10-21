@@ -178,21 +178,47 @@ After reference cycles we found the second disadvantage of GTK GObjects: They ar
 
 ## Async
 
+We've seen in the previous snippets that spawning an async block or async future on the glib main loop can lead to more concise code than running tasks on separate threads.
+Let's focus on a few more aspects that are interesting to know when running async functions with gtk-rs apps.
+
+For one, blocking functions can be embedded within an async context.
+In the following listing, we want to execute a synchronous function that returns a boolean and takes ten seconds to run.
+In order to integrate it in our async block, we run the function in a separate thread via `spawn_blocking`.
+We can then get the return value of the function by calling `await` on the return value of `spawn_blocking`.
+
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/main_event_loop/6/main.rs">listings/main_event_loop/6/main.rs</a>
 
 ```rust
 {{#rustdoc_include ../listings/main_event_loop/6/main.rs:callback}}
 ```
 
+Asynchronous functions from the glib ecosystem can always be spawned on the glib main loop.
+Typically, crates from the async-std/smol ecosystem work as well.
+Let us take ashpd for example which allows sandboxed applications to interact with the desktop.
+Per default it depends on `async-std`.
+We can add it to our dependencies by running the following command.
+
 ```
-cargo add ashpd@0.6 --features gtk4
+cargo add ashpd --features gtk4
 ```
+
+You need to use a Linux desktop environment in order to run the following example locally.
+We are using [`ashpd::desktop::account::UserInformation`](https://docs.rs/ashpd/latest/ashpd/desktop/account/index.html) in order to access user information.
+We are getting a [`gtk::Native`](https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/struct.Native.html) object from our button, create a [`ashpd::WindowIdentifier`](https://docs.rs/ashpd/latest/ashpd/enum.WindowIdentifier.html) and pass it to the user information request.
+That way the dialog that will pop up will be modal.
+That means that it will be on top of the window and freezes the rest of the application from user input.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/main_event_loop/7/main.rs">listings/main_event_loop/7/main.rs</a>
 
 ```rust
 {{#rustdoc_include ../listings/main_event_loop/7/main.rs:callback}}
 ```
+
+After pressing the button, a dialog should open that shows the information that will be shared.
+If you decide to share it, you user name will be printed on the console.
+
+<div style="text-align:center"><img src="img/main_event_loop_ashpd.png" alt="Dialog requesting user information."/></div>
+
 
 ```
 cargo add tokio@1 --features rt-multi-thread
