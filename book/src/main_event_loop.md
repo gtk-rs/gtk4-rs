@@ -221,20 +221,30 @@ If you decide to share it, you user name will be printed on the console.
 
 
 ```
-cargo add tokio@1 --features rt-multi-thread
 cargo add reqwest@0.11 --features rustls-tls --no-default-features
 ```
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/main_event_loop/8/main.rs">listings/main_event_loop/8/main.rs</a>
 
 ```rust
-{{#rustdoc_include ../listings/main_event_loop/8/main.rs:tokio_runtime}}
+{{#rustdoc_include ../listings/main_event_loop/8/main.rs:callback}}
 ```
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/main_event_loop/8/main.rs">listings/main_event_loop/8/main.rs</a>
+```
+cargo add tokio@1 --features rt-multi-thread
+```
+
+
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/main_event_loop/9/main.rs">listings/main_event_loop/9/main.rs</a>
 
 ```rust
-{{#rustdoc_include ../listings/main_event_loop/8/main.rs:callback}}
+{{#rustdoc_include ../listings/main_event_loop/9/main.rs:tokio_runtime}}
+```
+
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/main_event_loop/9/main.rs">listings/main_event_loop/9/main.rs</a>
+
+```rust
+{{#rustdoc_include ../listings/main_event_loop/9/main.rs:callback}}
 ```
 
 
