@@ -249,5 +249,11 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 
 
 So when should you spawn an `async` block and when should you spawn a thread?
-- If you have `async` functions for your IO-bound operations at your disposal, feel free to spawn them on the main loop.
-- If your operation is computation-bound or there is no `async` function available, you have to spawn threads.
+
+# TODO
+
+- computation bound -> threads + channels
+- IO:
+    - if you have glib/smol/async-std functions -> spawn on main loop (+ maybe channels)
+    - if tokio lib is better -> spawn on tokio + channels
+    - if those are not good options -> threads + channels
