@@ -78,7 +78,7 @@ Every time we get a message we want to set the sensitivity of the button accordi
 However, we don't want to block the main loop while waiting for a message to receive.
 That is the whole point of the exercise after all!
 
-We solve that problem by waiting for messages to receive in an [`async`](https://rust-lang.github.io/async-book/) block.
+We solve that problem by waiting for messages in an [`async`](https://rust-lang.github.io/async-book/) block.
 We spawn that `async` block on the `glib` main loop with [`spawn_local`](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/struct.MainContext.html#method.spawn_local) (from other threads than the main thread [`spawn`](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/struct.MainContext.html#method.spawn) has to be used).
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/main_event_loop/3/main.rs">listings/main_event_loop/3/main.rs</a>
@@ -88,7 +88,7 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 ```
 
 As you can see, spawning a task still doesn't freeze our user interface.
-Now, we also can't spawn multiple tasks at the same time since the button becomes insensitive after the first task has been spawned.
+However, now we can't spawn multiple tasks at the same time since the button becomes insensitive after the first task has been spawned.
 After the task is finished, the button becomes sensitive again.
 
 <div style="text-align:center">
@@ -99,7 +99,7 @@ After the task is finished, the button becomes sensitive again.
 </div>
 
 What if the task is asynchronous by nature?
-Let's use [`glib::timeout_future_seconds`](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/fn.timeout_future_seconds.html) as representation for our task instead of `std::thread::slepp`.
+Let's try [`glib::timeout_future_seconds`](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/fn.timeout_future_seconds.html) as representation for our task instead of `std::thread::slepp`.
 It returns a [`std::future::Future`](https://doc.rust-lang.org/std/future/trait.Future.html), which means we can `await` on it within an `async` context.
 The converted code looks and behaves very similar to the multithreaded code.
 
@@ -190,14 +190,14 @@ help: within `gtk4::Button`, the trait `Sync` is not implemented for `NonNull<GO
 
 After reference cycles we found the second disadvantage of GTK GObjects: They are not thread safe.
 
-## More async
+## Embed blocking calls in an `async` context
 
-We've seen in the previous snippets that spawning an async block or async future on the `glib` main loop can lead to more concise code than running tasks on separate threads.
-Let's focus on a few more aspects that are interesting to know when running async functions with gtk-rs apps.
+We've seen in the previous snippets that spawning an `async` block or `async` future on the `glib` main loop can lead to more concise code than running tasks on separate threads.
+Let's focus on a few more aspects that are interesting to know when running `async` functions with gtk-rs apps.
 
-For one, blocking functions can be embedded within an async context.
+For one, blocking functions can be embedded within an `async` context.
 In the following listing, we want to execute a synchronous function that returns a boolean and takes ten seconds to run.
-In order to integrate it in our async block, we run the function in a separate thread via `spawn_blocking`.
+In order to integrate it in our `async` block, we run the function in a separate thread via `spawn_blocking`.
 We can then get the return value of the function by calling `await` on the return value of `spawn_blocking`.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/main_event_loop/6/main.rs">listings/main_event_loop/6/main.rs</a>
@@ -206,9 +206,11 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 {{#rustdoc_include ../listings/main_event_loop/6/main.rs:callback}}
 ```
 
+## Run `async` functions from external crates
+
 Asynchronous functions from the `glib` ecosystem can always be spawned on the `glib` main loop.
-Typically, crates from the async-std/smol ecosystem work as well.
-Let us take ashpd for example which allows sandboxed applications to interact with the desktop.
+Typically, crates depending on `async-std` or `smol` work as well.
+Let us take `ashpd` for example which allows sandboxed applications to interact with the desktop.
 Per default it depends on `async-std`.
 We can add it to our dependencies by running the following command.
 
@@ -217,7 +219,7 @@ cargo add ashpd --features gtk4
 ```
 
 You need to use a Linux desktop environment in order to run the following example locally.
-We are using [`ashpd::desktop::account::UserInformation`](https://docs.rs/ashpd/latest/ashpd/desktop/account/index.html) in order to access user information.
+We are using [`ashpd::desktop::account::UserInformation`](https://docs.rs/ashpd/latest/ashpd/desktop/account/index.html) to access user information.
 We are getting a [`gtk::Native`](https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/struct.Native.html) object from our button, create a [`ashpd::WindowIdentifier`](https://docs.rs/ashpd/latest/ashpd/enum.WindowIdentifier.html) and pass it to the user information request.
 That way the dialog that will pop up will be modal.
 That means that it will be on top of the window and freezes the rest of the application from user input.
@@ -294,14 +296,14 @@ If we now press the button, we should find the following message in our console:
 Status: 200 OK
 ```
 
-We will not need `tokio` or `reqwest` in the following chapters, so let's remove it again by executing:
+We will not need `tokio`, `reqwest` or `ashpd` in the following chapters, so let's remove it again by executing:
 
 ```
-cargo remove reqwest tokio
+cargo remove reqwest tokio ashpd
 ```
 
 How to find out whether you can spawn an `async` task on the `glib` main loop?
-You should be able to do that when the called functions come from libraries that either:
+`glib` should be able to spawn the task when the called functions come from libraries that either:
 - come from the `glib` ecosystem,
 - depend on `async-std`/`smol`, or
 - have cargo features that let them depend on `async-std`/`smol` instead of `tokio`.
@@ -309,14 +311,14 @@ You should be able to do that when the called functions come from libraries that
 
 ## Conclusion
 
-You don't want to block the main thread long enough that it is noticable by the user.
-But when should you spawn an `async` task, and when should you spawn a task in a separate thread?
+You don't want to block the main thread long enough that it is noticeable by the user.
+But when should you spawn an `async` task, instead of spawning a task in a separate thread?
 Let's go again through the different scenarios.
 
-If you spend your time calculating rather than waiting for a web response, your task is [CPU-bound](https://en.wikipedia.org/wiki/CPU-bound).
-That means you have to run your task in a separate thread and send results back via a channel.
+If the task spends its time calculating rather than waiting for a web response, it is [CPU-bound](https://en.wikipedia.org/wiki/CPU-bound).
+That means you have to run the task in a separate thread and let it send results back via a channel.
 
-If your task is [IO bound](https://en.wikipedia.org/wiki/I/O_bound), it depends on the crates at your disposal
+If your task is [IO bound](https://en.wikipedia.org/wiki/I/O_bound), the answer depends on the crates at your disposal.
 Functions from crates using `glib`/`smol`/`async-std` can be spawned on the main loop.
-This typically leads to straightforward code, which can often avoid synchronization via channels.
-If the best crate for the job relies on `tokio`, you will have to spawn it with the tokio runtime and send the results via channels.
+This way, you can often avoid synchronization via channels.
+If the best crate for the job relies on `tokio`, you will have to spawn it with the tokio runtime and communicate via channels.
