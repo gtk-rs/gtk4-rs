@@ -14,6 +14,7 @@ anyhow = "1.0"
 xshell = "0.2"
 dirs = "5.0"
 walkdir = "2.3"
+async-channel = "1.9.0"
 
 [build-dependencies]
 glib-build-tools = "0.18"

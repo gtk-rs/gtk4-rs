@@ -1,7 +1,7 @@
 use std::thread;
 use std::time::Duration;
 
-use glib::{clone, MainContext, Priority};
+use glib::{clone, MainContext};
 use gtk::prelude::*;
 use gtk::{gio, glib, Application, ApplicationWindow, Button};
 
@@ -29,31 +29,32 @@ fn build_ui(app: &Application) {
         .build();
 
     // ANCHOR: callback
-    let (sender, receiver) = MainContext::channel(Priority::default());
+    let (sender, receiver) = async_channel::unbounded();
     // Connect to "clicked" signal of `button`
     button.connect_clicked(move |_| {
         let sender = sender.clone();
         // The long running operation runs now in a separate thread
         gio::spawn_blocking(move || {
             // Deactivate the button until the operation is done
-            sender.send(false).expect("Could not send through channel");
+            sender
+                .send_blocking(false)
+                .expect("The channel needs to be open.");
             let ten_seconds = Duration::from_secs(10);
             thread::sleep(ten_seconds);
             // Activate the button again
-            sender.send(true).expect("Could not send through channel");
+            sender
+                .send_blocking(true)
+                .expect("The channel needs to be open.");
         });
     });
 
-    // The main loop executes the closure as soon as it receives the message
-    receiver.attach(
-        None,
-        clone!(@weak button => @default-return glib::ControlFlow::Break,
-            move |enable_button| {
-                button.set_sensitive(enable_button);
-                glib::ControlFlow::Continue
-            }
-        ),
-    );
+    let main_context = MainContext::default();
+    // The main loop executes the asynchronous block
+    main_context.spawn_local(clone!(@weak button => async move {
+        while let Ok(enable_button) = receiver.recv().await {
+            button.set_sensitive(enable_button);
+        }
+    }));
     // ANCHOR_END: callback
 
     // Create a window

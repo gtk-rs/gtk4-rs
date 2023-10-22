@@ -11,10 +11,9 @@ It does all of that within the same thread.
 Quickly iterating between all tasks gives the illusion of parallelism.
 That is why you can move the window at the same time as a progress bar is growing.
 
-
 However, you surely saw GUIs that became unresponsive, at least for a few seconds.
 That happens when a single task takes too long.
-Let's look at one example.
+The following example uses [`std::thread::sleep`](https://doc.rust-lang.org/std/thread/fn.sleep.html) to represent a long-running task.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/main_event_loop/1/main.rs">listings/main_event_loop/1/main.rs</a>
 
@@ -29,7 +28,7 @@ but it is not unusual wanting to run a slightly longer operation in one go.
 
 ## How to Avoid Blocking the Main Loop
 
-In order to avoid blocking the main loop we can spawn a new thread with [`gio::spawn_blocking`](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/gio/fn.spawn_blocking.html) and let the operation run there.
+In order to avoid blocking the main loop we can spawn a new task with [`gio::spawn_blocking`](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/gio/fn.spawn_blocking.html) and let the operation run there.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/main_event_loop/2/main.rs">listings/main_event_loop/2/main.rs</a>
 
@@ -45,22 +44,38 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 </div>
 
 
-> If you come from another language than Rust, you might be uncomfortable with the thought of spawning new threads before even looking at other options.
+> If you come from another language than Rust, you might be uncomfortable with the thought of running tasks in separate threads before even looking at other options.
 > Luckily, Rust's safety guarantees allow you to stop worrying about the nasty bugs that concurrency tends to bring.
 
 
+Typically, we want to keep track of the work in the task.
+In our case, we don't want the user to spawn additional tasks while an existing one is still running.
+In order to achieve that we can create a channel with the crate [`async-channel`](https://docs.rs/async-channel/latest/async_channel/index.html).
+Let's add it by executing the following in the terminal:
 
-Normally we want to keep track of the work in the thread.
-In our case, we don't want the user to spawn additional threads while an existing one is still running.
-In order to achieve that we can create a channel.
-The main loop allows us to send a message from multiple places to a single receiver at the main thread.
+```
+cargo add async-channel
+```
+
 We want to send a `bool` to inform, whether we want the button to react to clicks or not.
+Since we send in a separate thread, we can use [`send_blocking`](https://docs.rs/async-channel/latest/async_channel/struct.Sender.html#method.send_blocking).
+But what about receiving?
+Every time we get a message we want to set the sensitivity of the button according to the `bool` we've received.
+However, we don't want to block the main loop while waiting for a message to receive.
+That is the whole point of the exercise after all!
+
+We solve that problem by waiting for messages to receive in an [`async`](https://rust-lang.github.io/async-book/) block.
+We spawn that `async` block on the glib main loop with [`spawn_local`](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/struct.MainContext.html#method.spawn_local) (from other threads than the main thread [`spawn`](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/struct.MainContext.html#method.spawn) has to be used).
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/main_event_loop/3/main.rs">listings/main_event_loop/3/main.rs</a>
 
 ```rust
 {{#rustdoc_include ../listings/main_event_loop/3/main.rs:callback}}
 ```
+
+As you can see, spawning a task still doesn't freeze our user interface.
+Now, we also can't spawn multiple tasks at the same time since the button becomes insensitive after the first task has been spawned.
+After the task is finished, the button becomes sensitive again.
 
 <div style="text-align:center">
  <video autoplay muted loop>
@@ -69,16 +84,10 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
  </video>
 </div>
 
-
-> Per default, [`glib::clone!`](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/macro.clone.html) returns `()` when upgrading of a weak reference fails.
-> [`glib::Receiver::attach`](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/struct.Receiver.html#method.attach) expects a closure with a return value of type [`glib::ControlFlow`](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/enum.ControlFlow.html).
-> This is why we specify `@default-return` as `glib::ControlFlow::Break` to clarify that the closure not be called anymore as soon as the upgrade of a weak reference fails.
-
-
-Spawning threads is not the only way to run operations asynchronously.
-You can also let the main loop take care of running [`async`](https://rust-lang.github.io/async-book/) functions.
-If you do that from the main thread use [`spawn_local`](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/struct.MainContext.html#method.spawn_local), from other threads [`spawn`](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/struct.MainContext.html#method.spawn) has to be used.
-The converted code looks and behaves very similar to the multi-threaded code.
+What if the task is asynchronous by nature?
+Let's use [`glib::timeout_future_seconds`](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/fn.timeout_future_seconds.html) as representation for our task instead of `std::thread::slepp`.
+It returns a [`std::future::Future`](https://doc.rust-lang.org/std/future/trait.Future.html), which means we can `await` on it within an `async` context.
+The converted code looks and behaves very similar to the multithreaded code.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/main_event_loop/4/main.rs">listings/main_event_loop/4/main.rs</a>
 
@@ -86,7 +95,7 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 {{#rustdoc_include ../listings/main_event_loop/4/main.rs:callback}}
 ```
 
-Since we are single-threaded again, we could even get rid of the channels while achieving the same result.
+Since we are single-threaded again, we can even get rid of the channel while achieving the same result.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/main_event_loop/5/main.rs">listings/main_event_loop/5/main.rs</a>
 
@@ -94,7 +103,7 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 {{#rustdoc_include ../listings/main_event_loop/5/main.rs:callback}}
 ```
 
-But why did we not do the same thing with our multi-threaded example?
+But why did we not do the same thing with our multithreaded example?
 
 ```rust ,no_run,compile_fail
 # use std::{thread, time::Duration};
@@ -167,6 +176,6 @@ help: within `gtk4::Button`, the trait `Sync` is not implemented for `NonNull<GO
 
 After reference cycles we found the second disadvantage of GTK GObjects: They are not thread safe.
 
-So when should you spawn an `async` block and when should you spawn a thread?
+So when should you spawn an `async` block, and when should you spawn a thread?
 - If you have `async` functions for your IO-bound operations at your disposal, feel free to spawn them on the main loop.
 - If your operation is computation-bound or there is no `async` function available, you have to spawn threads.
