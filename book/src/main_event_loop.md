@@ -26,6 +26,15 @@ We can't even move the window.
 The `sleep` call is an artificial example,
 but it is not unusual wanting to run a slightly longer operation in one go.
 
+
+<div style="text-align:center">
+ <video autoplay muted loop>
+  <source src="vid/main_event_loop_1.webm" type="video/webm">
+  <p>A video which shows that after pressing the button, the window can still be moved</p>
+ </video>
+</div>
+
+
 ## How to Avoid Blocking the Main Loop
 
 In order to avoid blocking the main loop we can spawn a new task with [`gio::spawn_blocking`](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/gio/fn.spawn_blocking.html) and let the operation run there.
@@ -35,6 +44,10 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 ```rust
 {{#rustdoc_include ../listings/main_event_loop/2/main.rs:callback}}
 ```
+
+Now the GUI doesn't freeze when we press the button.
+However, nothing stops us from spawning as many tasks as we want at the same time.
+This is not necessarily what we want.
 
 <div style="text-align:center">
  <video autoplay muted loop>
@@ -47,10 +60,11 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 > If you come from another language than Rust, you might be uncomfortable with the thought of running tasks in separate threads before even looking at other options.
 > Luckily, Rust's safety guarantees allow you to stop worrying about the nasty bugs that concurrency tends to bring.
 
+## Channels
 
 Typically, we want to keep track of the work in the task.
 In our case, we don't want the user to spawn additional tasks while an existing one is still running.
-In order to achieve that we can create a channel with the crate [`async-channel`](https://docs.rs/async-channel/latest/async_channel/index.html).
+In order exchange information with the task we can create a channel with the crate [`async-channel`](https://docs.rs/async-channel/latest/async_channel/index.html).
 Let's add it by executing the following in the terminal:
 
 ```
