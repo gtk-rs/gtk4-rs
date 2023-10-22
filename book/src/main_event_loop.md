@@ -24,7 +24,7 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 After we press the button, the GUI is completely frozen for five seconds.
 We can't even move the window.
 The `sleep` call is an artificial example,
-but it is not unusual wanting to run a slightly longer operation in one go.
+but frequently, we want to run a slightly longer operation in one go.
 
 
 <div style="text-align:center">
@@ -37,7 +37,7 @@ but it is not unusual wanting to run a slightly longer operation in one go.
 
 ## How to Avoid Blocking the Main Loop
 
-In order to avoid blocking the main loop we can spawn a new task with [`gio::spawn_blocking`](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/gio/fn.spawn_blocking.html) and let the operation run there.
+In order to avoid blocking the main loop, we can spawn a new task with [`gio::spawn_blocking`](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/gio/fn.spawn_blocking.html) and let the operation run there.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/main_event_loop/2/main.rs">listings/main_event_loop/2/main.rs</a>
 
@@ -74,7 +74,7 @@ cargo add async-channel
 We want to send a `bool` to inform, whether we want the button to react to clicks or not.
 Since we send in a separate thread, we can use [`send_blocking`](https://docs.rs/async-channel/latest/async_channel/struct.Sender.html#method.send_blocking).
 But what about receiving?
-Every time we get a message we want to set the sensitivity of the button according to the `bool` we've received.
+Every time we get a message, we want to set the sensitivity of the button according to the `bool` we've received.
 However, we don't want to block the main loop while waiting for a message to receive.
 That is the whole point of the exercise after all!
 
@@ -99,7 +99,7 @@ After the task is finished, the button becomes sensitive again.
 </div>
 
 What if the task is asynchronous by nature?
-Let's try [`glib::timeout_future_seconds`](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/fn.timeout_future_seconds.html) as representation for our task instead of `std::thread::slepp`.
+Let's try [`glib::timeout_future_seconds`](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/fn.timeout_future_seconds.html) as representation for our task instead of `std::thread::sleep`.
 It returns a [`std::future::Future`](https://doc.rust-lang.org/std/future/trait.Future.html), which means we can `await` on it within an `async` context.
 The converted code looks and behaves very similar to the multithreaded code.
 
@@ -195,7 +195,7 @@ After reference cycles we found the second disadvantage of GTK GObjects: They ar
 We've seen in the previous snippets that spawning an `async` block or `async` future on the `glib` main loop can lead to more concise code than running tasks on separate threads.
 Let's focus on a few more aspects that are interesting to know when running `async` functions with gtk-rs apps.
 
-For one, blocking functions can be embedded within an `async` context.
+For a start, blocking functions can be embedded within an `async` context.
 In the following listing, we want to execute a synchronous function that returns a boolean and takes ten seconds to run.
 In order to integrate it in our `async` block, we run the function in a separate thread via `spawn_blocking`.
 We can then get the return value of the function by calling `await` on the return value of `spawn_blocking`.
@@ -296,7 +296,7 @@ If we now press the button, we should find the following message in our console:
 Status: 200 OK
 ```
 
-We will not need `tokio`, `reqwest` or `ashpd` in the following chapters, so let's remove it again by executing:
+We will not need `tokio`, `reqwest` or `ashpd` in the following chapters, so let's remove them again by executing:
 
 ```
 cargo remove reqwest tokio ashpd
