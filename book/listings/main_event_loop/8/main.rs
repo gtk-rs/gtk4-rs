@@ -1,4 +1,4 @@
-use glib::{clone, MainContext, Priority};
+use glib::{clone, MainContext};
 use gtk::glib;
 use gtk::prelude::*;
 use gtk::{Application, ApplicationWindow, Button};
@@ -27,28 +27,28 @@ fn build_ui(app: &Application) {
         .build();
 
     // ANCHOR: callback
-    let (sender, receiver) = MainContext::channel(Priority::default());
+    let (sender, receiver) = async_channel::bounded(1);
     // Connect to "clicked" signal of `button`
     button.connect_clicked(move |_| {
         let main_context = MainContext::default();
         // The main loop executes the asynchronous block
         main_context.spawn_local(clone!(@strong sender => async move {
             let response = reqwest::get("https://www.gtk-rs.org").await;
-            sender
-                .send(response)
-                .expect("Could not send through channel");
+            sender.send(response).await.expect("The channel needs to be open.");
         }));
     });
 
-    // The main loop executes the closure as soon as it receives the message
-    receiver.attach(None, move |response| {
-        if let Ok(response) = response {
-            println!("Status {}", response.status());
-        } else {
-            println!("Could not make a `GET` request.");
+    let main_context = MainContext::default();
+    // The main loop executes the asynchronous block
+    main_context.spawn_local(clone!(@weak button => async move {
+        while let Ok(response) = receiver.recv().await {
+            if let Ok(response) = response {
+                println!("Status {}", response.status());
+            } else {
+                println!("Could not make a `GET` request.");
+            }
         }
-        glib::ControlFlow::Continue
-    });
+    }));
     // ANCHOR_END: callback
 
     // Create a window
