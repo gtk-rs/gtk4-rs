@@ -47,7 +47,7 @@ fn build_ui(app: &Application) {
     main_context.spawn_local(clone!(@weak button => async move {
         while let Ok(response) = receiver.recv().await {
             if let Ok(response) = response {
-                println!("Status {}", response.status());
+                println!("Status: {}", response.status());
             } else {
                 println!("Could not make a `GET` request.");
             }
