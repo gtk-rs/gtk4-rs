@@ -64,7 +64,7 @@ This is not necessarily what we want.
 
 Typically, we want to keep track of the work in the task.
 In our case, we don't want the user to spawn additional tasks while an existing one is still running.
-In order exchange information with the task we can create a channel with the crate [`async-channel`](https://docs.rs/async-channel/latest/async_channel/index.html).
+In order to exchange information with the task we can create a channel with the crate [`async-channel`](https://docs.rs/async-channel/latest/async_channel/index.html).
 Let's add it by executing the following in the terminal:
 
 ```
@@ -79,7 +79,9 @@ However, we don't want to block the main loop while waiting for a message to rec
 That is the whole point of the exercise after all!
 
 We solve that problem by waiting for messages in an [`async`](https://rust-lang.github.io/async-book/) block.
-We spawn that `async` block on the `glib` main loop with [`spawn_local`](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/struct.MainContext.html#method.spawn_local) (from other threads than the main thread [`spawn`](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/struct.MainContext.html#method.spawn) has to be used).
+This `async` block is spawned on the `glib` main loop with [`spawn_local`](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/struct.MainContext.html#method.spawn_local)
+
+> See also [`spawn`](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/struct.MainContext.html#method.spawn) for spawning async blocks on the main loop from outside the main thread.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/main_event_loop/3/main.rs">listings/main_event_loop/3/main.rs</a>
 
@@ -219,10 +221,10 @@ cargo add ashpd --features gtk4
 ```
 
 You need to use a Linux desktop environment in order to run the following example locally.
-We are using [`ashpd::desktop::account::UserInformation`](https://docs.rs/ashpd/latest/ashpd/desktop/account/index.html) to access user information.
+This example is using [`ashpd::desktop::account::UserInformation`](https://docs.rs/ashpd/latest/ashpd/desktop/account/index.html) to access user information.
 We are getting a [`gtk::Native`](https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/struct.Native.html) object from our button, create a [`ashpd::WindowIdentifier`](https://docs.rs/ashpd/latest/ashpd/enum.WindowIdentifier.html) and pass it to the user information request.
-That way the dialog that will pop up will be modal.
-That means that it will be on top of the window and freezes the rest of the application from user input.
+
+> We need to pass the `WindowIdentifier` to make the dialog modal. This means that it will be on top of the window and freezes the rest of the application from user input.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/main_event_loop/7/main.rs">listings/main_event_loop/7/main.rs</a>
 
@@ -305,7 +307,8 @@ cargo remove reqwest tokio ashpd
 How to find out whether you can spawn an `async` task on the `glib` main loop?
 `glib` should be able to spawn the task when the called functions come from libraries that either:
 - come from the `glib` ecosystem,
-- depend on `async-std`/`smol`, or
+- don't depend on a runtime but only on the `futures` family of crates (`futures-io`, `futures-core` etc),
+- depend on the `async-std` or `smol` runtimes, or
 - have cargo features that let them depend on `async-std`/`smol` instead of `tokio`.
 
 
@@ -318,7 +321,9 @@ Let's go again through the different scenarios.
 If the task spends its time calculating rather than waiting for a web response, it is [CPU-bound](https://en.wikipedia.org/wiki/CPU-bound).
 That means you have to run the task in a separate thread and let it send results back via a channel.
 
-If your task is [IO bound](https://en.wikipedia.org/wiki/I/O_bound), the answer depends on the crates at your disposal.
-Functions from crates using `glib`/`smol`/`async-std` can be spawned on the main loop.
-This way, you can often avoid synchronization via channels.
+If your task is [IO bound](https://en.wikipedia.org/wiki/I/O_bound), the answer depends on the crates at your disposal and the type of work to be done.
+
+-  Light I/O work with functions from crates using `glib`, `smol`, `async-std` or the `futures` trait family can be spawned on the main loop. This way, you can often avoid synchronization via channels.
+- Heavy I/O work might still benefit from running in a separate thread / an async executor to avoid saturating the main loop. If you are unsure, benchmarking is advised.
+
 If the best crate for the job relies on `tokio`, you will have to spawn it with the tokio runtime and communicate via channels.
