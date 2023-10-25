@@ -1,10 +1,9 @@
-use gio::SimpleAction;
+use gio::ActionEntry;
 use glib::clone;
 use gtk::gio::SimpleActionGroup;
 use gtk::prelude::*;
 use gtk::{gio, glib, Application, ApplicationWindow};
 
-// ANCHOR: main
 const APP_ID: &str = "org.gtk_rs.Actions2";
 
 fn main() -> glib::ExitCode {
@@ -13,14 +12,14 @@ fn main() -> glib::ExitCode {
 
     // Connect to "activate" signal of `app`
     app.connect_activate(build_ui);
-
-    // Set keyboard accelerator to trigger "win.close".
-    app.set_accels_for_action("win.close", &["<Ctrl>W"]);
+    // ANCHOR: accel
+    // Set keyboard accelerator to trigger "custom-group.close".
+    app.set_accels_for_action("custom-group.close", &["<Ctrl>W"]);
+    // ANCHOR_END: accel
 
     // Run the application
     app.run()
 }
-// ANCHOR_END: main
 
 // ANCHOR: build_ui
 fn build_ui(app: &Application) {
@@ -32,17 +31,17 @@ fn build_ui(app: &Application) {
         .build();
 
     // Add action "close" to `window` taking no parameter
-    let action_close = SimpleAction::new("close", None);
-    action_close.connect_activate(clone!(@weak window => move |_, _| {
-        window.close();
-    }));
-    window.add_action(&action_close);
+    let action_close = ActionEntry::builder("close")
+        .activate(clone!(@weak window => move |_, _, _| {
+            window.close();
+        }))
+        .build();
 
     // ANCHOR: action_group
     // Create a new action group and add actions to it
     let actions = SimpleActionGroup::new();
-    window.insert_action_group("win", Some(&actions));
-    actions.add_action(&action_close);
+    actions.add_action_entries([action_close]);
+    window.insert_action_group("custom-group", Some(&actions));
     // ANCHOR_END: action_group
 
     // Present window

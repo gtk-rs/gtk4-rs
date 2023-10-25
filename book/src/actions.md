@@ -13,8 +13,9 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 {{#rustdoc_include ../listings/actions/1/main.rs:build_ui}}
 ```
 
-First, we created a new [`gio::SimpleAction`](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/gio/struct.SimpleAction.html) which is named "close" and takes no parameter.
-We also connected a callback which closes the window.
+First, we created a new [`gio::SimpleActionGroup`](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/gio/struct.SimpleActionGroup.html) which is named "close" and takes no parameter.
+We also connected a callback which closes the window when the action is activated.
+Finally, we add the action entry to the window via [`add_action_entries`](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/gio/prelude/trait.ActionMapExtManual.html#method.add_action_entries).
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/actions/1/main.rs">listings/actions/1/main.rs</a>
 
@@ -33,7 +34,9 @@ The answer is that it is so common to add actions to windows and applications th
 - "app" for actions global to the application, and
 - "win" for actions tied to an application window.
 
-If that had not been the case, we would have to add the action group manually via [`gio::SimpleActionGroup`](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/gio/struct.SimpleActionGroup.html).
+We can add a action group to any widget via the method [`insert_action_group`](https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/prelude/trait.WidgetExt.html#method.insert_action_group).
+Let's add our action to the action group "custom-group" and add the group then to our window.
+Since the action entry isn't specific to our window anymore, the first parameter of the "activate" callback is of type `SimpleActionGroup` instead of `ApplicationWindow`.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/actions/2/main.rs">listings/actions/2/main.rs</a>
 
@@ -41,10 +44,18 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 {{#rustdoc_include ../listings/actions/2/main.rs:action_group}}
 ```
 
+If we bind the accelerator to "custom-group.close", it works just as before.
+
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/actions/2/main.rs">listings/actions/2/main.rs</a>
+
+```rust
+{{#rustdoc_include ../listings/actions/2/main.rs:main}}
+```
+
 Also, if we had multiple instances of the same windows we would expect that only the currently focused window will be closed when activating "win.close".
 And indeed, the "win.close" will be dispatched to the currently focused window.
 However, that also means that we actually define one action per window instance.
-If we want to have a single globally accessible action instead, we call `add_action` on our application instead.
+If we want to have a single globally accessible action instead, we call `add_action_entries` on our application instead.
 
 > Adding "win.close" was useful as a simple example.
 > However, in the future we will use the pre-defined ["window.close"](https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/struct.Window.html#actions) action which does exactly the same thing.
