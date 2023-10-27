@@ -34,7 +34,7 @@ The answer is that it is so common to add actions to windows and applications th
 - "app" for actions global to the application, and
 - "win" for actions tied to an application window.
 
-We can add a action group to any widget via the method [`insert_action_group`](https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/prelude/trait.WidgetExt.html#method.insert_action_group).
+We can add an action group to any widget via the method [`insert_action_group`](https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/prelude/trait.WidgetExt.html#method.insert_action_group).
 Let's add our action to the action group "custom-group" and add the group then to our window.
 The action entry isn't specific to our window anymore, the first parameter of the "activate" callback is of type `SimpleActionGroup` instead of `ApplicationWindow`.
 This means we have to clone `window` into the closure.
@@ -53,7 +53,7 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 {{#rustdoc_include ../listings/actions/2/main.rs:accel}}
 ```
 
-Also, if we had multiple instances of the same windows we would expect that only the currently focused window will be closed when activating "win.close".
+Also, if we had multiple instances of the same windows, we would expect that only the currently focused window will be closed when activating "win.close".
 And indeed, the "win.close" will be dispatched to the currently focused window.
 However, that also means that we actually define one action per window instance.
 If we want to have a single globally accessible action instead, we call `add_action_entries` on our application instead.
@@ -73,7 +73,7 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 {{#rustdoc_include ../listings/actions/3/main.rs:build_ui}}
 ```
 
-Here we created a "win.count" action that increases its state by the given parameter every time it is activated.
+Here, we created a "win.count" action that increases its state by the given parameter every time it is activated.
 It also takes care of updating the `label` with the current state.
 The button activates the action with each click while passing "1" as parameter.
 This is how our app works:
@@ -130,16 +130,16 @@ This app behaves the same as our previous example, but it will make it simpler f
 
 ## Menus
 
-If you want to create a [menu](https://developer.gnome.org/hig/patterns/controls/menus.html) you have to use actions and you will want to use the interface builder.
+If you want to create a [menu](https://developer.gnome.org/hig/patterns/controls/menus.html), you have to use actions, and you will want to use the interface builder.
 Typically, a menu entry has an action fitting one of these three descriptions:
 - no parameter and no state, or
 - no parameter and boolean state, or
 - string parameter and string state.
 
 Let's modify our small app to demonstrate these cases.
-First we extend `setup_actions`.
+First, we extend `setup_actions`.
 For the action without parameter or state, we can use the pre-defined "window.close" action.
-Therefore we don't have to add anything here.
+Therefore, we don't have to add anything here.
 
 With the action "button-frame", we manipulate the "has-frame" property of `button`.
 Here, the convention is that actions with no parameter and boolean state should behave like toggle actions.
@@ -251,7 +251,7 @@ This is how the app looks in action:
 
 ## Settings
 
-The menu entries nicely display the state of our stateful actions, but after the app is closed all changes to that state are lost.
+The menu entries nicely display the state of our stateful actions, but after the app is closed, all changes to that state are lost.
 As usual, we solve this problem with [`gio::Settings`](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/gio/struct.Settings.html).
 First we create a schema with settings corresponding to the stateful actions we created before.
 
@@ -293,7 +293,7 @@ Since actions from `create_action` follow the aforementioned conventions, we can
 The action "win.button-frame" toggles its state with each activation and the state of the "win.orientation" action follows the given parameter.
 
 We still have to specify what should happen when the actions are activated though.
-For the stateful actions, instead of adding callbacks to their "activate" signals we bind the settings to properties we want to manipulate.
+For the stateful actions, instead of adding callbacks to their "activate" signals, we bind the settings to properties we want to manipulate.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/actions/7/window/mod.rs">listings/actions/7/window/mod.rs</a>
 
@@ -309,5 +309,5 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 {{#rustdoc_include ../listings/actions/7/window/imp.rs:object_impl}}
 ```
 
-Actions are extremely powerful and we are only scratching the surface here.
+Actions are extremely powerful, and we are only scratching the surface here.
 If you want to learn more about them, the [GNOME developer documentation](https://developer.gnome.org/documentation/tutorials/actions.html) is a good place to start.
