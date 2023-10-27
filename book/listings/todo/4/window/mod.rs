@@ -212,10 +212,8 @@ impl Window {
         self.add_action(&action_filter);
 
         // Create action to remove done tasks and add to action group "win"
-        let action_remove_done_tasks =
-            gio::SimpleAction::new("remove-done-tasks", None);
-        action_remove_done_tasks.connect_activate(
-            clone!(@weak self as window => move |_, _| {
+        let action_remove_done_tasks = gio::ActionEntry::builder("remove-done-tasks")
+            .activate(move |window: &Self, _, _| {
                 let tasks = window.tasks();
                 let mut position = 0;
                 while let Some(item) = tasks.item(position) {
@@ -230,8 +228,8 @@ impl Window {
                         position += 1;
                     }
                 }
-            }),
-        );
-        self.add_action(&action_remove_done_tasks);
+            })
+            .build();
+        self.add_action_entries([action_remove_done_tasks]);
     }
 }

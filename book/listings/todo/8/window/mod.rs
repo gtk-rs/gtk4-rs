@@ -363,10 +363,8 @@ impl Window {
         self.add_action(&action_filter);
 
         // Create action to remove done tasks and add to action group "win"
-        let action_remove_done_tasks =
-            gio::SimpleAction::new("remove-done-tasks", None);
-        action_remove_done_tasks.connect_activate(
-            clone!(@weak self as window => move |_, _| {
+        let action_remove_done_tasks = gio::ActionEntry::builder("remove-done-tasks")
+            .activate(move |window: &Self, _, _| {
                 let tasks = window.tasks();
                 let mut position = 0;
                 while let Some(item) = tasks.item(position) {
@@ -381,19 +379,17 @@ impl Window {
                         position += 1;
                     }
                 }
-            }),
-        );
-        self.add_action(&action_remove_done_tasks);
+            })
+            .build();
 
         // ANCHOR: setup_actions
         // Create action to create new collection and add to action group "win"
-        let action_new_collection = gio::SimpleAction::new("new-collection", None);
-        action_new_collection.connect_activate(
-            clone!(@weak self as window => move |_, _| {
+        let action_new_collection = gio::ActionEntry::builder("new-collection")
+            .activate(move |window: &Self, _, _| {
                 window.new_collection();
-            }),
-        );
-        self.add_action(&action_new_collection);
+            })
+            .build();
+        self.add_action_entries([action_remove_done_tasks, action_new_collection]);
         // ANCHOR_END: setup_actions
     }
 
