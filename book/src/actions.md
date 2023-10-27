@@ -13,7 +13,7 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 {{#rustdoc_include ../listings/actions/1/main.rs:build_ui}}
 ```
 
-First, we created a new [`gio::SimpleActionGroup`](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/gio/struct.SimpleActionGroup.html) which is named "close" and takes no parameter.
+First, we created a new [`gio::ActionEntry`](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/gio/struct.ActionEntry.html) which is named "close" and takes no parameter.
 We also connected a callback which closes the window when the action is activated.
 Finally, we add the action entry to the window via [`add_action_entries`](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/gio/prelude/trait.ActionMapExtManual.html#method.add_action_entries).
 
@@ -36,12 +36,13 @@ The answer is that it is so common to add actions to windows and applications th
 
 We can add a action group to any widget via the method [`insert_action_group`](https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/prelude/trait.WidgetExt.html#method.insert_action_group).
 Let's add our action to the action group "custom-group" and add the group then to our window.
-Since the action entry isn't specific to our window anymore, the first parameter of the "activate" callback is of type `SimpleActionGroup` instead of `ApplicationWindow`.
+The action entry isn't specific to our window anymore, the first parameter of the "activate" callback is of type `SimpleActionGroup` instead of `ApplicationWindow`.
+This means we have to clone `window` into the closure.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/actions/2/main.rs">listings/actions/2/main.rs</a>
 
 ```rust
-{{#rustdoc_include ../listings/actions/2/main.rs:action_group}}
+{{#rustdoc_include ../listings/actions/2/main.rs:build_ui}}
 ```
 
 If we bind the accelerator to "custom-group.close", it works just as before.
@@ -49,7 +50,7 @@ If we bind the accelerator to "custom-group.close", it works just as before.
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/actions/2/main.rs">listings/actions/2/main.rs</a>
 
 ```rust
-{{#rustdoc_include ../listings/actions/2/main.rs:main}}
+{{#rustdoc_include ../listings/actions/2/main.rs:accel}}
 ```
 
 Also, if we had multiple instances of the same windows we would expect that only the currently focused window will be closed when activating "win.close".
@@ -124,7 +125,7 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 {{#rustdoc_include ../listings/actions/5/window/imp.rs:object_impl}}
 ```
 
-This app behaves the same as our previous example, but it leads us to menu creation.
+This app behaves the same as our previous example, but it will make it simpler for us to add a menu in the following section.
 
 
 ## Menus
