@@ -37,7 +37,7 @@ but frequently, we want to run a slightly longer operation in one go.
 
 ## How to Avoid Blocking the Main Loop
 
-In order to avoid blocking the main loop, we can spawn a new task with [`gio::spawn_blocking`](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/gio/fn.spawn_blocking.html) and let the operation run there.
+In order to avoid blocking the main loop, we can spawn a new task with [`gio::spawn_blocking`](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/gio/fn.spawn_blocking.html) and let the operation run on the thread pool.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/main_event_loop/2/main.rs">listings/main_event_loop/2/main.rs</a>
 
