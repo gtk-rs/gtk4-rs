@@ -54,8 +54,6 @@ impl Window {
     }
 
     fn filter(&self) -> Option<CustomFilter> {
-        // Get state
-
         // Get filter state from settings
         let filter_state: String = self.settings().get("filter");
 

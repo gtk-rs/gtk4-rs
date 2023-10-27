@@ -39,9 +39,6 @@ impl Window {
     // ANCHOR_END: settings
 
     fn setup_actions(&self) {
-        // Get state
-        let label = self.imp().label.get();
-
         // Add stateful action "count" to `window` taking an integer as parameter
         let original_state = 0;
         let action_count = ActionEntry::builder("count")
@@ -84,8 +81,6 @@ impl Window {
 
     // ANCHOR: bind_settings
     fn bind_settings(&self) {
-        // Get state
-
         // Bind setting "button-frame" to "has-frame" property of `button`
         let button = self.imp().button.get();
         self.settings()
