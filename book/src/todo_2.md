@@ -126,6 +126,15 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 {{#rustdoc_include ../listings/todo/2/window/imp.rs:object_subclass}}
 ```
 
+This is the implementation of `remove_done_tasks`.
+We iterate through the `gio::ListStore` and remove all completed task objects.
+
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/2/window/mod.rs">listings/todo/2/window/mod.rs</a>
+
+```rust
+{{#rustdoc_include ../listings/todo/2/window/mod.rs:remove_done_tasks}}
+```
+
 After activating the action "win.filter", the corresponding setting will be changed.
 So we need a method which translates this setting into a filter that the [`gtk::FilterListModel`](https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/struct.FilterListModel.html) understands.
 The possible states are "All", "Open" and "Done". 

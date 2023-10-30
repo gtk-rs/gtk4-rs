@@ -225,6 +225,7 @@ impl Window {
     }
     // ANCHOR_END: setup_actions
 
+    // ANCHOR: remove_done_tasks
     fn remove_done_tasks(&self) {
         let tasks = self.tasks();
         let mut position = 0;
@@ -241,4 +242,5 @@ impl Window {
             }
         }
     }
+    // ANCHOR_END: remove_done_tasks
 }
