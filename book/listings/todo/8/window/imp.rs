@@ -41,6 +41,7 @@ pub struct Window {
 }
 // ANCHOR_END: struct
 
+// ANCHOR: object_subclass
 // The central trait for subclassing a GObject
 #[glib::object_subclass]
 impl ObjectSubclass for Window {
@@ -71,6 +72,7 @@ impl ObjectSubclass for Window {
         obj.init_template();
     }
 }
+// ANCHOR_END: object_subclass
 
 // ANCHOR: object_impl
 // Trait shared by all GObjects

@@ -434,21 +434,23 @@ As soon as we start typing, the button becomes sensitive.
 When we remove all typed letters and the entry becomes empty again, the "Create" button becomes insensitive and the entry gets the "error" style.
 After clicking the "Create" button, a new collection is created, and we navigate to its task view.
 
-To implement that behavior we will first add a "new-collection" action to the `setup_actions` method.
+To implement that behavior we will first add a "new-collection" action to `class_init` method.
 This action will be activated by a click on the `+` button as well as on the button in the placeholder page.
+We are using [`install_action_async`](https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/subclass/widget/trait.WidgetClassExt.html#method.install_action_async).
+It is a convenient way to add asynchronous actions to subclassed widgets. 
 
-Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/8/window/imp.rs">listings/todo/8/window/mod.rs</a>
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/8/window/imp.rs">listings/todo/8/window/imp.rs</a>
 
 ```rust,no_run,noplayground
-{{#rustdoc_include ../listings/todo/8/window/mod.rs:setup_actions}}
+{{#rustdoc_include ../listings/todo/8/window/imp.rs:object_subclass}}
 ```
 
-As soon as the "new-collection" action is activated, the `new_collection` method is called.
+As soon as the "new-collection" action is activated, the `async` `new_collection` method is called.
 Here, we create the [`adw::MessageDialog`](https://world.pages.gitlab.gnome.org/Rust/libadwaita-rs/stable/latest/docs/libadwaita/struct.MessageDialog.html), set up the buttons as well as add the entry to it.
 We add a callback to the entry to ensure that when the content changes, an empty content sets `dialog_button` as insensitive and adds an "error" CSS class to the entry.
-We also add a callback to the dialog itself.
-If we click "Cancel", the dialog should just be destroyed without any further actions.
-However, if we click "Create", we want a new collection to be created and set as current collection.
+We then `await` on the user pressing a button on the dialog.
+If they click "Cancel", we simply return.
+However, if they click "Create", we want a new collection to be created and set as current collection.
 Afterwards we navigate forward on our leaflet, which means we navigate to the task view.
 
 

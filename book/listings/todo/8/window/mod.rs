@@ -423,8 +423,8 @@ impl Window {
 
         let response = dialog.choose_future().await;
 
-        // Return if the user chose a response different than `create_response`
-        if response != create_response {
+        // Return if the user chose `cancel_response`
+        if response == cancel_response {
             return;
         }
 
