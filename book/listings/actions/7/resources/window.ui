@@ -3,7 +3,7 @@
   <menu id="main-menu">
     <item>
       <attribute name="label" translatable="yes">_Close window</attribute>
-      <attribute name="action">win.close</attribute>
+      <attribute name="action">window.close</attribute>
     </item>
     <item>
       <attribute name="label" translatable="yes">_Toggle button frame</attribute>
