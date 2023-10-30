@@ -361,40 +361,27 @@ impl Window {
         // Create action from key "filter" and add to action group "win"
         let action_filter = self.settings().create_action("filter");
         self.add_action(&action_filter);
+    }
 
-        // Create action to remove done tasks and add to action group "win"
-        let action_remove_done_tasks = gio::ActionEntry::builder("remove-done-tasks")
-            .activate(move |window: &Self, _, _| {
-                let tasks = window.tasks();
-                let mut position = 0;
-                while let Some(item) = tasks.item(position) {
-                    // Get `TaskObject` from `glib::Object`
-                    let task_object = item
-                        .downcast_ref::<TaskObject>()
-                        .expect("The object needs to be of type `TaskObject`.");
+    fn remove_done_tasks(&self) {
+        let tasks = self.tasks();
+        let mut position = 0;
+        while let Some(item) = tasks.item(position) {
+            // Get `TaskObject` from `glib::Object`
+            let task_object = item
+                .downcast_ref::<TaskObject>()
+                .expect("The object needs to be of type `TaskObject`.");
 
-                    if task_object.is_completed() {
-                        tasks.remove(position);
-                    } else {
-                        position += 1;
-                    }
-                }
-            })
-            .build();
-
-        // ANCHOR: setup_actions
-        // Create action to create new collection and add to action group "win"
-        let action_new_collection = gio::ActionEntry::builder("new-collection")
-            .activate(move |window: &Self, _, _| {
-                window.new_collection();
-            })
-            .build();
-        self.add_action_entries([action_remove_done_tasks, action_new_collection]);
-        // ANCHOR_END: setup_actions
+            if task_object.is_completed() {
+                tasks.remove(position);
+            } else {
+                position += 1;
+            }
+        }
     }
 
     // ANCHOR: new_collection
-    fn new_collection(&self) {
+    async fn new_collection(&self) {
         // Create entry
         let entry = Entry::builder()
             .placeholder_text("Name")
@@ -434,34 +421,26 @@ impl Window {
             }
         }));
 
-        // Connect response to dialog
-        dialog.connect_response(
-            None,
-            clone!(@weak self as window, @weak entry => move |dialog, response| {
-                // Destroy dialog
-                dialog.destroy();
+        let response = dialog.choose_future().await;
 
-                // Return if the user chose a response different than `create_response`
-                if response != create_response {
-                    return;
-                }
+        // Return if the user chose a response different than `create_response`
+        if response != create_response {
+            return;
+        }
 
-                // Create a new list store
-                let tasks = gio::ListStore::new::<TaskObject>();
+        // Create a new list store
+        let tasks = gio::ListStore::new::<TaskObject>();
 
-                // Create a new collection object from the title the user provided
-                let title = entry.text().to_string();
-                let collection = CollectionObject::new(&title, tasks);
+        // Create a new collection object from the title the user provided
+        let title = entry.text().to_string();
+        let collection = CollectionObject::new(&title, tasks);
 
-                // Add new collection object and set current tasks
-                window.collections().append(&collection);
-                window.set_current_collection(collection);
+        // Add new collection object and set current tasks
+        self.collections().append(&collection);
+        self.set_current_collection(collection);
 
-                // Let the leaflet navigate to the next child
-                window.imp().leaflet.navigate(NavigationDirection::Forward);
-            }),
-        );
-        dialog.present();
+        // Let the leaflet navigate to the next child
+        self.imp().leaflet.navigate(NavigationDirection::Forward);
     }
     // ANCHOR_END: new_collection
 }

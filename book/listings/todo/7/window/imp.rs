@@ -37,6 +37,11 @@ impl ObjectSubclass for Window {
 
     fn class_init(klass: &mut Self::Class) {
         klass.bind_template();
+
+        // Create action to remove done tasks and add to action group "win"
+        klass.install_action("win.remove-done-tasks", None, |window, _, _| {
+            window.remove_done_tasks();
+        });
     }
 
     fn instance_init(obj: &InitializingObject<Self>) {

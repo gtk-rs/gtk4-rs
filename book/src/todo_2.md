@@ -107,12 +107,20 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 
 Similar to the previous chapter, we let `settings` create the action.
 Then we add the newly created action "filter" to our window.
-We also add an action which allows us to remove done tasks. 
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/2/window/mod.rs">listings/todo/2/window/mod.rs</a>
 
 ```rust
 {{#rustdoc_include ../listings/todo/2/window/mod.rs:setup_actions}}
+```
+
+We also add an action which allows us to remove done tasks. 
+<!-- TODO -->
+
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/2/window/imp.rs">listings/todo/2/window/imp.rs</a>
+
+```rust
+{{#rustdoc_include ../listings/todo/2/window/imp.rs:object_subclass}}
 ```
 
 After activating the action "win.filter", the corresponding setting will be changed.
