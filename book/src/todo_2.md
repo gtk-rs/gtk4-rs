@@ -107,12 +107,32 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 
 Similar to the previous chapter, we let `settings` create the action.
 Then we add the newly created action "filter" to our window.
-We also add an action which allows us to remove done tasks. 
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/2/window/mod.rs">listings/todo/2/window/mod.rs</a>
 
 ```rust
 {{#rustdoc_include ../listings/todo/2/window/mod.rs:setup_actions}}
+```
+
+We also add an action which allows us to remove done tasks. 
+This time we use another method called [`install_action`](https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/subclass/widget/trait.WidgetClassExt.html#method.install_action).
+This method has a couple of limitation.
+It can only be used when subclassing widgets, and it doesn't support stateful actions.
+On the flipside, its usage is concise and it has a corresponding sister-method [`install_action_async`](https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/subclass/widget/trait.WidgetClassExt.html#method.install_action_async) which we will use in one of the future chapters.
+
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/2/window/imp.rs">listings/todo/2/window/imp.rs</a>
+
+```rust
+{{#rustdoc_include ../listings/todo/2/window/imp.rs:object_subclass}}
+```
+
+This is the implementation of `remove_done_tasks`.
+We iterate through the `gio::ListStore` and remove all completed task objects.
+
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/2/window/mod.rs">listings/todo/2/window/mod.rs</a>
+
+```rust
+{{#rustdoc_include ../listings/todo/2/window/mod.rs:remove_done_tasks}}
 ```
 
 After activating the action "win.filter", the corresponding setting will be changed.

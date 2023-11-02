@@ -41,6 +41,7 @@ pub struct Window {
 }
 // ANCHOR_END: struct
 
+// ANCHOR: object_subclass
 // The central trait for subclassing a GObject
 #[glib::object_subclass]
 impl ObjectSubclass for Window {
@@ -51,12 +52,27 @@ impl ObjectSubclass for Window {
 
     fn class_init(klass: &mut Self::Class) {
         klass.bind_template();
+
+        // Create action to remove done tasks and add to action group "win"
+        klass.install_action("win.remove-done-tasks", None, |window, _, _| {
+            window.remove_done_tasks();
+        });
+
+        // Create async action to create new collection and add to action group "win"
+        klass.install_action_async(
+            "win.new-collection",
+            None,
+            |window, _, _| async move {
+                window.new_collection().await;
+            },
+        );
     }
 
     fn instance_init(obj: &InitializingObject<Self>) {
         obj.init_template();
     }
 }
+// ANCHOR_END: object_subclass
 
 // ANCHOR: object_impl
 // Trait shared by all GObjects
