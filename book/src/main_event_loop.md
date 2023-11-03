@@ -79,9 +79,9 @@ However, we don't want to block the main loop while waiting for a message to rec
 That is the whole point of the exercise after all!
 
 We solve that problem by waiting for messages in an [`async`](https://rust-lang.github.io/async-book/) block.
-This `async` block is spawned on the `glib` main loop with [`spawn_local`](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/struct.MainContext.html#method.spawn_local)
+This `async` block is spawned on the `glib` main loop with [`spawn_future_local`](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/fn.spawn_future_local.html)
 
-> See also [`spawn`](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/struct.MainContext.html#method.spawn) for spawning async blocks on the main loop from outside the main thread.
+> See also [`spawn_future`](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/fn.spawn_future.html) for spawning async blocks on the main loop from outside the main thread.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/main_event_loop/3/main.rs">listings/main_event_loop/3/main.rs</a>
 

@@ -1,4 +1,4 @@
-use glib::{clone, MainContext};
+use glib::clone;
 use gtk::prelude::*;
 use gtk::{gio, glib};
 use gtk::{Application, ApplicationWindow, Button};
@@ -31,14 +31,13 @@ fn build_ui(app: &Application) {
     // ANCHOR: callback
     // Connect to "clicked" signal of `button`
     button.connect_clicked(move |button| {
-        let main_context = MainContext::default();
         // The main loop executes the asynchronous block
-        main_context.spawn_local(clone!(@weak button => async move {
+        glib::spawn_future_local(clone!(@weak button => async move {
             // Deactivate the button until the operation is done
             button.set_sensitive(false);
             let enable_button = gio::spawn_blocking(move || {
-                let ten_seconds = Duration::from_secs(10);
-                thread::sleep(ten_seconds);
+                let five_seconds = Duration::from_secs(5);
+                thread::sleep(five_seconds);
                 true
             })
             .await

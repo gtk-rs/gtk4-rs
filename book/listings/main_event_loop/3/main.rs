@@ -1,7 +1,7 @@
 use std::thread;
 use std::time::Duration;
 
-use glib::{clone, MainContext};
+use glib::clone;
 use gtk::prelude::*;
 use gtk::{gio, glib, Application, ApplicationWindow, Button};
 
@@ -40,8 +40,8 @@ fn build_ui(app: &Application) {
             sender
                 .send_blocking(false)
                 .expect("The channel needs to be open.");
-            let ten_seconds = Duration::from_secs(10);
-            thread::sleep(ten_seconds);
+            let five_seconds = Duration::from_secs(5);
+            thread::sleep(five_seconds);
             // Activate the button again
             sender
                 .send_blocking(true)
@@ -49,9 +49,8 @@ fn build_ui(app: &Application) {
         });
     });
 
-    let main_context = MainContext::default();
     // The main loop executes the asynchronous block
-    main_context.spawn_local(clone!(@weak button => async move {
+    glib::spawn_future_local(clone!(@weak button => async move {
         while let Ok(enable_button) = receiver.recv().await {
             button.set_sensitive(enable_button);
         }

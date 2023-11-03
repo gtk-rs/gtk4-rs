@@ -1,6 +1,6 @@
 use ashpd::desktop::account::UserInformation;
 use ashpd::WindowIdentifier;
-use glib::{clone, MainContext};
+use glib::clone;
 use gtk::prelude::*;
 use gtk::{glib, Application, ApplicationWindow, Button};
 
@@ -30,9 +30,8 @@ fn build_ui(app: &Application) {
     // ANCHOR: callback
     // Connect to "clicked" signal of `button`
     button.connect_clicked(move |button| {
-        let main_context = MainContext::default();
         // The main loop executes the asynchronous block
-        main_context.spawn_local(clone!(@weak button => async move {
+        glib::spawn_future_local(clone!(@weak button => async move {
             // Get native of button for window identifier
             let native = button.native().expect("Need to be able to get native.");
             // Get window identifier so that the dialog will be modal to the main window
