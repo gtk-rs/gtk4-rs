@@ -131,6 +131,9 @@ git clone https://gitlab.gnome.org/GNOME/librsvg.git --depth 1
 :: Make sure that cmd finds pkg-config-lite when searching for pkg-config
 where pkg-config
 
+:: Make sure that setuptools is available. 
+pip install setuptools
+
 cd gtk
 meson setup builddir --prefix=C:/gnome -Dbuild-tests=false -Dmedia-gstreamer=disabled
 meson install -C builddir
