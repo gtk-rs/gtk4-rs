@@ -1,4 +1,4 @@
-use glib::{clone, MainContext};
+use glib::clone;
 use gtk::glib;
 use gtk::prelude::*;
 use gtk::{Application, ApplicationWindow, Button};
@@ -30,17 +30,15 @@ fn build_ui(app: &Application) {
     let (sender, receiver) = async_channel::bounded(1);
     // Connect to "clicked" signal of `button`
     button.connect_clicked(move |_| {
-        let main_context = MainContext::default();
         // The main loop executes the asynchronous block
-        main_context.spawn_local(clone!(@strong sender => async move {
+        glib::spawn_future_local(clone!(@strong sender => async move {
             let response = reqwest::get("https://www.gtk-rs.org").await;
             sender.send(response).await.expect("The channel needs to be open.");
         }));
     });
 
-    let main_context = MainContext::default();
     // The main loop executes the asynchronous block
-    main_context.spawn_local(clone!(@weak button => async move {
+    glib::spawn_future_local(async move {
         while let Ok(response) = receiver.recv().await {
             if let Ok(response) = response {
                 println!("Status: {}", response.status());
@@ -48,7 +46,7 @@ fn build_ui(app: &Application) {
                 println!("Could not make a `GET` request.");
             }
         }
-    }));
+    });
     // ANCHOR_END: callback
 
     // Create a window

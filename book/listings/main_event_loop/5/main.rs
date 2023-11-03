@@ -1,4 +1,4 @@
-use glib::{clone, MainContext};
+use glib::clone;
 use gtk::prelude::*;
 use gtk::{glib, Application, ApplicationWindow, Button};
 
@@ -28,8 +28,7 @@ fn build_ui(app: &Application) {
     // ANCHOR: callback
     // Connect to "clicked" signal of `button`
     button.connect_clicked(move |button| {
-        let main_context = MainContext::default();
-        main_context.spawn_local(clone!(@weak button => async move {
+        glib::spawn_future_local(clone!(@weak button => async move {
             // Deactivate the button until the operation is done
             button.set_sensitive(false);
             glib::timeout_future_seconds(5).await;
