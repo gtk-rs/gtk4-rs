@@ -74,7 +74,7 @@
         </property>
         <property name="content">
           <object class="AdwNavigationPage">
-            <property name="title" translatable="yes">Content</property>
+            <property name="title" translatable="yes">Tasks</property>
             <property name="child">
               <object class="AdwToolbarView">
                 <child type="top">
