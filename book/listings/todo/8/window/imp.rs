@@ -1,8 +1,8 @@
 use std::cell::RefCell;
 use std::fs::File;
 
-use adw::prelude::*;
 use adw::subclass::prelude::*;
+use adw::{prelude::*, NavigationSplitView};
 use gio::Settings;
 use glib::subclass::InitializingObject;
 use gtk::glib::SignalHandlerId;
@@ -26,7 +26,7 @@ pub struct Window {
     #[template_child]
     pub collections_list: TemplateChild<ListBox>,
     #[template_child]
-    pub split_view: TemplateChild<adw::NavigationSplitView>,
+    pub split_view: TemplateChild<NavigationSplitView>,
     #[template_child]
     pub stack: TemplateChild<Stack>,
     pub collections: OnceCell<gio::ListStore>,
