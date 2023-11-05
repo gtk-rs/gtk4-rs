@@ -60,9 +60,7 @@
                       <object class="AdwStatusPage">
                         <property name="icon-name">checkbox-checked-symbolic</property>
                         <property name="title" translatable="yes">No Tasks</property>
-                        <property name="description" translatable="yes">
-                          Create some tasks to start using the app.
-                        </property>
+                        <property name="description" translatable="yes">Create some tasks to start using the app.</property>
                         <property name="child">
                           <object class="GtkButton">
                             <property name="label" translatable="yes">_New Collection</property>
@@ -142,19 +140,15 @@
                           <object class="GtkScrolledWindow">
                             <property name="child">
                               <object class="AdwClamp">
+                                <property name="maximum-size">400</property>
+                                <property name="tightening-threshold">300</property>
                                 <property name="child">
                                   <object class="GtkBox">
                                     <property name="orientation">vertical</property>
-                                    <property name="margin-top">12</property>
-                                    <property name="margin-bottom">12</property>
-                                    <property name="margin-start">12</property>
-                                    <property name="margin-end">12</property>
                                     <property name="spacing">12</property>
                                     <child>
                                       <object class="GtkEntry" id="entry">
-                                        <property name="placeholder-text" translatable="yes">
-                                          Enter a Task…
-                                        </property>
+                                        <property name="placeholder-text" translatable="yes">Enter a Task…</property>
                                         <property name="secondary-icon-name">list-add-symbolic</property>
                                       </object>
                                     </child>
