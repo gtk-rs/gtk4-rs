@@ -1,15 +1,12 @@
 use std::cell::RefCell;
 use std::fs::File;
 
-use adw::prelude::*;
 use adw::subclass::prelude::*;
-use adw::Leaflet;
+use adw::{prelude::*, NavigationSplitView};
 use gio::Settings;
 use glib::subclass::InitializingObject;
 use gtk::glib::SignalHandlerId;
-use gtk::{
-    gio, glib, Button, CompositeTemplate, Entry, FilterListModel, ListBox, Stack,
-};
+use gtk::{gio, glib, CompositeTemplate, Entry, FilterListModel, ListBox, Stack};
 use std::cell::OnceCell;
 
 use crate::collection_object::{CollectionData, CollectionObject};
@@ -29,11 +26,9 @@ pub struct Window {
     #[template_child]
     pub collections_list: TemplateChild<ListBox>,
     #[template_child]
-    pub leaflet: TemplateChild<Leaflet>,
+    pub split_view: TemplateChild<NavigationSplitView>,
     #[template_child]
     pub stack: TemplateChild<Stack>,
-    #[template_child]
-    pub back_button: TemplateChild<Button>,
     pub collections: OnceCell<gio::ListStore>,
     pub current_collection: RefCell<Option<CollectionObject>>,
     pub current_filter_model: RefCell<Option<FilterListModel>>,

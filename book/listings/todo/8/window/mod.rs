@@ -4,12 +4,12 @@ use std::fs::File;
 
 use adw::prelude::*;
 use adw::subclass::prelude::*;
-use adw::{ActionRow, MessageDialog, NavigationDirection, ResponseAppearance};
+use adw::{ActionRow, MessageDialog, ResponseAppearance};
 use gio::Settings;
 use glib::{clone, Object};
 use gtk::{
     gio, glib, pango, Align, CheckButton, CustomFilter, Entry, FilterListModel, Label,
-    ListBoxRow, NoSelection, SelectionMode,
+    ListBoxRow, NoSelection,
 };
 
 use crate::collection_object::{CollectionData, CollectionObject};
@@ -303,31 +303,7 @@ impl Window {
                     .downcast::<CollectionObject>()
                     .expect("The object needs to be a `CollectionObject`.");
                 window.set_current_collection(selected_collection);
-                window.imp().leaflet.navigate(NavigationDirection::Forward);
-            }),
-        );
-
-        // Setup callback for folding the leaflet
-        self.imp().leaflet.connect_folded_notify(
-            clone!(@weak self as window => move |leaflet| {
-                if leaflet.is_folded() {
-                    window
-                        .imp()
-                        .collections_list
-                        .set_selection_mode(SelectionMode::None)
-                } else {
-                    window
-                        .imp()
-                        .collections_list
-                        .set_selection_mode(SelectionMode::Single);
-                    window.select_collection_row();
-                }
-            }),
-        );
-
-        self.imp().back_button.connect_clicked(
-            clone!(@weak self as window => move |_| {
-                window.imp().leaflet.navigate(NavigationDirection::Back);
+                window.imp().split_view.set_show_content(true);
             }),
         );
         // ANCHOR_END: setup_callbacks
@@ -439,8 +415,8 @@ impl Window {
         self.collections().append(&collection);
         self.set_current_collection(collection);
 
-        // Let the leaflet navigate to the next child
-        self.imp().leaflet.navigate(NavigationDirection::Forward);
+        // Show the content
+        self.imp().split_view.set_show_content(true);
     }
     // ANCHOR_END: new_collection
 }
