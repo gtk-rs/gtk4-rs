@@ -145,6 +145,8 @@
                                 <property name="child">
                                   <object class="GtkBox">
                                     <property name="orientation">vertical</property>
+                                    <property name="margin-start">12</property>
+                                    <property name="margin-end">12</property>
                                     <property name="spacing">12</property>
                                     <child>
                                       <object class="GtkEntry" id="entry">
