@@ -14,7 +14,7 @@ Libadwaita is a library augmenting GTK 4 which:
 In order to use the Rust bindings, add the [libadwaita crate](https://crates.io/crates/libadwaita) as dependency by executing:
 
 ```
-cargo add libadwaita --rename adw --features v1_3
+cargo add libadwaita --rename adw --features v1_4
 ```
 
 The versions of the `gtk4` and `libadwaita` crates need to be synced.

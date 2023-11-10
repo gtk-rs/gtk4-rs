@@ -28,46 +28,45 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
   </menu>
   <template class="TodoWindow" parent="AdwApplicationWindow">
     <property name="title" translatable="yes">To-Do</property>
-    <property name="default_width">650</property>
-    <property name="default_height">550</property>
+    <property name="width-request">360</property>
+    <property name="height-request">200</property>
+    <child>
+      <object class="AdwBreakpoint">
+        <condition>max-width: 500sp</condition>
+        <setter object="split_view" property="collapsed">True</setter>
+      </object>
+    </child>
     <property name="content">
-      <object class="AdwLeaflet" id="leaflet">
-        <property name="can-navigate-back">True</property>
-        <child>
-          <object class="GtkBox">
+      <object class="AdwNavigationSplitView" id="split_view">
+        <property name="min-sidebar-width">200</property>
+        <property name="sidebar">
+          <object class="AdwNavigationPage">
             <!--Collection view implementation-->
           </object>
-        </child>
-        <child>
-          <object class="AdwLeafletPage">
-            <property name="navigatable">False</property>
-            <property name="child">
-              <object class="GtkSeparator" />
-            </property>
-          </object>
-        </child>
-        <child>
-          <object class="GtkBox">
+        </property>
+        <property name="content">
+          <object class="AdwNavigationPage">
             <!--Task view implementation-->
           </object>
-        </child>
+        </property>
       </object>
     </property>
   </template>
 </interface>
 ```
 
+
 The `Leaflet` does not always behave like a `gtk::Box`.
 As soon as the requested size is too small to fit all children at the same time, the leaflet folds, and starts behaving like a [`gtk::Stack`](https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/struct.Stack.html).
 This means that it only displays one of its children at a time.
 The property "can-navigate-back" controls whether gestures and shortcuts for navigating backward are enabled.
-The `AdwLeafletPage` with the `gtk::Separator` will never be displayed in the folded state since its property "navigatable" is set to `False`.)
+The `AdwLeafletPage` with the `gtk::Separator` will never be displayed in the folded state since its property "navigatable" is set to `False`.
 The adaptive behavior of the leaflet allows the To-Do app to work on smaller screen sizes even with the added collection view.
 
 
 <div style="text-align:center">
  <video autoplay muted loop>
-  <source src="vid/todo_7_leaflet.webm" type="video/webm">
+  <source src="vid/todo_7_navigation_sidebar.webm" type="video/webm">
    <p>A video which shows that reduzing the width of the app let's the sidebar collapse</p>
  </video>
 </div>
