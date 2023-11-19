@@ -42,4 +42,8 @@ unsafe impl glium::backend::Backend for GliumGLArea {
     unsafe fn make_current(&self) {
         GLAreaExt::make_current(self);
     }
+
+    fn resize(&self, size: (u32, u32)) {
+        self.set_size_request(size.0 as i32, size.1 as i32);
+    }
 }
