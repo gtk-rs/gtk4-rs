@@ -275,7 +275,10 @@ cargo add tokio@1 --features rt-multi-thread
 ```
 
 Since we already run the `glib` main loop on our main thread, we don't want to run the `tokio` runtime there.
-Let's bind it to a static variable and initialize it lazily.
+For this reason, we **avoid** using the `#[tokio::main]` macro or using a top-level `block_on` call.
+Doing this will block one of the runtime's threads with the GLib main loop, which is a waste of resources and a potential source of strange bugs.
+
+Instead, the runtime is manually created and used where needed. Let's bind it to a static variable and initialize it lazily.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/main_event_loop/9/main.rs">listings/main_event_loop/9/main.rs</a>
 
