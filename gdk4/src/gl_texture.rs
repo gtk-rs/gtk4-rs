@@ -9,6 +9,7 @@ use crate::{GLContext, GLTexture};
 
 impl GLTexture {
     #[doc(alias = "gdk_gl_texture_new")]
+    #[allow(clippy::missing_safety_doc)]
     pub unsafe fn new(context: &GLContext, id: u32, width: i32, height: i32) -> Self {
         from_glib_full(ffi::gdk_gl_texture_new(
             context.to_glib_none().0,
@@ -21,6 +22,7 @@ impl GLTexture {
     }
 
     #[doc(alias = "gdk_gl_texture_new")]
+    #[allow(clippy::missing_safety_doc)]
     pub unsafe fn with_release_func<F: FnOnce() + 'static>(
         context: &GLContext,
         id: u32,

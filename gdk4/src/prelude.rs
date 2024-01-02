@@ -6,10 +6,6 @@
 #[doc(hidden)]
 pub use gdk_pixbuf::prelude::*;
 #[doc(hidden)]
-pub use gio::prelude::*;
-#[doc(hidden)]
-pub use glib::prelude::*;
-#[doc(hidden)]
 pub use pango::prelude::*;
 
 #[cfg(feature = "v4_12")]

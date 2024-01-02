@@ -94,10 +94,6 @@ pub mod window_group;
 pub mod prelude {
     #[doc(hidden)]
     pub use gdk::subclass::prelude::*;
-    #[doc(hidden)]
-    pub use gio::subclass::prelude::*;
-    #[doc(hidden)]
-    pub use glib::subclass::prelude::*;
 
     #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]

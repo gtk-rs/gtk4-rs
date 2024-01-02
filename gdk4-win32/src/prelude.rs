@@ -5,7 +5,3 @@
 
 #[doc(hidden)]
 pub use gdk::prelude::*;
-#[doc(hidden)]
-pub use gio::prelude::*;
-#[doc(hidden)]
-pub use glib::prelude::*;

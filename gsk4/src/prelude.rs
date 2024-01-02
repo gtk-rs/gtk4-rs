@@ -5,11 +5,5 @@
 
 #[doc(hidden)]
 pub use gdk::prelude::*;
-#[doc(hidden)]
-pub use glib::prelude::*;
-#[doc(hidden)]
-pub use graphene::prelude::*;
-#[doc(hidden)]
-pub use pango::prelude::*;
 
 pub use crate::{auto::traits::*, render_node::IsRenderNode};
