@@ -5,9 +5,5 @@
 
 #[doc(hidden)]
 pub use gdk::prelude::*;
-#[doc(hidden)]
-pub use gio::prelude::*;
-#[doc(hidden)]
-pub use glib::prelude::*;
 
 pub use crate::wayland_surface::WaylandSurfaceExtManual;
