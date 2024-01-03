@@ -127,6 +127,8 @@ pub trait StyleContextExt: IsA<StyleContext> + sealed::Sealed + 'static {
         }
     }
 
+    #[cfg_attr(feature = "v4_10", deprecated = "Since 4.10")]
+    #[allow(deprecated)]
     #[doc(alias = "gtk_style_context_get_scale")]
     #[doc(alias = "get_scale")]
     fn scale(&self) -> i32 {

@@ -1126,6 +1126,20 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         },
     ),
     (
+        "GtkGraphicsOffloadClass",
+        Layout {
+            size: size_of::<GtkGraphicsOffloadClass>(),
+            alignment: align_of::<GtkGraphicsOffloadClass>(),
+        },
+    ),
+    (
+        "GtkGraphicsOffloadEnabled",
+        Layout {
+            size: size_of::<GtkGraphicsOffloadEnabled>(),
+            alignment: align_of::<GtkGraphicsOffloadEnabled>(),
+        },
+    ),
+    (
         "GtkGrid",
         Layout {
             size: size_of::<GtkGrid>(),
@@ -1648,6 +1662,13 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         Layout {
             size: size_of::<GtkPrintCapabilities>(),
             alignment: align_of::<GtkPrintCapabilities>(),
+        },
+    ),
+    (
+        "GtkPrintDialogClass",
+        Layout {
+            size: size_of::<GtkPrintDialogClass>(),
+            alignment: align_of::<GtkPrintDialogClass>(),
         },
     ),
     (
@@ -2544,7 +2565,9 @@ const RUST_CONSTANTS: &[(&str, &str)] = &[
     ("(gint) GTK_ACCESSIBLE_ROLE_ALERT", "0"),
     ("(gint) GTK_ACCESSIBLE_ROLE_ALERT_DIALOG", "1"),
     ("(gint) GTK_ACCESSIBLE_ROLE_APPLICATION", "79"),
+    ("(gint) GTK_ACCESSIBLE_ROLE_ARTICLE", "82"),
     ("(gint) GTK_ACCESSIBLE_ROLE_BANNER", "2"),
+    ("(gint) GTK_ACCESSIBLE_ROLE_BLOCK_QUOTE", "81"),
     ("(gint) GTK_ACCESSIBLE_ROLE_BUTTON", "3"),
     ("(gint) GTK_ACCESSIBLE_ROLE_CAPTION", "4"),
     ("(gint) GTK_ACCESSIBLE_ROLE_CELL", "5"),
@@ -2552,6 +2575,7 @@ const RUST_CONSTANTS: &[(&str, &str)] = &[
     ("(gint) GTK_ACCESSIBLE_ROLE_COLUMN_HEADER", "7"),
     ("(gint) GTK_ACCESSIBLE_ROLE_COMBO_BOX", "8"),
     ("(gint) GTK_ACCESSIBLE_ROLE_COMMAND", "9"),
+    ("(gint) GTK_ACCESSIBLE_ROLE_COMMENT", "83"),
     ("(gint) GTK_ACCESSIBLE_ROLE_COMPOSITE", "10"),
     ("(gint) GTK_ACCESSIBLE_ROLE_DIALOG", "11"),
     ("(gint) GTK_ACCESSIBLE_ROLE_DOCUMENT", "12"),
@@ -2585,6 +2609,7 @@ const RUST_CONSTANTS: &[(&str, &str)] = &[
     ("(gint) GTK_ACCESSIBLE_ROLE_NONE", "40"),
     ("(gint) GTK_ACCESSIBLE_ROLE_NOTE", "41"),
     ("(gint) GTK_ACCESSIBLE_ROLE_OPTION", "42"),
+    ("(gint) GTK_ACCESSIBLE_ROLE_PARAGRAPH", "80"),
     ("(gint) GTK_ACCESSIBLE_ROLE_PRESENTATION", "43"),
     ("(gint) GTK_ACCESSIBLE_ROLE_PROGRESS_BAR", "44"),
     ("(gint) GTK_ACCESSIBLE_ROLE_RADIO", "45"),
@@ -2841,6 +2866,8 @@ const RUST_CONSTANTS: &[(&str, &str)] = &[
     ("(gint) GTK_FONT_LEVEL_FAMILY", "0"),
     ("(gint) GTK_FONT_LEVEL_FEATURES", "3"),
     ("(gint) GTK_FONT_LEVEL_FONT", "2"),
+    ("(gint) GTK_GRAPHICS_OFFLOAD_DISABLED", "1"),
+    ("(gint) GTK_GRAPHICS_OFFLOAD_ENABLED", "0"),
     ("(guint) GTK_ICON_LOOKUP_FORCE_REGULAR", "1"),
     ("(guint) GTK_ICON_LOOKUP_FORCE_SYMBOLIC", "2"),
     ("(guint) GTK_ICON_LOOKUP_PRELOAD", "4"),
@@ -2899,6 +2926,7 @@ const RUST_CONSTANTS: &[(&str, &str)] = &[
     ("GTK_LEVEL_BAR_OFFSET_FULL", "full"),
     ("GTK_LEVEL_BAR_OFFSET_HIGH", "high"),
     ("GTK_LEVEL_BAR_OFFSET_LOW", "low"),
+    ("(gint) GTK_LICENSE_0BSD", "18"),
     ("(gint) GTK_LICENSE_AGPL_3_0", "13"),
     ("(gint) GTK_LICENSE_AGPL_3_0_ONLY", "14"),
     ("(gint) GTK_LICENSE_APACHE_2_0", "16"),
@@ -3021,6 +3049,7 @@ const RUST_CONSTANTS: &[(&str, &str)] = &[
     ("(gint) GTK_POLICY_EXTERNAL", "3"),
     ("(gint) GTK_POLICY_NEVER", "2"),
     ("(guint) GTK_POPOVER_MENU_NESTED", "1"),
+    ("(guint) GTK_POPOVER_MENU_SLIDING", "0"),
     ("(gint) GTK_POS_BOTTOM", "3"),
     ("(gint) GTK_POS_LEFT", "0"),
     ("(gint) GTK_POS_RIGHT", "1"),

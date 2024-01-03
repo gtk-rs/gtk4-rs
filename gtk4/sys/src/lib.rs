@@ -163,8 +163,24 @@ pub const GTK_ACCESSIBLE_ROLE_TREE_GRID: GtkAccessibleRole = 74;
 pub const GTK_ACCESSIBLE_ROLE_TREE_ITEM: GtkAccessibleRole = 75;
 pub const GTK_ACCESSIBLE_ROLE_WIDGET: GtkAccessibleRole = 76;
 pub const GTK_ACCESSIBLE_ROLE_WINDOW: GtkAccessibleRole = 77;
+#[cfg(feature = "v4_10")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 pub const GTK_ACCESSIBLE_ROLE_TOGGLE_BUTTON: GtkAccessibleRole = 78;
+#[cfg(feature = "v4_12")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
 pub const GTK_ACCESSIBLE_ROLE_APPLICATION: GtkAccessibleRole = 79;
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+pub const GTK_ACCESSIBLE_ROLE_PARAGRAPH: GtkAccessibleRole = 80;
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+pub const GTK_ACCESSIBLE_ROLE_BLOCK_QUOTE: GtkAccessibleRole = 81;
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+pub const GTK_ACCESSIBLE_ROLE_ARTICLE: GtkAccessibleRole = 82;
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+pub const GTK_ACCESSIBLE_ROLE_COMMENT: GtkAccessibleRole = 83;
 
 pub type GtkAccessibleSort = c_int;
 pub const GTK_ACCESSIBLE_SORT_NONE: GtkAccessibleSort = 0;
@@ -181,6 +197,8 @@ pub const GTK_ACCESSIBLE_STATE_HIDDEN: GtkAccessibleState = 4;
 pub const GTK_ACCESSIBLE_STATE_INVALID: GtkAccessibleState = 5;
 pub const GTK_ACCESSIBLE_STATE_PRESSED: GtkAccessibleState = 6;
 pub const GTK_ACCESSIBLE_STATE_SELECTED: GtkAccessibleState = 7;
+#[cfg(feature = "v4_12")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
 pub const GTK_ACCESSIBLE_STATE_VISITED: GtkAccessibleState = 8;
 
 pub type GtkAccessibleTristate = c_int;
@@ -193,8 +211,12 @@ pub const GTK_ALIGN_FILL: GtkAlign = 0;
 pub const GTK_ALIGN_START: GtkAlign = 1;
 pub const GTK_ALIGN_END: GtkAlign = 2;
 pub const GTK_ALIGN_CENTER: GtkAlign = 3;
+#[cfg(feature = "v4_12")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
 pub const GTK_ALIGN_BASELINE_FILL: GtkAlign = 4;
 pub const GTK_ALIGN_BASELINE: GtkAlign = 4;
+#[cfg(feature = "v4_12")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
 pub const GTK_ALIGN_BASELINE_CENTER: GtkAlign = 5;
 
 pub type GtkArrowType = c_int;
@@ -395,6 +417,10 @@ pub const GTK_FONT_LEVEL_FACE: GtkFontLevel = 1;
 pub const GTK_FONT_LEVEL_FONT: GtkFontLevel = 2;
 pub const GTK_FONT_LEVEL_FEATURES: GtkFontLevel = 3;
 
+pub type GtkGraphicsOffloadEnabled = c_int;
+pub const GTK_GRAPHICS_OFFLOAD_ENABLED: GtkGraphicsOffloadEnabled = 0;
+pub const GTK_GRAPHICS_OFFLOAD_DISABLED: GtkGraphicsOffloadEnabled = 1;
+
 pub type GtkIconSize = c_int;
 pub const GTK_ICON_SIZE_INHERIT: GtkIconSize = 0;
 pub const GTK_ICON_SIZE_NORMAL: GtkIconSize = 1;
@@ -466,6 +492,7 @@ pub const GTK_LICENSE_AGPL_3_0_ONLY: GtkLicense = 14;
 pub const GTK_LICENSE_BSD_3: GtkLicense = 15;
 pub const GTK_LICENSE_APACHE_2_0: GtkLicense = 16;
 pub const GTK_LICENSE_MPL_2_0: GtkLicense = 17;
+pub const GTK_LICENSE_0BSD: GtkLicense = 18;
 
 pub type GtkListTabBehavior = c_int;
 pub const GTK_LIST_TAB_ALL: GtkListTabBehavior = 0;
@@ -937,7 +964,11 @@ pub const GTK_DEBUG_SNAPSHOT: GtkDebugFlags = 16384;
 pub const GTK_DEBUG_CONSTRAINTS: GtkDebugFlags = 32768;
 pub const GTK_DEBUG_BUILDER_OBJECTS: GtkDebugFlags = 65536;
 pub const GTK_DEBUG_A11Y: GtkDebugFlags = 131072;
+#[cfg(feature = "v4_2")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_2")))]
 pub const GTK_DEBUG_ICONFALLBACK: GtkDebugFlags = 262144;
+#[cfg(feature = "v4_8")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
 pub const GTK_DEBUG_INVERT_TEXT_DIR: GtkDebugFlags = 524288;
 
 pub type GtkDialogFlags = c_uint;
@@ -991,6 +1022,7 @@ pub const GTK_PICK_INSENSITIVE: GtkPickFlags = 1;
 pub const GTK_PICK_NON_TARGETABLE: GtkPickFlags = 2;
 
 pub type GtkPopoverMenuFlags = c_uint;
+pub const GTK_POPOVER_MENU_SLIDING: GtkPopoverMenuFlags = 0;
 pub const GTK_POPOVER_MENU_NESTED: GtkPopoverMenuFlags = 1;
 
 pub type GtkPrintCapabilities = c_uint;
@@ -3090,6 +3122,20 @@ pub type GtkGestureZoomClass = _GtkGestureZoomClass;
 
 #[derive(Copy, Clone)]
 #[repr(C)]
+pub struct GtkGraphicsOffloadClass {
+    pub parent_class: GtkWidgetClass,
+}
+
+impl ::std::fmt::Debug for GtkGraphicsOffloadClass {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("GtkGraphicsOffloadClass @ {self:p}"))
+            .field("parent_class", &self.parent_class)
+            .finish()
+    }
+}
+
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkGridClass {
     pub parent_class: GtkWidgetClass,
     pub padding: [gpointer; 8],
@@ -3876,6 +3922,20 @@ pub type GtkPrintBackend = _GtkPrintBackend;
 
 #[derive(Copy, Clone)]
 #[repr(C)]
+pub struct GtkPrintDialogClass {
+    pub parent_class: gobject::GObjectClass,
+}
+
+impl ::std::fmt::Debug for GtkPrintDialogClass {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("GtkPrintDialogClass @ {self:p}"))
+            .field("parent_class", &self.parent_class)
+            .finish()
+    }
+}
+
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct GtkPrintOperationClass {
     pub parent_class: gobject::GObjectClass,
     pub done: Option<unsafe extern "C" fn(*mut GtkPrintOperation, GtkPrintOperationResult)>,
@@ -3988,6 +4048,19 @@ pub struct _GtkPrintOperationPrivate {
 }
 
 pub type GtkPrintOperationPrivate = _GtkPrintOperationPrivate;
+
+#[repr(C)]
+pub struct GtkPrintSetup {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
+
+impl ::std::fmt::Debug for GtkPrintSetup {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("GtkPrintSetup @ {self:p}"))
+            .finish()
+    }
+}
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -6999,6 +7072,19 @@ impl ::std::fmt::Debug for GtkGestureZoom {
     }
 }
 
+#[repr(C)]
+pub struct GtkGraphicsOffload {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
+
+impl ::std::fmt::Debug for GtkGraphicsOffload {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("GtkGraphicsOffload @ {self:p}"))
+            .finish()
+    }
+}
+
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct GtkGrid {
@@ -7840,6 +7926,19 @@ pub struct GtkPrintContext {
 impl ::std::fmt::Debug for GtkPrintContext {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("GtkPrintContext @ {self:p}"))
+            .finish()
+    }
+}
+
+#[repr(C)]
+pub struct GtkPrintDialog {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
+
+impl ::std::fmt::Debug for GtkPrintDialog {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("GtkPrintDialog @ {self:p}"))
             .finish()
     }
 }
@@ -9410,6 +9509,11 @@ extern "C" {
     pub fn gtk_font_level_get_type() -> GType;
 
     //=========================================================================
+    // GtkGraphicsOffloadEnabled
+    //=========================================================================
+    pub fn gtk_graphics_offload_enabled_get_type() -> GType;
+
+    //=========================================================================
     // GtkIconSize
     //=========================================================================
     pub fn gtk_icon_size_get_type() -> GType;
@@ -9803,6 +9907,8 @@ extern "C" {
     //=========================================================================
     // GtkPopoverMenuFlags
     //=========================================================================
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
     pub fn gtk_popover_menu_flags_get_type() -> GType;
 
     //=========================================================================
@@ -10065,6 +10171,25 @@ extern "C" {
     );
     pub fn gtk_paper_size_get_default() -> *const c_char;
     pub fn gtk_paper_size_get_paper_sizes(include_custom: gboolean) -> *mut glib::GList;
+
+    //=========================================================================
+    // GtkPrintSetup
+    //=========================================================================
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gtk_print_setup_get_type() -> GType;
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gtk_print_setup_get_page_setup(setup: *mut GtkPrintSetup) -> *mut GtkPageSetup;
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gtk_print_setup_get_print_settings(setup: *mut GtkPrintSetup) -> *mut GtkPrintSettings;
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gtk_print_setup_ref(setup: *mut GtkPrintSetup) -> *mut GtkPrintSetup;
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gtk_print_setup_unref(setup: *mut GtkPrintSetup);
 
     //=========================================================================
     // GtkRecentInfo
@@ -13362,6 +13487,9 @@ extern "C" {
     #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_file_launcher_get_file(self_: *mut GtkFileLauncher) -> *mut gio::GFile;
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gtk_file_launcher_get_writable(self_: *mut GtkFileLauncher) -> gboolean;
     #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_file_launcher_launch(
@@ -13400,6 +13528,9 @@ extern "C" {
     #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_file_launcher_set_file(self_: *mut GtkFileLauncher, file: *mut gio::GFile);
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gtk_file_launcher_set_writable(self_: *mut GtkFileLauncher, writable: gboolean);
 
     //=========================================================================
     // GtkFilter
@@ -14012,6 +14143,33 @@ extern "C" {
     pub fn gtk_gesture_zoom_get_type() -> GType;
     pub fn gtk_gesture_zoom_new() -> *mut GtkGesture;
     pub fn gtk_gesture_zoom_get_scale_delta(gesture: *mut GtkGestureZoom) -> c_double;
+
+    //=========================================================================
+    // GtkGraphicsOffload
+    //=========================================================================
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gtk_graphics_offload_get_type() -> GType;
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gtk_graphics_offload_new(child: *mut GtkWidget) -> *mut GtkWidget;
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gtk_graphics_offload_get_child(self_: *mut GtkGraphicsOffload) -> *mut GtkWidget;
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gtk_graphics_offload_get_enabled(
+        self_: *mut GtkGraphicsOffload,
+    ) -> GtkGraphicsOffloadEnabled;
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gtk_graphics_offload_set_child(self_: *mut GtkGraphicsOffload, child: *mut GtkWidget);
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gtk_graphics_offload_set_enabled(
+        self_: *mut GtkGraphicsOffload,
+        enabled: GtkGraphicsOffloadEnabled,
+    );
 
     //=========================================================================
     // GtkGrid
@@ -15860,6 +16018,8 @@ extern "C" {
     //=========================================================================
     pub fn gtk_popover_menu_get_type() -> GType;
     pub fn gtk_popover_menu_new_from_model(model: *mut gio::GMenuModel) -> *mut GtkWidget;
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
     pub fn gtk_popover_menu_new_from_model_full(
         model: *mut gio::GMenuModel,
         flags: GtkPopoverMenuFlags,
@@ -15940,6 +16100,107 @@ extern "C" {
         dpi_x: c_double,
         dpi_y: c_double,
     );
+
+    //=========================================================================
+    // GtkPrintDialog
+    //=========================================================================
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gtk_print_dialog_get_type() -> GType;
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gtk_print_dialog_new() -> *mut GtkPrintDialog;
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gtk_print_dialog_get_accept_label(self_: *mut GtkPrintDialog) -> *const c_char;
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gtk_print_dialog_get_modal(self_: *mut GtkPrintDialog) -> gboolean;
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gtk_print_dialog_get_page_setup(self_: *mut GtkPrintDialog) -> *mut GtkPageSetup;
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gtk_print_dialog_get_print_settings(self_: *mut GtkPrintDialog)
+        -> *mut GtkPrintSettings;
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gtk_print_dialog_get_title(self_: *mut GtkPrintDialog) -> *const c_char;
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gtk_print_dialog_print(
+        self_: *mut GtkPrintDialog,
+        parent: *mut GtkWindow,
+        setup: *mut GtkPrintSetup,
+        cancellable: *mut gio::GCancellable,
+        callback: gio::GAsyncReadyCallback,
+        user_data: gpointer,
+    );
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gtk_print_dialog_print_file(
+        self_: *mut GtkPrintDialog,
+        parent: *mut GtkWindow,
+        setup: *mut GtkPrintSetup,
+        file: *mut gio::GFile,
+        cancellable: *mut gio::GCancellable,
+        callback: gio::GAsyncReadyCallback,
+        user_data: gpointer,
+    );
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gtk_print_dialog_print_file_finish(
+        self_: *mut GtkPrintDialog,
+        result: *mut gio::GAsyncResult,
+        error: *mut *mut glib::GError,
+    ) -> gboolean;
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gtk_print_dialog_print_finish(
+        self_: *mut GtkPrintDialog,
+        result: *mut gio::GAsyncResult,
+        error: *mut *mut glib::GError,
+    ) -> *mut gio::GOutputStream;
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gtk_print_dialog_set_accept_label(
+        self_: *mut GtkPrintDialog,
+        accept_label: *const c_char,
+    );
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gtk_print_dialog_set_modal(self_: *mut GtkPrintDialog, modal: gboolean);
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gtk_print_dialog_set_page_setup(
+        self_: *mut GtkPrintDialog,
+        page_setup: *mut GtkPageSetup,
+    );
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gtk_print_dialog_set_print_settings(
+        self_: *mut GtkPrintDialog,
+        print_settings: *mut GtkPrintSettings,
+    );
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gtk_print_dialog_set_title(self_: *mut GtkPrintDialog, title: *const c_char);
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gtk_print_dialog_setup(
+        self_: *mut GtkPrintDialog,
+        parent: *mut GtkWindow,
+        cancellable: *mut gio::GCancellable,
+        callback: gio::GAsyncReadyCallback,
+        user_data: gpointer,
+    );
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gtk_print_dialog_setup_finish(
+        self_: *mut GtkPrintDialog,
+        result: *mut gio::GAsyncResult,
+        error: *mut *mut glib::GError,
+    ) -> *mut GtkPrintSetup;
 
     //=========================================================================
     // GtkPrintJob
@@ -17303,6 +17564,9 @@ extern "C" {
         climb_rate: c_double,
         digits: c_uint,
     );
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gtk_spin_button_get_activates_default(spin_button: *mut GtkSpinButton) -> gboolean;
     pub fn gtk_spin_button_get_adjustment(spin_button: *mut GtkSpinButton) -> *mut GtkAdjustment;
     pub fn gtk_spin_button_get_climb_rate(spin_button: *mut GtkSpinButton) -> c_double;
     pub fn gtk_spin_button_get_digits(spin_button: *mut GtkSpinButton) -> c_uint;
@@ -17324,6 +17588,12 @@ extern "C" {
     pub fn gtk_spin_button_get_value(spin_button: *mut GtkSpinButton) -> c_double;
     pub fn gtk_spin_button_get_value_as_int(spin_button: *mut GtkSpinButton) -> c_int;
     pub fn gtk_spin_button_get_wrap(spin_button: *mut GtkSpinButton) -> gboolean;
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gtk_spin_button_set_activates_default(
+        spin_button: *mut GtkSpinButton,
+        activates_default: gboolean,
+    );
     pub fn gtk_spin_button_set_adjustment(
         spin_button: *mut GtkSpinButton,
         adjustment: *mut GtkAdjustment,
@@ -19039,11 +19309,17 @@ extern "C" {
     pub fn gtk_video_new_for_resource(resource_path: *const c_char) -> *mut GtkWidget;
     pub fn gtk_video_get_autoplay(self_: *mut GtkVideo) -> gboolean;
     pub fn gtk_video_get_file(self_: *mut GtkVideo) -> *mut gio::GFile;
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gtk_video_get_graphics_offload(self_: *mut GtkVideo) -> GtkGraphicsOffloadEnabled;
     pub fn gtk_video_get_loop(self_: *mut GtkVideo) -> gboolean;
     pub fn gtk_video_get_media_stream(self_: *mut GtkVideo) -> *mut GtkMediaStream;
     pub fn gtk_video_set_autoplay(self_: *mut GtkVideo, autoplay: gboolean);
     pub fn gtk_video_set_file(self_: *mut GtkVideo, file: *mut gio::GFile);
     pub fn gtk_video_set_filename(self_: *mut GtkVideo, filename: *const c_char);
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gtk_video_set_graphics_offload(self_: *mut GtkVideo, enabled: GtkGraphicsOffloadEnabled);
     pub fn gtk_video_set_loop(self_: *mut GtkVideo, loop_: gboolean);
     pub fn gtk_video_set_media_stream(self_: *mut GtkVideo, stream: *mut GtkMediaStream);
     pub fn gtk_video_set_resource(self_: *mut GtkVideo, resource_path: *const c_char);

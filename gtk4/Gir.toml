@@ -17,6 +17,7 @@ trust_return_value_nullability = true
 
 generate = [
     # "Gtk.RequestedSize", a record
+    # "Gtk.PrintBackend", a record without a gtype
     "Gtk.AccessibleAutocomplete",
     "Gtk.AccessibleInvalidState",
     "Gtk.AccessiblePlatformState",
@@ -125,6 +126,8 @@ generate = [
     "Gtk.GestureRotate",
     "Gtk.GestureSwipe",
     "Gtk.GestureZoom",
+    "Gtk.GraphicsOffload",
+    "Gtk.GraphicsOffloadEnabled",
     "Gtk.Grid",
     "Gtk.GridLayout",
     "Gtk.GridView",
@@ -184,6 +187,7 @@ generate = [
     "Gtk.PopoverMenuBar",
     "Gtk.PopoverMenuFlags",
     "Gtk.PositionType",
+    "Gtk.PrintDialog",
     "Gtk.PrintDuplex",
     "Gtk.PrintError",
     "Gtk.PrintOperationAction",
@@ -191,6 +195,7 @@ generate = [
     "Gtk.PrintOperationResult",
     "Gtk.PrintPages",
     "Gtk.PrintQuality",
+    "Gtk.PrintSetup",
     "Gtk.PrintStatus",
     "Gtk.ProgressBar",
     "Gtk.PropagationLimit",
@@ -327,6 +332,7 @@ manual = [
     "Gio.Menu",
     "Gio.MenuModel",
     "Gio.MountOperation",
+    "Gio.OutputStream",
     "Gio.PasswordSave",
     "Gio.Permission",
     "GLib.Bytes",
@@ -2090,6 +2096,9 @@ generate_builder = false
 name = "Gtk.StringList"
 status = "generate"
 generate_builder = false
+    [[object.property]]
+    pattern = "(n-items|item-type)"
+    generate = [] # disable generated getter/notify, use the ones from GListModel iface
     [[object.function]]
     name = "take"
     ignore = true # A C helper, bindings should use append instead

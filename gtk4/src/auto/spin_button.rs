@@ -91,6 +91,18 @@ impl SpinButton {
         }
     }
 
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    #[doc(alias = "gtk_spin_button_get_activates_default")]
+    #[doc(alias = "get_activates_default")]
+    pub fn activates_default(&self) -> bool {
+        unsafe {
+            from_glib(ffi::gtk_spin_button_get_activates_default(
+                self.to_glib_none().0,
+            ))
+        }
+    }
+
     #[doc(alias = "gtk_spin_button_get_adjustment")]
     #[doc(alias = "get_adjustment")]
     pub fn adjustment(&self) -> Adjustment {
@@ -183,6 +195,18 @@ impl SpinButton {
         unsafe { from_glib(ffi::gtk_spin_button_get_wrap(self.to_glib_none().0)) }
     }
 
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    #[doc(alias = "gtk_spin_button_set_activates_default")]
+    pub fn set_activates_default(&self, activates_default: bool) {
+        unsafe {
+            ffi::gtk_spin_button_set_activates_default(
+                self.to_glib_none().0,
+                activates_default.into_glib(),
+            );
+        }
+    }
+
     #[doc(alias = "gtk_spin_button_set_adjustment")]
     pub fn set_adjustment(&self, adjustment: &impl IsA<Adjustment>) {
         unsafe {
@@ -271,6 +295,36 @@ impl SpinButton {
         unsafe {
             ffi::gtk_spin_button_update(self.to_glib_none().0);
         }
+    }
+
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    #[doc(alias = "activate")]
+    pub fn connect_activate<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn activate_trampoline<F: Fn(&SpinButton) + 'static>(
+            this: *mut ffi::GtkSpinButton,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"activate\0".as_ptr() as *const _,
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                    activate_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn emit_activate(&self) {
+        self.emit_by_name::<()>("activate", &[]);
     }
 
     #[doc(alias = "change-value")]
@@ -368,6 +422,34 @@ impl SpinButton {
                 b"wrapped\0".as_ptr() as *const _,
                 Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     wrapped_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    #[doc(alias = "activates-default")]
+    pub fn connect_activates_default_notify<F: Fn(&Self) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_activates_default_trampoline<F: Fn(&SpinButton) + 'static>(
+            this: *mut ffi::GtkSpinButton,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::activates-default\0".as_ptr() as *const _,
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                    notify_activates_default_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
@@ -578,6 +660,16 @@ impl SpinButtonBuilder {
     fn new() -> Self {
         Self {
             builder: glib::object::Object::builder(),
+        }
+    }
+
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn activates_default(self, activates_default: bool) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("activates-default", activates_default),
         }
     }
 

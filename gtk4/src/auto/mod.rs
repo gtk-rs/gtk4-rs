@@ -510,6 +510,13 @@ pub use self::gesture_swipe::GestureSwipe;
 mod gesture_zoom;
 pub use self::gesture_zoom::GestureZoom;
 
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+mod graphics_offload;
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+pub use self::graphics_offload::GraphicsOffload;
+
 mod grid;
 pub use self::grid::Grid;
 
@@ -730,6 +737,13 @@ pub use self::popover_menu_bar::PopoverMenuBar;
 
 mod print_context;
 pub use self::print_context::PrintContext;
+
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+mod print_dialog;
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+pub use self::print_dialog::PrintDialog;
 
 #[cfg(target_os = "linux")]
 #[cfg_attr(docsrs, doc(cfg(target_os = "linux")))]
@@ -1060,6 +1074,13 @@ pub use self::css_section::CssSection;
 mod paper_size;
 pub use self::paper_size::PaperSize;
 
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+mod print_setup;
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+pub use self::print_setup::PrintSetup;
+
 mod recent_info;
 pub use self::recent_info::RecentInfo;
 
@@ -1133,6 +1154,7 @@ pub use self::enums::FilterMatch;
 #[cfg(feature = "v4_10")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 pub use self::enums::FontLevel;
+pub use self::enums::GraphicsOffloadEnabled;
 pub use self::enums::IconSize;
 pub use self::enums::IconThemeError;
 pub use self::enums::IconViewDropPosition;
@@ -1219,6 +1241,8 @@ pub use self::flags::InputHints;
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
 pub use self::flags::ListScrollFlags;
 pub use self::flags::PickFlags;
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
 pub use self::flags::PopoverMenuFlags;
 #[cfg(target_os = "linux")]
 #[cfg_attr(docsrs, doc(cfg(target_os = "linux")))]
@@ -1520,6 +1544,9 @@ pub(crate) mod builders {
     pub use super::gesture_swipe::GestureSwipeBuilder;
     pub use super::gesture_zoom::GestureZoomBuilder;
     pub use super::gl_area::GLAreaBuilder;
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub use super::graphics_offload::GraphicsOffloadBuilder;
     pub use super::grid::GridBuilder;
     pub use super::grid_layout::GridLayoutBuilder;
     pub use super::grid_view::GridViewBuilder;
@@ -1564,6 +1591,9 @@ pub(crate) mod builders {
     pub use super::popover::PopoverBuilder;
     pub use super::popover_menu::PopoverMenuBuilder;
     pub use super::popover_menu_bar::PopoverMenuBarBuilder;
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub use super::print_dialog::PrintDialogBuilder;
     pub use super::print_operation::PrintOperationBuilder;
     #[cfg(target_os = "linux")]
     #[cfg_attr(docsrs, doc(cfg(target_os = "linux")))]

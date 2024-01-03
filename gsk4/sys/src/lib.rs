@@ -116,10 +116,21 @@ pub const GSK_TEXT_NODE: GskRenderNodeType = 22;
 pub const GSK_BLUR_NODE: GskRenderNodeType = 23;
 pub const GSK_DEBUG_NODE: GskRenderNodeType = 24;
 pub const GSK_GL_SHADER_NODE: GskRenderNodeType = 25;
+#[cfg(feature = "v4_10")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 pub const GSK_TEXTURE_SCALE_NODE: GskRenderNodeType = 26;
+#[cfg(feature = "v4_10")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 pub const GSK_MASK_NODE: GskRenderNodeType = 27;
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
 pub const GSK_FILL_NODE: GskRenderNodeType = 28;
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
 pub const GSK_STROKE_NODE: GskRenderNodeType = 29;
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+pub const GSK_SUBSURFACE_NODE: GskRenderNodeType = 30;
 
 pub type GskScalingFilter = c_int;
 pub const GSK_SCALING_FILTER_LINEAR: GskScalingFilter = 0;
@@ -836,6 +847,19 @@ pub struct GskStrokeNode {
 impl ::std::fmt::Debug for GskStrokeNode {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("GskStrokeNode @ {self:p}"))
+            .finish()
+    }
+}
+
+#[repr(C)]
+pub struct GskSubsurfaceNode {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
+
+impl ::std::fmt::Debug for GskSubsurfaceNode {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("GskSubsurfaceNode @ {self:p}"))
             .finish()
     }
 }
@@ -2080,6 +2104,13 @@ extern "C" {
         surface: *mut gdk::GdkSurface,
         error: *mut *mut glib::GError,
     ) -> gboolean;
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gsk_renderer_realize_for_display(
+        renderer: *mut GskRenderer,
+        display: *mut gdk::GdkDisplay,
+        error: *mut *mut glib::GError,
+    ) -> gboolean;
     pub fn gsk_renderer_render(
         renderer: *mut GskRenderer,
         root: *mut GskRenderNode,
@@ -2180,6 +2211,25 @@ extern "C" {
     #[cfg(feature = "v4_14")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
     pub fn gsk_stroke_node_get_stroke(node: *const GskStrokeNode) -> *const GskStroke;
+
+    //=========================================================================
+    // GskSubsurfaceNode
+    //=========================================================================
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gsk_subsurface_node_get_type() -> GType;
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gsk_subsurface_node_new(
+        child: *mut GskRenderNode,
+        subsurface: gpointer,
+    ) -> *mut GskSubsurfaceNode;
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gsk_subsurface_node_get_subsurface(node: *const GskDebugNode) -> gpointer;
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gsk_subsurface_node_get_child(node: *const GskSubsurfaceNode) -> *mut GskRenderNode;
 
     //=========================================================================
     // GskTextNode

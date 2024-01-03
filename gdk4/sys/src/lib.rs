@@ -62,6 +62,11 @@ pub const GDK_DEVICE_TOOL_TYPE_AIRBRUSH: GdkDeviceToolType = 5;
 pub const GDK_DEVICE_TOOL_TYPE_MOUSE: GdkDeviceToolType = 6;
 pub const GDK_DEVICE_TOOL_TYPE_LENS: GdkDeviceToolType = 7;
 
+pub type GdkDmabufError = c_int;
+pub const GDK_DMABUF_ERROR_NOT_AVAILABLE: GdkDmabufError = 0;
+pub const GDK_DMABUF_ERROR_UNSUPPORTED_FORMAT: GdkDmabufError = 1;
+pub const GDK_DMABUF_ERROR_CREATION_FAILED: GdkDmabufError = 2;
+
 pub type GdkDragCancelReason = c_int;
 pub const GDK_DRAG_CANCEL_NO_TARGET: GdkDragCancelReason = 0;
 pub const GDK_DRAG_CANCEL_USER_CANCELLED: GdkDragCancelReason = 1;
@@ -96,6 +101,8 @@ pub const GDK_PAD_BUTTON_RELEASE: GdkEventType = 24;
 pub const GDK_PAD_RING: GdkEventType = 25;
 pub const GDK_PAD_STRIP: GdkEventType = 26;
 pub const GDK_PAD_GROUP_MODE: GdkEventType = 27;
+#[cfg(feature = "v4_6")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
 pub const GDK_TOUCHPAD_HOLD: GdkEventType = 28;
 pub const GDK_EVENT_LAST: GdkEventType = 29;
 
@@ -165,7 +172,12 @@ pub const GDK_MEMORY_A8: GdkMemoryFormat = 24;
 pub const GDK_MEMORY_A16: GdkMemoryFormat = 25;
 pub const GDK_MEMORY_A16_FLOAT: GdkMemoryFormat = 26;
 pub const GDK_MEMORY_A32_FLOAT: GdkMemoryFormat = 27;
-pub const GDK_MEMORY_N_FORMATS: GdkMemoryFormat = 28;
+pub const GDK_MEMORY_A8B8G8R8_PREMULTIPLIED: GdkMemoryFormat = 28;
+pub const GDK_MEMORY_B8G8R8X8: GdkMemoryFormat = 29;
+pub const GDK_MEMORY_X8R8G8B8: GdkMemoryFormat = 30;
+pub const GDK_MEMORY_R8G8B8X8: GdkMemoryFormat = 31;
+pub const GDK_MEMORY_X8B8G8R8: GdkMemoryFormat = 32;
+pub const GDK_MEMORY_N_FORMATS: GdkMemoryFormat = 33;
 
 pub type GdkNotifyType = c_int;
 pub const GDK_NOTIFY_ANCESTOR: GdkNotifyType = 0;
@@ -2560,6 +2572,9 @@ pub const GDK_GL_API_GL: GdkGLAPI = 1;
 pub const GDK_GL_API_GLES: GdkGLAPI = 2;
 
 pub type GdkModifierType = c_uint;
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+pub const GDK_NO_MODIFIER_MASK: GdkModifierType = 0;
 pub const GDK_SHIFT_MASK: GdkModifierType = 1;
 pub const GDK_LOCK_MASK: GdkModifierType = 2;
 pub const GDK_CONTROL_MASK: GdkModifierType = 4;
@@ -2699,6 +2714,35 @@ pub struct _GdkDevicePadInterface {
 }
 
 pub type GdkDevicePadInterface = _GdkDevicePadInterface;
+
+#[repr(C)]
+pub struct GdkDmabufFormats {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
+
+impl ::std::fmt::Debug for GdkDmabufFormats {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("GdkDmabufFormats @ {self:p}"))
+            .finish()
+    }
+}
+
+#[repr(C)]
+pub struct _GdkDmabufTextureBuilderClass {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
+
+pub type GdkDmabufTextureBuilderClass = _GdkDmabufTextureBuilderClass;
+
+#[repr(C)]
+pub struct _GdkDmabufTextureClass {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
+
+pub type GdkDmabufTextureClass = _GdkDmabufTextureClass;
 
 #[repr(C)]
 pub struct _GdkDragSurfaceInterface {
@@ -3187,6 +3231,32 @@ impl ::std::fmt::Debug for GdkDisplayManager {
 }
 
 #[repr(C)]
+pub struct GdkDmabufTexture {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
+
+impl ::std::fmt::Debug for GdkDmabufTexture {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("GdkDmabufTexture @ {self:p}"))
+            .finish()
+    }
+}
+
+#[repr(C)]
+pub struct GdkDmabufTextureBuilder {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
+
+impl ::std::fmt::Debug for GdkDmabufTextureBuilder {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("GdkDmabufTextureBuilder @ {self:p}"))
+            .finish()
+    }
+}
+
+#[repr(C)]
 pub struct GdkDrag {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -3573,6 +3643,16 @@ extern "C" {
     pub fn gdk_device_tool_type_get_type() -> GType;
 
     //=========================================================================
+    // GdkDmabufError
+    //=========================================================================
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gdk_dmabuf_error_get_type() -> GType;
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gdk_dmabuf_error_quark() -> glib::GQuark;
+
+    //=========================================================================
     // GdkDragCancelReason
     //=========================================================================
     pub fn gdk_drag_cancel_reason_get_type() -> GType;
@@ -3804,6 +3884,37 @@ extern "C" {
         builder: *mut GdkContentFormatsBuilder,
     ) -> *mut GdkContentFormats;
     pub fn gdk_content_formats_builder_unref(builder: *mut GdkContentFormatsBuilder);
+
+    //=========================================================================
+    // GdkDmabufFormats
+    //=========================================================================
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gdk_dmabuf_formats_get_type() -> GType;
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gdk_dmabuf_formats_contains(
+        formats: *mut GdkDmabufFormats,
+        fourcc: u32,
+        modifier: u64,
+    ) -> gboolean;
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gdk_dmabuf_formats_get_format(
+        formats: *mut GdkDmabufFormats,
+        idx: size_t,
+        fourcc: *mut u32,
+        modifier: *mut u64,
+    );
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gdk_dmabuf_formats_get_n_formats(formats: *mut GdkDmabufFormats) -> size_t;
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gdk_dmabuf_formats_ref(formats: *mut GdkDmabufFormats) -> *mut GdkDmabufFormats;
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gdk_dmabuf_formats_unref(formats: *mut GdkDmabufFormats);
 
     //=========================================================================
     // GdkDragSurfaceSize
@@ -4358,6 +4469,9 @@ extern "C" {
         -> *mut GdkAppLaunchContext;
     pub fn gdk_display_get_clipboard(display: *mut GdkDisplay) -> *mut GdkClipboard;
     pub fn gdk_display_get_default_seat(display: *mut GdkDisplay) -> *mut GdkSeat;
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gdk_display_get_dmabuf_formats(display: *mut GdkDisplay) -> *mut GdkDmabufFormats;
     pub fn gdk_display_get_monitor_at_surface(
         display: *mut GdkDisplay,
         surface: *mut GdkSurface,
@@ -4426,6 +4540,153 @@ extern "C" {
         manager: *mut GdkDisplayManager,
         display: *mut GdkDisplay,
     );
+
+    //=========================================================================
+    // GdkDmabufTexture
+    //=========================================================================
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gdk_dmabuf_texture_get_type() -> GType;
+
+    //=========================================================================
+    // GdkDmabufTextureBuilder
+    //=========================================================================
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gdk_dmabuf_texture_builder_get_type() -> GType;
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gdk_dmabuf_texture_builder_new() -> *mut GdkDmabufTextureBuilder;
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gdk_dmabuf_texture_builder_build(
+        self_: *mut GdkDmabufTextureBuilder,
+        destroy: glib::GDestroyNotify,
+        data: gpointer,
+        error: *mut *mut glib::GError,
+    ) -> *mut GdkTexture;
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gdk_dmabuf_texture_builder_get_display(
+        self_: *mut GdkDmabufTextureBuilder,
+    ) -> *mut GdkDisplay;
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gdk_dmabuf_texture_builder_get_fd(
+        self_: *mut GdkDmabufTextureBuilder,
+        plane: c_uint,
+    ) -> c_int;
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gdk_dmabuf_texture_builder_get_fourcc(self_: *mut GdkDmabufTextureBuilder) -> u32;
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gdk_dmabuf_texture_builder_get_height(self_: *mut GdkDmabufTextureBuilder) -> c_uint;
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gdk_dmabuf_texture_builder_get_modifier(self_: *mut GdkDmabufTextureBuilder) -> u64;
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gdk_dmabuf_texture_builder_get_n_planes(self_: *mut GdkDmabufTextureBuilder) -> c_uint;
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gdk_dmabuf_texture_builder_get_offset(
+        self_: *mut GdkDmabufTextureBuilder,
+        plane: c_uint,
+    ) -> c_uint;
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gdk_dmabuf_texture_builder_get_premultiplied(
+        self_: *mut GdkDmabufTextureBuilder,
+    ) -> gboolean;
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gdk_dmabuf_texture_builder_get_stride(
+        self_: *mut GdkDmabufTextureBuilder,
+        plane: c_uint,
+    ) -> c_uint;
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gdk_dmabuf_texture_builder_get_update_region(
+        self_: *mut GdkDmabufTextureBuilder,
+    ) -> *mut cairo::cairo_region_t;
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gdk_dmabuf_texture_builder_get_update_texture(
+        self_: *mut GdkDmabufTextureBuilder,
+    ) -> *mut GdkTexture;
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gdk_dmabuf_texture_builder_get_width(self_: *mut GdkDmabufTextureBuilder) -> c_uint;
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gdk_dmabuf_texture_builder_set_display(
+        self_: *mut GdkDmabufTextureBuilder,
+        display: *mut GdkDisplay,
+    );
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gdk_dmabuf_texture_builder_set_fd(
+        self_: *mut GdkDmabufTextureBuilder,
+        plane: c_uint,
+        fd: c_int,
+    );
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gdk_dmabuf_texture_builder_set_fourcc(self_: *mut GdkDmabufTextureBuilder, fourcc: u32);
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gdk_dmabuf_texture_builder_set_height(
+        self_: *mut GdkDmabufTextureBuilder,
+        height: c_uint,
+    );
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gdk_dmabuf_texture_builder_set_modifier(
+        self_: *mut GdkDmabufTextureBuilder,
+        modifier: u64,
+    );
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gdk_dmabuf_texture_builder_set_n_planes(
+        self_: *mut GdkDmabufTextureBuilder,
+        n_planes: c_uint,
+    );
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gdk_dmabuf_texture_builder_set_offset(
+        self_: *mut GdkDmabufTextureBuilder,
+        plane: c_uint,
+        offset: c_uint,
+    );
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gdk_dmabuf_texture_builder_set_premultiplied(
+        self_: *mut GdkDmabufTextureBuilder,
+        premultiplied: gboolean,
+    );
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gdk_dmabuf_texture_builder_set_stride(
+        self_: *mut GdkDmabufTextureBuilder,
+        plane: c_uint,
+        stride: c_uint,
+    );
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gdk_dmabuf_texture_builder_set_update_region(
+        self_: *mut GdkDmabufTextureBuilder,
+        region: *mut cairo::cairo_region_t,
+    );
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gdk_dmabuf_texture_builder_set_update_texture(
+        self_: *mut GdkDmabufTextureBuilder,
+        texture: *mut GdkTexture,
+    );
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gdk_dmabuf_texture_builder_set_width(self_: *mut GdkDmabufTextureBuilder, width: c_uint);
 
     //=========================================================================
     // GdkDrag

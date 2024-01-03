@@ -50,6 +50,20 @@ pub use self::display::Display;
 mod display_manager;
 pub use self::display_manager::DisplayManager;
 
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+mod dmabuf_texture;
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+pub use self::dmabuf_texture::DmabufTexture;
+
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+mod dmabuf_texture_builder;
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+pub use self::dmabuf_texture_builder::DmabufTextureBuilder;
+
 mod drag;
 pub use self::drag::Drag;
 
@@ -144,6 +158,13 @@ pub use self::content_formats::ContentFormats;
 mod content_formats_builder;
 pub use self::content_formats_builder::ContentFormatsBuilder;
 
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+mod dmabuf_formats;
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+pub use self::dmabuf_formats::DmabufFormats;
+
 mod event_sequence;
 pub use self::event_sequence::EventSequence;
 
@@ -181,6 +202,9 @@ pub use self::enums::AxisUse;
 pub use self::enums::CrossingMode;
 pub use self::enums::DevicePadFeature;
 pub use self::enums::DeviceToolType;
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+pub use self::enums::DmabufError;
 pub use self::enums::DragCancelReason;
 pub use self::enums::EventType;
 pub use self::enums::FullscreenMode;
