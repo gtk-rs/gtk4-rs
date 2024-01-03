@@ -37,7 +37,6 @@ pub mod cell_renderer_text;
 pub mod check_button;
 pub mod color_chooser;
 pub mod combo_box;
-pub mod constraint_target;
 pub mod dialog;
 pub mod drawing_area;
 pub mod editable;
@@ -56,7 +55,6 @@ pub mod layout_manager;
 pub mod list_box_row;
 pub mod media_file;
 pub mod media_stream;
-pub mod native;
 pub mod native_dialog;
 pub mod orientable;
 pub mod popover;
@@ -64,7 +62,6 @@ pub mod print_operation;
 pub mod print_operation_preview;
 pub mod range;
 pub mod recent_manager;
-pub mod root;
 pub mod scale;
 pub mod scale_button;
 pub mod scrollable;
@@ -126,7 +123,6 @@ pub mod prelude {
         check_button::{CheckButtonImpl, CheckButtonImplExt},
         color_chooser::{ColorChooserImpl, ColorChooserImplExt},
         combo_box::{ComboBoxImpl, ComboBoxImplExt},
-        constraint_target::ConstraintTargetImpl,
         dialog::{DialogImpl, DialogImplExt},
         drawing_area::{DrawingAreaImpl, DrawingAreaImplExt},
         editable::{EditableImpl, EditableImplExt},
@@ -145,7 +141,6 @@ pub mod prelude {
         list_box_row::{ListBoxRowImpl, ListBoxRowImplExt},
         media_file::{MediaFileImpl, MediaFileImplExt},
         media_stream::{MediaStreamImpl, MediaStreamImplExt},
-        native::NativeImpl,
         native_dialog::{NativeDialogImpl, NativeDialogImplExt},
         orientable::OrientableImpl,
         popover::{PopoverImpl, PopoverImplExt},
@@ -153,7 +148,6 @@ pub mod prelude {
         print_operation_preview::PrintOperationPreviewImpl,
         range::{RangeImpl, RangeImplExt},
         recent_manager::{RecentManagerImpl, RecentManagerImplExt},
-        root::RootImpl,
         scale::{ScaleImpl, ScaleImplExt},
         scale_button::{ScaleButtonImpl, ScaleButtonImplExt},
         scrollable::{ScrollableImpl, ScrollableImplExt},

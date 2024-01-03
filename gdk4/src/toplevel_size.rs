@@ -4,15 +4,16 @@ use std::fmt;
 
 use glib::translate::*;
 
-glib::wrapper! {
+use std::ptr::NonNull;
 
+#[repr(transparent)]
 #[doc(alias = "GdkToplevelSize")]
-    pub struct ToplevelSize(BoxedInline<ffi::GdkToplevelSize>);
+pub struct ToplevelSize(NonNull<ffi::GdkToplevelSize>);
 
-    match fn {
-        type_ => || ffi::gdk_toplevel_size_get_type(),
+impl glib::StaticType for ToplevelSize {
+    fn static_type() -> glib::Type {
+        unsafe { from_glib(ffi::gdk_toplevel_size_get_type()) }
     }
-
 }
 
 impl ToplevelSize {
@@ -24,7 +25,7 @@ impl ToplevelSize {
             let mut bounds_height = std::mem::MaybeUninit::uninit();
 
             ffi::gdk_toplevel_size_get_bounds(
-                self.to_glib_none().0 as *mut _,
+                self.0.as_ptr(),
                 bounds_width.as_mut_ptr(),
                 bounds_height.as_mut_ptr(),
             );
@@ -35,27 +36,21 @@ impl ToplevelSize {
     #[doc(alias = "gdk_toplevel_size_set_min_size")]
     pub fn set_min_size(&mut self, min_width: i32, min_height: i32) {
         unsafe {
-            ffi::gdk_toplevel_size_set_min_size(self.to_glib_none_mut().0, min_width, min_height);
+            ffi::gdk_toplevel_size_set_min_size(self.0.as_mut(), min_width, min_height);
         }
     }
 
     #[doc(alias = "gdk_toplevel_size_set_shadow_width")]
     pub fn set_shadow_width(&mut self, left: i32, right: i32, top: i32, bottom: i32) {
         unsafe {
-            ffi::gdk_toplevel_size_set_shadow_width(
-                self.to_glib_none_mut().0,
-                left,
-                right,
-                top,
-                bottom,
-            );
+            ffi::gdk_toplevel_size_set_shadow_width(self.0.as_mut(), left, right, top, bottom);
         }
     }
 
     #[doc(alias = "gdk_toplevel_size_set_size")]
     pub fn set_size(&mut self, width: i32, height: i32) {
         unsafe {
-            ffi::gdk_toplevel_size_set_size(self.to_glib_none_mut().0, width, height);
+            ffi::gdk_toplevel_size_set_size(self.0.as_mut(), width, height);
         }
     }
 }
