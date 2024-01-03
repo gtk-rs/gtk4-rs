@@ -219,7 +219,7 @@ impl EntryCompletion {
             let completion = from_glib_borrow(completion);
             let key: Borrowed<glib::GString> = from_glib_borrow(key);
             let iter = from_glib_borrow(iter);
-            let callback: &P = &*(user_data as *mut _);
+            let callback = &*(user_data as *mut P);
             (*callback)(&completion, key.as_str(), &iter).into_glib()
         }
         let func = Some(func_func::<P> as _);
@@ -228,7 +228,7 @@ impl EntryCompletion {
         >(
             data: glib::ffi::gpointer,
         ) {
-            let _callback: Box_<P> = Box_::from_raw(data as *mut _);
+            let _callback = Box_::from_raw(data as *mut P);
         }
         let destroy_call3 = Some(func_notify_func::<P> as _);
         let super_callback0: Box_<P> = func_data;

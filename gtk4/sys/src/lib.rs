@@ -1208,7 +1208,7 @@ pub struct _GtkATContextClass {
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
-pub type GtkATContextClass = *mut _GtkATContextClass;
+pub type GtkATContextClass = _GtkATContextClass;
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -1300,7 +1300,7 @@ pub struct _GtkActivateActionClass {
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
-pub type GtkActivateActionClass = *mut _GtkActivateActionClass;
+pub type GtkActivateActionClass = _GtkActivateActionClass;
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -1348,7 +1348,7 @@ pub struct _GtkAlternativeTriggerClass {
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
-pub type GtkAlternativeTriggerClass = *mut _GtkAlternativeTriggerClass;
+pub type GtkAlternativeTriggerClass = _GtkAlternativeTriggerClass;
 
 #[repr(C)]
 pub struct _GtkAnyFilterClass {
@@ -1356,7 +1356,7 @@ pub struct _GtkAnyFilterClass {
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
-pub type GtkAnyFilterClass = *mut _GtkAnyFilterClass;
+pub type GtkAnyFilterClass = _GtkAnyFilterClass;
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -1599,7 +1599,7 @@ pub struct _GtkBuildableParseContext {
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
-pub type GtkBuildableParseContext = *mut _GtkBuildableParseContext;
+pub type GtkBuildableParseContext = _GtkBuildableParseContext;
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -1667,7 +1667,7 @@ pub struct _GtkBuilderClass {
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
-pub type GtkBuilderClass = *mut _GtkBuilderClass;
+pub type GtkBuilderClass = _GtkBuilderClass;
 
 #[repr(C)]
 pub struct _GtkBuilderListItemFactoryClass {
@@ -1675,7 +1675,7 @@ pub struct _GtkBuilderListItemFactoryClass {
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
-pub type GtkBuilderListItemFactoryClass = *mut _GtkBuilderListItemFactoryClass;
+pub type GtkBuilderListItemFactoryClass = _GtkBuilderListItemFactoryClass;
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -1732,7 +1732,7 @@ pub struct _GtkButtonPrivate {
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
-pub type GtkButtonPrivate = *mut _GtkButtonPrivate;
+pub type GtkButtonPrivate = _GtkButtonPrivate;
 
 #[repr(C)]
 pub struct _GtkCallbackActionClass {
@@ -1740,7 +1740,7 @@ pub struct _GtkCallbackActionClass {
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
-pub type GtkCallbackActionClass = *mut _GtkCallbackActionClass;
+pub type GtkCallbackActionClass = _GtkCallbackActionClass;
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -1935,7 +1935,7 @@ pub struct _GtkCellAreaContextPrivate {
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
-pub type GtkCellAreaContextPrivate = *mut _GtkCellAreaContextPrivate;
+pub type GtkCellAreaContextPrivate = _GtkCellAreaContextPrivate;
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -2090,7 +2090,7 @@ pub struct _GtkCellRendererClassPrivate {
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
-pub type GtkCellRendererClassPrivate = *mut _GtkCellRendererClassPrivate;
+pub type GtkCellRendererClassPrivate = _GtkCellRendererClassPrivate;
 
 #[repr(C)]
 pub struct _GtkCellRendererPrivate {
@@ -2098,7 +2098,7 @@ pub struct _GtkCellRendererPrivate {
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
-pub type GtkCellRendererPrivate = *mut _GtkCellRendererPrivate;
+pub type GtkCellRendererPrivate = _GtkCellRendererPrivate;
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -2124,7 +2124,7 @@ pub struct _GtkCenterBoxClass {
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
-pub type GtkCenterBoxClass = *mut _GtkCenterBoxClass;
+pub type GtkCenterBoxClass = _GtkCenterBoxClass;
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -2218,7 +2218,7 @@ pub struct _GtkColumnViewCellClass {
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
-pub type GtkColumnViewCellClass = *mut _GtkColumnViewCellClass;
+pub type GtkColumnViewCellClass = _GtkColumnViewCellClass;
 
 #[repr(C)]
 pub struct _GtkColumnViewClass {
@@ -2226,7 +2226,7 @@ pub struct _GtkColumnViewClass {
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
-pub type GtkColumnViewClass = *mut _GtkColumnViewClass;
+pub type GtkColumnViewClass = _GtkColumnViewClass;
 
 #[repr(C)]
 pub struct _GtkColumnViewColumnClass {
@@ -2234,7 +2234,7 @@ pub struct _GtkColumnViewColumnClass {
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
-pub type GtkColumnViewColumnClass = *mut _GtkColumnViewColumnClass;
+pub type GtkColumnViewColumnClass = _GtkColumnViewColumnClass;
 
 #[repr(C)]
 pub struct _GtkColumnViewRowClass {
@@ -2242,7 +2242,7 @@ pub struct _GtkColumnViewRowClass {
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
-pub type GtkColumnViewRowClass = *mut _GtkColumnViewRowClass;
+pub type GtkColumnViewRowClass = _GtkColumnViewRowClass;
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -2342,7 +2342,7 @@ pub struct _GtkConstraintTargetInterface {
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
-pub type GtkConstraintTargetInterface = *mut _GtkConstraintTargetInterface;
+pub type GtkConstraintTargetInterface = _GtkConstraintTargetInterface;
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -2372,7 +2372,7 @@ pub struct _GtkCssProviderClass {
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
-pub type GtkCssProviderClass = *mut _GtkCssProviderClass;
+pub type GtkCssProviderClass = _GtkCssProviderClass;
 
 #[repr(C)]
 pub struct _GtkCssProviderPrivate {
@@ -2380,7 +2380,7 @@ pub struct _GtkCssProviderPrivate {
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
-pub type GtkCssProviderPrivate = *mut _GtkCssProviderPrivate;
+pub type GtkCssProviderPrivate = _GtkCssProviderPrivate;
 
 #[repr(C)]
 pub struct GtkCssSection {
@@ -2401,7 +2401,7 @@ pub struct _GtkCssStyleChange {
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
-pub type GtkCssStyleChange = *mut _GtkCssStyleChange;
+pub type GtkCssStyleChange = _GtkCssStyleChange;
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -2498,7 +2498,7 @@ pub struct _GtkDragSourceClass {
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
-pub type GtkDragSourceClass = *mut _GtkDragSourceClass;
+pub type GtkDragSourceClass = _GtkDragSourceClass;
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -2523,7 +2523,7 @@ pub struct _GtkDropControllerMotionClass {
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
-pub type GtkDropControllerMotionClass = *mut _GtkDropControllerMotionClass;
+pub type GtkDropControllerMotionClass = _GtkDropControllerMotionClass;
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -2545,7 +2545,7 @@ pub struct _GtkDropTargetAsyncClass {
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
-pub type GtkDropTargetAsyncClass = *mut _GtkDropTargetAsyncClass;
+pub type GtkDropTargetAsyncClass = _GtkDropTargetAsyncClass;
 
 #[repr(C)]
 pub struct _GtkDropTargetClass {
@@ -2553,7 +2553,7 @@ pub struct _GtkDropTargetClass {
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
-pub type GtkDropTargetClass = *mut _GtkDropTargetClass;
+pub type GtkDropTargetClass = _GtkDropTargetClass;
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -2610,7 +2610,7 @@ pub struct _GtkEmojiChooserClass {
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
-pub type GtkEmojiChooserClass = *mut _GtkEmojiChooserClass;
+pub type GtkEmojiChooserClass = _GtkEmojiChooserClass;
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -2679,7 +2679,7 @@ pub struct _GtkEventControllerClass {
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
-pub type GtkEventControllerClass = *mut _GtkEventControllerClass;
+pub type GtkEventControllerClass = _GtkEventControllerClass;
 
 #[repr(C)]
 pub struct _GtkEventControllerFocusClass {
@@ -2687,7 +2687,7 @@ pub struct _GtkEventControllerFocusClass {
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
-pub type GtkEventControllerFocusClass = *mut _GtkEventControllerFocusClass;
+pub type GtkEventControllerFocusClass = _GtkEventControllerFocusClass;
 
 #[repr(C)]
 pub struct _GtkEventControllerKeyClass {
@@ -2695,7 +2695,7 @@ pub struct _GtkEventControllerKeyClass {
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
-pub type GtkEventControllerKeyClass = *mut _GtkEventControllerKeyClass;
+pub type GtkEventControllerKeyClass = _GtkEventControllerKeyClass;
 
 #[repr(C)]
 pub struct _GtkEventControllerLegacyClass {
@@ -2703,7 +2703,7 @@ pub struct _GtkEventControllerLegacyClass {
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
-pub type GtkEventControllerLegacyClass = *mut _GtkEventControllerLegacyClass;
+pub type GtkEventControllerLegacyClass = _GtkEventControllerLegacyClass;
 
 #[repr(C)]
 pub struct _GtkEventControllerMotionClass {
@@ -2711,7 +2711,7 @@ pub struct _GtkEventControllerMotionClass {
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
-pub type GtkEventControllerMotionClass = *mut _GtkEventControllerMotionClass;
+pub type GtkEventControllerMotionClass = _GtkEventControllerMotionClass;
 
 #[repr(C)]
 pub struct _GtkEventControllerScrollClass {
@@ -2719,7 +2719,7 @@ pub struct _GtkEventControllerScrollClass {
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
-pub type GtkEventControllerScrollClass = *mut _GtkEventControllerScrollClass;
+pub type GtkEventControllerScrollClass = _GtkEventControllerScrollClass;
 
 #[repr(C)]
 pub struct _GtkEveryFilterClass {
@@ -2727,7 +2727,7 @@ pub struct _GtkEveryFilterClass {
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
-pub type GtkEveryFilterClass = *mut _GtkEveryFilterClass;
+pub type GtkEveryFilterClass = _GtkEveryFilterClass;
 
 #[repr(C)]
 pub struct GtkExpressionWatch {
@@ -3014,7 +3014,7 @@ pub struct _GtkGestureClass {
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
-pub type GtkGestureClass = *mut _GtkGestureClass;
+pub type GtkGestureClass = _GtkGestureClass;
 
 #[repr(C)]
 pub struct _GtkGestureClickClass {
@@ -3022,7 +3022,7 @@ pub struct _GtkGestureClickClass {
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
-pub type GtkGestureClickClass = *mut _GtkGestureClickClass;
+pub type GtkGestureClickClass = _GtkGestureClickClass;
 
 #[repr(C)]
 pub struct _GtkGestureDragClass {
@@ -3030,7 +3030,7 @@ pub struct _GtkGestureDragClass {
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
-pub type GtkGestureDragClass = *mut _GtkGestureDragClass;
+pub type GtkGestureDragClass = _GtkGestureDragClass;
 
 #[repr(C)]
 pub struct _GtkGestureLongPressClass {
@@ -3038,7 +3038,7 @@ pub struct _GtkGestureLongPressClass {
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
-pub type GtkGestureLongPressClass = *mut _GtkGestureLongPressClass;
+pub type GtkGestureLongPressClass = _GtkGestureLongPressClass;
 
 #[repr(C)]
 pub struct _GtkGesturePanClass {
@@ -3046,7 +3046,7 @@ pub struct _GtkGesturePanClass {
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
-pub type GtkGesturePanClass = *mut _GtkGesturePanClass;
+pub type GtkGesturePanClass = _GtkGesturePanClass;
 
 #[repr(C)]
 pub struct _GtkGestureRotateClass {
@@ -3054,7 +3054,7 @@ pub struct _GtkGestureRotateClass {
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
-pub type GtkGestureRotateClass = *mut _GtkGestureRotateClass;
+pub type GtkGestureRotateClass = _GtkGestureRotateClass;
 
 #[repr(C)]
 pub struct _GtkGestureSingleClass {
@@ -3062,7 +3062,7 @@ pub struct _GtkGestureSingleClass {
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
-pub type GtkGestureSingleClass = *mut _GtkGestureSingleClass;
+pub type GtkGestureSingleClass = _GtkGestureSingleClass;
 
 #[repr(C)]
 pub struct _GtkGestureStylusClass {
@@ -3070,7 +3070,7 @@ pub struct _GtkGestureStylusClass {
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
-pub type GtkGestureStylusClass = *mut _GtkGestureStylusClass;
+pub type GtkGestureStylusClass = _GtkGestureStylusClass;
 
 #[repr(C)]
 pub struct _GtkGestureSwipeClass {
@@ -3078,7 +3078,7 @@ pub struct _GtkGestureSwipeClass {
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
-pub type GtkGestureSwipeClass = *mut _GtkGestureSwipeClass;
+pub type GtkGestureSwipeClass = _GtkGestureSwipeClass;
 
 #[repr(C)]
 pub struct _GtkGestureZoomClass {
@@ -3086,7 +3086,7 @@ pub struct _GtkGestureZoomClass {
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
-pub type GtkGestureZoomClass = *mut _GtkGestureZoomClass;
+pub type GtkGestureZoomClass = _GtkGestureZoomClass;
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -3137,7 +3137,7 @@ pub struct _GtkGridViewClass {
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
-pub type GtkGridViewClass = *mut _GtkGridViewClass;
+pub type GtkGridViewClass = _GtkGridViewClass;
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -3244,7 +3244,7 @@ pub struct _GtkIMContextSimplePrivate {
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
-pub type GtkIMContextSimplePrivate = *mut _GtkIMContextSimplePrivate;
+pub type GtkIMContextSimplePrivate = _GtkIMContextSimplePrivate;
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -3274,7 +3274,7 @@ pub struct _GtkIMMulticontextPrivate {
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
-pub type GtkIMMulticontextPrivate = *mut _GtkIMMulticontextPrivate;
+pub type GtkIMMulticontextPrivate = _GtkIMMulticontextPrivate;
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -3296,7 +3296,7 @@ pub struct _GtkKeyvalTriggerClass {
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
-pub type GtkKeyvalTriggerClass = *mut _GtkKeyvalTriggerClass;
+pub type GtkKeyvalTriggerClass = _GtkKeyvalTriggerClass;
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -3364,7 +3364,7 @@ pub struct _GtkListBaseClass {
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
-pub type GtkListBaseClass = *mut _GtkListBaseClass;
+pub type GtkListBaseClass = _GtkListBaseClass;
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -3389,7 +3389,7 @@ pub struct _GtkListHeaderClass {
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
-pub type GtkListHeaderClass = *mut _GtkListHeaderClass;
+pub type GtkListHeaderClass = _GtkListHeaderClass;
 
 #[repr(C)]
 pub struct _GtkListItemClass {
@@ -3397,7 +3397,7 @@ pub struct _GtkListItemClass {
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
-pub type GtkListItemClass = *mut _GtkListItemClass;
+pub type GtkListItemClass = _GtkListItemClass;
 
 #[repr(C)]
 pub struct _GtkListItemFactoryClass {
@@ -3405,7 +3405,7 @@ pub struct _GtkListItemFactoryClass {
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
-pub type GtkListItemFactoryClass = *mut _GtkListItemFactoryClass;
+pub type GtkListItemFactoryClass = _GtkListItemFactoryClass;
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -3428,7 +3428,7 @@ pub struct _GtkListStorePrivate {
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
-pub type GtkListStorePrivate = *mut _GtkListStorePrivate;
+pub type GtkListStorePrivate = _GtkListStorePrivate;
 
 #[repr(C)]
 pub struct _GtkListViewClass {
@@ -3436,7 +3436,7 @@ pub struct _GtkListViewClass {
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
-pub type GtkListViewClass = *mut _GtkListViewClass;
+pub type GtkListViewClass = _GtkListViewClass;
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -3540,7 +3540,7 @@ pub struct _GtkMessageDialogClass {
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
-pub type GtkMessageDialogClass = *mut _GtkMessageDialogClass;
+pub type GtkMessageDialogClass = _GtkMessageDialogClass;
 
 #[repr(C)]
 pub struct _GtkMnemonicActionClass {
@@ -3548,7 +3548,7 @@ pub struct _GtkMnemonicActionClass {
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
-pub type GtkMnemonicActionClass = *mut _GtkMnemonicActionClass;
+pub type GtkMnemonicActionClass = _GtkMnemonicActionClass;
 
 #[repr(C)]
 pub struct _GtkMnemonicTriggerClass {
@@ -3556,7 +3556,7 @@ pub struct _GtkMnemonicTriggerClass {
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
-pub type GtkMnemonicTriggerClass = *mut _GtkMnemonicTriggerClass;
+pub type GtkMnemonicTriggerClass = _GtkMnemonicTriggerClass;
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -3586,7 +3586,7 @@ pub struct _GtkMountOperationPrivate {
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
-pub type GtkMountOperationPrivate = *mut _GtkMountOperationPrivate;
+pub type GtkMountOperationPrivate = _GtkMountOperationPrivate;
 
 #[repr(C)]
 pub struct _GtkMultiFilterClass {
@@ -3594,7 +3594,7 @@ pub struct _GtkMultiFilterClass {
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
-pub type GtkMultiFilterClass = *mut _GtkMultiFilterClass;
+pub type GtkMultiFilterClass = _GtkMultiFilterClass;
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -3630,7 +3630,7 @@ pub struct _GtkNamedActionClass {
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
-pub type GtkNamedActionClass = *mut _GtkNamedActionClass;
+pub type GtkNamedActionClass = _GtkNamedActionClass;
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -3665,7 +3665,7 @@ pub struct _GtkNativeInterface {
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
-pub type GtkNativeInterface = *mut _GtkNativeInterface;
+pub type GtkNativeInterface = _GtkNativeInterface;
 
 #[repr(C)]
 pub struct _GtkNeverTriggerClass {
@@ -3673,7 +3673,7 @@ pub struct _GtkNeverTriggerClass {
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
-pub type GtkNeverTriggerClass = *mut _GtkNeverTriggerClass;
+pub type GtkNeverTriggerClass = _GtkNeverTriggerClass;
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -3695,7 +3695,7 @@ pub struct _GtkNothingActionClass {
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
-pub type GtkNothingActionClass = *mut _GtkNothingActionClass;
+pub type GtkNothingActionClass = _GtkNothingActionClass;
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -3781,7 +3781,7 @@ pub struct _GtkPadControllerClass {
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
-pub type GtkPadControllerClass = *mut _GtkPadControllerClass;
+pub type GtkPadControllerClass = _GtkPadControllerClass;
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -3831,7 +3831,7 @@ pub struct _GtkPasswordEntryClass {
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
-pub type GtkPasswordEntryClass = *mut _GtkPasswordEntryClass;
+pub type GtkPasswordEntryClass = _GtkPasswordEntryClass;
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -3872,7 +3872,7 @@ pub struct _GtkPrintBackend {
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
-pub type GtkPrintBackend = *mut _GtkPrintBackend;
+pub type GtkPrintBackend = _GtkPrintBackend;
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -3987,7 +3987,7 @@ pub struct _GtkPrintOperationPrivate {
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
-pub type GtkPrintOperationPrivate = *mut _GtkPrintOperationPrivate;
+pub type GtkPrintOperationPrivate = _GtkPrintOperationPrivate;
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -4083,7 +4083,7 @@ pub struct _GtkRecentManagerPrivate {
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
-pub type GtkRecentManagerPrivate = *mut _GtkRecentManagerPrivate;
+pub type GtkRecentManagerPrivate = _GtkRecentManagerPrivate;
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -4125,7 +4125,7 @@ pub struct _GtkRootInterface {
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
-pub type GtkRootInterface = *mut _GtkRootInterface;
+pub type GtkRootInterface = _GtkRootInterface;
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -4263,7 +4263,7 @@ pub struct _GtkShortcutActionClass {
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
-pub type GtkShortcutActionClass = *mut _GtkShortcutActionClass;
+pub type GtkShortcutActionClass = _GtkShortcutActionClass;
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -4285,7 +4285,7 @@ pub struct _GtkShortcutControllerClass {
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
-pub type GtkShortcutControllerClass = *mut _GtkShortcutControllerClass;
+pub type GtkShortcutControllerClass = _GtkShortcutControllerClass;
 
 #[repr(C)]
 pub struct _GtkShortcutLabelClass {
@@ -4293,7 +4293,7 @@ pub struct _GtkShortcutLabelClass {
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
-pub type GtkShortcutLabelClass = *mut _GtkShortcutLabelClass;
+pub type GtkShortcutLabelClass = _GtkShortcutLabelClass;
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -4320,7 +4320,7 @@ pub struct _GtkShortcutTriggerClass {
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
-pub type GtkShortcutTriggerClass = *mut _GtkShortcutTriggerClass;
+pub type GtkShortcutTriggerClass = _GtkShortcutTriggerClass;
 
 #[repr(C)]
 pub struct _GtkShortcutsGroupClass {
@@ -4328,7 +4328,7 @@ pub struct _GtkShortcutsGroupClass {
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
-pub type GtkShortcutsGroupClass = *mut _GtkShortcutsGroupClass;
+pub type GtkShortcutsGroupClass = _GtkShortcutsGroupClass;
 
 #[repr(C)]
 pub struct _GtkShortcutsSectionClass {
@@ -4336,7 +4336,7 @@ pub struct _GtkShortcutsSectionClass {
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
-pub type GtkShortcutsSectionClass = *mut _GtkShortcutsSectionClass;
+pub type GtkShortcutsSectionClass = _GtkShortcutsSectionClass;
 
 #[repr(C)]
 pub struct _GtkShortcutsShortcutClass {
@@ -4344,7 +4344,7 @@ pub struct _GtkShortcutsShortcutClass {
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
-pub type GtkShortcutsShortcutClass = *mut _GtkShortcutsShortcutClass;
+pub type GtkShortcutsShortcutClass = _GtkShortcutsShortcutClass;
 
 #[repr(C)]
 pub struct _GtkSignalActionClass {
@@ -4352,7 +4352,7 @@ pub struct _GtkSignalActionClass {
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
-pub type GtkSignalActionClass = *mut _GtkSignalActionClass;
+pub type GtkSignalActionClass = _GtkSignalActionClass;
 
 #[repr(C)]
 pub struct _GtkSignalListItemFactoryClass {
@@ -4360,7 +4360,7 @@ pub struct _GtkSignalListItemFactoryClass {
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
-pub type GtkSignalListItemFactoryClass = *mut _GtkSignalListItemFactoryClass;
+pub type GtkSignalListItemFactoryClass = _GtkSignalListItemFactoryClass;
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -4396,7 +4396,7 @@ pub struct _GtkSnapshotClass {
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
-pub type GtkSnapshotClass = *mut _GtkSnapshotClass;
+pub type GtkSnapshotClass = _GtkSnapshotClass;
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -4633,7 +4633,7 @@ pub struct _GtkTextBufferPrivate {
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
-pub type GtkTextBufferPrivate = *mut _GtkTextBufferPrivate;
+pub type GtkTextBufferPrivate = _GtkTextBufferPrivate;
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -4718,7 +4718,7 @@ pub struct _GtkTextTagPrivate {
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
-pub type GtkTextTagPrivate = *mut _GtkTextTagPrivate;
+pub type GtkTextTagPrivate = _GtkTextTagPrivate;
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -4777,7 +4777,7 @@ pub struct _GtkTextViewPrivate {
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
-pub type GtkTextViewPrivate = *mut _GtkTextViewPrivate;
+pub type GtkTextViewPrivate = _GtkTextViewPrivate;
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -4966,7 +4966,7 @@ pub struct _GtkTreeModelFilterPrivate {
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
-pub type GtkTreeModelFilterPrivate = *mut _GtkTreeModelFilterPrivate;
+pub type GtkTreeModelFilterPrivate = _GtkTreeModelFilterPrivate;
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -5065,7 +5065,7 @@ pub struct _GtkTreeModelSortPrivate {
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
-pub type GtkTreeModelSortPrivate = *mut _GtkTreeModelSortPrivate;
+pub type GtkTreeModelSortPrivate = _GtkTreeModelSortPrivate;
 
 #[repr(C)]
 pub struct GtkTreePath {
@@ -5155,7 +5155,7 @@ pub struct _GtkTreeStorePrivate {
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
-pub type GtkTreeStorePrivate = *mut _GtkTreeStorePrivate;
+pub type GtkTreeStorePrivate = _GtkTreeStorePrivate;
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -5333,7 +5333,7 @@ pub struct _GtkWidgetClassPrivate {
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
-pub type GtkWidgetClassPrivate = *mut _GtkWidgetClassPrivate;
+pub type GtkWidgetClassPrivate = _GtkWidgetClassPrivate;
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -5355,7 +5355,7 @@ pub struct _GtkWidgetPrivate {
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
-pub type GtkWidgetPrivate = *mut _GtkWidgetPrivate;
+pub type GtkWidgetPrivate = _GtkWidgetPrivate;
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -5424,7 +5424,7 @@ pub struct _GtkWindowGroupPrivate {
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
-pub type GtkWindowGroupPrivate = *mut _GtkWindowGroupPrivate;
+pub type GtkWindowGroupPrivate = _GtkWindowGroupPrivate;
 
 #[derive(Copy, Clone)]
 #[repr(C)]

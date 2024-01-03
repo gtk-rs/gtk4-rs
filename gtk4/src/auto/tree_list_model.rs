@@ -36,7 +36,7 @@ impl TreeListModel {
             user_data: glib::ffi::gpointer,
         ) -> *mut gio::ffi::GListModel {
             let item = from_glib_borrow(item);
-            let callback: &P = &*(user_data as *mut _);
+            let callback = &*(user_data as *mut P);
             (*callback)(&item).to_glib_full()
         }
         let create_func = Some(create_func_func::<P> as _);
@@ -45,7 +45,7 @@ impl TreeListModel {
         >(
             data: glib::ffi::gpointer,
         ) {
-            let _callback: Box_<P> = Box_::from_raw(data as *mut _);
+            let _callback = Box_::from_raw(data as *mut P);
         }
         let destroy_call5 = Some(user_destroy_func::<P> as _);
         let super_callback0: Box_<P> = create_func_data;

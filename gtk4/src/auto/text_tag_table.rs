@@ -44,7 +44,7 @@ impl TextTagTable {
             data: glib::ffi::gpointer,
         ) {
             let tag = from_glib_borrow(tag);
-            let callback: *mut P = data as *const _ as usize as *mut P;
+            let callback = data as *mut P;
             (*callback)(&tag)
         }
         let func = Some(func_func::<P> as _);
@@ -53,7 +53,7 @@ impl TextTagTable {
             ffi::gtk_text_tag_table_foreach(
                 self.to_glib_none().0,
                 func,
-                super_callback0 as *const _ as usize as *mut _,
+                super_callback0 as *const _ as *mut _,
             );
         }
     }

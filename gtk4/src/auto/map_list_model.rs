@@ -46,14 +46,14 @@ impl MapListModel {
             user_data: glib::ffi::gpointer,
         ) -> *mut glib::gobject_ffi::GObject {
             let item = from_glib_full(item);
-            let callback: &P = &*(user_data as *mut _);
+            let callback = &*(user_data as *mut P);
             (*callback)(&item).to_glib_full()
         }
         let map_func = Some(map_func_func::<P> as _);
         unsafe extern "C" fn user_destroy_func<P: Fn(&glib::Object) -> glib::Object + 'static>(
             data: glib::ffi::gpointer,
         ) {
-            let _callback: Box_<P> = Box_::from_raw(data as *mut _);
+            let _callback = Box_::from_raw(data as *mut P);
         }
         let destroy_call3 = Some(user_destroy_func::<P> as _);
         let super_callback0: Box_<P> = map_func_data;
@@ -86,14 +86,14 @@ impl MapListModel {
             user_data: glib::ffi::gpointer,
         ) -> *mut glib::gobject_ffi::GObject {
             let item = from_glib_full(item);
-            let callback: &P = &*(user_data as *mut _);
+            let callback = &*(user_data as *mut P);
             (*callback)(&item).to_glib_full()
         }
         let map_func = Some(map_func_func::<P> as _);
         unsafe extern "C" fn user_destroy_func<P: Fn(&glib::Object) -> glib::Object + 'static>(
             data: glib::ffi::gpointer,
         ) {
-            let _callback: Box_<P> = Box_::from_raw(data as *mut _);
+            let _callback = Box_::from_raw(data as *mut P);
         }
         let destroy_call3 = Some(user_destroy_func::<P> as _);
         let super_callback0: Box_<P> = map_func_data;

@@ -538,7 +538,7 @@ impl IconView {
         ) {
             let icon_view = from_glib_borrow(icon_view);
             let path = from_glib_borrow(path);
-            let callback: *mut P = data as *const _ as usize as *mut P;
+            let callback = data as *mut P;
             (*callback)(&icon_view, &path)
         }
         let func = Some(func_func::<P> as _);
@@ -547,7 +547,7 @@ impl IconView {
             ffi::gtk_icon_view_selected_foreach(
                 self.to_glib_none().0,
                 func,
-                super_callback0 as *const _ as usize as *mut _,
+                super_callback0 as *const _ as *mut _,
             );
         }
     }

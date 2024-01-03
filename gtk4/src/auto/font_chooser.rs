@@ -175,7 +175,7 @@ pub trait FontChooserExt: IsA<FontChooser> + sealed::Sealed + 'static {
         ) -> glib::ffi::gboolean {
             let family = from_glib_borrow(family);
             let face = from_glib_borrow(face);
-            let callback: &P = &*(data as *mut _);
+            let callback = &*(data as *mut P);
             (*callback)(&family, &face).into_glib()
         }
         let filter = Some(filter_func::<P> as _);
@@ -184,7 +184,7 @@ pub trait FontChooserExt: IsA<FontChooser> + sealed::Sealed + 'static {
         >(
             data: glib::ffi::gpointer,
         ) {
-            let _callback: Box_<P> = Box_::from_raw(data as *mut _);
+            let _callback = Box_::from_raw(data as *mut P);
         }
         let destroy_call3 = Some(destroy_func::<P> as _);
         let super_callback0: Box_<P> = filter_data;

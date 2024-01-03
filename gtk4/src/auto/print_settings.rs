@@ -91,7 +91,7 @@ impl PrintSettings {
         ) {
             let key: Borrowed<glib::GString> = from_glib_borrow(key);
             let value: Borrowed<glib::GString> = from_glib_borrow(value);
-            let callback: *mut P = user_data as *const _ as usize as *mut P;
+            let callback = user_data as *mut P;
             (*callback)(key.as_str(), value.as_str())
         }
         let func = Some(func_func::<P> as _);
@@ -100,7 +100,7 @@ impl PrintSettings {
             ffi::gtk_print_settings_foreach(
                 self.to_glib_none().0,
                 func,
-                super_callback0 as *const _ as usize as *mut _,
+                super_callback0 as *const _ as *mut _,
             );
         }
     }

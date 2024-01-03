@@ -1141,7 +1141,7 @@ pub trait TreeViewExt: IsA<TreeView> + sealed::Sealed + 'static {
             let cell = from_glib_borrow(cell);
             let tree_model = from_glib_borrow(tree_model);
             let iter = from_glib_borrow(iter);
-            let callback: &P = &*(data as *mut _);
+            let callback = &*(data as *mut P);
             (*callback)(&tree_column, &cell, &tree_model, &iter)
         }
         let func = Some(func_func::<P> as _);
@@ -1150,7 +1150,7 @@ pub trait TreeViewExt: IsA<TreeView> + sealed::Sealed + 'static {
         >(
             data: glib::ffi::gpointer,
         ) {
-            let _callback: Box_<P> = Box_::from_raw(data as *mut _);
+            let _callback = Box_::from_raw(data as *mut P);
         }
         let destroy_call6 = Some(dnotify_func::<P> as _);
         let super_callback0: Box_<P> = func_data;
@@ -1225,7 +1225,7 @@ pub trait TreeViewExt: IsA<TreeView> + sealed::Sealed + 'static {
         ) {
             let tree_view = from_glib_borrow(tree_view);
             let path = from_glib_borrow(path);
-            let callback: *mut P = user_data as *const _ as usize as *mut P;
+            let callback = user_data as *mut P;
             (*callback)(&tree_view, &path)
         }
         let func = Some(func_func::<P> as _);
@@ -1234,7 +1234,7 @@ pub trait TreeViewExt: IsA<TreeView> + sealed::Sealed + 'static {
             ffi::gtk_tree_view_map_expanded_rows(
                 self.as_ref().to_glib_none().0,
                 func,
-                super_callback0 as *const _ as usize as *mut _,
+                super_callback0 as *const _ as *mut _,
             );
         }
     }
@@ -1364,12 +1364,12 @@ pub trait TreeViewExt: IsA<TreeView> + sealed::Sealed + 'static {
             let column = from_glib_borrow(column);
             let prev_column = from_glib_borrow(prev_column);
             let next_column = from_glib_borrow(next_column);
-            let callback: &Option<
+            let callback = &*(data as *mut Option<
                 Box_<
                     dyn Fn(&TreeView, &TreeViewColumn, &TreeViewColumn, &TreeViewColumn) -> bool
                         + 'static,
                 >,
-            > = &*(data as *mut _);
+            >);
             if let Some(ref callback) = *callback {
                 callback(&tree_view, &column, &prev_column, &next_column)
             } else {
@@ -1383,14 +1383,14 @@ pub trait TreeViewExt: IsA<TreeView> + sealed::Sealed + 'static {
             None
         };
         unsafe extern "C" fn destroy_func(data: glib::ffi::gpointer) {
-            let _callback: Box_<
-                Option<
+            let _callback = Box_::from_raw(
+                data as *mut Option<
                     Box_<
                         dyn Fn(&TreeView, &TreeViewColumn, &TreeViewColumn, &TreeViewColumn) -> bool
                             + 'static,
                     >,
                 >,
-            > = Box_::from_raw(data as *mut _);
+            );
         }
         let destroy_call3 = Some(destroy_func as _);
         let super_callback0: Box_<
@@ -1614,14 +1614,14 @@ pub trait TreeViewExt: IsA<TreeView> + sealed::Sealed + 'static {
         ) -> glib::ffi::gboolean {
             let model = from_glib_borrow(model);
             let iter = from_glib_borrow(iter);
-            let callback: &P = &*(data as *mut _);
+            let callback = &*(data as *mut P);
             (*callback)(&model, &iter).into_glib()
         }
         let func = Some(func_func::<P> as _);
         unsafe extern "C" fn destroy_func<P: Fn(&TreeModel, &TreeIter) -> bool + 'static>(
             data: glib::ffi::gpointer,
         ) {
-            let _callback: Box_<P> = Box_::from_raw(data as *mut _);
+            let _callback = Box_::from_raw(data as *mut P);
         }
         let destroy_call3 = Some(destroy_func::<P> as _);
         let super_callback0: Box_<P> = func_data;
@@ -1688,7 +1688,7 @@ pub trait TreeViewExt: IsA<TreeView> + sealed::Sealed + 'static {
             let model = from_glib_borrow(model);
             let key: Borrowed<glib::GString> = from_glib_borrow(key);
             let iter = from_glib_borrow(iter);
-            let callback: &P = &*(search_data as *mut _);
+            let callback = &*(search_data as *mut P);
             (*callback)(&model, column, key.as_str(), &iter).into_glib()
         }
         let search_equal_func = Some(search_equal_func_func::<P> as _);
@@ -1697,7 +1697,7 @@ pub trait TreeViewExt: IsA<TreeView> + sealed::Sealed + 'static {
         >(
             data: glib::ffi::gpointer,
         ) {
-            let _callback: Box_<P> = Box_::from_raw(data as *mut _);
+            let _callback = Box_::from_raw(data as *mut P);
         }
         let destroy_call3 = Some(search_destroy_func::<P> as _);
         let super_callback0: Box_<P> = search_equal_func_data;
