@@ -3,6 +3,9 @@
 // DO NOT EDIT
 #![allow(deprecated)]
 
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+use crate::DmabufFormats;
 #[cfg(feature = "v4_6")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
 use crate::GLContext;
@@ -126,6 +129,18 @@ pub trait DisplayExt: IsA<Display> + sealed::Sealed + 'static {
     fn default_seat(&self) -> Option<Seat> {
         unsafe {
             from_glib_none(ffi::gdk_display_get_default_seat(
+                self.as_ref().to_glib_none().0,
+            ))
+        }
+    }
+
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    #[doc(alias = "gdk_display_get_dmabuf_formats")]
+    #[doc(alias = "get_dmabuf_formats")]
+    fn dmabuf_formats(&self) -> DmabufFormats {
+        unsafe {
+            from_glib_none(ffi::gdk_display_get_dmabuf_formats(
                 self.as_ref().to_glib_none().0,
             ))
         }
@@ -418,6 +433,34 @@ pub trait DisplayExt: IsA<Display> + sealed::Sealed + 'static {
                 b"notify::composited\0".as_ptr() as *const _,
                 Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_composited_trampoline::<Self, F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    #[doc(alias = "dmabuf-formats")]
+    fn connect_dmabuf_formats_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_dmabuf_formats_trampoline<
+            P: IsA<Display>,
+            F: Fn(&P) + 'static,
+        >(
+            this: *mut ffi::GdkDisplay,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(Display::from_glib_borrow(this).unsafe_cast_ref())
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::dmabuf-formats\0".as_ptr() as *const _,
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                    notify_dmabuf_formats_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
             )

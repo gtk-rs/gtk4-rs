@@ -430,6 +430,7 @@ const RUST_CONSTANTS: &[(&str, &str)] = &[
     ("(gint) GSK_SERIALIZATION_UNSUPPORTED_VERSION", "1"),
     ("(gint) GSK_SHADOW_NODE", "19"),
     ("(gint) GSK_STROKE_NODE", "29"),
+    ("(gint) GSK_SUBSURFACE_NODE", "30"),
     ("(gint) GSK_TEXTURE_NODE", "10"),
     ("(gint) GSK_TEXTURE_SCALE_NODE", "26"),
     ("(gint) GSK_TEXT_NODE", "22"),

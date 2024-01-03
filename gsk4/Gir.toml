@@ -58,6 +58,7 @@ manual = [
     "cairo.Path",
     "cairo.Region",
     "cairo.Surface",
+    "Gdk.Display",
     "Gdk.RGBA",
     "Gdk.Surface",
     "Gdk.Texture",

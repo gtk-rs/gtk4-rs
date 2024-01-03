@@ -838,6 +838,22 @@ pub enum AccessibleRole {
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
     #[doc(alias = "GTK_ACCESSIBLE_ROLE_APPLICATION")]
     Application,
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    #[doc(alias = "GTK_ACCESSIBLE_ROLE_PARAGRAPH")]
+    Paragraph,
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    #[doc(alias = "GTK_ACCESSIBLE_ROLE_BLOCK_QUOTE")]
+    BlockQuote,
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    #[doc(alias = "GTK_ACCESSIBLE_ROLE_ARTICLE")]
+    Article,
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    #[doc(alias = "GTK_ACCESSIBLE_ROLE_COMMENT")]
+    Comment,
     #[doc(hidden)]
     __Unknown(i32),
 }
@@ -930,6 +946,14 @@ impl IntoGlib for AccessibleRole {
             Self::ToggleButton => ffi::GTK_ACCESSIBLE_ROLE_TOGGLE_BUTTON,
             #[cfg(feature = "v4_12")]
             Self::Application => ffi::GTK_ACCESSIBLE_ROLE_APPLICATION,
+            #[cfg(feature = "v4_14")]
+            Self::Paragraph => ffi::GTK_ACCESSIBLE_ROLE_PARAGRAPH,
+            #[cfg(feature = "v4_14")]
+            Self::BlockQuote => ffi::GTK_ACCESSIBLE_ROLE_BLOCK_QUOTE,
+            #[cfg(feature = "v4_14")]
+            Self::Article => ffi::GTK_ACCESSIBLE_ROLE_ARTICLE,
+            #[cfg(feature = "v4_14")]
+            Self::Comment => ffi::GTK_ACCESSIBLE_ROLE_COMMENT,
             Self::__Unknown(value) => value,
         }
     }
@@ -1023,6 +1047,14 @@ impl FromGlib<ffi::GtkAccessibleRole> for AccessibleRole {
             ffi::GTK_ACCESSIBLE_ROLE_TOGGLE_BUTTON => Self::ToggleButton,
             #[cfg(feature = "v4_12")]
             ffi::GTK_ACCESSIBLE_ROLE_APPLICATION => Self::Application,
+            #[cfg(feature = "v4_14")]
+            ffi::GTK_ACCESSIBLE_ROLE_PARAGRAPH => Self::Paragraph,
+            #[cfg(feature = "v4_14")]
+            ffi::GTK_ACCESSIBLE_ROLE_BLOCK_QUOTE => Self::BlockQuote,
+            #[cfg(feature = "v4_14")]
+            ffi::GTK_ACCESSIBLE_ROLE_ARTICLE => Self::Article,
+            #[cfg(feature = "v4_14")]
+            ffi::GTK_ACCESSIBLE_ROLE_COMMENT => Self::Comment,
             value => Self::__Unknown(value),
         }
     }
@@ -4537,6 +4569,102 @@ impl From<FontLevel> for glib::Value {
 
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
+#[doc(alias = "GtkGraphicsOffloadEnabled")]
+pub enum GraphicsOffloadEnabled {
+    #[doc(alias = "GTK_GRAPHICS_OFFLOAD_ENABLED")]
+    Enabled,
+    #[doc(alias = "GTK_GRAPHICS_OFFLOAD_DISABLED")]
+    Disabled,
+    #[doc(hidden)]
+    __Unknown(i32),
+}
+
+#[doc(hidden)]
+impl IntoGlib for GraphicsOffloadEnabled {
+    type GlibType = ffi::GtkGraphicsOffloadEnabled;
+
+    #[inline]
+    fn into_glib(self) -> ffi::GtkGraphicsOffloadEnabled {
+        match self {
+            Self::Enabled => ffi::GTK_GRAPHICS_OFFLOAD_ENABLED,
+            Self::Disabled => ffi::GTK_GRAPHICS_OFFLOAD_DISABLED,
+            Self::__Unknown(value) => value,
+        }
+    }
+}
+
+#[doc(hidden)]
+impl FromGlib<ffi::GtkGraphicsOffloadEnabled> for GraphicsOffloadEnabled {
+    #[inline]
+    unsafe fn from_glib(value: ffi::GtkGraphicsOffloadEnabled) -> Self {
+        skip_assert_initialized!();
+
+        match value {
+            ffi::GTK_GRAPHICS_OFFLOAD_ENABLED => Self::Enabled,
+            ffi::GTK_GRAPHICS_OFFLOAD_DISABLED => Self::Disabled,
+            value => Self::__Unknown(value),
+        }
+    }
+}
+
+impl StaticType for GraphicsOffloadEnabled {
+    #[inline]
+    #[doc(alias = "gtk_graphics_offload_enabled_get_type")]
+    fn static_type() -> glib::Type {
+        unsafe { from_glib(ffi::gtk_graphics_offload_enabled_get_type()) }
+    }
+}
+
+impl glib::HasParamSpec for GraphicsOffloadEnabled {
+    type ParamSpec = glib::ParamSpecEnum;
+    type SetValue = Self;
+    type BuilderFn = fn(&str, Self) -> glib::ParamSpecEnumBuilder<Self>;
+
+    fn param_spec_builder() -> Self::BuilderFn {
+        Self::ParamSpec::builder_with_default
+    }
+}
+
+impl glib::value::ValueType for GraphicsOffloadEnabled {
+    type Type = Self;
+}
+
+unsafe impl<'a> glib::value::FromValue<'a> for GraphicsOffloadEnabled {
+    type Checker = glib::value::GenericValueTypeChecker<Self>;
+
+    #[inline]
+    unsafe fn from_value(value: &'a glib::Value) -> Self {
+        skip_assert_initialized!();
+        from_glib(glib::gobject_ffi::g_value_get_enum(value.to_glib_none().0))
+    }
+}
+
+impl ToValue for GraphicsOffloadEnabled {
+    #[inline]
+    fn to_value(&self) -> glib::Value {
+        let mut value = glib::Value::for_value_type::<Self>();
+        unsafe {
+            glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.into_glib());
+        }
+        value
+    }
+
+    #[inline]
+    fn value_type(&self) -> glib::Type {
+        Self::static_type()
+    }
+}
+
+impl From<GraphicsOffloadEnabled> for glib::Value {
+    #[inline]
+    fn from(v: GraphicsOffloadEnabled) -> Self {
+        skip_assert_initialized!();
+        ToValue::to_value(&v)
+    }
+}
+
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
 #[doc(alias = "GtkIconSize")]
 pub enum IconSize {
     #[doc(alias = "GTK_ICON_SIZE_INHERIT")]
@@ -5465,6 +5593,8 @@ pub enum License {
     Apache20,
     #[doc(alias = "GTK_LICENSE_MPL_2_0")]
     Mpl20,
+    #[doc(alias = "GTK_LICENSE_0BSD")]
+    _0bsd,
     #[doc(hidden)]
     __Unknown(i32),
 }
@@ -5493,6 +5623,7 @@ impl IntoGlib for License {
             Self::Bsd3 => ffi::GTK_LICENSE_BSD_3,
             Self::Apache20 => ffi::GTK_LICENSE_APACHE_2_0,
             Self::Mpl20 => ffi::GTK_LICENSE_MPL_2_0,
+            Self::_0bsd => ffi::GTK_LICENSE_0BSD,
             Self::__Unknown(value) => value,
         }
     }
@@ -5522,6 +5653,7 @@ impl FromGlib<ffi::GtkLicense> for License {
             ffi::GTK_LICENSE_BSD_3 => Self::Bsd3,
             ffi::GTK_LICENSE_APACHE_2_0 => Self::Apache20,
             ffi::GTK_LICENSE_MPL_2_0 => Self::Mpl20,
+            ffi::GTK_LICENSE_0BSD => Self::_0bsd,
             value => Self::__Unknown(value),
         }
     }

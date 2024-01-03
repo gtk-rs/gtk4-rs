@@ -84,6 +84,8 @@ pub trait SurfaceExt: IsA<Surface> + sealed::Sealed + 'static {
         }
     }
 
+    #[cfg_attr(feature = "v4_14", deprecated = "Since 4.14")]
+    #[allow(deprecated)]
     #[doc(alias = "gdk_surface_create_vulkan_context")]
     fn create_vulkan_context(&self) -> Result<VulkanContext, glib::Error> {
         unsafe {

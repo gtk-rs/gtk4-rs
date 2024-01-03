@@ -1158,8 +1158,12 @@ pub enum RenderNodeType {
     DebugNode,
     #[doc(alias = "GSK_GL_SHADER_NODE")]
     GlShaderNode,
+    #[cfg(feature = "v4_10")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     #[doc(alias = "GSK_TEXTURE_SCALE_NODE")]
     TextureScaleNode,
+    #[cfg(feature = "v4_10")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     #[doc(alias = "GSK_MASK_NODE")]
     MaskNode,
     #[cfg(feature = "v4_14")]
@@ -1170,6 +1174,10 @@ pub enum RenderNodeType {
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
     #[doc(alias = "GSK_STROKE_NODE")]
     StrokeNode,
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    #[doc(alias = "GSK_SUBSURFACE_NODE")]
+    SubsurfaceNode,
     #[doc(hidden)]
     __Unknown(i32),
 }
@@ -1206,12 +1214,16 @@ impl IntoGlib for RenderNodeType {
             Self::BlurNode => ffi::GSK_BLUR_NODE,
             Self::DebugNode => ffi::GSK_DEBUG_NODE,
             Self::GlShaderNode => ffi::GSK_GL_SHADER_NODE,
+            #[cfg(feature = "v4_10")]
             Self::TextureScaleNode => ffi::GSK_TEXTURE_SCALE_NODE,
+            #[cfg(feature = "v4_10")]
             Self::MaskNode => ffi::GSK_MASK_NODE,
             #[cfg(feature = "v4_14")]
             Self::FillNode => ffi::GSK_FILL_NODE,
             #[cfg(feature = "v4_14")]
             Self::StrokeNode => ffi::GSK_STROKE_NODE,
+            #[cfg(feature = "v4_14")]
+            Self::SubsurfaceNode => ffi::GSK_SUBSURFACE_NODE,
             Self::__Unknown(value) => value,
         }
     }
@@ -1249,12 +1261,16 @@ impl FromGlib<ffi::GskRenderNodeType> for RenderNodeType {
             ffi::GSK_BLUR_NODE => Self::BlurNode,
             ffi::GSK_DEBUG_NODE => Self::DebugNode,
             ffi::GSK_GL_SHADER_NODE => Self::GlShaderNode,
+            #[cfg(feature = "v4_10")]
             ffi::GSK_TEXTURE_SCALE_NODE => Self::TextureScaleNode,
+            #[cfg(feature = "v4_10")]
             ffi::GSK_MASK_NODE => Self::MaskNode,
             #[cfg(feature = "v4_14")]
             ffi::GSK_FILL_NODE => Self::FillNode,
             #[cfg(feature = "v4_14")]
             ffi::GSK_STROKE_NODE => Self::StrokeNode,
+            #[cfg(feature = "v4_14")]
+            ffi::GSK_SUBSURFACE_NODE => Self::SubsurfaceNode,
             value => Self::__Unknown(value),
         }
     }

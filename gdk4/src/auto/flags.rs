@@ -512,6 +512,10 @@ bitflags! {
     #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash)]
     #[doc(alias = "GdkModifierType")]
     pub struct ModifierType: u32 {
+        #[cfg(feature = "v4_14")]
+        #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+        #[doc(alias = "GDK_NO_MODIFIER_MASK")]
+        const NO_MODIFIER_MASK = ffi::GDK_NO_MODIFIER_MASK as _;
         #[doc(alias = "GDK_SHIFT_MASK")]
         const SHIFT_MASK = ffi::GDK_SHIFT_MASK as _;
         #[doc(alias = "GDK_LOCK_MASK")]

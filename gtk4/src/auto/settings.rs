@@ -453,6 +453,20 @@ impl Settings {
         ObjectExt::set_property(self, "gtk-shell-shows-menubar", gtk_shell_shows_menubar)
     }
 
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    #[doc(alias = "gtk-show-status-shapes")]
+    pub fn is_gtk_show_status_shapes(&self) -> bool {
+        ObjectExt::property(self, "gtk-show-status-shapes")
+    }
+
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    #[doc(alias = "gtk-show-status-shapes")]
+    pub fn set_gtk_show_status_shapes(&self, gtk_show_status_shapes: bool) {
+        ObjectExt::set_property(self, "gtk-show-status-shapes", gtk_show_status_shapes)
+    }
+
     #[doc(alias = "gtk-sound-theme-name")]
     pub fn gtk_sound_theme_name(&self) -> Option<glib::GString> {
         ObjectExt::property(self, "gtk-sound-theme-name")
@@ -1630,6 +1644,36 @@ impl Settings {
         }
     }
 
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    #[doc(alias = "gtk-show-status-shapes")]
+    pub fn connect_gtk_show_status_shapes_notify<F: Fn(&Self) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_gtk_show_status_shapes_trampoline<
+            F: Fn(&Settings) + 'static,
+        >(
+            this: *mut ffi::GtkSettings,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::gtk-show-status-shapes\0".as_ptr() as *const _,
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                    notify_gtk_show_status_shapes_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
     #[doc(alias = "gtk-sound-theme-name")]
     pub fn connect_gtk_sound_theme_name_notify<F: Fn(&Self) + 'static>(
         &self,
@@ -2238,6 +2282,16 @@ impl SettingsBuilder {
             builder: self
                 .builder
                 .property("gtk-shell-shows-menubar", gtk_shell_shows_menubar),
+        }
+    }
+
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gtk_show_status_shapes(self, gtk_show_status_shapes: bool) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("gtk-show-status-shapes", gtk_show_status_shapes),
         }
     }
 

@@ -44,6 +44,14 @@ impl FileLauncher {
         unsafe { from_glib_none(ffi::gtk_file_launcher_get_file(self.to_glib_none().0)) }
     }
 
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    #[doc(alias = "gtk_file_launcher_get_writable")]
+    #[doc(alias = "get_writable")]
+    pub fn is_writable(&self) -> bool {
+        unsafe { from_glib(ffi::gtk_file_launcher_get_writable(self.to_glib_none().0)) }
+    }
+
     #[doc(alias = "gtk_file_launcher_launch")]
     pub fn launch<P: FnOnce(Result<(), glib::Error>) + 'static>(
         &self,
@@ -197,6 +205,15 @@ impl FileLauncher {
         }
     }
 
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    #[doc(alias = "gtk_file_launcher_set_writable")]
+    pub fn set_writable(&self, writable: bool) {
+        unsafe {
+            ffi::gtk_file_launcher_set_writable(self.to_glib_none().0, writable.into_glib());
+        }
+    }
+
     #[cfg(feature = "v4_12")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
     #[doc(alias = "always-ask")]
@@ -241,6 +258,31 @@ impl FileLauncher {
                 b"notify::file\0".as_ptr() as *const _,
                 Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_file_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    #[doc(alias = "writable")]
+    pub fn connect_writable_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_writable_trampoline<F: Fn(&FileLauncher) + 'static>(
+            this: *mut ffi::GtkFileLauncher,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::writable\0".as_ptr() as *const _,
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                    notify_writable_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
             )

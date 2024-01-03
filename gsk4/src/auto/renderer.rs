@@ -73,6 +73,26 @@ pub trait GskRendererExt: IsA<Renderer> + sealed::Sealed + 'static {
         }
     }
 
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    #[doc(alias = "gsk_renderer_realize_for_display")]
+    fn realize_for_display(&self, display: &gdk::Display) -> Result<(), glib::Error> {
+        unsafe {
+            let mut error = std::ptr::null_mut();
+            let is_ok = ffi::gsk_renderer_realize_for_display(
+                self.as_ref().to_glib_none().0,
+                display.to_glib_none().0,
+                &mut error,
+            );
+            debug_assert_eq!(is_ok == glib::ffi::GFALSE, !error.is_null());
+            if error.is_null() {
+                Ok(())
+            } else {
+                Err(from_glib_full(error))
+            }
+        }
+    }
+
     #[doc(alias = "gsk_renderer_render")]
     fn render(&self, root: impl AsRef<RenderNode>, region: Option<&cairo::Region>) {
         unsafe {

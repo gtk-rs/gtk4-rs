@@ -37,13 +37,13 @@ mod sealed {
 pub trait NativeExt: IsA<Native> + sealed::Sealed + 'static {
     #[doc(alias = "gtk_native_get_renderer")]
     #[doc(alias = "get_renderer")]
-    fn renderer(&self) -> gsk::Renderer {
+    fn renderer(&self) -> Option<gsk::Renderer> {
         unsafe { from_glib_none(ffi::gtk_native_get_renderer(self.as_ref().to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_native_get_surface")]
     #[doc(alias = "get_surface")]
-    fn surface(&self) -> gdk::Surface {
+    fn surface(&self) -> Option<gdk::Surface> {
         unsafe { from_glib_none(ffi::gtk_native_get_surface(self.as_ref().to_glib_none().0)) }
     }
 

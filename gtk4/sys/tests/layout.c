@@ -139,6 +139,8 @@ int main() {
     printf("%s;%zu;%zu\n", "GtkFrameClass", sizeof(GtkFrameClass), alignof(GtkFrameClass));
     printf("%s;%zu;%zu\n", "GtkGLArea", sizeof(GtkGLArea), alignof(GtkGLArea));
     printf("%s;%zu;%zu\n", "GtkGLAreaClass", sizeof(GtkGLAreaClass), alignof(GtkGLAreaClass));
+    printf("%s;%zu;%zu\n", "GtkGraphicsOffloadClass", sizeof(GtkGraphicsOffloadClass), alignof(GtkGraphicsOffloadClass));
+    printf("%s;%zu;%zu\n", "GtkGraphicsOffloadEnabled", sizeof(GtkGraphicsOffloadEnabled), alignof(GtkGraphicsOffloadEnabled));
     printf("%s;%zu;%zu\n", "GtkGrid", sizeof(GtkGrid), alignof(GtkGrid));
     printf("%s;%zu;%zu\n", "GtkGridClass", sizeof(GtkGridClass), alignof(GtkGridClass));
     printf("%s;%zu;%zu\n", "GtkGridLayoutChildClass", sizeof(GtkGridLayoutChildClass), alignof(GtkGridLayoutChildClass));
@@ -214,6 +216,7 @@ int main() {
     printf("%s;%zu;%zu\n", "GtkPopoverMenuFlags", sizeof(GtkPopoverMenuFlags), alignof(GtkPopoverMenuFlags));
     printf("%s;%zu;%zu\n", "GtkPositionType", sizeof(GtkPositionType), alignof(GtkPositionType));
     printf("%s;%zu;%zu\n", "GtkPrintCapabilities", sizeof(GtkPrintCapabilities), alignof(GtkPrintCapabilities));
+    printf("%s;%zu;%zu\n", "GtkPrintDialogClass", sizeof(GtkPrintDialogClass), alignof(GtkPrintDialogClass));
     printf("%s;%zu;%zu\n", "GtkPrintDuplex", sizeof(GtkPrintDuplex), alignof(GtkPrintDuplex));
     printf("%s;%zu;%zu\n", "GtkPrintError", sizeof(GtkPrintError), alignof(GtkPrintError));
     printf("%s;%zu;%zu\n", "GtkPrintOperation", sizeof(GtkPrintOperation), alignof(GtkPrintOperation));

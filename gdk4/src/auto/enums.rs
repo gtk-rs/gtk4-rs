@@ -484,6 +484,149 @@ impl From<DeviceToolType> for glib::Value {
     }
 }
 
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
+#[doc(alias = "GdkDmabufError")]
+pub enum DmabufError {
+    #[doc(alias = "GDK_DMABUF_ERROR_NOT_AVAILABLE")]
+    NotAvailable,
+    #[doc(alias = "GDK_DMABUF_ERROR_UNSUPPORTED_FORMAT")]
+    UnsupportedFormat,
+    #[doc(alias = "GDK_DMABUF_ERROR_CREATION_FAILED")]
+    CreationFailed,
+    #[doc(hidden)]
+    __Unknown(i32),
+}
+
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+#[doc(hidden)]
+impl IntoGlib for DmabufError {
+    type GlibType = ffi::GdkDmabufError;
+
+    #[inline]
+    fn into_glib(self) -> ffi::GdkDmabufError {
+        match self {
+            Self::NotAvailable => ffi::GDK_DMABUF_ERROR_NOT_AVAILABLE,
+            Self::UnsupportedFormat => ffi::GDK_DMABUF_ERROR_UNSUPPORTED_FORMAT,
+            Self::CreationFailed => ffi::GDK_DMABUF_ERROR_CREATION_FAILED,
+            Self::__Unknown(value) => value,
+        }
+    }
+}
+
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+#[doc(hidden)]
+impl FromGlib<ffi::GdkDmabufError> for DmabufError {
+    #[inline]
+    unsafe fn from_glib(value: ffi::GdkDmabufError) -> Self {
+        skip_assert_initialized!();
+
+        match value {
+            ffi::GDK_DMABUF_ERROR_NOT_AVAILABLE => Self::NotAvailable,
+            ffi::GDK_DMABUF_ERROR_UNSUPPORTED_FORMAT => Self::UnsupportedFormat,
+            ffi::GDK_DMABUF_ERROR_CREATION_FAILED => Self::CreationFailed,
+            value => Self::__Unknown(value),
+        }
+    }
+}
+
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+impl glib::error::ErrorDomain for DmabufError {
+    #[inline]
+    fn domain() -> glib::Quark {
+        skip_assert_initialized!();
+
+        unsafe { from_glib(ffi::gdk_dmabuf_error_quark()) }
+    }
+
+    #[inline]
+    fn code(self) -> i32 {
+        self.into_glib()
+    }
+
+    #[inline]
+    #[allow(clippy::match_single_binding)]
+    fn from(code: i32) -> Option<Self> {
+        skip_assert_initialized!();
+        match unsafe { from_glib(code) } {
+            value => Some(value),
+        }
+    }
+}
+
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+impl StaticType for DmabufError {
+    #[inline]
+    #[doc(alias = "gdk_dmabuf_error_get_type")]
+    fn static_type() -> glib::Type {
+        unsafe { from_glib(ffi::gdk_dmabuf_error_get_type()) }
+    }
+}
+
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+impl glib::HasParamSpec for DmabufError {
+    type ParamSpec = glib::ParamSpecEnum;
+    type SetValue = Self;
+    type BuilderFn = fn(&str, Self) -> glib::ParamSpecEnumBuilder<Self>;
+
+    fn param_spec_builder() -> Self::BuilderFn {
+        Self::ParamSpec::builder_with_default
+    }
+}
+
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+impl glib::value::ValueType for DmabufError {
+    type Type = Self;
+}
+
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+unsafe impl<'a> glib::value::FromValue<'a> for DmabufError {
+    type Checker = glib::value::GenericValueTypeChecker<Self>;
+
+    #[inline]
+    unsafe fn from_value(value: &'a glib::Value) -> Self {
+        skip_assert_initialized!();
+        from_glib(glib::gobject_ffi::g_value_get_enum(value.to_glib_none().0))
+    }
+}
+
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+impl ToValue for DmabufError {
+    #[inline]
+    fn to_value(&self) -> glib::Value {
+        let mut value = glib::Value::for_value_type::<Self>();
+        unsafe {
+            glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.into_glib());
+        }
+        value
+    }
+
+    #[inline]
+    fn value_type(&self) -> glib::Type {
+        Self::static_type()
+    }
+}
+
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+impl From<DmabufError> for glib::Value {
+    #[inline]
+    fn from(v: DmabufError) -> Self {
+        skip_assert_initialized!();
+        ToValue::to_value(&v)
+    }
+}
+
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
 #[doc(alias = "GdkDragCancelReason")]
@@ -1459,6 +1602,16 @@ pub enum MemoryFormat {
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
     #[doc(alias = "GDK_MEMORY_A32_FLOAT")]
     A32Float,
+    #[doc(alias = "GDK_MEMORY_A8B8G8R8_PREMULTIPLIED")]
+    A8b8g8r8Premultiplied,
+    #[doc(alias = "GDK_MEMORY_B8G8R8X8")]
+    B8g8r8x8,
+    #[doc(alias = "GDK_MEMORY_X8R8G8B8")]
+    X8r8g8b8,
+    #[doc(alias = "GDK_MEMORY_R8G8B8X8")]
+    R8g8b8x8,
+    #[doc(alias = "GDK_MEMORY_X8B8G8R8")]
+    X8b8g8r8,
     #[doc(hidden)]
     __Unknown(i32),
 }
@@ -1520,6 +1673,11 @@ impl IntoGlib for MemoryFormat {
             Self::A16Float => ffi::GDK_MEMORY_A16_FLOAT,
             #[cfg(feature = "v4_12")]
             Self::A32Float => ffi::GDK_MEMORY_A32_FLOAT,
+            Self::A8b8g8r8Premultiplied => ffi::GDK_MEMORY_A8B8G8R8_PREMULTIPLIED,
+            Self::B8g8r8x8 => ffi::GDK_MEMORY_B8G8R8X8,
+            Self::X8r8g8b8 => ffi::GDK_MEMORY_X8R8G8B8,
+            Self::R8g8b8x8 => ffi::GDK_MEMORY_R8G8B8X8,
+            Self::X8b8g8r8 => ffi::GDK_MEMORY_X8B8G8R8,
             Self::__Unknown(value) => value,
         }
     }
@@ -1582,6 +1740,11 @@ impl FromGlib<ffi::GdkMemoryFormat> for MemoryFormat {
             ffi::GDK_MEMORY_A16_FLOAT => Self::A16Float,
             #[cfg(feature = "v4_12")]
             ffi::GDK_MEMORY_A32_FLOAT => Self::A32Float,
+            ffi::GDK_MEMORY_A8B8G8R8_PREMULTIPLIED => Self::A8b8g8r8Premultiplied,
+            ffi::GDK_MEMORY_B8G8R8X8 => Self::B8g8r8x8,
+            ffi::GDK_MEMORY_X8R8G8B8 => Self::X8r8g8b8,
+            ffi::GDK_MEMORY_R8G8B8X8 => Self::R8g8b8x8,
+            ffi::GDK_MEMORY_X8B8G8R8 => Self::X8b8g8r8,
             value => Self::__Unknown(value),
         }
     }
