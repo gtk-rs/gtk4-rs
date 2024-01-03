@@ -196,7 +196,7 @@ pub struct _GskBroadwayRendererClass {
 
 #[cfg(feature = "broadway")]
 #[cfg_attr(docsrs, doc(cfg(feature = "broadway")))]
-pub type GskBroadwayRendererClass = *mut _GskBroadwayRendererClass;
+pub type GskBroadwayRendererClass = _GskBroadwayRendererClass;
 
 #[repr(C)]
 pub struct _GskCairoRendererClass {
@@ -204,7 +204,7 @@ pub struct _GskCairoRendererClass {
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
-pub type GskCairoRendererClass = *mut _GskCairoRendererClass;
+pub type GskCairoRendererClass = _GskCairoRendererClass;
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -228,7 +228,7 @@ pub struct _GskGLRendererClass {
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
-pub type GskGLRendererClass = *mut _GskGLRendererClass;
+pub type GskGLRendererClass = _GskGLRendererClass;
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -342,7 +342,7 @@ pub struct _GskRendererClass {
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
-pub type GskRendererClass = *mut _GskRendererClass;
+pub type GskRendererClass = _GskRendererClass;
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -427,7 +427,7 @@ pub struct _GskVulkanRendererClass {
 
 #[cfg(feature = "vulkan")]
 #[cfg_attr(docsrs, doc(cfg(feature = "vulkan")))]
-pub type GskVulkanRendererClass = *mut _GskVulkanRendererClass;
+pub type GskVulkanRendererClass = _GskVulkanRendererClass;
 
 // Classes
 #[repr(C)]

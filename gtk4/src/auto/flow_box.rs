@@ -58,14 +58,14 @@ impl FlowBox {
             user_data: glib::ffi::gpointer,
         ) -> *mut ffi::GtkWidget {
             let item = from_glib_borrow(item);
-            let callback: &P = &*(user_data as *mut _);
+            let callback = &*(user_data as *mut P);
             (*callback)(&item).to_glib_full()
         }
         let create_widget_func = Some(create_widget_func_func::<P> as _);
         unsafe extern "C" fn user_data_free_func_func<P: Fn(&glib::Object) -> Widget + 'static>(
             data: glib::ffi::gpointer,
         ) {
-            let _callback: Box_<P> = Box_::from_raw(data as *mut _);
+            let _callback = Box_::from_raw(data as *mut P);
         }
         let destroy_call4 = Some(user_data_free_func_func::<P> as _);
         let super_callback0: Box_<P> = create_widget_func_data;
@@ -233,7 +233,7 @@ impl FlowBox {
         ) {
             let box_ = from_glib_borrow(box_);
             let child = from_glib_borrow(child);
-            let callback: *mut P = user_data as *const _ as usize as *mut P;
+            let callback = user_data as *mut P;
             (*callback)(&box_, &child)
         }
         let func = Some(func_func::<P> as _);
@@ -242,7 +242,7 @@ impl FlowBox {
             ffi::gtk_flow_box_selected_foreach(
                 self.to_glib_none().0,
                 func,
-                super_callback0 as *const _ as usize as *mut _,
+                super_callback0 as *const _ as *mut _,
             );
         }
     }
@@ -272,14 +272,14 @@ impl FlowBox {
             user_data: glib::ffi::gpointer,
         ) -> glib::ffi::gboolean {
             let child = from_glib_borrow(child);
-            let callback: &P = &*(user_data as *mut _);
+            let callback = &*(user_data as *mut P);
             (*callback)(&child).into_glib()
         }
         let filter_func = Some(filter_func_func::<P> as _);
         unsafe extern "C" fn destroy_func<P: Fn(&FlowBoxChild) -> bool + 'static>(
             data: glib::ffi::gpointer,
         ) {
-            let _callback: Box_<P> = Box_::from_raw(data as *mut _);
+            let _callback = Box_::from_raw(data as *mut P);
         }
         let destroy_call3 = Some(destroy_func::<P> as _);
         let super_callback0: Box_<P> = filter_func_data;

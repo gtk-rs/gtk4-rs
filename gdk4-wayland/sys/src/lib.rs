@@ -31,7 +31,7 @@ pub struct _GdkWaylandDeviceClass {
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
-pub type GdkWaylandDeviceClass = *mut _GdkWaylandDeviceClass;
+pub type GdkWaylandDeviceClass = _GdkWaylandDeviceClass;
 
 #[repr(C)]
 pub struct _GdkWaylandDisplayClass {
@@ -39,7 +39,7 @@ pub struct _GdkWaylandDisplayClass {
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
-pub type GdkWaylandDisplayClass = *mut _GdkWaylandDisplayClass;
+pub type GdkWaylandDisplayClass = _GdkWaylandDisplayClass;
 
 #[repr(C)]
 pub struct _GdkWaylandGLContextClass {
@@ -47,7 +47,7 @@ pub struct _GdkWaylandGLContextClass {
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
-pub type GdkWaylandGLContextClass = *mut _GdkWaylandGLContextClass;
+pub type GdkWaylandGLContextClass = _GdkWaylandGLContextClass;
 
 #[repr(C)]
 pub struct _GdkWaylandMonitorClass {
@@ -55,7 +55,7 @@ pub struct _GdkWaylandMonitorClass {
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
-pub type GdkWaylandMonitorClass = *mut _GdkWaylandMonitorClass;
+pub type GdkWaylandMonitorClass = _GdkWaylandMonitorClass;
 
 #[repr(C)]
 pub struct _GdkWaylandSeatClass {
@@ -63,7 +63,7 @@ pub struct _GdkWaylandSeatClass {
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
-pub type GdkWaylandSeatClass = *mut _GdkWaylandSeatClass;
+pub type GdkWaylandSeatClass = _GdkWaylandSeatClass;
 
 // Classes
 #[repr(C)]

@@ -2698,7 +2698,7 @@ pub struct _GdkDevicePadInterface {
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
-pub type GdkDevicePadInterface = *mut _GdkDevicePadInterface;
+pub type GdkDevicePadInterface = _GdkDevicePadInterface;
 
 #[repr(C)]
 pub struct _GdkDragSurfaceInterface {
@@ -2706,7 +2706,7 @@ pub struct _GdkDragSurfaceInterface {
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
-pub type GdkDragSurfaceInterface = *mut _GdkDragSurfaceInterface;
+pub type GdkDragSurfaceInterface = _GdkDragSurfaceInterface;
 
 #[repr(C)]
 pub struct _GdkDragSurfaceSize {
@@ -2714,7 +2714,7 @@ pub struct _GdkDragSurfaceSize {
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
-pub type GdkDragSurfaceSize = *mut _GdkDragSurfaceSize;
+pub type GdkDragSurfaceSize = _GdkDragSurfaceSize;
 
 #[repr(C)]
 pub struct GdkEventSequence {
@@ -2747,7 +2747,7 @@ pub struct _GdkFrameClockClass {
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
-pub type GdkFrameClockClass = *mut _GdkFrameClockClass;
+pub type GdkFrameClockClass = _GdkFrameClockClass;
 
 #[repr(C)]
 pub struct _GdkFrameClockPrivate {
@@ -2755,7 +2755,7 @@ pub struct _GdkFrameClockPrivate {
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
-pub type GdkFrameClockPrivate = *mut _GdkFrameClockPrivate;
+pub type GdkFrameClockPrivate = _GdkFrameClockPrivate;
 
 #[repr(C)]
 pub struct GdkFrameTimings {
@@ -2776,7 +2776,7 @@ pub struct _GdkGLTextureBuilderClass {
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
-pub type GdkGLTextureBuilderClass = *mut _GdkGLTextureBuilderClass;
+pub type GdkGLTextureBuilderClass = _GdkGLTextureBuilderClass;
 
 #[repr(C)]
 pub struct _GdkGLTextureClass {
@@ -2784,7 +2784,7 @@ pub struct _GdkGLTextureClass {
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
-pub type GdkGLTextureClass = *mut _GdkGLTextureClass;
+pub type GdkGLTextureClass = _GdkGLTextureClass;
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -2810,7 +2810,7 @@ pub struct _GdkMemoryTextureClass {
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
-pub type GdkMemoryTextureClass = *mut _GdkMemoryTextureClass;
+pub type GdkMemoryTextureClass = _GdkMemoryTextureClass;
 
 #[repr(C)]
 pub struct _GdkMonitorClass {
@@ -2818,7 +2818,7 @@ pub struct _GdkMonitorClass {
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
-pub type GdkMonitorClass = *mut _GdkMonitorClass;
+pub type GdkMonitorClass = _GdkMonitorClass;
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -2855,7 +2855,7 @@ pub struct _GdkPopupInterface {
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
-pub type GdkPopupInterface = *mut _GdkPopupInterface;
+pub type GdkPopupInterface = _GdkPopupInterface;
 
 #[repr(C)]
 pub struct GdkPopupLayout {
@@ -2916,7 +2916,7 @@ pub struct _GdkSnapshotClass {
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
-pub type GdkSnapshotClass = *mut _GdkSnapshotClass;
+pub type GdkSnapshotClass = _GdkSnapshotClass;
 
 #[repr(C)]
 pub struct _GdkSurfaceClass {
@@ -2924,7 +2924,7 @@ pub struct _GdkSurfaceClass {
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
-pub type GdkSurfaceClass = *mut _GdkSurfaceClass;
+pub type GdkSurfaceClass = _GdkSurfaceClass;
 
 #[repr(C)]
 pub struct _GdkTextureClass {
@@ -2932,7 +2932,7 @@ pub struct _GdkTextureClass {
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
-pub type GdkTextureClass = *mut _GdkTextureClass;
+pub type GdkTextureClass = _GdkTextureClass;
 
 #[repr(C)]
 pub struct GdkTextureDownloader {
@@ -2971,7 +2971,7 @@ pub struct _GdkToplevelInterface {
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
-pub type GdkToplevelInterface = *mut _GdkToplevelInterface;
+pub type GdkToplevelInterface = _GdkToplevelInterface;
 
 #[repr(C)]
 pub struct GdkToplevelLayout {
@@ -2992,7 +2992,7 @@ pub struct _GdkToplevelSize {
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
-pub type GdkToplevelSize = *mut _GdkToplevelSize;
+pub type GdkToplevelSize = _GdkToplevelSize;
 
 // Classes
 #[repr(C)]

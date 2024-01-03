@@ -191,14 +191,14 @@ impl MenuButton {
             user_data: glib::ffi::gpointer,
         ) {
             let menu_button = from_glib_borrow(menu_button);
-            let callback: &P = &*(user_data as *mut _);
+            let callback = &*(user_data as *mut P);
             (*callback)(&menu_button)
         }
         let func = Some(func_func::<P> as _);
         unsafe extern "C" fn destroy_notify_func<P: Fn(&MenuButton) + 'static>(
             data: glib::ffi::gpointer,
         ) {
-            let _callback: Box_<P> = Box_::from_raw(data as *mut _);
+            let _callback = Box_::from_raw(data as *mut P);
         }
         let destroy_call3 = Some(destroy_notify_func::<P> as _);
         let super_callback0: Box_<P> = func_data;

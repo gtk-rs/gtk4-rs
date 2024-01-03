@@ -59,14 +59,14 @@ pub fn enumerate_printers<P: Fn(&Printer) -> bool + Send + Sync + 'static>(func:
         data: glib::ffi::gpointer,
     ) -> glib::ffi::gboolean {
         let printer = from_glib_borrow(printer);
-        let callback: &P = &*(data as *mut _);
+        let callback = &*(data as *mut P);
         (*callback)(&printer).into_glib()
     }
     let func = Some(func_func::<P> as _);
     unsafe extern "C" fn destroy_func<P: Fn(&Printer) -> bool + Send + Sync + 'static>(
         data: glib::ffi::gpointer,
     ) {
-        let _callback: Box_<P> = Box_::from_raw(data as *mut _);
+        let _callback = Box_::from_raw(data as *mut P);
     }
     let destroy_call2 = Some(destroy_func::<P> as _);
     let super_callback0: Box_<P> = func_data;
@@ -178,7 +178,7 @@ pub fn print_run_page_setup_dialog_async<P: FnOnce(&PageSetup) + Send + Sync + '
         data: glib::ffi::gpointer,
     ) {
         let page_setup = from_glib_borrow(page_setup);
-        let callback: Box_<P> = Box_::from_raw(data as *mut _);
+        let callback = Box_::from_raw(data as *mut P);
         (*callback)(&page_setup)
     }
     let done_cb = Some(done_cb_func::<P> as _);

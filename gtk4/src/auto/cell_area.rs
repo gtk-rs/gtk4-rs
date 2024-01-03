@@ -237,7 +237,7 @@ pub trait CellAreaExt: IsA<CellArea> + sealed::Sealed + 'static {
             data: glib::ffi::gpointer,
         ) -> glib::ffi::gboolean {
             let renderer = from_glib_borrow(renderer);
-            let callback: *mut P = data as *const _ as usize as *mut P;
+            let callback = data as *mut P;
             (*callback)(&renderer).into_glib()
         }
         let callback = Some(callback_func::<P> as _);
@@ -246,7 +246,7 @@ pub trait CellAreaExt: IsA<CellArea> + sealed::Sealed + 'static {
             ffi::gtk_cell_area_foreach(
                 self.as_ref().to_glib_none().0,
                 callback,
-                super_callback0 as *const _ as usize as *mut _,
+                super_callback0 as *const _ as *mut _,
             );
         }
     }
@@ -272,7 +272,7 @@ pub trait CellAreaExt: IsA<CellArea> + sealed::Sealed + 'static {
             let renderer = from_glib_borrow(renderer);
             let cell_area = from_glib_borrow(cell_area);
             let cell_background = from_glib_borrow(cell_background);
-            let callback: *mut P = data as *const _ as usize as *mut P;
+            let callback = data as *mut P;
             (*callback)(&renderer, &cell_area, &cell_background).into_glib()
         }
         let callback = Some(callback_func::<P> as _);
@@ -285,7 +285,7 @@ pub trait CellAreaExt: IsA<CellArea> + sealed::Sealed + 'static {
                 cell_area.to_glib_none().0,
                 background_area.to_glib_none().0,
                 callback,
-                super_callback0 as *const _ as usize as *mut _,
+                super_callback0 as *const _ as *mut _,
             );
         }
     }

@@ -44,7 +44,7 @@ pub trait TreeModelExt: IsA<TreeModel> + sealed::Sealed + 'static {
             let model = from_glib_borrow(model);
             let path = from_glib_borrow(path);
             let iter = from_glib_borrow(iter);
-            let callback: *mut P = data as *const _ as usize as *mut P;
+            let callback = data as *mut P;
             (*callback)(&model, &path, &iter).into_glib()
         }
         let func = Some(func_func::<P> as _);
@@ -53,7 +53,7 @@ pub trait TreeModelExt: IsA<TreeModel> + sealed::Sealed + 'static {
             ffi::gtk_tree_model_foreach(
                 self.as_ref().to_glib_none().0,
                 func,
-                super_callback0 as *const _ as usize as *mut _,
+                super_callback0 as *const _ as *mut _,
             );
         }
     }

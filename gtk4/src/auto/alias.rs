@@ -5,4 +5,5 @@
 #[allow(unused_imports)]
 use crate::auto::*;
 
+#[doc(alias = "GtkAllocation")]
 pub type Allocation = gdk::Rectangle;

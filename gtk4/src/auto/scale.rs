@@ -461,14 +461,14 @@ pub trait ScaleExt: IsA<Scale> + sealed::Sealed + 'static {
             user_data: glib::ffi::gpointer,
         ) -> *mut libc::c_char {
             let scale = from_glib_borrow(scale);
-            let callback: &P = &*(user_data as *mut _);
+            let callback = &*(user_data as *mut P);
             (*callback)(&scale, value).to_glib_full()
         }
         let func = Some(func_func::<P> as _);
         unsafe extern "C" fn destroy_notify_func<P: Fn(&Scale, f64) -> String + 'static>(
             data: glib::ffi::gpointer,
         ) {
-            let _callback: Box_<P> = Box_::from_raw(data as *mut _);
+            let _callback = Box_::from_raw(data as *mut P);
         }
         let destroy_call3 = Some(destroy_notify_func::<P> as _);
         let super_callback0: Box_<P> = func_data;

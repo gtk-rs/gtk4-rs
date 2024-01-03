@@ -163,7 +163,7 @@ impl TreeSelection {
             let model = from_glib_borrow(model);
             let path = from_glib_borrow(path);
             let iter = from_glib_borrow(iter);
-            let callback: *mut P = data as *const _ as usize as *mut P;
+            let callback = data as *mut P;
             (*callback)(&model, &path, &iter)
         }
         let func = Some(func_func::<P> as _);
@@ -172,7 +172,7 @@ impl TreeSelection {
             ffi::gtk_tree_selection_selected_foreach(
                 self.to_glib_none().0,
                 func,
-                super_callback0 as *const _ as usize as *mut _,
+                super_callback0 as *const _ as *mut _,
             );
         }
     }
@@ -209,7 +209,7 @@ impl TreeSelection {
             let model = from_glib_borrow(model);
             let path = from_glib_borrow(path);
             let path_currently_selected = from_glib(path_currently_selected);
-            let callback: &P = &*(data as *mut _);
+            let callback = &*(data as *mut P);
             (*callback)(&selection, &model, &path, path_currently_selected).into_glib()
         }
         let func = Some(func_func::<P> as _);
@@ -218,7 +218,7 @@ impl TreeSelection {
         >(
             data: glib::ffi::gpointer,
         ) {
-            let _callback: Box_<P> = Box_::from_raw(data as *mut _);
+            let _callback = Box_::from_raw(data as *mut P);
         }
         let destroy_call3 = Some(destroy_func::<P> as _);
         let super_callback0: Box_<P> = func_data;
