@@ -24,7 +24,7 @@ When creating a `path`, we advise to take the `id`, replace the '.' with '/' and
 
 We only want to store a single key with the `name` "is-switch-enabled".
 This is a boolean value so its `type` is "b" (see [GVariant Format Strings](https://docs.gtk.org/glib/gvariant-format-strings.html) for the other options).
-We also set its default value to `false` (see [GVariant Text Format](https://docs.gtk.org/glib/gvariant-text.html) for the full syntax).
+We also set its default value to `false` (see [GVariant Text Format](https://docs.gtk.org/glib/gvariant-text-format.html) for the full syntax).
 Finally, we add a summary.
 
 Now we need to copy and compile the schema.
