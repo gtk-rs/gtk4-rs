@@ -8,22 +8,24 @@ use crate::PrintJob;
 
 impl PrintJob {
     #[doc(alias = "gtk_print_job_send")]
-    pub fn send<P: Fn(&PrintJob, &glib::Error) + 'static>(&self, callback: P) {
+    pub fn send<P: Fn(&PrintJob, Result<(), glib::Error>) + 'static>(&self, callback: P) {
         let callback_data: Box_<P> = Box_::new(callback);
-        unsafe extern "C" fn callback_func<P: Fn(&PrintJob, &glib::Error) + 'static>(
+        unsafe extern "C" fn callback_func<P: Fn(&PrintJob, Result<(), glib::Error>) + 'static>(
             print_job: *mut ffi::GtkPrintJob,
             user_data: glib::ffi::gpointer,
             error: *const glib::ffi::GError,
         ) {
             let print_job = from_glib_borrow(print_job);
-            let error = from_glib_borrow(error);
+            let result = if error.is_null() {
+                Ok(())
+            } else {
+                Err(from_glib_none(error))
+            };
             let callback: &P = &*(user_data as *mut _);
-            (*callback)(&print_job, &error);
+            (*callback)(&print_job, result);
         }
         let callback = Some(callback_func::<P> as _);
-        unsafe extern "C" fn dnotify_func<P: Fn(&PrintJob, &glib::Error) + 'static>(
-            data: glib::ffi::gpointer,
-        ) {
+        unsafe extern "C" fn dnotify_func<P>(data: glib::ffi::gpointer) {
             let _callback: Box_<P> = Box_::from_raw(data as *mut _);
         }
         let destroy_call3 = Some(dnotify_func::<P> as _);
