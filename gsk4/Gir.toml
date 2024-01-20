@@ -38,6 +38,7 @@ generate = [
     "Gsk.OutsetShadowNode",
     "Gsk.PathDirection",
     "Gsk.PathForeachFlags",
+    "Gsk.PathMeasure",
     "Gsk.PathOperation",
     "Gsk.RadialGradientNode",
     "Gsk.RepeatingLinearGradientNode",
@@ -181,11 +182,6 @@ status = "generate"
     [[object.function]]
     name = "add_cairo_path"
     manual = true # use as_ptr for cairo::Path
-
-[[object]]
-name = "Gsk.PathMeasure"
-status = "generate"
-version = "4.14"
 
 [[object]]
 name = "Gsk.PathPoint"
