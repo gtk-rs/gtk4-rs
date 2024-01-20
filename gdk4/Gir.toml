@@ -28,7 +28,6 @@ generate = [
     "Gdk.DmabufError",
     "Gdk.DmabufFormats",
     "Gdk.DmabufTexture",
-    "Gdk.DmabufTextureBuilder",
     "Gdk.DNDEvent",
     "Gdk.DragAction",
     "Gdk.DragCancelReason",
@@ -422,6 +421,15 @@ manual_traits = ["DisplayExtManual"]
 name = "Gdk.DisplayManager"
 status = "generate"
 generate_builder = false
+
+[[object]]
+name = "Gdk.DmabufTextureBuilder"
+status = "generate"
+    [[object.function]]
+    name = "set_update_region"
+        [[object.function.parameter]]
+        name = "region"
+        const = true
 
 [[object]]
 name = "Gdk.Drag"
