@@ -32,11 +32,6 @@ status = "generate"
 cfg_condition = "feature = \"broadway\""
 
 [[object]]
-name = "Gsk.PathMeasure"
-status = "generate"
-version = "4.14"
-
-[[object]]
 name = "Gsk.VulkanRenderer"
 status = "generate"
 cfg_condition = "feature = \"vulkan\""
