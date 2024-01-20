@@ -9,9 +9,11 @@ on:
       - "master"
     paths:
       - "Dockerfile"
+      - ".github/workflows/image.yml"
   pull_request:
     paths:
       - "Dockerfile"
+      - ".github/workflows/image.yml"
   workflow_dispatch:
 env:
   REGISTRY: ghcr.io
