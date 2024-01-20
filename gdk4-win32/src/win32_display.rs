@@ -38,7 +38,7 @@ impl Win32Display {
         ) -> i32 {
             let f: &F = &*(box_ as *const F);
             f(
-                &from_glib_borrow(display as *mut ffi::GdkWin32Display),
+                &from_glib_borrow(display),
                 &mut *(msg as *mut MSG),
                 &mut *return_value,
             )
