@@ -364,9 +364,7 @@ impl FileDialog {
     }
 
     #[doc(alias = "gtk_file_dialog_select_multiple_folders")]
-    pub fn select_multiple_folders<
-        P: FnOnce(Result<Option<gio::ListModel>, glib::Error>) + 'static,
-    >(
+    pub fn select_multiple_folders<P: FnOnce(Result<gio::ListModel, glib::Error>) + 'static>(
         &self,
         parent: Option<&impl IsA<Window>>,
         cancellable: Option<&impl IsA<gio::Cancellable>>,
@@ -385,7 +383,7 @@ impl FileDialog {
         let user_data: Box_<glib::thread_guard::ThreadGuard<P>> =
             Box_::new(glib::thread_guard::ThreadGuard::new(callback));
         unsafe extern "C" fn select_multiple_folders_trampoline<
-            P: FnOnce(Result<Option<gio::ListModel>, glib::Error>) + 'static,
+            P: FnOnce(Result<gio::ListModel, glib::Error>) + 'static,
         >(
             _source_object: *mut glib::gobject_ffi::GObject,
             res: *mut gio::ffi::GAsyncResult,
@@ -422,11 +420,8 @@ impl FileDialog {
     pub fn select_multiple_folders_future(
         &self,
         parent: Option<&(impl IsA<Window> + Clone + 'static)>,
-    ) -> Pin<
-        Box_<
-            dyn std::future::Future<Output = Result<Option<gio::ListModel>, glib::Error>> + 'static,
-        >,
-    > {
+    ) -> Pin<Box_<dyn std::future::Future<Output = Result<gio::ListModel, glib::Error>> + 'static>>
+    {
         let parent = parent.map(ToOwned::to_owned);
         Box_::pin(gio::GioFuture::new(self, move |obj, cancellable, send| {
             obj.select_multiple_folders(
