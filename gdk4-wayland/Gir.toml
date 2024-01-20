@@ -72,7 +72,7 @@ status = "generate"
     manual = true
     [[object.function]]
     name = "get_xkb_keymap"
-    manual = true
+    ignore = true
 
 [[object]]
 name = "GdkWayland.WaylandDisplay"

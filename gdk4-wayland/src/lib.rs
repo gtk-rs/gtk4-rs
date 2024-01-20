@@ -13,9 +13,6 @@ pub use khronos_egl;
 #[cfg(feature = "wayland_crate")]
 #[cfg_attr(docsrs, doc(cfg(feature = "wayland_crate")))]
 pub use wayland_client;
-#[cfg(all(feature = "v4_4", feature = "xkb_crate"))]
-#[cfg_attr(docsrs, doc(cfg(all(feature = "v4_4", feature = "xkb_crate"))))]
-pub use xkb;
 
 mod auto;
 
