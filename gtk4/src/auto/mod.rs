@@ -1154,6 +1154,8 @@ pub use self::enums::FilterMatch;
 #[cfg(feature = "v4_10")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 pub use self::enums::FontLevel;
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
 pub use self::enums::GraphicsOffloadEnabled;
 pub use self::enums::IconSize;
 pub use self::enums::IconThemeError;

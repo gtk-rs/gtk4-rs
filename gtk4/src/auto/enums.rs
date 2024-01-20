@@ -4567,6 +4567,8 @@ impl From<FontLevel> for glib::Value {
     }
 }
 
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
 #[doc(alias = "GtkGraphicsOffloadEnabled")]
@@ -4579,6 +4581,8 @@ pub enum GraphicsOffloadEnabled {
     __Unknown(i32),
 }
 
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
 #[doc(hidden)]
 impl IntoGlib for GraphicsOffloadEnabled {
     type GlibType = ffi::GtkGraphicsOffloadEnabled;
@@ -4593,6 +4597,8 @@ impl IntoGlib for GraphicsOffloadEnabled {
     }
 }
 
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
 #[doc(hidden)]
 impl FromGlib<ffi::GtkGraphicsOffloadEnabled> for GraphicsOffloadEnabled {
     #[inline]
@@ -4607,6 +4613,8 @@ impl FromGlib<ffi::GtkGraphicsOffloadEnabled> for GraphicsOffloadEnabled {
     }
 }
 
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
 impl StaticType for GraphicsOffloadEnabled {
     #[inline]
     #[doc(alias = "gtk_graphics_offload_enabled_get_type")]
@@ -4615,6 +4623,8 @@ impl StaticType for GraphicsOffloadEnabled {
     }
 }
 
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
 impl glib::HasParamSpec for GraphicsOffloadEnabled {
     type ParamSpec = glib::ParamSpecEnum;
     type SetValue = Self;
@@ -4625,10 +4635,14 @@ impl glib::HasParamSpec for GraphicsOffloadEnabled {
     }
 }
 
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
 impl glib::value::ValueType for GraphicsOffloadEnabled {
     type Type = Self;
 }
 
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
 unsafe impl<'a> glib::value::FromValue<'a> for GraphicsOffloadEnabled {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
@@ -4639,6 +4653,8 @@ unsafe impl<'a> glib::value::FromValue<'a> for GraphicsOffloadEnabled {
     }
 }
 
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
 impl ToValue for GraphicsOffloadEnabled {
     #[inline]
     fn to_value(&self) -> glib::Value {
@@ -4655,6 +4671,8 @@ impl ToValue for GraphicsOffloadEnabled {
     }
 }
 
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
 impl From<GraphicsOffloadEnabled> for glib::Value {
     #[inline]
     fn from(v: GraphicsOffloadEnabled) -> Self {
@@ -5593,6 +5611,8 @@ pub enum License {
     Apache20,
     #[doc(alias = "GTK_LICENSE_MPL_2_0")]
     Mpl20,
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
     #[doc(alias = "GTK_LICENSE_0BSD")]
     _0bsd,
     #[doc(hidden)]
@@ -5623,6 +5643,7 @@ impl IntoGlib for License {
             Self::Bsd3 => ffi::GTK_LICENSE_BSD_3,
             Self::Apache20 => ffi::GTK_LICENSE_APACHE_2_0,
             Self::Mpl20 => ffi::GTK_LICENSE_MPL_2_0,
+            #[cfg(feature = "v4_14")]
             Self::_0bsd => ffi::GTK_LICENSE_0BSD,
             Self::__Unknown(value) => value,
         }
@@ -5653,6 +5674,7 @@ impl FromGlib<ffi::GtkLicense> for License {
             ffi::GTK_LICENSE_BSD_3 => Self::Bsd3,
             ffi::GTK_LICENSE_APACHE_2_0 => Self::Apache20,
             ffi::GTK_LICENSE_MPL_2_0 => Self::Mpl20,
+            #[cfg(feature = "v4_14")]
             ffi::GTK_LICENSE_0BSD => Self::_0bsd,
             value => Self::__Unknown(value),
         }

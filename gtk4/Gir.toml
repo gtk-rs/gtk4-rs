@@ -127,7 +127,6 @@ generate = [
     "Gtk.GestureSwipe",
     "Gtk.GestureZoom",
     "Gtk.GraphicsOffload",
-    "Gtk.GraphicsOffloadEnabled",
     "Gtk.Grid",
     "Gtk.GridLayout",
     "Gtk.GridView",
@@ -148,7 +147,6 @@ generate = [
     "Gtk.LayoutManager",
     "Gtk.LevelBar",
     "Gtk.LevelBarMode",
-    "Gtk.License",
     "Gtk.ListBase",
     "Gtk.ListBoxRow",
     "Gtk.ListItemFactory",
@@ -1374,6 +1372,11 @@ status = "generate"
         nullable = true
 
 [[object]]
+name = "Gtk.GraphicsOffloadEnabled"
+status = "generate"
+version = "4.14"
+
+[[object]]
 name = "Gtk.GridLayoutChild"
 status = "generate"
 generate_builder = false
@@ -1463,6 +1466,13 @@ status = "generate"
         [[object.function.parameter]]
         name = "tabs"
         const = true
+
+[[object]]
+name = "Gtk.License"
+status = "generate"
+    [[object.member]]
+    name = "0bsd"
+    version = "4.14"
 
 [[object]]
 name = "Gtk.LinkButton"
