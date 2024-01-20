@@ -1242,7 +1242,7 @@ status = "generate"
 name = "Gtk.FileDialog"
 status = "generate"
     [[object.function]]
-    pattern = "(open|save|open_multiple|select_folder)"
+    pattern = "(open|save|open_multiple|select_folder|select_multiple_folders)"
         [object.function.return]
         nullable = false
 
