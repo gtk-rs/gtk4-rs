@@ -189,11 +189,11 @@ impl DmabufTextureBuilder {
     }
 
     #[doc(alias = "gdk_dmabuf_texture_builder_set_update_region")]
-    pub fn set_update_region(&self, region: Option<&mut cairo::Region>) {
+    pub fn set_update_region(&self, region: Option<&cairo::Region>) {
         unsafe {
             ffi::gdk_dmabuf_texture_builder_set_update_region(
                 self.to_glib_none().0,
-                region.to_glib_none_mut().0,
+                mut_override(region.to_glib_none().0),
             );
         }
     }
