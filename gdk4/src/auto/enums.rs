@@ -1602,14 +1602,24 @@ pub enum MemoryFormat {
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
     #[doc(alias = "GDK_MEMORY_A32_FLOAT")]
     A32Float,
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
     #[doc(alias = "GDK_MEMORY_A8B8G8R8_PREMULTIPLIED")]
     A8b8g8r8Premultiplied,
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
     #[doc(alias = "GDK_MEMORY_B8G8R8X8")]
     B8g8r8x8,
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
     #[doc(alias = "GDK_MEMORY_X8R8G8B8")]
     X8r8g8b8,
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
     #[doc(alias = "GDK_MEMORY_R8G8B8X8")]
     R8g8b8x8,
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
     #[doc(alias = "GDK_MEMORY_X8B8G8R8")]
     X8b8g8r8,
     #[doc(hidden)]
@@ -1673,10 +1683,15 @@ impl IntoGlib for MemoryFormat {
             Self::A16Float => ffi::GDK_MEMORY_A16_FLOAT,
             #[cfg(feature = "v4_12")]
             Self::A32Float => ffi::GDK_MEMORY_A32_FLOAT,
+            #[cfg(feature = "v4_14")]
             Self::A8b8g8r8Premultiplied => ffi::GDK_MEMORY_A8B8G8R8_PREMULTIPLIED,
+            #[cfg(feature = "v4_14")]
             Self::B8g8r8x8 => ffi::GDK_MEMORY_B8G8R8X8,
+            #[cfg(feature = "v4_14")]
             Self::X8r8g8b8 => ffi::GDK_MEMORY_X8R8G8B8,
+            #[cfg(feature = "v4_14")]
             Self::R8g8b8x8 => ffi::GDK_MEMORY_R8G8B8X8,
+            #[cfg(feature = "v4_14")]
             Self::X8b8g8r8 => ffi::GDK_MEMORY_X8B8G8R8,
             Self::__Unknown(value) => value,
         }
@@ -1740,10 +1755,15 @@ impl FromGlib<ffi::GdkMemoryFormat> for MemoryFormat {
             ffi::GDK_MEMORY_A16_FLOAT => Self::A16Float,
             #[cfg(feature = "v4_12")]
             ffi::GDK_MEMORY_A32_FLOAT => Self::A32Float,
+            #[cfg(feature = "v4_14")]
             ffi::GDK_MEMORY_A8B8G8R8_PREMULTIPLIED => Self::A8b8g8r8Premultiplied,
+            #[cfg(feature = "v4_14")]
             ffi::GDK_MEMORY_B8G8R8X8 => Self::B8g8r8x8,
+            #[cfg(feature = "v4_14")]
             ffi::GDK_MEMORY_X8R8G8B8 => Self::X8r8g8b8,
+            #[cfg(feature = "v4_14")]
             ffi::GDK_MEMORY_R8G8B8X8 => Self::R8g8b8x8,
+            #[cfg(feature = "v4_14")]
             ffi::GDK_MEMORY_X8B8G8R8 => Self::X8b8g8r8,
             value => Self::__Unknown(value),
         }
