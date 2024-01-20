@@ -54,6 +54,7 @@ impl X11Display {
     #[cfg_attr(docsrs, doc(cfg(feature = "xlib")))]
     #[doc(alias = "gdk_x11_display_get_xdisplay")]
     #[doc(alias = "get_xdisplay")]
+    #[allow(clippy::missing_safety_doc)]
     pub unsafe fn xdisplay(&self) -> *mut xlib::Display {
         ffi::gdk_x11_display_get_xdisplay(self.to_glib_none().0) as *mut xlib::Display
     }
@@ -62,6 +63,7 @@ impl X11Display {
     #[cfg_attr(docsrs, doc(cfg(feature = "xlib")))]
     #[doc(alias = "gdk_x11_display_get_xscreen")]
     #[doc(alias = "get_xscreen")]
+    #[allow(clippy::missing_safety_doc)]
     pub unsafe fn xscreen(&self) -> *mut xlib::Screen {
         ffi::gdk_x11_display_get_xscreen(self.to_glib_none().0) as *mut xlib::Screen
     }
@@ -69,6 +71,7 @@ impl X11Display {
     #[cfg(feature = "xlib")]
     #[cfg_attr(docsrs, doc(cfg(feature = "xlib")))]
     #[doc(alias = "xevent")]
+    #[allow(clippy::missing_safety_doc)]
     pub unsafe fn connect_xevent<F: Fn(&Self, *mut xlib::XEvent) -> glib::Propagation + 'static>(
         &self,
         f: F,

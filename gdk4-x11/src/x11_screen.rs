@@ -14,6 +14,7 @@ impl X11Screen {
     #[cfg_attr(docsrs, doc(cfg(feature = "xlib")))]
     #[doc(alias = "gdk_x11_screen_get_xscreen")]
     #[doc(alias = "get_xscreen")]
+    #[allow(clippy::missing_safety_doc)]
     pub unsafe fn xscreen(&self) -> *mut xlib::Screen {
         ffi::gdk_x11_screen_get_xscreen(self.to_glib_none().0) as *mut xlib::Screen
     }
