@@ -24,3 +24,4 @@ mod wayland_display;
 mod wayland_monitor;
 mod wayland_seat;
 mod wayland_surface;
+mod wayland_toplevel;
