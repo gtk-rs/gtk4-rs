@@ -36,6 +36,7 @@ impl Builder {
     #[doc(alias = "get_object")]
     pub fn object<T: IsA<Object>>(&self, name: impl IntoGStr) -> Option<T> {
         unsafe {
+            T::ensure_type();
             name.run_with_gstr(|name| {
                 Option::<Object>::from_glib_none(ffi::gtk_builder_get_object(
                     self.to_glib_none().0,
