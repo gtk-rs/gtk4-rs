@@ -47,7 +47,7 @@ jobs:
               test_sys: false,
             }
           - { name: "gsk4", features: "v4_14,broadway", test_sys: true }
-          - { name: "gdk4", features: "v4_12,gl", test_sys: true }
+          - { name: "gdk4", features: "v4_14,gl", test_sys: true }
           - {
               name: "gdk4-wayland",
               features: "v4_12,wayland_crate,egl,xkb_crate",
