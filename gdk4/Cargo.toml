@@ -21,6 +21,7 @@ v4_6 = ["ffi/v4_6", "v4_4"]
 v4_8 = ["ffi/v4_8", "v4_6"]
 v4_10 = ["ffi/v4_10", "v4_8"]
 v4_12 = ["ffi/v4_12", "v4_10"]
+v4_14 = ["ffi/v4_14", "v4_12"]
 gl = ["dep:gl"]
 
 [package.metadata.docs.rs]
