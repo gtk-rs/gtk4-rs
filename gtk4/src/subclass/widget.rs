@@ -894,7 +894,7 @@ pub unsafe trait WidgetClassExt: ClassStruct {
     fn install_action_async<Fut, F>(
         &mut self,
         action_name: &str,
-        parameter_type: Option<&str>,
+        parameter_type: Option<&glib::VariantTy>,
         activate: F,
     ) where
         F: Fn(
@@ -921,8 +921,12 @@ pub unsafe trait WidgetClassExt: ClassStruct {
     }
 
     #[doc(alias = "gtk_widget_class_install_action")]
-    fn install_action<F>(&mut self, action_name: &str, parameter_type: Option<&str>, activate: F)
-    where
+    fn install_action<F>(
+        &mut self,
+        action_name: &str,
+        parameter_type: Option<&glib::VariantTy>,
+        activate: F,
+    ) where
         F: Fn(&<<Self as ClassStruct>::Type as ObjectSubclass>::Type, &str, Option<&Variant>)
             + 'static,
     {
@@ -982,7 +986,7 @@ pub unsafe trait WidgetClassExt: ClassStruct {
             ffi::gtk_widget_class_install_action(
                 widget_class,
                 action_name.to_glib_none().0,
-                parameter_type.to_glib_none().0,
+                parameter_type.map(|p| p.as_str()).to_glib_none().0,
                 Some(callback),
             );
         }
