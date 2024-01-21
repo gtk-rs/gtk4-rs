@@ -53,7 +53,7 @@ jobs:
               features: "v4_12,wayland_crate,egl",
               test_sys: true,
             }
-          - { name: "gdk4-x11", features: "v4_4,xlib,egl", test_sys: false }
+          - { name: "gdk4-x11", features: "v4_4,xlib,egl", test_sys: true }
           - {
               name: "gtk4-macros",
               features: "xml_validation,blueprint",
