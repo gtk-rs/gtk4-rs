@@ -30,7 +30,7 @@ name: CI
 jobs:
   check:
     name: Build
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     container:
       image: ghcr.io/gtk-rs/gtk4-rs/gtk4:latest
     strategy:
@@ -83,7 +83,7 @@ jobs:
 
   examples:
     name: examples
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     container:
       image: ghcr.io/gtk-rs/gtk4-rs/gtk4:latest
     steps:
@@ -101,7 +101,7 @@ jobs:
 
   fmt:
     name: rustfmt
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions-rs/toolchain@v1
@@ -114,6 +114,12 @@ jobs:
         with:
           command: fmt
           args: --all -- --check
+
+  cargo-deny:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - uses: EmbarkStudios/cargo-deny-action@v1
 
   regen_check:
     name: regen checker
@@ -153,7 +159,7 @@ jobs:
 
   checker:
     name: gtk-rs checker
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     strategy:
       matrix:
         crate:
