@@ -14,7 +14,7 @@ on:
 
 jobs:
   test:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     name: listings build
     container:
       image: ghcr.io/gtk-rs/gtk4-rs/gtk4:latest

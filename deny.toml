@@ -1,0 +1,78 @@
+exclude = [
+    "gtk4-rs-examples",
+    "gtk4-rs-book-listings",
+]
+
+[advisories]
+db-path = "~/.cargo/advisory-db"
+db-urls = ["https://github.com/rustsec/advisory-db"]
+vulnerability = "deny"
+unmaintained = "warn"
+notice = "warn"
+ignore = []
+
+[licenses]
+unlicensed = "deny"
+allow = [
+  "MIT",
+  "Apache-2.0",
+]
+copyleft = "deny"
+allow-osi-fsf-free = "either"
+default = "deny"
+confidence-threshold = 0.8
+
+[bans]
+multiple-versions = "deny"
+wildcards = "allow"
+highlight = "all"
+
+[sources]
+unknown-registry = "deny"
+unknown-git = "deny"
+allow-git = [
+  "https://github.com/gtk-rs/gtk-rs-core",
+]
+
+# proc-macro-error depends on an old version of syn
+# See https://github.com/gtk-rs/gtk4-rs/issues/1409
+[[bans.skip]]
+name = "syn"
+version = "1.0"
+
+# https://github.com/nagisa/rust_libloading/pull/136
+[[bans.skip]]
+name = "windows_x86_64_msvc"
+version = "0.48"
+# https://github.com/nagisa/rust_libloading/pull/136
+[[bans.skip]]
+name = "windows_x86_64_gnullvm"
+version = "0.48"
+# https://github.com/nagisa/rust_libloading/pull/136
+[[bans.skip]]
+name = "windows_x86_64_gnu"
+version = "0.48"
+# https://github.com/nagisa/rust_libloading/pull/136
+[[bans.skip]]
+name = "windows_i686_msvc"
+version = "0.48"
+# https://github.com/nagisa/rust_libloading/pull/136
+[[bans.skip]]
+name = "windows_i686_gnu"
+version = "0.48"
+# https://github.com/nagisa/rust_libloading/pull/136
+[[bans.skip]]
+name = "windows_aarch64_msvc"
+version = "0.48"
+# https://github.com/nagisa/rust_libloading/pull/136
+[[bans.skip]]
+name = "windows_aarch64_gnullvm"
+version = "0.48"
+# https://github.com/nagisa/rust_libloading/pull/136
+[[bans.skip]]
+name = "windows-targets"
+version = "0.48"
+# https://github.com/nagisa/rust_libloading/pull/136
+[[bans.skip]]
+name = "windows-sys"
+version = "0.48"
