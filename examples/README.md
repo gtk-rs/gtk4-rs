@@ -47,5 +47,6 @@ cargo run --bin basics
 - [Squares](./squares/)
 - [Squeezer Bin](./squeezer_bin/)
 - [TextView](./text_viewer/)
+- [Tokio Async Request](./tokio_async_request/)
 - [Video Player](./video_player/)
 - [Virtual Methods](./virtual_methods/)
