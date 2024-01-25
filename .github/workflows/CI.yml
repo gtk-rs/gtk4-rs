@@ -94,8 +94,6 @@ jobs:
           toolchain: stable
           override: true
           components: clippy
-      - name: "examples: Install dependencies"
-        run: sudo apt-get install openssl -y
       - name: "examples: build"
         run: cargo build --manifest-path examples/Cargo.toml --bins --examples --all-features
       - name: "examples: clippy"
