@@ -1,9 +1,9 @@
 use glib::clone;
 use gtk::glib::once_cell::sync::Lazy;
-use gtk::{glib, Application, ApplicationWindow};
 use gtk::prelude::*;
-use tokio::runtime::Runtime;
+use gtk::{glib, Application, ApplicationWindow};
 use serde::Deserialize;
+use tokio::runtime::Runtime;
 
 #[derive(Deserialize, Debug)]
 pub struct Pokemon {
@@ -35,10 +35,7 @@ impl PokemonClient {
             ("offset", current_offset.as_str()),
         ];
         let url = reqwest::Url::parse_with_params(Self::URI, params).unwrap();
-        let body = reqwest::get(url)
-            .await?
-            .json::<ResultBody>()
-            .await?;
+        let body = reqwest::get(url).await?.json::<ResultBody>().await?;
 
         self.page += 10;
         Ok(body.results)
@@ -49,7 +46,9 @@ static RUNTIME: Lazy<Runtime> =
     Lazy::new(|| Runtime::new().expect("Setting up tokio runtime needs to succeed."));
 
 fn main() -> glib::ExitCode {
-    let app = Application::builder().application_id("org.gtk_rs.pokemon.list").build();
+    let app = Application::builder()
+        .application_id("org.gtk_rs.pokemon.list")
+        .build();
     app.connect_activate(build_ui);
     app.run()
 }
@@ -63,8 +62,7 @@ fn build_ui(app: &Application) {
         sender.send(pokemon_vec).await.expect("The channel needs to be open.");
     }));
 
-    let list_box = gtk::ListBox::builder()
-        .build();
+    let list_box = gtk::ListBox::builder().build();
     let scrolled_window = gtk::ScrolledWindow::builder()
         .hscrollbar_policy(gtk::PolicyType::Never)
         .min_content_width(360)
