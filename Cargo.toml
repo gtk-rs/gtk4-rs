@@ -31,3 +31,28 @@ members = [
 ]
 
 exclude = ["checker", "gir", "book/listings"]
+
+[workspace.package]
+authors = ["The gtk-rs Project Developers"]
+categories = ["api-bindings", "gui"]
+edition = "2021"
+homepage = "https://gtk-rs.org/gtk4-rs"
+license = "MIT"
+repository = "https://github.com/gtk-rs/gtk4-rs"
+rust-version = "1.70"
+version = "0.8.0"
+
+[workspace.metadata.docs.rs]
+all-features = true
+rustc-args = ["--cfg", "docsrs"]
+rustdoc-args = ["--cfg", "docsrs", "--generate-link-to-definition"]
+
+[workspace.dependencies]
+cairo-rs = {git = "https://github.com/gtk-rs/gtk-rs-core", version = "0.19", features = ["use_glib"]}
+gdk-pixbuf = {git = "https://github.com/gtk-rs/gtk-rs-core", version = "0.19"}
+gio = {git = "https://github.com/gtk-rs/gtk-rs-core", version = "0.19", features = ["v2_66"]}
+glib = {git = "https://github.com/gtk-rs/gtk-rs-core", version = "0.19", features = ["v2_66"]}
+graphene = {package = "graphene-rs", git = "https://github.com/gtk-rs/gtk-rs-core", version = "0.19"}
+libc = "0.2"
+pango = {git = "https://github.com/gtk-rs/gtk-rs-core", version = "0.19", features = ["v1_46"]}
+gir-format-check = "^0.1"

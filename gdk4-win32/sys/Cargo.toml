@@ -1,16 +1,33 @@
 [package]
-authors = ["The gtk-rs Project Developers"]
+name = "gdk4-win32-sys"
 build = "build.rs"
 description = "FFI bindings of GDK4 Win32"
 documentation = "https://gtk-rs.org/gtk4-rs/git/docs/gdk4_win32_sys/"
-edition = "2021"
-homepage = "https://gtk-rs.org/"
 keywords = ["gdk4", "gdk4-win32", "ffi", "gtk-rs", "gnome"]
-license = "MIT"
-name = "gdk4-win32-sys"
-repository = "https://github.com/gtk-rs/gtk4-rs"
-version = "0.8.0"
-rust-version = "1.70"
+
+[package.authors]
+workspace = true
+
+[package.categories]
+workspace = true
+
+[package.edition]
+workspace = true
+
+[package.homepage]
+workspace = true
+
+[package.license]
+workspace = true
+
+[package.repository]
+workspace = true
+
+[package.rust-version]
+workspace = true
+
+[package.version]
+workspace = true
 
 [package.metadata.system-deps.gtk4_win32]
 name = "gtk4-win32"
@@ -23,9 +40,9 @@ version = "4.4"
 version = "4.8"
 
 [package.metadata.docs.rs]
-all-features = true
 rustc-args = ["--cfg", "docsrs"]
 rustdoc-args = ["--cfg", "docsrs", "--generate-link-to-definition"]
+all-features = true
 
 [lib]
 name = "gdk4_win32_sys"

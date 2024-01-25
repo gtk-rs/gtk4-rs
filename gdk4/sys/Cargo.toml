@@ -1,21 +1,33 @@
 [package]
-authors = ["The gtk-rs Project Developers"]
+name = "gdk4-sys"
 build = "build.rs"
 description = "FFI bindings of GDK 4"
 documentation = "https://gtk-rs.org/gtk4-rs/stable/latest/docs/gdk4_sys"
-edition = "2021"
-homepage = "https://gtk-rs.org/"
 keywords = ["gdk", "gdk4", "ffi", "gtk-rs", "gnome"]
-license = "MIT"
-name = "gdk4-sys"
-repository = "https://github.com/gtk-rs/gtk4-rs"
-version = "0.8.0"
-rust-version = "1.70"
 
-[package.metadata.docs.rs]
-all-features = true
-rustc-args = ["--cfg", "docsrs"]
-rustdoc-args = ["--cfg", "docsrs", "--generate-link-to-definition"]
+[package.authors]
+workspace = true
+
+[package.categories]
+workspace = true
+
+[package.edition]
+workspace = true
+
+[package.homepage]
+workspace = true
+
+[package.license]
+workspace = true
+
+[package.repository]
+workspace = true
+
+[package.rust-version]
+workspace = true
+
+[package.version]
+workspace = true
 
 [package.metadata.system-deps.gtk4]
 name = "gtk4"
@@ -41,6 +53,11 @@ version = "4.11"
 
 [package.metadata.system-deps.gtk4.v4_14]
 version = "4.13"
+
+[package.metadata.docs.rs]
+rustc-args = ["--cfg", "docsrs"]
+rustdoc-args = ["--cfg", "docsrs", "--generate-link-to-definition"]
+all-features = true
 
 [lib]
 name = "gdk4_sys"
