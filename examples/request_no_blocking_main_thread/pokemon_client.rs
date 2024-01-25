@@ -15,12 +15,12 @@ pub struct PokemonClient {
     page: u32,
 }
 
-impl PokemonClient  {
+impl PokemonClient {
     const URI: &'static str = "https://pokeapi.co/api/v2/pokemon";
     const PAGE_LIMIT: &'static str = "100";
 
     pub fn new() -> Self {
-        Self{ page: 0 }
+        Self { page: 0 }
     }
 
     pub async fn get_pokemon_list(&mut self) -> Result<Vec<Pokemon>, reqwest::Error> {
@@ -38,5 +38,4 @@ impl PokemonClient  {
         self.page += 10;
         Ok(body.results)
     }
-
 }
