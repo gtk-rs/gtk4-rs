@@ -1,8 +1,8 @@
 [package]
 name = "gtk4-rs-examples"
-version = "0.1.0"
-authors = ["The gtk-rs Project Developers"]
-edition = "2021"
+edition.workspace = true
+version.workspace = true
+authors.workspace = true
 
 [dependencies]
 chrono = "0.4"

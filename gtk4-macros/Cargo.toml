@@ -1,16 +1,17 @@
 [package]
-authors = ["The gtk-rs Project Developers"]
-categories = ["api-bindings", "gui"]
 description = "Macros helpers for GTK 4 bindings"
 documentation = "https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4_macros"
-edition = "2021"
-homepage = "https://gtk-rs.org/"
 keywords = ["gtk", "gtk4", "gtk-rs", "gnome", "GUI"]
-license = "MIT"
 name = "gtk4-macros"
-repository = "https://github.com/gtk-rs/gtk4-rs"
-version = "0.8.0"
-rust-version = "1.70"
+authors.workspace = true
+categories.workspace = true
+edition.workspace = true
+homepage.workspace = true
+license.workspace = true
+repository.workspace = true
+rust-version.workspace = true
+version.workspace = true
+
 [lib]
 proc-macro = true
 
@@ -33,6 +34,3 @@ futures-channel = "0.3"
 futures-util = "0.3"
 gtk = { path = "../gtk4", package = "gtk4", version = "0.8" }
 trybuild2 = "1.0"
-
-[package.metadata.docs.rs]
-rustdoc-args = ["--generate-link-to-definition"]
