@@ -42,7 +42,8 @@ impl PokemonClient {
     }
 }
 
-static RUNTIME: Lazy<Runtime> = Lazy::new(|| Runtime::new().expect("Setting up tokio runtime needs to succeed."));
+static RUNTIME: Lazy<Runtime> =
+    Lazy::new(|| Runtime::new().expect("Setting up tokio runtime needs to succeed."));
 
 fn main() -> glib::ExitCode {
     let app = Application::builder()
