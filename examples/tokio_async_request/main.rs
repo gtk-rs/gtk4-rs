@@ -81,14 +81,17 @@ fn build_ui(app: &Application) {
 
     glib::spawn_future_local(async move {
         while let Ok(response) = receiver.recv().await {
-            if let Ok(response) = response {
-                for pokemon in response {
-                    let label = gtk::Label::new(Some(&pokemon.name));
-                    label.set_halign(gtk::Align::Start);
-                    list_box.append(&label);
+            match response {
+                Ok(response) => {
+                    for pokemon in response {
+                        let label = gtk::Label::new(Some(&pokemon.name));
+                        label.set_halign(gtk::Align::Start);
+                        list_box.append(&label);
+                    }
                 }
-            } else {
-                println!("bad request");
+                Err(_) => {
+                    println!("bad request");
+                }
             }
         }
     });

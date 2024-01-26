@@ -35,13 +35,10 @@ optional = true
 default = []
 femtovg-support = ["epoxy", "femtovg", "glow", "libloading"]
 glium-support = ["glium", "epoxy", "libloading"]
+tokio = ["dep:tokio", "async-channel", "reqwest", "serde"]
 v4_10 = ["gtk/v4_10"]
 v4_12 = ["gtk/v4_12"]
 v4_14 = ["gtk/v4_14"]
-tokio-support = ["tokio"]
-async-channel-support = ["async-channel"]
-reqwest-support = ["reqwest"]
-serde-support = ["serde"]
 
 [[bin]]
 name = "basics"
@@ -208,7 +205,7 @@ required-features = ["v4_10"]
 [[bin]]
 name = "tokio_async_request"
 path = "tokio_async_request/main.rs"
-required-features = ["tokio-support", "async-channel-support", "reqwest-support", "serde-support"]
+required-features = ["tokio"]
 
 [[bin]]
 name = "video_player"
