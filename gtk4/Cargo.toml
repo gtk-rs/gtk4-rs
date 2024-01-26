@@ -40,9 +40,9 @@ gnome_42 = ["v4_6", "cairo-rs/v1_16", "gdk-pixbuf/v2_42", "gio/v2_72"]
 ffi = {package = "gtk4-sys", path = "./sys", version = "0.8"}
 field-offset = "0.3"
 futures-channel = "0.3"
-gdk = {package = "gdk4", path = "../gdk4", version = "0.8"}
-gsk = {package = "gsk4", path = "../gsk4", version = "0.8"}
-gtk4-macros = {path = "../gtk4-macros", version = "0.8"}
+gdk.workspace = true
+gsk.workspace = true
+gtk4-macros.workspace = true
 cairo-rs.workspace = true
 gdk-pixbuf.workspace = true
 gio.workspace = true

@@ -21,7 +21,7 @@ xlib = ["x11"]
 
 [dependencies]
 ffi = {path = "./sys", package = "gdk4-x11-sys", version = "0.8"}
-gdk = {path = "../gdk4", package = "gdk4", version = "0.8"}
+gdk.workspace = true
 gio.workspace = true
 glib.workspace = true
 libc.workspace = true

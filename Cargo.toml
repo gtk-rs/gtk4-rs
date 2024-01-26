@@ -56,3 +56,7 @@ graphene = {package = "graphene-rs", git = "https://github.com/gtk-rs/gtk-rs-cor
 libc = "0.2"
 pango = {git = "https://github.com/gtk-rs/gtk-rs-core", version = "0.19", features = ["v1_46"]}
 gir-format-check = "^0.1"
+gdk = {package = "gdk4", path = "gdk4", version = "0.8"}
+gsk = {package = "gsk4", path = "gsk4", version = "0.8"}
+gtk4-macros = {path = "gtk4-macros", version = "0.8"}
+gtk = { path = "gtk4", package = "gtk4", version = "0.8" }

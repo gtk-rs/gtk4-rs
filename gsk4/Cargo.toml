@@ -26,9 +26,9 @@ v4_10 = ["ffi/v4_10", "gdk/v4_10", "v4_6"]
 v4_14 = ["ffi/v4_14", "v4_10"]
 
 [dependencies]
-cairo-rs.workspace = true
 ffi = {package = "gsk4-sys", path = "./sys", version = "0.8"}
-gdk = {package = "gdk4", path = "../gdk4", version = "0.8"}
+cairo-rs.workspace = true
+gdk.workspace = true
 glib.workspace = true
 graphene.workspace = true
 libc.workspace = true
