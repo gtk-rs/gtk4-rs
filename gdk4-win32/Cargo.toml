@@ -4,7 +4,6 @@ description = "Rust bindings of the GDK4 Win32 library"
 documentation = "https://gtk-rs.org/gtk4-rs/stable/latest/docs/gdk4_win32/"
 keywords = ["gdk4", "gdk4-win32", "gtk-rs", "gnome", "GUI"]
 readme = "README.md"
-build = "build.rs"
 authors.workspace = true
 categories.workspace = true
 edition.workspace = true
