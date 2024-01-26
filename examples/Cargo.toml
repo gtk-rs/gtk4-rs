@@ -1,8 +1,8 @@
 [package]
 name = "gtk4-rs-examples"
-version = "0.1.0"
-authors = ["The gtk-rs Project Developers"]
-edition = "2021"
+edition.workspace = true
+version.workspace = true
+authors.workspace = true
 
 [dependencies]
 chrono = "0.4"
@@ -22,6 +22,7 @@ serde = { version = "1.0", features = ["derive"], optional = true }
 path = "../gtk4"
 package = "gtk4"
 features = ["v4_10"]
+gtk.workspace = true
 
 # used by gif-paintable example
 [dependencies.image]
@@ -34,6 +35,7 @@ optional = true
 default = []
 femtovg-support = ["epoxy", "femtovg", "glow", "libloading"]
 glium-support = ["glium", "epoxy", "libloading"]
+v4_10 = ["gtk/v4_10"]
 v4_12 = ["gtk/v4_12"]
 v4_14 = ["gtk/v4_14"]
 tokio-support = ["tokio"]
@@ -60,10 +62,12 @@ path = "clock/main.rs"
 [[bin]]
 name = "column_view_datagrid"
 path = "column_view_datagrid/main.rs"
+required-features = ["v4_10"]
 
 [[bin]]
 name = "composite_template"
 path = "composite_template/main.rs"
+required-features = ["v4_10"]
 
 [[bin]]
 name = "confetti_snapshot_animation"
@@ -85,6 +89,7 @@ path = "custom_application/main.rs"
 [[bin]]
 name = "custom_buildable"
 path = "custom_buildable/main.rs"
+required-features = ["v4_10"]
 
 [[bin]]
 name = "custom_editable"
@@ -110,6 +115,7 @@ path = "custom_widget/main.rs"
 [[bin]]
 name = "dialog"
 path = "dialog/main.rs"
+required-features = ["v4_10"]
 
 [[bin]]
 name = "entry_completion"
@@ -149,6 +155,7 @@ path = "grid_packing/main.rs"
 [[bin]]
 name = "gtk_builder"
 path = "gtk_builder/main.rs"
+required-features = ["v4_10"]
 
 [[bin]]
 name = "list_box_model"
@@ -158,6 +165,7 @@ required-features = ["im-rc"]
 [[bin]]
 name = "list_view_apps_launcher"
 path = "list_view_apps_launcher/main.rs"
+required-features = ["v4_10"]
 
 [[bin]]
 name = "menubar"
@@ -195,6 +203,7 @@ required-features = ["v4_14"]
 [[bin]]
 name = "text_viewer"
 path = "text_viewer/main.rs"
+required-features = ["v4_10"]
 
 [[bin]]
 name = "tokio_async_request"
@@ -204,6 +213,7 @@ required-features = ["tokio-support", "async-channel-support", "reqwest-support"
 [[bin]]
 name = "video_player"
 path = "video_player/main.rs"
+required-features = ["v4_10"]
 
 [[bin]]
 name = "virtual_methods"

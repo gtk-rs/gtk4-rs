@@ -1,16 +1,18 @@
 [package]
-authors = ["The gtk-rs Project Developers"]
+name = "gdk4"
 description = "Rust bindings of the GDK 4 library"
 documentation = "https://gtk-rs.org/gtk4-rs/stable/latest/docs/gdk4/"
-edition = "2021"
-homepage = "https://gtk-rs.org/"
 keywords = ["gdk", "gdk4", "gtk-rs", "gnome", "GUI"]
-license = "MIT"
-name = "gdk4"
 readme = "README.md"
-repository = "https://github.com/gtk-rs/gtk4-rs"
-version = "0.8.0"
-rust-version = "1.70"
+authors.workspace = true
+categories.workspace = true
+edition.workspace = true
+homepage.workspace = true
+license.workspace = true
+repository.workspace = true
+rust-version.workspace = true
+version.workspace = true
+
 [lib]
 name = "gdk4"
 
@@ -24,20 +26,15 @@ v4_12 = ["ffi/v4_12", "v4_10"]
 v4_14 = ["ffi/v4_14", "v4_12"]
 gl = ["dep:gl"]
 
-[package.metadata.docs.rs]
-all-features = true
-rustc-args = ["--cfg", "docsrs"]
-rustdoc-args = ["--cfg", "docsrs", "--generate-link-to-definition"]
-
 [dependencies]
-cairo-rs = {git = "https://github.com/gtk-rs/gtk-rs-core", version = "0.19", features = ["use_glib"]}
 ffi = {package = "gdk4-sys", path = "./sys", version = "0.8"}
-gdk-pixbuf = {git = "https://github.com/gtk-rs/gtk-rs-core", version = "0.19"}
-gio = {git = "https://github.com/gtk-rs/gtk-rs-core", version = "0.19", features = ["v2_66"]}
-glib = {git = "https://github.com/gtk-rs/gtk-rs-core", version = "0.19", features = ["v2_66"]}
-libc = "0.2"
-pango = {git = "https://github.com/gtk-rs/gtk-rs-core", version = "0.19", features = ["v1_46"]}
+cairo-rs.workspace = true
+gdk-pixbuf.workspace = true
+gio.workspace = true
+glib.workspace = true
+libc.workspace = true
+pango.workspace = true
 gl = {version = "0.14", optional = true}
 
 [dev-dependencies]
-gir-format-check = "^0.1"
+gir-format-check.workspace = true

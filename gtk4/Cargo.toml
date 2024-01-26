@@ -1,17 +1,18 @@
 [package]
-authors = ["The gtk-rs Project Developers"]
-categories = ["api-bindings", "gui"]
+name = "gtk4"
 description = "Rust bindings of the GTK 4 library"
 documentation = "https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4"
-edition = "2021"
-homepage = "https://gtk-rs.org/"
 keywords = ["gtk", "gtk4", "gtk-rs", "gnome", "GUI"]
-license = "MIT"
-name = "gtk4"
 readme = "README.md"
-repository = "https://github.com/gtk-rs/gtk4-rs"
-version = "0.8.0"
-rust-version = "1.70"
+authors.workspace = true
+categories.workspace = true
+edition.workspace = true
+homepage.workspace = true
+license.workspace = true
+repository.workspace = true
+rust-version.workspace = true
+version.workspace = true
+
 [lib]
 name = "gtk4"
 
@@ -35,25 +36,20 @@ gnome_44 = ["v4_10", "cairo-rs/v1_16", "gdk-pixbuf/v2_42", "gio/v2_76"]
 gnome_43 = ["v4_8", "cairo-rs/v1_16", "gdk-pixbuf/v2_42", "gio/v2_74"]
 gnome_42 = ["v4_6", "cairo-rs/v1_16", "gdk-pixbuf/v2_42", "gio/v2_72"]
 
-[package.metadata.docs.rs]
-all-features = true
-rustc-args = ["--cfg", "docsrs"]
-rustdoc-args = ["--cfg", "docsrs", "--generate-link-to-definition"]
-
 [dependencies]
-cairo-rs = {git = "https://github.com/gtk-rs/gtk-rs-core", version = "0.19", features = ["use_glib"]}
 ffi = {package = "gtk4-sys", path = "./sys", version = "0.8"}
 field-offset = "0.3"
 futures-channel = "0.3"
-gdk = {package = "gdk4", path = "../gdk4", version = "0.8"}
-gdk-pixbuf = {git = "https://github.com/gtk-rs/gtk-rs-core", version = "0.19"}
-gio = {git = "https://github.com/gtk-rs/gtk-rs-core", version = "0.19", features = ["v2_66"]}
-glib = {git = "https://github.com/gtk-rs/gtk-rs-core", version = "0.19", features = ["v2_66"]}
-graphene = {package = "graphene-rs", git = "https://github.com/gtk-rs/gtk-rs-core", version = "0.19"}
-gsk = {package = "gsk4", path = "../gsk4", version = "0.8"}
-gtk4-macros = {path = "../gtk4-macros", version = "0.8"}
-libc = "0.2"
-pango = {git = "https://github.com/gtk-rs/gtk-rs-core", version = "0.19", features = ["v1_46"]}
+gdk.workspace = true
+gsk.workspace = true
+gtk4-macros.workspace = true
+cairo-rs.workspace = true
+gdk-pixbuf.workspace = true
+gio.workspace = true
+glib.workspace = true
+graphene.workspace = true
+libc.workspace = true
+pango.workspace = true
 
 [dev-dependencies]
-gir-format-check = "^0.1"
+gir-format-check.workspace = true

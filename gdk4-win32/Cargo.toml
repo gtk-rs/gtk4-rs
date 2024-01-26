@@ -1,22 +1,17 @@
 [package]
-authors = ["The gtk-rs Project Developers"]
+name = "gdk4-win32"
 description = "Rust bindings of the GDK4 Win32 library"
 documentation = "https://gtk-rs.org/gtk4-rs/stable/latest/docs/gdk4_win32/"
-edition = "2021"
-homepage = "https://gtk-rs.org/"
 keywords = ["gdk4", "gdk4-win32", "gtk-rs", "gnome", "GUI"]
-license = "MIT"
-name = "gdk4-win32"
 readme = "README.md"
-repository = "https://github.com/gtk-rs/gtk4-rs"
-version = "0.8.0"
-rust-version = "1.70"
-build = "build.rs"
-
-[package.metadata.docs.rs]
-all-features = true
-rustc-args = ["--cfg", "docsrs"]
-rustdoc-args = ["--cfg", "docsrs", "--generate-link-to-definition"]
+authors.workspace = true
+categories.workspace = true
+edition.workspace = true
+homepage.workspace = true
+license.workspace = true
+repository.workspace = true
+rust-version.workspace = true
+version.workspace = true
 
 [package.metadata.system-deps.gtk4_win32]
 name = "gtk4-win32"
@@ -28,37 +23,16 @@ egl = ["khronos-egl"]
 win32 = ["windows"]
 
 [dependencies]
-libc = "0.2"
+ffi = { path = "./sys", version = "0.8", package = "gdk4-win32-sys"}
+gdk.workspace = true
+gio.workspace = true
+glib.workspace = true
+libc.workspace = true
 khronos-egl = {version = "6.0", optional = true}
 windows = { version = "0.52", features = [
     "Win32_Foundation",
     "Win32_UI_WindowsAndMessaging",
 ], optional = true }
 
-[dependencies.ffi]
-path = "./sys"
-package = "gdk4-win32-sys"
-version = "0.8"
-
-[dependencies.gdk]
-path = "../gdk4"
-package = "gdk4"
-version = "0.8"
-
-[dependencies.gio]
-git = "https://github.com/gtk-rs/gtk-rs-core"
-version = "0.19"
-features = ["v2_66"]
-
-[dependencies.glib]
-git = "https://github.com/gtk-rs/gtk-rs-core"
-version = "0.19"
-features = ["v2_66"]
-
 [dev-dependencies]
-gir-format-check = "^0.1"
-shell-words = "1.0.0"
-tempfile = "3"
-
-[build-dependencies]
-system-deps = "6"
+gir-format-check.workspace = true
