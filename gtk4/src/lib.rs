@@ -62,23 +62,8 @@ where
     R: Send + 'static,
 {
     skip_assert_initialized!();
-
-    use std::{panic, sync::mpsc};
-
-    let (tx, rx) = mpsc::sync_channel(1);
-    TEST_THREAD_WORKER
-        .push(move || {
-            tx.send(panic::catch_unwind(function))
-                .unwrap_or_else(|_| panic!("Failed to return result from thread pool"));
-        })
-        .expect("Failed to schedule a test call");
-    rx.recv()
-        .expect("Failed to receive result from thread pool")
-        .unwrap_or_else(|e| std::panic::resume_unwind(e))
-}
-
-static TEST_THREAD_WORKER: glib::once_cell::sync::Lazy<glib::ThreadPool> =
-    glib::once_cell::sync::Lazy::new(|| {
+    static TEST_THREAD_WORKER: std::sync::OnceLock<glib::ThreadPool> = std::sync::OnceLock::new();
+    let pool = TEST_THREAD_WORKER.get_or_init(|| {
         let pool = glib::ThreadPool::exclusive(1).unwrap();
         pool.push(move || {
             crate::init().expect("Tests failed to initialize gtk");
@@ -86,6 +71,19 @@ static TEST_THREAD_WORKER: glib::once_cell::sync::Lazy<glib::ThreadPool> =
         .expect("Failed to schedule a test call");
         pool
     });
+
+    use std::{panic, sync::mpsc};
+
+    let (tx, rx) = mpsc::sync_channel(1);
+    pool.push(move || {
+        tx.send(panic::catch_unwind(function))
+            .unwrap_or_else(|_| panic!("Failed to return result from thread pool"));
+    })
+    .expect("Failed to schedule a test call");
+    rx.recv()
+        .expect("Failed to receive result from thread pool")
+        .unwrap_or_else(|e| std::panic::resume_unwind(e))
+}
 
 #[allow(clippy::derived_hash_with_manual_eq)]
 #[allow(clippy::too_many_arguments)]

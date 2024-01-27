@@ -3,8 +3,9 @@
 // rustdoc-stripper-ignore-next
 //! Traits intended for implementing the [`CellLayout`](crate::CellLayout)
 //! interface.
+use std::sync::OnceLock;
 
-use glib::{once_cell::sync::Lazy, translate::*, Quark};
+use glib::{translate::*, Quark};
 
 use crate::{
     prelude::*, subclass::prelude::*, CellArea, CellLayout, CellRenderer, TreeIter, TreeModel,
@@ -388,9 +389,6 @@ unsafe extern "C" fn cell_layout_set_cell_data_func<T: CellLayoutImpl>(
     imp.set_cell_data_func(&*cell, callback)
 }
 
-static CELL_LAYOUT_GET_CELLS_QUARK: Lazy<Quark> =
-    Lazy::new(|| Quark::from_str("gtk-rs-subclass-cell-layout-get-cells"));
-
 unsafe extern "C" fn cell_layout_get_cells<T: CellLayoutImpl>(
     cell_layout: *mut ffi::GtkCellLayout,
 ) -> *mut glib::ffi::GList {
@@ -399,9 +397,11 @@ unsafe extern "C" fn cell_layout_get_cells<T: CellLayoutImpl>(
 
     let cells = imp.cells();
 
+    static QUARK: OnceLock<Quark> = OnceLock::new();
+    let quark = *QUARK.get_or_init(|| Quark::from_str("gtk-rs-subclass-cell-layout-get-cells"));
+
     // transfer container: list owned by the caller by not the actual content
     // so we need to keep the cells around and return a ptr of the list
-    imp.obj()
-        .set_qdata(*CELL_LAYOUT_GET_CELLS_QUARK, cells.clone());
+    imp.obj().set_qdata(quark, cells.clone());
     cells.to_glib_container().0
 }

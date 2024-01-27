@@ -305,9 +305,9 @@ mod tests {
 
     #[crate::test]
     fn test_rust_builder_scope_object_during_dispose() {
+        use glib::subclass::Signal;
+        use std::sync::OnceLock;
         use std::{cell::Cell, rc::Rc};
-
-        use glib::{once_cell::sync::Lazy, subclass::Signal};
 
         #[derive(Debug, Default)]
         pub struct MyObjectPrivate {
@@ -320,9 +320,8 @@ mod tests {
         }
         impl ObjectImpl for MyObjectPrivate {
             fn signals() -> &'static [Signal] {
-                static SIGNALS: Lazy<Vec<Signal>> =
-                    Lazy::new(|| vec![Signal::builder("destroyed").build()]);
-                SIGNALS.as_ref()
+                static SIGNALS: OnceLock<Vec<Signal>> = OnceLock::new();
+                SIGNALS.get_or_init(|| vec![Signal::builder("destroyed").build()])
             }
             fn dispose(&self) {
                 self.obj().emit_by_name::<()>("destroyed", &[]);

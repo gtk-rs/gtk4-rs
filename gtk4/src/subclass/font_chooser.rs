@@ -3,8 +3,9 @@
 // rustdoc-stripper-ignore-next
 //! Traits intended for implementing the [`FontChooser`](crate::FontChooser)
 //! interface.
+use std::sync::OnceLock;
 
-use glib::{once_cell::sync::Lazy, translate::*, GString, Quark};
+use glib::{translate::*, GString, Quark};
 use pango::{FontFace, FontFamily, FontMap};
 
 use super::PtrHolder;
@@ -229,9 +230,6 @@ unsafe impl<T: FontChooserImpl> IsImplementable<T> for FontChooser {
     }
 }
 
-static FONT_CHOOSER_GET_FONT_FAMILY_QUARK: Lazy<Quark> =
-    Lazy::new(|| Quark::from_str("gtk4-rs-subclass-font-chooser-font-family"));
-
 unsafe extern "C" fn font_chooser_get_font_family<T: FontChooserImpl>(
     font_chooser: *mut ffi::GtkFontChooser,
 ) -> *mut pango::ffi::PangoFontFamily {
@@ -241,8 +239,13 @@ unsafe extern "C" fn font_chooser_get_font_family<T: FontChooserImpl>(
     let ret = imp.font_family();
     if let Some(font_family) = ret {
         let font_family = font_family.into_glib_ptr();
+
+        static QUARK: OnceLock<Quark> = OnceLock::new();
+        let quark =
+            *QUARK.get_or_init(|| Quark::from_str("gtk4-rs-subclass-font-chooser-font-family"));
+
         imp.obj().set_qdata(
-            *FONT_CHOOSER_GET_FONT_FAMILY_QUARK,
+            quark,
             PtrHolder(font_family, |ptr| {
                 glib::gobject_ffi::g_object_unref(ptr as *mut _)
             }),
@@ -253,8 +256,6 @@ unsafe extern "C" fn font_chooser_get_font_family<T: FontChooserImpl>(
     }
 }
 
-static FONT_CHOOSER_GET_FONT_FACE_QUARK: Lazy<Quark> =
-    Lazy::new(|| Quark::from_str("gtk4-rs-subclass-font-chooser-font-face"));
 unsafe extern "C" fn font_chooser_get_font_face<T: FontChooserImpl>(
     font_chooser: *mut ffi::GtkFontChooser,
 ) -> *mut pango::ffi::PangoFontFace {
@@ -264,8 +265,11 @@ unsafe extern "C" fn font_chooser_get_font_face<T: FontChooserImpl>(
     let ret = imp.font_face();
     if let Some(font_face) = ret {
         let font_face = font_face.into_glib_ptr();
+        static QUARK: OnceLock<Quark> = OnceLock::new();
+        let quark =
+            *QUARK.get_or_init(|| Quark::from_str("gtk4-rs-subclass-font-chooser-font-face"));
         imp.obj().set_qdata(
-            *FONT_CHOOSER_GET_FONT_FACE_QUARK,
+            quark,
             PtrHolder(font_face, |ptr| {
                 glib::gobject_ffi::g_object_unref(ptr as *mut _);
             }),

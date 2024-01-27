@@ -1,6 +1,9 @@
-use std::cell::{Cell, RefCell};
+use std::{
+    cell::{Cell, RefCell},
+    sync::OnceLock,
+};
 
-use glib::{clone, once_cell::sync::Lazy, subclass::Signal};
+use glib::{clone, subclass::Signal};
 use gtk::{glib, prelude::*, subclass::prelude::*};
 
 #[derive(Debug, glib::Properties)]
@@ -39,13 +42,13 @@ impl ObjectSubclass for CustomTag {
 #[glib::derived_properties]
 impl ObjectImpl for CustomTag {
     fn signals() -> &'static [Signal] {
-        static SIGNALS: Lazy<Vec<Signal>> = Lazy::new(|| {
+        static SIGNALS: OnceLock<Vec<Signal>> = OnceLock::new();
+        SIGNALS.get_or_init(|| {
             vec![
                 Signal::builder("closed").build(),
                 Signal::builder("clicked").build(),
             ]
-        });
-        SIGNALS.as_ref()
+        })
     }
 
     fn constructed(&self) {

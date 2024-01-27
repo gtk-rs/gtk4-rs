@@ -1,8 +1,8 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use std::{boxed::Box as Box_, mem, pin::Pin, ptr};
+use std::{boxed::Box as Box_, pin::Pin, sync::OnceLock};
 
-use glib::{once_cell::sync::Lazy, translate::*, IntoGStr, Quark, Slice, ToValue};
+use glib::{translate::*, IntoGStr, Quark, Slice, ToValue};
 
 pub use crate::auto::functions::*;
 use crate::{prelude::*, AboutDialog, StyleProvider, Window};
@@ -87,8 +87,8 @@ pub fn accelerator_parse(accelerator: impl IntoGStr) -> Option<(gdk::Key, gdk::M
     assert_initialized_main_thread!();
     unsafe {
         accelerator.run_with_gstr(|accelerator| {
-            let mut accelerator_key = mem::MaybeUninit::uninit();
-            let mut accelerator_mods = mem::MaybeUninit::uninit();
+            let mut accelerator_key = std::mem::MaybeUninit::uninit();
+            let mut accelerator_mods = std::mem::MaybeUninit::uninit();
             let ret = from_glib(ffi::gtk_accelerator_parse(
                 accelerator.as_ptr(),
                 accelerator_key.as_mut_ptr(),
@@ -115,7 +115,7 @@ pub fn accelerator_parse_with_keycode(
     unsafe {
         accelerator.run_with_gstr(|accelerator| {
             let mut accelerator_key = std::mem::MaybeUninit::uninit();
-            let mut accelerator_codes_ptr = ptr::null_mut();
+            let mut accelerator_codes_ptr = std::ptr::null_mut();
             let mut accelerator_mods = std::mem::MaybeUninit::uninit();
             let success = from_glib(ffi::gtk_accelerator_parse_with_keycode(
                 accelerator.as_ptr(),
@@ -127,7 +127,7 @@ pub fn accelerator_parse_with_keycode(
             if success {
                 let mut len = 0;
                 if !accelerator_codes_ptr.is_null() {
-                    while ptr::read(accelerator_codes_ptr.add(len)) != 0 {
+                    while std::ptr::read(accelerator_codes_ptr.add(len)) != 0 {
                         len += 1;
                     }
                 }
@@ -173,7 +173,7 @@ pub fn show_uri_full<P: FnOnce(Result<(), glib::Error>) + 'static>(
         res: *mut gio::ffi::GAsyncResult,
         user_data: glib::ffi::gpointer,
     ) {
-        let mut error = ptr::null_mut();
+        let mut error = std::ptr::null_mut();
         let _ = ffi::gtk_show_uri_full_finish(parent_ptr as *mut ffi::GtkWindow, res, &mut error);
         let result = if error.is_null() {
             Ok(())
@@ -221,13 +221,14 @@ pub fn show_uri_full_future(
     }))
 }
 
-static SHOW_ABOUT_DIALOG_QUARK: Lazy<Quark> = Lazy::new(|| Quark::from_str("gtk-rs-about-dialog"));
-
 #[doc(alias = "gtk_show_about_dialog")]
 pub fn show_about_dialog<P: IsA<Window>>(parent: Option<&P>, properties: &[(&str, &dyn ToValue)]) {
     assert_initialized_main_thread!();
+    static QUARK: OnceLock<Quark> = OnceLock::new();
+    let quark = *QUARK.get_or_init(|| Quark::from_str("gtk-rs-about-dialog"));
+
     unsafe {
-        if let Some(d) = parent.and_then(|p| p.qdata::<AboutDialog>(*SHOW_ABOUT_DIALOG_QUARK)) {
+        if let Some(d) = parent.and_then(|p| p.qdata::<AboutDialog>(quark)) {
             d.as_ref().show();
         } else {
             let mut builder = glib::Object::builder::<AboutDialog>();
@@ -241,7 +242,7 @@ pub fn show_about_dialog<P: IsA<Window>>(parent: Option<&P>, properties: &[(&str
 
             // cache the dialog if a parent is set
             if let Some(dialog_parent) = parent {
-                dialog_parent.set_qdata(*SHOW_ABOUT_DIALOG_QUARK, about_dialog.clone());
+                dialog_parent.set_qdata(quark, about_dialog.clone());
             }
             about_dialog.show();
         };

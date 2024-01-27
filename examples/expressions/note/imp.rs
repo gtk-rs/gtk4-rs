@@ -1,8 +1,5 @@
-use gtk::{
-    glib::{self, once_cell::unsync::OnceCell},
-    prelude::*,
-    subclass::prelude::*,
-};
+use gtk::{glib, prelude::*, subclass::prelude::*};
+use std::cell::OnceCell;
 
 use super::Metadata;
 

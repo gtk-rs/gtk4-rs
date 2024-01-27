@@ -2,8 +2,9 @@
 
 // rustdoc-stripper-ignore-next
 //! Traits intended for subclassing [`EntryBuffer`](crate::EntryBuffer).
+use std::sync::OnceLock;
 
-use glib::{once_cell::sync::Lazy, translate::*, GString};
+use glib::{translate::*, GString};
 
 use super::PtrHolder;
 use crate::{prelude::*, subclass::prelude::*, EntryBuffer};
@@ -182,9 +183,6 @@ unsafe extern "C" fn entry_buffer_deleted_text<T: EntryBufferImpl>(
     imp.deleted_text(position, n_chars)
 }
 
-static GET_TEXT_QUARK: Lazy<glib::Quark> =
-    Lazy::new(|| glib::Quark::from_str("gtk4-rs-subclass-entry-buffer-text"));
-
 unsafe extern "C" fn entry_buffer_get_text<T: EntryBufferImpl>(
     ptr: *mut ffi::GtkEntryBuffer,
     n_bytes: *mut usize,
@@ -198,9 +196,13 @@ unsafe extern "C" fn entry_buffer_get_text<T: EntryBufferImpl>(
     }
     // Ensures that the returned text stays alive for as long as
     // the entry buffer instance
+
+    static QUARK: OnceLock<glib::Quark> = OnceLock::new();
+    let quark = *QUARK.get_or_init(|| glib::Quark::from_str("gtk4-rs-subclass-entry-buffer-text"));
+
     let fullptr = ret.into_glib_ptr();
     imp.obj().set_qdata(
-        *GET_TEXT_QUARK,
+        quark,
         PtrHolder(fullptr, |ptr| {
             glib::ffi::g_free(ptr as *mut _);
         }),
