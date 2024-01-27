@@ -7,7 +7,7 @@ use gtk::prelude::*;
 use gtk::{gio, glib};
 use window::Window;
 
-static APP_ID: &str = "org.gtk_rs.Todo5";
+const APP_ID: &str = "org.gtk_rs.Todo5";
 
 // ANCHOR: main
 fn main() -> glib::ExitCode {

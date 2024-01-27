@@ -6,7 +6,7 @@ use adw::prelude::*;
 use gtk::{gio, glib};
 use window::Window;
 
-static APP_ID: &str = "org.gtk_rs.Todo7";
+const APP_ID: &str = "org.gtk_rs.Todo7";
 
 fn main() -> glib::ExitCode {
     gio::resources_register_include!("todo_7.gresource")
