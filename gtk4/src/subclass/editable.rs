@@ -3,8 +3,9 @@
 // rustdoc-stripper-ignore-next
 //! Traits intended for implementing the [`Editable`](crate::Editable)
 //! interface.
+use std::sync::OnceLock;
 
-use glib::{once_cell::sync::Lazy, translate::*, GString, Quark};
+use glib::{translate::*, GString, Quark};
 use libc::{c_char, c_int};
 
 use crate::{prelude::*, subclass::prelude::*, Editable};
@@ -319,9 +320,6 @@ unsafe extern "C" fn editable_get_text<T: EditableImpl>(
     imp.text().into_glib_ptr()
 }
 
-static EDITABLE_GET_DELEGATE_QUARK: Lazy<Quark> =
-    Lazy::new(|| Quark::from_str("gtk-rs-subclass-editable-get-delegate"));
-
 unsafe extern "C" fn editable_get_delegate<T: EditableImpl>(
     editable: *mut ffi::GtkEditable,
 ) -> *mut ffi::GtkEditable {
@@ -330,10 +328,10 @@ unsafe extern "C" fn editable_get_delegate<T: EditableImpl>(
 
     let delegate = imp.delegate();
 
-    match imp
-        .obj()
-        .qdata::<Option<Editable>>(*EDITABLE_GET_DELEGATE_QUARK)
-    {
+    static QUARK: OnceLock<Quark> = OnceLock::new();
+    let quark = *QUARK.get_or_init(|| Quark::from_str("gtk-rs-subclass-editable-get-delegate"));
+
+    match imp.obj().qdata::<Option<Editable>>(quark) {
         Some(delegate_data) => {
             assert_eq!(
                 delegate_data.as_ref(),
@@ -342,8 +340,7 @@ unsafe extern "C" fn editable_get_delegate<T: EditableImpl>(
             );
         }
         None => {
-            imp.obj()
-                .set_qdata(*EDITABLE_GET_DELEGATE_QUARK, delegate.clone());
+            imp.obj().set_qdata(quark, delegate.clone());
         }
     };
     delegate.to_glib_none().0

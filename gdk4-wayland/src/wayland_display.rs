@@ -2,7 +2,7 @@
 
 #[cfg(feature = "wayland_crate")]
 #[cfg_attr(docsrs, doc(cfg(feature = "wayland_crate")))]
-use glib::{once_cell::sync::Lazy, prelude::*, translate::*, Quark};
+use glib::{prelude::*, translate::*, Quark};
 #[cfg(all(feature = "v4_4", feature = "egl"))]
 #[cfg_attr(docsrs, doc(cfg(all(feature = "v4_4", feature = "egl"))))]
 use khronos_egl as egl;
@@ -15,10 +15,6 @@ use wayland_client::{
 };
 
 use crate::WaylandDisplay;
-
-#[cfg(feature = "wayland_crate")]
-static WAYLAND_DISPLAY_CONNECTION_QUARK: Lazy<Quark> =
-    Lazy::new(|| Quark::from_str("gtk-rs-wayland-display-connection-quark"));
 
 impl WaylandDisplay {
     #[cfg(all(feature = "v4_4", feature = "egl"))]
@@ -75,10 +71,13 @@ impl WaylandDisplay {
 
     #[cfg(feature = "wayland_crate")]
     pub(crate) fn connection(&self) -> wayland_client::Connection {
+        use std::sync::OnceLock;
+        static QUARK: OnceLock<Quark> = OnceLock::new();
+        let quark =
+            *QUARK.get_or_init(|| Quark::from_str("gtk-rs-wayland-display-connection-quark"));
+
         unsafe {
-            match self
-                .qdata::<Option<wayland_client::Connection>>(*WAYLAND_DISPLAY_CONNECTION_QUARK)
-            {
+            match self.qdata::<Option<wayland_client::Connection>>(quark) {
                 Some(conn) => conn.as_ref().clone().unwrap(),
                 None => {
                     let display_ptr =
@@ -87,7 +86,7 @@ impl WaylandDisplay {
                         display_ptr as *mut _,
                     );
                     let conn = wayland_client::Connection::from_backend(backend);
-                    self.set_qdata(*WAYLAND_DISPLAY_CONNECTION_QUARK, conn.clone());
+                    self.set_qdata(quark, conn.clone());
 
                     conn
                 }

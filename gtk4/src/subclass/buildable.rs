@@ -3,8 +3,9 @@
 // rustdoc-stripper-ignore-next
 //! Traits intended for implementing the [`Buildable`](crate::Buildable)
 //! interface.
+use std::sync::OnceLock;
 
-use glib::{once_cell::sync::Lazy, translate::*, GString, Object, Quark, Value};
+use glib::{translate::*, GString, Object, Quark, Value};
 
 use super::PtrHolder;
 use crate::{prelude::*, subclass::prelude::*, Buildable, Builder};
@@ -286,8 +287,6 @@ unsafe extern "C" fn buildable_parser_finished<T: BuildableImpl>(
     imp.parser_finished(&from_glib_borrow(builderptr))
 }
 
-static BUILDABLE_GET_INTERNAL_CHILD_QUARK: Lazy<Quark> =
-    Lazy::new(|| Quark::from_str("gtk4-rs-subclass-buildable-get-internal-child"));
 unsafe extern "C" fn buildable_get_internal_child<T: BuildableImpl>(
     buildable: *mut ffi::GtkBuildable,
     builderptr: *mut ffi::GtkBuilder,
@@ -299,11 +298,15 @@ unsafe extern "C" fn buildable_get_internal_child<T: BuildableImpl>(
 
     let ret = imp.internal_child(&from_glib_borrow(builderptr), &name);
 
+    static QUARK: OnceLock<Quark> = OnceLock::new();
+    let quark =
+        *QUARK.get_or_init(|| Quark::from_str("gtk4-rs-subclass-buildable-get-internal-child"));
+
     // transfer none: ensure the internal child stays alive for as long as the
     // object building it
     let ret = ret.into_glib_ptr();
     imp.obj().set_qdata(
-        *BUILDABLE_GET_INTERNAL_CHILD_QUARK,
+        quark,
         PtrHolder(ret, |ptr| {
             glib::gobject_ffi::g_object_unref(ptr as *mut _);
         }),
