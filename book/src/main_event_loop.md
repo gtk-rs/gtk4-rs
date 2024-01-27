@@ -278,7 +278,15 @@ Since we already run the `glib` main loop on our main thread, we don't want to r
 For this reason, we **avoid** using the `#[tokio::main]` macro or using a top-level `block_on` call.
 Doing this will block one of the runtime's threads with the GLib main loop, which is a waste of resources and a potential source of strange bugs.
 
-Instead, the runtime is manually created and used where needed. Let's bind it to a static variable and initialize it lazily.
+Instead, the runtime is manually created and used where needed.
+It is convenient to bind the runtime to a global variable.
+In order to do that, we add the crate `once_cell`
+
+```
+cargo add once_cell
+```
+
+Let's bind it to a static variable and initialize it lazily with [`once_cell::sync::Lazy`](https://docs.rs/once_cell/latest/once_cell/sync/struct.Lazy.html).
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/main_event_loop/9/main.rs">listings/main_event_loop/9/main.rs</a>
 
@@ -301,10 +309,10 @@ If we now press the button, we should find the following message in our console:
 Status: 200 OK
 ```
 
-We will not need `tokio`, `reqwest` or `ashpd` in the following chapters, so let's remove them again by executing:
+We will not need `tokio`, `once_cell`, `reqwest` or `ashpd` in the following chapters, so let's remove them again by executing:
 
 ```
-cargo remove reqwest tokio ashpd
+cargo remove tokio once_cell reqwest ashpd
 ```
 
 How to find out whether you can spawn an `async` task on the `glib` main loop?

@@ -1,11 +1,11 @@
 use std::cell::Cell;
+use std::sync::OnceLock;
 
 use glib::subclass::Signal;
 use glib::Properties;
 use gtk::glib;
 use gtk::prelude::*;
 use gtk::subclass::prelude::*;
-use once_cell::sync::Lazy;
 
 // Object holding the state
 #[derive(Properties, Default)]
@@ -28,12 +28,12 @@ impl ObjectSubclass for CustomButton {
 #[glib::derived_properties]
 impl ObjectImpl for CustomButton {
     fn signals() -> &'static [Signal] {
-        static SIGNALS: Lazy<Vec<Signal>> = Lazy::new(|| {
+        static SIGNALS: OnceLock<Vec<Signal>> = OnceLock::new();
+        SIGNALS.get_or_init(|| {
             vec![Signal::builder("max-number-reached")
                 .param_types([i32::static_type()])
                 .build()]
-        });
-        SIGNALS.as_ref()
+        })
     }
     // ANCHOR_END: object_impl
 
