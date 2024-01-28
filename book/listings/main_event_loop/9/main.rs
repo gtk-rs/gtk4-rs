@@ -1,14 +1,21 @@
+use std::sync::OnceLock;
+
 use glib::clone;
 use gtk::glib;
 use gtk::prelude::*;
 use gtk::{Application, ApplicationWindow, Button};
-use once_cell::sync::Lazy;
 use tokio::runtime::Runtime;
 
-// ANCHOR: tokio_runtime
 const APP_ID: &str = "org.gtk_rs.MainEventLoop9";
-static RUNTIME: Lazy<Runtime> =
-    Lazy::new(|| Runtime::new().expect("Setting up tokio runtime needs to succeed."));
+
+// ANCHOR: tokio_runtime
+fn runtime() -> &'static Runtime {
+    static RUNTIME: OnceLock<Runtime> = OnceLock::new();
+    RUNTIME.get_or_init(|| {
+        Runtime::new().expect("Setting up tokio runtime needs to succeed.")
+    })
+}
+// ANCHOR_END: tokio_runtime
 
 fn main() -> glib::ExitCode {
     // Create a new application
@@ -20,7 +27,6 @@ fn main() -> glib::ExitCode {
     // Run the application
     app.run()
 }
-// ANCHOR_END: tokio_runtime
 
 fn build_ui(app: &Application) {
     // Create a button
@@ -36,7 +42,7 @@ fn build_ui(app: &Application) {
     let (sender, receiver) = async_channel::bounded(1);
     // Connect to "clicked" signal of `button`
     button.connect_clicked(move |_| {
-        RUNTIME.spawn(clone!(@strong sender => async move {
+        runtime().spawn(clone!(@strong sender => async move {
             let response = reqwest::get("https://www.gtk-rs.org").await;
             sender.send(response).await.expect("The channel needs to be open.");
         }));

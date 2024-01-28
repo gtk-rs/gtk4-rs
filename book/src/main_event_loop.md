@@ -278,7 +278,90 @@ Since we already run the `glib` main loop on our main thread, we don't want to r
 For this reason, we **avoid** using the `#[tokio::main]` macro or using a top-level `block_on` call.
 Doing this will block one of the runtime's threads with the GLib main loop, which is a waste of resources and a potential source of strange bugs.
 
-Instead, the runtime is manually created and used where needed. Let's bind it to a static variable and initialize it lazily.
+Instead, we bind [`tokio::runtime::Runtime`](https://docs.rs/tokio/latest/tokio/runtime/struct.Runtime.html) to a static variable.
+
+```rust
+#use std::sync::OnceLock;
+#
+#use glib::clone;
+#use gtk::glib;
+#use gtk::prelude::*;
+#use gtk::{Application, ApplicationWindow, Button};
+#use tokio::runtime::Runtime;
+#
+#const APP_ID: &str = "org.gtk_rs.MainEventLoop0";
+#
+// DOES NOT COMPILE!
+static RUNTIME: Runtime =
+    Runtime::new().expect("Setting up tokio runtime needs to succeed.");
+#
+#fn main() -> glib::ExitCode {
+#    // Create a new application
+#    let app = Application::builder().application_id(APP_ID).build();
+#
+#    // Connect to "activate" signal of `app`
+#    app.connect_activate(build_ui);
+#
+#    // Run the application
+#    app.run()
+#}
+#
+#fn build_ui(app: &Application) {
+#    // Create a button
+#    let button = Button::builder()
+#        .label("Press me!")
+#        .margin_top(12)
+#        .margin_bottom(12)
+#        .margin_start(12)
+#        .margin_end(12)
+#        .build();
+#
+#    // ANCHOR: callback
+#    let (sender, receiver) = async_channel::bounded(1);
+#    // Connect to "clicked" signal of `button`
+#    button.connect_clicked(move |_| {
+#        RUNTIME.spawn(clone!(@strong sender => async move {
+#            let response = reqwest::get("https://www.gtk-rs.org").await;
+#            sender.send(response).await.expect("The channel needs to be open.");
+#        }));
+#    });
+#
+#    // The main loop executes the asynchronous block
+#    glib::spawn_future_local(async move {
+#        while let Ok(response) = receiver.recv().await {
+#            if let Ok(response) = response {
+#                println!("Status: {}", response.status());
+#            } else {
+#                println!("Could not make a `GET` request.");
+#            }
+#        }
+#    });
+#    // ANCHOR_END: callback
+#
+#    // Create a window
+#    let window = ApplicationWindow::builder()
+#        .application(app)
+#        .title("My GTK App")
+#        .child(&button)
+#        .build();
+#
+#    // Present window
+#    window.present();
+#}
+```
+
+Unfortunately, this doesn't compile.
+As usual, Rust's error messages are really helpful.
+
+```
+cannot call non-const fn `tokio::runtime::Runtime::new` in statics
+calls in statics are limited to constant functions, tuple structs and tuple variants
+consider wrapping this expression in `Lazy::new(|| ...)` from the `once_cell` crate
+```
+
+We could follow the advice directly, but the standard library also provides solutions for that.
+With [`std::sync::OnceLock`](https://doc.rust-lang.org/stable/std/sync/struct.OnceLock.html) we can initialize the static with the const function `OnceLock::new()` and initialize it the first time our function `runtime` is called.
+
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/main_event_loop/9/main.rs">listings/main_event_loop/9/main.rs</a>
 
@@ -286,8 +369,7 @@ Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master
 {{#rustdoc_include ../listings/main_event_loop/9/main.rs:tokio_runtime}}
 ```
 
-The button callback stays mostly the same.
-However, we now spawn the `async` block with `tokio` rather than with `glib`.
+In the button callback we can now spawn the `requwest` `async` block with `tokio` rather than with `glib`.
 
 Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/main_event_loop/9/main.rs">listings/main_event_loop/9/main.rs</a>
 
@@ -304,7 +386,7 @@ Status: 200 OK
 We will not need `tokio`, `reqwest` or `ashpd` in the following chapters, so let's remove them again by executing:
 
 ```
-cargo remove reqwest tokio ashpd
+cargo remove tokio reqwest ashpd
 ```
 
 How to find out whether you can spawn an `async` task on the `glib` main loop?
