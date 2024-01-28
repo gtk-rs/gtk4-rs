@@ -18,10 +18,6 @@ tokio = { version = "1", features = ["full"], optional = true }
 reqwest = { version = "0.11", features = ["json", "rustls-tls"], default-features = false, optional = true }
 serde = { version = "1.0", features = ["derive"], optional = true }
 
-[dependencies.gtk]
-path = "../gtk4"
-package = "gtk4"
-features = ["v4_10"]
 gtk.workspace = true
 
 # used by gif-paintable example
