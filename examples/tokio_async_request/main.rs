@@ -20,13 +20,15 @@ pub struct PokemonClient {
     page: u32,
 }
 
+impl Default for PokemonClient {
+    fn default() -> Self {
+        Self { page: 0 }
+    }
+}
+
 impl PokemonClient {
     const URI: &'static str = "https://pokeapi.co/api/v2/pokemon";
     const PAGE_LIMIT: &'static str = "100";
-
-    pub fn new() -> Self {
-        Self { page: 0 }
-    }
 
     pub async fn get_pokemon_list(&mut self) -> Result<Vec<Pokemon>, reqwest::Error> {
         let current_offset = self.page.to_string();
@@ -57,7 +59,7 @@ fn build_ui(app: &Application) {
     let (sender, receiver) = async_channel::bounded::<Result<Vec<Pokemon>, reqwest::Error>>(1);
 
     RUNTIME.spawn(clone!(@strong sender => async move {
-        let mut pokemon_client = PokemonClient::new();
+        let mut pokemon_client = PokemonClient::default();
         let pokemon_vec = pokemon_client.get_pokemon_list().await;
         sender.send(pokemon_vec).await.expect("The channel needs to be open.");
     }));
@@ -70,7 +72,7 @@ fn build_ui(app: &Application) {
         .build();
 
     scrolled_window.connect_edge_reached(move |_, position| {
-        let mut pokemon_client = PokemonClient::new();
+        let mut pokemon_client = PokemonClient::default();
         if gtk::PositionType::Bottom == position {
             RUNTIME.spawn(clone!(@strong sender => async move {
                 let pokemon_vec = pokemon_client.get_pokemon_list().await;
