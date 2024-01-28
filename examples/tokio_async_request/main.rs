@@ -1,8 +1,8 @@
 use glib::clone;
-use gtk::glib::once_cell::sync::Lazy;
 use gtk::prelude::*;
 use gtk::{glib, Application, ApplicationWindow};
 use serde::Deserialize;
+use std::sync::OnceLock;
 use tokio::runtime::Runtime;
 
 #[derive(Deserialize, Debug)]
@@ -44,8 +44,10 @@ impl PokemonClient {
     }
 }
 
-static RUNTIME: Lazy<Runtime> =
-    Lazy::new(|| Runtime::new().expect("Setting up tokio runtime needs to succeed."));
+fn runtime() -> &'static Runtime {
+    static RUNTIME: OnceLock<Runtime> = OnceLock::new();
+    RUNTIME.get_or_init(|| Runtime::new().expect("Setting up tokio runtime needs to succeed."))
+}
 
 fn main() -> glib::ExitCode {
     let app = Application::builder()
@@ -57,8 +59,7 @@ fn main() -> glib::ExitCode {
 
 fn build_ui(app: &Application) {
     let (sender, receiver) = async_channel::bounded::<Result<Vec<Pokemon>, reqwest::Error>>(1);
-
-    RUNTIME.spawn(clone!(@strong sender => async move {
+    runtime().spawn(clone!(@strong sender => async move {
         let mut pokemon_client = PokemonClient::default();
         let pokemon_vec = pokemon_client.get_pokemon_list().await;
         sender.send(pokemon_vec).await.expect("The channel needs to be open.");
@@ -74,7 +75,7 @@ fn build_ui(app: &Application) {
     scrolled_window.connect_edge_reached(move |_, position| {
         let mut pokemon_client = PokemonClient::default();
         if gtk::PositionType::Bottom == position {
-            RUNTIME.spawn(clone!(@strong sender => async move {
+            runtime().spawn(clone!(@strong sender => async move {
                 let pokemon_vec = pokemon_client.get_pokemon_list().await;
                 sender.send(pokemon_vec).await.expect("The channel needs to be open.");
             }));
