@@ -57,6 +57,10 @@ path = "composite_template/main.rs"
 required-features = ["v4_10"]
 
 [[bin]]
+name = "composite_dialog"
+path = "composite_dialog/main.rs"
+
+[[bin]]
 name = "confetti_snapshot_animation"
 path = "confetti_snapshot_animation/main.rs"
 
