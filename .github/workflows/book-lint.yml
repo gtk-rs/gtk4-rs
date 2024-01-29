@@ -24,7 +24,7 @@ jobs:
         working-directory: book
 
       - name: Link Checker
-        uses: lycheeverse/lychee-action@v1.9.1
+        uses: lycheeverse/lychee-action@v1.9.2
         with:
           args: book/public
           fail: true
