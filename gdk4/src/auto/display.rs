@@ -295,13 +295,6 @@ pub trait DisplayExt: IsA<Display> + sealed::Sealed + 'static {
         ObjectExt::property(self.as_ref(), "input-shapes")
     }
 
-    #[cfg(feature = "v4_14")]
-    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
-    #[doc(alias = "shadow-width")]
-    fn is_shadow_width(&self) -> bool {
-        ObjectExt::property(self.as_ref(), "shadow-width")
-    }
-
     #[doc(alias = "closed")]
     fn connect_closed<F: Fn(&Self, bool) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn closed_trampoline<P: IsA<Display>, F: Fn(&P, bool) + 'static>(

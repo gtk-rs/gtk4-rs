@@ -596,6 +596,18 @@ manual_traits = ["AccessibleExtManual"]
     rename = "platform_state"
 
 [[object]]
+name = "Gtk.AccessibleList"
+status = "generate"
+    [[object.function]]
+    name = "new_from_list"
+    ignore = true # there is new_from_array
+    [[object.function]]
+    name = "get_objects"
+        [[object.function.parameter]]
+        name = "accessible_list"
+        const = true
+
+[[object]]
 name = "Gtk.AccessibleRole"
 status = "generate"
     [[object.member]]

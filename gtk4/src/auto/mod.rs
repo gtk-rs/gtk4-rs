@@ -1065,6 +1065,13 @@ pub use self::window_group::WindowGroup;
 mod window_handle;
 pub use self::window_handle::WindowHandle;
 
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+mod accessible_list;
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+pub use self::accessible_list::AccessibleList;
+
 mod bitset;
 pub use self::bitset::Bitset;
 

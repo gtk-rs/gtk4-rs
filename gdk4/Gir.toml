@@ -416,6 +416,9 @@ manual_traits = ["DisplayExtManual"]
     [[object.function]]
     pattern = "map_key(code|val)"
     manual = true # make use of Key
+    [[object.property]]
+    name = "shadow-width"
+    generate = ["notify"]
 
 [[object]]
 name = "Gdk.DisplayManager"
