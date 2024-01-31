@@ -4518,6 +4518,9 @@ extern "C" {
     ) -> gboolean;
     pub fn gdk_display_put_event(display: *mut GdkDisplay, event: *mut GdkEvent);
     pub fn gdk_display_supports_input_shapes(display: *mut GdkDisplay) -> gboolean;
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gdk_display_supports_shadow_width(display: *mut GdkDisplay) -> gboolean;
     pub fn gdk_display_sync(display: *mut GdkDisplay);
     pub fn gdk_display_translate_key(
         display: *mut GdkDisplay,

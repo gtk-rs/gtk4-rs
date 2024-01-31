@@ -1296,6 +1296,19 @@ impl ::std::fmt::Debug for GtkAccessibleInterface {
     }
 }
 
+#[repr(C)]
+pub struct GtkAccessibleList {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
+
+impl ::std::fmt::Debug for GtkAccessibleList {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("GtkAccessibleList @ {self:p}"))
+            .finish()
+    }
+}
+
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct GtkAccessibleRangeInterface {
@@ -9952,6 +9965,27 @@ extern "C" {
     // GtkTreeModelFlags
     //=========================================================================
     pub fn gtk_tree_model_flags_get_type() -> GType;
+
+    //=========================================================================
+    // GtkAccessibleList
+    //=========================================================================
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gtk_accessible_list_get_type() -> GType;
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gtk_accessible_list_new_from_array(
+        accessibles: *mut *mut GtkAccessible,
+        n_accessibles: size_t,
+    ) -> *mut GtkAccessibleList;
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gtk_accessible_list_new_from_list(list: *mut glib::GList) -> *mut GtkAccessibleList;
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gtk_accessible_list_get_objects(
+        accessible_list: *mut GtkAccessibleList,
+    ) -> *mut glib::GList;
 
     //=========================================================================
     // GtkBitset

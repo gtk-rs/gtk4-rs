@@ -272,6 +272,17 @@ pub trait DisplayExt: IsA<Display> + sealed::Sealed + 'static {
         }
     }
 
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    #[doc(alias = "gdk_display_supports_shadow_width")]
+    fn supports_shadow_width(&self) -> bool {
+        unsafe {
+            from_glib(ffi::gdk_display_supports_shadow_width(
+                self.as_ref().to_glib_none().0,
+            ))
+        }
+    }
+
     #[doc(alias = "gdk_display_sync")]
     fn sync(&self) {
         unsafe {
@@ -282,6 +293,13 @@ pub trait DisplayExt: IsA<Display> + sealed::Sealed + 'static {
     #[doc(alias = "input-shapes")]
     fn is_input_shapes(&self) -> bool {
         ObjectExt::property(self.as_ref(), "input-shapes")
+    }
+
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    #[doc(alias = "shadow-width")]
+    fn is_shadow_width(&self) -> bool {
+        ObjectExt::property(self.as_ref(), "shadow-width")
     }
 
     #[doc(alias = "closed")]
@@ -510,6 +528,34 @@ pub trait DisplayExt: IsA<Display> + sealed::Sealed + 'static {
                 b"notify::rgba\0".as_ptr() as *const _,
                 Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_rgba_trampoline::<Self, F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    #[doc(alias = "shadow-width")]
+    fn connect_shadow_width_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_shadow_width_trampoline<
+            P: IsA<Display>,
+            F: Fn(&P) + 'static,
+        >(
+            this: *mut ffi::GdkDisplay,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(Display::from_glib_borrow(this).unsafe_cast_ref())
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::shadow-width\0".as_ptr() as *const _,
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                    notify_shadow_width_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
