@@ -1008,7 +1008,10 @@ pub unsafe trait WidgetClassExt: ClassStruct {
 
     #[doc(alias = "gtk_widget_class_add_binding")]
     fn add_binding<
-        F: Fn(&<<Self as ClassStruct>::Type as ObjectSubclass>::Type, Option<&Variant>) -> bool
+        F: Fn(
+                &<<Self as ClassStruct>::Type as ObjectSubclass>::Type,
+                Option<&Variant>,
+            ) -> glib::Propagation
             + 'static,
     >(
         &mut self,
@@ -1019,9 +1022,11 @@ pub unsafe trait WidgetClassExt: ClassStruct {
     ) {
         let shortcut = crate::Shortcut::new(
             Some(crate::KeyvalTrigger::new(keyval, mods)),
-            Some(crate::CallbackAction::new(move |widget, args| -> bool {
-                unsafe { callback(widget.unsafe_cast_ref(), args) }
-            })),
+            Some(crate::CallbackAction::new(
+                move |widget, args| -> glib::Propagation {
+                    unsafe { callback(widget.unsafe_cast_ref(), args) }
+                },
+            )),
         );
         shortcut.set_arguments(arguments);
         self.add_shortcut(&shortcut);
