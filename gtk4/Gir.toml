@@ -727,9 +727,7 @@ name = "Gtk.CallbackAction"
 status = "generate"
     [[object.function]]
     name = "new"
-        [[object.function.parameter]]
-        name = "callback"
-        nullable = false
+    manual = true # to use glib::Propagation, we don't have inhibit for callbacks
 
 [[object]]
 name = "Gtk.CellArea"
