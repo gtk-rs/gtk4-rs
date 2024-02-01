@@ -68,35 +68,23 @@ v4_14 = ["v4_10"]
 [dependencies]
 libc = "0.2"
 
-[dependencies.cairo]
-package = "cairo-sys-rs"
-git = "https://github.com/gtk-rs/gtk-rs-core"
-version = "0.19"
+[dependencies.graphene-sys]
+workspace = true
 
-[dependencies.gdk]
-package = "gdk4-sys"
-path = "../../gdk4/sys"
-version = "0.8"
+[dependencies.cairo-sys-rs]
+workspace = true
 
-[dependencies.glib]
-package = "glib-sys"
-git = "https://github.com/gtk-rs/gtk-rs-core"
-version = "0.19"
+[dependencies.glib-sys]
+workspace = true
 
-[dependencies.gobject]
-package = "gobject-sys"
-git = "https://github.com/gtk-rs/gtk-rs-core"
-version = "0.19"
+[dependencies.gobject-sys]
+workspace = true
 
-[dependencies.graphene]
-package = "graphene-sys"
-git = "https://github.com/gtk-rs/gtk-rs-core"
-version = "0.19"
+[dependencies.pango-sys]
+workspace = true
 
-[dependencies.pango]
-package = "pango-sys"
-git = "https://github.com/gtk-rs/gtk-rs-core"
-version = "0.19"
+[dependencies.gdk4-sys]
+workspace = true
 
 [build-dependencies]
 system-deps = "6"
