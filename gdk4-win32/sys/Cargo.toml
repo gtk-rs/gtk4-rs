@@ -54,14 +54,15 @@ v4_8 = ["v4_4"]
 [dependencies]
 libc = "0.2"
 
-[dependencies.gdk4-sys]
-workspace = true
+[dependencies.gdk]
+package = "gdk4-sys"
+path = "../../gdk4/sys"
+version = "0.8"
 
 [dependencies.glib]
-workspace = true
-
-[dependencies.gdk-pixbuf]
-workspace = true
+package = "glib-sys"
+git = "https://github.com/gtk-rs/gtk-rs-core.git"
+version = "0.19"
 
 [build-dependencies]
 system-deps = "6"

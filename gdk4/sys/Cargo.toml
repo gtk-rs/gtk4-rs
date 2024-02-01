@@ -74,29 +74,39 @@ v4_14 = ["v4_12"]
 [dependencies]
 libc = "0.2"
 
-[dependencies.cairo-sys-rs]
-workspace = true
+[dependencies.cairo]
+package = "cairo-sys-rs"
+git = "https://github.com/gtk-rs/gtk-rs-core"
+version = "0.19"
 
-[dependencies.gdk-pixbuf-sys]
-workspace = true
+[dependencies.gdk_pixbuf]
+package = "gdk-pixbuf-sys"
+git = "https://github.com/gtk-rs/gtk-rs-core"
+version = "0.19"
 
-[dependencies.gio-sys]
-workspace = true
+[dependencies.gio]
+package = "gio-sys"
+git = "https://github.com/gtk-rs/gtk-rs-core"
+version = "0.19"
 
-[dependencies.glib-sys]
-workspace = true
+[dependencies.glib]
+package = "glib-sys"
+git = "https://github.com/gtk-rs/gtk-rs-core"
+version = "0.19"
 
-[dependencies.gobject-sys]
-workspace = true
+[dependencies.gobject]
+package = "gobject-sys"
+git = "https://github.com/gtk-rs/gtk-rs-core"
+version = "0.19"
 
-[dependencies.pango-sys]
-workspace = true
+[dependencies.pango]
+package = "pango-sys"
+git = "https://github.com/gtk-rs/gtk-rs-core"
+version = "0.19"
 
 [build-dependencies]
 system-deps = "6"
-
-[build-dependencies.pkg-config]
-workspace = true
+pkg-config = "0.3.24"
 
 [dev-dependencies]
 shell-words = "1.0.0"

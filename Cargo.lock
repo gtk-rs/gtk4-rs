@@ -523,7 +523,6 @@ dependencies = [
 name = "gdk4-win32-sys"
 version = "0.8.0"
 dependencies = [
- "gdk-pixbuf-sys",
  "gdk4-sys",
  "glib-sys",
  "libc",

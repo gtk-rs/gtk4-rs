@@ -1018,7 +1018,6 @@ pub unsafe trait WidgetClassExt: ClassStruct {
         keyval: gdk::Key,
         mods: gdk::ModifierType,
         callback: F,
-        arguments: Option<&glib::Variant>,
     ) {
         let shortcut = crate::Shortcut::new(
             Some(crate::KeyvalTrigger::new(keyval, mods)),
@@ -1028,7 +1027,6 @@ pub unsafe trait WidgetClassExt: ClassStruct {
                 },
             )),
         );
-        shortcut.set_arguments(arguments);
         self.add_shortcut(&shortcut);
     }
 
@@ -1038,13 +1036,11 @@ pub unsafe trait WidgetClassExt: ClassStruct {
         keyval: gdk::Key,
         mods: gdk::ModifierType,
         action_name: &str,
-        arguments: Option<&glib::Variant>,
     ) {
         let shortcut = crate::Shortcut::new(
             Some(crate::KeyvalTrigger::new(keyval, mods)),
             Some(crate::NamedAction::new(action_name)),
         );
-        shortcut.set_arguments(arguments);
         self.add_shortcut(&shortcut);
     }
 
@@ -1054,7 +1050,6 @@ pub unsafe trait WidgetClassExt: ClassStruct {
         keyval: gdk::Key,
         mods: gdk::ModifierType,
         signal_name: &str,
-        arguments: Option<&glib::Variant>,
     ) {
         let type_ = <Self::Type as ObjectSubclassType>::type_();
         assert!(
@@ -1066,7 +1061,6 @@ pub unsafe trait WidgetClassExt: ClassStruct {
             Some(crate::KeyvalTrigger::new(keyval, mods)),
             Some(crate::SignalAction::new(signal_name)),
         );
-        shortcut.set_arguments(arguments);
         self.add_shortcut(&shortcut);
     }
 
