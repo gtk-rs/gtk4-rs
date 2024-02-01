@@ -11,9 +11,6 @@
 )]
 #![cfg_attr(docsrs, feature(doc_cfg))]
 
-use gdk4_sys as gdk;
-use glib_sys as glib;
-
 #[allow(unused_imports)]
 use libc::{
     c_char, c_double, c_float, c_int, c_long, c_short, c_uchar, c_uint, c_ulong, c_ushort, c_void,

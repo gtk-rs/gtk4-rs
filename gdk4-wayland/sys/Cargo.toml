@@ -58,8 +58,10 @@ v4_12 = ["v4_10"]
 [dependencies]
 libc = "0.2"
 
-[dependencies.glib-sys]
-workspace = true
+[dependencies.glib]
+package = "glib-sys"
+git = "https://github.com/gtk-rs/gtk-rs-core"
+version = "0.19"
 
 [build-dependencies]
 system-deps = "6"
