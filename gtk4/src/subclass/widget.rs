@@ -1031,12 +1031,7 @@ pub unsafe trait WidgetClassExt: ClassStruct {
     }
 
     #[doc(alias = "gtk_widget_class_add_binding_action")]
-    fn add_binding_action(
-        &mut self,
-        keyval: gdk::Key,
-        mods: gdk::ModifierType,
-        action_name: &str,
-    ) {
+    fn add_binding_action(&mut self, keyval: gdk::Key, mods: gdk::ModifierType, action_name: &str) {
         let shortcut = crate::Shortcut::new(
             Some(crate::KeyvalTrigger::new(keyval, mods)),
             Some(crate::NamedAction::new(action_name)),
@@ -1045,12 +1040,7 @@ pub unsafe trait WidgetClassExt: ClassStruct {
     }
 
     #[doc(alias = "gtk_widget_class_add_binding_signal")]
-    fn add_binding_signal(
-        &mut self,
-        keyval: gdk::Key,
-        mods: gdk::ModifierType,
-        signal_name: &str,
-    ) {
+    fn add_binding_signal(&mut self, keyval: gdk::Key, mods: gdk::ModifierType, signal_name: &str) {
         let type_ = <Self::Type as ObjectSubclassType>::type_();
         assert!(
             SignalId::lookup(signal_name, type_).is_some(),
