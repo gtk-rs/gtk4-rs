@@ -11,6 +11,13 @@
 )]
 #![cfg_attr(docsrs, feature(doc_cfg))]
 
+use cairo_sys as cairo;
+use gdk4_sys as gdk;
+use glib_sys as glib;
+use gobject_sys as gobject;
+use graphene_sys as graphene;
+use pango_sys as pango;
+
 #[allow(unused_imports)]
 use libc::{
     c_char, c_double, c_float, c_int, c_long, c_short, c_uchar, c_uint, c_ulong, c_ushort, c_void,
