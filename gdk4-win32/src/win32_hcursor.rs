@@ -24,7 +24,7 @@ impl Win32HCursor {
     }
 
     pub fn handle(&self) -> HCURSOR {
-        let ptr: NonNull<Pointee> = glib::ObjectExt::property(self, "handle");
+        let ptr: NonNull<Pointee> = ObjectExt::property(self, "handle");
         HCURSOR(ptr.as_ptr() as _)
     }
 }
