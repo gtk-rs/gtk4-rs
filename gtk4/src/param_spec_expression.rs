@@ -2,14 +2,11 @@
 
 use std::marker::PhantomData;
 
-use glib::{
-    gobject_ffi, prelude::*, shared::Shared, translate::*, IntoGStr, IntoOptionalGStr, ParamSpec,
-    StaticType, Value,
-};
+use glib::{gobject_ffi, shared::Shared, translate::*, ParamSpec, Value};
 
-use crate::{Expression, ParamSpecExpression};
+use crate::{prelude::*, Expression, ParamSpecExpression};
 
-impl glib::HasParamSpec for Expression {
+impl HasParamSpec for Expression {
     type ParamSpec = ParamSpecExpression;
 
     type SetValue = Expression;
@@ -201,7 +198,7 @@ impl<'a> ParamSpecExpressionBuilder<'a> {
 }
 
 #[doc(hidden)]
-impl glib::value::ValueType for ParamSpecExpression {
+impl ValueType for ParamSpecExpression {
     type Type = ParamSpecExpression;
 }
 
@@ -221,7 +218,7 @@ unsafe impl<'a> glib::value::FromValue<'a> for ParamSpecExpression {
 }
 
 #[doc(hidden)]
-impl glib::value::ToValue for ParamSpecExpression {
+impl ToValue for ParamSpecExpression {
     #[inline]
     fn to_value(&self) -> Value {
         unsafe {

@@ -2,9 +2,9 @@
 
 use std::{future, pin::Pin, ptr};
 
-use glib::{object::IsA, translate::*, GString};
+use glib::{translate::*, GString};
 
-use crate::Drop;
+use crate::{prelude::*, Drop};
 
 impl Drop {
     #[doc(alias = "gdk_drop_read_async")]

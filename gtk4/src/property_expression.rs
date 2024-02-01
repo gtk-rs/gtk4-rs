@@ -2,7 +2,7 @@
 
 use glib::translate::*;
 
-use crate::PropertyExpression;
+use crate::{prelude::*, PropertyExpression};
 
 define_expression!(PropertyExpression, ffi::GtkPropertyExpression);
 
@@ -19,8 +19,6 @@ impl std::fmt::Debug for PropertyExpression {
 
 #[cfg(test)]
 mod tests {
-    use glib::StaticType;
-
     use super::*;
     use crate as gtk4;
 

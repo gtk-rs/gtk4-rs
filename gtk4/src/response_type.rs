@@ -2,10 +2,11 @@
 
 use std::fmt;
 
+use crate::prelude::*;
 use glib::{
     translate::*,
-    value::{FromValue, ToValue, ValueType},
-    StaticType, Type, Value,
+    value::{FromValue, ValueType},
+    Type, Value,
 };
 
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]

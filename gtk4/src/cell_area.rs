@@ -1,6 +1,6 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use glib::{translate::*, value::FromValue, IntoGStr, Value};
+use glib::{translate::*, value::FromValue, Value};
 
 use crate::{prelude::*, CellArea, CellRenderer};
 

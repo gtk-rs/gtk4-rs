@@ -2,7 +2,7 @@
 
 use std::cmp;
 
-use glib::{error::ErrorDomain, translate::*, Quark};
+use glib::{translate::*, Quark};
 
 use crate::{prelude::*, CssParserWarning, Ordering};
 

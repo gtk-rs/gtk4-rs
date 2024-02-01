@@ -1,10 +1,8 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use std::{fmt, mem};
+use glib::translate::*;
 
-use glib::{translate::*, StaticType};
-
-use crate::{Event, EventType};
+use crate::{prelude::*, Event, EventType};
 
 impl Event {
     #[inline]
@@ -47,7 +45,7 @@ impl Event {
     pub fn angle(&self, event: impl AsRef<Event>) -> Option<f64> {
         skip_assert_initialized!();
         unsafe {
-            let mut angle = mem::MaybeUninit::uninit();
+            let mut angle = std::mem::MaybeUninit::uninit();
             let ret = from_glib(ffi::gdk_events_get_angle(
                 self.to_glib_none().0,
                 event.as_ref().to_glib_none().0,
@@ -67,8 +65,8 @@ impl Event {
     pub fn center(&self, event: impl AsRef<Event>) -> Option<(f64, f64)> {
         skip_assert_initialized!();
         unsafe {
-            let mut x = mem::MaybeUninit::uninit();
-            let mut y = mem::MaybeUninit::uninit();
+            let mut x = std::mem::MaybeUninit::uninit();
+            let mut y = std::mem::MaybeUninit::uninit();
             let ret = from_glib(ffi::gdk_events_get_center(
                 self.to_glib_none().0,
                 event.as_ref().to_glib_none().0,
@@ -90,7 +88,7 @@ impl Event {
     pub fn distance(&self, event: impl AsRef<Event>) -> Option<f64> {
         skip_assert_initialized!();
         unsafe {
-            let mut distance = mem::MaybeUninit::uninit();
+            let mut distance = std::mem::MaybeUninit::uninit();
             let ret = from_glib(ffi::gdk_events_get_distance(
                 self.to_glib_none().0,
                 event.as_ref().to_glib_none().0,
@@ -106,8 +104,8 @@ impl Event {
     }
 }
 
-impl fmt::Debug for Event {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+impl std::fmt::Debug for Event {
+    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
         f.debug_struct("Event")
             .field("event_type", &self.event_type())
             .field("history", &self.history())

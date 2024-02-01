@@ -49,7 +49,7 @@ impl ExpressionWatch {
 }
 
 #[cfg(feature = "v4_2")]
-impl glib::StaticType for ExpressionWatch {
+impl glib::prelude::StaticType for ExpressionWatch {
     #[doc(alias = "gtk_expression_watch_get_type")]
     #[inline]
     fn static_type() -> glib::Type {

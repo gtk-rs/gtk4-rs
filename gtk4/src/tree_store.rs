@@ -1,9 +1,9 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use glib::{translate::*, Cast, ToValue, Type, Value};
+use glib::{translate::*, Type, Value};
 use libc::c_int;
 
-use crate::{TreeIter, TreeModel, TreeStore};
+use crate::{prelude::*, TreeIter, TreeModel, TreeStore};
 
 impl TreeStore {
     #[doc(alias = "gtk_tree_store_newv")]

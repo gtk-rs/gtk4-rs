@@ -164,8 +164,8 @@ fn gen_template_child_type_checks(fields: &[AttributedField]) -> TokenStream {
             let ident = &field.ident;
             let type_err = format!("Template child with id `{}` has incompatible type. XML has {{:?}}, struct has {{:?}}", field.id());
             quote! {
-                let ty = <<#ty as ::std::ops::Deref>::Target as #crate_ident::glib::StaticType>::static_type();
-                let child_ty = #crate_ident::glib::object::ObjectExt::type_(::std::ops::Deref::deref(&imp.#ident));
+                let ty = <<#ty as ::std::ops::Deref>::Target as #crate_ident::glib::prelude::StaticType>::static_type();
+                let child_ty = #crate_ident::glib::prelude::ObjectExt::type_(::std::ops::Deref::deref(&imp.#ident));
                 if !child_ty.is_a(ty) {
                     panic!(#type_err, child_ty, ty);
                 }

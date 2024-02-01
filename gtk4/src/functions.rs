@@ -2,7 +2,7 @@
 
 use std::{boxed::Box as Box_, pin::Pin, sync::OnceLock};
 
-use glib::{translate::*, IntoGStr, Quark, Slice, ToValue};
+use glib::{translate::*, Quark, Slice};
 
 pub use crate::auto::functions::*;
 use crate::{prelude::*, AboutDialog, StyleProvider, Window};

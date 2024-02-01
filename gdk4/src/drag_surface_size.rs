@@ -1,14 +1,13 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use std::ptr::NonNull;
-
+use crate::prelude::*;
 use glib::translate::*;
 
 #[repr(transparent)]
 #[doc(alias = "GdkDragSurfaceSize")]
-pub struct DragSurfaceSize(NonNull<ffi::GdkDragSurfaceSize>);
+pub struct DragSurfaceSize(std::ptr::NonNull<ffi::GdkDragSurfaceSize>);
 
-impl glib::StaticType for DragSurfaceSize {
+impl StaticType for DragSurfaceSize {
     fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gdk_drag_surface_size_get_type()) }
     }

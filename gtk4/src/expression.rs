@@ -1,6 +1,6 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use glib::{translate::*, value::FromValue, Object, StaticType, Type, Value};
+use glib::{translate::*, value::FromValue, Object, Type, Value};
 
 use crate::{prelude::*, Expression};
 
@@ -20,7 +20,7 @@ impl AsRef<Expression> for Expression {
 ///
 /// The user is not supposed to implement this trait.
 pub unsafe trait IsExpression:
-    glib::StaticType + FromGlibPtrFull<*mut ffi::GtkExpression> + 'static
+    StaticType + FromGlibPtrFull<*mut ffi::GtkExpression> + 'static
 {
 }
 
@@ -389,7 +389,7 @@ macro_rules! define_expression {
 
             #[inline]
             fn value_type(&self) -> glib::Type {
-                use glib::StaticType;
+                use glib::prelude::StaticType;
                 Self::static_type()
             }
         }

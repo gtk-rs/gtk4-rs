@@ -1,6 +1,7 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use glib::{translate::*, value::*, GString, IntoGStr, Type, Value};
+use crate::prelude::*;
+use glib::{translate::*, value::FromValue, GString, Type, Value};
 
 #[derive(Clone, Copy, Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
 // rustdoc-stripper-ignore-next
@@ -4708,7 +4709,7 @@ impl From<Key> for Value {
 }
 
 // TODO: Drop once https://github.com/gtk-rs/gtk-rs-core/issues/612
-impl glib::StaticType for Key {
+impl StaticType for Key {
     #[inline]
     fn static_type() -> Type {
         Type::U32

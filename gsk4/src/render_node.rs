@@ -1,8 +1,8 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use glib::{translate::*, StaticType};
+use glib::translate::*;
 
-use crate::{ParseLocation, RenderNode, RenderNodeType};
+use crate::{prelude::*, ParseLocation, RenderNode, RenderNodeType};
 
 impl RenderNode {
     #[inline]
@@ -202,7 +202,7 @@ macro_rules! define_render_node {
 
             #[inline]
             fn value_type(&self) -> glib::Type {
-                use glib::StaticType;
+                use glib::prelude::StaticType;
                 Self::static_type()
             }
         }

@@ -1,16 +1,13 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use std::fmt;
-
+use crate::prelude::*;
 use glib::translate::*;
-
-use std::ptr::NonNull;
 
 #[repr(transparent)]
 #[doc(alias = "GdkToplevelSize")]
-pub struct ToplevelSize(NonNull<ffi::GdkToplevelSize>);
+pub struct ToplevelSize(std::ptr::NonNull<ffi::GdkToplevelSize>);
 
-impl glib::StaticType for ToplevelSize {
+impl StaticType for ToplevelSize {
     fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gdk_toplevel_size_get_type()) }
     }
@@ -55,8 +52,8 @@ impl ToplevelSize {
     }
 }
 
-impl fmt::Debug for ToplevelSize {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+impl std::fmt::Debug for ToplevelSize {
+    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
         f.debug_struct("ToplevelSize")
             .field("bounds", &self.bounds())
             .finish()
