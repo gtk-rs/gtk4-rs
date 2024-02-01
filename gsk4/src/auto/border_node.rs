@@ -3,7 +3,7 @@
 // DO NOT EDIT
 
 use crate::RoundedRect;
-use glib::translate::*;
+use glib::{prelude::*, translate::*};
 
 glib::wrapper! {
     #[doc(alias = "GskBorderNode")]
@@ -15,7 +15,7 @@ glib::wrapper! {
     }
 }
 
-impl glib::StaticType for BorderNode {
+impl StaticType for BorderNode {
     fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gsk_border_node_get_type()) }
     }

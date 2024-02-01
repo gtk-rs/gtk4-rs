@@ -3,7 +3,7 @@
 // DO NOT EDIT
 
 use crate::Drop;
-use glib::translate::*;
+use glib::{prelude::*, translate::*};
 
 glib::wrapper! {
     #[doc(alias = "GdkDNDEvent")]
@@ -15,7 +15,7 @@ glib::wrapper! {
     }
 }
 
-impl glib::StaticType for DNDEvent {
+impl StaticType for DNDEvent {
     fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gdk_dnd_event_get_type()) }
     }

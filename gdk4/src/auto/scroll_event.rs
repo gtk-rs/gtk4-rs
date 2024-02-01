@@ -6,7 +6,7 @@ use crate::ScrollDirection;
 #[cfg(feature = "v4_8")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
 use crate::ScrollUnit;
-use glib::translate::*;
+use glib::{prelude::*, translate::*};
 
 glib::wrapper! {
     #[doc(alias = "GdkScrollEvent")]
@@ -18,7 +18,7 @@ glib::wrapper! {
     }
 }
 
-impl glib::StaticType for ScrollEvent {
+impl StaticType for ScrollEvent {
     fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gdk_scroll_event_get_type()) }
     }

@@ -2,7 +2,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use glib::translate::*;
+use glib::{prelude::*, translate::*};
 
 glib::wrapper! {
     #[doc(alias = "GskCairoNode")]
@@ -14,7 +14,7 @@ glib::wrapper! {
     }
 }
 
-impl glib::StaticType for CairoNode {
+impl StaticType for CairoNode {
     fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gsk_cairo_node_get_type()) }
     }

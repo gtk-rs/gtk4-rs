@@ -3,7 +3,7 @@
 // DO NOT EDIT
 
 use crate::{MaskMode, RenderNode};
-use glib::translate::*;
+use glib::{prelude::*, translate::*};
 
 glib::wrapper! {
     #[doc(alias = "GskMaskNode")]
@@ -15,7 +15,7 @@ glib::wrapper! {
     }
 }
 
-impl glib::StaticType for MaskNode {
+impl StaticType for MaskNode {
     fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gsk_mask_node_get_type()) }
     }

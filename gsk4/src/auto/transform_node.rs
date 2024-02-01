@@ -3,7 +3,7 @@
 // DO NOT EDIT
 
 use crate::{RenderNode, Transform};
-use glib::translate::*;
+use glib::{prelude::*, translate::*};
 
 glib::wrapper! {
     #[doc(alias = "GskTransformNode")]
@@ -15,7 +15,7 @@ glib::wrapper! {
     }
 }
 
-impl glib::StaticType for TransformNode {
+impl StaticType for TransformNode {
     fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gsk_transform_node_get_type()) }
     }

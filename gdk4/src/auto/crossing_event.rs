@@ -3,7 +3,7 @@
 // DO NOT EDIT
 
 use crate::{CrossingMode, NotifyType};
-use glib::translate::*;
+use glib::{prelude::*, translate::*};
 
 glib::wrapper! {
     #[doc(alias = "GdkCrossingEvent")]
@@ -15,7 +15,7 @@ glib::wrapper! {
     }
 }
 
-impl glib::StaticType for CrossingEvent {
+impl StaticType for CrossingEvent {
     fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gdk_crossing_event_get_type()) }
     }

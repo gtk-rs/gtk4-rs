@@ -3,7 +3,7 @@
 // DO NOT EDIT
 
 use crate::{BlendMode, RenderNode};
-use glib::translate::*;
+use glib::{prelude::*, translate::*};
 
 glib::wrapper! {
     #[doc(alias = "GskBlendNode")]
@@ -15,7 +15,7 @@ glib::wrapper! {
     }
 }
 
-impl glib::StaticType for BlendNode {
+impl StaticType for BlendNode {
     fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gsk_blend_node_get_type()) }
     }

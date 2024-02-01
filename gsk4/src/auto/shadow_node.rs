@@ -3,7 +3,7 @@
 // DO NOT EDIT
 
 use crate::{RenderNode, Shadow};
-use glib::translate::*;
+use glib::{prelude::*, translate::*};
 
 glib::wrapper! {
     #[doc(alias = "GskShadowNode")]
@@ -15,7 +15,7 @@ glib::wrapper! {
     }
 }
 
-impl glib::StaticType for ShadowNode {
+impl StaticType for ShadowNode {
     fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gsk_shadow_node_get_type()) }
     }

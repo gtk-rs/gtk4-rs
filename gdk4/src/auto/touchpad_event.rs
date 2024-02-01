@@ -3,7 +3,7 @@
 // DO NOT EDIT
 
 use crate::TouchpadGesturePhase;
-use glib::translate::*;
+use glib::{prelude::*, translate::*};
 
 glib::wrapper! {
     #[doc(alias = "GdkTouchpadEvent")]
@@ -15,7 +15,7 @@ glib::wrapper! {
     }
 }
 
-impl glib::StaticType for TouchpadEvent {
+impl StaticType for TouchpadEvent {
     fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gdk_touchpad_event_get_type()) }
     }

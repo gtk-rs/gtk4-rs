@@ -2,7 +2,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use glib::translate::*;
+use glib::{prelude::*, translate::*};
 
 glib::wrapper! {
     #[doc(alias = "GtkConstantExpression")]
@@ -14,7 +14,7 @@ glib::wrapper! {
     }
 }
 
-impl glib::StaticType for ConstantExpression {
+impl StaticType for ConstantExpression {
     fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gtk_constant_expression_get_type()) }
     }

@@ -6,7 +6,7 @@ use crate::{
     AxisUse, Device, DeviceTool, Display, EventSequence, EventType, ModifierType, Seat, Surface,
     TimeCoord,
 };
-use glib::translate::*;
+use glib::{prelude::*, translate::*};
 
 glib::wrapper! {
     #[doc(alias = "GdkEvent")]
@@ -18,7 +18,7 @@ glib::wrapper! {
     }
 }
 
-impl glib::StaticType for Event {
+impl StaticType for Event {
     fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gdk_event_get_type()) }
     }

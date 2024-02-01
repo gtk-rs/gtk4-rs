@@ -3,7 +3,7 @@
 // DO NOT EDIT
 
 use crate::{Path, RenderNode, Stroke};
-use glib::translate::*;
+use glib::{prelude::*, translate::*};
 
 glib::wrapper! {
     #[doc(alias = "GskStrokeNode")]
@@ -15,7 +15,7 @@ glib::wrapper! {
     }
 }
 
-impl glib::StaticType for StrokeNode {
+impl StaticType for StrokeNode {
     fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gsk_stroke_node_get_type()) }
     }

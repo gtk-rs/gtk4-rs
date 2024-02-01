@@ -3,7 +3,7 @@
 // DO NOT EDIT
 
 use crate::RoundedRect;
-use glib::translate::*;
+use glib::{prelude::*, translate::*};
 
 glib::wrapper! {
     #[doc(alias = "GskInsetShadowNode")]
@@ -15,7 +15,7 @@ glib::wrapper! {
     }
 }
 
-impl glib::StaticType for InsetShadowNode {
+impl StaticType for InsetShadowNode {
     fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gsk_inset_shadow_node_get_type()) }
     }

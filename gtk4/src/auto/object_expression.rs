@@ -14,7 +14,7 @@ glib::wrapper! {
     }
 }
 
-impl glib::StaticType for ObjectExpression {
+impl StaticType for ObjectExpression {
     fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gtk_object_expression_get_type()) }
     }

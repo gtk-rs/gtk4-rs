@@ -3,7 +3,7 @@
 // DO NOT EDIT
 
 use crate::ColorStop;
-use glib::translate::*;
+use glib::{prelude::*, translate::*};
 
 glib::wrapper! {
     #[doc(alias = "GskRadialGradientNode")]
@@ -15,7 +15,7 @@ glib::wrapper! {
     }
 }
 
-impl glib::StaticType for RadialGradientNode {
+impl StaticType for RadialGradientNode {
     fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gsk_radial_gradient_node_get_type()) }
     }

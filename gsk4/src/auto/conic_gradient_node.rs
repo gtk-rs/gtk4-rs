@@ -3,7 +3,7 @@
 // DO NOT EDIT
 
 use crate::ColorStop;
-use glib::translate::*;
+use glib::{prelude::*, translate::*};
 
 glib::wrapper! {
     #[doc(alias = "GskConicGradientNode")]
@@ -15,7 +15,7 @@ glib::wrapper! {
     }
 }
 
-impl glib::StaticType for ConicGradientNode {
+impl StaticType for ConicGradientNode {
     fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gsk_conic_gradient_node_get_type()) }
     }

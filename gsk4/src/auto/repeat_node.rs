@@ -3,7 +3,7 @@
 // DO NOT EDIT
 
 use crate::RenderNode;
-use glib::translate::*;
+use glib::{prelude::*, translate::*};
 
 glib::wrapper! {
     #[doc(alias = "GskRepeatNode")]
@@ -15,7 +15,7 @@ glib::wrapper! {
     }
 }
 
-impl glib::StaticType for RepeatNode {
+impl StaticType for RepeatNode {
     fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gsk_repeat_node_get_type()) }
     }

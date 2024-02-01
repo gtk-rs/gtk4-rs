@@ -3,7 +3,7 @@
 // DO NOT EDIT
 
 use crate::RenderNode;
-use glib::translate::*;
+use glib::{prelude::*, translate::*};
 
 glib::wrapper! {
     #[doc(alias = "GskOpacityNode")]
@@ -15,7 +15,7 @@ glib::wrapper! {
     }
 }
 
-impl glib::StaticType for OpacityNode {
+impl StaticType for OpacityNode {
     fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gsk_opacity_node_get_type()) }
     }

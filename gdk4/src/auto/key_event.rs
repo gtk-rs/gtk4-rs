@@ -3,7 +3,7 @@
 // DO NOT EDIT
 
 use crate::ModifierType;
-use glib::translate::*;
+use glib::{prelude::*, translate::*};
 
 glib::wrapper! {
     #[doc(alias = "GdkKeyEvent")]
@@ -15,7 +15,7 @@ glib::wrapper! {
     }
 }
 
-impl glib::StaticType for KeyEvent {
+impl StaticType for KeyEvent {
     fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gdk_key_event_get_type()) }
     }

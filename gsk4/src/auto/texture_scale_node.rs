@@ -15,7 +15,7 @@ glib::wrapper! {
     }
 }
 
-impl glib::StaticType for TextureScaleNode {
+impl StaticType for TextureScaleNode {
     fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gsk_texture_scale_node_get_type()) }
     }

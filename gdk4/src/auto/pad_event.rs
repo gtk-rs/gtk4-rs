@@ -2,7 +2,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use glib::translate::*;
+use glib::{prelude::*, translate::*};
 
 glib::wrapper! {
     #[doc(alias = "GdkPadEvent")]
@@ -14,7 +14,7 @@ glib::wrapper! {
     }
 }
 
-impl glib::StaticType for PadEvent {
+impl StaticType for PadEvent {
     fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gdk_pad_event_get_type()) }
     }

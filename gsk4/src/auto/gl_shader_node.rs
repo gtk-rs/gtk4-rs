@@ -3,7 +3,7 @@
 // DO NOT EDIT
 
 use crate::{GLShader, RenderNode};
-use glib::translate::*;
+use glib::{prelude::*, translate::*};
 
 glib::wrapper! {
     #[doc(alias = "GskGLShaderNode")]
@@ -15,7 +15,7 @@ glib::wrapper! {
     }
 }
 
-impl glib::StaticType for GLShaderNode {
+impl StaticType for GLShaderNode {
     fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gsk_gl_shader_node_get_type()) }
     }

@@ -3,7 +3,7 @@
 // DO NOT EDIT
 
 use crate::RenderNode;
-use glib::translate::*;
+use glib::{prelude::*, translate::*};
 
 glib::wrapper! {
     #[doc(alias = "GskDebugNode")]
@@ -15,7 +15,7 @@ glib::wrapper! {
     }
 }
 
-impl glib::StaticType for DebugNode {
+impl StaticType for DebugNode {
     fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gsk_debug_node_get_type()) }
     }

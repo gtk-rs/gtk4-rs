@@ -3,7 +3,7 @@
 // DO NOT EDIT
 
 use crate::Surface;
-use glib::translate::*;
+use glib::{prelude::*, translate::*};
 
 glib::wrapper! {
     #[doc(alias = "GdkGrabBrokenEvent")]
@@ -15,7 +15,7 @@ glib::wrapper! {
     }
 }
 
-impl glib::StaticType for GrabBrokenEvent {
+impl StaticType for GrabBrokenEvent {
     fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::gdk_grab_broken_event_get_type()) }
     }
