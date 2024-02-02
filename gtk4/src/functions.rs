@@ -236,14 +236,16 @@ pub fn show_about_dialog<P: IsA<Window>>(parent: Option<&P>, properties: &[(&str
                 builder = builder.property(key, *value);
             }
             let about_dialog = builder.build();
-            about_dialog.set_transient_for(parent);
-            about_dialog.set_modal(true);
-            about_dialog.set_destroy_with_parent(true);
+            about_dialog.set_hide_on_close(true);
 
             // cache the dialog if a parent is set
             if let Some(dialog_parent) = parent {
+                about_dialog.set_modal(true);
+                about_dialog.set_transient_for(parent);
+                about_dialog.set_destroy_with_parent(true);
                 dialog_parent.set_qdata(quark, about_dialog.clone());
             }
+
             about_dialog.show();
         };
     }
