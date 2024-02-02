@@ -32,9 +32,15 @@ default = []
 femtovg-support = ["epoxy", "femtovg", "glow", "libloading"]
 glium-support = ["glium", "epoxy", "libloading"]
 tokio = ["dep:tokio", "async-channel", "reqwest", "serde"]
+v4_6 = ["gtk/v4_6"]
 v4_10 = ["gtk/v4_10"]
 v4_12 = ["gtk/v4_12"]
 v4_14 = ["gtk/v4_14"]
+
+[[bin]]
+name = "about_dialog"
+path = "about_dialog/main.rs"
+required-features = ["v4_6"]
 
 [[bin]]
 name = "basics"
