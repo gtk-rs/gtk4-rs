@@ -98,6 +98,14 @@ pub trait MonitorExt: IsA<Monitor> + sealed::Sealed + 'static {
         unsafe { ffi::gdk_monitor_get_refresh_rate(self.as_ref().to_glib_none().0) }
     }
 
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    #[doc(alias = "gdk_monitor_get_scale")]
+    #[doc(alias = "get_scale")]
+    fn scale(&self) -> f64 {
+        unsafe { ffi::gdk_monitor_get_scale(self.as_ref().to_glib_none().0) }
+    }
+
     #[doc(alias = "gdk_monitor_get_scale_factor")]
     #[doc(alias = "get_scale_factor")]
     fn scale_factor(&self) -> i32 {
@@ -310,6 +318,31 @@ pub trait MonitorExt: IsA<Monitor> + sealed::Sealed + 'static {
                 b"notify::refresh-rate\0".as_ptr() as *const _,
                 Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_refresh_rate_trampoline::<Self, F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    #[doc(alias = "scale")]
+    fn connect_scale_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_scale_trampoline<P: IsA<Monitor>, F: Fn(&P) + 'static>(
+            this: *mut ffi::GdkMonitor,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(Monitor::from_glib_borrow(this).unsafe_cast_ref())
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::scale\0".as_ptr() as *const _,
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                    notify_scale_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
             )

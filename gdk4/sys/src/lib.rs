@@ -5059,6 +5059,9 @@ extern "C" {
     pub fn gdk_monitor_get_manufacturer(monitor: *mut GdkMonitor) -> *const c_char;
     pub fn gdk_monitor_get_model(monitor: *mut GdkMonitor) -> *const c_char;
     pub fn gdk_monitor_get_refresh_rate(monitor: *mut GdkMonitor) -> c_int;
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gdk_monitor_get_scale(monitor: *mut GdkMonitor) -> c_double;
     pub fn gdk_monitor_get_scale_factor(monitor: *mut GdkMonitor) -> c_int;
     pub fn gdk_monitor_get_subpixel_layout(monitor: *mut GdkMonitor) -> GdkSubpixelLayout;
     pub fn gdk_monitor_get_width_mm(monitor: *mut GdkMonitor) -> c_int;
