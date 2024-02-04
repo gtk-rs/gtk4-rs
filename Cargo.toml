@@ -48,20 +48,20 @@ rustc-args = ["--cfg", "docsrs"]
 rustdoc-args = ["--cfg", "docsrs", "--generate-link-to-definition"]
 
 [workspace.dependencies]
-cairo-sys-rs = {git = "https://github.com/gtk-rs/gtk-rs-core", version = "0.19"}
-cairo-rs = {git = "https://github.com/gtk-rs/gtk-rs-core", version = "0.19", features = ["use_glib"]}
-gdk-pixbuf-sys = {git = "https://github.com/gtk-rs/gtk-rs-core", version = "0.19"}
-gdk-pixbuf = {git = "https://github.com/gtk-rs/gtk-rs-core", version = "0.19"}
-gio-sys = {git = "https://github.com/gtk-rs/gtk-rs-core", version = "0.19", features = ["v2_66"]}
-gio = {git = "https://github.com/gtk-rs/gtk-rs-core", version = "0.19", features = ["v2_66"]}
-gobject-sys = {git = "https://github.com/gtk-rs/gtk-rs-core", version = "0.19", features = ["v2_66"]}
-glib-sys = {git = "https://github.com/gtk-rs/gtk-rs-core", version = "0.19", features = ["v2_66"]}
-glib = {git = "https://github.com/gtk-rs/gtk-rs-core", version = "0.19", features = ["v2_66"]}
-graphene-sys = {git = "https://github.com/gtk-rs/gtk-rs-core", version = "0.19"}
-graphene = {package = "graphene-rs", git = "https://github.com/gtk-rs/gtk-rs-core", version = "0.19"}
+cairo-sys-rs = {git = "https://github.com/gtk-rs/gtk-rs-core", version = "0.19", branch = "0.19"}
+cairo-rs = {git = "https://github.com/gtk-rs/gtk-rs-core", version = "0.19", branch = "0.19", features = ["use_glib"]}
+gdk-pixbuf-sys = {git = "https://github.com/gtk-rs/gtk-rs-core", version = "0.19", branch = "0.19"}
+gdk-pixbuf = {git = "https://github.com/gtk-rs/gtk-rs-core", version = "0.19", branch = "0.19"}
+gio-sys = {git = "https://github.com/gtk-rs/gtk-rs-core", version = "0.19", branch = "0.19", features = ["v2_66"]}
+gio = {git = "https://github.com/gtk-rs/gtk-rs-core", version = "0.19", branch = "0.19", features = ["v2_66"]}
+gobject-sys = {git = "https://github.com/gtk-rs/gtk-rs-core", version = "0.19", branch = "0.19", features = ["v2_66"]}
+glib-sys = {git = "https://github.com/gtk-rs/gtk-rs-core", version = "0.19", branch = "0.19", features = ["v2_66"]}
+glib = {git = "https://github.com/gtk-rs/gtk-rs-core", version = "0.19", branch = "0.19", features = ["v2_66"]}
+graphene-sys = {git = "https://github.com/gtk-rs/gtk-rs-core", version = "0.19", branch = "0.19"}
+graphene = {package = "graphene-rs", git = "https://github.com/gtk-rs/gtk-rs-core", version = "0.19", branch = "0.19"}
 libc = "0.2"
-pango-sys = {git = "https://github.com/gtk-rs/gtk-rs-core", version = "0.19", features = ["v1_46"]}
-pango = {git = "https://github.com/gtk-rs/gtk-rs-core", version = "0.19", features = ["v1_46"]}
+pango-sys = {git = "https://github.com/gtk-rs/gtk-rs-core", version = "0.19", branch = "0.19", features = ["v1_46"]}
+pango = {git = "https://github.com/gtk-rs/gtk-rs-core", version = "0.19", branch = "0.19", features = ["v1_46"]}
 gir-format-check = "^0.1"
 gdk4-sys = {path = "gdk4/sys", version = "0.8"}
 gdk = {package = "gdk4", path = "gdk4", version = "0.8"}
