@@ -37,7 +37,7 @@ gnome_43 = ["v4_8", "cairo-rs/v1_16", "gdk-pixbuf/v2_42", "gio/v2_74"]
 gnome_42 = ["v4_6", "cairo-rs/v1_16", "gdk-pixbuf/v2_42", "gio/v2_72"]
 
 [dependencies]
-ffi = {package = "gtk4-sys", path = "./sys", version = "0.8"}
+ffi = {package = "gtk4-sys", path = "./sys", version = "0.9"}
 field-offset = "0.3"
 futures-channel = "0.3"
 gdk.workspace = true

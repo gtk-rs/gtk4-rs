@@ -27,7 +27,7 @@ v4_14 = ["ffi/v4_14", "v4_12"]
 gl = ["dep:gl"]
 
 [dependencies]
-ffi = {package = "gdk4-sys", path = "./sys", version = "0.8"}
+ffi = {package = "gdk4-sys", path = "./sys", version = "0.9"}
 cairo-rs.workspace = true
 gdk-pixbuf.workspace = true
 gio.workspace = true

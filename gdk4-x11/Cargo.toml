@@ -20,7 +20,7 @@ egl = ["khronos-egl"]
 xlib = ["x11"]
 
 [dependencies]
-ffi = {path = "./sys", package = "gdk4-x11-sys", version = "0.8"}
+ffi = {path = "./sys", package = "gdk4-x11-sys", version = "0.9"}
 gdk.workspace = true
 gio.workspace = true
 glib.workspace = true

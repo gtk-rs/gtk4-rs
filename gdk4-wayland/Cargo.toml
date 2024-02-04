@@ -21,7 +21,7 @@ wayland_crate = ["wayland-client", "wayland-backend"]
 egl = ["khronos-egl"]
 
 [dependencies]
-ffi = {path = "./sys", package = "gdk4-wayland-sys", version = "0.8"}
+ffi = {path = "./sys", package = "gdk4-wayland-sys", version = "0.9"}
 gdk.workspace=  true
 gio.workspace = true
 glib.workspace = true
