@@ -24,8 +24,14 @@ use libc::{
 use glib::{gboolean, gconstpointer, gpointer, GType};
 
 // Enums
+#[cfg(windows)]
+#[cfg_attr(docsrs, doc(cfg(windows)))]
 pub type GdkWin32MessageFilterReturn = c_int;
+#[cfg(windows)]
+#[cfg_attr(docsrs, doc(cfg(windows)))]
 pub const GDK_WIN32_MESSAGE_FILTER_CONTINUE: GdkWin32MessageFilterReturn = 0;
+#[cfg(windows)]
+#[cfg_attr(docsrs, doc(cfg(windows)))]
 pub const GDK_WIN32_MESSAGE_FILTER_REMOVE: GdkWin32MessageFilterReturn = 1;
 
 // Callbacks
@@ -39,77 +45,113 @@ pub type GdkWin32MessageFilterFunc = Option<
 >;
 
 // Records
+#[cfg(windows)]
+#[cfg_attr(docsrs, doc(cfg(windows)))]
 #[repr(C)]
 pub struct _GdkWin32DisplayClass {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
+#[cfg(windows)]
+#[cfg_attr(docsrs, doc(cfg(windows)))]
 pub type GdkWin32DisplayClass = _GdkWin32DisplayClass;
 
+#[cfg(windows)]
+#[cfg_attr(docsrs, doc(cfg(windows)))]
 #[repr(C)]
 pub struct _GdkWin32DisplayManagerClass {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
+#[cfg(windows)]
+#[cfg_attr(docsrs, doc(cfg(windows)))]
 pub type GdkWin32DisplayManagerClass = _GdkWin32DisplayManagerClass;
 
+#[cfg(windows)]
+#[cfg_attr(docsrs, doc(cfg(windows)))]
 #[repr(C)]
 pub struct _GdkWin32DragClass {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
+#[cfg(windows)]
+#[cfg_attr(docsrs, doc(cfg(windows)))]
 pub type GdkWin32DragClass = _GdkWin32DragClass;
 
+#[cfg(windows)]
+#[cfg_attr(docsrs, doc(cfg(windows)))]
 #[repr(C)]
 pub struct _GdkWin32GLContextClass {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
+#[cfg(windows)]
+#[cfg_attr(docsrs, doc(cfg(windows)))]
 pub type GdkWin32GLContextClass = _GdkWin32GLContextClass;
 
+#[cfg(windows)]
+#[cfg_attr(docsrs, doc(cfg(windows)))]
 #[repr(C)]
 pub struct _GdkWin32HCursorClass {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
+#[cfg(windows)]
+#[cfg_attr(docsrs, doc(cfg(windows)))]
 pub type GdkWin32HCursorClass = _GdkWin32HCursorClass;
 
+#[cfg(windows)]
+#[cfg_attr(docsrs, doc(cfg(windows)))]
 #[repr(C)]
 pub struct _GdkWin32MonitorClass {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
+#[cfg(windows)]
+#[cfg_attr(docsrs, doc(cfg(windows)))]
 pub type GdkWin32MonitorClass = _GdkWin32MonitorClass;
 
+#[cfg(windows)]
+#[cfg_attr(docsrs, doc(cfg(windows)))]
 #[repr(C)]
 pub struct _GdkWin32ScreenClass {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
+#[cfg(windows)]
+#[cfg_attr(docsrs, doc(cfg(windows)))]
 pub type GdkWin32ScreenClass = _GdkWin32ScreenClass;
 
+#[cfg(windows)]
+#[cfg_attr(docsrs, doc(cfg(windows)))]
 #[repr(C)]
 pub struct _GdkWin32SurfaceClass {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
+#[cfg(windows)]
+#[cfg_attr(docsrs, doc(cfg(windows)))]
 pub type GdkWin32SurfaceClass = _GdkWin32SurfaceClass;
 
 // Classes
+#[cfg(windows)]
+#[cfg_attr(docsrs, doc(cfg(windows)))]
 #[repr(C)]
 pub struct GdkWin32Display {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
+#[cfg(windows)]
+#[cfg_attr(docsrs, doc(cfg(windows)))]
 impl ::std::fmt::Debug for GdkWin32Display {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("GdkWin32Display @ {self:p}"))
@@ -117,12 +159,16 @@ impl ::std::fmt::Debug for GdkWin32Display {
     }
 }
 
+#[cfg(windows)]
+#[cfg_attr(docsrs, doc(cfg(windows)))]
 #[repr(C)]
 pub struct GdkWin32DisplayManager {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
+#[cfg(windows)]
+#[cfg_attr(docsrs, doc(cfg(windows)))]
 impl ::std::fmt::Debug for GdkWin32DisplayManager {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("GdkWin32DisplayManager @ {self:p}"))
@@ -130,24 +176,32 @@ impl ::std::fmt::Debug for GdkWin32DisplayManager {
     }
 }
 
+#[cfg(windows)]
+#[cfg_attr(docsrs, doc(cfg(windows)))]
 #[repr(C)]
 pub struct GdkWin32Drag {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
+#[cfg(windows)]
+#[cfg_attr(docsrs, doc(cfg(windows)))]
 impl ::std::fmt::Debug for GdkWin32Drag {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("GdkWin32Drag @ {self:p}")).finish()
     }
 }
 
+#[cfg(windows)]
+#[cfg_attr(docsrs, doc(cfg(windows)))]
 #[repr(C)]
 pub struct GdkWin32GLContext {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
+#[cfg(windows)]
+#[cfg_attr(docsrs, doc(cfg(windows)))]
 impl ::std::fmt::Debug for GdkWin32GLContext {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("GdkWin32GLContext @ {self:p}"))
@@ -155,12 +209,16 @@ impl ::std::fmt::Debug for GdkWin32GLContext {
     }
 }
 
+#[cfg(windows)]
+#[cfg_attr(docsrs, doc(cfg(windows)))]
 #[repr(C)]
 pub struct GdkWin32HCursor {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
+#[cfg(windows)]
+#[cfg_attr(docsrs, doc(cfg(windows)))]
 impl ::std::fmt::Debug for GdkWin32HCursor {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("GdkWin32HCursor @ {self:p}"))
@@ -168,12 +226,16 @@ impl ::std::fmt::Debug for GdkWin32HCursor {
     }
 }
 
+#[cfg(windows)]
+#[cfg_attr(docsrs, doc(cfg(windows)))]
 #[repr(C)]
 pub struct GdkWin32Monitor {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
+#[cfg(windows)]
+#[cfg_attr(docsrs, doc(cfg(windows)))]
 impl ::std::fmt::Debug for GdkWin32Monitor {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("GdkWin32Monitor @ {self:p}"))
@@ -181,12 +243,16 @@ impl ::std::fmt::Debug for GdkWin32Monitor {
     }
 }
 
+#[cfg(windows)]
+#[cfg_attr(docsrs, doc(cfg(windows)))]
 #[repr(C)]
 pub struct GdkWin32Screen {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
+#[cfg(windows)]
+#[cfg_attr(docsrs, doc(cfg(windows)))]
 impl ::std::fmt::Debug for GdkWin32Screen {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("GdkWin32Screen @ {self:p}"))
@@ -194,12 +260,16 @@ impl ::std::fmt::Debug for GdkWin32Screen {
     }
 }
 
+#[cfg(windows)]
+#[cfg_attr(docsrs, doc(cfg(windows)))]
 #[repr(C)]
 pub struct GdkWin32Surface {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
+#[cfg(windows)]
+#[cfg_attr(docsrs, doc(cfg(windows)))]
 impl ::std::fmt::Debug for GdkWin32Surface {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("GdkWin32Surface @ {self:p}"))
@@ -213,15 +283,23 @@ extern "C" {
     //=========================================================================
     // GdkWin32Display
     //=========================================================================
+    #[cfg(windows)]
+    #[cfg_attr(docsrs, doc(cfg(windows)))]
     pub fn gdk_win32_display_get_type() -> GType;
+    #[cfg(windows)]
+    #[cfg_attr(docsrs, doc(cfg(windows)))]
     pub fn gdk_win32_display_get_primary_monitor(
         display: *mut gdk::GdkDisplay,
     ) -> *mut gdk::GdkMonitor;
+    #[cfg(windows)]
+    #[cfg_attr(docsrs, doc(cfg(windows)))]
     pub fn gdk_win32_display_get_wgl_version(
         display: *mut gdk::GdkDisplay,
         major: *mut c_int,
         minor: *mut c_int,
     ) -> gboolean;
+    #[cfg(windows)]
+    #[cfg_attr(docsrs, doc(cfg(windows)))]
     pub fn gdk_win32_display_add_filter(
         display: *mut GdkWin32Display,
         function: GdkWin32MessageFilterFunc,
@@ -229,16 +307,24 @@ extern "C" {
     );
     #[cfg(feature = "v4_4")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_4")))]
+    #[cfg(windows)]
+    #[cfg_attr(docsrs, doc(cfg(windows)))]
     pub fn gdk_win32_display_get_egl_display(display: *mut GdkWin32Display) -> gpointer;
+    #[cfg(windows)]
+    #[cfg_attr(docsrs, doc(cfg(windows)))]
     pub fn gdk_win32_display_get_win32hcursor(
         display: *mut GdkWin32Display,
         cursor: *mut gdk::GdkCursor,
     ) -> *mut GdkWin32HCursor;
+    #[cfg(windows)]
+    #[cfg_attr(docsrs, doc(cfg(windows)))]
     pub fn gdk_win32_display_remove_filter(
         display: *mut GdkWin32Display,
         function: GdkWin32MessageFilterFunc,
         data: gpointer,
     );
+    #[cfg(windows)]
+    #[cfg_attr(docsrs, doc(cfg(windows)))]
     pub fn gdk_win32_display_set_cursor_theme(
         display: *mut GdkWin32Display,
         name: *const c_char,
@@ -248,22 +334,32 @@ extern "C" {
     //=========================================================================
     // GdkWin32DisplayManager
     //=========================================================================
+    #[cfg(windows)]
+    #[cfg_attr(docsrs, doc(cfg(windows)))]
     pub fn gdk_win32_display_manager_get_type() -> GType;
 
     //=========================================================================
     // GdkWin32Drag
     //=========================================================================
+    #[cfg(windows)]
+    #[cfg_attr(docsrs, doc(cfg(windows)))]
     pub fn gdk_win32_drag_get_type() -> GType;
 
     //=========================================================================
     // GdkWin32GLContext
     //=========================================================================
+    #[cfg(windows)]
+    #[cfg_attr(docsrs, doc(cfg(windows)))]
     pub fn gdk_win32_gl_context_get_type() -> GType;
 
     //=========================================================================
     // GdkWin32HCursor
     //=========================================================================
+    #[cfg(windows)]
+    #[cfg_attr(docsrs, doc(cfg(windows)))]
     pub fn gdk_win32_hcursor_get_type() -> GType;
+    #[cfg(windows)]
+    #[cfg_attr(docsrs, doc(cfg(windows)))]
     pub fn gdk_win32_hcursor_new(
         display: *mut GdkWin32Display,
         handle: ssize_t,
@@ -273,7 +369,11 @@ extern "C" {
     //=========================================================================
     // GdkWin32Monitor
     //=========================================================================
+    #[cfg(windows)]
+    #[cfg_attr(docsrs, doc(cfg(windows)))]
     pub fn gdk_win32_monitor_get_type() -> GType;
+    #[cfg(windows)]
+    #[cfg_attr(docsrs, doc(cfg(windows)))]
     pub fn gdk_win32_monitor_get_workarea(
         monitor: *mut gdk::GdkMonitor,
         workarea: *mut gdk::GdkRectangle,
@@ -282,24 +382,40 @@ extern "C" {
     //=========================================================================
     // GdkWin32Screen
     //=========================================================================
+    #[cfg(windows)]
+    #[cfg_attr(docsrs, doc(cfg(windows)))]
     pub fn gdk_win32_screen_get_type() -> GType;
 
     //=========================================================================
     // GdkWin32Surface
     //=========================================================================
+    #[cfg(windows)]
+    #[cfg_attr(docsrs, doc(cfg(windows)))]
     pub fn gdk_win32_surface_get_type() -> GType;
+    #[cfg(windows)]
+    #[cfg_attr(docsrs, doc(cfg(windows)))]
     pub fn gdk_win32_surface_get_impl_hwnd(surface: *mut gdk::GdkSurface) -> ssize_t;
+    #[cfg(windows)]
+    #[cfg_attr(docsrs, doc(cfg(windows)))]
     pub fn gdk_win32_surface_is_win32(surface: *mut gdk::GdkSurface) -> gboolean;
+    #[cfg(windows)]
+    #[cfg_attr(docsrs, doc(cfg(windows)))]
     pub fn gdk_win32_surface_lookup_for_display(
         display: *mut gdk::GdkDisplay,
         anid: ssize_t,
     ) -> *mut gdk::GdkSurface;
+    #[cfg(windows)]
+    #[cfg_attr(docsrs, doc(cfg(windows)))]
     pub fn gdk_win32_surface_get_handle(surface: *mut GdkWin32Surface) -> ssize_t;
+    #[cfg(windows)]
+    #[cfg_attr(docsrs, doc(cfg(windows)))]
     pub fn gdk_win32_surface_set_urgency_hint(surface: *mut GdkWin32Surface, urgent: gboolean);
 
     //=========================================================================
     // Other functions
     //=========================================================================
+    #[cfg(windows)]
+    #[cfg_attr(docsrs, doc(cfg(windows)))]
     pub fn gdk_win32_handle_table_lookup(handle: ssize_t) -> gpointer;
 
 }

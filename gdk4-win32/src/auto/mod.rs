@@ -2,29 +2,63 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+#[cfg(windows)]
+#[cfg_attr(docsrs, doc(cfg(windows)))]
 mod win32_display;
+#[cfg(windows)]
+#[cfg_attr(docsrs, doc(cfg(windows)))]
 pub use self::win32_display::Win32Display;
 
+#[cfg(windows)]
+#[cfg_attr(docsrs, doc(cfg(windows)))]
 mod win32_display_manager;
+#[cfg(windows)]
+#[cfg_attr(docsrs, doc(cfg(windows)))]
 pub use self::win32_display_manager::Win32DisplayManager;
 
+#[cfg(windows)]
+#[cfg_attr(docsrs, doc(cfg(windows)))]
 mod win32_drag;
+#[cfg(windows)]
+#[cfg_attr(docsrs, doc(cfg(windows)))]
 pub use self::win32_drag::Win32Drag;
 
+#[cfg(windows)]
+#[cfg_attr(docsrs, doc(cfg(windows)))]
 mod win32_gl_context;
+#[cfg(windows)]
+#[cfg_attr(docsrs, doc(cfg(windows)))]
 pub use self::win32_gl_context::Win32GLContext;
 
+#[cfg(windows)]
+#[cfg_attr(docsrs, doc(cfg(windows)))]
 mod win32_hcursor;
+#[cfg(windows)]
+#[cfg_attr(docsrs, doc(cfg(windows)))]
 pub use self::win32_hcursor::Win32HCursor;
 
+#[cfg(windows)]
+#[cfg_attr(docsrs, doc(cfg(windows)))]
 mod win32_monitor;
+#[cfg(windows)]
+#[cfg_attr(docsrs, doc(cfg(windows)))]
 pub use self::win32_monitor::Win32Monitor;
 
+#[cfg(windows)]
+#[cfg_attr(docsrs, doc(cfg(windows)))]
 mod win32_screen;
+#[cfg(windows)]
+#[cfg_attr(docsrs, doc(cfg(windows)))]
 pub use self::win32_screen::Win32Screen;
 
+#[cfg(windows)]
+#[cfg_attr(docsrs, doc(cfg(windows)))]
 mod win32_surface;
+#[cfg(windows)]
+#[cfg_attr(docsrs, doc(cfg(windows)))]
 pub use self::win32_surface::Win32Surface;
 
 mod enums;
+#[cfg(windows)]
+#[cfg_attr(docsrs, doc(cfg(windows)))]
 pub use self::enums::Win32MessageFilterReturn;

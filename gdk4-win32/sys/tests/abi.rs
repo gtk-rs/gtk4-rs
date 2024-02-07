@@ -200,13 +200,17 @@ fn get_c_output(name: &str) -> Result<String, Box<dyn Error>> {
     Ok(String::from_utf8(out.stdout)?)
 }
 
-const RUST_LAYOUTS: &[(&str, Layout)] = &[(
-    "GdkWin32MessageFilterReturn",
-    Layout {
-        size: size_of::<GdkWin32MessageFilterReturn>(),
-        alignment: align_of::<GdkWin32MessageFilterReturn>(),
-    },
-)];
+const RUST_LAYOUTS: &[(&str, Layout)] = &[
+    #[cfg(windows)]
+    #[cfg_attr(docsrs, doc(cfg(windows)))]
+    (
+        "GdkWin32MessageFilterReturn",
+        Layout {
+            size: size_of::<GdkWin32MessageFilterReturn>(),
+            alignment: align_of::<GdkWin32MessageFilterReturn>(),
+        },
+    ),
+];
 
 const RUST_CONSTANTS: &[(&str, &str)] = &[
     ("(gint) GDK_WIN32_MESSAGE_FILTER_CONTINUE", "0"),

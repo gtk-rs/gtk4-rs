@@ -4,6 +4,8 @@
 
 use glib::translate::*;
 
+#[cfg(windows)]
+#[cfg_attr(docsrs, doc(cfg(windows)))]
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
 #[doc(alias = "GdkWin32MessageFilterReturn")]
@@ -16,6 +18,7 @@ pub enum Win32MessageFilterReturn {
     __Unknown(i32),
 }
 
+#[cfg(windows)]
 #[doc(hidden)]
 impl IntoGlib for Win32MessageFilterReturn {
     type GlibType = ffi::GdkWin32MessageFilterReturn;
@@ -30,6 +33,7 @@ impl IntoGlib for Win32MessageFilterReturn {
     }
 }
 
+#[cfg(windows)]
 #[doc(hidden)]
 impl FromGlib<ffi::GdkWin32MessageFilterReturn> for Win32MessageFilterReturn {
     #[inline]
