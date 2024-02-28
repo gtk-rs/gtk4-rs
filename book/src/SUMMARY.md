@@ -21,6 +21,7 @@
 - [Composite Templates](composite_templates.md)
 - [Building a Simple To-Do App](todo_1.md)
 - [Actions](actions.md)
+- [Accessibility](accessibility.md)
 - [Manipulating State of To-Do App](todo_2.md)
 - [CSS](css.md)
 - [Libadwaita](libadwaita.md)
