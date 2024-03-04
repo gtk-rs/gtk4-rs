@@ -135,7 +135,7 @@ checksum = "a2bd12c1caf447e69cd4528f47f94d203fd2582878ecb9e9465484c4148a8223"
 [[package]]
 name = "cairo-rs"
 version = "0.20.0"
-source = "git+https://github.com/gtk-rs/gtk-rs-core?branch=master#90fc2033d4824e1c80a575d03b3c164e9901faf8"
+source = "git+https://github.com/gtk-rs/gtk-rs-core?branch=master#8e5054e4daea31be1fe2843d4003a00ccc8b6451"
 dependencies = [
  "bitflags 2.4.2",
  "cairo-sys-rs",
@@ -147,7 +147,7 @@ dependencies = [
 [[package]]
 name = "cairo-sys-rs"
 version = "0.20.0"
-source = "git+https://github.com/gtk-rs/gtk-rs-core?branch=master#90fc2033d4824e1c80a575d03b3c164e9901faf8"
+source = "git+https://github.com/gtk-rs/gtk-rs-core?branch=master#8e5054e4daea31be1fe2843d4003a00ccc8b6451"
 dependencies = [
  "glib-sys",
  "libc",
@@ -395,7 +395,7 @@ checksum = "87750cf4b7a4c0625b1529e4c543c2182106e4dedc60a2a6455e00d212c489ac"
 dependencies = [
  "proc-macro2",
  "quote",
- "syn 2.0.48",
+ "syn 2.0.52",
 ]
 
 [[package]]
@@ -427,7 +427,7 @@ dependencies = [
 [[package]]
 name = "gdk-pixbuf"
 version = "0.20.0"
-source = "git+https://github.com/gtk-rs/gtk-rs-core?branch=master#90fc2033d4824e1c80a575d03b3c164e9901faf8"
+source = "git+https://github.com/gtk-rs/gtk-rs-core?branch=master#8e5054e4daea31be1fe2843d4003a00ccc8b6451"
 dependencies = [
  "gdk-pixbuf-sys",
  "gio",
@@ -438,7 +438,7 @@ dependencies = [
 [[package]]
 name = "gdk-pixbuf-sys"
 version = "0.20.0"
-source = "git+https://github.com/gtk-rs/gtk-rs-core?branch=master#90fc2033d4824e1c80a575d03b3c164e9901faf8"
+source = "git+https://github.com/gtk-rs/gtk-rs-core?branch=master#8e5054e4daea31be1fe2843d4003a00ccc8b6451"
 dependencies = [
  "gio-sys",
  "glib-sys",
@@ -596,7 +596,7 @@ checksum = "4271d37baee1b8c7e4b708028c57d816cf9d2434acb33a549475f78c181f6253"
 [[package]]
 name = "gio"
 version = "0.20.0"
-source = "git+https://github.com/gtk-rs/gtk-rs-core?branch=master#90fc2033d4824e1c80a575d03b3c164e9901faf8"
+source = "git+https://github.com/gtk-rs/gtk-rs-core?branch=master#8e5054e4daea31be1fe2843d4003a00ccc8b6451"
 dependencies = [
  "futures-channel",
  "futures-core",
@@ -613,7 +613,7 @@ dependencies = [
 [[package]]
 name = "gio-sys"
 version = "0.20.0"
-source = "git+https://github.com/gtk-rs/gtk-rs-core?branch=master#90fc2033d4824e1c80a575d03b3c164e9901faf8"
+source = "git+https://github.com/gtk-rs/gtk-rs-core?branch=master#8e5054e4daea31be1fe2843d4003a00ccc8b6451"
 dependencies = [
  "glib-sys",
  "gobject-sys",
@@ -662,7 +662,7 @@ dependencies = [
 [[package]]
 name = "glib"
 version = "0.20.0"
-source = "git+https://github.com/gtk-rs/gtk-rs-core?branch=master#90fc2033d4824e1c80a575d03b3c164e9901faf8"
+source = "git+https://github.com/gtk-rs/gtk-rs-core?branch=master#8e5054e4daea31be1fe2843d4003a00ccc8b6451"
 dependencies = [
  "bitflags 2.4.2",
  "futures-channel",
@@ -683,19 +683,19 @@ dependencies = [
 [[package]]
 name = "glib-macros"
 version = "0.20.0"
-source = "git+https://github.com/gtk-rs/gtk-rs-core?branch=master#90fc2033d4824e1c80a575d03b3c164e9901faf8"
+source = "git+https://github.com/gtk-rs/gtk-rs-core?branch=master#8e5054e4daea31be1fe2843d4003a00ccc8b6451"
 dependencies = [
  "heck",
  "proc-macro-crate",
  "proc-macro2",
  "quote",
- "syn 2.0.48",
+ "syn 2.0.52",
 ]
 
 [[package]]
 name = "glib-sys"
 version = "0.20.0"
-source = "git+https://github.com/gtk-rs/gtk-rs-core?branch=master#90fc2033d4824e1c80a575d03b3c164e9901faf8"
+source = "git+https://github.com/gtk-rs/gtk-rs-core?branch=master#8e5054e4daea31be1fe2843d4003a00ccc8b6451"
 dependencies = [
  "libc",
  "system-deps",
@@ -737,7 +737,7 @@ dependencies = [
 [[package]]
 name = "gobject-sys"
 version = "0.20.0"
-source = "git+https://github.com/gtk-rs/gtk-rs-core?branch=master#90fc2033d4824e1c80a575d03b3c164e9901faf8"
+source = "git+https://github.com/gtk-rs/gtk-rs-core?branch=master#8e5054e4daea31be1fe2843d4003a00ccc8b6451"
 dependencies = [
  "glib-sys",
  "libc",
@@ -747,7 +747,7 @@ dependencies = [
 [[package]]
 name = "graphene-rs"
 version = "0.20.0"
-source = "git+https://github.com/gtk-rs/gtk-rs-core?branch=master#90fc2033d4824e1c80a575d03b3c164e9901faf8"
+source = "git+https://github.com/gtk-rs/gtk-rs-core?branch=master#8e5054e4daea31be1fe2843d4003a00ccc8b6451"
 dependencies = [
  "glib",
  "graphene-sys",
@@ -757,7 +757,7 @@ dependencies = [
 [[package]]
 name = "graphene-sys"
 version = "0.20.0"
-source = "git+https://github.com/gtk-rs/gtk-rs-core?branch=master#90fc2033d4824e1c80a575d03b3c164e9901faf8"
+source = "git+https://github.com/gtk-rs/gtk-rs-core?branch=master#8e5054e4daea31be1fe2843d4003a00ccc8b6451"
 dependencies = [
  "glib-sys",
  "libc",
@@ -1225,7 +1225,7 @@ checksum = "3fdb12b2476b595f9358c5161aa467c2438859caa136dec86c26fdd2efe17b92"
 [[package]]
 name = "pango"
 version = "0.20.0"
-source = "git+https://github.com/gtk-rs/gtk-rs-core?branch=master#90fc2033d4824e1c80a575d03b3c164e9901faf8"
+source = "git+https://github.com/gtk-rs/gtk-rs-core?branch=master#8e5054e4daea31be1fe2843d4003a00ccc8b6451"
 dependencies = [
  "gio",
  "glib",
@@ -1236,7 +1236,7 @@ dependencies = [
 [[package]]
 name = "pango-sys"
 version = "0.20.0"
-source = "git+https://github.com/gtk-rs/gtk-rs-core?branch=master#90fc2033d4824e1c80a575d03b3c164e9901faf8"
+source = "git+https://github.com/gtk-rs/gtk-rs-core?branch=master#8e5054e4daea31be1fe2843d4003a00ccc8b6451"
 dependencies = [
  "glib-sys",
  "gobject-sys",
@@ -1571,7 +1571,7 @@ checksum = "33c85360c95e7d137454dc81d9a4ed2b8efd8fbe19cee57357b32b9771fccb67"
 dependencies = [
  "proc-macro2",
  "quote",
- "syn 2.0.48",
+ "syn 2.0.52",
 ]
 
 [[package]]
@@ -1694,9 +1694,9 @@ dependencies = [
 
 [[package]]
 name = "syn"
-version = "2.0.48"
+version = "2.0.52"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "0f3531638e407dfc0814761abb7c00a5b54992b849452a0646b7f65c9f770f3f"
+checksum = "b699d15b36d1f02c3e7c69f8ffef53de37aefae075d8488d4ba1a7788d574a07"
 dependencies = [
  "proc-macro2",
  "quote",
@@ -1793,7 +1793,7 @@ checksum = "fa0faa943b50f3db30a20aa7e265dbc66076993efed8463e8de414e5d06d3471"
 dependencies = [
  "proc-macro2",
  "quote",
- "syn 2.0.48",
+ "syn 2.0.52",
 ]
 
 [[package]]
@@ -1838,7 +1838,7 @@ checksum = "5b8a1e28f2deaa14e508979454cb3a223b10b938b45af148bc0986de36f1923b"
 dependencies = [
  "proc-macro2",
  "quote",
- "syn 2.0.48",
+ "syn 2.0.52",
 ]
 
 [[package]]
@@ -2073,7 +2073,7 @@ dependencies = [
  "once_cell",
  "proc-macro2",
  "quote",
- "syn 2.0.48",
+ "syn 2.0.52",
  "wasm-bindgen-shared",
 ]
 
@@ -2107,7 +2107,7 @@ checksum = "bae1abb6806dc1ad9e560ed242107c0f6c84335f1749dd4e8ddb012ebd5e25a7"
 dependencies = [
  "proc-macro2",
  "quote",
- "syn 2.0.48",
+ "syn 2.0.52",
  "wasm-bindgen-backend",
  "wasm-bindgen-shared",
 ]
