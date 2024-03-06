@@ -4,6 +4,190 @@
 
 use glib::GStr;
 
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+#[doc(alias = "GTK_ACCESSIBLE_ATTRIBUTE_BACKGROUND")]
+pub static ACCESSIBLE_ATTRIBUTE_BACKGROUND: &GStr =
+    unsafe { GStr::from_utf8_with_nul_unchecked(ffi::GTK_ACCESSIBLE_ATTRIBUTE_BACKGROUND) };
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+#[doc(alias = "GTK_ACCESSIBLE_ATTRIBUTE_FAMILY")]
+pub static ACCESSIBLE_ATTRIBUTE_FAMILY: &GStr =
+    unsafe { GStr::from_utf8_with_nul_unchecked(ffi::GTK_ACCESSIBLE_ATTRIBUTE_FAMILY) };
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+#[doc(alias = "GTK_ACCESSIBLE_ATTRIBUTE_FOREGROUND")]
+pub static ACCESSIBLE_ATTRIBUTE_FOREGROUND: &GStr =
+    unsafe { GStr::from_utf8_with_nul_unchecked(ffi::GTK_ACCESSIBLE_ATTRIBUTE_FOREGROUND) };
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+#[doc(alias = "GTK_ACCESSIBLE_ATTRIBUTE_OVERLINE")]
+pub static ACCESSIBLE_ATTRIBUTE_OVERLINE: &GStr =
+    unsafe { GStr::from_utf8_with_nul_unchecked(ffi::GTK_ACCESSIBLE_ATTRIBUTE_OVERLINE) };
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+#[doc(alias = "GTK_ACCESSIBLE_ATTRIBUTE_OVERLINE_NONE")]
+pub static ACCESSIBLE_ATTRIBUTE_OVERLINE_NONE: &GStr =
+    unsafe { GStr::from_utf8_with_nul_unchecked(ffi::GTK_ACCESSIBLE_ATTRIBUTE_OVERLINE_NONE) };
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+#[doc(alias = "GTK_ACCESSIBLE_ATTRIBUTE_OVERLINE_SINGLE")]
+pub static ACCESSIBLE_ATTRIBUTE_OVERLINE_SINGLE: &GStr =
+    unsafe { GStr::from_utf8_with_nul_unchecked(ffi::GTK_ACCESSIBLE_ATTRIBUTE_OVERLINE_SINGLE) };
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+#[doc(alias = "GTK_ACCESSIBLE_ATTRIBUTE_SIZE")]
+pub static ACCESSIBLE_ATTRIBUTE_SIZE: &GStr =
+    unsafe { GStr::from_utf8_with_nul_unchecked(ffi::GTK_ACCESSIBLE_ATTRIBUTE_SIZE) };
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+#[doc(alias = "GTK_ACCESSIBLE_ATTRIBUTE_STRETCH")]
+pub static ACCESSIBLE_ATTRIBUTE_STRETCH: &GStr =
+    unsafe { GStr::from_utf8_with_nul_unchecked(ffi::GTK_ACCESSIBLE_ATTRIBUTE_STRETCH) };
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+#[doc(alias = "GTK_ACCESSIBLE_ATTRIBUTE_STRETCH_CONDENSED")]
+pub static ACCESSIBLE_ATTRIBUTE_STRETCH_CONDENSED: &GStr =
+    unsafe { GStr::from_utf8_with_nul_unchecked(ffi::GTK_ACCESSIBLE_ATTRIBUTE_STRETCH_CONDENSED) };
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+#[doc(alias = "GTK_ACCESSIBLE_ATTRIBUTE_STRETCH_EXPANDED")]
+pub static ACCESSIBLE_ATTRIBUTE_STRETCH_EXPANDED: &GStr =
+    unsafe { GStr::from_utf8_with_nul_unchecked(ffi::GTK_ACCESSIBLE_ATTRIBUTE_STRETCH_EXPANDED) };
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+#[doc(alias = "GTK_ACCESSIBLE_ATTRIBUTE_STRETCH_EXTRA_CONDENSED")]
+pub static ACCESSIBLE_ATTRIBUTE_STRETCH_EXTRA_CONDENSED: &GStr = unsafe {
+    GStr::from_utf8_with_nul_unchecked(ffi::GTK_ACCESSIBLE_ATTRIBUTE_STRETCH_EXTRA_CONDENSED)
+};
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+#[doc(alias = "GTK_ACCESSIBLE_ATTRIBUTE_STRETCH_EXTRA_EXPANDED")]
+pub static ACCESSIBLE_ATTRIBUTE_STRETCH_EXTRA_EXPANDED: &GStr = unsafe {
+    GStr::from_utf8_with_nul_unchecked(ffi::GTK_ACCESSIBLE_ATTRIBUTE_STRETCH_EXTRA_EXPANDED)
+};
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+#[doc(alias = "GTK_ACCESSIBLE_ATTRIBUTE_STRETCH_NORMAL")]
+pub static ACCESSIBLE_ATTRIBUTE_STRETCH_NORMAL: &GStr =
+    unsafe { GStr::from_utf8_with_nul_unchecked(ffi::GTK_ACCESSIBLE_ATTRIBUTE_STRETCH_NORMAL) };
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+#[doc(alias = "GTK_ACCESSIBLE_ATTRIBUTE_STRETCH_SEMI_CONDENSED")]
+pub static ACCESSIBLE_ATTRIBUTE_STRETCH_SEMI_CONDENSED: &GStr = unsafe {
+    GStr::from_utf8_with_nul_unchecked(ffi::GTK_ACCESSIBLE_ATTRIBUTE_STRETCH_SEMI_CONDENSED)
+};
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+#[doc(alias = "GTK_ACCESSIBLE_ATTRIBUTE_STRETCH_SEMI_EXPANDED")]
+pub static ACCESSIBLE_ATTRIBUTE_STRETCH_SEMI_EXPANDED: &GStr = unsafe {
+    GStr::from_utf8_with_nul_unchecked(ffi::GTK_ACCESSIBLE_ATTRIBUTE_STRETCH_SEMI_EXPANDED)
+};
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+#[doc(alias = "GTK_ACCESSIBLE_ATTRIBUTE_STRETCH_ULTRA_CONDENSED")]
+pub static ACCESSIBLE_ATTRIBUTE_STRETCH_ULTRA_CONDENSED: &GStr = unsafe {
+    GStr::from_utf8_with_nul_unchecked(ffi::GTK_ACCESSIBLE_ATTRIBUTE_STRETCH_ULTRA_CONDENSED)
+};
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+#[doc(alias = "GTK_ACCESSIBLE_ATTRIBUTE_STRETCH_ULTRA_EXPANDED")]
+pub static ACCESSIBLE_ATTRIBUTE_STRETCH_ULTRA_EXPANDED: &GStr = unsafe {
+    GStr::from_utf8_with_nul_unchecked(ffi::GTK_ACCESSIBLE_ATTRIBUTE_STRETCH_ULTRA_EXPANDED)
+};
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+#[doc(alias = "GTK_ACCESSIBLE_ATTRIBUTE_STRIKETHROUGH")]
+pub static ACCESSIBLE_ATTRIBUTE_STRIKETHROUGH: &GStr =
+    unsafe { GStr::from_utf8_with_nul_unchecked(ffi::GTK_ACCESSIBLE_ATTRIBUTE_STRIKETHROUGH) };
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+#[doc(alias = "GTK_ACCESSIBLE_ATTRIBUTE_STYLE")]
+pub static ACCESSIBLE_ATTRIBUTE_STYLE: &GStr =
+    unsafe { GStr::from_utf8_with_nul_unchecked(ffi::GTK_ACCESSIBLE_ATTRIBUTE_STYLE) };
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+#[doc(alias = "GTK_ACCESSIBLE_ATTRIBUTE_STYLE_ITALIC")]
+pub static ACCESSIBLE_ATTRIBUTE_STYLE_ITALIC: &GStr =
+    unsafe { GStr::from_utf8_with_nul_unchecked(ffi::GTK_ACCESSIBLE_ATTRIBUTE_STYLE_ITALIC) };
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+#[doc(alias = "GTK_ACCESSIBLE_ATTRIBUTE_STYLE_NORMAL")]
+pub static ACCESSIBLE_ATTRIBUTE_STYLE_NORMAL: &GStr =
+    unsafe { GStr::from_utf8_with_nul_unchecked(ffi::GTK_ACCESSIBLE_ATTRIBUTE_STYLE_NORMAL) };
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+#[doc(alias = "GTK_ACCESSIBLE_ATTRIBUTE_STYLE_OBLIQUE")]
+pub static ACCESSIBLE_ATTRIBUTE_STYLE_OBLIQUE: &GStr =
+    unsafe { GStr::from_utf8_with_nul_unchecked(ffi::GTK_ACCESSIBLE_ATTRIBUTE_STYLE_OBLIQUE) };
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+#[doc(alias = "GTK_ACCESSIBLE_ATTRIBUTE_UNDERLINE")]
+pub static ACCESSIBLE_ATTRIBUTE_UNDERLINE: &GStr =
+    unsafe { GStr::from_utf8_with_nul_unchecked(ffi::GTK_ACCESSIBLE_ATTRIBUTE_UNDERLINE) };
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+#[doc(alias = "GTK_ACCESSIBLE_ATTRIBUTE_UNDERLINE_DOUBLE")]
+pub static ACCESSIBLE_ATTRIBUTE_UNDERLINE_DOUBLE: &GStr =
+    unsafe { GStr::from_utf8_with_nul_unchecked(ffi::GTK_ACCESSIBLE_ATTRIBUTE_UNDERLINE_DOUBLE) };
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+#[doc(alias = "GTK_ACCESSIBLE_ATTRIBUTE_UNDERLINE_ERROR")]
+pub static ACCESSIBLE_ATTRIBUTE_UNDERLINE_ERROR: &GStr =
+    unsafe { GStr::from_utf8_with_nul_unchecked(ffi::GTK_ACCESSIBLE_ATTRIBUTE_UNDERLINE_ERROR) };
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+#[doc(alias = "GTK_ACCESSIBLE_ATTRIBUTE_UNDERLINE_NONE")]
+pub static ACCESSIBLE_ATTRIBUTE_UNDERLINE_NONE: &GStr =
+    unsafe { GStr::from_utf8_with_nul_unchecked(ffi::GTK_ACCESSIBLE_ATTRIBUTE_UNDERLINE_NONE) };
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+#[doc(alias = "GTK_ACCESSIBLE_ATTRIBUTE_UNDERLINE_SINGLE")]
+pub static ACCESSIBLE_ATTRIBUTE_UNDERLINE_SINGLE: &GStr =
+    unsafe { GStr::from_utf8_with_nul_unchecked(ffi::GTK_ACCESSIBLE_ATTRIBUTE_UNDERLINE_SINGLE) };
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+#[doc(alias = "GTK_ACCESSIBLE_ATTRIBUTE_VARIANT")]
+pub static ACCESSIBLE_ATTRIBUTE_VARIANT: &GStr =
+    unsafe { GStr::from_utf8_with_nul_unchecked(ffi::GTK_ACCESSIBLE_ATTRIBUTE_VARIANT) };
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+#[doc(alias = "GTK_ACCESSIBLE_ATTRIBUTE_VARIANT_ALL_PETITE_CAPS")]
+pub static ACCESSIBLE_ATTRIBUTE_VARIANT_ALL_PETITE_CAPS: &GStr = unsafe {
+    GStr::from_utf8_with_nul_unchecked(ffi::GTK_ACCESSIBLE_ATTRIBUTE_VARIANT_ALL_PETITE_CAPS)
+};
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+#[doc(alias = "GTK_ACCESSIBLE_ATTRIBUTE_VARIANT_ALL_SMALL_CAPS")]
+pub static ACCESSIBLE_ATTRIBUTE_VARIANT_ALL_SMALL_CAPS: &GStr = unsafe {
+    GStr::from_utf8_with_nul_unchecked(ffi::GTK_ACCESSIBLE_ATTRIBUTE_VARIANT_ALL_SMALL_CAPS)
+};
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+#[doc(alias = "GTK_ACCESSIBLE_ATTRIBUTE_VARIANT_PETITE_CAPS")]
+pub static ACCESSIBLE_ATTRIBUTE_VARIANT_PETITE_CAPS: &GStr = unsafe {
+    GStr::from_utf8_with_nul_unchecked(ffi::GTK_ACCESSIBLE_ATTRIBUTE_VARIANT_PETITE_CAPS)
+};
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+#[doc(alias = "GTK_ACCESSIBLE_ATTRIBUTE_VARIANT_SMALL_CAPS")]
+pub static ACCESSIBLE_ATTRIBUTE_VARIANT_SMALL_CAPS: &GStr =
+    unsafe { GStr::from_utf8_with_nul_unchecked(ffi::GTK_ACCESSIBLE_ATTRIBUTE_VARIANT_SMALL_CAPS) };
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+#[doc(alias = "GTK_ACCESSIBLE_ATTRIBUTE_VARIANT_TITLE_CAPS")]
+pub static ACCESSIBLE_ATTRIBUTE_VARIANT_TITLE_CAPS: &GStr =
+    unsafe { GStr::from_utf8_with_nul_unchecked(ffi::GTK_ACCESSIBLE_ATTRIBUTE_VARIANT_TITLE_CAPS) };
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+#[doc(alias = "GTK_ACCESSIBLE_ATTRIBUTE_VARIANT_UNICASE")]
+pub static ACCESSIBLE_ATTRIBUTE_VARIANT_UNICASE: &GStr =
+    unsafe { GStr::from_utf8_with_nul_unchecked(ffi::GTK_ACCESSIBLE_ATTRIBUTE_VARIANT_UNICASE) };
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+#[doc(alias = "GTK_ACCESSIBLE_ATTRIBUTE_WEIGHT")]
+pub static ACCESSIBLE_ATTRIBUTE_WEIGHT: &GStr =
+    unsafe { GStr::from_utf8_with_nul_unchecked(ffi::GTK_ACCESSIBLE_ATTRIBUTE_WEIGHT) };
 #[doc(alias = "GTK_IM_MODULE_EXTENSION_POINT_NAME")]
 pub static IM_MODULE_EXTENSION_POINT_NAME: &GStr =
     unsafe { GStr::from_utf8_with_nul_unchecked(ffi::GTK_IM_MODULE_EXTENSION_POINT_NAME) };
