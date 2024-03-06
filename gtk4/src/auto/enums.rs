@@ -4,6 +4,124 @@
 
 use glib::{prelude::*, translate::*};
 
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
+#[doc(alias = "GtkAccessibleAnnouncementPriority")]
+pub enum AccessibleAnnouncementPriority {
+    #[doc(alias = "GTK_ACCESSIBLE_ANNOUNCEMENT_PRIORITY_LOW")]
+    Low,
+    #[doc(alias = "GTK_ACCESSIBLE_ANNOUNCEMENT_PRIORITY_MEDIUM")]
+    Medium,
+    #[doc(alias = "GTK_ACCESSIBLE_ANNOUNCEMENT_PRIORITY_HIGH")]
+    High,
+    #[doc(hidden)]
+    __Unknown(i32),
+}
+
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+#[doc(hidden)]
+impl IntoGlib for AccessibleAnnouncementPriority {
+    type GlibType = ffi::GtkAccessibleAnnouncementPriority;
+
+    #[inline]
+    fn into_glib(self) -> ffi::GtkAccessibleAnnouncementPriority {
+        match self {
+            Self::Low => ffi::GTK_ACCESSIBLE_ANNOUNCEMENT_PRIORITY_LOW,
+            Self::Medium => ffi::GTK_ACCESSIBLE_ANNOUNCEMENT_PRIORITY_MEDIUM,
+            Self::High => ffi::GTK_ACCESSIBLE_ANNOUNCEMENT_PRIORITY_HIGH,
+            Self::__Unknown(value) => value,
+        }
+    }
+}
+
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+#[doc(hidden)]
+impl FromGlib<ffi::GtkAccessibleAnnouncementPriority> for AccessibleAnnouncementPriority {
+    #[inline]
+    unsafe fn from_glib(value: ffi::GtkAccessibleAnnouncementPriority) -> Self {
+        skip_assert_initialized!();
+
+        match value {
+            ffi::GTK_ACCESSIBLE_ANNOUNCEMENT_PRIORITY_LOW => Self::Low,
+            ffi::GTK_ACCESSIBLE_ANNOUNCEMENT_PRIORITY_MEDIUM => Self::Medium,
+            ffi::GTK_ACCESSIBLE_ANNOUNCEMENT_PRIORITY_HIGH => Self::High,
+            value => Self::__Unknown(value),
+        }
+    }
+}
+
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+impl StaticType for AccessibleAnnouncementPriority {
+    #[inline]
+    #[doc(alias = "gtk_accessible_announcement_priority_get_type")]
+    fn static_type() -> glib::Type {
+        unsafe { from_glib(ffi::gtk_accessible_announcement_priority_get_type()) }
+    }
+}
+
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+impl glib::HasParamSpec for AccessibleAnnouncementPriority {
+    type ParamSpec = glib::ParamSpecEnum;
+    type SetValue = Self;
+    type BuilderFn = fn(&str, Self) -> glib::ParamSpecEnumBuilder<Self>;
+
+    fn param_spec_builder() -> Self::BuilderFn {
+        Self::ParamSpec::builder_with_default
+    }
+}
+
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+impl glib::value::ValueType for AccessibleAnnouncementPriority {
+    type Type = Self;
+}
+
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+unsafe impl<'a> glib::value::FromValue<'a> for AccessibleAnnouncementPriority {
+    type Checker = glib::value::GenericValueTypeChecker<Self>;
+
+    #[inline]
+    unsafe fn from_value(value: &'a glib::Value) -> Self {
+        skip_assert_initialized!();
+        from_glib(glib::gobject_ffi::g_value_get_enum(value.to_glib_none().0))
+    }
+}
+
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+impl ToValue for AccessibleAnnouncementPriority {
+    #[inline]
+    fn to_value(&self) -> glib::Value {
+        let mut value = glib::Value::for_value_type::<Self>();
+        unsafe {
+            glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.into_glib());
+        }
+        value
+    }
+
+    #[inline]
+    fn value_type(&self) -> glib::Type {
+        Self::static_type()
+    }
+}
+
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+impl From<AccessibleAnnouncementPriority> for glib::Value {
+    #[inline]
+    fn from(v: AccessibleAnnouncementPriority) -> Self {
+        skip_assert_initialized!();
+        ToValue::to_value(&v)
+    }
+}
+
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
 #[doc(alias = "GtkAccessibleAutocomplete")]
