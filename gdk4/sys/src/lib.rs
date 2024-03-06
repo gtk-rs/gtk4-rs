@@ -160,29 +160,75 @@ pub const GDK_MEMORY_R8G8B8A8: GdkMemoryFormat = 5;
 pub const GDK_MEMORY_A8B8G8R8: GdkMemoryFormat = 6;
 pub const GDK_MEMORY_R8G8B8: GdkMemoryFormat = 7;
 pub const GDK_MEMORY_B8G8R8: GdkMemoryFormat = 8;
+#[cfg(feature = "v4_6")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
 pub const GDK_MEMORY_R16G16B16: GdkMemoryFormat = 9;
+#[cfg(feature = "v4_6")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
 pub const GDK_MEMORY_R16G16B16A16_PREMULTIPLIED: GdkMemoryFormat = 10;
+#[cfg(feature = "v4_6")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
 pub const GDK_MEMORY_R16G16B16A16: GdkMemoryFormat = 11;
+#[cfg(feature = "v4_6")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
 pub const GDK_MEMORY_R16G16B16_FLOAT: GdkMemoryFormat = 12;
+#[cfg(feature = "v4_6")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
 pub const GDK_MEMORY_R16G16B16A16_FLOAT_PREMULTIPLIED: GdkMemoryFormat = 13;
+#[cfg(feature = "v4_6")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
 pub const GDK_MEMORY_R16G16B16A16_FLOAT: GdkMemoryFormat = 14;
 pub const GDK_MEMORY_R32G32B32_FLOAT: GdkMemoryFormat = 15;
+#[cfg(feature = "v4_6")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
 pub const GDK_MEMORY_R32G32B32A32_FLOAT_PREMULTIPLIED: GdkMemoryFormat = 16;
+#[cfg(feature = "v4_6")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_6")))]
 pub const GDK_MEMORY_R32G32B32A32_FLOAT: GdkMemoryFormat = 17;
+#[cfg(feature = "v4_12")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
 pub const GDK_MEMORY_G8A8_PREMULTIPLIED: GdkMemoryFormat = 18;
+#[cfg(feature = "v4_12")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
 pub const GDK_MEMORY_G8A8: GdkMemoryFormat = 19;
+#[cfg(feature = "v4_12")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
 pub const GDK_MEMORY_G8: GdkMemoryFormat = 20;
+#[cfg(feature = "v4_12")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
 pub const GDK_MEMORY_G16A16_PREMULTIPLIED: GdkMemoryFormat = 21;
+#[cfg(feature = "v4_12")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
 pub const GDK_MEMORY_G16A16: GdkMemoryFormat = 22;
+#[cfg(feature = "v4_12")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
 pub const GDK_MEMORY_G16: GdkMemoryFormat = 23;
+#[cfg(feature = "v4_12")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
 pub const GDK_MEMORY_A8: GdkMemoryFormat = 24;
+#[cfg(feature = "v4_12")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
 pub const GDK_MEMORY_A16: GdkMemoryFormat = 25;
+#[cfg(feature = "v4_12")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
 pub const GDK_MEMORY_A16_FLOAT: GdkMemoryFormat = 26;
+#[cfg(feature = "v4_12")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
 pub const GDK_MEMORY_A32_FLOAT: GdkMemoryFormat = 27;
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
 pub const GDK_MEMORY_A8B8G8R8_PREMULTIPLIED: GdkMemoryFormat = 28;
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
 pub const GDK_MEMORY_B8G8R8X8: GdkMemoryFormat = 29;
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
 pub const GDK_MEMORY_X8R8G8B8: GdkMemoryFormat = 30;
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
 pub const GDK_MEMORY_R8G8B8X8: GdkMemoryFormat = 31;
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
 pub const GDK_MEMORY_X8B8G8R8: GdkMemoryFormat = 32;
 pub const GDK_MEMORY_N_FORMATS: GdkMemoryFormat = 33;
 
@@ -3904,6 +3950,12 @@ extern "C" {
         formats: *mut GdkDmabufFormats,
         fourcc: u32,
         modifier: u64,
+    ) -> gboolean;
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gdk_dmabuf_formats_equal(
+        formats1: *const GdkDmabufFormats,
+        formats2: *const GdkDmabufFormats,
     ) -> gboolean;
     #[cfg(feature = "v4_14")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]

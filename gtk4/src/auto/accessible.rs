@@ -32,6 +32,13 @@ mod sealed {
 }
 
 pub trait AccessibleExt: IsA<Accessible> + sealed::Sealed + 'static {
+    //#[cfg(feature = "v4_14")]
+    //#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    //#[doc(alias = "gtk_accessible_announce")]
+    //fn announce(&self, message: &str, priority: /*Ignored*/AccessibleAnnouncementPriority) {
+    //    unsafe { TODO: call ffi:gtk_accessible_announce() }
+    //}
+
     #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     #[doc(alias = "gtk_accessible_get_accessible_parent")]

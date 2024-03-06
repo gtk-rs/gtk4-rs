@@ -97,6 +97,14 @@ impl ApplicationBuilder {
         }
     }
 
+    #[cfg(feature = "gio_v2_80")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "gio_v2_80")))]
+    pub fn version(self, version: impl Into<glib::GString>) -> Self {
+        Self {
+            builder: self.builder.property("version", version.into()),
+        }
+    }
+
     // rustdoc-stripper-ignore-next
     /// Build the [`Application`].
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]

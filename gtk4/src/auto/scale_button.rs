@@ -93,6 +93,14 @@ impl ScaleButtonBuilder {
         }
     }
 
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn has_frame(self, has_frame: bool) -> Self {
+        Self {
+            builder: self.builder.property("has-frame", has_frame),
+        }
+    }
+
     pub fn icons(self, icons: impl Into<glib::StrV>) -> Self {
         Self {
             builder: self.builder.property("icons", icons.into()),
@@ -331,6 +339,18 @@ pub trait ScaleButtonExt: IsA<ScaleButton> + sealed::Sealed + 'static {
         }
     }
 
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    #[doc(alias = "gtk_scale_button_get_has_frame")]
+    #[doc(alias = "get_has_frame")]
+    fn has_frame(&self) -> bool {
+        unsafe {
+            from_glib(ffi::gtk_scale_button_get_has_frame(
+                self.as_ref().to_glib_none().0,
+            ))
+        }
+    }
+
     #[doc(alias = "gtk_scale_button_get_minus_button")]
     #[doc(alias = "get_minus_button")]
     fn minus_button(&self) -> Button {
@@ -373,6 +393,18 @@ pub trait ScaleButtonExt: IsA<ScaleButton> + sealed::Sealed + 'static {
             ffi::gtk_scale_button_set_adjustment(
                 self.as_ref().to_glib_none().0,
                 adjustment.as_ref().to_glib_none().0,
+            );
+        }
+    }
+
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    #[doc(alias = "gtk_scale_button_set_has_frame")]
+    fn set_has_frame(&self, has_frame: bool) {
+        unsafe {
+            ffi::gtk_scale_button_set_has_frame(
+                self.as_ref().to_glib_none().0,
+                has_frame.into_glib(),
             );
         }
     }
@@ -518,6 +550,34 @@ pub trait ScaleButtonExt: IsA<ScaleButton> + sealed::Sealed + 'static {
                 b"notify::adjustment\0".as_ptr() as *const _,
                 Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_adjustment_trampoline::<Self, F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    #[doc(alias = "has-frame")]
+    fn connect_has_frame_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_has_frame_trampoline<
+            P: IsA<ScaleButton>,
+            F: Fn(&P) + 'static,
+        >(
+            this: *mut ffi::GtkScaleButton,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(ScaleButton::from_glib_borrow(this).unsafe_cast_ref())
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::has-frame\0".as_ptr() as *const _,
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                    notify_has_frame_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
             )

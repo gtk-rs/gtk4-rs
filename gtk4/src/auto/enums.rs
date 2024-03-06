@@ -854,6 +854,10 @@ pub enum AccessibleRole {
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
     #[doc(alias = "GTK_ACCESSIBLE_ROLE_COMMENT")]
     Comment,
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    #[doc(alias = "GTK_ACCESSIBLE_ROLE_TERMINAL")]
+    Terminal,
     #[doc(hidden)]
     __Unknown(i32),
 }
@@ -954,6 +958,8 @@ impl IntoGlib for AccessibleRole {
             Self::Article => ffi::GTK_ACCESSIBLE_ROLE_ARTICLE,
             #[cfg(feature = "v4_14")]
             Self::Comment => ffi::GTK_ACCESSIBLE_ROLE_COMMENT,
+            #[cfg(feature = "v4_14")]
+            Self::Terminal => ffi::GTK_ACCESSIBLE_ROLE_TERMINAL,
             Self::__Unknown(value) => value,
         }
     }
@@ -1055,6 +1061,8 @@ impl FromGlib<ffi::GtkAccessibleRole> for AccessibleRole {
             ffi::GTK_ACCESSIBLE_ROLE_ARTICLE => Self::Article,
             #[cfg(feature = "v4_14")]
             ffi::GTK_ACCESSIBLE_ROLE_COMMENT => Self::Comment,
+            #[cfg(feature = "v4_14")]
+            ffi::GTK_ACCESSIBLE_ROLE_TERMINAL => Self::Terminal,
             value => Self::__Unknown(value),
         }
     }

@@ -49,6 +49,14 @@ impl Calendar {
         unsafe { from_glib_full(ffi::gtk_calendar_get_date(self.to_glib_none().0)) }
     }
 
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    #[doc(alias = "gtk_calendar_get_day")]
+    #[doc(alias = "get_day")]
+    pub fn day(&self) -> i32 {
+        unsafe { ffi::gtk_calendar_get_day(self.to_glib_none().0) }
+    }
+
     #[doc(alias = "gtk_calendar_get_day_is_marked")]
     #[doc(alias = "get_day_is_marked")]
     pub fn day_is_marked(&self, day: u32) -> bool {
@@ -58,6 +66,14 @@ impl Calendar {
                 day,
             ))
         }
+    }
+
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    #[doc(alias = "gtk_calendar_get_month")]
+    #[doc(alias = "get_month")]
+    pub fn month(&self) -> i32 {
+        unsafe { ffi::gtk_calendar_get_month(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gtk_calendar_get_show_day_names")]
@@ -82,6 +98,14 @@ impl Calendar {
         }
     }
 
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    #[doc(alias = "gtk_calendar_get_year")]
+    #[doc(alias = "get_year")]
+    pub fn year(&self) -> i32 {
+        unsafe { ffi::gtk_calendar_get_year(self.to_glib_none().0) }
+    }
+
     #[doc(alias = "gtk_calendar_mark_day")]
     pub fn mark_day(&self, day: u32) {
         unsafe {
@@ -93,6 +117,24 @@ impl Calendar {
     pub fn select_day(&self, date: &glib::DateTime) {
         unsafe {
             ffi::gtk_calendar_select_day(self.to_glib_none().0, date.to_glib_none().0);
+        }
+    }
+
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    #[doc(alias = "gtk_calendar_set_day")]
+    pub fn set_day(&self, day: i32) {
+        unsafe {
+            ffi::gtk_calendar_set_day(self.to_glib_none().0, day);
+        }
+    }
+
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    #[doc(alias = "gtk_calendar_set_month")]
+    pub fn set_month(&self, month: i32) {
+        unsafe {
+            ffi::gtk_calendar_set_month(self.to_glib_none().0, month);
         }
     }
 
@@ -117,6 +159,15 @@ impl Calendar {
         }
     }
 
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    #[doc(alias = "gtk_calendar_set_year")]
+    pub fn set_year(&self, year: i32) {
+        unsafe {
+            ffi::gtk_calendar_set_year(self.to_glib_none().0, year);
+        }
+    }
+
     #[doc(alias = "gtk_calendar_unmark_day")]
     pub fn unmark_day(&self, day: u32) {
         unsafe {
@@ -124,27 +175,27 @@ impl Calendar {
         }
     }
 
-    pub fn day(&self) -> i32 {
+    pub fn get_property_day(&self) -> i32 {
         ObjectExt::property(self, "day")
     }
 
-    pub fn set_day(&self, day: i32) {
+    pub fn set_property_day(&self, day: i32) {
         ObjectExt::set_property(self, "day", day)
     }
 
-    pub fn month(&self) -> i32 {
+    pub fn get_property_month(&self) -> i32 {
         ObjectExt::property(self, "month")
     }
 
-    pub fn set_month(&self, month: i32) {
+    pub fn set_property_month(&self, month: i32) {
         ObjectExt::set_property(self, "month", month)
     }
 
-    pub fn year(&self) -> i32 {
+    pub fn get_property_year(&self) -> i32 {
         ObjectExt::property(self, "year")
     }
 
-    pub fn set_year(&self, year: i32) {
+    pub fn set_property_year(&self, year: i32) {
         ObjectExt::set_property(self, "year", year)
     }
 
