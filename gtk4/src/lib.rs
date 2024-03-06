@@ -111,6 +111,7 @@ mod border;
 mod builder;
 mod builder_cscope;
 mod builder_rust_scope;
+mod calendar;
 mod callback_action;
 mod cell_area;
 mod cell_layout;

@@ -175,30 +175,6 @@ impl Calendar {
         }
     }
 
-    pub fn get_property_day(&self) -> i32 {
-        ObjectExt::property(self, "day")
-    }
-
-    pub fn set_property_day(&self, day: i32) {
-        ObjectExt::set_property(self, "day", day)
-    }
-
-    pub fn get_property_month(&self) -> i32 {
-        ObjectExt::property(self, "month")
-    }
-
-    pub fn set_property_month(&self, month: i32) {
-        ObjectExt::set_property(self, "month", month)
-    }
-
-    pub fn get_property_year(&self) -> i32 {
-        ObjectExt::property(self, "year")
-    }
-
-    pub fn set_property_year(&self, year: i32) {
-        ObjectExt::set_property(self, "year", year)
-    }
-
     #[doc(alias = "day-selected")]
     pub fn connect_day_selected<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn day_selected_trampoline<F: Fn(&Calendar) + 'static>(
