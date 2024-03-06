@@ -41,6 +41,7 @@ generate = [
     "Gsk.PathMeasure",
     "Gsk.PathOperation",
     "Gsk.RadialGradientNode",
+    "Gsk.RenderNodeType",
     "Gsk.RepeatingLinearGradientNode",
     "Gsk.RepeatingRadialGradientNode",
     "Gsk.RepeatNode",
@@ -207,13 +208,6 @@ status = "generate"
         [[object.function.parameter]]
         name = "cr"
         const = true
-
-[[object]]
-name = "Gsk.RenderNodeType"
-status = "generate"
-    [[object.member]]
-    pattern = "(fill|stroke)_node"
-    version = "4.14"
 
 [[object]]
 name = "Gsk.ShaderArgsBuilder"
