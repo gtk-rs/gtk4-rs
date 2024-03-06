@@ -35,7 +35,3 @@ status = "generate"
     name = "get_type"
     version = "4.2"
 
-[[object]]
-name = "Gtk.GraphicsOffloadEnabled"
-status = "generate"
-version = "4.14"

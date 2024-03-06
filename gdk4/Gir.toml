@@ -538,38 +538,8 @@ status = "generate"
 name = "Gdk.MemoryFormat"
 status = "generate"
     [[object.member]]
-    name = "r16g16b16"
-    version = "4.6"
-    [[object.member]]
-    name = "r16g16b16a16_premultiplied"
-    version = "4.6"
-    [[object.member]]
-    name = "r16g16b16a16"
-    version = "4.6"
-    [[object.member]]
-    name = "r16g16b16_float"
-    version = "4.6"
-    [[object.member]]
-    name = "r16g16b16a16_float_premultiplied"
-    version = "4.6"
-    [[object.member]]
-    name = "r16g16b16a16_float"
-    version = "4.6"
-    [[object.member]]
     name = "r32g32b32_float"
     version = "4.6"
-    [[object.member]]
-    name = "r32g32b32a32_float_premultiplied"
-    version = "4.6"
-    [[object.member]]
-    name = "r32g32b32a32_float"
-    version = "4.6"
-    [[object.member]]
-    pattern = "(g8a8_premultiplied|g8a8|g8|g16a16_premultiplied|g16a16|g16|a8|a16|a16_float|a32_float)"
-    version = "4.12"
-    [[object.member]]
-    pattern = "(a8b8g8r8_premultiplied|b8g8r8x8|x8r8g8b8|r8g8b8x8|x8b8g8r8)"
-    version = "4.14"
     [[object.member]]
     name = "n_formats"
     alias = true # not useful
