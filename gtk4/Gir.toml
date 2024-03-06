@@ -18,6 +18,7 @@ trust_return_value_nullability = true
 generate = [
     # "Gtk.RequestedSize", a record
     # "Gtk.PrintBackend", a record without a gtype
+    "Gtk.AccessibleAnnouncementPriority",
     "Gtk.AccessibleAutocomplete",
     "Gtk.AccessibleInvalidState",
     "Gtk.AccessiblePlatformState",

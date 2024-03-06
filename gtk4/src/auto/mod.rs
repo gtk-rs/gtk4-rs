@@ -1114,6 +1114,9 @@ mod tree_row_reference;
 pub use self::tree_row_reference::TreeRowReference;
 
 mod enums;
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+pub use self::enums::AccessibleAnnouncementPriority;
 pub use self::enums::AccessibleAutocomplete;
 pub use self::enums::AccessibleInvalidState;
 #[cfg(feature = "v4_10")]
