@@ -39,3 +39,9 @@ allow-git = [
 [[bans.skip]]
 name = "syn"
 version = "1.0"
+
+# proc-macro-crate depends on an older version of toml_edit
+# https://github.com/bkchr/proc-macro-crate/pull/50
+[[bans.skip]]
+name = "toml_edit"
+version = "0.21"
