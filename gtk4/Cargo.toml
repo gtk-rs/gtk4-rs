@@ -32,6 +32,7 @@ unsafe-assume-initialized = []
 # Versions from https://gitlab.gnome.org/GNOME/gnome-build-meta/-/tree/gnome-43/elements/sdk
 # gtk takes care of setting the versions of gsk and gdk
 # gio takes care of setting the version of glib
+gnome_46 = ["v4_14", "cairo-rs/v1_16", "pango/v1_52", "gdk-pixbuf/v2_42", "gio_v2_80"]
 gnome_45 = ["v4_12", "cairo-rs/v1_16", "pango/v1_52", "gdk-pixbuf/v2_42", "gio/v2_78"]
 gnome_44 = ["v4_10", "cairo-rs/v1_16", "gdk-pixbuf/v2_42", "gio/v2_76"]
 gnome_43 = ["v4_8", "cairo-rs/v1_16", "gdk-pixbuf/v2_42", "gio/v2_74"]
