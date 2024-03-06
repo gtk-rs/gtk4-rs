@@ -202,6 +202,13 @@ fn get_c_output(name: &str) -> Result<String, Box<dyn Error>> {
 
 const RUST_LAYOUTS: &[(&str, Layout)] = &[
     (
+        "GtkAccessibleAnnouncementPriority",
+        Layout {
+            size: size_of::<GtkAccessibleAnnouncementPriority>(),
+            alignment: align_of::<GtkAccessibleAnnouncementPriority>(),
+        },
+    ),
+    (
         "GtkAccessibleAutocomplete",
         Layout {
             size: size_of::<GtkAccessibleAutocomplete>(),
@@ -269,6 +276,34 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         Layout {
             size: size_of::<GtkAccessibleState>(),
             alignment: align_of::<GtkAccessibleState>(),
+        },
+    ),
+    (
+        "GtkAccessibleTextContentChange",
+        Layout {
+            size: size_of::<GtkAccessibleTextContentChange>(),
+            alignment: align_of::<GtkAccessibleTextContentChange>(),
+        },
+    ),
+    (
+        "GtkAccessibleTextGranularity",
+        Layout {
+            size: size_of::<GtkAccessibleTextGranularity>(),
+            alignment: align_of::<GtkAccessibleTextGranularity>(),
+        },
+    ),
+    (
+        "GtkAccessibleTextInterface",
+        Layout {
+            size: size_of::<GtkAccessibleTextInterface>(),
+            alignment: align_of::<GtkAccessibleTextInterface>(),
+        },
+    ),
+    (
+        "GtkAccessibleTextRange",
+        Layout {
+            size: size_of::<GtkAccessibleTextRange>(),
+            alignment: align_of::<GtkAccessibleTextRange>(),
         },
     ),
     (
@@ -2514,6 +2549,71 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
 ];
 
 const RUST_CONSTANTS: &[(&str, &str)] = &[
+    ("(gint) GTK_ACCESSIBLE_ANNOUNCEMENT_PRIORITY_HIGH", "2"),
+    ("(gint) GTK_ACCESSIBLE_ANNOUNCEMENT_PRIORITY_LOW", "0"),
+    ("(gint) GTK_ACCESSIBLE_ANNOUNCEMENT_PRIORITY_MEDIUM", "1"),
+    ("GTK_ACCESSIBLE_ATTRIBUTE_BACKGROUND", "bg-color"),
+    ("GTK_ACCESSIBLE_ATTRIBUTE_FAMILY", "family-name"),
+    ("GTK_ACCESSIBLE_ATTRIBUTE_FOREGROUND", "fg-color"),
+    ("GTK_ACCESSIBLE_ATTRIBUTE_OVERLINE", "overline"),
+    ("GTK_ACCESSIBLE_ATTRIBUTE_OVERLINE_NONE", "none"),
+    ("GTK_ACCESSIBLE_ATTRIBUTE_OVERLINE_SINGLE", "single"),
+    ("GTK_ACCESSIBLE_ATTRIBUTE_SIZE", "size"),
+    ("GTK_ACCESSIBLE_ATTRIBUTE_STRETCH", "stretch"),
+    ("GTK_ACCESSIBLE_ATTRIBUTE_STRETCH_CONDENSED", "condensed"),
+    ("GTK_ACCESSIBLE_ATTRIBUTE_STRETCH_EXPANDED", "expanded"),
+    (
+        "GTK_ACCESSIBLE_ATTRIBUTE_STRETCH_EXTRA_CONDENSED",
+        "extra_condensed",
+    ),
+    (
+        "GTK_ACCESSIBLE_ATTRIBUTE_STRETCH_EXTRA_EXPANDED",
+        "extra_expanded",
+    ),
+    ("GTK_ACCESSIBLE_ATTRIBUTE_STRETCH_NORMAL", "normal"),
+    (
+        "GTK_ACCESSIBLE_ATTRIBUTE_STRETCH_SEMI_CONDENSED",
+        "semi_condensed",
+    ),
+    (
+        "GTK_ACCESSIBLE_ATTRIBUTE_STRETCH_SEMI_EXPANDED",
+        "semi_expanded",
+    ),
+    (
+        "GTK_ACCESSIBLE_ATTRIBUTE_STRETCH_ULTRA_CONDENSED",
+        "ultra_condensed",
+    ),
+    (
+        "GTK_ACCESSIBLE_ATTRIBUTE_STRETCH_ULTRA_EXPANDED",
+        "ultra_expanded",
+    ),
+    ("GTK_ACCESSIBLE_ATTRIBUTE_STRIKETHROUGH", "strikethrough"),
+    ("GTK_ACCESSIBLE_ATTRIBUTE_STYLE", "style"),
+    ("GTK_ACCESSIBLE_ATTRIBUTE_STYLE_ITALIC", "italic"),
+    ("GTK_ACCESSIBLE_ATTRIBUTE_STYLE_NORMAL", "normal"),
+    ("GTK_ACCESSIBLE_ATTRIBUTE_STYLE_OBLIQUE", "oblique"),
+    ("GTK_ACCESSIBLE_ATTRIBUTE_UNDERLINE", "underline"),
+    ("GTK_ACCESSIBLE_ATTRIBUTE_UNDERLINE_DOUBLE", "double"),
+    ("GTK_ACCESSIBLE_ATTRIBUTE_UNDERLINE_ERROR", "error"),
+    ("GTK_ACCESSIBLE_ATTRIBUTE_UNDERLINE_NONE", "none"),
+    ("GTK_ACCESSIBLE_ATTRIBUTE_UNDERLINE_SINGLE", "single"),
+    ("GTK_ACCESSIBLE_ATTRIBUTE_VARIANT", "variant"),
+    (
+        "GTK_ACCESSIBLE_ATTRIBUTE_VARIANT_ALL_PETITE_CAPS",
+        "all-petite-caps",
+    ),
+    (
+        "GTK_ACCESSIBLE_ATTRIBUTE_VARIANT_ALL_SMALL_CAPS",
+        "all-small-caps",
+    ),
+    (
+        "GTK_ACCESSIBLE_ATTRIBUTE_VARIANT_PETITE_CAPS",
+        "petite-caps",
+    ),
+    ("GTK_ACCESSIBLE_ATTRIBUTE_VARIANT_SMALL_CAPS", "small-caps"),
+    ("GTK_ACCESSIBLE_ATTRIBUTE_VARIANT_TITLE_CAPS", "title-caps"),
+    ("GTK_ACCESSIBLE_ATTRIBUTE_VARIANT_UNICASE", "unicase"),
+    ("GTK_ACCESSIBLE_ATTRIBUTE_WEIGHT", "weight"),
     ("(gint) GTK_ACCESSIBLE_AUTOCOMPLETE_BOTH", "3"),
     ("(gint) GTK_ACCESSIBLE_AUTOCOMPLETE_INLINE", "1"),
     ("(gint) GTK_ACCESSIBLE_AUTOCOMPLETE_LIST", "2"),
@@ -2635,6 +2735,7 @@ const RUST_CONSTANTS: &[(&str, &str)] = &[
     ("(gint) GTK_ACCESSIBLE_ROLE_TABLE", "65"),
     ("(gint) GTK_ACCESSIBLE_ROLE_TAB_LIST", "66"),
     ("(gint) GTK_ACCESSIBLE_ROLE_TAB_PANEL", "67"),
+    ("(gint) GTK_ACCESSIBLE_ROLE_TERMINAL", "84"),
     ("(gint) GTK_ACCESSIBLE_ROLE_TEXT_BOX", "68"),
     ("(gint) GTK_ACCESSIBLE_ROLE_TIME", "69"),
     ("(gint) GTK_ACCESSIBLE_ROLE_TIMER", "70"),
@@ -2659,6 +2760,13 @@ const RUST_CONSTANTS: &[(&str, &str)] = &[
     ("(gint) GTK_ACCESSIBLE_STATE_PRESSED", "6"),
     ("(gint) GTK_ACCESSIBLE_STATE_SELECTED", "7"),
     ("(gint) GTK_ACCESSIBLE_STATE_VISITED", "8"),
+    ("(gint) GTK_ACCESSIBLE_TEXT_CONTENT_CHANGE_INSERT", "0"),
+    ("(gint) GTK_ACCESSIBLE_TEXT_CONTENT_CHANGE_REMOVE", "1"),
+    ("(gint) GTK_ACCESSIBLE_TEXT_GRANULARITY_CHARACTER", "0"),
+    ("(gint) GTK_ACCESSIBLE_TEXT_GRANULARITY_LINE", "3"),
+    ("(gint) GTK_ACCESSIBLE_TEXT_GRANULARITY_PARAGRAPH", "4"),
+    ("(gint) GTK_ACCESSIBLE_TEXT_GRANULARITY_SENTENCE", "2"),
+    ("(gint) GTK_ACCESSIBLE_TEXT_GRANULARITY_WORD", "1"),
     ("(gint) GTK_ACCESSIBLE_TRISTATE_FALSE", "0"),
     ("(gint) GTK_ACCESSIBLE_TRISTATE_MIXED", "2"),
     ("(gint) GTK_ACCESSIBLE_TRISTATE_TRUE", "1"),

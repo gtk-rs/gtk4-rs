@@ -129,6 +129,14 @@ impl VolumeButtonBuilder {
         }
     }
 
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn has_frame(self, has_frame: bool) -> Self {
+        Self {
+            builder: self.builder.property("has-frame", has_frame),
+        }
+    }
+
     pub fn icons(self, icons: impl Into<glib::StrV>) -> Self {
         Self {
             builder: self.builder.property("icons", icons.into()),

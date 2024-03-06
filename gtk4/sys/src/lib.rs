@@ -36,6 +36,11 @@ pub const GTK_ENTRY_BUFFER_MAX_SIZE: u16 = ::std::u16::MAX;
 pub type GtkAllocation = gdk::GdkRectangle;
 
 // Enums
+pub type GtkAccessibleAnnouncementPriority = c_int;
+pub const GTK_ACCESSIBLE_ANNOUNCEMENT_PRIORITY_LOW: GtkAccessibleAnnouncementPriority = 0;
+pub const GTK_ACCESSIBLE_ANNOUNCEMENT_PRIORITY_MEDIUM: GtkAccessibleAnnouncementPriority = 1;
+pub const GTK_ACCESSIBLE_ANNOUNCEMENT_PRIORITY_HIGH: GtkAccessibleAnnouncementPriority = 2;
+
 pub type GtkAccessibleAutocomplete = c_int;
 pub const GTK_ACCESSIBLE_AUTOCOMPLETE_NONE: GtkAccessibleAutocomplete = 0;
 pub const GTK_ACCESSIBLE_AUTOCOMPLETE_INLINE: GtkAccessibleAutocomplete = 1;
@@ -191,6 +196,9 @@ pub const GTK_ACCESSIBLE_ROLE_ARTICLE: GtkAccessibleRole = 82;
 #[cfg(feature = "v4_14")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
 pub const GTK_ACCESSIBLE_ROLE_COMMENT: GtkAccessibleRole = 83;
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+pub const GTK_ACCESSIBLE_ROLE_TERMINAL: GtkAccessibleRole = 84;
 
 pub type GtkAccessibleSort = c_int;
 pub const GTK_ACCESSIBLE_SORT_NONE: GtkAccessibleSort = 0;
@@ -210,6 +218,17 @@ pub const GTK_ACCESSIBLE_STATE_SELECTED: GtkAccessibleState = 7;
 #[cfg(feature = "v4_12")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
 pub const GTK_ACCESSIBLE_STATE_VISITED: GtkAccessibleState = 8;
+
+pub type GtkAccessibleTextContentChange = c_int;
+pub const GTK_ACCESSIBLE_TEXT_CONTENT_CHANGE_INSERT: GtkAccessibleTextContentChange = 0;
+pub const GTK_ACCESSIBLE_TEXT_CONTENT_CHANGE_REMOVE: GtkAccessibleTextContentChange = 1;
+
+pub type GtkAccessibleTextGranularity = c_int;
+pub const GTK_ACCESSIBLE_TEXT_GRANULARITY_CHARACTER: GtkAccessibleTextGranularity = 0;
+pub const GTK_ACCESSIBLE_TEXT_GRANULARITY_WORD: GtkAccessibleTextGranularity = 1;
+pub const GTK_ACCESSIBLE_TEXT_GRANULARITY_SENTENCE: GtkAccessibleTextGranularity = 2;
+pub const GTK_ACCESSIBLE_TEXT_GRANULARITY_LINE: GtkAccessibleTextGranularity = 3;
+pub const GTK_ACCESSIBLE_TEXT_GRANULARITY_PARAGRAPH: GtkAccessibleTextGranularity = 4;
 
 pub type GtkAccessibleTristate = c_int;
 pub const GTK_ACCESSIBLE_TRISTATE_FALSE: GtkAccessibleTristate = 0;
@@ -879,6 +898,41 @@ pub const GTK_WRAP_WORD: GtkWrapMode = 2;
 pub const GTK_WRAP_WORD_CHAR: GtkWrapMode = 3;
 
 // Constants
+pub const GTK_ACCESSIBLE_ATTRIBUTE_BACKGROUND: &[u8] = b"bg-color\0";
+pub const GTK_ACCESSIBLE_ATTRIBUTE_FAMILY: &[u8] = b"family-name\0";
+pub const GTK_ACCESSIBLE_ATTRIBUTE_FOREGROUND: &[u8] = b"fg-color\0";
+pub const GTK_ACCESSIBLE_ATTRIBUTE_OVERLINE: &[u8] = b"overline\0";
+pub const GTK_ACCESSIBLE_ATTRIBUTE_OVERLINE_NONE: &[u8] = b"none\0";
+pub const GTK_ACCESSIBLE_ATTRIBUTE_OVERLINE_SINGLE: &[u8] = b"single\0";
+pub const GTK_ACCESSIBLE_ATTRIBUTE_SIZE: &[u8] = b"size\0";
+pub const GTK_ACCESSIBLE_ATTRIBUTE_STRETCH: &[u8] = b"stretch\0";
+pub const GTK_ACCESSIBLE_ATTRIBUTE_STRETCH_CONDENSED: &[u8] = b"condensed\0";
+pub const GTK_ACCESSIBLE_ATTRIBUTE_STRETCH_EXPANDED: &[u8] = b"expanded\0";
+pub const GTK_ACCESSIBLE_ATTRIBUTE_STRETCH_EXTRA_CONDENSED: &[u8] = b"extra_condensed\0";
+pub const GTK_ACCESSIBLE_ATTRIBUTE_STRETCH_EXTRA_EXPANDED: &[u8] = b"extra_expanded\0";
+pub const GTK_ACCESSIBLE_ATTRIBUTE_STRETCH_NORMAL: &[u8] = b"normal\0";
+pub const GTK_ACCESSIBLE_ATTRIBUTE_STRETCH_SEMI_CONDENSED: &[u8] = b"semi_condensed\0";
+pub const GTK_ACCESSIBLE_ATTRIBUTE_STRETCH_SEMI_EXPANDED: &[u8] = b"semi_expanded\0";
+pub const GTK_ACCESSIBLE_ATTRIBUTE_STRETCH_ULTRA_CONDENSED: &[u8] = b"ultra_condensed\0";
+pub const GTK_ACCESSIBLE_ATTRIBUTE_STRETCH_ULTRA_EXPANDED: &[u8] = b"ultra_expanded\0";
+pub const GTK_ACCESSIBLE_ATTRIBUTE_STRIKETHROUGH: &[u8] = b"strikethrough\0";
+pub const GTK_ACCESSIBLE_ATTRIBUTE_STYLE: &[u8] = b"style\0";
+pub const GTK_ACCESSIBLE_ATTRIBUTE_STYLE_ITALIC: &[u8] = b"italic\0";
+pub const GTK_ACCESSIBLE_ATTRIBUTE_STYLE_NORMAL: &[u8] = b"normal\0";
+pub const GTK_ACCESSIBLE_ATTRIBUTE_STYLE_OBLIQUE: &[u8] = b"oblique\0";
+pub const GTK_ACCESSIBLE_ATTRIBUTE_UNDERLINE: &[u8] = b"underline\0";
+pub const GTK_ACCESSIBLE_ATTRIBUTE_UNDERLINE_DOUBLE: &[u8] = b"double\0";
+pub const GTK_ACCESSIBLE_ATTRIBUTE_UNDERLINE_ERROR: &[u8] = b"error\0";
+pub const GTK_ACCESSIBLE_ATTRIBUTE_UNDERLINE_NONE: &[u8] = b"none\0";
+pub const GTK_ACCESSIBLE_ATTRIBUTE_UNDERLINE_SINGLE: &[u8] = b"single\0";
+pub const GTK_ACCESSIBLE_ATTRIBUTE_VARIANT: &[u8] = b"variant\0";
+pub const GTK_ACCESSIBLE_ATTRIBUTE_VARIANT_ALL_PETITE_CAPS: &[u8] = b"all-petite-caps\0";
+pub const GTK_ACCESSIBLE_ATTRIBUTE_VARIANT_ALL_SMALL_CAPS: &[u8] = b"all-small-caps\0";
+pub const GTK_ACCESSIBLE_ATTRIBUTE_VARIANT_PETITE_CAPS: &[u8] = b"petite-caps\0";
+pub const GTK_ACCESSIBLE_ATTRIBUTE_VARIANT_SMALL_CAPS: &[u8] = b"small-caps\0";
+pub const GTK_ACCESSIBLE_ATTRIBUTE_VARIANT_TITLE_CAPS: &[u8] = b"title-caps\0";
+pub const GTK_ACCESSIBLE_ATTRIBUTE_VARIANT_UNICASE: &[u8] = b"unicase\0";
+pub const GTK_ACCESSIBLE_ATTRIBUTE_WEIGHT: &[u8] = b"weight\0";
 pub const GTK_ACCESSIBLE_VALUE_UNDEFINED: c_int = -1;
 pub const GTK_IM_MODULE_EXTENSION_POINT_NAME: &[u8] = b"gtk-im-module\0";
 pub const GTK_INPUT_ERROR: c_int = -1;
@@ -1032,6 +1086,8 @@ pub const GTK_PICK_INSENSITIVE: GtkPickFlags = 1;
 pub const GTK_PICK_NON_TARGETABLE: GtkPickFlags = 2;
 
 pub type GtkPopoverMenuFlags = c_uint;
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
 pub const GTK_POPOVER_MENU_SLIDING: GtkPopoverMenuFlags = 0;
 pub const GTK_POPOVER_MENU_NESTED: GtkPopoverMenuFlags = 1;
 
@@ -1322,6 +1378,69 @@ impl ::std::fmt::Debug for GtkAccessibleRangeInterface {
         f.debug_struct(&format!("GtkAccessibleRangeInterface @ {self:p}"))
             .field("g_iface", &self.g_iface)
             .field("set_current_value", &self.set_current_value)
+            .finish()
+    }
+}
+
+#[derive(Copy, Clone)]
+#[repr(C)]
+pub struct GtkAccessibleTextInterface {
+    pub g_iface: gobject::GTypeInterface,
+    pub get_contents:
+        Option<unsafe extern "C" fn(*mut GtkAccessibleText, c_uint, c_uint) -> *mut glib::GBytes>,
+    pub get_contents_at: Option<
+        unsafe extern "C" fn(
+            *mut GtkAccessibleText,
+            c_uint,
+            GtkAccessibleTextGranularity,
+            *mut c_uint,
+            *mut c_uint,
+        ) -> *mut glib::GBytes,
+    >,
+    pub get_caret_position: Option<unsafe extern "C" fn(*mut GtkAccessibleText) -> c_uint>,
+    pub get_selection: Option<
+        unsafe extern "C" fn(
+            *mut GtkAccessibleText,
+            *mut size_t,
+            *mut *mut GtkAccessibleTextRange,
+        ) -> gboolean,
+    >,
+    pub get_attributes: Option<
+        unsafe extern "C" fn(
+            *mut GtkAccessibleText,
+            c_uint,
+            *mut size_t,
+            *mut *mut GtkAccessibleTextRange,
+            *mut *mut *mut c_char,
+            *mut *mut *mut c_char,
+        ) -> gboolean,
+    >,
+}
+
+impl ::std::fmt::Debug for GtkAccessibleTextInterface {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("GtkAccessibleTextInterface @ {self:p}"))
+            .field("get_contents", &self.get_contents)
+            .field("get_contents_at", &self.get_contents_at)
+            .field("get_caret_position", &self.get_caret_position)
+            .field("get_selection", &self.get_selection)
+            .field("get_attributes", &self.get_attributes)
+            .finish()
+    }
+}
+
+#[derive(Copy, Clone)]
+#[repr(C)]
+pub struct GtkAccessibleTextRange {
+    pub start: size_t,
+    pub length: size_t,
+}
+
+impl ::std::fmt::Debug for GtkAccessibleTextRange {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("GtkAccessibleTextRange @ {self:p}"))
+            .field("start", &self.start)
+            .field("length", &self.length)
             .finish()
     }
 }
@@ -9024,6 +9143,18 @@ impl ::std::fmt::Debug for GtkAccessibleRange {
 }
 
 #[repr(C)]
+pub struct GtkAccessibleText {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
+
+impl ::std::fmt::Debug for GtkAccessibleText {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        write!(f, "GtkAccessibleText @ {self:p}")
+    }
+}
+
+#[repr(C)]
 pub struct GtkActionable {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -9327,6 +9458,13 @@ impl ::std::fmt::Debug for GtkTreeSortable {
 extern "C" {
 
     //=========================================================================
+    // GtkAccessibleAnnouncementPriority
+    //=========================================================================
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gtk_accessible_announcement_priority_get_type() -> GType;
+
+    //=========================================================================
     // GtkAccessibleAutocomplete
     //=========================================================================
     pub fn gtk_accessible_autocomplete_get_type() -> GType;
@@ -9376,6 +9514,20 @@ extern "C" {
     //=========================================================================
     pub fn gtk_accessible_state_get_type() -> GType;
     pub fn gtk_accessible_state_init_value(state: GtkAccessibleState, value: *mut gobject::GValue);
+
+    //=========================================================================
+    // GtkAccessibleTextContentChange
+    //=========================================================================
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gtk_accessible_text_content_change_get_type() -> GType;
+
+    //=========================================================================
+    // GtkAccessibleTextGranularity
+    //=========================================================================
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gtk_accessible_text_granularity_get_type() -> GType;
 
     //=========================================================================
     // GtkAccessibleTristate
@@ -9932,8 +10084,6 @@ extern "C" {
     //=========================================================================
     // GtkPopoverMenuFlags
     //=========================================================================
-    #[cfg(feature = "v4_14")]
-    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
     pub fn gtk_popover_menu_flags_get_type() -> GType;
 
     //=========================================================================
@@ -11413,15 +11563,33 @@ extern "C" {
     pub fn gtk_calendar_new() -> *mut GtkWidget;
     pub fn gtk_calendar_clear_marks(calendar: *mut GtkCalendar);
     pub fn gtk_calendar_get_date(self_: *mut GtkCalendar) -> *mut glib::GDateTime;
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gtk_calendar_get_day(self_: *mut GtkCalendar) -> c_int;
     pub fn gtk_calendar_get_day_is_marked(calendar: *mut GtkCalendar, day: c_uint) -> gboolean;
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gtk_calendar_get_month(self_: *mut GtkCalendar) -> c_int;
     pub fn gtk_calendar_get_show_day_names(self_: *mut GtkCalendar) -> gboolean;
     pub fn gtk_calendar_get_show_heading(self_: *mut GtkCalendar) -> gboolean;
     pub fn gtk_calendar_get_show_week_numbers(self_: *mut GtkCalendar) -> gboolean;
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gtk_calendar_get_year(self_: *mut GtkCalendar) -> c_int;
     pub fn gtk_calendar_mark_day(calendar: *mut GtkCalendar, day: c_uint);
     pub fn gtk_calendar_select_day(self_: *mut GtkCalendar, date: *mut glib::GDateTime);
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gtk_calendar_set_day(self_: *mut GtkCalendar, day: c_int);
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gtk_calendar_set_month(self_: *mut GtkCalendar, month: c_int);
     pub fn gtk_calendar_set_show_day_names(self_: *mut GtkCalendar, value: gboolean);
     pub fn gtk_calendar_set_show_heading(self_: *mut GtkCalendar, value: gboolean);
     pub fn gtk_calendar_set_show_week_numbers(self_: *mut GtkCalendar, value: gboolean);
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gtk_calendar_set_year(self_: *mut GtkCalendar, year: c_int);
     pub fn gtk_calendar_unmark_day(calendar: *mut GtkCalendar, day: c_uint);
 
     //=========================================================================
@@ -16064,8 +16232,6 @@ extern "C" {
     //=========================================================================
     pub fn gtk_popover_menu_get_type() -> GType;
     pub fn gtk_popover_menu_new_from_model(model: *mut gio::GMenuModel) -> *mut GtkWidget;
-    #[cfg(feature = "v4_14")]
-    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
     pub fn gtk_popover_menu_new_from_model_full(
         model: *mut gio::GMenuModel,
         flags: GtkPopoverMenuFlags,
@@ -16887,6 +17053,9 @@ extern "C" {
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_scale_button_get_active(button: *mut GtkScaleButton) -> gboolean;
     pub fn gtk_scale_button_get_adjustment(button: *mut GtkScaleButton) -> *mut GtkAdjustment;
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gtk_scale_button_get_has_frame(button: *mut GtkScaleButton) -> gboolean;
     pub fn gtk_scale_button_get_minus_button(button: *mut GtkScaleButton) -> *mut GtkButton;
     pub fn gtk_scale_button_get_plus_button(button: *mut GtkScaleButton) -> *mut GtkButton;
     pub fn gtk_scale_button_get_popup(button: *mut GtkScaleButton) -> *mut GtkWidget;
@@ -16895,6 +17064,9 @@ extern "C" {
         button: *mut GtkScaleButton,
         adjustment: *mut GtkAdjustment,
     );
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gtk_scale_button_set_has_frame(button: *mut GtkScaleButton, has_frame: gboolean);
     pub fn gtk_scale_button_set_icons(button: *mut GtkScaleButton, icons: *mut *const c_char);
     pub fn gtk_scale_button_set_value(button: *mut GtkScaleButton, value: c_double);
 
@@ -17040,6 +17212,12 @@ extern "C" {
     //=========================================================================
     pub fn gtk_search_entry_get_type() -> GType;
     pub fn gtk_search_entry_new() -> *mut GtkWidget;
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gtk_search_entry_get_input_hints(entry: *mut GtkSearchEntry) -> GtkInputHints;
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gtk_search_entry_get_input_purpose(entry: *mut GtkSearchEntry) -> GtkInputPurpose;
     pub fn gtk_search_entry_get_key_capture_widget(entry: *mut GtkSearchEntry) -> *mut GtkWidget;
     #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
@@ -17047,6 +17225,12 @@ extern "C" {
     #[cfg(feature = "v4_8")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_8")))]
     pub fn gtk_search_entry_get_search_delay(entry: *mut GtkSearchEntry) -> c_uint;
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gtk_search_entry_set_input_hints(entry: *mut GtkSearchEntry, hints: GtkInputHints);
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gtk_search_entry_set_input_purpose(entry: *mut GtkSearchEntry, purpose: GtkInputPurpose);
     pub fn gtk_search_entry_set_key_capture_widget(
         entry: *mut GtkSearchEntry,
         widget: *mut GtkWidget,
@@ -19821,6 +20005,13 @@ extern "C" {
     // GtkAccessible
     //=========================================================================
     pub fn gtk_accessible_get_type() -> GType;
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gtk_accessible_announce(
+        self_: *mut GtkAccessible,
+        message: *const c_char,
+        priority: GtkAccessibleAnnouncementPriority,
+    );
     #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_accessible_get_accessible_parent(self_: *mut GtkAccessible) -> *mut GtkAccessible;
@@ -19915,6 +20106,27 @@ extern "C" {
     #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     pub fn gtk_accessible_range_get_type() -> GType;
+
+    //=========================================================================
+    // GtkAccessibleText
+    //=========================================================================
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gtk_accessible_text_get_type() -> GType;
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gtk_accessible_text_update_caret_position(self_: *mut GtkAccessibleText);
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gtk_accessible_text_update_contents(
+        self_: *mut GtkAccessibleText,
+        change: GtkAccessibleTextContentChange,
+        start: c_uint,
+        end: c_uint,
+    );
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gtk_accessible_text_update_selection_bound(self_: *mut GtkAccessibleText);
 
     //=========================================================================
     // GtkActionable
