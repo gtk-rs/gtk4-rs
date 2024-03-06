@@ -707,6 +707,9 @@ status = "generate"
     [[object.function]]
     name = "get_day_is_marked"
     rename = "day_is_marked"
+    [[object.property]]
+    pattern = "(day|month|year)"
+    generate = ["notify"]
 
 [[object]]
 name = "Gtk.CallbackAction"
