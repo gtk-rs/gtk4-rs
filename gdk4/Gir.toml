@@ -26,7 +26,6 @@ generate = [
     "Gdk.DevicePadFeature",
     "Gdk.DeviceToolType",
     "Gdk.DmabufError",
-    "Gdk.DmabufFormats",
     "Gdk.DmabufTexture",
     "Gdk.DNDEvent",
     "Gdk.DragAction",
@@ -424,6 +423,15 @@ manual_traits = ["DisplayExtManual"]
 name = "Gdk.DisplayManager"
 status = "generate"
 generate_builder = false
+
+[[object]]
+name = "Gdk.DmabufFormats"
+status = "generate"
+    [[object.function]]
+    name = "equal"
+        [[object.function.parameter]]
+        name = "formats2"
+        nullable = false
 
 [[object]]
 name = "Gdk.DmabufTextureBuilder"

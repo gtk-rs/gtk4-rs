@@ -28,7 +28,7 @@ impl DmabufFormats {
     }
 
     #[doc(alias = "gdk_dmabuf_formats_equal")]
-    fn equal(&self, formats2: Option<&DmabufFormats>) -> bool {
+    fn equal(&self, formats2: &DmabufFormats) -> bool {
         unsafe {
             from_glib(ffi::gdk_dmabuf_formats_equal(
                 self.to_glib_none().0,
