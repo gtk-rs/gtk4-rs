@@ -42,11 +42,6 @@ repository = "https://github.com/gtk-rs/gtk4-rs"
 rust-version = "1.70"
 version = "0.8.0"
 
-[workspace.metadata.docs.rs]
-all-features = true
-rustc-args = ["--cfg", "docsrs"]
-rustdoc-args = ["--cfg", "docsrs", "--generate-link-to-definition"]
-
 [workspace.dependencies]
 cairo-sys-rs = {git = "https://github.com/gtk-rs/gtk-rs-core", version = "0.19", branch = "0.19"}
 cairo-rs = {git = "https://github.com/gtk-rs/gtk-rs-core", version = "0.19", branch = "0.19", features = ["use_glib"]}
