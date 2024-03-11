@@ -308,19 +308,19 @@ checksum = "25cbce373ec4653f1a01a31e8a5e5ec0c622dc27ff9c4e6606eefef5cbbed4a5"
 
 [[package]]
 name = "femtovg"
-version = "0.8.2"
+version = "0.9.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "18ab822e58e8bc2b89840dc5dde49afe39302e129c60d39c8520200c085404a7"
+checksum = "ad3cf7e8f8e3c684b418c2640c931afc8bbc7ebe547bed6bf64170f1f51d57c9"
 dependencies = [
  "bitflags 2.4.2",
  "fnv",
- "generational-arena",
  "glow",
  "imgref",
  "log",
  "lru",
  "rgb",
  "rustybuzz",
+ "slotmap",
  "unicode-bidi",
  "unicode-segmentation",
  "wasm-bindgen",
@@ -552,15 +552,6 @@ dependencies = [
  "shell-words",
  "system-deps",
  "tempfile",
-]
-
-[[package]]
-name = "generational-arena"
-version = "0.2.9"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "877e94aff08e743b651baaea359664321055749b398adff8740a7399af7796e7"
-dependencies = [
- "cfg-if",
 ]
 
 [[package]]
@@ -1504,11 +1495,11 @@ dependencies = [
 
 [[package]]
 name = "rustybuzz"
-version = "0.11.0"
+version = "0.13.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "2ee8fe2a8461a0854a37101fe7a1b13998d0cfa987e43248e81d2a5f4570f6fa"
+checksum = "88117946aa1bfb53c2ae0643ceac6506337f44887f8c9fbfb43587b1cc52ba49"
 dependencies = [
- "bitflags 1.3.2",
+ "bitflags 2.4.2",
  "bytemuck",
  "smallvec",
  "ttf-parser",
@@ -1974,15 +1965,15 @@ checksum = "08f95100a766bf4f8f28f90d77e0a5461bbdb219042e7679bebe79004fed8d75"
 
 [[package]]
 name = "unicode-bidi-mirroring"
-version = "0.1.0"
+version = "0.2.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "56d12260fb92d52f9008be7e4bca09f584780eb2266dc8fecc6a192bec561694"
+checksum = "23cb788ffebc92c5948d0e997106233eeb1d8b9512f93f41651f52b6c5f5af86"
 
 [[package]]
 name = "unicode-ccc"
-version = "0.1.2"
+version = "0.2.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "cc2520efa644f8268dce4dcd3050eaa7fc044fca03961e9998ac7e2e92b77cf1"
+checksum = "1df77b101bcc4ea3d78dafc5ad7e4f58ceffe0b2b16bf446aeb50b6cb4157656"
 
 [[package]]
 name = "unicode-ident"
