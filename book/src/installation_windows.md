@@ -39,17 +39,7 @@ gvsbuild build gtk4
 3. Click 'Environment Variables...'
 4. Ensure there is a user variable named `PKG_CONFIG_PATH` with value `C:\gtk-build\gtk\x64\release\lib\pkgconfig`
 5. Edit the variable named `Path` and add `C:\gtk-build\gtk\x64\release\lib\pkgconfig` to it
-
-### Ensure your linker can find GTK's library files
-
-Open `%HOMEPATH%\.cargo\config` for editing. You can add extra flags for your linker here to tell it where GTK's library files are. If you're using the `stable-x86_64-pc-windows-msvc` Rust toolchain, your config may look like this:
-
-```toml
-[target.x86_64-pc-windows-msvc]
-rustflags = ["-C", "link-args=/LIBPATH:C:\\gtk-build\\gtk\\x64\\release\\lib\\"]
-```
-
-This `rustflags` value should work for Microsoft's linker as well as LLVM's `lld-link.exe`.
+6. Ensure there is a user variable named `Lib` with value `C:\gtk-build\gtk\x64\release\lib` (or add new value to existing variable if already exists)
 
 You can now continue with the [project setup](./project_setup.html).
 
