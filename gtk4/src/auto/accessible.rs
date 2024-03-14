@@ -2,6 +2,9 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+use crate::AccessibleAnnouncementPriority;
 #[cfg(feature = "v4_10")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
 use crate::{ATContext, AccessiblePlatformState};
@@ -32,6 +35,19 @@ mod sealed {
 }
 
 pub trait AccessibleExt: IsA<Accessible> + sealed::Sealed + 'static {
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    #[doc(alias = "gtk_accessible_announce")]
+    fn announce(&self, message: &str, priority: AccessibleAnnouncementPriority) {
+        unsafe {
+            ffi::gtk_accessible_announce(
+                self.as_ref().to_glib_none().0,
+                message.to_glib_none().0,
+                priority.into_glib(),
+            );
+        }
+    }
+
     #[cfg(feature = "v4_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v4_10")))]
     #[doc(alias = "gtk_accessible_get_accessible_parent")]

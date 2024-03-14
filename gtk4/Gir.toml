@@ -18,13 +18,16 @@ trust_return_value_nullability = true
 generate = [
     # "Gtk.RequestedSize", a record
     # "Gtk.PrintBackend", a record without a gtype
+    "Gtk.AccessibleAnnouncementPriority",
     "Gtk.AccessibleAutocomplete",
     "Gtk.AccessibleInvalidState",
     "Gtk.AccessiblePlatformState",
     "Gtk.AccessibleProperty",
     "Gtk.AccessibleRange",
     "Gtk.AccessibleRelation",
+    "Gtk.AccessibleRole",
     "Gtk.AccessibleSort",
+    "Gtk.AccessibleState",
     "Gtk.AccessibleTristate",
     "Gtk.ActionBar",
     "Gtk.ActivateAction",
@@ -127,6 +130,7 @@ generate = [
     "Gtk.GestureSwipe",
     "Gtk.GestureZoom",
     "Gtk.GraphicsOffload",
+    "Gtk.GraphicsOffloadEnabled",
     "Gtk.Grid",
     "Gtk.GridLayout",
     "Gtk.GridView",
@@ -608,24 +612,6 @@ status = "generate"
         const = true
 
 [[object]]
-name = "Gtk.AccessibleRole"
-status = "generate"
-    [[object.member]]
-    name = "toggle_button"
-    version = "4.10"
-    [[object.member]]
-    name = "application"
-    version = "4.12"
-
-
-[[object]]
-name = "Gtk.AccessibleState"
-status = "generate"
-    [[object.member]]
-    name = "visited"
-    version = "4.12"
-
-[[object]]
 name = "Gtk.Actionable"
 status = "generate"
 manual_traits = ["ActionableExtManual"]
@@ -721,6 +707,9 @@ status = "generate"
     [[object.function]]
     name = "get_day_is_marked"
     rename = "day_is_marked"
+    [[object.property]]
+    pattern = "(day|month|year)"
+    generate = ["notify"]
 
 [[object]]
 name = "Gtk.CallbackAction"
@@ -1380,11 +1369,6 @@ status = "generate"
     name = "create-context"
         [object.signal.return]
         nullable = true
-
-[[object]]
-name = "Gtk.GraphicsOffloadEnabled"
-status = "generate"
-version = "4.14"
 
 [[object]]
 name = "Gtk.GridLayoutChild"

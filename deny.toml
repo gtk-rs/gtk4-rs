@@ -40,39 +40,8 @@ allow-git = [
 name = "syn"
 version = "1.0"
 
-# https://github.com/nagisa/rust_libloading/pull/136
+# proc-macro-crate depends on an older version of toml_edit
+# https://github.com/bkchr/proc-macro-crate/pull/50
 [[bans.skip]]
-name = "windows_x86_64_msvc"
-version = "0.48"
-# https://github.com/nagisa/rust_libloading/pull/136
-[[bans.skip]]
-name = "windows_x86_64_gnullvm"
-version = "0.48"
-# https://github.com/nagisa/rust_libloading/pull/136
-[[bans.skip]]
-name = "windows_x86_64_gnu"
-version = "0.48"
-# https://github.com/nagisa/rust_libloading/pull/136
-[[bans.skip]]
-name = "windows_i686_msvc"
-version = "0.48"
-# https://github.com/nagisa/rust_libloading/pull/136
-[[bans.skip]]
-name = "windows_i686_gnu"
-version = "0.48"
-# https://github.com/nagisa/rust_libloading/pull/136
-[[bans.skip]]
-name = "windows_aarch64_msvc"
-version = "0.48"
-# https://github.com/nagisa/rust_libloading/pull/136
-[[bans.skip]]
-name = "windows_aarch64_gnullvm"
-version = "0.48"
-# https://github.com/nagisa/rust_libloading/pull/136
-[[bans.skip]]
-name = "windows-targets"
-version = "0.48"
-# https://github.com/nagisa/rust_libloading/pull/136
-[[bans.skip]]
-name = "windows-sys"
-version = "0.48"
+name = "toml_edit"
+version = "0.21"

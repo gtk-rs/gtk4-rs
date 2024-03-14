@@ -1062,12 +1062,12 @@ impl From<PickFlags> for glib::Value {
     }
 }
 
-#[cfg(feature = "v4_14")]
 bitflags! {
-    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
     #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash)]
     #[doc(alias = "GtkPopoverMenuFlags")]
     pub struct PopoverMenuFlags: u32 {
+        #[cfg(feature = "v4_14")]
+        #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
         #[doc(alias = "GTK_POPOVER_MENU_SLIDING")]
         const SLIDING = ffi::GTK_POPOVER_MENU_SLIDING as _;
         #[doc(alias = "GTK_POPOVER_MENU_NESTED")]
@@ -1075,8 +1075,6 @@ bitflags! {
     }
 }
 
-#[cfg(feature = "v4_14")]
-#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
 #[doc(hidden)]
 impl IntoGlib for PopoverMenuFlags {
     type GlibType = ffi::GtkPopoverMenuFlags;
@@ -1087,8 +1085,6 @@ impl IntoGlib for PopoverMenuFlags {
     }
 }
 
-#[cfg(feature = "v4_14")]
-#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
 #[doc(hidden)]
 impl FromGlib<ffi::GtkPopoverMenuFlags> for PopoverMenuFlags {
     #[inline]
@@ -1098,8 +1094,6 @@ impl FromGlib<ffi::GtkPopoverMenuFlags> for PopoverMenuFlags {
     }
 }
 
-#[cfg(feature = "v4_14")]
-#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
 impl StaticType for PopoverMenuFlags {
     #[inline]
     #[doc(alias = "gtk_popover_menu_flags_get_type")]
@@ -1108,8 +1102,6 @@ impl StaticType for PopoverMenuFlags {
     }
 }
 
-#[cfg(feature = "v4_14")]
-#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
 impl glib::HasParamSpec for PopoverMenuFlags {
     type ParamSpec = glib::ParamSpecFlags;
     type SetValue = Self;
@@ -1120,14 +1112,10 @@ impl glib::HasParamSpec for PopoverMenuFlags {
     }
 }
 
-#[cfg(feature = "v4_14")]
-#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
 impl glib::value::ValueType for PopoverMenuFlags {
     type Type = Self;
 }
 
-#[cfg(feature = "v4_14")]
-#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
 unsafe impl<'a> glib::value::FromValue<'a> for PopoverMenuFlags {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
@@ -1138,8 +1126,6 @@ unsafe impl<'a> glib::value::FromValue<'a> for PopoverMenuFlags {
     }
 }
 
-#[cfg(feature = "v4_14")]
-#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
 impl ToValue for PopoverMenuFlags {
     #[inline]
     fn to_value(&self) -> glib::Value {
@@ -1156,8 +1142,6 @@ impl ToValue for PopoverMenuFlags {
     }
 }
 
-#[cfg(feature = "v4_14")]
-#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
 impl From<PopoverMenuFlags> for glib::Value {
     #[inline]
     fn from(v: PopoverMenuFlags) -> Self {
