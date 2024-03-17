@@ -6,6 +6,18 @@ Now let's go make ours applications accessibility is very simple and works by de
 
 Bugs in your code, your code can design fall, widgets, relations or incorrect states. You can previn it read <a class=file-link href="https://docs.gtk.org/gtk4/section-accessibility.html">Gtk documentation about accessibility</a>.
 
+For example if you can make your Box implementation with Accessible features working you need implements **gtk::Accessible** like it example:
+
+Filename: <a class=file-link href="https://github.com/gtk-rs/gtk4-rs/blob/master/book/listings/todo/2/task_row/mod.rs">listings/book/listings/todo/2/task_row/mod.rs</a>
+```rust ,no_run,compile_fail
+glib::wrapper! {
+    pub struct TaskRow(ObjectSubclass<imp::TaskRow>)
+    @extends gtk::Box, gtk::Widget,
+    @implements gtk::Accessible, gtk::Buildable, gtk::ConstraintTarget, gtk::Orientable;
+}
+
+```
+
 ## Roles
 
 Roles like <a class=file-link href="https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4/enum.AccessibleRole.html#variant.Button">AccessibleRole::Button</a> can affect presentation, keyboard focus, relationship with other elements.
