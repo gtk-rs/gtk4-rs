@@ -15,15 +15,9 @@ pub struct ResultBody {
     results: Vec<Pokemon>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct PokemonClient {
     page: u32,
-}
-
-impl Default for PokemonClient {
-    fn default() -> Self {
-        Self { page: 0 }
-    }
 }
 
 impl PokemonClient {
