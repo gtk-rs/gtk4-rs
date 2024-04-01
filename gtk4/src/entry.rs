@@ -1,7 +1,5 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use std::convert::TryFrom;
-
 use glib::translate::*;
 
 use crate::{prelude::*, Entry};

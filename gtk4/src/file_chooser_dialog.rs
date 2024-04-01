@@ -2,7 +2,7 @@
 
 use std::ptr;
 
-use glib::{translate::*, IntoOptionalGStr};
+use glib::translate::*;
 use libc::c_char;
 
 use crate::{prelude::*, FileChooserAction, FileChooserDialog, ResponseType, Widget, Window};

@@ -2,8 +2,7 @@
 
 use std::ptr;
 
-use glib::{translate::*, IntoGStr, IntoOptionalGStr};
-use libc::c_char;
+use glib::translate::*;
 
 use crate::{prelude::*, ButtonsType, DialogFlags, MessageDialog, MessageType, Widget, Window};
 
@@ -26,9 +25,9 @@ impl MessageDialog {
                     flags.into_glib(),
                     type_.into_glib(),
                     buttons.into_glib(),
-                    b"%s\0".as_ptr() as *const c_char,
+                    b"%s\0".as_ptr() as *const libc::c_char,
                     message.as_ptr(),
-                    ptr::null::<c_char>(),
+                    ptr::null::<libc::c_char>(),
                 ))
                 .unsafe_cast()
             })

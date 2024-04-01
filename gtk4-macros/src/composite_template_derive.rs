@@ -2,7 +2,6 @@
 
 #[cfg(feature = "xml_validation")]
 use std::collections::HashMap;
-use std::string::ToString;
 
 use proc_macro2::TokenStream;
 use proc_macro_error::{emit_call_site_error, emit_error};
