@@ -8,7 +8,7 @@ use std::{
     rc::Rc,
 };
 
-use glib::{translate::*, IntoOptionalGStr};
+use glib::translate::*;
 
 use crate::{prelude::*, Dialog, DialogFlags, ResponseType, Widget, Window};
 

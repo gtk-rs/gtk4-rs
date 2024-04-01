@@ -2,7 +2,7 @@
 
 use std::borrow::Borrow;
 
-use glib::{translate::*, IntoGStr};
+use glib::translate::*;
 
 use crate::{prelude::*, Snapshot};
 

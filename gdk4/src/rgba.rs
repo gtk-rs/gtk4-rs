@@ -2,7 +2,7 @@
 
 use std::{fmt, str::FromStr};
 
-use glib::{translate::*, IntoGStr};
+use glib::translate::*;
 
 use crate::RGBA;
 

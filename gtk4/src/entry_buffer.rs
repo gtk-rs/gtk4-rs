@@ -1,6 +1,6 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use glib::{translate::*, GString, IntoGStr, IntoOptionalGStr};
+use glib::{translate::*, GString};
 use libc::{c_int, c_uint};
 
 use crate::{prelude::*, EntryBuffer};
