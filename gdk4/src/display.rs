@@ -1,8 +1,6 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use std::{mem, ptr};
-
-use glib::{translate::*, IntoGStr};
+use glib::translate::*;
 
 use crate::{prelude::*, Display, Key, KeymapKey, ModifierType};
 
@@ -69,10 +67,10 @@ pub trait DisplayExtManual: sealed::Sealed + IsA<Display> + 'static {
         group: i32,
     ) -> Option<(Key, i32, i32, ModifierType)> {
         unsafe {
-            let mut keyval = mem::MaybeUninit::uninit();
-            let mut effective_group = mem::MaybeUninit::uninit();
-            let mut level = mem::MaybeUninit::uninit();
-            let mut consumed = mem::MaybeUninit::uninit();
+            let mut keyval = std::mem::MaybeUninit::uninit();
+            let mut effective_group = std::mem::MaybeUninit::uninit();
+            let mut level = std::mem::MaybeUninit::uninit();
+            let mut consumed = std::mem::MaybeUninit::uninit();
             let ret = from_glib(ffi::gdk_display_translate_key(
                 self.as_ref().to_glib_none().0,
                 keycode,
@@ -122,8 +120,8 @@ pub trait DisplayExtManual: sealed::Sealed + IsA<Display> + 'static {
     #[doc(alias = "gdk_display_map_keyval")]
     fn map_keyval(&self, keyval: Key) -> Option<Vec<KeymapKey>> {
         unsafe {
-            let mut keys = ptr::null_mut();
-            let mut n_keys = mem::MaybeUninit::uninit();
+            let mut keys = std::ptr::null_mut();
+            let mut n_keys = std::mem::MaybeUninit::uninit();
             let ret = from_glib(ffi::gdk_display_map_keyval(
                 self.as_ref().to_glib_none().0,
                 keyval.into_glib(),
@@ -144,9 +142,9 @@ pub trait DisplayExtManual: sealed::Sealed + IsA<Display> + 'static {
     #[doc(alias = "gdk_display_map_keycode")]
     fn map_keycode(&self, keycode: u32) -> Option<Vec<(KeymapKey, Key)>> {
         unsafe {
-            let mut keys = ptr::null_mut();
-            let mut keyvals = ptr::null_mut();
-            let mut n_entries = mem::MaybeUninit::uninit();
+            let mut keys = std::ptr::null_mut();
+            let mut keyvals = std::ptr::null_mut();
+            let mut n_entries = std::mem::MaybeUninit::uninit();
             let ret = from_glib(ffi::gdk_display_map_keycode(
                 self.as_ref().to_glib_none().0,
                 keycode,

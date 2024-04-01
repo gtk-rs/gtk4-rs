@@ -136,6 +136,8 @@ fn parse_attribute(meta: &NestedMeta) -> Result<(String, String)> {
 }
 
 pub enum FieldAttributeArg {
+    #[allow(dead_code)]
+    // The span is needed for xml_validation feature
     Id(String, Span),
     Internal(bool),
 }
@@ -148,8 +150,6 @@ pub enum FieldAttributeType {
 pub struct FieldAttribute {
     pub ty: FieldAttributeType,
     pub args: Vec<FieldAttributeArg>,
-    pub path_span: Span,
-    pub span: Span,
 }
 
 pub struct AttributedField {
@@ -292,7 +292,6 @@ fn parse_field(field: &Field) -> Result<Option<AttributedField>, Error> {
 
     for field_attr in field_attrs {
         let span = field_attr.span();
-        let path_span = field_attr.path.span();
         let ty = if field_attr.path.is_ident("template_child") {
             Some(FieldAttributeType::TemplateChild)
         } else {
@@ -303,12 +302,7 @@ fn parse_field(field: &Field) -> Result<Option<AttributedField>, Error> {
             let args = parse_field_attr_args(&ty, field_attr)?;
 
             if attr.is_none() {
-                attr = Some(FieldAttribute {
-                    ty,
-                    args,
-                    path_span,
-                    span,
-                })
+                attr = Some(FieldAttribute { ty, args })
             } else {
                 return Err(Error::new(
                     span,

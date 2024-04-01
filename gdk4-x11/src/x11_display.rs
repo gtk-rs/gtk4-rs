@@ -7,7 +7,7 @@ use std::{boxed::Box as Box_, mem::transmute};
 #[cfg(feature = "xlib")]
 #[cfg_attr(docsrs, doc(cfg(feature = "xlib")))]
 use glib::signal::{connect_raw, SignalHandlerId};
-use glib::{translate::*, IntoGStr};
+use glib::translate::*;
 #[cfg(all(feature = "v4_4", feature = "egl"))]
 #[cfg_attr(docsrs, doc(cfg(all(feature = "v4_4", feature = "egl"))))]
 use khronos_egl as egl;

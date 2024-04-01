@@ -3,7 +3,7 @@
 use std::{cell::RefCell, rc::Rc};
 
 use gio::ApplicationFlags;
-use glib::{signal::SignalHandlerId, translate::*, IntoOptionalGStr};
+use glib::{signal::SignalHandlerId, translate::*};
 
 use crate::{prelude::*, rt, Application};
 
