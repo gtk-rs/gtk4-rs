@@ -2,7 +2,7 @@
 
 use std::path::Path;
 
-use glib::{translate::*, IntoGStr, Object};
+use glib::{translate::*, Object};
 
 use crate::{prelude::*, Builder};
 

@@ -5,7 +5,7 @@ use std::mem::transmute;
 use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
-    GString, IntoGStr,
+    GString,
 };
 
 use crate::{prelude::*, DeleteType, MovementStep, Text, Widget};
