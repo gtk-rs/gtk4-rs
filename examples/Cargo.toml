@@ -22,7 +22,7 @@ gtk.workspace = true
 
 # used by gif-paintable example
 [dependencies.image]
-version = "0.24"
+version = "0.25"
 features = ["gif"]
 default-features = false
 optional = true
