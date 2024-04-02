@@ -38,7 +38,7 @@ gvsbuild build gtk4
 2. Search for 'Advanced system settings'
 3. Click 'Environment Variables...'
 4. Ensure there is a user variable named `PKG_CONFIG_PATH` with value `C:\gtk-build\gtk\x64\release\lib\pkgconfig`
-5. Edit the variable named `Path` and add `C:\gtk-build\gtk\x64\release\lib\pkgconfig` to it
+5. Edit the variable named `Path` and add `C:\gtk-build\gtk\x64\release\bin` to it
 6. Ensure there is a user variable named `Lib` with value `C:\gtk-build\gtk\x64\release\lib` (or add new value to existing variable if already exists)
 
 You can now continue with the [project setup](./project_setup.html).
