@@ -382,7 +382,9 @@ unsafe extern "C" fn content_provider_write_mime_type_finish(
             true.into_glib()
         }
         Err(e) => {
-            *error_ptr = e.into_glib_ptr();
+            if !error_ptr.is_null() {
+                *error_ptr = e.into_glib_ptr();
+            }
             false.into_glib()
         }
     }
@@ -404,7 +406,9 @@ unsafe extern "C" fn content_provider_get_value<T: ContentProviderImpl>(
             true.into_glib()
         }
         Err(e) => {
-            *error_ptr = e.into_glib_ptr();
+            if !error_ptr.is_null() {
+                *error_ptr = e.into_glib_ptr();
+            }
             false.into_glib()
         }
     }
