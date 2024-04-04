@@ -72,6 +72,9 @@ mod content_serializer;
 mod crossing_event;
 mod delete_event;
 mod display;
+#[cfg(feature = "v4_14")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+mod dmabuf_texture_builder;
 mod dnd_event;
 #[cfg(feature = "v4_12")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v4_12")))]
