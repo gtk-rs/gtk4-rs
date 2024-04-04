@@ -26,11 +26,6 @@ impl DmabufTextureBuilder {
         unsafe { from_glib_full(ffi::gdk_dmabuf_texture_builder_new()) }
     }
 
-    //#[doc(alias = "gdk_dmabuf_texture_builder_build")]
-    //pub fn build(&self, data: /*Unimplemented*/Option<Basic: Pointer>) -> Result<Option<Texture>, glib::Error> {
-    //    unsafe { TODO: call ffi:gdk_dmabuf_texture_builder_build() }
-    //}
-
     #[doc(alias = "gdk_dmabuf_texture_builder_get_display")]
     #[doc(alias = "get_display")]
     pub fn display(&self) -> Display {
