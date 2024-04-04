@@ -24,8 +24,11 @@ use pango_sys as pango;
 #[allow(unused_imports)]
 use libc::{
     c_char, c_double, c_float, c_int, c_long, c_short, c_uchar, c_uint, c_ulong, c_ushort, c_void,
-    intptr_t, size_t, ssize_t, uintptr_t, FILE,
+    intptr_t, off_t, size_t, ssize_t, time_t, uintptr_t, FILE,
 };
+#[cfg(unix)]
+#[allow(unused_imports)]
+use libc::{dev_t, gid_t, pid_t, socklen_t, uid_t};
 
 #[allow(unused_imports)]
 use glib::{gboolean, gconstpointer, gpointer, GType};
@@ -1415,6 +1418,9 @@ pub struct GtkAccessibleTextInterface {
             *mut *mut *mut c_char,
         ) -> gboolean,
     >,
+    pub get_default_attributes: Option<
+        unsafe extern "C" fn(*mut GtkAccessibleText, *mut *mut *mut c_char, *mut *mut *mut c_char),
+    >,
 }
 
 impl ::std::fmt::Debug for GtkAccessibleTextInterface {
@@ -1425,6 +1431,7 @@ impl ::std::fmt::Debug for GtkAccessibleTextInterface {
             .field("get_caret_position", &self.get_caret_position)
             .field("get_selection", &self.get_selection)
             .field("get_attributes", &self.get_attributes)
+            .field("get_default_attributes", &self.get_default_attributes)
             .finish()
     }
 }
@@ -3370,7 +3377,8 @@ pub struct GtkIMContextClass {
         ) -> gboolean,
     >,
     pub activate_osk: Option<unsafe extern "C" fn(*mut GtkIMContext)>,
-    pub _gtk_reserved1: Option<unsafe extern "C" fn()>,
+    pub activate_osk_with_event:
+        Option<unsafe extern "C" fn(*mut GtkIMContext, *mut gdk::GdkEvent) -> gboolean>,
     pub _gtk_reserved2: Option<unsafe extern "C" fn()>,
     pub _gtk_reserved3: Option<unsafe extern "C" fn()>,
     pub _gtk_reserved4: Option<unsafe extern "C" fn()>,
@@ -3404,7 +3412,7 @@ impl ::std::fmt::Debug for GtkIMContextClass {
                 &self.get_surrounding_with_selection,
             )
             .field("activate_osk", &self.activate_osk)
-            .field("_gtk_reserved1", &self._gtk_reserved1)
+            .field("activate_osk_with_event", &self.activate_osk_with_event)
             .field("_gtk_reserved2", &self._gtk_reserved2)
             .field("_gtk_reserved3", &self._gtk_reserved3)
             .field("_gtk_reserved4", &self._gtk_reserved4)
@@ -14546,6 +14554,12 @@ extern "C" {
     // GtkIMContext
     //=========================================================================
     pub fn gtk_im_context_get_type() -> GType;
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    pub fn gtk_im_context_activate_osk(
+        context: *mut GtkIMContext,
+        event: *mut gdk::GdkEvent,
+    ) -> gboolean;
     pub fn gtk_im_context_delete_surrounding(
         context: *mut GtkIMContext,
         offset: c_int,

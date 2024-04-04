@@ -30,6 +30,18 @@ mod sealed {
 }
 
 pub trait IMContextExt: IsA<IMContext> + sealed::Sealed + 'static {
+    #[cfg(feature = "v4_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v4_14")))]
+    #[doc(alias = "gtk_im_context_activate_osk")]
+    fn activate_osk(&self, event: Option<impl AsRef<gdk::Event>>) -> bool {
+        unsafe {
+            from_glib(ffi::gtk_im_context_activate_osk(
+                self.as_ref().to_glib_none().0,
+                event.as_ref().map(|p| p.as_ref()).to_glib_none().0,
+            ))
+        }
+    }
+
     #[doc(alias = "gtk_im_context_delete_surrounding")]
     fn delete_surrounding(&self, offset: i32, n_chars: i32) -> bool {
         unsafe {
