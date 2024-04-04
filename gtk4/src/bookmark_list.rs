@@ -6,7 +6,7 @@ use glib::translate::*;
 /// # Example
 /// To iterate over `BookmarkList` call `iter::<gio::FileInfo>` to get an iterator.
 /// ```no_run
-/// let bookmarks = gtk::BookmarkList::new(Some("bookmarks.xbel"), None);
+/// let bookmarks = BookmarkList::new(Some("bookmarks.xbel"), None);
 /// while let Some(Ok(bookmark)) = bookmarks.iter::<gio::FileInfo>().next() {
 ///     // ...
 /// }
